@@ -22,13 +22,14 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "DeliveryUnitType")
-@Table(name = "DELIVERYUNITTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.BatchQuantityType;
+
+@Entity
+@Table(name = "DELIVERYUNIT")
 public class DeliveryUnitEntity {
 
-    protected BatchQuantityType batchQuantity;
-    protected ConsumerUnitQuantityType consumerUnitQuantity;
+    protected QuantityEntity batchQuantity;
+    protected String consumerUnitQuantity;
     protected HazardousRiskIndicatorType hazardousRiskIndicator;
     protected String id;
 

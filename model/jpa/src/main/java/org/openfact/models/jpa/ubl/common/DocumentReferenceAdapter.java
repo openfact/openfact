@@ -38,7 +38,7 @@ public class DocumentReferenceAdapter implements DocumentReferenceModel, JpaMode
 
     @Override
     public boolean getCopyIndicator() {
-        return this.documentReference.getCopyIndicator();
+        return this.documentReference.isCopyIndicator();
     }
 
     @Override
@@ -48,12 +48,13 @@ public class DocumentReferenceAdapter implements DocumentReferenceModel, JpaMode
 
     @Override
     public String getUUID() {
-        return this.documentReference.getUUID();
+        return this.documentReference.getUuid();
     }
 
     @Override
     public void setUUID(String value) {
-        this.documentReference.setUUID(value);
+        this.documentReference.setUuid(value);
+        ;
     }
 
     @Override
@@ -67,43 +68,43 @@ public class DocumentReferenceAdapter implements DocumentReferenceModel, JpaMode
     }
 
     @Override
-    public String getDocumentCodeModel() {
-        return this.documentReference.getDocumentCodeModel();
+    public String getDocumentCode() {
+        return this.documentReference.getDocumentCode();
     }
 
     @Override
-    public void setDocumentCodeAdapter(String value) {
-        this.documentReference.setDocumentCodeAdapter(value);
+    public void setDocumentCode(String value) {
+        this.documentReference.setDocumentCode(value);
     }
 
     @Override
-    public String getDocumentModel() {
-        return this.documentReference.getDocumentModel();
+    public String getDocument() {
+        return this.documentReference.getDocument();
     }
 
     @Override
-    public void setDocumentAdapter(String value) {
-        this.documentReference.setDocumentAdapter(value);
+    public void setDocument(String value) {
+        this.documentReference.setDocument(value);
     }
 
     @Override
     public List<String> getXPath() {
-        return this.documentReference.getXPath();
+        return this.documentReference.getxPath();
     }
 
     @Override
     public void setXPath(List<String> xPath) {
-        this.documentReference.setXPath(xPath);
+        this.documentReference.setxPath(xPath);
     }
 
     @Override
     public AttachmentModel getAttachment() {
-        return this.documentReference.getAttachment();
+        return new AttachmentAdapter(session, em, this.documentReference.getAttachment());
     }
 
     @Override
-    public void setAttachment(AttachmentAdapter value) {
-        this.documentReference.setAttachment(value);
+    public void setAttachment(AttachmentModel value) {
+        this.documentReference.setAttachment(AttachmentAdapter.toEntity(value, em));
     }
 
     @Override
@@ -118,31 +119,7 @@ public class DocumentReferenceAdapter implements DocumentReferenceModel, JpaMode
 
     @Override
     public DocumentReferenceEntity getEntity() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void setDocumentCodeModel(String value) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void setDocumentModel(String value) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void setAttachment(AttachmentModel value) {
-        // TODO Auto-generated method stub
-
-    }
-
-    public static DocumentReferenceEntity toEntity(DocumentReferenceModel value, EntityManager em) {
-        // TODO Auto-generated method stub
-        return null;
+        return this.documentReference;
     }
 
 }

@@ -21,13 +21,13 @@ public interface DocumentReferenceModel {
 
     void setIssueDate(LocalDate value);
 
-    String getDocumentCodeModel();
+    String getDocumentCode();
 
-    void setDocumentCodeModel(String value);
+    void setDocumentCode(String value);
 
-    String getDocumentModel();
+    String getDocument();
 
-    void setDocumentModel(String value);
+    void setDocument(String value);
 
     List<String> getXPath();
 

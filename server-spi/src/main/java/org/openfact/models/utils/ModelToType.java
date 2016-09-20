@@ -255,7 +255,7 @@ public class ModelToType {
 
     public static DocumentReferenceType toType(DocumentReferenceModel model) {
         DocumentReferenceType type = new DocumentReferenceType();
-        type.setDocumentTypeCode(model.getDocumentCodeModel());
+        type.setDocumentTypeCode(model.getDocumentCode());
         return type;
     }
 

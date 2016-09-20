@@ -46,23 +46,23 @@ public class CustomerPartyEntity {
     @Column(name = "VALUE")
     @CollectionTable(name = "ADDITIONALACCOUNTID_CUSTOMERPARTY", joinColumns = {
             @JoinColumn(name = "CUSTOMERPARTY_ID") })
-    protected List<String> additionalAccountID;
+    protected List<String> additionalAccountID = new ArrayList<>();
 
-    @ManyToOne(targetEntity = PartyType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PARTY_CUSTOMERPARTYTYPE_ID")
-    protected PartyType party;
+    protected PartyEntity party = new PartyEntity();
 
     @ManyToOne(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DELIVERYCONTACT_CUSTOMERPARTY")
-    protected ContactEntity deliveryContact;
+    protected ContactEntity deliveryContact = new ContactEntity();
 
     @ManyToOne(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ACCOUNTINGCONTACT_CUSTOMERPARTY")
-    protected ContactEntity accountingContact;
+    protected ContactEntity accountingContact = new ContactEntity();
 
     @ManyToOne(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "BUYERCONTACT_CUSTOMERPARTY")
-    protected ContactEntity buyerContact;
+    protected ContactEntity buyerContact = new ContactEntity();
 
     /**
      * @return the id
@@ -113,9 +113,6 @@ public class CustomerPartyEntity {
      * @return the additionalAccountID
      */
     public List<String> getAdditionalAccountID() {
-        if (this.additionalAccountID == null) {
-            this.additionalAccountID = new ArrayList<>();
-        }
         return additionalAccountID;
     }
 
@@ -130,10 +127,7 @@ public class CustomerPartyEntity {
     /**
      * @return the party
      */
-    public PartyType getParty() {
-        if (this.party == null) {
-            this.party = new PartyType();
-        }
+    public PartyEntity getParty() {
         return party;
     }
 
@@ -141,7 +135,7 @@ public class CustomerPartyEntity {
      * @param party
      *            the party to set
      */
-    public void setParty(PartyType party) {
+    public void setParty(PartyEntity party) {
         this.party = party;
     }
 
@@ -149,9 +143,6 @@ public class CustomerPartyEntity {
      * @return the deliveryContact
      */
     public ContactEntity getDeliveryContact() {
-        if (this.deliveryContact == null) {
-            this.deliveryContact = new ContactEntity();
-        }
         return deliveryContact;
     }
 
@@ -167,9 +158,6 @@ public class CustomerPartyEntity {
      * @return the accountingContact
      */
     public ContactEntity getAccountingContact() {
-        if (this.accountingContact == null) {
-            this.accountingContact = new ContactEntity();
-        }
         return accountingContact;
     }
 
@@ -185,9 +173,6 @@ public class CustomerPartyEntity {
      * @return the buyerContact
      */
     public ContactEntity getBuyerContact() {
-        if (this.buyerContact == null) {
-            this.buyerContact = new ContactEntity();
-        }
         return buyerContact;
     }
 

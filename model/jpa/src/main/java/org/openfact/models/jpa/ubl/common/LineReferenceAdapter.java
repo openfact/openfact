@@ -6,8 +6,10 @@ import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.LineReferenceEntity;
+import org.openfact.models.jpa.entities.ubl.common.ResponseEntity;
 import org.openfact.models.ubl.common.DocumentReferenceModel;
 import org.openfact.models.ubl.common.LineReferenceModel;
+import org.openfact.models.ubl.common.ResponseModel;
 
 public class LineReferenceAdapter implements LineReferenceModel, JpaModel<LineReferenceEntity> {
 
@@ -71,6 +73,13 @@ public class LineReferenceAdapter implements LineReferenceModel, JpaModel<LineRe
     @Override
     public void setId(String value) {
         this.lineReference.setId(value);
+    }
+
+    public static LineReferenceEntity toEntity(LineReferenceModel model, EntityManager em) {
+        if (model instanceof LineReferenceAdapter) {
+            return ((LineReferenceAdapter) model).getEntity();
+        }
+        return em.getReference(LineReferenceEntity.class, model.getId());
     }
 
 }

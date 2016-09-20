@@ -17,113 +17,181 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "OrderReferenceEntity")
+@Entity
 @Table(name = "ORDER_REFERENCE")
-@Inheritance(strategy = InheritanceType.JOINED)
 public class OrderReferenceEntity {
-
-    protected String ID;
-    protected String salesOrderID;
-    protected boolean copyIndicator;
-    protected String uuid;
-    protected LocalDate issueDate;
-    protected LocalTime issueTime;
-    protected String customerReference;
-    protected DocumentReferenceEntity documentReference;
-    protected String id;
-
-    @Column(name = "ID")
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String value) {
-        this.ID = value;
-    }
-
-    @Column(name = "SALES_ORDER_ID")
-    public String getSalesOrderID() {
-        return salesOrderID;
-    }
-
-    public void setSalesOrderID(String value) {
-        this.salesOrderID = value;
-    }
-
-    @Column(name = "COPY_INDICATOR")
-    public boolean getCopyIndicator() {
-        return copyIndicator;
-    }
-
-    public void setCopyIndicator(boolean value) {
-        this.copyIndicator = value;
-    }
-
-    @Column(name = "UUID")
-    public String getUUID() {
-        return uuid;
-    }
-
-    public void setUUID(String value) {
-        this.uuid = value;
-    }
-
-    @Column(name = "ISSUEDATE")
-    public LocalDate getIssueDate() {
-        return issueDate;
-    }
-
-    public void setIssueDate(LocalDate value) {
-        this.issueDate = value;
-    }
-
-    @Column(name = "ISSUETIME")
-    public LocalTime getIssueTime() {
-        return issueTime;
-    }
-
-    public void setIssueTime(LocalTime value) {
-        this.issueTime = value;
-    }
-
-    @Column(name = "CUSTOMER_REFERENCE")
-    public String getCustomerReference() {
-        return customerReference;
-    }
-
-    public void setCustomerReference(String value) {
-        this.customerReference = value;
-    }
-
-    @ManyToOne(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DOCUMENTREFERENCE")
-    public DocumentReferenceEntity getDocumentReference() {
-        return documentReference;
-    }
-
-    public void setDocumentReference(DocumentReferenceEntity value) {
-        this.documentReference = value;
-    }
 
     @Id
     @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "ID")
+    protected String ID;
+
+    @Column(name = "SALES_ORDER_ID")
+    protected String salesOrderID;
+
+    @Column(name = "COPY_INDICATOR")
+    protected boolean copyIndicator;
+
+    @Column(name = "UUID")
+    protected String uuid;
+
+    @Column(name = "ISSUEDATE")
+    protected LocalDate issueDate;
+
+    @Column(name = "ISSUETIME")
+    protected LocalTime issueTime;
+
+    @Column(name = "CUSTOMER_REFERENCE")
+    protected String customerReference;
+
+    @ManyToOne(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "DOCUMENTREFERENCE")
+    protected DocumentReferenceEntity documentReference = new DocumentReferenceEntity();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
+
+    /**
+     * @return the salesOrderID
+     */
+    public String getSalesOrderID() {
+        return salesOrderID;
+    }
+
+    /**
+     * @param salesOrderID
+     *            the salesOrderID to set
+     */
+    public void setSalesOrderID(String salesOrderID) {
+        this.salesOrderID = salesOrderID;
+    }
+
+    /**
+     * @return the copyIndicator
+     */
+    public boolean isCopyIndicator() {
+        return copyIndicator;
+    }
+
+    /**
+     * @param copyIndicator
+     *            the copyIndicator to set
+     */
+    public void setCopyIndicator(boolean copyIndicator) {
+        this.copyIndicator = copyIndicator;
+    }
+
+    /**
+     * @return the uuid
+     */
+    public String getUuid() {
+        return uuid;
+    }
+
+    /**
+     * @param uuid
+     *            the uuid to set
+     */
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    /**
+     * @return the issueDate
+     */
+    public LocalDate getIssueDate() {
+        return issueDate;
+    }
+
+    /**
+     * @param issueDate
+     *            the issueDate to set
+     */
+    public void setIssueDate(LocalDate issueDate) {
+        this.issueDate = issueDate;
+    }
+
+    /**
+     * @return the issueTime
+     */
+    public LocalTime getIssueTime() {
+        return issueTime;
+    }
+
+    /**
+     * @param issueTime
+     *            the issueTime to set
+     */
+    public void setIssueTime(LocalTime issueTime) {
+        this.issueTime = issueTime;
+    }
+
+    /**
+     * @return the customerReference
+     */
+    public String getCustomerReference() {
+        return customerReference;
+    }
+
+    /**
+     * @param customerReference
+     *            the customerReference to set
+     */
+    public void setCustomerReference(String customerReference) {
+        this.customerReference = customerReference;
+    }
+
+    /**
+     * @return the documentReference
+     */
+    public DocumentReferenceEntity getDocumentReference() {
+        return documentReference;
+    }
+
+    /**
+     * @param documentReference
+     *            the documentReference to set
+     */
+    public void setDocumentReference(DocumentReferenceEntity documentReference) {
+        this.documentReference = documentReference;
     }
 
 }

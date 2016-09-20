@@ -266,7 +266,7 @@ public class RepresentationToModel {
 
     public static void updateModel(DocumentReferenceModel model, DocumentReferenceRepresentation rep) {
         if (rep.getDocumentCodeRepresentation() != null) {
-            model.setDocumentCodeModel(rep.getDocumentCodeRepresentation());
+            model.setDocumentCode(rep.getDocumentCodeRepresentation());
         }
     }
 

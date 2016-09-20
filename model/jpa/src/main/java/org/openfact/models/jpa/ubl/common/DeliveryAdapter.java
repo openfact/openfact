@@ -5,10 +5,9 @@ import java.time.LocalTime;
 
 import javax.persistence.EntityManager;
 
-import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
-import org.openfact.models.jpa.entities.ubl.common.DeliveryEntity;
 import org.openfact.models.jpa.entities.ubl.common.DeliveryEntity;
 import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.DeliveryModel;
@@ -43,32 +42,32 @@ public class DeliveryAdapter implements DeliveryModel, JpaModel<DeliveryEntity> 
 
     @Override
     public QuantityModel getQuantity() {
-        return this.delivery.getQuantity();
+        return new QuantityAdapter(session, em, this.delivery.getQuantity());
     }
 
     @Override
-    public void setQuantity(QuantityAdapter value) {
-        this.delivery.setQuantity(value);
+    public void setQuantity(QuantityModel value) {
+        this.delivery.setQuantity(QuantityAdapter.toEntity(value, em));
     }
 
     @Override
     public QuantityModel getMinimumQuantity() {
-        return this.delivery.getMinimumQuantity();
+        return new QuantityAdapter(session, em, this.delivery.getMinimumQuantity());
     }
 
     @Override
-    public void setMinimumQuantity(QuantityAdapter value) {
-        this.delivery.setMinimumQuantity(value);
+    public void setMinimumQuantity(QuantityModel value) {
+        this.delivery.setMinimumQuantity(QuantityAdapter.toEntity(value, em));
     }
 
     @Override
     public QuantityModel getMaximumQuantity() {
-        return this.delivery.getMaximumQuantity();
+        return new QuantityAdapter(session, em, this.delivery.getMaximumQuantity());
     }
 
     @Override
-    public void setMaximumQuantity(QuantityAdapter value) {
-        this.delivery.setMaximumQuantity(value);
+    public void setMaximumQuantity(QuantityModel value) {
+        this.delivery.setMaximumQuantity(QuantityAdapter.toEntity(value, em));
     }
 
     @Override
@@ -123,72 +122,72 @@ public class DeliveryAdapter implements DeliveryModel, JpaModel<DeliveryEntity> 
 
     @Override
     public AddressModel getDeliveryAddress() {
-        return this.delivery.getDeliveryAddress();
+        return new AddressAdapter(session, em, this.delivery.getDeliveryAddress());
     }
 
     @Override
-    public void setDeliveryAddress(AddressAdapter value) {
-        this.delivery.setDeliveryAddress(value);
+    public void setDeliveryAddress(AddressModel value) {
+        this.delivery.setDeliveryAddress(AddressAdapter.toEntity(value, em));
     }
 
     @Override
     public LocationCommAggModel getDeliveryLocation() {
-        return this.delivery.getDeliveryLocation();
+        return new LocationCommAggAdapter(session, em, this.delivery.getDeliveryLocation());
     }
 
     @Override
-    public void setDeliveryLocation(LocationCommAggAdapter value) {
-        this.delivery.setDeliveryLocation(value);
+    public void setDeliveryLocation(LocationCommAggModel value) {
+        this.delivery.setDeliveryLocation(LocationCommAggAdapter.toEntity(value, em));
     }
 
     @Override
     public PeriodModel getRequestedDeliveryPeriod() {
-        return this.delivery.getRequestedDeliveryPeriod();
+        return new PeriodAdapter(session, em, this.delivery.getRequestedDeliveryPeriod());
     }
 
     @Override
-    public void setRequestedDeliveryPeriod(PeriodAdapter value) {
-        this.delivery.setRequestedDeliveryPeriod(value);
+    public void setRequestedDeliveryPeriod(PeriodModel value) {
+        this.delivery.setRequestedDeliveryPeriod(PeriodAdapter.toEntity(value, em));
     }
 
     @Override
     public PeriodModel getPromisedDeliveryPeriod() {
-        return this.delivery.getPromisedDeliveryPeriod();
+        return new PeriodAdapter(session, em, this.delivery.getPromisedDeliveryPeriod());
     }
 
     @Override
-    public void setPromisedDeliveryPeriod(PeriodAdapter value) {
-        this.delivery.setPromisedDeliveryPeriod(value);
+    public void setPromisedDeliveryPeriod(PeriodModel value) {
+        this.delivery.setPromisedDeliveryPeriod(PeriodAdapter.toEntity(value, em));
     }
 
     @Override
     public PeriodModel getEstimatedDeliveryPeriod() {
-        return this.delivery.getEstimatedDeliveryPeriod();
+        return new PeriodAdapter(session, em, this.delivery.getEstimatedDeliveryPeriod());
     }
 
     @Override
-    public void setEstimatedDeliveryPeriod(PeriodAdapter value) {
-        this.delivery.setEstimatedDeliveryPeriod(value);
+    public void setEstimatedDeliveryPeriod(PeriodModel value) {
+        this.delivery.setEstimatedDeliveryPeriod(PeriodAdapter.toEntity(value, em));
     }
 
     @Override
     public PartyModel getDeliveryParty() {
-        return this.delivery.getDeliveryParty();
+        return new PartyAdapter(session, em, this.delivery.getDeliveryParty());
     }
 
     @Override
-    public void setDeliveryParty(PartyAdapter value) {
-        this.delivery.setDeliveryParty(value);
+    public void setDeliveryParty(PartyModel value) {
+        this.delivery.setDeliveryParty(PartyAdapter.toEntity(value, em));
     }
 
     @Override
     public DespatchModel getDespatch() {
-        return this.delivery.getDespatch();
+        return new DespatchAdapter(session, em, this.delivery.getDespatch());
     }
 
     @Override
-    public void setDespatch(DespatchAdapter value) {
-        this.delivery.setDespatch(value);
+    public void setDespatch(DespatchModel value) {
+        this.delivery.setDespatch(DespatchAdapter.toEntity(value, em));
     }
 
     @Override
@@ -199,6 +198,18 @@ public class DeliveryAdapter implements DeliveryModel, JpaModel<DeliveryEntity> 
     @Override
     public void setId(String value) {
         this.delivery.setId(value);
+    }
+
+    public static DeliveryEntity toEntity(DeliveryModel model, EntityManager em) {
+        if (model instanceof DeliveryAdapter) {
+            return ((DeliveryAdapter) model).getEntity();
+        }
+        return em.getReference(DeliveryEntity.class, model.getId());
+    }
+
+    @Override
+    public DeliveryEntity getEntity() {
+        return this.delivery;
     }
 
 }

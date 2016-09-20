@@ -7,7 +7,9 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.AddressEntity;
 import org.openfact.models.jpa.entities.ubl.common.ResponseEntity;
+import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.ResponseModel;
 
 public class ResponseAdapter implements ResponseModel, JpaModel<ResponseEntity> {
@@ -66,6 +68,13 @@ public class ResponseAdapter implements ResponseModel, JpaModel<ResponseEntity> 
     @Override
     public ResponseEntity getEntity() {
         return response;
+    }
+
+    public static ResponseEntity toEntity(ResponseModel model, EntityManager em) {
+        if (model instanceof ResponseAdapter) {
+            return ((ResponseAdapter) model).getEntity();
+        }
+        return em.getReference(ResponseEntity.class, model.getId());
     }
 
 }

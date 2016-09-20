@@ -13,7 +13,9 @@ import java.util.List;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,87 +23,130 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "DimensionType")
-@Table(name = "DIMENSIONTYPE")
+@Entity
+@Table(name = "DIMENSION")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class DimensionEntity {
-
-    protected AttributeIDType attributeID;
-    protected MeasureEntity measure;
-    protected List<DescriptionType> description;
-    protected MinimumMeasureType minimumMeasure;
-    protected MaximumMeasureType maximumMeasure;
-    protected String id;
-
-    @ManyToOne(targetEntity = AttributeIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ATTRIBUTEID_DIMENSIONTYPE_HJ_0")
-    public AttributeIDType getAttributeID() {
-        return attributeID;
-    }
-
-    public void setAttributeID(AttributeIDType value) {
-        this.attributeID = value;
-    }
-
-    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "MEASURE_DIMENSIONTYPE_OFID")
-    public MeasureEntity getMeasure() {
-        return measure;
-    }
-
-    public void setMeasure(MeasureEntity value) {
-        this.measure = value;
-    }
-
-    @OneToMany(targetEntity = DescriptionType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DESCRIPTION_DIMENSIONTYPE_HJ_0")
-    public List<DescriptionType> getDescription() {
-        if (description == null) {
-            description = new ArrayList<DescriptionType>();
-        }
-        return this.description;
-    }
-
-    public void setDescription(List<DescriptionType> description) {
-        this.description = description;
-    }
-
-    @ManyToOne(targetEntity = MinimumMeasureType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "MINIMUMMEASURE_DIMENSIONTYPE_0")
-    public MinimumMeasureType getMinimumMeasure() {
-        return minimumMeasure;
-    }
-
-    public void setMinimumMeasure(MinimumMeasureType value) {
-        this.minimumMeasure = value;
-    }
-
-    @ManyToOne(targetEntity = MaximumMeasureType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "MAXIMUMMEASURE_DIMENSIONTYPE_0")
-    public MaximumMeasureType getMaximumMeasure() {
-        return maximumMeasure;
-    }
-
-    public void setMaximumMeasure(MaximumMeasureType value) {
-        this.maximumMeasure = value;
-    }
 
     @Id
     @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "ATTRIBUTEID")
+    protected String attributeID;
+
+    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "MEASURE_DIMENSION_ID")
+    protected MeasureEntity measure = new MeasureEntity();
+
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "DIMENSION_DESCRIPTION", joinColumns = { @JoinColumn(name = "DIMENSION_ID") })
+    protected List<String> description = new ArrayList<>();
+
+    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "MINIMUMMEASURE_DIMENSION")
+    protected MeasureEntity minimumMeasure = new MeasureEntity();
+
+    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "MAXIMUMMEASURE_DIMENSION")
+    protected MeasureEntity maximumMeasure = new MeasureEntity();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the attributeID
+     */
+    public String getAttributeID() {
+        return attributeID;
+    }
+
+    /**
+     * @param attributeID
+     *            the attributeID to set
+     */
+    public void setAttributeID(String attributeID) {
+        this.attributeID = attributeID;
+    }
+
+    /**
+     * @return the measure
+     */
+    public MeasureEntity getMeasure() {
+        return measure;
+    }
+
+    /**
+     * @param measure
+     *            the measure to set
+     */
+    public void setMeasure(MeasureEntity measure) {
+        this.measure = measure;
+    }
+
+    /**
+     * @return the description
+     */
+    public List<String> getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description
+     *            the description to set
+     */
+    public void setDescription(List<String> description) {
+        this.description = description;
+    }
+
+    /**
+     * @return the minimumMeasure
+     */
+    public MeasureEntity getMinimumMeasure() {
+        return minimumMeasure;
+    }
+
+    /**
+     * @param minimumMeasure
+     *            the minimumMeasure to set
+     */
+    public void setMinimumMeasure(MeasureEntity minimumMeasure) {
+        this.minimumMeasure = minimumMeasure;
+    }
+
+    /**
+     * @return the maximumMeasure
+     */
+    public MeasureEntity getMaximumMeasure() {
+        return maximumMeasure;
+    }
+
+    /**
+     * @param maximumMeasure
+     *            the maximumMeasure to set
+     */
+    public void setMaximumMeasure(MeasureEntity maximumMeasure) {
+        this.maximumMeasure = maximumMeasure;
     }
 
 }

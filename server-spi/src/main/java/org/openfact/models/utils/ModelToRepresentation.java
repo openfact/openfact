@@ -247,7 +247,7 @@ public class ModelToRepresentation {
 
     public static DocumentReferenceRepresentation toRepresentation(DocumentReferenceModel model) {
         DocumentReferenceRepresentation type = new DocumentReferenceRepresentation();
-        type.setDocumentCodeRepresentation(model.getDocumentCodeModel());
+        type.setDocumentCodeRepresentation(model.getDocumentCode());
         return type;
     }
 

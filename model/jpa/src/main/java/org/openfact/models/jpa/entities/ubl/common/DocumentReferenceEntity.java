@@ -7,134 +7,197 @@
 
 package org.openfact.models.jpa.entities.ubl.common;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "DocumentReferenceType")
-@Table(name = "DOCUMENTREFERENCETYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "DOCUMENTREFERENCE")
 public class DocumentReferenceEntity {
-
-    protected IDType ID;
-    protected CopyIndicatorType copyIndicator;
-    protected UUIDType uuid;
-    protected IssueDateType issueDate;
-    protected DocumentTypeCodeType documentTypeCode;
-    protected DocumentTypeType documentType;
-    protected List<XPathType> xPath;
-    protected AttachmentEntity attachment;
-    protected String id;
-
-    @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ID_DOCUMENTREFERENCETYPE_OFID")
-    public IDType getID() {
-        return ID;
-    }
-
-    public void setID(IDType value) {
-        this.ID = value;
-    }
-
-    @ManyToOne(targetEntity = CopyIndicatorType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "COPYINDICATOR_DOCUMENTREFERE_0")
-    public CopyIndicatorType getCopyIndicator() {
-        return copyIndicator;
-    }
-
-    public void setCopyIndicator(CopyIndicatorType value) {
-        this.copyIndicator = value;
-    }
-
-    @ManyToOne(targetEntity = UUIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "UUID_DOCUMENTREFERENCETYPE_H_0")
-    public UUIDType getUUID() {
-        return uuid;
-    }
-
-    public void setUUID(UUIDType value) {
-        this.uuid = value;
-    }
-
-    @ManyToOne(targetEntity = IssueDateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ISSUEDATE_DOCUMENTREFERENCET_0")
-    public IssueDateType getIssueDate() {
-        return issueDate;
-    }
-
-    public void setIssueDate(IssueDateType value) {
-        this.issueDate = value;
-    }
-
-    @ManyToOne(targetEntity = DocumentTypeCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DOCUMENTTYPECODE_DOCUMENTREF_0")
-    public DocumentTypeCodeType getDocumentTypeCode() {
-        return documentTypeCode;
-    }
-
-    public void setDocumentTypeCode(DocumentTypeCodeType value) {
-        this.documentTypeCode = value;
-    }
-
-    @ManyToOne(targetEntity = DocumentTypeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DOCUMENTTYPE_DOCUMENTREFEREN_0")
-    public DocumentTypeType getDocumentType() {
-        return documentType;
-    }
-
-    public void setDocumentType(DocumentTypeType value) {
-        this.documentType = value;
-    }
-
-    @OneToMany(targetEntity = XPathType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "XPATH_DOCUMENTREFERENCETYPE__0")
-    public List<XPathType> getXPath() {
-        if (xPath == null) {
-            xPath = new ArrayList<XPathType>();
-        }
-        return this.xPath;
-    }
-
-    public void setXPath(List<XPathType> xPath) {
-        this.xPath = xPath;
-    }
-
-    @ManyToOne(targetEntity = AttachmentEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ATTACHMENT_DOCUMENTREFERENCE_0")
-    public AttachmentEntity getAttachment() {
-        return attachment;
-    }
-
-    public void setAttachment(AttachmentEntity value) {
-        this.attachment = value;
-    }
 
     @Id
     @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "ID")
+    protected String ID;
+
+    @Column(name = "COPY_INDICATOR")
+    protected boolean copyIndicator;
+
+    @Column(name = "UUID")
+    protected String uuid;
+
+    @Column(name = "ISSUE_DATE")
+    protected LocalDate issueDate;
+
+    @Column(name = "DOCUMENT_CODE")
+    protected String documentCode;
+
+    @Column(name = "DOCUMENT")
+    protected String document;
+
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "DOCUMENTREFERENCE_XPATH", joinColumns = {
+            @JoinColumn(name = "DOCUMENTREFERENCE_ID") })
+    protected List<String> xPath = new ArrayList<>();
+
+    @ManyToOne(targetEntity = AttachmentEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ATTACHMENT_DOCUMENTREFERENCE")
+    protected AttachmentEntity attachment = new AttachmentEntity();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
+
+    /**
+     * @return the copyIndicator
+     */
+    public boolean isCopyIndicator() {
+        return copyIndicator;
+    }
+
+    /**
+     * @param copyIndicator
+     *            the copyIndicator to set
+     */
+    public void setCopyIndicator(boolean copyIndicator) {
+        this.copyIndicator = copyIndicator;
+    }
+
+    /**
+     * @return the uuid
+     */
+    public String getUuid() {
+        return uuid;
+    }
+
+    /**
+     * @param uuid
+     *            the uuid to set
+     */
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    /**
+     * @return the issueDate
+     */
+    public LocalDate getIssueDate() {
+        return issueDate;
+    }
+
+    /**
+     * @param issueDate
+     *            the issueDate to set
+     */
+    public void setIssueDate(LocalDate issueDate) {
+        this.issueDate = issueDate;
+    }
+
+    /**
+     * @return the documentCode
+     */
+    public String getDocumentCode() {
+        return documentCode;
+    }
+
+    /**
+     * @param documentCode
+     *            the documentCode to set
+     */
+    public void setDocumentCode(String documentCode) {
+        this.documentCode = documentCode;
+    }
+
+    /**
+     * @return the document
+     */
+    public String getDocument() {
+        return document;
+    }
+
+    /**
+     * @param document
+     *            the document to set
+     */
+    public void setDocument(String document) {
+        this.document = document;
+    }
+
+    /**
+     * @return the xPath
+     */
+    public List<String> getxPath() {
+        return xPath;
+    }
+
+    /**
+     * @param xPath
+     *            the xPath to set
+     */
+    public void setxPath(List<String> xPath) {
+        this.xPath = xPath;
+    }
+
+    /**
+     * @return the attachment
+     */
+    public AttachmentEntity getAttachment() {
+        return attachment;
+    }
+
+    /**
+     * @param attachment
+     *            the attachment to set
+     */
+    public void setAttachment(AttachmentEntity attachment) {
+        this.attachment = attachment;
     }
 
 }

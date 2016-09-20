@@ -11,57 +11,74 @@ import java.math.BigDecimal;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "MeasureType")
-@Table(name = "MEASURETYPE_0")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "MEASURE")
 public class MeasureEntity {
-
-    protected BigDecimal value;
-    protected String unitCode;
-    protected String id;
-
-    @Basic
-    @Column(name = "VALUE_", precision = 20, scale = 10)
-    public BigDecimal getValue() {
-        return value;
-    }
-
-    public void setValue(BigDecimal value) {
-        this.value = value;
-    }
-
-    @Basic
-    @Column(name = "UNITCODE", length = 255)
-    public String getUnitCode() {
-        return unitCode;
-    }
-
-    public void setUnitCode(String value) {
-        this.unitCode = value;
-    }
 
     @Id
     @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "VALUE_", precision = 20, scale = 10)
+    protected BigDecimal value;
+
+    @Column(name = "UNITCODE", length = 255)
+    protected String unitCode;
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the value
+     */
+    public BigDecimal getValue() {
+        return value;
+    }
+
+    /**
+     * @param value
+     *            the value to set
+     */
+    public void setValue(BigDecimal value) {
+        this.value = value;
+    }
+
+    /**
+     * @return the unitCode
+     */
+    public String getUnitCode() {
+        return unitCode;
+    }
+
+    /**
+     * @param unitCode
+     *            the unitCode to set
+     */
+    public void setUnitCode(String unitCode) {
+        this.unitCode = unitCode;
     }
 
 }

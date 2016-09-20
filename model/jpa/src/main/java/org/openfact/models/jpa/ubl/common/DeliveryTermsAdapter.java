@@ -66,22 +66,22 @@ public class DeliveryTermsAdapter implements DeliveryTermsModel, JpaModel<Delive
 
     @Override
     public LocationCommAggModel getDeliveryLocation() {
-        return this.deliveryTerms.getDeliveryLocation();
+        return new LocationCommAggAdapter(session, em, this.deliveryTerms.getDeliveryLocation());
     }
 
     @Override
-    public void setDeliveryLocation(LocationCommAggAdapter value) {
-        this.deliveryTerms.setDeliveryLocation(value);
+    public void setDeliveryLocation(LocationCommAggModel value) {
+        this.deliveryTerms.setDeliveryLocation(LocationCommAggAdapter.toEntity(value, em));
     }
 
     @Override
     public AllowanceChargeModel getAllowanceCharge() {
-        return this.deliveryTerms.getAllowanceCharge();
+        return new AllowanceChargeAdapter(session, em, this.deliveryTerms.getAllowanceCharge());
     }
 
     @Override
-    public void setAllowanceCharge(AllowanceChargeAdapter value) {
-        this.deliveryTerms.setAllowanceCharge(value);
+    public void setAllowanceCharge(AllowanceChargeModel value) {
+        this.deliveryTerms.setAllowanceCharge(AllowanceChargeAdapter.toEntity(value, em));
     }
 
     @Override
@@ -92,6 +92,11 @@ public class DeliveryTermsAdapter implements DeliveryTermsModel, JpaModel<Delive
     @Override
     public void setId(String value) {
         this.deliveryTerms.setId(value);
+    }
+
+    @Override
+    public DeliveryTermsEntity getEntity() {
+        return this.deliveryTerms;
     }
 
 }

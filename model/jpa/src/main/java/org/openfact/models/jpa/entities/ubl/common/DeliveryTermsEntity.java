@@ -14,8 +14,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -26,85 +24,136 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "DELIVERYTERMS")
 public class DeliveryTermsEntity {
 
-    protected IDType ID;
-    protected SpecialTermsType specialTerms;
-    protected LossRiskResponsibilityCodeType lossRiskResponsibilityCode;
-    protected LossRiskType lossRisk;
-    protected LocationCommAggEntity deliveryLocation;
-    protected AllowanceChargeEntity allowanceCharge;
-    protected String id;
-
-    @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ID_DELIVERYTERMSTYPE_OFID")
-    public IDType getID() {
-        return ID;
-    }
-
-    public void setID(IDType value) {
-        this.ID = value;
-    }
-
-    @ManyToOne(targetEntity = SpecialTermsType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "SPECIALTERMS_DELIVERYTERMSTY_0")
-    public SpecialTermsType getSpecialTerms() {
-        return specialTerms;
-    }
-
-    public void setSpecialTerms(SpecialTermsType value) {
-        this.specialTerms = value;
-    }
-
-    @ManyToOne(targetEntity = LossRiskResponsibilityCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LOSSRISKRESPONSIBILITYCODE_D_0")
-    public LossRiskResponsibilityCodeType getLossRiskResponsibilityCode() {
-        return lossRiskResponsibilityCode;
-    }
-
-    public void setLossRiskResponsibilityCode(LossRiskResponsibilityCodeType value) {
-        this.lossRiskResponsibilityCode = value;
-    }
-
-    @ManyToOne(targetEntity = LossRiskType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LOSSRISK_DELIVERYTERMSTYPE_H_0")
-    public LossRiskType getLossRisk() {
-        return lossRisk;
-    }
-
-    public void setLossRisk(LossRiskType value) {
-        this.lossRisk = value;
-    }
-
-    @ManyToOne(targetEntity = LocationCommAggEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DELIVERYLOCATION_DELIVERYTER_0")
-    public LocationCommAggEntity getDeliveryLocation() {
-        return deliveryLocation;
-    }
-
-    public void setDeliveryLocation(LocationCommAggEntity value) {
-        this.deliveryLocation = value;
-    }
-
-    @ManyToOne(targetEntity = AllowanceChargeEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ALLOWANCECHARGE_DELIVERYTERM_0")
-    public AllowanceChargeEntity getAllowanceCharge() {
-        return allowanceCharge;
-    }
-
-    public void setAllowanceCharge(AllowanceChargeEntity value) {
-        this.allowanceCharge = value;
-    }
-
     @Id
     @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "ID")
+    protected String ID;
+
+    @Column(name = "ID")
+    protected String specialTerms;
+
+    @Column(name = "LOSS_RISK_RESPONSIBILITY_CODE")
+    protected String lossRiskResponsibilityCode;
+
+    @Column(name = "LOSS_RISK")
+    protected String lossRisk;
+
+    @ManyToOne(targetEntity = LocationCommAggEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "DELIVERYLOCATION_DELIVERYTERMS")
+    protected LocationCommAggEntity deliveryLocation = new LocationCommAggEntity();
+
+    @ManyToOne(targetEntity = AllowanceChargeEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ALLOWANCECHARGE_DELIVERYTERMS")
+    protected AllowanceChargeEntity allowanceCharge = new AllowanceChargeEntity();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
+
+    /**
+     * @return the specialTerms
+     */
+    public String getSpecialTerms() {
+        return specialTerms;
+    }
+
+    /**
+     * @param specialTerms
+     *            the specialTerms to set
+     */
+    public void setSpecialTerms(String specialTerms) {
+        this.specialTerms = specialTerms;
+    }
+
+    /**
+     * @return the lossRiskResponsibilityCode
+     */
+    public String getLossRiskResponsibilityCode() {
+        return lossRiskResponsibilityCode;
+    }
+
+    /**
+     * @param lossRiskResponsibilityCode
+     *            the lossRiskResponsibilityCode to set
+     */
+    public void setLossRiskResponsibilityCode(String lossRiskResponsibilityCode) {
+        this.lossRiskResponsibilityCode = lossRiskResponsibilityCode;
+    }
+
+    /**
+     * @return the lossRisk
+     */
+    public String getLossRisk() {
+        return lossRisk;
+    }
+
+    /**
+     * @param lossRisk
+     *            the lossRisk to set
+     */
+    public void setLossRisk(String lossRisk) {
+        this.lossRisk = lossRisk;
+    }
+
+    /**
+     * @return the deliveryLocation
+     */
+    public LocationCommAggEntity getDeliveryLocation() {
+        return deliveryLocation;
+    }
+
+    /**
+     * @param deliveryLocation
+     *            the deliveryLocation to set
+     */
+    public void setDeliveryLocation(LocationCommAggEntity deliveryLocation) {
+        this.deliveryLocation = deliveryLocation;
+    }
+
+    /**
+     * @return the allowanceCharge
+     */
+    public AllowanceChargeEntity getAllowanceCharge() {
+        return allowanceCharge;
+    }
+
+    /**
+     * @param allowanceCharge
+     *            the allowanceCharge to set
+     */
+    public void setAllowanceCharge(AllowanceChargeEntity allowanceCharge) {
+        this.allowanceCharge = allowanceCharge;
     }
 
 }

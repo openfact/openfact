@@ -85,7 +85,7 @@ public class ContractAdapter implements ContractModel, JpaModel<ContractEntity> 
     }
 
     @Override
-    public void setValidityPeriod(PeriodAdapter value) {
+    public void setValidityPeriod(PeriodModel value) {
         this.contract.setValidityPeriod(PeriodAdapter.toEntity(value, em));
     }
 
@@ -110,6 +110,11 @@ public class ContractAdapter implements ContractModel, JpaModel<ContractEntity> 
     @Override
     public void setId(String value) {
         this.contract.setId(value);
+    }
+
+    @Override
+    public ContractEntity getEntity() {
+        return this.contract;
     }
 
 }

@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.AddressEntity;
 import org.openfact.models.jpa.entities.ubl.common.DespatchEntity;
 import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.ContactModel;
@@ -140,6 +141,13 @@ public class DespatchAdapter implements DespatchModel, JpaModel<DespatchEntity> 
     @Override
     public DespatchEntity getEntity() {
         return this.despatch;
+    }
+
+    public static DespatchEntity toEntity(DespatchModel model, EntityManager em) {
+        if (model instanceof DespatchAdapter) {
+            return ((DespatchAdapter) model).getEntity();
+        }
+        return em.getReference(DespatchEntity.class, model.getId());
     }
 
 }

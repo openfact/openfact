@@ -11,117 +11,182 @@ import java.math.BigDecimal;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "MonetaryTotalType")
-@Table(name = "MONETARYTOTALTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "MONETARYTOTAL")
 public class MonetaryTotalEntity {
-
-    protected BigDecimal lineExtensionAmount;
-    protected BigDecimal taxExclusiveAmount;
-    protected BigDecimal taxInclusiveAmount;
-    protected BigDecimal allowanceTotalAmount;
-    protected BigDecimal chargeTotalAmount;
-    protected BigDecimal prepaidAmount;
-    protected BigDecimal payableRoundingAmount;
-    protected BigDecimal payableAmount;
-    protected String id;
-
-    @Column(name = "LINE_EXTENSION_AMOUNT")
-    public BigDecimal getLineExtensionAmount() {
-        return lineExtensionAmount;
-    }
-
-    public void setLineExtensionAmount(BigDecimal value) {
-        this.lineExtensionAmount = value;
-    }
-
-    @Column(name = "TAX_EXCLUSIVE_AMOUNT")
-    public BigDecimal getTaxExclusiveAmount() {
-        return taxExclusiveAmount;
-    }
-
-    public void setTaxExclusiveAmount(BigDecimal value) {
-        this.taxExclusiveAmount = value;
-    }
-
-    @Column(name = "TAX_INCLUSIVE_AMOUNT")
-    public BigDecimal getTaxInclusiveAmount() {
-        return taxInclusiveAmount;
-    }
-
-    public void setTaxInclusiveAmount(BigDecimal value) {
-        this.taxInclusiveAmount = value;
-    }
-
-    @Column(name = "ALLOWANCE_TOTAL_AMOUNT")
-    public BigDecimal getAllowanceTotalAmount() {
-        return allowanceTotalAmount;
-    }
-
-    public void setAllowanceTotalAmount(BigDecimal value) {
-        this.allowanceTotalAmount = value;
-    }
-
-    @Column(name = "CHARGE_TOTAL_AMOUNT")
-    public BigDecimal getChargeTotalAmount() {
-        return chargeTotalAmount;
-    }
-
-    public void setChargeTotalAmount(BigDecimal value) {
-        this.chargeTotalAmount = value;
-    }
-
-    @Column(name = "PREPAID_AMOUNT")
-    public BigDecimal getPrepaidAmount() {
-        return prepaidAmount;
-    }
-
-    public void setPrepaidAmount(BigDecimal value) {
-        this.prepaidAmount = value;
-    }
-
-    @Column(name = "PAYABLE_ROUNDING_AMOUNT")
-    public BigDecimal getPayableRoundingAmount() {
-        return payableRoundingAmount;
-    }
-
-    public void setPayableRoundingAmount(BigDecimal value) {
-        this.payableRoundingAmount = value;
-    }
-
-    @Column(name = "PAYABLE_AMOUNT")
-    public BigDecimal getPayableAmount() {
-        return payableAmount;
-    }
-
-    public void setPayableAmount(BigDecimal value) {
-        this.payableAmount = value;
-    }
 
     @Id
     @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "LINE_EXTENSION_AMOUNT")
+    protected BigDecimal lineExtensionAmount;
+
+    @Column(name = "TAX_EXCLUSIVE_AMOUNT")
+    protected BigDecimal taxExclusiveAmount;
+
+    @Column(name = "TAX_INCLUSIVE_AMOUNT")
+    protected BigDecimal taxInclusiveAmount;
+
+    @Column(name = "ALLOWANCE_TOTAL_AMOUNT")
+    protected BigDecimal allowanceTotalAmount;
+
+    @Column(name = "CHARGE_TOTAL_AMOUNT")
+    protected BigDecimal chargeTotalAmount;
+
+    @Column(name = "PREPAID_AMOUNT")
+    protected BigDecimal prepaidAmount;
+
+    @Column(name = "PAYABLE_ROUNDING_AMOUNT")
+    protected BigDecimal payableRoundingAmount;
+
+    @Column(name = "PAYABLE_AMOUNT")
+    protected BigDecimal payableAmount;
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the lineExtensionAmount
+     */
+    public BigDecimal getLineExtensionAmount() {
+        return lineExtensionAmount;
+    }
+
+    /**
+     * @param lineExtensionAmount
+     *            the lineExtensionAmount to set
+     */
+    public void setLineExtensionAmount(BigDecimal lineExtensionAmount) {
+        this.lineExtensionAmount = lineExtensionAmount;
+    }
+
+    /**
+     * @return the taxExclusiveAmount
+     */
+    public BigDecimal getTaxExclusiveAmount() {
+        return taxExclusiveAmount;
+    }
+
+    /**
+     * @param taxExclusiveAmount
+     *            the taxExclusiveAmount to set
+     */
+    public void setTaxExclusiveAmount(BigDecimal taxExclusiveAmount) {
+        this.taxExclusiveAmount = taxExclusiveAmount;
+    }
+
+    /**
+     * @return the taxInclusiveAmount
+     */
+    public BigDecimal getTaxInclusiveAmount() {
+        return taxInclusiveAmount;
+    }
+
+    /**
+     * @param taxInclusiveAmount
+     *            the taxInclusiveAmount to set
+     */
+    public void setTaxInclusiveAmount(BigDecimal taxInclusiveAmount) {
+        this.taxInclusiveAmount = taxInclusiveAmount;
+    }
+
+    /**
+     * @return the allowanceTotalAmount
+     */
+    public BigDecimal getAllowanceTotalAmount() {
+        return allowanceTotalAmount;
+    }
+
+    /**
+     * @param allowanceTotalAmount
+     *            the allowanceTotalAmount to set
+     */
+    public void setAllowanceTotalAmount(BigDecimal allowanceTotalAmount) {
+        this.allowanceTotalAmount = allowanceTotalAmount;
+    }
+
+    /**
+     * @return the chargeTotalAmount
+     */
+    public BigDecimal getChargeTotalAmount() {
+        return chargeTotalAmount;
+    }
+
+    /**
+     * @param chargeTotalAmount
+     *            the chargeTotalAmount to set
+     */
+    public void setChargeTotalAmount(BigDecimal chargeTotalAmount) {
+        this.chargeTotalAmount = chargeTotalAmount;
+    }
+
+    /**
+     * @return the prepaidAmount
+     */
+    public BigDecimal getPrepaidAmount() {
+        return prepaidAmount;
+    }
+
+    /**
+     * @param prepaidAmount
+     *            the prepaidAmount to set
+     */
+    public void setPrepaidAmount(BigDecimal prepaidAmount) {
+        this.prepaidAmount = prepaidAmount;
+    }
+
+    /**
+     * @return the payableRoundingAmount
+     */
+    public BigDecimal getPayableRoundingAmount() {
+        return payableRoundingAmount;
+    }
+
+    /**
+     * @param payableRoundingAmount
+     *            the payableRoundingAmount to set
+     */
+    public void setPayableRoundingAmount(BigDecimal payableRoundingAmount) {
+        this.payableRoundingAmount = payableRoundingAmount;
+    }
+
+    /**
+     * @return the payableAmount
+     */
+    public BigDecimal getPayableAmount() {
+        return payableAmount;
+    }
+
+    /**
+     * @param payableAmount
+     *            the payableAmount to set
+     */
+    public void setPayableAmount(BigDecimal payableAmount) {
+        this.payableAmount = payableAmount;
     }
 
 }

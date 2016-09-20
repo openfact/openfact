@@ -14,74 +14,111 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "PartyLegalEntityType")
-@Table(name = "PARTYLEGALENTITYTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "PARTYLEGALENTITY")
 public class PartyLegalEntity {
-
-    protected String registrationName;
-    protected String companyID;
-    protected AddressEntity registrationAddress;
-    protected CorporateRegistrationSchemeEntity corporateRegistrationScheme;
-    protected String id;
-
-    @Column(name = "REGISTRATION_NAME")
-    public String getRegistrationName() {
-        return registrationName;
-    }
-
-    public void setRegistrationName(String value) {
-        this.registrationName = value;
-    }
-
-    @Column(name = "COMPANY_ID")
-    public String getCompanyID() {
-        return companyID;
-    }
-
-    public void setCompanyID(String value) {
-        this.companyID = value;
-    }
-
-    @ManyToOne(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "REGISTRATIONADDRESS")
-    public AddressEntity getRegistrationAddress() {
-        return registrationAddress;
-    }
-
-    public void setRegistrationAddress(AddressEntity value) {
-        this.registrationAddress = value;
-    }
-
-    @ManyToOne(targetEntity = CorporateRegistrationSchemeEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "CORPORATEREGISTRATIONSCHEME")
-    public CorporateRegistrationSchemeEntity getCorporateRegistrationScheme() {
-        return corporateRegistrationScheme;
-    }
-
-    public void setCorporateRegistrationScheme(CorporateRegistrationSchemeEntity value) {
-        this.corporateRegistrationScheme = value;
-    }
 
     @Id
     @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "REGISTRATION_NAME")
+    protected String registrationName;
+
+    @Column(name = "COMPANY_ID")
+    protected String companyID;
+
+    @ManyToOne(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "REGISTRATIONADDRESS")
+    protected AddressEntity registrationAddress = new AddressEntity();
+
+    @ManyToOne(targetEntity = CorporateRegistrationSchemeEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "CORPORATEREGISTRATIONSCHEME")
+    protected CorporateRegistrationSchemeEntity corporateRegistrationScheme = new CorporateRegistrationSchemeEntity();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the registrationName
+     */
+    public String getRegistrationName() {
+        return registrationName;
+    }
+
+    /**
+     * @param registrationName
+     *            the registrationName to set
+     */
+    public void setRegistrationName(String registrationName) {
+        this.registrationName = registrationName;
+    }
+
+    /**
+     * @return the companyID
+     */
+    public String getCompanyID() {
+        return companyID;
+    }
+
+    /**
+     * @param companyID
+     *            the companyID to set
+     */
+    public void setCompanyID(String companyID) {
+        this.companyID = companyID;
+    }
+
+    /**
+     * @return the registrationAddress
+     */
+    public AddressEntity getRegistrationAddress() {
+        return registrationAddress;
+    }
+
+    /**
+     * @param registrationAddress
+     *            the registrationAddress to set
+     */
+    public void setRegistrationAddress(AddressEntity registrationAddress) {
+        this.registrationAddress = registrationAddress;
+    }
+
+    /**
+     * @return the corporateRegistrationScheme
+     */
+    public CorporateRegistrationSchemeEntity getCorporateRegistrationScheme() {
+        return corporateRegistrationScheme;
+    }
+
+    /**
+     * @param corporateRegistrationScheme
+     *            the corporateRegistrationScheme to set
+     */
+    public void setCorporateRegistrationScheme(
+            CorporateRegistrationSchemeEntity corporateRegistrationScheme) {
+        this.corporateRegistrationScheme = corporateRegistrationScheme;
     }
 
 }

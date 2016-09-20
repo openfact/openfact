@@ -7,6 +7,9 @@
 
 package org.openfact.models.jpa.entities.ubl.common;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
@@ -14,208 +17,334 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "DeliveryType")
-@Table(name = "DELIVERYTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "DELIVERY")
 public class DeliveryEntity {
-
-    protected IDType ID;
-    protected QuantityTypeCommBas quantity;
-    protected MinimumQuantityType minimumQuantity;
-    protected MaximumQuantityType maximumQuantity;
-    protected ActualDeliveryDateType actualDeliveryDate;
-    protected ActualDeliveryTimeType actualDeliveryTime;
-    protected LatestDeliveryDateType latestDeliveryDate;
-    protected LatestDeliveryTimeType latestDeliveryTime;
-    protected TrackingIDType trackingID;
-    protected AddressEntity deliveryAddress;
-    protected LocationCommAggEntity deliveryLocation;
-    protected PeriodEntity requestedDeliveryPeriod;
-    protected PeriodEntity promisedDeliveryPeriod;
-    protected PeriodEntity estimatedDeliveryPeriod;
-    protected PartyEntity deliveryParty;
-    protected DespatchType despatch;
-    protected String id;
-
-    @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ID_DELIVERYTYPE_OFID")
-    public IDType getID() {
-        return ID;
-    }
-
-    public void setID(IDType value) {
-        this.ID = value;
-    }
-
-    @ManyToOne(targetEntity = QuantityTypeCommBas.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "QUANTITY_DELIVERYTYPE_OFID")
-    public QuantityTypeCommBas getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(QuantityTypeCommBas value) {
-        this.quantity = value;
-    }
-
-    @ManyToOne(targetEntity = MinimumQuantityType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "MINIMUMQUANTITY_DELIVERYTYPE_0")
-    public MinimumQuantityType getMinimumQuantity() {
-        return minimumQuantity;
-    }
-
-    public void setMinimumQuantity(MinimumQuantityType value) {
-        this.minimumQuantity = value;
-    }
-
-    @ManyToOne(targetEntity = MaximumQuantityType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "MAXIMUMQUANTITY_DELIVERYTYPE_0")
-    public MaximumQuantityType getMaximumQuantity() {
-        return maximumQuantity;
-    }
-
-    public void setMaximumQuantity(MaximumQuantityType value) {
-        this.maximumQuantity = value;
-    }
-
-    @ManyToOne(targetEntity = ActualDeliveryDateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ACTUALDELIVERYDATE_DELIVERYT_0")
-    public ActualDeliveryDateType getActualDeliveryDate() {
-        return actualDeliveryDate;
-    }
-
-    public void setActualDeliveryDate(ActualDeliveryDateType value) {
-        this.actualDeliveryDate = value;
-    }
-
-    @ManyToOne(targetEntity = ActualDeliveryTimeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ACTUALDELIVERYTIME_DELIVERYT_0")
-    public ActualDeliveryTimeType getActualDeliveryTime() {
-        return actualDeliveryTime;
-    }
-
-    public void setActualDeliveryTime(ActualDeliveryTimeType value) {
-        this.actualDeliveryTime = value;
-    }
-
-    @ManyToOne(targetEntity = LatestDeliveryDateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LATESTDELIVERYDATE_DELIVERYT_0")
-    public LatestDeliveryDateType getLatestDeliveryDate() {
-        return latestDeliveryDate;
-    }
-
-    public void setLatestDeliveryDate(LatestDeliveryDateType value) {
-        this.latestDeliveryDate = value;
-    }
-
-    @ManyToOne(targetEntity = LatestDeliveryTimeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LATESTDELIVERYTIME_DELIVERYT_0")
-    public LatestDeliveryTimeType getLatestDeliveryTime() {
-        return latestDeliveryTime;
-    }
-
-    public void setLatestDeliveryTime(LatestDeliveryTimeType value) {
-        this.latestDeliveryTime = value;
-    }
-
-    @ManyToOne(targetEntity = TrackingIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TRACKINGID_DELIVERYTYPE_OFID")
-    public TrackingIDType getTrackingID() {
-        return trackingID;
-    }
-
-    public void setTrackingID(TrackingIDType value) {
-        this.trackingID = value;
-    }
-
-    @ManyToOne(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DELIVERYADDRESS_DELIVERYTYPE_0")
-    public AddressEntity getDeliveryAddress() {
-        return deliveryAddress;
-    }
-
-    public void setDeliveryAddress(AddressEntity value) {
-        this.deliveryAddress = value;
-    }
-
-    @ManyToOne(targetEntity = LocationCommAggEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DELIVERYLOCATION_DELIVERYTYP_0")
-    public LocationCommAggEntity getDeliveryLocation() {
-        return deliveryLocation;
-    }
-
-    public void setDeliveryLocation(LocationCommAggEntity value) {
-        this.deliveryLocation = value;
-    }
-
-    @ManyToOne(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "REQUESTEDDELIVERYPERIOD_DELI_0")
-    public PeriodEntity getRequestedDeliveryPeriod() {
-        return requestedDeliveryPeriod;
-    }
-
-    public void setRequestedDeliveryPeriod(PeriodEntity value) {
-        this.requestedDeliveryPeriod = value;
-    }
-
-    @ManyToOne(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PROMISEDDELIVERYPERIOD_DELIV_0")
-    public PeriodEntity getPromisedDeliveryPeriod() {
-        return promisedDeliveryPeriod;
-    }
-
-    public void setPromisedDeliveryPeriod(PeriodEntity value) {
-        this.promisedDeliveryPeriod = value;
-    }
-
-    @ManyToOne(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ESTIMATEDDELIVERYPERIOD_DELI_0")
-    public PeriodEntity getEstimatedDeliveryPeriod() {
-        return estimatedDeliveryPeriod;
-    }
-
-    public void setEstimatedDeliveryPeriod(PeriodEntity value) {
-        this.estimatedDeliveryPeriod = value;
-    }
-
-    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DELIVERYPARTY_DELIVERYTYPE_H_0")
-    public PartyEntity getDeliveryParty() {
-        return deliveryParty;
-    }
-
-    public void setDeliveryParty(PartyEntity value) {
-        this.deliveryParty = value;
-    }
-
-    @ManyToOne(targetEntity = DespatchType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DESPATCH_DELIVERYTYPE_OFID")
-    public DespatchType getDespatch() {
-        return despatch;
-    }
-
-    public void setDespatch(DespatchType value) {
-        this.despatch = value;
-    }
 
     @Id
     @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "ID")
+    protected String ID;
+
+    @ManyToOne(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "QUANTITY_DELIVERY")
+    protected QuantityEntity quantity;
+
+    @ManyToOne(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "MINIMUMQUANTITY_DELIVERY")
+    protected QuantityEntity minimumQuantity;
+
+    @ManyToOne(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "MAXIMUMQUANTITY_DELIVERY")
+    protected QuantityEntity maximumQuantity;
+
+    @Column(name = "ACTUAL_DELIVERY_DATE")
+    protected LocalDate actualDeliveryDate;
+
+    @Column(name = "ACTUAL_DELIVERY_TIME")
+    protected LocalTime actualDeliveryTime;
+
+    @Column(name = "LATEST_DELIVERY_DATE")
+    protected LocalDate latestDeliveryDate;
+
+    @Column(name = "LATEST_DELIVERY_TIME")
+    protected LocalTime latestDeliveryTime;
+
+    @Column(name = "TRACKING_ID")
+    protected String trackingID;
+
+    @ManyToOne(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "DELIVERYADDRESS_DELIVERY")
+    protected AddressEntity deliveryAddress = new AddressEntity();
+
+    @ManyToOne(targetEntity = LocationCommAggEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "DELIVERYLOCATION_DELIVERY")
+    protected LocationCommAggEntity deliveryLocation = new LocationCommAggEntity();
+
+    @ManyToOne(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "REQUESTEDDELIVERYPERIOD_DELIVERY")
+    protected PeriodEntity requestedDeliveryPeriod = new PeriodEntity();
+
+    @ManyToOne(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "PROMISEDDELIVERYPERIOD_DELIVERY")
+    protected PeriodEntity promisedDeliveryPeriod = new PeriodEntity();
+
+    @ManyToOne(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ESTIMATEDDELIVERYPERIOD_DELIVERY")
+    protected PeriodEntity estimatedDeliveryPeriod = new PeriodEntity();
+
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "DELIVERYPARTY_DELIVERY")
+    protected PartyEntity deliveryParty = new PartyEntity();
+
+    @ManyToOne(targetEntity = DespatchEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "DESPATCH_DELIVERY_ID")
+    protected DespatchEntity despatch = new DespatchEntity();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
+
+    /**
+     * @return the quantity
+     */
+    public QuantityEntity getQuantity() {
+        return quantity;
+    }
+
+    /**
+     * @param quantity
+     *            the quantity to set
+     */
+    public void setQuantity(QuantityEntity quantity) {
+        this.quantity = quantity;
+    }
+
+    /**
+     * @return the minimumQuantity
+     */
+    public QuantityEntity getMinimumQuantity() {
+        return minimumQuantity;
+    }
+
+    /**
+     * @param minimumQuantity
+     *            the minimumQuantity to set
+     */
+    public void setMinimumQuantity(QuantityEntity minimumQuantity) {
+        this.minimumQuantity = minimumQuantity;
+    }
+
+    /**
+     * @return the maximumQuantity
+     */
+    public QuantityEntity getMaximumQuantity() {
+        return maximumQuantity;
+    }
+
+    /**
+     * @param maximumQuantity
+     *            the maximumQuantity to set
+     */
+    public void setMaximumQuantity(QuantityEntity maximumQuantity) {
+        this.maximumQuantity = maximumQuantity;
+    }
+
+    /**
+     * @return the actualDeliveryDate
+     */
+    public LocalDate getActualDeliveryDate() {
+        return actualDeliveryDate;
+    }
+
+    /**
+     * @param actualDeliveryDate
+     *            the actualDeliveryDate to set
+     */
+    public void setActualDeliveryDate(LocalDate actualDeliveryDate) {
+        this.actualDeliveryDate = actualDeliveryDate;
+    }
+
+    /**
+     * @return the actualDeliveryTime
+     */
+    public LocalTime getActualDeliveryTime() {
+        return actualDeliveryTime;
+    }
+
+    /**
+     * @param actualDeliveryTime
+     *            the actualDeliveryTime to set
+     */
+    public void setActualDeliveryTime(LocalTime actualDeliveryTime) {
+        this.actualDeliveryTime = actualDeliveryTime;
+    }
+
+    /**
+     * @return the latestDeliveryDate
+     */
+    public LocalDate getLatestDeliveryDate() {
+        return latestDeliveryDate;
+    }
+
+    /**
+     * @param latestDeliveryDate
+     *            the latestDeliveryDate to set
+     */
+    public void setLatestDeliveryDate(LocalDate latestDeliveryDate) {
+        this.latestDeliveryDate = latestDeliveryDate;
+    }
+
+    /**
+     * @return the latestDeliveryTime
+     */
+    public LocalTime getLatestDeliveryTime() {
+        return latestDeliveryTime;
+    }
+
+    /**
+     * @param latestDeliveryTime
+     *            the latestDeliveryTime to set
+     */
+    public void setLatestDeliveryTime(LocalTime latestDeliveryTime) {
+        this.latestDeliveryTime = latestDeliveryTime;
+    }
+
+    /**
+     * @return the trackingID
+     */
+    public String getTrackingID() {
+        return trackingID;
+    }
+
+    /**
+     * @param trackingID
+     *            the trackingID to set
+     */
+    public void setTrackingID(String trackingID) {
+        this.trackingID = trackingID;
+    }
+
+    /**
+     * @return the deliveryAddress
+     */
+    public AddressEntity getDeliveryAddress() {
+        return deliveryAddress;
+    }
+
+    /**
+     * @param deliveryAddress
+     *            the deliveryAddress to set
+     */
+    public void setDeliveryAddress(AddressEntity deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
+    }
+
+    /**
+     * @return the deliveryLocation
+     */
+    public LocationCommAggEntity getDeliveryLocation() {
+        return deliveryLocation;
+    }
+
+    /**
+     * @param deliveryLocation
+     *            the deliveryLocation to set
+     */
+    public void setDeliveryLocation(LocationCommAggEntity deliveryLocation) {
+        this.deliveryLocation = deliveryLocation;
+    }
+
+    /**
+     * @return the requestedDeliveryPeriod
+     */
+    public PeriodEntity getRequestedDeliveryPeriod() {
+        return requestedDeliveryPeriod;
+    }
+
+    /**
+     * @param requestedDeliveryPeriod
+     *            the requestedDeliveryPeriod to set
+     */
+    public void setRequestedDeliveryPeriod(PeriodEntity requestedDeliveryPeriod) {
+        this.requestedDeliveryPeriod = requestedDeliveryPeriod;
+    }
+
+    /**
+     * @return the promisedDeliveryPeriod
+     */
+    public PeriodEntity getPromisedDeliveryPeriod() {
+        return promisedDeliveryPeriod;
+    }
+
+    /**
+     * @param promisedDeliveryPeriod
+     *            the promisedDeliveryPeriod to set
+     */
+    public void setPromisedDeliveryPeriod(PeriodEntity promisedDeliveryPeriod) {
+        this.promisedDeliveryPeriod = promisedDeliveryPeriod;
+    }
+
+    /**
+     * @return the estimatedDeliveryPeriod
+     */
+    public PeriodEntity getEstimatedDeliveryPeriod() {
+        return estimatedDeliveryPeriod;
+    }
+
+    /**
+     * @param estimatedDeliveryPeriod
+     *            the estimatedDeliveryPeriod to set
+     */
+    public void setEstimatedDeliveryPeriod(PeriodEntity estimatedDeliveryPeriod) {
+        this.estimatedDeliveryPeriod = estimatedDeliveryPeriod;
+    }
+
+    /**
+     * @return the deliveryParty
+     */
+    public PartyEntity getDeliveryParty() {
+        return deliveryParty;
+    }
+
+    /**
+     * @param deliveryParty
+     *            the deliveryParty to set
+     */
+    public void setDeliveryParty(PartyEntity deliveryParty) {
+        this.deliveryParty = deliveryParty;
+    }
+
+    /**
+     * @return the despatch
+     */
+    public DespatchEntity getDespatch() {
+        return despatch;
+    }
+
+    /**
+     * @param despatch
+     *            the despatch to set
+     */
+    public void setDespatch(DespatchEntity despatch) {
+        this.despatch = despatch;
     }
 
 }

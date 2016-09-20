@@ -36,12 +36,12 @@ public class DimensionAdapter implements DimensionModel, JpaModel<DimensionEntit
 
     @Override
     public MeasureModel getMeasure() {
-        return this.dimension.getMeasure();
+        return new MeasureAdapter(session, em, this.dimension.getMeasure());
     }
 
     @Override
-    public void setMeasure(MeasureAdapter value) {
-        this.dimension.setMeasure(value);
+    public void setMeasure(MeasureModel value) {
+        this.dimension.setMeasure(MeasureAdapter.toEntity(value, em));
     }
 
     @Override
@@ -56,22 +56,22 @@ public class DimensionAdapter implements DimensionModel, JpaModel<DimensionEntit
 
     @Override
     public MeasureModel getMinimumMeasure() {
-        return this.dimension.getMinimumMeasure();
+        return new MeasureAdapter(session, em, this.dimension.getMinimumMeasure());
     }
 
     @Override
-    public void setMinimumMeasure(MeasureAdapter value) {
-        this.dimension.setMinimumMeasure(value);
+    public void setMinimumMeasure(MeasureModel value) {
+        this.dimension.setMinimumMeasure(MeasureAdapter.toEntity(value, em));
     }
 
     @Override
     public MeasureModel getMaximumMeasure() {
-        return this.dimension.getMaximumMeasure();
+        return new MeasureAdapter(session, em, this.dimension.getMaximumMeasure());
     }
 
     @Override
-    public void setMaximumMeasure(MeasureAdapter value) {
-        this.dimension.setMaximumMeasure(value);
+    public void setMaximumMeasure(MeasureModel value) {
+        this.dimension.setMaximumMeasure(MeasureAdapter.toEntity(value, em));
     }
 
     @Override
@@ -82,6 +82,11 @@ public class DimensionAdapter implements DimensionModel, JpaModel<DimensionEntit
     @Override
     public void setId(String value) {
         this.dimension.setId(value);
+    }
+
+    @Override
+    public DimensionEntity getEntity() {
+        return this.dimension;
     }
 
 }

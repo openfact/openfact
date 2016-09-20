@@ -8,8 +8,10 @@ import javax.persistence.EntityManager;
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.AddressEntity;
 import org.openfact.models.jpa.entities.ubl.common.PriceEntity;
 import org.openfact.models.jpa.entities.ubl.common.PricingReferenceEntity;
+import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.ItemLocationQuantityModel;
 import org.openfact.models.ubl.common.PriceModel;
 import org.openfact.models.ubl.common.PricingReferenceModel;
@@ -71,6 +73,13 @@ public class PricingReferenceAdapter implements PricingReferenceModel, JpaModel<
     @Override
     public PriceModel addAlternativeConditionPrice() {
         return null;
+    }
+
+    public static PricingReferenceEntity toEntity(PricingReferenceModel model, EntityManager em) {
+        if (model instanceof PricingReferenceAdapter) {
+            return ((PricingReferenceAdapter) model).getEntity();
+        }
+        return em.getReference(PricingReferenceEntity.class, model.getId());
     }
 
 }
