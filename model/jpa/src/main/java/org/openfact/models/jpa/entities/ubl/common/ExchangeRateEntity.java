@@ -7,6 +7,9 @@
 
 package org.openfact.models.jpa.entities.ubl.common;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
@@ -14,8 +17,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -26,99 +27,91 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "EXCHANGERATE")
 public class ExchangeRateEntity {
 
-    protected SourceCurrencyCodeType sourceCurrencyCode;
-    protected SourceCurrencyBaseRateType sourceCurrencyBaseRate;
-    protected TargetCurrencyCodeType targetCurrencyCode;
-    protected TargetCurrencyBaseRateType targetCurrencyBaseRate;
-    protected ExchangeMarketIDType exchangeMarketID;
-    protected CalculationRateType calculationRate;
-    protected MathematicOperatorCodeType mathematicOperatorCode;
-    protected DateType date;
+    protected String sourceCurrencyCode;
+    protected BigDecimal sourceCurrencyBaseRate;
+    protected String targetCurrencyCode;
+    protected BigDecimal targetCurrencyBaseRate;
+    protected String exchangeMarketID;
+    protected BigDecimal calculationRate;
+    protected String mathematicOperatorCode;
+    protected LocalDate date;
     protected ContractEntity foreignExchangeContract;
     protected String id;
 
-    @ManyToOne(targetEntity = SourceCurrencyCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "SOURCECURRENCYCODE_EXCHANGER_0")
-    public SourceCurrencyCodeType getSourceCurrencyCode() {
+    @Column(name = "SOURCE_CURRENCY_CODE")
+    public String getSourceCurrencyCode() {
         return sourceCurrencyCode;
     }
 
-    public void setSourceCurrencyCode(SourceCurrencyCodeType value) {
+    public void setSourceCurrencyCode(String value) {
         this.sourceCurrencyCode = value;
     }
 
-    @ManyToOne(targetEntity = SourceCurrencyBaseRateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "SOURCECURRENCYBASERATE_EXCHA_0")
-    public SourceCurrencyBaseRateType getSourceCurrencyBaseRate() {
+    @Column(name = "SOURCE_CURRENCY_BASE_RATE")
+    public BigDecimal getSourceCurrencyBaseRate() {
         return sourceCurrencyBaseRate;
     }
 
-    public void setSourceCurrencyBaseRate(SourceCurrencyBaseRateType value) {
+    public void setSourceCurrencyBaseRate(BigDecimal value) {
         this.sourceCurrencyBaseRate = value;
     }
 
-    @ManyToOne(targetEntity = TargetCurrencyCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TARGETCURRENCYCODE_EXCHANGER_0")
-    public TargetCurrencyCodeType getTargetCurrencyCode() {
+    @Column(name = "TARGET_CURRENCY_CODE")
+    public String getTargetCurrencyCode() {
         return targetCurrencyCode;
     }
 
-    public void setTargetCurrencyCode(TargetCurrencyCodeType value) {
+    public void setTargetCurrencyCode(String value) {
         this.targetCurrencyCode = value;
     }
 
-    @ManyToOne(targetEntity = TargetCurrencyBaseRateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TARGETCURRENCYBASERATE_EXCHA_0")
-    public TargetCurrencyBaseRateType getTargetCurrencyBaseRate() {
+    @Column(name = "TARGET_CURRENCY_BASE_RATE")
+    public BigDecimal getTargetCurrencyBaseRate() {
         return targetCurrencyBaseRate;
     }
 
-    public void setTargetCurrencyBaseRate(TargetCurrencyBaseRateType value) {
+    public void setTargetCurrencyBaseRate(BigDecimal value) {
         this.targetCurrencyBaseRate = value;
     }
 
-    @ManyToOne(targetEntity = ExchangeMarketIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "EXCHANGEMARKETID_EXCHANGERAT_0")
-    public ExchangeMarketIDType getExchangeMarketID() {
+    @Column(name = "EXCHANGE_MARKET_ID")
+    public String getExchangeMarketID() {
         return exchangeMarketID;
     }
 
-    public void setExchangeMarketID(ExchangeMarketIDType value) {
+    public void setExchangeMarketID(String value) {
         this.exchangeMarketID = value;
     }
 
-    @ManyToOne(targetEntity = CalculationRateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "CALCULATIONRATE_EXCHANGERATE_0")
-    public CalculationRateType getCalculationRate() {
+    @Column(name = "CALCULATION_RATE")
+    public BigDecimal getCalculationRate() {
         return calculationRate;
     }
 
-    public void setCalculationRate(CalculationRateType value) {
+    public void setCalculationRate(BigDecimal value) {
         this.calculationRate = value;
     }
 
-    @ManyToOne(targetEntity = MathematicOperatorCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "MATHEMATICOPERATORCODE_EXCHA_0")
-    public MathematicOperatorCodeType getMathematicOperatorCode() {
+    @Column(name = "MATHEMATIC_OPERATOR_CODE")
+    public String getMathematicOperatorCode() {
         return mathematicOperatorCode;
     }
 
-    public void setMathematicOperatorCode(MathematicOperatorCodeType value) {
+    public void setMathematicOperatorCode(String value) {
         this.mathematicOperatorCode = value;
     }
 
-    @ManyToOne(targetEntity = DateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DATE__EXCHANGERATETYPE_OFID")
-    public DateType getDate() {
+    @Column(name = "DATE")
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(DateType value) {
+    public void setDate(LocalDate value) {
         this.date = value;
     }
 
     @ManyToOne(targetEntity = ContractEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "FOREIGNEXCHANGECONTRACT_EXCH_0")
+    @JoinColumn(name = "FOREIGNEXCHANGECONTRACT")
     public ContractEntity getForeignExchangeContract() {
         return foreignExchangeContract;
     }
@@ -128,7 +121,7 @@ public class ExchangeRateEntity {
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)

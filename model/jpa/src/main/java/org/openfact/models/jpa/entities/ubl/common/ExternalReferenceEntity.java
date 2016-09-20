@@ -7,17 +7,17 @@
 
 package org.openfact.models.jpa.entities.ubl.common;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -27,63 +27,59 @@ import org.hibernate.annotations.GenericGenerator;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ExternalReferenceEntity {
 
-    protected URIType uri;
-    protected DocumentHashType documentHash;
-    protected ExpiryDateType expiryDate;
-    protected ExpiryTimeType expiryTime;
-    protected String id;
+	protected String uri;
+	protected String documentHash;
+	protected LocalDate expiryDate;
+	protected LocalTime expiryTime;
+	protected String id;
 
-    @ManyToOne(targetEntity = URIType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "URI_EXTERNALREFERENCETYPE_HJ_0")
-    public URIType getURI() {
-        return uri;
-    }
+	@Column(name = "URI")
+	public String getURI() {
+		return uri;
+	}
 
-    public void setURI(URIType value) {
-        this.uri = value;
-    }
+	public void setURI(String value) {
+		this.uri = value;
+	}
 
-    @ManyToOne(targetEntity = DocumentHashType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DOCUMENTHASH_EXTERNALREFEREN_0")
-    public DocumentHashType getDocumentHash() {
-        return documentHash;
-    }
+	@Column(name = "DOCUMENT_HASH")
+	public String getDocumentHash() {
+		return documentHash;
+	}
 
-    public void setDocumentHash(DocumentHashType value) {
-        this.documentHash = value;
-    }
+	public void setDocumentHash(String value) {
+		this.documentHash = value;
+	}
 
-    @ManyToOne(targetEntity = ExpiryDateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "EXPIRYDATE_EXTERNALREFERENCE_0")
-    public ExpiryDateType getExpiryDate() {
-        return expiryDate;
-    }
+	@Column(name = "EXPIRYDATE")
+	public LocalDate getExpiryDate() {
+		return expiryDate;
+	}
 
-    public void setExpiryDate(ExpiryDateType value) {
-        this.expiryDate = value;
-    }
+	public void setExpiryDate(LocalDate value) {
+		this.expiryDate = value;
+	}
 
-    @ManyToOne(targetEntity = ExpiryTimeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "EXPIRYTIME_EXTERNALREFERENCE_0")
-    public ExpiryTimeType getExpiryTime() {
-        return expiryTime;
-    }
+	@Column(name = "EXPIRYTIME")
+	public LocalTime getExpiryTime() {
+		return expiryTime;
+	}
 
-    public void setExpiryTime(ExpiryTimeType value) {
-        this.expiryTime = value;
-    }
+	public void setExpiryTime(LocalTime value) {
+		this.expiryTime = value;
+	}
 
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Access(AccessType.PROPERTY)
-    public String getId() {
-        return id;
-    }
+	@Id
+	@Column(name = "ID_OFID")
+	@GeneratedValue(generator = "uuid2")
+	@GenericGenerator(name = "uuid2", strategy = "uuid2")
+	@Access(AccessType.PROPERTY)
+	public String getId() {
+		return id;
+	}
 
-    public void setId(String value) {
-        this.id = value;
-    }
+	public void setId(String value) {
+		this.id = value;
+	}
 
 }
