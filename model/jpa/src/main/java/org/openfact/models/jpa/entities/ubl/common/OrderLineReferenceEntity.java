@@ -27,55 +27,51 @@ import org.hibernate.annotations.GenericGenerator;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class OrderLineReferenceEntity {
 
-    protected LineIDType lineID;
-    protected SalesOrderLineIDType salesOrderLineID;
-    protected UUIDType uuid;
-    protected LineStatusCodeTypeCommBas lineStatusCode;
+    protected String lineID;
+    protected String salesOrderLineID;
+    protected String uuid;
+    protected String lineStatusCode;
     protected OrderReferenceEntity orderReference;
     protected String id;
 
-    @ManyToOne(targetEntity = LineIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LINEID_ORDERLINEREFERENCETYP_0")
-    public LineIDType getLineID() {
+    @Column(name = "LINE_ID")
+    public String getLineID() {
         return lineID;
     }
 
-    public void setLineID(LineIDType value) {
+    public void setLineID(String value) {
         this.lineID = value;
     }
 
-    @ManyToOne(targetEntity = SalesOrderLineIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "SALESORDERLINEID_ORDERLINERE_0")
-    public SalesOrderLineIDType getSalesOrderLineID() {
+    @Column(name = "SALES_ORDER_LINE_ID")
+    public String getSalesOrderLineID() {
         return salesOrderLineID;
     }
 
-    public void setSalesOrderLineID(SalesOrderLineIDType value) {
+    public void setSalesOrderLineID(String value) {
         this.salesOrderLineID = value;
     }
 
-    @ManyToOne(targetEntity = UUIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "UUID_ORDERLINEREFERENCETYPE__0")
-    public UUIDType getUUID() {
+    @Column(name = "UUID")
+    public String getUUID() {
         return uuid;
     }
 
-    public void setUUID(UUIDType value) {
+    public void setUUID(String value) {
         this.uuid = value;
     }
 
-    @ManyToOne(targetEntity = LineStatusCodeTypeCommBas.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LINESTATUSCODE_ORDERLINEREFE_0")
-    public LineStatusCodeTypeCommBas getLineStatusCode() {
+    @Column(name = "LINE_STATUS_CODE")
+    public String getLineStatusCode() {
         return lineStatusCode;
     }
 
-    public void setLineStatusCode(LineStatusCodeTypeCommBas value) {
+    public void setLineStatusCode(String value) {
         this.lineStatusCode = value;
     }
 
     @ManyToOne(targetEntity = OrderReferenceEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ORDERREFERENCE_ORDERLINEREFE_0")
+    @JoinColumn(name = "ORDERREFERENCE")
     public OrderReferenceEntity getOrderReference() {
         return orderReference;
     }
@@ -85,7 +81,7 @@ public class OrderLineReferenceEntity {
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)

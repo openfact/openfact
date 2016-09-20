@@ -30,17 +30,16 @@ import org.hibernate.annotations.GenericGenerator;
 public class MonetaryTotalEntity {
 
     protected BigDecimal lineExtensionAmount;
-    protected TaxExclusiveAmountType taxExclusiveAmount;
-    protected TaxInclusiveAmountType taxInclusiveAmount;
-    protected AllowanceTotalAmountType allowanceTotalAmount;
-    protected ChargeTotalAmountType chargeTotalAmount;
-    protected PrepaidAmountType prepaidAmount;
-    protected PayableRoundingAmountType payableRoundingAmount;
-    protected PayableAmountType payableAmount;
+    protected BigDecimal taxExclusiveAmount;
+    protected BigDecimal taxInclusiveAmount;
+    protected BigDecimal allowanceTotalAmount;
+    protected BigDecimal chargeTotalAmount;
+    protected BigDecimal prepaidAmount;
+    protected BigDecimal payableRoundingAmount;
+    protected BigDecimal payableAmount;
     protected String id;
 
-    @ManyToOne(targetEntity = LineExtensionAmountType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LINEEXTENSIONAMOUNT_MONETARY_0")
+    @Column(name = "LINE_EXTENSION_AMOUNT")
     public BigDecimal getLineExtensionAmount() {
         return lineExtensionAmount;
     }
@@ -49,78 +48,71 @@ public class MonetaryTotalEntity {
         this.lineExtensionAmount = value;
     }
 
-    @ManyToOne(targetEntity = TaxExclusiveAmountType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TAXEXCLUSIVEAMOUNT_MONETARYT_0")
-    public TaxExclusiveAmountType getTaxExclusiveAmount() {
+    @Column(name = "TAX_EXCLUSIVE_AMOUNT")
+    public BigDecimal getTaxExclusiveAmount() {
         return taxExclusiveAmount;
     }
 
-    public void setTaxExclusiveAmount(TaxExclusiveAmountType value) {
+    public void setTaxExclusiveAmount(BigDecimal value) {
         this.taxExclusiveAmount = value;
     }
 
-    @ManyToOne(targetEntity = TaxInclusiveAmountType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TAXINCLUSIVEAMOUNT_MONETARYT_0")
-    public TaxInclusiveAmountType getTaxInclusiveAmount() {
+    @Column(name = "TAX_INCLUSIVE_AMOUNT")
+    public BigDecimal getTaxInclusiveAmount() {
         return taxInclusiveAmount;
     }
 
-    public void setTaxInclusiveAmount(TaxInclusiveAmountType value) {
+    public void setTaxInclusiveAmount(BigDecimal value) {
         this.taxInclusiveAmount = value;
     }
 
-    @ManyToOne(targetEntity = AllowanceTotalAmountType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ALLOWANCETOTALAMOUNT_MONETAR_0")
-    public AllowanceTotalAmountType getAllowanceTotalAmount() {
+    @Column(name = "ALLOWANCE_TOTAL_AMOUNT")
+    public BigDecimal getAllowanceTotalAmount() {
         return allowanceTotalAmount;
     }
 
-    public void setAllowanceTotalAmount(AllowanceTotalAmountType value) {
+    public void setAllowanceTotalAmount(BigDecimal value) {
         this.allowanceTotalAmount = value;
     }
 
-    @ManyToOne(targetEntity = ChargeTotalAmountType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "CHARGETOTALAMOUNT_MONETARYTO_0")
-    public ChargeTotalAmountType getChargeTotalAmount() {
+    @Column(name = "CHARGE_TOTAL_AMOUNT")
+    public BigDecimal getChargeTotalAmount() {
         return chargeTotalAmount;
     }
 
-    public void setChargeTotalAmount(ChargeTotalAmountType value) {
+    public void setChargeTotalAmount(BigDecimal value) {
         this.chargeTotalAmount = value;
     }
 
-    @ManyToOne(targetEntity = PrepaidAmountType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PREPAIDAMOUNT_MONETARYTOTALT_0")
-    public PrepaidAmountType getPrepaidAmount() {
+    @Column(name = "PREPAID_AMOUNT")
+    public BigDecimal getPrepaidAmount() {
         return prepaidAmount;
     }
 
-    public void setPrepaidAmount(PrepaidAmountType value) {
+    public void setPrepaidAmount(BigDecimal value) {
         this.prepaidAmount = value;
     }
 
-    @ManyToOne(targetEntity = PayableRoundingAmountType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PAYABLEROUNDINGAMOUNT_MONETA_0")
-    public PayableRoundingAmountType getPayableRoundingAmount() {
+    @Column(name = "PAYABLE_ROUNDING_AMOUNT")
+    public BigDecimal getPayableRoundingAmount() {
         return payableRoundingAmount;
     }
 
-    public void setPayableRoundingAmount(PayableRoundingAmountType value) {
+    public void setPayableRoundingAmount(BigDecimal value) {
         this.payableRoundingAmount = value;
     }
 
-    @ManyToOne(targetEntity = PayableAmountType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PAYABLEAMOUNT_MONETARYTOTALT_0")
-    public PayableAmountType getPayableAmount() {
+    @Column(name = "PAYABLE_AMOUNT")
+    public BigDecimal getPayableAmount() {
         return payableAmount;
     }
 
-    public void setPayableAmount(PayableAmountType value) {
+    public void setPayableAmount(BigDecimal value) {
         this.payableAmount = value;
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)

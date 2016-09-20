@@ -8,7 +8,9 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.OrderReferenceEntity;
+import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.DocumentReferenceModel;
 import org.openfact.models.ubl.common.OrderReferenceModel;
 
@@ -119,6 +121,13 @@ public class OrderReferenceAdapter implements OrderReferenceModel, JpaModel<Orde
 	public OrderReferenceEntity getEntity() {
 		// TODO Auto-generated method stub
 		return orderReference;
+	}
+
+	public static OrderReferenceEntity toEntity(OrderReferenceModel model, EntityManager em) {
+		if (model instanceof OrderReferenceModel) {
+			return ((OrderReferenceAdapter) model).getEntity();
+		}
+		return em.getReference(OrderReferenceEntity.class, model.getId());
 	}
 
 }
