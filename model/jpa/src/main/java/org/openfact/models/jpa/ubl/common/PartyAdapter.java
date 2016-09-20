@@ -13,6 +13,7 @@ import org.openfact.models.jpa.entities.ubl.common.PartyEntity;
 import org.openfact.models.jpa.entities.ubl.common.PartyLegalEntity;
 import org.openfact.models.jpa.entities.ubl.common.PartyTaxSchemeEntity;
 import org.openfact.models.jpa.entities.ubl.common.PaymentMeansEntity;
+import org.openfact.models.jpa.entities.ubl.common.PriceEntity;
 import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.ContactModel;
@@ -211,14 +212,15 @@ public class PartyAdapter implements PartyModel, JpaModel<PartyEntity> {
 
 	@Override
 	public PartyEntity getEntity() {
-		// TODO Auto-generated method stub
 		return party;
 	}
 
 	@Override
 	public PartyLegalModel addPartyLegalEntity() {
-		// TODO Auto-generated method stub
-		return null;
+		List<PartyLegalEntity> partyLegalEntities = party.getPartyLegalEntity();
+		PartyLegalEntity partyLegalEntity = new PartyLegalEntity();
+		partyLegalEntities.add(partyLegalEntity);
+		return new PartyLegalAdapter(session, em, partyLegalEntity);
 	}
 
 }

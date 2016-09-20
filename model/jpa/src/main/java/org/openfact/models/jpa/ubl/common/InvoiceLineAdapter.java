@@ -284,7 +284,7 @@ public class InvoiceLineAdapter implements InvoiceLineModel, JpaModel<InvoiceLin
 
 	@Override
 	public void setItem(ItemModel value) {
-		this.invoiceLine.setItem(ItemAdapter.toEntity(value,em));
+		this.invoiceLine.setItem(ItemAdapter.toEntity(value, em));
 	}
 
 	@Override
@@ -324,12 +324,18 @@ public class InvoiceLineAdapter implements InvoiceLineModel, JpaModel<InvoiceLin
 
 	@Override
 	public TaxTotalModel addTaxTotal() {
-		return null;
+		List<TaxTotalEntity> taxTotalEntities = invoiceLine.getTaxTotal();
+		TaxTotalEntity taxTotalEntity = new TaxTotalEntity();
+		taxTotalEntities.add(taxTotalEntity);
+		return new TaxTotalAdapter(session, em, taxTotalEntity);
 	}
 
 	@Override
 	public AllowanceChargeModel addAllowanceCharge() {
-		return null;
+		List<AllowanceChargeEntity> allowanceChargeEntities = invoiceLine.getAllowanceCharge();
+		AllowanceChargeEntity allowanceChargeEntity = new AllowanceChargeEntity();
+		allowanceChargeEntities.add(allowanceChargeEntity);
+		return new AllowanceChargeAdapter(session, em, allowanceChargeEntity);
 	}
 
 }

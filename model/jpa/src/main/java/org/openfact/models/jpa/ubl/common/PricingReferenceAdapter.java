@@ -11,6 +11,7 @@ import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.PriceEntity;
 import org.openfact.models.jpa.entities.ubl.common.PricingReferenceEntity;
+import org.openfact.models.jpa.entities.ubl.common.TaxTotalEntity;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.ItemLocationQuantityModel;
 import org.openfact.models.ubl.common.PriceModel;
@@ -69,7 +70,10 @@ public class PricingReferenceAdapter implements PricingReferenceModel, JpaModel<
 
 	@Override
 	public PriceModel addAlternativeConditionPrice() {
-		return null;
+		List<PriceEntity> priceEntities = pricingReference.getAlternativeConditionPrice();
+		PriceEntity priceEntity = new PriceEntity();
+		priceEntities.add(priceEntity);
+		return new PriceAdapter(session, em, priceEntity);
 	}
 
 	public static PricingReferenceEntity toEntity(PricingReferenceModel model, EntityManager em) {
