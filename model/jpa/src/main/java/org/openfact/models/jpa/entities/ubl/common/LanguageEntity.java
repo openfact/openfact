@@ -27,52 +27,49 @@ import org.hibernate.annotations.GenericGenerator;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class LanguageEntity {
 
-    protected IDType ID;
-    protected NameTypeCommBas name;
-    protected LocaleCodeType localeCode;
-    protected String id;
+	protected String ID;
+	protected String name;
+	protected String localeCode;
+	protected String id;
 
-    @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ID_LANGUAGETYPE_OFID")
-    public IDType getID() {
-        return ID;
-    }
+	@Column(name = "ID")
+	public String getID() {
+		return ID;
+	}
 
-    public void setID(IDType value) {
-        this.ID = value;
-    }
+	public void setID(String value) {
+		this.ID = value;
+	}
 
-    @ManyToOne(targetEntity = NameTypeCommBas.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "NAME__LANGUAGETYPE_OFID")
-    public NameTypeCommBas getName() {
-        return name;
-    }
+	@Column(name = "NAME")
+	public String getName() {
+		return name;
+	}
 
-    public void setName(NameTypeCommBas value) {
-        this.name = value;
-    }
+	public void setName(String value) {
+		this.name = value;
+	}
 
-    @ManyToOne(targetEntity = LocaleCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LOCALECODE_LANGUAGETYPE_OFID")
-    public LocaleCodeType getLocaleCode() {
-        return localeCode;
-    }
+	@Column(name = "LOCALE_CODE")
+	public String getLocaleCode() {
+		return localeCode;
+	}
 
-    public void setLocaleCode(LocaleCodeType value) {
-        this.localeCode = value;
-    }
+	public void setLocaleCode(String value) {
+		this.localeCode = value;
+	}
 
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Access(AccessType.PROPERTY)
-    public String getId() {
-        return id;
-    }
+	@Id
+	@Column(name = "ID_OFID")
+	@GeneratedValue(generator = "uuid2")
+	@GenericGenerator(name = "uuid2", strategy = "uuid2")
+	@Access(AccessType.PROPERTY)
+	public String getId() {
+		return id;
+	}
 
-    public void setId(String value) {
-        this.id = value;
-    }
+	public void setId(String value) {
+		this.id = value;
+	}
 
 }

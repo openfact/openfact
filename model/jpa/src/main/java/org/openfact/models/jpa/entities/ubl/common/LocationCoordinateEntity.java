@@ -27,87 +27,84 @@ import org.hibernate.annotations.GenericGenerator;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class LocationCoordinateEntity {
 
-    protected CoordinateSystemCodeType coordinateSystemCode;
-    protected LatitudeDegreesMeasureType latitudeDegreesMeasure;
-    protected LatitudeMinutesMeasureType latitudeMinutesMeasure;
-    protected LatitudeDirectionCodeTypeCommBas latitudeDirectionCode;
-    protected LongitudeDegreesMeasureType longitudeDegreesMeasure;
-    protected LongitudeMinutesMeasureType longitudeMinutesMeasure;
-    protected LongitudeDirectionCodeTypeCommBas longitudeDirectionCode;
+    protected String coordinateSystemCode;
+    protected MeasureEntity latitudeDegreesMeasure;
+    protected MeasureEntity latitudeMinutesMeasure;
+    protected String latitudeDirectionCode;
+    protected MeasureEntity longitudeDegreesMeasure;
+    protected MeasureEntity longitudeMinutesMeasure;
+    protected String longitudeDirectionCode;
     protected String id;
 
-    @ManyToOne(targetEntity = CoordinateSystemCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "COORDINATESYSTEMCODE_LOCATIO_0")
-    public CoordinateSystemCodeType getCoordinateSystemCode() {
+    @Column(name = "COORDINATE_SYSTEM_CODE")
+    public String getCoordinateSystemCode() {
         return coordinateSystemCode;
     }
 
-    public void setCoordinateSystemCode(CoordinateSystemCodeType value) {
+    public void setCoordinateSystemCode(String value) {
         this.coordinateSystemCode = value;
     }
 
-    @ManyToOne(targetEntity = LatitudeDegreesMeasureType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LATITUDEDEGREESMEASURE_LOCAT_0")
-    public LatitudeDegreesMeasureType getLatitudeDegreesMeasure() {
+    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "LATITUDEDEGREESMEASURE")
+    public MeasureEntity getLatitudeDegreesMeasure() {
         return latitudeDegreesMeasure;
     }
 
-    public void setLatitudeDegreesMeasure(LatitudeDegreesMeasureType value) {
+    public void setLatitudeDegreesMeasure(MeasureEntity value) {
         this.latitudeDegreesMeasure = value;
     }
 
-    @ManyToOne(targetEntity = LatitudeMinutesMeasureType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LATITUDEMINUTESMEASURE_LOCAT_0")
-    public LatitudeMinutesMeasureType getLatitudeMinutesMeasure() {
+    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "LATITUDEMINUTESMEASURE")
+    public MeasureEntity getLatitudeMinutesMeasure() {
         return latitudeMinutesMeasure;
     }
 
-    public void setLatitudeMinutesMeasure(LatitudeMinutesMeasureType value) {
+    public void setLatitudeMinutesMeasure(MeasureEntity value) {
         this.latitudeMinutesMeasure = value;
     }
 
-    @ManyToOne(targetEntity = LatitudeDirectionCodeTypeCommBas.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LATITUDEDIRECTIONCODE_LOCATI_0")
-    public LatitudeDirectionCodeTypeCommBas getLatitudeDirectionCode() {
+    @Column(name = "LATITUDE_DIRECTION_CODE")
+    public String getLatitudeDirectionCode() {
         return latitudeDirectionCode;
     }
 
-    public void setLatitudeDirectionCode(LatitudeDirectionCodeTypeCommBas value) {
+    public void setLatitudeDirectionCode(String value) {
         this.latitudeDirectionCode = value;
     }
 
-    @ManyToOne(targetEntity = LongitudeDegreesMeasureType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LONGITUDEDEGREESMEASURE_LOCA_0")
-    public LongitudeDegreesMeasureType getLongitudeDegreesMeasure() {
+    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "LONGITUDEDEGREESMEASURE")
+    public MeasureEntity getLongitudeDegreesMeasure() {
         return longitudeDegreesMeasure;
     }
 
-    public void setLongitudeDegreesMeasure(LongitudeDegreesMeasureType value) {
+    public void setLongitudeDegreesMeasure(MeasureEntity value) {
         this.longitudeDegreesMeasure = value;
     }
 
-    @ManyToOne(targetEntity = LongitudeMinutesMeasureType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LONGITUDEMINUTESMEASURE_LOCA_0")
-    public LongitudeMinutesMeasureType getLongitudeMinutesMeasure() {
+    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "LONGITUDEMINUTESMEASURE")
+    public MeasureEntity getLongitudeMinutesMeasure() {
         return longitudeMinutesMeasure;
     }
 
-    public void setLongitudeMinutesMeasure(LongitudeMinutesMeasureType value) {
+    public void setLongitudeMinutesMeasure(MeasureEntity value) {
         this.longitudeMinutesMeasure = value;
     }
 
-    @ManyToOne(targetEntity = LongitudeDirectionCodeTypeCommBas.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LONGITUDEDIRECTIONCODE_LOCAT_0")
-    public LongitudeDirectionCodeTypeCommBas getLongitudeDirectionCode() {
+    @Column(name = "LONGITUDE_DIRECTION_CODE")
+    public String getLongitudeDirectionCode() {
         return longitudeDirectionCode;
     }
 
-    public void setLongitudeDirectionCode(LongitudeDirectionCodeTypeCommBas value) {
+    public void setLongitudeDirectionCode(String value) {
         this.longitudeDirectionCode = value;
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)

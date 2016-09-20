@@ -27,32 +27,30 @@ import org.hibernate.annotations.GenericGenerator;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ItemPropertyGroupEntity {
 
-    protected IDType ID;
-    protected NameTypeCommBas name;
+    protected String ID;
+    protected String name;
     protected String id;
 
-    @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ID_ITEMPROPERTYGROUPTYPE_OFID")
-    public IDType getID() {
+    @Column(name = "ID")
+    public String getID() {
         return ID;
     }
 
-    public void setID(IDType value) {
+    public void setID(String value) {
         this.ID = value;
     }
 
-    @ManyToOne(targetEntity = NameTypeCommBas.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "NAME__ITEMPROPERTYGROUPTYPE__0")
-    public NameTypeCommBas getName() {
+    @Column(name = "NAME")
+    public String getName() {
         return name;
     }
 
-    public void setName(NameTypeCommBas value) {
+    public void setName(String value) {
         this.name = value;
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
