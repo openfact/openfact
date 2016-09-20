@@ -9,9 +9,11 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.ItemPropertyEntity;
 import org.openfact.models.jpa.entities.ubl.common.LotIdentificationEntity;
 import org.openfact.models.jpa.entities.ubl.common.TaxCategoryEntity;
+import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.ItemPropertyModel;
 import org.openfact.models.ubl.common.LotIdentificationModel;
 
@@ -75,6 +77,13 @@ public class LotIdentificationAdapter implements LotIdentificationModel, JpaMode
 	@Override
 	public LotIdentificationEntity getEntity() {
 		return lotIdentification;
+	}
+
+	public static LotIdentificationEntity toEntity(LotIdentificationModel model, EntityManager em) {
+		if (model instanceof LotIdentificationModel) {
+			return ((LotIdentificationAdapter) model).getEntity();
+		}
+		return em.getReference(LotIdentificationEntity.class, model.getId());
 	}
 
 }

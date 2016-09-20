@@ -293,7 +293,7 @@ public class AddressAdapter implements AddressModel, JpaModel<AddressEntity> {
 
     @Override
     public void setLocationCoordinate(LocationCoordinateModel value) {
-        address.setLocationCoordinate(LocationCoordinateAdapter.toEntity(value));
+        address.setLocationCoordinate(LocationCoordinateAdapter.toEntity(value,em));
     }
 
     @Override

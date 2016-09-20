@@ -7,6 +7,8 @@
 
 package org.openfact.models.jpa.entities.ubl.common;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,67 +33,62 @@ import org.hibernate.annotations.GenericGenerator;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ItemInstanceEntity {
 
-    protected ProductTraceIDType productTraceID;
-    protected ManufactureDateType manufactureDate;
-    protected ManufactureTimeType manufactureTime;
-    protected RegistrationIDType registrationID;
-    protected SerialIDType serialID;
+    protected String productTraceID;
+    protected LocalDate manufactureDate;
+    protected LocalTime manufactureTime;
+    protected String registrationID;
+    protected String serialID;
     protected List<ItemPropertyEntity> additionalItemProperty;
     protected LotIdentificationEntity lotIdentification;
     protected String id;
 
-    @ManyToOne(targetEntity = ProductTraceIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PRODUCTTRACEID_ITEMINSTANCET_0")
-    public ProductTraceIDType getProductTraceID() {
+    @Column(name = "PRODUCT_TRACE_ID")
+    public String getProductTraceID() {
         return productTraceID;
     }
 
-    public void setProductTraceID(ProductTraceIDType value) {
+    public void setProductTraceID(String value) {
         this.productTraceID = value;
     }
 
-    @ManyToOne(targetEntity = ManufactureDateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "MANUFACTUREDATE_ITEMINSTANCE_0")
-    public ManufactureDateType getManufactureDate() {
+    @Column(name = "MANUFACTURE_DATE")
+    public LocalDate getManufactureDate() {
         return manufactureDate;
     }
 
-    public void setManufactureDate(ManufactureDateType value) {
+    public void setManufactureDate(LocalDate value) {
         this.manufactureDate = value;
     }
 
-    @ManyToOne(targetEntity = ManufactureTimeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "MANUFACTURETIME_ITEMINSTANCE_0")
-    public ManufactureTimeType getManufactureTime() {
+    @Column(name = "MANUFACTURE_TIME")
+    public LocalTime getManufactureTime() {
         return manufactureTime;
     }
 
-    public void setManufactureTime(ManufactureTimeType value) {
+    public void setManufactureTime(LocalTime value) {
         this.manufactureTime = value;
     }
 
-    @ManyToOne(targetEntity = RegistrationIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "REGISTRATIONID_ITEMINSTANCET_0")
-    public RegistrationIDType getRegistrationID() {
+    @Column(name = "REGISTRATIONID_ITEMINSTANCET_0")
+    public String getRegistrationID() {
         return registrationID;
     }
 
-    public void setRegistrationID(RegistrationIDType value) {
+    public void setRegistrationID(String value) {
         this.registrationID = value;
     }
 
-    @ManyToOne(targetEntity = SerialIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "SERIALID_ITEMINSTANCETYPE_HJ_0")
-    public SerialIDType getSerialID() {
+    @Column(name = "SERIAL_ID")
+    public String getSerialID() {
         return serialID;
     }
 
-    public void setSerialID(SerialIDType value) {
+    public void setSerialID(String value) {
         this.serialID = value;
     }
 
     @OneToMany(targetEntity = ItemPropertyEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ADDITIONALITEMPROPERTY_ITEMI_0")
+    @JoinColumn(name = "ADDITIONALITEMPROPERTY")
     public List<ItemPropertyEntity> getAdditionalItemProperty() {
         if (additionalItemProperty == null) {
             additionalItemProperty = new ArrayList<ItemPropertyEntity>();
@@ -104,7 +101,7 @@ public class ItemInstanceEntity {
     }
 
     @ManyToOne(targetEntity = LotIdentificationEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LOTIDENTIFICATION_ITEMINSTAN_0")
+    @JoinColumn(name = "LOTIDENTIFICATION")
     public LotIdentificationEntity getLotIdentification() {
         return lotIdentification;
     }
@@ -114,7 +111,7 @@ public class ItemInstanceEntity {
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)

@@ -84,4 +84,9 @@ public class DimensionAdapter implements DimensionModel, JpaModel<DimensionEntit
         this.dimension.setId(value);
     }
 
+	public static DimensionEntity toEntity(DimensionModel model, EntityManager em) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

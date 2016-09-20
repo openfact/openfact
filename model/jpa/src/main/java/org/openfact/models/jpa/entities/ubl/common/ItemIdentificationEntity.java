@@ -29,37 +29,35 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "ItemIdentificationType")
 @Table(name = "ITEMIDENTIFICATIONTYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class ItemIdentificationType {
+public class ItemIdentificationEntity {
 
-    protected IDType ID;
-    protected ExtendedIDType extendedID;
+    protected String  ID;
+    protected String extendedID;
     protected List<PhysicalAttributeEntity> physicalAttribute;
-    protected List<DimensionType> measurementDimension;
+    protected List<DimensionEntity> measurementDimension;
     protected PartyEntity issuerParty;
     protected String id;
 
-    @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ID_ITEMIDENTIFICATIONTYPE_HJ_0")
-    public IDType getID() {
+   @Column(name = "ID")
+    public String getID() {
         return ID;
     }
 
-    public void setID(IDType value) {
+    public void setID(String value) {
         this.ID = value;
     }
 
-    @ManyToOne(targetEntity = ExtendedIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "EXTENDEDID_ITEMIDENTIFICATIO_0")
-    public ExtendedIDType getExtendedID() {
+    @Column(name = "EXTENDED_ID")
+    public String getExtendedID() {
         return extendedID;
     }
 
-    public void setExtendedID(ExtendedIDType value) {
+    public void setExtendedID(String value) {
         this.extendedID = value;
     }
 
     @OneToMany(targetEntity = PhysicalAttributeEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PHYSICALATTRIBUTE_ITEMIDENTI_0")
+    @JoinColumn(name = "PHYSICALATTRIBUTE")
     public List<PhysicalAttributeEntity> getPhysicalAttribute() {
         if (physicalAttribute == null) {
             physicalAttribute = new ArrayList<PhysicalAttributeEntity>();
@@ -71,21 +69,21 @@ public class ItemIdentificationType {
         this.physicalAttribute = physicalAttribute;
     }
 
-    @OneToMany(targetEntity = DimensionType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "MEASUREMENTDIMENSION_ITEMIDE_0")
-    public List<DimensionType> getMeasurementDimension() {
+    @OneToMany(targetEntity = DimensionEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "MEASUREMENTDIMENSION")
+    public List<DimensionEntity> getMeasurementDimension() {
         if (measurementDimension == null) {
-            measurementDimension = new ArrayList<DimensionType>();
+            measurementDimension = new ArrayList<DimensionEntity>();
         }
         return this.measurementDimension;
     }
 
-    public void setMeasurementDimension(List<DimensionType> measurementDimension) {
+    public void setMeasurementDimension(List<DimensionEntity> measurementDimension) {
         this.measurementDimension = measurementDimension;
     }
 
     @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ISSUERPARTY_ITEMIDENTIFICATI_0")
+    @JoinColumn(name = "ISSUERPARTY")
     public PartyEntity getIssuerParty() {
         return issuerParty;
     }
@@ -95,7 +93,7 @@ public class ItemIdentificationType {
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
