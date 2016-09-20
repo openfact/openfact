@@ -13,97 +13,146 @@ import java.time.LocalTime;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "PaymentType")
-@Table(name = "PAYMENTTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "PAYMENT")
 public class PaymentEntity {
-
-    protected String ID;
-    protected BigDecimal paidAmount;
-    protected LocalDate receivedDate;
-    protected LocalDate paidDate;
-    protected LocalTime paidTime;
-    protected String instructionID;
-    protected String id;
-
-    @Column(name = "ID")
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String value) {
-        this.ID = value;
-    }
-
-    @Column(name = "PAID_AMOUNT")
-    public BigDecimal getPaidAmount() {
-        return paidAmount;
-    }
-
-    public void setPaidAmount(BigDecimal value) {
-        this.paidAmount = value;
-    }
-
-    @Column(name = "RECEIVED_DATE")
-    public LocalDate getReceivedDate() {
-        return receivedDate;
-    }
-
-    public void setReceivedDate(LocalDate value) {
-        this.receivedDate = value;
-    }
-
-    @Column(name = "PAID_DATE")
-    public LocalDate getPaidDate() {
-        return paidDate;
-    }
-
-    public void setPaidDate(LocalDate value) {
-        this.paidDate = value;
-    }
-
-    @Column(name = "PAID_TIME")
-    public LocalTime getPaidTime() {
-        return paidTime;
-    }
-
-    public void setPaidTime(LocalTime value) {
-        this.paidTime = value;
-    }
-
-    @Column(name = "INSTRUCTION_ID")
-    public String getInstructionID() {
-        return instructionID;
-    }
-
-    public void setInstructionID(String value) {
-        this.instructionID = value;
-    }
 
     @Id
     @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "ID")
+    protected String ID;
+
+    @Column(name = "PAID_AMOUNT")
+    protected BigDecimal paidAmount;
+
+    @Column(name = "RECEIVED_DATE")
+    protected LocalDate receivedDate;
+
+    @Column(name = "PAID_DATE")
+    protected LocalDate paidDate;
+
+    @Column(name = "PAID_TIME")
+    protected LocalTime paidTime;
+
+    @Column(name = "INSTRUCTION_ID")
+    protected String instructionID;
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
+
+    /**
+     * @return the paidAmount
+     */
+    public BigDecimal getPaidAmount() {
+        return paidAmount;
+    }
+
+    /**
+     * @param paidAmount
+     *            the paidAmount to set
+     */
+    public void setPaidAmount(BigDecimal paidAmount) {
+        this.paidAmount = paidAmount;
+    }
+
+    /**
+     * @return the receivedDate
+     */
+    public LocalDate getReceivedDate() {
+        return receivedDate;
+    }
+
+    /**
+     * @param receivedDate
+     *            the receivedDate to set
+     */
+    public void setReceivedDate(LocalDate receivedDate) {
+        this.receivedDate = receivedDate;
+    }
+
+    /**
+     * @return the paidDate
+     */
+    public LocalDate getPaidDate() {
+        return paidDate;
+    }
+
+    /**
+     * @param paidDate
+     *            the paidDate to set
+     */
+    public void setPaidDate(LocalDate paidDate) {
+        this.paidDate = paidDate;
+    }
+
+    /**
+     * @return the paidTime
+     */
+    public LocalTime getPaidTime() {
+        return paidTime;
+    }
+
+    /**
+     * @param paidTime
+     *            the paidTime to set
+     */
+    public void setPaidTime(LocalTime paidTime) {
+        this.paidTime = paidTime;
+    }
+
+    /**
+     * @return the instructionID
+     */
+    public String getInstructionID() {
+        return instructionID;
+    }
+
+    /**
+     * @param instructionID
+     *            the instructionID to set
+     */
+    public void setInstructionID(String instructionID) {
+        this.instructionID = instructionID;
     }
 
 }

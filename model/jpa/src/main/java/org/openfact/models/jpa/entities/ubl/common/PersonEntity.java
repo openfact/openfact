@@ -9,107 +9,164 @@ package org.openfact.models.jpa.entities.ubl.common;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "PersonType")
-@Table(name = "PERSONTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "PERSON")
 public class PersonEntity {
-
-    protected String firstName;
-    protected String familyName;
-    protected String title;
-    protected String middleName;
-    protected String nameSuffix;
-    protected String jobTitle;
-    protected String organizationDepartment;
-    protected String id;
-
-    @Column(name = "FIRST_NAME")
-    public String  getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String value) {
-        this.firstName = value;
-    }
-
-    @Column(name = "FAMILY_NAME")
-    public String getFamilyName() {
-        return familyName;
-    }
-
-    public void setFamilyName(String value) {
-        this.familyName = value;
-    }
-
-    @Column(name = "TITLE")
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String value) {
-        this.title = value;
-    }
-
-    @Column(name = "MIDDLE_NAME")
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public void setMiddleName(String value) {
-        this.middleName = value;
-    }
-
-    @Column(name = "NAME_SUFFIX")
-    public String getNameSuffix() {
-        return nameSuffix;
-    }
-
-    public void setNameSuffix(String value) {
-        this.nameSuffix = value;
-    }
-
-    @Column(name = "JOB_TITLE")
-    public String getJobTitle() {
-        return jobTitle;
-    }
-
-    public void setJobTitle(String value) {
-        this.jobTitle = value;
-    }
-
-    @Column(name = "ORGANIZATION_DEPARTMENT")
-    public String getOrganizationDepartment() {
-        return organizationDepartment;
-    }
-
-    public void setOrganizationDepartment(String value) {
-        this.organizationDepartment = value;
-    }
 
     @Id
     @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "FIRST_NAME")
+    protected String firstName;
+
+    @Column(name = "FAMILY_NAME")
+    protected String familyName;
+
+    @Column(name = "TITLE")
+    protected String title;
+
+    @Column(name = "MIDDLE_NAME")
+    protected String middleName;
+
+    @Column(name = "NAME_SUFFIX")
+    protected String nameSuffix;
+
+    @Column(name = "JOB_TITLE")
+    protected String jobTitle;
+
+    @Column(name = "ORGANIZATION_DEPARTMENT")
+    protected String organizationDepartment;
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the firstName
+     */
+    public String getFirstName() {
+        return firstName;
+    }
+
+    /**
+     * @param firstName
+     *            the firstName to set
+     */
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    /**
+     * @return the familyName
+     */
+    public String getFamilyName() {
+        return familyName;
+    }
+
+    /**
+     * @param familyName
+     *            the familyName to set
+     */
+    public void setFamilyName(String familyName) {
+        this.familyName = familyName;
+    }
+
+    /**
+     * @return the title
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * @param title
+     *            the title to set
+     */
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    /**
+     * @return the middleName
+     */
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    /**
+     * @param middleName
+     *            the middleName to set
+     */
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    /**
+     * @return the nameSuffix
+     */
+    public String getNameSuffix() {
+        return nameSuffix;
+    }
+
+    /**
+     * @param nameSuffix
+     *            the nameSuffix to set
+     */
+    public void setNameSuffix(String nameSuffix) {
+        this.nameSuffix = nameSuffix;
+    }
+
+    /**
+     * @return the jobTitle
+     */
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    /**
+     * @param jobTitle
+     *            the jobTitle to set
+     */
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
+    }
+
+    /**
+     * @return the organizationDepartment
+     */
+    public String getOrganizationDepartment() {
+        return organizationDepartment;
+    }
+
+    /**
+     * @param organizationDepartment
+     *            the organizationDepartment to set
+     */
+    public void setOrganizationDepartment(String organizationDepartment) {
+        this.organizationDepartment = organizationDepartment;
     }
 
 }

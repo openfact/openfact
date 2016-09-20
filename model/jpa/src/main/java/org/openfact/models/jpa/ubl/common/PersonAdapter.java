@@ -101,10 +101,10 @@ public class PersonAdapter implements PersonModel, JpaModel<PersonEntity> {
         this.person.setId(value);
     }
 
-	@Override
-	public PersonEntity getEntity() {
-		// TODO Auto-generated method stub
-		return person;
-	}
+    @Override
+    public PersonEntity getEntity() {
+        // TODO Auto-generated method stub
+        return person;
+    }
 
 }

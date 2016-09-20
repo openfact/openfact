@@ -95,10 +95,10 @@ public class PaymentAdapter implements PaymentModel, JpaModel<PaymentEntity> {
         this.payment.setId(value);
     }
 
-	@Override
-	public PaymentEntity getEntity() {
-		// TODO Auto-generated method stub
-		return payment;
-	}
+    @Override
+    public PaymentEntity getEntity() {
+        // TODO Auto-generated method stub
+        return payment;
+    }
 
 }

@@ -74,10 +74,10 @@ public class PhysicalAttributeAdapter implements PhysicalAttributeModel, JpaMode
         this.physicalAttribute.setId(value);
     }
 
-	@Override
-	public PhysicalAttributeEntity getEntity() {
-		// TODO Auto-generated method stub
-		return physicalAttribute;
-	}
+    @Override
+    public PhysicalAttributeEntity getEntity() {
+        // TODO Auto-generated method stub
+        return physicalAttribute;
+    }
 
 }

@@ -14,157 +14,249 @@ import java.util.List;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "PaymentMeansType")
-@Table(name = "PAYMENTMEANSTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "PAYMENTMEANS")
 public class PaymentMeansEntity {
-
-    protected String ID;
-    protected String paymentMeansCode;
-    protected LocalDate paymentDueDate;
-    protected String paymentChannelCode;
-    protected String instructionID;
-    protected List<String> instructionNote;
-    protected List<String> paymentID;
-    protected CardAccountEntity cardAccount;
-    protected FinancialAccountEntity payerFinancialAccount;
-    protected FinancialAccountEntity payeeFinancialAccount;
-    protected CreditAccountEntity creditAccount;
-    protected String id;
-
-    @Column(name = "ID")
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String value) {
-        this.ID = value;
-    }
-
-    @Column(name = "PAYMENTMEANSCODE")
-    public String getPaymentMeansCode() {
-        return paymentMeansCode;
-    }
-
-    public void setPaymentMeansCode(String value) {
-        this.paymentMeansCode = value;
-    }
-
-    @Column(name = "PAYMENTDUEDATE_PAYMENTMEANST_0")
-    public LocalDate getPaymentDueDate() {
-        return paymentDueDate;
-    }
-
-    public void setPaymentDueDate(LocalDate value) {
-        this.paymentDueDate = value;
-    }
-
-    @Column(name = "PAYMENTCHANNELCODE_PAYMENTME_0")
-    public String getPaymentChannelCode() {
-        return paymentChannelCode;
-    }
-
-    public void setPaymentChannelCode(String value) {
-        this.paymentChannelCode = value;
-    }
-
-    @Column(name = "INSTRUCTIONID_PAYMENTMEANSTY_0")
-    public String getInstructionID() {
-        return instructionID;
-    }
-
-    public void setInstructionID(String value) {
-        this.instructionID = value;
-    }
-
-    @Column(name = "INSTRUCTIONNOTE_PAYMENTMEANS_0")
-    public List<String> getInstructionNote() {
-        if (instructionNote == null) {
-            instructionNote = new ArrayList<String>();
-        }
-        return this.instructionNote;
-    }
-
-    public void setInstructionNote(List<String> instructionNote) {
-        this.instructionNote = instructionNote;
-    }
-
-    @Column(name = "PAYMENTID_PAYMENTMEANSTYPE_H_0")
-    public List<String> getPaymentID() {
-        if (paymentID == null) {
-            paymentID = new ArrayList<String>();
-        }
-        return this.paymentID;
-    }
-
-    public void setPaymentID(List<String> paymentID) {
-        this.paymentID = paymentID;
-    }
-
-    @ManyToOne(targetEntity = CardAccountEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "CARDACCOUNT_PAYMENTMEANSTYPE_0")
-    public CardAccountEntity getCardAccount() {
-        return cardAccount;
-    }
-
-    public void setCardAccount(CardAccountEntity value) {
-        this.cardAccount = value;
-    }
-
-    @ManyToOne(targetEntity = FinancialAccountEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PAYERFINANCIALACCOUNT_PAYMEN_0")
-    public FinancialAccountEntity getPayerFinancialAccount() {
-        return payerFinancialAccount;
-    }
-
-    public void setPayerFinancialAccount(FinancialAccountEntity value) {
-        this.payerFinancialAccount = value;
-    }
-
-    @ManyToOne(targetEntity = FinancialAccountEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PAYEEFINANCIALACCOUNT_PAYMEN_0")
-    public FinancialAccountEntity getPayeeFinancialAccount() {
-        return payeeFinancialAccount;
-    }
-
-    public void setPayeeFinancialAccount(FinancialAccountEntity value) {
-        this.payeeFinancialAccount = value;
-    }
-
-    @ManyToOne(targetEntity = CreditAccountEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "CREDITACCOUNT_PAYMENTMEANSTY_0")
-    public CreditAccountEntity getCreditAccount() {
-        return creditAccount;
-    }
-
-    public void setCreditAccount(CreditAccountEntity value) {
-        this.creditAccount = value;
-    }
 
     @Id
     @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "ID")
+    protected String ID;
+
+    @Column(name = "PAYMENTMEANSCODE")
+    protected String paymentMeansCode;
+
+    @Column(name = "PAYMENTDUEDATE")
+    protected LocalDate paymentDueDate;
+
+    @Column(name = "PAYMENTCHANNELCODE")
+    protected String paymentChannelCode;
+
+    @Column(name = "INSTRUCTIONID")
+    protected String instructionID;
+
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "PAYMENTMEANS_INSTRUCTIONOTE", joinColumns = {
+            @JoinColumn(name = "PAYMENTMEANS_ID") })
+    protected List<String> instructionNote = new ArrayList<>();
+
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "PAYMENTMEANS_PAYMENTID", joinColumns = { @JoinColumn(name = "PAYMENTMEANS_ID") })
+    protected List<String> paymentID = new ArrayList<>();
+
+    @ManyToOne(targetEntity = CardAccountEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "CARDACCOUNT_PAYMENTMEANS")
+    protected CardAccountEntity cardAccount = new CardAccountEntity();
+
+    @ManyToOne(targetEntity = FinancialAccountEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "PAYERFINANCIALACCOUNT_PAYMENTMEANS")
+    protected FinancialAccountEntity payerFinancialAccount = new FinancialAccountEntity();
+
+    @ManyToOne(targetEntity = FinancialAccountEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "PAYEEFINANCIALACCOUNT_PAYMENTMEANS")
+    protected FinancialAccountEntity payeeFinancialAccount = new FinancialAccountEntity();
+
+    @ManyToOne(targetEntity = CreditAccountEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "CREDITACCOUNT_PAYMENTMEANS")
+    protected CreditAccountEntity creditAccount = new CreditAccountEntity();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
+
+    /**
+     * @return the paymentMeansCode
+     */
+    public String getPaymentMeansCode() {
+        return paymentMeansCode;
+    }
+
+    /**
+     * @param paymentMeansCode
+     *            the paymentMeansCode to set
+     */
+    public void setPaymentMeansCode(String paymentMeansCode) {
+        this.paymentMeansCode = paymentMeansCode;
+    }
+
+    /**
+     * @return the paymentDueDate
+     */
+    public LocalDate getPaymentDueDate() {
+        return paymentDueDate;
+    }
+
+    /**
+     * @param paymentDueDate
+     *            the paymentDueDate to set
+     */
+    public void setPaymentDueDate(LocalDate paymentDueDate) {
+        this.paymentDueDate = paymentDueDate;
+    }
+
+    /**
+     * @return the paymentChannelCode
+     */
+    public String getPaymentChannelCode() {
+        return paymentChannelCode;
+    }
+
+    /**
+     * @param paymentChannelCode
+     *            the paymentChannelCode to set
+     */
+    public void setPaymentChannelCode(String paymentChannelCode) {
+        this.paymentChannelCode = paymentChannelCode;
+    }
+
+    /**
+     * @return the instructionID
+     */
+    public String getInstructionID() {
+        return instructionID;
+    }
+
+    /**
+     * @param instructionID
+     *            the instructionID to set
+     */
+    public void setInstructionID(String instructionID) {
+        this.instructionID = instructionID;
+    }
+
+    /**
+     * @return the instructionNote
+     */
+    public List<String> getInstructionNote() {
+        return instructionNote;
+    }
+
+    /**
+     * @param instructionNote
+     *            the instructionNote to set
+     */
+    public void setInstructionNote(List<String> instructionNote) {
+        this.instructionNote = instructionNote;
+    }
+
+    /**
+     * @return the paymentID
+     */
+    public List<String> getPaymentID() {
+        return paymentID;
+    }
+
+    /**
+     * @param paymentID
+     *            the paymentID to set
+     */
+    public void setPaymentID(List<String> paymentID) {
+        this.paymentID = paymentID;
+    }
+
+    /**
+     * @return the cardAccount
+     */
+    public CardAccountEntity getCardAccount() {
+        return cardAccount;
+    }
+
+    /**
+     * @param cardAccount
+     *            the cardAccount to set
+     */
+    public void setCardAccount(CardAccountEntity cardAccount) {
+        this.cardAccount = cardAccount;
+    }
+
+    /**
+     * @return the payerFinancialAccount
+     */
+    public FinancialAccountEntity getPayerFinancialAccount() {
+        return payerFinancialAccount;
+    }
+
+    /**
+     * @param payerFinancialAccount
+     *            the payerFinancialAccount to set
+     */
+    public void setPayerFinancialAccount(FinancialAccountEntity payerFinancialAccount) {
+        this.payerFinancialAccount = payerFinancialAccount;
+    }
+
+    /**
+     * @return the payeeFinancialAccount
+     */
+    public FinancialAccountEntity getPayeeFinancialAccount() {
+        return payeeFinancialAccount;
+    }
+
+    /**
+     * @param payeeFinancialAccount
+     *            the payeeFinancialAccount to set
+     */
+    public void setPayeeFinancialAccount(FinancialAccountEntity payeeFinancialAccount) {
+        this.payeeFinancialAccount = payeeFinancialAccount;
+    }
+
+    /**
+     * @return the creditAccount
+     */
+    public CreditAccountEntity getCreditAccount() {
+        return creditAccount;
+    }
+
+    /**
+     * @param creditAccount
+     *            the creditAccount to set
+     */
+    public void setCreditAccount(CreditAccountEntity creditAccount) {
+        this.creditAccount = creditAccount;
     }
 
 }

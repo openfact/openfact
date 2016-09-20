@@ -14,142 +14,226 @@ import java.util.List;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "PaymentTermsType")
-@Table(name = "PAYMENTTERMSTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "PAYMENTTERMS")
 public class PaymentTermsEntity {
-
-    protected String ID;
-    protected String paymentMeansID;
-    protected String prepaidPaymentReferenceID;
-    protected List<String> note;
-    protected String referenceEventCode;
-    protected BigDecimal settlementDiscountPercent;
-    protected BigDecimal  penaltySurchargePercent;
-    protected BigDecimal amount;
-    protected PeriodEntity settlementPeriod;
-    protected PeriodEntity penaltyPeriod;
-    protected String id;
-
-    @Column(name = "ID")
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String value) {
-        this.ID = value;
-    }
-
-    @Column(name = "PAYMENT_MEANS_ID")
-    public String getPaymentMeansID() {
-        return paymentMeansID;
-    }
-
-    public void setPaymentMeansID(String value) {
-        this.paymentMeansID = value;
-    }
-
-    @Column(name = "PREPAID_PAYMENT_REFERENCE_ID")
-    public String getPrepaidPaymentReferenceID() {
-        return prepaidPaymentReferenceID;
-    }
-
-    public void setPrepaidPaymentReferenceID(String value) {
-        this.prepaidPaymentReferenceID = value;
-    }
-
-    @Column(name = "NOTE")
-    public List<String> getNote() {
-        if (note == null) {
-            note = new ArrayList<String>();
-        }
-        return this.note;
-    }
-
-    public void setNote(List<String> note) {
-        this.note = note;
-    }
-
-    @Column(name = "REFERENCE_EVENT_CODE")
-    public String getReferenceEventCode() {
-        return referenceEventCode;
-    }
-
-    public void setReferenceEventCode(String value) {
-        this.referenceEventCode = value;
-    }
-
-    @Column(name = "SETTLE_MENT_DISCOUNT_PERCENT")
-    public BigDecimal getSettlementDiscountPercent() {
-        return settlementDiscountPercent;
-    }
-
-    public void setSettlementDiscountPercent(BigDecimal value) {
-        this.settlementDiscountPercent = value;
-    }
-
-    @Column(name = "PENALTY_SURCHARGE_PERCENT")
-    public BigDecimal getPenaltySurchargePercent() {
-        return penaltySurchargePercent;
-    }
-
-    public void setPenaltySurchargePercent(BigDecimal value) {
-        this.penaltySurchargePercent = value;
-    }
-
-    @Column(name = "AMOUNT")
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal value) {
-        this.amount = value;
-    }
-
-    @ManyToOne(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "SETTLEMENTPERIOD_PAYMENTTERM_0")
-    public PeriodEntity getSettlementPeriod() {
-        return settlementPeriod;
-    }
-
-    public void setSettlementPeriod(PeriodEntity value) {
-        this.settlementPeriod = value;
-    }
-
-    @ManyToOne(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PENALTYPERIOD_PAYMENTTERMSTY_0")
-    public PeriodEntity getPenaltyPeriod() {
-        return penaltyPeriod;
-    }
-
-    public void setPenaltyPeriod(PeriodEntity value) {
-        this.penaltyPeriod = value;
-    }
 
     @Id
     @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "ID")
+    protected String ID;
+
+    @Column(name = "PAYMENT_MEANS_ID")
+    protected String paymentMeansID;
+
+    @Column(name = "PREPAID_PAYMENT_REFERENCE_ID")
+    protected String prepaidPaymentReferenceID;
+
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "PAYMENTTERMS_NOTE", joinColumns = { @JoinColumn(name = "PAYMENTTERMS_ID") })
+    protected List<String> note = new ArrayList<>();
+
+    @Column(name = "REFERENCE_EVENT_CODE")
+    protected String referenceEventCode;
+
+    @Column(name = "SETTLE_MENT_DISCOUNT_PERCENT")
+    protected BigDecimal settlementDiscountPercent;
+
+    @Column(name = "PENALTY_SURCHARGE_PERCENT")
+    protected BigDecimal penaltySurchargePercent;
+
+    @Column(name = "AMOUNT")
+    protected BigDecimal amount;
+
+    @ManyToOne(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "SETTLEMENTPERIOD_PAYMENTTERMS")
+    protected PeriodEntity settlementPeriod = new PeriodEntity();
+
+    @ManyToOne(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "PENALTYPERIOD_PAYMENTTERMS")
+    protected PeriodEntity penaltyPeriod = new PeriodEntity();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
+
+    /**
+     * @return the paymentMeansID
+     */
+    public String getPaymentMeansID() {
+        return paymentMeansID;
+    }
+
+    /**
+     * @param paymentMeansID
+     *            the paymentMeansID to set
+     */
+    public void setPaymentMeansID(String paymentMeansID) {
+        this.paymentMeansID = paymentMeansID;
+    }
+
+    /**
+     * @return the prepaidPaymentReferenceID
+     */
+    public String getPrepaidPaymentReferenceID() {
+        return prepaidPaymentReferenceID;
+    }
+
+    /**
+     * @param prepaidPaymentReferenceID
+     *            the prepaidPaymentReferenceID to set
+     */
+    public void setPrepaidPaymentReferenceID(String prepaidPaymentReferenceID) {
+        this.prepaidPaymentReferenceID = prepaidPaymentReferenceID;
+    }
+
+    /**
+     * @return the note
+     */
+    public List<String> getNote() {
+        return note;
+    }
+
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(List<String> note) {
+        this.note = note;
+    }
+
+    /**
+     * @return the referenceEventCode
+     */
+    public String getReferenceEventCode() {
+        return referenceEventCode;
+    }
+
+    /**
+     * @param referenceEventCode
+     *            the referenceEventCode to set
+     */
+    public void setReferenceEventCode(String referenceEventCode) {
+        this.referenceEventCode = referenceEventCode;
+    }
+
+    /**
+     * @return the settlementDiscountPercent
+     */
+    public BigDecimal getSettlementDiscountPercent() {
+        return settlementDiscountPercent;
+    }
+
+    /**
+     * @param settlementDiscountPercent
+     *            the settlementDiscountPercent to set
+     */
+    public void setSettlementDiscountPercent(BigDecimal settlementDiscountPercent) {
+        this.settlementDiscountPercent = settlementDiscountPercent;
+    }
+
+    /**
+     * @return the penaltySurchargePercent
+     */
+    public BigDecimal getPenaltySurchargePercent() {
+        return penaltySurchargePercent;
+    }
+
+    /**
+     * @param penaltySurchargePercent
+     *            the penaltySurchargePercent to set
+     */
+    public void setPenaltySurchargePercent(BigDecimal penaltySurchargePercent) {
+        this.penaltySurchargePercent = penaltySurchargePercent;
+    }
+
+    /**
+     * @return the amount
+     */
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    /**
+     * @param amount
+     *            the amount to set
+     */
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    /**
+     * @return the settlementPeriod
+     */
+    public PeriodEntity getSettlementPeriod() {
+        return settlementPeriod;
+    }
+
+    /**
+     * @param settlementPeriod
+     *            the settlementPeriod to set
+     */
+    public void setSettlementPeriod(PeriodEntity settlementPeriod) {
+        this.settlementPeriod = settlementPeriod;
+    }
+
+    /**
+     * @return the penaltyPeriod
+     */
+    public PeriodEntity getPenaltyPeriod() {
+        return penaltyPeriod;
+    }
+
+    /**
+     * @param penaltyPeriod
+     *            the penaltyPeriod to set
+     */
+    public void setPenaltyPeriod(PeriodEntity penaltyPeriod) {
+        this.penaltyPeriod = penaltyPeriod;
     }
 
 }

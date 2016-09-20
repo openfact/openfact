@@ -14,12 +14,12 @@ import java.util.List;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -27,127 +27,198 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "PriceType")
-@Table(name = "PRICETYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "PRICE")
 public class PriceEntity {
-
-    protected BigDecimal priceAmount;
-    protected QuantityEntity baseQuantity;
-    protected List<String> priceChangeReason;
-    protected String priceTypeCode;
-    protected String priceType;
-    protected BigDecimal orderableUnitFactorRate;
-    protected List<PeriodEntity> validityPeriod;
-    protected PriceListEntity priceList;
-    protected List<AllowanceChargeEntity> allowanceCharge;
-    protected String id;
-
-    @Column(name = "PRICE_AMOUNT")
-    public BigDecimal getPriceAmount() {
-        return priceAmount;
-    }
-
-    public void setPriceAmount(BigDecimal value) {
-        this.priceAmount = value;
-    }
-
-    @ManyToOne(targetEntity = QuantityEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "BASEQUANTITY_PRICETYPE")
-    public QuantityEntity getBaseQuantity() {
-        return baseQuantity;
-    }
-
-    public void setBaseQuantity(QuantityEntity value) {
-        this.baseQuantity = value;
-    }
-
-    @Column(name = "PRICE_CHANGE_REASON")
-    public List<String> getPriceChangeReason() {
-        if (priceChangeReason == null) {
-            priceChangeReason = new ArrayList<String>();
-        }
-        return this.priceChangeReason;
-    }
-
-    public void setPriceChangeReason(List<String> priceChangeReason) {
-        this.priceChangeReason = priceChangeReason;
-    }
-
-    @Column(name = "PRICE_TYPE_CODE")
-    public String getPriceTypeCode() {
-        return priceTypeCode;
-    }
-
-    public void setPriceTypeCode(String value) {
-        this.priceTypeCode = value;
-    }
-
-    @Column(name = "PRICE_TYPE")
-    public String getPriceType() {
-        return priceType;
-    }
-
-    public void setPriceType(String value) {
-        this.priceType = value;
-    }
-
-    @Column(name = "ORDERABLE_UNIT_FACTOR_RATE")
-    public BigDecimal getOrderableUnitFactorRate() {
-        return orderableUnitFactorRate;
-    }
-
-    public void setOrderableUnitFactorRate(BigDecimal value) {
-        this.orderableUnitFactorRate = value;
-    }
-
-    @OneToMany(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "VALIDITYPERIOD")
-    public List<PeriodEntity> getValidityPeriod() {
-        if (validityPeriod == null) {
-            validityPeriod = new ArrayList<PeriodEntity>();
-        }
-        return this.validityPeriod;
-    }
-
-    public void setValidityPeriod(List<PeriodEntity> validityPeriod) {
-        this.validityPeriod = validityPeriod;
-    }
-
-    @ManyToOne(targetEntity = PriceListEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PRICELIST_PRICETYPE")
-    public PriceListEntity getPriceList() {
-        return priceList;
-    }
-
-    public void setPriceList(PriceListEntity value) {
-        this.priceList = value;
-    }
-
-    @OneToMany(targetEntity = AllowanceChargeEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ALLOWANCECHARGE_PRICETYPE")
-    public List<AllowanceChargeEntity> getAllowanceCharge() {
-        if (allowanceCharge == null) {
-            allowanceCharge = new ArrayList<AllowanceChargeEntity>();
-        }
-        return this.allowanceCharge;
-    }
-
-    public void setAllowanceCharge(List<AllowanceChargeEntity> allowanceCharge) {
-        this.allowanceCharge = allowanceCharge;
-    }
 
     @Id
     @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "PRICE_AMOUNT")
+    protected BigDecimal priceAmount;
+
+    @ManyToOne(targetEntity = QuantityEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "BASEQUANTITY_PRICETYPE")
+    protected QuantityEntity baseQuantity = new QuantityEntity();
+
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "PRICE_PRICECHANGEREASON", joinColumns = { @JoinColumn(name = "PRICE_ID") })
+    protected List<String> priceChangeReason = new ArrayList<>();
+
+    @Column(name = "PRICE_TYPE_CODE")
+    protected String priceTypeCode;
+
+    @Column(name = "PRICE_TYPE")
+    protected String priceType;
+
+    @Column(name = "ORDERABLE_UNIT_FACTOR_RATE")
+    protected BigDecimal orderableUnitFactorRate;
+
+    @OneToMany(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "VALIDITYPERIOD")
+    protected List<PeriodEntity> validityPeriod = new ArrayList<>();
+
+    @ManyToOne(targetEntity = PriceListEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "PRICELIST_PRICETYPE")
+    protected PriceListEntity priceList = new PriceListEntity();
+
+    @OneToMany(targetEntity = AllowanceChargeEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ALLOWANCECHARGE_PRICETYPE")
+    protected List<AllowanceChargeEntity> allowanceCharge = new ArrayList<>();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the priceAmount
+     */
+    public BigDecimal getPriceAmount() {
+        return priceAmount;
+    }
+
+    /**
+     * @param priceAmount
+     *            the priceAmount to set
+     */
+    public void setPriceAmount(BigDecimal priceAmount) {
+        this.priceAmount = priceAmount;
+    }
+
+    /**
+     * @return the baseQuantity
+     */
+    public QuantityEntity getBaseQuantity() {
+        return baseQuantity;
+    }
+
+    /**
+     * @param baseQuantity
+     *            the baseQuantity to set
+     */
+    public void setBaseQuantity(QuantityEntity baseQuantity) {
+        this.baseQuantity = baseQuantity;
+    }
+
+    /**
+     * @return the priceChangeReason
+     */
+    public List<String> getPriceChangeReason() {
+        return priceChangeReason;
+    }
+
+    /**
+     * @param priceChangeReason
+     *            the priceChangeReason to set
+     */
+    public void setPriceChangeReason(List<String> priceChangeReason) {
+        this.priceChangeReason = priceChangeReason;
+    }
+
+    /**
+     * @return the priceTypeCode
+     */
+    public String getPriceTypeCode() {
+        return priceTypeCode;
+    }
+
+    /**
+     * @param priceTypeCode
+     *            the priceTypeCode to set
+     */
+    public void setPriceTypeCode(String priceTypeCode) {
+        this.priceTypeCode = priceTypeCode;
+    }
+
+    /**
+     * @return the priceType
+     */
+    public String getPriceType() {
+        return priceType;
+    }
+
+    /**
+     * @param priceType
+     *            the priceType to set
+     */
+    public void setPriceType(String priceType) {
+        this.priceType = priceType;
+    }
+
+    /**
+     * @return the orderableUnitFactorRate
+     */
+    public BigDecimal getOrderableUnitFactorRate() {
+        return orderableUnitFactorRate;
+    }
+
+    /**
+     * @param orderableUnitFactorRate
+     *            the orderableUnitFactorRate to set
+     */
+    public void setOrderableUnitFactorRate(BigDecimal orderableUnitFactorRate) {
+        this.orderableUnitFactorRate = orderableUnitFactorRate;
+    }
+
+    /**
+     * @return the validityPeriod
+     */
+    public List<PeriodEntity> getValidityPeriod() {
+        return validityPeriod;
+    }
+
+    /**
+     * @param validityPeriod
+     *            the validityPeriod to set
+     */
+    public void setValidityPeriod(List<PeriodEntity> validityPeriod) {
+        this.validityPeriod = validityPeriod;
+    }
+
+    /**
+     * @return the priceList
+     */
+    public PriceListEntity getPriceList() {
+        return priceList;
+    }
+
+    /**
+     * @param priceList
+     *            the priceList to set
+     */
+    public void setPriceList(PriceListEntity priceList) {
+        this.priceList = priceList;
+    }
+
+    /**
+     * @return the allowanceCharge
+     */
+    public List<AllowanceChargeEntity> getAllowanceCharge() {
+        return allowanceCharge;
+    }
+
+    /**
+     * @param allowanceCharge
+     *            the allowanceCharge to set
+     */
+    public void setAllowanceCharge(List<AllowanceChargeEntity> allowanceCharge) {
+        this.allowanceCharge = allowanceCharge;
     }
 
 }

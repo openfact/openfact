@@ -12,81 +12,116 @@ import java.util.List;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "PhysicalAttributeType")
-@Table(name = "PHYSICALATTRIBUTETYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "PHYSICALATTRIBUTE")
 public class PhysicalAttributeEntity {
-
-    protected String attributeID;
-    protected String positionCode;
-    protected String descriptionCode;
-    protected List<String> description;
-    protected String id;
-
-    @Column(name = "ATTRIBUTE_ID")
-    public String getAttributeID() {
-        return attributeID;
-    }
-
-    public void setAttributeID(String value) {
-        this.attributeID = value;
-    }
-
-    @Column(name = "POSITION_CODE")
-    public String getPositionCode() {
-        return positionCode;
-    }
-
-    public void setPositionCode(String value) {
-        this.positionCode = value;
-    }
-
-    @Column(name = "DESCRIPTION_CODE")
-    public String getDescriptionCode() {
-        return descriptionCode;
-    }
-
-    public void setDescriptionCode(String value) {
-        this.descriptionCode = value;
-    }
-
-    @Column(name = "DESCRIPTION")
-    public List<String> getDescription() {
-        if (description == null) {
-            description = new ArrayList<String>();
-        }
-        return this.description;
-    }
-
-    public void setDescription(List<String> description) {
-        this.description = description;
-    }
 
     @Id
     @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "ATTRIBUTE_ID")
+    protected String attributeID;
+
+    @Column(name = "POSITION_CODE")
+    protected String positionCode;
+
+    @Column(name = "DESCRIPTION_CODE")
+    protected String descriptionCode;
+
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "PHYSICALATTRIBUTE_DESCRIPTION", joinColumns = {
+            @JoinColumn(name = "PHYSICALATTRIBUTE_ID") })
+    protected List<String> description = new ArrayList<>();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the attributeID
+     */
+    public String getAttributeID() {
+        return attributeID;
+    }
+
+    /**
+     * @param attributeID
+     *            the attributeID to set
+     */
+    public void setAttributeID(String attributeID) {
+        this.attributeID = attributeID;
+    }
+
+    /**
+     * @return the positionCode
+     */
+    public String getPositionCode() {
+        return positionCode;
+    }
+
+    /**
+     * @param positionCode
+     *            the positionCode to set
+     */
+    public void setPositionCode(String positionCode) {
+        this.positionCode = positionCode;
+    }
+
+    /**
+     * @return the descriptionCode
+     */
+    public String getDescriptionCode() {
+        return descriptionCode;
+    }
+
+    /**
+     * @param descriptionCode
+     *            the descriptionCode to set
+     */
+    public void setDescriptionCode(String descriptionCode) {
+        this.descriptionCode = descriptionCode;
+    }
+
+    /**
+     * @return the description
+     */
+    public List<String> getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description
+     *            the description to set
+     */
+    public void setDescription(List<String> description) {
+        this.description = description;
     }
 
 }

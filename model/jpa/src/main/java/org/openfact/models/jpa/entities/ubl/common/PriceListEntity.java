@@ -17,8 +17,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -26,69 +24,104 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "PriceListType")
-@Table(name = "PRICELISTTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "PRICELIST")
 public class PriceListEntity {
-
-    protected String ID;
-    protected String statusCode;
-    protected List<PeriodEntity> validityPeriod;
-    protected PriceListEntity previousPriceList;
-    protected String id;
-
-    @Column(name = "ID")
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String value) {
-        this.ID = value;
-    }
-
-    @Column(name = "STATUS_CODE")
-    public String getStatusCode() {
-        return statusCode;
-    }
-
-    public void setStatusCode(String value) {
-        this.statusCode = value;
-    }
-
-    @OneToMany(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "VALIDITYPERIOD")
-    public List<PeriodEntity> getValidityPeriod() {
-        if (validityPeriod == null) {
-            validityPeriod = new ArrayList<PeriodEntity>();
-        }
-        return this.validityPeriod;
-    }
-
-    public void setValidityPeriod(List<PeriodEntity> validityPeriod) {
-        this.validityPeriod = validityPeriod;
-    }
-
-    @ManyToOne(targetEntity = PriceListEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PREVIOUSPRICELIST")
-    public PriceListEntity getPreviousPriceList() {
-        return previousPriceList;
-    }
-
-    public void setPreviousPriceList(PriceListEntity value) {
-        this.previousPriceList = value;
-    }
 
     @Id
     @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "ID")
+    protected String ID;
+
+    @Column(name = "STATUS_CODE")
+    protected String statusCode;
+
+    @OneToMany(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "VALIDITYPERIOD")
+    protected List<PeriodEntity> validityPeriod = new ArrayList<>();
+
+    @ManyToOne(targetEntity = PriceListEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "PREVIOUSPRICELIST")
+    protected PriceListEntity previousPriceList = new PriceListEntity();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
+
+    /**
+     * @return the statusCode
+     */
+    public String getStatusCode() {
+        return statusCode;
+    }
+
+    /**
+     * @param statusCode
+     *            the statusCode to set
+     */
+    public void setStatusCode(String statusCode) {
+        this.statusCode = statusCode;
+    }
+
+    /**
+     * @return the validityPeriod
+     */
+    public List<PeriodEntity> getValidityPeriod() {
+        return validityPeriod;
+    }
+
+    /**
+     * @param validityPeriod
+     *            the validityPeriod to set
+     */
+    public void setValidityPeriod(List<PeriodEntity> validityPeriod) {
+        this.validityPeriod = validityPeriod;
+    }
+
+    /**
+     * @return the previousPriceList
+     */
+    public PriceListEntity getPreviousPriceList() {
+        return previousPriceList;
+    }
+
+    /**
+     * @param previousPriceList
+     *            the previousPriceList to set
+     */
+    public void setPreviousPriceList(PriceListEntity previousPriceList) {
+        this.previousPriceList = previousPriceList;
     }
 
 }
