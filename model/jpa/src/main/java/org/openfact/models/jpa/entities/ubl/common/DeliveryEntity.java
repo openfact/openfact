@@ -37,7 +37,7 @@ public class DeliveryEntity {
     protected LatestDeliveryTimeType latestDeliveryTime;
     protected TrackingIDType trackingID;
     protected AddressEntity deliveryAddress;
-    protected LocationTypeCommAgg deliveryLocation;
+    protected LocationCommAggEntity deliveryLocation;
     protected PeriodEntity requestedDeliveryPeriod;
     protected PeriodEntity promisedDeliveryPeriod;
     protected PeriodEntity estimatedDeliveryPeriod;
@@ -145,13 +145,13 @@ public class DeliveryEntity {
         this.deliveryAddress = value;
     }
 
-    @ManyToOne(targetEntity = LocationTypeCommAgg.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = LocationCommAggEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DELIVERYLOCATION_DELIVERYTYP_0")
-    public LocationTypeCommAgg getDeliveryLocation() {
+    public LocationCommAggEntity getDeliveryLocation() {
         return deliveryLocation;
     }
 
-    public void setDeliveryLocation(LocationTypeCommAgg value) {
+    public void setDeliveryLocation(LocationCommAggEntity value) {
         this.deliveryLocation = value;
     }
 

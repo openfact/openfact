@@ -22,39 +22,67 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "PartyLegalEntityType")
-@Table(name = "PARTYLEGALENTITYTYPE")
+@Entity(name = "PartyTaxSchemeEntity")
+@Table(name = "PARTY_TAX_SCHEME")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class PartyLegalEntityType {
+public class PartyTaxSchemeEntity {
 
-    protected RegistrationNameType registrationName;
-    protected CompanyIDType companyID;
+    protected String registrationName;
+    protected String companyID;
+    protected String taxLevelCode;
+    protected String exemptionReasonCode;
+    protected String exemptionReason;
     protected AddressEntity registrationAddress;
-    protected CorporateRegistrationSchemeEntity corporateRegistrationScheme;
+    protected TaxSchemeEntity taxScheme;
     protected String id;
 
-    @ManyToOne(targetEntity = RegistrationNameType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "REGISTRATIONNAME_PARTYLEGALE_0")
-    public RegistrationNameType getRegistrationName() {
+    @Column(name = "REGISTRATION_NAME")
+    public String getRegistrationName() {
         return registrationName;
     }
 
-    public void setRegistrationName(RegistrationNameType value) {
+    public void setRegistrationName(String value) {
         this.registrationName = value;
     }
 
-    @ManyToOne(targetEntity = CompanyIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "COMPANYID_PARTYLEGALENTITYTY_0")
-    public CompanyIDType getCompanyID() {
+    @Column(name = "COMPANY_ID")
+    public String getCompanyID() {
         return companyID;
     }
 
-    public void setCompanyID(CompanyIDType value) {
+    public void setCompanyID(String value) {
         this.companyID = value;
     }
 
+    @Column(name = "TAX_LEVEL_CODE")
+    public String getTaxLevelCode() {
+        return taxLevelCode;
+    }
+
+    public void setTaxLevelCode(String value) {
+        this.taxLevelCode = value;
+    }
+
+    @Column(name = "EXEMPTION_REASON_CODE")
+    public String getExemptionReasonCode() {
+        return exemptionReasonCode;
+    }
+
+    public void setExemptionReasonCode(String value) {
+        this.exemptionReasonCode = value;
+    }
+
+    @Column(name = "EXEMPTION_REASON")
+    public String getExemptionReason() {
+        return exemptionReason;
+    }
+
+    public void setExemptionReason(String value) {
+        this.exemptionReason = value;
+    }
+
     @ManyToOne(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "REGISTRATIONADDRESS_PARTYLEG_0")
+    @JoinColumn(name = "REGISTRATIONADDRESS")
     public AddressEntity getRegistrationAddress() {
         return registrationAddress;
     }
@@ -63,18 +91,18 @@ public class PartyLegalEntityType {
         this.registrationAddress = value;
     }
 
-    @ManyToOne(targetEntity = CorporateRegistrationSchemeEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "CORPORATEREGISTRATIONSCHEME__0")
-    public CorporateRegistrationSchemeEntity getCorporateRegistrationScheme() {
-        return corporateRegistrationScheme;
+    @ManyToOne(targetEntity = TaxSchemeEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "TAXSCHEME_PARTY")
+    public TaxSchemeEntity getTaxScheme() {
+        return taxScheme;
     }
 
-    public void setCorporateRegistrationScheme(CorporateRegistrationSchemeEntity value) {
-        this.corporateRegistrationScheme = value;
+    public void setTaxScheme(TaxSchemeEntity value) {
+        this.taxScheme = value;
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)

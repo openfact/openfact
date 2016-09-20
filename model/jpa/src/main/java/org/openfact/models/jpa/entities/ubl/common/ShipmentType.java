@@ -57,8 +57,8 @@ public class ShipmentType {
     protected DeliveryEntity delivery;
     protected List<TransportHandlingUnitType> transportHandlingUnit;
     protected AddressEntity originAddress;
-    protected LocationTypeCommAgg firstArrivalPortLocation;
-    protected LocationTypeCommAgg lastExitPortLocation;
+    protected LocationCommAggEntity firstArrivalPortLocation;
+    protected LocationCommAggEntity lastExitPortLocation;
     protected CountryEntity exportCountry;
     protected List<AllowanceChargeEntity> freightAllowanceCharge;
     protected String id;
@@ -338,23 +338,23 @@ public class ShipmentType {
         this.originAddress = value;
     }
 
-    @ManyToOne(targetEntity = LocationTypeCommAgg.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = LocationCommAggEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "FIRSTARRIVALPORTLOCATION_SHI_0")
-    public LocationTypeCommAgg getFirstArrivalPortLocation() {
+    public LocationCommAggEntity getFirstArrivalPortLocation() {
         return firstArrivalPortLocation;
     }
 
-    public void setFirstArrivalPortLocation(LocationTypeCommAgg value) {
+    public void setFirstArrivalPortLocation(LocationCommAggEntity value) {
         this.firstArrivalPortLocation = value;
     }
 
-    @ManyToOne(targetEntity = LocationTypeCommAgg.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = LocationCommAggEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "LASTEXITPORTLOCATION_SHIPMEN_0")
-    public LocationTypeCommAgg getLastExitPortLocation() {
+    public LocationCommAggEntity getLastExitPortLocation() {
         return lastExitPortLocation;
     }
 
-    public void setLastExitPortLocation(LocationTypeCommAgg value) {
+    public void setLastExitPortLocation(LocationCommAggEntity value) {
         this.lastExitPortLocation = value;
     }
 

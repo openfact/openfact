@@ -2176,8 +2176,8 @@ public class ObjectFactory {
         return new ExtensionContentEntity();
     }
 
-    public PartyTaxSchemeType createPartyTaxSchemeType() {
-        return new PartyTaxSchemeType();
+    public PartyTaxSchemeEntity createPartyTaxSchemeType() {
+        return new PartyTaxSchemeEntity();
     }
 
     public LegalStatusIndicatorType createLegalStatusIndicatorType() {
@@ -2364,8 +2364,8 @@ public class ObjectFactory {
         return new TransportationStatusCodeType();
     }
 
-    public LocationTypeCommAgg createLocationTypeCommAgg() {
-        return new LocationTypeCommAgg();
+    public LocationCommAggEntity createLocationTypeCommAgg() {
+        return new LocationCommAggEntity();
     }
 
     public VersionIDType createVersionIDType() {
@@ -2572,8 +2572,8 @@ public class ObjectFactory {
         return new DispositionCodeType();
     }
 
-    public PartyLegalEntityType createPartyLegalEntityType() {
-        return new PartyLegalEntityType();
+    public PartyLegalEntity createPartyLegalEntityType() {
+        return new PartyLegalEntity();
     }
 
     public PackLevelCodeType createPackLevelCodeType() {
@@ -3148,8 +3148,8 @@ public class ObjectFactory {
         return new MarkCareIndicatorType();
     }
 
-    public OrderReferenceType createOrderReferenceType() {
-        return new OrderReferenceType();
+    public OrderReferenceEntity createOrderReferenceType() {
+        return new OrderReferenceEntity();
     }
 
     public PriceTypeCodeType createPriceTypeCodeType() {
@@ -4288,8 +4288,8 @@ public class ObjectFactory {
         return new DebitNoteLineEntity();
     }
 
-    public JAXBElement<OrderReferenceType> createOrderReference(OrderReferenceType value) {
-        return new JAXBElement<OrderReferenceType>(_OrderReference_QNAME, OrderReferenceType.class, null,
+    public JAXBElement<OrderReferenceEntity> createOrderReference(OrderReferenceEntity value) {
+        return new JAXBElement<OrderReferenceEntity>(_OrderReference_QNAME, OrderReferenceEntity.class, null,
                 value);
     }
 
@@ -4995,8 +4995,8 @@ public class ObjectFactory {
                 ExtensionVersionIDType.class, null, value);
     }
 
-    public JAXBElement<LocationTypeCommAgg> createLastExitPortLocation(LocationTypeCommAgg value) {
-        return new JAXBElement<LocationTypeCommAgg>(_LastExitPortLocation_QNAME, LocationTypeCommAgg.class,
+    public JAXBElement<LocationCommAggEntity> createLastExitPortLocation(LocationCommAggEntity value) {
+        return new JAXBElement<LocationCommAggEntity>(_LastExitPortLocation_QNAME, LocationCommAggEntity.class,
                 null, value);
     }
 
@@ -5108,8 +5108,8 @@ public class ObjectFactory {
                 ActualDespatchDateType.class, null, value);
     }
 
-    public JAXBElement<LocationTypeCommAgg> createDeliveryLocation(LocationTypeCommAgg value) {
-        return new JAXBElement<LocationTypeCommAgg>(_DeliveryLocation_QNAME, LocationTypeCommAgg.class, null,
+    public JAXBElement<LocationCommAggEntity> createDeliveryLocation(LocationCommAggEntity value) {
+        return new JAXBElement<LocationCommAggEntity>(_DeliveryLocation_QNAME, LocationCommAggEntity.class, null,
                 value);
     }
 
@@ -5158,9 +5158,9 @@ public class ObjectFactory {
         return new JAXBElement<StatusType>(_Status_QNAME, StatusType.class, null, value);
     }
 
-    public JAXBElement<LocationTypeCommAgg> createFirstArrivalPortLocation(LocationTypeCommAgg value) {
-        return new JAXBElement<LocationTypeCommAgg>(_FirstArrivalPortLocation_QNAME,
-                LocationTypeCommAgg.class, null, value);
+    public JAXBElement<LocationCommAggEntity> createFirstArrivalPortLocation(LocationCommAggEntity value) {
+        return new JAXBElement<LocationCommAggEntity>(_FirstArrivalPortLocation_QNAME,
+                LocationCommAggEntity.class, null, value);
     }
 
     public JAXBElement<PaymentMeansEntity> createPaymentMeans(PaymentMeansEntity value) {
@@ -5300,8 +5300,8 @@ public class ObjectFactory {
                 null, value);
     }
 
-    public JAXBElement<PartyLegalEntityType> createPartyLegalEntity(PartyLegalEntityType value) {
-        return new JAXBElement<PartyLegalEntityType>(_PartyLegalEntity_QNAME, PartyLegalEntityType.class,
+    public JAXBElement<PartyLegalEntity> createPartyLegalEntity(PartyLegalEntity value) {
+        return new JAXBElement<PartyLegalEntity>(_PartyLegalEntity_QNAME, PartyLegalEntity.class,
                 null, value);
     }
 
@@ -5344,8 +5344,8 @@ public class ObjectFactory {
         return new JAXBElement<LineItemType>(_LineItem_QNAME, LineItemType.class, null, value);
     }
 
-    public JAXBElement<LocationTypeCommAgg> createLoadingLocation(LocationTypeCommAgg value) {
-        return new JAXBElement<LocationTypeCommAgg>(_LoadingLocation_QNAME, LocationTypeCommAgg.class, null,
+    public JAXBElement<LocationCommAggEntity> createLoadingLocation(LocationCommAggEntity value) {
+        return new JAXBElement<LocationCommAggEntity>(_LoadingLocation_QNAME, LocationCommAggEntity.class, null,
                 value);
     }
 
@@ -5433,8 +5433,8 @@ public class ObjectFactory {
         return new JAXBElement<RemarksType>(_Remarks_QNAME, RemarksType.class, null, value);
     }
 
-    public JAXBElement<PartyTaxSchemeType> createPartyTaxScheme(PartyTaxSchemeType value) {
-        return new JAXBElement<PartyTaxSchemeType>(_PartyTaxScheme_QNAME, PartyTaxSchemeType.class, null,
+    public JAXBElement<PartyTaxSchemeEntity> createPartyTaxScheme(PartyTaxSchemeEntity value) {
+        return new JAXBElement<PartyTaxSchemeEntity>(_PartyTaxScheme_QNAME, PartyTaxSchemeEntity.class, null,
                 value);
     }
 
@@ -5865,8 +5865,8 @@ public class ObjectFactory {
         return new JAXBElement<PeriodEntity>(_TransitPeriod_QNAME, PeriodEntity.class, null, value);
     }
 
-    public JAXBElement<LocationTypeCommAgg> createPhysicalLocation(LocationTypeCommAgg value) {
-        return new JAXBElement<LocationTypeCommAgg>(_PhysicalLocation_QNAME, LocationTypeCommAgg.class, null,
+    public JAXBElement<LocationCommAggEntity> createPhysicalLocation(LocationCommAggEntity value) {
+        return new JAXBElement<LocationCommAggEntity>(_PhysicalLocation_QNAME, LocationCommAggEntity.class, null,
                 value);
     }
 
@@ -6014,8 +6014,8 @@ public class ObjectFactory {
                 GoodsItemContainerType.class, null, value);
     }
 
-    public JAXBElement<LocationTypeCommAgg> createUnloadingPortLocation(LocationTypeCommAgg value) {
-        return new JAXBElement<LocationTypeCommAgg>(_UnloadingPortLocation_QNAME, LocationTypeCommAgg.class,
+    public JAXBElement<LocationCommAggEntity> createUnloadingPortLocation(LocationCommAggEntity value) {
+        return new JAXBElement<LocationCommAggEntity>(_UnloadingPortLocation_QNAME, LocationCommAggEntity.class,
                 null, value);
     }
 
@@ -6498,8 +6498,8 @@ public class ObjectFactory {
                 null, value);
     }
 
-    public JAXBElement<LocationTypeCommAgg> createTransshipPortLocation(LocationTypeCommAgg value) {
-        return new JAXBElement<LocationTypeCommAgg>(_TransshipPortLocation_QNAME, LocationTypeCommAgg.class,
+    public JAXBElement<LocationCommAggEntity> createTransshipPortLocation(LocationCommAggEntity value) {
+        return new JAXBElement<LocationCommAggEntity>(_TransshipPortLocation_QNAME, LocationCommAggEntity.class,
                 null, value);
     }
 
@@ -7532,8 +7532,8 @@ public class ObjectFactory {
         return new JAXBElement<TaxAmountType>(_TaxAmount_QNAME, TaxAmountType.class, null, value);
     }
 
-    public JAXBElement<LocationTypeCommAgg> createLoadingPortLocation(LocationTypeCommAgg value) {
-        return new JAXBElement<LocationTypeCommAgg>(_LoadingPortLocation_QNAME, LocationTypeCommAgg.class,
+    public JAXBElement<LocationCommAggEntity> createLoadingPortLocation(LocationCommAggEntity value) {
+        return new JAXBElement<LocationCommAggEntity>(_LoadingPortLocation_QNAME, LocationCommAggEntity.class,
                 null, value);
     }
 
@@ -7610,8 +7610,8 @@ public class ObjectFactory {
         return new JAXBElement<NetworkIDType>(_NetworkID_QNAME, NetworkIDType.class, null, value);
     }
 
-    public JAXBElement<LocationTypeCommAgg> createLocation(LocationTypeCommAgg value) {
-        return new JAXBElement<LocationTypeCommAgg>(_Location_QNAME, LocationTypeCommAgg.class, null, value);
+    public JAXBElement<LocationCommAggEntity> createLocation(LocationCommAggEntity value) {
+        return new JAXBElement<LocationCommAggEntity>(_Location_QNAME, LocationCommAggEntity.class, null, value);
     }
 
     public JAXBElement<CreditLineAmountType> createCreditLineAmount(CreditLineAmountType value) {

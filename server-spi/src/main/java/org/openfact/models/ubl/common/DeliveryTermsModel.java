@@ -18,9 +18,9 @@ public interface DeliveryTermsModel {
 
     void setLossRisk(String value);
 
-    LocationModelCommAgg getDeliveryLocation();
+    LocationCommAggModel getDeliveryLocation();
 
-    void setDeliveryLocation(LocationModelCommAgg value);
+    void setDeliveryLocation(LocationCommAggModel value);
 
     AllowanceChargeModel getAllowanceCharge();
 

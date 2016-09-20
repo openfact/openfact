@@ -9,79 +9,84 @@ import org.openfact.models.jpa.entities.ubl.common.OrderLineReferenceEntity;
 import org.openfact.models.ubl.common.OrderLineReferenceModel;
 import org.openfact.models.ubl.common.OrderReferenceModel;
 
-public class OrderLineReferenceAdapter
-        implements OrderLineReferenceModel, JpaModel<OrderLineReferenceEntity> {
+public class OrderLineReferenceAdapter implements OrderLineReferenceModel, JpaModel<OrderLineReferenceEntity> {
 
-    protected static final Logger logger = Logger.getLogger(OrderLineReferenceAdapter.class);
-    protected OrderLineReferenceEntity orderLineReference;
-    protected EntityManager em;
-    protected OpenfactSession session;
+	protected static final Logger logger = Logger.getLogger(OrderLineReferenceAdapter.class);
+	protected OrderLineReferenceEntity orderLineReference;
+	protected EntityManager em;
+	protected OpenfactSession session;
 
-    public OrderLineReferenceAdapter(OpenfactSession session, EntityManager em,
-            OrderLineReferenceEntity orderLineReference) {
-        this.session = session;
-        this.em = em;
-        this.orderLineReference = orderLineReference;
-    }
+	public OrderLineReferenceAdapter(OpenfactSession session, EntityManager em,
+			OrderLineReferenceEntity orderLineReference) {
+		this.session = session;
+		this.em = em;
+		this.orderLineReference = orderLineReference;
+	}
 
-    @Override
-    public String getLineID() {
-        return this.orderLineReference.getLineID();
-    }
+	@Override
+	public String getLineID() {
+		return this.orderLineReference.getLineID();
+	}
 
-    @Override
-    public void setLineID(String value) {
-        this.orderLineReference.setLineID(value);
-    }
+	@Override
+	public void setLineID(String value) {
+		this.orderLineReference.setLineID(value);
+	}
 
-    @Override
-    public String getSalesOrderLineID() {
-        return this.orderLineReference.getSalesOrderLineID();
-    }
+	@Override
+	public String getSalesOrderLineID() {
+		return this.orderLineReference.getSalesOrderLineID();
+	}
 
-    @Override
-    public void setSalesOrderLineID(String value) {
-        this.orderLineReference.setSalesOrderLineID(value);
-    }
+	@Override
+	public void setSalesOrderLineID(String value) {
+		this.orderLineReference.setSalesOrderLineID(value);
+	}
 
-    @Override
-    public String getUUID() {
-        return this.orderLineReference.getUUID();
-    }
+	@Override
+	public String getUUID() {
+		return this.orderLineReference.getUUID();
+	}
 
-    @Override
-    public void setUUID(String value) {
-        this.orderLineReference.setUUID(value);
-    }
+	@Override
+	public void setUUID(String value) {
+		this.orderLineReference.setUUID(value);
+	}
 
-    @Override
-    public String getLineStatusCode() {
-        return this.orderLineReference.getLineStatusCode();
-    }
+	@Override
+	public String getLineStatusCode() {
+		return this.orderLineReference.getLineStatusCode();
+	}
 
-    @Override
-    public void setLineStatusCode(String value) {
-        this.orderLineReference.setLineStatusCode(value);
-    }
+	@Override
+	public void setLineStatusCode(String value) {
+		this.orderLineReference.setLineStatusCode(value);
+	}
 
-    @Override
-    public OrderReferenceModel getOrderReference() {
-        return this.orderLineReference.getOrderReference();
-    }
+	@Override
+	public OrderReferenceModel getOrderReference() {
+		return new OrderReferenceAdapter(session, em, orderLineReference.getOrderReference());
+	}
 
-    @Override
-    public void setOrderReference(OrderReferenceAdapter value) {
-        this.orderLineReference.setOrderReference(value);
-    }
+	@Override
+	public void setOrderReference(OrderReferenceModel value) {
+		this.orderLineReference.setOrderReference(OrderReferenceAdapter.toEntity(value, em));
+	}
 
-    @Override
-    public String getId() {
-        return this.orderLineReference.getId();
-    }
+	@Override
+	public String getId() {
+		return this.orderLineReference.getId();
+	}
 
-    @Override
-    public void setId(String value) {
-        this.orderLineReference.setId(value);
-    }
+	@Override
+	public void setId(String value) {
+		this.orderLineReference.setId(value);
+	}
+
+	@Override
+	public OrderLineReferenceEntity getEntity() {
+		// TODO Auto-generated method stub
+		return orderLineReference;
+	}
 
 }

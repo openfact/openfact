@@ -40,9 +40,9 @@ public class ShipmentStageType {
     protected PeriodEntity transitPeriod;
     protected List<PartyEntity> carrierParty;
     protected TransportMeansType transportMeans;
-    protected LocationTypeCommAgg loadingPortLocation;
-    protected LocationTypeCommAgg unloadingPortLocation;
-    protected LocationTypeCommAgg transshipPortLocation;
+    protected LocationCommAggEntity loadingPortLocation;
+    protected LocationCommAggEntity unloadingPortLocation;
+    protected LocationCommAggEntity transshipPortLocation;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -138,33 +138,33 @@ public class ShipmentStageType {
         this.transportMeans = value;
     }
 
-    @ManyToOne(targetEntity = LocationTypeCommAgg.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = LocationCommAggEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "LOADINGPORTLOCATION_SHIPMENT_0")
-    public LocationTypeCommAgg getLoadingPortLocation() {
+    public LocationCommAggEntity getLoadingPortLocation() {
         return loadingPortLocation;
     }
 
-    public void setLoadingPortLocation(LocationTypeCommAgg value) {
+    public void setLoadingPortLocation(LocationCommAggEntity value) {
         this.loadingPortLocation = value;
     }
 
-    @ManyToOne(targetEntity = LocationTypeCommAgg.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = LocationCommAggEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "UNLOADINGPORTLOCATION_SHIPME_0")
-    public LocationTypeCommAgg getUnloadingPortLocation() {
+    public LocationCommAggEntity getUnloadingPortLocation() {
         return unloadingPortLocation;
     }
 
-    public void setUnloadingPortLocation(LocationTypeCommAgg value) {
+    public void setUnloadingPortLocation(LocationCommAggEntity value) {
         this.unloadingPortLocation = value;
     }
 
-    @ManyToOne(targetEntity = LocationTypeCommAgg.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = LocationCommAggEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "TRANSSHIPPORTLOCATION_SHIPME_0")
-    public LocationTypeCommAgg getTransshipPortLocation() {
+    public LocationCommAggEntity getTransshipPortLocation() {
         return transshipPortLocation;
     }
 
-    public void setTransshipPortLocation(LocationTypeCommAgg value) {
+    public void setTransshipPortLocation(LocationCommAggEntity value) {
         this.transshipPortLocation = value;
     }
 

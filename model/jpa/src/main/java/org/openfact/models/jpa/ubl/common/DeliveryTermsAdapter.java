@@ -8,7 +8,7 @@ import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.DeliveryTermsEntity;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.DeliveryTermsModel;
-import org.openfact.models.ubl.common.LocationModelCommAgg;
+import org.openfact.models.ubl.common.LocationCommAggModel;
 
 public class DeliveryTermsAdapter implements DeliveryTermsModel, JpaModel<DeliveryTermsEntity> {
 
@@ -65,12 +65,12 @@ public class DeliveryTermsAdapter implements DeliveryTermsModel, JpaModel<Delive
     }
 
     @Override
-    public LocationModelCommAgg getDeliveryLocation() {
+    public LocationCommAggModel getDeliveryLocation() {
         return this.deliveryTerms.getDeliveryLocation();
     }
 
     @Override
-    public void setDeliveryLocation(LocationAdapterCommAgg value) {
+    public void setDeliveryLocation(LocationCommAggAdapter value) {
         this.deliveryTerms.setDeliveryLocation(value);
     }
 

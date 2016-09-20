@@ -40,17 +40,17 @@ public interface PartyModel {
 
     void setPostalAddress(AddressModel value);
 
-    LocationModelCommAgg getPhysicalLocation();
+    LocationCommAggModel getPhysicalLocation();
 
-    void setPhysicalLocation(LocationModelCommAgg value);
+    void setPhysicalLocation(LocationCommAggModel value);
 
     List<PartyTaxSchemeModel> getPartyTaxScheme();
 
     void setPartyTaxScheme(List<PartyTaxSchemeModel> partyTaxScheme);
 
-    List<PartyLegalEntityModel> getPartyLegalEntity();
+    List<PartyLegalModel> getPartyLegalEntity();
 
-    void setPartyLegalEntity(List<PartyLegalEntityModel> partyLegalEntity);
+    void setPartyLegalEntity(List<PartyLegalModel> partyLegalEntity);
 
     ContactModel getContact();
 
@@ -70,6 +70,6 @@ public interface PartyModel {
 
     /**
      * */
-    PartyLegalEntityModel addPartyLegalEntity();
+    PartyLegalModel addPartyLegalEntity();
 
 }

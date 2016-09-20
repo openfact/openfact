@@ -109,13 +109,13 @@ public interface ShipmentModel {
 
     void setOriginAddress(AddressModel value);
 
-    LocationModelCommAgg getFirstArrivalPortLocation();
+    LocationCommAggModel getFirstArrivalPortLocation();
 
-    void setFirstArrivalPortLocation(LocationModelCommAgg value);
+    void setFirstArrivalPortLocation(LocationCommAggModel value);
 
-    LocationModelCommAgg getLastExitPortLocation();
+    LocationCommAggModel getLastExitPortLocation();
 
-    void setLastExitPortLocation(LocationModelCommAgg value);
+    void setLastExitPortLocation(LocationCommAggModel value);
 
     CountryModel getExportCountry();
 

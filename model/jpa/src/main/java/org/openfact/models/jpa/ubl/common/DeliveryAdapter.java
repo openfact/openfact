@@ -13,7 +13,7 @@ import org.openfact.models.jpa.entities.ubl.common.DeliveryEntity;
 import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.DeliveryModel;
 import org.openfact.models.ubl.common.DespatchModel;
-import org.openfact.models.ubl.common.LocationModelCommAgg;
+import org.openfact.models.ubl.common.LocationCommAggModel;
 import org.openfact.models.ubl.common.PartyModel;
 import org.openfact.models.ubl.common.PeriodModel;
 import org.openfact.models.ubl.common.QuantityModel;
@@ -132,12 +132,12 @@ public class DeliveryAdapter implements DeliveryModel, JpaModel<DeliveryEntity> 
     }
 
     @Override
-    public LocationModelCommAgg getDeliveryLocation() {
+    public LocationCommAggModel getDeliveryLocation() {
         return this.delivery.getDeliveryLocation();
     }
 
     @Override
-    public void setDeliveryLocation(LocationAdapterCommAgg value) {
+    public void setDeliveryLocation(LocationCommAggAdapter value) {
         this.delivery.setDeliveryLocation(value);
     }
 

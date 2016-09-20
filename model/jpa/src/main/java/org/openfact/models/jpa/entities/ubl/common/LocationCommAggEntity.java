@@ -29,7 +29,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity(name = "LocationTypeCommAgg")
 @Table(name = "LOCATIONTYPECOMMAGG")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class LocationTypeCommAgg {
+public class LocationCommAggEntity {
 
     protected IDType ID;
     protected DescriptionType description;

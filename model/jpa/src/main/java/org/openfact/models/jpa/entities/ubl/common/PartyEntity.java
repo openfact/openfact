@@ -31,96 +31,89 @@ import org.hibernate.annotations.GenericGenerator;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class PartyEntity {
 
-    protected MarkCareIndicatorType markCareIndicator;
-    protected MarkAttentionIndicatorType markAttentionIndicator;
-    protected WebsiteURIType websiteURI;
-    protected LogoReferenceIDType logoReferenceID;
-    protected EndpointIDType endpointID;
-    protected List<PartyIdentificationType> partyIdentification;
-    protected List<PartyNameType> partyName;
+    protected boolean markCareIndicator;
+    protected boolean markAttentionIndicator;
+    protected String websiteURI;
+    protected String logoReferenceID;
+    protected String endpointID;
+    protected List<String> partyIdentification;
+    protected List<String> partyName;
     protected LanguageEntity language;
     protected AddressEntity postalAddress;
-    protected LocationTypeCommAgg physicalLocation;
-    protected List<PartyTaxSchemeType> partyTaxScheme;
-    protected List<PartyLegalEntityType> partyLegalEntity;
+    protected LocationCommAggEntity physicalLocation;
+    protected List<PartyTaxSchemeEntity> partyTaxScheme;
+    protected List<PartyLegalEntity> partyLegalEntity;
     protected ContactEntity contact;
     protected PersonEntity person;
     protected PartyEntity agentParty;
     protected String id;
 
-    @ManyToOne(targetEntity = MarkCareIndicatorType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "MARKCAREINDICATOR_PARTYTYPE__0")
-    public MarkCareIndicatorType getMarkCareIndicator() {
+    @Column(name = "MARK_CARE_INDICATOR")
+    public boolean getMarkCareIndicator() {
         return markCareIndicator;
     }
 
-    public void setMarkCareIndicator(MarkCareIndicatorType value) {
+    public void setMarkCareIndicator(boolean value) {
         this.markCareIndicator = value;
     }
 
-    @ManyToOne(targetEntity = MarkAttentionIndicatorType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "MARKATTENTIONINDICATOR_PARTY_0")
-    public MarkAttentionIndicatorType getMarkAttentionIndicator() {
+    @Column(name = "MARK_ATTENTION_INDICATOR")
+    public boolean getMarkAttentionIndicator() {
         return markAttentionIndicator;
     }
 
-    public void setMarkAttentionIndicator(MarkAttentionIndicatorType value) {
+    public void setMarkAttentionIndicator(boolean value) {
         this.markAttentionIndicator = value;
     }
 
-    @ManyToOne(targetEntity = WebsiteURIType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "WEBSITEURI_PARTYTYPE_OFID")
-    public WebsiteURIType getWebsiteURI() {
+    @Column(name = "WEBSITE_URI")
+    public String getWebsiteURI() {
         return websiteURI;
     }
 
-    public void setWebsiteURI(WebsiteURIType value) {
+    public void setWebsiteURI(String value) {
         this.websiteURI = value;
     }
 
-    @ManyToOne(targetEntity = LogoReferenceIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LOGOREFERENCEID_PARTYTYPE_HJ_0")
-    public LogoReferenceIDType getLogoReferenceID() {
+    @Column(name = "LOGO_REFERENCE_ID")
+    public String getLogoReferenceID() {
         return logoReferenceID;
     }
 
-    public void setLogoReferenceID(LogoReferenceIDType value) {
+    public void setLogoReferenceID(String value) {
         this.logoReferenceID = value;
     }
 
-    @ManyToOne(targetEntity = EndpointIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ENDPOINTID_PARTYTYPE_OFID")
-    public EndpointIDType getEndpointID() {
+    @Column(name = "END_POINT_ID")
+    public String getEndpointID() {
         return endpointID;
     }
 
-    public void setEndpointID(EndpointIDType value) {
+    public void setEndpointID(String value) {
         this.endpointID = value;
     }
 
-    @OneToMany(targetEntity = PartyIdentificationType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PARTYIDENTIFICATION_PARTYTYP_0")
-    public List<PartyIdentificationType> getPartyIdentification() {
+    @Column(name = "PARTY_IDENTIFICATION")
+    public List<String> getPartyIdentification() {
         if (partyIdentification == null) {
-            partyIdentification = new ArrayList<PartyIdentificationType>();
+            partyIdentification = new ArrayList<String>();
         }
         return this.partyIdentification;
     }
 
-    public void setPartyIdentification(List<PartyIdentificationType> partyIdentification) {
+    public void setPartyIdentification(List<String> partyIdentification) {
         this.partyIdentification = partyIdentification;
     }
 
-    @OneToMany(targetEntity = PartyNameType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PARTYNAME_PARTYTYPE_OFID")
-    public List<PartyNameType> getPartyName() {
+    @Column(name = "PARTY_NAME")
+    public List<String> getPartyName() {
         if (partyName == null) {
-            partyName = new ArrayList<PartyNameType>();
+            partyName = new ArrayList<String>();
         }
         return this.partyName;
     }
 
-    public void setPartyName(List<PartyNameType> partyName) {
+    public void setPartyName(List<String> partyName) {
         this.partyName = partyName;
     }
 
@@ -144,44 +137,44 @@ public class PartyEntity {
         this.postalAddress = value;
     }
 
-    @ManyToOne(targetEntity = LocationTypeCommAgg.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PHYSICALLOCATION_PARTYTYPE_H_0")
-    public LocationTypeCommAgg getPhysicalLocation() {
+    @ManyToOne(targetEntity = LocationCommAggEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "PHYSICALLOCATION")
+    public LocationCommAggEntity getPhysicalLocation() {
         return physicalLocation;
     }
 
-    public void setPhysicalLocation(LocationTypeCommAgg value) {
+    public void setPhysicalLocation(LocationCommAggEntity value) {
         this.physicalLocation = value;
     }
 
-    @OneToMany(targetEntity = PartyTaxSchemeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PARTYTAXSCHEME_PARTYTYPE_OFID")
-    public List<PartyTaxSchemeType> getPartyTaxScheme() {
+    @OneToMany(targetEntity = PartyTaxSchemeEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "PARTYTAXSCHEME")
+    public List<PartyTaxSchemeEntity> getPartyTaxScheme() {
         if (partyTaxScheme == null) {
-            partyTaxScheme = new ArrayList<PartyTaxSchemeType>();
+            partyTaxScheme = new ArrayList<PartyTaxSchemeEntity>();
         }
         return this.partyTaxScheme;
     }
 
-    public void setPartyTaxScheme(List<PartyTaxSchemeType> partyTaxScheme) {
+    public void setPartyTaxScheme(List<PartyTaxSchemeEntity> partyTaxScheme) {
         this.partyTaxScheme = partyTaxScheme;
     }
 
-    @OneToMany(targetEntity = PartyLegalEntityType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PARTYLEGALENTITY_PARTYTYPE_H_0")
-    public List<PartyLegalEntityType> getPartyLegalEntity() {
+    @OneToMany(targetEntity = PartyLegalEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "PARTYLEGALENTITY")
+    public List<PartyLegalEntity> getPartyLegalEntity() {
         if (partyLegalEntity == null) {
-            partyLegalEntity = new ArrayList<PartyLegalEntityType>();
+            partyLegalEntity = new ArrayList<PartyLegalEntity>();
         }
         return this.partyLegalEntity;
     }
 
-    public void setPartyLegalEntity(List<PartyLegalEntityType> partyLegalEntity) {
+    public void setPartyLegalEntity(List<PartyLegalEntity> partyLegalEntity) {
         this.partyLegalEntity = partyLegalEntity;
     }
 
     @ManyToOne(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "CONTACT_PARTYTYPE_OFID")
+    @JoinColumn(name = "CONTACT")
     public ContactEntity getContact() {
         return contact;
     }
@@ -191,7 +184,7 @@ public class PartyEntity {
     }
 
     @ManyToOne(targetEntity = PersonEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PERSON_PARTYTYPE_OFID")
+    @JoinColumn(name = "PERSON")
     public PersonEntity getPerson() {
         return person;
     }
@@ -201,7 +194,7 @@ public class PartyEntity {
     }
 
     @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "AGENTPARTY_PARTYTYPE_OFID")
+    @JoinColumn(name = "AGENTPARTY")
     public PartyEntity getAgentParty() {
         return agentParty;
     }
@@ -211,7 +204,7 @@ public class PartyEntity {
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)

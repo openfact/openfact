@@ -48,7 +48,7 @@ public class TransportEquipmentType {
     protected TemperatureEntity maximumTemperature;
     protected PartyEntity providerParty;
     protected PartyEntity loadingProofParty;
-    protected LocationTypeCommAgg loadingLocation;
+    protected LocationCommAggEntity loadingLocation;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -227,13 +227,13 @@ public class TransportEquipmentType {
         this.loadingProofParty = value;
     }
 
-    @ManyToOne(targetEntity = LocationTypeCommAgg.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = LocationCommAggEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "LOADINGLOCATION_TRANSPORTEQU_0")
-    public LocationTypeCommAgg getLoadingLocation() {
+    public LocationCommAggEntity getLoadingLocation() {
         return loadingLocation;
     }
 
-    public void setLoadingLocation(LocationTypeCommAgg value) {
+    public void setLoadingLocation(LocationCommAggEntity value) {
         this.loadingLocation = value;
     }
 
