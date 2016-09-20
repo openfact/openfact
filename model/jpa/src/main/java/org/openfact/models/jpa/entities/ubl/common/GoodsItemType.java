@@ -53,7 +53,7 @@ public class GoodsItemType {
     protected CustomsStatusCodeType customsStatusCode;
     protected CustomsTariffQuantityType customsTariffQuantity;
     protected CustomsImportClassifiedIndicatorType customsImportClassifiedIndicator;
-    protected List<ItemType> item;
+    protected List<ItemEntity> item;
     protected List<GoodsItemContainerType> goodsItemContainer;
     protected List<AllowanceChargeEntity> freightAllowanceCharge;
     protected List<InvoiceLineEntity> invoiceLine;
@@ -285,16 +285,16 @@ public class GoodsItemType {
         this.customsImportClassifiedIndicator = value;
     }
 
-    @OneToMany(targetEntity = ItemType.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = ItemEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ITEM_GOODSITEMTYPE_OFID")
-    public List<ItemType> getItem() {
+    public List<ItemEntity> getItem() {
         if (item == null) {
-            item = new ArrayList<ItemType>();
+            item = new ArrayList<ItemEntity>();
         }
         return this.item;
     }
 
-    public void setItem(List<ItemType> item) {
+    public void setItem(List<ItemEntity> item) {
         this.item = item;
     }
 

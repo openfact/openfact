@@ -43,7 +43,7 @@ public class DespatchLineType {
     protected OversupplyQuantityType oversupplyQuantity;
     protected List<OrderLineReferenceEntity> orderLineReference;
     protected List<DocumentReferenceEntity> documentReference;
-    protected ItemType item;
+    protected ItemEntity item;
     protected List<ShipmentType> shipment;
     protected String id;
 
@@ -173,13 +173,13 @@ public class DespatchLineType {
         this.documentReference = documentReference;
     }
 
-    @ManyToOne(targetEntity = ItemType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ItemEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ITEM_DESPATCHLINETYPE_OFID")
-    public ItemType getItem() {
+    public ItemEntity getItem() {
         return item;
     }
 
-    public void setItem(ItemType value) {
+    public void setItem(ItemEntity value) {
         this.item = value;
     }
 

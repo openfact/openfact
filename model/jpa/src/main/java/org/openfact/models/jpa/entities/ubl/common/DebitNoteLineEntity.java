@@ -47,7 +47,7 @@ public class DebitNoteLineEntity {
     protected PricingReferenceEntity pricingReference;
     protected List<DeliveryEntity> delivery;
     protected List<TaxTotalEntity> taxTotal;
-    protected ItemType item;
+    protected ItemEntity item;
     protected PriceEntity price;
     protected String id;
 
@@ -232,13 +232,13 @@ public class DebitNoteLineEntity {
         this.taxTotal = taxTotal;
     }
 
-    @ManyToOne(targetEntity = ItemType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ItemEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ITEM_DEBITNOTELINETYPE_OFID")
-    public ItemType getItem() {
+    public ItemEntity getItem() {
         return item;
     }
 
-    public void setItem(ItemType value) {
+    public void setItem(ItemEntity value) {
         this.item = value;
     }
 

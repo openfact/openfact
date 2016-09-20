@@ -30,7 +30,7 @@ public class CatalogueItemSpecificationUpdateLineType {
     protected IDType ID;
     protected CustomerPartyType contractorCustomerParty;
     protected SupplierPartyEntity sellerSupplierParty;
-    protected ItemType item;
+    protected ItemEntity item;
     protected String id;
 
     @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
@@ -63,13 +63,13 @@ public class CatalogueItemSpecificationUpdateLineType {
         this.sellerSupplierParty = value;
     }
 
-    @ManyToOne(targetEntity = ItemType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ItemEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ITEM_CATALOGUEITEMSPECIFICAT_0")
-    public ItemType getItem() {
+    public ItemEntity getItem() {
         return item;
     }
 
-    public void setItem(ItemType value) {
+    public void setItem(ItemEntity value) {
         this.item = value;
     }
 
