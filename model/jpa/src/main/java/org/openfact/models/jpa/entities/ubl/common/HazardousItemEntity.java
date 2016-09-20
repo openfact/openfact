@@ -17,8 +17,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -26,272 +24,453 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "HazardousItemType")
-@Table(name = "HAZARDOUSITEMTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "HAZARDOUSITEM")
 public class HazardousItemEntity {
 
-	protected String ID;
-	protected String placardNotation;
-	protected String placardEndorsement;
-	protected String additionalInformation;
-	protected String undgCode;
-	protected String emergencyProceduresCode;
-	protected String medicalFirstAidGuideCode;
-	protected String technicalName;
-	protected String categoryName;
-	protected String hazardousCategoryCode;
-	protected String upperOrangeHazardPlacardID;
-	protected String lowerOrangeHazardPlacardID;
-	protected String markingID;
-	protected String hazardClassID;
-	protected MeasureEntity netWeightMeasure;
-	protected MeasureEntity netVolumeMeasure;
-	protected QuantityEntity quantity;
-	protected PartyEntity contactParty;
-	protected List<SecondaryHazardEntity> secondaryHazard;
-	protected List<HazardousGoodsTransitEntity> hazardousGoodsTransit;
-	protected TemperatureEntity emergencyTemperature;
-	protected TemperatureEntity flashpointTemperature;
-	protected List<TemperatureEntity> additionalTemperature;
-	protected String id;
+    @Id
+    @Column(name = "ID_OFID")
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Access(AccessType.PROPERTY)
+    protected String id;
 
-	@Column(name = "ID")
-	public String getID() {
-		return ID;
-	}
+    @Column(name = "ID")
+    protected String ID;
 
-	public void setID(String value) {
-		this.ID = value;
-	}
+    @Column(name = "PLACARD_NOTATION")
+    protected String placardNotation;
 
-	@Column(name = "PLACARD_NOTATION")
-	public String getPlacardNotation() {
-		return placardNotation;
-	}
+    @Column(name = "PLACARD_ENDORSEMENT")
+    protected String placardEndorsement;
 
-	public void setPlacardNotation(String value) {
-		this.placardNotation = value;
-	}
+    @Column(name = "ADDITIONAL_INFORMATION")
+    protected String additionalInformation;
 
-	@Column(name = "PLACARD_ENDORSEMENT")
-	public String getPlacardEndorsement() {
-		return placardEndorsement;
-	}
+    @Column(name = "UNDG_CODE")
+    protected String undgCode;
 
-	public void setPlacardEndorsement(String value) {
-		this.placardEndorsement = value;
-	}
+    @Column(name = "EMERGENCY_PROCEDURES_CODE")
+    protected String emergencyProceduresCode;
 
-	@Column(name = "ADDITIONAL_INFORMATION")
-	public String getAdditionalInformation() {
-		return additionalInformation;
-	}
+    @Column(name = "MEDICAL_FIRST_AID_GUIDE_CODE")
+    protected String medicalFirstAidGuideCode;
 
-	public void setAdditionalInformation(String value) {
-		this.additionalInformation = value;
-	}
+    @Column(name = "TECHNICAL_NAME")
+    protected String technicalName;
 
-	@Column(name = "UNDG_CODE")
-	public String getUNDGCode() {
-		return undgCode;
-	}
+    @Column(name = "CATEGORY_NAME")
+    protected String categoryName;
 
-	public void setUNDGCode(String value) {
-		this.undgCode = value;
-	}
+    @Column(name = "HAZARDOUS_CATEGORY_CODE")
+    protected String hazardousCategoryCode;
 
-	@Column(name = "EMERGENCY_PROCEDURES_CODE")
-	public String getEmergencyProceduresCode() {
-		return emergencyProceduresCode;
-	}
+    @Column(name = "UPPERORANGEHAZARDPLACARDID")
+    protected String upperOrangeHazardPlacardID;
 
-	public void setEmergencyProceduresCode(String value) {
-		this.emergencyProceduresCode = value;
-	}
+    @Column(name = "LOWERORANGEHAZARDPLACARDID")
+    protected String lowerOrangeHazardPlacardID;
 
-	@Column(name = "MEDICAL_FIRST_AID_GUIDE_CODE")
-	public String getMedicalFirstAidGuideCode() {
-		return medicalFirstAidGuideCode;
-	}
+    @Column(name = "MARKING_ID")
+    protected String markingID;
 
-	public void setMedicalFirstAidGuideCode(String value) {
-		this.medicalFirstAidGuideCode = value;
-	}
+    @Column(name = "HAZARD_CLASS_ID")
+    protected String hazardClassID;
 
-	@Column(name = "TECHNICAL_NAME")
-	public String getTechnicalName() {
-		return technicalName;
-	}
+    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "NETWEIGHTMEASURE")
+    protected MeasureEntity netWeightMeasure = new MeasureEntity();
 
-	public void setTechnicalName(String value) {
-		this.technicalName = value;
-	}
+    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "NETVOLUMEMEASURE")
+    protected MeasureEntity netVolumeMeasure = new MeasureEntity();
 
-	@Column(name = "CATEGORY_NAME")
-	public String getCategoryName() {
-		return categoryName;
-	}
+    @ManyToOne(targetEntity = QuantityEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "QUANTITY")
+    protected QuantityEntity quantity = new QuantityEntity();
 
-	public void setCategoryName(String value) {
-		this.categoryName = value;
-	}
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "CONTACTPARTY")
+    protected PartyEntity contactParty = new PartyEntity();
 
-	@Column(name = "HAZARDOUS_CATEGORY_CODE")
-	public String getHazardousCategoryCode() {
-		return hazardousCategoryCode;
-	}
+    @OneToMany(targetEntity = SecondaryHazardEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "SECONDARYHAZARD")
+    protected List<SecondaryHazardEntity> secondaryHazard = new ArrayList<>();
 
-	public void setHazardousCategoryCode(String value) {
-		this.hazardousCategoryCode = value;
-	}
+    @OneToMany(targetEntity = HazardousGoodsTransitEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "HAZARDOUSGOODSTRANSIT")
+    protected List<HazardousGoodsTransitEntity> hazardousGoodsTransit = new ArrayList<>();
 
-	@Column(name = "UPPERORANGEHAZARDPLACARDID")
-	public String getUpperOrangeHazardPlacardID() {
-		return upperOrangeHazardPlacardID;
-	}
+    @ManyToOne(targetEntity = TemperatureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "EMERGENCYTEMPERATURE")
+    protected TemperatureEntity emergencyTemperature = new TemperatureEntity();
 
-	public void setUpperOrangeHazardPlacardID(String value) {
-		this.upperOrangeHazardPlacardID = value;
-	}
+    @ManyToOne(targetEntity = TemperatureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "FLASHPOINTTEMPERATURE")
+    protected TemperatureEntity flashpointTemperature = new TemperatureEntity();
 
-	@Column(name = "LOWERORANGEHAZARDPLACARDID")
-	public String getLowerOrangeHazardPlacardID() {
-		return lowerOrangeHazardPlacardID;
-	}
+    @OneToMany(targetEntity = TemperatureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ADDITIONALTEMPERATURE")
+    protected List<TemperatureEntity> additionalTemperature = new ArrayList<>();
 
-	public void setLowerOrangeHazardPlacardID(String value) {
-		this.lowerOrangeHazardPlacardID = value;
-	}
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
 
-	@Column(name = "MARKING_ID")
-	public String getMarkingID() {
-		return markingID;
-	}
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setMarkingID(String value) {
-		this.markingID = value;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	@Column(name = "HAZARD_CLASS_ID")
-	public String getHazardClassID() {
-		return hazardClassID;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public void setHazardClassID(String value) {
-		this.hazardClassID = value;
-	}
+    /**
+     * @return the placardNotation
+     */
+    public String getPlacardNotation() {
+        return placardNotation;
+    }
 
-	@ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "NETWEIGHTMEASURE")
-	public MeasureEntity getNetWeightMeasure() {
-		return netWeightMeasure;
-	}
+    /**
+     * @param placardNotation
+     *            the placardNotation to set
+     */
+    public void setPlacardNotation(String placardNotation) {
+        this.placardNotation = placardNotation;
+    }
 
-	public void setNetWeightMeasure(MeasureEntity value) {
-		this.netWeightMeasure = value;
-	}
+    /**
+     * @return the placardEndorsement
+     */
+    public String getPlacardEndorsement() {
+        return placardEndorsement;
+    }
 
-	@ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "NETVOLUMEMEASURE")
-	public MeasureEntity getNetVolumeMeasure() {
-		return netVolumeMeasure;
-	}
+    /**
+     * @param placardEndorsement
+     *            the placardEndorsement to set
+     */
+    public void setPlacardEndorsement(String placardEndorsement) {
+        this.placardEndorsement = placardEndorsement;
+    }
 
-	public void setNetVolumeMeasure(MeasureEntity value) {
-		this.netVolumeMeasure = value;
-	}
+    /**
+     * @return the additionalInformation
+     */
+    public String getAdditionalInformation() {
+        return additionalInformation;
+    }
 
-	@ManyToOne(targetEntity = QuantityEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "QUANTITY")
-	public QuantityEntity getQuantity() {
-		return quantity;
-	}
+    /**
+     * @param additionalInformation
+     *            the additionalInformation to set
+     */
+    public void setAdditionalInformation(String additionalInformation) {
+        this.additionalInformation = additionalInformation;
+    }
 
-	public void setQuantity(QuantityEntity value) {
-		this.quantity = value;
-	}
+    /**
+     * @return the undgCode
+     */
+    public String getUndgCode() {
+        return undgCode;
+    }
 
-	@ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "CONTACTPARTY")
-	public PartyEntity getContactParty() {
-		return contactParty;
-	}
+    /**
+     * @param undgCode
+     *            the undgCode to set
+     */
+    public void setUndgCode(String undgCode) {
+        this.undgCode = undgCode;
+    }
 
-	public void setContactParty(PartyEntity value) {
-		this.contactParty = value;
-	}
+    /**
+     * @return the emergencyProceduresCode
+     */
+    public String getEmergencyProceduresCode() {
+        return emergencyProceduresCode;
+    }
 
-	@OneToMany(targetEntity = SecondaryHazardEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "SECONDARYHAZARD")
-	public List<SecondaryHazardEntity> getSecondaryHazard() {
-		if (secondaryHazard == null) {
-			secondaryHazard = new ArrayList<SecondaryHazardEntity>();
-		}
-		return this.secondaryHazard;
-	}
+    /**
+     * @param emergencyProceduresCode
+     *            the emergencyProceduresCode to set
+     */
+    public void setEmergencyProceduresCode(String emergencyProceduresCode) {
+        this.emergencyProceduresCode = emergencyProceduresCode;
+    }
 
-	public void setSecondaryHazard(List<SecondaryHazardEntity> secondaryHazard) {
-		this.secondaryHazard = secondaryHazard;
-	}
+    /**
+     * @return the medicalFirstAidGuideCode
+     */
+    public String getMedicalFirstAidGuideCode() {
+        return medicalFirstAidGuideCode;
+    }
 
-	@OneToMany(targetEntity = HazardousGoodsTransitEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "HAZARDOUSGOODSTRANSIT")
-	public List<HazardousGoodsTransitEntity> getHazardousGoodsTransit() {
-		if (hazardousGoodsTransit == null) {
-			hazardousGoodsTransit = new ArrayList<HazardousGoodsTransitEntity>();
-		}
-		return this.hazardousGoodsTransit;
-	}
+    /**
+     * @param medicalFirstAidGuideCode
+     *            the medicalFirstAidGuideCode to set
+     */
+    public void setMedicalFirstAidGuideCode(String medicalFirstAidGuideCode) {
+        this.medicalFirstAidGuideCode = medicalFirstAidGuideCode;
+    }
 
-	public void setHazardousGoodsTransit(List<HazardousGoodsTransitEntity> hazardousGoodsTransit) {
-		this.hazardousGoodsTransit = hazardousGoodsTransit;
-	}
+    /**
+     * @return the technicalName
+     */
+    public String getTechnicalName() {
+        return technicalName;
+    }
 
-	@ManyToOne(targetEntity = TemperatureEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "EMERGENCYTEMPERATURE")
-	public TemperatureEntity getEmergencyTemperature() {
-		return emergencyTemperature;
-	}
+    /**
+     * @param technicalName
+     *            the technicalName to set
+     */
+    public void setTechnicalName(String technicalName) {
+        this.technicalName = technicalName;
+    }
 
-	public void setEmergencyTemperature(TemperatureEntity value) {
-		this.emergencyTemperature = value;
-	}
+    /**
+     * @return the categoryName
+     */
+    public String getCategoryName() {
+        return categoryName;
+    }
 
-	@ManyToOne(targetEntity = TemperatureEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "FLASHPOINTTEMPERATURE")
-	public TemperatureEntity getFlashpointTemperature() {
-		return flashpointTemperature;
-	}
+    /**
+     * @param categoryName
+     *            the categoryName to set
+     */
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
 
-	public void setFlashpointTemperature(TemperatureEntity value) {
-		this.flashpointTemperature = value;
-	}
+    /**
+     * @return the hazardousCategoryCode
+     */
+    public String getHazardousCategoryCode() {
+        return hazardousCategoryCode;
+    }
 
-	@OneToMany(targetEntity = TemperatureEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "ADDITIONALTEMPERATURE")
-	public List<TemperatureEntity> getAdditionalTemperature() {
-		if (additionalTemperature == null) {
-			additionalTemperature = new ArrayList<TemperatureEntity>();
-		}
-		return this.additionalTemperature;
-	}
+    /**
+     * @param hazardousCategoryCode
+     *            the hazardousCategoryCode to set
+     */
+    public void setHazardousCategoryCode(String hazardousCategoryCode) {
+        this.hazardousCategoryCode = hazardousCategoryCode;
+    }
 
-	public void setAdditionalTemperature(List<TemperatureEntity> additionalTemperature) {
-		this.additionalTemperature = additionalTemperature;
-	}
+    /**
+     * @return the upperOrangeHazardPlacardID
+     */
+    public String getUpperOrangeHazardPlacardID() {
+        return upperOrangeHazardPlacardID;
+    }
 
-	@Id
-	@Column(name = "ID_OFID")
-	@GeneratedValue(generator = "uuid2")
-	@GenericGenerator(name = "uuid2", strategy = "uuid2")
-	@Access(AccessType.PROPERTY)
-	public String getId() {
-		return id;
-	}
+    /**
+     * @param upperOrangeHazardPlacardID
+     *            the upperOrangeHazardPlacardID to set
+     */
+    public void setUpperOrangeHazardPlacardID(String upperOrangeHazardPlacardID) {
+        this.upperOrangeHazardPlacardID = upperOrangeHazardPlacardID;
+    }
 
-	public void setId(String value) {
-		this.id = value;
-	}
+    /**
+     * @return the lowerOrangeHazardPlacardID
+     */
+    public String getLowerOrangeHazardPlacardID() {
+        return lowerOrangeHazardPlacardID;
+    }
+
+    /**
+     * @param lowerOrangeHazardPlacardID
+     *            the lowerOrangeHazardPlacardID to set
+     */
+    public void setLowerOrangeHazardPlacardID(String lowerOrangeHazardPlacardID) {
+        this.lowerOrangeHazardPlacardID = lowerOrangeHazardPlacardID;
+    }
+
+    /**
+     * @return the markingID
+     */
+    public String getMarkingID() {
+        return markingID;
+    }
+
+    /**
+     * @param markingID
+     *            the markingID to set
+     */
+    public void setMarkingID(String markingID) {
+        this.markingID = markingID;
+    }
+
+    /**
+     * @return the hazardClassID
+     */
+    public String getHazardClassID() {
+        return hazardClassID;
+    }
+
+    /**
+     * @param hazardClassID
+     *            the hazardClassID to set
+     */
+    public void setHazardClassID(String hazardClassID) {
+        this.hazardClassID = hazardClassID;
+    }
+
+    /**
+     * @return the netWeightMeasure
+     */
+    public MeasureEntity getNetWeightMeasure() {
+        return netWeightMeasure;
+    }
+
+    /**
+     * @param netWeightMeasure
+     *            the netWeightMeasure to set
+     */
+    public void setNetWeightMeasure(MeasureEntity netWeightMeasure) {
+        this.netWeightMeasure = netWeightMeasure;
+    }
+
+    /**
+     * @return the netVolumeMeasure
+     */
+    public MeasureEntity getNetVolumeMeasure() {
+        return netVolumeMeasure;
+    }
+
+    /**
+     * @param netVolumeMeasure
+     *            the netVolumeMeasure to set
+     */
+    public void setNetVolumeMeasure(MeasureEntity netVolumeMeasure) {
+        this.netVolumeMeasure = netVolumeMeasure;
+    }
+
+    /**
+     * @return the quantity
+     */
+    public QuantityEntity getQuantity() {
+        return quantity;
+    }
+
+    /**
+     * @param quantity
+     *            the quantity to set
+     */
+    public void setQuantity(QuantityEntity quantity) {
+        this.quantity = quantity;
+    }
+
+    /**
+     * @return the contactParty
+     */
+    public PartyEntity getContactParty() {
+        return contactParty;
+    }
+
+    /**
+     * @param contactParty
+     *            the contactParty to set
+     */
+    public void setContactParty(PartyEntity contactParty) {
+        this.contactParty = contactParty;
+    }
+
+    /**
+     * @return the secondaryHazard
+     */
+    public List<SecondaryHazardEntity> getSecondaryHazard() {
+        return secondaryHazard;
+    }
+
+    /**
+     * @param secondaryHazard
+     *            the secondaryHazard to set
+     */
+    public void setSecondaryHazard(List<SecondaryHazardEntity> secondaryHazard) {
+        this.secondaryHazard = secondaryHazard;
+    }
+
+    /**
+     * @return the hazardousGoodsTransit
+     */
+    public List<HazardousGoodsTransitEntity> getHazardousGoodsTransit() {
+        return hazardousGoodsTransit;
+    }
+
+    /**
+     * @param hazardousGoodsTransit
+     *            the hazardousGoodsTransit to set
+     */
+    public void setHazardousGoodsTransit(List<HazardousGoodsTransitEntity> hazardousGoodsTransit) {
+        this.hazardousGoodsTransit = hazardousGoodsTransit;
+    }
+
+    /**
+     * @return the emergencyTemperature
+     */
+    public TemperatureEntity getEmergencyTemperature() {
+        return emergencyTemperature;
+    }
+
+    /**
+     * @param emergencyTemperature
+     *            the emergencyTemperature to set
+     */
+    public void setEmergencyTemperature(TemperatureEntity emergencyTemperature) {
+        this.emergencyTemperature = emergencyTemperature;
+    }
+
+    /**
+     * @return the flashpointTemperature
+     */
+    public TemperatureEntity getFlashpointTemperature() {
+        return flashpointTemperature;
+    }
+
+    /**
+     * @param flashpointTemperature
+     *            the flashpointTemperature to set
+     */
+    public void setFlashpointTemperature(TemperatureEntity flashpointTemperature) {
+        this.flashpointTemperature = flashpointTemperature;
+    }
+
+    /**
+     * @return the additionalTemperature
+     */
+    public List<TemperatureEntity> getAdditionalTemperature() {
+        return additionalTemperature;
+    }
+
+    /**
+     * @param additionalTemperature
+     *            the additionalTemperature to set
+     */
+    public void setAdditionalTemperature(List<TemperatureEntity> additionalTemperature) {
+        this.additionalTemperature = additionalTemperature;
+    }
 
 }

@@ -27,110 +27,189 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "EXCHANGERATE")
 public class ExchangeRateEntity {
 
-    protected String sourceCurrencyCode;
-    protected BigDecimal sourceCurrencyBaseRate;
-    protected String targetCurrencyCode;
-    protected BigDecimal targetCurrencyBaseRate;
-    protected String exchangeMarketID;
-    protected BigDecimal calculationRate;
-    protected String mathematicOperatorCode;
-    protected LocalDate date;
-    protected ContractEntity foreignExchangeContract;
-    protected String id;
-
-    @Column(name = "SOURCE_CURRENCY_CODE")
-    public String getSourceCurrencyCode() {
-        return sourceCurrencyCode;
-    }
-
-    public void setSourceCurrencyCode(String value) {
-        this.sourceCurrencyCode = value;
-    }
-
-    @Column(name = "SOURCE_CURRENCY_BASE_RATE")
-    public BigDecimal getSourceCurrencyBaseRate() {
-        return sourceCurrencyBaseRate;
-    }
-
-    public void setSourceCurrencyBaseRate(BigDecimal value) {
-        this.sourceCurrencyBaseRate = value;
-    }
-
-    @Column(name = "TARGET_CURRENCY_CODE")
-    public String getTargetCurrencyCode() {
-        return targetCurrencyCode;
-    }
-
-    public void setTargetCurrencyCode(String value) {
-        this.targetCurrencyCode = value;
-    }
-
-    @Column(name = "TARGET_CURRENCY_BASE_RATE")
-    public BigDecimal getTargetCurrencyBaseRate() {
-        return targetCurrencyBaseRate;
-    }
-
-    public void setTargetCurrencyBaseRate(BigDecimal value) {
-        this.targetCurrencyBaseRate = value;
-    }
-
-    @Column(name = "EXCHANGE_MARKET_ID")
-    public String getExchangeMarketID() {
-        return exchangeMarketID;
-    }
-
-    public void setExchangeMarketID(String value) {
-        this.exchangeMarketID = value;
-    }
-
-    @Column(name = "CALCULATION_RATE")
-    public BigDecimal getCalculationRate() {
-        return calculationRate;
-    }
-
-    public void setCalculationRate(BigDecimal value) {
-        this.calculationRate = value;
-    }
-
-    @Column(name = "MATHEMATIC_OPERATOR_CODE")
-    public String getMathematicOperatorCode() {
-        return mathematicOperatorCode;
-    }
-
-    public void setMathematicOperatorCode(String value) {
-        this.mathematicOperatorCode = value;
-    }
-
-    @Column(name = "DATE")
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate value) {
-        this.date = value;
-    }
-
-    @ManyToOne(targetEntity = ContractEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "FOREIGNEXCHANGECONTRACT")
-    public ContractEntity getForeignExchangeContract() {
-        return foreignExchangeContract;
-    }
-
-    public void setForeignExchangeContract(ContractEntity value) {
-        this.foreignExchangeContract = value;
-    }
-
     @Id
     @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "SOURCE_CURRENCY_CODE")
+    protected String sourceCurrencyCode;
+
+    @Column(name = "SOURCE_CURRENCY_BASE_RATE")
+    protected BigDecimal sourceCurrencyBaseRate;
+
+    @Column(name = "TARGET_CURRENCY_CODE")
+    protected String targetCurrencyCode;
+
+    @Column(name = "TARGET_CURRENCY_BASE_RATE")
+    protected BigDecimal targetCurrencyBaseRate;
+
+    @Column(name = "EXCHANGE_MARKET_ID")
+    protected String exchangeMarketID;
+
+    @Column(name = "CALCULATION_RATE")
+    protected BigDecimal calculationRate;
+
+    @Column(name = "MATHEMATIC_OPERATOR_CODE")
+    protected String mathematicOperatorCode;
+
+    @Column(name = "DATE")
+    protected LocalDate date;
+
+    @ManyToOne(targetEntity = ContractEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "FOREIGNEXCHANGECONTRACT")
+    protected ContractEntity foreignExchangeContract = new ContractEntity();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the sourceCurrencyCode
+     */
+    public String getSourceCurrencyCode() {
+        return sourceCurrencyCode;
+    }
+
+    /**
+     * @param sourceCurrencyCode
+     *            the sourceCurrencyCode to set
+     */
+    public void setSourceCurrencyCode(String sourceCurrencyCode) {
+        this.sourceCurrencyCode = sourceCurrencyCode;
+    }
+
+    /**
+     * @return the sourceCurrencyBaseRate
+     */
+    public BigDecimal getSourceCurrencyBaseRate() {
+        return sourceCurrencyBaseRate;
+    }
+
+    /**
+     * @param sourceCurrencyBaseRate
+     *            the sourceCurrencyBaseRate to set
+     */
+    public void setSourceCurrencyBaseRate(BigDecimal sourceCurrencyBaseRate) {
+        this.sourceCurrencyBaseRate = sourceCurrencyBaseRate;
+    }
+
+    /**
+     * @return the targetCurrencyCode
+     */
+    public String getTargetCurrencyCode() {
+        return targetCurrencyCode;
+    }
+
+    /**
+     * @param targetCurrencyCode
+     *            the targetCurrencyCode to set
+     */
+    public void setTargetCurrencyCode(String targetCurrencyCode) {
+        this.targetCurrencyCode = targetCurrencyCode;
+    }
+
+    /**
+     * @return the targetCurrencyBaseRate
+     */
+    public BigDecimal getTargetCurrencyBaseRate() {
+        return targetCurrencyBaseRate;
+    }
+
+    /**
+     * @param targetCurrencyBaseRate
+     *            the targetCurrencyBaseRate to set
+     */
+    public void setTargetCurrencyBaseRate(BigDecimal targetCurrencyBaseRate) {
+        this.targetCurrencyBaseRate = targetCurrencyBaseRate;
+    }
+
+    /**
+     * @return the exchangeMarketID
+     */
+    public String getExchangeMarketID() {
+        return exchangeMarketID;
+    }
+
+    /**
+     * @param exchangeMarketID
+     *            the exchangeMarketID to set
+     */
+    public void setExchangeMarketID(String exchangeMarketID) {
+        this.exchangeMarketID = exchangeMarketID;
+    }
+
+    /**
+     * @return the calculationRate
+     */
+    public BigDecimal getCalculationRate() {
+        return calculationRate;
+    }
+
+    /**
+     * @param calculationRate
+     *            the calculationRate to set
+     */
+    public void setCalculationRate(BigDecimal calculationRate) {
+        this.calculationRate = calculationRate;
+    }
+
+    /**
+     * @return the mathematicOperatorCode
+     */
+    public String getMathematicOperatorCode() {
+        return mathematicOperatorCode;
+    }
+
+    /**
+     * @param mathematicOperatorCode
+     *            the mathematicOperatorCode to set
+     */
+    public void setMathematicOperatorCode(String mathematicOperatorCode) {
+        this.mathematicOperatorCode = mathematicOperatorCode;
+    }
+
+    /**
+     * @return the date
+     */
+    public LocalDate getDate() {
+        return date;
+    }
+
+    /**
+     * @param date
+     *            the date to set
+     */
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    /**
+     * @return the foreignExchangeContract
+     */
+    public ContractEntity getForeignExchangeContract() {
+        return foreignExchangeContract;
+    }
+
+    /**
+     * @param foreignExchangeContract
+     *            the foreignExchangeContract to set
+     */
+    public void setForeignExchangeContract(ContractEntity foreignExchangeContract) {
+        this.foreignExchangeContract = foreignExchangeContract;
     }
 
 }

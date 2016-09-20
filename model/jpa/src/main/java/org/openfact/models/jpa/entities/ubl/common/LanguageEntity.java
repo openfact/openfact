@@ -9,67 +9,92 @@ package org.openfact.models.jpa.entities.ubl.common;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "LanguageType")
-@Table(name = "LANGUAGETYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "LANGUAGE")
 public class LanguageEntity {
 
-	protected String ID;
-	protected String name;
-	protected String localeCode;
-	protected String id;
+    @Id
+    @Column(name = "ID_OFID")
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Access(AccessType.PROPERTY)
+    protected String id;
 
-	@Column(name = "ID")
-	public String getID() {
-		return ID;
-	}
+    @Column(name = "ID")
+    protected String ID;
 
-	public void setID(String value) {
-		this.ID = value;
-	}
+    @Column(name = "NAME")
+    protected String name;
 
-	@Column(name = "NAME")
-	public String getName() {
-		return name;
-	}
+    @Column(name = "LOCALE_CODE")
+    protected String localeCode;
 
-	public void setName(String value) {
-		this.name = value;
-	}
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
 
-	@Column(name = "LOCALE_CODE")
-	public String getLocaleCode() {
-		return localeCode;
-	}
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setLocaleCode(String value) {
-		this.localeCode = value;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	@Id
-	@Column(name = "ID_OFID")
-	@GeneratedValue(generator = "uuid2")
-	@GenericGenerator(name = "uuid2", strategy = "uuid2")
-	@Access(AccessType.PROPERTY)
-	public String getId() {
-		return id;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public void setId(String value) {
-		this.id = value;
-	}
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name
+     *            the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the localeCode
+     */
+    public String getLocaleCode() {
+        return localeCode;
+    }
+
+    /**
+     * @param localeCode
+     *            the localeCode to set
+     */
+    public void setLocaleCode(String localeCode) {
+        this.localeCode = localeCode;
+    }
 
 }

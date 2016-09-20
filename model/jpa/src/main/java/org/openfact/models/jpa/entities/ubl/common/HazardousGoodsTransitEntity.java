@@ -14,8 +14,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -24,94 +22,156 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "HAZARDOUSGOODSTRANSIT")
-@Inheritance(strategy = InheritanceType.JOINED)
 public class HazardousGoodsTransitEntity {
 
-	protected String transportEmergencyCardCode;
-	protected String packingCriteriaCode;
-	protected String hazardousRegulationCode;
-	protected String inhalationToxicityZoneCode;
-	protected String transportAuthorizationCode;
-	protected TemperatureEntity maximumTemperature;
-	protected TemperatureEntity minimumTemperature;
-	protected String id;
+    @Id
+    @Column(name = "ID_OFID")
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Access(AccessType.PROPERTY)
+    protected String id;
 
-	@Column(name = "TRANSPORTEMERGENCYCARDCODE")
-	public String getTransportEmergencyCardCode() {
-		return transportEmergencyCardCode;
-	}
+    @Column(name = "TRANSPORTEMERGENCYCARDCODE")
+    protected String transportEmergencyCardCode;
 
-	public void setTransportEmergencyCardCode(String value) {
-		this.transportEmergencyCardCode = value;
-	}
+    @Column(name = "PACKINGCRITERIACODE")
+    protected String packingCriteriaCode;
 
-	@Column(name = "PACKINGCRITERIACODE")
-	public String getPackingCriteriaCode() {
-		return packingCriteriaCode;
-	}
+    @Column(name = "HAZARDOUSREGULATIONCODE")
+    protected String hazardousRegulationCode;
 
-	public void setPackingCriteriaCode(String value) {
-		this.packingCriteriaCode = value;
-	}
+    @Column(name = "INHALATIONTOXICITYZONECODE")
+    protected String inhalationToxicityZoneCode;
 
-	@Column(name = "HAZARDOUSREGULATIONCODE")
-	public String getHazardousRegulationCode() {
-		return hazardousRegulationCode;
-	}
+    @Column(name = "TRANSPORTAUTHORIZATIONCODE")
+    protected String transportAuthorizationCode;
 
-	public void setHazardousRegulationCode(String value) {
-		this.hazardousRegulationCode = value;
-	}
+    @ManyToOne(targetEntity = TemperatureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "MAXIMUMTEMPERATURE")
+    protected TemperatureEntity maximumTemperature = new TemperatureEntity();
 
-	@Column(name = "INHALATIONTOXICITYZONECODE")
-	public String getInhalationToxicityZoneCode() {
-		return inhalationToxicityZoneCode;
-	}
+    @ManyToOne(targetEntity = TemperatureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "MINIMUMTEMPERATURE")
+    protected TemperatureEntity minimumTemperature = new TemperatureEntity();
 
-	public void setInhalationToxicityZoneCode(String value) {
-		this.inhalationToxicityZoneCode = value;
-	}
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
 
-	@Column(name = "TRANSPORTAUTHORIZATIONCODE")
-	public String getTransportAuthorizationCode() {
-		return transportAuthorizationCode;
-	}
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setTransportAuthorizationCode(String value) {
-		this.transportAuthorizationCode = value;
-	}
+    /**
+     * @return the transportEmergencyCardCode
+     */
+    public String getTransportEmergencyCardCode() {
+        return transportEmergencyCardCode;
+    }
 
-	@ManyToOne(targetEntity = TemperatureEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "MAXIMUMTEMPERATURE")
-	public TemperatureEntity getMaximumTemperature() {
-		return maximumTemperature;
-	}
+    /**
+     * @param transportEmergencyCardCode
+     *            the transportEmergencyCardCode to set
+     */
+    public void setTransportEmergencyCardCode(String transportEmergencyCardCode) {
+        this.transportEmergencyCardCode = transportEmergencyCardCode;
+    }
 
-	public void setMaximumTemperature(TemperatureEntity value) {
-		this.maximumTemperature = value;
-	}
+    /**
+     * @return the packingCriteriaCode
+     */
+    public String getPackingCriteriaCode() {
+        return packingCriteriaCode;
+    }
 
-	@ManyToOne(targetEntity = TemperatureEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "MINIMUMTEMPERATURE")
-	public TemperatureEntity getMinimumTemperature() {
-		return minimumTemperature;
-	}
+    /**
+     * @param packingCriteriaCode
+     *            the packingCriteriaCode to set
+     */
+    public void setPackingCriteriaCode(String packingCriteriaCode) {
+        this.packingCriteriaCode = packingCriteriaCode;
+    }
 
-	public void setMinimumTemperature(TemperatureEntity value) {
-		this.minimumTemperature = value;
-	}
+    /**
+     * @return the hazardousRegulationCode
+     */
+    public String getHazardousRegulationCode() {
+        return hazardousRegulationCode;
+    }
 
-	@Id
-	@Column(name = "ID_OFID")
-	@GeneratedValue(generator = "uuid2")
-	@GenericGenerator(name = "uuid2", strategy = "uuid2")
-	@Access(AccessType.PROPERTY)
-	public String getId() {
-		return id;
-	}
+    /**
+     * @param hazardousRegulationCode
+     *            the hazardousRegulationCode to set
+     */
+    public void setHazardousRegulationCode(String hazardousRegulationCode) {
+        this.hazardousRegulationCode = hazardousRegulationCode;
+    }
 
-	public void setId(String value) {
-		this.id = value;
-	}
+    /**
+     * @return the inhalationToxicityZoneCode
+     */
+    public String getInhalationToxicityZoneCode() {
+        return inhalationToxicityZoneCode;
+    }
+
+    /**
+     * @param inhalationToxicityZoneCode
+     *            the inhalationToxicityZoneCode to set
+     */
+    public void setInhalationToxicityZoneCode(String inhalationToxicityZoneCode) {
+        this.inhalationToxicityZoneCode = inhalationToxicityZoneCode;
+    }
+
+    /**
+     * @return the transportAuthorizationCode
+     */
+    public String getTransportAuthorizationCode() {
+        return transportAuthorizationCode;
+    }
+
+    /**
+     * @param transportAuthorizationCode
+     *            the transportAuthorizationCode to set
+     */
+    public void setTransportAuthorizationCode(String transportAuthorizationCode) {
+        this.transportAuthorizationCode = transportAuthorizationCode;
+    }
+
+    /**
+     * @return the maximumTemperature
+     */
+    public TemperatureEntity getMaximumTemperature() {
+        return maximumTemperature;
+    }
+
+    /**
+     * @param maximumTemperature
+     *            the maximumTemperature to set
+     */
+    public void setMaximumTemperature(TemperatureEntity maximumTemperature) {
+        this.maximumTemperature = maximumTemperature;
+    }
+
+    /**
+     * @return the minimumTemperature
+     */
+    public TemperatureEntity getMinimumTemperature() {
+        return minimumTemperature;
+    }
+
+    /**
+     * @param minimumTemperature
+     *            the minimumTemperature to set
+     */
+    public void setMinimumTemperature(TemperatureEntity minimumTemperature) {
+        this.minimumTemperature = minimumTemperature;
+    }
 
 }

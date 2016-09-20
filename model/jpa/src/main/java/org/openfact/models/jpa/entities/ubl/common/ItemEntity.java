@@ -7,13 +7,16 @@
 
 package org.openfact.models.jpa.entities.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -26,379 +29,564 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "ItemType")
-@Table(name = "ITEMTYPE")
+@Entity
+@Table(name = "ITEM")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ItemEntity {
-
-    protected List<DescriptionType> description;
-    protected PackQuantityType packQuantity;
-    protected PackSizeNumericType packSizeNumeric;
-    protected CatalogueIndicatorType catalogueIndicator;
-    protected NameTypeCommBas name;
-    protected HazardousRiskIndicatorType hazardousRiskIndicator;
-    protected AdditionalInformationType additionalInformation;
-    protected List<KeywordType> keyword;
-    protected List<BrandNameType> brandName;
-    protected List<ModelNameType> modelName;
-    protected ItemIdentificationType buyersItemIdentification;
-    protected ItemIdentificationType sellersItemIdentification;
-    protected List<ItemIdentificationType> manufacturersItemIdentification;
-    protected ItemIdentificationType standardItemIdentification;
-    protected ItemIdentificationType catalogueItemIdentification;
-    protected List<ItemIdentificationType> additionalItemIdentification;
-    protected DocumentReferenceEntity catalogueDocumentReference;
-    protected List<DocumentReferenceEntity> itemSpecificationDocumentReference;
-    protected CountryEntity originCountry;
-    protected List<CommodityClassificationType> commodityClassification;
-    protected List<TransactionConditionsEntity> transactionConditions;
-    protected List<HazardousItemType> hazardousItem;
-    protected List<TaxCategoryEntity> classifiedTaxCategory;
-    protected List<ItemPropertyType> additionalItemProperty;
-    protected List<PartyEntity> manufacturerParty;
-    protected PartyEntity informationContentProviderParty;
-    protected List<AddressEntity> originAddress;
-    protected List<ItemInstanceType> itemInstance;
-    protected String id;
-
-    @OneToMany(targetEntity = DescriptionType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DESCRIPTION_ITEMTYPE_OFID")
-    public List<DescriptionType> getDescription() {
-        if (description == null) {
-            description = new ArrayList<DescriptionType>();
-        }
-        return this.description;
-    }
-
-    public void setDescription(List<DescriptionType> description) {
-        this.description = description;
-    }
-
-    @ManyToOne(targetEntity = PackQuantityType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PACKQUANTITY_ITEMTYPE_OFID")
-    public PackQuantityType getPackQuantity() {
-        return packQuantity;
-    }
-
-    public void setPackQuantity(PackQuantityType value) {
-        this.packQuantity = value;
-    }
-
-    @ManyToOne(targetEntity = PackSizeNumericType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PACKSIZENUMERIC_ITEMTYPE_OFID")
-    public PackSizeNumericType getPackSizeNumeric() {
-        return packSizeNumeric;
-    }
-
-    public void setPackSizeNumeric(PackSizeNumericType value) {
-        this.packSizeNumeric = value;
-    }
-
-    @ManyToOne(targetEntity = CatalogueIndicatorType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "CATALOGUEINDICATOR_ITEMTYPE__0")
-    public CatalogueIndicatorType getCatalogueIndicator() {
-        return catalogueIndicator;
-    }
-
-    public void setCatalogueIndicator(CatalogueIndicatorType value) {
-        this.catalogueIndicator = value;
-    }
-
-    @ManyToOne(targetEntity = NameTypeCommBas.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "NAME__ITEMTYPE_OFID")
-    public NameTypeCommBas getName() {
-        return name;
-    }
-
-    public void setName(NameTypeCommBas value) {
-        this.name = value;
-    }
-
-    @ManyToOne(targetEntity = HazardousRiskIndicatorType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "HAZARDOUSRISKINDICATOR_ITEMT_0")
-    public HazardousRiskIndicatorType getHazardousRiskIndicator() {
-        return hazardousRiskIndicator;
-    }
-
-    public void setHazardousRiskIndicator(HazardousRiskIndicatorType value) {
-        this.hazardousRiskIndicator = value;
-    }
-
-    @ManyToOne(targetEntity = AdditionalInformationType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ADDITIONALINFORMATION_ITEMTY_0")
-    public AdditionalInformationType getAdditionalInformation() {
-        return additionalInformation;
-    }
-
-    public void setAdditionalInformation(AdditionalInformationType value) {
-        this.additionalInformation = value;
-    }
-
-    @OneToMany(targetEntity = KeywordType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "KEYWORD_ITEMTYPE_OFID")
-    public List<KeywordType> getKeyword() {
-        if (keyword == null) {
-            keyword = new ArrayList<KeywordType>();
-        }
-        return this.keyword;
-    }
-
-    public void setKeyword(List<KeywordType> keyword) {
-        this.keyword = keyword;
-    }
-
-    @OneToMany(targetEntity = BrandNameType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "BRANDNAME_ITEMTYPE_OFID")
-    public List<BrandNameType> getBrandName() {
-        if (brandName == null) {
-            brandName = new ArrayList<BrandNameType>();
-        }
-        return this.brandName;
-    }
-
-    public void setBrandName(List<BrandNameType> brandName) {
-        this.brandName = brandName;
-    }
-
-    @OneToMany(targetEntity = ModelNameType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "MODELNAME_ITEMTYPE_OFID")
-    public List<ModelNameType> getModelName() {
-        if (modelName == null) {
-            modelName = new ArrayList<ModelNameType>();
-        }
-        return this.modelName;
-    }
-
-    public void setModelName(List<ModelNameType> modelName) {
-        this.modelName = modelName;
-    }
-
-    @ManyToOne(targetEntity = ItemIdentificationType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "BUYERSITEMIDENTIFICATION_ITE_0")
-    public ItemIdentificationType getBuyersItemIdentification() {
-        return buyersItemIdentification;
-    }
-
-    public void setBuyersItemIdentification(ItemIdentificationType value) {
-        this.buyersItemIdentification = value;
-    }
-
-    @ManyToOne(targetEntity = ItemIdentificationType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "SELLERSITEMIDENTIFICATION_IT_0")
-    public ItemIdentificationType getSellersItemIdentification() {
-        return sellersItemIdentification;
-    }
-
-    public void setSellersItemIdentification(ItemIdentificationType value) {
-        this.sellersItemIdentification = value;
-    }
-
-    @OneToMany(targetEntity = ItemIdentificationType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "MANUFACTURERSITEMIDENTIFICAT_1")
-    public List<ItemIdentificationType> getManufacturersItemIdentification() {
-        if (manufacturersItemIdentification == null) {
-            manufacturersItemIdentification = new ArrayList<ItemIdentificationType>();
-        }
-        return this.manufacturersItemIdentification;
-    }
-
-    public void setManufacturersItemIdentification(
-            List<ItemIdentificationType> manufacturersItemIdentification) {
-        this.manufacturersItemIdentification = manufacturersItemIdentification;
-    }
-
-    @ManyToOne(targetEntity = ItemIdentificationType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "STANDARDITEMIDENTIFICATION_I_0")
-    public ItemIdentificationType getStandardItemIdentification() {
-        return standardItemIdentification;
-    }
-
-    public void setStandardItemIdentification(ItemIdentificationType value) {
-        this.standardItemIdentification = value;
-    }
-
-    @ManyToOne(targetEntity = ItemIdentificationType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "CATALOGUEITEMIDENTIFICATION__0")
-    public ItemIdentificationType getCatalogueItemIdentification() {
-        return catalogueItemIdentification;
-    }
-
-    public void setCatalogueItemIdentification(ItemIdentificationType value) {
-        this.catalogueItemIdentification = value;
-    }
-
-    @OneToMany(targetEntity = ItemIdentificationType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ADDITIONALITEMIDENTIFICATION_0")
-    public List<ItemIdentificationType> getAdditionalItemIdentification() {
-        if (additionalItemIdentification == null) {
-            additionalItemIdentification = new ArrayList<ItemIdentificationType>();
-        }
-        return this.additionalItemIdentification;
-    }
-
-    public void setAdditionalItemIdentification(List<ItemIdentificationType> additionalItemIdentification) {
-        this.additionalItemIdentification = additionalItemIdentification;
-    }
-
-    @ManyToOne(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "CATALOGUEDOCUMENTREFERENCE_I_0")
-    public DocumentReferenceEntity getCatalogueDocumentReference() {
-        return catalogueDocumentReference;
-    }
-
-    public void setCatalogueDocumentReference(DocumentReferenceEntity value) {
-        this.catalogueDocumentReference = value;
-    }
-
-    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ITEMSPECIFICATIONDOCUMENTREF_1")
-    public List<DocumentReferenceEntity> getItemSpecificationDocumentReference() {
-        if (itemSpecificationDocumentReference == null) {
-            itemSpecificationDocumentReference = new ArrayList<DocumentReferenceEntity>();
-        }
-        return this.itemSpecificationDocumentReference;
-    }
-
-    public void setItemSpecificationDocumentReference(
-            List<DocumentReferenceEntity> itemSpecificationDocumentReference) {
-        this.itemSpecificationDocumentReference = itemSpecificationDocumentReference;
-    }
-
-    @ManyToOne(targetEntity = CountryEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ORIGINCOUNTRY_ITEMTYPE_OFID")
-    public CountryEntity getOriginCountry() {
-        return originCountry;
-    }
-
-    public void setOriginCountry(CountryEntity value) {
-        this.originCountry = value;
-    }
-
-    @OneToMany(targetEntity = CommodityClassificationType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "COMMODITYCLASSIFICATION_ITEM_0")
-    public List<CommodityClassificationType> getCommodityClassification() {
-        if (commodityClassification == null) {
-            commodityClassification = new ArrayList<CommodityClassificationType>();
-        }
-        return this.commodityClassification;
-    }
-
-    public void setCommodityClassification(List<CommodityClassificationType> commodityClassification) {
-        this.commodityClassification = commodityClassification;
-    }
-
-    @OneToMany(targetEntity = TransactionConditionsEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TRANSACTIONCONDITIONS_ITEMTY_0")
-    public List<TransactionConditionsEntity> getTransactionConditions() {
-        if (transactionConditions == null) {
-            transactionConditions = new ArrayList<TransactionConditionsEntity>();
-        }
-        return this.transactionConditions;
-    }
-
-    public void setTransactionConditions(List<TransactionConditionsEntity> transactionConditions) {
-        this.transactionConditions = transactionConditions;
-    }
-
-    @OneToMany(targetEntity = HazardousItemType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "HAZARDOUSITEM_ITEMTYPE_OFID")
-    public List<HazardousItemType> getHazardousItem() {
-        if (hazardousItem == null) {
-            hazardousItem = new ArrayList<HazardousItemType>();
-        }
-        return this.hazardousItem;
-    }
-
-    public void setHazardousItem(List<HazardousItemType> hazardousItem) {
-        this.hazardousItem = hazardousItem;
-    }
-
-    @OneToMany(targetEntity = TaxCategoryEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "CLASSIFIEDTAXCATEGORY_ITEMTY_0")
-    public List<TaxCategoryEntity> getClassifiedTaxCategory() {
-        if (classifiedTaxCategory == null) {
-            classifiedTaxCategory = new ArrayList<TaxCategoryEntity>();
-        }
-        return this.classifiedTaxCategory;
-    }
-
-    public void setClassifiedTaxCategory(List<TaxCategoryEntity> classifiedTaxCategory) {
-        this.classifiedTaxCategory = classifiedTaxCategory;
-    }
-
-    @OneToMany(targetEntity = ItemPropertyType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ADDITIONALITEMPROPERTY_ITEMT_0")
-    public List<ItemPropertyType> getAdditionalItemProperty() {
-        if (additionalItemProperty == null) {
-            additionalItemProperty = new ArrayList<ItemPropertyType>();
-        }
-        return this.additionalItemProperty;
-    }
-
-    public void setAdditionalItemProperty(List<ItemPropertyType> additionalItemProperty) {
-        this.additionalItemProperty = additionalItemProperty;
-    }
-
-    @OneToMany(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "MANUFACTURERPARTY_ITEMTYPE_H_0")
-    public List<PartyEntity> getManufacturerParty() {
-        if (manufacturerParty == null) {
-            manufacturerParty = new ArrayList<PartyEntity>();
-        }
-        return this.manufacturerParty;
-    }
-
-    public void setManufacturerParty(List<PartyEntity> manufacturerParty) {
-        this.manufacturerParty = manufacturerParty;
-    }
-
-    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "INFORMATIONCONTENTPROVIDERPA_1")
-    public PartyEntity getInformationContentProviderParty() {
-        return informationContentProviderParty;
-    }
-
-    public void setInformationContentProviderParty(PartyEntity value) {
-        this.informationContentProviderParty = value;
-    }
-
-    @OneToMany(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ORIGINADDRESS_ITEMTYPE_OFID")
-    public List<AddressEntity> getOriginAddress() {
-        if (originAddress == null) {
-            originAddress = new ArrayList<AddressEntity>();
-        }
-        return this.originAddress;
-    }
-
-    public void setOriginAddress(List<AddressEntity> originAddress) {
-        this.originAddress = originAddress;
-    }
-
-    @OneToMany(targetEntity = ItemInstanceType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ITEMINSTANCE_ITEMTYPE_OFID")
-    public List<ItemInstanceType> getItemInstance() {
-        if (itemInstance == null) {
-            itemInstance = new ArrayList<ItemInstanceType>();
-        }
-        return this.itemInstance;
-    }
-
-    public void setItemInstance(List<ItemInstanceType> itemInstance) {
-        this.itemInstance = itemInstance;
-    }
 
     @Id
     @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "ITEM_DESCRIPTION", joinColumns = { @JoinColumn(name = "ADDRESS_ID") })
+    protected List<String> description = new ArrayList<>();
+
+    @ManyToOne(targetEntity = QuantityEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "PACKQUANTITY_ITEM")
+    protected QuantityEntity packQuantity = new QuantityEntity();
+
+    @Column(name = "PACK_SIZE_NUMERIC")
+    protected BigDecimal packSizeNumeric;
+
+    @Column(name = "CATALOGUE_INDICATOR")
+    protected boolean catalogueIndicator;
+
+    @Column(name = "NAME")
+    protected String name;
+
+    @Column(name = "HAZARDOUS_RISK_INDICATOR")
+    protected boolean hazardousRiskIndicator;
+
+    @Column(name = "ADDITIONAL_INFORMATION")
+    protected String additionalInformation;
+
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "ITEM_KEYWORD", joinColumns = { @JoinColumn(name = "ITEM_ID") })
+    protected List<String> keyword = new ArrayList<>();
+
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "ITEM_BRANDNAME", joinColumns = { @JoinColumn(name = "ITEM_ID") })
+    protected List<String> brandName = new ArrayList<>();
+
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "ITEM_MODELNAME", joinColumns = { @JoinColumn(name = "ITEM_ID") })
+    protected List<String> modelName = new ArrayList<>();
+
+    @ManyToOne(targetEntity = CountryEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "BUYERSITEMIDENTIFICATION_ITEM")
+    protected ItemIdentificationEntity buyersItemIdentification;
+
+    @ManyToOne(targetEntity = CountryEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "SELLERSITEMIDENTIFICATION_ITEM")
+    protected ItemIdentificationEntity sellersItemIdentification;
+
+    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "MANUFACTURERSITEMIDENTIFICATION_ITEM")
+    protected List<ItemIdentificationEntity> manufacturersItemIdentification = new ArrayList<>();
+
+    @ManyToOne(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "STANDARDITEMIDENTIFICATION_ITEM")
+    protected ItemIdentificationEntity standardItemIdentification = new ItemIdentificationEntity();
+
+    @ManyToOne(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "CATALOGUEITEMIDENTIFICATION_ITEM")
+    protected ItemIdentificationEntity catalogueItemIdentification;
+
+    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ADDITIONALITEMIDENTIFICATION_ITEM")
+    protected List<ItemIdentificationEntity> additionalItemIdentification = new ArrayList<>();
+
+    @ManyToOne(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "CATALOGUEDOCUMENTREFERENCE_ITEM")
+    protected DocumentReferenceEntity catalogueDocumentReference = new DocumentReferenceEntity();
+
+    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ITEMSPECIFICATIONDOCUMENTREF_ITEM")
+    protected List<DocumentReferenceEntity> itemSpecificationDocumentReference = new ArrayList<>();
+
+    @ManyToOne(targetEntity = CountryEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ORIGINCOUNTRY_ITEMTYPE_ID")
+    protected CountryEntity originCountry = new CountryEntity();
+
+    @OneToMany(targetEntity = TransactionConditionsEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "COMMODITYCLASSIFICATION_ITEM")
+    protected List<CommodityClassificationEntity> commodityClassification = new ArrayList<>();
+
+    @OneToMany(targetEntity = TransactionConditionsEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "TRANSACTIONCONDITIONS_ITEM")
+    protected List<TransactionConditionsEntity> transactionConditions = new ArrayList<>();
+
+    @OneToMany(targetEntity = TransactionConditionsEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "HAZARDOUSITEM_ITEM")
+    protected List<HazardousItemEntity> hazardousItem = new ArrayList<>();
+
+    @OneToMany(targetEntity = TaxCategoryEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ITEM_CLASSIFIEDTAXCATEGORY")
+    protected List<TaxCategoryEntity> classifiedTaxCategory = new ArrayList<>();
+
+    @OneToMany(targetEntity = TaxCategoryEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ADDITIONALITEMPROPERTY_ITEM")
+    protected List<ItemPropertyEntity> additionalItemProperty = new ArrayList<>();
+
+    @OneToMany(targetEntity = TaxCategoryEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "MANUFACTURERPARTY_ITEM")
+    protected List<PartyEntity> manufacturerParty = new ArrayList<>();
+
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "INFORMATIONCONTENTPROVIDERPARTY_ITEM")
+    protected PartyEntity informationContentProviderParty = new PartyEntity();
+
+    @OneToMany(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ORIGINADDRESS_ITEMTYPE_ID")
+    protected List<AddressEntity> originAddress = new ArrayList<>();
+
+    @OneToMany(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ITEMINSTANCE_ITEM")
+    protected List<ItemInstanceEntity> itemInstance = new ArrayList<>();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the description
+     */
+    public List<String> getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description
+     *            the description to set
+     */
+    public void setDescription(List<String> description) {
+        this.description = description;
+    }
+
+    /**
+     * @return the packQuantity
+     */
+    public QuantityEntity getPackQuantity() {
+        return packQuantity;
+    }
+
+    /**
+     * @param packQuantity
+     *            the packQuantity to set
+     */
+    public void setPackQuantity(QuantityEntity packQuantity) {
+        this.packQuantity = packQuantity;
+    }
+
+    /**
+     * @return the packSizeNumeric
+     */
+    public BigDecimal getPackSizeNumeric() {
+        return packSizeNumeric;
+    }
+
+    /**
+     * @param packSizeNumeric
+     *            the packSizeNumeric to set
+     */
+    public void setPackSizeNumeric(BigDecimal packSizeNumeric) {
+        this.packSizeNumeric = packSizeNumeric;
+    }
+
+    /**
+     * @return the catalogueIndicator
+     */
+    public boolean isCatalogueIndicator() {
+        return catalogueIndicator;
+    }
+
+    /**
+     * @param catalogueIndicator
+     *            the catalogueIndicator to set
+     */
+    public void setCatalogueIndicator(boolean catalogueIndicator) {
+        this.catalogueIndicator = catalogueIndicator;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name
+     *            the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the hazardousRiskIndicator
+     */
+    public boolean isHazardousRiskIndicator() {
+        return hazardousRiskIndicator;
+    }
+
+    /**
+     * @param hazardousRiskIndicator
+     *            the hazardousRiskIndicator to set
+     */
+    public void setHazardousRiskIndicator(boolean hazardousRiskIndicator) {
+        this.hazardousRiskIndicator = hazardousRiskIndicator;
+    }
+
+    /**
+     * @return the additionalInformation
+     */
+    public String getAdditionalInformation() {
+        return additionalInformation;
+    }
+
+    /**
+     * @param additionalInformation
+     *            the additionalInformation to set
+     */
+    public void setAdditionalInformation(String additionalInformation) {
+        this.additionalInformation = additionalInformation;
+    }
+
+    /**
+     * @return the keyword
+     */
+    public List<String> getKeyword() {
+        return keyword;
+    }
+
+    /**
+     * @param keyword
+     *            the keyword to set
+     */
+    public void setKeyword(List<String> keyword) {
+        this.keyword = keyword;
+    }
+
+    /**
+     * @return the brandName
+     */
+    public List<String> getBrandName() {
+        return brandName;
+    }
+
+    /**
+     * @param brandName
+     *            the brandName to set
+     */
+    public void setBrandName(List<String> brandName) {
+        this.brandName = brandName;
+    }
+
+    /**
+     * @return the modelName
+     */
+    public List<String> getModelName() {
+        return modelName;
+    }
+
+    /**
+     * @param modelName
+     *            the modelName to set
+     */
+    public void setModelName(List<String> modelName) {
+        this.modelName = modelName;
+    }
+
+    /**
+     * @return the buyersItemIdentification
+     */
+    public ItemIdentificationEntity getBuyersItemIdentification() {
+        return buyersItemIdentification;
+    }
+
+    /**
+     * @param buyersItemIdentification
+     *            the buyersItemIdentification to set
+     */
+    public void setBuyersItemIdentification(ItemIdentificationEntity buyersItemIdentification) {
+        this.buyersItemIdentification = buyersItemIdentification;
+    }
+
+    /**
+     * @return the sellersItemIdentification
+     */
+    public ItemIdentificationEntity getSellersItemIdentification() {
+        return sellersItemIdentification;
+    }
+
+    /**
+     * @param sellersItemIdentification
+     *            the sellersItemIdentification to set
+     */
+    public void setSellersItemIdentification(ItemIdentificationEntity sellersItemIdentification) {
+        this.sellersItemIdentification = sellersItemIdentification;
+    }
+
+    /**
+     * @return the manufacturersItemIdentification
+     */
+    public List<ItemIdentificationEntity> getManufacturersItemIdentification() {
+        return manufacturersItemIdentification;
+    }
+
+    /**
+     * @param manufacturersItemIdentification
+     *            the manufacturersItemIdentification to set
+     */
+    public void setManufacturersItemIdentification(
+            List<ItemIdentificationEntity> manufacturersItemIdentification) {
+        this.manufacturersItemIdentification = manufacturersItemIdentification;
+    }
+
+    /**
+     * @return the standardItemIdentification
+     */
+    public ItemIdentificationEntity getStandardItemIdentification() {
+        return standardItemIdentification;
+    }
+
+    /**
+     * @param standardItemIdentification
+     *            the standardItemIdentification to set
+     */
+    public void setStandardItemIdentification(ItemIdentificationEntity standardItemIdentification) {
+        this.standardItemIdentification = standardItemIdentification;
+    }
+
+    /**
+     * @return the catalogueItemIdentification
+     */
+    public ItemIdentificationEntity getCatalogueItemIdentification() {
+        return catalogueItemIdentification;
+    }
+
+    /**
+     * @param catalogueItemIdentification
+     *            the catalogueItemIdentification to set
+     */
+    public void setCatalogueItemIdentification(ItemIdentificationEntity catalogueItemIdentification) {
+        this.catalogueItemIdentification = catalogueItemIdentification;
+    }
+
+    /**
+     * @return the additionalItemIdentification
+     */
+    public List<ItemIdentificationEntity> getAdditionalItemIdentification() {
+        return additionalItemIdentification;
+    }
+
+    /**
+     * @param additionalItemIdentification
+     *            the additionalItemIdentification to set
+     */
+    public void setAdditionalItemIdentification(List<ItemIdentificationEntity> additionalItemIdentification) {
+        this.additionalItemIdentification = additionalItemIdentification;
+    }
+
+    /**
+     * @return the catalogueDocumentReference
+     */
+    public DocumentReferenceEntity getCatalogueDocumentReference() {
+        return catalogueDocumentReference;
+    }
+
+    /**
+     * @param catalogueDocumentReference
+     *            the catalogueDocumentReference to set
+     */
+    public void setCatalogueDocumentReference(DocumentReferenceEntity catalogueDocumentReference) {
+        this.catalogueDocumentReference = catalogueDocumentReference;
+    }
+
+    /**
+     * @return the itemSpecificationDocumentReference
+     */
+    public List<DocumentReferenceEntity> getItemSpecificationDocumentReference() {
+        return itemSpecificationDocumentReference;
+    }
+
+    /**
+     * @param itemSpecificationDocumentReference
+     *            the itemSpecificationDocumentReference to set
+     */
+    public void setItemSpecificationDocumentReference(
+            List<DocumentReferenceEntity> itemSpecificationDocumentReference) {
+        this.itemSpecificationDocumentReference = itemSpecificationDocumentReference;
+    }
+
+    /**
+     * @return the originCountry
+     */
+    public CountryEntity getOriginCountry() {
+        return originCountry;
+    }
+
+    /**
+     * @param originCountry
+     *            the originCountry to set
+     */
+    public void setOriginCountry(CountryEntity originCountry) {
+        this.originCountry = originCountry;
+    }
+
+    /**
+     * @return the commodityClassification
+     */
+    public List<CommodityClassificationEntity> getCommodityClassification() {
+        return commodityClassification;
+    }
+
+    /**
+     * @param commodityClassification
+     *            the commodityClassification to set
+     */
+    public void setCommodityClassification(List<CommodityClassificationEntity> commodityClassification) {
+        this.commodityClassification = commodityClassification;
+    }
+
+    /**
+     * @return the transactionConditions
+     */
+    public List<TransactionConditionsEntity> getTransactionConditions() {
+        return transactionConditions;
+    }
+
+    /**
+     * @param transactionConditions
+     *            the transactionConditions to set
+     */
+    public void setTransactionConditions(List<TransactionConditionsEntity> transactionConditions) {
+        this.transactionConditions = transactionConditions;
+    }
+
+    /**
+     * @return the hazardousItem
+     */
+    public List<HazardousItemEntity> getHazardousItem() {
+        return hazardousItem;
+    }
+
+    /**
+     * @param hazardousItem
+     *            the hazardousItem to set
+     */
+    public void setHazardousItem(List<HazardousItemEntity> hazardousItem) {
+        this.hazardousItem = hazardousItem;
+    }
+
+    /**
+     * @return the classifiedTaxCategory
+     */
+    public List<TaxCategoryEntity> getClassifiedTaxCategory() {
+        return classifiedTaxCategory;
+    }
+
+    /**
+     * @param classifiedTaxCategory
+     *            the classifiedTaxCategory to set
+     */
+    public void setClassifiedTaxCategory(List<TaxCategoryEntity> classifiedTaxCategory) {
+        this.classifiedTaxCategory = classifiedTaxCategory;
+    }
+
+    /**
+     * @return the additionalItemProperty
+     */
+    public List<ItemPropertyEntity> getAdditionalItemProperty() {
+        return additionalItemProperty;
+    }
+
+    /**
+     * @param additionalItemProperty
+     *            the additionalItemProperty to set
+     */
+    public void setAdditionalItemProperty(List<ItemPropertyEntity> additionalItemProperty) {
+        this.additionalItemProperty = additionalItemProperty;
+    }
+
+    /**
+     * @return the manufacturerParty
+     */
+    public List<PartyEntity> getManufacturerParty() {
+        return manufacturerParty;
+    }
+
+    /**
+     * @param manufacturerParty
+     *            the manufacturerParty to set
+     */
+    public void setManufacturerParty(List<PartyEntity> manufacturerParty) {
+        this.manufacturerParty = manufacturerParty;
+    }
+
+    /**
+     * @return the informationContentProviderParty
+     */
+    public PartyEntity getInformationContentProviderParty() {
+        return informationContentProviderParty;
+    }
+
+    /**
+     * @param informationContentProviderParty
+     *            the informationContentProviderParty to set
+     */
+    public void setInformationContentProviderParty(PartyEntity informationContentProviderParty) {
+        this.informationContentProviderParty = informationContentProviderParty;
+    }
+
+    /**
+     * @return the originAddress
+     */
+    public List<AddressEntity> getOriginAddress() {
+        return originAddress;
+    }
+
+    /**
+     * @param originAddress
+     *            the originAddress to set
+     */
+    public void setOriginAddress(List<AddressEntity> originAddress) {
+        this.originAddress = originAddress;
+    }
+
+    /**
+     * @return the itemInstance
+     */
+    public List<ItemInstanceEntity> getItemInstance() {
+        return itemInstance;
+    }
+
+    /**
+     * @param itemInstance
+     *            the itemInstance to set
+     */
+    public void setItemInstance(List<ItemInstanceEntity> itemInstance) {
+        this.itemInstance = itemInstance;
     }
 
 }

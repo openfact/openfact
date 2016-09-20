@@ -22,64 +22,102 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "ExternalReferenceType")
-@Table(name = "EXTERNALREFERENCETYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "EXTERNALREFERENCE")
 public class ExternalReferenceEntity {
 
-	protected String uri;
-	protected String documentHash;
-	protected LocalDate expiryDate;
-	protected LocalTime expiryTime;
-	protected String id;
+    @Id
+    @Column(name = "ID_OFID")
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Access(AccessType.PROPERTY)
+    protected String id;
 
-	@Column(name = "URI")
-	public String getURI() {
-		return uri;
-	}
+    @Column(name = "URI")
+    protected String uri;
 
-	public void setURI(String value) {
-		this.uri = value;
-	}
+    @Column(name = "DOCUMENT_HASH")
+    protected String documentHash;
 
-	@Column(name = "DOCUMENT_HASH")
-	public String getDocumentHash() {
-		return documentHash;
-	}
+    @Column(name = "EXPIRYDATE")
+    protected LocalDate expiryDate;
 
-	public void setDocumentHash(String value) {
-		this.documentHash = value;
-	}
+    @Column(name = "EXPIRYTIME")
+    protected LocalTime expiryTime;
 
-	@Column(name = "EXPIRYDATE")
-	public LocalDate getExpiryDate() {
-		return expiryDate;
-	}
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
 
-	public void setExpiryDate(LocalDate value) {
-		this.expiryDate = value;
-	}
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	@Column(name = "EXPIRYTIME")
-	public LocalTime getExpiryTime() {
-		return expiryTime;
-	}
+    /**
+     * @return the uri
+     */
+    public String getUri() {
+        return uri;
+    }
 
-	public void setExpiryTime(LocalTime value) {
-		this.expiryTime = value;
-	}
+    /**
+     * @param uri
+     *            the uri to set
+     */
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
 
-	@Id
-	@Column(name = "ID_OFID")
-	@GeneratedValue(generator = "uuid2")
-	@GenericGenerator(name = "uuid2", strategy = "uuid2")
-	@Access(AccessType.PROPERTY)
-	public String getId() {
-		return id;
-	}
+    /**
+     * @return the documentHash
+     */
+    public String getDocumentHash() {
+        return documentHash;
+    }
 
-	public void setId(String value) {
-		this.id = value;
-	}
+    /**
+     * @param documentHash
+     *            the documentHash to set
+     */
+    public void setDocumentHash(String documentHash) {
+        this.documentHash = documentHash;
+    }
+
+    /**
+     * @return the expiryDate
+     */
+    public LocalDate getExpiryDate() {
+        return expiryDate;
+    }
+
+    /**
+     * @param expiryDate
+     *            the expiryDate to set
+     */
+    public void setExpiryDate(LocalDate expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
+    /**
+     * @return the expiryTime
+     */
+    public LocalTime getExpiryTime() {
+        return expiryTime;
+    }
+
+    /**
+     * @param expiryTime
+     *            the expiryTime to set
+     */
+    public void setExpiryTime(LocalTime expiryTime) {
+        this.expiryTime = expiryTime;
+    }
 
 }

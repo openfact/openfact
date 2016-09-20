@@ -9,8 +9,10 @@ import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.DocumentReferenceEntity;
+import org.openfact.models.jpa.entities.ubl.common.TaxTotalEntity;
 import org.openfact.models.jpa.entities.ubl.common.TransactionConditionsEntity;
 import org.openfact.models.ubl.common.DocumentReferenceModel;
+import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.TransactionConditionsModel;
 
 public class TransactionConditionsAdapter
@@ -84,6 +86,13 @@ public class TransactionConditionsAdapter
     @Override
     public TransactionConditionsEntity getEntity() {
         return transactionConditions;
+    }
+
+    public static TransactionConditionsEntity toEntity(TransactionConditionsModel model, EntityManager em) {
+        if (model instanceof TransactionConditionsAdapter) {
+            return ((TransactionConditionsAdapter) model).getEntity();
+        }
+        return em.getReference(TransactionConditionsEntity.class, model.getId());
     }
 
 }

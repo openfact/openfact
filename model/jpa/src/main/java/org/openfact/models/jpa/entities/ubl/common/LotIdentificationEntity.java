@@ -18,67 +18,91 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "LotIdentificationType")
-@Table(name = "LOTIDENTIFICATIONTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "LOTIDENTIFICATION")
 public class LotIdentificationEntity {
 
-	protected String lotNumberID;
-	protected LocalDate expiryDate;
-	protected List<ItemPropertyEntity> additionalItemProperty;
-	protected String id;
+    @Id
+    @Column(name = "ID_OFID")
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Access(AccessType.PROPERTY)
+    protected String id;
 
-	@Column(name = "LOT_NUMBER_ID")
-	public String getLotNumberID() {
-		return lotNumberID;
-	}
+    @Column(name = "LOT_NUMBER_ID")
+    protected String lotNumberID;
 
-	public void setLotNumberID(String value) {
-		this.lotNumberID = value;
-	}
+    @Column(name = "EXPIRY_DATE")
+    protected LocalDate expiryDate;
 
-	@Column(name = "EXPIRY_DATE")
-	public LocalDate getExpiryDate() {
-		return expiryDate;
-	}
+    @OneToMany(targetEntity = ItemPropertyEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ADDITIONALITEMPROPERTY")
+    protected List<ItemPropertyEntity> additionalItemProperty = new ArrayList<>();
 
-	public void setExpiryDate(LocalDate value) {
-		this.expiryDate = value;
-	}
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
 
-	@OneToMany(targetEntity = ItemPropertyEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "ADDITIONALITEMPROPERTY")
-	public List<ItemPropertyEntity> getAdditionalItemProperty() {
-		if (additionalItemProperty == null) {
-			additionalItemProperty = new ArrayList<ItemPropertyEntity>();
-		}
-		return this.additionalItemProperty;
-	}
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setAdditionalItemProperty(List<ItemPropertyEntity> additionalItemProperty) {
-		this.additionalItemProperty = additionalItemProperty;
-	}
+    /**
+     * @return the lotNumberID
+     */
+    public String getLotNumberID() {
+        return lotNumberID;
+    }
 
-	@Id
-	@Column(name = "ID_OFID")
-	@GeneratedValue(generator = "uuid2")
-	@GenericGenerator(name = "uuid2", strategy = "uuid2")
-	@Access(AccessType.PROPERTY)
-	public String getId() {
-		return id;
-	}
+    /**
+     * @param lotNumberID
+     *            the lotNumberID to set
+     */
+    public void setLotNumberID(String lotNumberID) {
+        this.lotNumberID = lotNumberID;
+    }
 
-	public void setId(String value) {
-		this.id = value;
-	}
+    /**
+     * @return the expiryDate
+     */
+    public LocalDate getExpiryDate() {
+        return expiryDate;
+    }
+
+    /**
+     * @param expiryDate
+     *            the expiryDate to set
+     */
+    public void setExpiryDate(LocalDate expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
+    /**
+     * @return the additionalItemProperty
+     */
+    public List<ItemPropertyEntity> getAdditionalItemProperty() {
+        return additionalItemProperty;
+    }
+
+    /**
+     * @param additionalItemProperty
+     *            the additionalItemProperty to set
+     */
+    public void setAdditionalItemProperty(List<ItemPropertyEntity> additionalItemProperty) {
+        this.additionalItemProperty = additionalItemProperty;
+    }
 
 }

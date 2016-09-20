@@ -94,9 +94,9 @@ public class CreditNoteLineEntity {
     @JoinColumn(name = "TAXTOTAL_CREDITNOTELINE")
     protected List<TaxTotalEntity> taxTotal = new ArrayList<>();
 
-    @ManyToOne(targetEntity = ItemType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ItemEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ITEM_CREDITNOTELINE")
-    protected ItemType item = new ItemType();
+    protected ItemEntity item = new ItemEntity();
 
     @ManyToOne(targetEntity = PriceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PRICE_CREDITNOTELINE_ID")
@@ -360,7 +360,7 @@ public class CreditNoteLineEntity {
     /**
      * @return the item
      */
-    public ItemType getItem() {
+    public ItemEntity getItem() {
         return item;
     }
 
@@ -368,7 +368,7 @@ public class CreditNoteLineEntity {
      * @param item
      *            the item to set
      */
-    public void setItem(ItemType item) {
+    public void setItem(ItemEntity item) {
         this.item = item;
     }
 

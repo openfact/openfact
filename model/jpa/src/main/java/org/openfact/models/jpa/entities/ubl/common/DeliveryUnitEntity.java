@@ -28,52 +28,82 @@ import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.BatchQu
 @Table(name = "DELIVERYUNIT")
 public class DeliveryUnitEntity {
 
-    protected QuantityEntity batchQuantity;
-    protected String consumerUnitQuantity;
-    protected HazardousRiskIndicatorType hazardousRiskIndicator;
-    protected String id;
-
-    @ManyToOne(targetEntity = BatchQuantityType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "BATCHQUANTITY_DELIVERYUNITTY_0")
-    public BatchQuantityType getBatchQuantity() {
-        return batchQuantity;
-    }
-
-    public void setBatchQuantity(BatchQuantityType value) {
-        this.batchQuantity = value;
-    }
-
-    @ManyToOne(targetEntity = ConsumerUnitQuantityType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "CONSUMERUNITQUANTITY_DELIVER_0")
-    public ConsumerUnitQuantityType getConsumerUnitQuantity() {
-        return consumerUnitQuantity;
-    }
-
-    public void setConsumerUnitQuantity(ConsumerUnitQuantityType value) {
-        this.consumerUnitQuantity = value;
-    }
-
-    @ManyToOne(targetEntity = HazardousRiskIndicatorType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "HAZARDOUSRISKINDICATOR_DELIV_0")
-    public HazardousRiskIndicatorType getHazardousRiskIndicator() {
-        return hazardousRiskIndicator;
-    }
-
-    public void setHazardousRiskIndicator(HazardousRiskIndicatorType value) {
-        this.hazardousRiskIndicator = value;
-    }
-
     @Id
     @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @ManyToOne(targetEntity = BatchQuantityType.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "BATCHQUANTITY_DELIVERYUNIT")
+    protected QuantityEntity batchQuantity = new QuantityEntity();
+
+    @ManyToOne(targetEntity = BatchQuantityType.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "CONSUMERUNITQUANTITY_DELIVERYUNIT")
+    protected QuantityEntity consumerUnitQuantity;
+
+    @Column(name = "HAZARDOUSRISKINDICATOR")
+    protected boolean hazardousRiskIndicator;
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the batchQuantity
+     */
+    public QuantityEntity getBatchQuantity() {
+        return batchQuantity;
+    }
+
+    /**
+     * @param batchQuantity
+     *            the batchQuantity to set
+     */
+    public void setBatchQuantity(QuantityEntity batchQuantity) {
+        this.batchQuantity = batchQuantity;
+    }
+
+    /**
+     * @return the consumerUnitQuantity
+     */
+    public QuantityEntity getConsumerUnitQuantity() {
+        return consumerUnitQuantity;
+    }
+
+    /**
+     * @param consumerUnitQuantity
+     *            the consumerUnitQuantity to set
+     */
+    public void setConsumerUnitQuantity(QuantityEntity consumerUnitQuantity) {
+        this.consumerUnitQuantity = consumerUnitQuantity;
+    }
+
+    /**
+     * @return the hazardousRiskIndicator
+     */
+    public boolean isHazardousRiskIndicator() {
+        return hazardousRiskIndicator;
+    }
+
+    /**
+     * @param hazardousRiskIndicator
+     *            the hazardousRiskIndicator to set
+     */
+    public void setHazardousRiskIndicator(boolean hazardousRiskIndicator) {
+        this.hazardousRiskIndicator = hazardousRiskIndicator;
     }
 
 }

@@ -17,8 +17,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -26,69 +24,104 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "ItemPropertyType")
-@Table(name = "ITEMPROPERTYTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "ITEMPROPERTY")
 public class ItemPropertyEntity {
-
-    protected String name;
-    protected String value;
-    protected PeriodEntity usabilityPeriod;
-    protected List<ItemPropertyGroupEntity> itemPropertyGroup;
-    protected String id;
-
-    @Column(name = "NAME")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String value) {
-        this.name = value;
-    }
-
-    @Column(name = "VALUE")
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    @ManyToOne(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "USABILITYPERIOD")
-    public PeriodEntity getUsabilityPeriod() {
-        return usabilityPeriod;
-    }
-
-    public void setUsabilityPeriod(PeriodEntity value) {
-        this.usabilityPeriod = value;
-    }
-
-    @OneToMany(targetEntity = ItemPropertyGroupEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ITEMPROPERTYGROUP")
-    public List<ItemPropertyGroupEntity> getItemPropertyGroup() {
-        if (itemPropertyGroup == null) {
-            itemPropertyGroup = new ArrayList<ItemPropertyGroupEntity>();
-        }
-        return this.itemPropertyGroup;
-    }
-
-    public void setItemPropertyGroup(List<ItemPropertyGroupEntity> itemPropertyGroup) {
-        this.itemPropertyGroup = itemPropertyGroup;
-    }
 
     @Id
     @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "NAME")
+    protected String name;
+
+    @Column(name = "VALUE")
+    protected String value;
+
+    @ManyToOne(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "USABILITYPERIOD")
+    protected PeriodEntity usabilityPeriod = new PeriodEntity();
+
+    @OneToMany(targetEntity = ItemPropertyGroupEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ITEMPROPERTYGROUP")
+    protected List<ItemPropertyGroupEntity> itemPropertyGroup = new ArrayList<>();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name
+     *            the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the value
+     */
+    public String getValue() {
+        return value;
+    }
+
+    /**
+     * @param value
+     *            the value to set
+     */
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    /**
+     * @return the usabilityPeriod
+     */
+    public PeriodEntity getUsabilityPeriod() {
+        return usabilityPeriod;
+    }
+
+    /**
+     * @param usabilityPeriod
+     *            the usabilityPeriod to set
+     */
+    public void setUsabilityPeriod(PeriodEntity usabilityPeriod) {
+        this.usabilityPeriod = usabilityPeriod;
+    }
+
+    /**
+     * @return the itemPropertyGroup
+     */
+    public List<ItemPropertyGroupEntity> getItemPropertyGroup() {
+        return itemPropertyGroup;
+    }
+
+    /**
+     * @param itemPropertyGroup
+     *            the itemPropertyGroup to set
+     */
+    public void setItemPropertyGroup(List<ItemPropertyGroupEntity> itemPropertyGroup) {
+        this.itemPropertyGroup = itemPropertyGroup;
     }
 
 }

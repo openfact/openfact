@@ -93,9 +93,9 @@ public class DebitNoteLineEntity {
     @JoinColumn(name = "TAXTOTAL_DEBITNOTELINE")
     protected List<TaxTotalEntity> taxTotal = new ArrayList<>();
 
-    @ManyToOne(targetEntity = ItemType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ItemEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ITEM_DEBITNOTELINE")
-    protected ItemType item = new ItemType();
+    protected ItemEntity item = new ItemEntity();
 
     @ManyToOne(targetEntity = PriceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PRICE_DEBITNOTELINE")
@@ -359,7 +359,7 @@ public class DebitNoteLineEntity {
     /**
      * @return the item
      */
-    public ItemType getItem() {
+    public ItemEntity getItem() {
         return item;
     }
 
@@ -367,7 +367,7 @@ public class DebitNoteLineEntity {
      * @param item
      *            the item to set
      */
-    public void setItem(ItemType item) {
+    public void setItem(ItemEntity item) {
         this.item = item;
     }
 

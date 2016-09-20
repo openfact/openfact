@@ -82,7 +82,7 @@ public class TaxTotalAdapter implements TaxTotalModel, JpaModel<TaxTotalEntity> 
 	}
 
 	public static TaxTotalEntity toEntity(TaxTotalModel model, EntityManager em) {
-		if (model instanceof TaxTotalModel) {
+		if (model instanceof TaxTotalAdapter) {
 			return ((TaxTotalAdapter) model).getEntity();
 		}
 		return em.getReference(TaxTotalEntity.class, model.getId());

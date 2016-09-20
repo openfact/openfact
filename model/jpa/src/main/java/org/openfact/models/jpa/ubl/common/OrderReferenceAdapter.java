@@ -118,8 +118,7 @@ public class OrderReferenceAdapter implements OrderReferenceModel, JpaModel<Orde
 
     @Override
     public OrderReferenceEntity getEntity() {
-        // TODO Auto-generated method stub
-        return orderReference;
+        return this.orderReference;
     }
 
     public static OrderReferenceEntity toEntity(OrderReferenceModel model, EntityManager em) {

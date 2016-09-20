@@ -22,98 +22,160 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "LocationCoordinateType")
-@Table(name = "LOCATIONCOORDINATETYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "LOCATIONCOORDINATE")
 public class LocationCoordinateEntity {
-
-    protected String coordinateSystemCode;
-    protected MeasureEntity latitudeDegreesMeasure;
-    protected MeasureEntity latitudeMinutesMeasure;
-    protected String latitudeDirectionCode;
-    protected MeasureEntity longitudeDegreesMeasure;
-    protected MeasureEntity longitudeMinutesMeasure;
-    protected String longitudeDirectionCode;
-    protected String id;
-
-    @Column(name = "COORDINATE_SYSTEM_CODE")
-    public String getCoordinateSystemCode() {
-        return coordinateSystemCode;
-    }
-
-    public void setCoordinateSystemCode(String value) {
-        this.coordinateSystemCode = value;
-    }
-
-    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LATITUDEDEGREESMEASURE")
-    public MeasureEntity getLatitudeDegreesMeasure() {
-        return latitudeDegreesMeasure;
-    }
-
-    public void setLatitudeDegreesMeasure(MeasureEntity value) {
-        this.latitudeDegreesMeasure = value;
-    }
-
-    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LATITUDEMINUTESMEASURE")
-    public MeasureEntity getLatitudeMinutesMeasure() {
-        return latitudeMinutesMeasure;
-    }
-
-    public void setLatitudeMinutesMeasure(MeasureEntity value) {
-        this.latitudeMinutesMeasure = value;
-    }
-
-    @Column(name = "LATITUDE_DIRECTION_CODE")
-    public String getLatitudeDirectionCode() {
-        return latitudeDirectionCode;
-    }
-
-    public void setLatitudeDirectionCode(String value) {
-        this.latitudeDirectionCode = value;
-    }
-
-    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LONGITUDEDEGREESMEASURE")
-    public MeasureEntity getLongitudeDegreesMeasure() {
-        return longitudeDegreesMeasure;
-    }
-
-    public void setLongitudeDegreesMeasure(MeasureEntity value) {
-        this.longitudeDegreesMeasure = value;
-    }
-
-    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LONGITUDEMINUTESMEASURE")
-    public MeasureEntity getLongitudeMinutesMeasure() {
-        return longitudeMinutesMeasure;
-    }
-
-    public void setLongitudeMinutesMeasure(MeasureEntity value) {
-        this.longitudeMinutesMeasure = value;
-    }
-
-    @Column(name = "LONGITUDE_DIRECTION_CODE")
-    public String getLongitudeDirectionCode() {
-        return longitudeDirectionCode;
-    }
-
-    public void setLongitudeDirectionCode(String value) {
-        this.longitudeDirectionCode = value;
-    }
 
     @Id
     @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "COORDINATE_SYSTEM_CODE")
+    protected String coordinateSystemCode;
+
+    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "LATITUDEDEGREESMEASURE")
+    protected MeasureEntity latitudeDegreesMeasure = new MeasureEntity();
+
+    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "LATITUDEMINUTESMEASURE")
+    protected MeasureEntity latitudeMinutesMeasure = new MeasureEntity();
+
+    @Column(name = "LATITUDE_DIRECTION_CODE")
+    protected String latitudeDirectionCode;
+
+    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "LONGITUDEDEGREESMEASURE")
+    protected MeasureEntity longitudeDegreesMeasure = new MeasureEntity();
+
+    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "LONGITUDEMINUTESMEASURE")
+    protected MeasureEntity longitudeMinutesMeasure = new MeasureEntity();
+
+    @Column(name = "LONGITUDE_DIRECTION_CODE")
+    protected String longitudeDirectionCode;
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the coordinateSystemCode
+     */
+    public String getCoordinateSystemCode() {
+        return coordinateSystemCode;
+    }
+
+    /**
+     * @param coordinateSystemCode
+     *            the coordinateSystemCode to set
+     */
+    public void setCoordinateSystemCode(String coordinateSystemCode) {
+        this.coordinateSystemCode = coordinateSystemCode;
+    }
+
+    /**
+     * @return the latitudeDegreesMeasure
+     */
+    public MeasureEntity getLatitudeDegreesMeasure() {
+        return latitudeDegreesMeasure;
+    }
+
+    /**
+     * @param latitudeDegreesMeasure
+     *            the latitudeDegreesMeasure to set
+     */
+    public void setLatitudeDegreesMeasure(MeasureEntity latitudeDegreesMeasure) {
+        this.latitudeDegreesMeasure = latitudeDegreesMeasure;
+    }
+
+    /**
+     * @return the latitudeMinutesMeasure
+     */
+    public MeasureEntity getLatitudeMinutesMeasure() {
+        return latitudeMinutesMeasure;
+    }
+
+    /**
+     * @param latitudeMinutesMeasure
+     *            the latitudeMinutesMeasure to set
+     */
+    public void setLatitudeMinutesMeasure(MeasureEntity latitudeMinutesMeasure) {
+        this.latitudeMinutesMeasure = latitudeMinutesMeasure;
+    }
+
+    /**
+     * @return the latitudeDirectionCode
+     */
+    public String getLatitudeDirectionCode() {
+        return latitudeDirectionCode;
+    }
+
+    /**
+     * @param latitudeDirectionCode
+     *            the latitudeDirectionCode to set
+     */
+    public void setLatitudeDirectionCode(String latitudeDirectionCode) {
+        this.latitudeDirectionCode = latitudeDirectionCode;
+    }
+
+    /**
+     * @return the longitudeDegreesMeasure
+     */
+    public MeasureEntity getLongitudeDegreesMeasure() {
+        return longitudeDegreesMeasure;
+    }
+
+    /**
+     * @param longitudeDegreesMeasure
+     *            the longitudeDegreesMeasure to set
+     */
+    public void setLongitudeDegreesMeasure(MeasureEntity longitudeDegreesMeasure) {
+        this.longitudeDegreesMeasure = longitudeDegreesMeasure;
+    }
+
+    /**
+     * @return the longitudeMinutesMeasure
+     */
+    public MeasureEntity getLongitudeMinutesMeasure() {
+        return longitudeMinutesMeasure;
+    }
+
+    /**
+     * @param longitudeMinutesMeasure
+     *            the longitudeMinutesMeasure to set
+     */
+    public void setLongitudeMinutesMeasure(MeasureEntity longitudeMinutesMeasure) {
+        this.longitudeMinutesMeasure = longitudeMinutesMeasure;
+    }
+
+    /**
+     * @return the longitudeDirectionCode
+     */
+    public String getLongitudeDirectionCode() {
+        return longitudeDirectionCode;
+    }
+
+    /**
+     * @param longitudeDirectionCode
+     *            the longitudeDirectionCode to set
+     */
+    public void setLongitudeDirectionCode(String longitudeDirectionCode) {
+        this.longitudeDirectionCode = longitudeDirectionCode;
     }
 
 }

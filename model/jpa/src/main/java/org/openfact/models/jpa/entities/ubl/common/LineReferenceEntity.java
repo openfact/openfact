@@ -14,73 +14,109 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "LineReferenceType")
-@Table(name = "LINEREFERENCETYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "LINEREFERENCE")
 public class LineReferenceEntity {
 
-	protected String lineID;
-	protected String uuid;
-	protected String lineStatusCode;
-	protected DocumentReferenceEntity documentReference;
-	protected String id;
+    @Id
+    @Column(name = "ID_OFID")
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Access(AccessType.PROPERTY)
+    protected String id;
 
-	@Column(name = "LINE_ID")
-	public String getLineID() {
-		return lineID;
-	}
+    @Column(name = "LINE_ID")
+    protected String lineID;
 
-	public void setLineID(String value) {
-		this.lineID = value;
-	}
+    @Column(name = "UUID")
+    protected String uuid;
 
-	@Column(name = "UUID")
-	public String getUUID() {
-		return uuid;
-	}
+    @Column(name = "LINE_STATUS_CODE")
+    protected String lineStatusCode;
 
-	public void setUUID(String value) {
-		this.uuid = value;
-	}
+    @ManyToOne(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "DOCUMENTREFERENCE")
+    protected DocumentReferenceEntity documentReference = new DocumentReferenceEntity();
 
-	@Column(name = "LINE_STATUS_CODE")
-	public String getLineStatusCode() {
-		return lineStatusCode;
-	}
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
 
-	public void setLineStatusCode(String value) {
-		this.lineStatusCode = value;
-	}
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	@ManyToOne(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "DOCUMENTREFERENCE")
-	public DocumentReferenceEntity getDocumentReference() {
-		return documentReference;
-	}
+    /**
+     * @return the lineID
+     */
+    public String getLineID() {
+        return lineID;
+    }
 
-	public void setDocumentReference(DocumentReferenceEntity value) {
-		this.documentReference = value;
-	}
+    /**
+     * @param lineID
+     *            the lineID to set
+     */
+    public void setLineID(String lineID) {
+        this.lineID = lineID;
+    }
 
-	@Id
-	@Column(name = "ID_OFID")
-	@GeneratedValue(generator = "uuid2")
-	@GenericGenerator(name = "uuid2", strategy = "uuid2")
-	@Access(AccessType.PROPERTY)
-	public String getId() {
-		return id;
-	}
+    /**
+     * @return the uuid
+     */
+    public String getUuid() {
+        return uuid;
+    }
 
-	public void setId(String value) {
-		this.id = value;
-	}
+    /**
+     * @param uuid
+     *            the uuid to set
+     */
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    /**
+     * @return the lineStatusCode
+     */
+    public String getLineStatusCode() {
+        return lineStatusCode;
+    }
+
+    /**
+     * @param lineStatusCode
+     *            the lineStatusCode to set
+     */
+    public void setLineStatusCode(String lineStatusCode) {
+        this.lineStatusCode = lineStatusCode;
+    }
+
+    /**
+     * @return the documentReference
+     */
+    public DocumentReferenceEntity getDocumentReference() {
+        return documentReference;
+    }
+
+    /**
+     * @param documentReference
+     *            the documentReference to set
+     */
+    public void setDocumentReference(DocumentReferenceEntity documentReference) {
+        this.documentReference = documentReference;
+    }
 
 }

@@ -9,57 +9,74 @@ package org.openfact.models.jpa.entities.ubl.common;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "ItemPropertyGroupType")
-@Table(name = "ITEMPROPERTYGROUPTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "ITEMPROPERTYGROUP")
 public class ItemPropertyGroupEntity {
-
-    protected String ID;
-    protected String name;
-    protected String id;
-
-    @Column(name = "ID")
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String value) {
-        this.ID = value;
-    }
-
-    @Column(name = "NAME")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String value) {
-        this.name = value;
-    }
 
     @Id
     @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "ID")
+    protected String ID;
+
+    @Column(name = "NAME")
+    protected String name;
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name
+     *            the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

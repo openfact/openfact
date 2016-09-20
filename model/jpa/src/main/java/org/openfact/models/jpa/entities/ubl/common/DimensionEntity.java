@@ -29,7 +29,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "DIMENSION")
-@Inheritance(strategy = InheritanceType.JOINED)
 public class DimensionEntity {
 
     @Id

@@ -9,7 +9,6 @@ package org.openfact.models.jpa.entities.ubl.common;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,11 +17,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Lob;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.jvnet.hyperjaxb3.xml.bind.annotation.adapters.ElementAsString;
-import org.jvnet.hyperjaxb3.xml.bind.annotation.adapters.XmlAdapterUtils;
 import org.w3c.dom.Element;
 
 @Entity(name = "ExtensionContentType")
@@ -30,40 +26,45 @@ import org.w3c.dom.Element;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ExtensionContentEntity {
 
-    protected Element any;
-    protected String id;
-
-    @Transient
-    public Element getAny() {
-        return any;
-    }
-
-    public void setAny(Element value) {
-        this.any = value;
-    }
-
     @Id
     @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Lob
+    @Column(name = "ANYITEM")
+    protected Element any;
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
     }
 
-    @Basic
-    @Column(name = "ANYITEM")
-    @Lob
-    public String getAnyItem() {
-        return XmlAdapterUtils.unmarshall(ElementAsString.class, this.getAny());
+    /**
+     * @return the any
+     */
+    public Element getAny() {
+        return any;
     }
 
-    public void setAnyItem(String target) {
-        setAny(XmlAdapterUtils.marshall(ElementAsString.class, target));
+    /**
+     * @param any
+     *            the any to set
+     */
+    public void setAny(Element any) {
+        this.any = any;
     }
 
 }

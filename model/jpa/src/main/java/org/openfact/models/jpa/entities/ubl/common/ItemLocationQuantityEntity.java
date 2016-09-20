@@ -13,12 +13,12 @@ import java.util.List;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -26,133 +26,202 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "ItemLocationQuantityType")
-@Table(name = "ITEMLOCATIONQUANTITYTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "ITEMLOCATIONQUANTITY")
 public class ItemLocationQuantityEntity {
-
-    protected MeasureEntity leadTimeMeasure;
-    protected QuantityEntity minimumQuantity;
-    protected QuantityEntity maximumQuantity;
-    protected boolean hazardousRiskIndicator;
-    protected List<String> tradingRestrictions;
-    protected List<AddressEntity> applicableTerritoryAddress;
-    protected PriceEntity price;
-    protected List<DeliveryUnitEntity> deliveryUnit;
-    protected List<TaxCategoryEntity> applicableTaxCategory;
-    protected String id;
-
-    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LEADTIMEMEASURE_ITEMLOCATION_0")
-    public MeasureEntity getLeadTimeMeasure() {
-        return leadTimeMeasure;
-    }
-
-    public void setLeadTimeMeasure(MeasureEntity value) {
-        this.leadTimeMeasure = value;
-    }
-
-    @ManyToOne(targetEntity = QuantityEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "MINIMUMQUANTITY")
-    public QuantityEntity getMinimumQuantity() {
-        return minimumQuantity;
-    }
-
-    public void setMinimumQuantity(QuantityEntity value) {
-        this.minimumQuantity = value;
-    }
-
-    @ManyToOne(targetEntity = QuantityEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "MAXIMUMQUANTITY")
-    public QuantityEntity getMaximumQuantity() {
-        return maximumQuantity;
-    }
-
-    public void setMaximumQuantity(QuantityEntity value) {
-        this.maximumQuantity = value;
-    }
-
-    @Column(name = "HAZARDOUS_RISK_INDICATOR")
-    public boolean getHazardousRiskIndicator() {
-        return hazardousRiskIndicator;
-    }
-
-    public void setHazardousRiskIndicator(boolean value) {
-        this.hazardousRiskIndicator = value;
-    }
-
-    @Column(name = "TRADINGRESTRICTIONS")
-    public List<String> getTradingRestrictions() {
-        if (tradingRestrictions == null) {
-            tradingRestrictions = new ArrayList<String>();
-        }
-        return this.tradingRestrictions;
-    }
-
-    public void setTradingRestrictions(List<String> tradingRestrictions) {
-        this.tradingRestrictions = tradingRestrictions;
-    }
-
-    @OneToMany(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "APPLICABLETERRITORYADDRESS")
-    public List<AddressEntity> getApplicableTerritoryAddress() {
-        if (applicableTerritoryAddress == null) {
-            applicableTerritoryAddress = new ArrayList<AddressEntity>();
-        }
-        return this.applicableTerritoryAddress;
-    }
-
-    public void setApplicableTerritoryAddress(List<AddressEntity> applicableTerritoryAddress) {
-        this.applicableTerritoryAddress = applicableTerritoryAddress;
-    }
-
-    @ManyToOne(targetEntity = PriceEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PRICE_ITEMLOCATIONQUANTITYTY")
-    public PriceEntity getPrice() {
-        return price;
-    }
-
-    public void setPrice(PriceEntity value) {
-        this.price = value;
-    }
-
-    @OneToMany(targetEntity = DeliveryUnitEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DELIVERYUNIT_ITEMLOCATIONQUA")
-    public List<DeliveryUnitEntity> getDeliveryUnit() {
-        if (deliveryUnit == null) {
-            deliveryUnit = new ArrayList<DeliveryUnitEntity>();
-        }
-        return this.deliveryUnit;
-    }
-
-    public void setDeliveryUnit(List<DeliveryUnitEntity> deliveryUnit) {
-        this.deliveryUnit = deliveryUnit;
-    }
-
-    @OneToMany(targetEntity = TaxCategoryEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "APPLICABLETAXCATEGORY_ITEMLO_0")
-    public List<TaxCategoryEntity> getApplicableTaxCategory() {
-        if (applicableTaxCategory == null) {
-            applicableTaxCategory = new ArrayList<TaxCategoryEntity>();
-        }
-        return this.applicableTaxCategory;
-    }
-
-    public void setApplicableTaxCategory(List<TaxCategoryEntity> applicableTaxCategory) {
-        this.applicableTaxCategory = applicableTaxCategory;
-    }
 
     @Id
     @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "LEADTIMEMEASURE_ITEMLOCATIONQUANTITY")
+    protected MeasureEntity leadTimeMeasure;
+
+    @ManyToOne(targetEntity = QuantityEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "MINIMUMQUANTITY")
+    protected QuantityEntity minimumQuantity = new QuantityEntity();
+
+    @ManyToOne(targetEntity = QuantityEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "MAXIMUMQUANTITY")
+    protected QuantityEntity maximumQuantity = new QuantityEntity();
+
+    @Column(name = "HAZARDOUS_RISK_INDICATOR")
+    protected boolean hazardousRiskIndicator;
+
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "TRADINGRESTRICTIONS", joinColumns = {
+            @JoinColumn(name = "ITEMLOCATIONQUANTITY_ID") })
+    protected List<String> tradingRestrictions;
+
+    @OneToMany(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "APPLICABLETERRITORYADDRESS")
+    protected List<AddressEntity> applicableTerritoryAddress = new ArrayList<>();
+
+    @ManyToOne(targetEntity = PriceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "PRICE_ITEMLOCATIONQUANTITY")
+    protected PriceEntity price = new PriceEntity();
+
+    @OneToMany(targetEntity = DeliveryUnitEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "DELIVERYUNIT_ITEMLOCATIONQUANTITY")
+    protected List<DeliveryUnitEntity> deliveryUnit = new ArrayList<>();
+
+    @OneToMany(targetEntity = TaxCategoryEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "APPLICABLETAXCATEGORY_ITEMLOCATIONQUANTITY")
+    protected List<TaxCategoryEntity> applicableTaxCategory = new ArrayList<>();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the leadTimeMeasure
+     */
+    public MeasureEntity getLeadTimeMeasure() {
+        return leadTimeMeasure;
+    }
+
+    /**
+     * @param leadTimeMeasure
+     *            the leadTimeMeasure to set
+     */
+    public void setLeadTimeMeasure(MeasureEntity leadTimeMeasure) {
+        this.leadTimeMeasure = leadTimeMeasure;
+    }
+
+    /**
+     * @return the minimumQuantity
+     */
+    public QuantityEntity getMinimumQuantity() {
+        return minimumQuantity;
+    }
+
+    /**
+     * @param minimumQuantity
+     *            the minimumQuantity to set
+     */
+    public void setMinimumQuantity(QuantityEntity minimumQuantity) {
+        this.minimumQuantity = minimumQuantity;
+    }
+
+    /**
+     * @return the maximumQuantity
+     */
+    public QuantityEntity getMaximumQuantity() {
+        return maximumQuantity;
+    }
+
+    /**
+     * @param maximumQuantity
+     *            the maximumQuantity to set
+     */
+    public void setMaximumQuantity(QuantityEntity maximumQuantity) {
+        this.maximumQuantity = maximumQuantity;
+    }
+
+    /**
+     * @return the hazardousRiskIndicator
+     */
+    public boolean isHazardousRiskIndicator() {
+        return hazardousRiskIndicator;
+    }
+
+    /**
+     * @param hazardousRiskIndicator
+     *            the hazardousRiskIndicator to set
+     */
+    public void setHazardousRiskIndicator(boolean hazardousRiskIndicator) {
+        this.hazardousRiskIndicator = hazardousRiskIndicator;
+    }
+
+    /**
+     * @return the tradingRestrictions
+     */
+    public List<String> getTradingRestrictions() {
+        return tradingRestrictions;
+    }
+
+    /**
+     * @param tradingRestrictions
+     *            the tradingRestrictions to set
+     */
+    public void setTradingRestrictions(List<String> tradingRestrictions) {
+        this.tradingRestrictions = tradingRestrictions;
+    }
+
+    /**
+     * @return the applicableTerritoryAddress
+     */
+    public List<AddressEntity> getApplicableTerritoryAddress() {
+        return applicableTerritoryAddress;
+    }
+
+    /**
+     * @param applicableTerritoryAddress
+     *            the applicableTerritoryAddress to set
+     */
+    public void setApplicableTerritoryAddress(List<AddressEntity> applicableTerritoryAddress) {
+        this.applicableTerritoryAddress = applicableTerritoryAddress;
+    }
+
+    /**
+     * @return the price
+     */
+    public PriceEntity getPrice() {
+        return price;
+    }
+
+    /**
+     * @param price
+     *            the price to set
+     */
+    public void setPrice(PriceEntity price) {
+        this.price = price;
+    }
+
+    /**
+     * @return the deliveryUnit
+     */
+    public List<DeliveryUnitEntity> getDeliveryUnit() {
+        return deliveryUnit;
+    }
+
+    /**
+     * @param deliveryUnit
+     *            the deliveryUnit to set
+     */
+    public void setDeliveryUnit(List<DeliveryUnitEntity> deliveryUnit) {
+        this.deliveryUnit = deliveryUnit;
+    }
+
+    /**
+     * @return the applicableTaxCategory
+     */
+    public List<TaxCategoryEntity> getApplicableTaxCategory() {
+        return applicableTaxCategory;
+    }
+
+    /**
+     * @param applicableTaxCategory
+     *            the applicableTaxCategory to set
+     */
+    public void setApplicableTaxCategory(List<TaxCategoryEntity> applicableTaxCategory) {
+        this.applicableTaxCategory = applicableTaxCategory;
     }
 
 }

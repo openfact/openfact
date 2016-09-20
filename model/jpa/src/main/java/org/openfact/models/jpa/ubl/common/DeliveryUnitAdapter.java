@@ -2,8 +2,8 @@ package org.openfact.models.jpa.ubl.common;
 
 import javax.persistence.EntityManager;
 
-import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.DeliveryUnitEntity;
 import org.openfact.models.ubl.common.DeliveryUnitModel;
@@ -24,27 +24,27 @@ public class DeliveryUnitAdapter implements DeliveryUnitModel, JpaModel<Delivery
 
     @Override
     public QuantityModel getBatchQuantity() {
-        return this.deliveryUnit.getBatchQuantity();
+        return new QuantityAdapter(session, em, this.deliveryUnit.getBatchQuantity());
     }
 
     @Override
-    public void setBatchQuantity(QuantityAdapter value) {
-        this.deliveryUnit.setBatchQuantity(value);
+    public void setBatchQuantity(QuantityModel value) {
+        this.deliveryUnit.setBatchQuantity(QuantityAdapter.toEntity(value, em));
     }
 
     @Override
     public QuantityModel getConsumerUnitQuantity() {
-        return this.deliveryUnit.getConsumerUnitQuantity();
+        return new QuantityAdapter(session, em, this.deliveryUnit.getConsumerUnitQuantity());
     }
 
     @Override
-    public void setConsumerUnitQuantity(QuantityAdapter value) {
-        this.deliveryUnit.setConsumerUnitQuantity(value);
+    public void setConsumerUnitQuantity(QuantityModel value) {
+        this.deliveryUnit.setConsumerUnitQuantity(QuantityAdapter.toEntity(value, em));
     }
 
     @Override
     public boolean getHazardousRiskIndicator() {
-        return this.deliveryUnit.getHazardousRiskIndicator();
+        return this.deliveryUnit.isHazardousRiskIndicator();
     }
 
     @Override
@@ -62,9 +62,16 @@ public class DeliveryUnitAdapter implements DeliveryUnitModel, JpaModel<Delivery
         this.deliveryUnit.setId(value);
     }
 
-	public static DeliveryUnitEntity toEntity(DeliveryUnitModel f, EntityManager em) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public static DeliveryUnitEntity toEntity(DeliveryUnitModel model, EntityManager em) {
+        if (model instanceof DeliveryUnitAdapter) {
+            return ((DeliveryUnitAdapter) model).getEntity();
+        }
+        return em.getReference(DeliveryUnitEntity.class, model.getId());
+    }
+
+    @Override
+    public DeliveryUnitEntity getEntity() {
+        return this.deliveryUnit;
+    }
 
 }

@@ -5,8 +5,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.DocumentReferenceEntity;
 import org.openfact.models.ubl.common.AttachmentModel;
@@ -120,6 +120,13 @@ public class DocumentReferenceAdapter implements DocumentReferenceModel, JpaMode
     @Override
     public DocumentReferenceEntity getEntity() {
         return this.documentReference;
+    }
+
+    public static DocumentReferenceEntity toEntity(DocumentReferenceModel model, EntityManager em) {
+        if (model instanceof DocumentReferenceAdapter) {
+            return ((DocumentReferenceAdapter) model).getEntity();
+        }
+        return em.getReference(DocumentReferenceEntity.class, model.getId());
     }
 
 }

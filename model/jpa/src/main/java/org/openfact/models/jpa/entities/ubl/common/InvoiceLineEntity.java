@@ -28,296 +28,459 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "InvoiceLineType")
-@Table(name = "INVOICELINETYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "INVOICELINE")
 public class InvoiceLineEntity {
 
-	protected String ID;
-	protected String uuid;
-	protected String note;
-	protected QuantityEntity invoicedQuantity;
-	protected BigDecimal lineExtensionAmount;
-	protected LocalDate taxPointDate;
-	protected String accountingCostCode;
-	protected String accountingCost;
-	protected boolean freeOfChargeIndicator;
-	protected List<OrderLineReferenceEntity> orderLineReference;
-	protected List<LineReferenceEntity> despatchLineReference;
-	protected List<LineReferenceEntity> receiptLineReference;
-	protected List<BillingReferenceEntity> billingReference;
-	protected List<DocumentReferenceEntity> documentReference;
-	protected PricingReferenceEntity pricingReference;
-	protected PartyEntity originatorParty;
-	protected List<DeliveryEntity> delivery;
-	protected List<PaymentTermsEntity> paymentTerms;
-	protected List<AllowanceChargeEntity> allowanceCharge;
-	protected List<TaxTotalEntity> taxTotal;
-	protected ItemEntity item;
-	protected PriceEntity price;
-	protected DeliveryTermsEntity deliveryTerms;
-	protected String id;
+    @Id
+    @Column(name = "ID_OFID")
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Access(AccessType.PROPERTY)
+    protected String id;
 
-	@Column(name = "ID")
-	public String getID() {
-		return ID;
-	}
+    @Column(name = "ID")
+    protected String ID;
 
-	public void setID(String value) {
-		this.ID = value;
-	}
+    @Column(name = "UUID")
+    protected String uuid;
 
-	@Column(name = "UUID_INVOICELINETYPE_OFID")
-	public String getUUID() {
-		return uuid;
-	}
+    @Column(name = "NOTE")
+    protected String note;
 
-	public void setUUID(String value) {
-		this.uuid = value;
-	}
+    @ManyToOne(targetEntity = QuantityEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "INVOICEDQUANTITY_INVOICELINE")
+    protected QuantityEntity invoicedQuantity = new QuantityEntity();
 
-	@Column(name = "NOTE")
-	public String getNote() {
-		return note;
-	}
+    @Column(name = "LINE_EXTENSION_AMOUNT")
+    protected BigDecimal lineExtensionAmount;
 
-	public void setNote(String value) {
-		this.note = value;
-	}
+    @Column(name = "TAX_POINT_DATE")
+    protected LocalDate taxPointDate;
 
-	@ManyToOne(targetEntity = QuantityEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "INVOICEDQUANTITY_INVOICELINE_0")
-	public QuantityEntity getInvoicedQuantity() {
-		return invoicedQuantity;
-	}
+    @Column(name = "ACCOUNTING_COST_CODE")
+    protected String accountingCostCode;
 
-	public void setInvoicedQuantity(QuantityEntity value) {
-		this.invoicedQuantity = value;
-	}
+    @Column(name = "ACCOUNTING_COST")
+    protected String accountingCost;
 
-	@Column(name = "LINE_EXTENSION_AMOUNT")
-	public BigDecimal getLineExtensionAmount() {
-		return lineExtensionAmount;
-	}
+    @Column(name = "FREE_OF_CHARGE_INDICATOR")
+    protected boolean freeOfChargeIndicator;
 
-	public void setLineExtensionAmount(BigDecimal value) {
-		this.lineExtensionAmount = value;
-	}
+    @OneToMany(targetEntity = OrderLineReferenceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ORDERLINEREFERENCE")
+    protected List<OrderLineReferenceEntity> orderLineReference = new ArrayList<>();
 
-	@Column(name = "TAX_POINT_DATE")
-	public LocalDate getTaxPointDate() {
-		return taxPointDate;
-	}
+    @OneToMany(targetEntity = LineReferenceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "DESPATCHLINEREFERENCE")
+    protected List<LineReferenceEntity> despatchLineReference = new ArrayList<>();
 
-	public void setTaxPointDate(LocalDate value) {
-		this.taxPointDate = value;
-	}
+    @OneToMany(targetEntity = LineReferenceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "RECEIPTLINEREFERENCE")
+    protected List<LineReferenceEntity> receiptLineReference = new ArrayList<>();
 
-	@Column(name = "ACCOUNTING_COST_CODE")
-	public String getAccountingCostCode() {
-		return accountingCostCode;
-	}
+    @OneToMany(targetEntity = BillingReferenceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "BILLINGREFERENCE")
+    protected List<BillingReferenceEntity> billingReference = new ArrayList<>();
 
-	public void setAccountingCostCode(String value) {
-		this.accountingCostCode = value;
-	}
+    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "DOCUMENTREFERENCE")
+    protected List<DocumentReferenceEntity> documentReference = new ArrayList<>();
 
-	@Column(name = "ACCOUNTING_COST")
-	public String getAccountingCost() {
-		return accountingCost;
-	}
+    @ManyToOne(targetEntity = PricingReferenceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "PRICINGREFERENCE")
+    protected PricingReferenceEntity pricingReference = new PricingReferenceEntity();
 
-	public void setAccountingCost(String value) {
-		this.accountingCost = value;
-	}
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ORIGINATORPARTY")
+    protected PartyEntity originatorParty = new PartyEntity();
 
-	@Column(name = "FREE_OF_CHARGE_INDICATOR_")
-	public boolean getFreeOfChargeIndicator() {
-		return freeOfChargeIndicator;
-	}
+    @OneToMany(targetEntity = DeliveryEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "DELIVERY")
+    protected List<DeliveryEntity> delivery = new ArrayList<>();
 
-	public void setFreeOfChargeIndicator(boolean value) {
-		this.freeOfChargeIndicator = value;
-	}
+    @OneToMany(targetEntity = PaymentTermsEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "PAYMENTTERMS")
+    protected List<PaymentTermsEntity> paymentTerms = new ArrayList<>();
 
-	@OneToMany(targetEntity = OrderLineReferenceEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "ORDERLINEREFERENCE")
-	public List<OrderLineReferenceEntity> getOrderLineReference() {
-		if (orderLineReference == null) {
-			orderLineReference = new ArrayList<OrderLineReferenceEntity>();
-		}
-		return this.orderLineReference;
-	}
+    @OneToMany(targetEntity = AllowanceChargeEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ALLOWANCECHARGE")
+    protected List<AllowanceChargeEntity> allowanceCharge = new ArrayList<>();
 
-	public void setOrderLineReference(List<OrderLineReferenceEntity> orderLineReference) {
-		this.orderLineReference = orderLineReference;
-	}
+    @OneToMany(targetEntity = TaxTotalEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "TAXTOTAL")
+    protected List<TaxTotalEntity> taxTotal = new ArrayList<>();
 
-	@OneToMany(targetEntity = LineReferenceEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "DESPATCHLINEREFERENCE")
-	public List<LineReferenceEntity> getDespatchLineReference() {
-		if (despatchLineReference == null) {
-			despatchLineReference = new ArrayList<LineReferenceEntity>();
-		}
-		return this.despatchLineReference;
-	}
+    @ManyToOne(targetEntity = ItemEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ITEM")
+    protected ItemEntity item = new ItemEntity();
 
-	public void setDespatchLineReference(List<LineReferenceEntity> despatchLineReference) {
-		this.despatchLineReference = despatchLineReference;
-	}
+    @ManyToOne(targetEntity = PriceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "PRICE")
+    protected PriceEntity price = new PriceEntity();
 
-	@OneToMany(targetEntity = LineReferenceEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "RECEIPTLINEREFERENCE")
-	public List<LineReferenceEntity> getReceiptLineReference() {
-		if (receiptLineReference == null) {
-			receiptLineReference = new ArrayList<LineReferenceEntity>();
-		}
-		return this.receiptLineReference;
-	}
+    @ManyToOne(targetEntity = DeliveryTermsEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "DELIVERYTERMS")
+    protected DeliveryTermsEntity deliveryTerms = new DeliveryTermsEntity();
 
-	public void setReceiptLineReference(List<LineReferenceEntity> receiptLineReference) {
-		this.receiptLineReference = receiptLineReference;
-	}
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
 
-	@OneToMany(targetEntity = BillingReferenceEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "BILLINGREFERENCE")
-	public List<BillingReferenceEntity> getBillingReference() {
-		if (billingReference == null) {
-			billingReference = new ArrayList<BillingReferenceEntity>();
-		}
-		return this.billingReference;
-	}
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setBillingReference(List<BillingReferenceEntity> billingReference) {
-		this.billingReference = billingReference;
-	}
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
 
-	@OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "DOCUMENTREFERENCE")
-	public List<DocumentReferenceEntity> getDocumentReference() {
-		if (documentReference == null) {
-			documentReference = new ArrayList<DocumentReferenceEntity>();
-		}
-		return this.documentReference;
-	}
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
 
-	public void setDocumentReference(List<DocumentReferenceEntity> documentReference) {
-		this.documentReference = documentReference;
-	}
+    /**
+     * @return the uuid
+     */
+    public String getUuid() {
+        return uuid;
+    }
 
-	@ManyToOne(targetEntity = PricingReferenceEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "PRICINGREFERENCE")
-	public PricingReferenceEntity getPricingReference() {
-		return pricingReference;
-	}
+    /**
+     * @param uuid
+     *            the uuid to set
+     */
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
-	public void setPricingReference(PricingReferenceEntity value) {
-		this.pricingReference = value;
-	}
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
 
-	@ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "ORIGINATORPARTY")
-	public PartyEntity getOriginatorParty() {
-		return originatorParty;
-	}
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
+    }
 
-	public void setOriginatorParty(PartyEntity value) {
-		this.originatorParty = value;
-	}
+    /**
+     * @return the invoicedQuantity
+     */
+    public QuantityEntity getInvoicedQuantity() {
+        return invoicedQuantity;
+    }
 
-	@OneToMany(targetEntity = DeliveryEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "DELIVERY")
-	public List<DeliveryEntity> getDelivery() {
-		if (delivery == null) {
-			delivery = new ArrayList<DeliveryEntity>();
-		}
-		return this.delivery;
-	}
+    /**
+     * @param invoicedQuantity
+     *            the invoicedQuantity to set
+     */
+    public void setInvoicedQuantity(QuantityEntity invoicedQuantity) {
+        this.invoicedQuantity = invoicedQuantity;
+    }
 
-	public void setDelivery(List<DeliveryEntity> delivery) {
-		this.delivery = delivery;
-	}
+    /**
+     * @return the lineExtensionAmount
+     */
+    public BigDecimal getLineExtensionAmount() {
+        return lineExtensionAmount;
+    }
 
-	@OneToMany(targetEntity = PaymentTermsEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "PAYMENTTERMS")
-	public List<PaymentTermsEntity> getPaymentTerms() {
-		if (paymentTerms == null) {
-			paymentTerms = new ArrayList<PaymentTermsEntity>();
-		}
-		return this.paymentTerms;
-	}
+    /**
+     * @param lineExtensionAmount
+     *            the lineExtensionAmount to set
+     */
+    public void setLineExtensionAmount(BigDecimal lineExtensionAmount) {
+        this.lineExtensionAmount = lineExtensionAmount;
+    }
 
-	public void setPaymentTerms(List<PaymentTermsEntity> paymentTerms) {
-		this.paymentTerms = paymentTerms;
-	}
+    /**
+     * @return the taxPointDate
+     */
+    public LocalDate getTaxPointDate() {
+        return taxPointDate;
+    }
 
-	@OneToMany(targetEntity = AllowanceChargeEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "ALLOWANCECHARGE")
-	public List<AllowanceChargeEntity> getAllowanceCharge() {
-		if (allowanceCharge == null) {
-			allowanceCharge = new ArrayList<AllowanceChargeEntity>();
-		}
-		return this.allowanceCharge;
-	}
+    /**
+     * @param taxPointDate
+     *            the taxPointDate to set
+     */
+    public void setTaxPointDate(LocalDate taxPointDate) {
+        this.taxPointDate = taxPointDate;
+    }
 
-	public void setAllowanceCharge(List<AllowanceChargeEntity> allowanceCharge) {
-		this.allowanceCharge = allowanceCharge;
-	}
+    /**
+     * @return the accountingCostCode
+     */
+    public String getAccountingCostCode() {
+        return accountingCostCode;
+    }
 
-	@OneToMany(targetEntity = TaxTotalEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "TAXTOTAL")
-	public List<TaxTotalEntity> getTaxTotal() {
-		if (taxTotal == null) {
-			taxTotal = new ArrayList<TaxTotalEntity>();
-		}
-		return this.taxTotal;
-	}
+    /**
+     * @param accountingCostCode
+     *            the accountingCostCode to set
+     */
+    public void setAccountingCostCode(String accountingCostCode) {
+        this.accountingCostCode = accountingCostCode;
+    }
 
-	public void setTaxTotal(List<TaxTotalEntity> taxTotal) {
-		this.taxTotal = taxTotal;
-	}
+    /**
+     * @return the accountingCost
+     */
+    public String getAccountingCost() {
+        return accountingCost;
+    }
 
-	@ManyToOne(targetEntity = ItemEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "ITEM")
-	public ItemEntity getItem() {
-		return item;
-	}
+    /**
+     * @param accountingCost
+     *            the accountingCost to set
+     */
+    public void setAccountingCost(String accountingCost) {
+        this.accountingCost = accountingCost;
+    }
 
-	public void setItem(ItemEntity value) {
-		this.item = value;
-	}
+    /**
+     * @return the freeOfChargeIndicator
+     */
+    public boolean isFreeOfChargeIndicator() {
+        return freeOfChargeIndicator;
+    }
 
-	@ManyToOne(targetEntity = PriceEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "PRICE")
-	public PriceEntity getPrice() {
-		return price;
-	}
+    /**
+     * @param freeOfChargeIndicator
+     *            the freeOfChargeIndicator to set
+     */
+    public void setFreeOfChargeIndicator(boolean freeOfChargeIndicator) {
+        this.freeOfChargeIndicator = freeOfChargeIndicator;
+    }
 
-	public void setPrice(PriceEntity value) {
-		this.price = value;
-	}
+    /**
+     * @return the orderLineReference
+     */
+    public List<OrderLineReferenceEntity> getOrderLineReference() {
+        return orderLineReference;
+    }
 
-	@ManyToOne(targetEntity = DeliveryTermsEntity.class, cascade = { CascadeType.ALL })
-	@JoinColumn(name = "DELIVERYTERMS")
-	public DeliveryTermsEntity getDeliveryTerms() {
-		return deliveryTerms;
-	}
+    /**
+     * @param orderLineReference
+     *            the orderLineReference to set
+     */
+    public void setOrderLineReference(List<OrderLineReferenceEntity> orderLineReference) {
+        this.orderLineReference = orderLineReference;
+    }
 
-	public void setDeliveryTerms(DeliveryTermsEntity value) {
-		this.deliveryTerms = value;
-	}
+    /**
+     * @return the despatchLineReference
+     */
+    public List<LineReferenceEntity> getDespatchLineReference() {
+        return despatchLineReference;
+    }
 
-	@Id
-	@Column(name = "ID_OFID")
-	@GeneratedValue(generator = "uuid2")
-	@GenericGenerator(name = "uuid2", strategy = "uuid2")
-	@Access(AccessType.PROPERTY)
-	public String getId() {
-		return id;
-	}
+    /**
+     * @param despatchLineReference
+     *            the despatchLineReference to set
+     */
+    public void setDespatchLineReference(List<LineReferenceEntity> despatchLineReference) {
+        this.despatchLineReference = despatchLineReference;
+    }
 
-	public void setId(String value) {
-		this.id = value;
-	}
+    /**
+     * @return the receiptLineReference
+     */
+    public List<LineReferenceEntity> getReceiptLineReference() {
+        return receiptLineReference;
+    }
+
+    /**
+     * @param receiptLineReference
+     *            the receiptLineReference to set
+     */
+    public void setReceiptLineReference(List<LineReferenceEntity> receiptLineReference) {
+        this.receiptLineReference = receiptLineReference;
+    }
+
+    /**
+     * @return the billingReference
+     */
+    public List<BillingReferenceEntity> getBillingReference() {
+        return billingReference;
+    }
+
+    /**
+     * @param billingReference
+     *            the billingReference to set
+     */
+    public void setBillingReference(List<BillingReferenceEntity> billingReference) {
+        this.billingReference = billingReference;
+    }
+
+    /**
+     * @return the documentReference
+     */
+    public List<DocumentReferenceEntity> getDocumentReference() {
+        return documentReference;
+    }
+
+    /**
+     * @param documentReference
+     *            the documentReference to set
+     */
+    public void setDocumentReference(List<DocumentReferenceEntity> documentReference) {
+        this.documentReference = documentReference;
+    }
+
+    /**
+     * @return the pricingReference
+     */
+    public PricingReferenceEntity getPricingReference() {
+        return pricingReference;
+    }
+
+    /**
+     * @param pricingReference
+     *            the pricingReference to set
+     */
+    public void setPricingReference(PricingReferenceEntity pricingReference) {
+        this.pricingReference = pricingReference;
+    }
+
+    /**
+     * @return the originatorParty
+     */
+    public PartyEntity getOriginatorParty() {
+        return originatorParty;
+    }
+
+    /**
+     * @param originatorParty
+     *            the originatorParty to set
+     */
+    public void setOriginatorParty(PartyEntity originatorParty) {
+        this.originatorParty = originatorParty;
+    }
+
+    /**
+     * @return the delivery
+     */
+    public List<DeliveryEntity> getDelivery() {
+        return delivery;
+    }
+
+    /**
+     * @param delivery
+     *            the delivery to set
+     */
+    public void setDelivery(List<DeliveryEntity> delivery) {
+        this.delivery = delivery;
+    }
+
+    /**
+     * @return the paymentTerms
+     */
+    public List<PaymentTermsEntity> getPaymentTerms() {
+        return paymentTerms;
+    }
+
+    /**
+     * @param paymentTerms
+     *            the paymentTerms to set
+     */
+    public void setPaymentTerms(List<PaymentTermsEntity> paymentTerms) {
+        this.paymentTerms = paymentTerms;
+    }
+
+    /**
+     * @return the allowanceCharge
+     */
+    public List<AllowanceChargeEntity> getAllowanceCharge() {
+        return allowanceCharge;
+    }
+
+    /**
+     * @param allowanceCharge
+     *            the allowanceCharge to set
+     */
+    public void setAllowanceCharge(List<AllowanceChargeEntity> allowanceCharge) {
+        this.allowanceCharge = allowanceCharge;
+    }
+
+    /**
+     * @return the taxTotal
+     */
+    public List<TaxTotalEntity> getTaxTotal() {
+        return taxTotal;
+    }
+
+    /**
+     * @param taxTotal
+     *            the taxTotal to set
+     */
+    public void setTaxTotal(List<TaxTotalEntity> taxTotal) {
+        this.taxTotal = taxTotal;
+    }
+
+    /**
+     * @return the item
+     */
+    public ItemEntity getItem() {
+        return item;
+    }
+
+    /**
+     * @param item
+     *            the item to set
+     */
+    public void setItem(ItemEntity item) {
+        this.item = item;
+    }
+
+    /**
+     * @return the price
+     */
+    public PriceEntity getPrice() {
+        return price;
+    }
+
+    /**
+     * @param price
+     *            the price to set
+     */
+    public void setPrice(PriceEntity price) {
+        this.price = price;
+    }
+
+    /**
+     * @return the deliveryTerms
+     */
+    public DeliveryTermsEntity getDeliveryTerms() {
+        return deliveryTerms;
+    }
+
+    /**
+     * @param deliveryTerms
+     *            the deliveryTerms to set
+     */
+    public void setDeliveryTerms(DeliveryTermsEntity deliveryTerms) {
+        this.deliveryTerms = deliveryTerms;
+    }
 
 }

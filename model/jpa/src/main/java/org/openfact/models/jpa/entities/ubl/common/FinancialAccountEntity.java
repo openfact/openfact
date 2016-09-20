@@ -13,7 +13,9 @@ import java.util.List;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -30,94 +32,157 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "FINANCIALACCOUNT")
 public class FinancialAccountEntity {
 
-    protected String ID;
-    protected String name;
-    protected String accountTypeCode;
-    protected String currencyCode;
-    protected List<String> paymentNote;
-    protected BranchEntity financialInstitutionBranch;
-    protected CountryEntity country;
-    protected String id;
-
-    @Column(name = "ID")
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String value) {
-        this.ID = value;
-    }
-
-    @Column(name = "NAME")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String value) {
-        this.name = value;
-    }
-
-    @Column(name = "ACCOUNT_TYPE_CODE")
-    public String getAccountTypeCode() {
-        return accountTypeCode;
-    }
-
-    public void setAccountTypeCode(String value) {
-        this.accountTypeCode = value;
-    }
-
-    @Column(name = "CURRENCY_CODE")
-    public String getCurrencyCode() {
-        return currencyCode;
-    }
-
-    public void setCurrencyCode(String value) {
-        this.currencyCode = value;
-    }
-
-    @Column(name = "PAYMENT_NOTE")
-    public List<String> getPaymentNote() {
-        if (paymentNote == null) {
-            paymentNote = new ArrayList<String>();
-        }
-        return this.paymentNote;
-    }
-
-    public void setPaymentNote(List<String> paymentNote) {
-        this.paymentNote = paymentNote;
-    }
-
-    @ManyToOne(targetEntity = BranchEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "FINANCIALINSTITUTIONBRANCH")
-    public BranchEntity getFinancialInstitutionBranch() {
-        return financialInstitutionBranch;
-    }
-
-    public void setFinancialInstitutionBranch(BranchEntity value) {
-        this.financialInstitutionBranch = value;
-    }
-
-    @ManyToOne(targetEntity = CountryEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "COUNTRY")
-    public CountryEntity getCountry() {
-        return country;
-    }
-
-    public void setCountry(CountryEntity value) {
-        this.country = value;
-    }
-
     @Id
     @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "ID")
+    protected String ID;
+
+    @Column(name = "NAME")
+    protected String name;
+
+    @Column(name = "ACCOUNT_TYPE_CODE")
+    protected String accountTypeCode;
+
+    @Column(name = "CURRENCY_CODE")
+    protected String currencyCode;
+
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "FINANCIALACCOUNT_PAYMENTNOTE", joinColumns = {
+            @JoinColumn(name = "FINANCIALACCOUNT_ID") })
+    protected List<String> paymentNote = new ArrayList<>();
+
+    @ManyToOne(targetEntity = BranchEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "FINANCIALINSTITUTIONBRANCH")
+    protected BranchEntity financialInstitutionBranch = new BranchEntity();
+
+    @ManyToOne(targetEntity = CountryEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "COUNTRY")
+    protected CountryEntity country = new CountryEntity();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name
+     *            the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the accountTypeCode
+     */
+    public String getAccountTypeCode() {
+        return accountTypeCode;
+    }
+
+    /**
+     * @param accountTypeCode
+     *            the accountTypeCode to set
+     */
+    public void setAccountTypeCode(String accountTypeCode) {
+        this.accountTypeCode = accountTypeCode;
+    }
+
+    /**
+     * @return the currencyCode
+     */
+    public String getCurrencyCode() {
+        return currencyCode;
+    }
+
+    /**
+     * @param currencyCode
+     *            the currencyCode to set
+     */
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
+    }
+
+    /**
+     * @return the paymentNote
+     */
+    public List<String> getPaymentNote() {
+        return paymentNote;
+    }
+
+    /**
+     * @param paymentNote
+     *            the paymentNote to set
+     */
+    public void setPaymentNote(List<String> paymentNote) {
+        this.paymentNote = paymentNote;
+    }
+
+    /**
+     * @return the financialInstitutionBranch
+     */
+    public BranchEntity getFinancialInstitutionBranch() {
+        return financialInstitutionBranch;
+    }
+
+    /**
+     * @param financialInstitutionBranch
+     *            the financialInstitutionBranch to set
+     */
+    public void setFinancialInstitutionBranch(BranchEntity financialInstitutionBranch) {
+        this.financialInstitutionBranch = financialInstitutionBranch;
+    }
+
+    /**
+     * @return the country
+     */
+    public CountryEntity getCountry() {
+        return country;
+    }
+
+    /**
+     * @param country
+     *            the country to set
+     */
+    public void setCountry(CountryEntity country) {
+        this.country = country;
     }
 
 }

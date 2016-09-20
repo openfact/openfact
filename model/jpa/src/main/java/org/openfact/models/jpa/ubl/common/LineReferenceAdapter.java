@@ -2,16 +2,12 @@ package org.openfact.models.jpa.ubl.common;
 
 import javax.persistence.EntityManager;
 
-import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
-import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.LineReferenceEntity;
-import org.openfact.models.jpa.entities.ubl.common.ResponseEntity;
-import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.DocumentReferenceModel;
 import org.openfact.models.ubl.common.LineReferenceModel;
-import org.openfact.models.ubl.common.ResponseModel;
 
 public class LineReferenceAdapter implements LineReferenceModel, JpaModel<LineReferenceEntity> {
 
@@ -39,12 +35,12 @@ public class LineReferenceAdapter implements LineReferenceModel, JpaModel<LineRe
 
     @Override
     public String getUUID() {
-        return this.lineReference.getUUID();
+        return this.lineReference.getUuid();
     }
 
     @Override
     public void setUUID(String value) {
-        this.lineReference.setUUID(value);
+        this.lineReference.setUuid(value);
     }
 
     @Override
@@ -59,12 +55,12 @@ public class LineReferenceAdapter implements LineReferenceModel, JpaModel<LineRe
 
     @Override
     public DocumentReferenceModel getDocumentReference() {
-        return this.lineReference.getDocumentReference();
+        return new DocumentReferenceAdapter(session, em, this.lineReference.getDocumentReference());
     }
 
     @Override
-    public void setDocumentReference(DocumentReferenceAdapter value) {
-        this.lineReference.setDocumentReference(value);
+    public void setDocumentReference(DocumentReferenceModel value) {
+        this.lineReference.setDocumentReference(DocumentReferenceAdapter.toEntity(value, em));
     }
 
     @Override
@@ -77,10 +73,10 @@ public class LineReferenceAdapter implements LineReferenceModel, JpaModel<LineRe
         this.lineReference.setId(value);
     }
 
-	@Override
-	public LineReferenceEntity getEntity() {
-		return lineReference;
-	}
+    @Override
+    public LineReferenceEntity getEntity() {
+        return lineReference;
+    }
 
     public static LineReferenceEntity toEntity(LineReferenceModel model, EntityManager em) {
         if (model instanceof LineReferenceAdapter) {

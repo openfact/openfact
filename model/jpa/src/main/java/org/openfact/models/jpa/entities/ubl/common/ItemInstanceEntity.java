@@ -28,99 +28,158 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "ItemInstanceType")
-@Table(name = "ITEMINSTANCETYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "ITEMINSTANCE")
 public class ItemInstanceEntity {
-
-    protected String productTraceID;
-    protected LocalDate manufactureDate;
-    protected LocalTime manufactureTime;
-    protected String registrationID;
-    protected String serialID;
-    protected List<ItemPropertyEntity> additionalItemProperty;
-    protected LotIdentificationEntity lotIdentification;
-    protected String id;
-
-    @Column(name = "PRODUCT_TRACE_ID")
-    public String getProductTraceID() {
-        return productTraceID;
-    }
-
-    public void setProductTraceID(String value) {
-        this.productTraceID = value;
-    }
-
-    @Column(name = "MANUFACTURE_DATE")
-    public LocalDate getManufactureDate() {
-        return manufactureDate;
-    }
-
-    public void setManufactureDate(LocalDate value) {
-        this.manufactureDate = value;
-    }
-
-    @Column(name = "MANUFACTURE_TIME")
-    public LocalTime getManufactureTime() {
-        return manufactureTime;
-    }
-
-    public void setManufactureTime(LocalTime value) {
-        this.manufactureTime = value;
-    }
-
-    @Column(name = "REGISTRATIONID_ITEMINSTANCET_0")
-    public String getRegistrationID() {
-        return registrationID;
-    }
-
-    public void setRegistrationID(String value) {
-        this.registrationID = value;
-    }
-
-    @Column(name = "SERIAL_ID")
-    public String getSerialID() {
-        return serialID;
-    }
-
-    public void setSerialID(String value) {
-        this.serialID = value;
-    }
-
-    @OneToMany(targetEntity = ItemPropertyEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ADDITIONALITEMPROPERTY")
-    public List<ItemPropertyEntity> getAdditionalItemProperty() {
-        if (additionalItemProperty == null) {
-            additionalItemProperty = new ArrayList<ItemPropertyEntity>();
-        }
-        return this.additionalItemProperty;
-    }
-
-    public void setAdditionalItemProperty(List<ItemPropertyEntity> additionalItemProperty) {
-        this.additionalItemProperty = additionalItemProperty;
-    }
-
-    @ManyToOne(targetEntity = LotIdentificationEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LOTIDENTIFICATION")
-    public LotIdentificationEntity getLotIdentification() {
-        return lotIdentification;
-    }
-
-    public void setLotIdentification(LotIdentificationEntity value) {
-        this.lotIdentification = value;
-    }
 
     @Id
     @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "PRODUCT_TRACE_ID")
+    protected String productTraceID;
+
+    @Column(name = "MANUFACTURE_DATE")
+    protected LocalDate manufactureDate;
+
+    @Column(name = "MANUFACTURE_TIME")
+    protected LocalTime manufactureTime;
+
+    @Column(name = "REGISTRATIONID_ITEMINSTANCE")
+    protected String registrationID;
+
+    @Column(name = "SERIAL_ID")
+    protected String serialID;
+
+    @OneToMany(targetEntity = ItemPropertyEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ADDITIONALITEMPROPERTY")
+    protected List<ItemPropertyEntity> additionalItemProperty = new ArrayList<>();
+
+    @ManyToOne(targetEntity = LotIdentificationEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "LOTIDENTIFICATION")
+    protected LotIdentificationEntity lotIdentification = new LotIdentificationEntity();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the productTraceID
+     */
+    public String getProductTraceID() {
+        return productTraceID;
+    }
+
+    /**
+     * @param productTraceID
+     *            the productTraceID to set
+     */
+    public void setProductTraceID(String productTraceID) {
+        this.productTraceID = productTraceID;
+    }
+
+    /**
+     * @return the manufactureDate
+     */
+    public LocalDate getManufactureDate() {
+        return manufactureDate;
+    }
+
+    /**
+     * @param manufactureDate
+     *            the manufactureDate to set
+     */
+    public void setManufactureDate(LocalDate manufactureDate) {
+        this.manufactureDate = manufactureDate;
+    }
+
+    /**
+     * @return the manufactureTime
+     */
+    public LocalTime getManufactureTime() {
+        return manufactureTime;
+    }
+
+    /**
+     * @param manufactureTime
+     *            the manufactureTime to set
+     */
+    public void setManufactureTime(LocalTime manufactureTime) {
+        this.manufactureTime = manufactureTime;
+    }
+
+    /**
+     * @return the registrationID
+     */
+    public String getRegistrationID() {
+        return registrationID;
+    }
+
+    /**
+     * @param registrationID
+     *            the registrationID to set
+     */
+    public void setRegistrationID(String registrationID) {
+        this.registrationID = registrationID;
+    }
+
+    /**
+     * @return the serialID
+     */
+    public String getSerialID() {
+        return serialID;
+    }
+
+    /**
+     * @param serialID
+     *            the serialID to set
+     */
+    public void setSerialID(String serialID) {
+        this.serialID = serialID;
+    }
+
+    /**
+     * @return the additionalItemProperty
+     */
+    public List<ItemPropertyEntity> getAdditionalItemProperty() {
+        return additionalItemProperty;
+    }
+
+    /**
+     * @param additionalItemProperty
+     *            the additionalItemProperty to set
+     */
+    public void setAdditionalItemProperty(List<ItemPropertyEntity> additionalItemProperty) {
+        this.additionalItemProperty = additionalItemProperty;
+    }
+
+    /**
+     * @return the lotIdentification
+     */
+    public LotIdentificationEntity getLotIdentification() {
+        return lotIdentification;
+    }
+
+    /**
+     * @param lotIdentification
+     *            the lotIdentification to set
+     */
+    public void setLotIdentification(LotIdentificationEntity lotIdentification) {
+        this.lotIdentification = lotIdentification;
     }
 
 }
