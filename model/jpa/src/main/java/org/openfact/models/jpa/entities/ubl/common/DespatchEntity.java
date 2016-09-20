@@ -7,6 +7,9 @@
 
 package org.openfact.models.jpa.entities.ubl.common;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
@@ -14,142 +17,219 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity(name = "DespatchType")
-@Table(name = "DESPATCHTYPE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Table(name = "DESPATCH")
 public class DespatchEntity {
-
-    protected IDType ID;
-    protected RequestedDespatchDateType requestedDespatchDate;
-    protected RequestedDespatchTimeType requestedDespatchTime;
-    protected EstimatedDespatchDateType estimatedDespatchDate;
-    protected EstimatedDespatchTimeType estimatedDespatchTime;
-    protected ActualDespatchDateType actualDespatchDate;
-    protected ActualDespatchTimeType actualDespatchTime;
-    protected AddressEntity despatchAddress;
-    protected PartyEntity despatchParty;
-    protected ContactEntity contact;
-    protected String id;
-
-    @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ID_DESPATCHTYPE_OFID")
-    public IDType getID() {
-        return ID;
-    }
-
-    public void setID(IDType value) {
-        this.ID = value;
-    }
-
-    @ManyToOne(targetEntity = RequestedDespatchDateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "REQUESTEDDESPATCHDATE_DESPAT_0")
-    public RequestedDespatchDateType getRequestedDespatchDate() {
-        return requestedDespatchDate;
-    }
-
-    public void setRequestedDespatchDate(RequestedDespatchDateType value) {
-        this.requestedDespatchDate = value;
-    }
-
-    @ManyToOne(targetEntity = RequestedDespatchTimeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "REQUESTEDDESPATCHTIME_DESPAT_0")
-    public RequestedDespatchTimeType getRequestedDespatchTime() {
-        return requestedDespatchTime;
-    }
-
-    public void setRequestedDespatchTime(RequestedDespatchTimeType value) {
-        this.requestedDespatchTime = value;
-    }
-
-    @ManyToOne(targetEntity = EstimatedDespatchDateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ESTIMATEDDESPATCHDATE_DESPAT_0")
-    public EstimatedDespatchDateType getEstimatedDespatchDate() {
-        return estimatedDespatchDate;
-    }
-
-    public void setEstimatedDespatchDate(EstimatedDespatchDateType value) {
-        this.estimatedDespatchDate = value;
-    }
-
-    @ManyToOne(targetEntity = EstimatedDespatchTimeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ESTIMATEDDESPATCHTIME_DESPAT_0")
-    public EstimatedDespatchTimeType getEstimatedDespatchTime() {
-        return estimatedDespatchTime;
-    }
-
-    public void setEstimatedDespatchTime(EstimatedDespatchTimeType value) {
-        this.estimatedDespatchTime = value;
-    }
-
-    @ManyToOne(targetEntity = ActualDespatchDateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ACTUALDESPATCHDATE_DESPATCHT_0")
-    public ActualDespatchDateType getActualDespatchDate() {
-        return actualDespatchDate;
-    }
-
-    public void setActualDespatchDate(ActualDespatchDateType value) {
-        this.actualDespatchDate = value;
-    }
-
-    @ManyToOne(targetEntity = ActualDespatchTimeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ACTUALDESPATCHTIME_DESPATCHT_0")
-    public ActualDespatchTimeType getActualDespatchTime() {
-        return actualDespatchTime;
-    }
-
-    public void setActualDespatchTime(ActualDespatchTimeType value) {
-        this.actualDespatchTime = value;
-    }
-
-    @ManyToOne(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DESPATCHADDRESS_DESPATCHTYPE_0")
-    public AddressEntity getDespatchAddress() {
-        return despatchAddress;
-    }
-
-    public void setDespatchAddress(AddressEntity value) {
-        this.despatchAddress = value;
-    }
-
-    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DESPATCHPARTY_DESPATCHTYPE_H_0")
-    public PartyEntity getDespatchParty() {
-        return despatchParty;
-    }
-
-    public void setDespatchParty(PartyEntity value) {
-        this.despatchParty = value;
-    }
-
-    @ManyToOne(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "CONTACT_DESPATCHTYPE_OFID")
-    public ContactEntity getContact() {
-        return contact;
-    }
-
-    public void setContact(ContactEntity value) {
-        this.contact = value;
-    }
 
     @Id
     @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @Column(name = "ID")
+    protected String ID;
+
+    @Column(name = "REQUESTED_DESPATCH_DATE")
+    protected LocalDate requestedDespatchDate;
+
+    @Column(name = "REQUESTED_DESPATCH_TIME")
+    protected LocalTime requestedDespatchTime;
+
+    @Column(name = "ESTIMATED_DESPATCH_DATE")
+    protected LocalDate estimatedDespatchDate;
+
+    @Column(name = "ESTIMATED_DESPATCH_TIME")
+    protected LocalTime estimatedDespatchTime;
+
+    @Column(name = "ACTUAL_DESPATCH_DATE")
+    protected LocalDate actualDespatchDate;
+
+    @Column(name = "ACTUAL_DESPATCH_TIME")
+    protected LocalTime actualDespatchTime;
+
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "DESPATCHADDRESS_DESPATCH")
+    protected AddressEntity despatchAddress = new AddressEntity();
+
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "DESPATCHPARTY_DESPATCH")
+    protected PartyEntity despatchParty = new PartyEntity();
+
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "CONTACT_DESPATCH")
+    protected ContactEntity contact = new ContactEntity();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
+
+    /**
+     * @return the requestedDespatchDate
+     */
+    public LocalDate getRequestedDespatchDate() {
+        return requestedDespatchDate;
+    }
+
+    /**
+     * @param requestedDespatchDate
+     *            the requestedDespatchDate to set
+     */
+    public void setRequestedDespatchDate(LocalDate requestedDespatchDate) {
+        this.requestedDespatchDate = requestedDespatchDate;
+    }
+
+    /**
+     * @return the requestedDespatchTime
+     */
+    public LocalTime getRequestedDespatchTime() {
+        return requestedDespatchTime;
+    }
+
+    /**
+     * @param requestedDespatchTime
+     *            the requestedDespatchTime to set
+     */
+    public void setRequestedDespatchTime(LocalTime requestedDespatchTime) {
+        this.requestedDespatchTime = requestedDespatchTime;
+    }
+
+    /**
+     * @return the estimatedDespatchDate
+     */
+    public LocalDate getEstimatedDespatchDate() {
+        return estimatedDespatchDate;
+    }
+
+    /**
+     * @param estimatedDespatchDate
+     *            the estimatedDespatchDate to set
+     */
+    public void setEstimatedDespatchDate(LocalDate estimatedDespatchDate) {
+        this.estimatedDespatchDate = estimatedDespatchDate;
+    }
+
+    /**
+     * @return the estimatedDespatchTime
+     */
+    public LocalTime getEstimatedDespatchTime() {
+        return estimatedDespatchTime;
+    }
+
+    /**
+     * @param estimatedDespatchTime
+     *            the estimatedDespatchTime to set
+     */
+    public void setEstimatedDespatchTime(LocalTime estimatedDespatchTime) {
+        this.estimatedDespatchTime = estimatedDespatchTime;
+    }
+
+    /**
+     * @return the actualDespatchDate
+     */
+    public LocalDate getActualDespatchDate() {
+        return actualDespatchDate;
+    }
+
+    /**
+     * @param actualDespatchDate
+     *            the actualDespatchDate to set
+     */
+    public void setActualDespatchDate(LocalDate actualDespatchDate) {
+        this.actualDespatchDate = actualDespatchDate;
+    }
+
+    /**
+     * @return the actualDespatchTime
+     */
+    public LocalTime getActualDespatchTime() {
+        return actualDespatchTime;
+    }
+
+    /**
+     * @param actualDespatchTime
+     *            the actualDespatchTime to set
+     */
+    public void setActualDespatchTime(LocalTime actualDespatchTime) {
+        this.actualDespatchTime = actualDespatchTime;
+    }
+
+    /**
+     * @return the despatchAddress
+     */
+    public AddressEntity getDespatchAddress() {
+        return despatchAddress;
+    }
+
+    /**
+     * @param despatchAddress
+     *            the despatchAddress to set
+     */
+    public void setDespatchAddress(AddressEntity despatchAddress) {
+        this.despatchAddress = despatchAddress;
+    }
+
+    /**
+     * @return the despatchParty
+     */
+    public PartyEntity getDespatchParty() {
+        return despatchParty;
+    }
+
+    /**
+     * @param despatchParty
+     *            the despatchParty to set
+     */
+    public void setDespatchParty(PartyEntity despatchParty) {
+        this.despatchParty = despatchParty;
+    }
+
+    /**
+     * @return the contact
+     */
+    public ContactEntity getContact() {
+        return contact;
+    }
+
+    /**
+     * @param contact
+     *            the contact to set
+     */
+    public void setContact(ContactEntity contact) {
+        this.contact = contact;
     }
 
 }
