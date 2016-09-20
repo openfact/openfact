@@ -27,96 +27,91 @@ import org.hibernate.annotations.GenericGenerator;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class HazardousGoodsTransitEntity {
 
-    protected TransportEmergencyCardCodeType transportEmergencyCardCode;
-    protected PackingCriteriaCodeType packingCriteriaCode;
-    protected HazardousRegulationCodeType hazardousRegulationCode;
-    protected InhalationToxicityZoneCodeType inhalationToxicityZoneCode;
-    protected TransportAuthorizationCodeType transportAuthorizationCode;
-    protected TemperatureEntity maximumTemperature;
-    protected TemperatureEntity minimumTemperature;
-    protected String id;
+	protected String transportEmergencyCardCode;
+	protected String packingCriteriaCode;
+	protected String hazardousRegulationCode;
+	protected String inhalationToxicityZoneCode;
+	protected String transportAuthorizationCode;
+	protected TemperatureEntity maximumTemperature;
+	protected TemperatureEntity minimumTemperature;
+	protected String id;
 
-    @ManyToOne(targetEntity = TransportEmergencyCardCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TRANSPORTEMERGENCYCARDCODE_H_0")
-    public TransportEmergencyCardCodeType getTransportEmergencyCardCode() {
-        return transportEmergencyCardCode;
-    }
+	@Column(name = "TRANSPORTEMERGENCYCARDCODE")
+	public String getTransportEmergencyCardCode() {
+		return transportEmergencyCardCode;
+	}
 
-    public void setTransportEmergencyCardCode(TransportEmergencyCardCodeType value) {
-        this.transportEmergencyCardCode = value;
-    }
+	public void setTransportEmergencyCardCode(String value) {
+		this.transportEmergencyCardCode = value;
+	}
 
-    @ManyToOne(targetEntity = PackingCriteriaCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PACKINGCRITERIACODE_HAZARDOU_0")
-    public PackingCriteriaCodeType getPackingCriteriaCode() {
-        return packingCriteriaCode;
-    }
+	@Column(name = "PACKINGCRITERIACODE")
+	public String getPackingCriteriaCode() {
+		return packingCriteriaCode;
+	}
 
-    public void setPackingCriteriaCode(PackingCriteriaCodeType value) {
-        this.packingCriteriaCode = value;
-    }
+	public void setPackingCriteriaCode(String value) {
+		this.packingCriteriaCode = value;
+	}
 
-    @ManyToOne(targetEntity = HazardousRegulationCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "HAZARDOUSREGULATIONCODE_HAZA_0")
-    public HazardousRegulationCodeType getHazardousRegulationCode() {
-        return hazardousRegulationCode;
-    }
+	@Column(name = "HAZARDOUSREGULATIONCODE")
+	public String getHazardousRegulationCode() {
+		return hazardousRegulationCode;
+	}
 
-    public void setHazardousRegulationCode(HazardousRegulationCodeType value) {
-        this.hazardousRegulationCode = value;
-    }
+	public void setHazardousRegulationCode(String value) {
+		this.hazardousRegulationCode = value;
+	}
 
-    @ManyToOne(targetEntity = InhalationToxicityZoneCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "INHALATIONTOXICITYZONECODE_H_0")
-    public InhalationToxicityZoneCodeType getInhalationToxicityZoneCode() {
-        return inhalationToxicityZoneCode;
-    }
+	@Column(name = "INHALATIONTOXICITYZONECODE")
+	public String getInhalationToxicityZoneCode() {
+		return inhalationToxicityZoneCode;
+	}
 
-    public void setInhalationToxicityZoneCode(InhalationToxicityZoneCodeType value) {
-        this.inhalationToxicityZoneCode = value;
-    }
+	public void setInhalationToxicityZoneCode(String value) {
+		this.inhalationToxicityZoneCode = value;
+	}
 
-    @ManyToOne(targetEntity = TransportAuthorizationCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TRANSPORTAUTHORIZATIONCODE_H_0")
-    public TransportAuthorizationCodeType getTransportAuthorizationCode() {
-        return transportAuthorizationCode;
-    }
+	@Column(name = "TRANSPORTAUTHORIZATIONCODE")
+	public String getTransportAuthorizationCode() {
+		return transportAuthorizationCode;
+	}
 
-    public void setTransportAuthorizationCode(TransportAuthorizationCodeType value) {
-        this.transportAuthorizationCode = value;
-    }
+	public void setTransportAuthorizationCode(String value) {
+		this.transportAuthorizationCode = value;
+	}
 
-    @ManyToOne(targetEntity = TemperatureEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "MAXIMUMTEMPERATURE_HAZARDOUS_0")
-    public TemperatureEntity getMaximumTemperature() {
-        return maximumTemperature;
-    }
+	@ManyToOne(targetEntity = TemperatureEntity.class, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "MAXIMUMTEMPERATURE")
+	public TemperatureEntity getMaximumTemperature() {
+		return maximumTemperature;
+	}
 
-    public void setMaximumTemperature(TemperatureEntity value) {
-        this.maximumTemperature = value;
-    }
+	public void setMaximumTemperature(TemperatureEntity value) {
+		this.maximumTemperature = value;
+	}
 
-    @ManyToOne(targetEntity = TemperatureEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "MINIMUMTEMPERATURE_HAZARDOUS_0")
-    public TemperatureEntity getMinimumTemperature() {
-        return minimumTemperature;
-    }
+	@ManyToOne(targetEntity = TemperatureEntity.class, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "MINIMUMTEMPERATURE")
+	public TemperatureEntity getMinimumTemperature() {
+		return minimumTemperature;
+	}
 
-    public void setMinimumTemperature(TemperatureEntity value) {
-        this.minimumTemperature = value;
-    }
+	public void setMinimumTemperature(TemperatureEntity value) {
+		this.minimumTemperature = value;
+	}
 
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Access(AccessType.PROPERTY)
-    public String getId() {
-        return id;
-    }
+	@Id
+	@Column(name = "ID_OFID")
+	@GeneratedValue(generator = "uuid2")
+	@GenericGenerator(name = "uuid2", strategy = "uuid2")
+	@Access(AccessType.PROPERTY)
+	public String getId() {
+		return id;
+	}
 
-    public void setId(String value) {
-        this.id = value;
-    }
+	public void setId(String value) {
+		this.id = value;
+	}
 
 }

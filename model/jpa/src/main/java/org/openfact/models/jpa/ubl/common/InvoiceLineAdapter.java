@@ -284,7 +284,7 @@ public class InvoiceLineAdapter implements InvoiceLineModel, JpaModel<InvoiceLin
 
 	@Override
 	public void setItem(ItemModel value) {
-		this.invoiceLine.setItem(value);
+		this.invoiceLine.setItem(ItemAdapter.toEntity(value,em));
 	}
 
 	@Override
