@@ -30,70 +30,65 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "FINANCIALACCOUNT")
 public class FinancialAccountEntity {
 
-    protected IDType ID;
-    protected NameTypeCommBas name;
-    protected AccountTypeCodeType accountTypeCode;
-    protected CurrencyCodeTypeCommBas currencyCode;
-    protected List<PaymentNoteType> paymentNote;
+    protected String ID;
+    protected String name;
+    protected String accountTypeCode;
+    protected String currencyCode;
+    protected List<String> paymentNote;
     protected BranchEntity financialInstitutionBranch;
     protected CountryEntity country;
     protected String id;
 
-    @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ID_FINANCIALACCOUNTTYPE_OFID")
-    public IDType getID() {
+    @Column(name = "ID")
+    public String getID() {
         return ID;
     }
 
-    public void setID(IDType value) {
+    public void setID(String value) {
         this.ID = value;
     }
 
-    @ManyToOne(targetEntity = NameTypeCommBas.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "NAME__FINANCIALACCOUNTTYPE_H_0")
-    public NameTypeCommBas getName() {
+    @Column(name = "NAME")
+    public String getName() {
         return name;
     }
 
-    public void setName(NameTypeCommBas value) {
+    public void setName(String value) {
         this.name = value;
     }
 
-    @ManyToOne(targetEntity = AccountTypeCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ACCOUNTTYPECODE_FINANCIALACC_0")
-    public AccountTypeCodeType getAccountTypeCode() {
+    @Column(name = "ACCOUNT_TYPE_CODE")
+    public String getAccountTypeCode() {
         return accountTypeCode;
     }
 
-    public void setAccountTypeCode(AccountTypeCodeType value) {
+    public void setAccountTypeCode(String value) {
         this.accountTypeCode = value;
     }
 
-    @ManyToOne(targetEntity = CurrencyCodeTypeCommBas.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "CURRENCYCODE_FINANCIALACCOUN_0")
-    public CurrencyCodeTypeCommBas getCurrencyCode() {
+    @Column(name = "CURRENCY_CODE")
+    public String getCurrencyCode() {
         return currencyCode;
     }
 
-    public void setCurrencyCode(CurrencyCodeTypeCommBas value) {
+    public void setCurrencyCode(String value) {
         this.currencyCode = value;
     }
 
-    @OneToMany(targetEntity = PaymentNoteType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PAYMENTNOTE_FINANCIALACCOUNT_0")
-    public List<PaymentNoteType> getPaymentNote() {
+    @Column(name = "PAYMENT_NOTE")
+    public List<String> getPaymentNote() {
         if (paymentNote == null) {
-            paymentNote = new ArrayList<PaymentNoteType>();
+            paymentNote = new ArrayList<String>();
         }
         return this.paymentNote;
     }
 
-    public void setPaymentNote(List<PaymentNoteType> paymentNote) {
+    public void setPaymentNote(List<String> paymentNote) {
         this.paymentNote = paymentNote;
     }
 
     @ManyToOne(targetEntity = BranchEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "FINANCIALINSTITUTIONBRANCH_F_0")
+    @JoinColumn(name = "FINANCIALINSTITUTIONBRANCH")
     public BranchEntity getFinancialInstitutionBranch() {
         return financialInstitutionBranch;
     }
@@ -103,7 +98,7 @@ public class FinancialAccountEntity {
     }
 
     @ManyToOne(targetEntity = CountryEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "COUNTRY_FINANCIALACCOUNTTYPE_0")
+    @JoinColumn(name = "COUNTRY")
     public CountryEntity getCountry() {
         return country;
     }
@@ -113,7 +108,7 @@ public class FinancialAccountEntity {
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID_OFID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
