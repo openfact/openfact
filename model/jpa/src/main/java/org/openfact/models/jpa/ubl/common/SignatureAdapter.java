@@ -8,7 +8,9 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.SignatureEntity;
+import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.AttachmentModel;
 import org.openfact.models.ubl.common.DocumentReferenceModel;
 import org.openfact.models.ubl.common.PartyModel;
@@ -141,6 +143,13 @@ public class SignatureAdapter implements SignatureModel, JpaModel<SignatureEntit
 	public SignatureEntity getEntity() {
 		// TODO Auto-generated method stub
 		return signature;
+	}
+
+	public static SignatureEntity toEntity(SignatureModel model, EntityManager em) {
+		if (model instanceof SignatureModel) {
+            return ((SignatureAdapter) model).getEntity();
+        }
+        return em.getReference(SignatureEntity.class, model.getId());
 	}
 
 }

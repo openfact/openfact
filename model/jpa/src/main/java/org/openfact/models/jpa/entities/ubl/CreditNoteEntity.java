@@ -7,6 +7,9 @@
 
 package org.openfact.models.jpa.entities.ubl;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,30 +31,30 @@ import org.hibernate.annotations.GenericGenerator;
 import org.openfact.models.jpa.entities.ubl.common.*;
 
 
-@Entity(name = "CreditNoteType")
+@Entity(name = "CreditString")
 @Table(name = "CREDITNOTETYPE")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class CreditNoteEntity {
 
     protected UBLExtensionsEntity ublExtensions;
-    protected UBLVersionIDType ublVersionID;
-    protected CustomizationIDType customizationID;
-    protected ProfileIDType profileID;
-    protected IDType ID;
-    protected CopyIndicatorType copyIndicator;
-    protected UUIDType uuid;
-    protected IssueDateType issueDate;
-    protected IssueTimeType issueTime;
-    protected TaxPointDateType taxPointDate;
-    protected List<NoteType> note;
-    protected DocumentCurrencyCodeType documentCurrencyCode;
-    protected TaxCurrencyCodeType taxCurrencyCode;
-    protected PricingCurrencyCodeType pricingCurrencyCode;
-    protected PaymentCurrencyCodeType paymentCurrencyCode;
-    protected PaymentAlternativeCurrencyCodeType paymentAlternativeCurrencyCode;
-    protected AccountingCostCodeType accountingCostCode;
-    protected AccountingCostType accountingCost;
-    protected LineCountNumericType lineCountNumeric;
+    protected String ublVersionID;
+    protected String customizationID;
+    protected String profileID;
+    protected String ID;
+    protected boolean copyIndicator;
+    protected String uuid;
+    protected LocalDate issueDate;
+    protected LocalTime issueTime;
+    protected LocalDate taxPointDate;
+    protected List<String> note;
+    protected String documentCurrencyCode;
+    protected String taxCurrencyCode;
+    protected String pricingCurrencyCode;
+    protected String paymentCurrencyCode;
+    protected String paymentAlternativeCurrencyCode;
+    protected String accountingCostCode;
+    protected String accountingCost;
+    protected BigDecimal lineCountNumeric;
     protected List<PeriodEntity> invoicePeriod;
     protected List<ResponseEntity> discrepancyResponse;
     protected OrderReferenceEntity orderReference;
@@ -75,8 +78,7 @@ public class CreditNoteEntity {
     protected List<CreditNoteLineEntity> creditNoteLine;
     protected String id;
 
-    @ManyToOne(targetEntity = UBLExtensionsEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "UBLEXTENSIONS_CREDITNOTETYPE_0")
+
     public UBLExtensionsEntity getUBLExtensions() {
         return ublExtensions;
     }
@@ -84,192 +86,159 @@ public class CreditNoteEntity {
     public void setUBLExtensions(UBLExtensionsEntity value) {
         this.ublExtensions = value;
     }
-
-    @ManyToOne(targetEntity = UBLVersionIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "UBLVERSIONID_CREDITNOTETYPE__0")
-    public UBLVersionIDType getUBLVersionID() {
+    
+    public String getUBLVersionID() {
         return ublVersionID;
     }
 
-    public void setUBLVersionID(UBLVersionIDType value) {
+    public void setUBLVersionID(String value) {
         this.ublVersionID = value;
     }
-
-    @ManyToOne(targetEntity = CustomizationIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "CUSTOMIZATIONID_CREDITNOTETY_0")
-    public CustomizationIDType getCustomizationID() {
+    public String getCustomizationID() {
         return customizationID;
     }
 
-    public void setCustomizationID(CustomizationIDType value) {
+    public void setCustomizationID(String value) {
         this.customizationID = value;
     }
-
-    @ManyToOne(targetEntity = ProfileIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PROFILEID_CREDITNOTETYPE_OFID")
-    public ProfileIDType getProfileID() {
+  
+    public String getProfileID() {
         return profileID;
     }
 
-    public void setProfileID(ProfileIDType value) {
+    public void setProfileID(String value) {
         this.profileID = value;
     }
-
-    @ManyToOne(targetEntity = IDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ID_CREDITNOTETYPE_OFID")
-    public IDType getID() {
+  
+    public String getID() {
         return ID;
     }
 
-    public void setID(IDType value) {
+    public void setID(String value) {
         this.ID = value;
     }
-
-    @ManyToOne(targetEntity = CopyIndicatorType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "COPYINDICATOR_CREDITNOTETYPE_0")
-    public CopyIndicatorType getCopyIndicator() {
+    public boolean getCopyIndicator() {
         return copyIndicator;
     }
 
-    public void setCopyIndicator(CopyIndicatorType value) {
+    public void setCopyIndicator(boolean value) {
         this.copyIndicator = value;
     }
 
-    @ManyToOne(targetEntity = UUIDType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "UUID_CREDITNOTETYPE_OFID")
-    public UUIDType getUUID() {
+    public String getUUID() {
         return uuid;
     }
 
-    public void setUUID(UUIDType value) {
+    public void setUUID(String value) {
         this.uuid = value;
     }
 
-    @ManyToOne(targetEntity = IssueDateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ISSUEDATE_CREDITNOTETYPE_OFID")
-    public IssueDateType getIssueDate() {
+    public LocalDate getIssueDate() {
         return issueDate;
     }
 
-    public void setIssueDate(IssueDateType value) {
+    public void setIssueDate(LocalDate value) {
         this.issueDate = value;
     }
 
-    @ManyToOne(targetEntity = IssueTimeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ISSUETIME_CREDITNOTETYPE_OFID")
-    public IssueTimeType getIssueTime() {
+    public LocalTime getIssueTime() {
         return issueTime;
     }
 
-    public void setIssueTime(IssueTimeType value) {
+    public void setIssueTime(LocalTime value) {
         this.issueTime = value;
     }
 
-    @ManyToOne(targetEntity = TaxPointDateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TAXPOINTDATE_CREDITNOTETYPE__0")
-    public TaxPointDateType getTaxPointDate() {
+    public LocalDate getTaxPointDate() {
         return taxPointDate;
     }
 
-    public void setTaxPointDate(TaxPointDateType value) {
+    public void setTaxPointDate(LocalDate value) {
         this.taxPointDate = value;
     }
-
-    @OneToMany(targetEntity = NoteType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "NOTE_CREDITNOTETYPE_OFID")
-    public List<NoteType> getNote() {
+    
+    public List<String> getNote() {
         if (note == null) {
-            note = new ArrayList<NoteType>();
+            note = new ArrayList<String>();
         }
         return this.note;
     }
 
-    public void setNote(List<NoteType> note) {
+    public void setNote(List<String> note) {
         this.note = note;
     }
 
-    @ManyToOne(targetEntity = DocumentCurrencyCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DOCUMENTCURRENCYCODE_CREDITN_0")
-    public DocumentCurrencyCodeType getDocumentCurrencyCode() {
+    
+    public String getDocumentCurrencyCode() {
         return documentCurrencyCode;
     }
 
-    public void setDocumentCurrencyCode(DocumentCurrencyCodeType value) {
+    public void setDocumentCurrencyCode(String value) {
         this.documentCurrencyCode = value;
     }
 
-    @ManyToOne(targetEntity = TaxCurrencyCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TAXCURRENCYCODE_CREDITNOTETY_0")
-    public TaxCurrencyCodeType getTaxCurrencyCode() {
+  
+    public String getTaxCurrencyCode() {
         return taxCurrencyCode;
     }
 
-    public void setTaxCurrencyCode(TaxCurrencyCodeType value) {
+    public void setTaxCurrencyCode(String value) {
         this.taxCurrencyCode = value;
     }
 
-    @ManyToOne(targetEntity = PricingCurrencyCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PRICINGCURRENCYCODE_CREDITNO_0")
-    public PricingCurrencyCodeType getPricingCurrencyCode() {
+ 
+    public String getPricingCurrencyCode() {
         return pricingCurrencyCode;
     }
 
-    public void setPricingCurrencyCode(PricingCurrencyCodeType value) {
+    public void setPricingCurrencyCode(String value) {
         this.pricingCurrencyCode = value;
     }
 
-    @ManyToOne(targetEntity = PaymentCurrencyCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PAYMENTCURRENCYCODE_CREDITNO_0")
-    public PaymentCurrencyCodeType getPaymentCurrencyCode() {
+ 
+    public String getPaymentCurrencyCode() {
         return paymentCurrencyCode;
     }
 
-    public void setPaymentCurrencyCode(PaymentCurrencyCodeType value) {
+    public void setPaymentCurrencyCode(String value) {
         this.paymentCurrencyCode = value;
     }
 
-    @ManyToOne(targetEntity = PaymentAlternativeCurrencyCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PAYMENTALTERNATIVECURRENCYCO_2")
-    public PaymentAlternativeCurrencyCodeType getPaymentAlternativeCurrencyCode() {
+
+    public String getPaymentAlternativeCurrencyCode() {
         return paymentAlternativeCurrencyCode;
     }
 
-    public void setPaymentAlternativeCurrencyCode(PaymentAlternativeCurrencyCodeType value) {
+    public void setPaymentAlternativeCurrencyCode(String value) {
         this.paymentAlternativeCurrencyCode = value;
     }
 
-    @ManyToOne(targetEntity = AccountingCostCodeType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ACCOUNTINGCOSTCODE_CREDITNOT_0")
-    public AccountingCostCodeType getAccountingCostCode() {
+
+    public String getAccountingCostCode() {
         return accountingCostCode;
     }
 
-    public void setAccountingCostCode(AccountingCostCodeType value) {
+    public void setAccountingCostCode(String value) {
         this.accountingCostCode = value;
     }
 
-    @ManyToOne(targetEntity = AccountingCostType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ACCOUNTINGCOST_CREDITNOTETYP_0")
-    public AccountingCostType getAccountingCost() {
+    public String getAccountingCost() {
         return accountingCost;
     }
 
-    public void setAccountingCost(AccountingCostType value) {
+    public void setAccountingCost(String value) {
         this.accountingCost = value;
     }
 
-    @ManyToOne(targetEntity = LineCountNumericType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LINECOUNTNUMERIC_CREDITNOTET_0")
-    public LineCountNumericType getLineCountNumeric() {
+   
+    public BigDecimal getLineCountNumeric() {
         return lineCountNumeric;
     }
 
-    public void setLineCountNumeric(LineCountNumericType value) {
+    public void setLineCountNumeric(BigDecimal value) {
         this.lineCountNumeric = value;
     }
 
-    @OneToMany(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "INVOICEPERIOD_CREDITNOTETYPE_0")
     public List<PeriodEntity> getInvoicePeriod() {
         if (invoicePeriod == null) {
             invoicePeriod = new ArrayList<PeriodEntity>();
@@ -280,9 +249,7 @@ public class CreditNoteEntity {
     public void setInvoicePeriod(List<PeriodEntity> invoicePeriod) {
         this.invoicePeriod = invoicePeriod;
     }
-
-    @OneToMany(targetEntity = ResponseEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DISCREPANCYRESPONSE_CREDITNO_0")
+  
     public List<ResponseEntity> getDiscrepancyResponse() {
         if (discrepancyResponse == null) {
             discrepancyResponse = new ArrayList<ResponseEntity>();
@@ -293,9 +260,7 @@ public class CreditNoteEntity {
     public void setDiscrepancyResponse(List<ResponseEntity> discrepancyResponse) {
         this.discrepancyResponse = discrepancyResponse;
     }
-
-    @ManyToOne(targetEntity = OrderReferenceEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ORDERREFERENCE_CREDITNOTETYP_0")
+   
     public OrderReferenceEntity getOrderReference() {
         return orderReference;
     }
@@ -303,9 +268,6 @@ public class CreditNoteEntity {
     public void setOrderReference(OrderReferenceEntity value) {
         this.orderReference = value;
     }
-
-    @OneToMany(targetEntity = BillingReferenceEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "BILLINGREFERENCE_CREDITNOTET_0")
     public List<BillingReferenceEntity> getBillingReference() {
         if (billingReference == null) {
             billingReference = new ArrayList<BillingReferenceEntity>();
@@ -317,8 +279,6 @@ public class CreditNoteEntity {
         this.billingReference = billingReference;
     }
 
-    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DESPATCHDOCUMENTREFERENCE_CR_0")
     public List<DocumentReferenceEntity> getDespatchDocumentReference() {
         if (despatchDocumentReference == null) {
             despatchDocumentReference = new ArrayList<DocumentReferenceEntity>();
@@ -330,8 +290,7 @@ public class CreditNoteEntity {
         this.despatchDocumentReference = despatchDocumentReference;
     }
 
-    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "RECEIPTDOCUMENTREFERENCE_CRE_0")
+
     public List<DocumentReferenceEntity> getReceiptDocumentReference() {
         if (receiptDocumentReference == null) {
             receiptDocumentReference = new ArrayList<DocumentReferenceEntity>();
@@ -341,10 +300,7 @@ public class CreditNoteEntity {
 
     public void setReceiptDocumentReference(List<DocumentReferenceEntity> receiptDocumentReference) {
         this.receiptDocumentReference = receiptDocumentReference;
-    }
-
-    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "CONTRACTDOCUMENTREFERENCE_CR_0")
+    }  
     public List<DocumentReferenceEntity> getContractDocumentReference() {
         if (contractDocumentReference == null) {
             contractDocumentReference = new ArrayList<DocumentReferenceEntity>();
@@ -356,8 +312,6 @@ public class CreditNoteEntity {
         this.contractDocumentReference = contractDocumentReference;
     }
 
-    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ADDITIONALDOCUMENTREFERENCE__1")
     public List<DocumentReferenceEntity> getAdditionalDocumentReference() {
         if (additionalDocumentReference == null) {
             additionalDocumentReference = new ArrayList<DocumentReferenceEntity>();
@@ -368,9 +322,7 @@ public class CreditNoteEntity {
     public void setAdditionalDocumentReference(List<DocumentReferenceEntity> additionalDocumentReference) {
         this.additionalDocumentReference = additionalDocumentReference;
     }
-
-    @OneToMany(targetEntity = SignatureEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "SIGNATURE_CREDITNOTETYPE_OFID")
+    
     public List<SignatureEntity> getSignature() {
         if (signature == null) {
             signature = new ArrayList<SignatureEntity>();
