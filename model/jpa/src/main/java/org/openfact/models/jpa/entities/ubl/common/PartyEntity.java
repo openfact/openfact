@@ -25,22 +25,25 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "PARTY")
 public class PartyEntity {
 
     @Id
-    @Column(name = "ID_OFID")
+    @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
     protected String id;
 
     @Column(name = "MARK_CARE_INDICATOR")
+    @Type(type = "numeric_boolean")
     protected boolean markCareIndicator;
 
     @Column(name = "MARK_ATTENTION_INDICATOR")
+    @Type(type = "numeric_boolean")
     protected boolean markAttentionIndicator;
 
     @Column(name = "WEBSITE_URI")
@@ -63,11 +66,11 @@ public class PartyEntity {
     protected List<String> partyName = new ArrayList<>();
 
     @ManyToOne(targetEntity = LanguageEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LANGUAGE__PARTYTYPE_OFID")
+    @JoinColumn(name = "LANGUAGE__PARTY_ID")
     protected LanguageEntity language = new LanguageEntity();
 
     @ManyToOne(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "POSTALADDRESS_PARTYTYPE_ID")
+    @JoinColumn(name = "POSTALADDRESS_PARTY_ID")
     protected AddressEntity postalAddress = new AddressEntity();
 
     @ManyToOne(targetEntity = LocationCommAggEntity.class, cascade = { CascadeType.ALL })

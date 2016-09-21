@@ -21,8 +21,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.w3c.dom.Element;
 
-@Entity(name = "ExtensionContentType")
-@Table(name = "EXTENSIONCONTENTTYPE")
+@Entity
+@Table(name = "EXTENSIONCONTENT")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ExtensionContentEntity {
 

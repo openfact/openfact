@@ -22,6 +22,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "DESPATCH")
@@ -34,25 +35,31 @@ public class DespatchEntity {
     @Access(AccessType.PROPERTY)
     protected String id;
 
-    @Column(name = "ID")
+    @Column(name = "ID_UBL")
     protected String ID;
 
     @Column(name = "REQUESTED_DESPATCH_DATE")
+    @Type(type = "LocalDate, java.time.LocalDate")
     protected LocalDate requestedDespatchDate;
 
     @Column(name = "REQUESTED_DESPATCH_TIME")
+    @Type(type = "LocalTime, java.time.LocalTime")
     protected LocalTime requestedDespatchTime;
 
     @Column(name = "ESTIMATED_DESPATCH_DATE")
+    @Type(type = "LocalDate, java.time.LocalDate")
     protected LocalDate estimatedDespatchDate;
 
     @Column(name = "ESTIMATED_DESPATCH_TIME")
+    @Type(type = "LocalTime, java.time.LocalTime")
     protected LocalTime estimatedDespatchTime;
 
     @Column(name = "ACTUAL_DESPATCH_DATE")
+    @Type(type = "LocalDate, java.time.LocalDate")
     protected LocalDate actualDespatchDate;
 
     @Column(name = "ACTUAL_DESPATCH_TIME")
+    @Type(type = "LocalTime, java.time.LocalTime")
     protected LocalTime actualDespatchTime;
 
     @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })

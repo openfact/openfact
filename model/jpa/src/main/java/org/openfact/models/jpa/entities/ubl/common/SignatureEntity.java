@@ -22,28 +22,31 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "SIGNATURE")
 public class SignatureEntity {
 
     @Id
-    @Column(name = "ID_OFID")
+    @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
     protected String id;
 
-    @Column(name = "ID")
+    @Column(name = "ID_UBL")
     protected String ID;
 
     @Column(name = "NOTE")
     protected String note;
 
     @Column(name = "VALIDATION_DATE")
+    @Type(type = "LocalDate, java.time.LocalDate")
     protected LocalDate validationDate;
 
     @Column(name = "VALIDATION_TIME")
+    @Type(type = "LocalTime, java.time.LocalTime")
     protected LocalTime validationTime;
 
     @Column(name = "VALIDATOR_ID")

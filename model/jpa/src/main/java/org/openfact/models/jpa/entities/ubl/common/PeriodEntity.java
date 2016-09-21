@@ -26,28 +26,33 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "PERIOD")
 public class PeriodEntity {
 
     @Id
-    @Column(name = "ID_OFID")
+    @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
     protected String id;
 
     @Column(name = "START_DATE")
+    @Type(type = "LocalDate, java.time.LocalDate")
     protected LocalDate startDate;
 
     @Column(name = "START_TIME")
+    @Type(type = "LocalTime, java.time.LocalTime")
     protected LocalTime startTime;
 
     @Column(name = "END_DATE")
+    @Type(type = "LocalDate, java.time.LocalDate")
     protected LocalDate endDate;
 
     @Column(name = "END_TIME")
+    @Type(type = "LocalTime, java.time.LocalTime")
     protected LocalTime endTime;
 
     @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })

@@ -25,13 +25,13 @@ import org.hibernate.annotations.GenericGenerator;
 public class BranchEntity {
 
     @Id
-    @Column(name = "ID_OF")
+    @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
     protected String id;
 
-    @Column(name = "ID")
+    @Column(name = "ID_UBL")
     protected String ID;
 
     @Column(name = "NAME")
@@ -42,7 +42,7 @@ public class BranchEntity {
     protected FinancialInstitutionEntity financialInstitution = new FinancialInstitutionEntity();
 
     @ManyToOne(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ADDRESS_BRANCHTYPE_OFID")
+    @JoinColumn(name = "ADDRESS_BRANCH_ID")
     protected AddressEntity address = new AddressEntity();
 
     /**

@@ -28,6 +28,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.CustomerPartyEntity;
@@ -76,15 +77,18 @@ public class InvoiceEntity {
     protected String ID;
 
     @Column(name = "COPY_INDICATOR")
+    @Type(type = "numeric_boolean")
     protected boolean copyIndicator;
 
     @Column(name = "UUID")
     protected String uuid;
 
     @Column(name = "ISSUE_DATE")
+    @Type(type = "LocalDate, java.time.LocalDate")
     protected LocalDate issueDate;
 
     @Column(name = "ISSUE_TIME")
+    @Type(type = "LocalTime, java.time.LocalTime")
     protected LocalTime issueTime;
 
     @Column(name = "INVOICE_TYOE_CODE")
@@ -96,6 +100,7 @@ public class InvoiceEntity {
     protected List<String> note = new ArrayList<>();
 
     @Column(name = "TAX_POINT_DATE")
+    @Type(type = "LocalDate, java.time.LocalDate")
     protected LocalDate taxPointDate;
 
     @Column(name = "DOCUMENT_CURRENCY_CODE")

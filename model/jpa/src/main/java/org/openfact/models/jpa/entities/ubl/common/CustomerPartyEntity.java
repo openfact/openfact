@@ -49,7 +49,7 @@ public class CustomerPartyEntity {
     protected List<String> additionalAccountID = new ArrayList<>();
 
     @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PARTY_CUSTOMERPARTYTYPE_ID")
+    @JoinColumn(name = "PARTY_CUSTOMERPARTY_ID")
     protected PartyEntity party = new PartyEntity();
 
     @ManyToOne(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })

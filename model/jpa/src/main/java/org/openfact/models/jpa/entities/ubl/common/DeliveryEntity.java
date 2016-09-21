@@ -22,6 +22,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "DELIVERY")
@@ -34,7 +35,7 @@ public class DeliveryEntity {
     @Access(AccessType.PROPERTY)
     protected String id;
 
-    @Column(name = "ID")
+    @Column(name = "ID_UBL")
     protected String ID;
 
     @ManyToOne(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
@@ -50,15 +51,19 @@ public class DeliveryEntity {
     protected QuantityEntity maximumQuantity;
 
     @Column(name = "ACTUAL_DELIVERY_DATE")
+    @Type(type = "LocalDate, java.time.LocalDate")
     protected LocalDate actualDeliveryDate;
 
     @Column(name = "ACTUAL_DELIVERY_TIME")
+    @Type(type = "LocalTime, java.time.LocalTime")
     protected LocalTime actualDeliveryTime;
 
     @Column(name = "LATEST_DELIVERY_DATE")
+    @Type(type = "LocalDate, java.time.LocalDate")
     protected LocalDate latestDeliveryDate;
 
     @Column(name = "LATEST_DELIVERY_TIME")
+    @Type(type = "LocalTime, java.time.LocalTime")
     protected LocalTime latestDeliveryTime;
 
     @Column(name = "TRACKING_ID")

@@ -25,19 +25,20 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "INVOICELINE")
 public class InvoiceLineEntity {
 
     @Id
-    @Column(name = "ID_OFID")
+    @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
     protected String id;
 
-    @Column(name = "ID")
+    @Column(name = "ID_UBL")
     protected String ID;
 
     @Column(name = "UUID")
@@ -54,6 +55,7 @@ public class InvoiceLineEntity {
     protected BigDecimal lineExtensionAmount;
 
     @Column(name = "TAX_POINT_DATE")
+    @Type(type = "LocalDate, java.time.LocalDate")
     protected LocalDate taxPointDate;
 
     @Column(name = "ACCOUNTING_COST_CODE")
@@ -63,6 +65,7 @@ public class InvoiceLineEntity {
     protected String accountingCost;
 
     @Column(name = "FREE_OF_CHARGE_INDICATOR")
+    @Type(type = "numeric_boolean")
     protected boolean freeOfChargeIndicator;
 
     @OneToMany(targetEntity = OrderLineReferenceEntity.class, cascade = { CascadeType.ALL })

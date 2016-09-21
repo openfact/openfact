@@ -19,13 +19,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "EXTERNALREFERENCE")
 public class ExternalReferenceEntity {
 
     @Id
-    @Column(name = "ID_OFID")
+    @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
@@ -38,9 +39,11 @@ public class ExternalReferenceEntity {
     protected String documentHash;
 
     @Column(name = "EXPIRYDATE")
+    @Type(type = "LocalDate, java.time.LocalDate")
     protected LocalDate expiryDate;
 
     @Column(name = "EXPIRYTIME")
+    @Type(type = "LocalTime, java.time.LocalTime")
     protected LocalTime expiryTime;
 
     /**

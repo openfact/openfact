@@ -25,13 +25,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "ITEMLOCATIONQUANTITY")
 public class ItemLocationQuantityEntity {
 
     @Id
-    @Column(name = "ID_OFID")
+    @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
@@ -50,6 +51,7 @@ public class ItemLocationQuantityEntity {
     protected QuantityEntity maximumQuantity = new QuantityEntity();
 
     @Column(name = "HAZARDOUS_RISK_INDICATOR")
+    @Type(type = "numeric_boolean")
     protected boolean hazardousRiskIndicator;
 
     @ElementCollection

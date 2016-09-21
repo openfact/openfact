@@ -21,6 +21,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "ITEM")
@@ -47,12 +48,14 @@ public class ItemEntity {
     protected BigDecimal packSizeNumeric;
 
     @Column(name = "CATALOGUE_INDICATOR")
+    @Type(type = "numeric_boolean")
     protected boolean catalogueIndicator;
 
     @Column(name = "NAME")
     protected String name;
 
     @Column(name = "HAZARDOUS_RISK_INDICATOR")
+    @Type(type = "numeric_boolean")
     protected boolean hazardousRiskIndicator;
 
     @Column(name = "ADDITIONAL_INFORMATION")
@@ -106,7 +109,7 @@ public class ItemEntity {
     protected List<DocumentReferenceEntity> itemSpecificationDocumentReference = new ArrayList<>();
 
     @ManyToOne(targetEntity = CountryEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ORIGINCOUNTRY_ITEMTYPE_ID")
+    @JoinColumn(name = "ORIGINCOUNTRY_ITEM_ID")
     protected CountryEntity originCountry = new CountryEntity();
 
     @OneToMany(targetEntity = TransactionConditionsEntity.class, cascade = { CascadeType.ALL })
@@ -138,7 +141,7 @@ public class ItemEntity {
     protected PartyEntity informationContentProviderParty = new PartyEntity();
 
     @OneToMany(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ORIGINADDRESS_ITEMTYPE_ID")
+    @JoinColumn(name = "ORIGINADDRESS_ITEM_ID")
     protected List<AddressEntity> originAddress = new ArrayList<>();
 
     @OneToMany(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })

@@ -25,6 +25,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "DEBITNOTELINE")
@@ -37,7 +38,7 @@ public class DebitNoteLineEntity {
     @Access(AccessType.PROPERTY)
     protected String id;
 
-    @Column(name = "ID")
+    @Column(name = "ID_UBL")
     protected String ID;
 
     @Column(name = "UUID")
@@ -53,6 +54,7 @@ public class DebitNoteLineEntity {
     protected BigDecimal lineExtensionAmount;
 
     @Column(name = "TAX_POINT_DATE")
+    @Type(type = "LocalDate, java.time.LocalDate")
     protected LocalDate taxPointDate;
 
     @Column(name = "ACCOUNTING_COST_CODE")

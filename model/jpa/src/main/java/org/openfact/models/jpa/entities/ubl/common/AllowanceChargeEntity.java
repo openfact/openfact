@@ -24,6 +24,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "ALLOWANCECHARGE")
@@ -36,10 +37,11 @@ public class AllowanceChargeEntity {
     @Access(AccessType.PROPERTY)
     protected String id;
 
-    @Column(name = "ID")
+    @Column(name = "ID_UBL")
     protected String ID;
 
     @Column(name = "CHARGE_INDICATOR")
+    @Type(type = "numeric_boolean")
     protected boolean chargeIndicator;
 
     @Column(name = "ALLOWANCE_CHARGE_REASON_CODE")
@@ -52,6 +54,7 @@ public class AllowanceChargeEntity {
     protected BigDecimal multiplierFactorNumeric;
 
     @Column(name = "PREPAID_INDICATOR")
+    @Type(type = "numeric_boolean")
     protected boolean prepaidIndicator;
 
     @Column(name = "SEQUENCE_NUMERIC")

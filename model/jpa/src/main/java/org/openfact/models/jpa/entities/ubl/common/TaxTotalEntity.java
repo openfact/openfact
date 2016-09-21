@@ -23,6 +23,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "TAXTOTAL")
@@ -42,6 +43,7 @@ public class TaxTotalEntity {
     protected BigDecimal roundingAmount;
 
     @Column(name = "TAX_EVIDENCE_INDICATOR")
+    @Type(type = "numeric_boolean")
     protected boolean taxEvidenceIndicator;
 
     @OneToMany(targetEntity = TaxSubtotalEntity.class, cascade = { CascadeType.ALL })

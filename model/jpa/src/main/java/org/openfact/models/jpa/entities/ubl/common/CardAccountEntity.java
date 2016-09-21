@@ -18,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "CARDACCOUNT")
@@ -40,9 +41,11 @@ public class CardAccountEntity {
     protected String cardCode;
 
     @Column(name = "VALIDITY_START_DATE")
+    @Type(type = "LocalDate, java.time.LocalDate")
     protected LocalDate validityStartDate;
 
     @Column(name = "EXPIRITY_DATE")
+    @Type(type = "LocalDate, java.time.LocalDate")
     protected LocalDate expiryDate;
 
     @Column(name = "ISSUERID")

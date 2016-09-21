@@ -25,13 +25,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "ITEMINSTANCE")
 public class ItemInstanceEntity {
 
     @Id
-    @Column(name = "ID_OFID")
+    @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
@@ -41,9 +42,11 @@ public class ItemInstanceEntity {
     protected String productTraceID;
 
     @Column(name = "MANUFACTURE_DATE")
+    @Type(type = "LocalDate, java.time.LocalDate")
     protected LocalDate manufactureDate;
 
     @Column(name = "MANUFACTURE_TIME")
+    @Type(type = "LocalTime, java.time.LocalTime")
     protected LocalTime manufactureTime;
 
     @Column(name = "REGISTRATIONID_ITEMINSTANCE")

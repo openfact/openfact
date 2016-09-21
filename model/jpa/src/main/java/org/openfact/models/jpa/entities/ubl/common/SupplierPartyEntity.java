@@ -30,7 +30,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class SupplierPartyEntity {
 
     @Id
-    @Column(name = "ID_OFID")
+    @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
@@ -49,7 +49,7 @@ public class SupplierPartyEntity {
     protected String dataSendingCapability;
 
     @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PARTY_SUPPLIERPARTYTYPE_ID")
+    @JoinColumn(name = "PARTY_SUPPLIERPARTY_ID")
     protected PartyEntity party = new PartyEntity();
 
     @ManyToOne(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })

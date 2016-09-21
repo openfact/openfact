@@ -19,8 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-
-import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.BatchQuantityType;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "DELIVERYUNIT")
@@ -33,15 +32,16 @@ public class DeliveryUnitEntity {
     @Access(AccessType.PROPERTY)
     protected String id;
 
-    @ManyToOne(targetEntity = BatchQuantityType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = QuantityEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "BATCHQUANTITY_DELIVERYUNIT")
     protected QuantityEntity batchQuantity = new QuantityEntity();
 
-    @ManyToOne(targetEntity = BatchQuantityType.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = QuantityEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CONSUMERUNITQUANTITY_DELIVERYUNIT")
     protected QuantityEntity consumerUnitQuantity;
 
     @Column(name = "HAZARDOUSRISKINDICATOR")
+    @Type(type = "numeric_boolean")
     protected boolean hazardousRiskIndicator;
 
     /**

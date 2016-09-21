@@ -22,34 +22,38 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "ORDER_REFERENCE")
 public class OrderReferenceEntity {
 
     @Id
-    @Column(name = "ID_OFID")
+    @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
     protected String id;
 
-    @Column(name = "ID")
+    @Column(name = "ID_UBL")
     protected String ID;
 
     @Column(name = "SALES_ORDER_ID")
     protected String salesOrderID;
 
     @Column(name = "COPY_INDICATOR")
+    @Type(type = "numeric_boolean")
     protected boolean copyIndicator;
 
     @Column(name = "UUID")
     protected String uuid;
 
     @Column(name = "ISSUEDATE")
+    @Type(type = "LocalDate, java.time.LocalDate")
     protected LocalDate issueDate;
 
     @Column(name = "ISSUETIME")
+    @Type(type = "LocalTime, java.time.LocalTime")
     protected LocalTime issueTime;
 
     @Column(name = "CUSTOMER_REFERENCE")

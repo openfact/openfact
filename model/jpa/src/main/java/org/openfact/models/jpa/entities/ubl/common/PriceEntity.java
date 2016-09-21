@@ -32,7 +32,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class PriceEntity {
 
     @Id
-    @Column(name = "ID_OFID")
+    @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
@@ -42,7 +42,7 @@ public class PriceEntity {
     protected BigDecimal priceAmount;
 
     @ManyToOne(targetEntity = QuantityEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "BASEQUANTITY_PRICETYPE")
+    @JoinColumn(name = "BASEQUANTITY_PRICE")
     protected QuantityEntity baseQuantity = new QuantityEntity();
 
     @ElementCollection
@@ -64,11 +64,11 @@ public class PriceEntity {
     protected List<PeriodEntity> validityPeriod = new ArrayList<>();
 
     @ManyToOne(targetEntity = PriceListEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PRICELIST_PRICETYPE")
+    @JoinColumn(name = "PRICELIST_PRICE")
     protected PriceListEntity priceList = new PriceListEntity();
 
     @OneToMany(targetEntity = AllowanceChargeEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ALLOWANCECHARGE_PRICETYPE")
+    @JoinColumn(name = "ALLOWANCECHARGE_PRICE")
     protected List<AllowanceChargeEntity> allowanceCharge = new ArrayList<>();
 
     /**

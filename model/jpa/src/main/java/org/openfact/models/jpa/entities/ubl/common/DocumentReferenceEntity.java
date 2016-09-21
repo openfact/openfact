@@ -25,6 +25,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "DOCUMENTREFERENCE")
@@ -37,16 +38,18 @@ public class DocumentReferenceEntity {
     @Access(AccessType.PROPERTY)
     protected String id;
 
-    @Column(name = "ID")
+    @Column(name = "ID_UBL")
     protected String ID;
 
     @Column(name = "COPY_INDICATOR")
+    @Type(type = "numeric_boolean")
     protected boolean copyIndicator;
 
     @Column(name = "UUID")
     protected String uuid;
 
     @Column(name = "ISSUE_DATE")
+    @Type(type = "LocalDate, java.time.LocalDate")
     protected LocalDate issueDate;
 
     @Column(name = "DOCUMENT_CODE")

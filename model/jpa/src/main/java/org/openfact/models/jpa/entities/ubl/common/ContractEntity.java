@@ -27,6 +27,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "CONTRACT")
@@ -40,13 +41,15 @@ public class ContractEntity {
     @Access(AccessType.PROPERTY)
     protected String id;
 
-    @Column(name = "ID")
+    @Column(name = "ID_UBL")
     protected String ID;
 
     @Column(name = "ISSUE_DATE")
+    @Type(type = "LocalDate, java.time.LocalDate")
     protected LocalDate issueDate;
 
     @Column(name = "ISSUE_TIME")
+    @Type(type = "LocalTime, java.time.LocalTime")
     protected LocalTime issueTime;
 
     @Column(name = "CONTRACT_CODE")

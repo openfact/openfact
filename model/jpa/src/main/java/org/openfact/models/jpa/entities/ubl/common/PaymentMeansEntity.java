@@ -25,25 +25,27 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "PAYMENTMEANS")
 public class PaymentMeansEntity {
 
     @Id
-    @Column(name = "ID_OFID")
+    @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
     protected String id;
 
-    @Column(name = "ID")
+    @Column(name = "ID_UBL")
     protected String ID;
 
     @Column(name = "PAYMENTMEANSCODE")
     protected String paymentMeansCode;
 
     @Column(name = "PAYMENTDUEDATE")
+    @Type(type = "LocalDate, java.time.LocalDate")
     protected LocalDate paymentDueDate;
 
     @Column(name = "PAYMENTCHANNELCODE")

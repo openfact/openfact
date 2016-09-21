@@ -23,13 +23,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "LOTIDENTIFICATION")
 public class LotIdentificationEntity {
 
     @Id
-    @Column(name = "ID_OFID")
+    @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
@@ -39,6 +40,7 @@ public class LotIdentificationEntity {
     protected String lotNumberID;
 
     @Column(name = "EXPIRY_DATE")
+    @Type(type = "LocalDate, java.time.LocalDate")
     protected LocalDate expiryDate;
 
     @OneToMany(targetEntity = ItemPropertyEntity.class, cascade = { CascadeType.ALL })
