@@ -17,51 +17,45 @@ import org.openfact.models.ubl.common.UBLExtensionsModel;
 
 public class UBLExtensionsAdapter implements UBLExtensionsModel, JpaModel<UBLExtensionsEntity> {
 
-	protected static final Logger logger = Logger.getLogger(UBLExtensionsAdapter.class);
-	protected UBLExtensionsEntity uBLExtensions;
-	protected EntityManager em;
-	protected OpenfactSession session;
+    protected static final Logger logger = Logger.getLogger(UBLExtensionsAdapter.class);
+    protected UBLExtensionsEntity uBLExtensions;
+    protected EntityManager em;
+    protected OpenfactSession session;
 
-	public UBLExtensionsAdapter(OpenfactSession session, EntityManager em, UBLExtensionsEntity uBLExtensions) {
-		this.session = session;
-		this.em = em;
-		this.uBLExtensions = uBLExtensions;
-	}
+    public UBLExtensionsAdapter(OpenfactSession session, EntityManager em,
+            UBLExtensionsEntity uBLExtensions) {
+        this.session = session;
+        this.em = em;
+        this.uBLExtensions = uBLExtensions;
+    }
 
-	@Override
-	public List<UBLExtensionModel> getUBLExtension() {
-		return this.uBLExtensions.getUblExtension().stream().map(f -> new UBLExtensionAdapter(session, em, f))
-				.collect(Collectors.toList());
-	}
+    @Override
+    public List<UBLExtensionModel> getUBLExtension() {
+        return this.uBLExtensions.getUblExtension().stream().map(f -> new UBLExtensionAdapter(session, em, f))
+                .collect(Collectors.toList());
+    }
 
-	@Override
-	public void setUBLExtension(List<UBLExtensionModel> ublExtension) {
-		List<UBLExtensionEntity> entities = ublExtension.stream().map(f -> UBLExtensionAdapter.toEntity(f, em))
-				.collect(Collectors.toList());
-		this.uBLExtensions.setUblExtension(entities);
-	}
+    @Override
+    public void setUBLExtension(List<UBLExtensionModel> ublExtension) {
+        List<UBLExtensionEntity> entities = ublExtension.stream()
+                .map(f -> UBLExtensionAdapter.toEntity(f, em)).collect(Collectors.toList());
+        this.uBLExtensions.setUblExtension(entities);
+    }
 
-	@Override
-	public String getId() {
-		return this.uBLExtensions.getId();
-	}
+    @Override
+    public String getId() {
+        return this.uBLExtensions.getId();
+    }
 
-	@Override
-	public void setId(String value) {
-		this.uBLExtensions.setId(value);
-	}
+    @Override
+    public void setId(String value) {
+        this.uBLExtensions.setId(value);
+    }
 
-	@Override
-	public UBLExtensionsEntity getEntity() {
-		return this.uBLExtensions;
-	}
-
-	public static UBLExtensionsEntity toEntity(UBLExtensionsModel model, EntityManager em) {
-		if (model instanceof UBLExtensionsModel) {
-			return ((UBLExtensionsAdapter) model).getEntity();
-		}
-		return em.getReference(UBLExtensionsEntity.class, model.getId());
-	}
+    @Override
+    public UBLExtensionsEntity getEntity() {
+        return this.uBLExtensions;
+    }
 
     public static UBLExtensionsEntity toEntity(UBLExtensionsModel model, EntityManager em) {
         if (model instanceof UBLExtensionsAdapter) {
