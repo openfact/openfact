@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.AddressEntity;
 import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.DebitNoteLineEntity;
 import org.openfact.models.jpa.entities.ubl.common.DeliveryEntity;
@@ -18,6 +19,7 @@ import org.openfact.models.jpa.entities.ubl.common.DocumentReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.LineReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.ResponseEntity;
 import org.openfact.models.jpa.entities.ubl.common.TaxTotalEntity;
+import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.BillingReferenceModel;
 import org.openfact.models.ubl.common.DebitNoteLineModel;
 import org.openfact.models.ubl.common.DeliveryModel;
@@ -267,6 +269,13 @@ public class DebitNoteLineAdapter implements DebitNoteLineModel, JpaModel<DebitN
         TaxTotalEntity entity = new TaxTotalEntity();
         entities.add(entity);
         return new TaxTotalAdapter(session, em, entity);
+    }
+
+    public static DebitNoteLineEntity toEntity(DebitNoteLineModel model, EntityManager em) {
+        if (model instanceof DebitNoteLineAdapter) {
+            return ((DebitNoteLineAdapter) model).getEntity();
+        }
+        return em.getReference(DebitNoteLineEntity.class, model.getId());
     }
 
 }
