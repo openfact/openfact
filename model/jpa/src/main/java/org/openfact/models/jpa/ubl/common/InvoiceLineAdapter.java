@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.AddressEntity;
 import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.DeliveryEntity;
@@ -20,6 +21,7 @@ import org.openfact.models.jpa.entities.ubl.common.OrderLineReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.PaymentMeansEntity;
 import org.openfact.models.jpa.entities.ubl.common.PaymentTermsEntity;
 import org.openfact.models.jpa.entities.ubl.common.TaxTotalEntity;
+import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.BillingReferenceModel;
 import org.openfact.models.ubl.common.DeliveryModel;
@@ -336,6 +338,13 @@ public class InvoiceLineAdapter implements InvoiceLineModel, JpaModel<InvoiceLin
         AllowanceChargeEntity allowanceChargeEntity = new AllowanceChargeEntity();
         allowanceChargeEntities.add(allowanceChargeEntity);
         return new AllowanceChargeAdapter(session, em, allowanceChargeEntity);
+    }
+
+    public static InvoiceLineEntity toEntity(InvoiceLineModel model, EntityManager em) {
+        if (model instanceof InvoiceLineAdapter) {
+            return ((InvoiceLineAdapter) model).getEntity();
+        }
+        return em.getReference(InvoiceLineEntity.class, model.getId());
     }
 
 }

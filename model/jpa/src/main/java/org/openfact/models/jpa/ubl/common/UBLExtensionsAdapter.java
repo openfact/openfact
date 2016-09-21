@@ -8,8 +8,10 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.AddressEntity;
 import org.openfact.models.jpa.entities.ubl.common.UBLExtensionEntity;
 import org.openfact.models.jpa.entities.ubl.common.UBLExtensionsEntity;
+import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.UBLExtensionModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
 
@@ -53,6 +55,13 @@ public class UBLExtensionsAdapter implements UBLExtensionsModel, JpaModel<UBLExt
     @Override
     public UBLExtensionsEntity getEntity() {
         return this.uBLExtensions;
+    }
+
+    public static UBLExtensionsEntity toEntity(UBLExtensionsModel model, EntityManager em) {
+        if (model instanceof UBLExtensionsAdapter) {
+            return ((UBLExtensionsAdapter) model).getEntity();
+        }
+        return em.getReference(UBLExtensionsEntity.class, model.getId());
     }
 
 }

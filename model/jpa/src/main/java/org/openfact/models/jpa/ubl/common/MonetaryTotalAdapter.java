@@ -7,7 +7,9 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.AddressEntity;
 import org.openfact.models.jpa.entities.ubl.common.MonetaryTotalEntity;
+import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.MonetaryTotalModel;
 
 public class MonetaryTotalAdapter implements MonetaryTotalModel, JpaModel<MonetaryTotalEntity> {
@@ -117,6 +119,13 @@ public class MonetaryTotalAdapter implements MonetaryTotalModel, JpaModel<Moneta
     @Override
     public MonetaryTotalEntity getEntity() {
         return monetaryTotal;
+    }
+
+    public static MonetaryTotalEntity toEntity(MonetaryTotalModel model, EntityManager em) {
+        if (model instanceof MonetaryTotalAdapter) {
+            return ((MonetaryTotalAdapter) model).getEntity();
+        }
+        return em.getReference(MonetaryTotalEntity.class, model.getId());
     }
 
 }

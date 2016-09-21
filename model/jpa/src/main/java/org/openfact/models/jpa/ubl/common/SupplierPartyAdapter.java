@@ -7,7 +7,9 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.AddressEntity;
 import org.openfact.models.jpa.entities.ubl.common.SupplierPartyEntity;
+import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.ContactModel;
 import org.openfact.models.ubl.common.PartyModel;
 import org.openfact.models.ubl.common.SupplierPartyModel;
@@ -111,6 +113,13 @@ public class SupplierPartyAdapter implements SupplierPartyModel, JpaModel<Suppli
     @Override
     public SupplierPartyEntity getEntity() {
         return supplierParty;
+    }
+
+    public static SupplierPartyEntity toEntity(SupplierPartyModel model, EntityManager em) {
+        if (model instanceof SupplierPartyAdapter) {
+            return ((SupplierPartyAdapter) model).getEntity();
+        }
+        return em.getReference(SupplierPartyEntity.class, model.getId());
     }
 
 }

@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
@@ -13,6 +14,36 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.InvoiceEntity;
+import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
+import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
+import org.openfact.models.jpa.entities.ubl.common.DeliveryEntity;
+import org.openfact.models.jpa.entities.ubl.common.DocumentReferenceEntity;
+import org.openfact.models.jpa.entities.ubl.common.InvoiceLineEntity;
+import org.openfact.models.jpa.entities.ubl.common.PaymentEntity;
+import org.openfact.models.jpa.entities.ubl.common.PaymentMeansEntity;
+import org.openfact.models.jpa.entities.ubl.common.PaymentTermsEntity;
+import org.openfact.models.jpa.entities.ubl.common.PeriodEntity;
+import org.openfact.models.jpa.entities.ubl.common.SignatureEntity;
+import org.openfact.models.jpa.entities.ubl.common.TaxTotalEntity;
+import org.openfact.models.jpa.ubl.common.AllowanceChargeAdapter;
+import org.openfact.models.jpa.ubl.common.BillingReferenceAdapter;
+import org.openfact.models.jpa.ubl.common.CustomerPartyAdapter;
+import org.openfact.models.jpa.ubl.common.DeliveryAdapter;
+import org.openfact.models.jpa.ubl.common.DeliveryTermsAdapter;
+import org.openfact.models.jpa.ubl.common.DocumentReferenceAdapter;
+import org.openfact.models.jpa.ubl.common.ExchangeRateAdapter;
+import org.openfact.models.jpa.ubl.common.InvoiceLineAdapter;
+import org.openfact.models.jpa.ubl.common.MonetaryTotalAdapter;
+import org.openfact.models.jpa.ubl.common.OrderReferenceAdapter;
+import org.openfact.models.jpa.ubl.common.PartyAdapter;
+import org.openfact.models.jpa.ubl.common.PaymentAdapter;
+import org.openfact.models.jpa.ubl.common.PaymentMeansAdapter;
+import org.openfact.models.jpa.ubl.common.PaymentTermsAdapter;
+import org.openfact.models.jpa.ubl.common.PeriodAdapter;
+import org.openfact.models.jpa.ubl.common.SignatureAdapter;
+import org.openfact.models.jpa.ubl.common.SupplierPartyAdapter;
+import org.openfact.models.jpa.ubl.common.TaxTotalAdapter;
+import org.openfact.models.jpa.ubl.common.UBLExtensionsAdapter;
 import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.BillingReferenceModel;
@@ -58,602 +89,555 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 
     @Override
     public UBLExtensionsModel getUBLExtensions() {
-        // TODO Auto-generated method stub
-        return null;
+        return new UBLExtensionsAdapter(session, em, invoice.getUblExtensions());
     }
 
     @Override
     public void setUBLExtensions(UBLExtensionsModel value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setUblExtensions(UBLExtensionsAdapter.toEntity(value, em));
     }
 
     @Override
     public String getUBLVersionID() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getUblVersionID();
     }
 
     @Override
     public void setUBLVersionID(String value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setUblVersionID(value);
     }
 
     @Override
     public String getCustomizationID() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getCustomizationID();
     }
 
     @Override
     public void setCustomizationID(String value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setCustomizationID(value);
     }
 
     @Override
     public String getProfileID() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getProfileID();
     }
 
     @Override
     public void setProfileID(String value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setProfileID(value);
     }
 
     @Override
     public String getID() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getID();
     }
 
     @Override
     public void setID(String value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setID(value);
     }
 
     @Override
     public boolean getCopyIndicator() {
-        // TODO Auto-generated method stub
-        return false;
+        return invoice.isCopyIndicator();
     }
 
     @Override
     public void setCopyIndicator(boolean value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setCopyIndicator(value);
     }
 
     @Override
     public String getUUID() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getUuid();
     }
 
     @Override
     public void setUUID(String value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setUuid(value);
     }
 
     @Override
     public LocalDate getIssueDate() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getIssueDate();
     }
 
     @Override
     public void setIssueDate(LocalDate value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setIssueDate(value);
     }
 
     @Override
     public LocalTime getIssueTime() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getIssueTime();
     }
 
     @Override
     public void setIssueTime(LocalTime value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setIssueTime(value);
     }
 
     @Override
     public String getInvoiceModelCode() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getInvoiceTypeCode();
     }
 
     @Override
     public void setInvoiceCodeModel(String value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setInvoiceTypeCode(value);
     }
 
     @Override
     public List<String> getNote() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getNote();
     }
 
     @Override
     public void setNote(List<String> note) {
-        // TODO Auto-generated method stub
-        
+        invoice.setNote(note);
     }
 
     @Override
     public LocalDate getTaxPointDate() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getTaxPointDate();
     }
 
     @Override
     public void setTaxPointDate(LocalDate value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setTaxPointDate(value);
     }
 
     @Override
     public String getDocumentCurrencyCode() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getDocumentCurrencyCode();
     }
 
     @Override
     public void setDocumentCurrencyCode(String value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setDocumentCurrencyCode(value);
     }
 
     @Override
     public String getTaxCurrencyCode() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getTaxCurrencyCode();
     }
 
     @Override
     public void setTaxCurrencyCode(String value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setTaxCurrencyCode(value);
     }
 
     @Override
     public String getPricingCurrencyCode() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getPricingCurrencyCode();
     }
 
     @Override
     public void setPricingCurrencyCode(String value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setPricingCurrencyCode(value);
     }
 
     @Override
     public String getPaymentCurrencyCode() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getPaymentCurrencyCode();
     }
 
     @Override
     public void setPaymentCurrencyCode(String value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setPaymentCurrencyCode(value);
     }
 
     @Override
     public String getPaymentAlternativeCurrencyCode() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getPaymentAlternativeCurrencyCode();
     }
 
     @Override
     public void setPaymentAlternativeCurrencyCode(String value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setPaymentAlternativeCurrencyCode(value);
     }
 
     @Override
     public String getAccountingCostCode() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getAccountingCostCode();
     }
 
     @Override
     public void setAccountingCostCode(String value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setAccountingCostCode(value);
     }
 
     @Override
     public String getAccountingCost() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getAccountingCost();
     }
 
     @Override
     public void setAccountingCost(String value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setAccountingCost(value);
     }
 
     @Override
     public BigDecimal getLineCountNumeric() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getLineCountNumeric();
     }
 
     @Override
     public void setLineCountNumeric(BigDecimal value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setLineCountNumeric(value);
     }
 
     @Override
     public List<PeriodModel> getInvoicePeriod() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getInvoicePeriod().stream().map(f -> new PeriodAdapter(session, em, f))
+                .collect(Collectors.toList());
     }
 
     @Override
     public void setInvoicePeriod(List<PeriodModel> invoicePeriod) {
-        // TODO Auto-generated method stub
-        
+        List<PeriodEntity> entities = invoicePeriod.stream().map(f -> PeriodAdapter.toEntity(f, em))
+                .collect(Collectors.toList());
+        invoice.setInvoicePeriod(entities);
     }
 
     @Override
     public OrderReferenceModel getOrderReference() {
-        // TODO Auto-generated method stub
-        return null;
+        return new OrderReferenceAdapter(session, em, invoice.getOrderReference());
     }
 
     @Override
     public void setOrderReference(OrderReferenceModel value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setOrderReference(OrderReferenceAdapter.toEntity(value, em));
     }
 
     @Override
     public List<BillingReferenceModel> getBillingReference() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getBillingReference().stream().map(f -> new BillingReferenceAdapter(session, em, f))
+                .collect(Collectors.toList());
     }
 
     @Override
     public void setBillingReference(List<BillingReferenceModel> billingReference) {
-        // TODO Auto-generated method stub
-        
+        List<BillingReferenceEntity> entities = billingReference.stream()
+                .map(f -> BillingReferenceAdapter.toEntity(f, em)).collect(Collectors.toList());
+        invoice.setBillingReference(entities);
     }
 
     @Override
     public List<DocumentReferenceModel> getDespatchDocumentReference() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getDespatchDocumentReference().stream()
+                .map(f -> new DocumentReferenceAdapter(session, em, f)).collect(Collectors.toList());
     }
 
     @Override
     public void setDespatchDocumentReference(List<DocumentReferenceModel> despatchDocumentReference) {
-        // TODO Auto-generated method stub
-        
+        List<DocumentReferenceEntity> entities = despatchDocumentReference.stream()
+                .map(f -> DocumentReferenceAdapter.toEntity(f, em)).collect(Collectors.toList());
+        invoice.setDespatchDocumentReference(entities);
     }
 
     @Override
     public List<DocumentReferenceModel> getReceiptDocumentReference() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getReceiptDocumentReference().stream()
+                .map(f -> new DocumentReferenceAdapter(session, em, f)).collect(Collectors.toList());
     }
 
     @Override
     public void setReceiptDocumentReference(List<DocumentReferenceModel> receiptDocumentReference) {
-        // TODO Auto-generated method stub
-        
+        List<DocumentReferenceEntity> entities = receiptDocumentReference.stream()
+                .map(f -> DocumentReferenceAdapter.toEntity(f, em)).collect(Collectors.toList());
+        invoice.setDespatchDocumentReference(entities);
     }
 
     @Override
     public List<DocumentReferenceModel> getOriginatorDocumentReference() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getOriginatorDocumentReference().stream()
+                .map(f -> new DocumentReferenceAdapter(session, em, f)).collect(Collectors.toList());
     }
 
     @Override
     public void setOriginatorDocumentReference(List<DocumentReferenceModel> originatorDocumentReference) {
-        // TODO Auto-generated method stub
-        
+        List<DocumentReferenceEntity> entities = originatorDocumentReference.stream()
+                .map(f -> DocumentReferenceAdapter.toEntity(f, em)).collect(Collectors.toList());
+        invoice.setOriginatorDocumentReference(entities);
     }
 
     @Override
     public List<DocumentReferenceModel> getContractDocumentReference() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getContractDocumentReference().stream()
+                .map(f -> new DocumentReferenceAdapter(session, em, f)).collect(Collectors.toList());
     }
 
     @Override
     public void setContractDocumentReference(List<DocumentReferenceModel> contractDocumentReference) {
-        // TODO Auto-generated method stub
-        
+        List<DocumentReferenceEntity> entities = contractDocumentReference.stream()
+                .map(f -> DocumentReferenceAdapter.toEntity(f, em)).collect(Collectors.toList());
+        invoice.setContractDocumentReference(entities);
     }
 
     @Override
     public List<DocumentReferenceModel> getAdditionalDocumentReference() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getContractDocumentReference().stream()
+                .map(f -> new DocumentReferenceAdapter(session, em, f)).collect(Collectors.toList());
     }
 
     @Override
     public void setAdditionalDocumentReference(List<DocumentReferenceModel> additionalDocumentReference) {
-        // TODO Auto-generated method stub
-        
+        List<DocumentReferenceEntity> entities = additionalDocumentReference.stream()
+                .map(f -> DocumentReferenceAdapter.toEntity(f, em)).collect(Collectors.toList());
+        invoice.setContractDocumentReference(entities);
     }
 
     @Override
     public List<SignatureModel> getSignature() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getSignature().stream().map(f -> new SignatureAdapter(session, em, f))
+                .collect(Collectors.toList());
     }
 
     @Override
     public void setSignature(List<SignatureModel> signature) {
-        // TODO Auto-generated method stub
-        
+        List<SignatureEntity> entities = signature.stream().map(f -> SignatureAdapter.toEntity(f, em))
+                .collect(Collectors.toList());
+        invoice.setSignature(entities);
     }
 
     @Override
     public SupplierPartyModel getAccountingSupplierParty() {
-        // TODO Auto-generated method stub
-        return null;
+        return new SupplierPartyAdapter(session, em, invoice.getAccountingSupplierParty());
     }
 
     @Override
     public void setAccountingSupplierParty(SupplierPartyModel value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setAccountingSupplierParty(SupplierPartyAdapter.toEntity(value, em));
     }
 
     @Override
     public CustomerPartyModel getAccountingCustomerParty() {
-        // TODO Auto-generated method stub
-        return null;
+        return new CustomerPartyAdapter(session, em, invoice.getAccountingCustomerParty());
     }
 
     @Override
     public void setAccountingCustomerParty(CustomerPartyModel value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setAccountingCustomerParty(CustomerPartyAdapter.toEntity(value, em));
     }
 
     @Override
     public PartyModel getPayeeParty() {
-        // TODO Auto-generated method stub
-        return null;
+        return new PartyAdapter(session, em, invoice.getPayeeParty());
     }
 
     @Override
     public void setPayeeParty(PartyModel value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setPayeeParty(PartyAdapter.toEntity(value, em));
     }
 
     @Override
     public CustomerPartyModel getBuyerCustomerParty() {
-        // TODO Auto-generated method stub
-        return null;
+        return new CustomerPartyAdapter(session, em, invoice.getBuyerCustomerParty());
     }
 
     @Override
     public void setBuyerCustomerParty(CustomerPartyModel value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setBuyerCustomerParty(CustomerPartyAdapter.toEntity(value, em));
     }
 
     @Override
     public SupplierPartyModel getSellerSupplierParty() {
-        // TODO Auto-generated method stub
-        return null;
+        return new SupplierPartyAdapter(session, em, invoice.getSellerSupplierParty());
     }
 
     @Override
     public void setSellerSupplierParty(SupplierPartyModel value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setSellerSupplierParty(SupplierPartyAdapter.toEntity(value, em));
     }
 
     @Override
     public PartyModel getTaxRepresentativeParty() {
-        // TODO Auto-generated method stub
-        return null;
+        return new PartyAdapter(session, em, invoice.getTaxRepresentativeParty());
     }
 
     @Override
     public void setTaxRepresentativeParty(PartyModel value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setTaxRepresentativeParty(PartyAdapter.toEntity(value, em));
     }
 
     @Override
     public List<DeliveryModel> getDelivery() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getDelivery().stream().map(f -> new DeliveryAdapter(session, em, f))
+                .collect(Collectors.toList());
     }
 
     @Override
     public void setDelivery(List<DeliveryModel> delivery) {
-        // TODO Auto-generated method stub
-        
+        List<DeliveryEntity> entities = delivery.stream().map(f -> DeliveryAdapter.toEntity(f, em))
+                .collect(Collectors.toList());
+        invoice.setDelivery(entities);
     }
 
     @Override
     public DeliveryTermsModel getDeliveryTerms() {
-        // TODO Auto-generated method stub
-        return null;
+        return new DeliveryTermsAdapter(session, em, invoice.getDeliveryTerms());
     }
 
     @Override
     public void setDeliveryTerms(DeliveryTermsModel value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setDeliveryTerms(DeliveryTermsAdapter.toEntity(value, em));
     }
 
     @Override
     public List<PaymentMeansModel> getPaymentMeans() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getPaymentMeans().stream().map(f -> new PaymentMeansAdapter(session, em, f))
+                .collect(Collectors.toList());
     }
 
     @Override
     public void setPaymentMeans(List<PaymentMeansModel> paymentMeans) {
-        // TODO Auto-generated method stub
-        
+        List<PaymentMeansEntity> entities = paymentMeans.stream()
+                .map(f -> PaymentMeansAdapter.toEntity(f, em)).collect(Collectors.toList());
+        invoice.setPaymentMeans(entities);
     }
 
     @Override
     public List<PaymentTermsModel> getPaymentTerms() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getPaymentTerms().stream().map(f -> new PaymentTermsAdapter(session, em, f))
+                .collect(Collectors.toList());
     }
 
     @Override
     public void setPaymentTerms(List<PaymentTermsModel> paymentTerms) {
-        // TODO Auto-generated method stub
-        
+        List<PaymentTermsEntity> entities = paymentTerms.stream()
+                .map(f -> PaymentTermsAdapter.toEntity(f, em)).collect(Collectors.toList());
+        invoice.setPaymentTerms(entities);
     }
 
     @Override
     public List<PaymentModel> getPrepaidPayment() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getPrepaidPayment().stream().map(f -> new PaymentAdapter(session, em, f))
+                .collect(Collectors.toList());
     }
 
     @Override
     public void setPrepaidPayment(List<PaymentModel> prepaidPayment) {
-        // TODO Auto-generated method stub
-        
+        List<PaymentEntity> entities = prepaidPayment.stream().map(f -> PaymentAdapter.toEntity(f, em))
+                .collect(Collectors.toList());
+        invoice.setPrepaidPayment(entities);
     }
 
     @Override
     public List<AllowanceChargeModel> getAllowanceCharge() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getAllowanceCharge().stream().map(f -> new AllowanceChargeAdapter(session, em, f))
+                .collect(Collectors.toList());
     }
 
     @Override
     public void setAllowanceCharge(List<AllowanceChargeModel> allowanceCharge) {
-        // TODO Auto-generated method stub
-        
+        List<AllowanceChargeEntity> entities = allowanceCharge.stream()
+                .map(f -> AllowanceChargeAdapter.toEntity(f, em)).collect(Collectors.toList());
+        invoice.setAllowanceCharge(entities);
     }
 
     @Override
     public ExchangeRateModel getTaxExchangeRate() {
-        // TODO Auto-generated method stub
-        return null;
+        return new ExchangeRateAdapter(session, em, invoice.getTaxExchangeRate());
     }
 
     @Override
     public void setTaxExchangeRate(ExchangeRateModel value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setTaxExchangeRate(ExchangeRateAdapter.toEntity(value, em));
     }
 
     @Override
     public ExchangeRateModel getPricingExchangeRate() {
-        // TODO Auto-generated method stub
-        return null;
+        return new ExchangeRateAdapter(session, em, invoice.getPricingExchangeRate());
     }
 
     @Override
     public void setPricingExchangeRate(ExchangeRateModel value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setPricingExchangeRate(ExchangeRateAdapter.toEntity(value, em));
     }
 
     @Override
     public ExchangeRateModel getPaymentExchangeRate() {
-        // TODO Auto-generated method stub
-        return null;
+        return new ExchangeRateAdapter(session, em, invoice.getPaymentExchangeRate());
     }
 
     @Override
     public void setPaymentExchangeRate(ExchangeRateModel value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setPaymentExchangeRate(ExchangeRateAdapter.toEntity(value, em));
     }
 
     @Override
     public ExchangeRateModel getPaymentAlternativeExchangeRate() {
-        // TODO Auto-generated method stub
-        return null;
+        return new ExchangeRateAdapter(session, em, invoice.getPaymentAlternativeExchangeRate());
     }
 
     @Override
     public void setPaymentAlternativeExchangeRate(ExchangeRateModel value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setPaymentAlternativeExchangeRate(ExchangeRateAdapter.toEntity(value, em));
     }
 
     @Override
     public List<TaxTotalModel> getTaxTotal() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getTaxTotal().stream().map(f -> new TaxTotalAdapter(session, em, f))
+                .collect(Collectors.toList());
     }
 
     @Override
     public void setTaxTotal(List<TaxTotalModel> taxTotal) {
-        // TODO Auto-generated method stub
-        
+        List<TaxTotalEntity> entities = taxTotal.stream().map(f -> TaxTotalAdapter.toEntity(f, em))
+                .collect(Collectors.toList());
+        invoice.setTaxTotal(entities);
     }
 
     @Override
     public MonetaryTotalModel getLegalMonetaryTotal() {
-        // TODO Auto-generated method stub
-        return null;
+        return new MonetaryTotalAdapter(session, em, invoice.getLegalMonetaryTotal());
     }
 
     @Override
     public void setLegalMonetaryTotal(MonetaryTotalModel value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setLegalMonetaryTotal(MonetaryTotalAdapter.toEntity(value, em));
     }
 
     @Override
     public List<InvoiceLineModel> getInvoiceLine() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getInvoiceLine().stream().map(f -> new InvoiceLineAdapter(session, em, f))
+                .collect(Collectors.toList());
     }
 
     @Override
     public void setInvoiceLine(List<InvoiceLineModel> invoiceLine) {
-        // TODO Auto-generated method stub
-        
+        List<InvoiceLineEntity> entities = invoiceLine.stream().map(f -> InvoiceLineAdapter.toEntity(f, em))
+                .collect(Collectors.toList());
+        invoice.setInvoiceLine(entities);
     }
 
     @Override
     public String getId() {
-        // TODO Auto-generated method stub
-        return null;
+        return invoice.getId();
     }
 
     @Override
     public void setId(String value) {
-        // TODO Auto-generated method stub
-        
+        invoice.setId(value);
     }
 
     @Override
     public InvoiceLineModel addInvoiceLine() {
-        // TODO Auto-generated method stub
-        return null;
+        List<InvoiceLineEntity> entities = invoice.getInvoiceLine();
+
+        InvoiceLineEntity entity = new InvoiceLineEntity();
+        entities.add(entity);
+        return new InvoiceLineAdapter(session, em, entity);
     }
 
     @Override
     public TaxTotalModel addTaxTotal() {
-        // TODO Auto-generated method stub
-        return null;
+        List<TaxTotalEntity> entities = invoice.getTaxTotal();
+
+        TaxTotalEntity entity = new TaxTotalEntity();
+        entities.add(entity);
+        return new TaxTotalAdapter(session, em, entity);
     }
 
 }

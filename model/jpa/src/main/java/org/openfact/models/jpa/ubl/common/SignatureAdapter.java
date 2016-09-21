@@ -8,7 +8,9 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.AddressEntity;
 import org.openfact.models.jpa.entities.ubl.common.SignatureEntity;
+import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.AttachmentModel;
 import org.openfact.models.ubl.common.DocumentReferenceModel;
 import org.openfact.models.ubl.common.PartyModel;
@@ -98,8 +100,8 @@ public class SignatureAdapter implements SignatureModel, JpaModel<SignatureEntit
     }
 
     @Override
-    public PartyModel getSignatoryParty() {    	
-        return new PartyAdapter( session,em ,signature.getSignatoryParty());
+    public PartyModel getSignatoryParty() {
+        return new PartyAdapter(session, em, signature.getSignatoryParty());
     }
 
     @Override
@@ -109,7 +111,7 @@ public class SignatureAdapter implements SignatureModel, JpaModel<SignatureEntit
 
     @Override
     public AttachmentModel getDigitalSignatureAttachment() {
-        return new AttachmentAdapter(session,em,signature.getDigitalSignatureAttachment());
+        return new AttachmentAdapter(session, em, signature.getDigitalSignatureAttachment());
     }
 
     @Override
@@ -119,7 +121,7 @@ public class SignatureAdapter implements SignatureModel, JpaModel<SignatureEntit
 
     @Override
     public DocumentReferenceModel getOriginalDocumentReference() {
-        return new DocumentReferenceAdapter(session,em,signature.getOriginalDocumentReference());
+        return new DocumentReferenceAdapter(session, em, signature.getOriginalDocumentReference());
     }
 
     @Override
@@ -137,10 +139,15 @@ public class SignatureAdapter implements SignatureModel, JpaModel<SignatureEntit
         this.signature.setId(value);
     }
 
-	@Override
-	public SignatureEntity getEntity() {
-		// TODO Auto-generated method stub
-		return signature;
-	}
+    @Override
+    public SignatureEntity getEntity() {
+        return signature;
+    }
 
+    public static SignatureEntity toEntity(SignatureModel model, EntityManager em) {
+        if (model instanceof SignatureAdapter) {
+            return ((SignatureAdapter) model).getEntity();
+        }
+        return em.getReference(SignatureEntity.class, model.getId());
+    }
 }

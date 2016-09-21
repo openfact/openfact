@@ -8,7 +8,9 @@ import javax.persistence.EntityManager;
 import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.AddressEntity;
 import org.openfact.models.jpa.entities.ubl.common.ExchangeRateEntity;
+import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.ContractModel;
 import org.openfact.models.ubl.common.ExchangeRateModel;
 
@@ -128,6 +130,13 @@ public class ExchangeRateAdapter implements ExchangeRateModel, JpaModel<Exchange
     @Override
     public ExchangeRateEntity getEntity() {
         return exchangeRate;
+    }
+
+    public static ExchangeRateEntity toEntity(ExchangeRateModel model, EntityManager em) {
+        if (model instanceof ExchangeRateAdapter) {
+            return ((ExchangeRateAdapter) model).getEntity();
+        }
+        return em.getReference(ExchangeRateEntity.class, model.getId());
     }
 
 }
