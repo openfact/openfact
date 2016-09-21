@@ -30,7 +30,21 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.jpa.entities.ubl.common.*;
+import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
+import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
+import org.openfact.models.jpa.entities.ubl.common.CreditNoteLineEntity;
+import org.openfact.models.jpa.entities.ubl.common.CustomerPartyEntity;
+import org.openfact.models.jpa.entities.ubl.common.DocumentReferenceEntity;
+import org.openfact.models.jpa.entities.ubl.common.ExchangeRateEntity;
+import org.openfact.models.jpa.entities.ubl.common.MonetaryTotalEntity;
+import org.openfact.models.jpa.entities.ubl.common.OrderReferenceEntity;
+import org.openfact.models.jpa.entities.ubl.common.PartyEntity;
+import org.openfact.models.jpa.entities.ubl.common.PeriodEntity;
+import org.openfact.models.jpa.entities.ubl.common.ResponseEntity;
+import org.openfact.models.jpa.entities.ubl.common.SignatureEntity;
+import org.openfact.models.jpa.entities.ubl.common.SupplierPartyEntity;
+import org.openfact.models.jpa.entities.ubl.common.TaxTotalEntity;
+import org.openfact.models.jpa.entities.ubl.common.UBLExtensionsEntity;
 
 @Entity
 @Table(name = "CREDITNOTE")

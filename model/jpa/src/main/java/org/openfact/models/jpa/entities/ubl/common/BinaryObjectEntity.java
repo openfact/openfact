@@ -11,8 +11,6 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
@@ -39,8 +37,7 @@ public class BinaryObjectEntity {
     protected String format;
 
     @Column(name = "MIMECODE", length = 255)
-    @Enumerated(EnumType.STRING)
-    protected BinaryObjectMimeCodeContentType mimeCode;
+    protected String mimeCode;
 
     @Column(name = "ENCODINGCODE", length = 255)
     protected String encodingCode;
@@ -102,7 +99,7 @@ public class BinaryObjectEntity {
     /**
      * @return the mimeCode
      */
-    public BinaryObjectMimeCodeContentType getMimeCode() {
+    public String getMimeCode() {
         return mimeCode;
     }
 
@@ -110,7 +107,7 @@ public class BinaryObjectEntity {
      * @param mimeCode
      *            the mimeCode to set
      */
-    public void setMimeCode(BinaryObjectMimeCodeContentType mimeCode) {
+    public void setMimeCode(String mimeCode) {
         this.mimeCode = mimeCode;
     }
 

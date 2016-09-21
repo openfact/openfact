@@ -6,7 +6,6 @@ import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.BinaryObjectEntity;
-import org.openfact.models.jpa.entities.ubl.common.BinaryObjectMimeCodeContentType;
 import org.openfact.models.ubl.common.BinaryObjectModel;
 
 public class BinaryObjectAdapter implements BinaryObjectModel, JpaModel<BinaryObjectEntity> {
@@ -44,12 +43,12 @@ public class BinaryObjectAdapter implements BinaryObjectModel, JpaModel<BinaryOb
 
     @Override
     public String getMimeCode() {
-        return this.binaryObject.getMimeCode().toString();
+        return this.binaryObject.getMimeCode();
     }
 
     @Override
     public void setMimeCode(String value) {
-        this.binaryObject.setMimeCode(BinaryObjectMimeCodeContentType.valueOf(value));
+        this.binaryObject.setMimeCode(value);
     }
 
     @Override

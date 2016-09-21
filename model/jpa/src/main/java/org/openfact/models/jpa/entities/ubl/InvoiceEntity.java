@@ -22,15 +22,31 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.jpa.entities.ubl.common.*;
+import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
+import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
+import org.openfact.models.jpa.entities.ubl.common.CustomerPartyEntity;
+import org.openfact.models.jpa.entities.ubl.common.DeliveryEntity;
+import org.openfact.models.jpa.entities.ubl.common.DeliveryTermsEntity;
+import org.openfact.models.jpa.entities.ubl.common.DocumentReferenceEntity;
+import org.openfact.models.jpa.entities.ubl.common.ExchangeRateEntity;
+import org.openfact.models.jpa.entities.ubl.common.InvoiceLineEntity;
+import org.openfact.models.jpa.entities.ubl.common.MonetaryTotalEntity;
+import org.openfact.models.jpa.entities.ubl.common.OrderReferenceEntity;
+import org.openfact.models.jpa.entities.ubl.common.PartyEntity;
+import org.openfact.models.jpa.entities.ubl.common.PaymentEntity;
+import org.openfact.models.jpa.entities.ubl.common.PaymentMeansEntity;
+import org.openfact.models.jpa.entities.ubl.common.PaymentTermsEntity;
+import org.openfact.models.jpa.entities.ubl.common.PeriodEntity;
+import org.openfact.models.jpa.entities.ubl.common.SignatureEntity;
+import org.openfact.models.jpa.entities.ubl.common.SupplierPartyEntity;
+import org.openfact.models.jpa.entities.ubl.common.TaxTotalEntity;
+import org.openfact.models.jpa.entities.ubl.common.UBLExtensionsEntity;
 
 @Entity
 @Table(name = "INVOICE")
