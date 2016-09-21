@@ -24,11 +24,11 @@ import org.openfact.events.admin.AdminEvent;
 import org.openfact.events.Event;
 import org.openfact.events.EventListenerProvider;
 import org.openfact.events.EventType;
-import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
 import org.openfact.models.UserModel;
+import org.openfact.models.ubl.InvoiceModel;
 
 import java.util.Set;
 
@@ -56,8 +56,8 @@ public class EmailEventListenerProvider implements EventListenerProvider {
         if (includedEvents.contains(event.getType())) {
             if (event.getOrganizationId()!= null && event.getUserId() != null) {
                 OrganizationModel organization = model.getOrganization(event.getOrganizationId());
-                InvoiceModel invoice = session.invoices().getInvoiceById(event.getInvoiceId(), organization);
-                if (invoice != null && invoice.getCustomer().getEmail() != null /*&& invoice.isEmailVerified()*/) {
+                InvoiceModel invoice = session.invoices().getInvoiceById(organization, event.getInvoiceId());
+                if (invoice != null && invoice.getAccountingCustomerParty().getAccountingContact().getElectronicMail() != null) {
                     try {
                         emailTemplateProvider.setOrganization(organization).setInvoice(invoice).sendEvent(event);
                     } catch (EmailException e) {

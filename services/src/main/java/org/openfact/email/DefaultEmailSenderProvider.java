@@ -56,7 +56,7 @@ public class DefaultEmailSenderProvider implements EmailSenderProvider {
     public void send(OrganizationModel organization, InvoiceModel invoice, String subject, String textBody, String htmlBody) throws EmailException {
         Transport transport = null;
         try {
-            String address = invoice.getCustomer().getEmail();
+            String address = invoice.getAccountingCustomerParty().getAccountingContact().getElectronicMail();
             Map<String, String> config = organization.getSmtpConfig();
 
             Properties props = new Properties();
