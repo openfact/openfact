@@ -312,7 +312,7 @@ public class AddressAdapter implements AddressModel, JpaModel<AddressEntity> {
     }
 
     public static AddressEntity toEntity(AddressModel model, EntityManager em) {
-        if (model instanceof AddressAdapter) {
+        if (model instanceof AddressModel) {
             return ((AddressAdapter) model).getEntity();
         }
         return em.getReference(AddressEntity.class, model.getId());
