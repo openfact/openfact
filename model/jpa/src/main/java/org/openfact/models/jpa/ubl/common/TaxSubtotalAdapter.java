@@ -15,7 +15,7 @@ import org.openfact.models.ubl.common.TaxSubtotalModel;
 public class TaxSubtotalAdapter implements TaxSubtotalModel, JpaModel<TaxSubtotalEntity> {
 
     protected static final Logger logger = Logger.getLogger(TaxSubtotalAdapter.class);
-    
+
     protected TaxSubtotalEntity taxSubtotal;
     protected EntityManager em;
     protected OpenfactSession session;

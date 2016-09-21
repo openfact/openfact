@@ -5,14 +5,12 @@ import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
-import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
-import org.openfact.models.jpa.entities.ubl.common.AddressEntity;
 import org.openfact.models.jpa.entities.ubl.common.DimensionEntity;
 import org.openfact.models.jpa.entities.ubl.common.ItemIdentificationEntity;
 import org.openfact.models.jpa.entities.ubl.common.PhysicalAttributeEntity;
-import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.DimensionModel;
 import org.openfact.models.ubl.common.ItemIdentificationModel;
 import org.openfact.models.ubl.common.PartyModel;

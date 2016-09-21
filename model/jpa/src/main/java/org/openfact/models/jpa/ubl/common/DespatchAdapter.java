@@ -5,10 +5,9 @@ import java.time.LocalTime;
 
 import javax.persistence.EntityManager;
 
-import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
-import org.openfact.models.jpa.entities.ubl.common.AddressEntity;
 import org.openfact.models.jpa.entities.ubl.common.DespatchEntity;
 import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.ContactModel;

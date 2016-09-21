@@ -41,7 +41,7 @@ public class AttachmentAdapter implements AttachmentModel, JpaModel<AttachmentEn
 
     @Override
     public void setExternalReference(ExternalReferenceModel value) {
-        attachment.setExternalReference(ExternalReferenceAdapter.toEntity(value,em));
+        attachment.setExternalReference(ExternalReferenceAdapter.toEntity(value, em));
     }
 
     @Override

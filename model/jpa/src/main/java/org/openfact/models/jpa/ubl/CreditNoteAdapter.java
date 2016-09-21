@@ -9,26 +9,32 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.CurrencyModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.CreditNoteEntity;
+import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.CreditNoteLineEntity;
 import org.openfact.models.jpa.entities.ubl.common.DocumentReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.PeriodEntity;
 import org.openfact.models.jpa.entities.ubl.common.ResponseEntity;
 import org.openfact.models.jpa.entities.ubl.common.SignatureEntity;
-import org.openfact.models.jpa.entities.ubl.common.TaxCategoryEntity;
+import org.openfact.models.jpa.entities.ubl.common.TaxTotalEntity;
+import org.openfact.models.jpa.ubl.common.AllowanceChargeAdapter;
 import org.openfact.models.jpa.ubl.common.BillingReferenceAdapter;
-import org.openfact.models.jpa.ubl.common.CountryAdapter;
+import org.openfact.models.jpa.ubl.common.CreditNoteLineAdapter;
+import org.openfact.models.jpa.ubl.common.CustomerPartyAdapter;
 import org.openfact.models.jpa.ubl.common.DocumentReferenceAdapter;
+import org.openfact.models.jpa.ubl.common.ExchangeRateAdapter;
+import org.openfact.models.jpa.ubl.common.MonetaryTotalAdapter;
 import org.openfact.models.jpa.ubl.common.OrderReferenceAdapter;
+import org.openfact.models.jpa.ubl.common.PartyAdapter;
 import org.openfact.models.jpa.ubl.common.PeriodAdapter;
 import org.openfact.models.jpa.ubl.common.ResponseAdapter;
 import org.openfact.models.jpa.ubl.common.SignatureAdapter;
-import org.openfact.models.jpa.ubl.common.TaxCategoryAdapter;
+import org.openfact.models.jpa.ubl.common.SupplierPartyAdapter;
+import org.openfact.models.jpa.ubl.common.TaxTotalAdapter;
 import org.openfact.models.jpa.ubl.common.UBLExtensionsAdapter;
 import org.openfact.models.ubl.CreditNoteModel;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
@@ -49,523 +55,765 @@ import org.openfact.models.ubl.common.UBLExtensionsModel;
 
 public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEntity> {
 
-	protected static final Logger logger = Logger.getLogger(CreditNoteAdapter.class);
-
-	protected OrganizationModel organization;
-	protected CreditNoteEntity creditNote;
-	protected EntityManager em;
-	protected OpenfactSession session;
-
-	public CreditNoteAdapter(OrganizationModel organization, OpenfactSession session, EntityManager em,
-			CreditNoteEntity invoice) {
-		this.organization = organization;
-		this.session = session;
-		this.em = em;
-		this.creditNote = invoice;
-	}
-
-	@Override
-	public CreditNoteEntity getEntity() {
-		return creditNote;
-	}
-
-	@Override
-	public UBLExtensionsModel getUBLExtensions() {
-		return new UBLExtensionsAdapter(session, em, creditNote.getUBLExtensions());
-
-	}
-
-	@Override
-	public void setUBLExtensions(UBLExtensionsModel value) {
-		creditNote.setUBLExtensions(UBLExtensionsAdapter.toEntity(value, em));
-	}
-
-	@Override
-	public String getUBLVersionID() {
-		return creditNote.getUBLVersionID();
-	}
-
-	@Override
-	public void setUBLVersionID(String value) {
-		creditNote.setUBLVersionID(value);
-	}
-
-	@Override
-	public String getCustomizationID() {
-		return creditNote.getCustomizationID();
-	}
-
-	@Override
-	public void setCustomizationID(String value) {
-		creditNote.setCustomizationID(value);
-	}
-
-	@Override
-	public String getProfileID() {
-		return creditNote.getProfileID();
-	}
-
-	@Override
-	public void setProfileID(String value) {
-		creditNote.setProfileID(value);
-	}
-
-	@Override
-	public String getID() {
-		return creditNote.getID();
-	}
-
-	@Override
-	public void setID(String value) {
-		creditNote.setID(value);
-	}
-
-	@Override
-	public boolean getCopyIndicator() {
-		return creditNote.getCopyIndicator();
-	}
-
-	@Override
-	public void setCopyIndicator(boolean value) {
-		creditNote.setCopyIndicator(value);
-	}
-
-	@Override
-	public String getUUID() {
-		return creditNote.getUUID();
-	}
-
-	@Override
-	public void setUUID(String value) {
-		creditNote.setUUID(value);
-	}
-
-	@Override
-	public LocalDate getIssueDate() {
-		return creditNote.getIssueDate();
-	}
-
-	@Override
-	public void setIssueDate(LocalDate value) {
-		creditNote.setIssueDate(value);
-	}
-
-	@Override
-	public LocalTime getIssueTime() {
-		return creditNote.getIssueTime();
-	}
-
-	@Override
-	public void setIssueTime(LocalTime value) {
-		creditNote.setIssueTime(value);
-	}
-
-	@Override
-	public LocalDate getTaxPointDate() {
-		return creditNote.getTaxPointDate();
-	}
-
-	@Override
-	public void setTaxPointDate(LocalDate value) {
-		creditNote.setTaxPointDate(value);
-	}
-
-	@Override
-	public List<String> getNote() {
-		return creditNote.getNote();
-	}
-
-	@Override
-	public void setNote(List<String> note) {
-		creditNote.setNote(note);
-	}
-
-	@Override
-	public String getDocumentCurrencyCode() {
-		return creditNote.getDocumentCurrencyCode();
-	}
-
-	@Override
-	public void setDocumentCurrencyCode(String value) {
-		creditNote.setDocumentCurrencyCode(value);
-	}
-
-	@Override
-	public String getTaxCurrencyCode() {
-		return creditNote.getTaxCurrencyCode();
-	}
-
-	@Override
-	public void setTaxCurrencyCode(String value) {
-		creditNote.setTaxCurrencyCode(value);
-	}
-
-	@Override
-	public String getPricingCurrencyCode() {
-		// TODO Auto-generated method stub
-		return creditNote.getPricingCurrencyCode();
-	}
-
-	@Override
-	public void setPricingCurrencyCode(String value) {
-		// TODO Auto-generated method stub
-		creditNote.setPricingCurrencyCode(value);
-	}
-
-	@Override
-	public String getPaymentCurrencyCode() {
-		// TODO Auto-generated method stub
-		return creditNote.getPaymentCurrencyCode();
-	}
-
-	@Override
-	public void setPaymentCurrencyCode(String value) {
-		// TODO Auto-generated method stub
-		creditNote.setPaymentCurrencyCode(value);
-	}
-
-	@Override
-	public String getPaymentAlternativeCurrencyCode() {
-		// TODO Auto-generated method stub
-		return creditNote.getPaymentAlternativeCurrencyCode();
-	}
-
-	@Override
-	public void setPaymentAlternativeCurrencyCode(String value) {
-		// TODO Auto-generated method stub
-		creditNote.setPaymentAlternativeCurrencyCode(value);
-	}
-
-	@Override
-	public String getAccountingCostCode() {
-		// TODO Auto-generated method stub
-		return creditNote.getAccountingCostCode();
-	}
-
-	@Override
-	public void setAccountingCostCode(String value) {
-		// TODO Auto-generated method stub
-		creditNote.setAccountingCostCode(value);
-	}
-
-	@Override
-	public String getAccountingCost() {
-		// TODO Auto-generated method stub
-		return creditNote.getAccountingCost();
-	}
-
-	@Override
-	public void setAccountingCost(String value) {
-		// TODO Auto-generated method stub
-		creditNote.setAccountingCost(value);
-	}
-
-	@Override
-	public BigDecimal getLineCountNumeric() {
-		// TODO Auto-generated method stub
-		return creditNote.getLineCountNumeric();
-	}
-
-	@Override
-	public void setLineCountNumeric(BigDecimal value) {
-		// TODO Auto-generated method stub
-		creditNote.setLineCountNumeric(value);
-	}
-
-	@Override
-	public List<PeriodModel> getInvoicePeriod() {
-		return creditNote.getInvoicePeriod().stream().map(f -> new PeriodAdapter(session, em, f))
-				.collect(Collectors.toList());
-	}
-
-	@Override
-	public void setInvoicePeriod(List<PeriodModel> invoicePeriod) {
-		List<PeriodEntity> entities = invoicePeriod.stream().map(f -> PeriodAdapter.toEntity(f, em))
-				.collect(Collectors.toList());
-		creditNote.setInvoicePeriod(entities);
-	}
-
-	@Override
-	public List<ResponseModel> getDiscrepancyResponse() {
-		return creditNote.getDiscrepancyResponse().stream().map(f -> new ResponseAdapter(session, em, f))
-				.collect(Collectors.toList());
-	}
-
-	@Override
-	public void setDiscrepancyResponse(List<ResponseModel> discrepancyResponse) {
-		List<ResponseEntity> entities = discrepancyResponse.stream().map(f -> ResponseAdapter.toEntity(f, em))
-				.collect(Collectors.toList());
-		creditNote.setDiscrepancyResponse(entities);
-	}
-
-	@Override
-	public OrderReferenceModel getOrderReference() {
-		return new OrderReferenceAdapter(session, em, creditNote.getOrderReference());
-	}
-
-	@Override
-	public void setOrderReference(OrderReferenceModel value) {
-		creditNote.setOrderReference(OrderReferenceAdapter.toEntity(value, em));
-	}
-
-	@Override
-	public List<BillingReferenceModel> getBillingReference() {
-		return creditNote.getBillingReference().stream().map(f -> new BillingReferenceAdapter(session, em, f))
-				.collect(Collectors.toList());
-	}
-
-	@Override
-	public void setBillingReference(List<BillingReferenceModel> billingReference) {
-		List<BillingReferenceEntity> entities = billingReference.stream()
-				.map(f -> BillingReferenceAdapter.toEntity(f, em)).collect(Collectors.toList());
-		creditNote.setBillingReference(entities);
-	}
-
-	@Override
-	public List<DocumentReferenceModel> getDespatchDocumentReference() {
-		return creditNote.getDespatchDocumentReference().stream().map(f -> new DocumentReferenceAdapter(session, em, f))
-				.collect(Collectors.toList());
-	}
-
-	@Override
-	public void setDespatchDocumentReference(List<DocumentReferenceModel> despatchDocumentReference) {
-		List<DocumentReferenceEntity> entities = despatchDocumentReference.stream()
-				.map(f -> DocumentReferenceAdapter.toEntity(f, em)).collect(Collectors.toList());
-		creditNote.setDespatchDocumentReference(entities);
-	}
-
-	@Override
-	public List<DocumentReferenceModel> getReceiptDocumentReference() {
-		return creditNote.getReceiptDocumentReference().stream().map(f -> new DocumentReferenceAdapter(session, em, f))
-				.collect(Collectors.toList());
-	}
-
-	@Override
-	public void setReceiptDocumentReference(List<DocumentReferenceModel> receiptDocumentReference) {
-		List<DocumentReferenceEntity> entities = receiptDocumentReference.stream()
-				.map(f -> DocumentReferenceAdapter.toEntity(f, em)).collect(Collectors.toList());
-		creditNote.setReceiptDocumentReference(entities);
-	}
-
-	@Override
-	public List<DocumentReferenceModel> getContractDocumentReference() {
-		return creditNote.getContractDocumentReference().stream().map(f -> new DocumentReferenceAdapter(session, em, f))
-				.collect(Collectors.toList());
-	}
-
-	@Override
-	public void setContractDocumentReference(List<DocumentReferenceModel> contractDocumentReference) {
-		List<DocumentReferenceEntity> entities = contractDocumentReference.stream()
-				.map(f -> DocumentReferenceAdapter.toEntity(f, em)).collect(Collectors.toList());
-		creditNote.setContractDocumentReference(entities);
-	}
-
-	@Override
-	public List<DocumentReferenceModel> getAdditionalDocumentReference() {
-		return creditNote.getAdditionalDocumentReference().stream()
-				.map(f -> new DocumentReferenceAdapter(session, em, f)).collect(Collectors.toList());
-	}
-
-	@Override
-	public void setAdditionalDocumentReference(List<DocumentReferenceModel> additionalDocumentReference) {
-		List<DocumentReferenceEntity> entities = additionalDocumentReference.stream()
-				.map(f -> DocumentReferenceAdapter.toEntity(f, em)).collect(Collectors.toList());
-		creditNote.setAdditionalDocumentReference(entities);
-	}
-
-	@Override
-	public List<SignatureModel> getSignature() {
-		return creditNote.getSignature().stream().map(f -> new SignatureAdapter(session, em, f))
-				.collect(Collectors.toList());
-	}
-
-	@Override
-	public void setSignature(List<SignatureModel> signature) {
-		List<SignatureEntity> entities = signature.stream().map(f -> SignatureAdapter.toEntity(f, em))
-				.collect(Collectors.toList());
-		creditNote.setSignature(entities);
-	}
-
-	@Override
-	public SupplierPartyModel getAccountingSupplierParty() {
-		// TODO Auto-generated method stub
-		return creditNote.getAccountingSupplierParty();
-	}
-
-	@Override
-	public void setAccountingSupplierParty(SupplierPartyModel value) {
-		// TODO Auto-generated method stub
-		creditNote.setAccountingSupplierParty(value);
-	}
-
-	@Override
-	public CustomerPartyModel getAccountingCustomerParty() {
-		// TODO Auto-generated method stub
-		return creditNote.getAccountingCustomerParty();
-	}
-
-	@Override
-	public void setAccountingCustomerParty(CustomerPartyModel value) {
-		// TODO Auto-generated method stub
-		creditNote.setAccountingCustomerParty(value);
-	}
-
-	@Override
-	public PartyModel getPayeeParty() {
-		// TODO Auto-generated method stub
-		return creditNote.getPayeeParty();
-	}
-
-	@Override
-	public void setPayeeParty(PartyModel value) {
-		// TODO Auto-generated method stub
-		creditNote.setPayeeParty(value);
-	}
-
-	@Override
-	public PartyModel getTaxRepresentativeParty() {
-		// TODO Auto-generated method stub
-		return creditNote.getTaxRepresentativeParty();
-	}
-
-	@Override
-	public void setTaxRepresentativeParty(PartyModel value) {
-		// TODO Auto-generated method stub
-		creditNote.setTaxRepresentativeParty(value);
-	}
-
-	@Override
-	public ExchangeRateModel getTaxExchangeRate() {
-		// TODO Auto-generated method stub
-		return creditNote.getTaxExchangeRate();
-	}
-
-	@Override
-	public void setTaxExchangeRate(ExchangeRateModel value) {
-		// TODO Auto-generated method stub
-		creditNote.setTaxExchangeRate(value);
-	}
-
-	@Override
-	public ExchangeRateModel getPricingExchangeRate() {
-		// TODO Auto-generated method stub
-		return creditNote.getPricingExchangeRate();
-	}
-
-	@Override
-	public void setPricingExchangeRate(ExchangeRateModel value) {
-		// TODO Auto-generated method stub
-		creditNote.setPricingExchangeRate(value);
-	}
-
-	@Override
-	public ExchangeRateModel getPaymentExchangeRate() {
-		// TODO Auto-generated method stub
-		return creditNote.getPaymentExchangeRate();
-	}
-
-	@Override
-	public void setPaymentExchangeRate(ExchangeRateModel value) {
-		// TODO Auto-generated method stub
-		creditNote.setPaymentExchangeRate(value);
-	}
-
-	@Override
-	public ExchangeRateModel getPaymentAlternativeExchangeRate() {
-		// TODO Auto-generated method stub
-		return creditNote.getPaymentAlternativeExchangeRate();
-	}
-
-	@Override
-	public void setPaymentAlternativeExchangeRate(ExchangeRateModel value) {
-		// TODO Auto-generated method stub
-		creditNote.setPaymentAlternativeExchangeRate(value);
-	}
-
-	@Override
-	public List<AllowanceChargeModel> getAllowanceCharge() {
-		// TODO Auto-generated method stub
-		return creditNote.getAllowanceCharge();
-	}
-
-	@Override
-	public void setAllowanceCharge(List<AllowanceChargeModel> allowanceCharge) {
-		// TODO Auto-generated method stub
-		creditNote.setAllowanceCharge(allowanceCharge);
-	}
-
-	@Override
-	public List<TaxTotalModel> getTaxTotal() {
-		// TODO Auto-generated method stub
-		return creditNote.getTaxTotal();
-	}
-
-	@Override
-	public void setTaxTotal(List<TaxTotalModel> taxTotal) {
-		// TODO Auto-generated method stub
-		creditNote.setTaxTotal(taxTotal);
-	}
-
-	@Override
-	public MonetaryTotalModel getLegalMonetaryTotal() {
-		// TODO Auto-generated method stub
-		return creditNote.getLegalMonetaryTotal();
-	}
-
-	@Override
-	public void setLegalMonetaryTotal(MonetaryTotalModel value) {
-		// TODO Auto-generated method stub
-		creditNote.setLegalMonetaryTotal(value);
-	}
-
-	@Override
-	public List<CreditNoteLineModel> getCreditNoteLine() {
-		// TODO Auto-generated method stub
-		return creditNote.getCreditNoteLine();
-	}
-
-	@Override
-	public void setCreditNoteLine(List<CreditNoteLineModel> creditNoteLine) {
-		// TODO Auto-generated method stub
-		creditNote.setCreditNoteLine(creditNoteLine);
-	}
-
-	@Override
-	public String getId() {
-		// TODO Auto-generated method stub
-		return creditNote.getId();
-	}
-
-	@Override
-	public void setId(String value) {
-		// TODO Auto-generated method stub
-		creditNote.setId(value);
-	}
-
-	@Override
-	public CreditNoteLineModel addCreditNoteLine() {
-		// TODO Auto-generated method stub
-		List<CreditNoteModel> creditNoteModels = creditNote.getCreditNoteLine();
-		CreditNoteLineEntity creditNoteLineEntity = new CreditNoteLineEntity();
-
-	}
-
-	@Override
-	public TaxTotalModel addTaxTotal() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ResponseModel addDiscrepancyResponse() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public DocumentReferenceModel addDespatchDocumentReference() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    protected static final Logger logger = Logger.getLogger(CreditNoteAdapter.class);
+
+    protected OrganizationModel organization;
+    protected CreditNoteEntity creditNote;
+    protected EntityManager em;
+    protected OpenfactSession session;
+
+    public CreditNoteAdapter(OrganizationModel organization, OpenfactSession session, EntityManager em,
+            CreditNoteEntity invoice) {
+        this.organization = organization;
+        this.session = session;
+        this.em = em;
+        this.creditNote = invoice;
+    }
+
+    @Override
+    public CreditNoteEntity getEntity() {
+        return creditNote;
+    }
+
+    /**
+     * @return the id
+     */
+    @Override
+    public String getId() {
+        return creditNote.getId();
+    }
+
+    /**
+     * @param id
+     *            the id to set
+     */
+    @Override
+    public void setId(String id) {
+        this.creditNote.setId(id);
+    }
+
+    @Override
+    public UBLExtensionsModel getUBLExtensions() {
+        return new UBLExtensionsAdapter(session, em, creditNote.getUblExtensions());
+    }
+
+    @Override
+    public void setUBLExtensions(UBLExtensionsModel value) {
+        this.creditNote.setUblExtensions(UBLExtensionsAdapter.toEntity(value, em));
+    }
+
+    @Override
+    public String getUBLVersionID() {
+        return creditNote.getUblVersionID();
+    }
+
+    @Override
+    public void setUBLVersionID(String value) {
+        this.creditNote.setUblVersionID(value);
+    }
+
+    /**
+     * @return the customizationID
+     */
+    @Override
+    public String getCustomizationID() {
+        return creditNote.getCustomizationID();
+    }
+
+    /**
+     * @param customizationID
+     *            the customizationID to set
+     */
+    @Override
+    public void setCustomizationID(String customizationID) {
+        this.creditNote.setCustomizationID(customizationID);
+    }
+
+    /**
+     * @return the profileID
+     */
+    @Override
+    public String getProfileID() {
+        return creditNote.getProfileID();
+    }
+
+    /**
+     * @param profileID
+     *            the profileID to set
+     */
+    @Override
+    public void setProfileID(String profileID) {
+        this.creditNote.setProfileID(profileID);
+    }
+
+    /**
+     * @return the iD
+     */
+    @Override
+    public String getID() {
+        return creditNote.getID();
+    }
+
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    @Override
+    public void setID(String iD) {
+        this.creditNote.setID(iD);
+    }
+
+    /**
+     * @return the copyIndicator
+     */
+    @Override
+    public boolean getCopyIndicator() {
+        return creditNote.isCopyIndicator();
+    }
+
+    /**
+     * @param copyIndicator
+     *            the copyIndicator to set
+     */
+    @Override
+    public void setCopyIndicator(boolean copyIndicator) {
+        this.creditNote.setCopyIndicator(copyIndicator);
+    }
+
+    /**
+     * @return the uuid
+     */
+    @Override
+    public String getUUID() {
+        return creditNote.getUuid();
+    }
+
+    /**
+     * @param uuid
+     *            the uuid to set
+     */
+    @Override
+    public void setUUID(String uuid) {
+        this.creditNote.setUuid(uuid);
+    }
+
+    /**
+     * @return the issueDate
+     */
+    @Override
+    public LocalDate getIssueDate() {
+        return creditNote.getIssueDate();
+    }
+
+    /**
+     * @param issueDate
+     *            the issueDate to set
+     */
+    @Override
+    public void setIssueDate(LocalDate issueDate) {
+        this.creditNote.setIssueDate(issueDate);
+    }
+
+    /**
+     * @return the issueTime
+     */
+    @Override
+    public LocalTime getIssueTime() {
+        return creditNote.getIssueTime();
+    }
+
+    /**
+     * @param issueTime
+     *            the issueTime to set
+     */
+    @Override
+    public void setIssueTime(LocalTime issueTime) {
+        this.creditNote.setIssueTime(issueTime);
+    }
+
+    /**
+     * @return the note
+     */
+    @Override
+    public List<String> getNote() {
+        return creditNote.getNote();
+    }
+
+    /**
+     * @param note
+     *            the note to set
+     */
+    @Override
+    public void setNote(List<String> note) {
+        this.creditNote.setNote(note);
+    }
+
+    /**
+     * @return the taxPointDate
+     */
+    @Override
+    public LocalDate getTaxPointDate() {
+        return creditNote.getTaxPointDate();
+    }
+
+    /**
+     * @param taxPointDate
+     *            the taxPointDate to set
+     */
+    @Override
+    public void setTaxPointDate(LocalDate taxPointDate) {
+        this.creditNote.setTaxPointDate(taxPointDate);
+    }
+
+    /**
+     * @return the documentCurrencyCode
+     */
+    @Override
+    public String getDocumentCurrencyCode() {
+        return creditNote.getDocumentCurrencyCode();
+    }
+
+    /**
+     * @param documentCurrencyCode
+     *            the documentCurrencyCode to set
+     */
+    @Override
+    public void setDocumentCurrencyCode(String documentCurrencyCode) {
+        this.creditNote.setDocumentCurrencyCode(documentCurrencyCode);
+    }
+
+    /**
+     * @return the taxCurrencyCode
+     */
+    @Override
+    public String getTaxCurrencyCode() {
+        return creditNote.getTaxCurrencyCode();
+    }
+
+    /**
+     * @param taxCurrencyCode
+     *            the taxCurrencyCode to set
+     */
+    @Override
+    public void setTaxCurrencyCode(String taxCurrencyCode) {
+        this.creditNote.setTaxCurrencyCode(taxCurrencyCode);
+    }
+
+    /**
+     * @return the pricingCurrencyCode
+     */
+    @Override
+    public String getPricingCurrencyCode() {
+        return creditNote.getPricingCurrencyCode();
+    }
+
+    /**
+     * @param pricingCurrencyCode
+     *            the pricingCurrencyCode to set
+     */
+    @Override
+    public void setPricingCurrencyCode(String pricingCurrencyCode) {
+        this.creditNote.setPricingCurrencyCode(pricingCurrencyCode);
+    }
+
+    /**
+     * @return the paymentCurrencyCode
+     */
+    @Override
+    public String getPaymentCurrencyCode() {
+        return creditNote.getPaymentCurrencyCode();
+    }
+
+    /**
+     * @param paymentCurrencyCode
+     *            the paymentCurrencyCode to set
+     */
+    @Override
+    public void setPaymentCurrencyCode(String paymentCurrencyCode) {
+        this.creditNote.setPaymentCurrencyCode(paymentCurrencyCode);
+    }
+
+    /**
+     * @return the paymentAlternativeCurrencyCode
+     */
+    @Override
+    public String getPaymentAlternativeCurrencyCode() {
+        return creditNote.getPaymentAlternativeCurrencyCode();
+    }
+
+    /**
+     * @param paymentAlternativeCurrencyCode
+     *            the paymentAlternativeCurrencyCode to set
+     */
+    @Override
+    public void setPaymentAlternativeCurrencyCode(String paymentAlternativeCurrencyCode) {
+        this.creditNote.setPaymentAlternativeCurrencyCode(paymentAlternativeCurrencyCode);
+    }
+
+    /**
+     * @return the accountingCostCode
+     */
+    @Override
+    public String getAccountingCostCode() {
+        return creditNote.getAccountingCostCode();
+    }
+
+    /**
+     * @param accountingCostCode
+     *            the accountingCostCode to set
+     */
+    @Override
+    public void setAccountingCostCode(String accountingCostCode) {
+        this.creditNote.setAccountingCostCode(accountingCostCode);
+    }
+
+    /**
+     * @return the accountingCost
+     */
+    @Override
+    public String getAccountingCost() {
+        return creditNote.getAccountingCost();
+    }
+
+    /**
+     * @param accountingCost
+     *            the accountingCost to set
+     */
+    @Override
+    public void setAccountingCost(String accountingCost) {
+        this.creditNote.setAccountingCost(accountingCost);
+    }
+
+    /**
+     * @return the lineCountNumeric
+     */
+    @Override
+    public BigDecimal getLineCountNumeric() {
+        return creditNote.getLineCountNumeric();
+    }
+
+    /**
+     * @param lineCountNumeric
+     *            the lineCountNumeric to set
+     */
+    @Override
+    public void setLineCountNumeric(BigDecimal lineCountNumeric) {
+        this.creditNote.setLineCountNumeric(lineCountNumeric);
+    }
+
+    /**
+     * @return the invoicePeriod
+     */
+    @Override
+    public List<PeriodModel> getInvoicePeriod() {
+        return creditNote.getInvoicePeriod().stream().map(f -> new PeriodAdapter(session, em, f))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * @param invoicePeriod
+     *            the invoicePeriod to set
+     */
+    @Override
+    public void setInvoicePeriod(List<PeriodModel> invoicePeriod) {
+        List<PeriodEntity> entities = invoicePeriod.stream().map(f -> PeriodAdapter.toEntity(f, em))
+                .collect(Collectors.toList());
+        creditNote.setInvoicePeriod(entities);
+    }
+
+    /**
+     * @return the discrepancyResponse
+     */
+    @Override
+    public List<ResponseModel> getDiscrepancyResponse() {
+        return creditNote.getDiscrepancyResponse().stream().map(f -> new ResponseAdapter(session, em, f))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * @param discrepancyResponse
+     *            the discrepancyResponse to set
+     */
+    @Override
+    public void setDiscrepancyResponse(List<ResponseModel> discrepancyResponse) {
+        List<ResponseEntity> entities = discrepancyResponse.stream().map(f -> ResponseAdapter.toEntity(f, em))
+                .collect(Collectors.toList());
+        creditNote.setDiscrepancyResponse(entities);
+    }
+
+    /**
+     * @return the orderReference
+     */
+    @Override
+    public OrderReferenceModel getOrderReference() {
+        return new OrderReferenceAdapter(session, em, creditNote.getOrderReference());
+    }
+
+    /**
+     * @param orderReference
+     *            the orderReference to set
+     */
+    @Override
+    public void setOrderReference(OrderReferenceModel orderReference) {
+        this.creditNote.setOrderReference(OrderReferenceAdapter.toEntity(orderReference, em));
+    }
+
+    /**
+     * @return the billingReference
+     */
+    @Override
+    public List<BillingReferenceModel> getBillingReference() {
+        return creditNote.getBillingReference().stream().map(f -> new BillingReferenceAdapter(session, em, f))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * @param billingReference
+     *            the billingReference to set
+     */
+    @Override
+    public void setBillingReference(List<BillingReferenceModel> billingReference) {
+        List<BillingReferenceEntity> entities = billingReference.stream()
+                .map(f -> BillingReferenceAdapter.toEntity(f, em)).collect(Collectors.toList());
+        creditNote.setBillingReference(entities);
+    }
+
+    /**
+     * @return the despatchDocumentReference
+     */
+    @Override
+    public List<DocumentReferenceModel> getDespatchDocumentReference() {
+        return creditNote.getDespatchDocumentReference().stream()
+                .map(f -> new DocumentReferenceAdapter(session, em, f)).collect(Collectors.toList());
+    }
+
+    /**
+     * @param despatchDocumentReference
+     *            the despatchDocumentReference to set
+     */
+    @Override
+    public void setDespatchDocumentReference(List<DocumentReferenceModel> despatchDocumentReference) {
+        List<DocumentReferenceEntity> entities = despatchDocumentReference.stream()
+                .map(f -> DocumentReferenceAdapter.toEntity(f, em)).collect(Collectors.toList());
+        creditNote.setDespatchDocumentReference(entities);
+    }
+
+    /**
+     * @return the receiptDocumentReference
+     */
+    @Override
+    public List<DocumentReferenceModel> getReceiptDocumentReference() {
+        return creditNote.getReceiptDocumentReference().stream()
+                .map(f -> new DocumentReferenceAdapter(session, em, f)).collect(Collectors.toList());
+    }
+
+    /**
+     * @param receiptDocumentReference
+     *            the receiptDocumentReference to set
+     */
+    @Override
+    public void setReceiptDocumentReference(List<DocumentReferenceModel> receiptDocumentReference) {
+        List<DocumentReferenceEntity> entities = receiptDocumentReference.stream()
+                .map(f -> DocumentReferenceAdapter.toEntity(f, em)).collect(Collectors.toList());
+        creditNote.setReceiptDocumentReference(entities);
+    }
+
+    /**
+     * @return the contractDocumentReference
+     */
+    @Override
+    public List<DocumentReferenceModel> getContractDocumentReference() {
+        return creditNote.getContractDocumentReference().stream()
+                .map(f -> new DocumentReferenceAdapter(session, em, f)).collect(Collectors.toList());
+    }
+
+    /**
+     * @param contractDocumentReference
+     *            the contractDocumentReference to set
+     */
+    @Override
+    public void setContractDocumentReference(List<DocumentReferenceModel> contractDocumentReference) {
+        List<DocumentReferenceEntity> entities = contractDocumentReference.stream()
+                .map(f -> DocumentReferenceAdapter.toEntity(f, em)).collect(Collectors.toList());
+        creditNote.setContractDocumentReference(entities);
+    }
+
+    /**
+     * @return the additionalDocumentReference
+     */
+    @Override
+    public List<DocumentReferenceModel> getAdditionalDocumentReference() {
+        return creditNote.getAdditionalDocumentReference().stream()
+                .map(f -> new DocumentReferenceAdapter(session, em, f)).collect(Collectors.toList());
+    }
+
+    /**
+     * @param additionalDocumentReference
+     *            the additionalDocumentReference to set
+     */
+    @Override
+    public void setAdditionalDocumentReference(List<DocumentReferenceModel> additionalDocumentReference) {
+        List<DocumentReferenceEntity> entities = additionalDocumentReference.stream()
+                .map(f -> DocumentReferenceAdapter.toEntity(f, em)).collect(Collectors.toList());
+        creditNote.setAdditionalDocumentReference(entities);
+    }
+
+    /**
+     * @return the signature
+     */
+    @Override
+    public List<SignatureModel> getSignature() {
+        return creditNote.getSignature().stream().map(f -> new SignatureAdapter(session, em, f))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * @param signature
+     *            the signature to set
+     */
+    @Override
+    public void setSignature(List<SignatureModel> signature) {
+        List<SignatureEntity> entities = signature.stream().map(f -> SignatureAdapter.toEntity(f, em))
+                .collect(Collectors.toList());
+        creditNote.setSignature(entities);
+    }
+
+    /**
+     * @return the accountingSupplierParty
+     */
+    @Override
+    public SupplierPartyModel getAccountingSupplierParty() {
+        return new SupplierPartyAdapter(session, em, creditNote.getAccountingSupplierParty());
+    }
+
+    /**
+     * @param accountingSupplierParty
+     *            the accountingSupplierParty to set
+     */
+    @Override
+    public void setAccountingSupplierParty(SupplierPartyModel accountingSupplierParty) {
+        this.creditNote
+                .setAccountingSupplierParty(SupplierPartyAdapter.toEntity(accountingSupplierParty, em));
+    }
+
+    /**
+     * @return the accountingCustomerParty
+     */
+    @Override
+    public CustomerPartyModel getAccountingCustomerParty() {
+        return new CustomerPartyAdapter(session, em, creditNote.getAccountingCustomerParty());
+    }
+
+    /**
+     * @param accountingCustomerParty
+     *            the accountingCustomerParty to set
+     */
+    @Override
+    public void setAccountingCustomerParty(CustomerPartyModel accountingCustomerParty) {
+        this.creditNote
+                .setAccountingCustomerParty(CustomerPartyAdapter.toEntity(accountingCustomerParty, em));
+    }
+
+    /**
+     * @return the payeeParty
+     */
+    @Override
+    public PartyModel getPayeeParty() {
+        return new PartyAdapter(session, em, creditNote.getPayeeParty());
+    }
+
+    /**
+     * @param payeeParty
+     *            the payeeParty to set
+     */
+    @Override
+    public void setPayeeParty(PartyModel payeeParty) {
+        this.creditNote.setPayeeParty(PartyAdapter.toEntity(payeeParty, em));
+    }
+
+    /**
+     * @return the taxRepresentativeParty
+     */
+    @Override
+    public PartyModel getTaxRepresentativeParty() {
+        return new PartyAdapter(session, em, creditNote.getTaxRepresentativeParty());
+    }
+
+    /**
+     * @param taxRepresentativeParty
+     *            the taxRepresentativeParty to set
+     */
+    @Override
+    public void setTaxRepresentativeParty(PartyModel taxRepresentativeParty) {
+        this.creditNote.setTaxRepresentativeParty(PartyAdapter.toEntity(taxRepresentativeParty, em));
+    }
+
+    /**
+     * @return the taxExchangeRate
+     */
+    @Override
+    public ExchangeRateModel getTaxExchangeRate() {
+        return new ExchangeRateAdapter(session, em, creditNote.getTaxExchangeRate());
+    }
+
+    /**
+     * @param taxExchangeRate
+     *            the taxExchangeRate to set
+     */
+    @Override
+    public void setTaxExchangeRate(ExchangeRateModel taxExchangeRate) {
+        this.creditNote.setTaxExchangeRate(ExchangeRateAdapter.toEntity(taxExchangeRate, em));
+    }
+
+    /**
+     * @return the pricingExchangeRate
+     */
+    @Override
+    public ExchangeRateModel getPricingExchangeRate() {
+        return new ExchangeRateAdapter(session, em, creditNote.getPricingExchangeRate());
+    }
+
+    /**
+     * @param pricingExchangeRate
+     *            the pricingExchangeRate to set
+     */
+    @Override
+    public void setPricingExchangeRate(ExchangeRateModel pricingExchangeRate) {
+        this.creditNote.setPricingExchangeRate(ExchangeRateAdapter.toEntity(pricingExchangeRate, em));
+    }
+
+    /**
+     * @return the paymentExchangeRate
+     */
+    @Override
+    public ExchangeRateModel getPaymentExchangeRate() {
+        return new ExchangeRateAdapter(session, em, creditNote.getPaymentExchangeRate());
+    }
+
+    /**
+     * @param paymentExchangeRate
+     *            the paymentExchangeRate to set
+     */
+    @Override
+    public void setPaymentExchangeRate(ExchangeRateModel paymentExchangeRate) {
+        this.creditNote.setPaymentExchangeRate(ExchangeRateAdapter.toEntity(paymentExchangeRate, em));
+    }
+
+    /**
+     * @return the paymentAlternativeExchangeRate
+     */
+    @Override
+    public ExchangeRateModel getPaymentAlternativeExchangeRate() {
+        return new ExchangeRateAdapter(session, em, creditNote.getPaymentAlternativeExchangeRate());
+    }
+
+    /**
+     * @param paymentAlternativeExchangeRate
+     *            the paymentAlternativeExchangeRate to set
+     */
+    @Override
+    public void setPaymentAlternativeExchangeRate(ExchangeRateModel paymentAlternativeExchangeRate) {
+        this.creditNote.setPaymentAlternativeExchangeRate(
+                ExchangeRateAdapter.toEntity(paymentAlternativeExchangeRate, em));
+    }
+
+    /**
+     * @return the taxTotal
+     */
+    @Override
+    public List<TaxTotalModel> getTaxTotal() {
+        return creditNote.getTaxTotal().stream().map(f -> new TaxTotalAdapter(session, em, f))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * @param taxTotal
+     *            the taxTotal to set
+     */
+    @Override
+    public void setTaxTotal(List<TaxTotalModel> taxTotal) {
+        List<TaxTotalEntity> entities = taxTotal.stream().map(f -> TaxTotalAdapter.toEntity(f, em))
+                .collect(Collectors.toList());
+        creditNote.setTaxTotal(entities);
+    }
+
+    /**
+     * @return the creditNoteLine
+     */
+    @Override
+    public List<CreditNoteLineModel> getCreditNoteLine() {
+        return creditNote.getCreditNoteLine().stream().map(f -> new CreditNoteLineAdapter(session, em, f))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * @param creditNoteLine
+     *            the creditNoteLine to set
+     */
+    @Override
+    public void setCreditNoteLine(List<CreditNoteLineModel> creditNoteLine) {
+        List<CreditNoteLineEntity> entities = creditNoteLine.stream()
+                .map(f -> CreditNoteLineAdapter.toEntity(f, em)).collect(Collectors.toList());
+        creditNote.setCreditNoteLine(entities);
+    }
+
+    @Override
+    public List<AllowanceChargeModel> getAllowanceCharge() {
+        return creditNote.getAllowanceCharge().stream().map(f -> new AllowanceChargeAdapter(session, em, f))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void setAllowanceCharge(List<AllowanceChargeModel> allowanceCharge) {
+        List<AllowanceChargeEntity> entities = allowanceCharge.stream()
+                .map(f -> AllowanceChargeAdapter.toEntity(f, em)).collect(Collectors.toList());
+        creditNote.setAllowanceCharge(entities);
+    }
+
+    @Override
+    public MonetaryTotalModel getLegalMonetaryTotal() {
+        return new MonetaryTotalAdapter(session, em, creditNote.getLegalMonetaryTotal());
+    }
+
+    @Override
+    public void setLegalMonetaryTotal(MonetaryTotalModel value) {
+        creditNote.setLegalMonetaryTotal(MonetaryTotalAdapter.toEntity(value, em));
+    }
+
+    @Override
+    public ResponseModel addDiscrepancyResponse() {
+        List<ResponseEntity> entities = creditNote.getDiscrepancyResponse();
+
+        ResponseEntity entity = new ResponseEntity();
+        entities.add(entity);
+        return new ResponseAdapter(session, em, entity);
+    }
+
+    @Override
+    public CreditNoteLineModel addCreditNoteLine() {
+        List<CreditNoteLineEntity> entities = creditNote.getCreditNoteLine();
+
+        CreditNoteLineEntity entity = new CreditNoteLineEntity();
+        entities.add(entity);
+        return new CreditNoteLineAdapter(session, em, entity);
+    }
+
+    @Override
+    public TaxTotalModel addTaxTotal() {
+        List<TaxTotalEntity> entities = creditNote.getTaxTotal();
+
+        TaxTotalEntity entity = new TaxTotalEntity();
+        entities.add(entity);
+        return new TaxTotalAdapter(session, em, entity);
+    }
+
+    @Override
+    public DocumentReferenceModel addDespatchDocumentReference() {
+        List<DocumentReferenceEntity> entities = creditNote.getDespatchDocumentReference();
+
+        DocumentReferenceEntity entity = new DocumentReferenceEntity();
+        entities.add(entity);
+        return new DocumentReferenceAdapter(session, em, entity);
+    }
 
 }

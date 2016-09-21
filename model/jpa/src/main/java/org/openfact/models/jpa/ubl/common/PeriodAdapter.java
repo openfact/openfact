@@ -9,9 +9,7 @@ import javax.persistence.EntityManager;
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
-import org.openfact.models.jpa.entities.ubl.common.AddressEntity;
 import org.openfact.models.jpa.entities.ubl.common.PeriodEntity;
-import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.MeasureModel;
 import org.openfact.models.ubl.common.PeriodModel;
 

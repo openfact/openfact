@@ -16,7 +16,9 @@ import java.util.List;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -30,450 +32,775 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.openfact.models.jpa.entities.ubl.common.*;
 
-
-@Entity(name = "CreditString")
-@Table(name = "CREDITNOTETYPE")
+@Entity
+@Table(name = "CREDITNOTE")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class CreditNoteEntity {
-
-    protected UBLExtensionsEntity ublExtensions;
-    protected String ublVersionID;
-    protected String customizationID;
-    protected String profileID;
-    protected String ID;
-    protected boolean copyIndicator;
-    protected String uuid;
-    protected LocalDate issueDate;
-    protected LocalTime issueTime;
-    protected LocalDate taxPointDate;
-    protected List<String> note;
-    protected String documentCurrencyCode;
-    protected String taxCurrencyCode;
-    protected String pricingCurrencyCode;
-    protected String paymentCurrencyCode;
-    protected String paymentAlternativeCurrencyCode;
-    protected String accountingCostCode;
-    protected String accountingCost;
-    protected BigDecimal lineCountNumeric;
-    protected List<PeriodEntity> invoicePeriod;
-    protected List<ResponseEntity> discrepancyResponse;
-    protected OrderReferenceEntity orderReference;
-    protected List<BillingReferenceEntity> billingReference;
-    protected List<DocumentReferenceEntity> despatchDocumentReference;
-    protected List<DocumentReferenceEntity> receiptDocumentReference;
-    protected List<DocumentReferenceEntity> contractDocumentReference;
-    protected List<DocumentReferenceEntity> additionalDocumentReference;
-    protected List<SignatureEntity> signature;
-    protected SupplierPartyEntity accountingSupplierParty;
-    protected CustomerPartyType accountingCustomerParty;
-    protected PartyEntity payeeParty;
-    protected PartyEntity taxRepresentativeParty;
-    protected ExchangeRateType taxExchangeRate;
-    protected ExchangeRateType pricingExchangeRate;
-    protected ExchangeRateType paymentExchangeRate;
-    protected ExchangeRateType paymentAlternativeExchangeRate;
-    protected List<AllowanceChargeEntity> allowanceCharge;
-    protected List<TaxTotalEntity> taxTotal;
-    protected MonetaryTotalEntity legalMonetaryTotal;
-    protected List<CreditNoteLineEntity> creditNoteLine;
-    protected String id;
-
-
-    public UBLExtensionsEntity getUBLExtensions() {
-        return ublExtensions;
-    }
-
-    public void setUBLExtensions(UBLExtensionsEntity value) {
-        this.ublExtensions = value;
-    }
-    
-    public String getUBLVersionID() {
-        return ublVersionID;
-    }
-
-    public void setUBLVersionID(String value) {
-        this.ublVersionID = value;
-    }
-    public String getCustomizationID() {
-        return customizationID;
-    }
-
-    public void setCustomizationID(String value) {
-        this.customizationID = value;
-    }
-  
-    public String getProfileID() {
-        return profileID;
-    }
-
-    public void setProfileID(String value) {
-        this.profileID = value;
-    }
-  
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String value) {
-        this.ID = value;
-    }
-    public boolean getCopyIndicator() {
-        return copyIndicator;
-    }
-
-    public void setCopyIndicator(boolean value) {
-        this.copyIndicator = value;
-    }
-
-    public String getUUID() {
-        return uuid;
-    }
-
-    public void setUUID(String value) {
-        this.uuid = value;
-    }
-
-    public LocalDate getIssueDate() {
-        return issueDate;
-    }
-
-    public void setIssueDate(LocalDate value) {
-        this.issueDate = value;
-    }
-
-    public LocalTime getIssueTime() {
-        return issueTime;
-    }
-
-    public void setIssueTime(LocalTime value) {
-        this.issueTime = value;
-    }
-
-    public LocalDate getTaxPointDate() {
-        return taxPointDate;
-    }
-
-    public void setTaxPointDate(LocalDate value) {
-        this.taxPointDate = value;
-    }
-    
-    public List<String> getNote() {
-        if (note == null) {
-            note = new ArrayList<String>();
-        }
-        return this.note;
-    }
-
-    public void setNote(List<String> note) {
-        this.note = note;
-    }
-
-    
-    public String getDocumentCurrencyCode() {
-        return documentCurrencyCode;
-    }
-
-    public void setDocumentCurrencyCode(String value) {
-        this.documentCurrencyCode = value;
-    }
-
-  
-    public String getTaxCurrencyCode() {
-        return taxCurrencyCode;
-    }
-
-    public void setTaxCurrencyCode(String value) {
-        this.taxCurrencyCode = value;
-    }
-
- 
-    public String getPricingCurrencyCode() {
-        return pricingCurrencyCode;
-    }
-
-    public void setPricingCurrencyCode(String value) {
-        this.pricingCurrencyCode = value;
-    }
-
- 
-    public String getPaymentCurrencyCode() {
-        return paymentCurrencyCode;
-    }
-
-    public void setPaymentCurrencyCode(String value) {
-        this.paymentCurrencyCode = value;
-    }
-
-
-    public String getPaymentAlternativeCurrencyCode() {
-        return paymentAlternativeCurrencyCode;
-    }
-
-    public void setPaymentAlternativeCurrencyCode(String value) {
-        this.paymentAlternativeCurrencyCode = value;
-    }
-
-
-    public String getAccountingCostCode() {
-        return accountingCostCode;
-    }
-
-    public void setAccountingCostCode(String value) {
-        this.accountingCostCode = value;
-    }
-
-    public String getAccountingCost() {
-        return accountingCost;
-    }
-
-    public void setAccountingCost(String value) {
-        this.accountingCost = value;
-    }
-
-   
-    public BigDecimal getLineCountNumeric() {
-        return lineCountNumeric;
-    }
-
-    public void setLineCountNumeric(BigDecimal value) {
-        this.lineCountNumeric = value;
-    }
-
-    public List<PeriodEntity> getInvoicePeriod() {
-        if (invoicePeriod == null) {
-            invoicePeriod = new ArrayList<PeriodEntity>();
-        }
-        return this.invoicePeriod;
-    }
-
-    public void setInvoicePeriod(List<PeriodEntity> invoicePeriod) {
-        this.invoicePeriod = invoicePeriod;
-    }
-  
-    public List<ResponseEntity> getDiscrepancyResponse() {
-        if (discrepancyResponse == null) {
-            discrepancyResponse = new ArrayList<ResponseEntity>();
-        }
-        return this.discrepancyResponse;
-    }
-
-    public void setDiscrepancyResponse(List<ResponseEntity> discrepancyResponse) {
-        this.discrepancyResponse = discrepancyResponse;
-    }
-   
-    public OrderReferenceEntity getOrderReference() {
-        return orderReference;
-    }
-
-    public void setOrderReference(OrderReferenceEntity value) {
-        this.orderReference = value;
-    }
-    public List<BillingReferenceEntity> getBillingReference() {
-        if (billingReference == null) {
-            billingReference = new ArrayList<BillingReferenceEntity>();
-        }
-        return this.billingReference;
-    }
-
-    public void setBillingReference(List<BillingReferenceEntity> billingReference) {
-        this.billingReference = billingReference;
-    }
-
-    public List<DocumentReferenceEntity> getDespatchDocumentReference() {
-        if (despatchDocumentReference == null) {
-            despatchDocumentReference = new ArrayList<DocumentReferenceEntity>();
-        }
-        return this.despatchDocumentReference;
-    }
-
-    public void setDespatchDocumentReference(List<DocumentReferenceEntity> despatchDocumentReference) {
-        this.despatchDocumentReference = despatchDocumentReference;
-    }
-
-
-    public List<DocumentReferenceEntity> getReceiptDocumentReference() {
-        if (receiptDocumentReference == null) {
-            receiptDocumentReference = new ArrayList<DocumentReferenceEntity>();
-        }
-        return this.receiptDocumentReference;
-    }
-
-    public void setReceiptDocumentReference(List<DocumentReferenceEntity> receiptDocumentReference) {
-        this.receiptDocumentReference = receiptDocumentReference;
-    }  
-    public List<DocumentReferenceEntity> getContractDocumentReference() {
-        if (contractDocumentReference == null) {
-            contractDocumentReference = new ArrayList<DocumentReferenceEntity>();
-        }
-        return this.contractDocumentReference;
-    }
-
-    public void setContractDocumentReference(List<DocumentReferenceEntity> contractDocumentReference) {
-        this.contractDocumentReference = contractDocumentReference;
-    }
-
-    public List<DocumentReferenceEntity> getAdditionalDocumentReference() {
-        if (additionalDocumentReference == null) {
-            additionalDocumentReference = new ArrayList<DocumentReferenceEntity>();
-        }
-        return this.additionalDocumentReference;
-    }
-
-    public void setAdditionalDocumentReference(List<DocumentReferenceEntity> additionalDocumentReference) {
-        this.additionalDocumentReference = additionalDocumentReference;
-    }
-    
-    public List<SignatureEntity> getSignature() {
-        if (signature == null) {
-            signature = new ArrayList<SignatureEntity>();
-        }
-        return this.signature;
-    }
-
-    public void setSignature(List<SignatureEntity> signature) {
-        this.signature = signature;
-    }
-
-    @ManyToOne(targetEntity = SupplierPartyEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ACCOUNTINGSUPPLIERPARTY_CRED_0")
-    public SupplierPartyEntity getAccountingSupplierParty() {
-        return accountingSupplierParty;
-    }
-
-    public void setAccountingSupplierParty(SupplierPartyEntity value) {
-        this.accountingSupplierParty = value;
-    }
-
-    @ManyToOne(targetEntity = CustomerPartyType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ACCOUNTINGCUSTOMERPARTY_CRED_0")
-    public CustomerPartyType getAccountingCustomerParty() {
-        return accountingCustomerParty;
-    }
-
-    public void setAccountingCustomerParty(CustomerPartyType value) {
-        this.accountingCustomerParty = value;
-    }
-
-    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PAYEEPARTY_CREDITNOTETYPE_HJ_0")
-    public PartyEntity getPayeeParty() {
-        return payeeParty;
-    }
-
-    public void setPayeeParty(PartyEntity value) {
-        this.payeeParty = value;
-    }
-
-    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TAXREPRESENTATIVEPARTY_CREDI_0")
-    public PartyEntity getTaxRepresentativeParty() {
-        return taxRepresentativeParty;
-    }
-
-    public void setTaxRepresentativeParty(PartyEntity value) {
-        this.taxRepresentativeParty = value;
-    }
-
-    @ManyToOne(targetEntity = ExchangeRateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TAXEXCHANGERATE_CREDITNOTETY_0")
-    public ExchangeRateType getTaxExchangeRate() {
-        return taxExchangeRate;
-    }
-
-    public void setTaxExchangeRate(ExchangeRateType value) {
-        this.taxExchangeRate = value;
-    }
-
-    @ManyToOne(targetEntity = ExchangeRateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PRICINGEXCHANGERATE_CREDITNO_0")
-    public ExchangeRateType getPricingExchangeRate() {
-        return pricingExchangeRate;
-    }
-
-    public void setPricingExchangeRate(ExchangeRateType value) {
-        this.pricingExchangeRate = value;
-    }
-
-    @ManyToOne(targetEntity = ExchangeRateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PAYMENTEXCHANGERATE_CREDITNO_0")
-    public ExchangeRateType getPaymentExchangeRate() {
-        return paymentExchangeRate;
-    }
-
-    public void setPaymentExchangeRate(ExchangeRateType value) {
-        this.paymentExchangeRate = value;
-    }
-
-    @ManyToOne(targetEntity = ExchangeRateType.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PAYMENTALTERNATIVEEXCHANGERA_2")
-    public ExchangeRateType getPaymentAlternativeExchangeRate() {
-        return paymentAlternativeExchangeRate;
-    }
-
-    public void setPaymentAlternativeExchangeRate(ExchangeRateType value) {
-        this.paymentAlternativeExchangeRate = value;
-    }
-
-    @OneToMany(targetEntity = AllowanceChargeEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ALLOWANCECHARGE_CREDITNOTETY_0")
-    public List<AllowanceChargeEntity> getAllowanceCharge() {
-        if (allowanceCharge == null) {
-            allowanceCharge = new ArrayList<AllowanceChargeEntity>();
-        }
-        return this.allowanceCharge;
-    }
-
-    public void setAllowanceCharge(List<AllowanceChargeEntity> allowanceCharge) {
-        this.allowanceCharge = allowanceCharge;
-    }
-
-    @OneToMany(targetEntity = TaxTotalEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TAXTOTAL_CREDITNOTETYPE_OFID")
-    public List<TaxTotalEntity> getTaxTotal() {
-        if (taxTotal == null) {
-            taxTotal = new ArrayList<TaxTotalEntity>();
-        }
-        return this.taxTotal;
-    }
-
-    public void setTaxTotal(List<TaxTotalEntity> taxTotal) {
-        this.taxTotal = taxTotal;
-    }
-
-    @ManyToOne(targetEntity = MonetaryTotalEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LEGALMONETARYTOTAL_CREDITNOT_0")
-    public MonetaryTotalEntity getLegalMonetaryTotal() {
-        return legalMonetaryTotal;
-    }
-
-    public void setLegalMonetaryTotal(MonetaryTotalEntity value) {
-        this.legalMonetaryTotal = value;
-    }
-
-    @OneToMany(targetEntity = CreditNoteLineEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "CREDITNOTELINE_CREDITNOTETYP_0")
-    public List<CreditNoteLineEntity> getCreditNoteLine() {
-        if (creditNoteLine == null) {
-            creditNoteLine = new ArrayList<CreditNoteLineEntity>();
-        }
-        return this.creditNoteLine;
-    }
-
-    public void setCreditNoteLine(List<CreditNoteLineEntity> creditNoteLine) {
-        this.creditNoteLine = creditNoteLine;
-    }
 
     @Id
     @Column(name = "ID")
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
+    protected String id;
+
+    @ManyToOne(targetEntity = UBLExtensionsEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "UBLEXTENSIONS_CREDITNOTE")
+    protected UBLExtensionsEntity ublExtensions = new UBLExtensionsEntity();
+
+    @Column(name = "UBL_VERSIONID")
+    protected String ublVersionID;
+
+    @Column(name = "CUSTOMIZATIONID")
+    protected String customizationID;
+
+    @Column(name = "PROFILEID")
+    protected String profileID;
+
+    @Column(name = "ID")
+    protected String ID;
+
+    @Column(name = "COPY_INDICATOR")
+    protected boolean copyIndicator;
+
+    @Column(name = "UUID")
+    protected String uuid;
+
+    @Column(name = "ISSUE_DATE")
+    protected LocalDate issueDate;
+
+    @Column(name = "ISSUE_TIME")
+    protected LocalTime issueTime;
+
+    @Column(name = "TAX_POINT_DATE")
+    protected LocalDate taxPointDate;
+
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "NOTE_CREDITNOTE", joinColumns = { @JoinColumn(name = "CREDITNOTE_ID") })
+    protected List<String> note = new ArrayList<>();
+
+    @Column(name = "DOCUMENT_CURRENCY_CODE")
+    protected String documentCurrencyCode;
+
+    @Column(name = "TAX_CURRENCY_CODE")
+    protected String taxCurrencyCode;
+
+    @Column(name = "PRICING_CURRENCY_CODE")
+    protected String pricingCurrencyCode;
+
+    @Column(name = "PAYMENT_CURRENCY_CODE")
+    protected String paymentCurrencyCode;
+
+    @Column(name = "PAYMENT_ALTERNATIVE_CURRENCY_CODE")
+    protected String paymentAlternativeCurrencyCode;
+
+    @Column(name = "ACCOUNTING_COST_CODE")
+    protected String accountingCostCode;
+
+    @Column(name = "ACCOUNTING_COST")
+    protected String accountingCost;
+
+    @Column(name = "LINE_COUNT_NUMERIC")
+    protected BigDecimal lineCountNumeric;
+
+    @OneToMany(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "INVOICEPERIOD_CREDITNOTE")
+    protected List<PeriodEntity> invoicePeriod = new ArrayList<>();
+
+    @OneToMany(targetEntity = ResponseEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "DISCREPANCYRESPONSE_CREDITNOTE")
+    protected List<ResponseEntity> discrepancyResponse = new ArrayList<>();
+
+    @ManyToOne(targetEntity = OrderReferenceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ORDERREFERENCE_CREDITNOTE")
+    protected OrderReferenceEntity orderReference = new OrderReferenceEntity();
+
+    @OneToMany(targetEntity = BillingReferenceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "BILLINGREFERENCE_CREDITNOTE")
+    protected List<BillingReferenceEntity> billingReference = new ArrayList<>();
+
+    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "DESPATCHDOCUMENTREFERENCE_CREDITNOTE")
+    protected List<DocumentReferenceEntity> despatchDocumentReference = new ArrayList<>();
+
+    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "RECEIPTDOCUMENTREFERENCE_CREDITNOTE")
+    protected List<DocumentReferenceEntity> receiptDocumentReference = new ArrayList<>();
+
+    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "CONTRACTDOCUMENTREFERENCE_CREDITNOTE")
+    protected List<DocumentReferenceEntity> contractDocumentReference = new ArrayList<>();
+
+    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ADDITIONALDOCUMENTREFERENCE_CREDITNOTE")
+    protected List<DocumentReferenceEntity> additionalDocumentReference = new ArrayList<>();
+
+    @OneToMany(targetEntity = SignatureEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "SIGNATURE_CREDITNOTETYPE_ID")
+    protected List<SignatureEntity> signature = new ArrayList<>();
+
+    @ManyToOne(targetEntity = SupplierPartyEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ACCOUNTINGSUPPLIERPARTY_CREDITNOTE")
+    protected SupplierPartyEntity accountingSupplierParty = new SupplierPartyEntity();
+
+    @ManyToOne(targetEntity = CustomerPartyEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ACCOUNTINGCUSTOMERPARTY_CREDITNOTE")
+    protected CustomerPartyEntity accountingCustomerParty = new CustomerPartyEntity();
+
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "PAYEEPARTY_CREDITNOTE_ID")
+    protected PartyEntity payeeParty = new PartyEntity();
+
+    @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "TAXREPRESENTATIVEPARTY_CREDITNOTE")
+    protected PartyEntity taxRepresentativeParty = new PartyEntity();
+
+    @ManyToOne(targetEntity = ExchangeRateEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "TAXEXCHANGERATE_CREDITNOTE")
+    protected ExchangeRateEntity taxExchangeRate = new ExchangeRateEntity();
+
+    @ManyToOne(targetEntity = ExchangeRateEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "PRICINGEXCHANGERATE_CREDITNOTE")
+    protected ExchangeRateEntity pricingExchangeRate = new ExchangeRateEntity();
+
+    @ManyToOne(targetEntity = ExchangeRateEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "PAYMENTEXCHANGERATE_CREDITNOTE")
+    protected ExchangeRateEntity paymentExchangeRate = new ExchangeRateEntity();
+
+    @ManyToOne(targetEntity = ExchangeRateEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "PAYMENTALTERNATIVEEXCHANGERATE_CREDITNOTE")
+    protected ExchangeRateEntity paymentAlternativeExchangeRate = new ExchangeRateEntity();
+
+    @OneToMany(targetEntity = AllowanceChargeEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "ALLOWANCECHARGE_CREDITNOTE")
+    protected List<AllowanceChargeEntity> allowanceCharge = new ArrayList<>();
+
+    @OneToMany(targetEntity = TaxTotalEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "TAXTOTAL_CREDITNOTE_ID")
+    protected List<TaxTotalEntity> taxTotal = new ArrayList<>();
+
+    @ManyToOne(targetEntity = MonetaryTotalEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "LEGALMONETARYTOTAL_CREDITNOT_0")
+    protected MonetaryTotalEntity legalMonetaryTotal = new MonetaryTotalEntity();
+
+    @OneToMany(targetEntity = CreditNoteLineEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "CREDITNOTELINE_CREDITNOTE")
+    protected List<CreditNoteLineEntity> creditNoteLine = new ArrayList<>();
+
+    /**
+     * @return the id
+     */
     public String getId() {
         return id;
     }
 
-    public void setId(String value) {
-        this.id = value;
+    /**
+     * @param id
+     *            the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the ublExtensions
+     */
+    public UBLExtensionsEntity getUblExtensions() {
+        return ublExtensions;
+    }
+
+    /**
+     * @param ublExtensions
+     *            the ublExtensions to set
+     */
+    public void setUblExtensions(UBLExtensionsEntity ublExtensions) {
+        this.ublExtensions = ublExtensions;
+    }
+
+    /**
+     * @return the ublVersionID
+     */
+    public String getUblVersionID() {
+        return ublVersionID;
+    }
+
+    /**
+     * @param ublVersionID
+     *            the ublVersionID to set
+     */
+    public void setUblVersionID(String ublVersionID) {
+        this.ublVersionID = ublVersionID;
+    }
+
+    /**
+     * @return the customizationID
+     */
+    public String getCustomizationID() {
+        return customizationID;
+    }
+
+    /**
+     * @param customizationID
+     *            the customizationID to set
+     */
+    public void setCustomizationID(String customizationID) {
+        this.customizationID = customizationID;
+    }
+
+    /**
+     * @return the profileID
+     */
+    public String getProfileID() {
+        return profileID;
+    }
+
+    /**
+     * @param profileID
+     *            the profileID to set
+     */
+    public void setProfileID(String profileID) {
+        this.profileID = profileID;
+    }
+
+    /**
+     * @return the iD
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param iD
+     *            the iD to set
+     */
+    public void setID(String iD) {
+        ID = iD;
+    }
+
+    /**
+     * @return the copyIndicator
+     */
+    public boolean isCopyIndicator() {
+        return copyIndicator;
+    }
+
+    /**
+     * @param copyIndicator
+     *            the copyIndicator to set
+     */
+    public void setCopyIndicator(boolean copyIndicator) {
+        this.copyIndicator = copyIndicator;
+    }
+
+    /**
+     * @return the uuid
+     */
+    public String getUuid() {
+        return uuid;
+    }
+
+    /**
+     * @param uuid
+     *            the uuid to set
+     */
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    /**
+     * @return the issueDate
+     */
+    public LocalDate getIssueDate() {
+        return issueDate;
+    }
+
+    /**
+     * @param issueDate
+     *            the issueDate to set
+     */
+    public void setIssueDate(LocalDate issueDate) {
+        this.issueDate = issueDate;
+    }
+
+    /**
+     * @return the issueTime
+     */
+    public LocalTime getIssueTime() {
+        return issueTime;
+    }
+
+    /**
+     * @param issueTime
+     *            the issueTime to set
+     */
+    public void setIssueTime(LocalTime issueTime) {
+        this.issueTime = issueTime;
+    }
+
+    /**
+     * @return the taxPointDate
+     */
+    public LocalDate getTaxPointDate() {
+        return taxPointDate;
+    }
+
+    /**
+     * @param taxPointDate
+     *            the taxPointDate to set
+     */
+    public void setTaxPointDate(LocalDate taxPointDate) {
+        this.taxPointDate = taxPointDate;
+    }
+
+    /**
+     * @return the note
+     */
+    public List<String> getNote() {
+        return note;
+    }
+
+    /**
+     * @param note
+     *            the note to set
+     */
+    public void setNote(List<String> note) {
+        this.note = note;
+    }
+
+    /**
+     * @return the documentCurrencyCode
+     */
+    public String getDocumentCurrencyCode() {
+        return documentCurrencyCode;
+    }
+
+    /**
+     * @param documentCurrencyCode
+     *            the documentCurrencyCode to set
+     */
+    public void setDocumentCurrencyCode(String documentCurrencyCode) {
+        this.documentCurrencyCode = documentCurrencyCode;
+    }
+
+    /**
+     * @return the taxCurrencyCode
+     */
+    public String getTaxCurrencyCode() {
+        return taxCurrencyCode;
+    }
+
+    /**
+     * @param taxCurrencyCode
+     *            the taxCurrencyCode to set
+     */
+    public void setTaxCurrencyCode(String taxCurrencyCode) {
+        this.taxCurrencyCode = taxCurrencyCode;
+    }
+
+    /**
+     * @return the pricingCurrencyCode
+     */
+    public String getPricingCurrencyCode() {
+        return pricingCurrencyCode;
+    }
+
+    /**
+     * @param pricingCurrencyCode
+     *            the pricingCurrencyCode to set
+     */
+    public void setPricingCurrencyCode(String pricingCurrencyCode) {
+        this.pricingCurrencyCode = pricingCurrencyCode;
+    }
+
+    /**
+     * @return the paymentCurrencyCode
+     */
+    public String getPaymentCurrencyCode() {
+        return paymentCurrencyCode;
+    }
+
+    /**
+     * @param paymentCurrencyCode
+     *            the paymentCurrencyCode to set
+     */
+    public void setPaymentCurrencyCode(String paymentCurrencyCode) {
+        this.paymentCurrencyCode = paymentCurrencyCode;
+    }
+
+    /**
+     * @return the paymentAlternativeCurrencyCode
+     */
+    public String getPaymentAlternativeCurrencyCode() {
+        return paymentAlternativeCurrencyCode;
+    }
+
+    /**
+     * @param paymentAlternativeCurrencyCode
+     *            the paymentAlternativeCurrencyCode to set
+     */
+    public void setPaymentAlternativeCurrencyCode(String paymentAlternativeCurrencyCode) {
+        this.paymentAlternativeCurrencyCode = paymentAlternativeCurrencyCode;
+    }
+
+    /**
+     * @return the accountingCostCode
+     */
+    public String getAccountingCostCode() {
+        return accountingCostCode;
+    }
+
+    /**
+     * @param accountingCostCode
+     *            the accountingCostCode to set
+     */
+    public void setAccountingCostCode(String accountingCostCode) {
+        this.accountingCostCode = accountingCostCode;
+    }
+
+    /**
+     * @return the accountingCost
+     */
+    public String getAccountingCost() {
+        return accountingCost;
+    }
+
+    /**
+     * @param accountingCost
+     *            the accountingCost to set
+     */
+    public void setAccountingCost(String accountingCost) {
+        this.accountingCost = accountingCost;
+    }
+
+    /**
+     * @return the lineCountNumeric
+     */
+    public BigDecimal getLineCountNumeric() {
+        return lineCountNumeric;
+    }
+
+    /**
+     * @param lineCountNumeric
+     *            the lineCountNumeric to set
+     */
+    public void setLineCountNumeric(BigDecimal lineCountNumeric) {
+        this.lineCountNumeric = lineCountNumeric;
+    }
+
+    /**
+     * @return the invoicePeriod
+     */
+    public List<PeriodEntity> getInvoicePeriod() {
+        return invoicePeriod;
+    }
+
+    /**
+     * @param invoicePeriod
+     *            the invoicePeriod to set
+     */
+    public void setInvoicePeriod(List<PeriodEntity> invoicePeriod) {
+        this.invoicePeriod = invoicePeriod;
+    }
+
+    /**
+     * @return the discrepancyResponse
+     */
+    public List<ResponseEntity> getDiscrepancyResponse() {
+        return discrepancyResponse;
+    }
+
+    /**
+     * @param discrepancyResponse
+     *            the discrepancyResponse to set
+     */
+    public void setDiscrepancyResponse(List<ResponseEntity> discrepancyResponse) {
+        this.discrepancyResponse = discrepancyResponse;
+    }
+
+    /**
+     * @return the orderReference
+     */
+    public OrderReferenceEntity getOrderReference() {
+        return orderReference;
+    }
+
+    /**
+     * @param orderReference
+     *            the orderReference to set
+     */
+    public void setOrderReference(OrderReferenceEntity orderReference) {
+        this.orderReference = orderReference;
+    }
+
+    /**
+     * @return the billingReference
+     */
+    public List<BillingReferenceEntity> getBillingReference() {
+        return billingReference;
+    }
+
+    /**
+     * @param billingReference
+     *            the billingReference to set
+     */
+    public void setBillingReference(List<BillingReferenceEntity> billingReference) {
+        this.billingReference = billingReference;
+    }
+
+    /**
+     * @return the despatchDocumentReference
+     */
+    public List<DocumentReferenceEntity> getDespatchDocumentReference() {
+        return despatchDocumentReference;
+    }
+
+    /**
+     * @param despatchDocumentReference
+     *            the despatchDocumentReference to set
+     */
+    public void setDespatchDocumentReference(List<DocumentReferenceEntity> despatchDocumentReference) {
+        this.despatchDocumentReference = despatchDocumentReference;
+    }
+
+    /**
+     * @return the receiptDocumentReference
+     */
+    public List<DocumentReferenceEntity> getReceiptDocumentReference() {
+        return receiptDocumentReference;
+    }
+
+    /**
+     * @param receiptDocumentReference
+     *            the receiptDocumentReference to set
+     */
+    public void setReceiptDocumentReference(List<DocumentReferenceEntity> receiptDocumentReference) {
+        this.receiptDocumentReference = receiptDocumentReference;
+    }
+
+    /**
+     * @return the contractDocumentReference
+     */
+    public List<DocumentReferenceEntity> getContractDocumentReference() {
+        return contractDocumentReference;
+    }
+
+    /**
+     * @param contractDocumentReference
+     *            the contractDocumentReference to set
+     */
+    public void setContractDocumentReference(List<DocumentReferenceEntity> contractDocumentReference) {
+        this.contractDocumentReference = contractDocumentReference;
+    }
+
+    /**
+     * @return the additionalDocumentReference
+     */
+    public List<DocumentReferenceEntity> getAdditionalDocumentReference() {
+        return additionalDocumentReference;
+    }
+
+    /**
+     * @param additionalDocumentReference
+     *            the additionalDocumentReference to set
+     */
+    public void setAdditionalDocumentReference(List<DocumentReferenceEntity> additionalDocumentReference) {
+        this.additionalDocumentReference = additionalDocumentReference;
+    }
+
+    /**
+     * @return the signature
+     */
+    public List<SignatureEntity> getSignature() {
+        return signature;
+    }
+
+    /**
+     * @param signature
+     *            the signature to set
+     */
+    public void setSignature(List<SignatureEntity> signature) {
+        this.signature = signature;
+    }
+
+    /**
+     * @return the accountingSupplierParty
+     */
+    public SupplierPartyEntity getAccountingSupplierParty() {
+        return accountingSupplierParty;
+    }
+
+    /**
+     * @param accountingSupplierParty
+     *            the accountingSupplierParty to set
+     */
+    public void setAccountingSupplierParty(SupplierPartyEntity accountingSupplierParty) {
+        this.accountingSupplierParty = accountingSupplierParty;
+    }
+
+    /**
+     * @return the accountingCustomerParty
+     */
+    public CustomerPartyEntity getAccountingCustomerParty() {
+        return accountingCustomerParty;
+    }
+
+    /**
+     * @param accountingCustomerParty
+     *            the accountingCustomerParty to set
+     */
+    public void setAccountingCustomerParty(CustomerPartyEntity accountingCustomerParty) {
+        this.accountingCustomerParty = accountingCustomerParty;
+    }
+
+    /**
+     * @return the payeeParty
+     */
+    public PartyEntity getPayeeParty() {
+        return payeeParty;
+    }
+
+    /**
+     * @param payeeParty
+     *            the payeeParty to set
+     */
+    public void setPayeeParty(PartyEntity payeeParty) {
+        this.payeeParty = payeeParty;
+    }
+
+    /**
+     * @return the taxRepresentativeParty
+     */
+    public PartyEntity getTaxRepresentativeParty() {
+        return taxRepresentativeParty;
+    }
+
+    /**
+     * @param taxRepresentativeParty
+     *            the taxRepresentativeParty to set
+     */
+    public void setTaxRepresentativeParty(PartyEntity taxRepresentativeParty) {
+        this.taxRepresentativeParty = taxRepresentativeParty;
+    }
+
+    /**
+     * @return the taxExchangeRate
+     */
+    public ExchangeRateEntity getTaxExchangeRate() {
+        return taxExchangeRate;
+    }
+
+    /**
+     * @param taxExchangeRate
+     *            the taxExchangeRate to set
+     */
+    public void setTaxExchangeRate(ExchangeRateEntity taxExchangeRate) {
+        this.taxExchangeRate = taxExchangeRate;
+    }
+
+    /**
+     * @return the pricingExchangeRate
+     */
+    public ExchangeRateEntity getPricingExchangeRate() {
+        return pricingExchangeRate;
+    }
+
+    /**
+     * @param pricingExchangeRate
+     *            the pricingExchangeRate to set
+     */
+    public void setPricingExchangeRate(ExchangeRateEntity pricingExchangeRate) {
+        this.pricingExchangeRate = pricingExchangeRate;
+    }
+
+    /**
+     * @return the paymentExchangeRate
+     */
+    public ExchangeRateEntity getPaymentExchangeRate() {
+        return paymentExchangeRate;
+    }
+
+    /**
+     * @param paymentExchangeRate
+     *            the paymentExchangeRate to set
+     */
+    public void setPaymentExchangeRate(ExchangeRateEntity paymentExchangeRate) {
+        this.paymentExchangeRate = paymentExchangeRate;
+    }
+
+    /**
+     * @return the paymentAlternativeExchangeRate
+     */
+    public ExchangeRateEntity getPaymentAlternativeExchangeRate() {
+        return paymentAlternativeExchangeRate;
+    }
+
+    /**
+     * @param paymentAlternativeExchangeRate
+     *            the paymentAlternativeExchangeRate to set
+     */
+    public void setPaymentAlternativeExchangeRate(ExchangeRateEntity paymentAlternativeExchangeRate) {
+        this.paymentAlternativeExchangeRate = paymentAlternativeExchangeRate;
+    }
+
+    /**
+     * @return the allowanceCharge
+     */
+    public List<AllowanceChargeEntity> getAllowanceCharge() {
+        return allowanceCharge;
+    }
+
+    /**
+     * @param allowanceCharge
+     *            the allowanceCharge to set
+     */
+    public void setAllowanceCharge(List<AllowanceChargeEntity> allowanceCharge) {
+        this.allowanceCharge = allowanceCharge;
+    }
+
+    /**
+     * @return the taxTotal
+     */
+    public List<TaxTotalEntity> getTaxTotal() {
+        return taxTotal;
+    }
+
+    /**
+     * @param taxTotal
+     *            the taxTotal to set
+     */
+    public void setTaxTotal(List<TaxTotalEntity> taxTotal) {
+        this.taxTotal = taxTotal;
+    }
+
+    /**
+     * @return the legalMonetaryTotal
+     */
+    public MonetaryTotalEntity getLegalMonetaryTotal() {
+        return legalMonetaryTotal;
+    }
+
+    /**
+     * @param legalMonetaryTotal
+     *            the legalMonetaryTotal to set
+     */
+    public void setLegalMonetaryTotal(MonetaryTotalEntity legalMonetaryTotal) {
+        this.legalMonetaryTotal = legalMonetaryTotal;
+    }
+
+    /**
+     * @return the creditNoteLine
+     */
+    public List<CreditNoteLineEntity> getCreditNoteLine() {
+        return creditNoteLine;
+    }
+
+    /**
+     * @param creditNoteLine
+     *            the creditNoteLine to set
+     */
+    public void setCreditNoteLine(List<CreditNoteLineEntity> creditNoteLine) {
+        this.creditNoteLine = creditNoteLine;
     }
 
 }

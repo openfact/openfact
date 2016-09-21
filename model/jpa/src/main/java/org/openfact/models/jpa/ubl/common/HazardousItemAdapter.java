@@ -12,7 +12,6 @@ import org.openfact.models.jpa.entities.ubl.common.HazardousGoodsTransitEntity;
 import org.openfact.models.jpa.entities.ubl.common.HazardousItemEntity;
 import org.openfact.models.jpa.entities.ubl.common.SecondaryHazardEntity;
 import org.openfact.models.jpa.entities.ubl.common.TemperatureEntity;
-import org.openfact.models.jpa.entities.ubl.common.TransactionConditionsEntity;
 import org.openfact.models.ubl.common.HazardousGoodsTransitModel;
 import org.openfact.models.ubl.common.HazardousItemModel;
 import org.openfact.models.ubl.common.MeasureModel;
@@ -20,7 +19,6 @@ import org.openfact.models.ubl.common.PartyModel;
 import org.openfact.models.ubl.common.QuantityModel;
 import org.openfact.models.ubl.common.SecondaryHazardModel;
 import org.openfact.models.ubl.common.TemperatureModel;
-import org.openfact.models.ubl.common.TransactionConditionsModel;
 
 public class HazardousItemAdapter implements HazardousItemModel, JpaModel<HazardousItemEntity> {
 

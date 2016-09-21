@@ -1,58 +1,37 @@
 package org.openfact.models.jpa.ubl.common;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
-import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.AddressEntity;
-import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
-import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.CommodityClassificationEntity;
-import org.openfact.models.jpa.entities.ubl.common.DeliveryEntity;
 import org.openfact.models.jpa.entities.ubl.common.DocumentReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.HazardousItemEntity;
-import org.openfact.models.jpa.entities.ubl.common.InvoiceLineEntity;
 import org.openfact.models.jpa.entities.ubl.common.ItemEntity;
 import org.openfact.models.jpa.entities.ubl.common.ItemIdentificationEntity;
 import org.openfact.models.jpa.entities.ubl.common.ItemInstanceEntity;
 import org.openfact.models.jpa.entities.ubl.common.ItemPropertyEntity;
-import org.openfact.models.jpa.entities.ubl.common.LineReferenceEntity;
-import org.openfact.models.jpa.entities.ubl.common.OrderLineReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.PartyEntity;
-import org.openfact.models.jpa.entities.ubl.common.PaymentMeansEntity;
-import org.openfact.models.jpa.entities.ubl.common.PaymentTermsEntity;
 import org.openfact.models.jpa.entities.ubl.common.TaxCategoryEntity;
-import org.openfact.models.jpa.entities.ubl.common.TaxTotalEntity;
 import org.openfact.models.jpa.entities.ubl.common.TransactionConditionsEntity;
 import org.openfact.models.ubl.common.AddressModel;
-import org.openfact.models.ubl.common.AllowanceChargeModel;
-import org.openfact.models.ubl.common.BillingReferenceModel;
 import org.openfact.models.ubl.common.CommodityClassificationModel;
 import org.openfact.models.ubl.common.CountryModel;
-import org.openfact.models.ubl.common.DeliveryModel;
-import org.openfact.models.ubl.common.DeliveryTermsModel;
 import org.openfact.models.ubl.common.DocumentReferenceModel;
 import org.openfact.models.ubl.common.HazardousItemModel;
-import org.openfact.models.ubl.common.InvoiceLineModel;
 import org.openfact.models.ubl.common.ItemIdentificationModel;
 import org.openfact.models.ubl.common.ItemInstanceModel;
 import org.openfact.models.ubl.common.ItemModel;
 import org.openfact.models.ubl.common.ItemPropertyModel;
-import org.openfact.models.ubl.common.LineReferenceModel;
-import org.openfact.models.ubl.common.OrderLineReferenceModel;
 import org.openfact.models.ubl.common.PartyModel;
-import org.openfact.models.ubl.common.PaymentTermsModel;
-import org.openfact.models.ubl.common.PriceModel;
-import org.openfact.models.ubl.common.PricingReferenceModel;
 import org.openfact.models.ubl.common.QuantityModel;
 import org.openfact.models.ubl.common.TaxCategoryModel;
-import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.TransactionConditionsModel;
 
 public class ItemAdapter implements ItemModel, JpaModel<ItemEntity> {

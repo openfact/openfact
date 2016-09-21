@@ -7,10 +7,9 @@ import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
-import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
-import org.openfact.models.jpa.entities.ubl.common.AddressEntity;
 import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.DeliveryEntity;
@@ -18,10 +17,8 @@ import org.openfact.models.jpa.entities.ubl.common.DocumentReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.InvoiceLineEntity;
 import org.openfact.models.jpa.entities.ubl.common.LineReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.OrderLineReferenceEntity;
-import org.openfact.models.jpa.entities.ubl.common.PaymentMeansEntity;
 import org.openfact.models.jpa.entities.ubl.common.PaymentTermsEntity;
 import org.openfact.models.jpa.entities.ubl.common.TaxTotalEntity;
-import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.BillingReferenceModel;
 import org.openfact.models.ubl.common.DeliveryModel;

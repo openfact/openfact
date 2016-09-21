@@ -268,4 +268,11 @@ public class CreditNoteLineAdapter implements CreditNoteLineModel, JpaModel<Cred
         return new TaxTotalAdapter(session, em, entity);
     }
 
+    public static CreditNoteLineEntity toEntity(CreditNoteLineModel model, EntityManager em) {
+        if (model instanceof CreditNoteLineAdapter) {
+            return ((CreditNoteLineAdapter) model).getEntity();
+        }
+        return em.getReference(CreditNoteLineEntity.class, model.getId());
+    }
+
 }

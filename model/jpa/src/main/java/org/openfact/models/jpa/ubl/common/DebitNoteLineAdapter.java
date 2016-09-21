@@ -5,13 +5,11 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.jms.DeliveryMode;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
-import org.openfact.models.jpa.entities.ubl.common.AddressEntity;
 import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.DebitNoteLineEntity;
 import org.openfact.models.jpa.entities.ubl.common.DeliveryEntity;
@@ -19,7 +17,6 @@ import org.openfact.models.jpa.entities.ubl.common.DocumentReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.LineReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.ResponseEntity;
 import org.openfact.models.jpa.entities.ubl.common.TaxTotalEntity;
-import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.BillingReferenceModel;
 import org.openfact.models.ubl.common.DebitNoteLineModel;
 import org.openfact.models.ubl.common.DeliveryModel;

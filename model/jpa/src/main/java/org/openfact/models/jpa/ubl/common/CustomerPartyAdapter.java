@@ -4,16 +4,13 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import org.openfact.models.OpenfactSession;
 import org.jboss.logging.Logger;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.CustomerPartyEntity;
-import org.openfact.models.jpa.entities.ubl.common.CustomerPartyType;
-import org.openfact.models.jpa.entities.ubl.common.SupplierPartyEntity;
 import org.openfact.models.ubl.common.ContactModel;
 import org.openfact.models.ubl.common.CustomerPartyModel;
 import org.openfact.models.ubl.common.PartyModel;
-import org.openfact.models.ubl.common.SupplierPartyModel;
 
 public class CustomerPartyAdapter implements CustomerPartyModel, JpaModel<CustomerPartyEntity> {
 
