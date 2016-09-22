@@ -101,16 +101,32 @@
 			<artifactId>hibernate-java8</artifactId>
 		</dependency>
 
-		 <dependency>
-            <groupId>org.jvnet.hyperjaxb3</groupId>
-            <artifactId>hyperjaxb3-ejb-runtime</artifactId>
-            <version>0.5.6</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jvnet.hyperjaxb3</groupId>
-            <artifactId>hyperjaxb3-ejb-roundtrip</artifactId>
-            <version>0.5.6</version>
-        </dependency>
+		<dependency>
+			<groupId>org.jvnet.hyperjaxb3</groupId>
+			<artifactId>hyperjaxb3-ejb-runtime</artifactId>
+			<version>0.5.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jvnet.hyperjaxb3</groupId>
+			<artifactId>hyperjaxb3-ejb-roundtrip</artifactId>
+			<version>0.5.6</version>
+		</dependency>
+
+		<!-- jaxws- validator -->
+
+		<dependency>
+			<groupId>com.sun.xml.ws</groupId>
+			<artifactId>jaxws-rt</artifactId>
+			<version>2.2.8</version>
+		</dependency>
+
+		<!-- to compile xjc-generated sources -->
+		<dependency>
+			<groupId>org.jvnet.jaxb2_commons</groupId>
+			<artifactId>jaxb2-basics-runtime</artifactId>
+			<version>0.6.4</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>
@@ -158,55 +174,118 @@
 				</dependencies>
 			</plugin>
 
-<!-- 			<plugin> -->
-<!-- 				<groupId>org.jvnet.jaxb2.maven2</groupId> -->
-<!-- 				<artifactId>maven-jaxb2-plugin</artifactId> -->
-<!-- 				<version>0.7.4</version> -->
-<!-- 				<dependencies> -->
-<!-- 					<dependency> -->
-<!-- 						<groupId>org.jvnet.hyperjaxb3</groupId> -->
-<!-- 						<artifactId>hyperjaxb3-ejb-plugin</artifactId> -->
-<!-- 						<version>0.5.5</version> -->
-<!-- 					</dependency> -->
-<!-- 				</dependencies> -->
-<!-- 				<executions> -->
-<!-- 					<execution> -->
-<!-- 						<id>generate-domain</id> -->
-<!-- 						<goals> -->
-<!-- 							<goal>generate</goal> -->
-<!-- 						</goals> -->
-<!-- 						<configuration> -->
-<!-- 							<strict>false</strict> -->
-<!-- 							<schemaIncludes> -->
-<!-- 								<include>jaxb/common/*.xsd</include> -->
-<!-- 								<include>jaxb/maindoc/*.xsd</include> -->
-<!-- 							</schemaIncludes> -->
-<!-- 							<bindingIncludes> -->
-<!-- 								<include>jaxb/common/*.xml</include> -->
-<!-- 							</bindingIncludes> -->
-<!-- 							<extension>true</extension> -->
-<!-- 							<generatePackage>your.package.here</generatePackage> -->
-<!-- 							<generateDirectory>${project.build.directory}/generated-sources/jaxbandjpa</generateDirectory> -->
-<!-- 							<args> -->
-<!-- 								<arg>-Xannotate</arg> -->
-<!-- 								<arg>-Xhyperjaxb3-ejb</arg> -->
-<!-- 							</args> -->
-<!-- 							<plugins> -->
-<!-- 								<plugin> -->
-<!-- 									<groupId>org.jvnet.jaxb2_commons</groupId> -->
-<!-- 									<artifactId>jaxb2-basics</artifactId> -->
-<!-- 									<version>0.6.0</version> -->
-<!-- 								</plugin> -->
-<!-- 								<plugin> -->
-<!-- 									<groupId>org.jvnet.jaxb2_commons</groupId> -->
-<!-- 									<artifactId>jaxb2-basics-annotate</artifactId> -->
-<!-- 									<version>0.6.0</version> -->
-<!-- 								</plugin> -->
-<!-- 							</plugins> -->
-<!-- 						</configuration> -->
-<!-- 					</execution> -->
-<!-- 				</executions> -->
-<!-- 			</plugin> -->
+			<!-- <plugin> -->
+			<!-- <groupId>org.jvnet.jaxb2.maven2</groupId> -->
+			<!-- <artifactId>maven-jaxb2-plugin</artifactId> -->
+			<!-- <version>0.7.4</version> -->
+			<!-- <dependencies> -->
+			<!-- <dependency> -->
+			<!-- <groupId>org.jvnet.hyperjaxb3</groupId> -->
+			<!-- <artifactId>hyperjaxb3-ejb-plugin</artifactId> -->
+			<!-- <version>0.5.5</version> -->
+			<!-- </dependency> -->
+			<!-- </dependencies> -->
+			<!-- <executions> -->
+			<!-- <execution> -->
+			<!-- <id>generate-domain</id> -->
+			<!-- <goals> -->
+			<!-- <goal>generate</goal> -->
+			<!-- </goals> -->
+			<!-- <configuration> -->
+			<!-- <strict>false</strict> -->
+			<!-- <schemaIncludes> -->
+			<!-- <include>jaxb/common/*.xsd</include> -->
+			<!-- <include>jaxb/maindoc/*.xsd</include> -->
+			<!-- </schemaIncludes> -->
+			<!-- <bindingIncludes> -->
+			<!-- <include>jaxb/common/*.xml</include> -->
+			<!-- </bindingIncludes> -->
+			<!-- <extension>true</extension> -->
+			<!-- <generatePackage>your.package.here</generatePackage> -->
+			<!-- <generateDirectory>${project.build.directory}/generated-sources/jaxbandjpa</generateDirectory> -->
+			<!-- <args> -->
+			<!-- <arg>-Xannotate</arg> -->
+			<!-- <arg>-Xhyperjaxb3-ejb</arg> -->
+			<!-- </args> -->
+			<!-- <plugins> -->
+			<!-- <plugin> -->
+			<!-- <groupId>org.jvnet.jaxb2_commons</groupId> -->
+			<!-- <artifactId>jaxb2-basics</artifactId> -->
+			<!-- <version>0.6.0</version> -->
+			<!-- </plugin> -->
+			<!-- <plugin> -->
+			<!-- <groupId>org.jvnet.jaxb2_commons</groupId> -->
+			<!-- <artifactId>jaxb2-basics-annotate</artifactId> -->
+			<!-- <version>0.6.0</version> -->
+			<!-- </plugin> -->
+			<!-- </plugins> -->
+			<!-- </configuration> -->
+			<!-- </execution> -->
+			<!-- </executions> -->
+			<!-- </plugin> -->
+
+			<plugin>
+				<groupId>org.jvnet.jax-ws-commons</groupId>
+				<artifactId>jaxws-maven-plugin</artifactId>
+				<version>2.3</version>
+				<dependencies>
+					<!-- put xjc-plugins on the jaxws-maven-plugin's classpath -->
+					<dependency>
+						<groupId>org.jvnet.jaxb2_commons</groupId>
+						<artifactId>jaxb2-basics</artifactId>
+						<version>0.6.4</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<sourceDestDir>${project.build.directory}/generated-sources/jaxws-wsimport</sourceDestDir>
+					<xnocompile>true</xnocompile>
+					<verbose>true</verbose>
+					<extension>true</extension>
+					<catalog>${basedir}/src/jax-ws-catalog.xml</catalog>
+					<!-- tell JAXB to actually use xjc-plugins -->
+					<xjcArgs>
+						<xjcArg>-Xequals</xjcArg>
+						<xjcArg>-XtoString</xjcArg>
+					</xjcArgs>
+					<!-- Needed with JAXP 1.5 -->
+					<vmArgs>
+						<vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+					</vmArgs>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>wsimport</goal>
+						</goals>
+						<configuration>
+							<staleFile>${project.build.directory}/jaxws/stale/billService.stale</staleFile>
+							<packageName>org.openfact.service.sunat</packageName>
+							<wsdlUrls>
+								<wsdlUrl>https://e-beta.sunat.gob.pe/ol-ti-itemision-guia-gem-beta/billService?wsdl</wsdlUrl>
+							</wsdlUrls>
+						</configuration>
+					</execution>
+
+				</executions>
+			</plugin>
+
+
 		</plugins>
+
+		<!-- JAXB to actually use xjc-plugins -->
+		<resources>
+			<resource>
+				<targetPath>META-INF</targetPath>
+				<directory>src</directory>
+				<includes>
+					<include>jax-ws-catalog.xml</include>
+					<include>wsdl/**</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+
 	</build>
 </project>

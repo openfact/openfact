@@ -1,9 +1,9 @@
 package org.openfact.services.managers;
 
-import org.openfact.models.InvoiceModel;
-import org.openfact.models.InvoiceProvider;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.ubl.InvoiceModel;
+import org.openfact.models.ubl.provider.InvoiceProvider;
 
 /**
  * Created by Gissela-Sistemas on 26/07/2016.
