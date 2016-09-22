@@ -23,9 +23,9 @@
 		<!-- Json-Xml-Converter -->
 		<dependency>
 			<groupId>de.odysseus.staxon</groupId>
-			<artifactId>staxon-gson</artifactId>		
-		</dependency>	
-		
+			<artifactId>staxon-gson</artifactId>
+		</dependency>
+
 		<!-- Ph-ubl -->
 		<dependency>
 			<groupId>com.helger</groupId>
@@ -172,6 +172,13 @@
 					<artifactId>slf4j-api</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+
+		<!-- to compile xjc-generated sources -->
+		<dependency>
+			<groupId>org.jvnet.jaxb2_commons</groupId>
+			<artifactId>jaxb2-basics-runtime</artifactId>
+			<version>0.6.4</version>
 		</dependency>
 	</dependencies>
 	<build>
