@@ -8,7 +8,7 @@ import org.openfact.provider.Provider;
 
 public interface UblTemplateProvider extends Provider {
 
-	//String IDENTITY_PROVIDER_BROKER_CONTEXT = "identityProviderBrokerCtx";
+	// String IDENTITY_PROVIDER_BROKER_CONTEXT = "identityProviderBrokerCtx";
 
 	public UblTemplateProvider setOrganization(OrganizationModel organization);
 
@@ -22,8 +22,8 @@ public interface UblTemplateProvider extends Provider {
 	 * send document to sunat
 	 * 
 	 */
-	public void sendAsynchronous();
+	public void sendAsynchronous() throws UblSenderException;
 
-	public void sendSynchronous();
+	public void sendSynchronous() throws UblSenderException;
 
 }
