@@ -149,5 +149,21 @@
 				</dependencies>
 			</plugin>
 		</plugins>
+
+		<!-- JAXB to actually use xjc-plugins -->
+		<resources>
+			<resource>
+				<targetPath>META-INF</targetPath>
+				<directory>src</directory>
+				<includes>
+					<include>jax-ws-catalog.xml</include>
+					<include>wsdl/**</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+
 	</build>
 </project>

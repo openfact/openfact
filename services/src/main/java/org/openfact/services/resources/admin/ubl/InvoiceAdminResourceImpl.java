@@ -6,57 +6,65 @@ import java.util.stream.Collectors;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
+import javax.xml.datatype.DatatypeConfigurationException;
 
 import org.jboss.logging.Logger;
 import org.openfact.common.ClientConnection;
 import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.utils.ModelToRepresentation;
-import org.openfact.representations.idm.ubl.InvoiceLineRepresentation;
-import org.openfact.representations.idm.ubl.InvoiceModel;
+import org.openfact.representations.idm.ubl.InvoiceRepresentation;
+import org.openfact.representations.idm.ubl.common.InvoiceLineRepresentation;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.services.resources.admin.OrganizationAuth;
 
 public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 
-    protected static final Logger logger = Logger.getLogger(InvoiceAdminResourceImpl.class);
+	protected static final Logger logger = Logger.getLogger(InvoiceAdminResourceImpl.class);
 
-    protected OrganizationModel organization;
-    protected OrganizationAuth auth;
-    protected InvoiceModel invoice;
+	protected OrganizationModel organization;
+	protected OrganizationAuth auth;
+	protected InvoiceModel invoice;
 
-    @Context
-    protected OpenfactSession session;
+	@Context
+	protected OpenfactSession session;
 
-    @Context
-    protected UriInfo uriInfo;
+	@Context
+	protected UriInfo uriInfo;
 
-    @Context
-    protected ClientConnection connection;
+	@Context
+	protected ClientConnection connection;
 
-    public InvoiceAdminResourceImpl(OrganizationAuth auth, OrganizationModel organization, InvoiceModel invoice) {
-        this.auth = auth;
-        this.organization = organization;
-        this.invoice = invoice;
+	public InvoiceAdminResourceImpl(OrganizationAuth auth, OrganizationModel organization, InvoiceModel invoice) {
+		this.auth = auth;
+		this.organization = organization;
+		this.invoice = invoice;
 
-        auth.init(OrganizationAuth.Resource.INVOICE);
-        auth.requireAny();
-    }
+		auth.init(OrganizationAuth.Resource.INVOICE);
+		auth.requireAny();
+	}
 
-    @Override
-    public InvoiceModel getInvoice() {
-        auth.requireView();
+	@Override
+	public InvoiceRepresentation getInvoice() {
+		try {
+			auth.requireView();
+			if (invoice == null) {
+				throw new NotFoundException("Invoice not found");
+			}
 
-        if (invoice == null) {
-            throw new NotFoundException("Invoice not found");
-        }
-        return ModelToRepresentation.toRepresentation(invoice);
-    }
+			return ModelToRepresentation.toRepresentation(invoice);
+		} catch (DatatypeConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new NotFoundException("Error geting invoice");
+		}
+	}
 
-    @Override
-    public List<InvoiceLineRepresentation> getInvoiceLines() {
-        auth.requireView();
-        return invoice.getInvoiceLines().stream().map(f -> ModelToRepresentation.toRepresentation(f)).collect(Collectors.toList());
-    }
+	@Override
+	public List<InvoiceLineRepresentation> getInvoiceLines() {
+		auth.requireView();
+		return invoice.getInvoiceLine().stream().map(f -> ModelToRepresentation.toRepresentation(f))
+				.collect(Collectors.toList());
+	}
 
 }

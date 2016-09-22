@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.UriInfo;
+import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
@@ -22,22 +23,21 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-
 import org.jboss.logging.Logger;
 import org.openfact.common.ClientConnection;
 import org.openfact.email.EmailException;
 import org.openfact.email.EmailTemplateProvider;
 import org.openfact.email.freemarker.FreeMarkerEmailTemplateProvider;
-import org.openfact.models.InvoiceModel;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.ModelException;
 import org.openfact.models.ModelReadOnlyException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.RepresentationToModel;
-import org.openfact.representations.idm.InvoiceLineRepresentation;
-import org.openfact.representations.idm.InvoiceRepresentation;
+import org.openfact.representations.idm.ubl.InvoiceRepresentation;
+import org.openfact.representations.idm.ubl.common.InvoiceLineRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.managers.InvoiceManager;
 import org.openfact.services.util.JsonXmlConverter;
@@ -73,12 +73,18 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 
 	@Override
 	public InvoiceRepresentation getInvoice() {
-		auth.requireView();
+		try {
+			auth.requireView();
 
-		if (invoice == null) {
-			throw new NotFoundException("Invoice not found");
+			if (invoice == null) {
+				throw new NotFoundException("Invoice not found");
+			}
+
+			return ModelToRepresentation.toRepresentation(invoice);
+		} catch (DatatypeConfigurationException e) {
+			e.printStackTrace();
+			throw new NotFoundException("Error geting invoice");
 		}
-		return ModelToRepresentation.toRepresentation(invoice);
 	}
 
 	@Override
@@ -114,7 +120,7 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 	public List<InvoiceLineRepresentation> getLines() {
 		auth.requireView();
 
-		return invoice.getInvoiceLines().stream().map(f -> ModelToRepresentation.toRepresentation(f))
+		return invoice.getInvoiceLine().stream().map(f -> ModelToRepresentation.toRepresentation(f))
 				.collect(Collectors.toList());
 	}
 
