@@ -12,6 +12,7 @@ import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.OrganizationAdapter;
 import org.openfact.models.jpa.entities.ubl.InvoiceEntity;
 import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
@@ -617,8 +618,8 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
-    public void setId(String value) {
-        invoice.setId(value);
+    public OrganizationModel getOrganization() {
+        return new OrganizationAdapter(session, em, invoice.getOrganization());
     }
 
     @Override

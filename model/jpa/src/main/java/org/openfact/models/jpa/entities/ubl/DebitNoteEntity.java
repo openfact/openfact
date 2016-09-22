@@ -20,15 +20,19 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import org.openfact.models.jpa.entities.OrganizationEntity;
 import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.CustomerPartyEntity;
 import org.openfact.models.jpa.entities.ubl.common.DebitNoteLineEntity;
@@ -56,6 +60,13 @@ public class DebitNoteEntity {
     @Access(AccessType.PROPERTY)
     protected String id;
 
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
+    private OrganizationEntity organization;
+
+    /**
+     * */
     @ManyToOne(targetEntity = UBLExtensionsEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "UBLEXTENSIONS_DEBITNOTE")
     protected UBLExtensionsEntity ublExtensions;
@@ -817,6 +828,20 @@ public class DebitNoteEntity {
      */
     public void setDebitNoteLine(List<DebitNoteLineEntity> debitNoteLine) {
         this.debitNoteLine = debitNoteLine;
+    }
+
+    /**
+     * @return the organization
+     */
+    public OrganizationEntity getOrganization() {
+        return organization;
+    }
+
+    /**
+     * @param organization the organization to set
+     */
+    public void setOrganization(OrganizationEntity organization) {
+        this.organization = organization;
     }
 
 }

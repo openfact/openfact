@@ -12,6 +12,7 @@ import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.OrganizationAdapter;
 import org.openfact.models.jpa.entities.ubl.CreditNoteEntity;
 import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
@@ -83,13 +84,9 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
         return creditNote.getId();
     }
 
-    /**
-     * @param id
-     *            the id to set
-     */
     @Override
-    public void setId(String id) {
-        this.creditNote.setId(id);
+    public OrganizationModel getOrganization() {
+        return new OrganizationAdapter(session, em, creditNote.getOrganization());
     }
 
     @Override

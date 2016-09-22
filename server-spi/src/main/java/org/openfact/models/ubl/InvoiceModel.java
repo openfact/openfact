@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import org.openfact.models.OrganizationModel;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.BillingReferenceModel;
 import org.openfact.models.ubl.common.CustomerPartyModel;
@@ -27,6 +28,12 @@ import org.openfact.models.ubl.common.UBLExtensionsModel;
 
 public interface InvoiceModel {
 
+    String getId();
+
+    OrganizationModel getOrganization();
+
+    /**
+     * */
     UBLExtensionsModel getUBLExtensions();
 
     void setUBLExtensions(UBLExtensionsModel value);
@@ -218,10 +225,6 @@ public interface InvoiceModel {
     List<InvoiceLineModel> getInvoiceLine();
 
     void setInvoiceLine(List<InvoiceLineModel> invoiceLine);
-
-    String getId();
-
-    void setId(String value);
 
     InvoiceLineModel addInvoiceLine();
 

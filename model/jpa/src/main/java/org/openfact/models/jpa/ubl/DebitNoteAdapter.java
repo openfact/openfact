@@ -12,6 +12,7 @@ import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.OrganizationAdapter;
 import org.openfact.models.jpa.entities.ubl.DebitNoteEntity;
 import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.DebitNoteLineEntity;
@@ -83,13 +84,9 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
         return debitNote.getId();
     }
 
-    /**
-     * @param id
-     *            the id to set
-     */
     @Override
-    public void setId(String id) {
-        this.debitNote.setId(id);
+    public OrganizationModel getOrganization() {
+        return new OrganizationAdapter(session, em, debitNote.getOrganization());
     }
 
     @Override

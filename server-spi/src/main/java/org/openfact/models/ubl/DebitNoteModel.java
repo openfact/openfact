@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import org.openfact.models.OrganizationModel;
 import org.openfact.models.ubl.common.BillingReferenceModel;
 import org.openfact.models.ubl.common.CustomerPartyModel;
 import org.openfact.models.ubl.common.DebitNoteLineModel;
@@ -22,6 +23,13 @@ import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
 
 public interface DebitNoteModel {
+
+    String getId();
+
+    OrganizationModel getOrganization();
+
+    /**
+     * */
 
     UBLExtensionsModel getUBLExtensions();
 
@@ -182,10 +190,6 @@ public interface DebitNoteModel {
     List<DebitNoteLineModel> getDebitNoteLine();
 
     void setDebitNoteLine(List<DebitNoteLineModel> debitNoteLine);
-
-    String getId();
-
-    void setId(String value);
 
     /**
      * */

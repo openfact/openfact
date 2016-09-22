@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import org.openfact.models.OrganizationModel;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.BillingReferenceModel;
 import org.openfact.models.ubl.common.CreditNoteLineModel;
@@ -23,6 +24,12 @@ import org.openfact.models.ubl.common.UBLExtensionsModel;
 
 public interface CreditNoteModel {
 
+    String getId();
+
+    OrganizationModel getOrganization();
+
+    /**
+     * */
     UBLExtensionsModel getUBLExtensions();
 
     void setUBLExtensions(UBLExtensionsModel value);
@@ -182,10 +189,6 @@ public interface CreditNoteModel {
     List<CreditNoteLineModel> getCreditNoteLine();
 
     void setCreditNoteLine(List<CreditNoteLineModel> creditNoteLine);
-
-    String getId();
-
-    void setId(String value);
 
     /**
      * */
