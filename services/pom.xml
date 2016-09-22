@@ -25,6 +25,12 @@
 			<groupId>de.odysseus.staxon</groupId>
 			<artifactId>staxon-gson</artifactId>
 		</dependency>
+		
+		<!-- to compile xjc-generated sources -->
+		<dependency>
+			<groupId>org.jvnet.jaxb2_commons</groupId>
+			<artifactId>jaxb2-basics-runtime</artifactId>
+		</dependency>
 
 		<!-- Ph-ubl -->
 		<dependency>
@@ -58,6 +64,11 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.openfact</groupId>
+			<artifactId>openfact-services-api</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bcprov-jdk15on</artifactId>
 		</dependency>
@@ -70,12 +81,9 @@
 			<artifactId>openfact-core</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.openfact</groupId>
-			<artifactId>openfact-services-api</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.mail</groupId>
@@ -95,6 +103,11 @@
 			<artifactId>twitter4j-core</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.wildfly.core</groupId>
+			<artifactId>wildfly-controller</artifactId>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.jboss.logging</groupId>
 			<artifactId>jboss-logging</artifactId>
@@ -133,6 +146,10 @@
 			<artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.jboss.spec.javax.transaction</groupId>
+			<artifactId>jboss-transaction-api_1.2_spec</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-multipart-provider</artifactId>
 		</dependency>
@@ -152,15 +169,10 @@
 			<groupId>com.google.zxing</groupId>
 			<artifactId>javase</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-simple</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.icegreen</groupId>
@@ -172,13 +184,6 @@
 					<artifactId>slf4j-api</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>
-
-		<!-- to compile xjc-generated sources -->
-		<dependency>
-			<groupId>org.jvnet.jaxb2_commons</groupId>
-			<artifactId>jaxb2-basics-runtime</artifactId>
-			<version>0.6.4</version>
 		</dependency>
 	</dependencies>
 	<build>
