@@ -16,13 +16,12 @@
  */
 package org.openfact.email.freemarker.beans;
 
-import org.jboss.logging.Logger;
-import org.openfact.models.InvoiceModel;
-import org.openfact.models.UserModel;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.jboss.logging.Logger;
+import org.openfact.models.ubl.InvoiceModel;
 
 /**
  * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
@@ -38,7 +37,7 @@ public class ProfileBean {
     public ProfileBean(InvoiceModel invoice) {
         this.invoice = invoice;
 
-        if (invoice.getAttributes() != null) {
+        /*if (invoice.getAttributes() != null) {
             for (Map.Entry<String, List<String>> attr : invoice.getAttributes().entrySet()) {
                 List<String> attrValue = attr.getValue();
                 if (attrValue != null && attrValue.size() > 0) {
@@ -49,7 +48,7 @@ public class ProfileBean {
                     logger.warnf("There are more values for attribute '%s' of invoice '%s' . Will display just first value", attr.getKey(), invoice.getId());
                 }
             }
-        }
+        }*/
     }
 
 

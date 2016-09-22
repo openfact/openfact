@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.openfact.email.EmailException;
 import org.openfact.email.EmailTemplateProvider;
-import org.openfact.models.InvoiceModel;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionTask;
+import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.timer.ScheduledTask;
 
 public class SendRequiredInvoiceEmail implements ScheduledTask {

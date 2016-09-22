@@ -25,7 +25,7 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.OpenfactSessionTask;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.InvoiceModel;
+import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.representations.idm.OrganizationRepresentation;
 

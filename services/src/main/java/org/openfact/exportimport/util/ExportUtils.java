@@ -25,8 +25,10 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import org.openfact.common.Version;
 import org.openfact.common.util.Base64;
 import org.openfact.models.*;
+import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.representations.idm.*;
+import org.openfact.representations.idm.ubl.InvoiceRepresentation;
 
 import java.io.IOException;
 import java.io.OutputStream;

@@ -31,7 +31,7 @@ import org.openfact.models.OrganizationProvider;
 import org.openfact.models.utils.OrganizationImporter;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.OrganizationRepresentation;
-import org.openfact.representations.idm.InvoiceRepresentation;
+import org.openfact.representations.idm.ubl.InvoiceRepresentation;
 
 import java.io.IOException;
 import java.io.InputStream;
