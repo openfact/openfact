@@ -11,6 +11,8 @@ import org.openfact.provider.Provider;
 public interface InvoiceProvider extends Provider {
 
     InvoiceModel addInvoice(OrganizationModel organization);
+    
+    InvoiceModel addInvoice(OrganizationModel organization, String ID);
 
     InvoiceModel getInvoiceById(OrganizationModel organization, String id);
 

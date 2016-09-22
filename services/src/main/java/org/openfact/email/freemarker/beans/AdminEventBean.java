@@ -40,6 +40,10 @@ public class AdminEventBean {
         return adminEvent.getOperationType().toString().toLowerCase();
     }
 
+    public String getClient() {
+        return adminEvent.getAuthDetails().getClientId();
+    }
+
     public String getIpAddress() {
         return adminEvent.getAuthDetails().getIpAddress();
     }

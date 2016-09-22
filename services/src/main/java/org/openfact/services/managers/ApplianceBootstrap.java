@@ -1,18 +1,34 @@
+/*
+ * Copyright 2016 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.openfact.services.managers;
 
 import org.openfact.Config;
+import org.openfact.common.Version;
+import org.openfact.models.*;
 import org.openfact.models.utils.OpenfactModelUtils;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
 import org.openfact.services.ServicesLogger;
 
 /**
- * @author carlosthe19916@gmail.com
- * @version 1.0.0.Final
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
  */
 public class ApplianceBootstrap {
 
-    protected static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
+    private static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
     private final OpenfactSession session;
 
     public ApplianceBootstrap(OpenfactSession session) {
@@ -27,10 +43,9 @@ public class ApplianceBootstrap {
         }
     }
 
-    public boolean isNoMasterUser() {
-        /*OrganizationModel organization = session.organizations().getOrganization(Config.getAdminOrganization());
-        return session.users().getUsersCount(organization) == 0;*/
-        return true;
+    public boolean isNoMasterOrganization() {
+        OrganizationModel organization = session.organizations().getOrganization(Config.getAdminOrganization());
+        return session.organizations().getOrganizationsCount(organization) == 0;
     }
 
     public boolean createMasterOrganization(String contextPath) {
@@ -45,29 +60,36 @@ public class ApplianceBootstrap {
         manager.setContextPath(contextPath);
         OrganizationModel organization = manager.createOrganization(adminOrganizationName, adminOrganizationName);
         organization.setName(adminOrganizationName);
+        organization.setDisplayName(Version.NAME);
+        organization.setDisplayNameHtml(Version.NAME_HTML);
+        organization.setEnabled(true);
         
+        organization.setAttempNumber(1);
+        organization.setDelayTime(1);
+        organization.setOnErrorAttempNumber(1);
+        organization.setOnErrorLapseTime(1);
         OpenfactModelUtils.generateOrganizationKeys(organization);
 
         return true;
     }
 
     public void createMasterOrganizationUser(String username, String password) {
-        /*OrganizationModel realm = session.organizations().getOrganization(Config.getAdminOrganization());
-        session.getContext().setOrganization(realm);
+        /*OrganizationModel organization = session.organizations().getOrganization(Config.getAdminOrganization());
+        session.getContext().setOrganization(organization);
 
-        if (session.users().getUsersCount(realm) > 0) {
+        if (session.users().getUsersCount(organization) > 0) {
             throw new IllegalStateException("Can't create initial user as users already exists");
         }
 
-        UserModel adminUser = session.users().addUser(realm, username);
+        UserModel adminUser = session.users().addUser(organization, username);
         adminUser.setEnabled(true);
 
         UserCredentialModel usrCredModel = new UserCredentialModel();
         usrCredModel.setType(UserCredentialModel.PASSWORD);
         usrCredModel.setValue(password);
-        session.users().updateCredential(realm, adminUser, usrCredModel);
+        session.users().updateCredential(organization, adminUser, usrCredModel);
 
-        RoleModel adminRole = realm.getRole(AdminRoles.ADMIN);
+        RoleModel adminRole = organization.getRole(AdminRoles.ADMIN);
         adminUser.grantRole(adminRole);*/
     }
 

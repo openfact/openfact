@@ -20,11 +20,12 @@ package org.openfact.exportimport.util;
 import org.jboss.logging.Logger;
 import org.openfact.exportimport.ExportImportConfig;
 import org.openfact.exportimport.ExportProvider;
-import org.openfact.exportimport.InvoicesExportStrategy;
+import org.openfact.exportimport.UsersExportStrategy;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.OpenfactSessionTask;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.UserModel;
 import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.representations.idm.OrganizationRepresentation;
@@ -64,40 +65,40 @@ public abstract class MultipleStepsExportProvider implements ExportProvider {
     }
 
     protected void exportOrganizationImpl(OpenfactSessionFactory factory, final String organizationName) throws IOException {
-        final InvoicesExportStrategy invoicesExportStrategy = ExportImportConfig.getInvoicesExportStrategy();
-        final int invoicesPerFile = ExportImportConfig.getInvoicesPerFile();
-        final InvoicesHolder invoicesHolder = new InvoicesHolder();
-        final boolean exportInvoicesIntoOrganizationFile = invoicesExportStrategy == InvoicesExportStrategy.REALM_FILE;
+        /*final UsersExportStrategy usersExportStrategy = ExportImportConfig.getUsersExportStrategy();
+        final int usersPerFile = ExportImportConfig.getUsersPerFile();
+        final UsersHolder usersHolder = new UsersHolder();
+        final boolean exportUsersIntoOrganizationFile = usersExportStrategy == UsersExportStrategy.REALM_FILE;
 
         OpenfactModelUtils.runJobInTransaction(factory, new ExportImportSessionTask() {
 
             @Override
             protected void runExportImportTask(OpenfactSession session) throws IOException {
                 OrganizationModel organization = session.organizations().getOrganizationByName(organizationName);
-                OrganizationRepresentation rep = ExportUtils.exportOrganization(session, organization, exportInvoicesIntoOrganizationFile);
+                OrganizationRepresentation rep = ExportUtils.exportOrganization(session, organization, exportUsersIntoOrganizationFile);
                 writeOrganization(organizationName + "-organization.json", rep);
                 logger.info("Organization '" + organizationName + "' - data exported");
 
-                // Count total number of invoices
-                if (!exportInvoicesIntoOrganizationFile) {
-                    invoicesHolder.totalCount = session.invoices().getInvoicesCount(organization);
+                // Count total number of users
+                if (!exportUsersIntoOrganizationFile) {
+                    usersHolder.totalCount = session.users().getUsersCount(organization);
                 }
             }
 
         });
 
-        if (invoicesExportStrategy != InvoicesExportStrategy.SKIP && !exportInvoicesIntoOrganizationFile) {
-            // We need to export invoices now
-            invoicesHolder.currentPageStart = 0;
+        if (usersExportStrategy != UsersExportStrategy.SKIP && !exportUsersIntoOrganizationFile) {
+            // We need to export users now
+            usersHolder.currentPageStart = 0;
 
-            // invoicesExportStrategy==SAME_FILE  means exporting all invoices into single file (but separate to organization)
-            final int countPerPage = (invoicesExportStrategy == InvoicesExportStrategy.SAME_FILE) ? invoicesHolder.totalCount : invoicesPerFile;
+            // usersExportStrategy==SAME_FILE  means exporting all users into single file (but separate to organization)
+            final int countPerPage = (usersExportStrategy == UsersExportStrategy.SAME_FILE) ? usersHolder.totalCount : usersPerFile;
 
-            while (invoicesHolder.currentPageStart < invoicesHolder.totalCount) {
-                if (invoicesHolder.currentPageStart + countPerPage < invoicesHolder.totalCount) {
-                    invoicesHolder.currentPageEnd = invoicesHolder.currentPageStart + countPerPage;
+            while (usersHolder.currentPageStart < usersHolder.totalCount) {
+                if (usersHolder.currentPageStart + countPerPage < usersHolder.totalCount) {
+                    usersHolder.currentPageEnd = usersHolder.currentPageStart + countPerPage;
                 } else {
-                    invoicesHolder.currentPageEnd = invoicesHolder.totalCount;
+                    usersHolder.currentPageEnd = usersHolder.totalCount;
                 }
 
                 OpenfactModelUtils.runJobInTransaction(factory, new ExportImportSessionTask() {
@@ -105,18 +106,18 @@ public abstract class MultipleStepsExportProvider implements ExportProvider {
                     @Override
                     protected void runExportImportTask(OpenfactSession session) throws IOException {
                         OrganizationModel organization = session.organizations().getOrganizationByName(organizationName);
-                        invoicesHolder.invoices = session.invoices().getInvoices(organization, invoicesHolder.currentPageStart, invoicesHolder.currentPageEnd - invoicesHolder.currentPageStart);
+                        usersHolder.users = session.users().getUsers(organization, usersHolder.currentPageStart, usersHolder.currentPageEnd - usersHolder.currentPageStart, true);
 
-                        writeInvoices(organizationName + "-invoices-" + (invoicesHolder.currentPageStart / countPerPage) + ".json", session, organization, invoicesHolder.invoices);
+                        writeUsers(organizationName + "-users-" + (usersHolder.currentPageStart / countPerPage) + ".json", session, organization, usersHolder.users);
 
-                        logger.info("Invoices " + invoicesHolder.currentPageStart + "-" + (invoicesHolder.currentPageEnd -1) + " exported");
+                        logger.info("Users " + usersHolder.currentPageStart + "-" + (usersHolder.currentPageEnd -1) + " exported");
                     }
 
                 });
 
-                invoicesHolder.currentPageStart = invoicesHolder.currentPageEnd;
+                usersHolder.currentPageStart = usersHolder.currentPageEnd;
             }
-        }
+        }*/
     }
 
     protected abstract void writeOrganization(String fileName, OrganizationRepresentation rep) throws IOException;
@@ -128,8 +129,8 @@ public abstract class MultipleStepsExportProvider implements ExportProvider {
 
     }
 
-    public static class InvoicesHolder {
-        List<InvoiceModel> invoices;
+    public static class UsersHolder {
+        List<UserModel> users;
         int totalCount;
         int currentPageStart;
         int currentPageEnd;

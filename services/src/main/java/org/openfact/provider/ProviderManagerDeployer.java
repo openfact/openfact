@@ -14,18 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package org.openfact.email;
-
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.UserModel;
-import org.openfact.provider.Provider;
+package org.openfact.provider;
 
 /**
- * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
  */
-public interface EmailSenderProvider extends Provider {
-
-    void send(OrganizationModel organization, UserModel invoice, String subject, String textBody, String htmlBody) throws EmailException;
-
+public interface ProviderManagerDeployer {
+    void deploy(ProviderManager pm);
+    void undeploy(ProviderManager pm);
 }

@@ -260,7 +260,7 @@ public class OpenfactServer {
             OpenfactSession session = sessionFactory.create();
             try {
                 session.getTransactionManager().begin();
-                if (new ApplianceBootstrap(session).isNoMasterUser()) {
+                if (new ApplianceBootstrap(session).isNoMasterOrganization()) {
                     new ApplianceBootstrap(session).createMasterOrganizationUser("admin", "admin");
                 }
                 session.getTransactionManager().commit();

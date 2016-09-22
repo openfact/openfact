@@ -232,6 +232,14 @@ public interface OrganizationModel {
 
     Map<String, String> getAttributes();
 
+    String getDisplayName();
+
+    void setDisplayName(String displayName);
+
+    String getDisplayNameHtml();
+
+    void setDisplayNameHtml(String displayNameHtml);
+
     /**
      * Required actions
      */

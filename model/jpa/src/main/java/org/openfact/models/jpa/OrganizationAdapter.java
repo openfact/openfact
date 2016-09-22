@@ -22,6 +22,7 @@ import org.openfact.models.CurrencyModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.entities.CurrencyEntity;
+import org.openfact.models.jpa.entities.OrganizationAttributes;
 import org.openfact.models.jpa.entities.OrganizationEntity;
 import org.openfact.models.jpa.entities.OrganizationRequiredActionEntity;
 import org.openfact.models.utils.OpenfactModelUtils;
@@ -540,6 +541,26 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         Map<String, String> copy = new HashMap<>();
         copy.putAll(organization.getAttributes());
         return copy;
+    }
+
+    @Override
+    public String getDisplayName() {
+        return getAttribute(OrganizationAttributes.DISPLAY_NAME);
+    }
+
+    @Override
+    public void setDisplayName(String displayName) {
+        setAttribute(OrganizationAttributes.DISPLAY_NAME, displayName);
+    }
+
+    @Override
+    public String getDisplayNameHtml() {
+        return getAttribute(OrganizationAttributes.DISPLAY_NAME_HTML);
+    }
+
+    @Override
+    public void setDisplayNameHtml(String displayNameHtml) {
+        setAttribute(OrganizationAttributes.DISPLAY_NAME_HTML, displayNameHtml);
     }
 
     @Override

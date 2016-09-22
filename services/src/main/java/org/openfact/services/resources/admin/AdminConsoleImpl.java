@@ -62,7 +62,7 @@ public class AdminConsoleImpl implements AdminConsole {
             if (!uriInfo.getRequestUri().getPath().endsWith("/")) {
                 return Response.status(302).location(uriInfo.getRequestUriBuilder().path("/").build()).build();
             } else {
-                //Theme theme = AdminRootImpl.getTheme(session, realm);
+                //Theme theme = AdminRootImpl.getTheme(session, organization);
 
                 Map<String, Object> map = new HashMap<>();
 

@@ -69,14 +69,18 @@ public class DefaultMigrationProvider implements MigrationProvider {
     public List<ProtocolMapperModel> getBuiltinMappers(String protocol) {
         LoginProtocolFactory providerFactory = (LoginProtocolFactory) session.getOpenfactSessionFactory().getProviderFactory(LoginProtocol.class, protocol);
         return providerFactory.getBuiltinMappers();
-    }
+    }*/
 
     @Override
     public void setupAdminCli(OrganizationModel organization) {
-        new OrganizationManager(session).setupAdminCli(organization);
-    }    
+        //new OrganizationManager(session).setupAdminCli(organization);
+    }
 
-    private static Map<String, ProtocolMapperRepresentation> getAllDefaultMappers(OpenfactSession session) {
+    @Override
+    public void close() {
+    }
+
+    /*private static Map<String, ProtocolMapperRepresentation> getAllDefaultMappers(OpenfactSession session) {
         Map<String, ProtocolMapperRepresentation> allMappers = new HashMap<String, ProtocolMapperRepresentation>();
 
         List<ProviderFactory> loginProtocolFactories = session.getOpenfactSessionFactory().getProviderFactories(LoginProtocol.class);
@@ -93,8 +97,4 @@ public class DefaultMigrationProvider implements MigrationProvider {
 
         return allMappers;
     }*/
-    
-    @Override
-    public void close() {
-    }
 }

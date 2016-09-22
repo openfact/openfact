@@ -16,12 +16,12 @@
  */
 package org.openfact.email.freemarker.beans;
 
+import org.jboss.logging.Logger;
+import org.openfact.models.UserModel;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.jboss.logging.Logger;
-import org.openfact.models.ubl.InvoiceModel;
 
 /**
  * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
@@ -31,26 +31,39 @@ public class ProfileBean {
 
     private static final Logger logger = Logger.getLogger(ProfileBean.class);
 
-    private InvoiceModel invoice;
+    private UserModel user;
     private final Map<String, String> attributes = new HashMap<>();
 
-    public ProfileBean(InvoiceModel invoice) {
-        this.invoice = invoice;
+    public ProfileBean(UserModel user) {
+        this.user = user;
 
-        /*if (invoice.getAttributes() != null) {
-            for (Map.Entry<String, List<String>> attr : invoice.getAttributes().entrySet()) {
+        if (user.getAttributes() != null) {
+            for (Map.Entry<String, List<String>> attr : user.getAttributes().entrySet()) {
                 List<String> attrValue = attr.getValue();
                 if (attrValue != null && attrValue.size() > 0) {
                     attributes.put(attr.getKey(), attrValue.get(0));
                 }
 
                 if (attrValue != null && attrValue.size() > 1) {
-                    logger.warnf("There are more values for attribute '%s' of invoice '%s' . Will display just first value", attr.getKey(), invoice.getId());
+                    logger.warnf("There are more values for attribute '%s' of user '%s' . Will display just first value", attr.getKey(), user.getUsername());
                 }
             }
-        }*/
+        }
     }
 
+    public String getUsername() { return user.getUsername(); }
+
+    public String getFirstName() {
+        return user.getFirstName();
+    }
+
+    public String getLastName() {
+        return user.getLastName();
+    }
+
+    public String getEmail() {
+        return user.getEmail();
+    }
 
     public Map<String, String> getAttributes() {
         return attributes;

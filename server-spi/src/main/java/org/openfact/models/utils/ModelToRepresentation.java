@@ -1,11 +1,14 @@
 package org.openfact.models.utils;
 
 import java.time.LocalDate;
+import java.util.stream.Collectors;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.openfact.models.CurrencyModel;
+import org.openfact.models.OrganizationModel;
 import org.openfact.models.ubl.CreditNoteModel;
 import org.openfact.models.ubl.DebitNoteModel;
 import org.openfact.models.ubl.InvoiceModel;
@@ -34,12 +37,61 @@ import org.openfact.models.ubl.common.TaxSubtotalModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
+import org.openfact.representations.idm.CertificateRepresentation;
+import org.openfact.representations.idm.CurrencyRepresentation;
+import org.openfact.representations.idm.OrganizationRepresentation;
+import org.openfact.representations.idm.PostalAddressRepresentation;
+import org.openfact.representations.idm.TasksScheduleRepresentation;
 import org.openfact.representations.idm.ubl.*;
 import org.openfact.representations.idm.ubl.common.*;
 
 public class ModelToRepresentation {
 
-    public static InvoiceRepresentation toRepresentation(InvoiceModel model) throws DatatypeConfigurationException {
+    public static OrganizationRepresentation toRepresentation(OrganizationModel organization, boolean internal) {
+        OrganizationRepresentation rep = new OrganizationRepresentation();
+        rep.setId(organization.getId());
+        rep.setOrganization(organization.getName());
+        rep.setEnabled(organization.isEnabled());
+
+        rep.setAdditionalAccountId(organization.getAdditionalAccountId());
+        rep.setAssignedIdentificationId(organization.getAssignedIdentificationId());
+        rep.setRegistrationName(organization.getRegistrationName());
+        rep.setSupplierName(organization.getSupplierName());
+
+        PostalAddressRepresentation postalAddressRep = new PostalAddressRepresentation();
+        postalAddressRep.setStreetName(organization.getStreetName());
+        postalAddressRep.setCitySubdivisionName(organization.getCitySubdivisionName());
+        postalAddressRep.setCityName(organization.getCityName());
+        postalAddressRep.setCountrySubentity(organization.getCountrySubentity());
+        postalAddressRep.setDistrict(organization.getDistrict());
+        postalAddressRep.setCountryIdentificationCode(organization.getCountryIdentificationCode());
+        rep.setPostalAddress(postalAddressRep);
+
+        rep.setCurrencies(organization.getCurrencies().stream().map(f -> toRepresentation(f)).collect(Collectors.toSet()));
+        if (internal) {
+            TasksScheduleRepresentation tasksSchedulerRep = new TasksScheduleRepresentation();
+            tasksSchedulerRep.setAttempNumber(organization.getAttempNumber());
+            tasksSchedulerRep.setLapseTime(organization.getLapseTime());
+            tasksSchedulerRep.setOnErrorAttempNumber(organization.getOnErrorAttempNumber());
+            tasksSchedulerRep.setOnErrorLapseTime(organization.getOnErrorLapseTime());
+            tasksSchedulerRep.setDelayTime(organization.getDelayTime());
+            tasksSchedulerRep.setSubmitTime(organization.getSubmitTime());
+            tasksSchedulerRep.setSubmitDays(organization.getSubmitDays());
+            rep.setTasksSchedule(tasksSchedulerRep);
+        }
+
+        return rep;
+    }
+    
+    public static CurrencyRepresentation toRepresentation(CurrencyModel currency) {
+        CurrencyRepresentation rep = new CurrencyRepresentation();
+        rep.setId(currency.getId());
+        rep.setCode(currency.getCode());
+        rep.setPriority(currency.getPriority());
+        return rep;
+    }
+    
+    public static InvoiceRepresentation toRepresentation(InvoiceModel model) {
         InvoiceRepresentation type = new InvoiceRepresentation();
         type.setIssueDate(model.getIssueDate());
         if (model.getUBLExtensions() != null) {
@@ -70,7 +122,7 @@ public class ModelToRepresentation {
         return type;
     }
 
-    public static CreditNoteRepresentation toRepresentation(CreditNoteModel model) throws DatatypeConfigurationException {
+    public static CreditNoteRepresentation toRepresentation(CreditNoteModel model) {
         CreditNoteRepresentation type = new CreditNoteRepresentation();
         type.setIssueDate(model.getIssueDate());
         if (model.getUBLExtensions() != null) {
@@ -116,7 +168,7 @@ public class ModelToRepresentation {
         return type;
     }
 
-    public static DebitNoteRepresentation toRepresentation(DebitNoteModel model) throws DatatypeConfigurationException {
+    public static DebitNoteRepresentation toRepresentation(DebitNoteModel model) {
         DebitNoteRepresentation type = new DebitNoteRepresentation();
         type.setIssueDate(model.getIssueDate());
         if (model.getUBLExtensions() != null) {

@@ -28,7 +28,6 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
 import org.openfact.models.UserModel;
-import org.openfact.models.ubl.InvoiceModel;
 
 import java.util.Set;
 
@@ -54,16 +53,16 @@ public class EmailEventListenerProvider implements EventListenerProvider {
     @Override
     public void onEvent(Event event) {
         if (includedEvents.contains(event.getType())) {
-            if (event.getOrganizationId()!= null && event.getUserId() != null) {
+            if (event.getOrganizationId() != null && event.getUserId() != null) {
                 OrganizationModel organization = model.getOrganization(event.getOrganizationId());
-                InvoiceModel invoice = session.invoices().getInvoiceById(organization, event.getInvoiceId());
-                if (invoice != null && invoice.getAccountingCustomerParty().getAccountingContact().getElectronicMail() != null) {
+                /*UserModel user = session.users().getUserById(event.getUserId(), organization);
+                if (user != null && user.getEmail() != null && user.isEmailVerified()) {
                     try {
-                        emailTemplateProvider.setOrganization(organization).setInvoice(invoice).sendEvent(event);
+                        emailTemplateProvider.setOrganization(organization).setUser(user).sendEvent(event);
                     } catch (EmailException e) {
                         log.error("Failed to send type mail", e);
                     }
-                }
+                }*/
             }
         }
     }

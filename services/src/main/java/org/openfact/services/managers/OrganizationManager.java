@@ -58,14 +58,14 @@ public class OrganizationManager implements OrganizationImporter {
     public OrganizationModel createOrganization(String id, String name) {
         if (id == null)
             id = OpenfactModelUtils.generateId();
-        OrganizationModel realm = model.createOrganization(id, name);
-        realm.setName(name);
+        OrganizationModel organization = model.createOrganization(id, name);
+        organization.setName(name);
 
         // setup defaults
-        setupOrganizationDefaults(realm);
+        setupOrganizationDefaults(organization);
         
-        fireOrganizationPostCreate(realm);
-        return realm;
+        fireOrganizationPostCreate(organization);
+        return organization;
     }
 
     public OrganizationModel importOrganization(OrganizationRepresentation rep) {
@@ -74,7 +74,7 @@ public class OrganizationManager implements OrganizationImporter {
             id = OpenfactModelUtils.generateId();
         }
     	 
-    	OrganizationModel organization = model.createOrganization(id, rep.getName());
+    	OrganizationModel organization = model.createOrganization(id, rep.getOrganization());
         organization.setDescription(rep.getDescription());
         
         // setup defaults

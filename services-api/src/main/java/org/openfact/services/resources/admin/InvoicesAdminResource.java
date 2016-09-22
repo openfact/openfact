@@ -35,7 +35,6 @@ public interface InvoicesAdminResource {
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
     List<InvoiceRepresentation> getInvoices(@QueryParam("filterText") String filterText,
-            @QueryParam("type") String type, @QueryParam("currencyCode") String currencyCode,
             @QueryParam("first") Integer firstResult, @QueryParam("max") Integer maxResults);
 
     @POST

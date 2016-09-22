@@ -1,5 +1,6 @@
 package org.openfact.authentication.keycloak;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,8 +28,8 @@ public class KeycloakClientAuthenticatorProvider implements ClientAuthenticatorP
 
     @Override
     public OrganizationModel getOrganization(HttpHeaders headers, HttpServletRequest request) {
-        //KeycloakPrincipal keycloakPrincipal = (KeycloakPrincipal) request.getUserPrincipal();
-        //AccessToken accessToken = keycloakPrincipal.getKeycloakSecurityContext().getToken();
+        //OpenfactPrincipal openfactPrincipal = (OpenfactPrincipal) request.getUserPrincipal();
+        //AccessToken accessToken = openfactPrincipal.getOpenfactSecurityContext().getToken();
 
         //Map<String, Object> otherClaims = accessToken.getOtherClaims();
         /*if (otherClaims.containsKey(OrganizationModel.NAME)) {
@@ -42,8 +43,8 @@ public class KeycloakClientAuthenticatorProvider implements ClientAuthenticatorP
 
     @Override
     public UserModel getUser(HttpHeaders headers, HttpServletRequest request) {
-        //KeycloakPrincipal keycloakPrincipal = (KeycloakPrincipal) request.getUserPrincipal();
-        //AccessToken accessToken = keycloakPrincipal.getKeycloakSecurityContext().getToken();
+        //OpenfactPrincipal openfactPrincipal = (OpenfactPrincipal) request.getUserPrincipal();
+        //AccessToken accessToken = openfactPrincipal.getOpenfactSecurityContext().getToken();
 
         String username = "";//accessToken.getPreferredUsername();
         String fullName = "";//accessToken.getName();
@@ -64,6 +65,36 @@ public class KeycloakClientAuthenticatorProvider implements ClientAuthenticatorP
             @Override
             public String getEmail() {
                 return email;
+            }
+
+            @Override
+            public String getFirstName() {
+                // TODO Auto-generated method stub
+                return null;
+            }
+
+            @Override
+            public void setFirstName(String firstName) {
+                // TODO Auto-generated method stub
+                
+            }
+
+            @Override
+            public String getLastName() {
+                // TODO Auto-generated method stub
+                return null;
+            }
+
+            @Override
+            public void setLastName(String lastName) {
+                // TODO Auto-generated method stub
+                
+            }
+
+            @Override
+            public Map<String, List<String>> getAttributes() {
+                // TODO Auto-generated method stub
+                return null;
             }
         };
     }

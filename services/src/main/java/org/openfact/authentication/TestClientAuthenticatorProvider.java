@@ -1,6 +1,8 @@
 package org.openfact.authentication;
 
 import java.security.Principal;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Context;
@@ -51,6 +53,36 @@ public class TestClientAuthenticatorProvider implements ClientAuthenticatorProvi
 
             @Override
             public String getEmail() {
+                return null;
+            }
+
+            @Override
+            public String getFirstName() {
+                // TODO Auto-generated method stub
+                return null;
+            }
+
+            @Override
+            public void setFirstName(String firstName) {
+                // TODO Auto-generated method stub
+                
+            }
+
+            @Override
+            public String getLastName() {
+                // TODO Auto-generated method stub
+                return null;
+            }
+
+            @Override
+            public void setLastName(String lastName) {
+                // TODO Auto-generated method stub
+                
+            }
+
+            @Override
+            public Map<String, List<String>> getAttributes() {
+                // TODO Auto-generated method stub
                 return null;
             }
         };

@@ -108,11 +108,11 @@ public class DirImportProvider implements ImportProvider {
     @Override
     public void importOrganization(OpenfactSessionFactory factory, final String organizationName, final Strategy strategy) throws IOException {
         File organizationFile = new File(this.rootDirectory + File.separator + organizationName + "-organization.json");
-        File[] invoiceFiles = this.rootDirectory.listFiles(new FilenameFilter() {
+        File[] userFiles = this.rootDirectory.listFiles(new FilenameFilter() {
 
             @Override
             public boolean accept(File dir, String name) {
-                return name.matches(organizationName + "-invoices-[0-9]+\\.json");
+                return name.matches(organizationName + "-users-[0-9]+\\.json");
             }
         });
 
@@ -132,14 +132,14 @@ public class DirImportProvider implements ImportProvider {
         });
 
         if (organizationImported.get()) {
-            // Import invoices
-            for (final File invoiceFile : invoiceFiles) {
-                final FileInputStream fis = new FileInputStream(invoiceFile);
+            // Import users
+            for (final File userFile : userFiles) {
+                final FileInputStream fis = new FileInputStream(userFile);
                 OpenfactModelUtils.runJobInTransaction(factory, new ExportImportSessionTask() {
                     @Override
                     protected void runExportImportTask(OpenfactSession session) throws IOException {
                         ImportUtils.importInvoicesFromStream(session, organizationName, JsonSerialization.mapper, fis);
-                        logger.infof("Imported invoices from %s", invoiceFile.getAbsolutePath());
+                        logger.infof("Imported users from %s", userFile.getAbsolutePath());
                     }
                 });
             }

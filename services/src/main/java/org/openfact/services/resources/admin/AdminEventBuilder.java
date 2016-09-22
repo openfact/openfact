@@ -28,11 +28,11 @@ public class AdminEventBuilder {
     private OrganizationModel organization;
     private AdminEvent adminEvent;
 
-    public AdminEventBuilder(OrganizationModel realm, AdminAuth auth, OpenfactSession session, ClientConnection clientConnection) {
-        this.organization = realm;
+    public AdminEventBuilder(OrganizationModel organization, AdminAuth auth, OpenfactSession session, ClientConnection clientConnection) {
+        this.organization = organization;
         adminEvent = new AdminEvent();
 
-        if (realm.isAdminEventsEnabled()) {
+        if (organization.isAdminEventsEnabled()) {
             EventStoreProvider store = session.getProvider(EventStoreProvider.class);
             if (store != null) {
                 this.store = store;
@@ -41,9 +41,9 @@ public class AdminEventBuilder {
             }
         }
 
-        if (realm.getEventsListeners() != null && !realm.getEventsListeners().isEmpty()) {
+        if (organization.getEventsListeners() != null && !organization.getEventsListeners().isEmpty()) {
             this.listeners = new LinkedList<>();
-            for (String id : realm.getEventsListeners()) {
+            for (String id : organization.getEventsListeners()) {
                 EventListenerProvider listener = session.getProvider(EventListenerProvider.class, id);
                 if (listener != null) {
                     listeners.add(listener);
@@ -59,13 +59,13 @@ public class AdminEventBuilder {
         authIpAddress(clientConnection.getRemoteAddr());
     }
 
-    public AdminEventBuilder organization(OrganizationModel realm) {
-        adminEvent.setOrganizationId(realm.getId());
+    public AdminEventBuilder organization(OrganizationModel organization) {
+        adminEvent.setOrganizationId(organization.getId());
         return this;
     }
 
-    public AdminEventBuilder realm(String realmId) {
-        adminEvent.setOrganizationId(realmId);
+    public AdminEventBuilder organization(String organizationId) {
+        adminEvent.setOrganizationId(organizationId);
         return this;
     }
 
@@ -156,9 +156,9 @@ public class AdminEventBuilder {
         sb.append("/organizations/");
         sb.append(organization.getName());
         sb.append("/");
-        String realmRelative = sb.toString();
+        String organizationRelative = sb.toString();
 
-        return path.substring(path.indexOf(realmRelative) + realmRelative.length());
+        return path.substring(path.indexOf(organizationRelative) + organizationRelative.length());
     }
 
     public void error(String error) {

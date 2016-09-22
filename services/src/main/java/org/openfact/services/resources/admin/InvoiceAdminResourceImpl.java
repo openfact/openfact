@@ -41,7 +41,6 @@ import org.openfact.representations.idm.ubl.common.InvoiceLineRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.managers.InvoiceManager;
 import org.openfact.services.util.JsonXmlConverter;
-import org.openfact.services.util.ReportUtil;
 import org.openfact.ubl.UblException;
 import org.w3c.dom.Document;
 
@@ -73,120 +72,22 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 
 	@Override
 	public InvoiceRepresentation getInvoice() {
-		try {
-			auth.requireView();
+	    auth.requireView();
 
-			if (invoice == null) {
-				throw new NotFoundException("Invoice not found");
-			}
+        if (invoice == null) {
+            throw new NotFoundException("Invoice not found");
+        }
 
-			return ModelToRepresentation.toRepresentation(invoice);
-		} catch (DatatypeConfigurationException e) {
-			e.printStackTrace();
-			throw new NotFoundException("Error geting invoice");
-		}
+        return ModelToRepresentation.toRepresentation(invoice);
 	}
-
-	@Override
-	public Response updateInvoice(InvoiceRepresentation rep) {
-		auth.requireManage();
-
-		if (invoice == null) {
-			throw new NotFoundException("Invoice not found");
-		}
-
-		try {
-			Set<String> attrsToRemove;
-			if (rep.getAttributes() != null) {
-				attrsToRemove = new HashSet<>(invoice.getAttributes().keySet());
-				attrsToRemove.removeAll(rep.getAttributes().keySet());
-			} else {
-				attrsToRemove = Collections.emptySet();
-			}
-
-			RepresentationToModel.updateInvoice(rep, attrsToRemove, invoice, organization.getDocuments(), session);
-			return Response.noContent().build();
-		} catch (ModelDuplicateException e) {
-			return ErrorResponse.exists("Invoice exists with same serie and number");
-		} catch (ModelReadOnlyException re) {
-			return ErrorResponse.exists("Invoice is read only!");
-		} catch (ModelException me) {
-			return ErrorResponse.exists("Could not update invoice!");
-		}
-
-	}
-
+	
 	@Override
 	public List<InvoiceLineRepresentation> getLines() {
 		auth.requireView();
 
 		return invoice.getInvoiceLine().stream().map(f -> ModelToRepresentation.toRepresentation(f))
 				.collect(Collectors.toList());
-	}
-
-	@Override
-	public Response executeActionsEmail(List<String> actions) {
-		auth.requireManage();
-
-		if (invoice == null) {
-			return ErrorResponse.error("Invoice not found", Response.Status.NOT_FOUND);
-		}
-
-		if (invoice.getCustomer() == null || invoice.getCustomer().getEmail() == null) {
-			return ErrorResponse.error("Customer email missing", Response.Status.BAD_REQUEST);
-		}
-
-		/*
-		 * try { // UriBuilder builder = //
-		 * Urls.executeActionsBuilder(uriInfo.getBaseUri()); //
-		 * builder.queryParam("key", accessCode.getCode());
-		 *
-		 * String link = null; //
-		 * builder.build(organization.getName()).toString(); long expiration =
-		 * TimeUnit.SECONDS.toMinutes(organization.
-		 * getAccessCodeLifespanUserAction());
-		 *
-		 * this.session.getProvider(EmailTemplateProvider.class).setOrganization
-		 * (organization).setInvoice(invoice) .sendExecuteActions(link,
-		 * expiration);
-		 *
-		 * // audit.user(user).detail(Details.EMAIL, //
-		 * user.getEmail()).detail(Details.CODE_ID, //
-		 * accessCode.getCodeId()).success();
-		 *
-		 * return Response.ok().build(); } catch (EmailException e) {
-		 * logger.error("Failed to send actions email"); return
-		 * ErrorResponse.error("Failed to send execute actions email",
-		 * Response.Status.INTERNAL_SERVER_ERROR); }
-		 */
-
-		return Response.ok().build();
-	}
-
-	@Override
-	public Response requiredActionGet() {
-		Set<String> requiredActions = invoice.getRequiredActions();
-
-		EmailTemplateProvider loginFormsProvider = session.getProvider(FreeMarkerEmailTemplateProvider.class);
-
-		/*
-		 * try { session.getProvider(EmailTemplateProvider.class)
-		 * .setOrganization(organization)
-		 * .setInvoice(invoice).sendVerifyEmail("", 1); } catch (EmailException
-		 * e) { logger.error("Failed to send verification email", e); return
-		 * Response.serverError().build(); }
-		 */
-		/*
-		 * try {
-		 * session.getProvider(EmailTemplateProvider.class).setOrganization(
-		 * organization).setInvoice(invoice).sendVerifyEmail("", 1); } catch
-		 * (EmailException e) {
-		 * logger.error("Failed to send verification email", e); return
-		 * Response.serverError().build(); }
-		 */
-
-		return Response.ok().build();
-	}
+	}	
 
 	@Override
 	public Response deleteInvoice() {
@@ -199,74 +100,5 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
 			return ErrorResponse.error("Invoice couldn't be deleted", Response.Status.BAD_REQUEST);
 		}
 	}
-
-	@Override
-	public Response getPdf() {
-		// TODO Auto-generated method stub
-		try {
-
-			auth.requireView();
-			if (invoice == null) {
-				throw new NotFoundException("Invoice not found");
-			}
-			FileOutputStream file = ReportUtil.getInvoicePDF(organization, invoice);
-			// return Response.status(Response.Status.NOT_FOUND).build();
-
-			ResponseBuilder response = Response.ok((Object) file);
-			response.type("application/pdf");
-			response.header("Content-Disposition",
-					"attachment; filename=\"" + "Invoice_" + organization.getAssignedIdentificationId() + "_"
-							+ invoice.getSeries() + "_" + invoice.getNumber() + ".pdf" + "\"");
-			return response.build();
-
-		} catch (Exception e) {
-			System.out.println("-------------------- PDF exception ");
-			System.out.println(e);
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
-		}
-	}
-
-	@Override
-	public Response getXml() {
-		try {
-			auth.requireView();
-			if (invoice == null) {
-				throw new NotFoundException("Invoice not found");
-			}
-			// byte[] content =
-			// JsonXmlConverter.convertXmlToJson(invoice.getContent());
-			Document content = invoice.getUbl();// JsonXmlConverter.getDocument(invoice.getContent());
-
-			// // output DOM XML to console
-			// Transformer transformer =
-			// TransformerFactory.newInstance().newTransformer();
-			// transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-			// DOMSource source = new DOMSource(content);
-			// StreamResult console = new StreamResult(System.out);
-			// transformer.transform(source, console);
-
-			return Response.ok(content, MediaType.APPLICATION_OCTET_STREAM)
-					.header("Content-Disposition",
-							"attachment; filename=\"" + "Invoice_" + organization.getAssignedIdentificationId() + "_"
-									+ invoice.getSeries() + "_" + invoice.getNumber() + ".pdf" + "\"")
-					.build();
-		} catch (Exception e) {
-			System.out.println("-------------------- XML exception ");
-			System.out.println(e);
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
-		}
-	}
-
-	@Override
-	public Response getCdr() {
-		// TODO Auto-generated method stub
-		File file = new File(""); // Initialize this to the File path you want
-		auth.requireView();
-		if (invoice == null) {
-			throw new NotFoundException("Invoice not found");
-		}
-		return Response.ok(file, MediaType.APPLICATION_OCTET_STREAM)
-				.header("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"").build();
-	}
-
+	
 }

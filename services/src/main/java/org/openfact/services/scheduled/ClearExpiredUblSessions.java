@@ -15,28 +15,23 @@
  * limitations under the License.
  */
 
-package org.openfact.services.listeners;
+package org.openfact.services.scheduled;
 
-import org.openfact.models.OpenfactSessionFactory;
-
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
+import org.openfact.models.OpenfactSession;
+import org.openfact.models.OrganizationModel;
+import org.openfact.timer.ScheduledTask;
 
 /**
  * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
-public class OpenfactSessionDestroyListener implements ServletContextListener {
+public class ClearExpiredUblSessions implements ScheduledTask {
 
     @Override
-    public void contextInitialized(ServletContextEvent sce) {
-    }
-
-    @Override
-    public void contextDestroyed(ServletContextEvent sce) {
-        OpenfactSessionFactory sessionFactory = (OpenfactSessionFactory) sce.getServletContext().getAttribute(OpenfactSessionFactory.class.getName());
-        if (sessionFactory != null) {
-            sessionFactory.close();
-        }
+    public void run(OpenfactSession session) {
+        /*UserSessionProvider sessions = session.sessions();
+        for (OrganizationModel organization : session.organizations().getOrganizations()) {
+            sessions.removeExpired(organization);
+        }*/
     }
 
 }

@@ -28,8 +28,8 @@ public class Config {
         Config.configProvider = configProvider;
     }
 
-    public static String getAdminRealm() {
-        return configProvider.scope("admin").get("realm", "master");
+    public static String getAdminOrganization() {
+        return configProvider.scope("admin").get("organization", "master");
     }
 
     public static String getProvider(String spi) {

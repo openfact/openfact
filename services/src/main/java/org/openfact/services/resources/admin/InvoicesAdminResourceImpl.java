@@ -23,7 +23,6 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
-import org.openfact.models.InvoiceModel;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
@@ -31,13 +30,14 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
+import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.RepresentationToModel;
-import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.representations.idm.search.PagingRepresentation;
 import org.openfact.representations.idm.search.SearchCriteriaFilterOperatorRepresentation;
 import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
 import org.openfact.representations.idm.search.SearchResultsRepresentation;
+import org.openfact.representations.idm.ubl.InvoiceRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.ubl.UblException;
@@ -73,7 +73,7 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 	}
 
 	@Override
-	public List<InvoiceRepresentation> getInvoices(String filterText, String type, String currencyCode,
+	public List<InvoiceRepresentation> getInvoices(String filterText,
 			Integer firstResult, Integer maxResults) {
 		auth.requireView();
 
@@ -83,16 +83,6 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 		List<InvoiceModel> invoices;
 		if (filterText != null) {
 			invoices = session.invoices().searchForInvoice(filterText.trim(), organization, firstResult, maxResults);
-		} else if (type != null || currencyCode != null) {
-			Map<String, String> attributes = new HashMap<String, String>();
-			if (type != null) {
-				attributes.put(InvoiceModel.TYPE, type);
-			}
-			if (currencyCode != null) {
-				attributes.put(InvoiceModel.CURRENCY_CODE, currencyCode);
-			}
-			invoices = session.invoices().searchForInvoiceByAttributes(attributes, organization, firstResult,
-					maxResults);
 		} else {
 			invoices = session.invoices().getInvoices(organization, firstResult, maxResults);
 		}
@@ -109,7 +99,7 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 		}
 
 		try {				
-			InvoiceModel invoice = RepresentationToModel.createInvoice(session, organization, rep, organization.getDocuments(), true);
+			InvoiceModel invoice = RepresentationToModel.createInvoice(session, organization, rep);
             logger.addInvoiceSuccess(invoice.getId(), organization.getName());                                            
             
 			URI uri = uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build();
@@ -175,7 +165,7 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 
 	@Override
 	public InvoiceAdminResource getInvoiceAdmin(String invoiceId) {
-		InvoiceModel invoice = session.invoices().getInvoiceById(invoiceId, organization);
+		InvoiceModel invoice = session.invoices().getInvoiceById(organization, invoiceId);
 		InvoiceAdminResource invoiceResource = new InvoiceAdminResourceImpl(auth, organization, invoice);
 		ResteasyProviderFactory.getInstance().injectProperties(invoiceResource);
 		// resourceContext.initResource(adminResource);

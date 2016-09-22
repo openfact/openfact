@@ -88,6 +88,5 @@ public class DirExportProvider extends MultipleStepsExportProvider {
 
     @Override
     public void close() {
-    }  
-
+    }
 }
