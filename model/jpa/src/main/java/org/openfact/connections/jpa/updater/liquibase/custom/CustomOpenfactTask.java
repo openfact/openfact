@@ -104,7 +104,7 @@ public abstract class CustomOpenfactTask implements CustomSqlChange {
 
     protected boolean isApplicable() throws CustomChangeException {
         try {
-            String correctedTableName = database.correctObjectName("REALM", Table.class);
+            String correctedTableName = database.correctObjectName("ORGANIZATION", Table.class);
             if (SnapshotGeneratorFactory.getInstance().has(new Table().setName(correctedTableName), database)) {
                 ResultSet resultSet = connection.createStatement().executeQuery("SELECT ID FROM " + getTableName(correctedTableName));
                 try {

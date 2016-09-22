@@ -2,6 +2,8 @@ package org.openfact.models.jpa.entities;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -33,184 +35,192 @@ import org.hibernate.annotations.Type;
 @Entity
 @Table(name = "ORGANIZATION")
 @NamedQueries({
-		@NamedQuery(name = "getAllOrganizationIds", query = "select organization.id from OrganizationEntity organization"),
-		@NamedQuery(name = "getOrganizationIdByName", query = "select organization.id from OrganizationEntity organization where organization.name = :name"), })
+        @NamedQuery(name = "getAllOrganizationIds", query = "select organization.id from OrganizationEntity organization"),
+        @NamedQuery(name = "getOrganizationIdByName", query = "select organization.id from OrganizationEntity organization where organization.name = :name"), })
 public class OrganizationEntity {
 
-	@Id
-	@Column(name = "ID", length = 36)
-	@Access(AccessType.PROPERTY)
-	private String id;
+    @Id
+    @Column(name = "ID", length = 36)
+    @Access(AccessType.PROPERTY)
+    private String id;
 
-	@NaturalId(mutable = true)
-	@Column(name = "NAME", unique = true)
-	private String name;
+    @NaturalId(mutable = true)
+    @Column(name = "NAME", unique = true)
+    private String name;
 
-	@Column(name = "DESCRIPTION")
-	private String description;
+    @Column(name = "DESCRIPTION")
+    private String description;
 
-	@Column(name = "ENABLED")
-	private boolean enabled;
+    @Column(name = "ENABLED")
+    private boolean enabled;
 
-	@Column(name = "ASSIGNED_IDENTIFICATION_ID")
-	private String assignedIdentificationId;
+    @Column(name = "ASSIGNED_IDENTIFICATION_ID")
+    private String assignedIdentificationId;
 
-	@Column(name = "ADDITIONAL_ACCOUNT_ID")
-	private String additionalAccountId;
+    @Column(name = "ADDITIONAL_ACCOUNT_ID")
+    private String additionalAccountId;
 
-	@Column(name = "SUPPLIER_NAME")
-	private String supplierName;
+    @Column(name = "SUPPLIER_NAME")
+    private String supplierName;
 
-	@Column(name = "REGISTRATION_NAME")
-	private String registrationName;
-	
-	/**
-	 * Certificate
-	 */
-	@Column(name = "USER_ACTION_LIFESPAN")
-	protected int accessCodeLifespanUserAction;
+    @Column(name = "REGISTRATION_NAME")
+    private String registrationName;
 
-	@Column(name = "PUBLIC_KEY", length = 4000)
-	protected String publicKeyPem;
+    /**
+     * Certificate
+     */
+    @Column(name = "PUBLIC_KEY", length = 4000)
+    protected String publicKeyPem;
 
-	@Column(name = "PRIVATE_KEY", length = 4000)
-	protected String privateKeyPem;
+    @Column(name = "PRIVATE_KEY", length = 4000)
+    protected String privateKeyPem;
 
-	@Column(name = "CERTIFICATE", length = 4000)
-	protected String certificatePem;
+    @Column(name = "CERTIFICATE", length = 4000)
+    protected String certificatePem;
 
-	@Column(name = "CODE_SECRET", length = 255)
-	protected String codeSecret;
+    @Column(name = "CODE_SECRET", length = 255)
+    protected String codeSecret;
 
-	/**
-	 * Postal address
-	 */
-	@Column(name = "POSTAL_ADRESS_ID")
+    /**
+     * Postal address
+     */
+    @Column(name = "POSTAL_ADRESS_ID")
     protected String postalAddressId;
 
-	@Column(name = "STREET_NAME")
-	protected String streetName;
+    @Column(name = "STREET_NAME")
+    protected String streetName;
 
-	@Column(name = "CITY_SUBDIVISION_NAME")
-	protected String citySubdivisionName;
+    @Column(name = "CITY_SUBDIVISION_NAME")
+    protected String citySubdivisionName;
 
-	@Column(name = "CITY_NAME")
-	protected String cityName;
+    @Column(name = "CITY_NAME")
+    protected String cityName;
 
-	@Column(name = "COUNTRY_SUBENTITY")
-	protected String countrySubentity;
+    @Column(name = "COUNTRY_SUBENTITY")
+    protected String countrySubentity;
 
-	@Column(name = "DISTRICT")
-	protected String district;
+    @Column(name = "DISTRICT")
+    protected String district;
 
-	@Column(name = "COUNTRY_IDENTIFICATION_CODE")
-	protected String countryIdentificationCode;
+    @Column(name = "COUNTRY_IDENTIFICATION_CODE")
+    protected String countryIdentificationCode;
 
-	/**
-	 * Events*/
-	@Column(name="EVENTS_ENABLED")
+    /**
+     * Events
+     */
+    @Column(name = "EVENTS_ENABLED")
     protected boolean eventsEnabled;
-	
-    @Column(name="EVENTS_EXPIRATION")
+
+    @Column(name = "EVENTS_EXPIRATION")
     protected long eventsExpiration;
 
     @ElementCollection
-    @Column(name="VALUE")
-    @CollectionTable(name="ORGANIZATION_EVENTS_LISTENERS", joinColumns={ @JoinColumn(name="ORGANIZATION_ID") })
+    @Column(name = "VALUE")
+    @CollectionTable(name = "ORGANIZATION_EVENTS_LISTENERS", joinColumns = {
+            @JoinColumn(name = "ORGANIZATION_ID") })
     protected Set<String> eventsListeners = new HashSet<String>();
-    
+
     @ElementCollection
-    @Column(name="VALUE")
-    @CollectionTable(name="ORGANIZATION_ENABLED_EVENT_TYPES", joinColumns={ @JoinColumn(name="ORGANIZATION_ID") })
+    @Column(name = "VALUE")
+    @CollectionTable(name = "ORGANIZATION_ENABLED_EVENT_TYPES", joinColumns = {
+            @JoinColumn(name = "ORGANIZATION_ID") })
     protected Set<String> enabledEventTypes = new HashSet<String>();
-    
-    @Column(name="ADMIN_EVENTS_ENABLED")
+
+    @Column(name = "ADMIN_EVENTS_ENABLED")
     protected boolean adminEventsEnabled;
-    
-    @Column(name="ADMIN_EVENTS_DETAILS_ENABLED")
+
+    @Column(name = "ADMIN_EVENTS_DETAILS_ENABLED")
     protected boolean adminEventsDetailsEnabled;
-    
+
     /**
      * Themes
      */
     @Column(name = "LOGIN_THEME")
     protected String loginTheme;
-    
+
     @Column(name = "ACCOUNT_THEME")
     protected String accountTheme;
-    
+
     @Column(name = "ADMIN_THEME")
     protected String adminTheme;
-    
+
     @Column(name = "EMAIL_THEME")
     protected String emailTheme;
-    
+
     /**
-     * Locale*/
+     * Locale
+     */
     @Column(name = "INTERNATIONALIZATION_ENABLED")
     protected boolean internationalizationEnabled;
 
     @ElementCollection
     @Column(name = "VALUE")
-    @CollectionTable(name = "ORGANIZATION_SUPPORTED_LOCALES", joinColumns = { @JoinColumn(name = "ORGANIZATION_ID") })
+    @CollectionTable(name = "ORGANIZATION_SUPPORTED_LOCALES", joinColumns = {
+            @JoinColumn(name = "ORGANIZATION_ID") })
     protected Set<String> supportedLocales = new HashSet<String>();
 
     @Column(name = "DEFAULT_LOCALE")
     protected String defaultLocale;
-    
-	/**
-	 * Tasks
-	 */
-	@Column(name = "MAX_INVOICE_NUMBER")
-	protected int maxInvoiceNumber;
 
-	@Column(name = "ATTEMP_NUMBER")
-	protected int attempNumber;
+    /**
+     * Tasks
+     */
+    @Column(name = "MAX_INVOICE_NUMBER")
+    protected int maxInvoiceNumber;
 
-	@Column(name = "LAPSE_TIME")
-	protected long lapseTime;
+    @Column(name = "ATTEMP_NUMBER")
+    protected int attempNumber;
 
-	@Column(name = "ON_ERROR_ATTEMP_NUMBER")
-	protected int onErrorAttempNumber;
+    @Column(name = "LAPSE_TIME")
+    protected long lapseTime;
 
-	@Column(name = "ON_ERROR_LAPSE_TIME")
-	protected long onErrorLapseTime;
+    @Column(name = "ON_ERROR_ATTEMP_NUMBER")
+    protected int onErrorAttempNumber;
 
-	@Column(name = "DELAY_TIME")
-	protected long delayTime;
+    @Column(name = "ON_ERROR_LAPSE_TIME")
+    protected long onErrorLapseTime;
 
-	@Column(name = "SUBMIT_TIME")
-	@Type(type = "org.hibernate.type.LocalTimeType")
-	protected LocalTime submitTime;
+    @Column(name = "DELAY_TIME")
+    protected long delayTime;
 
-	@ElementCollection
-	@Column(name = "VALUE")
-	@CollectionTable(name = "SUBMIT_DAY", joinColumns = { @JoinColumn(name = "SUBMIT_DAY_ID") })
-	private Set<DayOfWeek> submitDays = new HashSet<DayOfWeek>();
+    @Column(name = "SUBMIT_TIME")
+    @Type(type = "org.hibernate.type.LocalTimeType")
+    protected LocalTime submitTime;
 
-	/**
-	 * Smtp
-	 */
-	@ElementCollection
-	@MapKeyColumn(name = "NAME")
-	@Column(name = "VALUE")
-	@CollectionTable(name = "ORGANIZATION_SMTP_CONFIG", joinColumns = { @JoinColumn(name = "ORGANIZATION_ID") })
-	private Map<String, String> smtpConfig = new HashMap<String, String>();
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "SUBMIT_DAY", joinColumns = { @JoinColumn(name = "SUBMIT_DAY_ID") })
+    private Set<DayOfWeek> submitDays = new HashSet<DayOfWeek>();
 
-	/**
-	 * Atributes
-	 */
-	@ElementCollection
-	@MapKeyColumn(name = "NAME")
-	@Column(name = "VALUE", length = 2048)
-	@CollectionTable(name = "ORGANIZATION_ATTRIBUTES", joinColumns = { @JoinColumn(name = "ORGANIZATION_ID") })
-	protected Map<String, String> attributes = new HashMap<String, String>();
-	
-	/**
-	 * Collections
-	 */
-	@OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
-	private Set<CurrencyEntity> currencies = new HashSet<>();
+    /**
+     * Smtp
+     */
+    @ElementCollection
+    @MapKeyColumn(name = "NAME")
+    @Column(name = "VALUE")
+    @CollectionTable(name = "ORGANIZATION_SMTP_CONFIG", joinColumns = {
+            @JoinColumn(name = "ORGANIZATION_ID") })
+    private Map<String, String> smtpConfig = new HashMap<String, String>();
+
+    /**
+     * Atributes
+     */
+    @ElementCollection
+    @MapKeyColumn(name = "NAME")
+    @Column(name = "VALUE", length = 2048)
+    @CollectionTable(name = "ORGANIZATION_ATTRIBUTES", joinColumns = {
+            @JoinColumn(name = "ORGANIZATION_ID") })
+    protected Map<String, String> attributes = new HashMap<String, String>();
+
+    /**
+     * Currencies
+     */
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
+    private Set<CurrencyEntity> currencies = new HashSet<>();
+
+    /** Required actions */
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "organization")
+    protected Collection<OrganizationRequiredActionEntity> requiredActions = new ArrayList<>();
 
     /**
      * @return the id
@@ -220,7 +230,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param id the id to set
+     * @param id
+     *            the id to set
      */
     public void setId(String id) {
         this.id = id;
@@ -234,7 +245,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param name the name to set
+     * @param name
+     *            the name to set
      */
     public void setName(String name) {
         this.name = name;
@@ -248,7 +260,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param description the description to set
+     * @param description
+     *            the description to set
      */
     public void setDescription(String description) {
         this.description = description;
@@ -262,7 +275,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param enabled the enabled to set
+     * @param enabled
+     *            the enabled to set
      */
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
@@ -276,7 +290,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param assignedIdentificationId the assignedIdentificationId to set
+     * @param assignedIdentificationId
+     *            the assignedIdentificationId to set
      */
     public void setAssignedIdentificationId(String assignedIdentificationId) {
         this.assignedIdentificationId = assignedIdentificationId;
@@ -290,7 +305,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param additionalAccountId the additionalAccountId to set
+     * @param additionalAccountId
+     *            the additionalAccountId to set
      */
     public void setAdditionalAccountId(String additionalAccountId) {
         this.additionalAccountId = additionalAccountId;
@@ -304,7 +320,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param supplierName the supplierName to set
+     * @param supplierName
+     *            the supplierName to set
      */
     public void setSupplierName(String supplierName) {
         this.supplierName = supplierName;
@@ -318,24 +335,11 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param registrationName the registrationName to set
+     * @param registrationName
+     *            the registrationName to set
      */
     public void setRegistrationName(String registrationName) {
         this.registrationName = registrationName;
-    }
-
-    /**
-     * @return the accessCodeLifespanUserAction
-     */
-    public int getAccessCodeLifespanUserAction() {
-        return accessCodeLifespanUserAction;
-    }
-
-    /**
-     * @param accessCodeLifespanUserAction the accessCodeLifespanUserAction to set
-     */
-    public void setAccessCodeLifespanUserAction(int accessCodeLifespanUserAction) {
-        this.accessCodeLifespanUserAction = accessCodeLifespanUserAction;
     }
 
     /**
@@ -346,7 +350,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param publicKeyPem the publicKeyPem to set
+     * @param publicKeyPem
+     *            the publicKeyPem to set
      */
     public void setPublicKeyPem(String publicKeyPem) {
         this.publicKeyPem = publicKeyPem;
@@ -360,7 +365,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param privateKeyPem the privateKeyPem to set
+     * @param privateKeyPem
+     *            the privateKeyPem to set
      */
     public void setPrivateKeyPem(String privateKeyPem) {
         this.privateKeyPem = privateKeyPem;
@@ -374,7 +380,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param certificatePem the certificatePem to set
+     * @param certificatePem
+     *            the certificatePem to set
      */
     public void setCertificatePem(String certificatePem) {
         this.certificatePem = certificatePem;
@@ -388,7 +395,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param codeSecret the codeSecret to set
+     * @param codeSecret
+     *            the codeSecret to set
      */
     public void setCodeSecret(String codeSecret) {
         this.codeSecret = codeSecret;
@@ -402,7 +410,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param postalAddressId the postalAddressId to set
+     * @param postalAddressId
+     *            the postalAddressId to set
      */
     public void setPostalAddressId(String postalAddressId) {
         this.postalAddressId = postalAddressId;
@@ -416,7 +425,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param streetName the streetName to set
+     * @param streetName
+     *            the streetName to set
      */
     public void setStreetName(String streetName) {
         this.streetName = streetName;
@@ -430,7 +440,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param citySubdivisionName the citySubdivisionName to set
+     * @param citySubdivisionName
+     *            the citySubdivisionName to set
      */
     public void setCitySubdivisionName(String citySubdivisionName) {
         this.citySubdivisionName = citySubdivisionName;
@@ -444,7 +455,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param cityName the cityName to set
+     * @param cityName
+     *            the cityName to set
      */
     public void setCityName(String cityName) {
         this.cityName = cityName;
@@ -458,7 +470,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param countrySubentity the countrySubentity to set
+     * @param countrySubentity
+     *            the countrySubentity to set
      */
     public void setCountrySubentity(String countrySubentity) {
         this.countrySubentity = countrySubentity;
@@ -472,7 +485,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param district the district to set
+     * @param district
+     *            the district to set
      */
     public void setDistrict(String district) {
         this.district = district;
@@ -486,7 +500,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param countryIdentificationCode the countryIdentificationCode to set
+     * @param countryIdentificationCode
+     *            the countryIdentificationCode to set
      */
     public void setCountryIdentificationCode(String countryIdentificationCode) {
         this.countryIdentificationCode = countryIdentificationCode;
@@ -500,7 +515,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param eventsEnabled the eventsEnabled to set
+     * @param eventsEnabled
+     *            the eventsEnabled to set
      */
     public void setEventsEnabled(boolean eventsEnabled) {
         this.eventsEnabled = eventsEnabled;
@@ -514,7 +530,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param eventsExpiration the eventsExpiration to set
+     * @param eventsExpiration
+     *            the eventsExpiration to set
      */
     public void setEventsExpiration(long eventsExpiration) {
         this.eventsExpiration = eventsExpiration;
@@ -528,7 +545,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param eventsListeners the eventsListeners to set
+     * @param eventsListeners
+     *            the eventsListeners to set
      */
     public void setEventsListeners(Set<String> eventsListeners) {
         this.eventsListeners = eventsListeners;
@@ -542,7 +560,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param enabledEventTypes the enabledEventTypes to set
+     * @param enabledEventTypes
+     *            the enabledEventTypes to set
      */
     public void setEnabledEventTypes(Set<String> enabledEventTypes) {
         this.enabledEventTypes = enabledEventTypes;
@@ -556,7 +575,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param adminEventsEnabled the adminEventsEnabled to set
+     * @param adminEventsEnabled
+     *            the adminEventsEnabled to set
      */
     public void setAdminEventsEnabled(boolean adminEventsEnabled) {
         this.adminEventsEnabled = adminEventsEnabled;
@@ -570,7 +590,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param adminEventsDetailsEnabled the adminEventsDetailsEnabled to set
+     * @param adminEventsDetailsEnabled
+     *            the adminEventsDetailsEnabled to set
      */
     public void setAdminEventsDetailsEnabled(boolean adminEventsDetailsEnabled) {
         this.adminEventsDetailsEnabled = adminEventsDetailsEnabled;
@@ -584,7 +605,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param loginTheme the loginTheme to set
+     * @param loginTheme
+     *            the loginTheme to set
      */
     public void setLoginTheme(String loginTheme) {
         this.loginTheme = loginTheme;
@@ -598,7 +620,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param accountTheme the accountTheme to set
+     * @param accountTheme
+     *            the accountTheme to set
      */
     public void setAccountTheme(String accountTheme) {
         this.accountTheme = accountTheme;
@@ -612,7 +635,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param adminTheme the adminTheme to set
+     * @param adminTheme
+     *            the adminTheme to set
      */
     public void setAdminTheme(String adminTheme) {
         this.adminTheme = adminTheme;
@@ -626,7 +650,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param emailTheme the emailTheme to set
+     * @param emailTheme
+     *            the emailTheme to set
      */
     public void setEmailTheme(String emailTheme) {
         this.emailTheme = emailTheme;
@@ -640,7 +665,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param internationalizationEnabled the internationalizationEnabled to set
+     * @param internationalizationEnabled
+     *            the internationalizationEnabled to set
      */
     public void setInternationalizationEnabled(boolean internationalizationEnabled) {
         this.internationalizationEnabled = internationalizationEnabled;
@@ -654,7 +680,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param supportedLocales the supportedLocales to set
+     * @param supportedLocales
+     *            the supportedLocales to set
      */
     public void setSupportedLocales(Set<String> supportedLocales) {
         this.supportedLocales = supportedLocales;
@@ -668,7 +695,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param defaultLocale the defaultLocale to set
+     * @param defaultLocale
+     *            the defaultLocale to set
      */
     public void setDefaultLocale(String defaultLocale) {
         this.defaultLocale = defaultLocale;
@@ -682,7 +710,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param maxInvoiceNumber the maxInvoiceNumber to set
+     * @param maxInvoiceNumber
+     *            the maxInvoiceNumber to set
      */
     public void setMaxInvoiceNumber(int maxInvoiceNumber) {
         this.maxInvoiceNumber = maxInvoiceNumber;
@@ -696,7 +725,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param attempNumber the attempNumber to set
+     * @param attempNumber
+     *            the attempNumber to set
      */
     public void setAttempNumber(int attempNumber) {
         this.attempNumber = attempNumber;
@@ -710,7 +740,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param lapseTime the lapseTime to set
+     * @param lapseTime
+     *            the lapseTime to set
      */
     public void setLapseTime(long lapseTime) {
         this.lapseTime = lapseTime;
@@ -724,7 +755,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param onErrorAttempNumber the onErrorAttempNumber to set
+     * @param onErrorAttempNumber
+     *            the onErrorAttempNumber to set
      */
     public void setOnErrorAttempNumber(int onErrorAttempNumber) {
         this.onErrorAttempNumber = onErrorAttempNumber;
@@ -738,7 +770,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param onErrorLapseTime the onErrorLapseTime to set
+     * @param onErrorLapseTime
+     *            the onErrorLapseTime to set
      */
     public void setOnErrorLapseTime(long onErrorLapseTime) {
         this.onErrorLapseTime = onErrorLapseTime;
@@ -752,7 +785,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param delayTime the delayTime to set
+     * @param delayTime
+     *            the delayTime to set
      */
     public void setDelayTime(long delayTime) {
         this.delayTime = delayTime;
@@ -766,7 +800,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param submitTime the submitTime to set
+     * @param submitTime
+     *            the submitTime to set
      */
     public void setSubmitTime(LocalTime submitTime) {
         this.submitTime = submitTime;
@@ -780,7 +815,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param submitDays the submitDays to set
+     * @param submitDays
+     *            the submitDays to set
      */
     public void setSubmitDays(Set<DayOfWeek> submitDays) {
         this.submitDays = submitDays;
@@ -794,7 +830,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param smtpConfig the smtpConfig to set
+     * @param smtpConfig
+     *            the smtpConfig to set
      */
     public void setSmtpConfig(Map<String, String> smtpConfig) {
         this.smtpConfig = smtpConfig;
@@ -808,7 +845,8 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param attributes the attributes to set
+     * @param attributes
+     *            the attributes to set
      */
     public void setAttributes(Map<String, String> attributes) {
         this.attributes = attributes;
@@ -822,12 +860,61 @@ public class OrganizationEntity {
     }
 
     /**
-     * @param currencies the currencies to set
+     * @param currencies
+     *            the currencies to set
      */
     public void setCurrencies(Set<CurrencyEntity> currencies) {
         this.currencies = currencies;
-    }	
+    }
 
-	
-    
+    /**
+     * @return the requiredActions
+     */
+    public Collection<OrganizationRequiredActionEntity> getRequiredActions() {
+        return requiredActions;
+    }
+
+    /**
+     * @param requiredActions
+     *            the requiredActions to set
+     */
+    public void setRequiredActions(Collection<OrganizationRequiredActionEntity> requiredActions) {
+        this.requiredActions = requiredActions;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        OrganizationEntity other = (OrganizationEntity) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        return true;
+    }
+
 }

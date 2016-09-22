@@ -40,8 +40,8 @@ public class AdminEventEntity {
     @Column(name="ADMIN_EVENT_TIME")
     private long time;
     
-    @Column(name="REALM_ID")
-    private String realmId;
+    @Column(name="ORGANIZATION_ID")
+    private String organizationId;
     
     @Column(name="OPERATION_TYPE")
     private String operationType;
@@ -49,7 +49,7 @@ public class AdminEventEntity {
     @Column(name="RESOURCE_TYPE", length = 64)
     private String resourceType;
     
-    @Column(name="AUTH_REALM_ID")
+    @Column(name="AUTH_ORGANIZATION_ID")
     private String authOrganizationId;
     
     @Column(name="AUTH_CLIENT_ID")
@@ -87,11 +87,11 @@ public class AdminEventEntity {
     }
 
     public String getOrganizationId() {
-        return realmId;
+        return organizationId;
     }
 
-    public void setOrganizationId(String realmId) {
-        this.realmId = realmId;
+    public void setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
     }
 
     public String getOperationType() {

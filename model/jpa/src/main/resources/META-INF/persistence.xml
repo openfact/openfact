@@ -7,6 +7,7 @@
 		transaction-type="RESOURCE_LOCAL">
 		<class>org.openfact.models.jpa.entities.MigrationModelEntity</class>
 		<class>org.openfact.models.jpa.entities.OrganizationEntity</class>
+		<class>org.openfact.models.jpa.entities.OrganizationRequiredActionEntity</class>
 		<class>org.openfact.models.jpa.entities.CurrencyEntity</class>
 		<class>org.openfact.models.jpa.entities.CatalogEntity</class>
 		<class>org.openfact.models.jpa.entities.DocumentEntity</class>

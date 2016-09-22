@@ -8,6 +8,7 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -22,6 +23,7 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.entities.CurrencyEntity;
 import org.openfact.models.jpa.entities.OrganizationEntity;
+import org.openfact.models.jpa.entities.OrganizationRequiredActionEntity;
 import org.openfact.models.utils.OpenfactModelUtils;
 
 public class OrganizationAdapter implements OrganizationModel, JpaModel<OrganizationEntity> {
@@ -591,13 +593,70 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((organization == null) ? 0 : organization.hashCode());
+    public Set<String> getRequiredActions() {
+        Set<String> result = new HashSet<>();
+        for (OrganizationRequiredActionEntity attr : organization.getRequiredActions()) {
+            result.add(attr.getAction());
+        }
         return result;
     }
 
+    @Override
+    public void addRequiredAction(RequiredAction action) {
+        String actionName = action.name();
+        addRequiredAction(actionName);
+    }
+
+    @Override
+    public void addRequiredAction(String actionName) {
+        for (OrganizationRequiredActionEntity attr : organization.getRequiredActions()) {
+            if (attr.getAction().equals(actionName)) {
+                return;
+            }
+        }
+        OrganizationRequiredActionEntity attr = new OrganizationRequiredActionEntity();
+        attr.setAction(actionName);
+        attr.setOrganization(organization);
+        em.persist(attr);
+        organization.getRequiredActions().add(attr);
+    }
+
+    @Override
+    public void removeRequiredAction(RequiredAction action) {
+        String actionName = action.name();
+        removeRequiredAction(actionName);
+    }
+
+    @Override
+    public void removeRequiredAction(String actionName) {
+        Iterator<OrganizationRequiredActionEntity> it = organization.getRequiredActions().iterator();
+        while (it.hasNext()) {
+            OrganizationRequiredActionEntity attr = it.next();
+            if (attr.getAction().equals(actionName)) {
+                it.remove();
+                em.remove(attr);
+            }
+        }
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        return result;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -606,11 +665,11 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
             return false;
         if (getClass() != obj.getClass())
             return false;
-        OrganizationAdapter other = (OrganizationAdapter) obj;
-        if (organization == null) {
-            if (other.organization != null)
+        OrganizationModel other = (OrganizationModel) obj;
+        if (getId() == null) {
+            if (other.getId() != null)
                 return false;
-        } else if (!organization.equals(other.organization))
+        } else if (!getId().equals(other.getId()))
             return false;
         return true;
     }

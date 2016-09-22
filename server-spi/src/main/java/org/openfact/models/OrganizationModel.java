@@ -233,6 +233,19 @@ public interface OrganizationModel {
     Map<String, String> getAttributes();
 
     /**
+     * Required actions
+     */
+    Set<String> getRequiredActions();
+
+    void addRequiredAction(RequiredAction action);
+
+    void addRequiredAction(String actionName);
+
+    void removeRequiredAction(RequiredAction action);
+
+    void removeRequiredAction(String actionName);
+
+    /**
      * Events interfaces
      */
     interface OrganizationCreationEvent extends ProviderEvent {
@@ -249,6 +262,10 @@ public interface OrganizationModel {
         OrganizationModel getOrganization();
 
         OpenfactSession getOpenfactSession();
+    }
+
+    public static enum RequiredAction {
+        ACTION1, ACTION2, ACTION3, ACTION4
     }
 
 }

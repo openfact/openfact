@@ -40,8 +40,8 @@ public class EventEntity {
     @Column(name="TYPE")
     private String type;
 
-    @Column(name="REALM_ID")
-    private String realmId;
+    @Column(name="ORGANIZATION_ID")
+    private String organizationId;
 
     @Column(name="CLIENT_ID")
     private String clientId;
@@ -86,11 +86,11 @@ public class EventEntity {
     }
 
     public String getOrganizationId() {
-        return realmId;
+        return organizationId;
     }
 
-    public void setOrganizationId(String realmId) {
-        this.realmId = realmId;
+    public void setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
     }
 
     public String getClientId() {
