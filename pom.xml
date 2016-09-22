@@ -78,6 +78,7 @@
 		<wildfly.core.version>2.0.10.Final</wildfly.core.version>
 		<wildfly.build-tools.version>1.1.0.Final</wildfly.build-tools.version>
 		<xmlsec.version>2.0.5</xmlsec.version>
+		<jboss-transaction-api_1.2_spec>1.0.0.Final</jboss-transaction-api_1.2_spec>
 
 		<!-- Authorization Drools Policy Provider -->
 		<version.org.drools>6.4.0.Final</version.org.drools>
@@ -248,7 +249,7 @@
 				<groupId>de.odysseus.staxon</groupId>
 				<artifactId>staxon-gson</artifactId>
 				<version>${version.odysseus-staxon}</version>
-			</dependency>			
+			</dependency>
 			<!-- Openfact -->
 			<dependency>
 				<groupId>com.github.relaxng</groupId>
@@ -289,6 +290,11 @@
 				<groupId>javax.mail</groupId>
 				<artifactId>javax.mail-api</artifactId>
 				<version>${javax.mail.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.spec.javax.transaction</groupId>
+				<artifactId>jboss-transaction-api_1.2_spec</artifactId>
+				<version>${jboss-transaction-api_1.2_spec}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.jboss.spec.javax.ws.rs</groupId>

@@ -23,10 +23,15 @@ package org.openfact.events.admin;
 public class AdminEvent {
 
     private long time;
-
+    
     private String organizationId;
 
     private AuthDetails authDetails;
+
+    /**
+     * The resource type an AdminEvent was triggered for.
+     */
+    private ResourceType resourceType;
 
     private OperationType operationType;
 
@@ -35,7 +40,7 @@ public class AdminEvent {
     private String representation;
 
     private String error;
-
+    
     /**
      * Returns the time of the event
      *
@@ -48,9 +53,9 @@ public class AdminEvent {
     public void setTime(long time) {
         this.time = time;
     }
-
+    
     /**
-     * Returns the id of the realm
+     * Returns the id of the organization
      *
      * @return
      */
@@ -91,10 +96,9 @@ public class AdminEvent {
     /**
      * Returns the path of the resource. For example:
      * <ul>
-     * <li><b>realms</b> - realm list</li>
-     * <li><b>realms/master</b> - master realm</li>
-     * <li><b>realms/clients/00d4b16f-f1f9-4e73-8366-d76b18f3e0e1</b> - client
-     * within the master realm</li>
+     *     <li><b>organizations</b> - organization list</li>
+     *     <li><b>organizations/master</b> - master organization</li>
+     *     <li><b>organizations/clients/00d4b16f-f1f9-4e73-8366-d76b18f3e0e1</b> - client within the master organization</li>
      * </ul>
      *
      * @return
@@ -108,9 +112,8 @@ public class AdminEvent {
     }
 
     /**
-     * Returns the updated JSON representation if <code>operationType</code> is
-     * <code>CREATE</code> or <code>UPDATE</code>. Otherwise returns
-     * <code>null</code>.
+     * Returns the updated JSON representation if <code>operationType</code> is <code>CREATE</code> or <code>UPDATE</code>.
+     * Otherwise returns <code>null</code>.
      *
      * @return
      */
@@ -123,8 +126,7 @@ public class AdminEvent {
     }
 
     /**
-     * If the event was unsuccessful returns the error message. Otherwise
-     * returns <code>null</code>.
+     * If the event was unsuccessful returns the error message. Otherwise returns <code>null</code>.
      *
      * @return
      */
@@ -136,4 +138,16 @@ public class AdminEvent {
         this.error = error;
     }
 
+    /**
+     * Returns the type of the affected {@link ResourceType} for this {@link AdminEvent}, e.g. {@link ResourceType#USER USER}, {@link ResourceType#GROUP GROUP} etc.
+     *
+     * @return
+     */
+    public ResourceType getResourceType() {
+        return resourceType;
+    }
+
+    public void setResourceType(ResourceType resourceType) {
+        this.resourceType = resourceType;
+    }
 }

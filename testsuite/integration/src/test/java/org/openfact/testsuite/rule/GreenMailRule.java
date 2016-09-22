@@ -61,7 +61,7 @@ public class GreenMailRule extends ExternalResource {
         }
     }
 
-    public void configureRealm(OrganizationModel realm) {
+    public void configureOrganization(OrganizationModel realm) {
         Map<String, String> config = new HashMap<>();
         config.put("from", "auto@keycloak.org");
         config.put("host", "localhost");

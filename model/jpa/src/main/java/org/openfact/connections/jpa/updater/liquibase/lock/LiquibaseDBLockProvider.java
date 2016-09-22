@@ -23,14 +23,13 @@ import java.sql.SQLException;
 import liquibase.Liquibase;
 import liquibase.exception.DatabaseException;
 import liquibase.exception.LiquibaseException;
-import liquibase.exception.LockException;
-import liquibase.lockservice.LockService;
 import org.jboss.logging.Logger;
 import org.openfact.connections.jpa.JpaConnectionProvider;
 import org.openfact.connections.jpa.JpaConnectionProviderFactory;
 import org.openfact.connections.jpa.updater.liquibase.conn.LiquibaseConnectionProvider;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.dblock.DBLockProvider;
+import org.openfact.models.utils.OpenfactModelUtils;
 
 /**
  * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
@@ -56,6 +55,7 @@ public class LiquibaseDBLockProvider implements DBLockProvider {
         this.factory = factory;
         this.session = session;
     }
+
 
     private void lazyInit() {
         if (!initialized) {
@@ -92,35 +92,41 @@ public class LiquibaseDBLockProvider implements DBLockProvider {
 
     @Override
     public void waitForLock() {
-        lazyInit();
+        OpenfactModelUtils.suspendJtaTransaction(session.getOpenfactSessionFactory(), () -> {
 
-        while (maxAttempts > 0) {
-            try {
-                lockService.waitForLock();
-                factory.setHasLock(true);
-                this.maxAttempts = DEFAULT_MAX_ATTEMPTS;
-                return;
-            } catch (LockRetryException le) {
-                // Indicates we should try to acquire lock again in different transaction
-                safeRollbackConnection();
-                restart();
-                maxAttempts--;
-            } catch (RuntimeException re) {
-                safeRollbackConnection();
-                safeCloseConnection();
-                throw re;
+            lazyInit();
+
+            while (maxAttempts > 0) {
+                try {
+                    lockService.waitForLock();
+                    factory.setHasLock(true);
+                    this.maxAttempts = DEFAULT_MAX_ATTEMPTS;
+                    return;
+                } catch (LockRetryException le) {
+                    // Indicates we should try to acquire lock again in different transaction
+                    safeRollbackConnection();
+                    restart();
+                    maxAttempts--;
+                } catch (RuntimeException re) {
+                    safeRollbackConnection();
+                    safeCloseConnection();
+                    throw re;
+                }
             }
-        }
+        });
+
     }
 
 
     @Override
     public void releaseLock() {
-        lazyInit();
+        OpenfactModelUtils.suspendJtaTransaction(session.getOpenfactSessionFactory(), () -> {
+            lazyInit();
 
-        lockService.releaseLock();
-        lockService.reset();
-        factory.setHasLock(false);
+            lockService.releaseLock();
+            lockService.reset();
+            factory.setHasLock(false);
+        });
     }
 
     @Override
@@ -136,21 +142,25 @@ public class LiquibaseDBLockProvider implements DBLockProvider {
 
     @Override
     public void destroyLockInfo() {
-        lazyInit();
+        OpenfactModelUtils.suspendJtaTransaction(session.getOpenfactSessionFactory(), () -> {
+            lazyInit();
 
-        try {
-            this.lockService.destroy();
-            dbConnection.commit();
-            logger.debug("Destroyed lock table");
-        } catch (DatabaseException | SQLException de) {
-            logger.error("Failed to destroy lock table");
-            safeRollbackConnection();
-        }
+            try {
+                this.lockService.destroy();
+                dbConnection.commit();
+                logger.debug("Destroyed lock table");
+            } catch (DatabaseException | SQLException de) {
+                logger.error("Failed to destroy lock table");
+                safeRollbackConnection();
+            }
+        });
     }
 
     @Override
     public void close() {
-        safeCloseConnection();
+        OpenfactModelUtils.suspendJtaTransaction(session.getOpenfactSessionFactory(), () -> {
+            safeCloseConnection();
+        });
     }
 
     private void safeRollbackConnection() {

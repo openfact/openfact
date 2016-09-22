@@ -325,7 +325,7 @@ public class CertificatesAdminResourceImpl implements CertificatesAdminResource 
 					OpenfactModelUtils.generateOrganizationCertificate(organization);
 					certificate = organization.getCertificate();
 				}
-				String certificateAlias = config.getRealmAlias();
+				String certificateAlias = config.getOrganizationAlias();
 				if (certificateAlias == null)
 					certificateAlias = organization.getName();
 				keyStore.setCertificateEntry(certificateAlias, certificate);

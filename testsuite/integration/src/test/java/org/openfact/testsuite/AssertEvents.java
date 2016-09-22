@@ -58,11 +58,11 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
 
                 openfact.configure(new OpenfactRule.OpenfactSetup() {
                     @Override
-                    public void config(OrganizationManager manager, OrganizationModel adminstrationRealm, OrganizationModel appRealm) {
+                    public void config(OrganizationManager manager, OrganizationModel adminstrationOrganization, OrganizationModel appOrganization) {
                         Set<String> listeners = new HashSet<String>();
                         listeners.add("jboss-logging");
                         listeners.add("assert-events");
-                        appRealm.setEventsListeners(listeners);
+                        appOrganization.setEventsListeners(listeners);
                     }
                 });
 
@@ -76,8 +76,8 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
                 } finally {
                     openfact.configure(new OpenfactRule.OpenfactSetup() {
                         @Override
-                        public void config(RealmManager manager, OrganizationModel adminstrationRealm, OrganizationModel appRealm) {
-                            appRealm.setEventsListeners(null);
+                        public void config(OrganizationManager manager, OrganizationModel adminstrationOrganization, OrganizationModel appOrganization) {
+                            appOrganization.setEventsListeners(null);
                         }
                     });
                 }

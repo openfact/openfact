@@ -1,40 +1,64 @@
+/*
+ * Copyright 2016 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.openfact.events.jpa;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
+/**
+ * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
+ */
 @Entity
-@Table(name = "EVENT_ENTITY")
+@Table(name="EVENT_ENTITY")
 public class EventEntity {
 
     @Id
-    @Column(name = "ID", length = 36)
+    @Column(name="ID", length = 36)
     private String id;
 
-    @Column(name = "EVENT_TIME")
+    @Column(name="EVENT_TIME")
     private long time;
 
-    @Column(name = "TYPE")
+    @Column(name="TYPE")
     private String type;
 
-    @Column(name = "ORGANIZATION_ID")
-    private String organizationId;
+    @Column(name="REALM_ID")
+    private String realmId;
 
-    @Column(name = "USER_ID")
+    @Column(name="CLIENT_ID")
+    private String clientId;
+
+    @Column(name="USER_ID")
     private String userId;
 
-    @Column(name = "SESSION_ID")
+    @Column(name="SESSION_ID")
     private String sessionId;
 
-    @Column(name = "IP_ADDRESS")
+    @Column(name="IP_ADDRESS")
     private String ipAddress;
 
-    @Column(name = "ERROR")
+    @Column(name="ERROR")
     private String error;
 
-    @Column(name = "DETAILS_JSON", length = 2550)
+    @Column(name="DETAILS_JSON", length = 2550)
     private String detailsJson;
 
     public String getId() {
@@ -62,11 +86,19 @@ public class EventEntity {
     }
 
     public String getOrganizationId() {
-        return organizationId;
+        return realmId;
     }
 
-    public void setOrganizationId(String organizationId) {
-        this.organizationId = organizationId;
+    public void setOrganizationId(String realmId) {
+        this.realmId = realmId;
+    }
+
+    public String getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
     }
 
     public String getUserId() {

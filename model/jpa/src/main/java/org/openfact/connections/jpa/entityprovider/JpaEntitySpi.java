@@ -24,7 +24,7 @@ import org.openfact.provider.Spi;
 /**
  * @author <a href="mailto:erik.mulder@docdatapayments.com">Erik Mulder</a>
  * 
- * Spi that allows for adding extra JPA entity's to the Keycloak entity manager.
+ * Spi that allows for adding extra JPA entity's to the Openfact entity manager.
  */
 public class JpaEntitySpi implements Spi {
 

@@ -30,10 +30,10 @@ public class Event {
     private EventType type;
 
     private String organizationId;
-    
-    private String userId;
 
-    private String invoiceId;
+    private String clientId;
+
+    private String userId;
 
     private String sessionId;
 
@@ -67,20 +67,20 @@ public class Event {
         this.organizationId = maxLength(organizationId, 255);
     }
 
+    public String getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(String clientId) {
+        this.clientId = maxLength(clientId, 255);
+    }
+
     public String getUserId() {
         return userId;
     }
 
     public void setUserId(String userId) {
         this.userId = maxLength(userId, 255);
-    }
-    
-    public String getInvoiceId() {
-        return invoiceId;
-    }
-    
-    public void setInvoiceId(String invoiceId) {
-        this.invoiceId = maxLength(invoiceId, 255);
     }
 
     public String getSessionId() {
@@ -120,7 +120,8 @@ public class Event {
         clone.time = time;
         clone.type = type;
         clone.organizationId = organizationId;
-        clone.invoiceId = invoiceId;
+        clone.clientId = clientId;
+        clone.userId = userId;
         clone.sessionId = sessionId;
         clone.ipAddress = ipAddress;
         clone.error = error;
@@ -128,7 +129,7 @@ public class Event {
         return clone;
     }
 
-    static String maxLength(String string, int length) {
+    static String maxLength(String string, int length){
         if (string != null && string.length() > length) {
             return string.substring(0, length - 1);
         }

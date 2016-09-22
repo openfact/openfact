@@ -6,7 +6,7 @@ import org.openfact.provider.Spi;
 
 /**
  * <p>
- * A {@link Spi} to plug additional sub-resources to Realms' RESTful API.
+ * A {@link Spi} to plug additional sub-resources to Organizations' RESTful API.
  *
  * <p>
  * Implementors can use this {@link Spi} to provide additional services to the

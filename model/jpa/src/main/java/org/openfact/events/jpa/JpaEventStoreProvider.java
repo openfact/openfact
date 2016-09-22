@@ -1,3 +1,20 @@
+/*
+ * Copyright 2016 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.openfact.events.jpa;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -11,6 +28,7 @@ import org.openfact.events.Event;
 import org.openfact.events.EventQuery;
 import org.openfact.events.EventStoreProvider;
 import org.openfact.events.EventType;
+import org.openfact.events.admin.ResourceType;
 
 import javax.persistence.EntityManager;
 
@@ -18,6 +36,9 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
+ */
 public class JpaEventStoreProvider implements EventStoreProvider {
 
     private static final ObjectMapper mapper = new ObjectMapper();
@@ -42,13 +63,13 @@ public class JpaEventStoreProvider implements EventStoreProvider {
     }
 
     @Override
-    public void clear(String organizationId) {
-        em.createQuery("delete from EventEntity where organizationId = :organizationId").setParameter("organizationId", organizationId).executeUpdate();
+    public void clear(String realmId) {
+        em.createQuery("delete from EventEntity where realmId = :realmId").setParameter("realmId", realmId).executeUpdate();
     }
 
     @Override
-    public void clear(String organizationId, long olderThan) {
-        em.createQuery("delete from EventEntity where organizationId = :organizationId and time < :time").setParameter("organizationId", organizationId).setParameter("time", olderThan).executeUpdate();
+    public void clear(String realmId, long olderThan) {
+        em.createQuery("delete from EventEntity where realmId = :realmId and time < :time").setParameter("realmId", realmId).setParameter("time", olderThan).executeUpdate();
     }
 
     @Override
@@ -67,13 +88,13 @@ public class JpaEventStoreProvider implements EventStoreProvider {
     }
 
     @Override
-    public void clearAdmin(String organizationId) {
-        em.createQuery("delete from AdminEventEntity where organizationId = :organizationId").setParameter("organizationId", organizationId).executeUpdate();
+    public void clearAdmin(String realmId) {
+        em.createQuery("delete from AdminEventEntity where realmId = :realmId").setParameter("realmId", realmId).executeUpdate();
     }
 
     @Override
-    public void clearAdmin(String organizationId, long olderThan) {
-        em.createQuery("delete from AdminEventEntity where organizationId = :organizationId and time < :time").setParameter("organizationId", organizationId).setParameter("time", olderThan).executeUpdate();
+    public void clearAdmin(String realmId, long olderThan) {
+        em.createQuery("delete from AdminEventEntity where realmId = :realmId and time < :time").setParameter("realmId", realmId).setParameter("time", olderThan).executeUpdate();
     }
 
     @Override
@@ -91,6 +112,7 @@ public class JpaEventStoreProvider implements EventStoreProvider {
         eventEntity.setTime(event.getTime());
         eventEntity.setType(event.getType().toString());
         eventEntity.setOrganizationId(event.getOrganizationId());
+        eventEntity.setClientId(event.getClientId());
         eventEntity.setUserId(event.getUserId());
         eventEntity.setSessionId(event.getSessionId());
         eventEntity.setIpAddress(event.getIpAddress());
@@ -108,6 +130,7 @@ public class JpaEventStoreProvider implements EventStoreProvider {
         event.setTime(eventEntity.getTime());
         event.setType(EventType.valueOf(eventEntity.getType()));
         event.setOrganizationId(eventEntity.getOrganizationId());
+        event.setClientId(eventEntity.getClientId());
         event.setUserId(eventEntity.getUserId());
         event.setSessionId(eventEntity.getSessionId());
         event.setIpAddress(eventEntity.getIpAddress());
@@ -125,9 +148,14 @@ public class JpaEventStoreProvider implements EventStoreProvider {
         AdminEventEntity adminEventEntity = new AdminEventEntity();
         adminEventEntity.setId(UUID.randomUUID().toString());
         adminEventEntity.setTime(adminEvent.getTime());
-        adminEventEntity.setRealmId(adminEvent.getOrganizationId());
+        adminEventEntity.setOrganizationId(adminEvent.getOrganizationId());
         setAuthDetails(adminEventEntity, adminEvent.getAuthDetails());
         adminEventEntity.setOperationType(adminEvent.getOperationType().toString());
+
+        if (adminEvent.getResourceType() != null) {
+            adminEventEntity.setResourceType(adminEvent.getResourceType().toString());
+        }
+
         adminEventEntity.setResourcePath(adminEvent.getResourcePath());
         adminEventEntity.setError(adminEvent.getError());
         
@@ -140,9 +168,14 @@ public class JpaEventStoreProvider implements EventStoreProvider {
     static AdminEvent convertAdminEvent(AdminEventEntity adminEventEntity) {
         AdminEvent adminEvent = new AdminEvent();
         adminEvent.setTime(adminEventEntity.getTime());
-        adminEvent.setOrganizationId(adminEventEntity.getRealmId());
+        adminEvent.setOrganizationId(adminEventEntity.getOrganizationId());
         setAuthDetails(adminEvent, adminEventEntity);
         adminEvent.setOperationType(OperationType.valueOf(adminEventEntity.getOperationType()));
+
+        if (adminEventEntity.getResourceType() != null) {
+            adminEvent.setResourceType(ResourceType.valueOf(adminEventEntity.getResourceType()));
+        }
+
         adminEvent.setResourcePath(adminEventEntity.getResourcePath());
         adminEvent.setError(adminEventEntity.getError());
         
@@ -153,14 +186,16 @@ public class JpaEventStoreProvider implements EventStoreProvider {
     }
     
     private static void setAuthDetails(AdminEventEntity adminEventEntity, AuthDetails authDetails) {
-        adminEventEntity.setAuthRealmId(authDetails.getOrganizationId());        
+        adminEventEntity.setAuthOrganizationId(authDetails.getOrganizationId());
+        adminEventEntity.setAuthClientId(authDetails.getClientId());
         adminEventEntity.setAuthUserId(authDetails.getUserId());
         adminEventEntity.setAuthIpAddress(authDetails.getIpAddress());
     }
     
     private static void setAuthDetails(AdminEvent adminEvent, AdminEventEntity adminEventEntity) {
         AuthDetails authDetails = new AuthDetails();
-        authDetails.setOrganizationId(adminEventEntity.getAuthRealmId());
+        authDetails.setOrganizationId(adminEventEntity.getAuthOrganizationId());
+        authDetails.setClientId(adminEventEntity.getAuthClientId());
         authDetails.setUserId(adminEventEntity.getAuthUserId());
         authDetails.setIpAddress(adminEventEntity.getAuthIpAddress());
         adminEvent.setAuthDetails(authDetails);

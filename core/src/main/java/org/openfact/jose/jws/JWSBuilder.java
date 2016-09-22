@@ -1,3 +1,20 @@
+/*
+ * Copyright 2016 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.openfact.jose.jws;
 
 import org.openfact.jose.jws.crypto.HMACProvider;
@@ -10,6 +27,10 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.PrivateKey;
 
+/**
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class JWSBuilder {
     String type;
     String kid;
@@ -87,43 +108,29 @@ public class JWSBuilder {
             return encodeAll(buffer, null);
         }
 
-        public String rsa256(PrivateKey privateKey) {
+        public String sign(Algorithm algorithm, PrivateKey privateKey) {
             StringBuffer buffer = new StringBuffer();
             byte[] data = marshalContent();
-            encode(Algorithm.RS256, data, buffer);
+            encode(algorithm, data, buffer);
             byte[] signature = null;
             try {
-                signature = RSAProvider.sign(buffer.toString().getBytes("UTF-8"), Algorithm.RS256, privateKey);
+                signature = RSAProvider.sign(buffer.toString().getBytes("UTF-8"), algorithm, privateKey);
             } catch (UnsupportedEncodingException e) {
                 throw new RuntimeException(e);
             }
             return encodeAll(buffer, signature);
+        }
+
+        public String rsa256(PrivateKey privateKey) {
+            return sign(Algorithm.RS256, privateKey);
         }
 
         public String rsa384(PrivateKey privateKey) {
-            StringBuffer buffer = new StringBuffer();
-            byte[] data = marshalContent();
-            encode(Algorithm.RS384, data, buffer);
-            byte[] signature = null;
-            try {
-                signature = RSAProvider.sign(buffer.toString().getBytes("UTF-8"), Algorithm.RS384, privateKey);
-            } catch (UnsupportedEncodingException e) {
-                throw new RuntimeException(e);
-            }
-            return encodeAll(buffer, signature);
+            return sign(Algorithm.RS384, privateKey);
         }
 
         public String rsa512(PrivateKey privateKey) {
-            StringBuffer buffer = new StringBuffer();
-            byte[] data = marshalContent();
-            encode(Algorithm.RS512, data, buffer);
-            byte[] signature = null;
-            try {
-                signature = RSAProvider.sign(buffer.toString().getBytes("UTF-8"), Algorithm.RS512, privateKey);
-            } catch (UnsupportedEncodingException e) {
-                throw new RuntimeException(e);
-            }
-            return encodeAll(buffer, signature);
+            return sign(Algorithm.RS512, privateKey);
         }
 
 

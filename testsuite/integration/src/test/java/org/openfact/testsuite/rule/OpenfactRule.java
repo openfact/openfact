@@ -58,7 +58,7 @@ public class OpenfactRule extends AbstractOpenfactRule {
 
     /*public void removeUserSession(String sessionId) {
         KeycloakSession session = startSession();
-        RealmModel realm = session.realms().getRealm("test");
+        OrganizationModel realm = session.realms().getOrganization("test");
         UserSessionModel userSession = session.sessions().getUserSession(realm, sessionId);
         assertNotNull(userSession);
         session.sessions().removeUserSession(realm, userSession);
@@ -68,7 +68,7 @@ public class OpenfactRule extends AbstractOpenfactRule {
     public ClientSessionCode verifyCode(String code) {
         KeycloakSession session = startSession();
         try {
-            RealmModel realm = session.realms().getRealm("test");
+            OrganizationModel realm = session.realms().getOrganization("test");
             try {
                 ClientSessionCode accessCode = ClientSessionCode.parse(code, session, realm);
                 if (accessCode == null) {

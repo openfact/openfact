@@ -1,102 +1,80 @@
+/*
+ * Copyright 2016 Red Hat Inc. and/or its affiliates and other contributors
+ * as indicated by the @author tags. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
 package org.openfact.representations;
 
+/**
+ * Configuration of KeyStore.
+ *
+ * @author Stan Silvert ssilvert@redhat.com (C) 2016 Red Hat Inc.
+ */
 public class KeyStoreConfig {
 
-	protected Boolean organizationCertificate;
-	protected String storePassword;
-	protected String keyPassword;
-	protected String keyAlias;
-	protected String realmAlias;
-	protected String format;
+    protected Boolean realmCertificate;
+    protected String storePassword;
+    protected String keyPassword;
+    protected String keyAlias;
+    protected String realmAlias;
+    protected String format;
 
-	/**
-	 * @return the organizationCertificate
-	 */
-	public Boolean isOrganizationCertificate() {
-		return organizationCertificate;
-	}
+    public Boolean isRealmCertificate() {
+        return realmCertificate;
+    }
 
-	/**
-	 * @param organizationCertificate
-	 *            the organizationCertificate to set
-	 */
-	public void setOrganizationCertificate(Boolean organizationCertificate) {
-		this.organizationCertificate = organizationCertificate;
-	}
+    public void setRealmCertificate(Boolean realmCertificate) {
+        this.realmCertificate = realmCertificate;
+    }
 
-	/**
-	 * @return the storePassword
-	 */
-	public String getStorePassword() {
-		return storePassword;
-	}
+    public String getStorePassword() {
+        return storePassword;
+    }
 
-	/**
-	 * @param storePassword
-	 *            the storePassword to set
-	 */
-	public void setStorePassword(String storePassword) {
-		this.storePassword = storePassword;
-	}
+    public void setStorePassword(String storePassword) {
+        this.storePassword = storePassword;
+    }
 
-	/**
-	 * @return the keyPassword
-	 */
-	public String getKeyPassword() {
-		return keyPassword;
-	}
+    public String getKeyPassword() {
+        return keyPassword;
+    }
 
-	/**
-	 * @param keyPassword
-	 *            the keyPassword to set
-	 */
-	public void setKeyPassword(String keyPassword) {
-		this.keyPassword = keyPassword;
-	}
+    public void setKeyPassword(String keyPassword) {
+        this.keyPassword = keyPassword;
+    }
 
-	/**
-	 * @return the keyAlias
-	 */
-	public String getKeyAlias() {
-		return keyAlias;
-	}
+    public String getKeyAlias() {
+        return keyAlias;
+    }
 
-	/**
-	 * @param keyAlias
-	 *            the keyAlias to set
-	 */
-	public void setKeyAlias(String keyAlias) {
-		this.keyAlias = keyAlias;
-	}
+    public void setKeyAlias(String keyAlias) {
+        this.keyAlias = keyAlias;
+    }
 
-	/**
-	 * @return the realmAlias
-	 */
-	public String getRealmAlias() {
-		return realmAlias;
-	}
+    public String getRealmAlias() {
+        return realmAlias;
+    }
 
-	/**
-	 * @param realmAlias
-	 *            the realmAlias to set
-	 */
-	public void setRealmAlias(String realmAlias) {
-		this.realmAlias = realmAlias;
-	}
+    public void setRealmAlias(String realmAlias) {
+        this.realmAlias = realmAlias;
+    }
 
-	/**
-	 * @return the format
-	 */
-	public String getFormat() {
-		return format;
-	}
+    public String getFormat() {
+        return format;
+    }
 
-	/**
-	 * @param format
-	 *            the format to set
-	 */
-	public void setFormat(String format) {
-		this.format = format;
-	}
-
+    public void setFormat(String format) {
+        this.format = format;
+    }
 }

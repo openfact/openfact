@@ -34,8 +34,8 @@ public class UsersSyncManager {
 
             @Override
             public void run(OpenfactSession session) {
-                List<RealmModel> realms = session.realms().getRealms();
-                for (final RealmModel realm : realms) {
+                List<OrganizationModel> realms = session.realms().getOrganizations();
+                for (final OrganizationModel realm : realms) {
                     List<UserFederationProviderModel> federationProviders = realm.getUserFederationProviders();
                     for (final UserFederationProviderModel fedProvider : federationProviders) {
                         refreshPeriodicSyncForProvider(sessionFactory, timer, fedProvider, realm.getId());
@@ -130,7 +130,7 @@ public class UsersSyncManager {
 
 
     // Ensure all cluster nodes are notified
-//    public void notifyToRefreshPeriodicSync(OpenfactSession session, RealmModel realm, UserFederationProviderModel federationProvider, boolean removed) {
+//    public void notifyToRefreshPeriodicSync(OpenfactSession session, OrganizationModel realm, UserFederationProviderModel federationProvider, boolean removed) {
 //        FederationProviderClusterEvent event = FederationProviderClusterEvent.createEvent(removed, realm.getId(), federationProvider);
 //        session.getProvider(ClusterProvider.class).notify(FEDERATION_TASK_KEY, event);
 //    }
@@ -214,14 +214,14 @@ public class UsersSyncManager {
 //
 //            @Override
 //            public void run(OpenfactSession session) {
-//                RealmModel persistentRealm = session.realms().getRealm(realmId);
-//                List<UserFederationProviderModel> persistentFedProviders = persistentRealm.getUserFederationProviders();
+//                OrganizationModel persistentOrganization = session.realms().getOrganization(realmId);
+//                List<UserFederationProviderModel> persistentFedProviders = persistentOrganization.getUserFederationProviders();
 //                for (UserFederationProviderModel persistentFedProvider : persistentFedProviders) {
 //                    if (fedProvider.getId().equals(persistentFedProvider.getId())) {
 //                        // Update persistent provider in DB
 //                        int lastSync = Time.currentTime();
 //                        persistentFedProvider.setLastSync(lastSync);
-//                        persistentRealm.updateUserFederationProvider(persistentFedProvider);
+//                        persistentOrganization.updateUserFederationProvider(persistentFedProvider);
 //
 //                        // Update "cached" reference
 //                        fedProvider.setLastSync(lastSync);
@@ -252,7 +252,7 @@ public class UsersSyncManager {
 //                    if (fedEvent.isRemoved()) {
 //                        removePeriodicSyncForProvider(timer, fedEvent.getFederationProvider());
 //                    } else {
-//                        refreshPeriodicSyncForProvider(sessionFactory, timer, fedEvent.getFederationProvider(), fedEvent.getRealmId());
+//                        refreshPeriodicSyncForProvider(sessionFactory, timer, fedEvent.getFederationProvider(), fedEvent.getOrganizationId());
 //                    }
 //                }
 //
@@ -276,11 +276,11 @@ public class UsersSyncManager {
 //            this.removed = removed;
 //        }
 //
-//        public String getRealmId() {
+//        public String getOrganizationId() {
 //            return realmId;
 //        }
 //
-//        public void setRealmId(String realmId) {
+//        public void setOrganizationId(String realmId) {
 //            this.realmId = realmId;
 //        }
 //
@@ -295,7 +295,7 @@ public class UsersSyncManager {
 //        public static FederationProviderClusterEvent createEvent(boolean removed, String realmId, UserFederationProviderModel fedProvider) {
 //            FederationProviderClusterEvent notification = new FederationProviderClusterEvent();
 //            notification.setRemoved(removed);
-//            notification.setRealmId(realmId);
+//            notification.setOrganizationId(realmId);
 //            notification.setFederationProvider(fedProvider);
 //            return notification;
 //        }

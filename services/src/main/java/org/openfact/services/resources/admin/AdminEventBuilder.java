@@ -53,7 +53,7 @@ public class AdminEventBuilder {
             }
         }
 
-        authRealm(auth.getOrganization());
+        authOrganization(auth.getOrganization());
         //authClient(auth.getClient());
         authUser(auth.getUser());
         authIpAddress(clientConnection.getRemoteAddr());
@@ -74,7 +74,7 @@ public class AdminEventBuilder {
         return this;
     }
 
-    public AdminEventBuilder authRealm(OrganizationModel organization) {
+    public AdminEventBuilder authOrganization(OrganizationModel organization) {
         AuthDetails authDetails = adminEvent.getAuthDetails();
         if(authDetails == null) {
             authDetails =  new AuthDetails();

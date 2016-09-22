@@ -24,30 +24,35 @@ import java.util.List;
  * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
 public interface AdminEventQuery {
-
+    
     /**
      * Search by resource organization
      *
-     * @param organizationId
-     *            organization id
+     * @param organizationId organization id
      * @return Associated <code>AdminEventQuery</code> for method chaining
      */
     AdminEventQuery organization(String organizationId);
-
+    
     /**
      * Search by authentication organization
      *
-     * @param organizationId
-     *            organization name
+     * @param organizationId organization name
      * @return Associated <code>AdminEventQuery</code> for method chaining
      */
     AdminEventQuery authOrganization(String organizationId);
+    
+    /**
+     * Search by authenticated client
+     *
+     * @param clientId client uuid
+     * @return Associated <code>AdminEventQuery</code> for method chaining
+     */
+    AdminEventQuery authClient(String clientId);
 
     /**
      * Search by authenticated user
      *
-     * @param userId
-     *            user uuid
+     * @param userId user uuid
      * @return Associated <code>AdminEventQuery</code> for method chaining
      */
     AdminEventQuery authUser(String userId);
@@ -69,14 +74,18 @@ public interface AdminEventQuery {
     AdminEventQuery operation(OperationType... operations);
 
     /**
-     * Search by resource path. Supports wildcards <code>*</code> and
-     * <code>**</code>. For example:
+     * Search by {@link ResourceType}.
+     * @param resourceTypes
+     * @return <code>this</code> for method chaining
+     */
+    AdminEventQuery resourceType(ResourceType ... resourceTypes);
+
+    /**
+     * Search by resource path. Supports wildcards <code>*</code> and <code>**</code>. For example:
      * <ul>
-     * <li><b>*&#47;master</b> - matches 'realms/master'</li>
-     * <li><b>**&#47;00d4b16f</b> - matches
-     * 'realms/master/clients/00d4b16f'</li>
-     * <li><b>realms&#47;master&#47;**</b> - matches anything under
-     * 'realms/master'</li>
+     * <li><b>*&#47;master</b> - matches 'organizations/master'</li>
+     * <li><b>**&#47;00d4b16f</b> - matches 'organizations/master/clients/00d4b16f'</li>
+     * <li><b>organizations&#47;master&#47;**</b> - matches anything under 'organizations/master'</li>
      * </ul>
      *
      * @param resourcePath
@@ -87,8 +96,7 @@ public interface AdminEventQuery {
     /**
      * Search by events after the specified time
      * 
-     * @param fromTime
-     *            from date
+     * @param fromTime from date
      * @return <code>this</code> for method chaining
      */
     AdminEventQuery fromTime(Date fromTime);
@@ -96,8 +104,7 @@ public interface AdminEventQuery {
     /**
      * Search by events before the specified time
      * 
-     * @param toTime
-     *            to date
+     * @param toTime to date
      * @return <code>this</code> for method chaining
      */
     AdminEventQuery toTime(Date toTime);
@@ -105,8 +112,7 @@ public interface AdminEventQuery {
     /**
      * Used for pagination
      * 
-     * @param first
-     *            first result to return
+     * @param first first result to return
      * @return <code>this</code> for method chaining
      */
     AdminEventQuery firstResult(int first);
@@ -114,8 +120,7 @@ public interface AdminEventQuery {
     /**
      * Use for pagination
      * 
-     * @param max
-     *            the maximum results to return
+     * @param max the maximum results to return
      * @return <code>this</code> for method chaining
      */
     AdminEventQuery maxResults(int max);
@@ -126,5 +131,4 @@ public interface AdminEventQuery {
      * @return
      */
     List<AdminEvent> getResultList();
-
 }

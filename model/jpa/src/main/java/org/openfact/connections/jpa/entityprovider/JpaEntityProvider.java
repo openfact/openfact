@@ -24,7 +24,7 @@ import org.openfact.provider.Provider;
 /**
  * @author <a href="mailto:erik.mulder@docdatapayments.com">Erik Mulder</a>
  * 
- * A JPA Entity Provider can supply extra JPA entities that the Keycloak system should include in it's entity manager. The
+ * A JPA Entity Provider can supply extra JPA entities that the Openfact system should include in it's entity manager. The
  * entities should be provided as a list of Class objects.
  */
 public interface JpaEntityProvider extends Provider {
