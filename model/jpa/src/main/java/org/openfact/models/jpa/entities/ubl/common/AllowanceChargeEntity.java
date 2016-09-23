@@ -41,7 +41,7 @@ public class AllowanceChargeEntity {
     protected String ID;
 
     @Column(name = "CHARGE_INDICATOR")
-    @Type(type = "numeric_boolean")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     protected boolean chargeIndicator;
 
     @Column(name = "ALLOWANCE_CHARGE_REASON_CODE")
@@ -54,7 +54,7 @@ public class AllowanceChargeEntity {
     protected BigDecimal multiplierFactorNumeric;
 
     @Column(name = "PREPAID_INDICATOR")
-    @Type(type = "numeric_boolean")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     protected boolean prepaidIndicator;
 
     @Column(name = "SEQUENCE_NUMERIC")

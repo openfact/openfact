@@ -84,18 +84,18 @@ public class DebitNoteEntity {
     protected String ID;
 
     @Column(name = "COPY_INDICATOR")
-    @Type(type = "numeric_boolean")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     protected boolean copyIndicator;
 
     @Column(name = "UUID")
     protected String uuid;
 
     @Column(name = "ISSUE_DATE")
-    @Type(type = "LocalDate, java.time.LocalDate")
+    @Type(type = "org.hibernate.type.LocalDateType")
     protected LocalDate issueDate;
 
     @Column(name = "ISSUE_TIME")
-    @Type(type = "LocalTime, java.time.LocalTime")
+    @Type(type = "org.hibernate.type.LocalTimeType")
     protected LocalTime issueTime;
 
     @ElementCollection
@@ -104,7 +104,7 @@ public class DebitNoteEntity {
     protected List<String> note = new ArrayList<>();
 
     @Column(name = "TAX_POINT_DATE")
-    @Type(type = "LocalDate, java.time.LocalDate")
+    @Type(type = "org.hibernate.type.LocalDateType")
     protected LocalDate taxPointDate;
 
     @Column(name = "DOCUMENT_CURRENCY_CODE")

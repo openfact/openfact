@@ -40,7 +40,7 @@ public class LotIdentificationEntity {
     protected String lotNumberID;
 
     @Column(name = "EXPIRY_DATE")
-    @Type(type = "LocalDate, java.time.LocalDate")
+    @Type(type = "org.hibernate.type.LocalDateType")
     protected LocalDate expiryDate;
 
     @OneToMany(targetEntity = ItemPropertyEntity.class, cascade = { CascadeType.ALL })

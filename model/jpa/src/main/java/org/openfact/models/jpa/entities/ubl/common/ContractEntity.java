@@ -45,11 +45,11 @@ public class ContractEntity {
     protected String ID;
 
     @Column(name = "ISSUE_DATE")
-    @Type(type = "LocalDate, java.time.LocalDate")
+    @Type(type = "org.hibernate.type.LocalDateType")
     protected LocalDate issueDate;
 
     @Column(name = "ISSUE_TIME")
-    @Type(type = "LocalTime, java.time.LocalTime")
+    @Type(type = "org.hibernate.type.LocalTimeType")
     protected LocalTime issueTime;
 
     @Column(name = "CONTRACT_CODE")

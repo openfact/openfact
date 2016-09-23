@@ -48,14 +48,14 @@ public class ItemEntity {
     protected BigDecimal packSizeNumeric;
 
     @Column(name = "CATALOGUE_INDICATOR")
-    @Type(type = "numeric_boolean")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     protected boolean catalogueIndicator;
 
     @Column(name = "NAME")
     protected String name;
 
     @Column(name = "HAZARDOUS_RISK_INDICATOR")
-    @Type(type = "numeric_boolean")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     protected boolean hazardousRiskIndicator;
 
     @Column(name = "ADDITIONAL_INFORMATION")

@@ -57,7 +57,7 @@ public class ExchangeRateEntity {
     protected String mathematicOperatorCode;
 
     @Column(name = "DATE")
-    @Type(type = "LocalDate, java.time.LocalDate")
+    @Type(type = "org.hibernate.type.LocalDateType")
     protected LocalDate date;
 
     @ManyToOne(targetEntity = ContractEntity.class, cascade = { CascadeType.ALL })

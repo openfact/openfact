@@ -51,7 +51,7 @@ public class ItemLocationQuantityEntity {
     protected QuantityEntity maximumQuantity = new QuantityEntity();
 
     @Column(name = "HAZARDOUS_RISK_INDICATOR")
-    @Type(type = "numeric_boolean")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     protected boolean hazardousRiskIndicator;
 
     @ElementCollection

@@ -55,7 +55,7 @@ public class CreditNoteLineEntity {
     protected BigDecimal lineExtensionAmount;
 
     @Column(name = "TAX_POINT_DATE")
-    @Type(type = "LocalDate, java.time.LocalDate")
+    @Type(type = "org.hibernate.type.LocalDateType")
     protected LocalDate taxPointDate;
 
     @Column(name = "ACCOUNTING_COST_CODE")

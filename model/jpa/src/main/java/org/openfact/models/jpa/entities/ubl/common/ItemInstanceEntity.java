@@ -42,11 +42,11 @@ public class ItemInstanceEntity {
     protected String productTraceID;
 
     @Column(name = "MANUFACTURE_DATE")
-    @Type(type = "LocalDate, java.time.LocalDate")
+    @Type(type = "org.hibernate.type.LocalDateType")
     protected LocalDate manufactureDate;
 
     @Column(name = "MANUFACTURE_TIME")
-    @Type(type = "LocalTime, java.time.LocalTime")
+    @Type(type = "org.hibernate.type.LocalTimeType")
     protected LocalTime manufactureTime;
 
     @Column(name = "REGISTRATIONID_ITEMINSTANCE")

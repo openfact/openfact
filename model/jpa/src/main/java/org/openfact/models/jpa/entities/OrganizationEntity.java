@@ -52,6 +52,7 @@ public class OrganizationEntity {
     private String description;
 
     @Column(name = "ENABLED")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean enabled;
 
     @Column(name = "ASSIGNED_IDENTIFICATION_ID")
@@ -109,6 +110,7 @@ public class OrganizationEntity {
      * Events
      */
     @Column(name = "EVENTS_ENABLED")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     protected boolean eventsEnabled;
 
     @Column(name = "EVENTS_EXPIRATION")
@@ -127,9 +129,11 @@ public class OrganizationEntity {
     protected Set<String> enabledEventTypes = new HashSet<String>();
 
     @Column(name = "ADMIN_EVENTS_ENABLED")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     protected boolean adminEventsEnabled;
 
     @Column(name = "ADMIN_EVENTS_DETAILS_ENABLED")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     protected boolean adminEventsDetailsEnabled;
 
     /**
@@ -151,6 +155,7 @@ public class OrganizationEntity {
      * Locale
      */
     @Column(name = "INTERNATIONALIZATION_ENABLED")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     protected boolean internationalizationEnabled;
 
     @ElementCollection

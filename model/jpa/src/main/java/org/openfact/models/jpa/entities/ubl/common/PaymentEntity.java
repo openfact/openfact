@@ -40,15 +40,15 @@ public class PaymentEntity {
     protected BigDecimal paidAmount;
 
     @Column(name = "RECEIVED_DATE")
-    @Type(type = "LocalDate, java.time.LocalDate")
+    @Type(type = "org.hibernate.type.LocalDateType")
     protected LocalDate receivedDate;
 
     @Column(name = "PAID_DATE")
-    @Type(type = "LocalDate, java.time.LocalDate")
+    @Type(type = "org.hibernate.type.LocalDateType")
     protected LocalDate paidDate;
 
     @Column(name = "PAID_TIME")
-    @Type(type = "LocalTime, java.time.LocalTime")
+    @Type(type = "org.hibernate.type.LocalTimeType")
     protected LocalTime paidTime;
 
     @Column(name = "INSTRUCTION_ID")

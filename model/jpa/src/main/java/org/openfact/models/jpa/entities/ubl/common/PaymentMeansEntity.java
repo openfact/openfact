@@ -45,7 +45,7 @@ public class PaymentMeansEntity {
     protected String paymentMeansCode;
 
     @Column(name = "PAYMENTDUEDATE")
-    @Type(type = "LocalDate, java.time.LocalDate")
+    @Type(type = "org.hibernate.type.LocalDateType")
     protected LocalDate paymentDueDate;
 
     @Column(name = "PAYMENTCHANNELCODE")

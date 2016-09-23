@@ -7,14 +7,18 @@
 
 package org.openfact.models.jpa.entities.ubl.common;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -36,8 +40,10 @@ public class ResponseEntity {
     @Column(name = "RESPONSE_CODE")
     protected String responseCode;
 
-    @Column(name = "DESCRIPTION")
-    protected List<String> description;
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "DESCRIPTION_RESPONSE", joinColumns = { @JoinColumn(name = "RESPONSE_ID") })
+    protected List<String> description = new ArrayList<>();
 
     /**
      * @return the id

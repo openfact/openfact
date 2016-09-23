@@ -39,27 +39,27 @@ public class DespatchEntity {
     protected String ID;
 
     @Column(name = "REQUESTED_DESPATCH_DATE")
-    @Type(type = "LocalDate, java.time.LocalDate")
+    @Type(type = "org.hibernate.type.LocalDateType")
     protected LocalDate requestedDespatchDate;
 
     @Column(name = "REQUESTED_DESPATCH_TIME")
-    @Type(type = "LocalTime, java.time.LocalTime")
+    @Type(type = "org.hibernate.type.LocalTimeType")
     protected LocalTime requestedDespatchTime;
 
     @Column(name = "ESTIMATED_DESPATCH_DATE")
-    @Type(type = "LocalDate, java.time.LocalDate")
+    @Type(type = "org.hibernate.type.LocalDateType")
     protected LocalDate estimatedDespatchDate;
 
     @Column(name = "ESTIMATED_DESPATCH_TIME")
-    @Type(type = "LocalTime, java.time.LocalTime")
+    @Type(type = "org.hibernate.type.LocalTimeType")
     protected LocalTime estimatedDespatchTime;
 
     @Column(name = "ACTUAL_DESPATCH_DATE")
-    @Type(type = "LocalDate, java.time.LocalDate")
+    @Type(type = "org.hibernate.type.LocalDateType")
     protected LocalDate actualDespatchDate;
 
     @Column(name = "ACTUAL_DESPATCH_TIME")
-    @Type(type = "LocalTime, java.time.LocalTime")
+    @Type(type = "org.hibernate.type.LocalTimeType")
     protected LocalTime actualDespatchTime;
 
     @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })

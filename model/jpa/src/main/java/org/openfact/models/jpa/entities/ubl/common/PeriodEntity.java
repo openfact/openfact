@@ -40,19 +40,19 @@ public class PeriodEntity {
     protected String id;
 
     @Column(name = "START_DATE")
-    @Type(type = "LocalDate, java.time.LocalDate")
+    @Type(type = "org.hibernate.type.LocalDateType")
     protected LocalDate startDate;
 
     @Column(name = "START_TIME")
-    @Type(type = "LocalTime, java.time.LocalTime")
+    @Type(type = "org.hibernate.type.LocalTimeType")
     protected LocalTime startTime;
 
     @Column(name = "END_DATE")
-    @Type(type = "LocalDate, java.time.LocalDate")
+    @Type(type = "org.hibernate.type.LocalDateType")
     protected LocalDate endDate;
 
     @Column(name = "END_TIME")
-    @Type(type = "LocalTime, java.time.LocalTime")
+    @Type(type = "org.hibernate.type.LocalTimeType")
     protected LocalTime endTime;
 
     @ManyToOne(targetEntity = MeasureEntity.class, cascade = { CascadeType.ALL })

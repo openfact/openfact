@@ -43,7 +43,7 @@ public class TaxTotalEntity {
     protected BigDecimal roundingAmount;
 
     @Column(name = "TAX_EVIDENCE_INDICATOR")
-    @Type(type = "numeric_boolean")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     protected boolean taxEvidenceIndicator;
 
     @OneToMany(targetEntity = TaxSubtotalEntity.class, cascade = { CascadeType.ALL })

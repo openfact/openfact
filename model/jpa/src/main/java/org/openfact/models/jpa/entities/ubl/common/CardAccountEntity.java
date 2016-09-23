@@ -41,11 +41,11 @@ public class CardAccountEntity {
     protected String cardCode;
 
     @Column(name = "VALIDITY_START_DATE")
-    @Type(type = "LocalDate, java.time.LocalDate")
+    @Type(type = "org.hibernate.type.LocalDateType")
     protected LocalDate validityStartDate;
 
     @Column(name = "EXPIRITY_DATE")
-    @Type(type = "LocalDate, java.time.LocalDate")
+    @Type(type = "org.hibernate.type.LocalDateType")
     protected LocalDate expiryDate;
 
     @Column(name = "ISSUERID")

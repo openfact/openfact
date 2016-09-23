@@ -51,19 +51,19 @@ public class DeliveryEntity {
     protected QuantityEntity maximumQuantity;
 
     @Column(name = "ACTUAL_DELIVERY_DATE")
-    @Type(type = "LocalDate, java.time.LocalDate")
+    @Type(type = "org.hibernate.type.LocalDateType")
     protected LocalDate actualDeliveryDate;
 
     @Column(name = "ACTUAL_DELIVERY_TIME")
-    @Type(type = "LocalTime, java.time.LocalTime")
+    @Type(type = "org.hibernate.type.LocalTimeType")
     protected LocalTime actualDeliveryTime;
 
     @Column(name = "LATEST_DELIVERY_DATE")
-    @Type(type = "LocalDate, java.time.LocalDate")
+    @Type(type = "org.hibernate.type.LocalDateType")
     protected LocalDate latestDeliveryDate;
 
     @Column(name = "LATEST_DELIVERY_TIME")
-    @Type(type = "LocalTime, java.time.LocalTime")
+    @Type(type = "org.hibernate.type.LocalTimeType")
     protected LocalTime latestDeliveryTime;
 
     @Column(name = "TRACKING_ID")

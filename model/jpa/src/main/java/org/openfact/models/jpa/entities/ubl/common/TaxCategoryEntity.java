@@ -41,8 +41,9 @@ public class TaxCategoryEntity {
 
     @Column(name = "PERCENT")
     protected BigDecimal percent;
-
-    @Column(name = "BASE_UNIT_MEASURE")
+   
+    @ManyToOne(targetEntity = TaxSchemeEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "BASEUNITMEASURE_MEASURE")
     protected MeasureEntity baseUnitMeasure = new MeasureEntity();
 
     @Column(name = "PER_UNITAMOUNT")

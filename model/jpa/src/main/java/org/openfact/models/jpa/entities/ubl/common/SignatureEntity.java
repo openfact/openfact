@@ -42,11 +42,11 @@ public class SignatureEntity {
     protected String note;
 
     @Column(name = "VALIDATION_DATE")
-    @Type(type = "LocalDate, java.time.LocalDate")
+    @Type(type = "org.hibernate.type.LocalDateType")
     protected LocalDate validationDate;
 
     @Column(name = "VALIDATION_TIME")
-    @Type(type = "LocalTime, java.time.LocalTime")
+    @Type(type = "org.hibernate.type.LocalTimeType")
     protected LocalTime validationTime;
 
     @Column(name = "VALIDATOR_ID")

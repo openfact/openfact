@@ -41,7 +41,7 @@ public class DeliveryUnitEntity {
     protected QuantityEntity consumerUnitQuantity;
 
     @Column(name = "HAZARDOUSRISKINDICATOR")
-    @Type(type = "numeric_boolean")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     protected boolean hazardousRiskIndicator;
 
     /**

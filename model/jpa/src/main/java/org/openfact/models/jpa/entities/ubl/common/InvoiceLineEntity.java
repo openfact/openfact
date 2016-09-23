@@ -55,7 +55,7 @@ public class InvoiceLineEntity {
     protected BigDecimal lineExtensionAmount;
 
     @Column(name = "TAX_POINT_DATE")
-    @Type(type = "LocalDate, java.time.LocalDate")
+    @Type(type = "org.hibernate.type.LocalDateType")
     protected LocalDate taxPointDate;
 
     @Column(name = "ACCOUNTING_COST_CODE")
@@ -65,7 +65,7 @@ public class InvoiceLineEntity {
     protected String accountingCost;
 
     @Column(name = "FREE_OF_CHARGE_INDICATOR")
-    @Type(type = "numeric_boolean")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     protected boolean freeOfChargeIndicator;
 
     @OneToMany(targetEntity = OrderLineReferenceEntity.class, cascade = { CascadeType.ALL })

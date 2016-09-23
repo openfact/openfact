@@ -47,14 +47,15 @@ public class DebitNoteLineEntity {
     @Column(name = "NOTE")
     protected String note;
 
-    @Column(name = "DEBITED_QUANTITY")
+    @ManyToOne(targetEntity = PricingReferenceEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "DEBITEDQUANTITY_QUANTITY")
     protected QuantityEntity debitedQuantity;
 
     @Column(name = "LINE_EXTENSION_AMOUNT")
     protected BigDecimal lineExtensionAmount;
 
     @Column(name = "TAX_POINT_DATE")
-    @Type(type = "LocalDate, java.time.LocalDate")
+    @Type(type = "org.hibernate.type.LocalDateType")
     protected LocalDate taxPointDate;
 
     @Column(name = "ACCOUNTING_COST_CODE")

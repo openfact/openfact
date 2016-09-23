@@ -39,11 +39,11 @@ public class ExternalReferenceEntity {
     protected String documentHash;
 
     @Column(name = "EXPIRYDATE")
-    @Type(type = "LocalDate, java.time.LocalDate")
+    @Type(type = "org.hibernate.type.LocalDateType")
     protected LocalDate expiryDate;
 
     @Column(name = "EXPIRYTIME")
-    @Type(type = "LocalTime, java.time.LocalTime")
+    @Type(type = "org.hibernate.type.LocalTimeType")
     protected LocalTime expiryTime;
 
     /**

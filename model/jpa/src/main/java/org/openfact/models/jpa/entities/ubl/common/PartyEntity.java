@@ -39,11 +39,11 @@ public class PartyEntity {
     protected String id;
 
     @Column(name = "MARK_CARE_INDICATOR")
-    @Type(type = "numeric_boolean")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     protected boolean markCareIndicator;
 
     @Column(name = "MARK_ATTENTION_INDICATOR")
-    @Type(type = "numeric_boolean")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     protected boolean markAttentionIndicator;
 
     @Column(name = "WEBSITE_URI")

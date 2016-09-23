@@ -42,18 +42,18 @@ public class OrderReferenceEntity {
     protected String salesOrderID;
 
     @Column(name = "COPY_INDICATOR")
-    @Type(type = "numeric_boolean")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     protected boolean copyIndicator;
 
     @Column(name = "UUID")
     protected String uuid;
 
     @Column(name = "ISSUEDATE")
-    @Type(type = "LocalDate, java.time.LocalDate")
+    @Type(type = "org.hibernate.type.LocalDateType")
     protected LocalDate issueDate;
 
     @Column(name = "ISSUETIME")
-    @Type(type = "LocalTime, java.time.LocalTime")
+    @Type(type = "org.hibernate.type.LocalTimeType")
     protected LocalTime issueTime;
 
     @Column(name = "CUSTOMER_REFERENCE")

@@ -42,14 +42,14 @@ public class DocumentReferenceEntity {
     protected String ID;
 
     @Column(name = "COPY_INDICATOR")
-    @Type(type = "numeric_boolean")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     protected boolean copyIndicator;
 
     @Column(name = "UUID")
     protected String uuid;
 
     @Column(name = "ISSUE_DATE")
-    @Type(type = "LocalDate, java.time.LocalDate")
+    @Type(type = "org.hibernate.type.LocalDateType")
     protected LocalDate issueDate;
 
     @Column(name = "DOCUMENT_CODE")
