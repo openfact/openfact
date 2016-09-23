@@ -234,7 +234,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.2</version>
 				<executions>
 					<execution>
 						<goals>
@@ -409,15 +408,15 @@
 								</goals>
 								<configuration>
 									<systemPropertyVariables>
-										<keycloak.realm.provider>mongo</keycloak.realm.provider>
-										<keycloak.user.provider>mongo</keycloak.user.provider>
-										<keycloak.userSessionPersister.provider>mongo</keycloak.userSessionPersister.provider>
-										<keycloak.eventsStore.provider>mongo</keycloak.eventsStore.provider>
-										<keycloak.authorization.provider>mongo</keycloak.authorization.provider>
-										<keycloak.connectionsMongo.host>${keycloak.connectionsMongo.host}</keycloak.connectionsMongo.host>
-										<keycloak.connectionsMongo.port>${keycloak.connectionsMongo.port}</keycloak.connectionsMongo.port>
-										<keycloak.connectionsMongo.db>${keycloak.connectionsMongo.db}</keycloak.connectionsMongo.db>
-										<keycloak.connectionsMongo.bindIp>${keycloak.connectionsMongo.bindIp}</keycloak.connectionsMongo.bindIp>
+										<openfact.realm.provider>mongo</openfact.realm.provider>
+										<openfact.user.provider>mongo</openfact.user.provider>
+										<openfact.userSessionPersister.provider>mongo</openfact.userSessionPersister.provider>
+										<openfact.eventsStore.provider>mongo</openfact.eventsStore.provider>
+										<openfact.authorization.provider>mongo</openfact.authorization.provider>
+										<openfact.connectionsMongo.host>${openfact.connectionsMongo.host}</openfact.connectionsMongo.host>
+										<openfact.connectionsMongo.port>${openfact.connectionsMongo.port}</openfact.connectionsMongo.port>
+										<openfact.connectionsMongo.db>${openfact.connectionsMongo.db}</openfact.connectionsMongo.db>
+										<openfact.connectionsMongo.bindIp>${openfact.connectionsMongo.bindIp}</openfact.connectionsMongo.bindIp>
 									</systemPropertyVariables>
 								</configuration>
 							</execution>
@@ -442,10 +441,10 @@
 									<goal>start</goal>
 								</goals>
 								<configuration>
-									<port>${keycloak.connectionsMongo.port}</port>
+									<port>${openfact.connectionsMongo.port}</port>
 									<logging>file</logging>
 									<logFile>${project.build.directory}/mongodb.log</logFile>
-									<bindIp>${keycloak.connectionsMongo.bindIp}</bindIp>
+									<bindIp>${openfact.connectionsMongo.bindIp}</bindIp>
 								</configuration>
 							</execution>
 							<execution>
@@ -472,13 +471,13 @@
 						<configuration>
 							<changeLogFile>META-INF/jpa-changelog-master.xml</changeLogFile>
 
-							<url>${keycloak.connectionsJpa.url}</url>
-							<driver>${keycloak.connectionsJpa.driver}</driver>
-							<username>${keycloak.connectionsJpa.user}</username>
-							<password>${keycloak.connectionsJpa.password}</password>
+							<url>${openfact.connectionsJpa.url}</url>
+							<driver>${openfact.connectionsJpa.driver}</driver>
+							<username>${openfact.connectionsJpa.user}</username>
+							<password>${openfact.connectionsJpa.password}</password>
 
 							<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
-							<databaseClass>${keycloak.connectionsJpa.liquibaseDatabaseClass}</databaseClass>
+							<databaseClass>${openfact.connectionsJpa.liquibaseDatabaseClass}</databaseClass>
 						</configuration>
 						<executions>
 							<execution>
@@ -510,7 +509,7 @@
 						<artifactId>maven-surefire-plugin</artifactId>
 						<configuration>
 							<includes>
-								<include>org/keycloak/testsuite/federation/ldap/base/**</include>
+								<include>org/openfact/testsuite/federation/ldap/base/**</include>
 							</includes>
 							<excludes>
 								<exclude>**/LDAPMultipleAttributesTest.java</exclude>

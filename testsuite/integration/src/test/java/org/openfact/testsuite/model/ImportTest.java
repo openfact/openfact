@@ -7,7 +7,6 @@ import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-import org.openfact.models.DocumentModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.representations.idm.DocumentRepresentation;
@@ -22,7 +21,7 @@ public class ImportTest extends AbstractModelTest {
     public void install() throws Exception {
         OrganizationRepresentation rep = AbstractModelTest.loadJson("model/testorganization.json");
         rep.setId("demo");
-        rep.setName("demo");
+        rep.setOrganization("demo");
         OrganizationModel organization = organizationManager.importOrganization(rep);
 
         // Commit after import
@@ -46,7 +45,7 @@ public class ImportTest extends AbstractModelTest {
         } else {
             Assert.assertNotNull(organization.getId());
         }
-        Assert.assertEquals(rep.getName(), organization.getName());
+        Assert.assertEquals(rep.getOrganization(), organization.getName());
         Assert.assertEquals(rep.getDescription(), organization.getDescription());
         if (rep.getEnabled() != null) {
             Assert.assertEquals(rep.getEnabled(), organization.isEnabled());
@@ -58,7 +57,7 @@ public class ImportTest extends AbstractModelTest {
         Assert.assertEquals(rep.getRegistrationName(), organization.getRegistrationName());
         
         if(rep.getAdditionalAccountId() != null) {
-            Assert.assertEquals(rep.getAdditionalAccountId(), organization.getAdditionalAccountId().getName());            
+            Assert.assertEquals(rep.getAdditionalAccountId(), organization.getAdditionalAccountId());            
         }
 
         /**
@@ -89,20 +88,7 @@ public class ImportTest extends AbstractModelTest {
         Assert.assertTrue(tasksScheduleRep.getOnErrorLapseTime().equals(organization.getOnErrorLapseTime()));
         Assert.assertTrue(tasksScheduleRep.getDelayTime().equals(organization.getDelayTime()));
         Assert.assertTrue(tasksScheduleRep.getSubmitDays().size() == organization.getSubmitDays().size());
-        Assert.assertEquals(tasksScheduleRep.getSubmitTime(), organization.getSubmitTime());
-        
-        /**
-         * Documents*/
-        Assert.assertTrue(rep.getDocuments().size() == organization.getDocuments().size());
-        
-        Set<DocumentRepresentation> childrens = rep.getDocuments().stream().filter(p -> p.getParent() != null).collect(Collectors.toSet());
-        for (DocumentRepresentation children : childrens) {
-            String parentName = children.getParent().getName();
-            DocumentModel childrenModel = organization.getDocuments().stream().filter(p -> p.getName().equals(children.getName())).findAny().get();
-            
-            Assert.assertNotNull(childrenModel.getParent());
-            Assert.assertEquals(childrenModel.getParent().getName(), parentName);
-        }
+        Assert.assertEquals(tasksScheduleRep.getSubmitTime(), organization.getSubmitTime());              
         
         /**
          * Invoices

@@ -1,9 +1,25 @@
-package org.openfact.testsuite.rule;
+/*
+ * Copyright 2016 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-import javax.servlet.Servlet;
+package org.openfact.testsuite.rule;
 
 import io.undertow.servlet.api.DeploymentInfo;
 import io.undertow.servlet.api.ErrorPage;
+import io.undertow.servlet.api.FilterInfo;
 import io.undertow.servlet.api.LoginConfig;
 import io.undertow.servlet.api.SecurityConstraint;
 import io.undertow.servlet.api.SecurityInfo;
@@ -14,19 +30,20 @@ import org.junit.rules.ExternalResource;
 import org.junit.rules.TemporaryFolder;
 import org.openfact.Config;
 import org.openfact.adapters.OpenfactConfigResolver;
-import org.openfact.common.util.Time;
-import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactTransaction;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.UserModel;
 import org.openfact.models.utils.ModelToRepresentation;
-import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.managers.OrganizationManager;
-import org.openfact.testsuite.OpenfactServer;
 import org.openfact.testsuite.Retry;
+import org.openfact.testsuite.OpenfactServer;
 import org.openfact.util.JsonSerialization;
+import org.openfact.common.util.Time;
 
+import javax.servlet.DispatcherType;
+import javax.servlet.Servlet;
 import javax.ws.rs.core.Application;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -34,6 +51,10 @@ import java.io.InputStream;
 import java.net.Socket;
 import java.util.Map;
 
+/**
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public abstract class AbstractOpenfactRule extends ExternalResource {
 
     protected TemporaryFolder temporaryFolder;
@@ -59,34 +80,34 @@ public abstract class AbstractOpenfactRule extends ExternalResource {
     protected void configureServer(OpenfactServer server) {
 
     }
-    
-    public InvoiceRepresentation getInvoice(String organization, int series, int number) {
+
+    /*public UserRepresentation getUser(String organization, String name) {
         OpenfactSession session = server.getSessionFactory().create();
         session.getTransactionManager().begin();
         try {
             OrganizationModel organizationByName = session.organizations().getOrganizationByName(organization);
-            InvoiceModel invoice = session.invoices().getInvoiceBySeriesAndNumber(series, number, organizationByName);
-            InvoiceRepresentation invoiceRep = invoice != null ? ModelToRepresentation.toRepresentation(invoice) : null;
+            UserModel user = session.users().getUserByUsername(name, organizationByName);
+            UserRepresentation userRep = user != null ? ModelToRepresentation.toRepresentation(user) : null;
             session.getTransactionManager().commit();
-            return invoiceRep;
+            return userRep;
         } finally {
             session.close();
         }
     }
 
-    public InvoiceRepresentation getInvoiceById(String organization, String id) {
+    public UserRepresentation getUserById(String organization, String id) {
         OpenfactSession session = server.getSessionFactory().create();
         session.getTransactionManager().begin();
         try {
             OrganizationModel organizationByName = session.organizations().getOrganizationByName(organization);
-            InvoiceRepresentation invoiceRep = ModelToRepresentation.toRepresentation(session.invoices().getInvoiceById(id, organizationByName));
+            UserRepresentation userRep = ModelToRepresentation.toRepresentation(session.users().getUserById(id, organizationByName));
             session.getTransactionManager().commit();
-            return invoiceRep;
+            return userRep;
         } finally {
             session.close();
         }
-    }
-    
+    }*/
+
     protected void setupOpenfact() {
         OpenfactSession session = server.getSessionFactory().create();
         session.getTransactionManager().begin();
@@ -103,7 +124,7 @@ public abstract class AbstractOpenfactRule extends ExternalResource {
             session.close();
         }
     }
-    
+
     public void update(OpenfactRule.OpenfactSetup configurer, String organizationId) {
         OpenfactSession session = server.getSessionFactory().create();
         session.getTransactionManager().begin();
@@ -132,7 +153,8 @@ public abstract class AbstractOpenfactRule extends ExternalResource {
         DeploymentInfo deploymentInfo = createDeploymentInfo(name, contextPath, servletClass);
         server.getServer().deploy(deploymentInfo);
     }
-    
+
+
     public DeploymentInfo createDeploymentInfo(String name, String contextPath, Class<? extends Servlet> servletClass) {
         DeploymentInfo deploymentInfo = new DeploymentInfo();
         deploymentInfo.setClassLoader(getClass().getClassLoader());
@@ -152,8 +174,6 @@ public abstract class AbstractOpenfactRule extends ExternalResource {
     }
 
     public void addErrorPage(String errorPage, DeploymentInfo di) {
-        new ServletInfo("", Servlet.class);
-        
         ServletInfo servlet = new ServletInfo("Error Page", ErrorServlet.class);
         servlet.addMapping("/error.html");
         SecurityConstraint constraint = new SecurityConstraint();
@@ -169,7 +189,7 @@ public abstract class AbstractOpenfactRule extends ExternalResource {
                 .addErrorPage(new ErrorPage(errorPage, 403))
                 .addErrorPage(new ErrorPage(errorPage, 500));
     }
-    
+
     public void deployJaxrsApplication(String name, String contextPath, Class<? extends Application> applicationClass, Map<String,String> initParams) {
         ResteasyDeployment deployment = new ResteasyDeployment();
         deployment.setApplicationClass(applicationClass.getName());
@@ -358,18 +378,17 @@ public abstract class AbstractOpenfactRule extends ExternalResource {
 
         /*public void deployApplicationWithFilter() {
             DeploymentInfo di = createDeploymentInfo(name, contextPath, servletClass);
-            FilterInfo filter = new FilterInfo("openfact-filter", KeycloakOIDCFilter.class);
-            if (null == keycloakConfigResolver) {
-                filter.addInitParam("keycloak.config.file", adapterConfigPath);
+            FilterInfo filter = new FilterInfo("openfact-filter", OpenfactOIDCFilter.class);
+            if (null == openfactConfigResolver) {
+                filter.addInitParam("openfact.config.file", adapterConfigPath);
             } else {
-                filter.addInitParam("keycloak.config.resolver", keycloakConfigResolver.getCanonicalName());
+                filter.addInitParam("openfact.config.resolver", openfactConfigResolver.getCanonicalName());
             }
             di.addFilter(filter);
-            di.addFilterUrlMapping("keycloak-filter", constraintUrl, DispatcherType.REQUEST);
+            di.addFilterUrlMapping("openfact-filter", constraintUrl, DispatcherType.REQUEST);
             server.getServer().deploy(di);
         }*/
 
     }
-    
 
 }

@@ -139,4 +139,10 @@ public class JpaOrganizationProvider implements OrganizationProvider {
         return organizations;
     }
 
+    @Override
+    public int getOrganizationsCount(OrganizationModel organization) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
 }

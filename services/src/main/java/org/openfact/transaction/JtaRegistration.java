@@ -14,25 +14,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.openfact.transaction;
 
-package org.openfact.testsuite;
+import org.openfact.models.OpenfactSession;
+import org.openfact.services.ServicesLogger;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.transaction.TransactionManager;
 
 /**
- * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
  */
-public class MailUtil {
+public class JtaRegistration {
 
-    private static Pattern mailPattern = Pattern.compile("http[^\\s\"]*");
 
-    public static String getLink(String body) {
-        Matcher matcher = mailPattern.matcher(body);
-        if (matcher.find()) {
-            return matcher.group();
-        }
-        throw new AssertionError("No link found in " + body);
+
+    public void begin(OpenfactSession session) {
+        TransactionManager tm = session.getProvider(JtaTransactionManagerLookup.class).getTransactionManager();
+        if (tm == null) return;
+
+        session.getTransactionManager().enlist(new JtaTransactionWrapper(tm));
     }
-
 }

@@ -15,6 +15,8 @@ public interface InvoiceProvider extends Provider {
     InvoiceModel addInvoice(OrganizationModel organization, String ID);
 
     InvoiceModel getInvoiceById(OrganizationModel organization, String id);
+    
+    InvoiceModel getInvoiceByID(OrganizationModel organization, String ID);
 
     boolean removeInvoice(OrganizationModel organization, String id);
 

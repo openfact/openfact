@@ -107,4 +107,16 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
         return null;
     }
 
+    @Override
+    public CreditNoteModel addCreditNote(OrganizationModel organization, String ID) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public CreditNoteModel getInvoiceByID(OrganizationModel organizationModel, String ID) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }
