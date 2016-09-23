@@ -19,19 +19,34 @@
 	</properties>
 
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
 		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.5</version>
+			<groupId>org.openfact</groupId>
+			<artifactId>openfact-themes</artifactId>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.atteo/evo-inflector -->
 		<dependency>
-			<groupId>org.atteo</groupId>
-			<artifactId>evo-inflector</artifactId>
-			<version>1.2.1</version>
+			<groupId>org.openfact</groupId>
+			<artifactId>openfact-common</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>org.openfact</groupId>
+			<artifactId>openfact-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openfact</groupId>
+			<artifactId>openfact-services-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openfact</groupId>
+			<artifactId>openfact-services</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openfact</groupId>
+			<artifactId>openfact-server-spi</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openfact</groupId>
+			<artifactId>openfact-model-jpa</artifactId>
+		</dependency>
 
 
 		<dependency>
@@ -42,6 +57,19 @@
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bcpkix-jdk15on</artifactId>
 		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>org.keycloak</groupId> -->
+		<!-- <artifactId>keycloak-dependencies-server-all</artifactId> -->
+		<!-- <type>pom</type> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.keycloak</groupId> -->
+		<!-- <artifactId>keycloak-admin-client</artifactId> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.keycloak</groupId> -->
+		<!-- <artifactId>keycloak-wildfly-adduser</artifactId> -->
+		<!-- </dependency> -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -53,6 +81,10 @@
 		<dependency>
 			<groupId>org.jboss.spec.javax.ws.rs</groupId>
 			<artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec.javax.transaction</groupId>
+			<artifactId>jboss-transaction-api_1.2_spec</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
@@ -100,35 +132,61 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>org.keycloak</groupId> -->
+		<!-- <artifactId>keycloak-server-spi</artifactId> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.keycloak</groupId> -->
+		<!-- <artifactId>keycloak-ldap-federation</artifactId> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.keycloak</groupId> -->
+		<!-- <artifactId>keycloak-kerberos-federation</artifactId> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.keycloak</groupId> -->
+		<!-- <artifactId>keycloak-undertow-adapter</artifactId> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.keycloak</groupId> -->
+		<!-- <artifactId>keycloak-saml-adapter-api-public</artifactId> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.keycloak</groupId> -->
+		<!-- <artifactId>keycloak-saml-adapter-core</artifactId> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.keycloak</groupId> -->
+		<!-- <artifactId>keycloak-authz-client</artifactId> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.keycloak</groupId> -->
+		<!-- <artifactId>keycloak-saml-servlet-filter-adapter</artifactId> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.keycloak</groupId> -->
+		<!-- <artifactId>keycloak-servlet-filter-adapter</artifactId> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.keycloak</groupId> -->
+		<!-- <artifactId>keycloak-saml-undertow-adapter</artifactId> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.keycloak</groupId> -->
+		<!-- <artifactId>keycloak-jaxrs-oauth-client</artifactId> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.keycloak</groupId> -->
+		<!-- <artifactId>federation-properties-example</artifactId> -->
+		<!-- </dependency> -->
 
-		<dependency>
-			<groupId>org.openfact</groupId>
-			<artifactId>openfact-themes</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.openfact</groupId>
-			<artifactId>openfact-common</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.openfact</groupId>
-			<artifactId>openfact-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.openfact</groupId>
-			<artifactId>openfact-services-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.openfact</groupId>
-			<artifactId>openfact-services</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.openfact</groupId>
-			<artifactId>openfact-server-spi</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.openfact</groupId>
-			<artifactId>openfact-model-jpa</artifactId>
-		</dependency>
+		<!-- Dependency on services from integration-arquillian -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.keycloak.testsuite</groupId> -->
+		<!-- <artifactId>integration-arquillian-testsuite-providers</artifactId> -->
+		<!-- <version>${project.version}</version> -->
+		<!-- </dependency> -->
 
 		<dependency>
 			<groupId>org.jboss.logging</groupId>
@@ -202,6 +260,11 @@
 		</dependency>
 
 		<!-- Apache DS -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.keycloak</groupId> -->
+		<!-- <artifactId>keycloak-util-embedded-ldap</artifactId> -->
+		<!-- </dependency> -->
+
 		<dependency>
 			<groupId>org.picketlink</groupId>
 			<artifactId>picketlink-wildfly-common</artifactId>
