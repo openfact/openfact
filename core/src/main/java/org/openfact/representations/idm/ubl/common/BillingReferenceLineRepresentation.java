@@ -4,17 +4,17 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class BillingReferenceLineRepresentation {
-    private String ID;
+    private String idUbl;
     private BigDecimal amount;
     private List<AllowanceChargeRepresentation> allowanceCharge;
     private String id;
 
-    public String getID() {
-        return this.ID;
+    public String getIdUbl() {
+        return this.idUbl;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setIdUbl(String idUbl) {
+        this.idUbl = idUbl;
     }
 
     public String getId() {

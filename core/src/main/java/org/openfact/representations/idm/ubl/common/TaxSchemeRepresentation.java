@@ -3,19 +3,19 @@ package org.openfact.representations.idm.ubl.common;
 import java.util.List;
 
 public class TaxSchemeRepresentation {
-    private String ID;
+    private String idUbl;
     private String name;
     private String taxRepresentationCode;
     private String currencyCode;
     private List<AddressRepresentation> jurisdictionRegionAddress;
     private String id;
 
-    public String getID() {
-        return this.ID;
+    public String getIdUbl() {
+        return this.idUbl;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setIdUbl(String idUbl) {
+        this.idUbl = idUbl;
     }
 
     public String getId() {

@@ -52,5 +52,4 @@ public class CertificateRepresentation {
         this.certificate = certificate;
     }
 
-
 }

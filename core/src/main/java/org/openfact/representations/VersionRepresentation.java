@@ -17,8 +17,9 @@
 
 package org.openfact.representations;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openfact.common.Version;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
@@ -31,7 +32,7 @@ public class VersionRepresentation {
     private final String buildTime = Version.BUILD_TIME;
 
     static {
-         SINGLETON = new VersionRepresentation();
+        SINGLETON = new VersionRepresentation();
     }
 
     @JsonProperty("version")

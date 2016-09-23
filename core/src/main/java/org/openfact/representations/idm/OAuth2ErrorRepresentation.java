@@ -17,8 +17,9 @@
 
 package org.openfact.representations.idm;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openfact.OAuth2Constants;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>

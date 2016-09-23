@@ -27,7 +27,7 @@ public class DebitNoteRepresentation {
     private String UBLVersionID;
     private String customizationID;
     private String profileID;
-    private String ID;
+    private String idUbl;
     private boolean copyIndicator;
     private String UUID;
     private LocalDate issueDate;
@@ -73,24 +73,28 @@ public class DebitNoteRepresentation {
         }
         note.add(representation);
     }
+
     public void addSignature(SignatureRepresentation representation) {
         if (signature == null) {
             signature = new ArrayList<>();
         }
         signature.add(representation);
     }
+
     public void addPrepaidPayment(PaymentRepresentation representation) {
         if (prepaidPayment == null) {
             prepaidPayment = new ArrayList<>();
         }
         prepaidPayment.add(representation);
     }
+
     public void addInvoicePeriod(PeriodRepresentation representation) {
         if (invoicePeriod == null) {
             invoicePeriod = new ArrayList<>();
         }
         invoicePeriod.add(representation);
     }
+
     public void addDiscrepancyResponse(ResponseRepresentation representation) {
         if (discrepancyResponse == null) {
             discrepancyResponse = new ArrayList<>();
@@ -104,43 +108,49 @@ public class DebitNoteRepresentation {
         }
         debitNoteLine.add(representation);
     }
+
     public void addTaxTotal(TaxTotalRepresentation representation) {
         if (taxTotal == null) {
             taxTotal = new ArrayList<>();
         }
         taxTotal.add(representation);
     }
+
     public void addBillingReference(BillingReferenceRepresentation representation) {
         if (billingReference == null) {
             billingReference = new ArrayList<>();
         }
         billingReference.add(representation);
     }
+
     public void addDespatchDocumentReference(DocumentReferenceRepresentation representation) {
         if (despatchDocumentReference == null) {
             despatchDocumentReference = new ArrayList<>();
         }
         despatchDocumentReference.add(representation);
     }
+
     public void addReceiptDocumentReference(DocumentReferenceRepresentation representation) {
         if (receiptDocumentReference == null) {
             receiptDocumentReference = new ArrayList<>();
         }
         receiptDocumentReference.add(representation);
     }
+
     public void addContractDocumentReference(DocumentReferenceRepresentation representation) {
         if (contractDocumentReference == null) {
             contractDocumentReference = new ArrayList<>();
         }
         contractDocumentReference.add(representation);
     }
+
     public void addAdditionalDocumentReference(DocumentReferenceRepresentation representation) {
         if (additionalDocumentReference == null) {
             additionalDocumentReference = new ArrayList<>();
         }
         additionalDocumentReference.add(representation);
     }
-/**/
+    /**/
 
     public LocalDate getTaxPointDate() {
         return this.taxPointDate;
@@ -150,12 +160,12 @@ public class DebitNoteRepresentation {
         this.taxPointDate = taxPointDate;
     }
 
-    public String getID() {
-        return this.ID;
+    public String getIdUbl() {
+        return this.idUbl;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setIdUbl(String idUbl) {
+        this.idUbl = idUbl;
     }
 
     public String getId() {

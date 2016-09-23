@@ -17,6 +17,10 @@
 
 package org.openfact.util;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -24,10 +28,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 /**
  * Utility class to handle simple JSON serializable for Keycloak.
@@ -38,7 +38,8 @@ import java.io.OutputStream;
 public class JsonSerialization {
     public static final ObjectMapper mapper = new ObjectMapper();
     public static final ObjectMapper prettyMapper = new ObjectMapper();
-    public static final ObjectMapper sysPropertiesAwareMapper = new ObjectMapper(new SystemPropertiesJsonParserFactory());
+    public static final ObjectMapper sysPropertiesAwareMapper = new ObjectMapper(
+            new SystemPropertiesJsonParserFactory());
 
     static {
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
@@ -57,6 +58,7 @@ public class JsonSerialization {
     public static String writeValueAsPrettyString(Object obj) throws IOException {
         return prettyMapper.writeValueAsString(obj);
     }
+
     public static String writeValueAsString(Object obj) throws IOException {
         return mapper.writeValueAsString(obj);
     }
@@ -81,7 +83,8 @@ public class JsonSerialization {
         return mapper.readValue(bytes, type);
     }
 
-    public static <T> T readValue(InputStream bytes, Class<T> type, boolean replaceSystemProperties) throws IOException {
+    public static <T> T readValue(InputStream bytes, Class<T> type, boolean replaceSystemProperties)
+            throws IOException {
         if (replaceSystemProperties) {
             return sysPropertiesAwareMapper.readValue(bytes, type);
         } else {
@@ -90,11 +93,15 @@ public class JsonSerialization {
     }
 
     /**
-     * Creates an {@link ObjectNode} based on the given {@code pojo}, copying all its properties to the resulting {@link ObjectNode}.
+     * Creates an {@link ObjectNode} based on the given {@code pojo}, copying
+     * all its properties to the resulting {@link ObjectNode}.
      *
-     * @param pojo a pojo which properties will be populates into the resulting a {@link ObjectNode}
+     * @param pojo
+     *            a pojo which properties will be populates into the resulting a
+     *            {@link ObjectNode}
      * @return a {@link ObjectNode} with all the properties from the given pojo
-     * @throws IOException if the resulting a {@link ObjectNode} can not be created
+     * @throws IOException
+     *             if the resulting a {@link ObjectNode} can not be created
      */
     public static ObjectNode createObjectNode(Object pojo) throws IOException {
         if (pojo == null) {

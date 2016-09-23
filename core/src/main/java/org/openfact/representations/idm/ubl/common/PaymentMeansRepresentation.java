@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class PaymentMeansRepresentation {
-    private String ID;
+    private String idUbl;
     private String paymentMeansCode;
     private LocalDate paymentDueDate;
     private String paymentChannelCode;
@@ -17,12 +17,12 @@ public class PaymentMeansRepresentation {
     private CreditAccountRepresentation creditAccount;
     private String id;
 
-    public String getID() {
-        return this.ID;
+    public String getIdUbl() {
+        return this.idUbl;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setIdUbl(String idUbl) {
+        this.idUbl = idUbl;
     }
 
     public List<String> getInstructionNote() {

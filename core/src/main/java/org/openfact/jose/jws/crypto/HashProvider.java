@@ -52,14 +52,14 @@ public class HashProvider {
 
     private static String getJavaDigestAlgorithm(Algorithm alg) {
         switch (alg) {
-            case RS256:
-                return "SHA-256";
-            case RS384:
-                return "SHA-384";
-            case RS512:
-                return "SHA-512";
-            default:
-                throw new IllegalArgumentException("Not an RSA Algorithm");
+        case RS256:
+            return "SHA-256";
+        case RS384:
+            return "SHA-384";
+        case RS512:
+            return "SHA-512";
+        default:
+            throw new IllegalArgumentException("Not an RSA Algorithm");
         }
     }
 

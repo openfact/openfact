@@ -12,14 +12,15 @@ public class SupplierPartyRepresentation {
     private ContactRepresentation accountingContact;
     private ContactRepresentation sellerContact;
     private String id;
-/**/
-public void addAdditionalAccountID(String rep){
-    if(additionalAccountID==null){
-        additionalAccountID=new ArrayList<>();
+
+    /**/
+    public void addAdditionalAccountID(String rep) {
+        if (additionalAccountID == null) {
+            additionalAccountID = new ArrayList<>();
+        }
+        additionalAccountID.add(rep);
     }
-    additionalAccountID.add(rep);
-}
-/**/
+    /**/
 
     public ContactRepresentation getSellerContact() {
         return this.sellerContact;

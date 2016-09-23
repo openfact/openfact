@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class OrderReferenceRepresentation {
-    private String ID;
+    private String idUbl;
     private String salesOrderID;
     private Boolean copyIndicator;
     private String UUID;
@@ -14,12 +14,12 @@ public class OrderReferenceRepresentation {
     private DocumentReferenceRepresentation documentReference;
     private String id;
 
-    public String getID() {
-        return this.ID;
+    public String getIdUbl() {
+        return this.idUbl;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setIdUbl(String idUbl) {
+        this.idUbl = idUbl;
     }
 
     public String getId() {

@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.openfact.representations.idm.ubl.common.AllowanceChargeRepresentation;
 import org.openfact.representations.idm.ubl.common.BillingReferenceRepresentation;
 import org.openfact.representations.idm.ubl.common.CreditNoteLineRepresentation;
@@ -26,7 +27,7 @@ public class CreditNoteRepresentation {
     private String UBLVersionID;
     private String customizationID;
     private String profileID;
-    private String ID;
+    private String idUbl;
     private boolean copyIndicator;
     private String UUID;
     private LocalDate issueDate;
@@ -65,41 +66,41 @@ public class CreditNoteRepresentation {
     private String id;
 
     /**/
-    public void addDiscrepancyResponse(ResponseRepresentation representation){
-     if(discrepancyResponse==null){
-         discrepancyResponse=new ArrayList<>();
-     }
+    public void addDiscrepancyResponse(ResponseRepresentation representation) {
+        if (discrepancyResponse == null) {
+            discrepancyResponse = new ArrayList<>();
+        }
         discrepancyResponse.add(representation);
     }
-    public void addCreditNoteLine(CreditNoteLineRepresentation representation){
-        if(creditNoteLine==null){
-            creditNoteLine=new ArrayList<>();
+
+    public void addCreditNoteLine(CreditNoteLineRepresentation representation) {
+        if (creditNoteLine == null) {
+            creditNoteLine = new ArrayList<>();
         }
         creditNoteLine.add(representation);
     }
 
-    public void addTaxTotal(TaxTotalRepresentation representation){
-        if(taxTotal==null){
-            taxTotal=new ArrayList<>();
+    public void addTaxTotal(TaxTotalRepresentation representation) {
+        if (taxTotal == null) {
+            taxTotal = new ArrayList<>();
         }
         taxTotal.add(representation);
     }
-    public void addBillingReference(BillingReferenceRepresentation representation){
-        if(billingReference==null){
-            billingReference=new ArrayList<>();
+
+    public void addBillingReference(BillingReferenceRepresentation representation) {
+        if (billingReference == null) {
+            billingReference = new ArrayList<>();
         }
         billingReference.add(representation);
     }
-    public void addDespatchDocumentReference(DocumentReferenceRepresentation representation){
-        if(despatchDocumentReference==null){
-            despatchDocumentReference=new ArrayList<>();
+
+    public void addDespatchDocumentReference(DocumentReferenceRepresentation representation) {
+        if (despatchDocumentReference == null) {
+            despatchDocumentReference = new ArrayList<>();
         }
         despatchDocumentReference.add(representation);
     }
     /**/
-
-
-
 
     public LocalDate getTaxPointDate() {
         return this.taxPointDate;
@@ -109,12 +110,12 @@ public class CreditNoteRepresentation {
         this.taxPointDate = taxPointDate;
     }
 
-    public String getID() {
-        return this.ID;
+    public String getIdUbl() {
+        return this.idUbl;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setIdUbl(String idUbl) {
+        this.idUbl = idUbl;
     }
 
     public String getId() {

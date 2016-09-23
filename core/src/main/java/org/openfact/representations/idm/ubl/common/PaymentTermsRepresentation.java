@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class PaymentTermsRepresentation {
-    private String ID;
+    private String idUbl;
     private String paymentMeansID;
     private String prepaidPaymentReferenceID;
     private List<String> note;
@@ -24,12 +24,12 @@ public class PaymentTermsRepresentation {
         this.settlementPeriod = settlementPeriod;
     }
 
-    public String getID() {
-        return this.ID;
+    public String getIdUbl() {
+        return this.idUbl;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setIdUbl(String idUbl) {
+        this.idUbl = idUbl;
     }
 
     public String getId() {

@@ -28,26 +28,28 @@ public class PartyRepresentation {
         }
         partyLegalEntity.add(representation);
     }
+
     public void addPartyTaxSchemeEntity(PartyTaxSchemeRepresentation representation) {
         if (partyTaxScheme == null) {
             partyTaxScheme = new ArrayList<>();
         }
         partyTaxScheme.add(representation);
     }
+
     public void addPartyName(String representation) {
         if (partyName == null) {
             partyName = new ArrayList<>();
         }
         partyName.add(representation);
     }
+
     public void addPartyIdentification(String representation) {
         if (partyIdentification == null) {
             partyIdentification = new ArrayList<>();
         }
         partyIdentification.add(representation);
     }
-/**/
-
+    /**/
 
     public String getId() {
         return this.id;

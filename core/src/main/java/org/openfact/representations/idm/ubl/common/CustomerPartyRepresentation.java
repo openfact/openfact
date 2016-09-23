@@ -14,9 +14,9 @@ public class CustomerPartyRepresentation {
     private String id;
 
     /**/
-    public  void addAdditionalAccountID(String rep){
-        if(additionalAccountID==null){
-            additionalAccountID=new ArrayList<>();
+    public void addAdditionalAccountID(String rep) {
+        if (additionalAccountID == null) {
+            additionalAccountID = new ArrayList<>();
         }
         additionalAccountID.add(rep);
     }

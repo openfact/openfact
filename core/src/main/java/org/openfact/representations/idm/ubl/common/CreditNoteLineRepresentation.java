@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CreditNoteLineRepresentation {
-    private String ID;
+    private String idUbl;
     private String UUID;
     private String note;
     private QuantityRepresentation creditedQuantity;
@@ -25,13 +25,15 @@ public class CreditNoteLineRepresentation {
     private ItemRepresentation item;
     private PriceRepresentation price;
     private String id;
-/**/
-    public void addTaxTotal(TaxTotalRepresentation representation){
-        if(taxTotal==null){
-            taxTotal=new ArrayList<>();
+
+    /**/
+    public void addTaxTotal(TaxTotalRepresentation representation) {
+        if (taxTotal == null) {
+            taxTotal = new ArrayList<>();
         }
         taxTotal.add(representation);
     }
+
     public void addDelivery(DeliveryRepresentation representation) {
         if (delivery == null) {
             delivery = new ArrayList<>();
@@ -74,7 +76,7 @@ public class CreditNoteLineRepresentation {
         discrepancyResponse.add(representation);
     }
 
-/**/
+    /**/
     public LocalDate getTaxPointDate() {
         return this.taxPointDate;
     }
@@ -83,12 +85,12 @@ public class CreditNoteLineRepresentation {
         this.taxPointDate = taxPointDate;
     }
 
-    public String getID() {
-        return this.ID;
+    public String getIdUbl() {
+        return this.idUbl;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setIdUbl(String idUbl) {
+        this.idUbl = idUbl;
     }
 
     public String getId() {

@@ -1,7 +1,7 @@
 package org.openfact.representations.idm.ubl.common;
 
 public class UBLExtensionRepresentation {
-    private String ID;
+    private String idUbl;
     private String name;
     private String extensionAgencyID;
     private String extensionAgencyName;
@@ -29,12 +29,12 @@ public class UBLExtensionRepresentation {
         this.extensionURI = extensionURI;
     }
 
-    public String getID() {
-        return this.ID;
+    public String getIdUbl() {
+        return this.idUbl;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setIdUbl(String idUbl) {
+        this.idUbl = idUbl;
     }
 
     public String getId() {

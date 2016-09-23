@@ -18,7 +18,6 @@
 package org.openfact.jose.jwk;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.openfact.jose.jwk.JWK;
 
 /**
  * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>

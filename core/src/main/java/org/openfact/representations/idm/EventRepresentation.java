@@ -108,19 +108,29 @@ public class EventRepresentation {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
         EventRepresentation that = (EventRepresentation) o;
 
-        if (time != that.time) return false;
-        if (type != null ? !type.equals(that.type) : that.type != null) return false;
-        if (realmId != null ? !realmId.equals(that.realmId) : that.realmId != null) return false;
-        if (clientId != null ? !clientId.equals(that.clientId) : that.clientId != null) return false;
-        if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
-        if (sessionId != null ? !sessionId.equals(that.sessionId) : that.sessionId != null) return false;
-        if (ipAddress != null ? !ipAddress.equals(that.ipAddress) : that.ipAddress != null) return false;
-        if (error != null ? !error.equals(that.error) : that.error != null) return false;
+        if (time != that.time)
+            return false;
+        if (type != null ? !type.equals(that.type) : that.type != null)
+            return false;
+        if (realmId != null ? !realmId.equals(that.realmId) : that.realmId != null)
+            return false;
+        if (clientId != null ? !clientId.equals(that.clientId) : that.clientId != null)
+            return false;
+        if (userId != null ? !userId.equals(that.userId) : that.userId != null)
+            return false;
+        if (sessionId != null ? !sessionId.equals(that.sessionId) : that.sessionId != null)
+            return false;
+        if (ipAddress != null ? !ipAddress.equals(that.ipAddress) : that.ipAddress != null)
+            return false;
+        if (error != null ? !error.equals(that.error) : that.error != null)
+            return false;
         return !(details != null ? !details.equals(that.details) : that.details != null);
 
     }

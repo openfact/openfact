@@ -36,12 +36,15 @@ public class ServerInfoRepresentation {
 
     private Map<String, SpiInfoRepresentation> providers;
 
-    /*private Map<String, List<ProtocolMapperTypeRepresentation>> protocolMapperTypes;
-    private Map<String, List<ProtocolMapperRepresentation>> builtinProtocolMappers;
-    private Map<String, List<ClientInstallationRepresentation>> clientInstallations;
-    private Map<String, List<ComponentTypeRepresentation>> componentTypes;
-
-    private List<PasswordPolicyTypeRepresentation> passwordPolicies;*/
+    /*
+     * private Map<String, List<ProtocolMapperTypeRepresentation>>
+     * protocolMapperTypes; private Map<String,
+     * List<ProtocolMapperRepresentation>> builtinProtocolMappers; private
+     * Map<String, List<ClientInstallationRepresentation>> clientInstallations;
+     * private Map<String, List<ComponentTypeRepresentation>> componentTypes;
+     * 
+     * private List<PasswordPolicyTypeRepresentation> passwordPolicies;
+     */
 
     private Map<String, List<String>> enums;
 
@@ -101,21 +104,21 @@ public class ServerInfoRepresentation {
         this.providers = providers;
     }
 
-    /*public Map<String, List<ProtocolMapperTypeRepresentation>> getProtocolMapperTypes() {
-        return protocolMapperTypes;
-    }
-
-    public void setProtocolMapperTypes(Map<String, List<ProtocolMapperTypeRepresentation>> protocolMapperTypes) {
-        this.protocolMapperTypes = protocolMapperTypes;
-    }
-
-    public Map<String, List<ProtocolMapperRepresentation>> getBuiltinProtocolMappers() {
-        return builtinProtocolMappers;
-    }
-
-    public void setBuiltinProtocolMappers(Map<String, List<ProtocolMapperRepresentation>> builtinProtocolMappers) {
-        this.builtinProtocolMappers = builtinProtocolMappers;
-    }*/
+    /*
+     * public Map<String, List<ProtocolMapperTypeRepresentation>>
+     * getProtocolMapperTypes() { return protocolMapperTypes; }
+     * 
+     * public void setProtocolMapperTypes(Map<String,
+     * List<ProtocolMapperTypeRepresentation>> protocolMapperTypes) {
+     * this.protocolMapperTypes = protocolMapperTypes; }
+     * 
+     * public Map<String, List<ProtocolMapperRepresentation>>
+     * getBuiltinProtocolMappers() { return builtinProtocolMappers; }
+     * 
+     * public void setBuiltinProtocolMappers(Map<String,
+     * List<ProtocolMapperRepresentation>> builtinProtocolMappers) {
+     * this.builtinProtocolMappers = builtinProtocolMappers; }
+     */
 
     public Map<String, List<String>> getEnums() {
         return enums;
@@ -125,27 +128,25 @@ public class ServerInfoRepresentation {
         this.enums = enums;
     }
 
-    /*public Map<String, List<ClientInstallationRepresentation>> getClientInstallations() {
-        return clientInstallations;
-    }
-
-    public void setClientInstallations(Map<String, List<ClientInstallationRepresentation>> clientInstallations) {
-        this.clientInstallations = clientInstallations;
-    }
-
-    public List<PasswordPolicyTypeRepresentation> getPasswordPolicies() {
-        return passwordPolicies;
-    }
-
-    public void setPasswordPolicies(List<PasswordPolicyTypeRepresentation> passwordPolicies) {
-        this.passwordPolicies = passwordPolicies;
-    }
-
-    public Map<String, List<ComponentTypeRepresentation>> getComponentTypes() {
-        return componentTypes;
-    }
-
-    public void setComponentTypes(Map<String, List<ComponentTypeRepresentation>> componentTypes) {
-        this.componentTypes = componentTypes;
-    }*/
+    /*
+     * public Map<String, List<ClientInstallationRepresentation>>
+     * getClientInstallations() { return clientInstallations; }
+     * 
+     * public void setClientInstallations(Map<String,
+     * List<ClientInstallationRepresentation>> clientInstallations) {
+     * this.clientInstallations = clientInstallations; }
+     * 
+     * public List<PasswordPolicyTypeRepresentation> getPasswordPolicies() {
+     * return passwordPolicies; }
+     * 
+     * public void setPasswordPolicies(List<PasswordPolicyTypeRepresentation>
+     * passwordPolicies) { this.passwordPolicies = passwordPolicies; }
+     * 
+     * public Map<String, List<ComponentTypeRepresentation>> getComponentTypes()
+     * { return componentTypes; }
+     * 
+     * public void setComponentTypes(Map<String,
+     * List<ComponentTypeRepresentation>> componentTypes) { this.componentTypes
+     * = componentTypes; }
+     */
 }

@@ -3,7 +3,7 @@ package org.openfact.representations.idm.ubl.common;
 import java.util.List;
 
 public class ContactRepresentation {
-    private String ID;
+    private String idUbl;
     private String name;
     private String telephone;
     private String telefax;
@@ -28,12 +28,12 @@ public class ContactRepresentation {
         this.telefax = telefax;
     }
 
-    public String getID() {
-        return this.ID;
+    public String getIdUbl() {
+        return this.idUbl;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setIdUbl(String idUbl) {
+        this.idUbl = idUbl;
     }
 
     public List<CommunicationRepresentation> getOtherCommunication() {

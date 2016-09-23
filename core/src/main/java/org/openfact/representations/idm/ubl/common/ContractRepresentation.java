@@ -5,7 +5,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 public class ContractRepresentation {
-    private String ID;
+    private String idUbl;
     private LocalDate issueDate;
     private LocalTime issueTime;
     private String contractRepresentationCode;
@@ -14,12 +14,12 @@ public class ContractRepresentation {
     private List<DocumentReferenceRepresentation> contractDocumentReference;
     private String id;
 
-    public String getID() {
-        return this.ID;
+    public String getIdUbl() {
+        return this.idUbl;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setIdUbl(String idUbl) {
+        this.idUbl = idUbl;
     }
 
     public PeriodRepresentation getValidityPeriod() {

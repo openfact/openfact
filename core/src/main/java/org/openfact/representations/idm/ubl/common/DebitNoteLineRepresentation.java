@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DebitNoteLineRepresentation {
-    private String ID;
+    private String idUbl;
     private String UUID;
     private String note;
     private QuantityRepresentation debitedQuantity;
@@ -85,12 +85,12 @@ public class DebitNoteLineRepresentation {
         this.taxPointDate = taxPointDate;
     }
 
-    public String getID() {
-        return this.ID;
+    public String getIdUbl() {
+        return this.idUbl;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setIdUbl(String idUbl) {
+        this.idUbl = idUbl;
     }
 
     public String getId() {

@@ -8,53 +8,53 @@ import java.text.DecimalFormat;
  * Created by Alex Pariona-"alexpariona@openfact.com" on 26/07/2016.
  */
 public abstract class NumberToLetter {
-    private static final String[] UNIDADES = { "", "UN ", "DOS ", "TRES ",
-            "CUATRO ", "CINCO ", "SEIS ", "SIETE ", "OCHO ", "NUEVE ", "DIEZ ",
-            "ONCE ", "DOCE ", "TRECE ", "CATORCE ", "QUINCE ", "DIECISEIS",
-            "DIECISIETE", "DIECIOCHO", "DIECINUEVE", "VEINTE" };
+    private static final String[] UNIDADES = { "", "UN ", "DOS ", "TRES ", "CUATRO ", "CINCO ", "SEIS ",
+            "SIETE ", "OCHO ", "NUEVE ", "DIEZ ", "ONCE ", "DOCE ", "TRECE ", "CATORCE ", "QUINCE ",
+            "DIECISEIS", "DIECISIETE", "DIECIOCHO", "DIECINUEVE", "VEINTE" };
 
-    private static final String[] DECENAS = { "VENTI", "TREINTA ", "CUARENTA ",
-            "CINCUENTA ", "SESENTA ", "SETENTA ", "OCHENTA ", "NOVENTA ",
-            "CIEN " };
+    private static final String[] DECENAS = { "VENTI", "TREINTA ", "CUARENTA ", "CINCUENTA ", "SESENTA ",
+            "SETENTA ", "OCHENTA ", "NOVENTA ", "CIEN " };
 
-    private static final String[] CENTENAS = { "CIENTO ", "DOSCIENTOS ",
-            "TRESCIENTOS ", "CUATROCIENTOS ", "QUINIENTOS ", "SEISCIENTOS ",
-            "SETECIENTOS ", "OCHOCIENTOS ", "NOVECIENTOS " };
+    private static final String[] CENTENAS = { "CIENTO ", "DOSCIENTOS ", "TRESCIENTOS ", "CUATROCIENTOS ",
+            "QUINIENTOS ", "SEISCIENTOS ", "SETECIENTOS ", "OCHOCIENTOS ", "NOVECIENTOS " };
 
     /**
      * Convierte a letras un numero de la forma $123,456.32
-     * @param number Numero en representacion texto
+     * 
+     * @param number
+     *            Numero en representacion texto
      * @throws NumberFormatException
-     * Si valor del numero no es valido (fuera de rango o )
+     *             Si valor del numero no es valido (fuera de rango o )
      * @return Numero en letras
      */
-    public static String convertNumberToLetter(String number)
-            throws NumberFormatException {
+    public static String convertNumberToLetter(String number) throws NumberFormatException {
         return convertNumberToLetter(Double.parseDouble(number));
     }
 
     /**
      * Convierte a letras un numero de la forma $123,456.32
-     * @param number Numero en representacion texto
+     * 
+     * @param number
+     *            Numero en representacion texto
      * @throws NumberFormatException
-     * Si valor del numero no es valido (fuera de rango o )
+     *             Si valor del numero no es valido (fuera de rango o )
      * @return Numero en letras
      */
-    public static String convertNumberToLetter(BigDecimal number)
-            throws NumberFormatException {
+    public static String convertNumberToLetter(BigDecimal number) throws NumberFormatException {
         return convertNumberToLetter(number.doubleValue());
     }
 
     /**
      * Convierte un numero en representacion numerica a uno en representacion de
      * texto. El numero es valido si esta entre 0 y 999'999.999
-     * @param doubleNumber Numero a convertir
+     * 
+     * @param doubleNumber
+     *            Numero a convertir
      * @return Numero convertido a texto
      * @throws NumberFormatException
-     * Si el numero esta fuera del rango
+     *             Si el numero esta fuera del rango
      */
-    public static String convertNumberToLetter(double doubleNumber)
-            throws NumberFormatException {
+    public static String convertNumberToLetter(double doubleNumber) throws NumberFormatException {
 
         StringBuilder converted = new StringBuilder();
 
@@ -71,54 +71,46 @@ public abstract class NumberToLetter {
         // Validamos que sea un numero legal
         if (doubleNumber > 999999999)
             throw new NumberFormatException(
-                    "El numero es mayor de 999'999.999, "
-                            + "no es posible convertirlo");
+                    "El numero es mayor de 999'999.999, " + "no es posible convertirlo");
 
         if (doubleNumber < 0)
             throw new NumberFormatException("El numero debe ser positivo");
 
-        String splitNumber[] = String.valueOf(doubleNumber).replace('.', '#')
-                .split("#");
+        String splitNumber[] = String.valueOf(doubleNumber).replace('.', '#').split("#");
 
         // Descompone el trio de millones
-        int millon = Integer.parseInt(String.valueOf(getDigitAt(splitNumber[0],
-                8))
-                + String.valueOf(getDigitAt(splitNumber[0], 7))
-                + String.valueOf(getDigitAt(splitNumber[0], 6)));
+        int millon = Integer.parseInt(
+                String.valueOf(getDigitAt(splitNumber[0], 8)) + String.valueOf(getDigitAt(splitNumber[0], 7))
+                        + String.valueOf(getDigitAt(splitNumber[0], 6)));
         if (millon == 1)
             converted.append("**UN MILLON ");
         else if (millon > 1)
-            converted.append("**").append(convertNumber(String.valueOf(millon))
-                    + "MILLONES ");
+            converted.append("**").append(convertNumber(String.valueOf(millon)) + "MILLONES ");
 
         // Descompone el trio de miles
-        int miles = Integer.parseInt(String.valueOf(getDigitAt(splitNumber[0],
-                5))
-                + String.valueOf(getDigitAt(splitNumber[0], 4))
-                + String.valueOf(getDigitAt(splitNumber[0], 3)));
-        if(millon>=1){
-            if(miles==1)
+        int miles = Integer.parseInt(
+                String.valueOf(getDigitAt(splitNumber[0], 5)) + String.valueOf(getDigitAt(splitNumber[0], 4))
+                        + String.valueOf(getDigitAt(splitNumber[0], 3)));
+        if (millon >= 1) {
+            if (miles == 1)
                 converted.append(convertNumber(String.valueOf(miles)) + "MIL ");
-            else if(miles>1)
-                converted.append(convertNumber(String.valueOf(miles))
-                        + "MIL ");
-        }else{
+            else if (miles > 1)
+                converted.append(convertNumber(String.valueOf(miles)) + "MIL ");
+        } else {
             if (miles == 1)
                 converted.append("**UN MIL ");
             if (miles > 1)
-                converted.append("**").append(convertNumber(String.valueOf(miles))
-                        + "MIL ");
+                converted.append("**").append(convertNumber(String.valueOf(miles)) + "MIL ");
         }
 
         // Descompone el ultimo trio de unidades
-        int cientos = Integer.parseInt(String.valueOf(getDigitAt(
-                splitNumber[0], 2))
-                + String.valueOf(getDigitAt(splitNumber[0], 1))
-                + String.valueOf(getDigitAt(splitNumber[0], 0)));
-        if(miles>=1 || millon>=1){
+        int cientos = Integer.parseInt(
+                String.valueOf(getDigitAt(splitNumber[0], 2)) + String.valueOf(getDigitAt(splitNumber[0], 1))
+                        + String.valueOf(getDigitAt(splitNumber[0], 0)));
+        if (miles >= 1 || millon >= 1) {
             if (cientos >= 1)
                 converted.append(convertNumber(String.valueOf(cientos)));
-        }else{
+        } else {
             if (cientos == 1)
                 converted.append("**UN ");
             if (cientos > 1)
@@ -130,9 +122,9 @@ public abstract class NumberToLetter {
 
         // Descompone los centavos
         String valor = splitNumber[1];
-        if(valor.length()==1){
+        if (valor.length() == 1) {
             converted.append(splitNumber[1]).append("0").append("/100 ");
-        }else{
+        } else {
             converted.append(splitNumber[1]).append("/100 ");
         }
         converted.append("U.S. DOLARES**");
@@ -142,14 +134,15 @@ public abstract class NumberToLetter {
     /**
      * Convierte los trios de numeros que componen las unidades, las decenas y
      * las centenas del numero.
-     * @param number Numero a convetir en digitos
+     * 
+     * @param number
+     *            Numero a convetir en digitos
      * @return Numero convertido en letras
      */
     private static String convertNumber(String number) {
 
         if (number.length() > 3)
-            throw new NumberFormatException(
-                    "La longitud maxima debe ser 3 digitos");
+            throw new NumberFormatException("La longitud maxima debe ser 3 digitos");
 
         // Caso especial con el 100
         if (number.equals("100")) {
@@ -160,25 +153,26 @@ public abstract class NumberToLetter {
         if (getDigitAt(number, 2) != 0)
             output.append(CENTENAS[getDigitAt(number, 2) - 1]);
 
-        int k = Integer.parseInt(String.valueOf(getDigitAt(number, 1))
-                + String.valueOf(getDigitAt(number, 0)));
+        int k = Integer
+                .parseInt(String.valueOf(getDigitAt(number, 1)) + String.valueOf(getDigitAt(number, 0)));
 
         if (k <= 20)
             output.append(UNIDADES[k]);
         else if (k > 30 && getDigitAt(number, 0) != 0)
-            output.append(DECENAS[getDigitAt(number, 1) - 2] + "Y "
-                    + UNIDADES[getDigitAt(number, 0)]);
+            output.append(DECENAS[getDigitAt(number, 1) - 2] + "Y " + UNIDADES[getDigitAt(number, 0)]);
         else
-            output.append(DECENAS[getDigitAt(number, 1) - 2]
-                    + UNIDADES[getDigitAt(number, 0)]);
+            output.append(DECENAS[getDigitAt(number, 1) - 2] + UNIDADES[getDigitAt(number, 0)]);
 
         return output.toString();
     }
 
     /**
      * Retorna el digito numerico en la posicion indicada de derecha a izquierda
-     * @param origin Cadena en la cual se busca el digito
-     * @param position Posicion de derecha a izquierda a retornar
+     * 
+     * @param origin
+     *            Cadena en la cual se busca el digito
+     * @param position
+     *            Posicion de derecha a izquierda a retornar
      * @return Digito ubicado en la posicion indicada
      */
     private static int getDigitAt(String origin, int position) {

@@ -3,7 +3,7 @@ package org.openfact.representations.idm.ubl.common;
 import java.util.List;
 
 public class HazardousItemRepresentation {
-    private String ID;
+    private String idUbl;
     private String placardNotation;
     private String placardEndorsement;
     private String additionalInformation;
@@ -28,12 +28,12 @@ public class HazardousItemRepresentation {
     private List<TemperatureRepresentation> additionalTemperature;
     private String id;
 
-    public String getID() {
-        return this.ID;
+    public String getIdUbl() {
+        return this.idUbl;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setIdUbl(String idUbl) {
+        this.idUbl = idUbl;
     }
 
     public String getId() {

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class AllowanceChargeRepresentation {
-    private String ID;
+    private String idUbl;
     private Boolean chargeIndicator;
     private String allowanceChargeReasonCode;
     private String allowanceChargeReason;
@@ -20,12 +20,12 @@ public class AllowanceChargeRepresentation {
     private List<PaymentMeansRepresentation> paymentMeans;
     private String id;
 
-    public String getID() {
-        return this.ID;
+    public String getIdUbl() {
+        return this.idUbl;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setIdUbl(String idUbl) {
+        this.idUbl = idUbl;
     }
 
     public String getId() {

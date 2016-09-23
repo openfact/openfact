@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class DespatchRepresentation {
-    private String ID;
+    private String idUbl;
     private LocalDate requestedDespatchDate;
     private LocalTime requestedDespatchTime;
     private LocalDate estimatedDespatchDate;
@@ -32,12 +32,12 @@ public class DespatchRepresentation {
         this.actualDespatchTime = actualDespatchTime;
     }
 
-    public String getID() {
-        return this.ID;
+    public String getIdUbl() {
+        return this.idUbl;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setIdUbl(String idUbl) {
+        this.idUbl = idUbl;
     }
 
     public String getId() {

@@ -10,14 +10,13 @@ public class ResponseRepresentation {
     private String id;
 
     /**/
-    public  void addDescription(String rep){
-        if(description==null){
-            description=new ArrayList<>();
+    public void addDescription(String rep) {
+        if (description == null) {
+            description = new ArrayList<>();
         }
         description.add(rep);
     }
     /**/
-
 
     public String getId() {
         return this.id;

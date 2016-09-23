@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class PaymentRepresentation {
-    private String ID;
+    private String idUbl;
     private BigDecimal paidAmount;
     private LocalDate receivedDate;
     private LocalDate paidDate;
@@ -29,12 +29,12 @@ public class PaymentRepresentation {
         this.paidDate = paidDate;
     }
 
-    public String getID() {
-        return this.ID;
+    public String getIdUbl() {
+        return this.idUbl;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setIdUbl(String idUbl) {
+        this.idUbl = idUbl;
     }
 
     public String getId() {

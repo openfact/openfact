@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DocumentReferenceRepresentation {
-    private String ID;
+    private String idUbl;
     private Boolean copyIndicator;
     private String UUID;
     private LocalDate issueDate;
@@ -16,9 +16,9 @@ public class DocumentReferenceRepresentation {
     private String id;
 
     /**/
-    public  void addXpath(String rep){
-        if(XPath==null){
-            XPath=new ArrayList<>();
+    public void addXpath(String rep) {
+        if (XPath == null) {
+            XPath = new ArrayList<>();
         }
         XPath.add(rep);
     }
@@ -32,12 +32,12 @@ public class DocumentReferenceRepresentation {
         this.documentCodeRepresentation = documentCodeRepresentation;
     }
 
-    public String getID() {
-        return this.ID;
+    public String getIdUbl() {
+        return this.idUbl;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setIdUbl(String idUbl) {
+        this.idUbl = idUbl;
     }
 
     public List<String> getXPath() {

@@ -17,11 +17,11 @@
 
 package org.openfact.jose.jws;
 
-import org.openfact.common.util.Base64Url;
-import org.openfact.util.JsonSerialization;
-
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+
+import org.openfact.common.util.Base64Url;
+import org.openfact.util.JsonSerialization;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
@@ -37,12 +37,12 @@ public class JWSInput {
     byte[] content;
     byte[] signature;
 
-
     public JWSInput(String wire) throws JWSInputException {
         try {
             this.wireString = wire;
             String[] parts = wire.split("\\.");
-            if (parts.length < 2 || parts.length > 3) throw new IllegalArgumentException("Parsing error");
+            if (parts.length < 2 || parts.length > 3)
+                throw new IllegalArgumentException("Parsing error");
             encodedHeader = parts[0];
             encodedContent = parts[1];
             encodedSignatureInput = encodedHeader + '.' + encodedContent;
@@ -74,6 +74,7 @@ public class JWSInput {
     public String getEncodedSignature() {
         return encodedSignature;
     }
+
     public String getEncodedSignatureInput() {
         return encodedSignatureInput;
     }

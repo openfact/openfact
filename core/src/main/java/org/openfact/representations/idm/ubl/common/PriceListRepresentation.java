@@ -3,18 +3,18 @@ package org.openfact.representations.idm.ubl.common;
 import java.util.List;
 
 public class PriceListRepresentation {
-    private String ID;
+    private String idUbl;
     private String statusCode;
     private List<PeriodRepresentation> validityPeriod;
     private PriceListRepresentation previousPriceList;
     private String id;
 
-    public String getID() {
-        return this.ID;
+    public String getIdUbl() {
+        return this.idUbl;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setIdUbl(String idUbl) {
+        this.idUbl = idUbl;
     }
 
     public List<PeriodRepresentation> getValidityPeriod() {

@@ -9,9 +9,9 @@ public class PricingReferenceRepresentation {
     private String id;
 
     /**/
-    public  void  addAlternativeConditionPrice(PriceRepresentation representation ){
-        if(alternativeConditionPrice==null){
-            alternativeConditionPrice=new ArrayList<>();
+    public void addAlternativeConditionPrice(PriceRepresentation representation) {
+        if (alternativeConditionPrice == null) {
+            alternativeConditionPrice = new ArrayList<>();
         }
         alternativeConditionPrice.add(representation);
     }

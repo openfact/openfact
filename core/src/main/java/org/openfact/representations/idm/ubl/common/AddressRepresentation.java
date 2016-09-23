@@ -3,7 +3,7 @@ package org.openfact.representations.idm.ubl.common;
 import java.util.List;
 
 public class AddressRepresentation {
-    private String ID;
+    private String idUbl;
     private String addressRepresentationCode;
     private String addressFormatCode;
     private String postbox;
@@ -40,12 +40,12 @@ public class AddressRepresentation {
         this.district = district;
     }
 
-    public String getID() {
-        return this.ID;
+    public String getIdUbl() {
+        return this.idUbl;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setIdUbl(String idUbl) {
+        this.idUbl = idUbl;
     }
 
     public String getId() {

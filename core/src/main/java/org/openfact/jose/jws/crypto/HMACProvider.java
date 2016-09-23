@@ -17,15 +17,15 @@
 
 package org.openfact.jose.jws.crypto;
 
-
-import org.openfact.jose.jws.Algorithm;
-import org.openfact.jose.jws.JWSInput;
-import org.openfact.common.util.Base64Url;
+import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-import java.security.NoSuchAlgorithmException;
+
+import org.openfact.common.util.Base64Url;
+import org.openfact.jose.jws.Algorithm;
+import org.openfact.jose.jws.JWSInput;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
@@ -34,14 +34,14 @@ import java.security.NoSuchAlgorithmException;
 public class HMACProvider implements SignatureProvider {
     private static String getJavaAlgorithm(Algorithm alg) {
         switch (alg) {
-            case HS256:
-                return "HMACSHA256";
-            case HS384:
-                return "HMACSHA384";
-            case HS512:
-                return "HMACSHA512";
-            default:
-                throw new IllegalArgumentException("Not a MAC Algorithm");
+        case HS256:
+            return "HMACSHA256";
+        case HS384:
+            return "HMACSHA384";
+        case HS512:
+            return "HMACSHA512";
+        default:
+            throw new IllegalArgumentException("Not a MAC Algorithm");
         }
     }
 
@@ -80,7 +80,8 @@ public class HMACProvider implements SignatureProvider {
 
     public static boolean verify(JWSInput input, SecretKey key) {
         try {
-            byte[] signature = sign(input.getEncodedSignatureInput().getBytes("UTF-8"), input.getHeader().getAlgorithm(), key);
+            byte[] signature = sign(input.getEncodedSignatureInput().getBytes("UTF-8"),
+                    input.getHeader().getAlgorithm(), key);
             String x = Base64Url.encode(signature);
             return x.equals(input.getEncodedSignature());
         } catch (Exception e) {
@@ -88,10 +89,10 @@ public class HMACProvider implements SignatureProvider {
         }
     }
 
-
     public static boolean verify(JWSInput input, byte[] sharedSecret) {
         try {
-            byte[] signature = sign(input.getEncodedSignatureInput().getBytes("UTF-8"), input.getHeader().getAlgorithm(), sharedSecret);
+            byte[] signature = sign(input.getEncodedSignatureInput().getBytes("UTF-8"),
+                    input.getHeader().getAlgorithm(), sharedSecret);
             String x = Base64Url.encode(signature);
             return x.equals(input.getEncodedSignature());
         } catch (Exception e) {

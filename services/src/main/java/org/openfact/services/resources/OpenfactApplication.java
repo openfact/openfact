@@ -403,22 +403,22 @@ public class OpenfactApplication extends Application {
 
                             OrganizationModel organization = session.organizations().getOrganizationByName(organizationRep.getOrganization());
                             if (organization == null) {
-                                logger.addInvoiceFailedOrganizationNotFound(invoiceRep.getID(), organizationRep.getOrganization());
+                                logger.addInvoiceFailedOrganizationNotFound(invoiceRep.getIdUbl(), organizationRep.getOrganization());
                             } else {
-                                InvoiceModel invoice = session.invoices().addInvoice(organization, invoiceRep.getID());
+                                InvoiceModel invoice = session.invoices().addInvoice(organization, invoiceRep.getIdUbl());
                                 /*invoice.setEnabled(invoiceRep.isEnabled());
                                 RepresentationToModel.createCredentials(invoiceRep, invoice);
                                 RepresentationToModel.createRoleMappings(invoiceRep, invoice, organization);*/
                             }
 
                             session.getTransactionManager().commit();
-                            logger.addInvoiceSuccess(invoiceRep.getID(), organizationRep.getOrganization());
+                            logger.addInvoiceSuccess(invoiceRep.getIdUbl(), organizationRep.getOrganization());
                         } catch (ModelDuplicateException e) {
                             session.getTransactionManager().rollback();
-                            logger.addInvoiceFailedInvoiceExists(invoiceRep.getID(), organizationRep.getOrganization());
+                            logger.addInvoiceFailedInvoiceExists(invoiceRep.getIdUbl(), organizationRep.getOrganization());
                         } catch (Throwable t) {
                             session.getTransactionManager().rollback();
-                            logger.addInvoiceFailed(t, invoiceRep.getID(), organizationRep.getOrganization());
+                            logger.addInvoiceFailed(t, invoiceRep.getIdUbl(), organizationRep.getOrganization());
                         } finally {
                             session.close();
                         }

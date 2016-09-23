@@ -314,8 +314,8 @@ public class RepresentationToModel {
         if (rep.getInvoiceCodeRepresentation() != null) {
             model.setInvoiceCodeModel(rep.getInvoiceCodeRepresentation());
         }
-        if (rep.getID() != null) {
-            model.setID(rep.getID());
+        if (rep.getIdUbl() != null) {
+            model.setID(rep.getIdUbl());
         }
         if (rep.getAccountingCustomerParty() != null) {
             updateModel(model.getAccountingCustomerParty(), rep.getAccountingCustomerParty());
@@ -353,8 +353,8 @@ public class RepresentationToModel {
                 updateModel(model.addDiscrepancyResponse(), item);
             }
         }
-        if (rep.getID() != null) {
-            model.setID(rep.getID());
+        if (rep.getIdUbl() != null) {
+            model.setID(rep.getIdUbl());
         }
         if (rep.getCreditNoteLine() != null) {
             for (CreditNoteLineRepresentation item : rep.getCreditNoteLine()) {
@@ -396,8 +396,8 @@ public class RepresentationToModel {
                 updateModel(model.addDiscrepancyResponse(), item);
             }
         }
-        if (rep.getID() != null) {
-            model.setID(rep.getID());
+        if (rep.getIdUbl() != null) {
+            model.setID(rep.getIdUbl());
         }
         if (rep.getAccountingCustomerParty() != null) {
             updateModel(model.getAccountingCustomerParty(), rep.getAccountingCustomerParty());
@@ -451,8 +451,8 @@ public class RepresentationToModel {
         if (rep.getLineExtensionAmount() != null) {
             model.setLineExtensionAmount(rep.getLineExtensionAmount());
         }
-        if (rep.getID() != null) {
-            model.setID(rep.getID());
+        if (rep.getIdUbl() != null) {
+            model.setID(rep.getIdUbl());
         }
         if (rep.getAllowanceCharge() != null) {
             for (AllowanceChargeRepresentation item : rep.getAllowanceCharge()) {
@@ -462,8 +462,8 @@ public class RepresentationToModel {
     }
 
     public static void updateModel(CreditNoteLineModel model, CreditNoteLineRepresentation rep) {
-        if (rep.getID() != null) {
-            model.setID(rep.getID());
+        if (rep.getIdUbl() != null) {
+            model.setID(rep.getIdUbl());
         }
         if (rep.getCreditedQuantity() != null) {
             updateModel(model.getCreditedQuantity(), rep.getCreditedQuantity());
@@ -485,8 +485,8 @@ public class RepresentationToModel {
     }
 
     public static void updateModel(DebitNoteLineModel model, DebitNoteLineRepresentation rep) {
-        if (rep.getID() != null) {
-            model.setID(rep.getID());
+        if (rep.getIdUbl() != null) {
+            model.setID(rep.getIdUbl());
         }
         if (rep.getDebitedQuantity() != null) {
             updateModel(model.getDebitedQuantity(), rep.getDebitedQuantity());
@@ -580,8 +580,8 @@ public class RepresentationToModel {
     }
 
     public static void updateModel(ItemIdentificationModel model, ItemIdentificationRepresentation rep) {
-        if (rep.getID() != null) {
-            model.setID(rep.getID());
+        if (rep.getIdUbl() != null) {
+            model.setID(rep.getIdUbl());
         }
     }
 
@@ -618,8 +618,8 @@ public class RepresentationToModel {
     }
 
     public static void updateModel(TaxSchemeModel model, TaxSchemeRepresentation rep) {
-        if (rep.getID() != null) {
-            model.setID(rep.getID());
+        if (rep.getIdUbl() != null) {
+            model.setID(rep.getIdUbl());
         }
         if (rep.getName() != null) {
             model.setName(rep.getName());
@@ -680,8 +680,8 @@ public class RepresentationToModel {
     }
 
     public static void updateModel(AddressModel model, AddressRepresentation rep) {
-        if (rep.getID() != null) {
-            model.setID(rep.getID());
+        if (rep.getIdUbl() != null) {
+            model.setID(rep.getIdUbl());
         }
         if (rep.getStreetName() != null) {
             model.setStreetName(rep.getStreetName());

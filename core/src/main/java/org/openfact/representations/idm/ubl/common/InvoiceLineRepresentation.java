@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InvoiceLineRepresentation {
-    private String ID;
+    private String idUbl;
     private String UUID;
     private String note;
     private QuantityRepresentation invoicedQuantity;
@@ -32,57 +32,65 @@ public class InvoiceLineRepresentation {
     private String id;
 
     /**/
-    public void addOrderLineReference(OrderLineReferenceRepresentation representation){
-        if(orderLineReference==null){
-            orderLineReference=new ArrayList<>();
+    public void addOrderLineReference(OrderLineReferenceRepresentation representation) {
+        if (orderLineReference == null) {
+            orderLineReference = new ArrayList<>();
         }
         orderLineReference.add(representation);
     }
-    public void addDespatchLineReference(LineReferenceRepresentation representation){
-        if(despatchLineReference==null){
-            despatchLineReference=new ArrayList<>();
+
+    public void addDespatchLineReference(LineReferenceRepresentation representation) {
+        if (despatchLineReference == null) {
+            despatchLineReference = new ArrayList<>();
         }
         despatchLineReference.add(representation);
     }
-    public void addReceiptLineReference(LineReferenceRepresentation representation){
-        if(receiptLineReference==null){
-            receiptLineReference=new ArrayList<>();
+
+    public void addReceiptLineReference(LineReferenceRepresentation representation) {
+        if (receiptLineReference == null) {
+            receiptLineReference = new ArrayList<>();
         }
         receiptLineReference.add(representation);
     }
-    public void addBillingReference(BillingReferenceRepresentation representation){
-        if(billingReference==null){
-            billingReference=new ArrayList<>();
+
+    public void addBillingReference(BillingReferenceRepresentation representation) {
+        if (billingReference == null) {
+            billingReference = new ArrayList<>();
         }
         billingReference.add(representation);
     }
-    public void addDocumentReference(DocumentReferenceRepresentation representation){
-        if(documentReference==null){
-            documentReference=new ArrayList<>();
+
+    public void addDocumentReference(DocumentReferenceRepresentation representation) {
+        if (documentReference == null) {
+            documentReference = new ArrayList<>();
         }
         documentReference.add(representation);
     }
-    public void addDelivery(DeliveryRepresentation representation){
-        if(delivery==null){
-            delivery=new ArrayList<>();
+
+    public void addDelivery(DeliveryRepresentation representation) {
+        if (delivery == null) {
+            delivery = new ArrayList<>();
         }
         delivery.add(representation);
     }
-    public void addPaymentTerms(PaymentTermsRepresentation representation){
-        if(paymentTerms==null){
-            paymentTerms=new ArrayList<>();
+
+    public void addPaymentTerms(PaymentTermsRepresentation representation) {
+        if (paymentTerms == null) {
+            paymentTerms = new ArrayList<>();
         }
         paymentTerms.add(representation);
     }
-    public void addTaxTotal(TaxTotalRepresentation representation){
-        if(taxTotal==null){
-            taxTotal=new ArrayList<>();
+
+    public void addTaxTotal(TaxTotalRepresentation representation) {
+        if (taxTotal == null) {
+            taxTotal = new ArrayList<>();
         }
         taxTotal.add(representation);
     }
-    public void addAllowanceCharge(AllowanceChargeRepresentation representation){
-        if(allowanceCharge==null){
-            allowanceCharge=new ArrayList<>();
+
+    public void addAllowanceCharge(AllowanceChargeRepresentation representation) {
+        if (allowanceCharge == null) {
+            allowanceCharge = new ArrayList<>();
         }
         allowanceCharge.add(representation);
     }
@@ -96,12 +104,12 @@ public class InvoiceLineRepresentation {
         this.taxPointDate = taxPointDate;
     }
 
-    public String getID() {
-        return this.ID;
+    public String getIdUbl() {
+        return this.idUbl;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setIdUbl(String idUbl) {
+        this.idUbl = idUbl;
     }
 
     public QuantityRepresentation getInvoicedQuantity() {

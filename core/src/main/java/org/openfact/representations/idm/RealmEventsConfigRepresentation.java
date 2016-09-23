@@ -28,7 +28,7 @@ public class RealmEventsConfigRepresentation {
     protected Long eventsExpiration;
     protected List<String> eventsListeners;
     protected List<String> enabledEventTypes;
-    
+
     protected Boolean adminEventsEnabled;
     protected Boolean adminEventsDetailsEnabled;
 
@@ -79,5 +79,5 @@ public class RealmEventsConfigRepresentation {
     public void setAdminEventsDetailsEnabled(Boolean adminEventsDetailsEnabled) {
         this.adminEventsDetailsEnabled = adminEventsDetailsEnabled;
     }
-    
+
 }

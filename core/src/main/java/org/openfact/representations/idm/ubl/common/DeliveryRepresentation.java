@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class DeliveryRepresentation {
-    private String ID;
+    private String idUbl;
     private QuantityRepresentation quantity;
     private QuantityRepresentation minimumQuantity;
     private QuantityRepresentation maximumQuantity;
@@ -22,12 +22,12 @@ public class DeliveryRepresentation {
     private DespatchRepresentation despatch;
     private String id;
 
-    public String getID() {
-        return this.ID;
+    public String getIdUbl() {
+        return this.idUbl;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setIdUbl(String idUbl) {
+        this.idUbl = idUbl;
     }
 
     public AddressRepresentation getDeliveryAddress() {

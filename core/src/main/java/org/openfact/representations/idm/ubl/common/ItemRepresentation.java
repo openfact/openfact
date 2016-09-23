@@ -42,48 +42,56 @@ public class ItemRepresentation {
         }
         itemSpecificationDocumentReference.add(rep);
     }
+
     public void addCommodityClassification(CommodityClassificationRepresentation rep) {
         if (commodityClassification == null) {
             commodityClassification = new ArrayList<>();
         }
         commodityClassification.add(rep);
     }
+
     public void addTransactionConditions(TransactionConditionsRepresentation rep) {
         if (transactionConditions == null) {
             transactionConditions = new ArrayList<>();
         }
         transactionConditions.add(rep);
     }
+
     public void addHazardousItem(HazardousItemRepresentation rep) {
         if (hazardousItem == null) {
             hazardousItem = new ArrayList<>();
         }
         hazardousItem.add(rep);
     }
+
     public void addClassifiedTaxCategory(TaxCategoryRepresentation rep) {
         if (classifiedTaxCategory == null) {
             classifiedTaxCategory = new ArrayList<>();
         }
         classifiedTaxCategory.add(rep);
     }
+
     public void addAdditionalItemProperty(ItemPropertyRepresentation rep) {
         if (additionalItemProperty == null) {
             additionalItemProperty = new ArrayList<>();
         }
         additionalItemProperty.add(rep);
     }
+
     public void addManufacturerParty(PartyRepresentation rep) {
         if (manufacturerParty == null) {
             manufacturerParty = new ArrayList<>();
         }
         manufacturerParty.add(rep);
     }
+
     public void addOriginAddress(AddressRepresentation rep) {
         if (originAddress == null) {
             originAddress = new ArrayList<>();
         }
         originAddress.add(rep);
     }
+
     public void addItemInstance(ItemInstanceRepresentation rep) {
         if (itemInstance == null) {
             itemInstance = new ArrayList<>();
@@ -134,7 +142,6 @@ public class ItemRepresentation {
     }
 
     /**/
-
 
     public String getId() {
         return this.id;

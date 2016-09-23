@@ -3,7 +3,7 @@ package org.openfact.representations.idm.ubl.common;
 import java.util.List;
 
 public class FinancialAccountRepresentation {
-    private String ID;
+    private String idUbl;
     private String name;
     private String accountRepresentationCode;
     private String currencyCode;
@@ -12,12 +12,12 @@ public class FinancialAccountRepresentation {
     private CountryRepresentation country;
     private String id;
 
-    public String getID() {
-        return this.ID;
+    public String getIdUbl() {
+        return this.idUbl;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setIdUbl(String idUbl) {
+        this.idUbl = idUbl;
     }
 
     public String getId() {

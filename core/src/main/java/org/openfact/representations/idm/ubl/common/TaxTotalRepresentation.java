@@ -10,13 +10,14 @@ public class TaxTotalRepresentation {
     private boolean taxEvidenceIndicator;
     private List<TaxSubtotalRepresentation> taxSubtotal;
     private String id;
-/**/
-public void  addTaxSubtotal(TaxSubtotalRepresentation representation){
-    if(taxSubtotal==null){
-        taxSubtotal=new ArrayList<>();
+
+    /**/
+    public void addTaxSubtotal(TaxSubtotalRepresentation representation) {
+        if (taxSubtotal == null) {
+            taxSubtotal = new ArrayList<>();
+        }
+        taxSubtotal.add(representation);
     }
-    taxSubtotal.add(representation);
-}
     /**/
 
     public String getId() {

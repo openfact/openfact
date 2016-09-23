@@ -17,14 +17,14 @@
 
 package org.openfact.jose.jwk;
 
-import org.openfact.common.util.Base64Url;
-
 import java.math.BigInteger;
 import java.security.Key;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
 import java.security.interfaces.RSAPublicKey;
+
+import org.openfact.common.util.Base64Url;
 
 /**
  * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
@@ -33,7 +33,6 @@ public class JWKBuilder {
 
     public static final String DEFAULT_PUBLIC_KEY_USE = "sig";
     public static final String DEFAULT_MESSAGE_DIGEST = "SHA-256";
-
 
     private JWKBuilder() {
     }
@@ -58,7 +57,8 @@ public class JWKBuilder {
 
     private String createKeyId(Key key) {
         try {
-            return Base64Url.encode(MessageDigest.getInstance(DEFAULT_MESSAGE_DIGEST).digest(key.getEncoded()));
+            return Base64Url
+                    .encode(MessageDigest.getInstance(DEFAULT_MESSAGE_DIGEST).digest(key.getEncoded()));
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
