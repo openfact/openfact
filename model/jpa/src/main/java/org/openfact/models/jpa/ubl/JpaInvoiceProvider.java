@@ -10,6 +10,7 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.AbstractHibernateStorage;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
+import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.ubl.provider.InvoiceProvider;
 
 public class JpaInvoiceProvider extends AbstractHibernateStorage implements InvoiceProvider {
@@ -104,6 +105,18 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     public int getInvoicesCount(OrganizationModel organization) {
         // TODO Auto-generated method stub
         return 0;
+    }
+
+    @Override
+    public InvoiceModel addInvoice(OrganizationModel organization, String ID) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public InvoiceModel getInvoiceByID(OrganizationModel organization, String ID) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
