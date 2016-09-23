@@ -83,7 +83,7 @@ public class CreditNoteEntity {
     @Column(name = "PROFILEID")
     protected String profileID;
 
-    @Column(name = "ID")
+    @Column(name = "ID_UBL")
     protected String ID;
 
     @Column(name = "COPY_INDICATOR")
