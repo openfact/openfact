@@ -193,6 +193,19 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<resources>
+			<resource>
+				<targetPath>META-INF</targetPath>
+				<directory>src</directory>
+				<includes>
+					<include>jax-ws-catalog.xml</include>
+					<include>wsdl/**</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -201,6 +214,50 @@
 					<source>${maven.compiler.source}</source>
 					<target>${maven.compiler.target}</target>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jvnet.jax-ws-commons</groupId>
+				<artifactId>jaxws-maven-plugin</artifactId>
+				<version>2.3</version>
+				<dependencies>
+					<!-- put xjc-plugins on the jaxws-maven-plugin's classpath -->
+					<dependency>
+						<groupId>org.jvnet.jaxb2_commons</groupId>
+						<artifactId>jaxb2-basics</artifactId>
+						<version>0.6.4</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<sourceDestDir>${project.build.directory}/generated-sources/jaxws-wsimport</sourceDestDir>
+					<xnocompile>true</xnocompile>
+					<verbose>true</verbose>
+					<extension>true</extension>
+					<catalog>${basedir}/src/jax-ws-catalog.xml</catalog>
+					<!-- tell JAXB to actually use xjc-plugins -->
+					<xjcArgs>
+						<xjcArg>-Xequals</xjcArg>
+						<xjcArg>-XtoString</xjcArg>
+					</xjcArgs>
+					<!-- Needed with JAXP 1.5 -->
+					<vmArgs>
+						<vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+					</vmArgs>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>wsimport</goal>
+						</goals>
+						<configuration>
+							<staleFile>${project.build.directory}/jaxws/stale/billService.stale</staleFile>
+							<packageName>org.openfact.service.ubl.pe.send</packageName>
+							<wsdlUrls>
+								<wsdlUrl>https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService?wsdl</wsdlUrl>
+							</wsdlUrls>
+						</configuration>
+					</execution>
+
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
@@ -221,64 +278,7 @@
 			</repositories>
 
 			<build>
-				<resources>
-					<resource>
-						<targetPath>META-INF</targetPath>
-						<directory>src</directory>
-						<includes>
-							<include>jax-ws-catalog.xml</include>
-							<include>wsdl/**</include>
-						</includes>
-					</resource>
-					<resource>
-						<directory>src/main/resources</directory>
-					</resource>
-				</resources>
 				<plugins>
-					<plugin>
-						<groupId>org.jvnet.jax-ws-commons</groupId>
-						<artifactId>jaxws-maven-plugin</artifactId>
-						<version>2.3</version>
-						<dependencies>
-							<!-- put xjc-plugins on the jaxws-maven-plugin's classpath -->
-							<dependency>
-								<groupId>org.jvnet.jaxb2_commons</groupId>
-								<artifactId>jaxb2-basics</artifactId>
-								<version>0.6.4</version>
-							</dependency>
-						</dependencies>
-						<configuration>
-							<sourceDestDir>${project.build.directory}/generated-sources/jaxws-wsimport</sourceDestDir>
-							<xnocompile>true</xnocompile>
-							<verbose>true</verbose>
-							<extension>true</extension>
-							<catalog>${basedir}/src/jax-ws-catalog.xml</catalog>
-							<!-- tell JAXB to actually use xjc-plugins -->
-							<xjcArgs>
-								<xjcArg>-Xequals</xjcArg>
-								<xjcArg>-XtoString</xjcArg>
-							</xjcArgs>
-							<!-- Needed with JAXP 1.5 -->
-							<vmArgs>
-								<vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
-							</vmArgs>
-						</configuration>
-						<executions>
-							<execution>
-								<goals>
-									<goal>wsimport</goal>
-								</goals>
-								<configuration>
-									<staleFile>${project.build.directory}/jaxws/stale/billService.stale</staleFile>
-									<packageName>org.openfact.ubl.pe.send</packageName>
-									<wsdlUrls>
-										<wsdlUrl>https://e-beta.sunat.gob.pe/ol-ti-itemision-otroscpe-gem-beta/billService?wsdl</wsdlUrl>
-									</wsdlUrls>
-								</configuration>
-							</execution>
-
-						</executions>
-					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>
