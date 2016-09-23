@@ -1,30 +1,58 @@
+/*
+ * Copyright 2016 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.openfact.testsuite.model;
-
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-
-import java.math.BigDecimal;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.NoSuchAlgorithmException;
-import java.time.DayOfWeek;
-import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
 
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-import org.openfact.models.InvoiceModel;
+import org.openfact.Config;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.enums.DocumentType;
+import org.openfact.models.UserModel;
+import org.openfact.models.ubl.CreditNoteModel;
+import org.openfact.models.ubl.DebitNoteModel;
+import org.openfact.models.ubl.InvoiceModel;
+import org.openfact.services.managers.OrganizationManager;
 
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
+import java.time.DayOfWeek;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
+/**
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AdapterTest extends AbstractModelTest {
-
+    
     private OrganizationModel organizationModel;
 
     @Test
@@ -41,15 +69,10 @@ public class AdapterTest extends AbstractModelTest {
         organizationModel.setSubmitTime(LocalTime.now());
         organizationModel.setSubmitDays(new HashSet<DayOfWeek>(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.THURSDAY)));
 
-        organizationModel.addSimpleDocument(DocumentType.INVOICE_TYPE, "Document X", "00");
-        organizationModel.addCheckableDocument(DocumentType.INVOICE_TYPE, "Document Y", "01", true);
-        organizationModel.addValuableDocument(DocumentType.INVOICE_TYPE, "Document Z", "02", BigDecimal.ONE);
-        organizationModel.addComposedDocument(DocumentType.INVOICE_TYPE, "Document A", "03").addChildren(organizationModel.addSimpleDocument(DocumentType.INVOICE_TYPE, "Document AB", "04"));
-
         organizationModel.setAssignedIdentificationId("012345678910");
         organizationModel.setSupplierName("SISTCOOP SAC");
         organizationModel.setRegistrationName("SISTCOOP SOFTWARE");
-        organizationModel.setAdditionalAccountId(organizationModel.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "05"));
+        organizationModel.setAdditionalAccountId("RUC");
         organizationModel.setStreetName("Jr. Arequipa 123");
         organizationModel.setCitySubdivisionName("Ayacucho");
         organizationModel.setCityName("Huamanga");
@@ -78,8 +101,6 @@ public class AdapterTest extends AbstractModelTest {
         Assert.assertEquals(organizationModel.getOnErrorLapseTime(), 500);
         Assert.assertEquals(organizationModel.getDelayTime(), 0);
 
-        Assert.assertEquals(organizationModel.getDocuments().size(), 6);
-
         Assert.assertEquals(organizationModel.getAssignedIdentificationId(), "012345678910");
         Assert.assertEquals(organizationModel.getSupplierName(), "SISTCOOP SAC");
         Assert.assertEquals(organizationModel.getRegistrationName(), "SISTCOOP SOFTWARE");
@@ -107,9 +128,15 @@ public class AdapterTest extends AbstractModelTest {
     public void testRemoveOrganization() throws Exception {
         test1CreateOrganization();
 
-        InvoiceModel invoice = organizationManager.getSession().invoices().addInvoice(organizationModel, 1, 1);
+        InvoiceModel invoice = organizationManager.getSession().invoices().addInvoice(organizationModel);
         invoice.addInvoiceLine();
 
+        CreditNoteModel creditNote = organizationManager.getSession().creditNotes().addCreditNote(organizationModel);
+        creditNote.addCreditNoteLine();
+        
+        DebitNoteModel debitNote = organizationManager.getSession().debitNotes().addDebitNote(organizationModel);
+        debitNote.addDebitNoteLine();
+        
         commit();
         organizationModel = model.getOrganization("SISTCOOP");
 
@@ -122,15 +149,24 @@ public class AdapterTest extends AbstractModelTest {
     public void testDeleteInvoice() throws Exception {
         test1CreateOrganization();
 
-        InvoiceModel invoice = organizationManager.getSession().invoices().addInvoice(organizationModel, 1, 1);
-        invoice.setSingleAttribute("attr1", "val1");
-        invoice.addRequiredAction(InvoiceModel.RequiredAction.SEND_EMAIL_INMEDIATELLY);
-
+        InvoiceModel invoice = organizationManager.getSession().invoices().addInvoice(organizationModel, "F01-001");
         commit();
 
         organizationModel = model.getOrganization("SISTCOOP");
         Assert.assertTrue(organizationManager.getSession().invoices().removeInvoice(organizationModel, invoice));
-        assertNull(organizationManager.getSession().invoices().getInvoiceBySeriesAndNumber(1, 1, organizationModel));
+        assertNull(organizationManager.getSession().invoices().getInvoiceByID(organizationModel, "F01-001"));
+    }
+    
+    @Test
+    public void testDeleteCreditNote() throws Exception {
+        test1CreateOrganization();
+
+        CreditNoteModel creditNote = organizationManager.getSession().creditNotes().addCreditNote(organizationModel, "C01-001");
+        commit();
+
+        organizationModel = model.getOrganization("SISTCOOP");
+        Assert.assertTrue(organizationManager.getSession().creditNotes().removeCreditNote(organizationModel, creditNote));
+        assertNull(organizationManager.getSession().creditNotes().getInvoiceByID(organizationModel, "F01-001"));
     }
 
     @Test
@@ -163,20 +199,18 @@ public class AdapterTest extends AbstractModelTest {
 
     @Test
     public void testSeriesNumberCollisions() throws Exception {
-        OrganizationModel sistcoop1 = organizationManager.createOrganization("SISTCOOP1");
-        sistcoop1.setAdditionalAccountId(sistcoop1.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "01"));
-        OrganizationModel sistcoop2 = organizationManager.createOrganization("SISTCOOP2");
-        sistcoop2.setAdditionalAccountId(sistcoop2.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "01"));
+        OrganizationModel sistcoop1 = organizationManager.createOrganization("SISTCOOP1");        
+        OrganizationModel sistcoop2 = organizationManager.createOrganization("SISTCOOP2");        
         commit();
 
-        organizationManager.getSession().invoices().addInvoice(sistcoop1, 1, 1);
-        organizationManager.getSession().invoices().addInvoice(sistcoop2, 1, 1);
+        organizationManager.getSession().invoices().addInvoice(sistcoop1, "F01-001");
+        organizationManager.getSession().invoices().addInvoice(sistcoop2, "F01-001");
         commit();
 
         // Try to create invoice with duplicate series and number
         try {
             sistcoop1 = organizationManager.getOrganizationByName("SISTCOOP1");
-            organizationManager.getSession().invoices().addInvoice(sistcoop1, 1, 1);
+            organizationManager.getSession().invoices().addInvoice(sistcoop1, "F01-001");
             commit();
             Assert.fail("Expected exception");
         } catch (ModelDuplicateException e) {
@@ -185,11 +219,11 @@ public class AdapterTest extends AbstractModelTest {
 
         // Ty to rename invoice to duplicate series and number
         sistcoop1 = organizationManager.getOrganizationByName("SISTCOOP1");
-        organizationManager.getSession().invoices().addInvoice(sistcoop1, 1, 2);
+        organizationManager.getSession().invoices().addInvoice(sistcoop1, "F01-002");
         commit();
         try {
             sistcoop1 = organizationManager.getOrganizationByName("SISTCOOP1");
-            organizationManager.getSession().invoices().getInvoiceBySeriesAndNumber(1, 2, sistcoop1).setNumber(1);
+            organizationManager.getSession().invoices().getInvoiceByID(sistcoop1, "F01-002").setID("F01-001");
             commit();
             Assert.fail("Expected exception");
         } catch (ModelDuplicateException e) {

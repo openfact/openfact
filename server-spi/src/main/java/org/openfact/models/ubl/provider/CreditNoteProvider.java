@@ -12,7 +12,11 @@ public interface CreditNoteProvider extends Provider {
 
     CreditNoteModel addCreditNote(OrganizationModel organization);
 
+    CreditNoteModel addCreditNote(OrganizationModel organization, String ID);
+
     CreditNoteModel getCreditNoteById(OrganizationModel organization, String id);
+
+    CreditNoteModel getInvoiceByID(OrganizationModel organizationModel, String ID);
 
     boolean removeCreditNote(OrganizationModel organization, String id);
 

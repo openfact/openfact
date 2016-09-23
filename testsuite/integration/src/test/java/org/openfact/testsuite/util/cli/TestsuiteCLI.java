@@ -1,3 +1,20 @@
+/*
+ * Copyright 2016 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.openfact.testsuite.util.cli;
 
 import java.io.BufferedReader;
@@ -14,14 +31,19 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.testsuite.OpenfactServer;
 
+/**
+ * See Testsuite.md (section how to create many users and offline sessions)
+ *
+ * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
+ */
 public class TestsuiteCLI {
-    
+
     private static final Logger log = Logger.getLogger(TestsuiteCLI.class);
 
-    private static final Class<?>[] BUILTIN_COMMANDS = {
-            /*ExitCommand.class,
+    /*private static final Class<?>[] BUILTIN_COMMANDS = {
+            ExitCommand.class,
             HelpCommand.class,
-            /*AbstractOfflineCacheCommand.PutCommand.class,
+            AbstractOfflineCacheCommand.PutCommand.class,
             AbstractOfflineCacheCommand.GetCommand.class,
             AbstractOfflineCacheCommand.GetMultipleCommand.class,
             AbstractOfflineCacheCommand.GetLocalCommand.class,
@@ -35,17 +57,17 @@ public class TestsuiteCLI {
             UserCommands.Remove.class,
             UserCommands.Count.class,
             UserCommands.GetUser.class,
-            SyncDummyFederationProviderCommand.class*/
-    };
+            SyncDummyFederationProviderCommand.class
+    };*/
 
     private final OpenfactSessionFactory sessionFactory;
-    private final Map<String, Class<? extends AbstractCommand>> commands = new LinkedHashMap<>();
+    //private final Map<String, Class<? extends AbstractCommand>> commands = new LinkedHashMap<>();
 
     public TestsuiteCLI(OpenfactServer server) {
         this.sessionFactory = server.getSessionFactory();
 
         // register builtin commands
-        for (Class<?> clazz : BUILTIN_COMMANDS) {
+        /*for (Class<?> clazz : BUILTIN_COMMANDS) {
             Class<? extends AbstractCommand> commandClazz = (Class<? extends AbstractCommand>) clazz;
             try {
                 AbstractCommand command = commandClazz.newInstance();
@@ -53,18 +75,18 @@ public class TestsuiteCLI {
             } catch (Exception ex) {
                 log.error("Error registering command of class: " + commandClazz.getName(), ex);
             }
-        }
+        }*/
     }
 
-    public void registerCommand(String name, Class<? extends AbstractCommand> command) {
+    /*public void registerCommand(String name, Class<? extends AbstractCommand> command) {
         commands.put(name, command);
-    }
+    }*/
 
     // WARNING: Stdin blocking operation
     public void start() throws IOException {
         log.info("Starting testsuite CLI. Exit with 'exit' . Available commands with 'help' ");
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        /*BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String line;
         System.out.print("$ ");
         try {
@@ -99,7 +121,7 @@ public class TestsuiteCLI {
         } finally {
             log.info("Exit testsuite CLI");
             reader.close();
-        }
+        }*/
     }
 
     public static class ExitCommand extends AbstractCommand {
@@ -125,7 +147,7 @@ public class TestsuiteCLI {
         }
     }
 
-    public static class HelpCommand extends AbstractCommand {
+    /*public static class HelpCommand extends AbstractCommand {
 
         private List<String> commandNames = new ArrayList<>();
 
@@ -150,6 +172,5 @@ public class TestsuiteCLI {
         protected void doRunCommand(OpenfactSession session) {
             // no need to implement
         }
-    }
-    
+    }*/
 }
