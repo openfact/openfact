@@ -28,100 +28,100 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "PRICELIST")
 public class PriceListEntity {
 
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Access(AccessType.PROPERTY)
-    protected String id;
+	@Id
+	@Column(name = "ID")
+	@GeneratedValue(generator = "uuid2")
+	@GenericGenerator(name = "uuid2", strategy = "uuid2")
+	@Access(AccessType.PROPERTY)
+	protected String id;
 
-    @Column(name = "ID_UBL")
-    protected String ID;
+	@Column(name = "ID_UBL")
+	protected String ID;
 
-    @Column(name = "STATUS_CODE")
-    protected String statusCode;
+	@Column(name = "STATUS_CODE")
+	protected String statusCode;
 
-    @OneToMany(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "VALIDITYPERIOD")
-    protected List<PeriodEntity> validityPeriod = new ArrayList<>();
+	@OneToMany(targetEntity = PeriodEntity.class, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "VALIDITYPERIOD")
+	protected List<PeriodEntity> validityPeriod = new ArrayList<>();
 
-    @ManyToOne(targetEntity = PriceListEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "PREVIOUSPRICELIST")
-    protected PriceListEntity previousPriceList = new PriceListEntity();
+	@ManyToOne(targetEntity = PriceListEntity.class, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "PREVIOUSPRICELIST")
+	protected PriceListEntity previousPriceList;
 
-    /**
-     * @return the id
-     */
-    public String getId() {
-        return id;
-    }
+	/**
+	 * @return the id
+	 */
+	public String getId() {
+		return id;
+	}
 
-    /**
-     * @param id
-     *            the id to set
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
+	/**
+	 * @param id
+	 *            the id to set
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    /**
-     * @return the iD
-     */
-    public String getID() {
-        return ID;
-    }
+	/**
+	 * @return the iD
+	 */
+	public String getID() {
+		return ID;
+	}
 
-    /**
-     * @param iD
-     *            the iD to set
-     */
-    public void setID(String iD) {
-        ID = iD;
-    }
+	/**
+	 * @param iD
+	 *            the iD to set
+	 */
+	public void setID(String iD) {
+		ID = iD;
+	}
 
-    /**
-     * @return the statusCode
-     */
-    public String getStatusCode() {
-        return statusCode;
-    }
+	/**
+	 * @return the statusCode
+	 */
+	public String getStatusCode() {
+		return statusCode;
+	}
 
-    /**
-     * @param statusCode
-     *            the statusCode to set
-     */
-    public void setStatusCode(String statusCode) {
-        this.statusCode = statusCode;
-    }
+	/**
+	 * @param statusCode
+	 *            the statusCode to set
+	 */
+	public void setStatusCode(String statusCode) {
+		this.statusCode = statusCode;
+	}
 
-    /**
-     * @return the validityPeriod
-     */
-    public List<PeriodEntity> getValidityPeriod() {
-        return validityPeriod;
-    }
+	/**
+	 * @return the validityPeriod
+	 */
+	public List<PeriodEntity> getValidityPeriod() {
+		return validityPeriod;
+	}
 
-    /**
-     * @param validityPeriod
-     *            the validityPeriod to set
-     */
-    public void setValidityPeriod(List<PeriodEntity> validityPeriod) {
-        this.validityPeriod = validityPeriod;
-    }
+	/**
+	 * @param validityPeriod
+	 *            the validityPeriod to set
+	 */
+	public void setValidityPeriod(List<PeriodEntity> validityPeriod) {
+		this.validityPeriod = validityPeriod;
+	}
 
-    /**
-     * @return the previousPriceList
-     */
-    public PriceListEntity getPreviousPriceList() {
-        return previousPriceList;
-    }
+	/**
+	 * @return the previousPriceList
+	 */
+	public PriceListEntity getPreviousPriceList() {
+		return previousPriceList;
+	}
 
-    /**
-     * @param previousPriceList
-     *            the previousPriceList to set
-     */
-    public void setPreviousPriceList(PriceListEntity previousPriceList) {
-        this.previousPriceList = previousPriceList;
-    }
+	/**
+	 * @param previousPriceList
+	 *            the previousPriceList to set
+	 */
+	public void setPreviousPriceList(PriceListEntity previousPriceList) {
+		this.previousPriceList = previousPriceList;
+	}
 
 }

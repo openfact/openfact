@@ -95,7 +95,7 @@ public class PartyEntity {
 
     @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "AGENTPARTY")
-    protected PartyEntity agentParty = new PartyEntity();
+    protected PartyEntity agentParty ;
 
     /**
      * @return the id
