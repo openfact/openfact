@@ -10,7 +10,7 @@ import javax.xml.namespace.QName;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the org.openfact.service.ubl.pe.sunat package. 
+ * generated in the org.openfact.ubl.pe.send package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -34,7 +34,7 @@ public class ObjectFactory {
     private final static QName _SendBillResponse_QNAME = new QName("http://service.sunat.gob.pe", "sendBillResponse");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.openfact.service.ubl.pe.sunat
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.openfact.ubl.pe.send
      * 
      */
     public ObjectFactory() {

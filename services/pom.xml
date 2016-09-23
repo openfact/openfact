@@ -250,7 +250,7 @@
 						</goals>
 						<configuration>
 							<staleFile>${project.build.directory}/jaxws/stale/billService.stale</staleFile>
-							<packageName>org.openfact.service.ubl.pe.send</packageName>
+							<packageName>org.openfact.ubl.pe.send</packageName>
 							<wsdlUrls>
 								<wsdlUrl>https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService?wsdl</wsdlUrl>
 							</wsdlUrls>
