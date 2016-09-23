@@ -34,7 +34,7 @@ public class DeliveryTermsEntity {
     @Column(name = "ID_UBL")
     protected String ID;
 
-    @Column(name = "ID")
+    @Column(name = "SPECIAL_TERMS")
     protected String specialTerms;
 
     @Column(name = "LOSS_RISK_RESPONSIBILITY_CODE")
