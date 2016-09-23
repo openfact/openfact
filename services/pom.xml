@@ -232,7 +232,7 @@
 					<xnocompile>true</xnocompile>
 					<verbose>true</verbose>
 					<extension>true</extension>
-					<catalog>${basedir}/src/jax-ws-catalog.xml</catalog>
+					<catalog>${project.build.directory}/generated-sources/jaxws-wsimport/jax-ws-catalog.xml</catalog>
 					<!-- tell JAXB to actually use xjc-plugins -->
 					<xjcArgs>
 						<xjcArg>-Xequals</xjcArg>
