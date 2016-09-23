@@ -1,5 +1,23 @@
+/*
+ * Copyright 2016 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.openfact.connections.jpa;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -11,21 +29,33 @@ import java.util.Map;
 import javax.naming.InitialContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.SynchronizationType;
 import javax.sql.DataSource;
+import javax.transaction.InvalidTransactionException;
+import javax.transaction.Synchronization;
+import javax.transaction.SystemException;
+import javax.transaction.Transaction;
+import javax.transaction.TransactionManager;
+import javax.transaction.UserTransaction;
 
 import org.hibernate.ejb.AvailableSettings;
+import org.hibernate.engine.transaction.jta.platform.internal.AbstractJtaPlatform;
+import org.hibernate.engine.transaction.jta.platform.spi.JtaPlatform;
 import org.jboss.logging.Logger;
 import org.openfact.Config;
 import org.openfact.connections.jpa.updater.JpaUpdaterProvider;
+import org.openfact.connections.jpa.updater.liquibase.conn.LiquibaseConnectionProvider;
 import org.openfact.connections.jpa.util.JpaUtils;
-import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.OpenfactSessionTask;
 import org.openfact.models.dblock.DBLockProvider;
+import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.provider.ServerInfoAwareProviderFactory;
 import org.openfact.models.dblock.DBLockManager;
+import org.openfact.ServerStartupError;
 import org.openfact.timer.TimerProvider;
+import org.openfact.transaction.JtaTransactionManagerLookup;
 
 /**
  * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
@@ -34,19 +64,36 @@ public class DefaultJpaConnectionProviderFactory implements JpaConnectionProvide
 
     private static final Logger logger = Logger.getLogger(DefaultJpaConnectionProviderFactory.class);
 
+    enum MigrationStrategy {
+        UPDATE, VALIDATE, MANUAL
+    }
+
     private volatile EntityManagerFactory emf;
 
     private Config.Scope config;
-    
-    private Map<String,String> operationalInfo;
+
+    private Map<String, String> operationalInfo;
+
+    private boolean jtaEnabled;
+    private JtaTransactionManagerLookup jtaLookup;
+
+    private OpenfactSessionFactory factory;
 
     @Override
     public JpaConnectionProvider create(OpenfactSession session) {
+        logger.trace("Create JpaConnectionProvider");
         lazyInit(session);
 
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = null;
+        if (!jtaEnabled) {
+            logger.trace("enlisting EntityManager in JpaOpenfactTransaction");
+            em = emf.createEntityManager();
+        } else {
+
+            em = emf.createEntityManager(SynchronizationType.SYNCHRONIZED);
+        }
         em = PersistenceExceptionConverter.create(em);
-        session.getTransactionManager().enlist(new JpaOpenfactTransaction(em));
+        if (!jtaEnabled) session.getTransactionManager().enlist(new JpaOpenfactTransaction(em));
         return new DefaultJpaConnectionProvider(em);
     }
 
@@ -69,160 +116,136 @@ public class DefaultJpaConnectionProviderFactory implements JpaConnectionProvide
 
     @Override
     public void postInit(OpenfactSessionFactory factory) {
+        this.factory = factory;
+        checkJtaEnabled(factory);
 
+    }
+
+    protected void checkJtaEnabled(OpenfactSessionFactory factory) {
+        jtaLookup = (JtaTransactionManagerLookup) factory.getProviderFactory(JtaTransactionManagerLookup.class);
+        if (jtaLookup != null) {
+            if (jtaLookup.getTransactionManager() != null) {
+                jtaEnabled = true;
+            }
+        }
     }
 
     private void lazyInit(OpenfactSession session) {
         if (emf == null) {
             synchronized (this) {
                 if (emf == null) {
-                    logger.debug("Initializing JPA connections");
+                    OpenfactModelUtils.suspendJtaTransaction(session.getOpenfactSessionFactory(), () -> {
+                        logger.debug("Initializing JPA connections");
 
-                    Map<String, Object> properties = new HashMap<String, Object>();
+                        Map<String, Object> properties = new HashMap<String, Object>();
 
-                    String unitName = "openfact-default";
+                        String unitName = "openfact-default";
 
-                    String dataSource = config.get("dataSource");
-                    if (dataSource != null) {
-                        if (config.getBoolean("jta", false)) {
-                            properties.put(AvailableSettings.JTA_DATASOURCE, dataSource);
-                        } else {
-                            properties.put(AvailableSettings.NON_JTA_DATASOURCE, dataSource);
-                        }
-                    } else {
-                        properties.put(AvailableSettings.JDBC_URL, config.get("url"));
-                        properties.put(AvailableSettings.JDBC_DRIVER, config.get("driver"));
-
-                        String user = config.get("user");
-                        if (user != null) {
-                            properties.put(AvailableSettings.JDBC_USER, user);
-                        }
-                        String password = config.get("password");
-                        if (password != null) {
-                            properties.put(AvailableSettings.JDBC_PASSWORD, password);
-                        }
-                    }
-
-                    String schema = getSchema();
-                    if (schema != null) {
-                        properties.put(JpaUtils.HIBERNATE_DEFAULT_SCHEMA, schema);
-                    }
-
-
-                    String databaseSchema;
-                    String databaseSchemaConf = config.get("databaseSchema");
-                    if (databaseSchemaConf == null) {
-                        throw new RuntimeException("Property 'databaseSchema' needs to be specified in the configuration");
-                    }
-                    
-                    if (databaseSchemaConf.equals("development-update")) {
-                        properties.put("hibernate.hbm2ddl.auto", "update");
-                        databaseSchema = null;
-                    } else if (databaseSchemaConf.equals("development-validate")) {
-                        properties.put("hibernate.hbm2ddl.auto", "validate");
-                        databaseSchema = null;
-                    } else {
-                        databaseSchema = databaseSchemaConf;
-                    }
-
-                    properties.put("hibernate.show_sql", config.getBoolean("showSql", false));
-                    properties.put("hibernate.format_sql", config.getBoolean("formatSql", true));
-
-                    Connection connection = getConnection();
-                    try{ 
-	                    prepareOperationalInfo(connection);
-
-                        String driverDialect = detectDialect(connection);
-                        if (driverDialect != null) {
-                            properties.put("hibernate.dialect", driverDialect);
-                        }
-	                    
-	                    if (databaseSchema != null) {
-	                        logger.trace("Updating database");
-	
-	                        JpaUpdaterProvider updater = session.getProvider(JpaUpdaterProvider.class);
-	                        if (updater == null) {
-	                            throw new RuntimeException("Can't update database: JPA updater provider not found");
-	                        }
-
-                            // Check if having DBLock before trying to initialize hibernate
-                            DBLockProvider dbLock = new DBLockManager(session).getDBLock();
-                            if (dbLock.hasLock()) {
-                                updateOrValidateDB(databaseSchema, connection, updater, schema);
+                        String dataSource = config.get("dataSource");
+                        if (dataSource != null) {
+                            if (config.getBoolean("jta", jtaEnabled)) {
+                                properties.put(AvailableSettings.JTA_DATASOURCE, dataSource);
                             } else {
-                                logger.trace("Don't have DBLock retrieved before upgrade. Needs to acquire lock first in separate transaction");
+                                properties.put(AvailableSettings.NON_JTA_DATASOURCE, dataSource);
+                            }
+                        } else {
+                            properties.put(AvailableSettings.JDBC_URL, config.get("url"));
+                            properties.put(AvailableSettings.JDBC_DRIVER, config.get("driver"));
 
-                                OpenfactModelUtils.runJobInTransaction(session.getOpenfactSessionFactory(), new OpenfactSessionTask() {
+                            String user = config.get("user");
+                            if (user != null) {
+                                properties.put(AvailableSettings.JDBC_USER, user);
+                            }
+                            String password = config.get("password");
+                            if (password != null) {
+                                properties.put(AvailableSettings.JDBC_PASSWORD, password);
+                            }
+                        }
 
+                        String schema = getSchema();
+                        if (schema != null) {
+                            properties.put(JpaUtils.HIBERNATE_DEFAULT_SCHEMA, schema);
+                        }
+
+                        MigrationStrategy migrationStrategy = getMigrationStrategy();
+                        boolean initializeEmpty = config.getBoolean("initializeEmpty", true);
+                        File databaseUpdateFile = getDatabaseUpdateFile();
+
+                        properties.put("hibernate.show_sql", config.getBoolean("showSql", false));
+                        properties.put("hibernate.format_sql", config.getBoolean("formatSql", true));
+
+                        Connection connection = getConnection();
+                        try {
+                            prepareOperationalInfo(connection);
+
+                            String driverDialect = detectDialect(connection);
+                            if (driverDialect != null) {
+                                properties.put("hibernate.dialect", driverDialect);
+                            }
+
+                            migration(migrationStrategy, initializeEmpty, schema, databaseUpdateFile, connection, session);
+
+                            int globalStatsInterval = config.getInt("globalStatsInterval", -1);
+                            if (globalStatsInterval != -1) {
+                                properties.put("hibernate.generate_statistics", true);
+                            }
+
+                            logger.trace("Creating EntityManagerFactory");
+                            logger.tracev("***** create EMF jtaEnabled {0} ", jtaEnabled);
+                            if (jtaEnabled) {
+                                properties.put(org.hibernate.cfg.AvailableSettings.JTA_PLATFORM, new AbstractJtaPlatform() {
                                     @Override
-                                    public void run(OpenfactSession lockSession) {
-                                        DBLockManager dbLockManager = new DBLockManager(lockSession);
-                                        DBLockProvider dbLock2 = dbLockManager.getDBLock();
-                                        dbLock2.waitForLock();
-                                        try {
-                                            updateOrValidateDB(databaseSchema, connection, updater, schema);
-                                        } finally {
-                                            dbLock2.releaseLock();
-                                        }
+                                    protected TransactionManager locateTransactionManager() {
+                                        return jtaLookup.getTransactionManager();
                                     }
 
+                                    @Override
+                                    protected UserTransaction locateUserTransaction() {
+                                        return null;
+                                    }
                                 });
                             }
-	                    }
+                            emf = JpaUtils.createEntityManagerFactory(session, unitName, properties, getClass().getClassLoader(), jtaEnabled);
+                            logger.trace("EntityManagerFactory created");
 
-                        int globalStatsInterval = config.getInt("globalStatsInterval", -1);
-                        if (globalStatsInterval != -1) {
-                            properties.put("hibernate.generate_statistics", true);
-                        }
-
-	                    logger.trace("Creating EntityManagerFactory");
-	                    emf = JpaUtils.createEntityManagerFactory(session, unitName, properties, getClass().getClassLoader());
-	                    logger.trace("EntityManagerFactory created");
-
-                        if (globalStatsInterval != -1) {
-                            startGlobalStats(session, globalStatsInterval);
-                        }
-
-                    } catch (Exception e) {
-                        // Safe rollback
-                        if (connection != null) {
-                            try {
-                                connection.rollback();
-                            } catch (SQLException e2) {
-                                logger.warn("Can't rollback connection", e2);
+                            if (globalStatsInterval != -1) {
+                                startGlobalStats(session, globalStatsInterval);
+                            }
+                        } finally {
+                            // Close after creating EntityManagerFactory to prevent in-mem databases from closing
+                            if (connection != null) {
+                                try {
+                                    connection.close();
+                                } catch (SQLException e) {
+                                    logger.warn("Can't close connection", e);
+                                }
                             }
                         }
-
-                        throw e;
-                    } finally {
-	                    // Close after creating EntityManagerFactory to prevent in-mem databases from closing
-	                    if (connection != null) {
-	                        try {
-	                            connection.close();
-	                        } catch (SQLException e) {
-	                            logger.warn("Can't close connection", e);
-	                        }
-	                    }
-                    }
+                    });
                 }
             }
         }
     }
 
+    private File getDatabaseUpdateFile() {
+        String databaseUpdateFile = config.get("migrationExport", "openfact-database-update.sql");
+        return new File(databaseUpdateFile);
+    }
+
     protected void prepareOperationalInfo(Connection connection) {
-  		try {
-  			operationalInfo = new LinkedHashMap<>();
-  			DatabaseMetaData md = connection.getMetaData();
-  			operationalInfo.put("databaseUrl",md.getURL());
-  			operationalInfo.put("databaseUser", md.getUserName());
-  			operationalInfo.put("databaseProduct", md.getDatabaseProductName() + " " + md.getDatabaseProductVersion());
-  			operationalInfo.put("databaseDriver", md.getDriverName() + " " + md.getDriverVersion());
+        try {
+            operationalInfo = new LinkedHashMap<>();
+            DatabaseMetaData md = connection.getMetaData();
+            operationalInfo.put("databaseUrl", md.getURL());
+            operationalInfo.put("databaseUser", md.getUserName());
+            operationalInfo.put("databaseProduct", md.getDatabaseProductName() + " " + md.getDatabaseProductVersion());
+            operationalInfo.put("databaseDriver", md.getDriverName() + " " + md.getDriverVersion());
 
             logger.debugf("Database info: %s", operationalInfo.toString());
-  		} catch (SQLException e) {
-  			logger.warn("Unable to prepare operational info due database exception: " + e.getMessage());
-  		}
-  	}
+        } catch (SQLException e) {
+            logger.warn("Unable to prepare operational info due database exception: " + e.getMessage());
+        }
+    }
 
 
     protected String detectDialect(Connection connection) {
@@ -265,20 +288,82 @@ public class DefaultJpaConnectionProviderFactory implements JpaConnectionProvide
         timer.scheduleTask(new HibernateStatsReporter(emf), globalStatsIntervalSecs * 1000, "ReportHibernateGlobalStats");
     }
 
+    public void migration(MigrationStrategy strategy, boolean initializeEmpty, String schema, File databaseUpdateFile, Connection connection, OpenfactSession session) {
+        JpaUpdaterProvider updater = session.getProvider(JpaUpdaterProvider.class);
 
-    // Needs to be called with acquired DBLock
-    protected void updateOrValidateDB(String databaseSchema, Connection connection, JpaUpdaterProvider updater, String schema) {
-        if (databaseSchema.equals("update")) {
-            updater.update(connection, schema);
-            logger.trace("Database update completed");
-        } else if (databaseSchema.equals("validate")) {
-            updater.validate(connection, schema);
-            logger.trace("Database validation completed");
+        JpaUpdaterProvider.Status status = updater.validate(connection, schema);
+        if (status == JpaUpdaterProvider.Status.VALID) {
+            logger.debug("Database is up-to-date");
+        } else if (status == JpaUpdaterProvider.Status.EMPTY) {
+            if (initializeEmpty) {
+                update(connection, schema, session, updater);
+            } else {
+                switch (strategy) {
+                    case UPDATE:
+                        update(connection, schema, session, updater);
+                        break;
+                    case MANUAL:
+                        export(connection, schema, databaseUpdateFile, session, updater);
+                        throw new ServerStartupError("Database not initialized, please initialize database with " + databaseUpdateFile.getAbsolutePath(), false);
+                    case VALIDATE:
+                        throw new ServerStartupError("Database not initialized, please enable database initialization", false);
+                }
+            }
         } else {
-            throw new RuntimeException("Invalid value for databaseSchema: " + databaseSchema);
+            switch (strategy) {
+                case UPDATE:
+                    update(connection, schema, session, updater);
+                    break;
+                case MANUAL:
+                    export(connection, schema, databaseUpdateFile, session, updater);
+                    throw new ServerStartupError("Database not up-to-date, please migrate database with " + databaseUpdateFile.getAbsolutePath(), false);
+                case VALIDATE:
+                    throw new ServerStartupError("Database not up-to-date, please enable database migration", false);
+            }
         }
     }
 
+    protected void update(Connection connection, String schema, OpenfactSession session, JpaUpdaterProvider updater) {
+        DBLockProvider dbLock = new DBLockManager(session).getDBLock();
+        if (dbLock.hasLock()) {
+            updater.update(connection, schema);
+        } else {
+            OpenfactModelUtils.runJobInTransaction(session.getOpenfactSessionFactory(), new OpenfactSessionTask() {
+                @Override
+                public void run(OpenfactSession lockSession) {
+                    DBLockManager dbLockManager = new DBLockManager(lockSession);
+                    DBLockProvider dbLock2 = dbLockManager.getDBLock();
+                    dbLock2.waitForLock();
+                    try {
+                        updater.update(connection, schema);
+                    } finally {
+                        dbLock2.releaseLock();
+                    }
+                }
+            });
+        }
+    }
+
+    protected void export(Connection connection, String schema, File databaseUpdateFile, OpenfactSession session, JpaUpdaterProvider updater) {
+        DBLockProvider dbLock = new DBLockManager(session).getDBLock();
+        if (dbLock.hasLock()) {
+            updater.export(connection, schema, databaseUpdateFile);
+        } else {
+            OpenfactModelUtils.runJobInTransaction(session.getOpenfactSessionFactory(), new OpenfactSessionTask() {
+                @Override
+                public void run(OpenfactSession lockSession) {
+                    DBLockManager dbLockManager = new DBLockManager(lockSession);
+                    DBLockProvider dbLock2 = dbLockManager.getDBLock();
+                    dbLock2.waitForLock();
+                    try {
+                        updater.export(connection, schema, databaseUpdateFile);
+                    } finally {
+                        dbLock2.releaseLock();
+                    }
+                }
+            });
+        }
+    }
 
     @Override
     public Connection getConnection() {
@@ -300,10 +385,24 @@ public class DefaultJpaConnectionProviderFactory implements JpaConnectionProvide
     public String getSchema() {
         return config.get("schema");
     }
-    
+
     @Override
-  	public Map<String,String> getOperationalInfo() {
-  		return operationalInfo;
-  	}
+    public Map<String, String> getOperationalInfo() {
+        return operationalInfo;
+    }
+
+    private MigrationStrategy getMigrationStrategy() {
+        String migrationStrategy = config.get("migrationStrategy");
+        if (migrationStrategy == null) {
+            // Support 'databaseSchema' for backwards compatibility
+            migrationStrategy = config.get("databaseSchema");
+        }
+
+        if (migrationStrategy != null) {
+            return MigrationStrategy.valueOf(migrationStrategy.toUpperCase());
+        } else {
+            return MigrationStrategy.UPDATE;
+        }
+    }
 
 }

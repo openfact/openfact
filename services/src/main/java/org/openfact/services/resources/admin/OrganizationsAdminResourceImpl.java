@@ -77,7 +77,7 @@ public class OrganizationsAdminResourceImpl implements OrganizationsAdminResourc
             reps.add(ModelToRepresentation.toRepresentation(organization, false));
         } else if (auth.hasOneRole(AdminRoles.ALL_ORGANIZATION_ROLES)) {
             OrganizationRepresentation rep = new OrganizationRepresentation();
-            rep.setName(organization.getName());
+            rep.setOrganization(organization.getName());
             reps.add(rep);
         }
     }
@@ -93,7 +93,7 @@ public class OrganizationsAdminResourceImpl implements OrganizationsAdminResourc
             throw new ForbiddenException();
         }
         
-        logger.debugv("importOrganization: {0}", rep.getName());
+        logger.debugv("importOrganization: {0}", rep.getOrganization());
 
         try {
             OrganizationModel organization = organizationManager.importOrganization(rep);            

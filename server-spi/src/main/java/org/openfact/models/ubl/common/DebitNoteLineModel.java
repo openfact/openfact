@@ -1,40 +1,42 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface DebitNoteLineModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    UUIDModel getUUID();
+    String getUUID();
 
-    void setUUID(UUIDModel value);
+    void setUUID(String value);
 
-    NoteModel getNote();
+    String getNote();
 
-    void setNote(NoteModel value);
+    void setNote(String value);
 
-    DebitedQuantityModel getDebitedQuantity();
+    QuantityModel getDebitedQuantity();
 
-    void setDebitedQuantity(DebitedQuantityModel value);
+    void setDebitedQuantity(QuantityModel value);
 
-    LineExtensionAmountModel getLineExtensionAmount();
+    BigDecimal getLineExtensionAmount();
 
-    void setLineExtensionAmount(LineExtensionAmountModel value);
+    void setLineExtensionAmount(BigDecimal value);
 
-    TaxPointDateModel getTaxPointDate();
+    LocalDate getTaxPointDate();
 
-    void setTaxPointDate(TaxPointDateModel value);
+    void setTaxPointDate(LocalDate value);
 
-    AccountingCostCodeModel getAccountingCostCode();
+    String getAccountingCostCode();
 
-    void setAccountingCostCode(AccountingCostCodeModel value);
+    void setAccountingCostCode(String value);
 
-    AccountingCostModel getAccountingCost();
+    String getAccountingCost();
 
-    void setAccountingCost(AccountingCostModel value);
+    void setAccountingCost(String value);
 
     List<ResponseModel> getDiscrepancyResponse();
 
@@ -79,5 +81,9 @@ public interface DebitNoteLineModel {
     String getId();
 
     void setId(String value);
+
+    /**
+     * */
+    TaxTotalModel addTaxTotal();
 
 }

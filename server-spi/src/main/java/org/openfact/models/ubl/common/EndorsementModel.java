@@ -4,17 +4,17 @@ import java.util.List;
 
 public interface EndorsementModel {
 
-    DocumentIDModel getDocumentID();
+    String getDocumentID();
 
-    void setDocumentID(DocumentIDModel value);
+    void setDocumentID(String value);
 
-    ApprovalStatusModel getApprovalStatus();
+    String getApprovalStatus();
 
-    void setApprovalStatus(ApprovalStatusModel value);
+    void setApprovalStatus(String value);
 
-    List<RemarksModel> getRemarks();
+    List<String> getRemarks();
 
-    void setRemarks(List<RemarksModel> remarks);
+    void setRemarks(List<String> remarks);
 
     EndorserPartyModel getEndorserParty();
 

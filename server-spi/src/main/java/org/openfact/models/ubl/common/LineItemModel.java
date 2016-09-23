@@ -1,76 +1,77 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface LineItemModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    SalesOrderIDModel getSalesOrderID();
+    String getSalesOrderID();
 
-    void setSalesOrderID(SalesOrderIDModel value);
+    void setSalesOrderID(String value);
 
-    UUIDModel getUUID();
+    String getUUID();
 
-    void setUUID(UUIDModel value);
+    void setUUID(String value);
 
-    NoteModel getNote();
+    String getNote();
 
-    void setNote(NoteModel value);
+    void setNote(String value);
 
-    LineStatusCodeModelCommBas getLineStatusCode();
+    String getLineStatusCode();
 
-    void setLineStatusCode(LineStatusCodeModelCommBas value);
+    void setLineStatusCode(String value);
 
-    QuantityModelCommBas getQuantity();
+    QuantityModel getQuantity();
 
-    void setQuantity(QuantityModelCommBas value);
+    void setQuantity(QuantityModel value);
 
-    LineExtensionAmountModel getLineExtensionAmount();
+    BigDecimal getLineExtensionAmount();
 
-    void setLineExtensionAmount(LineExtensionAmountModel value);
+    void setLineExtensionAmount(BigDecimal value);
 
-    TotalTaxAmountModel getTotalTaxAmount();
+    BigDecimal getTotalTaxAmount();
 
-    void setTotalTaxAmount(TotalTaxAmountModel value);
+    void setTotalTaxAmount(BigDecimal value);
 
-    MinimumQuantityModel getMinimumQuantity();
+    QuantityModel getMinimumQuantity();
 
-    void setMinimumQuantity(MinimumQuantityModel value);
+    void setMinimumQuantity(QuantityModel value);
 
-    MaximumQuantityModel getMaximumQuantity();
+    QuantityModel getMaximumQuantity();
 
-    void setMaximumQuantity(MaximumQuantityModel value);
+    void setMaximumQuantity(QuantityModel value);
 
-    MinimumBackorderQuantityModel getMinimumBackorderQuantity();
+    QuantityModel getMinimumBackorderQuantity();
 
-    void setMinimumBackorderQuantity(MinimumBackorderQuantityModel value);
+    void setMinimumBackorderQuantity(QuantityModel value);
 
-    MaximumBackorderQuantityModel getMaximumBackorderQuantity();
+    QuantityModel getMaximumBackorderQuantity();
 
-    void setMaximumBackorderQuantity(MaximumBackorderQuantityModel value);
+    void setMaximumBackorderQuantity(QuantityModel value);
 
-    InspectionMethodCodeModel getInspectionMethodCode();
+    String getInspectionMethodCode();
 
-    void setInspectionMethodCode(InspectionMethodCodeModel value);
+    void setInspectionMethodCode(String value);
 
-    PartialDeliveryIndicatorModel getPartialDeliveryIndicator();
+    boolean getPartialDeliveryIndicator();
 
-    void setPartialDeliveryIndicator(PartialDeliveryIndicatorModel value);
+    void setPartialDeliveryIndicator(boolean value);
 
-    BackOrderAllowedIndicatorModel getBackOrderAllowedIndicator();
+    boolean getBackOrderAllowedIndicator();
 
-    void setBackOrderAllowedIndicator(BackOrderAllowedIndicatorModel value);
+    void setBackOrderAllowedIndicator(boolean value);
 
-    AccountingCostCodeModel getAccountingCostCode();
+    String getAccountingCostCode();
 
-    void setAccountingCostCode(AccountingCostCodeModel value);
+    void setAccountingCostCode(String value);
 
-    AccountingCostModel getAccountingCost();
+    String getAccountingCost();
 
-    void setAccountingCost(AccountingCostModel value);
+    void setAccountingCost(String value);
 
     List<DeliveryModel> getDelivery();
 

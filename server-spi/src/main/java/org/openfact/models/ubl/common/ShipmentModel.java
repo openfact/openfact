@@ -1,88 +1,89 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface ShipmentModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    ShippingPriorityLevelCodeModel getShippingPriorityLevelCode();
+    String getShippingPriorityLevelCode();
 
-    void setShippingPriorityLevelCode(ShippingPriorityLevelCodeModel value);
+    void setShippingPriorityLevelCode(String value);
 
-    HandlingCodeModel getHandlingCode();
+    String getHandlingCode();
 
-    void setHandlingCode(HandlingCodeModel value);
+    void setHandlingCode(String value);
 
-    HandlingInstructionsModel getHandlingInstructions();
+    String getHandlingInstructions();
 
-    void setHandlingInstructions(HandlingInstructionsModel value);
+    void setHandlingInstructions(String value);
 
-    InformationModel getInformation();
+    String getInformation();
 
-    void setInformation(InformationModel value);
+    void setInformation(String value);
 
-    GrossWeightMeasureModel getGrossWeightMeasure();
+    MeasureModel getGrossWeightMeasure();
 
-    void setGrossWeightMeasure(GrossWeightMeasureModel value);
+    void setGrossWeightMeasure(MeasureModel value);
 
-    NetWeightMeasureModel getNetWeightMeasure();
+    MeasureModel getNetWeightMeasure();
 
-    void setNetWeightMeasure(NetWeightMeasureModel value);
+    void setNetWeightMeasure(MeasureModel value);
 
-    NetNetWeightMeasureModel getNetNetWeightMeasure();
+    MeasureModel getNetNetWeightMeasure();
 
-    void setNetNetWeightMeasure(NetNetWeightMeasureModel value);
+    void setNetNetWeightMeasure(MeasureModel value);
 
-    GrossVolumeMeasureModel getGrossVolumeMeasure();
+    MeasureModel getGrossVolumeMeasure();
 
-    void setGrossVolumeMeasure(GrossVolumeMeasureModel value);
+    void setGrossVolumeMeasure(MeasureModel value);
 
-    NetVolumeMeasureModel getNetVolumeMeasure();
+    MeasureModel getNetVolumeMeasure();
 
-    void setNetVolumeMeasure(NetVolumeMeasureModel value);
+    void setNetVolumeMeasure(MeasureModel value);
 
-    TotalGoodsItemQuantityModel getTotalGoodsItemQuantity();
+    QuantityModel getTotalGoodsItemQuantity();
 
-    void setTotalGoodsItemQuantity(TotalGoodsItemQuantityModel value);
+    void setTotalGoodsItemQuantity(QuantityModel value);
 
-    TotalTransportHandlingUnitQuantityModel getTotalTransportHandlingUnitQuantity();
+    QuantityModel getTotalTransportHandlingUnitQuantity();
 
-    void setTotalTransportHandlingUnitQuantity(TotalTransportHandlingUnitQuantityModel value);
+    void setTotalTransportHandlingUnitQuantity(QuantityModel value);
 
-    InsuranceValueAmountModel getInsuranceValueAmount();
+    BigDecimal getInsuranceValueAmount();
 
-    void setInsuranceValueAmount(InsuranceValueAmountModel value);
+    void setInsuranceValueAmount(BigDecimal value);
 
-    DeclaredCustomsValueAmountModel getDeclaredCustomsValueAmount();
+    BigDecimal getDeclaredCustomsValueAmount();
 
-    void setDeclaredCustomsValueAmount(DeclaredCustomsValueAmountModel value);
+    void setDeclaredCustomsValueAmount(BigDecimal value);
 
-    DeclaredForCarriageValueAmountModel getDeclaredForCarriageValueAmount();
+    BigDecimal getDeclaredForCarriageValueAmount();
 
-    void setDeclaredForCarriageValueAmount(DeclaredForCarriageValueAmountModel value);
+    void setDeclaredForCarriageValueAmount(BigDecimal value);
 
-    DeclaredStatisticsValueAmountModel getDeclaredStatisticsValueAmount();
+    BigDecimal getDeclaredStatisticsValueAmount();
 
-    void setDeclaredStatisticsValueAmount(DeclaredStatisticsValueAmountModel value);
+    void setDeclaredStatisticsValueAmount(BigDecimal value);
 
-    FreeOnBoardValueAmountModel getFreeOnBoardValueAmount();
+    BigDecimal getFreeOnBoardValueAmount();
 
-    void setFreeOnBoardValueAmount(FreeOnBoardValueAmountModel value);
+    void setFreeOnBoardValueAmount(BigDecimal value);
 
-    List<SpecialInstructionsModel> getSpecialInstructions();
+    List<String> getSpecialInstructions();
 
-    void setSpecialInstructions(List<SpecialInstructionsModel> specialInstructions);
+    void setSpecialInstructions(List<String> specialInstructions);
 
-    List<DeliveryInstructionsModel> getDeliveryInstructions();
+    List<String> getDeliveryInstructions();
 
-    void setDeliveryInstructions(List<DeliveryInstructionsModel> deliveryInstructions);
+    void setDeliveryInstructions(List<String> deliveryInstructions);
 
-    SplitConsignmentIndicatorModel getSplitConsignmentIndicator();
+    boolean getSplitConsignmentIndicator();
 
-    void setSplitConsignmentIndicator(SplitConsignmentIndicatorModel value);
+    void setSplitConsignmentIndicator(boolean value);
 
     ConsignmentModel getConsignment();
 
@@ -108,13 +109,13 @@ public interface ShipmentModel {
 
     void setOriginAddress(AddressModel value);
 
-    LocationModelCommAgg getFirstArrivalPortLocation();
+    LocationCommAggModel getFirstArrivalPortLocation();
 
-    void setFirstArrivalPortLocation(LocationModelCommAgg value);
+    void setFirstArrivalPortLocation(LocationCommAggModel value);
 
-    LocationModelCommAgg getLastExitPortLocation();
+    LocationCommAggModel getLastExitPortLocation();
 
-    void setLastExitPortLocation(LocationModelCommAgg value);
+    void setLastExitPortLocation(LocationCommAggModel value);
 
     CountryModel getExportCountry();
 

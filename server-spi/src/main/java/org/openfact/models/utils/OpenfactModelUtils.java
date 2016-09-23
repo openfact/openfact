@@ -1,6 +1,42 @@
+/*
+ * Copyright 2016 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.openfact.models.utils;
 
+import org.bouncycastle.openssl.PEMWriter;
+import org.openfact.common.util.Base64Url;
+import org.openfact.models.OpenfactSession;
+import org.openfact.models.OpenfactSessionFactory;
+import org.openfact.models.OpenfactSessionTask;
+import org.openfact.models.OpenfactTransaction;
+import org.openfact.models.ModelDuplicateException;
+import org.openfact.models.OrganizationModel;
+import org.openfact.models.UserModel;
+import org.openfact.representations.idm.CertificateRepresentation;
+import org.openfact.common.util.CertificateUtils;
+import org.openfact.common.util.PemUtils;
+import org.openfact.transaction.JtaTransactionManagerLookup;
+
 import javax.crypto.spec.SecretKeySpec;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+import javax.transaction.InvalidTransactionException;
+import javax.transaction.SystemException;
+import javax.transaction.Transaction;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.security.Key;
@@ -11,19 +47,21 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
+import java.sql.DriverManager;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
+import java.util.function.Function;
 
-import org.bouncycastle.openssl.PEMWriter;
-import org.openfact.common.util.Base64Url;
-import org.openfact.common.util.CertificateUtils;
-import org.openfact.common.util.PemUtils;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OpenfactSessionFactory;
-import org.openfact.models.OpenfactSessionTask;
-import org.openfact.models.OpenfactTransaction;
-import org.openfact.models.OrganizationModel;
-import org.openfact.representations.idm.CertificateRepresentation;
-
+/**
+ * Set of helper methods, which are useful in various model implementations.
+ *
+ * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
+ */
 public final class OpenfactModelUtils {
 
     private OpenfactModelUtils() {
@@ -111,7 +149,7 @@ public final class OpenfactModelUtils {
         return PemUtils.removeBeginEnd(s);
     }
 
-    public static void generateOrganizationKeys(OrganizationModel realm) {
+    public static void generateOrganizationKeys(OrganizationModel organization) {
         KeyPair keyPair = null;
         try {
             KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
@@ -120,27 +158,27 @@ public final class OpenfactModelUtils {
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
-        realm.setPrivateKey(keyPair.getPrivate());
-        realm.setPublicKey(keyPair.getPublic());
+        organization.setPrivateKey(keyPair.getPrivate());
+        organization.setPublicKey(keyPair.getPublic());
         X509Certificate certificate = null;
         try {
-            certificate = CertificateUtils.generateV1SelfSignedCertificate(keyPair, realm.getName());
+            certificate = CertificateUtils.generateV1SelfSignedCertificate(keyPair, organization.getName());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        realm.setCertificate(certificate);
+        organization.setCertificate(certificate);
 
-        realm.setCodeSecret(generateCodeSecret());
+        organization.setCodeSecret(generateCodeSecret());
     }
 
-    public static void generateOrganizationCertificate(OrganizationModel realm) {
+    public static void generateOrganizationCertificate(OrganizationModel organization) {
         X509Certificate certificate = null;
         try {
-            certificate = CertificateUtils.generateV1SelfSignedCertificate(new KeyPair(realm.getPublicKey(), realm.getPrivateKey()), realm.getName());
+            certificate = CertificateUtils.generateV1SelfSignedCertificate(new KeyPair(organization.getPublicKey(), organization.getPrivateKey()), organization.getName());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        realm.setCertificate(certificate);
+        organization.setCertificate(certificate);
     }
 
     public static CertificateRepresentation generateKeyPairCertificate(String subject) {
@@ -171,18 +209,18 @@ public final class OpenfactModelUtils {
         UserCredentialModel secret = UserCredentialModel.generateSecret();
         client.setSecret(secret.getValue());
         return secret;
-    }*/
+    }
 
     public static String getDefaultClientAuthenticatorType() {
         return "client-secret";
-    }
+    }*/
 
     public static String generateCodeSecret() {
         return UUID.randomUUID().toString();
     }
 
-    /*public static ClientModel createClient(OrganizationModel realm, String name) {
-        ClientModel app = realm.addClient(name);
+    /*public static ClientModel createClient(OrganizationModel organization, String name) {
+        ClientModel app = organization.addClient(name);
         app.setClientAuthenticatorType(getDefaultClientAuthenticatorType());
         generateSecret(app);
         app.setFullScopeAllowed(true);
@@ -213,19 +251,19 @@ public final class OpenfactModelUtils {
     /**
      * Try to find user by username or email
      *
-     * @param realm    realm
+     * @param organization    organization
      * @param username username or email of user
      * @return found user
      */
-    /*public static UserModel findUserByNameOrEmail(OpenfactSession session, OrganizationModel realm, String username) {
+    /*public static UserModel findUserByNameOrEmail(OpenfactSession session, OrganizationModel organization, String username) {
         if (username.indexOf('@') != -1) {
-            UserModel user = session.users().getUserByEmail(username, realm);
+            UserModel user = session.users().getUserByEmail(username, organization);
             if (user != null) {
                 return user;
             }
         }
 
-        return session.users().getUserByUsername(username, realm);
+        return session.users().getUserByUsername(username, organization);
     }*/
 
     /**
@@ -258,8 +296,9 @@ public final class OpenfactModelUtils {
         }
     }
 
-    public static String getMasterOrganizationAdminApplicationClientId(String realmName) {
-        return realmName + "-realm";
+
+    public static String getMasterOrganizationAdminApplicationClientId(String organizationName) {
+        return organizationName + "-organization";
     }
 
     /**
@@ -320,12 +359,12 @@ public final class OpenfactModelUtils {
     }
 
 
-    public static UserFederationProviderModel findUserFederationProviderByDisplayName(String displayName, OrganizationModel realm) {
+    public static UserFederationProviderModel findUserFederationProviderByDisplayName(String displayName, OrganizationModel organization) {
         if (displayName == null) {
             return null;
         }
 
-        for (UserFederationProviderModel fedProvider : realm.getUserFederationProviders()) {
+        for (UserFederationProviderModel fedProvider : organization.getUserFederationProviders()) {
             if (displayName.equals(fedProvider.getDisplayName())) {
                 return fedProvider;
             }
@@ -333,8 +372,8 @@ public final class OpenfactModelUtils {
         return null;
     }
 
-    public static UserFederationProviderModel findUserFederationProviderById(String fedProviderId, OrganizationModel realm) {
-        for (UserFederationProviderModel fedProvider : realm.getUserFederationProviders()) {
+    public static UserFederationProviderModel findUserFederationProviderById(String fedProviderId, OrganizationModel organization) {
+        for (UserFederationProviderModel fedProvider : organization.getUserFederationProviders()) {
             if (fedProviderId.equals(fedProvider.getId())) {
                 return fedProvider;
             }
@@ -383,12 +422,12 @@ public final class OpenfactModelUtils {
         return str==null ? null : str.toLowerCase();
     }
 
-    /*public static void setupOfflineTokens(OrganizationModel realm) {
-        if (realm.getRole(Constants.OFFLINE_ACCESS_ROLE) == null) {
-            RoleModel role = realm.addRole(Constants.OFFLINE_ACCESS_ROLE);
+    /*public static void setupOfflineTokens(OrganizationModel organization) {
+        if (organization.getRole(Constants.OFFLINE_ACCESS_ROLE) == null) {
+            RoleModel role = organization.addRole(Constants.OFFLINE_ACCESS_ROLE);
             role.setDescription("${role_offline-access}");
             role.setScopeParamRequired(true);
-            realm.addDefaultRole(Constants.OFFLINE_ACCESS_ROLE);
+            organization.addDefaultRole(Constants.OFFLINE_ACCESS_ROLE);
         }
     }*/
 
@@ -396,16 +435,16 @@ public final class OpenfactModelUtils {
     /**
      * Recursively find all AuthenticationExecutionModel from specified flow or all it's subflows
      *
-     * @param realm
+     * @param organization
      * @param flow
      * @param result input should be empty list. At the end will be all executions added to this list
      */
-    /*public static void deepFindAuthenticationExecutions(OrganizationModel realm, AuthenticationFlowModel flow, List<AuthenticationExecutionModel> result) {
-        List<AuthenticationExecutionModel> executions = realm.getAuthenticationExecutions(flow.getId());
+    /*public static void deepFindAuthenticationExecutions(OrganizationModel organization, AuthenticationFlowModel flow, List<AuthenticationExecutionModel> result) {
+        List<AuthenticationExecutionModel> executions = organization.getAuthenticationExecutions(flow.getId());
         for (AuthenticationExecutionModel execution : executions) {
             if (execution.isAuthenticatorFlow()) {
-                AuthenticationFlowModel subFlow = realm.getAuthenticationFlowById(execution.getFlowId());
-                deepFindAuthenticationExecutions(realm, subFlow, result);
+                AuthenticationFlowModel subFlow = organization.getAuthenticationFlowById(execution.getFlowId());
+                deepFindAuthenticationExecutions(organization, subFlow, result);
             } else {
                 result.add(execution);
             }
@@ -478,7 +517,7 @@ public final class OpenfactModelUtils {
         return null;
     }
 
-    public static GroupModel findGroupByPath(OrganizationModel realm, String path) {
+    public static GroupModel findGroupByPath(OrganizationModel organization, String path) {
         if (path == null) {
             return null;
         }
@@ -491,7 +530,7 @@ public final class OpenfactModelUtils {
         String[] split = path.split("/");
         if (split.length == 0) return null;
         GroupModel found = null;
-        for (GroupModel group : realm.getTopLevelGroups()) {
+        for (GroupModel group : organization.getTopLevelGroups()) {
             if (group.getName().equals(split[0])) {
                 if (split.length == 1) {
                     found = group;
@@ -525,13 +564,13 @@ public final class OpenfactModelUtils {
     }*/
 
     // Used in various role mappers
-    /*public static RoleModel getRoleFromString(OrganizationModel realm, String roleName) {
+    /*public static RoleModel getRoleFromString(OrganizationModel organization, String roleName) {
         String[] parsedRole = parseRole(roleName);
         RoleModel role = null;
         if (parsedRole[0] == null) {
-            role = realm.getRole(parsedRole[1]);
+            role = organization.getRole(parsedRole[1]);
         } else {
-            ClientModel client = realm.getClientByClientId(parsedRole[0]);
+            ClientModel client = organization.getClientByClientId(parsedRole[0]);
             if (client != null) {
                 role = client.getRole(parsedRole[1]);
             }
@@ -557,20 +596,20 @@ public final class OpenfactModelUtils {
     /**
      * Check to see if a flow is currently in use
      *
-     * @param realm
+     * @param organization
      * @param model
      * @return
      */
-    /*public static boolean isFlowUsed(OrganizationModel realm, AuthenticationFlowModel model) {
-        AuthenticationFlowModel realmFlow = null;
+    /*public static boolean isFlowUsed(OrganizationModel organization, AuthenticationFlowModel model) {
+        AuthenticationFlowModel organizationFlow = null;
 
-        if ((realmFlow = realm.getBrowserFlow()) != null && realmFlow.getId().equals(model.getId())) return true;
-        if ((realmFlow = realm.getRegistrationFlow()) != null && realmFlow.getId().equals(model.getId())) return true;
-        if ((realmFlow = realm.getClientAuthenticationFlow()) != null && realmFlow.getId().equals(model.getId())) return true;
-        if ((realmFlow = realm.getDirectGrantFlow()) != null && realmFlow.getId().equals(model.getId())) return true;
-        if ((realmFlow = realm.getResetCredentialsFlow()) != null && realmFlow.getId().equals(model.getId())) return true;
+        if ((organizationFlow = organization.getBrowserFlow()) != null && organizationFlow.getId().equals(model.getId())) return true;
+        if ((organizationFlow = organization.getRegistrationFlow()) != null && organizationFlow.getId().equals(model.getId())) return true;
+        if ((organizationFlow = organization.getClientAuthenticationFlow()) != null && organizationFlow.getId().equals(model.getId())) return true;
+        if ((organizationFlow = organization.getDirectGrantFlow()) != null && organizationFlow.getId().equals(model.getId())) return true;
+        if ((organizationFlow = organization.getResetCredentialsFlow()) != null && organizationFlow.getId().equals(model.getId())) return true;
 
-        for (IdentityProviderModel idp : realm.getIdentityProviders()) {
+        for (IdentityProviderModel idp : organization.getIdentityProviders()) {
             if (model.getId().equals(idp.getFirstBrokerLoginFlowId())) return true;
             if (model.getId().equals(idp.getPostBrokerLoginFlowId())) return true;
         }
@@ -579,15 +618,15 @@ public final class OpenfactModelUtils {
 
     }
 
-    public static boolean isClientTemplateUsed(OrganizationModel realm, ClientTemplateModel template) {
-        for (ClientModel client : realm.getClients()) {
+    public static boolean isClientTemplateUsed(OrganizationModel organization, ClientTemplateModel template) {
+        for (ClientModel client : organization.getClients()) {
             if (client.getClientTemplate() != null && client.getClientTemplate().getId().equals(template.getId())) return true;
         }
         return false;
     }
 
-    public static ClientTemplateModel getClientTemplateByName(OrganizationModel realm, String templateName) {
-        for (ClientTemplateModel clientTemplate : realm.getClientTemplates()) {
+    public static ClientTemplateModel getClientTemplateByName(OrganizationModel organization, String templateName) {
+        for (ClientTemplateModel clientTemplate : organization.getClientTemplates()) {
             if (templateName.equals(clientTemplate.getName())) {
                 return clientTemplate;
             }
@@ -596,15 +635,43 @@ public final class OpenfactModelUtils {
         return null;
     }
 
-    public static void setupAuthorizationServices(OrganizationModel realm) {
+    public static void setupAuthorizationServices(OrganizationModel organization) {
         for (String roleName : Constants.AUTHZ_DEFAULT_AUTHORIZATION_ROLES) {
-            if (realm.getRole(roleName) == null) {
-                RoleModel role = realm.addRole(roleName);
+            if (organization.getRole(roleName) == null) {
+                RoleModel role = organization.addRole(roleName);
                 role.setDescription("${role_" + roleName + "}");
                 role.setScopeParamRequired(false);
-                realm.addDefaultRole(roleName);
+                organization.addDefaultRole(roleName);
             }
         }
     }*/
 
+    public static void suspendJtaTransaction(OpenfactSessionFactory factory, Runnable runnable) {
+        JtaTransactionManagerLookup lookup = (JtaTransactionManagerLookup)factory.getProviderFactory(JtaTransactionManagerLookup.class);
+        Transaction suspended = null;
+        try {
+            if (lookup != null) {
+                if (lookup.getTransactionManager() != null) {
+                    try {
+                        suspended = lookup.getTransactionManager().suspend();
+                    } catch (SystemException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+            runnable.run();
+        } finally {
+            if (suspended != null) {
+                try {
+                    lookup.getTransactionManager().resume(suspended);
+                } catch (InvalidTransactionException e) {
+                    throw new RuntimeException(e);
+                } catch (SystemException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+        }
+
+    }
 }

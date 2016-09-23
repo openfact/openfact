@@ -2,33 +2,33 @@ package org.openfact.models.ubl.common;
 
 public interface PersonModel {
 
-    FirstNameModel getFirstName();
+    String getFirstName();
 
-    void setFirstName(FirstNameModel value);
+    void setFirstName(String value);
 
-    FamilyNameModel getFamilyName();
+    String getFamilyName();
 
-    void setFamilyName(FamilyNameModel value);
+    void setFamilyName(String value);
 
-    TitleModel getTitle();
+    String getTitle();
 
-    void setTitle(TitleModel value);
+    void setTitle(String value);
 
-    MiddleNameModel getMiddleName();
+    String getMiddleName();
 
-    void setMiddleName(MiddleNameModel value);
+    void setMiddleName(String value);
 
-    NameSuffixModel getNameSuffix();
+    String getNameSuffix();
 
-    void setNameSuffix(NameSuffixModel value);
+    void setNameSuffix(String value);
 
-    JobTitleModel getJobTitle();
+    String getJobTitle();
 
-    void setJobTitle(JobTitleModel value);
+    void setJobTitle(String value);
 
-    OrganizationDepartmentModel getOrganizationDepartment();
+    String getOrganizationDepartment();
 
-    void setOrganizationDepartment(OrganizationDepartmentModel value);
+    void setOrganizationDepartment(String value);
 
     String getId();
 

@@ -1,64 +1,65 @@
 package org.openfact.models.ubl.common;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface ReceiptLineModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    UUIDModel getUUID();
+    String getUUID();
 
-    void setUUID(UUIDModel value);
+    void setUUID(String value);
 
-    NoteModel getNote();
+    String getNote();
 
-    void setNote(NoteModel value);
+    void setNote(String value);
 
-    ReceivedQuantityModel getReceivedQuantity();
+    QuantityModel getReceivedQuantity();
 
-    void setReceivedQuantity(ReceivedQuantityModel value);
+    void setReceivedQuantity(QuantityModel value);
 
-    ShortQuantityModel getShortQuantity();
+    QuantityModel getShortQuantity();
 
-    void setShortQuantity(ShortQuantityModel value);
+    void setShortQuantity(QuantityModel value);
 
-    ShortageActionCodeModel getShortageActionCode();
+    String getShortageActionCode();
 
-    void setShortageActionCode(ShortageActionCodeModel value);
+    void setShortageActionCode(String value);
 
-    RejectedQuantityModel getRejectedQuantity();
+    QuantityModel getRejectedQuantity();
 
-    void setRejectedQuantity(RejectedQuantityModel value);
+    void setRejectedQuantity(QuantityModel value);
 
-    RejectReasonCodeModel getRejectReasonCode();
+    String getRejectReasonCode();
 
-    void setRejectReasonCode(RejectReasonCodeModel value);
+    void setRejectReasonCode(String value);
 
-    RejectReasonModel getRejectReason();
+    String getRejectReason();
 
-    void setRejectReason(RejectReasonModel value);
+    void setRejectReason(String value);
 
-    RejectActionCodeModel getRejectActionCode();
+    String getRejectActionCode();
 
-    void setRejectActionCode(RejectActionCodeModel value);
+    void setRejectActionCode(String value);
 
-    OversupplyQuantityModel getOversupplyQuantity();
+    QuantityModel getOversupplyQuantity();
 
-    void setOversupplyQuantity(OversupplyQuantityModel value);
+    void setOversupplyQuantity(QuantityModel value);
 
-    ReceivedDateModel getReceivedDate();
+    LocalDate getReceivedDate();
 
-    void setReceivedDate(ReceivedDateModel value);
+    void setReceivedDate(LocalDate value);
 
-    TimingComplaintCodeModel getTimingComplaintCode();
+    String getTimingComplaintCode();
 
-    void setTimingComplaintCode(TimingComplaintCodeModel value);
+    void setTimingComplaintCode(String value);
 
-    TimingComplaintModel getTimingComplaint();
+    String getTimingComplaint();
 
-    void setTimingComplaint(TimingComplaintModel value);
+    void setTimingComplaint(String value);
 
     OrderLineReferenceModel getOrderLineReference();
 

@@ -1,3 +1,20 @@
+/*
+ * Copyright 2016 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.openfact.events.jpa;
 
 import java.util.ArrayList;
@@ -16,7 +33,11 @@ import javax.persistence.criteria.Root;
 import org.openfact.events.admin.AdminEvent;
 import org.openfact.events.admin.AdminEventQuery;
 import org.openfact.events.admin.OperationType;
+import org.openfact.events.admin.ResourceType;
 
+/**
+ * @author <a href="mailto:giriraj.sharma27@gmail.com">Giriraj Sharma</a>
+ */
 public class JpaAdminEventQuery implements AdminEventQuery {
     
     private final EntityManager em;
@@ -37,8 +58,8 @@ public class JpaAdminEventQuery implements AdminEventQuery {
     }
     
     @Override
-    public AdminEventQuery organization(String realmId) {
-        predicates.add(cb.equal(root.get("realmId"), realmId));
+    public AdminEventQuery organization(String organizationId) {
+        predicates.add(cb.equal(root.get("organizationId"), organizationId));
         return this;
     }
 
@@ -51,10 +72,28 @@ public class JpaAdminEventQuery implements AdminEventQuery {
         predicates.add(root.get("operationType").in(operationStrings));
         return this;
     }
-    
+
     @Override
-    public AdminEventQuery authOrganization(String authRealmId) {
-        predicates.add(cb.equal(root.get("authRealmId"), authRealmId));
+    public AdminEventQuery resourceType(ResourceType... resourceTypes) {
+
+        List<String> resourceTypeStrings = new LinkedList<String>();
+        for (ResourceType e : resourceTypes) {
+            resourceTypeStrings.add(e.toString());
+        }
+        predicates.add(root.get("resourceType").in(resourceTypeStrings));
+
+        return this;
+    }
+
+    @Override
+    public AdminEventQuery authOrganization(String authOrganizationId) {
+        predicates.add(cb.equal(root.get("authOrganizationId"), authOrganizationId));
+        return this;
+    }
+
+    @Override
+    public AdminEventQuery authClient(String authClientId) {
+        predicates.add(cb.equal(root.get("authClientId"), authClientId));
         return this;
     }
 

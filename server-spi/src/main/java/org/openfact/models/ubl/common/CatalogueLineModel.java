@@ -1,60 +1,61 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface CatalogueLineModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    ActionCodeModel getActionCode();
+    String getActionCode();
 
-    void setActionCode(ActionCodeModel value);
+    void setActionCode(String value);
 
-    LifeCycleStatusCodeModel getLifeCycleStatusCode();
+    String getLifeCycleStatusCode();
 
-    void setLifeCycleStatusCode(LifeCycleStatusCodeModel value);
+    void setLifeCycleStatusCode(String value);
 
-    ContractSubdivisionModel getContractSubdivision();
+    String getContractSubdivision();
 
-    void setContractSubdivision(ContractSubdivisionModel value);
+    void setContractSubdivision(String value);
 
-    List<NoteModel> getNote();
+    List<String> getNote();
 
-    void setNote(List<NoteModel> note);
+    void setNote(List<String> note);
 
-    OrderableIndicatorModel getOrderableIndicator();
+    boolean getOrderableIndicator();
 
-    void setOrderableIndicator(OrderableIndicatorModel value);
+    void setOrderableIndicator(boolean value);
 
-    OrderableUnitModel getOrderableUnit();
+    String getOrderableUnit();
 
-    void setOrderableUnit(OrderableUnitModel value);
+    void setOrderableUnit(String value);
 
-    ContentUnitQuantityModel getContentUnitQuantity();
+    QuantityModel getContentUnitQuantity();
 
-    void setContentUnitQuantity(ContentUnitQuantityModel value);
+    void setContentUnitQuantity(QuantityModel value);
 
-    OrderQuantityIncrementNumericModel getOrderQuantityIncrementNumeric();
+    BigDecimal getOrderQuantityIncrementNumeric();
 
-    void setOrderQuantityIncrementNumeric(OrderQuantityIncrementNumericModel value);
+    void setOrderQuantityIncrementNumeric(BigDecimal value);
 
-    MinimumOrderQuantityModel getMinimumOrderQuantity();
+    QuantityModel getMinimumOrderQuantity();
 
-    void setMinimumOrderQuantity(MinimumOrderQuantityModel value);
+    void setMinimumOrderQuantity(QuantityModel value);
 
-    MaximumOrderQuantityModel getMaximumOrderQuantity();
+    QuantityModel getMaximumOrderQuantity();
 
-    void setMaximumOrderQuantity(MaximumOrderQuantityModel value);
+    void setMaximumOrderQuantity(QuantityModel value);
 
-    List<WarrantyInformationModel> getWarrantyInformation();
+    List<String> getWarrantyInformation();
 
-    void setWarrantyInformation(List<WarrantyInformationModel> warrantyInformation);
+    void setWarrantyInformation(List<String> warrantyInformation);
 
-    PackLevelCodeModel getPackLevelCode();
+    String getPackLevelCode();
 
-    void setPackLevelCode(PackLevelCodeModel value);
+    void setPackLevelCode(String value);
 
     CustomerPartyModel getContractorCustomerParty();
 

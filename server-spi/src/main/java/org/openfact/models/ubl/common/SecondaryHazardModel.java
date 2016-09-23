@@ -2,25 +2,25 @@ package org.openfact.models.ubl.common;
 
 public interface SecondaryHazardModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    PlacardNotationModel getPlacardNotation();
+    String getPlacardNotation();
 
-    void setPlacardNotation(PlacardNotationModel value);
+    void setPlacardNotation(String value);
 
-    PlacardEndorsementModel getPlacardEndorsement();
+    String getPlacardEndorsement();
 
-    void setPlacardEndorsement(PlacardEndorsementModel value);
+    void setPlacardEndorsement(String value);
 
-    EmergencyProceduresCodeModel getEmergencyProceduresCode();
+    String getEmergencyProceduresCode();
 
-    void setEmergencyProceduresCode(EmergencyProceduresCodeModel value);
+    void setEmergencyProceduresCode(String value);
 
-    ExtensionModel getExtension();
+    String getExtension();
 
-    void setExtension(ExtensionModel value);
+    void setExtension(String value);
 
     String getId();
 

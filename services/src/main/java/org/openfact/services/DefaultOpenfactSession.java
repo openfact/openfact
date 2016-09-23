@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.openfact.authentication.ClientAuthenticatorProvider;
-import org.openfact.models.InvoiceProvider;
 import org.openfact.models.OpenfactContext;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
@@ -16,6 +15,7 @@ import org.openfact.models.OpenfactTransactionManager;
 import org.openfact.models.OrganizationProvider;
 import org.openfact.models.ubl.provider.CreditNoteProvider;
 import org.openfact.models.ubl.provider.DebitNoteProvider;
+import org.openfact.models.ubl.provider.InvoiceProvider;
 import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
 
@@ -30,7 +30,6 @@ public class DefaultOpenfactSession implements OpenfactSession {
     private OrganizationProvider organizationProvider;
     private InvoiceProvider invoiceProvider;
     
-    private org.openfact.models.ubl.provider.InvoiceProvider invoiceUBLProvider;
     private CreditNoteProvider creditNoteProvider;
     private DebitNoteProvider debitNoteProvider;
 
@@ -184,26 +183,6 @@ public class DefaultOpenfactSession implements OpenfactSession {
             return cache;
         } else {
             return getProvider(InvoiceProvider.class);
-        }
-    }
-    
-    /**
-     * @return InvoiceUBLProvider
-     */
-    @Override
-    public org.openfact.models.ubl.provider.InvoiceProvider invoicesUBL() {
-        if (invoiceUBLProvider == null) {
-            invoiceUBLProvider = getInvoiceUBLProvider();
-        }
-        return invoiceUBLProvider;
-    }
-
-    private org.openfact.models.ubl.provider.InvoiceProvider getInvoiceUBLProvider() {
-        org.openfact.models.ubl.provider.InvoiceProvider cache = getProvider(org.openfact.models.ubl.provider.InvoiceProvider.class);
-        if (cache != null) {
-            return cache;
-        } else {
-            return getProvider(org.openfact.models.ubl.provider.InvoiceProvider.class);
         }
     }
     

@@ -17,12 +17,12 @@
 
 package org.openfact.jose.jwk;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
@@ -37,12 +37,8 @@ public class JWK {
 
     public static final String PUBLIC_KEY_USE = "use";
 
-    public static final String SIG_USE = "sig";
-    public static final String ENCRYPTION_USE = "enc";
-    
     public enum Use {
-        SIG("sig"),
-        ENCRYPTION("enc");
+        SIG("sig"), ENCRYPTION("enc");
 
         private String str;
 
@@ -54,6 +50,7 @@ public class JWK {
             return str;
         }
     }
+
     @JsonProperty(KEY_ID)
     private String keyId;
 
@@ -67,7 +64,6 @@ public class JWK {
     private String publicKeyUse;
 
     protected Map<String, Object> otherClaims = new HashMap<String, Object>();
-
 
     public String getKeyId() {
         return keyId;
@@ -110,6 +106,5 @@ public class JWK {
     public void setOtherClaims(String name, Object value) {
         otherClaims.put(name, value);
     }
-
 
 }

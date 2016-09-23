@@ -44,7 +44,7 @@ public class SingleFileImportProvider implements ImportProvider {
     private File file;
 
     // Allows to cache representation per provider to avoid parsing them twice
-    protected Map<String, OrganizationRepresentation> realmReps;
+    protected Map<String, OrganizationRepresentation> organizationReps;
 
     public SingleFileImportProvider(File file) {
         this.file = file;
@@ -59,7 +59,7 @@ public class SingleFileImportProvider implements ImportProvider {
 
             @Override
             protected void runExportImportTask(OpenfactSession session) throws IOException {
-                ImportUtils.importOrganizations(session, realmReps.values(), strategy);
+                ImportUtils.importOrganizations(session, organizationReps.values(), strategy);
             }
 
         });
@@ -68,19 +68,19 @@ public class SingleFileImportProvider implements ImportProvider {
     @Override
     public boolean isMasterOrganizationExported() throws IOException {
         checkOrganizationReps();
-        return (realmReps.containsKey(Config.getAdminOrganization()));
+        return (organizationReps.containsKey(Config.getAdminOrganization()));
     }
 
     protected void checkOrganizationReps() throws IOException {
-        if (realmReps == null) {
+        if (organizationReps == null) {
             FileInputStream is = new FileInputStream(file);
-            realmReps = ImportUtils.getOrganizationsFromStream(JsonSerialization.mapper, is);
+            organizationReps = ImportUtils.getOrganizationsFromStream(JsonSerialization.mapper, is);
         }
     }
 
     @Override
-    public void importOrganization(OpenfactSessionFactory factory, String realmName, Strategy strategy) throws IOException {
-        // TODO: import just that single realm in case that file contains many realms?
+    public void importOrganization(OpenfactSessionFactory factory, String organizationName, Strategy strategy) throws IOException {
+        // TODO: import just that single organization in case that file contains many organizations?
         importModel(factory, strategy);
     }
 

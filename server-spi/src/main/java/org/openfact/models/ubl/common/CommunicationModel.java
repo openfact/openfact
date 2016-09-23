@@ -2,17 +2,17 @@ package org.openfact.models.ubl.common;
 
 public interface CommunicationModel {
 
-    ChannelCodeModelCommBas getChannelCode();
+    String getChannelCode();
 
-    void setChannelCode(ChannelCodeModelCommBas value);
+    void setChannelCode(String value);
 
-    ChannelModel getChannel();
+    String getChannel();
 
-    void setChannel(ChannelModel value);
+    void setChannel(String value);
 
-    ValueModel getValue();
+    String getValue();
 
-    void setValue(ValueModel value);
+    void setValue(String value);
 
     String getId();
 

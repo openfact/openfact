@@ -1,13 +1,13 @@
 package org.openfact.models.jpa.ubl;
 
+import javax.persistence.EntityManager;
+
 import org.openfact.Config;
 import org.openfact.connections.jpa.JpaConnectionProvider;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.ubl.provider.InvoiceProvider;
 import org.openfact.models.ubl.provider.InvoiceProviderFactory;
-
-import javax.persistence.EntityManager;
 
 public class JpaInvoiceProviderFactory implements InvoiceProviderFactory {
 

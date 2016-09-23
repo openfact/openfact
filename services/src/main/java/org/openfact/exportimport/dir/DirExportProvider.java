@@ -19,10 +19,10 @@ package org.openfact.exportimport.dir;
 
 import org.openfact.exportimport.util.ExportUtils;
 import org.openfact.exportimport.util.MultipleStepsExportProvider;
-import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.UserModel;
+import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.util.JsonSerialization;
 
@@ -88,6 +88,5 @@ public class DirExportProvider extends MultipleStepsExportProvider {
 
     @Override
     public void close() {
-    }  
-
+    }
 }

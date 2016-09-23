@@ -1,34 +1,36 @@
 package org.openfact.models.ubl.common;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 public interface OrderReferenceModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    SalesOrderIDModel getSalesOrderID();
+    String getSalesOrderID();
 
-    void setSalesOrderID(SalesOrderIDModel value);
+    void setSalesOrderID(String value);
 
-    CopyIndicatorModel getCopyIndicator();
+    boolean getCopyIndicator();
 
-    void setCopyIndicator(CopyIndicatorModel value);
+    void setCopyIndicator(boolean value);
 
-    UUIDModel getUUID();
+    String getUUID();
 
-    void setUUID(UUIDModel value);
+    void setUUID(String value);
 
-    IssueDateModel getIssueDate();
+    LocalDate getIssueDate();
 
-    void setIssueDate(IssueDateModel value);
+    void setIssueDate(LocalDate value);
 
-    IssueTimeModel getIssueTime();
+    LocalTime getIssueTime();
 
-    void setIssueTime(IssueTimeModel value);
+    void setIssueTime(LocalTime value);
 
-    CustomerReferenceModel getCustomerReference();
+    String getCustomerReference();
 
-    void setCustomerReference(CustomerReferenceModel value);
+    void setCustomerReference(String value);
 
     DocumentReferenceModel getDocumentReference();
 

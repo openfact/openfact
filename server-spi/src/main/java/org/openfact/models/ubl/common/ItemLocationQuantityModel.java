@@ -4,25 +4,25 @@ import java.util.List;
 
 public interface ItemLocationQuantityModel {
 
-    LeadTimeMeasureModel getLeadTimeMeasure();
+    MeasureModel getLeadTimeMeasure();
 
-    void setLeadTimeMeasure(LeadTimeMeasureModel value);
+    void setLeadTimeMeasure(MeasureModel value);
 
-    MinimumQuantityModel getMinimumQuantity();
+    QuantityModel getMinimumQuantity();
 
-    void setMinimumQuantity(MinimumQuantityModel value);
+    void setMinimumQuantity(QuantityModel value);
 
-    MaximumQuantityModel getMaximumQuantity();
+    QuantityModel getMaximumQuantity();
 
-    void setMaximumQuantity(MaximumQuantityModel value);
+    void setMaximumQuantity(QuantityModel value);
 
-    HazardousRiskIndicatorModel getHazardousRiskIndicator();
+    boolean getHazardousRiskIndicator();
 
-    void setHazardousRiskIndicator(HazardousRiskIndicatorModel value);
+    void setHazardousRiskIndicator(boolean value);
 
-    List<TradingRestrictionsModel> getTradingRestrictions();
+    List<String> getTradingRestrictions();
 
-    void setTradingRestrictions(List<TradingRestrictionsModel> tradingRestrictions);
+    void setTradingRestrictions(List<String> tradingRestrictions);
 
     List<AddressModel> getApplicableTerritoryAddress();
 

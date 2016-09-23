@@ -21,7 +21,7 @@ package org.openfact.events;
  * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
 public interface Details {
-    String CUSTOM_REQUIRED_ACTION = "custom_required_action";
+    String CUSTOM_REQUIRED_ACTION="custom_required_action";
     String EMAIL = "email";
     String PREVIOUS_EMAIL = "previous_email";
     String UPDATED_EMAIL = "updated_email";
@@ -50,24 +50,15 @@ public interface Details {
     String RESTART_AFTER_TIMEOUT = "restart_after_timeout";
 
     String CONSENT = "consent";
-    String CONSENT_VALUE_NO_CONSENT_REQUIRED = "no_consent_required"; // No
-                                                                      // consent
-                                                                      // is
-                                                                      // required
-                                                                      // by
-                                                                      // client
-    String CONSENT_VALUE_CONSENT_GRANTED = "consent_granted"; // Consent granted
-                                                              // by user
-    String CONSENT_VALUE_PERSISTED_CONSENT = "persistent_consent"; // Persistent
-                                                                   // consent
-                                                                   // used (was
-                                                                   // already
-                                                                   // granted by
-                                                                   // user
-                                                                   // before)
-    String IMPERSONATOR_REALM = "impersonator_realm";
+    String CONSENT_VALUE_NO_CONSENT_REQUIRED = "no_consent_required"; // No consent is required by client
+    String CONSENT_VALUE_CONSENT_GRANTED = "consent_granted";         // Consent granted by user
+    String CONSENT_VALUE_PERSISTED_CONSENT = "persistent_consent";    // Persistent consent used (was already granted by user before)
+    String IMPERSONATOR_ORGANIZATION = "impersonator_organization";
     String IMPERSONATOR = "impersonator";
 
     String CLIENT_AUTH_METHOD = "client_auth_method";
+
+    String SIGNATURE_REQUIRED = "signature_required";
+    String SIGNATURE_ALGORITHM = "signature_algorithm";
 
 }

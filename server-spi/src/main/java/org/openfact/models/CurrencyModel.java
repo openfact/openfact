@@ -13,4 +13,5 @@ public interface CurrencyModel {
     void setPriority(int priority);
 
     OrganizationModel getOrganization();
+
 }

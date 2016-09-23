@@ -1,17 +1,12 @@
 package org.openfact.models.ubl;
 
+import java.time.LocalDate;
 import java.util.List;
 
-import org.openfact.models.ubl.common.CustomizationIDModel;
-import org.openfact.models.ubl.common.IDModel;
-import org.openfact.models.ubl.common.IssueDateModel;
-import org.openfact.models.ubl.common.NoteModel;
-import org.openfact.models.ubl.common.ReferenceDateModel;
 import org.openfact.models.ubl.common.SignatureModel;
 import org.openfact.models.ubl.common.SummaryDocumentsLineModel;
 import org.openfact.models.ubl.common.SupplierPartyModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
-import org.openfact.models.ubl.common.UBLVersionIDModel;
 
 public interface SummaryDocumentsModel {
 
@@ -19,29 +14,29 @@ public interface SummaryDocumentsModel {
 
     void setUBLExtensions(UBLExtensionsModel value);
 
-    UBLVersionIDModel getUBLVersionID();
+    String getUBLVersionID();
 
-    void setUBLVersionID(UBLVersionIDModel value);
+    void setUBLVersionID(String value);
 
-    CustomizationIDModel getCustomizationID();
+    String getCustomizationID();
 
-    void setCustomizationID(CustomizationIDModel value);
+    void setCustomizationID(String value);
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    ReferenceDateModel getReferenceDate();
+    LocalDate getReferenceDate();
 
-    void setReferenceDate(ReferenceDateModel value);
+    void setReferenceDate(LocalDate value);
 
-    IssueDateModel getIssueDate();
+    LocalDate getIssueDate();
 
-    void setIssueDate(IssueDateModel value);
+    void setIssueDate(LocalDate value);
 
-    List<NoteModel> getNote();
+    List<String> getNote();
 
-    void setNote(List<NoteModel> note);
+    void setNote(List<String> note);
 
     List<SignatureModel> getSignature();
 

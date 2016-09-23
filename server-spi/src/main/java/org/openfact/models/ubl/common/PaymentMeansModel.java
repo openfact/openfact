@@ -1,36 +1,37 @@
 package org.openfact.models.ubl.common;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface PaymentMeansModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    PaymentMeansCodeModelCommBas getPaymentMeansCode();
+    String getPaymentMeansCode();
 
-    void setPaymentMeansCode(PaymentMeansCodeModelCommBas value);
+    void setPaymentMeansCode(String value);
 
-    PaymentDueDateModel getPaymentDueDate();
+    LocalDate getPaymentDueDate();
 
-    void setPaymentDueDate(PaymentDueDateModel value);
+    void setPaymentDueDate(LocalDate value);
 
-    PaymentChannelCodeModel getPaymentChannelCode();
+    String getPaymentChannelCode();
 
-    void setPaymentChannelCode(PaymentChannelCodeModel value);
+    void setPaymentChannelCode(String value);
 
-    InstructionIDModel getInstructionID();
+    String getInstructionID();
 
-    void setInstructionID(InstructionIDModel value);
+    void setInstructionID(String value);
 
-    List<InstructionNoteModel> getInstructionNote();
+    List<String> getInstructionNote();
 
-    void setInstructionNote(List<InstructionNoteModel> instructionNote);
+    void setInstructionNote(List<String> instructionNote);
 
-    List<PaymentIDModel> getPaymentID();
+    List<String> getPaymentID();
 
-    void setPaymentID(List<PaymentIDModel> paymentID);
+    void setPaymentID(List<String> paymentID);
 
     CardAccountModel getCardAccount();
 

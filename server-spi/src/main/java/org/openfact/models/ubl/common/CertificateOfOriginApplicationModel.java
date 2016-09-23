@@ -4,29 +4,29 @@ import java.util.List;
 
 public interface CertificateOfOriginApplicationModel {
 
-    ReferenceIDModel getReferenceID();
+    String getReferenceID();
 
-    void setReferenceID(ReferenceIDModel value);
+    void setReferenceID(String value);
 
-    CertificateModelModel getCertificateModel();
+    String getCertificateModel();
 
-    void setCertificateModel(CertificateModelModel value);
+    void setCertificateModel(String value);
 
-    ApplicationStatusCodeModel getApplicationStatusCode();
+    String getApplicationStatusCode();
 
-    void setApplicationStatusCode(ApplicationStatusCodeModel value);
+    void setApplicationStatusCode(String value);
 
-    OriginalJobIDModel getOriginalJobID();
+    String getOriginalJobID();
 
-    void setOriginalJobID(OriginalJobIDModel value);
+    void setOriginalJobID(String value);
 
-    PreviousJobIDModel getPreviousJobID();
+    String getPreviousJobID();
 
-    void setPreviousJobID(PreviousJobIDModel value);
+    void setPreviousJobID(String value);
 
-    RemarksModel getRemarks();
+    String getRemarks();
 
-    void setRemarks(RemarksModel value);
+    void setRemarks(String value);
 
     ShipmentModel getShipment();
 

@@ -30,114 +30,114 @@ import java.net.URI;
  */
 public class Urls {
 
-    /*public static URI accountApplicationsPage(URI baseUri, String realmId) {
-        return accountBase(baseUri).path(AccountService.class, "applicationsPage").build(realmId);
+    /*public static URI accountApplicationsPage(URI baseUri, String organizationId) {
+        return accountBase(baseUri).path(AccountService.class, "applicationsPage").build(organizationId);
     }
 
     public static UriBuilder accountBase(URI baseUri) {
-        return realmBase(baseUri).path(OrganizationsResource.class, "getAccountService");
+        return organizationBase(baseUri).path(OrganizationsResource.class, "getAccountService");
     }*/
 
-    /*public static URI accountPage(URI baseUri, String realmId) {
-        return accountPageBuilder(baseUri).build(realmId);
+    /*public static URI accountPage(URI baseUri, String organizationId) {
+        return accountPageBuilder(baseUri).build(organizationId);
     }*/
 
     /*public static UriBuilder accountPageBuilder(URI baseUri) {
         return accountBase(baseUri).path(AccountService.class, "accountPage");
     }
 
-    public static URI accountPasswordPage(URI baseUri, String realmId) {
-        return accountBase(baseUri).path(AccountService.class, "passwordPage").build(realmId);
+    public static URI accountPasswordPage(URI baseUri, String organizationId) {
+        return accountBase(baseUri).path(AccountService.class, "passwordPage").build(organizationId);
     }
 
-    public static URI accountFederatedIdentityPage(URI baseUri, String realmId) {
-        return accountBase(baseUri).path(AccountService.class, "federatedIdentityPage").build(realmId);
+    public static URI accountFederatedIdentityPage(URI baseUri, String organizationId) {
+        return accountBase(baseUri).path(AccountService.class, "federatedIdentityPage").build(organizationId);
     }
 
-    public static URI accountFederatedIdentityUpdate(URI baseUri, String realmName) {
-        return accountBase(baseUri).path(AccountService.class, "processFederatedIdentityUpdate").build(realmName);
+    public static URI accountFederatedIdentityUpdate(URI baseUri, String organizationName) {
+        return accountBase(baseUri).path(AccountService.class, "processFederatedIdentityUpdate").build(organizationName);
     }
 
-    public static URI identityProviderAuthnResponse(URI baseUri, String providerId, String realmName) {
-        return realmBase(baseUri).path(OrganizationsResource.class, "getBrokerService")
+    public static URI identityProviderAuthnResponse(URI baseUri, String providerId, String organizationName) {
+        return organizationBase(baseUri).path(OrganizationsResource.class, "getBrokerService")
                 .path(IdentityBrokerService.class, "getEndpoint")
-                .build(realmName, providerId);
+                .build(organizationName, providerId);
     }
 
-    public static URI identityProviderAuthnRequest(URI baseUri, String providerId, String realmName, String accessCode) {
-        UriBuilder uriBuilder = realmBase(baseUri).path(OrganizationsResource.class, "getBrokerService")
+    public static URI identityProviderAuthnRequest(URI baseUri, String providerId, String organizationName, String accessCode) {
+        UriBuilder uriBuilder = organizationBase(baseUri).path(OrganizationsResource.class, "getBrokerService")
                 .path(IdentityBrokerService.class, "performLogin");
 
         if (accessCode != null) {
             uriBuilder.replaceQueryParam(OAuth2Constants.CODE, accessCode);
         }
 
-        return uriBuilder.build(realmName, providerId);
+        return uriBuilder.build(organizationName, providerId);
     }
 
-    public static URI identityProviderRetrieveToken(URI baseUri, String providerId, String realmName) {
-        return realmBase(baseUri).path(OrganizationsResource.class, "getBrokerService")
+    public static URI identityProviderRetrieveToken(URI baseUri, String providerId, String organizationName) {
+        return organizationBase(baseUri).path(OrganizationsResource.class, "getBrokerService")
                 .path(IdentityBrokerService.class, "retrieveToken")
-                .build(realmName, providerId);
+                .build(organizationName, providerId);
     }
 
-    public static URI identityProviderAuthnRequest(URI baseURI, String providerId, String realmName) {
-        return identityProviderAuthnRequest(baseURI, providerId, realmName, null);
+    public static URI identityProviderAuthnRequest(URI baseURI, String providerId, String organizationName) {
+        return identityProviderAuthnRequest(baseURI, providerId, organizationName, null);
     }
 
-    public static URI identityProviderAfterFirstBrokerLogin(URI baseUri, String realmName, String accessCode) {
-        return realmBase(baseUri).path(OrganizationsResource.class, "getBrokerService")
+    public static URI identityProviderAfterFirstBrokerLogin(URI baseUri, String organizationName, String accessCode) {
+        return organizationBase(baseUri).path(OrganizationsResource.class, "getBrokerService")
                 .path(IdentityBrokerService.class, "afterFirstBrokerLogin")
                 .replaceQueryParam(OAuth2Constants.CODE, accessCode)
-                .build(realmName);
+                .build(organizationName);
     }
 
-    public static URI identityProviderAfterPostBrokerLogin(URI baseUri, String realmName, String accessCode) {
-        return realmBase(baseUri).path(OrganizationsResource.class, "getBrokerService")
+    public static URI identityProviderAfterPostBrokerLogin(URI baseUri, String organizationName, String accessCode) {
+        return organizationBase(baseUri).path(OrganizationsResource.class, "getBrokerService")
                 .path(IdentityBrokerService.class, "afterPostBrokerLoginFlow")
                 .replaceQueryParam(OAuth2Constants.CODE, accessCode)
-                .build(realmName);
+                .build(organizationName);
     }
 
-    public static URI accountTotpPage(URI baseUri, String realmId) {
-        return accountBase(baseUri).path(AccountService.class, "totpPage").build(realmId);
+    public static URI accountTotpPage(URI baseUri, String organizationId) {
+        return accountBase(baseUri).path(AccountService.class, "totpPage").build(organizationId);
     }
 
-    public static URI accountTotpRemove(URI baseUri, String realmId, String stateChecker) {
+    public static URI accountTotpRemove(URI baseUri, String organizationId, String stateChecker) {
         return accountBase(baseUri).path(AccountService.class, "processTotpRemove")
                 .queryParam("stateChecker", stateChecker)
-                .build(realmId);
+                .build(organizationId);
     }*/
 
-    /*public static URI accountLogPage(URI baseUri, String realmId) {
-        return accountBase(baseUri).path(AccountService.class, "logPage").build(realmId);
+    /*public static URI accountLogPage(URI baseUri, String organizationId) {
+        return accountBase(baseUri).path(AccountService.class, "logPage").build(organizationId);
     }
 
-    public static URI accountSessionsPage(URI baseUri, String realmId) {
-        return accountBase(baseUri).path(AccountService.class, "sessionsPage").build(realmId);
+    public static URI accountSessionsPage(URI baseUri, String organizationId) {
+        return accountBase(baseUri).path(AccountService.class, "sessionsPage").build(organizationId);
     }
 
-    public static URI accountSessionsLogoutPage(URI baseUri, String realmId, String stateChecker) {
+    public static URI accountSessionsLogoutPage(URI baseUri, String organizationId, String stateChecker) {
         return accountBase(baseUri).path(AccountService.class, "processSessionsLogout")
                 .queryParam("stateChecker", stateChecker)
-                .build(realmId);
+                .build(organizationId);
     }
 
-    public static URI accountRevokeClientPage(URI baseUri, String realmId) {
+    public static URI accountRevokeClientPage(URI baseUri, String organizationId) {
         return accountBase(baseUri).path(AccountService.class, "processRevokeGrant")
-                .build(realmId);
+                .build(organizationId);
     }
 
-    public static URI accountLogout(URI baseUri, URI redirectUri, String realmId) {
-        return realmLogout(baseUri).queryParam("redirect_uri", redirectUri).build(realmId);
+    public static URI accountLogout(URI baseUri, URI redirectUri, String organizationId) {
+        return organizationLogout(baseUri).queryParam("redirect_uri", redirectUri).build(organizationId);
     }
 
-    public static URI loginActionUpdatePassword(URI baseUri, String realmId) {
-        return loginActionsBase(baseUri).path(LoginActionsService.class, "updatePassword").build(realmId);
+    public static URI loginActionUpdatePassword(URI baseUri, String organizationId) {
+        return loginActionsBase(baseUri).path(LoginActionsService.class, "updatePassword").build(organizationId);
     }
 
-    public static URI loginActionUpdateTotp(URI baseUri, String realmId) {
-        return loginActionsBase(baseUri).path(LoginActionsService.class, "updateTotp").build(realmId);
+    public static URI loginActionUpdateTotp(URI baseUri, String organizationId) {
+        return loginActionsBase(baseUri).path(LoginActionsService.class, "updateTotp").build(organizationId);
     }
 
     public static UriBuilder requiredActionBase(URI baseUri) {
@@ -145,20 +145,20 @@ public class Urls {
     }
 
 
-    public static URI loginActionUpdateProfile(URI baseUri, String realmId) {
-        return loginActionsBase(baseUri).path(LoginActionsService.class, "updateProfile").build(realmId);
+    public static URI loginActionUpdateProfile(URI baseUri, String organizationId) {
+        return loginActionsBase(baseUri).path(LoginActionsService.class, "updateProfile").build(organizationId);
     }
 
-    public static URI loginActionEmailVerification(URI baseUri, String realmId) {
-        return loginActionEmailVerificationBuilder(baseUri).build(realmId);
+    public static URI loginActionEmailVerification(URI baseUri, String organizationId) {
+        return loginActionEmailVerificationBuilder(baseUri).build(organizationId);
     }
 
     public static UriBuilder loginActionEmailVerificationBuilder(URI baseUri) {
         return loginActionsBase(baseUri).path(LoginActionsService.class, "emailVerification");
     }
 
-    public static URI loginResetCredentials(URI baseUri, String realmId) {
-        return loginResetCredentialsBuilder(baseUri).build(realmId);
+    public static URI loginResetCredentials(URI baseUri, String organizationId) {
+        return loginResetCredentialsBuilder(baseUri).build(organizationId);
     }
 
     public static UriBuilder executeActionsBuilder(URI baseUri) {
@@ -169,53 +169,53 @@ public class Urls {
         return loginActionsBase(baseUri).path(LoginActionsService.RESET_CREDENTIALS_PATH);
     }
 
-    public static URI loginUsernameReminder(URI baseUri, String realmId) {
-        return loginUsernameReminderBuilder(baseUri).build(realmId);
+    public static URI loginUsernameReminder(URI baseUri, String organizationId) {
+        return loginUsernameReminderBuilder(baseUri).build(organizationId);
     }
 
     public static UriBuilder loginUsernameReminderBuilder(URI baseUri) {
         return loginActionsBase(baseUri).path(LoginActionsService.class, "usernameReminder");
     }
 
-    public static String realmIssuer(URI baseUri, String realmId) {
-        return realmBase(baseUri).path("{realm}").build(realmId).toString();
+    public static String organizationIssuer(URI baseUri, String organizationId) {
+        return organizationBase(baseUri).path("{organization}").build(organizationId).toString();
     }
 
-    public static UriBuilder realmBase(URI baseUri) {
+    public static UriBuilder organizationBase(URI baseUri) {
         return UriBuilder.fromUri(baseUri).path(OrganizationsResource.class);
     }
 
-    public static URI realmLoginPage(URI baseUri, String realmId) {
-        return loginActionsBase(baseUri).path(LoginActionsService.class, "authenticate").build(realmId);
+    public static URI organizationLoginPage(URI baseUri, String organizationId) {
+        return loginActionsBase(baseUri).path(LoginActionsService.class, "authenticate").build(organizationId);
     }
 
-    private static UriBuilder realmLogout(URI baseUri) {
+    private static UriBuilder organizationLogout(URI baseUri) {
         return tokenBase(baseUri).path(OIDCLoginProtocolService.class, "logout");
     }
 
-    public static URI realmRegisterAction(URI baseUri, String realmId) {
-        return loginActionsBase(baseUri).path(LoginActionsService.class, "processRegister").build(realmId);
+    public static URI organizationRegisterAction(URI baseUri, String organizationId) {
+        return loginActionsBase(baseUri).path(LoginActionsService.class, "processRegister").build(organizationId);
     }
 
-    public static URI realmRegisterPage(URI baseUri, String realmId) {
-        return loginActionsBase(baseUri).path(LoginActionsService.class, "registerPage").build(realmId);
+    public static URI organizationRegisterPage(URI baseUri, String organizationId) {
+        return loginActionsBase(baseUri).path(LoginActionsService.class, "registerPage").build(organizationId);
     }
 
-    public static URI realmInstalledAppUrnCallback(URI baseUri, String realmId) {
-        return tokenBase(baseUri).path(OIDCLoginProtocolService.class, "installedAppUrnCallback").build(realmId);
+    public static URI organizationInstalledAppUrnCallback(URI baseUri, String organizationId) {
+        return tokenBase(baseUri).path(OIDCLoginProtocolService.class, "installedAppUrnCallback").build(organizationId);
     }
 
-    public static URI realmOauthAction(URI baseUri, String realmId) {
-        return loginActionsBase(baseUri).path(LoginActionsService.class, "processConsent").build(realmId);
+    public static URI organizationOauthAction(URI baseUri, String organizationId) {
+        return loginActionsBase(baseUri).path(LoginActionsService.class, "processConsent").build(organizationId);
     }
 
-    public static URI firstBrokerLoginProcessor(URI baseUri, String realmName) {
+    public static URI firstBrokerLoginProcessor(URI baseUri, String organizationName) {
         return loginActionsBase(baseUri).path(LoginActionsService.class, "firstBrokerLoginGet")
-                .build(realmName);
+                .build(organizationName);
     }
 
-    public static String localeCookiePath(URI baseUri, String realmName){
-        return realmBase(baseUri).path(realmName).build().getRawPath();
+    public static String localeCookiePath(URI baseUri, String organizationName){
+        return organizationBase(baseUri).path(organizationName).build().getRawPath();
     }
 
     public static URI themeRoot(URI baseUri) {
@@ -223,11 +223,11 @@ public class Urls {
     }
 
     private static UriBuilder loginActionsBase(URI baseUri) {
-        return realmBase(baseUri).path(OrganizationsResource.class, "getLoginActionsService");
+        return organizationBase(baseUri).path(OrganizationsResource.class, "getLoginActionsService");
     }
 
     private static UriBuilder tokenBase(URI baseUri) {
-        return realmBase(baseUri).path("{realm}/protocol/" + OIDCLoginProtocol.LOGIN_PROTOCOL);
+        return organizationBase(baseUri).path("{organization}/protocol/" + OIDCLoginProtocol.LOGIN_PROTOCOL);
     }
 
     private static UriBuilder themeBase(URI baseUri) {

@@ -1,3 +1,20 @@
+/*
+ * Copyright 2016 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.openfact.testsuite.model;
 
 import org.junit.After;
@@ -10,18 +27,21 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.managers.OrganizationManager;
-import org.openfact.util.JsonSerialization;
 import org.openfact.testsuite.rule.OpenfactRule;
+import org.openfact.util.JsonSerialization;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Set;
 
+/**
+ * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
+ */
 public class AbstractModelTest {
 
     @ClassRule
-    public static OpenfactRule of = new OpenfactRule();
+    public static OpenfactRule kc = new OpenfactRule();
 
     protected OpenfactSession session;
 
@@ -30,27 +50,27 @@ public class AbstractModelTest {
 
     @Before
     public void before() throws Exception {
-        session = of.startSession();
+        session = kc.startSession();
         model = session.organizations();
         organizationManager = new OrganizationManager(session);
     }
 
     @After
     public void after() throws Exception {
-        of.stopSession(session, true);
+        kc.stopSession(session, true);
 
-        session = of.startSession();
+        session = kc.startSession();
         try {
             model = session.organizations();
 
             OrganizationManager rm = new OrganizationManager(session);
-            for (OrganizationModel realm : model.getOrganizations()) {
-                if (!realm.getName().equals(Config.getAdminOrganization())) {
-                    rm.removeOrganization(realm);
+            for (OrganizationModel organization : model.getOrganizations()) {
+                if (!organization.getName().equals(Config.getAdminOrganization())) {
+                    rm.removeOrganization(organization);
                 }
             }
         } finally {
-            of.stopSession(session, true);
+            kc.stopSession(session, true);
         }
     }
 
@@ -71,8 +91,8 @@ public class AbstractModelTest {
         if (session.getTransactionManager().isActive()) {
             session.getTransactionManager().rollback();
         }
-        of.stopSession(session, false);
-        session = of.startSession();
+        kc.stopSession(session, false);
+        session = kc.startSession();
         model = session.organizations();
         organizationManager = new OrganizationManager(session);
     }

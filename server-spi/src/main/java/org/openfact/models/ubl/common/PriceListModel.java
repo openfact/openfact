@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface PriceListModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    StatusCodeModel getStatusCode();
+    String getStatusCode();
 
-    void setStatusCode(StatusCodeModel value);
+    void setStatusCode(String value);
 
     List<PeriodModel> getValidityPeriod();
 

@@ -1,38 +1,41 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 public interface ExchangeRateModel {
 
-    SourceCurrencyCodeModel getSourceCurrencyCode();
+    String getSourceCurrencyCode();
 
-    void setSourceCurrencyCode(SourceCurrencyCodeModel value);
+    void setSourceCurrencyCode(String value);
 
-    SourceCurrencyBaseRateModel getSourceCurrencyBaseRate();
+    BigDecimal getSourceCurrencyBaseRate();
 
-    void setSourceCurrencyBaseRate(SourceCurrencyBaseRateModel value);
+    void setSourceCurrencyBaseRate(BigDecimal value);
 
-    TargetCurrencyCodeModel getTargetCurrencyCode();
+    String getTargetCurrencyCode();
 
-    void setTargetCurrencyCode(TargetCurrencyCodeModel value);
+    void setTargetCurrencyCode(String value);
 
-    TargetCurrencyBaseRateModel getTargetCurrencyBaseRate();
+    BigDecimal getTargetCurrencyBaseRate();
 
-    void setTargetCurrencyBaseRate(TargetCurrencyBaseRateModel value);
+    void setTargetCurrencyBaseRate(BigDecimal value);
 
-    ExchangeMarketIDModel getExchangeMarketID();
+    String getExchangeMarketID();
 
-    void setExchangeMarketID(ExchangeMarketIDModel value);
+    void setExchangeMarketID(String value);
 
-    CalculationRateModel getCalculationRate();
+    BigDecimal getCalculationRate();
 
-    void setCalculationRate(CalculationRateModel value);
+    void setCalculationRate(BigDecimal value);
 
-    MathematicOperatorCodeModel getMathematicOperatorCode();
+    String getMathematicOperatorCode();
 
-    void setMathematicOperatorCode(MathematicOperatorCodeModel value);
+    void setMathematicOperatorCode(String value);
 
-    DateModel getDate();
+    LocalDate getDate();
 
-    void setDate(DateModel value);
+    void setDate(LocalDate value);
 
     ContractModel getForeignExchangeContract();
 

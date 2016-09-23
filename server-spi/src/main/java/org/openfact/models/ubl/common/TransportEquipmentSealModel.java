@@ -2,25 +2,25 @@ package org.openfact.models.ubl.common;
 
 public interface TransportEquipmentSealModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    SealIssuerModelCodeModel getSealIssuerModelCode();
+    String getSealIssuerModelCode();
 
-    void setSealIssuerModelCode(SealIssuerModelCodeModel value);
+    void setSealIssuerModelCode(String value);
 
-    ConditionModel getCondition();
+    String getCondition();
 
-    void setCondition(ConditionModel value);
+    void setCondition(String value);
 
-    SealStatusCodeModel getSealStatusCode();
+    String getSealStatusCode();
 
-    void setSealStatusCode(SealStatusCodeModel value);
+    void setSealStatusCode(String value);
 
-    SealingPartyModelModel getSealingPartyModel();
+    String getSealingPartyModel();
 
-    void setSealingPartyModel(SealingPartyModelModel value);
+    void setSealingPartyModel(String value);
 
     String getId();
 

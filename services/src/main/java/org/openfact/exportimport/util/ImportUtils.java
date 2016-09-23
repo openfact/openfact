@@ -31,7 +31,8 @@ import org.openfact.models.OrganizationProvider;
 import org.openfact.models.utils.OrganizationImporter;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.OrganizationRepresentation;
-import org.openfact.representations.idm.InvoiceRepresentation;
+import org.openfact.representations.idm.ubl.InvoiceRepresentation;
+import org.openfact.services.managers.OrganizationManager;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,7 +50,7 @@ public class ImportUtils {
 
         // Import admin organization first
         for (OrganizationRepresentation organization : organizations) {
-            if (Config.getAdminOrganization().equals(organization.getName())) {
+            if (Config.getAdminOrganization().equals(organization.getOrganization())) {
                 if (importOrganization(session, organization, strategy)) {
                     masterImported = true;
                 }
@@ -57,7 +58,7 @@ public class ImportUtils {
         }
 
         for (OrganizationRepresentation organization : organizations) {
-            if (!Config.getAdminOrganization().equals(organization.getName())) {
+            if (!Config.getAdminOrganization().equals(organization.getOrganization())) {
                 importOrganization(session, organization, strategy);
             }
         }
@@ -78,11 +79,11 @@ public class ImportUtils {
      *
      * @param session
      * @param rep
-     * @param strategy specifies whether to overwrite or ignore existing organization or invoice entries
+     * @param strategy specifies whether to overwrite or ignore existing organization or user entries
      * @return newly imported organization (or existing organization if ignoreExisting is true and organization of this name already exists)
      */
     public static boolean importOrganization(OpenfactSession session, OrganizationRepresentation rep, Strategy strategy) {
-        String organizationName = rep.getName();
+        String organizationName = rep.getOrganization();
         OrganizationProvider model = session.organizations();
         OrganizationModel organization = model.getOrganizationByName(organizationName);
 
@@ -98,7 +99,7 @@ public class ImportUtils {
                         //currOrganization.setMasterAdminClient(null);
                     }
                 }
-                // TODO: For migration between versions, it should be possible to delete just organization but keep it's invoices
+                // TODO: For migration between versions, it should be possible to delete just organization but keep it's users
                 model.removeOrganization(organization.getId());
             }
         }
@@ -145,7 +146,7 @@ public class ImportUtils {
                     parser.nextToken();
 
                     // Ensure that master organization is imported first
-                    if (Config.getAdminOrganization().equals(organizationRep.getName())) {
+                    if (Config.getAdminOrganization().equals(organizationRep.getOrganization())) {
                         organizationReps.add(0, organizationRep);
                     } else {
                         organizationReps.add(organizationRep);
@@ -153,12 +154,12 @@ public class ImportUtils {
                 }
 
                 for (OrganizationRepresentation organizationRep : organizationReps) {
-                    result.put(organizationRep.getName(), organizationRep);
+                    result.put(organizationRep.getOrganization(), organizationRep);
                 }
             } else if (parser.getCurrentToken() == JsonToken.START_OBJECT) {
                 // Case with single organization in stream
                 OrganizationRepresentation organizationRep = parser.readValueAs(OrganizationRepresentation.class);
-                result.put(organizationRep.getName(), organizationRep);
+                result.put(organizationRep.getOrganization(), organizationRep);
             }
         } finally {
             parser.close();
@@ -181,7 +182,7 @@ public class ImportUtils {
                     parser.nextToken();
                     String currOrganizationName = parser.getText();
                     if (!currOrganizationName.equals(organizationName)) {
-                        throw new IllegalStateException("Trying to import invoices into invalid organization. Organization name: " + organizationName + ", Expected organization name: " + currOrganizationName);
+                        throw new IllegalStateException("Trying to import users into invalid organization. Organization name: " + organizationName + ", Expected organization name: " + currOrganizationName);
                     }
                 } else if ("invoices".equals(parser.getText())) {
                     parser.nextToken();
@@ -190,15 +191,15 @@ public class ImportUtils {
                         parser.nextToken();
                     }
 
-                    // TODO: support for more transactions per single invoices file (if needed)
-                    List<InvoiceRepresentation> invoiceReps = new ArrayList<InvoiceRepresentation>();
+                    // TODO: support for more transactions per single users file (if needed)
+                    List<InvoiceRepresentation> userReps = new ArrayList<>();
                     while (parser.getCurrentToken() == JsonToken.START_OBJECT) {
-                        InvoiceRepresentation invoice = parser.readValueAs(InvoiceRepresentation.class);
-                        invoiceReps.add(invoice);
+                        InvoiceRepresentation user = parser.readValueAs(InvoiceRepresentation.class);
+                        userReps.add(user);
                         parser.nextToken();
                     }
 
-                    importInvoices(session, model, organizationName, invoiceReps);
+                    importInvoices(session, model, organizationName, userReps);
 
                     if (parser.getCurrentToken() == JsonToken.END_ARRAY) {
                         parser.nextToken();

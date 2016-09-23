@@ -1,28 +1,29 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface QuotationLineModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    NoteModel getNote();
+    String getNote();
 
-    void setNote(NoteModel value);
+    void setNote(String value);
 
-    QuantityModelCommBas getQuantity();
+    QuantityModel getQuantity();
 
-    void setQuantity(QuantityModelCommBas value);
+    void setQuantity(QuantityModel value);
 
-    LineExtensionAmountModel getLineExtensionAmount();
+    BigDecimal getLineExtensionAmount();
 
-    void setLineExtensionAmount(LineExtensionAmountModel value);
+    void setLineExtensionAmount(BigDecimal value);
 
-    TotalTaxAmountModel getTotalTaxAmount();
+    BigDecimal getTotalTaxAmount();
 
-    void setTotalTaxAmount(TotalTaxAmountModel value);
+    void setTotalTaxAmount(BigDecimal value);
 
     List<DocumentReferenceModel> getDocumentReference();
 

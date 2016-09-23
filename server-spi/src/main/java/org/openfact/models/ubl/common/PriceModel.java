@@ -1,32 +1,33 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface PriceModel {
 
-    PriceAmountModel getPriceAmount();
+    BigDecimal getPriceAmount();
 
-    void setPriceAmount(PriceAmountModel value);
+    void setPriceAmount(BigDecimal value);
 
-    BaseQuantityModel getBaseQuantity();
+    QuantityModel getBaseQuantity();
 
-    void setBaseQuantity(BaseQuantityModel value);
+    void setBaseQuantity(QuantityModel value);
 
-    List<PriceChangeReasonModel> getPriceChangeReason();
+    List<String> getPriceChangeReason();
 
-    void setPriceChangeReason(List<PriceChangeReasonModel> priceChangeReason);
+    void setPriceChangeReason(List<String> priceChangeReason);
 
-    PriceModelCodeModel getPriceModelCode();
+    String getPriceTypeCode();
 
-    void setPriceModelCode(PriceModelCodeModel value);
+    void setPriceTypeCode(String value);
 
-    PriceModelModel getPriceModel();
+    String getPriceType();
 
-    void setPriceModel(PriceModelModel value);
+    void setPriceType(String value);
 
-    OrderableUnitFactorRateModel getOrderableUnitFactorRate();
+    BigDecimal getOrderableUnitFactorRate();
 
-    void setOrderableUnitFactorRate(OrderableUnitFactorRateModel value);
+    void setOrderableUnitFactorRate(BigDecimal value);
 
     List<PeriodModel> getValidityPeriod();
 

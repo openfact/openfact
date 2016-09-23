@@ -4,49 +4,49 @@ import java.util.List;
 
 public interface TransportEquipmentModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    TransportEquipmentModelCodeModelCommBas getTransportEquipmentModelCode();
+    String getTransportEquipmentModelCode();
 
-    void setTransportEquipmentModelCode(TransportEquipmentModelCodeModelCommBas value);
+    void setTransportEquipmentModelCode(String value);
 
-    ProviderModelCodeModel getProviderModelCode();
+    String getProviderModelCode();
 
-    void setProviderModelCode(ProviderModelCodeModel value);
+    void setProviderModelCode(String value);
 
-    OwnerModelCodeModel getOwnerModelCode();
+    String getOwnerModelCode();
 
-    void setOwnerModelCode(OwnerModelCodeModel value);
+    void setOwnerModelCode(String value);
 
-    SizeModelCodeModel getSizeModelCode();
+    String getSizeModelCode();
 
-    void setSizeModelCode(SizeModelCodeModel value);
+    void setSizeModelCode(String value);
 
-    DispositionCodeModel getDispositionCode();
+    String getDispositionCode();
 
-    void setDispositionCode(DispositionCodeModel value);
+    void setDispositionCode(String value);
 
-    FullnessIndicationCodeModel getFullnessIndicationCode();
+    String getFullnessIndicationCode();
 
-    void setFullnessIndicationCode(FullnessIndicationCodeModel value);
+    void setFullnessIndicationCode(String value);
 
-    RefrigerationOnIndicatorModel getRefrigerationOnIndicator();
+    boolean getRefrigerationOnIndicator();
 
-    void setRefrigerationOnIndicator(RefrigerationOnIndicatorModel value);
+    void setRefrigerationOnIndicator(boolean value);
 
-    InformationModel getInformation();
+    String getInformation();
 
-    void setInformation(InformationModel value);
+    void setInformation(String value);
 
-    ReturnabilityIndicatorModel getReturnabilityIndicator();
+    boolean getReturnabilityIndicator();
 
-    void setReturnabilityIndicator(ReturnabilityIndicatorModel value);
+    void setReturnabilityIndicator(boolean value);
 
-    LegalStatusIndicatorModel getLegalStatusIndicator();
+    boolean getLegalStatusIndicator();
 
-    void setLegalStatusIndicator(LegalStatusIndicatorModel value);
+    void setLegalStatusIndicator(boolean value);
 
     List<DimensionModel> getMeasurementDimension();
 
@@ -72,9 +72,9 @@ public interface TransportEquipmentModel {
 
     void setLoadingProofParty(PartyModel value);
 
-    LocationModelCommAgg getLoadingLocation();
+    LocationCommAggModel getLoadingLocation();
 
-    void setLoadingLocation(LocationModelCommAgg value);
+    void setLoadingLocation(LocationCommAggModel value);
 
     String getId();
 

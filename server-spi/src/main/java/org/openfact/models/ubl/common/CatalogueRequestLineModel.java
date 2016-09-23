@@ -4,17 +4,17 @@ import java.util.List;
 
 public interface CatalogueRequestLineModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    ContractSubdivisionModel getContractSubdivision();
+    String getContractSubdivision();
 
-    void setContractSubdivision(ContractSubdivisionModel value);
+    void setContractSubdivision(String value);
 
-    List<NoteModel> getNote();
+    List<String> getNote();
 
-    void setNote(List<NoteModel> note);
+    void setNote(List<String> note);
 
     PeriodModel getLineValidityPeriod();
 

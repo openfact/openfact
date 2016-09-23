@@ -1,14 +1,16 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
+
 public interface DocumentDistributionModel {
 
-    PrintQualifierModel getPrintQualifier();
+    String getPrintQualifier();
 
-    void setPrintQualifier(PrintQualifierModel value);
+    void setPrintQualifier(String value);
 
-    MaximumCopiesNumericModel getMaximumCopiesNumeric();
+    BigDecimal getMaximumCopiesNumeric();
 
-    void setMaximumCopiesNumeric(MaximumCopiesNumericModel value);
+    void setMaximumCopiesNumeric(BigDecimal value);
 
     PartyModel getParty();
 

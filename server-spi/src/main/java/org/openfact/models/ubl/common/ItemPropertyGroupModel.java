@@ -2,13 +2,13 @@ package org.openfact.models.ubl.common;
 
 public interface ItemPropertyGroupModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    NameModelCommBas getName();
+    String getName();
 
-    void setName(NameModelCommBas value);
+    void setName(String value);
 
     String getId();
 

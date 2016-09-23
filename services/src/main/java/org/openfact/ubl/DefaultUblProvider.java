@@ -1,7 +1,10 @@
 package org.openfact.ubl;
 
-import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
+import org.openfact.models.OrganizationModel;
+import org.openfact.models.ubl.CreditNoteModel;
+import org.openfact.models.ubl.DebitNoteModel;
+import org.openfact.models.ubl.InvoiceModel;
 import org.w3c.dom.Document;
 
 import com.helger.ubl21.UBL21Reader;
@@ -24,15 +27,21 @@ public class DefaultUblProvider implements UblProvider {
     }
 
     @Override
-    public Document getDocument(String ublRepresentation) {
-        InvoiceType invoiceType = UBL21Reader.invoice().read(ublRepresentation);
-        return UBL21Writer.invoice().getAsDocument(invoiceType);
+    public Document getDocument(OrganizationModel organization, InvoiceModel invoice) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override
-    public Document getDocument(InvoiceModel invoice) {
-        InvoiceType invoiceType = ModelToUbl.getInvoiceType(invoice.getOrganization(), invoice);
-        return UBL21Writer.invoice().getAsDocument(invoiceType);
+    public Document getDocument(OrganizationModel organization, CreditNoteModel creditNote) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Document getDocument(OrganizationModel organization, DebitNoteModel debitNote) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

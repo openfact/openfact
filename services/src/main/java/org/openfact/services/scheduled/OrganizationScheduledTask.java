@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.openfact.email.EmailException;
 import org.openfact.email.EmailTemplateProvider;
-import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionTask;
 import org.openfact.models.OrganizationModel;

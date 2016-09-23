@@ -58,8 +58,8 @@ public class JBossLoggingEventListenerProvider implements EventListenerProvider 
             sb.append(event.getType());
             sb.append(", organizationId=");
             sb.append(event.getOrganizationId());
-            /*sb.append(", clientId=");
-            sb.append(event.getClientId());*/
+            sb.append(", clientId=");
+            sb.append(event.getClientId());
             sb.append(", userId=");
             sb.append(event.getUserId());
             sb.append(", ipAddress=");
@@ -104,8 +104,8 @@ public class JBossLoggingEventListenerProvider implements EventListenerProvider 
             sb.append(adminEvent.getOperationType());
             sb.append(", organizationId=");
             sb.append(adminEvent.getAuthDetails().getOrganizationId());
-            /*sb.append(", clientId=");
-            sb.append(adminEvent.getAuthDetails().getClientId());*/
+            sb.append(", clientId=");
+            sb.append(adminEvent.getAuthDetails().getClientId());
             sb.append(", userId=");
             sb.append(adminEvent.getAuthDetails().getUserId());
             sb.append(", ipAddress=");

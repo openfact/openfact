@@ -2,25 +2,25 @@ package org.openfact.models.ubl.common;
 
 public interface PartyTaxSchemeModel {
 
-    RegistrationNameModel getRegistrationName();
+    String getRegistrationName();
 
-    void setRegistrationName(RegistrationNameModel value);
+    void setRegistrationName(String value);
 
-    CompanyIDModel getCompanyID();
+    String getCompanyID();
 
-    void setCompanyID(CompanyIDModel value);
+    void setCompanyID(String value);
 
-    TaxLevelCodeModel getTaxLevelCode();
+    String getTaxLevelCode();
 
-    void setTaxLevelCode(TaxLevelCodeModel value);
+    void setTaxLevelCode(String value);
 
-    ExemptionReasonCodeModel getExemptionReasonCode();
+    String getExemptionReasonCode();
 
-    void setExemptionReasonCode(ExemptionReasonCodeModel value);
+    void setExemptionReasonCode(String value);
 
-    ExemptionReasonModel getExemptionReason();
+    String getExemptionReason();
 
-    void setExemptionReason(ExemptionReasonModel value);
+    void setExemptionReason(String value);
 
     AddressModel getRegistrationAddress();
 

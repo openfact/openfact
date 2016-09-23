@@ -1,3 +1,20 @@
+/*
+ * Copyright 2016 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.openfact.representations.info;
 
 import java.util.Date;
@@ -46,7 +63,8 @@ public class SystemInfoRepresentation {
         rep.userDir = System.getProperty("user.dir");
         rep.userTimezone = System.getProperty("user.timezone");
         if (System.getProperty("user.country") != null && System.getProperty("user.language") != null) {
-            rep.userLocale = (new Locale(System.getProperty("user.country"), System.getProperty("user.language")).toString());
+            rep.userLocale = (new Locale(System.getProperty("user.country"),
+                    System.getProperty("user.language")).toString());
         }
         return rep;
     }
@@ -197,22 +215,15 @@ public class SystemInfoRepresentation {
 
     private static String formatUptime(long uptime) {
         long diffInSeconds = uptime / 1000;
-        long diff[] = new long[]{0, 0, 0, 0}; // sec
+        long diff[] = new long[] { 0, 0, 0, 0 }; // sec
         diff[3] = (diffInSeconds >= 60 ? diffInSeconds % 60 : diffInSeconds); // min
         diff[2] = (diffInSeconds = (diffInSeconds / 60)) >= 60 ? diffInSeconds % 60 : diffInSeconds; // hours
         diff[1] = (diffInSeconds = (diffInSeconds / 60)) >= 24 ? diffInSeconds % 24 : diffInSeconds; // days
         diff[0] = (diffInSeconds = (diffInSeconds / 24));
 
-        return String.format(
-                "%d day%s, %d hour%s, %d minute%s, %d second%s",
-                diff[0],
-                diff[0] != 1 ? "s" : "",
-                diff[1],
-                diff[1] != 1 ? "s" : "",
-                diff[2],
-                diff[2] != 1 ? "s" : "",
-                diff[3],
-                diff[3] != 1 ? "s" : "");
+        return String.format("%d day%s, %d hour%s, %d minute%s, %d second%s", diff[0],
+                diff[0] != 1 ? "s" : "", diff[1], diff[1] != 1 ? "s" : "", diff[2], diff[2] != 1 ? "s" : "",
+                diff[3], diff[3] != 1 ? "s" : "");
     }
 
 }

@@ -1,48 +1,49 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface ItemModel {
 
-    List<DescriptionModel> getDescription();
+    List<String> getDescription();
 
-    void setDescription(List<DescriptionModel> description);
+    void setDescription(List<String> description);
 
-    PackQuantityModel getPackQuantity();
+    QuantityModel getPackQuantity();
 
-    void setPackQuantity(PackQuantityModel value);
+    void setPackQuantity(QuantityModel value);
 
-    PackSizeNumericModel getPackSizeNumeric();
+    BigDecimal getPackSizeNumeric();
 
-    void setPackSizeNumeric(PackSizeNumericModel value);
+    void setPackSizeNumeric(BigDecimal value);
 
-    CatalogueIndicatorModel getCatalogueIndicator();
+    boolean getCatalogueIndicator();
 
-    void setCatalogueIndicator(CatalogueIndicatorModel value);
+    void setCatalogueIndicator(boolean value);
 
-    NameModelCommBas getName();
+    String getName();
 
-    void setName(NameModelCommBas value);
+    void setName(String value);
 
-    HazardousRiskIndicatorModel getHazardousRiskIndicator();
+    boolean getHazardousRiskIndicator();
 
-    void setHazardousRiskIndicator(HazardousRiskIndicatorModel value);
+    void setHazardousRiskIndicator(boolean value);
 
-    AdditionalInformationModel getAdditionalInformation();
+    String getAdditionalInformation();
 
-    void setAdditionalInformation(AdditionalInformationModel value);
+    void setAdditionalInformation(String value);
 
-    List<KeywordModel> getKeyword();
+    List<String> getKeyword();
 
-    void setKeyword(List<KeywordModel> keyword);
+    void setKeyword(List<String> keyword);
 
-    List<BrandNameModel> getBrandName();
+    List<String> getBrandName();
 
-    void setBrandName(List<BrandNameModel> brandName);
+    void setBrandName(List<String> brandName);
 
-    List<ModelNameModel> getModelName();
+    List<String> getModelName();
 
-    void setModelName(List<ModelNameModel> modelName);
+    void setModelName(List<String> modelName);
 
     ItemIdentificationModel getBuyersItemIdentification();
 
@@ -54,7 +55,7 @@ public interface ItemModel {
 
     List<ItemIdentificationModel> getManufacturersItemIdentification();
 
-    void setManufacturersItemIdentification();
+    void setManufacturersItemIdentification(List<ItemIdentificationModel> items);
 
     ItemIdentificationModel getStandardItemIdentification();
 
@@ -74,7 +75,7 @@ public interface ItemModel {
 
     List<DocumentReferenceModel> getItemSpecificationDocumentReference();
 
-    void setItemSpecificationDocumentReference();
+    void setItemSpecificationDocumentReference(List<DocumentReferenceModel> items);
 
     CountryModel getOriginCountry();
 

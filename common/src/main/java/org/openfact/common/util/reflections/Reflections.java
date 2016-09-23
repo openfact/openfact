@@ -1,3 +1,20 @@
+/*
+ * Copyright 2016 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.openfact.common.util.reflections;
 
 import java.beans.Introspector;
@@ -49,7 +66,9 @@ public class Reflections {
      *
      * @param <T> the type to cast to
      * @param obj the object to perform the cast on
+     *
      * @return the casted object
+     *
      * @throws ClassCastException if the type T is not a subtype of the object
      * @see Class#cast(Object)
      */
@@ -62,6 +81,7 @@ public class Reflections {
      * Get all the declared fields on the class hierarchy. This <b>will</b> return overridden fields.
      *
      * @param clazz The class to search
+     *
      * @return the set of all declared fields or an empty set if there are none
      */
     public static Set<Field> getAllDeclaredFields(Class<?> clazz) {
@@ -79,7 +99,8 @@ public class Reflections {
      * class specified and searching up the hierarchy.
      *
      * @param clazz The class to search
-     * @param name  The name of the field to search for
+     * @param name The name of the field to search for
+     *
      * @return The field found, or null if no field is found
      */
     public static Field findDeclaredField(Class<?> clazz, String name) {
@@ -96,8 +117,9 @@ public class Reflections {
     /**
      * Search for annotations with the specified meta annotation type
      *
-     * @param annotations        The annotation set to search
+     * @param annotations The annotation set to search
      * @param metaAnnotationType The type of the meta annotation to search for
+     *
      * @return The set of annotations with the specified meta annotation, or an empty set if none are found
      */
     public static Set<Annotation> getAnnotationsWithMetaAnnotation(
@@ -115,7 +137,8 @@ public class Reflections {
      * Determine if a method exists in a specified class hierarchy
      *
      * @param clazz The class to search
-     * @param name  The name of the method
+     * @param name The name of the method
+     *
      * @return true if a method is found, otherwise false
      */
     public static boolean methodExists(Class<?> clazz, String name) {
@@ -133,6 +156,7 @@ public class Reflections {
      * Get all the declared methods on the class hierarchy. This <b>will</b> return overridden methods.
      *
      * @param clazz The class to search
+     *
      * @return the set of all declared methods or an empty set if there are none
      */
     public static Set<Method> getAllDeclaredMethods(Class<?> clazz) {
@@ -150,8 +174,9 @@ public class Reflections {
      * starting with the class specified and searching up the hierarchy.
      *
      * @param clazz The class to search
-     * @param name  The name of the method to search for
-     * @param args  The arguments of the method to search for
+     * @param name The name of the method to search for
+     * @param args The arguments of the method to search for
+     *
      * @return The method found, or null if no method is found
      */
     public static Method findDeclaredMethod(Class<?> clazz, String name, Class<?>... args) {
@@ -170,7 +195,8 @@ public class Reflections {
      * with the class specified and searching up the hierarchy.
      *
      * @param clazz The class to search
-     * @param args  The arguments of the constructor to search for
+     * @param args The arguments of the constructor to search for
+     *
      * @return The constructor found, or null if no constructor is found
      */
     public static Constructor<?> findDeclaredConstructor(Class<?> clazz, Class<?>... args) {
@@ -188,6 +214,7 @@ public class Reflections {
      * Get all the declared constructors on the class hierarchy. This <b>will</b> return overridden constructors.
      *
      * @param clazz The class to search
+     *
      * @return the set of all declared constructors or an empty set if there are none
      */
     public static Set<Constructor<?>> getAllDeclaredConstructors(Class<?> clazz) {
@@ -204,7 +231,9 @@ public class Reflections {
      * Get the type of the member
      *
      * @param member The member
+     *
      * @return The type of the member
+     *
      * @throws UnsupportedOperationException if the member is not a field, method, or constructor
      */
     public static Class<?> getMemberType(Member member) {
@@ -225,9 +254,11 @@ public class Reflections {
      * It is also possible to specify additional classloaders to attempt to load the class with. If the first attempt
      * fails, then these additional loaders are tried in order. </p>
      *
-     * @param name    the name of the class to load
+     * @param name the name of the class to load
      * @param loaders additional classloaders to use to attempt to load the class
+     *
      * @return the class object
+     *
      * @throws ClassNotFoundException if the class cannot be found
      */
     public static <T> Class<T> classForName(String name, ClassLoader... loaders) throws ClassNotFoundException {
@@ -318,21 +349,23 @@ public class Reflections {
      * before invoking the method. </p>
      *
      * @param setAccessible flag indicating whether method should first be set as accessible
-     * @param method        the method to invoke
-     * @param instance      the instance to invoke the method
-     * @param args          the arguments to the method
+     * @param method the method to invoke
+     * @param instance the instance to invoke the method
+     * @param args the arguments to the method
+     *
      * @return the result of invoking the method, or null if the method's return type is void
-     * @throws RuntimeException            if this <code>Method</code> object enforces Java language access control and the
-     *                                     underlying method is inaccessible or if the underlying method throws an exception or if the initialization
-     *                                     provoked by this method fails.
-     * @throws IllegalArgumentException    if the method is an instance method and the specified <code>instance</code>
-     *                                     argument is not an instance of the class or interface declaring the underlying method (or of a subclass or
-     *                                     implementor thereof); if the number of actual and formal parameters differ; if an unwrapping conversion for
-     *                                     primitive arguments fails; or if, after possible unwrapping, a parameter value cannot be converted to the
-     *                                     corresponding formal parameter type by a method invocation conversion.
-     * @throws NullPointerException        if the specified <code>instance</code> is null and the method is an instance
-     *                                     method.
-     * @throws ClassCastException          if the result of invoking the method cannot be cast to the expectedReturnType
+     *
+     * @throws RuntimeException if this <code>Method</code> object enforces Java language access control and the
+     * underlying method is inaccessible or if the underlying method throws an exception or if the initialization
+     * provoked by this method fails.
+     * @throws IllegalArgumentException if the method is an instance method and the specified <code>instance</code>
+     * argument is not an instance of the class or interface declaring the underlying method (or of a subclass or
+     * implementor thereof); if the number of actual and formal parameters differ; if an unwrapping conversion for
+     * primitive arguments fails; or if, after possible unwrapping, a parameter value cannot be converted to the
+     * corresponding formal parameter type by a method invocation conversion.
+     * @throws NullPointerException if the specified <code>instance</code> is null and the method is an instance
+     * method.
+     * @throws ClassCastException if the result of invoking the method cannot be cast to the expectedReturnType
      * @throws ExceptionInInitializerError if the initialization provoked by this method fails.
      * @see Method#invoke(Object, Object...)
      */
@@ -366,8 +399,9 @@ public class Reflections {
      * Set the accessibility flag on the {@link AccessibleObject} as described in {@link
      * AccessibleObject#setAccessible(boolean)} within the context of a {link PrivilegedAction}.
      *
-     * @param <A>    member the accessible object type
+     * @param <A> member the accessible object type
      * @param member the accessible object
+     *
      * @return the accessible object after the accessible flag has been altered
      */
     public static <A extends AccessibleObject> A setAccessible(A member) {
@@ -392,15 +426,17 @@ public class Reflections {
      * </p> <p/> <p> This method wraps {@link Field#get(Object)}, converting the checked exceptions that {@link
      * Field#get(Object)} specifies to runtime exceptions. </p>
      *
-     * @param <T>          the type of the field's value
-     * @param field        the field to operate on
-     * @param instance     the instance from which to retrieve the value
+     * @param <T> the type of the field's value
+     * @param field the field to operate on
+     * @param instance the instance from which to retrieve the value
      * @param expectedType the expected type of the field's value
+     *
      * @return the value of the field
-     * @throws RuntimeException            if the underlying field is inaccessible.
-     * @throws IllegalArgumentException    if the specified <code>instance</code> is not an instance of the class or
-     *                                     interface declaring the underlying field (or a subclass or implementor thereof).
-     * @throws NullPointerException        if the specified <code>instance</code> is null and the field is an instance field.
+     *
+     * @throws RuntimeException if the underlying field is inaccessible.
+     * @throws IllegalArgumentException if the specified <code>instance</code> is not an instance of the class or
+     * interface declaring the underlying field (or a subclass or implementor thereof).
+     * @throws NullPointerException if the specified <code>instance</code> is null and the field is an instance field.
      * @throws ExceptionInInitializerError if the initialization provoked by this method fails.
      */
     public static <T> T getFieldValue(Field field, Object instance, Class<T> expectedType) {
@@ -423,8 +459,9 @@ public class Reflections {
     /**
      * Extract the raw type, given a type.
      *
-     * @param <T>  the type
+     * @param <T> the type
      * @param type the type to extract the raw type from
+     *
      * @return the raw type, or null if the raw type cannot be determined.
      */
     @SuppressWarnings("unchecked")
@@ -443,6 +480,7 @@ public class Reflections {
      * Check if a class is serializable.
      *
      * @param clazz The class to check
+     *
      * @return true if the class implements serializable or is a primitive
      */
     public static boolean isSerializable(Class<?> clazz) {
@@ -488,10 +526,11 @@ public class Reflections {
 
     /**
      * Gets the property name from a getter method.
-     * <p>
+     * <p/>
      * We extend JavaBean conventions, allowing the getter method to have parameters
      *
      * @param method The getter method
+     *
      * @return The name of the property. Returns null if method wasn't JavaBean getter-styled
      */
     public static String getPropertyName(Method method) {
@@ -510,6 +549,7 @@ public class Reflections {
      * Checks if class is final
      *
      * @param clazz The class to check
+     *
      * @return True if final, false otherwise
      */
     public static boolean isFinal(Class<?> clazz) {
@@ -528,6 +568,7 @@ public class Reflections {
      * Checks if member is final
      *
      * @param member The member to check
+     *
      * @return True if final, false otherwise
      */
     public static boolean isFinal(Member member) {
@@ -538,6 +579,7 @@ public class Reflections {
      * Checks if member is private
      *
      * @param member The member to check
+     *
      * @return True if final, false otherwise
      */
     public static boolean isPrivate(Member member) {
@@ -548,6 +590,7 @@ public class Reflections {
      * Checks if type or member is final
      *
      * @param type Type or member
+     *
      * @return True if final, false otherwise
      */
     public static boolean isTypeOrAnyMethodFinal(Class<?> type) {
@@ -574,6 +617,7 @@ public class Reflections {
      * Checks if type is static
      *
      * @param type Type to check
+     *
      * @return True if static, false otherwise
      */
     public static boolean isStatic(Class<?> type) {
@@ -584,6 +628,7 @@ public class Reflections {
      * Checks if member is static
      *
      * @param member Member to check
+     *
      * @return True if static, false otherwise
      */
     public static boolean isStatic(Member member) {
@@ -598,6 +643,7 @@ public class Reflections {
      * Checks if a method is abstract
      *
      * @param method
+     *
      * @return
      */
     public static boolean isAbstract(Method method) {
@@ -608,6 +654,7 @@ public class Reflections {
      * Checks if raw type is array type
      *
      * @param rawType The raw type to check
+     *
      * @return True if array, false otherwise
      */
     public static boolean isArrayType(Class<?> rawType) {
@@ -618,6 +665,7 @@ public class Reflections {
      * Checks if type is parameterized type
      *
      * @param type The type to check
+     *
      * @return True if parameterized, false otherwise
      */
     public static boolean isParameterizedType(Class<?> type) {
@@ -644,10 +692,11 @@ public class Reflections {
     /**
      * Check the assignability of one type to another, taking into account the actual type arguements
      *
-     * @param rawType1             the raw type of the class to check
+     * @param rawType1 the raw type of the class to check
      * @param actualTypeArguments1 the actual type arguements to check, or an empty array if not a parameterized type
-     * @param rawType2             the raw type of the class to check
+     * @param rawType2 the raw type of the class to check
      * @param actualTypeArguments2 the actual type arguements to check, or an empty array if not a parameterized type
+     *
      * @return
      */
     public static boolean isAssignableFrom(Class<?> rawType1, Type[] actualTypeArguments1,
@@ -850,6 +899,7 @@ public class Reflections {
      *
      * @param types1
      * @param types2
+     *
      * @return
      */
     public static boolean isAssignableFrom(Set<Type> types1, Set<Type> types2) {
@@ -866,6 +916,7 @@ public class Reflections {
      *
      * @param types1
      * @param types2
+     *
      * @return
      */
     public static boolean matches(Set<Type> types1, Set<Type> types2) {
@@ -883,6 +934,7 @@ public class Reflections {
      *
      * @param types1
      * @param type2
+     *
      * @return
      */
     public static boolean isAssignableFrom(Set<Type> types1, Type type2) {
@@ -910,11 +962,13 @@ public class Reflections {
 
     /**
      * <p>Creates a new instance of a class.</p>
-     * <p>
+     *
      * <p>This method will use the same class loader of the given class to create the new instance.</p>
      *
      * @param fromClass The class from where the instance should be created.
+     *
      * @return A newly allocated instance of the class.
+     *
      * @throws ClassNotFoundException
      * @throws IllegalAccessException
      * @throws InstantiationException
@@ -925,12 +979,14 @@ public class Reflections {
 
     /**
      * <p>Creates a new instance of a class given its <code>fullQualifiedName</code>.</p>
-     * <p>
+     *
      * <p>This method will use the same class loader of <code>type</code> to create the new instance.</p>
      *
-     * @param type              The class that will be used to get the class loader from.
+     * @param type The class that will be used to get the class loader from.
      * @param fullQualifiedName The full qualified name of the class from which the instance will be created.
+     *
      * @return A newly allocated instance of the class.
+     *
      * @throws ClassNotFoundException
      * @throws IllegalAccessException
      * @throws InstantiationException

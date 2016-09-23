@@ -60,7 +60,7 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
 			auth.requireAny();
 
 			OrganizationRepresentation rep = new OrganizationRepresentation();
-			rep.setName(organization.getName());
+			rep.setOrganization(organization.getName());
 			return rep;
 		}
 	}
@@ -114,15 +114,7 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
 			logger.error(e.getMessage(), e);
 			return ErrorResponse.error("Failed to delete organization", Response.Status.INTERNAL_SERVER_ERROR);
 		}
-	}
-
-	@Override
-	public DocumentsAdminResource documents() {
-		DocumentsAdminResource documents = new DocumentsAdminResourceImpl(organization, auth);
-		ResteasyProviderFactory.getInstance().injectProperties(documents);
-		// resourceContext.initResource(invoices);
-		return documents;
-	}
+	}	
 
 	@Override
 	public InvoicesAdminResource invoices() {
@@ -131,21 +123,5 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
 		// resourceContext.initResource(invoices);
 		return invoices;
 	}
-	
-    @Override
-    public org.openfact.services.resources.admin.ubl.InvoicesAdminResource invoicesUbl() {
-        org.openfact.services.resources.admin.ubl.InvoicesAdminResource invoices = new org.openfact.services.resources.admin.ubl.InvoicesAdminResourceImpl(organization, auth, adminEvent);
-        ResteasyProviderFactory.getInstance().injectProperties(invoices);
-        // resourceContext.initResource(invoices);
-        return invoices;
-    }
-
-	@Override
-	public CertificatesAdminResource certificates() {
-		CertificatesAdminResource certificate = new CertificatesAdminResourceImpl(organization, auth, adminEvent);
-		ResteasyProviderFactory.getInstance().injectProperties(certificate);
-		// resourceContext.initResource(certificate);
-		return certificate;
-	}   
 
 }

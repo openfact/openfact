@@ -56,26 +56,11 @@ public interface OrganizationAdminResource {
      */
     @DELETE
     Response deleteOrganization();
-
-    /**
-     * Get the tax-types sub resource for the current organization
-     */
-    @Path("documents")
-    DocumentsAdminResource documents();
     
     /**
      * Get the invoices sub resource for the current organization
      */
     @Path("invoices")
     InvoicesAdminResource invoices();
-
-    /**
-     * Get the certificates sub resource for the current organization
-     */
-    @Path("certificates")
-    CertificatesAdminResource certificates();
-    
-    @Path("invoicesUbl")
-    org.openfact.services.resources.admin.ubl.InvoicesAdminResource invoicesUbl();
 
 }

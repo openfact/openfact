@@ -1,48 +1,50 @@
 package org.openfact.models.ubl.common;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public interface CatalogueReferenceModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    UUIDModel getUUID();
+    String getUUID();
 
-    void setUUID(UUIDModel value);
+    void setUUID(String value);
 
-    IssueDateModel getIssueDate();
+    LocalDate getIssueDate();
 
-    void setIssueDate(IssueDateModel value);
+    void setIssueDate(LocalDate value);
 
-    IssueTimeModel getIssueTime();
+    LocalTime getIssueTime();
 
-    void setIssueTime(IssueTimeModel value);
+    void setIssueTime(LocalTime value);
 
-    RevisionDateModel getRevisionDate();
+    LocalDate getRevisionDate();
 
-    void setRevisionDate(RevisionDateModel value);
+    void setRevisionDate(LocalDate value);
 
-    RevisionTimeModel getRevisionTime();
+    LocalTime getRevisionTime();
 
-    void setRevisionTime(RevisionTimeModel value);
+    void setRevisionTime(LocalTime value);
 
-    List<NoteModel> getNote();
+    List<String> getNote();
 
-    void setNote(List<NoteModel> note);
+    void setNote(List<String> note);
 
-    List<DescriptionModel> getDescription();
+    List<String> getDescription();
 
-    void setDescription(List<DescriptionModel> description);
+    void setDescription(List<String> description);
 
-    VersionIDModel getVersionID();
+    String getVersionID();
 
-    void setVersionID(VersionIDModel value);
+    void setVersionID(String value);
 
-    PreviousVersionIDModel getPreviousVersionID();
+    String getPreviousVersionID();
 
-    void setPreviousVersionID(PreviousVersionIDModel value);
+    void setPreviousVersionID(String value);
 
     String getId();
 

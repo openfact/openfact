@@ -1,10 +1,34 @@
+/*
+ * Copyright 2016 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.openfact.events.jpa;
+
+import org.openfact.events.admin.ResourceType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @author <a href="mailto:giriraj.sharma27@gmail.com">Giriraj Sharma</a>
+ */
 @Entity
 @Table(name="ADMIN_EVENT_ENTITY")
 public class AdminEventEntity {
@@ -16,14 +40,17 @@ public class AdminEventEntity {
     @Column(name="ADMIN_EVENT_TIME")
     private long time;
     
-    @Column(name="REALM_ID")
-    private String realmId;
+    @Column(name="ORGANIZATION_ID")
+    private String organizationId;
     
     @Column(name="OPERATION_TYPE")
     private String operationType;
+
+    @Column(name="RESOURCE_TYPE", length = 64)
+    private String resourceType;
     
-    @Column(name="AUTH_REALM_ID")
-    private String authRealmId;
+    @Column(name="AUTH_ORGANIZATION_ID")
+    private String authOrganizationId;
     
     @Column(name="AUTH_CLIENT_ID")
     private String authClientId;
@@ -59,12 +86,12 @@ public class AdminEventEntity {
         this.time = time;
     }
 
-    public String getRealmId() {
-        return realmId;
+    public String getOrganizationId() {
+        return organizationId;
     }
 
-    public void setRealmId(String realmId) {
-        this.realmId = realmId;
+    public void setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
     }
 
     public String getOperationType() {
@@ -75,12 +102,12 @@ public class AdminEventEntity {
         this.operationType = operationType;
     }
 
-    public String getAuthRealmId() {
-        return authRealmId;
+    public String getAuthOrganizationId() {
+        return authOrganizationId;
     }
 
-    public void setAuthRealmId(String authRealmId) {
-        this.authRealmId = authRealmId;
+    public void setAuthOrganizationId(String authOrganizationId) {
+        this.authOrganizationId = authOrganizationId;
     }
 
     public String getAuthClientId() {
@@ -131,4 +158,11 @@ public class AdminEventEntity {
         this.error = error;
     }
 
+    public String getResourceType() {
+        return resourceType;
+    }
+
+    public void setResourceType(String resourceType) {
+        this.resourceType = resourceType;
+    }
 }

@@ -1,50 +1,52 @@
 package org.openfact.models.ubl.common;
 
+import java.time.LocalDate;
+
 public interface CardAccountModel {
 
-    PrimaryAccountNumberIDModel getPrimaryAccountNumberID();
+    String getPrimaryAccountNumberID();
 
-    void setPrimaryAccountNumberID(PrimaryAccountNumberIDModel value);
+    void setPrimaryAccountNumberID(String value);
 
-    NetworkIDModel getNetworkID();
+    String getNetworkID();
 
-    void setNetworkID(NetworkIDModel value);
+    void setNetworkID(String value);
 
-    CardModelCodeModel getCardModelCode();
+    String getCardCode();
 
-    void setCardModelCode(CardModelCodeModel value);
+    void setCardCode(String value);
 
-    ValidityStartDateModel getValidityStartDate();
+    LocalDate getValidityStartDate();
 
-    void setValidityStartDate(ValidityStartDateModel value);
+    void setValidityStartDate(LocalDate value);
 
-    ExpiryDateModel getExpiryDate();
+    LocalDate getExpiryDate();
 
-    void setExpiryDate(ExpiryDateModel value);
+    void setExpiryDate(LocalDate value);
 
-    IssuerIDModel getIssuerID();
+    String getIssuerID();
 
-    void setIssuerID(IssuerIDModel value);
+    void setIssuerID(String value);
 
-    IssueNumberIDModel getIssueNumberID();
+    String getIssueNumberID();
 
-    void setIssueNumberID(IssueNumberIDModel value);
+    void setIssueNumberID(String value);
 
-    CV2IDModel getCV2ID();
+    String getCV2ID();
 
-    void setCV2ID(CV2IDModel value);
+    void setCV2ID(String value);
 
-    CardChipCodeModel getCardChipCode();
+    String getCardChipCode();
 
-    void setCardChipCode(CardChipCodeModel value);
+    void setCardChipCode(String value);
 
-    ChipApplicationIDModel getChipApplicationID();
+    String getChipApplicationID();
 
-    void setChipApplicationID(ChipApplicationIDModel value);
+    void setChipApplicationID(String value);
 
-    HolderNameModel getHolderName();
+    String getHolderName();
 
-    void setHolderName(HolderNameModel value);
+    void setHolderName(String value);
 
     String getId();
 

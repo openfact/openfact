@@ -1,37 +1,58 @@
+/*
+ * Copyright 2016 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.openfact.migration;
 
 import org.jboss.logging.Logger;
 import org.openfact.migration.migrators.MigrateTo1_1_0;
-import org.openfact.migration.migrators.MigrateTo2_0_0;
+import org.openfact.migration.migrators.Migration;
 import org.openfact.models.OpenfactSession;
 
+/**
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @version $Revision: 1 $
+ */
 public class MigrationModelManager {
+    private static Logger logger = Logger.getLogger(MigrationModelManager.class);
 
-	private static Logger logger = Logger.getLogger(MigrationModelManager.class);
+    private static final Migration[] migrations = {
+        new MigrateTo1_1_0()
+    };
 
-	public static void migrate(OpenfactSession session) {
-		MigrationModel model = session.organizations().getMigrationModel();
-		String storedVersion = model.getStoredVersion();
-		if (MigrationModel.LATEST_VERSION.equals(storedVersion))
-			return;
-		ModelVersion stored = null;
-		if (storedVersion != null) {
-			stored = new ModelVersion(storedVersion);
-		}
+    public static void migrate(OpenfactSession session) {
+        ModelVersion latest = migrations[migrations.length-1].getVersion();
+        MigrationModel model = session.organizations().getMigrationModel();
+        ModelVersion stored = null;
+        if (model.getStoredVersion() != null) {
+            stored = new ModelVersion(model.getStoredVersion());
+            if (latest.equals(stored)) {
+                return;
+            }
+        }
 
-		if (stored == null || stored.lessThan(MigrateTo1_1_0.VERSION)) {
-			if (stored != null) {
-				logger.debug("Migrating older model to 1.1.0 updates");
-			}
-			new MigrateTo1_1_0().migrate(session);
-		}
-		if (stored == null || stored.lessThan(MigrateTo2_0_0.VERSION)) {
-			if (stored != null) {
-				logger.debug("Migrating older model to 2.0.0 updates");
-			}
-			new MigrateTo2_0_0().migrate(session);
-		}
+        for (Migration m : migrations) {
+            if (stored == null || stored.lessThan(m.getVersion())) {
+                if (stored != null) {
+                    logger.debugf("Migrating older model to %s", m.getVersion());
+                }
+                m.migrate(session);
+            }
+        }
 
-		model.setStoredVersion(MigrationModel.LATEST_VERSION);
-	}
+        model.setStoredVersion(latest.toString());
+    }
 }

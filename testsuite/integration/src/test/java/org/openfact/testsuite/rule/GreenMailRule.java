@@ -61,12 +61,12 @@ public class GreenMailRule extends ExternalResource {
         }
     }
 
-    public void configureRealm(OrganizationModel realm) {
+    public void configureOrganization(OrganizationModel organization) {
         Map<String, String> config = new HashMap<>();
-        config.put("from", "auto@keycloak.org");
+        config.put("from", "auto@openfact.org");
         config.put("host", "localhost");
         config.put("port", "3025");
-        realm.setSmtpConfig(config);
+        organization.setSmtpConfig(config);
     }
 
     public MimeMessage[] getReceivedMessages() {

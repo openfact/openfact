@@ -2,33 +2,33 @@ package org.openfact.models.ubl.common;
 
 public interface LocationCoordinateModel {
 
-    CoordinateSystemCodeModel getCoordinateSystemCode();
+    String getCoordinateSystemCode();
 
-    void setCoordinateSystemCode(CoordinateSystemCodeModel value);
+    void setCoordinateSystemCode(String value);
 
-    LatitudeDegreesMeasureModel getLatitudeDegreesMeasure();
+    MeasureModel getLatitudeDegreesMeasure();
 
-    void setLatitudeDegreesMeasure(LatitudeDegreesMeasureModel value);
+    void setLatitudeDegreesMeasure(MeasureModel value);
 
-    LatitudeMinutesMeasureModel getLatitudeMinutesMeasure();
+    MeasureModel getLatitudeMinutesMeasure();
 
-    void setLatitudeMinutesMeasure(LatitudeMinutesMeasureModel value);
+    void setLatitudeMinutesMeasure(MeasureModel value);
 
-    LatitudeDirectionCodeModelCommBas getLatitudeDirectionCode();
+    String getLatitudeDirectionCode();
 
-    void setLatitudeDirectionCode(LatitudeDirectionCodeModelCommBas value);
+    void setLatitudeDirectionCode(String value);
 
-    LongitudeDegreesMeasureModel getLongitudeDegreesMeasure();
+    MeasureModel getLongitudeDegreesMeasure();
 
-    void setLongitudeDegreesMeasure(LongitudeDegreesMeasureModel value);
+    void setLongitudeDegreesMeasure(MeasureModel value);
 
-    LongitudeMinutesMeasureModel getLongitudeMinutesMeasure();
+    MeasureModel getLongitudeMinutesMeasure();
 
-    void setLongitudeMinutesMeasure(LongitudeMinutesMeasureModel value);
+    void setLongitudeMinutesMeasure(MeasureModel value);
 
-    LongitudeDirectionCodeModelCommBas getLongitudeDirectionCode();
+    String getLongitudeDirectionCode();
 
-    void setLongitudeDirectionCode(LongitudeDirectionCodeModelCommBas value);
+    void setLongitudeDirectionCode(String value);
 
     String getId();
 

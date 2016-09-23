@@ -8,35 +8,36 @@ import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.provider.Provider;
 
- public interface CreditNoteProvider extends Provider {
+public interface CreditNoteProvider extends Provider {
 
-    
-    CreditNoteModel addInvoice(OrganizationModel organization);
-    
-    
-    CreditNoteModel getInvoiceById(OrganizationModel organization, String id);
+    CreditNoteModel addCreditNote(OrganizationModel organization);
 
-    
-    boolean removeInvoice(OrganizationModel organization, String id);
-    
-    boolean removeInvoice(OrganizationModel organization, CreditNoteModel invoice);           
-    
-    
-    List<CreditNoteModel> getInvoices(OrganizationModel organization);
-    
-    List<CreditNoteModel> getInvoices(OrganizationModel organization, Integer firstResult, Integer maxResults);       
-        
-    
-    List<CreditNoteModel> searchForInvoice(String filterText, OrganizationModel organization);
-    
-    List<CreditNoteModel> searchForInvoice(String filterText, OrganizationModel organization, Integer firstResult, Integer maxResults);
-    
-    
-    SearchResultsModel<CreditNoteModel> searchForInvoice(OrganizationModel organization, SearchCriteriaModel criteria);
+    CreditNoteModel addCreditNote(OrganizationModel organization, String ID);
 
-    SearchResultsModel<CreditNoteModel> searchForInvoice(OrganizationModel organization, SearchCriteriaModel criteria, String filterText);
-    
-    
-    int getInvoicesCount(OrganizationModel organization);
+    CreditNoteModel getCreditNoteById(OrganizationModel organization, String id);
+
+    CreditNoteModel getInvoiceByID(OrganizationModel organizationModel, String ID);
+
+    boolean removeCreditNote(OrganizationModel organization, String id);
+
+    boolean removeCreditNote(OrganizationModel organization, CreditNoteModel crebitNote);
+
+    List<CreditNoteModel> getCreditNotes(OrganizationModel organization);
+
+    List<CreditNoteModel> getCreditNotes(OrganizationModel organization, Integer firstResult,
+            Integer maxResults);
+
+    List<CreditNoteModel> searchForCreditNote(String filterText, OrganizationModel organization);
+
+    List<CreditNoteModel> searchForCreditNote(String filterText, OrganizationModel organization,
+            Integer firstResult, Integer maxResults);
+
+    SearchResultsModel<CreditNoteModel> searchForCreditNote(OrganizationModel organization,
+            SearchCriteriaModel criteria);
+
+    SearchResultsModel<CreditNoteModel> searchForCreditNote(OrganizationModel organization,
+            SearchCriteriaModel criteria, String filterText);
+
+    int getCreditNotesCount(OrganizationModel organization);
 
 }

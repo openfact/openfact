@@ -2,25 +2,25 @@ package org.openfact.models.ubl.common;
 
 public interface DeliveryTermsModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    SpecialTermsModel getSpecialTerms();
+    String getSpecialTerms();
 
-    void setSpecialTerms(SpecialTermsModel value);
+    void setSpecialTerms(String value);
 
-    LossRiskResponsibilityCodeModel getLossRiskResponsibilityCode();
+    String getLossRiskResponsibilityCode();
 
-    void setLossRiskResponsibilityCode(LossRiskResponsibilityCodeModel value);
+    void setLossRiskResponsibilityCode(String value);
 
-    LossRiskModel getLossRisk();
+    String getLossRisk();
 
-    void setLossRisk(LossRiskModel value);
+    void setLossRisk(String value);
 
-    LocationModelCommAgg getDeliveryLocation();
+    LocationCommAggModel getDeliveryLocation();
 
-    void setDeliveryLocation(LocationModelCommAgg value);
+    void setDeliveryLocation(LocationCommAggModel value);
 
     AllowanceChargeModel getAllowanceCharge();
 

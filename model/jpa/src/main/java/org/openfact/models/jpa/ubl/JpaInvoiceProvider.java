@@ -10,29 +10,30 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.AbstractHibernateStorage;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
+import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.ubl.provider.InvoiceProvider;
 
 public class JpaInvoiceProvider extends AbstractHibernateStorage implements InvoiceProvider {
 
-	protected static final Logger logger = Logger.getLogger(JpaInvoiceProvider.class);
+    protected static final Logger logger = Logger.getLogger(JpaInvoiceProvider.class);
 
-	private final OpenfactSession session;
-	protected EntityManager em;
+    private final OpenfactSession session;
+    protected EntityManager em;
 
-	public JpaInvoiceProvider(OpenfactSession session, EntityManager em) {
-		this.session = session;
-		this.em = em;
-	}
+    public JpaInvoiceProvider(OpenfactSession session, EntityManager em) {
+        this.session = session;
+        this.em = em;
+    }
 
-	@Override
-	public void close() {
-		// TODO Auto-generated method stub
-	}
+    @Override
+    public void close() {
+        // TODO Auto-generated method stub
+    }
 
-	@Override
-	protected EntityManager getEntityManager() {
-		return this.em;
-	}
+    @Override
+    protected EntityManager getEntityManager() {
+        return this.em;
+    }
 
     @Override
     public org.openfact.models.ubl.InvoiceModel addInvoice(OrganizationModel organization) {
@@ -106,6 +107,16 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
         return 0;
     }
 
-	
+    @Override
+    public InvoiceModel addInvoice(OrganizationModel organization, String ID) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public InvoiceModel getInvoiceByID(OrganizationModel organization, String ID) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 }

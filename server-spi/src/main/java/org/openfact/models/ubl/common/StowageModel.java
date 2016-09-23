@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface StowageModel {
 
-    LocationIDModel getLocationID();
+    String getLocationID();
 
-    void setLocationID(LocationIDModel value);
+    void setLocationID(String value);
 
-    List<LocationModel> getLocation();
+    List<String> getLocation();
 
-    void setLocation(List<LocationModel> location);
+    void setLocation(List<String> location);
 
     List<DimensionModel> getMeasurementDimension();
 

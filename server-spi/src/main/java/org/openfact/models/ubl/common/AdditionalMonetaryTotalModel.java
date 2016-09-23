@@ -1,30 +1,32 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
+
 public interface AdditionalMonetaryTotalModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    NameModelCommBas getName();
+    String getName();
 
-    void setName(NameModelCommBas value);
+    void setName(String value);
 
-    AmountModelCommBas getReferenceAmount();
+    BigDecimal getReferenceAmount();
 
-    void setReferenceAmount(AmountModelCommBas value);
+    void setReferenceAmount(BigDecimal value);
 
-    PayableAmountModel getPayableAmount();
+    BigDecimal getPayableAmount();
 
-    void setPayableAmount(PayableAmountModel value);
+    void setPayableAmount(BigDecimal value);
 
-    PercentModel getPercent();
+    BigDecimal getPercent();
 
-    void setPercent(PercentModel value);
+    void setPercent(BigDecimal value);
 
-    AmountModelCommBas getTotalAmount();
+    BigDecimal getTotalAmount();
 
-    void setTotalAmount(AmountModelCommBas value);
+    void setTotalAmount(BigDecimal value);
 
     String getId();
 

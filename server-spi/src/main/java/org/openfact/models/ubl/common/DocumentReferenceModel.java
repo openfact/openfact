@@ -1,36 +1,37 @@
 package org.openfact.models.ubl.common;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface DocumentReferenceModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    CopyIndicatorModel getCopyIndicator();
+    boolean getCopyIndicator();
 
-    void setCopyIndicator(CopyIndicatorModel value);
+    void setCopyIndicator(boolean value);
 
-    UUIDModel getUUID();
+    String getUUID();
 
-    void setUUID(UUIDModel value);
+    void setUUID(String value);
 
-    IssueDateModel getIssueDate();
+    LocalDate getIssueDate();
 
-    void setIssueDate(IssueDateModel value);
+    void setIssueDate(LocalDate value);
 
-    DocumentModelCodeModel getDocumentModelCode();
+    String getDocumentCode();
 
-    void setDocumentModelCode(DocumentModelCodeModel value);
+    void setDocumentCode(String value);
 
-    DocumentModelModel getDocumentModel();
+    String getDocument();
 
-    void setDocumentModel(DocumentModelModel value);
+    void setDocument(String value);
 
-    List<XPathModel> getXPath();
+    List<String> getXPath();
 
-    void setXPath(List<XPathModel> xPath);
+    void setXPath(List<String> xPath);
 
     AttachmentModel getAttachment();
 

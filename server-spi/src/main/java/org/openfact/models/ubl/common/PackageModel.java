@@ -4,29 +4,29 @@ import java.util.List;
 
 public interface PackageModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    QuantityModelCommBas getQuantity();
+    QuantityModel getQuantity();
 
-    void setQuantity(QuantityModelCommBas value);
+    void setQuantity(QuantityModel value);
 
-    ReturnableMaterialIndicatorModel getReturnableMaterialIndicator();
+    boolean getReturnableMaterialIndicator();
 
-    void setReturnableMaterialIndicator(ReturnableMaterialIndicatorModel value);
+    void setReturnableMaterialIndicator(boolean value);
 
-    PackageLevelCodeModel getPackageLevelCode();
+    String getPackageLevelCode();
 
-    void setPackageLevelCode(PackageLevelCodeModel value);
+    void setPackageLevelCode(String value);
 
-    PackagingModelCodeModelCommBas getPackagingModelCode();
+    String getPackagingModelCode();
 
-    void setPackagingModelCode(PackagingModelCodeModelCommBas value);
+    void setPackagingModelCode(String value);
 
-    List<PackingMaterialModel> getPackingMaterial();
+    List<String> getPackingMaterial();
 
-    void setPackingMaterial(List<PackingMaterialModel> packingMaterial);
+    void setPackingMaterial(List<String> packingMaterial);
 
     List<PackageModel> getContainedPackage();
 

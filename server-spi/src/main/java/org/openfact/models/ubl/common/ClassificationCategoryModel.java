@@ -4,17 +4,17 @@ import java.util.List;
 
 public interface ClassificationCategoryModel {
 
-    NameModelCommBas getName();
+    String getName();
 
-    void setName(NameModelCommBas value);
+    void setName(String value);
 
-    CodeValueModel getCodeValue();
+    String getCodeValue();
 
-    void setCodeValue(CodeValueModel value);
+    void setCodeValue(String value);
 
-    List<DescriptionModel> getDescription();
+    List<String> getDescription();
 
-    void setDescription(List<DescriptionModel> description);
+    void setDescription(List<String> description);
 
     List<ClassificationCategoryModel> getCategorizesClassificationCategory();
 

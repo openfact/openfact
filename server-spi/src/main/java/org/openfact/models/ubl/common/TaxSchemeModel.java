@@ -4,21 +4,21 @@ import java.util.List;
 
 public interface TaxSchemeModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    NameModelCommBas getName();
+    String getName();
 
-    void setName(NameModelCommBas value);
+    void setName(String value);
 
-    TaxModelCodeModel getTaxModelCode();
+    String getTaxCode();
 
-    void setTaxModelCode(TaxModelCodeModel value);
+    void setTaxCode(String value);
 
-    CurrencyCodeModelCommBas getCurrencyCode();
+    String getCurrencyCode();
 
-    void setCurrencyCode(CurrencyCodeModelCommBas value);
+    void setCurrencyCode(String value);
 
     List<AddressModel> getJurisdictionRegionAddress();
 

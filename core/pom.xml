@@ -25,6 +25,7 @@
 		</openfact.osgi.import>
 	</properties>
 	<dependencies>
+
 		<!-- Java 8 Time -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>

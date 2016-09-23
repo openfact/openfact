@@ -4,29 +4,29 @@ import java.util.List;
 
 public interface ShipmentStageModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    TransportModeCodeModelCommBas getTransportModeCode();
+    String getTransportModeCode();
 
-    void setTransportModeCode(TransportModeCodeModelCommBas value);
+    void setTransportModeCode(String value);
 
-    TransportMeansModelCodeModel getTransportMeansModelCode();
+    String getTransportMeansModelCode();
 
-    void setTransportMeansModelCode(TransportMeansModelCodeModel value);
+    void setTransportMeansModelCode(String value);
 
-    TransitDirectionCodeModel getTransitDirectionCode();
+    String getTransitDirectionCode();
 
-    void setTransitDirectionCode(TransitDirectionCodeModel value);
+    void setTransitDirectionCode(String value);
 
-    PreCarriageIndicatorModel getPreCarriageIndicator();
+    boolean getPreCarriageIndicator();
 
-    void setPreCarriageIndicator(PreCarriageIndicatorModel value);
+    void setPreCarriageIndicator(boolean value);
 
-    OnCarriageIndicatorModel getOnCarriageIndicator();
+    boolean getOnCarriageIndicator();
 
-    void setOnCarriageIndicator(OnCarriageIndicatorModel value);
+    void setOnCarriageIndicator(boolean value);
 
     PeriodModel getTransitPeriod();
 
@@ -40,17 +40,17 @@ public interface ShipmentStageModel {
 
     void setTransportMeans(TransportMeansModel value);
 
-    LocationModelCommAgg getLoadingPortLocation();
+    LocationCommAggModel getLoadingPortLocation();
 
-    void setLoadingPortLocation(LocationModelCommAgg value);
+    void setLoadingPortLocation(LocationCommAggModel value);
 
-    LocationModelCommAgg getUnloadingPortLocation();
+    LocationCommAggModel getUnloadingPortLocation();
 
-    void setUnloadingPortLocation(LocationModelCommAgg value);
+    void setUnloadingPortLocation(LocationCommAggModel value);
 
-    LocationModelCommAgg getTransshipPortLocation();
+    LocationCommAggModel getTransshipPortLocation();
 
-    void setTransshipPortLocation(LocationModelCommAgg value);
+    void setTransshipPortLocation(LocationCommAggModel value);
 
     String getId();
 

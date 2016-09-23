@@ -1,3 +1,20 @@
+/*
+ * Copyright 2016 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.openfact.models.utils.reflection;
 
 import java.lang.reflect.Method;
@@ -57,7 +74,7 @@ public class PropertyQuery<V> {
      * @return the first writable result, or null if there are no results
      */
     public Property<V> getFirstWritableResult() {
-        Map<String, Property<V>> results = getWritableResultList();
+        Map<String, Property<V>>  results = getWritableResultList();
         return results.isEmpty() ? null : results.values().iterator().next();
     }
 
@@ -66,6 +83,7 @@ public class PropertyQuery<V> {
      * return exactly one result.
      *
      * @return the single result
+     *
      * @throws RuntimeException if the query does not return exactly one result
      */
     public Property<V> getSingleResult() {
@@ -87,6 +105,7 @@ public class PropertyQuery<V> {
      * thrown if the query does not return exactly one result.
      *
      * @return the single writable result
+     *
      * @throws RuntimeException if the query does not return exactly one result
      */
     public Property<V> getWritableSingleResult() {
@@ -125,6 +144,7 @@ public class PropertyQuery<V> {
      * Get the result from the query, causing the query to be run.
      *
      * @param writable if this query should only return properties that are not read only
+     *
      * @return the results, or an empty list if there are no results
      */
     private Map<String, Property<V>> getResultList(boolean writable) {

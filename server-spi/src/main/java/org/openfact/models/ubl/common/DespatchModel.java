@@ -1,34 +1,37 @@
 package org.openfact.models.ubl.common;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public interface DespatchModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    RequestedDespatchDateModel getRequestedDespatchDate();
+    LocalDate getRequestedDespatchDate();
 
-    void setRequestedDespatchDate(RequestedDespatchDateModel value);
+    void setRequestedDespatchDate(LocalDate value);
 
-    RequestedDespatchTimeModel getRequestedDespatchTime();
+    LocalTime getRequestedDespatchTime();
 
-    void setRequestedDespatchTime(RequestedDespatchTimeModel value);
+    void setRequestedDespatchTime(LocalTime value);
 
-    EstimatedDespatchDateModel getEstimatedDespatchDate();
+    LocalDate getEstimatedDespatchDate();
 
-    void setEstimatedDespatchDate(EstimatedDespatchDateModel value);
+    void setEstimatedDespatchDate(LocalDate value);
 
-    EstimatedDespatchTimeModel getEstimatedDespatchTime();
+    LocalTime getEstimatedDespatchTime();
 
-    void setEstimatedDespatchTime(EstimatedDespatchTimeModel value);
+    void setEstimatedDespatchTime(LocalTime value);
 
-    ActualDespatchDateModel getActualDespatchDate();
+    LocalDate getActualDespatchDate();
 
-    void setActualDespatchDate(ActualDespatchDateModel value);
+    void setActualDespatchDate(LocalDate value);
 
-    ActualDespatchTimeModel getActualDespatchTime();
+    LocalTime getActualDespatchTime();
 
-    void setActualDespatchTime(ActualDespatchTimeModel value);
+    void setActualDespatchTime(LocalTime value);
 
     AddressModel getDespatchAddress();
 

@@ -16,4 +16,8 @@ public interface PricingReferenceModel {
 
     void setId(String value);
 
+    /***
+     * */
+    PriceModel addAlternativeConditionPrice();
+
 }

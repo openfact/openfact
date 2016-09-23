@@ -4,41 +4,41 @@ import java.util.List;
 
 public interface TransportHandlingUnitModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    TransportHandlingUnitModelCodeModel getTransportHandlingUnitModelCode();
+    String getTransportHandlingUnitModelCode();
 
-    void setTransportHandlingUnitModelCode(TransportHandlingUnitModelCodeModel value);
+    void setTransportHandlingUnitModelCode(String value);
 
-    HandlingCodeModel getHandlingCode();
+    String getHandlingCode();
 
-    void setHandlingCode(HandlingCodeModel value);
+    void setHandlingCode(String value);
 
-    HandlingInstructionsModel getHandlingInstructions();
+    String getHandlingInstructions();
 
-    void setHandlingInstructions(HandlingInstructionsModel value);
+    void setHandlingInstructions(String value);
 
-    HazardousRiskIndicatorModel getHazardousRiskIndicator();
+    boolean getHazardousRiskIndicator();
 
-    void setHazardousRiskIndicator(HazardousRiskIndicatorModel value);
+    void setHazardousRiskIndicator(boolean value);
 
-    TotalGoodsItemQuantityModel getTotalGoodsItemQuantity();
+    QuantityModel getTotalGoodsItemQuantity();
 
-    void setTotalGoodsItemQuantity(TotalGoodsItemQuantityModel value);
+    void setTotalGoodsItemQuantity(QuantityModel value);
 
-    TotalPackageQuantityModel getTotalPackageQuantity();
+    QuantityModel getTotalPackageQuantity();
 
-    void setTotalPackageQuantity(TotalPackageQuantityModel value);
+    void setTotalPackageQuantity(QuantityModel value);
 
-    List<DamageRemarksModel> getDamageRemarks();
+    List<String> getDamageRemarks();
 
-    void setDamageRemarks(List<DamageRemarksModel> damageRemarks);
+    void setDamageRemarks(List<String> damageRemarks);
 
-    List<ShippingMarksModel> getShippingMarks();
+    List<String> getShippingMarks();
 
-    void setShippingMarks(List<ShippingMarksModel> shippingMarks);
+    void setShippingMarks(List<String> shippingMarks);
 
     List<DespatchLineModel> getHandlingUnitDespatchLine();
 

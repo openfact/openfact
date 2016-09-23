@@ -1,13 +1,13 @@
 package org.openfact.models.jpa.ubl;
 
+import javax.persistence.EntityManager;
+
 import org.openfact.Config;
 import org.openfact.connections.jpa.JpaConnectionProvider;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.ubl.provider.DebitNoteProvider;
 import org.openfact.models.ubl.provider.DebitNoteProviderFactory;
-
-import javax.persistence.EntityManager;
 
 public class JpaDebitNoteProviderFactory implements DebitNoteProviderFactory {
 

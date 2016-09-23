@@ -2,38 +2,50 @@ package org.openfact.models.enums;
 
 public enum DocumentType {
 
-    /** BOLETA, FACTURA */
-    INVOICE_TYPE(false, false, false),
+	/** BOLETA, FACTURA */
+	INVOICE_TYPE(null),
 
-    /** RUC, DNI */
-    ADDITIONAL_IDENTIFICATION_ID(false, false, false),
+	/** GUIA DE REMISIÓN REMITENTE,TICKET DE MAQUINA REGISTRADORA */
+	OTHER_INVOICE_TYPE(null),
 
-    /** GRAVADO, EXONERADO */
-    ADDITIONAL_INFORMATION(false, false, true), ADDITIONAL_INFORMATION_CHILDREN(false, true, false),
+	/** RUC, DNI */
+	ADDITIONAL_IDENTIFICATION_ID(null),
 
-    /** IGV, ISC, OTHER */
-    TOTAL_TAX(true, false, false);
+	/** GRAVADO, EXONERADO */
+	ADDITIONAL_INFORMATION(null),
 
-    private final boolean valuable;
-    private final boolean checked;
-    private final boolean composed;
+	/** OPERACION ONEROSA, RETIRO POR PREMIO, ETC */
+	ADDITIONAL_INFORMATION_CHILDREN(ADDITIONAL_INFORMATION),
 
-    DocumentType(boolean valuable, boolean checked, boolean composed) {
-        this.valuable = valuable;
-        this.checked = checked;
-        this.composed = composed;
-    }
+	/**
+	 * Total valor de venta - operaciones gravadas, Total valor de venta -
+	 * operaciones inafectas
+	 */
+	ADDITIONAL_INFORMATION_CODE(ADDITIONAL_INFORMATION),
 
-    public boolean isValuable() {
-        return this.valuable;
-    }
+	/** IGV, ISC, OTHER */
+	TOTAL_TAX(null),
 
-    public boolean isChecked() {
-        return this.checked;
-    }
+	/** Sistema al valor (Apéndice IV, lit. A – T.U.O IGV e ISC) */
+	TOTAL_TAX_CHILDREN(TOTAL_TAX),
 
-    public boolean isComposed() {
-        return this.composed;
-    }
+	/** Anulación de la operación, Anulación por error en el RUC */
+	RESPONSE_CODE_CREDIT_NOTE(null),
+
+	/** Intereses por mora, Aumento en el valor, Penalidades/ otros conceptos */
+	RESPONSE_CODE_DEBIT_NOTE(null),
+
+	/** Ticket de Salida - ENAPU, Código SCOP, Otros */
+	PREPAID_PAYMENT(null);
+
+	private DocumentType catalog;
+
+	private DocumentType(DocumentType catalog) {
+		this.catalog = catalog;
+	}
+
+	public DocumentType getCatalog() {
+		return this.catalog;
+	}
 
 }

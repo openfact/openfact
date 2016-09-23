@@ -8,35 +8,32 @@ import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.provider.Provider;
 
- public interface DebitNoteProvider extends Provider {
+public interface DebitNoteProvider extends Provider {
 
-    
-    DebitNoteModel addInvoice(OrganizationModel organization);
-    
-    
-    DebitNoteModel getInvoiceById(OrganizationModel organization, String id);
+    DebitNoteModel addDebitNote(OrganizationModel organization);
 
-    
-    boolean removeInvoice(OrganizationModel organization, String id);
-    
-    boolean removeInvoice(OrganizationModel organization, DebitNoteModel invoice);           
-    
-    
-    List<DebitNoteModel> getInvoices(OrganizationModel organization);
-    
-    List<DebitNoteModel> getInvoices(OrganizationModel organization, Integer firstResult, Integer maxResults);       
-        
-    
-    List<DebitNoteModel> searchForInvoice(String filterText, OrganizationModel organization);
-    
-    List<DebitNoteModel> searchForInvoice(String filterText, OrganizationModel organization, Integer firstResult, Integer maxResults);
-    
-    
-    SearchResultsModel<DebitNoteModel> searchForInvoice(OrganizationModel organization, SearchCriteriaModel criteria);
+    DebitNoteModel getDebitNoteById(OrganizationModel organization, String id);
 
-    SearchResultsModel<DebitNoteModel> searchForInvoice(OrganizationModel organization, SearchCriteriaModel criteria, String filterText);
-    
-    
-    int getInvoicesCount(OrganizationModel organization);
+    boolean removeDebitNote(OrganizationModel organization, String id);
+
+    boolean removeDebitNote(OrganizationModel organization, DebitNoteModel debitNote);
+
+    List<DebitNoteModel> getDebitNotes(OrganizationModel organization);
+
+    List<DebitNoteModel> getDebitNotes(OrganizationModel organization, Integer firstResult,
+            Integer maxResults);
+
+    List<DebitNoteModel> searchForDebitNote(String filterText, OrganizationModel organization);
+
+    List<DebitNoteModel> searchForDebitNote(String filterText, OrganizationModel organization,
+            Integer firstResult, Integer maxResults);
+
+    SearchResultsModel<DebitNoteModel> searchForDebitNote(OrganizationModel organization,
+            SearchCriteriaModel criteria);
+
+    SearchResultsModel<DebitNoteModel> searchForDebitNote(OrganizationModel organization,
+            SearchCriteriaModel criteria, String filterText);
+
+    int getDebitNotesCount(OrganizationModel organization);
 
 }

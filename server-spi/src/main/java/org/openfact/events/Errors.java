@@ -24,7 +24,7 @@ public interface Errors {
 
     String INVALID_REQUEST = "invalid_request";
 
-    String REALM_DISABLED = "realm_disabled";
+    String ORGANIZATION_DISABLED = "organization_disabled";
 
     String CLIENT_NOT_FOUND = "client_not_found";
     String CLIENT_DISABLED = "client_disabled";

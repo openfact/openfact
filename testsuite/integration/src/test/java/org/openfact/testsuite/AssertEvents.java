@@ -1,7 +1,26 @@
+/*
+ * Copyright 2016 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.openfact.testsuite;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
@@ -14,17 +33,22 @@ import org.junit.Assert;
 import org.junit.rules.TestRule;
 import org.junit.runners.model.Statement;
 import org.openfact.Config;
+import org.openfact.events.Details;
 import org.openfact.events.Event;
 import org.openfact.events.EventListenerProvider;
 import org.openfact.events.EventListenerProviderFactory;
 import org.openfact.events.EventType;
 import org.openfact.events.admin.AdminEvent;
-import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.utils.OpenfactModelUtils;
+import org.openfact.services.managers.OrganizationManager;
 import org.openfact.testsuite.rule.OpenfactRule;
 
+/**
+ * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
+ */
 public class AssertEvents implements TestRule, EventListenerProviderFactory {
 
     public static String DEFAULT_CLIENT_ID = "test-app";
@@ -49,7 +73,7 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
         return "assert-events";
     }
 
-    /*@Override
+    @Override
     public Statement apply(final Statement base, org.junit.runner.Description description) {
         return new Statement() {
             @Override
@@ -58,11 +82,11 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
 
                 openfact.configure(new OpenfactRule.OpenfactSetup() {
                     @Override
-                    public void config(OrganizationManager manager, OrganizationModel adminstrationRealm, OrganizationModel appRealm) {
+                    public void config(OrganizationManager manager, OrganizationModel adminstrationOrganization, OrganizationModel appOrganization) {
                         Set<String> listeners = new HashSet<String>();
                         listeners.add("jboss-logging");
                         listeners.add("assert-events");
-                        appRealm.setEventsListeners(listeners);
+                        appOrganization.setEventsListeners(listeners);
                     }
                 });
 
@@ -76,14 +100,14 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
                 } finally {
                     openfact.configure(new OpenfactRule.OpenfactSetup() {
                         @Override
-                        public void config(RealmManager manager, OrganizationModel adminstrationRealm, OrganizationModel appRealm) {
-                            appRealm.setEventsListeners(null);
+                        public void config(OrganizationManager manager, OrganizationModel adminstrationOrganization, OrganizationModel appOrganization) {
+                            appOrganization.setEventsListeners(null);
                         }
                     });
                 }
             }
         };
-    }*/
+    }
 
     public void assertEmpty() {
          Assert.assertTrue(events.isEmpty());
@@ -125,7 +149,7 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
                 .session(isUUID());
     }*/
 
-   /* public ExpectedEvent expectSocialLogin() {
+    /*public ExpectedEvent expectSocialLogin() {
         return expect(EventType.LOGIN)
                 .detail(Details.CODE_ID, isCodeId())
                 .detail(Details.USERNAME, DEFAULT_USERNAME)
@@ -158,9 +182,9 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
         return expect(EventType.LOGOUT).client((String) null)
                 .detail(Details.REDIRECT_URI, DEFAULT_REDIRECT_URI)
                 .session(sessionId);
-    }
+    }*/
 
-    public ExpectedEvent expectRegister(String username, String email) {
+    /*public ExpectedEvent expectRegister(String username, String email) {
         UserRepresentation user = username != null ? openfact.getUser("test", username) : null;
         return expect(EventType.REGISTER)
                 .user(user != null ? user.getId() : null)
@@ -168,15 +192,15 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
                 .detail(Details.EMAIL, email)
                 .detail(Details.REGISTER_METHOD, "form")
                 .detail(Details.REDIRECT_URI, DEFAULT_REDIRECT_URI);
-    }
+    }*/
 
-    public ExpectedEvent expectAccount(EventType event) {
+    /*public ExpectedEvent expectAccount(EventType event) {
         return expect(event).client("account");
     }*/
 
     /*public ExpectedEvent expect(EventType event) {
         return new ExpectedEvent()
-                .realm(DEFAULT_REALM)
+                .organization(DEFAULT_REALM)
                 .client(DEFAULT_CLIENT_ID)
                 .user(openfact.getUser(DEFAULT_REALM, DEFAULT_USERNAME).getId())
                 .ipAddress(DEFAULT_IP_ADDRESS)
@@ -226,13 +250,13 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
         private Matcher<String> sessionId;
         private HashMap<String, Matcher<String>> details;
 
-        public ExpectedEvent realm(OrganizationModel realm) {
-            expected.setOrganizationId(realm.getId());
+        public ExpectedEvent organization(OrganizationModel organization) {
+            expected.setOrganizationId(organization.getId());
             return this;
         }
 
-        public ExpectedEvent realm(String realmId) {
-            expected.setOrganizationId(realmId);
+        public ExpectedEvent organization(String organizationId) {
+            expected.setOrganizationId(organizationId);
             return this;
         }
 
@@ -240,6 +264,11 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
             expected.setClientId(client.getClientId());
             return this;
         }*/
+
+        public ExpectedEvent client(String clientId) {
+            expected.setClientId(clientId);
+            return this;
+        }
 
         /*public ExpectedEvent user(UserModel user) {
             return user(user.getId());
@@ -320,6 +349,7 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
             }
             Assert.assertEquals(expected.getType(), actual.getType());
             Assert.assertEquals(expected.getOrganizationId(), actual.getOrganizationId());
+            Assert.assertEquals(expected.getClientId(), actual.getClientId());
             Assert.assertEquals(expected.getError(), actual.getError());
             Assert.assertEquals(expected.getIpAddress(), actual.getIpAddress());
             Assert.assertThat(actual.getUserId(), userId);
@@ -367,11 +397,5 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
             }
         };
     }
-
-	@Override
-	public Statement apply(Statement arg0, org.junit.runner.Description arg1) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

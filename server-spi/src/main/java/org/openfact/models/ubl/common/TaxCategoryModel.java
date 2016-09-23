@@ -1,42 +1,44 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
+
 public interface TaxCategoryModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    NameModelCommBas getName();
+    String getName();
 
-    void setName(NameModelCommBas value);
+    void setName(String value);
 
-    PercentModel getPercent();
+    BigDecimal getPercent();
 
-    void setPercent(PercentModel value);
+    void setPercent(BigDecimal value);
 
-    BaseUnitMeasureModel getBaseUnitMeasure();
+    MeasureModel getBaseUnitMeasure();
 
-    void setBaseUnitMeasure(BaseUnitMeasureModel value);
+    void setBaseUnitMeasure(MeasureModel value);
 
-    PerUnitAmountModel getPerUnitAmount();
+    BigDecimal getPerUnitAmount();
 
-    void setPerUnitAmount(PerUnitAmountModel value);
+    void setPerUnitAmount(BigDecimal value);
 
-    TaxExemptionReasonCodeModel getTaxExemptionReasonCode();
+    String getTaxExemptionReasonCode();
 
-    void setTaxExemptionReasonCode(TaxExemptionReasonCodeModel value);
+    void setTaxExemptionReasonCode(String value);
 
-    TaxExemptionReasonModel getTaxExemptionReason();
+    String getTaxExemptionReason();
 
-    void setTaxExemptionReason(TaxExemptionReasonModel value);
+    void setTaxExemptionReason(String value);
 
-    TierRangeModel getTierRange();
+    String getTierRange();
 
-    void setTierRange(TierRangeModel value);
+    void setTierRange(String value);
 
-    TierRatePercentModel getTierRatePercent();
+    BigDecimal getTierRatePercent();
 
-    void setTierRatePercent(TierRatePercentModel value);
+    void setTierRatePercent(BigDecimal value);
 
     TaxSchemeModel getTaxScheme();
 

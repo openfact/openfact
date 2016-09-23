@@ -1,52 +1,53 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface AllowanceChargeModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    ChargeIndicatorModel getChargeIndicator();
+    boolean getChargeIndicator();
 
-    void setChargeIndicator(ChargeIndicatorModel value);
+    void setChargeIndicator(boolean value);
 
-    AllowanceChargeReasonCodeModelCommBas getAllowanceChargeReasonCode();
+    String getAllowanceChargeReasonCode();
 
-    void setAllowanceChargeReasonCode(AllowanceChargeReasonCodeModelCommBas value);
+    void setAllowanceChargeReasonCode(String value);
 
-    AllowanceChargeReasonModel getAllowanceChargeReason();
+    String getAllowanceChargeReason();
 
-    void setAllowanceChargeReason(AllowanceChargeReasonModel value);
+    void setAllowanceChargeReason(String value);
 
-    MultiplierFactorNumericModel getMultiplierFactorNumeric();
+    BigDecimal getMultiplierFactorNumeric();
 
-    void setMultiplierFactorNumeric(MultiplierFactorNumericModel value);
+    void setMultiplierFactorNumeric(BigDecimal value);
 
-    PrepaidIndicatorModel getPrepaidIndicator();
+    boolean getPrepaidIndicator();
 
-    void setPrepaidIndicator(PrepaidIndicatorModel value);
+    void setPrepaidIndicator(boolean value);
 
-    SequenceNumericModel getSequenceNumeric();
+    BigDecimal getSequenceNumeric();
 
-    void setSequenceNumeric(SequenceNumericModel value);
+    void setSequenceNumeric(BigDecimal value);
 
-    AmountModelCommBas getAmount();
+    BigDecimal getAmount();
 
-    void setAmount(AmountModelCommBas value);
+    void setAmount(BigDecimal value);
 
-    BaseAmountModel getBaseAmount();
+    BigDecimal getBaseAmount();
 
-    void setBaseAmount(BaseAmountModel value);
+    void setBaseAmount(BigDecimal value);
 
-    AccountingCostCodeModel getAccountingCostCode();
+    String getAccountingCostCode();
 
-    void setAccountingCostCode(AccountingCostCodeModel value);
+    void setAccountingCostCode(String value);
 
-    AccountingCostModel getAccountingCost();
+    String getAccountingCost();
 
-    void setAccountingCost(AccountingCostModel value);
+    void setAccountingCost(String value);
 
     List<TaxCategoryModel> getTaxCategory();
 

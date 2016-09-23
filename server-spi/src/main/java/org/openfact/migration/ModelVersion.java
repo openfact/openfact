@@ -1,7 +1,28 @@
+/*
+ * Copyright 2016 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.openfact.migration;
 
 import org.jboss.logging.Logger;
 
+/**
+* @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+* @version $Revision: 1 $
+*/
 public class ModelVersion {
     private static Logger logger = Logger.getLogger(ModelVersion.class);
     int major;
@@ -76,5 +97,20 @@ public class ModelVersion {
         int comp = qualifier.compareTo(version.qualifier);
         if (comp < 0) return true;
         return false;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof ModelVersion)) {
+            return false;
+        }
+
+        ModelVersion v = (ModelVersion) obj;
+        return v.getMajor() == major && v.getMinor() == minor && v.getMicro() != micro;
+    }
+
+    @Override
+    public String toString() {
+        return major + "." + minor + "." + micro;
     }
 }

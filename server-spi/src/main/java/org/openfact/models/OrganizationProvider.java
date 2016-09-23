@@ -7,22 +7,24 @@ import org.openfact.provider.Provider;
 
 public interface OrganizationProvider extends Provider {
 
-	MigrationModel getMigrationModel();
+    MigrationModel getMigrationModel();
 
-	OrganizationModel createOrganization(String name);
+    OrganizationModel createOrganization(String name);
 
-	OrganizationModel createOrganization(String id, String name);
+    OrganizationModel createOrganization(String id, String name);
 
-	OrganizationModel getOrganization(String id);
+    OrganizationModel getOrganization(String id);
 
-	OrganizationModel getOrganizationByName(String name);
+    OrganizationModel getOrganizationByName(String name);
 
-	List<OrganizationModel> getOrganizations();
+    List<OrganizationModel> getOrganizations();
 
-	boolean removeOrganization(String organizationId);
-	
-	boolean removeOrganization(OrganizationModel organization);
+    boolean removeOrganization(String organizationId);
 
-	void close();
+    boolean removeOrganization(OrganizationModel organization);    
+
+    int getOrganizationsCount(OrganizationModel organization);
+    
+    void close();
 
 }

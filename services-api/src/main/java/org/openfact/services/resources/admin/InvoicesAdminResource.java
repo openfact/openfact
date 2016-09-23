@@ -14,9 +14,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.jboss.resteasy.annotations.cache.NoCache;
-import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
 import org.openfact.representations.idm.search.SearchResultsRepresentation;
+import org.openfact.representations.idm.ubl.InvoiceRepresentation;
 
 /**
  * @author carlosthe19916@sistcoop.com
@@ -35,7 +35,6 @@ public interface InvoicesAdminResource {
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
     List<InvoiceRepresentation> getInvoices(@QueryParam("filterText") String filterText,
-            @QueryParam("type") String type, @QueryParam("currencyCode") String currencyCode,
             @QueryParam("first") Integer firstResult, @QueryParam("max") Integer maxResults);
 
     @POST

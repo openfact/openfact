@@ -17,28 +17,26 @@
 
 package org.openfact.email.freemarker;
 
-import java.text.MessageFormat;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Properties;
-
+import org.openfact.broker.provider.BrokeredIdentityContext;
 import org.openfact.common.util.ObjectUtil;
 import org.openfact.email.EmailException;
 import org.openfact.email.EmailSenderProvider;
 import org.openfact.email.EmailTemplateProvider;
+import org.openfact.email.freemarker.beans.EventBean;
+import org.openfact.email.freemarker.beans.ProfileBean;
 import org.openfact.events.Event;
 import org.openfact.events.EventType;
-import org.openfact.models.InvoiceModel;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
 import org.openfact.theme.FreeMarkerException;
 import org.openfact.theme.FreeMarkerUtil;
 import org.openfact.theme.Theme;
 import org.openfact.theme.ThemeProvider;
 import org.openfact.theme.beans.MessageFormatterMethod;
+import org.openfact.models.OpenfactSession;
+import org.openfact.models.OrganizationModel;
+import org.openfact.models.UserModel;
+
+import java.text.MessageFormat;
+import java.util.*;
 
 /**
  * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
@@ -48,7 +46,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
     private OpenfactSession session;
     private FreeMarkerUtil freeMarker;
     private OrganizationModel organization;
-    private InvoiceModel invoice;
+    private UserModel user;
     private final Map<String, Object> attributes = new HashMap<>();
 
     public FreeMarkerEmailTemplateProvider(OpenfactSession session, FreeMarkerUtil freeMarker) {
@@ -63,8 +61,8 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
     }
 
     @Override
-    public EmailTemplateProvider setInvoice(InvoiceModel invoice) {
-        this.invoice = invoice;
+    public EmailTemplateProvider setUser(UserModel user) {
+        this.user = user;
         return this;
     }
 
@@ -75,30 +73,78 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
     }
 
     private String getOrganizationName() {
-        if (organization.getSupplierName()!= null) {
-            return organization.getSupplierName();
+        if (organization.getDisplayName() != null) {
+            return organization.getDisplayName();
         } else {
             return ObjectUtil.capitalize(organization.getName());
         }
-    }    
+    }
 
     @Override
     public void sendEvent(Event event) throws EmailException {
         Map<String, Object> attributes = new HashMap<String, Object>();
-        //attributes.put("user", new ProfileBean(user));
-        //attributes.put("event", new EventBean(event));
+        attributes.put("user", new ProfileBean(user));
+        attributes.put("event", new EventBean(event));
 
         send(toCamelCase(event.getType()) + "Subject", "event-" + event.getType().toString().toLowerCase() + ".ftl", attributes);
     }
-    
+
     @Override
-    public void sendReceip() throws EmailException {
+    public void sendPasswordReset(String link, long expirationInMinutes) throws EmailException {
         Map<String, Object> attributes = new HashMap<String, Object>();
+        attributes.put("user", new ProfileBean(user));
+        attributes.put("link", link);
+        attributes.put("linkExpiration", expirationInMinutes);
 
         attributes.put("organizationName", getOrganizationName());
 
-        send("emailReceipSubject", "email-receip.ftl", attributes);   
-    }   
+        send("passwordResetSubject", "password-reset.ftl", attributes);
+    }
+
+    @Override
+    public void sendConfirmIdentityBrokerLink(String link, long expirationInMinutes) throws EmailException {
+        /*Map<String, Object> attributes = new HashMap<String, Object>();
+        attributes.put("user", new ProfileBean(user));
+        attributes.put("link", link);
+        attributes.put("linkExpiration", expirationInMinutes);
+
+        attributes.put("organizationName", getOrganizationName());
+
+        BrokeredIdentityContext brokerContext = (BrokeredIdentityContext) this.attributes.get(IDENTITY_PROVIDER_BROKER_CONTEXT);
+        String idpAlias = brokerContext.getIdpConfig().getAlias();
+        idpAlias = ObjectUtil.capitalize(idpAlias);
+
+        attributes.put("identityProviderContext", brokerContext);
+        attributes.put("identityProviderAlias", idpAlias);
+
+        List<Object> subjectAttrs = Arrays.<Object>asList(idpAlias);
+        send("identityProviderLinkSubject", subjectAttrs, "identity-provider-link.ftl", attributes);*/
+    }
+
+    @Override
+    public void sendExecuteActions(String link, long expirationInMinutes) throws EmailException {
+        Map<String, Object> attributes = new HashMap<String, Object>();
+        attributes.put("user", new ProfileBean(user));
+        attributes.put("link", link);
+        attributes.put("linkExpiration", expirationInMinutes);
+
+        attributes.put("organizationName", getOrganizationName());
+
+        send("executeActionsSubject", "executeActions.ftl", attributes);
+
+    }
+
+    @Override
+    public void sendVerifyEmail(String link, long expirationInMinutes) throws EmailException {
+        Map<String, Object> attributes = new HashMap<String, Object>();
+        attributes.put("user", new ProfileBean(user));
+        attributes.put("link", link);
+        attributes.put("linkExpiration", expirationInMinutes);
+
+        attributes.put("organizationName", getOrganizationName());
+
+        send("emailVerificationSubject", "email-verification.ftl", attributes);
+    }
 
     private void send(String subjectKey, String template, Map<String, Object> attributes) throws EmailException {
         send(subjectKey, Collections.emptyList(), template, attributes);
@@ -108,7 +154,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
         try {
             ThemeProvider themeProvider = session.getProvider(ThemeProvider.class, "extending");
             Theme theme = themeProvider.getTheme(organization.getEmailTheme(), Theme.Type.EMAIL);
-            Locale locale = Locale.getDefault();//session.getContext().resolveLocale(invoice);
+            Locale locale = session.getContext().resolveLocale(user);
             attributes.put("locale", locale);
             Properties rb = theme.getMessages(locale);
             attributes.put("msg", new MessageFormatterMethod(locale, rb));
@@ -136,7 +182,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
 
     private void send(String subject, String textBody, String htmlBody) throws EmailException {
         EmailSenderProvider emailSender = session.getProvider(EmailSenderProvider.class);
-        emailSender.send(organization, invoice, subject, textBody, htmlBody);
+        emailSender.send(organization, user, subject, textBody, htmlBody);
     }
 
     @Override
@@ -149,6 +195,6 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
             sb.append(ObjectUtil.capitalize(s));
         }
         return sb.toString();
-    }  
+    }
 
 }

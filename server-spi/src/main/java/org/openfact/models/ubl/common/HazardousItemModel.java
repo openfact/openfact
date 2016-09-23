@@ -4,73 +4,73 @@ import java.util.List;
 
 public interface HazardousItemModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    PlacardNotationModel getPlacardNotation();
+    String getPlacardNotation();
 
-    void setPlacardNotation(PlacardNotationModel value);
+    void setPlacardNotation(String value);
 
-    PlacardEndorsementModel getPlacardEndorsement();
+    String getPlacardEndorsement();
 
-    void setPlacardEndorsement(PlacardEndorsementModel value);
+    void setPlacardEndorsement(String value);
 
-    AdditionalInformationModel getAdditionalInformation();
+    String getAdditionalInformation();
 
-    void setAdditionalInformation(AdditionalInformationModel value);
+    void setAdditionalInformation(String value);
 
-    UNDGCodeModel getUNDGCode();
+    String getUNDGCode();
 
-    void setUNDGCode(UNDGCodeModel value);
+    void setUNDGCode(String value);
 
-    EmergencyProceduresCodeModel getEmergencyProceduresCode();
+    String getEmergencyProceduresCode();
 
-    void setEmergencyProceduresCode(EmergencyProceduresCodeModel value);
+    void setEmergencyProceduresCode(String value);
 
-    MedicalFirstAidGuideCodeModel getMedicalFirstAidGuideCode();
+    String getMedicalFirstAidGuideCode();
 
-    void setMedicalFirstAidGuideCode(MedicalFirstAidGuideCodeModel value);
+    void setMedicalFirstAidGuideCode(String value);
 
-    TechnicalNameModel getTechnicalName();
+    String getTechnicalName();
 
-    void setTechnicalName(TechnicalNameModel value);
+    void setTechnicalName(String value);
 
-    CategoryNameModel getCategoryName();
+    String getCategoryName();
 
-    void setCategoryName(CategoryNameModel value);
+    void setCategoryName(String value);
 
-    HazardousCategoryCodeModel getHazardousCategoryCode();
+    String getHazardousCategoryCode();
 
-    void setHazardousCategoryCode(HazardousCategoryCodeModel value);
+    void setHazardousCategoryCode(String value);
 
-    UpperOrangeHazardPlacardIDModel getUpperOrangeHazardPlacardID();
+    String getUpperOrangeHazardPlacardID();
 
-    void setUpperOrangeHazardPlacardID(UpperOrangeHazardPlacardIDModel value);
+    void setUpperOrangeHazardPlacardID(String value);
 
-    LowerOrangeHazardPlacardIDModel getLowerOrangeHazardPlacardID();
+    String getLowerOrangeHazardPlacardID();
 
-    void setLowerOrangeHazardPlacardID(LowerOrangeHazardPlacardIDModel value);
+    void setLowerOrangeHazardPlacardID(String value);
 
-    MarkingIDModel getMarkingID();
+    String getMarkingID();
 
-    void setMarkingID(MarkingIDModel value);
+    void setMarkingID(String value);
 
-    HazardClassIDModel getHazardClassID();
+    String getHazardClassID();
 
-    void setHazardClassID(HazardClassIDModel value);
+    void setHazardClassID(String value);
 
-    NetWeightMeasureModel getNetWeightMeasure();
+    MeasureModel getNetWeightMeasure();
 
-    void setNetWeightMeasure(NetWeightMeasureModel value);
+    void setNetWeightMeasure(MeasureModel value);
 
-    NetVolumeMeasureModel getNetVolumeMeasure();
+    MeasureModel getNetVolumeMeasure();
 
-    void setNetVolumeMeasure(NetVolumeMeasureModel value);
+    void setNetVolumeMeasure(MeasureModel value);
 
-    QuantityModelCommBas getQuantity();
+    QuantityModel getQuantity();
 
-    void setQuantity(QuantityModelCommBas value);
+    void setQuantity(QuantityModel value);
 
     PartyModel getContactParty();
 

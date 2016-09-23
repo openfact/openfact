@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface OrderLineModel {
 
-    SubstitutionStatusCodeModelCommBas getSubstitutionStatusCode();
+    String getSubstitutionStatusCode();
 
-    void setSubstitutionStatusCode(SubstitutionStatusCodeModelCommBas value);
+    void setSubstitutionStatusCode(String value);
 
-    NoteModel getNote();
+    String getNote();
 
-    void setNote(NoteModel value);
+    void setNote(String value);
 
     LineItemModel getLineItem();
 

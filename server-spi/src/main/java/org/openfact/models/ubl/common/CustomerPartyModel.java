@@ -4,17 +4,17 @@ import java.util.List;
 
 public interface CustomerPartyModel {
 
-    CustomerAssignedAccountIDModel getCustomerAssignedAccountID();
+    String getCustomerAssignedAccountID();
 
-    void setCustomerAssignedAccountID(CustomerAssignedAccountIDModel value);
+    void setCustomerAssignedAccountID(String value);
 
-    SupplierAssignedAccountIDModel getSupplierAssignedAccountID();
+    String getSupplierAssignedAccountID();
 
-    void setSupplierAssignedAccountID(SupplierAssignedAccountIDModel value);
+    void setSupplierAssignedAccountID(String value);
 
-    List<AdditionalAccountIDModel> getAdditionalAccountID();
+    List<String> getAdditionalAccountID();
 
-    void setAdditionalAccountID(List<AdditionalAccountIDModel> additionalAccountID);
+    void setAdditionalAccountID(List<String> additionalAccountID);
 
     PartyModel getParty();
 

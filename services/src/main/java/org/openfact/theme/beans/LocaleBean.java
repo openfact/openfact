@@ -17,10 +17,9 @@
 
 package org.openfact.theme.beans;
 
-import javax.ws.rs.core.UriBuilder;
-
 import org.openfact.models.OrganizationModel;
 
+import javax.ws.rs.core.UriBuilder;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;

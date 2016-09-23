@@ -1,36 +1,37 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface StatementLineModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    NoteModel getNote();
+    String getNote();
 
-    void setNote(NoteModel value);
+    void setNote(String value);
 
-    UUIDModel getUUID();
+    String getUUID();
 
-    void setUUID(UUIDModel value);
+    void setUUID(String value);
 
-    BalanceBroughtForwardIndicatorModel getBalanceBroughtForwardIndicator();
+    boolean getBalanceBroughtForwardIndicator();
 
-    void setBalanceBroughtForwardIndicator(BalanceBroughtForwardIndicatorModel value);
+    void setBalanceBroughtForwardIndicator(boolean value);
 
-    DebitLineAmountModel getDebitLineAmount();
+    BigDecimal getDebitLineAmount();
 
-    void setDebitLineAmount(DebitLineAmountModel value);
+    void setDebitLineAmount(BigDecimal value);
 
-    CreditLineAmountModel getCreditLineAmount();
+    BigDecimal getCreditLineAmount();
 
-    void setCreditLineAmount(CreditLineAmountModel value);
+    void setCreditLineAmount(BigDecimal value);
 
-    BalanceAmountModel getBalanceAmount();
+    BigDecimal getBalanceAmount();
 
-    void setBalanceAmount(BalanceAmountModel value);
+    void setBalanceAmount(BigDecimal value);
 
     PaymentMeansModel getPaymentMeans();
 

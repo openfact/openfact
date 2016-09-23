@@ -4,25 +4,25 @@ import java.util.List;
 
 public interface DimensionModel {
 
-    AttributeIDModel getAttributeID();
+    String getAttributeID();
 
-    void setAttributeID(AttributeIDModel value);
+    void setAttributeID(String value);
 
-    MeasureModelCommBas getMeasure();
+    MeasureModel getMeasure();
 
-    void setMeasure(MeasureModelCommBas value);
+    void setMeasure(MeasureModel value);
 
-    List<DescriptionModel> getDescription();
+    List<String> getDescription();
 
-    void setDescription(List<DescriptionModel> description);
+    void setDescription(List<String> description);
 
-    MinimumMeasureModel getMinimumMeasure();
+    MeasureModel getMinimumMeasure();
 
-    void setMinimumMeasure(MinimumMeasureModel value);
+    void setMinimumMeasure(MeasureModel value);
 
-    MaximumMeasureModel getMaximumMeasure();
+    MeasureModel getMaximumMeasure();
 
-    void setMaximumMeasure(MaximumMeasureModel value);
+    void setMaximumMeasure(MeasureModel value);
 
     String getId();
 

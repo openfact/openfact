@@ -1,24 +1,25 @@
 package org.openfact.models.ubl.common;
 
+import java.time.LocalTime;
 import java.util.List;
 
 public interface TransportMeansModel {
 
-    JourneyIDModel getJourneyID();
+    String getJourneyID();
 
-    void setJourneyID(JourneyIDModel value);
+    void setJourneyID(String value);
 
-    RegistrationNationalityIDModel getRegistrationNationalityID();
+    String getRegistrationNationalityID();
 
-    void setRegistrationNationalityID(RegistrationNationalityIDModel value);
+    void setRegistrationNationalityID(String value);
 
-    List<RegistrationNationalityModel> getRegistrationNationality();
+    List<String> getRegistrationNationality();
 
-    void setRegistrationNationality(List<RegistrationNationalityModel> registrationNationality);
+    void setRegistrationNationality(List<String> registrationNationality);
 
-    DirectionCodeModel getDirectionCode();
+    String getDirectionCode();
 
-    void setDirectionCode(DirectionCodeModel value);
+    void setDirectionCode(String value);
 
     StowageModel getStowage();
 
@@ -36,9 +37,9 @@ public interface TransportMeansModel {
 
     void setRailTransport(RailTransportModel value);
 
-    MaritimeTransportModel getMaritimeTransport();
+    LocalTime getMaritimeTransport();
 
-    void setMaritimeTransport(MaritimeTransportModel value);
+    void setMaritimeTransport(LocalTime value);
 
     PartyModel getOwnerParty();
 

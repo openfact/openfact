@@ -1,96 +1,97 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface GoodsItemModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    SequenceNumberIDModel getSequenceNumberID();
+    String getSequenceNumberID();
 
-    void setSequenceNumberID(SequenceNumberIDModel value);
+    void setSequenceNumberID(String value);
 
-    List<DescriptionModel> getDescription();
+    List<String> getDescription();
 
-    void setDescription(List<DescriptionModel> description);
+    void setDescription(List<String> description);
 
-    HazardousRiskIndicatorModel getHazardousRiskIndicator();
+    boolean getHazardousRiskIndicator();
 
-    void setHazardousRiskIndicator(HazardousRiskIndicatorModel value);
+    void setHazardousRiskIndicator(boolean value);
 
-    DeclaredCustomsValueAmountModel getDeclaredCustomsValueAmount();
+    BigDecimal getDeclaredCustomsValueAmount();
 
-    void setDeclaredCustomsValueAmount(DeclaredCustomsValueAmountModel value);
+    void setDeclaredCustomsValueAmount(BigDecimal value);
 
-    DeclaredForCarriageValueAmountModel getDeclaredForCarriageValueAmount();
+    BigDecimal getDeclaredForCarriageValueAmount();
 
-    void setDeclaredForCarriageValueAmount(DeclaredForCarriageValueAmountModel value);
+    void setDeclaredForCarriageValueAmount(BigDecimal value);
 
-    DeclaredStatisticsValueAmountModel getDeclaredStatisticsValueAmount();
+    BigDecimal getDeclaredStatisticsValueAmount();
 
-    void setDeclaredStatisticsValueAmount(DeclaredStatisticsValueAmountModel value);
+    void setDeclaredStatisticsValueAmount(BigDecimal value);
 
-    FreeOnBoardValueAmountModel getFreeOnBoardValueAmount();
+    BigDecimal getFreeOnBoardValueAmount();
 
-    void setFreeOnBoardValueAmount(FreeOnBoardValueAmountModel value);
+    void setFreeOnBoardValueAmount(BigDecimal value);
 
-    InsuranceValueAmountModel getInsuranceValueAmount();
+    BigDecimal getInsuranceValueAmount();
 
-    void setInsuranceValueAmount(InsuranceValueAmountModel value);
+    void setInsuranceValueAmount(BigDecimal value);
 
-    ValueAmountModel getValueAmount();
+    BigDecimal getValueAmount();
 
-    void setValueAmount(ValueAmountModel value);
+    void setValueAmount(BigDecimal value);
 
-    GrossWeightMeasureModel getGrossWeightMeasure();
+    MeasureModel getGrossWeightMeasure();
 
-    void setGrossWeightMeasure(GrossWeightMeasureModel value);
+    void setGrossWeightMeasure(MeasureModel value);
 
-    NetWeightMeasureModel getNetWeightMeasure();
+    MeasureModel getNetWeightMeasure();
 
-    void setNetWeightMeasure(NetWeightMeasureModel value);
+    void setNetWeightMeasure(MeasureModel value);
 
-    NetNetWeightMeasureModel getNetNetWeightMeasure();
+    MeasureModel getNetNetWeightMeasure();
 
-    void setNetNetWeightMeasure(NetNetWeightMeasureModel value);
+    void setNetNetWeightMeasure(MeasureModel value);
 
-    ChargeableWeightMeasureModel getChargeableWeightMeasure();
+    MeasureModel getChargeableWeightMeasure();
 
-    void setChargeableWeightMeasure(ChargeableWeightMeasureModel value);
+    void setChargeableWeightMeasure(MeasureModel value);
 
-    GrossVolumeMeasureModel getGrossVolumeMeasure();
+    MeasureModel getGrossVolumeMeasure();
 
-    void setGrossVolumeMeasure(GrossVolumeMeasureModel value);
+    void setGrossVolumeMeasure(MeasureModel value);
 
-    NetVolumeMeasureModel getNetVolumeMeasure();
+    MeasureModel getNetVolumeMeasure();
 
-    void setNetVolumeMeasure(NetVolumeMeasureModel value);
+    void setNetVolumeMeasure(MeasureModel value);
 
-    QuantityModelCommBas getQuantity();
+    QuantityModel getQuantity();
 
-    void setQuantity(QuantityModelCommBas value);
+    void setQuantity(QuantityModel value);
 
-    PreferenceCriterionCodeModel getPreferenceCriterionCode();
+    String getPreferenceCriterionCode();
 
-    void setPreferenceCriterionCode(PreferenceCriterionCodeModel value);
+    void setPreferenceCriterionCode(String value);
 
-    RequiredCustomsIDModel getRequiredCustomsID();
+    String getRequiredCustomsID();
 
-    void setRequiredCustomsID(RequiredCustomsIDModel value);
+    void setRequiredCustomsID(String value);
 
-    CustomsStatusCodeModel getCustomsStatusCode();
+    String getCustomsStatusCode();
 
-    void setCustomsStatusCode(CustomsStatusCodeModel value);
+    void setCustomsStatusCode(String value);
 
-    CustomsTariffQuantityModel getCustomsTariffQuantity();
+    QuantityModel getCustomsTariffQuantity();
 
-    void setCustomsTariffQuantity(CustomsTariffQuantityModel value);
+    void setCustomsTariffQuantity(QuantityModel value);
 
-    CustomsImportClassifiedIndicatorModel getCustomsImportClassifiedIndicator();
+    boolean getCustomsImportClassifiedIndicator();
 
-    void setCustomsImportClassifiedIndicator(CustomsImportClassifiedIndicatorModel value);
+    void setCustomsImportClassifiedIndicator(boolean value);
 
     List<ItemModel> getItem();
 

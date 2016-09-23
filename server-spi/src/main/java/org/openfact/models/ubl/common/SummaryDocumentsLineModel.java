@@ -1,32 +1,33 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface SummaryDocumentsLineModel {
 
-    LineIDModel getLineID();
+    String getLineID();
 
-    void setLineID(LineIDModel value);
+    void setLineID(String value);
 
-    DocumentModelCodeModel getDocumentModelCode();
+    String getDocumentModelCode();
 
-    void setDocumentModelCode(DocumentModelCodeModel value);
+    void setDocumentModelCode(String value);
 
-    IdentifierModel getDocumentSerialID();
+    String getDocumentSerialID();
 
-    void setDocumentSerialID(IdentifierModel value);
+    void setDocumentSerialID(String value);
 
-    IdentifierModel getStartDocumentNumberID();
+    String getStartDocumentNumberID();
 
-    void setStartDocumentNumberID(IdentifierModel value);
+    void setStartDocumentNumberID(String value);
 
-    IdentifierModel getEndDocumentNumberID();
+    String getEndDocumentNumberID();
 
-    void setEndDocumentNumberID(IdentifierModel value);
+    void setEndDocumentNumberID(String value);
 
-    AmountModelCommBas getTotalAmount();
+    BigDecimal getTotalAmount();
 
-    void setTotalAmount(AmountModelCommBas value);
+    void setTotalAmount(BigDecimal value);
 
     List<PaymentModel> getBillingPayment();
 

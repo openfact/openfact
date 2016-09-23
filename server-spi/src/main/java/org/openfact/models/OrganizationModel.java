@@ -1,6 +1,5 @@
 package org.openfact.models;
 
-import java.math.BigDecimal;
 import java.security.Key;
 import java.security.PrivateKey;
 import java.security.PublicKey;
@@ -10,20 +9,19 @@ import java.time.LocalTime;
 import java.util.Map;
 import java.util.Set;
 
-import org.openfact.models.enums.DocumentType;
 import org.openfact.provider.ProviderEvent;
 
 public interface OrganizationModel {
 
-	String NAME = "name";
-	String DESCRIPTION = "description";
-	String ASSIGNED_IDENTIFICATION_ID = "assignedIdentificationId";
-	String SUPPLIER_NAME = "supplierName";
-	String REGISTRATION_NAME = "registrationName";
-	
-	String PRIVATE_KEY = "privateKey";
-	String PUBLIC_KEY = "publicKey";
-	String X509CERTIFICATE = "X509Certificate";
+    String NAME = "name";
+    String DESCRIPTION = "description";
+    String ASSIGNED_IDENTIFICATION_ID = "assignedIdentificationId";
+    String SUPPLIER_NAME = "supplierName";
+    String REGISTRATION_NAME = "registrationName";
+
+    String PRIVATE_KEY = "privateKey";
+    String PUBLIC_KEY = "publicKey";
+    String X509CERTIFICATE = "X509Certificate";
 
     String getId();
 
@@ -43,9 +41,9 @@ public interface OrganizationModel {
 
     void setAssignedIdentificationId(String assignedIdentificationId);
 
-    SimpleDocumentModel getAdditionalAccountId();
+    String getAdditionalAccountId();
 
-    void setAdditionalAccountId(SimpleDocumentModel additionalAccount);
+    void setAdditionalAccountId(String additionalAccount);
 
     String getSupplierName();
 
@@ -61,7 +59,7 @@ public interface OrganizationModel {
     String getPostalAddressId();
 
     void setPostalAddressId(String postalAddressId);
-    
+
     String getStreetName();
 
     void setStreetName(String streetName);
@@ -155,27 +153,6 @@ public interface OrganizationModel {
     Set<CurrencyModel> getCurrencies();
 
     /**
-     * Documents
-     */
-    DocumentModel getDocumentById(String id);
-
-    DocumentModel getDocumentByTymeAndName(DocumentType type, String documentName);
-
-    SimpleDocumentModel addSimpleDocument(DocumentType type, String name, String documentId);
-
-    ValuableDocumentModel addValuableDocument(DocumentType type, String name, String documentId, BigDecimal value);
-
-    CheckableDocumentModel addCheckableDocument(DocumentType type, String name, String documentId, boolean check);
-
-    ComposedDocumentModel addComposedDocument(DocumentType type, String name, String documentId);
-
-    boolean removeDocument(DocumentModel document);
-
-    Set<DocumentModel> getDocuments();
-
-    Set<DocumentModel> getDocuments(DocumentType documentType);
-
-    /**
      * Events
      */
     boolean isEventsEnabled();
@@ -245,7 +222,8 @@ public interface OrganizationModel {
     void setPrivateKey(PrivateKey privateKey);
 
     /**
-     * Attributes*/
+     * Attributes
+     */
     void setAttribute(String name, String value);
 
     void removeAttribute(String name);
@@ -253,7 +231,28 @@ public interface OrganizationModel {
     String getAttribute(String name);
 
     Map<String, String> getAttributes();
-    
+
+    String getDisplayName();
+
+    void setDisplayName(String displayName);
+
+    String getDisplayNameHtml();
+
+    void setDisplayNameHtml(String displayNameHtml);
+
+    /**
+     * Required actions
+     */
+    Set<String> getRequiredActions();
+
+    void addRequiredAction(RequiredAction action);
+
+    void addRequiredAction(String actionName);
+
+    void removeRequiredAction(RequiredAction action);
+
+    void removeRequiredAction(String actionName);
+
     /**
      * Events interfaces
      */
@@ -263,21 +262,18 @@ public interface OrganizationModel {
 
     interface OrganizationPostCreateEvent extends ProviderEvent {
         OrganizationModel getCreatedOrganization();
+
         OpenfactSession getOpenfactSession();
     }
 
     interface OrganizationRemovedEvent extends ProviderEvent {
         OrganizationModel getOrganization();
+
         OpenfactSession getOpenfactSession();
     }
 
-    interface DocumentCreationEvent extends ProviderEvent {
-        DocumentModel getDocument();
+    public static enum RequiredAction {
+        ACTION1, ACTION2, ACTION3, ACTION4
     }
 
-    interface DocumentRemovedEvent extends ProviderEvent {
-        DocumentModel getDocument();
-        OpenfactSession getOpenfactSession();
-    }
-   
 }

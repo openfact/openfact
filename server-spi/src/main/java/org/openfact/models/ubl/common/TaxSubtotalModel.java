@@ -1,42 +1,44 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
+
 public interface TaxSubtotalModel {
 
-    TaxableAmountModel getTaxableAmount();
+    BigDecimal getTaxableAmount();
 
-    void setTaxableAmount(TaxableAmountModel value);
+    void setTaxableAmount(BigDecimal value);
 
-    TaxAmountModel getTaxAmount();
+    BigDecimal getTaxAmount();
 
-    void setTaxAmount(TaxAmountModel value);
+    void setTaxAmount(BigDecimal value);
 
-    CalculationSequenceNumericModel getCalculationSequenceNumeric();
+    BigDecimal getCalculationSequenceNumeric();
 
-    void setCalculationSequenceNumeric(CalculationSequenceNumericModel value);
+    void setCalculationSequenceNumeric(BigDecimal value);
 
-    TransactionCurrencyTaxAmountModel getTransactionCurrencyTaxAmount();
+    BigDecimal getTransactionCurrencyTaxAmount();
 
-    void setTransactionCurrencyTaxAmount(TransactionCurrencyTaxAmountModel value);
+    void setTransactionCurrencyTaxAmount(BigDecimal value);
 
-    PercentModel getPercent();
+    BigDecimal getPercent();
 
-    void setPercent(PercentModel value);
+    void setPercent(BigDecimal value);
 
-    BaseUnitMeasureModel getBaseUnitMeasure();
+    MeasureModel getBaseUnitMeasure();
 
-    void setBaseUnitMeasure(BaseUnitMeasureModel value);
+    void setBaseUnitMeasure(MeasureModel value);
 
-    PerUnitAmountModel getPerUnitAmount();
+    BigDecimal getPerUnitAmount();
 
-    void setPerUnitAmount(PerUnitAmountModel value);
+    void setPerUnitAmount(BigDecimal value);
 
-    TierRangeModel getTierRange();
+    String getTierRange();
 
-    void setTierRange(TierRangeModel value);
+    void setTierRange(String value);
 
-    TierRatePercentModel getTierRatePercent();
+    BigDecimal getTierRatePercent();
 
-    void setTierRatePercent(TierRatePercentModel value);
+    void setTierRatePercent(BigDecimal value);
 
     TaxCategoryModel getTaxCategory();
 

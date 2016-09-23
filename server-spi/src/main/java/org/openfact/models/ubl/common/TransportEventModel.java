@@ -1,32 +1,34 @@
 package org.openfact.models.ubl.common;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public interface TransportEventModel {
 
-    IdentificationIDModel getIdentificationID();
+    String getIdentificationID();
 
-    void setIdentificationID(IdentificationIDModel value);
+    void setIdentificationID(String value);
 
-    OccurrenceDateModel getOccurrenceDate();
+    LocalDate getOccurrenceDate();
 
-    void setOccurrenceDate(OccurrenceDateModel value);
+    void setOccurrenceDate(LocalDate value);
 
-    OccurrenceTimeModel getOccurrenceTime();
+    LocalTime getOccurrenceTime();
 
-    void setOccurrenceTime(OccurrenceTimeModel value);
+    void setOccurrenceTime(LocalTime value);
 
-    TransportEventModelCodeModel getTransportEventModelCode();
+    String getTransportEventModelCode();
 
-    void setTransportEventModelCode(TransportEventModelCodeModel value);
+    void setTransportEventModelCode(String value);
 
-    DescriptionModel getDescription();
+    String getDescription();
 
-    void setDescription(DescriptionModel value);
+    void setDescription(String value);
 
-    CompletionIndicatorModel getCompletionIndicator();
+    boolean getCompletionIndicator();
 
-    void setCompletionIndicator(CompletionIndicatorModel value);
+    void setCompletionIndicator(boolean value);
 
     ShipmentModel getReportedShipment();
 

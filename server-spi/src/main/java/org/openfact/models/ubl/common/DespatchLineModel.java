@@ -4,45 +4,45 @@ import java.util.List;
 
 public interface DespatchLineModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    UUIDModel getUUID();
+    String getUUID();
 
-    void setUUID(UUIDModel value);
+    void setUUID(String value);
 
-    NoteModel getNote();
+    String getNote();
 
-    void setNote(NoteModel value);
+    void setNote(String value);
 
-    LineStatusCodeModelCommBas getLineStatusCode();
+    String getLineStatusCode();
 
-    void setLineStatusCode(LineStatusCodeModelCommBas value);
+    void setLineStatusCode(String value);
 
-    DeliveredQuantityModel getDeliveredQuantity();
+    QuantityModel getDeliveredQuantity();
 
-    void setDeliveredQuantity(DeliveredQuantityModel value);
+    void setDeliveredQuantity(QuantityModel value);
 
-    BackorderQuantityModel getBackorderQuantity();
+    QuantityModel getBackorderQuantity();
 
-    void setBackorderQuantity(BackorderQuantityModel value);
+    void setBackorderQuantity(QuantityModel value);
 
-    BackorderReasonModel getBackorderReason();
+    String getBackorderReason();
 
-    void setBackorderReason(BackorderReasonModel value);
+    void setBackorderReason(String value);
 
-    OutstandingQuantityModel getOutstandingQuantity();
+    QuantityModel getOutstandingQuantity();
 
-    void setOutstandingQuantity(OutstandingQuantityModel value);
+    void setOutstandingQuantity(QuantityModel value);
 
-    OutstandingReasonModel getOutstandingReason();
+    String getOutstandingReason();
 
-    void setOutstandingReason(OutstandingReasonModel value);
+    void setOutstandingReason(String value);
 
-    OversupplyQuantityModel getOversupplyQuantity();
+    QuantityModel getOversupplyQuantity();
 
-    void setOversupplyQuantity(OversupplyQuantityModel value);
+    void setOversupplyQuantity(QuantityModel value);
 
     List<OrderLineReferenceModel> getOrderLineReference();
 

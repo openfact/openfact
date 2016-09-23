@@ -40,11 +40,11 @@ import org.openfact.models.ModelDuplicateException;
 
 
 /**
- * Main logger for the Keycloak Services module.
+ * Main logger for the Openfact Services module.
  *
  * @author Stan Silvert ssilvert@redhat.com (C) 2016 Red Hat Inc.
  */
-@MessageLogger(projectCode="KC-SERVICES", length=4)
+@MessageLogger(projectCode="OF-SERVICES", length=4)
 public interface ServicesLogger extends BasicLogger {
 
     ServicesLogger ROOT_LOGGER = Logger.getMessageLogger(ServicesLogger.class, "org.openfact.services");

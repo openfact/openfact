@@ -37,9 +37,9 @@ public class AbstractProviderTest {
         try {
             model = session.organizations();
 
-            for (OrganizationModel realm : model.getOrganizations()) {
-                if (!realm.getName().equals(Config.getAdminOrganization())) {
-                    model.removeOrganization(realm);
+            for (OrganizationModel organization : model.getOrganizations()) {
+                if (!organization.getName().equals(Config.getAdminOrganization())) {
+                    model.removeOrganization(organization);
                 }
             }
         } finally {

@@ -2,17 +2,17 @@ package org.openfact.models.ubl.common;
 
 public interface LanguageModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    NameModelCommBas getName();
+    String getName();
 
-    void setName(NameModelCommBas value);
+    void setName(String value);
 
-    LocaleCodeModel getLocaleCode();
+    String getLocaleCode();
 
-    void setLocaleCode(LocaleCodeModel value);
+    void setLocaleCode(String value);
 
     String getId();
 

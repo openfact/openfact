@@ -1,46 +1,50 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public interface StatusModel {
 
-    ConditionCodeModel getConditionCode();
+    String getConditionCode();
 
-    void setConditionCode(ConditionCodeModel value);
+    void setConditionCode(String value);
 
-    ReferenceDateModel getReferenceDate();
+    LocalDate getReferenceDate();
 
-    void setReferenceDate(ReferenceDateModel value);
+    void setReferenceDate(LocalDate value);
 
-    ReferenceTimeModel getReferenceTime();
+    LocalTime getReferenceTime();
 
-    void setReferenceTime(ReferenceTimeModel value);
+    void setReferenceTime(LocalTime value);
 
-    DescriptionModel getDescription();
+    String getDescription();
 
-    void setDescription(DescriptionModel value);
+    void setDescription(String value);
 
-    StatusReasonCodeModel getStatusReasonCode();
+    String getStatusReasonCode();
 
-    void setStatusReasonCode(StatusReasonCodeModel value);
+    void setStatusReasonCode(String value);
 
-    StatusReasonModel getStatusReason();
+    String getStatusReason();
 
-    void setStatusReason(StatusReasonModel value);
+    void setStatusReason(String value);
 
-    SequenceIDModel getSequenceID();
+    String getSequenceID();
 
-    void setSequenceID(SequenceIDModel value);
+    void setSequenceID(String value);
 
-    TextModel getText();
+    String getText();
 
-    void setText(TextModel value);
+    void setText(String value);
 
-    IndicationIndicatorModel getIndicationIndicator();
+    boolean getIndicationIndicator();
 
-    void setIndicationIndicator(IndicationIndicatorModel value);
+    void setIndicationIndicator(boolean value);
 
-    PercentModel getPercent();
+    BigDecimal getPercent();
 
-    void setPercent(PercentModel value);
+    void setPercent(BigDecimal value);
 
     String getId();
 

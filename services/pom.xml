@@ -23,9 +23,15 @@
 		<!-- Json-Xml-Converter -->
 		<dependency>
 			<groupId>de.odysseus.staxon</groupId>
-			<artifactId>staxon-gson</artifactId>		
-		</dependency>	
-		
+			<artifactId>staxon-gson</artifactId>
+		</dependency>
+
+		<!-- to compile xjc-generated sources -->
+		<dependency>
+			<groupId>org.jvnet.jaxb2_commons</groupId>
+			<artifactId>jaxb2-basics-runtime</artifactId>
+		</dependency>
+
 		<!-- Ph-ubl -->
 		<dependency>
 			<groupId>com.helger</groupId>
@@ -58,6 +64,11 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.openfact</groupId>
+			<artifactId>openfact-services-api</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bcprov-jdk15on</artifactId>
 		</dependency>
@@ -70,12 +81,9 @@
 			<artifactId>openfact-core</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.openfact</groupId>
-			<artifactId>openfact-services-api</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
+<!-- 			<scope>provided</scope> -->
 		</dependency>
 		<dependency>
 			<groupId>javax.mail</groupId>
@@ -95,6 +103,11 @@
 			<artifactId>twitter4j-core</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.wildfly.core</groupId>
+			<artifactId>wildfly-controller</artifactId>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.jboss.logging</groupId>
 			<artifactId>jboss-logging</artifactId>
@@ -133,6 +146,10 @@
 			<artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.jboss.spec.javax.transaction</groupId>
+			<artifactId>jboss-transaction-api_1.2_spec</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-multipart-provider</artifactId>
 		</dependency>
@@ -152,15 +169,16 @@
 			<groupId>com.google.zxing</groupId>
 			<artifactId>javase</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-simple</artifactId>
+			<groupId>com.sun.xml.ws</groupId>
+			<artifactId>jaxws-rt</artifactId>
+			<version>2.2.8</version>
 		</dependency>
 		<dependency>
 			<groupId>com.icegreen</groupId>
@@ -175,6 +193,19 @@
 		</dependency>
 	</dependencies>
 	<build>
+<!-- 		<resources> -->
+<!-- 			<resource> -->
+<!-- 				<targetPath>META-INF</targetPath> -->
+<!-- 				<directory>src</directory> -->
+<!-- 				<includes> -->
+<!-- 					<include>jax-ws-catalog.xml</include> -->
+<!-- 					<include>wsdl/**</include> -->
+<!-- 				</includes> -->
+<!-- 			</resource> -->
+<!-- 			<resource> -->
+<!-- 				<directory>src/main/resources</directory> -->
+<!-- 			</resource> -->
+<!-- 		</resources> -->
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -184,6 +215,50 @@
 					<target>${maven.compiler.target}</target>
 				</configuration>
 			</plugin>
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.jvnet.jax-ws-commons</groupId> -->
+<!-- 				<artifactId>jaxws-maven-plugin</artifactId> -->
+<!-- 				<version>2.3</version> -->
+<!-- 				<dependencies> -->
+<!-- 					put xjc-plugins on the jaxws-maven-plugin's classpath -->
+<!-- 					<dependency> -->
+<!-- 						<groupId>org.jvnet.jaxb2_commons</groupId> -->
+<!-- 						<artifactId>jaxb2-basics</artifactId> -->
+<!-- 						<version>0.6.4</version> -->
+<!-- 					</dependency> -->
+<!-- 				</dependencies> -->
+<!-- 				<configuration> -->
+<!-- 					<sourceDestDir>${project.build.directory}/generated-sources/jaxws-wsimport</sourceDestDir> -->
+<!-- 					<xnocompile>true</xnocompile> -->
+<!-- 					<verbose>true</verbose> -->
+<!-- 					<extension>true</extension> -->
+<!-- 					<catalog>${project.build.directory}/generated-sources/jaxws-wsimport/jax-ws-catalog.xml</catalog> -->
+<!-- 					tell JAXB to actually use xjc-plugins -->
+<!-- 					<xjcArgs> -->
+<!-- 						<xjcArg>-Xequals</xjcArg> -->
+<!-- 						<xjcArg>-XtoString</xjcArg> -->
+<!-- 					</xjcArgs> -->
+<!-- 					Needed with JAXP 1.5 -->
+<!-- 					<vmArgs> -->
+<!-- 						<vmArg>-Djavax.xml.accessExternalSchema=all</vmArg> -->
+<!-- 					</vmArgs> -->
+<!-- 				</configuration> -->
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<goals> -->
+<!-- 							<goal>wsimport</goal> -->
+<!-- 						</goals> -->
+<!-- 						<configuration> -->
+<!-- 							<staleFile>${project.build.directory}/jaxws/stale/billService.stale</staleFile> -->
+<!-- 							<packageName>org.openfact.ubl.pe.send</packageName> -->
+<!-- 							<wsdlUrls> -->
+<!-- 								<wsdlUrl>https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService?wsdl</wsdlUrl> -->
+<!-- 							</wsdlUrls> -->
+<!-- 						</configuration> -->
+<!-- 					</execution> -->
+
+<!-- 				</executions> -->
+<!-- 			</plugin> -->
 		</plugins>
 	</build>
 

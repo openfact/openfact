@@ -28,81 +28,95 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
     @Override
     public void close() {
         // TODO Auto-generated method stub
+
     }
 
     @Override
-    protected EntityManager getEntityManager() {
-        return this.em;
-    }
-
-    @Override
-    public CreditNoteModel addInvoice(OrganizationModel organization) {
+    public CreditNoteModel addCreditNote(OrganizationModel organization) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public CreditNoteModel getInvoiceById(OrganizationModel organization, String id) {
+    public CreditNoteModel getCreditNoteById(OrganizationModel organization, String id) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public boolean removeInvoice(OrganizationModel organization, String id) {
+    public boolean removeCreditNote(OrganizationModel organization, String id) {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public boolean removeInvoice(OrganizationModel organization, CreditNoteModel invoice) {
+    public boolean removeCreditNote(OrganizationModel organization, CreditNoteModel crebitNote) {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public List<CreditNoteModel> getInvoices(OrganizationModel organization) {
+    public List<CreditNoteModel> getCreditNotes(OrganizationModel organization) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public List<CreditNoteModel> getInvoices(OrganizationModel organization, Integer firstResult,
+    public List<CreditNoteModel> getCreditNotes(OrganizationModel organization, Integer firstResult,
             Integer maxResults) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public List<CreditNoteModel> searchForInvoice(String filterText, OrganizationModel organization) {
+    public List<CreditNoteModel> searchForCreditNote(String filterText, OrganizationModel organization) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public List<CreditNoteModel> searchForInvoice(String filterText, OrganizationModel organization,
+    public List<CreditNoteModel> searchForCreditNote(String filterText, OrganizationModel organization,
             Integer firstResult, Integer maxResults) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public SearchResultsModel<CreditNoteModel> searchForInvoice(OrganizationModel organization,
+    public SearchResultsModel<CreditNoteModel> searchForCreditNote(OrganizationModel organization,
             SearchCriteriaModel criteria) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public SearchResultsModel<CreditNoteModel> searchForInvoice(OrganizationModel organization,
+    public SearchResultsModel<CreditNoteModel> searchForCreditNote(OrganizationModel organization,
             SearchCriteriaModel criteria, String filterText) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public int getInvoicesCount(OrganizationModel organization) {
+    public int getCreditNotesCount(OrganizationModel organization) {
         // TODO Auto-generated method stub
         return 0;
+    }
+
+    @Override
+    protected EntityManager getEntityManager() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public CreditNoteModel addCreditNote(OrganizationModel organization, String ID) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public CreditNoteModel getInvoiceByID(OrganizationModel organizationModel, String ID) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

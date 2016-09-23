@@ -19,9 +19,9 @@ package org.openfact.email;
 
 import org.openfact.truststore.HostnameVerificationPolicy;
 import org.openfact.truststore.JSSETruststoreConfigurator;
-import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.UserModel;
 import org.openfact.services.ServicesLogger;
 
 import javax.mail.MessagingException;
@@ -53,10 +53,10 @@ public class DefaultEmailSenderProvider implements EmailSenderProvider {
     }
 
     @Override
-    public void send(OrganizationModel organization, InvoiceModel invoice, String subject, String textBody, String htmlBody) throws EmailException {
+    public void send(OrganizationModel organization, UserModel user, String subject, String textBody, String htmlBody) throws EmailException {
         Transport transport = null;
         try {
-            String address = invoice.getCustomer().getEmail();
+            String address = user.getEmail();
             Map<String, String> config = organization.getSmtpConfig();
 
             Properties props = new Properties();

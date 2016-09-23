@@ -1,50 +1,53 @@
 package org.openfact.models.ubl.common;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public interface DeliveryModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    QuantityModelCommBas getQuantity();
+    QuantityModel getQuantity();
 
-    void setQuantity(QuantityModelCommBas value);
+    void setQuantity(QuantityModel value);
 
-    MinimumQuantityModel getMinimumQuantity();
+    QuantityModel getMinimumQuantity();
 
-    void setMinimumQuantity(MinimumQuantityModel value);
+    void setMinimumQuantity(QuantityModel value);
 
-    MaximumQuantityModel getMaximumQuantity();
+    QuantityModel getMaximumQuantity();
 
-    void setMaximumQuantity(MaximumQuantityModel value);
+    void setMaximumQuantity(QuantityModel value);
 
-    ActualDeliveryDateModel getActualDeliveryDate();
+    LocalDate getActualDeliveryDate();
 
-    void setActualDeliveryDate(ActualDeliveryDateModel value);
+    void setActualDeliveryDate(LocalDate value);
 
-    ActualDeliveryTimeModel getActualDeliveryTime();
+    LocalTime getActualDeliveryTime();
 
-    void setActualDeliveryTime(ActualDeliveryTimeModel value);
+    void setActualDeliveryTime(LocalTime value);
 
-    LatestDeliveryDateModel getLatestDeliveryDate();
+    LocalDate getLatestDeliveryDate();
 
-    void setLatestDeliveryDate(LatestDeliveryDateModel value);
+    void setLatestDeliveryDate(LocalDate value);
 
-    LatestDeliveryTimeModel getLatestDeliveryTime();
+    LocalTime getLatestDeliveryTime();
 
-    void setLatestDeliveryTime(LatestDeliveryTimeModel value);
+    void setLatestDeliveryTime(LocalTime value);
 
-    TrackingIDModel getTrackingID();
+    String getTrackingID();
 
-    void setTrackingID(TrackingIDModel value);
+    void setTrackingID(String value);
 
     AddressModel getDeliveryAddress();
 
     void setDeliveryAddress(AddressModel value);
 
-    LocationModelCommAgg getDeliveryLocation();
+    LocationCommAggModel getDeliveryLocation();
 
-    void setDeliveryLocation(LocationModelCommAgg value);
+    void setDeliveryLocation(LocationCommAggModel value);
 
     PeriodModel getRequestedDeliveryPeriod();
 

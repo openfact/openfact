@@ -1,14 +1,16 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
+
 public interface ItemComparisonModel {
 
-    PriceAmountModel getPriceAmount();
+    BigDecimal getPriceAmount();
 
-    void setPriceAmount(PriceAmountModel value);
+    void setPriceAmount(BigDecimal value);
 
-    QuantityModelCommBas getQuantity();
+    QuantityModel getQuantity();
 
-    void setQuantity(QuantityModelCommBas value);
+    void setQuantity(QuantityModel value);
 
     String getId();
 

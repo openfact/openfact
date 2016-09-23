@@ -1,72 +1,73 @@
 package org.openfact.models.ubl.common;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface ConsignmentModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    List<SummaryDescriptionModel> getSummaryDescription();
+    List<String> getSummaryDescription();
 
-    void setSummaryDescription(List<SummaryDescriptionModel> summaryDescription);
+    void setSummaryDescription(List<String> summaryDescription);
 
-    TotalInvoiceAmountModel getTotalInvoiceAmount();
+    BigDecimal getTotalInvoiceAmount();
 
-    void setTotalInvoiceAmount(TotalInvoiceAmountModel value);
+    void setTotalInvoiceAmount(BigDecimal value);
 
-    DeclaredCustomsValueAmountModel getDeclaredCustomsValueAmount();
+    BigDecimal getDeclaredCustomsValueAmount();
 
-    void setDeclaredCustomsValueAmount(DeclaredCustomsValueAmountModel value);
+    void setDeclaredCustomsValueAmount(BigDecimal value);
 
-    List<TariffDescriptionModel> getTariffDescription();
+    List<String> getTariffDescription();
 
-    void setTariffDescription(List<TariffDescriptionModel> tariffDescription);
+    void setTariffDescription(List<String> tariffDescription);
 
-    TariffCodeModel getTariffCode();
+    String getTariffCode();
 
-    void setTariffCode(TariffCodeModel value);
+    void setTariffCode(String value);
 
-    InsurancePremiumAmountModel getInsurancePremiumAmount();
+    BigDecimal getInsurancePremiumAmount();
 
-    void setInsurancePremiumAmount(InsurancePremiumAmountModel value);
+    void setInsurancePremiumAmount(BigDecimal value);
 
-    GrossWeightMeasureModel getGrossWeightMeasure();
+    MeasureModel getGrossWeightMeasure();
 
-    void setGrossWeightMeasure(GrossWeightMeasureModel value);
+    void setGrossWeightMeasure(MeasureModel value);
 
-    NetWeightMeasureModel getNetWeightMeasure();
+    MeasureModel getNetWeightMeasure();
 
-    void setNetWeightMeasure(NetWeightMeasureModel value);
+    void setNetWeightMeasure(MeasureModel value);
 
-    NetNetWeightMeasureModel getNetNetWeightMeasure();
+    MeasureModel getNetNetWeightMeasure();
 
-    void setNetNetWeightMeasure(NetNetWeightMeasureModel value);
+    void setNetNetWeightMeasure(MeasureModel value);
 
-    ChargeableWeightMeasureModel getChargeableWeightMeasure();
+    MeasureModel getChargeableWeightMeasure();
 
-    void setChargeableWeightMeasure(ChargeableWeightMeasureModel value);
+    void setChargeableWeightMeasure(MeasureModel value);
 
-    GrossVolumeMeasureModel getGrossVolumeMeasure();
+    MeasureModel getGrossVolumeMeasure();
 
-    void setGrossVolumeMeasure(GrossVolumeMeasureModel value);
+    void setGrossVolumeMeasure(MeasureModel value);
 
-    NetVolumeMeasureModel getNetVolumeMeasure();
+    MeasureModel getNetVolumeMeasure();
 
-    void setNetVolumeMeasure(NetVolumeMeasureModel value);
+    void setNetVolumeMeasure(MeasureModel value);
 
-    LoadingLengthMeasureModel getLoadingLengthMeasure();
+    MeasureModel getLoadingLengthMeasure();
 
-    void setLoadingLengthMeasure(LoadingLengthMeasureModel value);
+    void setLoadingLengthMeasure(MeasureModel value);
 
-    List<RemarksModel> getRemarks();
+    List<String> getRemarks();
 
-    void setRemarks(List<RemarksModel> remarks);
+    void setRemarks(List<String> remarks);
 
-    HazardousRiskIndicatorModel getHazardousRiskIndicator();
+    boolean getHazardousRiskIndicator();
 
-    void setHazardousRiskIndicator(HazardousRiskIndicatorModel value);
+    void setHazardousRiskIndicator(boolean value);
 
     PartyModel getConsigneeParty();
 

@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface ItemIdentificationModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    ExtendedIDModel getExtendedID();
+    String getExtendedID();
 
-    void setExtendedID(ExtendedIDModel value);
+    void setExtendedID(String value);
 
     List<PhysicalAttributeModel> getPhysicalAttribute();
 

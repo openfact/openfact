@@ -1,230 +1,369 @@
+/*
+ * Copyright 2016 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.openfact.testsuite.model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.junit.Assert;
-import org.junit.Test;
-import org.openfact.models.InvoiceModel;
-import org.openfact.models.InvoiceModel.RequiredAction;
-import org.openfact.models.enums.DocumentType;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
-
+/**
+ * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
+ */
 public class InvoiceModelTest extends AbstractModelTest {
 
     /*@Test
-    public void persistInvoice() {
+    public void persistUser() {
         OrganizationModel organization = organizationManager.createOrganization("original");
-        organization.setAdditionalAccountId(organization.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "05"));
-        commit();
-        
         OpenfactSession session = organizationManager.getSession();
-        InvoiceModel invoice = session.invoices().addInvoice(organization, 1, 1);        
-        invoice.setType("RUC", "06");
-        invoice.setCurrencyCode("PEN");
-        //assertNotNull(invoice.getCreatedTimestamp());
+        UserModel user = session.users().addUser(organization, "user");
+        user.setFirstName("first-name");
+        user.setLastName("last-name");
+        user.setEmail("email");
+        assertNotNull(user.getCreatedTimestamp());
         // test that timestamp is current with 10s tollerance
-        //Assert.assertTrue((System.currentTimeMillis() - invoice.getCreatedTimestamp()) < 10000);
+        Assert.assertTrue((System.currentTimeMillis() - user.getCreatedTimestamp()) < 10000);
 
-        invoice.addRequiredAction(RequiredAction.CONFIGURE_TOTP);
-        invoice.addRequiredAction(RequiredAction.UPDATE_PASSWORD);
+        user.addRequiredAction(RequiredAction.CONFIGURE_TOTP);
+        user.addRequiredAction(RequiredAction.UPDATE_PASSWORD);
 
         OrganizationModel searchOrganization = organizationManager.getOrganization(organization.getId());
-        InvoiceModel persisted = session.invoices().getInvoiceBySeriesAndNumber(1, 1, searchOrganization);
+        UserModel persisted = session.users().getUserByUsername("user", searchOrganization);
 
-        assertEquals(invoice, persisted);
+        assertEquals(user, persisted);
 
         searchOrganization = organizationManager.getOrganization(organization.getId());
-        InvoiceModel persisted2 =  session.invoices().getInvoiceById(invoice.getId(), searchOrganization);
-        assertEquals(invoice, persisted2);
+        UserModel persisted2 =  session.users().getUserById(user.getId(), searchOrganization);
+        assertEquals(user, persisted2);
 
         Map<String, String> attributes = new HashMap<String, String>();
-        attributes.put(InvoiceModel.CURRENCY_CODE, "PEN");
-        List<InvoiceModel> search = session.invoices().searchForInvoiceByAttributes(attributes, organization);
+        attributes.put(UserModel.LAST_NAME, "last-name");
+        List<UserModel> search = session.users().searchForUser(attributes, organization);
         Assert.assertEquals(search.size(), 1);
-        Assert.assertEquals(search.get(0).getSeries(), 1);
-        Assert.assertEquals(search.get(0).getNumber(), 1);
+        Assert.assertEquals(search.get(0).getUsername(), "user");
 
         attributes.clear();
-        attributes.put(InvoiceModel.TYPE, "RUC");
-        search = session.invoices().searchForInvoiceByAttributes(attributes, organization);
+        attributes.put(UserModel.EMAIL, "email");
+        search = session.users().searchForUser(attributes, organization);
         Assert.assertEquals(search.size(), 1);
-        Assert.assertEquals(search.get(0).getSeries(), 1);
-        Assert.assertEquals(search.get(0).getNumber(), 1);
+        Assert.assertEquals(search.get(0).getUsername(), "user");
 
         attributes.clear();
-        attributes.put(InvoiceModel.CURRENCY_CODE, "PEN");
-        attributes.put(InvoiceModel.TYPE, "RUC");
-        search = session.invoices().searchForInvoiceByAttributes(attributes, organization);
+        attributes.put(UserModel.LAST_NAME, "last-name");
+        attributes.put(UserModel.EMAIL, "email");
+        search = session.users().searchForUser(attributes, organization);
         Assert.assertEquals(search.size(), 1);
-        Assert.assertEquals(search.get(0).getSeries(), 1);
-        Assert.assertEquals(search.get(0).getNumber(), 1);
-    }*/
-//
-//    @Test
-//    public void testInvoiceRequiredActions() throws Exception {
-//        OrganizationModel organization = organizationManager.createOrganization("original");
-//        organization.setAdditionalAccountId(organization.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "05"));
-//        commit();
-//        
-//        InvoiceModel invoice = session.invoices().addInvoice(organization, 1, 1);
-//
-//        Assert.assertTrue(invoice.getRequiredActions().isEmpty());
-//
-//        invoice.addRequiredAction(RequiredAction.CONFIGURE_TOTP);
-//        String id = organization.getId();
-//        commit();
-//        organization = organizationManager.getOrganization(id);
-//        invoice = session.invoices().getInvoiceBySeriesAndNumber(1, 1, organization);
-//
-//        Assert.assertEquals(1, invoice.getRequiredActions().size());
-//        Assert.assertTrue(invoice.getRequiredActions().contains(RequiredAction.CONFIGURE_TOTP.name()));
-//
-//        invoice.addRequiredAction(RequiredAction.CONFIGURE_TOTP);
-//        invoice = session.invoices().getInvoiceBySeriesAndNumber(1, 1, organization);
-//
-//        Assert.assertEquals(1, invoice.getRequiredActions().size());
-//        Assert.assertTrue(invoice.getRequiredActions().contains(RequiredAction.CONFIGURE_TOTP.name()));
-//
-//        invoice.addRequiredAction(RequiredAction.VERIFY_EMAIL.name());
-//        invoice = session.invoices().getInvoiceBySeriesAndNumber(1, 1, organization);
-//
-//        Assert.assertEquals(2, invoice.getRequiredActions().size());
-//        Assert.assertTrue(invoice.getRequiredActions().contains(RequiredAction.CONFIGURE_TOTP.name()));
-//        Assert.assertTrue(invoice.getRequiredActions().contains(RequiredAction.VERIFY_EMAIL.name()));
-//
-//        invoice.removeRequiredAction(RequiredAction.CONFIGURE_TOTP.name());
-//        invoice = session.invoices().getInvoiceBySeriesAndNumber(1, 1, organization);
-//
-//        Assert.assertEquals(1, invoice.getRequiredActions().size());
-//        Assert.assertTrue(invoice.getRequiredActions().contains(RequiredAction.VERIFY_EMAIL.name()));
-//
-//        invoice.removeRequiredAction(RequiredAction.VERIFY_EMAIL.name());
-//        invoice = session.invoices().getInvoiceBySeriesAndNumber(1, 1, organization);
-//
-//        Assert.assertTrue(invoice.getRequiredActions().isEmpty());
-//    }
-
-    /*@Test
-    public void testInvoiceMultipleAttributes() throws Exception {
+        Assert.assertEquals(search.get(0).getUsername(), "user");
+    }
+    
+    @Test
+    public void webOriginSetTest() {
         OrganizationModel organization = organizationManager.createOrganization("original");
-        organization.setAdditionalAccountId(organization.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "05"));
-        commit();
-        
-        InvoiceModel invoice = session.invoices().addInvoice(organization, 1, 1);
-        InvoiceModel invoiceNoAttrs = session.invoices().addInvoice(organization, 1, 2);
+        ClientModel client = organization.addClient("user");
 
-        invoice.setSingleAttribute("key1", "value1");
+        Assert.assertTrue(client.getWebOrigins().isEmpty());
+
+        client.addWebOrigin("origin-1");
+        Assert.assertEquals(1, client.getWebOrigins().size());
+
+        client.addWebOrigin("origin-2");
+        Assert.assertEquals(2, client.getWebOrigins().size());
+
+        client.removeWebOrigin("origin-2");
+        Assert.assertEquals(1, client.getWebOrigins().size());
+
+        client.removeWebOrigin("origin-1");
+        Assert.assertTrue(client.getWebOrigins().isEmpty());
+
+        client = organization.addClient("oauthclient2");
+
+        Assert.assertTrue(client.getWebOrigins().isEmpty());
+
+        client.addWebOrigin("origin-1");
+        Assert.assertEquals(1, client.getWebOrigins().size());
+
+        client.addWebOrigin("origin-2");
+        Assert.assertEquals(2, client.getWebOrigins().size());
+
+        client.removeWebOrigin("origin-2");
+        Assert.assertEquals(1, client.getWebOrigins().size());
+
+        client.removeWebOrigin("origin-1");
+        Assert.assertTrue(client.getWebOrigins().isEmpty());
+
+    }
+
+    @Test
+    public void testUserRequiredActions() throws Exception {
+        OrganizationModel organization = organizationManager.createOrganization("original");
+        UserModel user = session.users().addUser(organization, "user");
+
+        Assert.assertTrue(user.getRequiredActions().isEmpty());
+
+        user.addRequiredAction(RequiredAction.CONFIGURE_TOTP);
+        String id = organization.getId();
+        commit();
+        organization = organizationManager.getOrganization(id);
+        user = session.users().getUserByUsername("user", organization);
+
+        Assert.assertEquals(1, user.getRequiredActions().size());
+        Assert.assertTrue(user.getRequiredActions().contains(RequiredAction.CONFIGURE_TOTP.name()));
+
+        user.addRequiredAction(RequiredAction.CONFIGURE_TOTP);
+        user = session.users().getUserByUsername("user", organization);
+
+        Assert.assertEquals(1, user.getRequiredActions().size());
+        Assert.assertTrue(user.getRequiredActions().contains(RequiredAction.CONFIGURE_TOTP.name()));
+
+        user.addRequiredAction(RequiredAction.VERIFY_EMAIL.name());
+        user = session.users().getUserByUsername("user", organization);
+
+        Assert.assertEquals(2, user.getRequiredActions().size());
+        Assert.assertTrue(user.getRequiredActions().contains(RequiredAction.CONFIGURE_TOTP.name()));
+        Assert.assertTrue(user.getRequiredActions().contains(RequiredAction.VERIFY_EMAIL.name()));
+
+        user.removeRequiredAction(RequiredAction.CONFIGURE_TOTP.name());
+        user = session.users().getUserByUsername("user", organization);
+
+        Assert.assertEquals(1, user.getRequiredActions().size());
+        Assert.assertTrue(user.getRequiredActions().contains(RequiredAction.VERIFY_EMAIL.name()));
+
+        user.removeRequiredAction(RequiredAction.VERIFY_EMAIL.name());
+        user = session.users().getUserByUsername("user", organization);
+
+        Assert.assertTrue(user.getRequiredActions().isEmpty());
+    }
+
+    @Test
+    public void testUserMultipleAttributes() throws Exception {
+        OrganizationModel organization = organizationManager.createOrganization("original");
+        UserModel user = session.users().addUser(organization, "user");
+        UserModel userNoAttrs = session.users().addUser(organization, "user-noattrs");
+
+        user.setSingleAttribute("key1", "value1");
         List<String> attrVals = new ArrayList<>(Arrays.asList( "val21", "val22" ));
-        invoice.setAttribute("key2", attrVals);
+        user.setAttribute("key2", attrVals);
 
         commit();
 
         // Test read attributes
-        organization = organizationManager.getOrganizationByName("orginal");
-        invoice = session.invoices().getInvoiceBySeriesAndNumber(1, 1, organization);
+        organization = organizationManager.getOrganizationByName("original");
+        user = session.users().getUserByUsername("user", organization);
 
-        attrVals = invoice.getAttribute("key1");
+        attrVals = user.getAttribute("key1");
         Assert.assertEquals(1, attrVals.size());
         Assert.assertEquals("value1", attrVals.get(0));
-        Assert.assertEquals("value1", invoice.getFirstAttribute("key1"));
+        Assert.assertEquals("value1", user.getFirstAttribute("key1"));
 
-        attrVals = invoice.getAttribute("key2");
+        attrVals = user.getAttribute("key2");
         Assert.assertEquals(2, attrVals.size());
         Assert.assertTrue(attrVals.contains("val21"));
         Assert.assertTrue(attrVals.contains("val22"));
 
-        attrVals = invoice.getAttribute("key3");
+        attrVals = user.getAttribute("key3");
         Assert.assertTrue(attrVals.isEmpty());
-        Assert.assertNull(invoice.getFirstAttribute("key3"));
+        Assert.assertNull(user.getFirstAttribute("key3"));
 
-        Map<String, List<String>> allAttrVals = invoice.getAttributes();
+        Map<String, List<String>> allAttrVals = user.getAttributes();
         Assert.assertEquals(2, allAttrVals.size());
-        Assert.assertEquals(allAttrVals.get("key1"), invoice.getAttribute("key1"));
-        Assert.assertEquals(allAttrVals.get("key2"), invoice.getAttribute("key2"));
+        Assert.assertEquals(allAttrVals.get("key1"), user.getAttribute("key1"));
+        Assert.assertEquals(allAttrVals.get("key2"), user.getAttribute("key2"));
 
         // Test remove and rewrite attribute
-        invoice.removeAttribute("key1");
-        invoice.setSingleAttribute("key2", "val23");
+        user.removeAttribute("key1");
+        user.setSingleAttribute("key2", "val23");
 
         commit();
 
         organization = organizationManager.getOrganizationByName("original");
-        invoice = session.invoices().getInvoiceBySeriesAndNumber(1, 1, organization);
-        Assert.assertNull(invoice.getFirstAttribute("key1"));
-        attrVals = invoice.getAttribute("key2");
+        user = session.users().getUserByUsername("user", organization);
+        Assert.assertNull(user.getFirstAttribute("key1"));
+        attrVals = user.getAttribute("key2");
         Assert.assertEquals(1, attrVals.size());
         Assert.assertEquals("val23", attrVals.get(0));
-    }*/
+    }
 
-    /*@Test
+    // OPENFACT-3494
+    @Test
+    public void testUpdateUserAttribute() throws Exception {
+        OrganizationModel organization = organizationManager.createOrganization("original");
+        UserModel user = session.users().addUser(organization, "user");
+
+        user.setSingleAttribute("key1", "value1");
+
+        commit();
+
+        organization = organizationManager.getOrganizationByName("original");
+        user = session.users().getUserByUsername("user", organization);
+
+        // Update attribute
+        List<String> attrVals = new ArrayList<>(Arrays.asList( "val2" ));
+        user.setAttribute("key1", attrVals);
+        Map<String, List<String>> allAttrVals = user.getAttributes();
+
+        // Ensure same transaction is able to see updated value
+        Assert.assertEquals(1, allAttrVals.size());
+        Assert.assertEquals(allAttrVals.get("key1"), Arrays.asList("val2"));
+
+        commit();
+    }
+
+    @Test
     public void testSearchByString() {
         OrganizationModel organization = organizationManager.createOrganization("original");
-        organization.setAdditionalAccountId(organization.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "05"));
-        commit();
-        
-        InvoiceModel invoice1 = session.invoices().addInvoice(organization, 1, 1);
+        UserModel user1 = session.users().addUser(organization, "user1");
 
         commit();
         organization = session.organizations().getOrganizationByName("original");
-        List<InvoiceModel> users = session.invoices().searchForInvoice("1", organization, 0, 7);
-        Assert.assertTrue(users.contains(invoice1));
-    }*/
+        List<UserModel> users = session.users().searchForUser("user", organization, 0, 7);
+        Assert.assertTrue(users.contains(user1));
+    }
 
-    /*@Test
-    public void testSearchByInvoiceAttribute() throws Exception {
+    @Test
+    public void testSearchByUserAttribute() throws Exception {
         OrganizationModel organization = organizationManager.createOrganization("original");
-        organization.setAdditionalAccountId(organization.addSimpleDocument(DocumentType.ADDITIONAL_IDENTIFICATION_ID, "RUC", "05"));
-        commit();
-        
-        InvoiceModel invoice11 = session.invoices().addInvoice(organization, 1, 1);
-        InvoiceModel invoice2 = session.invoices().addInvoice(organization, 1, 2);
-        InvoiceModel invoice3 = session.invoices().addInvoice(organization, 1, 3);
+        UserModel user1 = session.users().addUser(organization, "user1");
+        UserModel user2 = session.users().addUser(organization, "user2");
+        UserModel user3 = session.users().addUser(organization, "user3");
 
-        invoice11.setSingleAttribute("key1", "value1");
-        invoice11.setSingleAttribute("key2", "value21");
+        user1.setSingleAttribute("key1", "value1");
+        user1.setSingleAttribute("key2", "value21");
 
-        invoice2.setSingleAttribute("key1", "value1");
-        invoice2.setSingleAttribute("key2", "value22");
+        user2.setSingleAttribute("key1", "value1");
+        user2.setSingleAttribute("key2", "value22");
 
-        invoice3.setSingleAttribute("key2", "value21");
+        user3.setSingleAttribute("key2", "value21");
 
         commit();
         organization = session.organizations().getOrganizationByName("original");
 
-        List<InvoiceModel> invoices = session.invoices().searchForInvoiceByAttribute("key1", "value1", organization);
-        Assert.assertEquals(2, invoices.size());
-        Assert.assertTrue(invoices.contains(invoice11));
-        Assert.assertTrue(invoices.contains(invoice2));
+        List<UserModel> users = session.users().searchForUserByUserAttribute("key1", "value1", organization);
+        Assert.assertEquals(2, users.size());
+        Assert.assertTrue(users.contains(user1));
+        Assert.assertTrue(users.contains(user2));
 
-        invoices = session.invoices().searchForInvoiceByAttribute("key2", "value21", organization);
-        Assert.assertEquals(2, invoices.size());
-        Assert.assertTrue(invoices.contains(invoice11));
-        Assert.assertTrue(invoices.contains(invoice3));
+        users = session.users().searchForUserByUserAttribute("key2", "value21", organization);
+        Assert.assertEquals(2, users.size());
+        Assert.assertTrue(users.contains(user1));
+        Assert.assertTrue(users.contains(user3));
 
-        invoices = session.invoices().searchForInvoiceByAttribute("key2", "value22", organization);
-        Assert.assertEquals(1, invoices.size());
-        Assert.assertTrue(invoices.contains(invoice2));
+        users = session.users().searchForUserByUserAttribute("key2", "value22", organization);
+        Assert.assertEquals(1, users.size());
+        Assert.assertTrue(users.contains(user2));
 
-        invoices = session.invoices().searchForInvoiceByAttribute("key3", "value3", organization);
-        Assert.assertEquals(0, invoices.size());
-    }*/
-        
-    public static void assertEquals(InvoiceModel expected, InvoiceModel actual) {
-        Assert.assertEquals(expected.getSeries(), actual.getSeries());
+        users = session.users().searchForUserByUserAttribute("key3", "value3", organization);
+        Assert.assertEquals(0, users.size());
+    }
+
+    @Test
+    public void testServiceAccountLink() throws Exception {
+        OrganizationModel organization = organizationManager.createOrganization("original");
+        ClientModel client = organization.addClient("foo");
+
+        UserModel user1 = session.users().addUser(organization, "user1");
+        user1.setFirstName("John");
+        user1.setLastName("Doe");
+
+        UserModel user2 = session.users().addUser(organization, "user2");
+        user2.setFirstName("John");
+        user2.setLastName("Doe");
+
+        // Search
+        Assert.assertNull(session.users().getServiceAccount(client));
+        List<UserModel> users = session.users().searchForUser("John Doe", organization);
+        Assert.assertEquals(2, users.size());
+        Assert.assertTrue(users.contains(user1));
+        Assert.assertTrue(users.contains(user2));
+
+        // Link service account
+        user1.setServiceAccountClientLink(client.getId());
+
+        commit();
+
+        // Search and assert service account user not found
+        organization = organizationManager.getOrganizationByName("original");
+        client = organization.getClientByClientId("foo");
+        UserModel searched = session.users().getServiceAccount(client);
+        Assert.assertEquals(searched, user1);
+        users = session.users().searchForUser("John Doe", organization);
+        Assert.assertEquals(1, users.size());
+        Assert.assertFalse(users.contains(user1));
+        Assert.assertTrue(users.contains(user2));
+
+        users = session.users().getUsers(organization, false);
+        Assert.assertEquals(1, users.size());
+        Assert.assertFalse(users.contains(user1));
+        Assert.assertTrue(users.contains(user2));
+
+        users = session.users().getUsers(organization, true);
+        Assert.assertEquals(2, users.size());
+        Assert.assertTrue(users.contains(user1));
+        Assert.assertTrue(users.contains(user2));
+
+        Assert.assertEquals(2, session.users().getUsersCount(organization));
+
+        // Remove client
+        new ClientManager(organizationManager).removeClient(organization, client);
+        commit();
+
+        // Assert service account removed as well
+        organization = organizationManager.getOrganizationByName("original");
+        Assert.assertNull(session.users().getUserByUsername("user1", organization));
+    }
+
+    @Test
+    public void testGrantToAll() {
+        OrganizationModel organization1 = organizationManager.createOrganization("organization1");
+        RoleModel role1 = organization1.addRole("role1");
+        UserModel user1 = organizationManager.getSession().users().addUser(organization1, "user1");
+        UserModel user2 = organizationManager.getSession().users().addUser(organization1, "user2");
+
+        OrganizationModel organization2 = organizationManager.createOrganization("organization2");
+        UserModel organization2User1 = organizationManager.getSession().users().addUser(organization2, "user1");
+
+        commit();
+
+        organization1 = organizationManager.getOrganizationByName("organization1");
+        role1 = organization1.getRole("role1");
+        organizationManager.getSession().users().grantToAllUsers(organization1, role1);
+
+        commit();
+
+        organization1 = organizationManager.getOrganizationByName("organization1");
+        role1 = organization1.getRole("role1");
+        user1 = organizationManager.getSession().users().getUserByUsername("user1", organization1);
+        user2 = organizationManager.getSession().users().getUserByUsername("user2", organization1);
+        Assert.assertTrue(user1.hasRole(role1));
+        Assert.assertTrue(user2.hasRole(role1));
+
+        organization2 = organizationManager.getOrganizationByName("organization2");
+        organization2User1 = organizationManager.getSession().users().getUserByUsername("user1", organization2);
+        Assert.assertFalse(organization2User1.hasRole(role1));
+    }
+
+    public static void assertEquals(UserModel expected, UserModel actual) {
+        Assert.assertEquals(expected.getUsername(), actual.getUsername());
         Assert.assertEquals(expected.getCreatedTimestamp(), actual.getCreatedTimestamp());
-        
+        Assert.assertEquals(expected.getFirstName(), actual.getFirstName());
+        Assert.assertEquals(expected.getLastName(), actual.getLastName());
+
         String[] expectedRequiredActions = expected.getRequiredActions().toArray(new String[expected.getRequiredActions().size()]);
         Arrays.sort(expectedRequiredActions);
         String[] actualRequiredActions = actual.getRequiredActions().toArray(new String[actual.getRequiredActions().size()]);
         Arrays.sort(actualRequiredActions);
 
         Assert.assertArrayEquals(expectedRequiredActions, actualRequiredActions);
-    }
+    }*/
 
 }
 

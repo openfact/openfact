@@ -28,7 +28,7 @@ public class KeycloakClientAuthenticatorProviderFactory implements ClientAuthent
 
     @Override
     public String getId() {
-        return "keycloak";
+        return "openfact";
     }
 
 }

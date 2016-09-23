@@ -4,105 +4,105 @@ import java.util.List;
 
 public interface AddressModel {
 
-    IDModel getID();
+    String getID();
 
-    void setID(IDModel value);
+    void setID(String value);
 
-    AddressModelCodeModel getAddressModelCode();
+    String getAddressCode();
 
-    void setAddressModelCode(AddressModelCodeModel value);
+    void setAddressCode(String value);
 
-    AddressFormatCodeModel getAddressFormatCode();
+    String getAddressFormatCode();
 
-    void setAddressFormatCode(AddressFormatCodeModel value);
+    void setAddressFormatCode(String value);
 
-    PostboxModel getPostbox();
+    String getPostbox();
 
-    void setPostbox(PostboxModel value);
+    void setPostbox(String value);
 
-    FloorModel getFloor();
+    String getFloor();
 
-    void setFloor(FloorModel value);
+    void setFloor(String value);
 
-    RoomModel getRoom();
+    String getRoom();
 
-    void setRoom(RoomModel value);
+    void setRoom(String value);
 
-    StreetNameModel getStreetName();
+    String getStreetName();
 
-    void setStreetName(StreetNameModel value);
+    void setStreetName(String value);
 
-    AdditionalStreetNameModel getAdditionalStreetName();
+    String getAdditionalStreetName();
 
-    void setAdditionalStreetName(AdditionalStreetNameModel value);
+    void setAdditionalStreetName(String value);
 
-    BlockNameModel getBlockName();
+    String getBlockName();
 
-    void setBlockName(BlockNameModel value);
+    void setBlockName(String value);
 
-    BuildingNameModel getBuildingName();
+    String getBuildingName();
 
-    void setBuildingName(BuildingNameModel value);
+    void setBuildingName(String value);
 
-    BuildingNumberModel getBuildingNumber();
+    String getBuildingNumber();
 
-    void setBuildingNumber(BuildingNumberModel value);
+    void setBuildingNumber(String value);
 
-    InhouseMailModel getInhouseMail();
+    String getInhouseMail();
 
-    void setInhouseMail(InhouseMailModel value);
+    void setInhouseMail(String value);
 
-    DepartmentModel getDepartment();
+    String getDepartment();
 
-    void setDepartment(DepartmentModel value);
+    void setDepartment(String value);
 
-    MarkAttentionModel getMarkAttention();
+    String getMarkAttention();
 
-    void setMarkAttention(MarkAttentionModel value);
+    void setMarkAttention(String value);
 
-    MarkCareModel getMarkCare();
+    String getMarkCare();
 
-    void setMarkCare(MarkCareModel value);
+    void setMarkCare(String value);
 
-    PlotIdentificationModel getPlotIdentification();
+    String getPlotIdentification();
 
-    void setPlotIdentification(PlotIdentificationModel value);
+    void setPlotIdentification(String value);
 
-    CitySubdivisionNameModel getCitySubdivisionName();
+    String getCitySubdivisionName();
 
-    void setCitySubdivisionName(CitySubdivisionNameModel value);
+    void setCitySubdivisionName(String value);
 
-    CityNameModel getCityName();
+    String getCityName();
 
-    void setCityName(CityNameModel value);
+    void setCityName(String value);
 
-    PostalZoneModel getPostalZone();
+    String getPostalZone();
 
-    void setPostalZone(PostalZoneModel value);
+    void setPostalZone(String value);
 
-    CountrySubentityModel getCountrySubentity();
+    String getCountrySubentity();
 
-    void setCountrySubentity(CountrySubentityModel value);
+    void setCountrySubentity(String value);
 
-    CountrySubentityCodeModel getCountrySubentityCode();
+    String getCountrySubentityCode();
 
-    void setCountrySubentityCode(CountrySubentityCodeModel value);
+    void setCountrySubentityCode(String value);
 
-    RegionModel getRegion();
+    String getRegion();
 
-    void setRegion(RegionModel value);
+    void setRegion(String value);
 
-    DistrictModel getDistrict();
+    String getDistrict();
 
-    void setDistrict(DistrictModel value);
+    void setDistrict(String value);
 
-    TimezoneOffsetModel getTimezoneOffset();
+    String getTimezoneOffset();
 
-    void setTimezoneOffset(TimezoneOffsetModel value);
+    void setTimezoneOffset(String value);
 
-    List<AddressLineModel> getAddressLine();
+    List<String> getAddressLine();
 
-    void setAddressLine(List<AddressLineModel> addressLine);
+    void setAddressLine(List<String> addressLine);
 
     CountryModel getCountry();
 

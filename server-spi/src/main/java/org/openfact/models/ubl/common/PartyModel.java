@@ -4,33 +4,33 @@ import java.util.List;
 
 public interface PartyModel {
 
-    MarkCareIndicatorModel getMarkCareIndicator();
+    boolean getMarkCareIndicator();
 
-    void setMarkCareIndicator(MarkCareIndicatorModel value);
+    void setMarkCareIndicator(boolean value);
 
-    MarkAttentionIndicatorModel getMarkAttentionIndicator();
+    boolean getMarkAttentionIndicator();
 
-    void setMarkAttentionIndicator(MarkAttentionIndicatorModel value);
+    void setMarkAttentionIndicator(boolean value);
 
-    WebsiteURIModel getWebsiteURI();
+    String getWebsiteURI();
 
-    void setWebsiteURI(WebsiteURIModel value);
+    void setWebsiteURI(String value);
 
-    LogoReferenceIDModel getLogoReferenceID();
+    String getLogoReferenceID();
 
-    void setLogoReferenceID(LogoReferenceIDModel value);
+    void setLogoReferenceID(String value);
 
-    EndpointIDModel getEndpointID();
+    String getEndpointID();
 
-    void setEndpointID(EndpointIDModel value);
+    void setEndpointID(String value);
 
-    List<PartyIdentificationModel> getPartyIdentification();
+    List<String> getPartyIdentification();
 
-    void setPartyIdentification(List<PartyIdentificationModel> partyIdentification);
+    void setPartyIdentification(List<String> partyIdentification);
 
-    List<PartyNameModel> getPartyName();
+    List<String> getPartyName();
 
-    void setPartyName(List<PartyNameModel> partyName);
+    void setPartyName(List<String> partyName);
 
     LanguageModel getLanguage();
 
@@ -40,17 +40,17 @@ public interface PartyModel {
 
     void setPostalAddress(AddressModel value);
 
-    LocationModelCommAgg getPhysicalLocation();
+    LocationCommAggModel getPhysicalLocation();
 
-    void setPhysicalLocation(LocationModelCommAgg value);
+    void setPhysicalLocation(LocationCommAggModel value);
 
     List<PartyTaxSchemeModel> getPartyTaxScheme();
 
     void setPartyTaxScheme(List<PartyTaxSchemeModel> partyTaxScheme);
 
-    List<PartyLegalEntityModel> getPartyLegalEntity();
+    List<PartyLegalModel> getPartyLegalEntity();
 
-    void setPartyLegalEntity(List<PartyLegalEntityModel> partyLegalEntity);
+    void setPartyLegalEntity(List<PartyLegalModel> partyLegalEntity);
 
     ContactModel getContact();
 
@@ -67,5 +67,9 @@ public interface PartyModel {
     String getId();
 
     void setId(String value);
+
+    /**
+     * */
+    PartyLegalModel addPartyLegalEntity();
 
 }
