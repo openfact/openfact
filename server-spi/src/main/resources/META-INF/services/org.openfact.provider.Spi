@@ -22,3 +22,7 @@ org.openfact.models.ubl.provider.CreditNoteSpi
 org.openfact.models.ubl.provider.DebitNoteSpi
 org.openfact.connections.httpclient.HttpClientSpi
 org.openfact.transaction.TransactionManagerLookupSpi
+org.openfact.models.cache.CacheOrganizationProviderSpi
+org.openfact.models.ubl.cache.CacheInvoiceProviderSpi
+org.openfact.models.ubl.cache.CacheCreditNoteProviderSpi
+org.openfact.models.ubl.cache.CacheDebitNoteProviderSpi

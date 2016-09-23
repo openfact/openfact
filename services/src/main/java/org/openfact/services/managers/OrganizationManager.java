@@ -3,18 +3,17 @@ package org.openfact.services.managers;
 import java.util.Collections;
 
 import org.openfact.Config;
-import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
+import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.utils.OrganizationImporter;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.scheduled.ClusterAwareScheduledTaskRunner;
 import org.openfact.services.scheduled.OrganizationScheduledTask;
 import org.openfact.timer.TimerProvider;
-import org.openfact.ubl.UblException;
 
 public class OrganizationManager implements OrganizationImporter {
 
@@ -83,7 +82,7 @@ public class OrganizationManager implements OrganizationImporter {
         RepresentationToModel.importOrganization(session, rep, organization);
         
         fireOrganizationPostCreate(organization);
-        setupScheduledTasks(session.getOpenfactSessionFactory(), organization);
+        //setupScheduledTasks(session.getOpenfactSessionFactory(), organization);
         
         return organization;
     }
@@ -110,7 +109,7 @@ public class OrganizationManager implements OrganizationImporter {
         });
     }
 
-    private void setupScheduledTasks(final OpenfactSessionFactory sessionFactory, final OrganizationModel organization) {
+    /*private void setupScheduledTasks(final OpenfactSessionFactory sessionFactory, final OrganizationModel organization) {
         OpenfactSession session = sessionFactory.create();
         try {
             TimerProvider timer = session.getProvider(TimerProvider.class);
@@ -118,6 +117,6 @@ public class OrganizationManager implements OrganizationImporter {
         } finally {
             session.close();
         }        
-    }
+    }*/
     
 }
