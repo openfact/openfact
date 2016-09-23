@@ -1,5 +1,5 @@
 
-package org.openfact.ubl.pe.send;
+package org.openfact.ubl.send.pe;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -15,16 +15,16 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 
 /**
- * <p>Clase Java para sendSummaryResponse complex type.
+ * <p>Clase Java para sendBillResponse complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="sendSummaryResponse">
+ * &lt;complexType name="sendBillResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="ticket" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="applicationResponse" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -34,53 +34,51 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "sendSummaryResponse", propOrder = {
-    "ticket"
+@XmlType(name = "sendBillResponse", propOrder = {
+    "applicationResponse"
 })
-public class SendSummaryResponse
+public class SendBillResponse
     implements Equals, ToString
 {
 
-    protected String ticket;
+    protected byte[] applicationResponse;
 
     /**
-     * Obtiene el valor de la propiedad ticket.
+     * Obtiene el valor de la propiedad applicationResponse.
      * 
      * @return
      *     possible object is
-     *     {@link String }
-     *     
+     *     byte[]
      */
-    public String getTicket() {
-        return ticket;
+    public byte[] getApplicationResponse() {
+        return applicationResponse;
     }
 
     /**
-     * Define el valor de la propiedad ticket.
+     * Define el valor de la propiedad applicationResponse.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
-     *     
+     *     byte[]
      */
-    public void setTicket(String value) {
-        this.ticket = value;
+    public void setApplicationResponse(byte[] value) {
+        this.applicationResponse = value;
     }
 
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
-        if (!(object instanceof SendSummaryResponse)) {
+        if (!(object instanceof SendBillResponse)) {
             return false;
         }
         if (this == object) {
             return true;
         }
-        final SendSummaryResponse that = ((SendSummaryResponse) object);
+        final SendBillResponse that = ((SendBillResponse) object);
         {
-            String lhsTicket;
-            lhsTicket = this.getTicket();
-            String rhsTicket;
-            rhsTicket = that.getTicket();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "ticket", lhsTicket), LocatorUtils.property(thatLocator, "ticket", rhsTicket), lhsTicket, rhsTicket)) {
+            byte[] lhsApplicationResponse;
+            lhsApplicationResponse = this.getApplicationResponse();
+            byte[] rhsApplicationResponse;
+            rhsApplicationResponse = that.getApplicationResponse();
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "applicationResponse", lhsApplicationResponse), LocatorUtils.property(thatLocator, "applicationResponse", rhsApplicationResponse), lhsApplicationResponse, rhsApplicationResponse)) {
                 return false;
             }
         }
@@ -108,9 +106,9 @@ public class SendSummaryResponse
 
     public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
         {
-            String theTicket;
-            theTicket = this.getTicket();
-            strategy.appendField(locator, this, "ticket", buffer, theTicket);
+            byte[] theApplicationResponse;
+            theApplicationResponse = this.getApplicationResponse();
+            strategy.appendField(locator, this, "applicationResponse", buffer, theApplicationResponse);
         }
         return buffer;
     }

@@ -1,4 +1,4 @@
-package org.openfact.ubl.pe.send.header;
+package org.openfact.ubl.send.pe.header;
 
 import java.util.Set;
 import javax.xml.namespace.QName;

@@ -6,9 +6,9 @@ import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.xml.ws.soap.SOAPFaultException;
 
-
-import org.openfact.ubl.pe.send.BillService;
-import org.openfact.ubl.pe.send.BillService_Service;
+import org.openfact.ubl.send.pe.BillService;
+import org.openfact.ubl.send.pe.BillService_Service;
+import org.openfact.ubl.send.pe.header.UblHeaderHandlerResolver;
 
 public class UblHeanderTest {
 

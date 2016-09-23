@@ -1,10 +1,8 @@
 
-package org.openfact.ubl.pe.send;
+package org.openfact.ubl.send.pe;
 
-import javax.activation.DataHandler;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlMimeType;
 import javax.xml.bind.annotation.XmlType;
 import org.jvnet.jaxb2_commons.lang.Equals;
 import org.jvnet.jaxb2_commons.lang.EqualsStrategy;
@@ -17,17 +15,17 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 
 /**
- * <p>Clase Java para sendSummary complex type.
+ * <p>Clase Java para statusResponse complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="sendSummary">
+ * &lt;complexType name="statusResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="fileName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="contentFile" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
+ *         &lt;element name="content" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
+ *         &lt;element name="statusCode" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,89 +35,86 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "sendSummary", propOrder = {
-    "fileName",
-    "contentFile"
+@XmlType(name = "statusResponse", propOrder = {
+    "content",
+    "statusCode"
 })
-public class SendSummary
+public class StatusResponse
     implements Equals, ToString
 {
 
-    protected String fileName;
-    @XmlMimeType("application/octet-stream")
-    protected DataHandler contentFile;
+    protected byte[] content;
+    protected String statusCode;
 
     /**
-     * Obtiene el valor de la propiedad fileName.
+     * Obtiene el valor de la propiedad content.
+     * 
+     * @return
+     *     possible object is
+     *     byte[]
+     */
+    public byte[] getContent() {
+        return content;
+    }
+
+    /**
+     * Define el valor de la propiedad content.
+     * 
+     * @param value
+     *     allowed object is
+     *     byte[]
+     */
+    public void setContent(byte[] value) {
+        this.content = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad statusCode.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getFileName() {
-        return fileName;
+    public String getStatusCode() {
+        return statusCode;
     }
 
     /**
-     * Define el valor de la propiedad fileName.
+     * Define el valor de la propiedad statusCode.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setFileName(String value) {
-        this.fileName = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad contentFile.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DataHandler }
-     *     
-     */
-    public DataHandler getContentFile() {
-        return contentFile;
-    }
-
-    /**
-     * Define el valor de la propiedad contentFile.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DataHandler }
-     *     
-     */
-    public void setContentFile(DataHandler value) {
-        this.contentFile = value;
+    public void setStatusCode(String value) {
+        this.statusCode = value;
     }
 
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
-        if (!(object instanceof SendSummary)) {
+        if (!(object instanceof StatusResponse)) {
             return false;
         }
         if (this == object) {
             return true;
         }
-        final SendSummary that = ((SendSummary) object);
+        final StatusResponse that = ((StatusResponse) object);
         {
-            String lhsFileName;
-            lhsFileName = this.getFileName();
-            String rhsFileName;
-            rhsFileName = that.getFileName();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "fileName", lhsFileName), LocatorUtils.property(thatLocator, "fileName", rhsFileName), lhsFileName, rhsFileName)) {
+            byte[] lhsContent;
+            lhsContent = this.getContent();
+            byte[] rhsContent;
+            rhsContent = that.getContent();
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "content", lhsContent), LocatorUtils.property(thatLocator, "content", rhsContent), lhsContent, rhsContent)) {
                 return false;
             }
         }
         {
-            DataHandler lhsContentFile;
-            lhsContentFile = this.getContentFile();
-            DataHandler rhsContentFile;
-            rhsContentFile = that.getContentFile();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "contentFile", lhsContentFile), LocatorUtils.property(thatLocator, "contentFile", rhsContentFile), lhsContentFile, rhsContentFile)) {
+            String lhsStatusCode;
+            lhsStatusCode = this.getStatusCode();
+            String rhsStatusCode;
+            rhsStatusCode = that.getStatusCode();
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "statusCode", lhsStatusCode), LocatorUtils.property(thatLocator, "statusCode", rhsStatusCode), lhsStatusCode, rhsStatusCode)) {
                 return false;
             }
         }
@@ -147,14 +142,14 @@ public class SendSummary
 
     public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
         {
-            String theFileName;
-            theFileName = this.getFileName();
-            strategy.appendField(locator, this, "fileName", buffer, theFileName);
+            byte[] theContent;
+            theContent = this.getContent();
+            strategy.appendField(locator, this, "content", buffer, theContent);
         }
         {
-            DataHandler theContentFile;
-            theContentFile = this.getContentFile();
-            strategy.appendField(locator, this, "contentFile", buffer, theContentFile);
+            String theStatusCode;
+            theStatusCode = this.getStatusCode();
+            strategy.appendField(locator, this, "statusCode", buffer, theStatusCode);
         }
         return buffer;
     }

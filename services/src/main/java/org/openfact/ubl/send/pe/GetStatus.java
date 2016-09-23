@@ -1,5 +1,5 @@
 
-package org.openfact.ubl.pe.send;
+package org.openfact.ubl.send.pe;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -15,16 +15,16 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 
 /**
- * <p>Clase Java para sendBillResponse complex type.
+ * <p>Clase Java para getStatus complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="sendBillResponse">
+ * &lt;complexType name="getStatus">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="applicationResponse" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
+ *         &lt;element name="ticket" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -34,51 +34,53 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "sendBillResponse", propOrder = {
-    "applicationResponse"
+@XmlType(name = "getStatus", propOrder = {
+    "ticket"
 })
-public class SendBillResponse
+public class GetStatus
     implements Equals, ToString
 {
 
-    protected byte[] applicationResponse;
+    protected String ticket;
 
     /**
-     * Obtiene el valor de la propiedad applicationResponse.
+     * Obtiene el valor de la propiedad ticket.
      * 
      * @return
      *     possible object is
-     *     byte[]
+     *     {@link String }
+     *     
      */
-    public byte[] getApplicationResponse() {
-        return applicationResponse;
+    public String getTicket() {
+        return ticket;
     }
 
     /**
-     * Define el valor de la propiedad applicationResponse.
+     * Define el valor de la propiedad ticket.
      * 
      * @param value
      *     allowed object is
-     *     byte[]
+     *     {@link String }
+     *     
      */
-    public void setApplicationResponse(byte[] value) {
-        this.applicationResponse = value;
+    public void setTicket(String value) {
+        this.ticket = value;
     }
 
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
-        if (!(object instanceof SendBillResponse)) {
+        if (!(object instanceof GetStatus)) {
             return false;
         }
         if (this == object) {
             return true;
         }
-        final SendBillResponse that = ((SendBillResponse) object);
+        final GetStatus that = ((GetStatus) object);
         {
-            byte[] lhsApplicationResponse;
-            lhsApplicationResponse = this.getApplicationResponse();
-            byte[] rhsApplicationResponse;
-            rhsApplicationResponse = that.getApplicationResponse();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "applicationResponse", lhsApplicationResponse), LocatorUtils.property(thatLocator, "applicationResponse", rhsApplicationResponse), lhsApplicationResponse, rhsApplicationResponse)) {
+            String lhsTicket;
+            lhsTicket = this.getTicket();
+            String rhsTicket;
+            rhsTicket = that.getTicket();
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "ticket", lhsTicket), LocatorUtils.property(thatLocator, "ticket", rhsTicket), lhsTicket, rhsTicket)) {
                 return false;
             }
         }
@@ -106,9 +108,9 @@ public class SendBillResponse
 
     public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
         {
-            byte[] theApplicationResponse;
-            theApplicationResponse = this.getApplicationResponse();
-            strategy.appendField(locator, this, "applicationResponse", buffer, theApplicationResponse);
+            String theTicket;
+            theTicket = this.getTicket();
+            strategy.appendField(locator, this, "ticket", buffer, theTicket);
         }
         return buffer;
     }

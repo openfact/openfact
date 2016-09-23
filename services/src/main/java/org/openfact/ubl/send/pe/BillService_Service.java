@@ -1,5 +1,5 @@
 
-package org.openfact.ubl.pe.send;
+package org.openfact.ubl.send.pe;
 
 import java.net.MalformedURLException;
 import java.net.URL;

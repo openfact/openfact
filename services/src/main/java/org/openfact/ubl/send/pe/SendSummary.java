@@ -1,5 +1,5 @@
 
-package org.openfact.ubl.pe.send;
+package org.openfact.ubl.send.pe;
 
 import javax.activation.DataHandler;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -17,12 +17,12 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 
 /**
- * <p>Clase Java para sendPack complex type.
+ * <p>Clase Java para sendSummary complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="sendPack">
+ * &lt;complexType name="sendSummary">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -37,11 +37,11 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "sendPack", propOrder = {
+@XmlType(name = "sendSummary", propOrder = {
     "fileName",
     "contentFile"
 })
-public class SendPack
+public class SendSummary
     implements Equals, ToString
 {
 
@@ -98,13 +98,13 @@ public class SendPack
     }
 
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
-        if (!(object instanceof SendPack)) {
+        if (!(object instanceof SendSummary)) {
             return false;
         }
         if (this == object) {
             return true;
         }
-        final SendPack that = ((SendPack) object);
+        final SendSummary that = ((SendSummary) object);
         {
             String lhsFileName;
             lhsFileName = this.getFileName();
