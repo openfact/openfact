@@ -6,13 +6,13 @@ import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.xml.ws.soap.SOAPFaultException;
 
-import org.junit.Test;
+
 import org.openfact.ubl.pe.send.BillService;
 import org.openfact.ubl.pe.send.BillService_Service;
 
 public class UblHeanderTest {
 
-	@Test
+
 	public void sendBill() {
 
 		try { // Call Web Service Operation
