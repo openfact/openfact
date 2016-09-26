@@ -1,10 +1,7 @@
 package org.openfact.ubl.send.pe;
 
-import java.io.FileOutputStream;
-
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
-import javax.activation.FileDataSource;
 import javax.xml.ws.soap.SOAPFaultException;
 
 import org.openfact.models.OpenfactSession;
@@ -18,9 +15,7 @@ import org.openfact.ubl.send.UblSenderProvider;
 import org.openfact.ubl.send.pe.header.UblHeaderHandlerResolver;
 import org.openfact.ubl.send.pe.sunat.BillService;
 import org.openfact.ubl.send.pe.sunat.BillService_Service;
-import org.w3c.dom.Document;
 
-import com.helger.ubl21.UBL21Writer;
 import com.sun.xml.ws.util.ByteArrayDataSource;
 
 public class UblPESenderProvider implements UblSenderProvider {
