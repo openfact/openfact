@@ -45,7 +45,7 @@ public class ApplianceBootstrap {
 
     public boolean isNoMasterOrganization() {
         OrganizationModel organization = session.organizations().getOrganization(Config.getAdminOrganization());
-        return session.organizations().getOrganizationsCount(organization) == 0;
+        return session.organizations().getOrganizationsCount() == 0;
     }
 
     public boolean createMasterOrganization(String contextPath) {

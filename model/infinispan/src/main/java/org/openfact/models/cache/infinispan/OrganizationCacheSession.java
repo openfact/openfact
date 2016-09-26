@@ -194,7 +194,7 @@ public class OrganizationCacheSession implements CacheOrganizationProvider {
     }
 
     @Override
-    public int getOrganizationsCount(OrganizationModel organization) {
+    public int getOrganizationsCount() {
         // TODO Auto-generated method stub
         return 0;
     }

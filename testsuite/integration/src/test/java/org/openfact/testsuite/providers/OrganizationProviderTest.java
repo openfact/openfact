@@ -114,4 +114,14 @@ public class OrganizationProviderTest extends AbstractProviderTest {
         assertThat(session.organizations().getOrganizationByName("SISTCOOP"), is(nullValue()));
     }
     
+    @Test
+    public void count() throws Exception {
+        session.organizations().createOrganization("SISTCOOP1");
+        session.organizations().createOrganization("SISTCOOP2");
+        session.organizations().createOrganization("SISTCOOP3");
+        commit();     
+        
+        assertThat(session.organizations().getOrganizationsCount(), is(4));
+    }
+    
 }

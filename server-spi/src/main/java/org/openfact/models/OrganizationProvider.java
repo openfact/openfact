@@ -23,7 +23,7 @@ public interface OrganizationProvider extends Provider {
 
     boolean removeOrganization(OrganizationModel organization);    
 
-    int getOrganizationsCount(OrganizationModel organization);
+    int getOrganizationsCount();
     
     void close();
 
