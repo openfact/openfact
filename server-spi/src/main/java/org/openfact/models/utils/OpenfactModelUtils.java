@@ -25,11 +25,13 @@ import org.openfact.models.OpenfactSessionTask;
 import org.openfact.models.OpenfactTransaction;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.UblDocumentType;
 import org.openfact.models.UserModel;
 import org.openfact.representations.idm.CertificateRepresentation;
 import org.openfact.common.util.CertificateUtils;
 import org.openfact.common.util.PemUtils;
 import org.openfact.transaction.JtaTransactionManagerLookup;
+import org.openfact.ubl.UblIDProvider;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.naming.InitialContext;
@@ -64,6 +66,11 @@ import java.util.function.Function;
  */
 public final class OpenfactModelUtils {
 
+    public static String generateUblID(OpenfactSession session, OrganizationModel organization, UblDocumentType type) {
+        UblIDProvider provider = session.getProvider(UblIDProvider.class, organization.getDefaultLocale());
+        return provider.getID(organization, UblDocumentType.INVOICE);
+    }
+    
     private OpenfactModelUtils() {
     }
 

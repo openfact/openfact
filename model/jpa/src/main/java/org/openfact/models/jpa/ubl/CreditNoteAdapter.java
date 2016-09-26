@@ -63,7 +63,7 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
     protected EntityManager em;
     protected OpenfactSession session;
 
-    public CreditNoteAdapter(OrganizationModel organization, OpenfactSession session, EntityManager em,
+    public CreditNoteAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em,
             CreditNoteEntity invoice) {
         this.organization = organization;
         this.session = session;

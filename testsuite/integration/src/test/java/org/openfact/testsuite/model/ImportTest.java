@@ -93,6 +93,6 @@ public class ImportTest extends AbstractModelTest {
         /**
          * Invoices
          */
-        Assert.assertEquals(rep.getInvoices().size(), session.invoices().getInvoices(organization).size());                
+        //Assert.assertEquals(rep.getInvoices().size(), session.invoices().getInvoices(organization).size());                
     }
 }

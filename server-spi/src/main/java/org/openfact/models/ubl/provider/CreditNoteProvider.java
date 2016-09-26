@@ -16,7 +16,7 @@ public interface CreditNoteProvider extends Provider {
 
     CreditNoteModel getCreditNoteById(OrganizationModel organization, String id);
 
-    CreditNoteModel getInvoiceByID(OrganizationModel organizationModel, String ID);
+    CreditNoteModel getCreditNoteByID(OrganizationModel organizationModel, String ID);
 
     boolean removeCreditNote(OrganizationModel organization, String id);
 

@@ -26,8 +26,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -54,7 +57,14 @@ import org.openfact.models.jpa.entities.ubl.common.TaxTotalEntity;
 import org.openfact.models.jpa.entities.ubl.common.UBLExtensionsEntity;
 
 @Entity
-@Table(name = "INVOICE")
+@Table(name = "INVOICE", uniqueConstraints = {
+        @UniqueConstraint(columnNames = { "ORGANIZATION_ID", "ID_UBL" }) })
+@NamedQueries({
+        @NamedQuery(name = "getAllInvoicesByOrganization", query = "select i from InvoiceEntity i where i.organization.id = :organizationId order by i.issueDate, i.issueTime"),
+        @NamedQuery(name = "getOrganizationInvoiceById", query = "select i from InvoiceEntity i where i.id = :id and i.organization.id = :organizationId"),
+        @NamedQuery(name = "getOrganizationInvoiceByID", query = "select i from InvoiceEntity i where i.ID = :ID and i.organization.id = :organizationId"),
+        @NamedQuery(name = "searchForInvoice", query = "select i from InvoiceEntity i where i.organization.id = :organizationId and i.ID like :search order by i.issueDate, i.issueTime"),
+        @NamedQuery(name = "getOrganizationInvoiceCount", query = "select count(i) from InvoiceEntity i where i.organization.id = :organizationId") })
 public class InvoiceEntity {
 
     @Id

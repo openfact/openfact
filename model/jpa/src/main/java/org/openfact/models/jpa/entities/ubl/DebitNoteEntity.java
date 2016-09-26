@@ -26,8 +26,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -50,7 +53,14 @@ import org.openfact.models.jpa.entities.ubl.common.TaxTotalEntity;
 import org.openfact.models.jpa.entities.ubl.common.UBLExtensionsEntity;
 
 @Entity
-@Table(name = "DEBITNOTE")
+@Table(name = "DEBIT_NOTE", uniqueConstraints = {
+        @UniqueConstraint(columnNames = { "ORGANIZATION_ID", "ID_UBL" }) })
+@NamedQueries({
+        @NamedQuery(name = "getAllDebitNotesByOrganization", query = "select i from DebitNoteEntity i where i.organization.id = :organizationId order by i.issueDate, i.issueTime"),
+        @NamedQuery(name = "getOrganizationDebitNoteById", query = "select i from DebitNoteEntity i where i.id = :id and i.organization.id = :organizationId"),
+        @NamedQuery(name = "getOrganizationDebitNoteByID", query = "select i from DebitNoteEntity i where i.ID = :ID and i.organization.id = :organizationId"),
+        @NamedQuery(name = "searchForDebitNote", query = "select i from DebitNoteEntity i where i.organization.id = :organizationId and i.ID like :search order by i.issueDate, i.issueTime"),
+        @NamedQuery(name = "getOrganizationDebitNoteCount", query = "select count(i) from DebitNoteEntity i where i.organization.id = :organizationId") })
 public class DebitNoteEntity {
 
     @Id
@@ -838,7 +848,8 @@ public class DebitNoteEntity {
     }
 
     /**
-     * @param organization the organization to set
+     * @param organization
+     *            the organization to set
      */
     public void setOrganization(OrganizationEntity organization) {
         this.organization = organization;

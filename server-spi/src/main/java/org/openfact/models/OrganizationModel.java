@@ -107,11 +107,23 @@ public interface OrganizationModel {
     void setDefaultLocale(String locale);
 
     /**
+     * Internationalization ubl
+     */
+    boolean isInternationalizationUblEnabled();
+
+    void setInternationalizationUblEnabled(boolean enabled);
+
+    Set<String> getSupportedUblLocales();
+
+    void setSupportedUblLocales(Set<String> locales);
+
+    String getDefaultUblLocale();
+
+    void setDefaultUblLocale(String locale);
+
+    /**
      * Task schedules
      */
-    int getMaxInvoiceNumber();
-
-    void setMaxInvoiceNumber(int maxInvoiceNumber);
 
     int getAttempNumber();
 

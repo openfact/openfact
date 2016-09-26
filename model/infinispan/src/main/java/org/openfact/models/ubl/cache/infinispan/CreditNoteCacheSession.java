@@ -72,7 +72,7 @@ public class CreditNoteCacheSession implements CreditNoteCache {
     }
 
     @Override
-    public CreditNoteModel getInvoiceByID(OrganizationModel organizationModel, String ID) {
+    public CreditNoteModel getCreditNoteByID(OrganizationModel organizationModel, String ID) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -138,19 +138,21 @@ public class CreditNoteCacheSession implements CreditNoteCache {
     @Override
     public void close() {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
     public void evict(OrganizationModel organization, CreditNoteModel creditNote) {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
     public void clear() {
         // TODO Auto-generated method stub
-
+        
     }
+
+    
 
 }

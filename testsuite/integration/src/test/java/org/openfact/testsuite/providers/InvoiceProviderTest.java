@@ -23,11 +23,10 @@ public class InvoiceProviderTest extends AbstractProviderTest {
     public void createOrganization() {
         OrganizationProvider provider = session.organizations();
         organization = provider.createOrganization("SISTCOOP");
-        organization.setMaxInvoiceNumber(3);
         commit();
     }
 
-    @Test
+    /*@Test
     public void createWithoutSeriesAndNumber() throws Exception {
         createOrganization();
 
@@ -38,14 +37,13 @@ public class InvoiceProviderTest extends AbstractProviderTest {
         assertThat(invoice, is(notNullValue()));
         assertThat(invoice.getId(), is(notNullValue()));
         assertThat(invoice.getID(), is("F001-0001"));
-    }
+    }*/
 
     @Test
     public void createWithSeriesAndNumber() throws Exception {
         createOrganization();
 
-        InvoiceProvider provider = session.invoices();
-        InvoiceModel invoice = provider.addInvoice(organization, "F002-0003");
+        InvoiceModel invoice = session.invoices().addInvoice(organization, "F002-0003");
         commit();
 
         assertThat(invoice, is(notNullValue()));
@@ -53,7 +51,7 @@ public class InvoiceProviderTest extends AbstractProviderTest {
         assertThat(invoice.getID(), is("F002-0003"));
     }
 
-    @Test
+    /*@Test
     public void createWithTwoMethods() throws Exception {
         createOrganization();
 
@@ -74,7 +72,7 @@ public class InvoiceProviderTest extends AbstractProviderTest {
         assertThat(invoice41.getID(), is("F004-0001"));
         assertThat(invoice52.getID(), is("F005-0002"));
         assertThat(invoice53.getID(), is("F005-0003"));
-    }
+    }*/
 
     @Test
     public void SeriesAndNumberCollision() {
@@ -82,14 +80,14 @@ public class InvoiceProviderTest extends AbstractProviderTest {
         OrganizationModel sistcoop2 = session.organizations().createOrganization("SISTCOOP2");
         commit();
 
-        session.invoices().addInvoice(sistcoop1, "F001-0001");
-        session.invoices().addInvoice(sistcoop2, "F001-0001");
+        session.invoices().addInvoice(sistcoop1, "F01-001");
+        session.invoices().addInvoice(sistcoop2, "F01-001");
         commit();
 
         // Try to create invoice with duplicate series and number
         try {
             sistcoop1 = session.organizations().getOrganizationByName("SISTCOOP1");
-            session.invoices().addInvoice(sistcoop1, "F001-0001");
+            session.invoices().addInvoice(sistcoop1, "F01-001");
             commit();
             Assert.fail("Expected exception");
         } catch (ModelDuplicateException e) {
@@ -98,11 +96,11 @@ public class InvoiceProviderTest extends AbstractProviderTest {
 
         // Ty to rename invoice to duplicate series and number
         sistcoop1 = session.organizations().getOrganizationByName("SISTCOOP1");
-        session.invoices().addInvoice(sistcoop1, "F001-0002");
+        session.invoices().addInvoice(sistcoop1, "F01-002");
         commit();
         try {
             sistcoop1 = session.organizations().getOrganizationByName("SISTCOOP1");
-            session.invoices().getInvoiceByID(sistcoop1, "F001-002").setID("F001-0001");
+            session.invoices().getInvoiceByID(sistcoop1, "F01-002").setID("F01-001");
             commit();
             Assert.fail("Expected exception");
         } catch (ModelDuplicateException e) {
@@ -114,8 +112,7 @@ public class InvoiceProviderTest extends AbstractProviderTest {
     @Test
     public void findById() throws Exception {
         createOrganization();
-        InvoiceProvider provider = session.invoices();
-        InvoiceModel invoice1 = provider.addInvoice(organization);
+        InvoiceModel invoice1 = session.invoices().addInvoice(organization, "F01-001");
         commit();
 
         InvoiceModel invoice2 = session.invoices().getInvoiceById(organization, invoice1.getId());
@@ -162,13 +159,12 @@ public class InvoiceProviderTest extends AbstractProviderTest {
         OrganizationModel sistcoop2 = session.organizations().createOrganization("SISTCOOP2");
         commit();
 
-        InvoiceProvider provider = session.invoices();
-        provider.addInvoice(sistcoop1);
-        provider.addInvoice(sistcoop1);
-        provider.addInvoice(sistcoop1);
-        provider.addInvoice(sistcoop2);
-        provider.addInvoice(sistcoop2);
-        provider.addInvoice(sistcoop2);
+        session.invoices().addInvoice(sistcoop1, "F01-001");
+        session.invoices().addInvoice(sistcoop1, "F01-002");
+        session.invoices().addInvoice(sistcoop1, "F01-003");
+        session.invoices().addInvoice(sistcoop2, "F01-004");
+        session.invoices().addInvoice(sistcoop2, "F01-005");
+        session.invoices().addInvoice(sistcoop2, "F01-006");
         commit();
 
         List<InvoiceModel> invoices1 = session.invoices().getInvoices(sistcoop1);

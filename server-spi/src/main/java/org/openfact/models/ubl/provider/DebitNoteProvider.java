@@ -12,7 +12,11 @@ public interface DebitNoteProvider extends Provider {
 
     DebitNoteModel addDebitNote(OrganizationModel organization);
 
+    DebitNoteModel addDebitNote(OrganizationModel organization, String ID);
+
     DebitNoteModel getDebitNoteById(OrganizationModel organization, String id);
+
+    DebitNoteModel getDebitNoteByID(OrganizationModel organization, String ID);
 
     boolean removeDebitNote(OrganizationModel organization, String id);
 

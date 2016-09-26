@@ -60,7 +60,19 @@ public class DebitNoteCacheSession implements DebitNoteCache {
     }
 
     @Override
+    public DebitNoteModel addDebitNote(OrganizationModel organization, String ID) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
     public DebitNoteModel getDebitNoteById(OrganizationModel organization, String id) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public DebitNoteModel getDebitNoteByID(OrganizationModel organization, String ID) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -126,19 +138,21 @@ public class DebitNoteCacheSession implements DebitNoteCache {
     @Override
     public void close() {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
     public void evict(OrganizationModel organization, DebitNoteModel debitNote) {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
     public void clear() {
         // TODO Auto-generated method stub
-
+        
     }
+
+    
 
 }

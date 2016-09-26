@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.ubl.common.BillingReferenceModel;
 import org.openfact.models.ubl.common.CustomerPartyModel;
@@ -21,6 +22,7 @@ import org.openfact.models.ubl.common.SignatureModel;
 import org.openfact.models.ubl.common.SupplierPartyModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
+import org.openfact.provider.ProviderEvent;
 
 public interface DebitNoteModel {
 
@@ -192,7 +194,7 @@ public interface DebitNoteModel {
     void setDebitNoteLine(List<DebitNoteLineModel> debitNoteLine);
 
     /**
-     * */
+     * Extra methods*/
     ResponseModel addDiscrepancyResponse();
 
     DebitNoteLineModel addDebitNoteLine();
@@ -203,4 +205,23 @@ public interface DebitNoteModel {
 
     DocumentReferenceModel addDespatchDocumentReference();
 
+    /**
+     * Events interfaces
+     */
+    interface DebitNoteCreationEvent extends ProviderEvent {
+        DebitNoteModel getCreatedDebitNote();
+    }
+
+    interface DebitNotePostCreateEvent extends ProviderEvent {
+        DebitNoteModel getCreatedDebitNote();
+
+        OpenfactSession getOpenfactSession();
+    }
+
+    interface DebitNoteRemovedEvent extends ProviderEvent {
+        DebitNoteModel getDebitNote();
+
+        OpenfactSession getOpenfactSession();
+    }
+    
 }

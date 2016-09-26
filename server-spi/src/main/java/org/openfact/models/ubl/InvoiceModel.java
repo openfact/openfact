@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.BillingReferenceModel;
@@ -25,6 +26,7 @@ import org.openfact.models.ubl.common.SignatureModel;
 import org.openfact.models.ubl.common.SupplierPartyModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
+import org.openfact.provider.ProviderEvent;
 
 public interface InvoiceModel {
 
@@ -230,4 +232,22 @@ public interface InvoiceModel {
 
     TaxTotalModel addTaxTotal();
 
+    /**
+     * Events interfaces
+     */
+    interface InvoiceCreationEvent extends ProviderEvent {
+        InvoiceModel getCreatedInvoice();
+    }
+
+    interface InvoicePostCreateEvent extends ProviderEvent {
+        InvoiceModel getCreatedInvoice();
+
+        OpenfactSession getOpenfactSession();
+    }
+
+    interface InvoiceRemovedEvent extends ProviderEvent {
+        InvoiceModel getInvoice();
+
+        OpenfactSession getOpenfactSession();
+    }
 }

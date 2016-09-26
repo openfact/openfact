@@ -39,7 +39,7 @@
 
 		<version.javaee-api>7.0</version.javaee-api>
 		<hibernate.validator.version>5.2.3.Final</hibernate.validator.version>
-		<jaxb2.basics.runtime>1.11.1</jaxb2.basics.runtime>		
+		<jaxb2.basics.runtime>1.11.1</jaxb2.basics.runtime>
 
 		<!-- ubl -->
 		<version.ph-ubl>5.0.3</version.ph-ubl>
@@ -67,7 +67,7 @@
 		<hibernate.entitymanager.version>5.0.7.Final</hibernate.entitymanager.version>
 		<hibernate.javax.persistence.version>1.0.0.Final</hibernate.javax.persistence.version>
 		<infinispan.version>8.1.0.Final</infinispan.version>
-		<jackson.version>2.5.4</jackson.version>
+		<jackson.version>2.8.3</jackson.version>
 		<javax.mail.version>1.5.5</javax.mail.version>
 		<jboss.logging.version>3.3.0.Final</jboss.logging.version>
 		<jboss.logging.tools.version>2.0.1.Final</jboss.logging.tools.version>
@@ -257,7 +257,11 @@
 				<artifactId>jaxb2-basics-runtime</artifactId>
 				<version>${jaxb2.basics.runtime}</version>
 			</dependency>
-
+			<dependency>
+				<groupId>com.fasterxml.jackson.datatype</groupId>
+				<artifactId>jackson-datatype-jsr310</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>io.rest-assured</groupId>
@@ -1430,7 +1434,6 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.37</version>
 		</dependency>
 		<dependency>
 			<groupId>postgresql</groupId>

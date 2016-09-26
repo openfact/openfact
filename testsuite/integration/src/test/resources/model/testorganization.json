@@ -1,6 +1,6 @@
 {
 	"id": "demo",
-	"name": "demo",
+	"organization": "demo",
 	"description": "demo organization",
 	"enabled": true,
 	"assignedIdentificationId": "01234567891",

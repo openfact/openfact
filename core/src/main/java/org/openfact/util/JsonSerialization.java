@@ -24,10 +24,12 @@ import java.io.OutputStream;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 /**
  * Utility class to handle simple JSON serializable for Keycloak.
@@ -43,6 +45,11 @@ public class JsonSerialization {
 
     static {
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        
+        mapper.registerModule(new JavaTimeModule());
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        mapper.disable(DeserializationFeature.READ_DATE_TIMESTAMPS_AS_NANOSECONDS);
+        
         prettyMapper.enable(SerializationFeature.INDENT_OUTPUT);
         prettyMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
     }

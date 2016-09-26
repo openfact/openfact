@@ -63,7 +63,7 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
     protected EntityManager em;
     protected OpenfactSession session;
 
-    public DebitNoteAdapter(OrganizationModel organization, OpenfactSession session, EntityManager em,
+    public DebitNoteAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em,
             DebitNoteEntity debitNote) {
         this.organization = organization;
         this.session = session;

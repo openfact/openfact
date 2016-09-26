@@ -205,16 +205,6 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     }
 
     @Override
-    public int getMaxInvoiceNumber() {
-        return organization.getMaxInvoiceNumber();
-    }
-
-    @Override
-    public void setMaxInvoiceNumber(int maxInvoiceNumber) {
-        organization.setMaxInvoiceNumber(maxInvoiceNumber);
-    }
-
-    @Override
     public int getAttempNumber() {
         return organization.getAttempNumber();
     }
@@ -601,6 +591,36 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     @Override
     public void setDefaultLocale(String locale) {
         organization.setDefaultLocale(locale);
+    }
+
+    @Override
+    public boolean isInternationalizationUblEnabled() {
+        return organization.isInternationalizationUblEnabled();
+    }
+
+    @Override
+    public void setInternationalizationUblEnabled(boolean enabled) {
+        organization.setInternationalizationUblEnabled(enabled);
+    }
+
+    @Override
+    public Set<String> getSupportedUblLocales() {
+        return organization.getSupportedUblLocales();
+    }
+
+    @Override
+    public void setSupportedUblLocales(Set<String> locales) {
+        organization.setSupportedUblLocales(locales);
+    }
+
+    @Override
+    public String getDefaultUblLocale() {
+        return organization.getDefaultUblLocale();
+    }
+
+    @Override
+    public void setDefaultUblLocale(String locale) {
+        organization.setDefaultUblLocale(locale);
     }
 
     @Override

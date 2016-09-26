@@ -565,18 +565,6 @@ public class OrganizationAdapter implements OrganizationModel {
     }
 
     @Override
-    public int getMaxInvoiceNumber() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public void setMaxInvoiceNumber(int maxInvoiceNumber) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
     public int getAttempNumber() {
         // TODO Auto-generated method stub
         return 0;
@@ -736,6 +724,42 @@ public class OrganizationAdapter implements OrganizationModel {
     public String getCertificatePem() {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public boolean isInternationalizationUblEnabled() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public void setInternationalizationUblEnabled(boolean enabled) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public Set<String> getSupportedUblLocales() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void setSupportedUblLocales(Set<String> locales) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public String getDefaultUblLocale() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void setDefaultUblLocale(String locale) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

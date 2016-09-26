@@ -24,12 +24,13 @@ import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -52,8 +53,14 @@ import org.openfact.models.jpa.entities.ubl.common.TaxTotalEntity;
 import org.openfact.models.jpa.entities.ubl.common.UBLExtensionsEntity;
 
 @Entity
-@Table(name = "CREDIT_NOTE")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "CREDIT_NOTE", uniqueConstraints = {
+        @UniqueConstraint(columnNames = { "ORGANIZATION_ID", "ID_UBL" }) })
+@NamedQueries({
+        @NamedQuery(name = "getAllCreditNotesByOrganization", query = "select i from CreditNoteEntity i where i.organization.id = :organizationId order by i.issueDate, i.issueTime"),
+        @NamedQuery(name = "getOrganizationCreditNoteById", query = "select i from CreditNoteEntity i where i.id = :id and i.organization.id = :organizationId"),
+        @NamedQuery(name = "getOrganizationCreditNoteByID", query = "select i from CreditNoteEntity i where i.ID = :ID and i.organization.id = :organizationId"),
+        @NamedQuery(name = "searchForCreditNote", query = "select i from CreditNoteEntity i where i.organization.id = :organizationId and i.ID like :search order by i.issueDate, i.issueTime"),
+        @NamedQuery(name = "getOrganizationCreditNoteCount", query = "select count(i) from CreditNoteEntity i where i.organization.id = :organizationId") })
 public class CreditNoteEntity {
 
     @Id

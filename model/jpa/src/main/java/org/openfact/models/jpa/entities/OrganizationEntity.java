@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -27,6 +28,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.Type;
+import org.openfact.models.jpa.entities.ubl.CreditNoteEntity;
+import org.openfact.models.jpa.entities.ubl.DebitNoteEntity;
+import org.openfact.models.jpa.entities.ubl.InvoiceEntity;
 
 /**
  * @author carlosthe19916@sistcoop.com
@@ -169,11 +173,24 @@ public class OrganizationEntity {
     protected String defaultLocale;
 
     /**
+     * Locale for taxs
+     */
+    @Column(name = "INTERNATIONALIZATION_UBL_ENABLED")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    protected boolean internationalizationUblEnabled;
+
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "ORGANIZATION_SUPPORTED_UBL_LOCALES", joinColumns = {
+            @JoinColumn(name = "ORGANIZATION_ID") })
+    protected Set<String> supportedUblLocales = new HashSet<String>();
+
+    @Column(name = "DEFAULT_UBL_LOCALE")
+    protected String defaultUblLocale;
+
+    /**
      * Tasks
      */
-    @Column(name = "MAX_INVOICE_NUMBER")
-    protected int maxInvoiceNumber;
-
     @Column(name = "ATTEMP_NUMBER")
     protected int attempNumber;
 
@@ -227,6 +244,16 @@ public class OrganizationEntity {
     /** Required actions */
     @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "organization")
     protected Collection<OrganizationRequiredActionEntity> requiredActions = new ArrayList<>();
+
+    /**
+     * Cascade relations
+     */
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<InvoiceEntity> invoices = new ArrayList<>();
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<CreditNoteEntity> creditNotes = new ArrayList<>();
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<DebitNoteEntity> debitNotes = new ArrayList<>();
 
     /**
      * @return the id
@@ -706,22 +733,7 @@ public class OrganizationEntity {
      */
     public void setDefaultLocale(String defaultLocale) {
         this.defaultLocale = defaultLocale;
-    }
-
-    /**
-     * @return the maxInvoiceNumber
-     */
-    public int getMaxInvoiceNumber() {
-        return maxInvoiceNumber;
-    }
-
-    /**
-     * @param maxInvoiceNumber
-     *            the maxInvoiceNumber to set
-     */
-    public void setMaxInvoiceNumber(int maxInvoiceNumber) {
-        this.maxInvoiceNumber = maxInvoiceNumber;
-    }
+    }   
 
     /**
      * @return the attempNumber
@@ -888,11 +900,102 @@ public class OrganizationEntity {
         this.requiredActions = requiredActions;
     }
 
+    /**
+     * @return the internationalizationUblEnabled
+     */
+    public boolean isInternationalizationUblEnabled() {
+        return internationalizationUblEnabled;
+    }
+
+    /**
+     * @param internationalizationUblEnabled
+     *            the internationalizationUblEnabled to set
+     */
+    public void setInternationalizationUblEnabled(boolean internationalizationUblEnabled) {
+        this.internationalizationUblEnabled = internationalizationUblEnabled;
+    }
+
+    /**
+     * @return the supportedUblLocales
+     */
+    public Set<String> getSupportedUblLocales() {
+        return supportedUblLocales;
+    }
+
+    /**
+     * @param supportedUblLocales
+     *            the supportedUblLocales to set
+     */
+    public void setSupportedUblLocales(Set<String> supportedUblLocales) {
+        this.supportedUblLocales = supportedUblLocales;
+    }
+
+    /**
+     * @return the defaultUblLocale
+     */
+    public String getDefaultUblLocale() {
+        return defaultUblLocale;
+    }
+
+    /**
+     * @param defaultUblLocale
+     *            the defaultUblLocale to set
+     */
+    public void setDefaultUblLocale(String defaultUblLocale) {
+        this.defaultUblLocale = defaultUblLocale;
+    }
+
+    /**
+     * @return the invoices
+     */
+    public List<InvoiceEntity> getInvoices() {
+        return invoices;
+    }
+
+    /**
+     * @param invoices
+     *            the invoices to set
+     */
+    public void setInvoices(List<InvoiceEntity> invoices) {
+        this.invoices = invoices;
+    }
+
+    /**
+     * @return the creditNotes
+     */
+    public List<CreditNoteEntity> getCreditNotes() {
+        return creditNotes;
+    }
+
+    /**
+     * @param creditNotes
+     *            the creditNotes to set
+     */
+    public void setCreditNotes(List<CreditNoteEntity> creditNotes) {
+        this.creditNotes = creditNotes;
+    }
+
+    /**
+     * @return the debitNotes
+     */
+    public List<DebitNoteEntity> getDebitNotes() {
+        return debitNotes;
+    }
+
+    /**
+     * @param debitNotes
+     *            the debitNotes to set
+     */
+    public void setDebitNotes(List<DebitNoteEntity> debitNotes) {
+        this.debitNotes = debitNotes;
+    }
+
     /*
      * (non-Javadoc)
      * 
      * @see java.lang.Object#hashCode()
      */
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -922,5 +1025,4 @@ public class OrganizationEntity {
             return false;
         return true;
     }
-
 }

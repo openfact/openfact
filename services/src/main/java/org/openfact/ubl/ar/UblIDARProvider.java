@@ -2,6 +2,7 @@ package org.openfact.ubl.ar;
 
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.UblDocumentType;
 import org.openfact.models.ubl.CreditNoteModel;
 import org.openfact.models.ubl.DebitNoteModel;
 import org.openfact.models.ubl.InvoiceModel;
@@ -24,14 +25,15 @@ public class UblIDARProvider implements UblIDProvider {
     @Override
     public void close() {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
-    public String getDocument(OrganizationModel organization) {
+    public String getID(OrganizationModel organization, UblDocumentType type) {
         // TODO Auto-generated method stub
         return null;
     }
+
 
     
 

@@ -74,7 +74,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     protected EntityManager em;
     protected OpenfactSession session;
 
-    public InvoiceAdapter(OrganizationModel organization, OpenfactSession session, EntityManager em,
+    public InvoiceAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em,
             InvoiceEntity invoice) {
         this.organization = organization;
         this.session = session;

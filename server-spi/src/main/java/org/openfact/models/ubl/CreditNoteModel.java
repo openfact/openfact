@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.BillingReferenceModel;
@@ -21,6 +22,7 @@ import org.openfact.models.ubl.common.SignatureModel;
 import org.openfact.models.ubl.common.SupplierPartyModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
+import org.openfact.provider.ProviderEvent;
 
 public interface CreditNoteModel {
 
@@ -191,7 +193,8 @@ public interface CreditNoteModel {
     void setCreditNoteLine(List<CreditNoteLineModel> creditNoteLine);
 
     /**
-     * */
+     * Extra Methods
+     */
     CreditNoteLineModel addCreditNoteLine();
 
     TaxTotalModel addTaxTotal();
@@ -200,4 +203,22 @@ public interface CreditNoteModel {
 
     DocumentReferenceModel addDespatchDocumentReference();
 
+    /**
+     * Events interfaces
+     */
+    interface CreditNoteCreationEvent extends ProviderEvent {
+        CreditNoteModel getCreatedCreditNote();
+    }
+
+    interface CreditNotePostCreateEvent extends ProviderEvent {
+        CreditNoteModel getCreatedCreditNote();
+
+        OpenfactSession getOpenfactSession();
+    }
+
+    interface CreditNoteRemovedEvent extends ProviderEvent {
+        CreditNoteModel getCreditNote();
+
+        OpenfactSession getOpenfactSession();
+    }
 }
