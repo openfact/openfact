@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.jboss.logging.Logger;
@@ -140,9 +141,10 @@ public class JpaOrganizationProvider implements OrganizationProvider {
     }
 
     @Override
-    public int getOrganizationsCount(OrganizationModel organization) {
-        // TODO Auto-generated method stub
-        return 0;
+    public int getOrganizationsCount() {
+        Query query = em.createNamedQuery("getOrganizationsCount");
+        Long result = (Long) query.getSingleResult();
+        return result.intValue();
     }
 
 }

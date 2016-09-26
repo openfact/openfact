@@ -36,7 +36,8 @@ import org.hibernate.annotations.Type;
 @Table(name = "ORGANIZATION")
 @NamedQueries({
         @NamedQuery(name = "getAllOrganizationIds", query = "select organization.id from OrganizationEntity organization"),
-        @NamedQuery(name = "getOrganizationIdByName", query = "select organization.id from OrganizationEntity organization where organization.name = :name"), })
+        @NamedQuery(name = "getOrganizationIdByName", query = "select organization.id from OrganizationEntity organization where organization.name = :name"),
+        @NamedQuery(name = "getOrganizationsCount", query = "select count(organization.id) from OrganizationEntity organization") })
 public class OrganizationEntity {
 
     @Id
