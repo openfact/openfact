@@ -124,7 +124,7 @@ public class AdapterTest extends AbstractModelTest {
         Assert.assertEquals(organizations.size(), 2);
     }
 
-    /*@Test
+    @Test
     public void testRemoveOrganization() throws Exception {
         test1CreateOrganization();
 
@@ -143,7 +143,7 @@ public class AdapterTest extends AbstractModelTest {
         Assert.assertTrue(organizationManager.removeOrganization(organizationModel));
         Assert.assertFalse(organizationManager.removeOrganization(organizationModel));
         assertNull(organizationManager.getOrganization(organizationModel.getId()));
-    }*/
+    }
 
     @Test
     public void testDeleteInvoice() throws Exception {
