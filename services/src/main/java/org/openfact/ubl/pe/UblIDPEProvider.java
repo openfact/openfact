@@ -1,38 +1,36 @@
 package org.openfact.ubl.pe;
 
+import java.text.ParseException;
+
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.ubl.CreditNoteModel;
-import org.openfact.models.ubl.DebitNoteModel;
-import org.openfact.models.ubl.InvoiceModel;
+import org.openfact.services.util.MaskToString;
 import org.openfact.ubl.UblIDProvider;
-import org.w3c.dom.Document;
-
-import com.helger.ubl21.UBL21Reader;
-import com.helger.ubl21.UBL21Writer;
-
-import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 
 public class UblIDPEProvider implements UblIDProvider {
 
-    protected OpenfactSession session;
+	protected OpenfactSession session;
 
-    public UblIDPEProvider(OpenfactSession session) {
-        this.session = session;
-    }
+	public UblIDPEProvider(OpenfactSession session) {
+		this.session = session;
+	}
 
-    @Override
-    public void close() {
-        // TODO Auto-generated method stub
+	@Override
+	public void close() {
+		System.out.println("closing...");
 
-    }
+	}
 
-    @Override
-    public String getDocument(OrganizationModel organization) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    
+	@Override
+	public String getDocument(OrganizationModel organization) {
+		String value = "F001-00000001";
+		String mask = "A###-########";
+		try {
+			return MaskToString.formatString(value, mask, true);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 }
