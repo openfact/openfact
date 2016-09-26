@@ -1,5 +1,5 @@
 
-package org.openfact.ubl.send.pe;
+package org.openfact.ubl.send.pe.sunat;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -15,16 +15,17 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 
 /**
- * <p>Clase Java para getStatus complex type.
+ * <p>Clase Java para statusResponse complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="getStatus">
+ * &lt;complexType name="statusResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="ticket" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="content" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
+ *         &lt;element name="statusCode" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -34,53 +35,86 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "getStatus", propOrder = {
-    "ticket"
+@XmlType(name = "statusResponse", propOrder = {
+    "content",
+    "statusCode"
 })
-public class GetStatus
+public class StatusResponse
     implements Equals, ToString
 {
 
-    protected String ticket;
+    protected byte[] content;
+    protected String statusCode;
 
     /**
-     * Obtiene el valor de la propiedad ticket.
+     * Obtiene el valor de la propiedad content.
+     * 
+     * @return
+     *     possible object is
+     *     byte[]
+     */
+    public byte[] getContent() {
+        return content;
+    }
+
+    /**
+     * Define el valor de la propiedad content.
+     * 
+     * @param value
+     *     allowed object is
+     *     byte[]
+     */
+    public void setContent(byte[] value) {
+        this.content = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad statusCode.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getTicket() {
-        return ticket;
+    public String getStatusCode() {
+        return statusCode;
     }
 
     /**
-     * Define el valor de la propiedad ticket.
+     * Define el valor de la propiedad statusCode.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setTicket(String value) {
-        this.ticket = value;
+    public void setStatusCode(String value) {
+        this.statusCode = value;
     }
 
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
-        if (!(object instanceof GetStatus)) {
+        if (!(object instanceof StatusResponse)) {
             return false;
         }
         if (this == object) {
             return true;
         }
-        final GetStatus that = ((GetStatus) object);
+        final StatusResponse that = ((StatusResponse) object);
         {
-            String lhsTicket;
-            lhsTicket = this.getTicket();
-            String rhsTicket;
-            rhsTicket = that.getTicket();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "ticket", lhsTicket), LocatorUtils.property(thatLocator, "ticket", rhsTicket), lhsTicket, rhsTicket)) {
+            byte[] lhsContent;
+            lhsContent = this.getContent();
+            byte[] rhsContent;
+            rhsContent = that.getContent();
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "content", lhsContent), LocatorUtils.property(thatLocator, "content", rhsContent), lhsContent, rhsContent)) {
+                return false;
+            }
+        }
+        {
+            String lhsStatusCode;
+            lhsStatusCode = this.getStatusCode();
+            String rhsStatusCode;
+            rhsStatusCode = that.getStatusCode();
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "statusCode", lhsStatusCode), LocatorUtils.property(thatLocator, "statusCode", rhsStatusCode), lhsStatusCode, rhsStatusCode)) {
                 return false;
             }
         }
@@ -108,9 +142,14 @@ public class GetStatus
 
     public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
         {
-            String theTicket;
-            theTicket = this.getTicket();
-            strategy.appendField(locator, this, "ticket", buffer, theTicket);
+            byte[] theContent;
+            theContent = this.getContent();
+            strategy.appendField(locator, this, "content", buffer, theContent);
+        }
+        {
+            String theStatusCode;
+            theStatusCode = this.getStatusCode();
+            strategy.appendField(locator, this, "statusCode", buffer, theStatusCode);
         }
         return buffer;
     }

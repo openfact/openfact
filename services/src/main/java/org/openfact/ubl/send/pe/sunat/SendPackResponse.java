@@ -1,5 +1,5 @@
 
-package org.openfact.ubl.send.pe;
+package org.openfact.ubl.send.pe.sunat;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -15,16 +15,16 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 
 /**
- * <p>Clase Java para getStatusResponse complex type.
+ * <p>Clase Java para sendPackResponse complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="getStatusResponse">
+ * &lt;complexType name="sendPackResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="status" type="{http://service.sunat.gob.pe}statusResponse" minOccurs="0"/>
+ *         &lt;element name="ticket" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -34,53 +34,53 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "getStatusResponse", propOrder = {
-    "status"
+@XmlType(name = "sendPackResponse", propOrder = {
+    "ticket"
 })
-public class GetStatusResponse
+public class SendPackResponse
     implements Equals, ToString
 {
 
-    protected StatusResponse status;
+    protected String ticket;
 
     /**
-     * Obtiene el valor de la propiedad status.
+     * Obtiene el valor de la propiedad ticket.
      * 
      * @return
      *     possible object is
-     *     {@link StatusResponse }
+     *     {@link String }
      *     
      */
-    public StatusResponse getStatus() {
-        return status;
+    public String getTicket() {
+        return ticket;
     }
 
     /**
-     * Define el valor de la propiedad status.
+     * Define el valor de la propiedad ticket.
      * 
      * @param value
      *     allowed object is
-     *     {@link StatusResponse }
+     *     {@link String }
      *     
      */
-    public void setStatus(StatusResponse value) {
-        this.status = value;
+    public void setTicket(String value) {
+        this.ticket = value;
     }
 
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
-        if (!(object instanceof GetStatusResponse)) {
+        if (!(object instanceof SendPackResponse)) {
             return false;
         }
         if (this == object) {
             return true;
         }
-        final GetStatusResponse that = ((GetStatusResponse) object);
+        final SendPackResponse that = ((SendPackResponse) object);
         {
-            StatusResponse lhsStatus;
-            lhsStatus = this.getStatus();
-            StatusResponse rhsStatus;
-            rhsStatus = that.getStatus();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "status", lhsStatus), LocatorUtils.property(thatLocator, "status", rhsStatus), lhsStatus, rhsStatus)) {
+            String lhsTicket;
+            lhsTicket = this.getTicket();
+            String rhsTicket;
+            rhsTicket = that.getTicket();
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "ticket", lhsTicket), LocatorUtils.property(thatLocator, "ticket", rhsTicket), lhsTicket, rhsTicket)) {
                 return false;
             }
         }
@@ -108,9 +108,9 @@ public class GetStatusResponse
 
     public StringBuilder appendFields(ObjectLocator locator, StringBuilder buffer, ToStringStrategy strategy) {
         {
-            StatusResponse theStatus;
-            theStatus = this.getStatus();
-            strategy.appendField(locator, this, "status", buffer, theStatus);
+            String theTicket;
+            theTicket = this.getTicket();
+            strategy.appendField(locator, this, "ticket", buffer, theTicket);
         }
         return buffer;
     }
