@@ -8,14 +8,15 @@ import org.openfact.provider.Provider;
 
 public interface UblSenderProvider extends Provider {
 
-	void send(OrganizationModel orgamization, InvoiceModel invoice, byte[] document, String name)
+	void send(OrganizationModel organization, InvoiceModel invoice, byte[] document, String contentType, String name)
 			throws UblSenderException;
 
-	void send(OrganizationModel orgamization, DebitNoteModel debitNote, byte[] document, String name)
-			throws UblSenderException;
+	void send(OrganizationModel organization, DebitNoteModel debitNote, byte[] document, String contentType,
+			String name) throws UblSenderException;
 
-	void send(OrganizationModel orgamization, CreditNoteModel creditNote, byte[] document, String name)
-			throws UblSenderException;
+	void send(OrganizationModel organization, CreditNoteModel creditNote, byte[] document, String contentType,
+			String name) throws UblSenderException;
 
-	void send(OrganizationModel orgamization, byte[] document, String name) throws UblSenderException;
+	void send(OrganizationModel organization, byte[] document, String contentType, String name)
+			throws UblSenderException;
 }

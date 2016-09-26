@@ -1,5 +1,5 @@
 
-package org.openfact.ubl.send.pe;
+package org.openfact.ubl.send.pe.sunat;
 
 import javax.activation.DataHandler;
 import javax.jws.WebMethod;
@@ -32,8 +32,8 @@ public interface BillService {
      */
     @WebMethod(action = "urn:getStatus")
     @WebResult(name = "status", targetNamespace = "")
-    @RequestWrapper(localName = "getStatus", targetNamespace = "http://service.sunat.gob.pe", className = "org.openfact.ubl.pe.send.GetStatus")
-    @ResponseWrapper(localName = "getStatusResponse", targetNamespace = "http://service.sunat.gob.pe", className = "org.openfact.ubl.pe.send.GetStatusResponse")
+    @RequestWrapper(localName = "getStatus", targetNamespace = "http://service.sunat.gob.pe", className = "org.openfact.ubl.send.pe.sunat.GetStatus")
+    @ResponseWrapper(localName = "getStatusResponse", targetNamespace = "http://service.sunat.gob.pe", className = "org.openfact.ubl.send.pe.sunat.GetStatusResponse")
     public StatusResponse getStatus(
         @WebParam(name = "ticket", targetNamespace = "")
         String ticket);
@@ -47,8 +47,8 @@ public interface BillService {
      */
     @WebMethod(action = "urn:sendBill")
     @WebResult(name = "applicationResponse", targetNamespace = "")
-    @RequestWrapper(localName = "sendBill", targetNamespace = "http://service.sunat.gob.pe", className = "org.openfact.ubl.pe.send.SendBill")
-    @ResponseWrapper(localName = "sendBillResponse", targetNamespace = "http://service.sunat.gob.pe", className = "org.openfact.ubl.pe.send.SendBillResponse")
+    @RequestWrapper(localName = "sendBill", targetNamespace = "http://service.sunat.gob.pe", className = "org.openfact.ubl.send.pe.sunat.SendBill")
+    @ResponseWrapper(localName = "sendBillResponse", targetNamespace = "http://service.sunat.gob.pe", className = "org.openfact.ubl.send.pe.sunat.SendBillResponse")
     public byte[] sendBill(
         @WebParam(name = "fileName", targetNamespace = "")
         String fileName,
@@ -64,8 +64,8 @@ public interface BillService {
      */
     @WebMethod(action = "urn:sendPack")
     @WebResult(name = "ticket", targetNamespace = "")
-    @RequestWrapper(localName = "sendPack", targetNamespace = "http://service.sunat.gob.pe", className = "org.openfact.ubl.pe.send.SendPack")
-    @ResponseWrapper(localName = "sendPackResponse", targetNamespace = "http://service.sunat.gob.pe", className = "org.openfact.ubl.pe.send.SendPackResponse")
+    @RequestWrapper(localName = "sendPack", targetNamespace = "http://service.sunat.gob.pe", className = "org.openfact.ubl.send.pe.sunat.SendPack")
+    @ResponseWrapper(localName = "sendPackResponse", targetNamespace = "http://service.sunat.gob.pe", className = "org.openfact.ubl.send.pe.sunat.SendPackResponse")
     public String sendPack(
         @WebParam(name = "fileName", targetNamespace = "")
         String fileName,
@@ -81,8 +81,8 @@ public interface BillService {
      */
     @WebMethod(action = "urn:sendSummary")
     @WebResult(name = "ticket", targetNamespace = "")
-    @RequestWrapper(localName = "sendSummary", targetNamespace = "http://service.sunat.gob.pe", className = "org.openfact.ubl.pe.send.SendSummary")
-    @ResponseWrapper(localName = "sendSummaryResponse", targetNamespace = "http://service.sunat.gob.pe", className = "org.openfact.ubl.pe.send.SendSummaryResponse")
+    @RequestWrapper(localName = "sendSummary", targetNamespace = "http://service.sunat.gob.pe", className = "org.openfact.ubl.send.pe.sunat.SendSummary")
+    @ResponseWrapper(localName = "sendSummaryResponse", targetNamespace = "http://service.sunat.gob.pe", className = "org.openfact.ubl.send.pe.sunat.SendSummaryResponse")
     public String sendSummary(
         @WebParam(name = "fileName", targetNamespace = "")
         String fileName,
