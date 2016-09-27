@@ -152,11 +152,10 @@ public class InvoiceCacheSession implements InvoiceCache {
         // TODO Auto-generated method stub
 
     }
-
-    @Override
-    public InvoiceModel getLastInvoice(OrganizationModel organization) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	@Override
+	public InvoiceModel getLastInvoice(OrganizationModel organization, int IDInvoiceLength, String maskFormater) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

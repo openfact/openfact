@@ -52,7 +52,6 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 		if (ID == null) {
 			ID = OpenfactModelUtils.generateUblID(session, organization, UblDocumentType.INVOICE);
 		}
-
 		if (session.invoices().getInvoiceByID(organization, ID) != null) {
 			throw new ModelDuplicateException("Invoice ID existed");
 		}
@@ -219,9 +218,12 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 	}
 
 	@Override
-	public InvoiceModel getLastInvoice(OrganizationModel organization) {
+	public InvoiceModel getLastInvoice(OrganizationModel organization, int IDInvoiceLength, String maskFormater) {
 		TypedQuery<InvoiceEntity> query = em.createNamedQuery("getLastInvoiceByOrganization", InvoiceEntity.class);
 		query.setParameter("organizationId", organization.getId());
+		query.setParameter("IDLength", IDInvoiceLength);
+		query.setParameter("formatter", maskFormater);
+		query.setMaxResults(1);
 		List<InvoiceEntity> entities = query.getResultList();
 		if (entities.size() == 0)
 			return null;

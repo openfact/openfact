@@ -39,6 +39,6 @@ public interface InvoiceProvider extends Provider {
 
     int getInvoicesCount(OrganizationModel organization);
 
-	InvoiceModel getLastInvoice(OrganizationModel organization);
+	InvoiceModel getLastInvoice(OrganizationModel organization, int IDInvoiceLength,String maskFormater);
 
 }
