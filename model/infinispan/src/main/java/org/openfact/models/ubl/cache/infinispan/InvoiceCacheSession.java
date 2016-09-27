@@ -153,4 +153,10 @@ public class InvoiceCacheSession implements InvoiceCache {
 
     }
 
+    @Override
+    public InvoiceModel getLastInvoice(OrganizationModel organization) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

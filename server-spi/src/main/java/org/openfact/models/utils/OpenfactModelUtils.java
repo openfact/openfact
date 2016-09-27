@@ -31,7 +31,7 @@ import org.openfact.representations.idm.CertificateRepresentation;
 import org.openfact.common.util.CertificateUtils;
 import org.openfact.common.util.PemUtils;
 import org.openfact.transaction.JtaTransactionManagerLookup;
-import org.openfact.ubl.UblIDProvider;
+import org.openfact.ubl.UblIDGeneratorProvider;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.naming.InitialContext;
@@ -67,7 +67,7 @@ import java.util.function.Function;
 public final class OpenfactModelUtils {
 
     public static String generateUblID(OpenfactSession session, OrganizationModel organization, UblDocumentType type) {
-        UblIDProvider provider = session.getProvider(UblIDProvider.class, organization.getDefaultLocale());
+        UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class, organization.getDefaultLocale());
         return provider.getID(organization, UblDocumentType.INVOICE);
     }
     

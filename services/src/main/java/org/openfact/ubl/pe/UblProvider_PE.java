@@ -1,8 +1,6 @@
 package org.openfact.ubl.pe;
 
-import javax.xml.XMLConstants;
 import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.namespace.NamespaceContext;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.ModelException;
@@ -15,7 +13,6 @@ import org.openfact.models.utils.ModelToType;
 import org.openfact.ubl.UblProvider;
 import org.w3c.dom.Document;
 
-import com.helger.commons.collection.ext.ICommonsOrderedMap;
 import com.helger.ubl21.UBL21NamespaceContext;
 import com.helger.ubl21.UBL21Writer;
 
