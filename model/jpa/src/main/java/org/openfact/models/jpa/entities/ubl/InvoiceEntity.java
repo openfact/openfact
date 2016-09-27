@@ -65,7 +65,8 @@ import org.openfact.models.jpa.entities.ubl.common.UBLExtensionsEntity;
         @NamedQuery(name = "getOrganizationInvoiceById", query = "select i from InvoiceEntity i where i.id = :id and i.organization.id = :organizationId"),
         @NamedQuery(name = "getOrganizationInvoiceByID", query = "select i from InvoiceEntity i where i.ID = :ID and i.organization.id = :organizationId"),
         @NamedQuery(name = "searchForInvoice", query = "select i from InvoiceEntity i where i.organization.id = :organizationId and i.ID like :search order by i.issueDate, i.issueTime"),
-        @NamedQuery(name = "getOrganizationInvoiceCount", query = "select count(i) from InvoiceEntity i where i.organization.id = :organizationId") })
+        @NamedQuery(name = "getOrganizationInvoiceCount", query = "select count(i) from InvoiceEntity i where i.organization.id = :organizationId"),
+        @NamedQuery(name = "getLastInvoiceByOrganization", query = "select i from InvoiceEntity i where i.organization.id = :organizationId order by i.issueDate, i.issueTime desc")})
 public class InvoiceEntity {
 
     @Id
