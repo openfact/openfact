@@ -183,7 +183,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
-    public void setInvoiceCodeModel(String value) {
+    public void setInvoiceTypeCode(String value) {
         invoice.setInvoiceTypeCode(value);
     }
 
@@ -638,6 +638,15 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
         TaxTotalEntity entity = new TaxTotalEntity();
         entities.add(entity);
         return new TaxTotalAdapter(session, em, entity);
+    }
+
+    @Override
+    public SignatureModel addSignature() {
+        List<SignatureEntity> entities = invoice.getSignature();
+
+        SignatureEntity entity = new SignatureEntity();
+        entities.add(entity);
+        return new SignatureAdapter(session, em, entity);
     }
 
 }

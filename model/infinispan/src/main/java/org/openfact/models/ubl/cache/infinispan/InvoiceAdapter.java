@@ -194,7 +194,7 @@ public class InvoiceAdapter implements CachedInvoiceModel {
     }
 
     @Override
-    public void setInvoiceCodeModel(String value) {
+    public void setInvoiceTypeCode(String value) {
         // TODO Auto-generated method stub
 
     }
@@ -681,6 +681,12 @@ public class InvoiceAdapter implements CachedInvoiceModel {
 
     @Override
     public ConcurrentHashMap getCachedWith() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SignatureModel addSignature() {
         // TODO Auto-generated method stub
         return null;
     }

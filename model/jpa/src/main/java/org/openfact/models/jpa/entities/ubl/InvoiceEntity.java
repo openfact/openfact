@@ -30,6 +30,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
@@ -83,7 +84,7 @@ public class InvoiceEntity {
      * */
     @ManyToOne(targetEntity = UBLExtensionsEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "UBLEXTENSIONS_INVOICE_ID")
-    protected UBLExtensionsEntity ublExtensions;
+    protected UBLExtensionsEntity ublExtensions = new UBLExtensionsEntity();
 
     @Column(name = "UBL_VERSIONID")
     protected String ublVersionID;

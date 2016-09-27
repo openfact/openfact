@@ -76,27 +76,27 @@ public class ItemEntity {
     @CollectionTable(name = "ITEM_MODELNAME", joinColumns = { @JoinColumn(name = "ITEM_ID") })
     protected List<String> modelName = new ArrayList<>();
 
-    @ManyToOne(targetEntity = CountryEntity.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ItemIdentificationEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "BUYERSITEMIDENTIFICATION_ITEM")
     protected ItemIdentificationEntity buyersItemIdentification;
 
-    @ManyToOne(targetEntity = CountryEntity.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ItemIdentificationEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "SELLERSITEMIDENTIFICATION_ITEM")
-    protected ItemIdentificationEntity sellersItemIdentification;
+    protected ItemIdentificationEntity sellersItemIdentification = new ItemIdentificationEntity();
 
-    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = ItemIdentificationEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "MANUFACTURERSITEMIDENTIFICATION_ITEM")
     protected List<ItemIdentificationEntity> manufacturersItemIdentification = new ArrayList<>();
 
-    @ManyToOne(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ItemIdentificationEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "STANDARDITEMIDENTIFICATION_ITEM")
     protected ItemIdentificationEntity standardItemIdentification = new ItemIdentificationEntity();
 
-    @ManyToOne(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = ItemIdentificationEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "CATALOGUEITEMIDENTIFICATION_ITEM")
     protected ItemIdentificationEntity catalogueItemIdentification;
 
-    @OneToMany(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = ItemIdentificationEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ADDITIONALITEMIDENTIFICATION_ITEM")
     protected List<ItemIdentificationEntity> additionalItemIdentification = new ArrayList<>();
 
@@ -112,7 +112,7 @@ public class ItemEntity {
     @JoinColumn(name = "ORIGINCOUNTRY_ITEM_ID")
     protected CountryEntity originCountry = new CountryEntity();
 
-    @OneToMany(targetEntity = TransactionConditionsEntity.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = CommodityClassificationEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "COMMODITYCLASSIFICATION_ITEM")
     protected List<CommodityClassificationEntity> commodityClassification = new ArrayList<>();
 
@@ -120,7 +120,7 @@ public class ItemEntity {
     @JoinColumn(name = "TRANSACTIONCONDITIONS_ITEM")
     protected List<TransactionConditionsEntity> transactionConditions = new ArrayList<>();
 
-    @OneToMany(targetEntity = TransactionConditionsEntity.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = HazardousItemEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "HAZARDOUSITEM_ITEM")
     protected List<HazardousItemEntity> hazardousItem = new ArrayList<>();
 
@@ -128,11 +128,11 @@ public class ItemEntity {
     @JoinColumn(name = "ITEM_CLASSIFIEDTAXCATEGORY")
     protected List<TaxCategoryEntity> classifiedTaxCategory = new ArrayList<>();
 
-    @OneToMany(targetEntity = TaxCategoryEntity.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = ItemPropertyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ADDITIONALITEMPROPERTY_ITEM")
     protected List<ItemPropertyEntity> additionalItemProperty = new ArrayList<>();
 
-    @OneToMany(targetEntity = TaxCategoryEntity.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "MANUFACTURERPARTY_ITEM")
     protected List<PartyEntity> manufacturerParty = new ArrayList<>();
 
@@ -144,7 +144,7 @@ public class ItemEntity {
     @JoinColumn(name = "ORIGINADDRESS_ITEM_ID")
     protected List<AddressEntity> originAddress = new ArrayList<>();
 
-    @OneToMany(targetEntity = AddressEntity.class, cascade = { CascadeType.ALL })
+    @OneToMany(targetEntity = ItemInstanceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ITEMINSTANCE_ITEM")
     protected List<ItemInstanceEntity> itemInstance = new ArrayList<>();
 

@@ -14,7 +14,7 @@ public interface TaxSchemeModel {
 
     String getTaxCode();
 
-    void setTaxCode(String value);
+    void setTaxTypeCode(String value);
 
     String getCurrencyCode();
 

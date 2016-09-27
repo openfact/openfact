@@ -42,7 +42,7 @@
 		<jaxb2.basics.runtime>1.11.1</jaxb2.basics.runtime>
 
 		<!-- ubl -->
-		<version.ph-ubl>5.0.3</version.ph-ubl>
+		<version.ph-ubl>5.1.0</version.ph-ubl>
 
 		<!-- Google Guava -->
 		<version.google-guava>19.0</version.google-guava>

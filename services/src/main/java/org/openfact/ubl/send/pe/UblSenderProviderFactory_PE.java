@@ -6,33 +6,28 @@ import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.ubl.send.UblSenderProvider;
 import org.openfact.ubl.send.UblSenderProviderFactory;
 
-public class UblPESenderProviderFactory implements UblSenderProviderFactory {
+public class UblSenderProviderFactory_PE implements UblSenderProviderFactory {
 
 	@Override
 	public UblSenderProvider create(OpenfactSession session) {
-		return new UblPESenderProvider(session);
+		return new UblSenderProvider_PE(session);
 	}
 
 	@Override
 	public void init(Scope config) {
-		System.out.println("init scpope");
-
 	}
 
 	@Override
 	public void postInit(OpenfactSessionFactory factory) {
-		System.out.println("post init with factory session");
 	}
 
 	@Override
 	public void close() {
-		System.out.println("Ubl sender is completed");
-
 	}
 
 	@Override
 	public String getId() {
-		return "ublPE";
+		return "ublSender_pe";
 	}
 
 }

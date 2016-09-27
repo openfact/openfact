@@ -74,7 +74,7 @@ public interface InvoiceModel {
 
     String getInvoiceModelCode();
 
-    void setInvoiceCodeModel(String value);
+    void setInvoiceTypeCode(String value);
 
     List<String> getNote();
 
@@ -228,9 +228,13 @@ public interface InvoiceModel {
 
     void setInvoiceLine(List<InvoiceLineModel> invoiceLine);
 
+    /**
+     * Other methods*/
     InvoiceLineModel addInvoiceLine();
 
     TaxTotalModel addTaxTotal();
+
+    SignatureModel addSignature();
 
     /**
      * Events interfaces
@@ -250,4 +254,5 @@ public interface InvoiceModel {
 
         OpenfactSession getOpenfactSession();
     }
+
 }

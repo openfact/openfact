@@ -52,7 +52,7 @@ public class TaxSchemeAdapter implements TaxSchemeModel, JpaModel<TaxSchemeEntit
     }
 
     @Override
-    public void setTaxCode(String value) {
+    public void setTaxTypeCode(String value) {
         this.taxScheme.setTaxTypeCode(value);
     }
 

@@ -1,16 +1,16 @@
-package org.openfact.ubl.pe;
+package org.openfact.ubl.ar;
 
 import org.openfact.Config.Scope;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
-import org.openfact.ubl.UblIDProvider;
-import org.openfact.ubl.UblIDProviderFactory;
+import org.openfact.ubl.UblProvider;
+import org.openfact.ubl.UblProviderFactory;
 
-public class UblIDPEProviderFactory implements UblIDProviderFactory {
+public class UblProviderFactory_AR implements UblProviderFactory {
 
     @Override
-    public UblIDProvider create(OpenfactSession session) {
-        return new UblIDPEProvider(session);
+    public UblProvider create(OpenfactSession session) {
+        return new UblProvider_AR(session);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class UblIDPEProviderFactory implements UblIDProviderFactory {
 
     @Override
     public String getId() {
-        return "ublIDPE";
+        return "ubl_ar";
     }
 
 }

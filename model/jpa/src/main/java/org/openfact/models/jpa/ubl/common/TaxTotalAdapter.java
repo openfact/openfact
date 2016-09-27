@@ -94,11 +94,10 @@ public class TaxTotalAdapter implements TaxTotalModel, JpaModel<TaxTotalEntity> 
 
     @Override
     public TaxSubtotalModel addTaxSubtotal() {
-        List<TaxSubtotalEntity> taxSubtotalEntities = taxTotal.getTaxSubtotal();
-        TaxSubtotalEntity taxSubtotalEntity = new TaxSubtotalEntity();
-        taxSubtotalEntities.add(taxSubtotalEntity);
-        return new TaxSubtotalAdapter(session, em, taxSubtotalEntity);
-
+        List<TaxSubtotalEntity> entities = taxTotal.getTaxSubtotal();
+        TaxSubtotalEntity entity = new TaxSubtotalEntity();
+        entities.add(entity);
+        return new TaxSubtotalAdapter(session, em, entity);
     }
 
 }

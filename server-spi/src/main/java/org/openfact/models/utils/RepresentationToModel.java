@@ -312,7 +312,7 @@ public class RepresentationToModel {
             updateModel(model.getAccountingSupplierParty(), rep.getAccountingSupplierParty());
         }
         if (rep.getInvoiceCodeRepresentation() != null) {
-            model.setInvoiceCodeModel(rep.getInvoiceCodeRepresentation());
+            model.setInvoiceTypeCode(rep.getInvoiceCodeRepresentation());
         }
         if (rep.getIdUbl() != null) {
             model.setID(rep.getIdUbl());
@@ -625,7 +625,7 @@ public class RepresentationToModel {
             model.setName(rep.getName());
         }
         if (rep.getTaxCodeRepresentation() != null) {
-            model.setTaxCode(rep.getTaxCodeRepresentation());
+            model.setTaxTypeCode(rep.getTaxCodeRepresentation());
         }
     }
 

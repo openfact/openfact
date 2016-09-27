@@ -59,7 +59,7 @@ public class BillingReferenceEntity {
     @JoinColumn(name = "ADDITIONALDOCUMENTREFERENCE")
     protected DocumentReferenceEntity reminderDocumentReference = new DocumentReferenceEntity();
 
-    @ManyToOne(targetEntity = BillingReferenceLineEntity.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = DocumentReferenceEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "BILLINGREFERENCELINE_BILLING")
     protected DocumentReferenceEntity additionalDocumentReference = new DocumentReferenceEntity();
 

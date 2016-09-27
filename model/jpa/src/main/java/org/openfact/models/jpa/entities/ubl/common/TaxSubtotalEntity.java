@@ -62,7 +62,7 @@ public class TaxSubtotalEntity {
     protected BigDecimal tierRatePercent;
 
     @ManyToOne(targetEntity = TaxCategoryEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TAX_CATEGORY_ID")
+    @JoinColumn(name = "TAXCATEGORY_TAXSUBTOTAL_ID")
     protected TaxCategoryEntity taxCategory = new TaxCategoryEntity();
 
     /**
