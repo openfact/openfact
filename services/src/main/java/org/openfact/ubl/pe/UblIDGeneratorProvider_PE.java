@@ -1,5 +1,6 @@
 package org.openfact.ubl.pe;
 
+import org.jboss.logging.Logger;
 import org.openfact.common.Utils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
@@ -8,6 +9,8 @@ import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.ubl.UblIDGeneratorProvider;
 
 public class UblIDGeneratorProvider_PE implements UblIDGeneratorProvider {
+
+	private static final Logger log = Logger.getLogger(UblIDGeneratorProvider_PE.class);
 
 	protected OpenfactSession session;
 
@@ -33,7 +36,7 @@ public class UblIDGeneratorProvider_PE implements UblIDGeneratorProvider {
 					String[] Ids = ID.split("-");
 					Serie = Ids[0].substring(0, 1) + getSerie(Ids[0].substring(1), Ids[1]);
 					Number = getNumber(Ids[0].substring(1), Ids[1]);
-				}				
+				}
 				return Serie + "-" + Number;
 
 			}
