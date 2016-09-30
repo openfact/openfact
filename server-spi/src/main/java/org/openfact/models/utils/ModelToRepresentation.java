@@ -100,7 +100,7 @@ public class ModelToRepresentation {
         if (model.getAccountingSupplierParty() != null) {
             rep.setAccountingSupplierParty(toRepresentation(model.getAccountingSupplierParty()));
         }
-        rep.setInvoiceRepresentationCode(model.getInvoiceModelCode());
+        rep.setInvoiceRepresentationCode(model.getInvoiceTypeCode());
         rep.setIdUbl(model.getID());
         if (model.getAccountingCustomerParty() != null) {
             rep.setAccountingCustomerParty(toRepresentation(model.getAccountingCustomerParty()));

@@ -6,6 +6,8 @@ import org.openfact.provider.Provider;
 
 public interface UblIDGeneratorProvider extends Provider {
 
-    public String getID(OrganizationModel organization, UblDocumentType type);
+    String generateID(OrganizationModel organization, UblDocumentType type);
+
+    String generateID(OrganizationModel organization, UblDocumentType type, String codeType);
 
 }

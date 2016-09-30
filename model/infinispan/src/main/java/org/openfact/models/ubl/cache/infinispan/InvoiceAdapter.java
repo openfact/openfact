@@ -188,7 +188,7 @@ public class InvoiceAdapter implements CachedInvoiceModel {
     }
 
     @Override
-    public String getInvoiceModelCode() {
+    public String getInvoiceTypeCode() {
         // TODO Auto-generated method stub
         return null;
     }

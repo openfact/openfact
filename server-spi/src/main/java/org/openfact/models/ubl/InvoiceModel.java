@@ -72,7 +72,7 @@ public interface InvoiceModel {
 
     void setIssueTime(LocalTime value);
 
-    String getInvoiceModelCode();
+    String getInvoiceTypeCode();
 
     void setInvoiceTypeCode(String value);
 

@@ -8,22 +8,19 @@ import org.openfact.provider.Provider;
 
 public interface UblTemplateProvider extends Provider {
 
-	// String IDENTITY_PROVIDER_BROKER_CONTEXT = "identityProviderBrokerCtx";
+    public UblTemplateProvider setOrganization(OrganizationModel organization);
 
-	public UblTemplateProvider setOrganization(OrganizationModel organization);
+    /**
+     * send document
+     * 
+     */
 
-	public UblTemplateProvider setInvoice(InvoiceModel invoice);
+    public void send(String type) throws UblSenderException;
 
-	public UblTemplateProvider setDebitNote(DebitNoteModel debitNote);
+    public void sendInvoice(InvoiceModel invoice) throws UblSenderException;
 
-	public UblTemplateProvider setCreditNote(CreditNoteModel creditNote);
+    public void sendCreditNote(CreditNoteModel creditNote) throws UblSenderException;
 
-	/**
-	 * send document to sunat
-	 * 
-	 */
-	public void sendAsynchronous() throws UblSenderException;
-
-	public void sendSynchronous() throws UblSenderException;
+    public void sendDebitNote(DebitNoteModel debitNote) throws UblSenderException;
 
 }

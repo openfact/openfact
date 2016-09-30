@@ -42,22 +42,50 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 	}
 
 	@Override
-	public InvoiceModel addInvoice(OrganizationModel organization) {
-		return addInvoice(organization,
-				OpenfactModelUtils.generateUblID(session, organization, UblDocumentType.INVOICE));
-	}
+    public InvoiceModel addInvoice(OrganizationModel organization) {
+	    return addInvoice(organization, null);
+    }
 
 	@Override
-	public InvoiceModel addInvoice(OrganizationModel organization, String ID) {
-		if (ID == null) {
-			ID = OpenfactModelUtils.generateUblID(session, organization, UblDocumentType.INVOICE);
-		}
-		if (session.invoices().getInvoiceByID(organization, ID) != null) {
-			throw new ModelDuplicateException("Invoice ID existed");
-		}
+    public InvoiceModel addInvoice(OrganizationModel organization, String ID) {
+	    if (ID == null) {
+            ID = OpenfactModelUtils.generateUblID(session, organization, UblDocumentType.INVOICE);
+        }
+
+        if (session.invoices().getInvoiceByID(organization, ID) != null) {
+            throw new ModelDuplicateException("Invoice ID existed");
+        }
+
+        InvoiceEntity invoice = new InvoiceEntity();
+        invoice.setID(ID);
+        invoice.setOrganization(OrganizationAdapter.toEntity(organization, em));
+        em.persist(invoice);
+        em.flush();
+
+        final InvoiceModel adapter = new InvoiceAdapter(session, organization, em, invoice);
+        session.getOpenfactSessionFactory().publish(new InvoiceModel.InvoiceCreationEvent() {
+            @Override
+            public InvoiceModel getCreatedInvoice() {
+                return adapter;
+            }
+        });
+
+        return adapter;
+    }
+	
+    @Override
+    public InvoiceModel addInvoice(OrganizationModel organization, String ID, String typeCode) {
+        if (ID == null) {
+            ID = OpenfactModelUtils.generateUblID(session, organization, UblDocumentType.INVOICE, typeCode);
+        }
+
+        if (session.invoices().getInvoiceByID(organization, ID) != null) {
+            throw new ModelDuplicateException("Invoice ID existed");
+        }
 
 		InvoiceEntity invoice = new InvoiceEntity();
 		invoice.setID(ID);
+		invoice.setInvoiceTypeCode(typeCode);
 		invoice.setOrganization(OrganizationAdapter.toEntity(organization, em));
 		em.persist(invoice);
 		em.flush();

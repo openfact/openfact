@@ -35,7 +35,6 @@ import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.ubl.UblProvider;
 import org.w3c.dom.Document;
 
-import com.helger.commons.error.IResourceErrorGroup;
 import com.helger.commons.error.list.IErrorList;
 import com.helger.ubl21.UBL21Reader;
 import com.helger.ubl21.UBL21Validator;

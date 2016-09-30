@@ -66,6 +66,12 @@ public class InvoiceCacheSession implements InvoiceCache {
     }
 
     @Override
+    public InvoiceModel addInvoice(OrganizationModel organization, String ID, String codeType) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
     public InvoiceModel getInvoiceById(OrganizationModel organization, String id) {
         // TODO Auto-generated method stub
         return null;
@@ -136,26 +142,29 @@ public class InvoiceCacheSession implements InvoiceCache {
     }
 
     @Override
+    public InvoiceModel getLastInvoice(OrganizationModel organization, int IDInvoiceLength,
+            String maskFormater) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
     public void close() {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
     public void evict(OrganizationModel organization, InvoiceModel invoice) {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
     public void clear() {
         // TODO Auto-generated method stub
-
+        
     }
-	@Override
-	public InvoiceModel getLastInvoice(OrganizationModel organization, int IDInvoiceLength, String maskFormater) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
+ 
 }

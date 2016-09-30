@@ -178,7 +178,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
-    public String getInvoiceModelCode() {
+    public String getInvoiceTypeCode() {
         return invoice.getInvoiceTypeCode();
     }
 
