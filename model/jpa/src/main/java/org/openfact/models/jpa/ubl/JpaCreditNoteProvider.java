@@ -43,14 +43,13 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
 
     @Override
     public CreditNoteModel addCreditNote(OrganizationModel organization) {
-        return addCreditNote(organization,
-                OpenfactModelUtils.generateUblID(session, organization, UblDocumentType.INVOICE));
+        return addCreditNote(organization, null);
     }
 
     @Override
     public CreditNoteModel addCreditNote(OrganizationModel organization, String ID) {
         if (ID == null) {
-            ID = OpenfactModelUtils.generateUblID(session, organization, UblDocumentType.INVOICE);
+            ID = OpenfactModelUtils.generateUblID(session, organization, UblDocumentType.CREDIT_NOTE);
         }
         
         if (session.creditNotes().getCreditNoteByID(organization, ID) != null) {

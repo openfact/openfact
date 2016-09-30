@@ -9,7 +9,6 @@ import javax.persistence.TypedQuery;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.ModelDuplicateException;
-import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.UblDocumentType;
@@ -21,7 +20,6 @@ import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.ubl.provider.InvoiceProvider;
 import org.openfact.models.utils.OpenfactModelUtils;
-import org.openfact.ubl.UblException;
 
 public class JpaInvoiceProvider extends AbstractHibernateStorage implements InvoiceProvider {
 
@@ -45,23 +43,40 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
 	@Override
     public InvoiceModel addInvoice(OrganizationModel organization) {
-        try {
-            return addInvoice(organization, OpenfactModelUtils.generateUblID(session, organization, UblDocumentType.INVOICE));
-        } catch (UblException e) {
-            logger.error(e.getMessage());
-            throw new ModelException("Couldn't create invoice ID");
-        }
+	    return addInvoice(organization, null);
     }
 
-    @Override
+	@Override
     public InvoiceModel addInvoice(OrganizationModel organization, String ID) {
-        try {
-            if (ID == null) {
-                ID = OpenfactModelUtils.generateUblID(session, organization, UblDocumentType.INVOICE);
+	    if (ID == null) {
+            ID = OpenfactModelUtils.generateUblID(session, organization, UblDocumentType.INVOICE);
+        }
+
+        if (session.invoices().getInvoiceByID(organization, ID) != null) {
+            throw new ModelDuplicateException("Invoice ID existed");
+        }
+
+        InvoiceEntity invoice = new InvoiceEntity();
+        invoice.setID(ID);
+        invoice.setOrganization(OrganizationAdapter.toEntity(organization, em));
+        em.persist(invoice);
+        em.flush();
+
+        final InvoiceModel adapter = new InvoiceAdapter(session, organization, em, invoice);
+        session.getOpenfactSessionFactory().publish(new InvoiceModel.InvoiceCreationEvent() {
+            @Override
+            public InvoiceModel getCreatedInvoice() {
+                return adapter;
             }
-        } catch (UblException e) {
-            logger.error(e.getMessage());
-            throw new ModelException("Couldn't create invoice ID");
+        });
+
+        return adapter;
+    }
+	
+    @Override
+    public InvoiceModel addInvoice(OrganizationModel organization, String ID, String typeCode) {
+        if (ID == null) {
+            ID = OpenfactModelUtils.generateUblID(session, organization, UblDocumentType.INVOICE, typeCode);
         }
 
         if (session.invoices().getInvoiceByID(organization, ID) != null) {
@@ -70,6 +85,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
 		InvoiceEntity invoice = new InvoiceEntity();
 		invoice.setID(ID);
+		invoice.setInvoiceTypeCode(typeCode);
 		invoice.setOrganization(OrganizationAdapter.toEntity(organization, em));
 		em.persist(invoice);
 		em.flush();

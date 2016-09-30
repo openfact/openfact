@@ -35,8 +35,8 @@ public class UblSenderProvider_PE implements UblSenderProvider {
     }
 
     @Override
-    public void send(OrganizationModel organization, InvoiceModel invoice, byte[] document,
-            String contentType, String name) throws UblSenderException {
+    public void send(OrganizationModel organization, String fileName, byte[] document, String contentType)
+            throws UblSenderException {
         try {
             // Call Web Service Operation
             BillService_Service service = new BillService_Service();
@@ -52,7 +52,7 @@ public class UblSenderProvider_PE implements UblSenderProvider {
             // DataHandler contentFile = new DataHandler(fds);
 
             // TODO process result here
-            byte[] result = port.sendBill(name, contentFile);
+            byte[] result = port.sendBill(fileName, contentFile);
 
             System.out.println("Result = " + result);
         } catch (SOAPFaultException ex) {
@@ -61,28 +61,6 @@ public class UblSenderProvider_PE implements UblSenderProvider {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
-    }
-
-    @Override
-    public void send(OrganizationModel organization, DebitNoteModel debitNote, byte[] document,
-            String contentType, String name) throws UblSenderException {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void send(OrganizationModel organization, CreditNoteModel creditNote, byte[] document,
-            String contentType, String name) throws UblSenderException {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void send(OrganizationModel organization, String fileName, byte[] document, String contentType)
-            throws UblSenderException {
-        // TODO Auto-generated method stub
-        
-    }
+    }    
 
 }

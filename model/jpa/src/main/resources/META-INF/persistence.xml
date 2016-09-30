@@ -9,9 +9,6 @@
 		<class>org.openfact.models.jpa.entities.OrganizationEntity</class>
 		<class>org.openfact.models.jpa.entities.OrganizationRequiredActionEntity</class>
 		<class>org.openfact.models.jpa.entities.CurrencyEntity</class>
-		<class>org.openfact.models.jpa.entities.CatalogEntity</class>
-		<class>org.openfact.models.jpa.entities.DocumentEntity</class>
-		<class>org.openfact.models.jpa.entities.ComposedDocumentEntity</class>
 
 		<!-- JpaAuditProviders -->
 		<class>org.openfact.events.jpa.EventEntity</class>

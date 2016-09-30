@@ -43,14 +43,13 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
 
     @Override
     public DebitNoteModel addDebitNote(OrganizationModel organization) {
-        return addDebitNote(organization,
-                OpenfactModelUtils.generateUblID(session, organization, UblDocumentType.INVOICE));
+        return addDebitNote(organization, null);
     }
 
     @Override
     public DebitNoteModel addDebitNote(OrganizationModel organization, String ID) {
         if (ID == null) {
-            ID = OpenfactModelUtils.generateUblID(session, organization, UblDocumentType.INVOICE);
+            ID = OpenfactModelUtils.generateUblID(session, organization, UblDocumentType.DEBIT_NOTE);
         }
         
         if (session.debitNotes().getDebitNoteByID(organization, ID) != null) {

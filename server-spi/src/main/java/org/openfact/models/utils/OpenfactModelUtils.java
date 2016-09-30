@@ -70,13 +70,13 @@ public final class OpenfactModelUtils {
 	private OpenfactModelUtils() {
 	}
 	
-	public static String generateUblID(OpenfactSession session, OrganizationModel organization, UblDocumentType documentType) throws UblException {
+	public static String generateUblID(OpenfactSession session, OrganizationModel organization, UblDocumentType documentType) {
         String defaultLocale = organization.getDefaultUblLocale();
         UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class, defaultLocale);
         return provider.generateID(organization, documentType);
     }
     
-    public static String generateUblID(OpenfactSession session, OrganizationModel organization, UblDocumentType documentType, String typeCode) throws UblException {
+    public static String generateUblID(OpenfactSession session, OrganizationModel organization, UblDocumentType documentType, String typeCode) {
         String defaultLocale = organization.getDefaultUblLocale();
         UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class, defaultLocale);
         return provider.generateID(organization, documentType, typeCode);
