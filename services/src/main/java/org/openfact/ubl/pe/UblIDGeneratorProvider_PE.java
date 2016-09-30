@@ -1,5 +1,6 @@
 package org.openfact.ubl.pe;
 
+import org.jboss.logging.Logger;
 import org.openfact.common.Utils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
@@ -19,39 +20,35 @@ public class UblIDGeneratorProvider_PE implements UblIDGeneratorProvider {
     public void close() {
     }
 
-    @Override
-    public String generateID(OrganizationModel organization, UblDocumentType type) {
-        try {
-            if (type.equals(UblDocumentType.INVOICE)) {
-                InvoiceModel invoice = session.invoices().getLastInvoice(organization, 13, "%-%");
-                String series, number;
-                if (invoice == null) {
-                    series = "F" + getSerie(String.valueOf(1), String.valueOf(0));
-                    number = getNumber(String.valueOf(1), String.valueOf(0));
-                } else {
-                    String ID = invoice.getID();
-                    String[] Ids = ID.split("-");
-                    series = Ids[0].substring(0, 1) + getSerie(Ids[0].substring(1), Ids[1]);
-                    number = getNumber(Ids[0].substring(1), Ids[1]);
-                }
-                return series + "-" + number;
+	@Override
+	public String getID(OrganizationModel organization, UblDocumentType type) {
+		try {
+			if (type.equals(UblDocumentType.INVOICE)) {
+				InvoiceModel invoiceModel = session.invoices().getLastInvoice(organization, 13, "%-%");
+				String Serie, Number;
+				if (invoiceModel == null) {
+					Serie = "F" + getSerie(String.valueOf(1), String.valueOf(0));
+					Number = getNumber(String.valueOf(1), String.valueOf(0));
+				} else {
+					String ID = invoiceModel.getID();
+					String[] Ids = ID.split("-");
+					Serie = Ids[0].substring(0, 1) + getSerie(Ids[0].substring(1), Ids[1]);
+					Number = getNumber(Ids[0].substring(1), Ids[1]);
+				}
+				return Serie + "-" + Number;
 
-            } else if (type.equals(UblDocumentType.CREDIT_NOTE)) {
-                return "";
-            } else if (type.equals(UblDocumentType.DEBIT_NOTE)) {
-                return "";
-            }
-        } catch (NumberFormatException e) {
-            log.
-        }
-        return null;
-    }
-    
-    @Override
-    public String generateID(OrganizationModel organization, UblDocumentType type, String codeType) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+			}
+			if (type.equals(UblDocumentType.CREDIT_NOTE)) {
+				return "";
+			}
+			if (type.equals(UblDocumentType.DEBIT_NOTE)) {
+				return "";
+			}
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
     private String getSerie(String serie, String number) {
         if (Integer.valueOf(number) < 99999999) {
@@ -72,6 +69,6 @@ public class UblIDGeneratorProvider_PE implements UblIDGeneratorProvider {
         }
     }
 
-    
+
 
 }
