@@ -6,24 +6,24 @@ import org.openfact.provider.Spi;
 
 public class UblTemplateSpi implements Spi {
 
-	@Override
-	public boolean isInternal() {
-		return false;
-	}
+    @Override
+    public boolean isInternal() {
+        return true;
+    }
 
-	@Override
-	public String getName() {
-		return "ublTemplate";
-	}
+    @Override
+    public String getName() {
+        return "ublTemplate";
+    }
 
-	@Override
-	public Class<? extends Provider> getProviderClass() {
-		return UblTemplateProvider.class;
-	}
+    @Override
+    public Class<? extends Provider> getProviderClass() {
+        return UblTemplateProvider.class;
+    }
 
-	@Override
-	public Class<? extends ProviderFactory> getProviderFactoryClass() {
-		return UblSenderProviderFactory.class;
-	}
+    @Override
+    public Class<? extends ProviderFactory> getProviderFactoryClass() {
+        return UblTemplateProviderFactory.class;
+    }
 
 }

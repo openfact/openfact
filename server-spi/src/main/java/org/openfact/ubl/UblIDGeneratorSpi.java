@@ -13,7 +13,7 @@ public class UblIDGeneratorSpi implements Spi {
 
     @Override
     public String getName() {
-        return "ublIDGenerator";
+        return "ublIdentifierGenerator";
     }
 
     @Override

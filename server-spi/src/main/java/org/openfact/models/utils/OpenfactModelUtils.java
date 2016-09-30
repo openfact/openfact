@@ -31,6 +31,7 @@ import org.openfact.representations.idm.CertificateRepresentation;
 import org.openfact.common.util.CertificateUtils;
 import org.openfact.common.util.PemUtils;
 import org.openfact.transaction.JtaTransactionManagerLookup;
+import org.openfact.ubl.UblException;
 import org.openfact.ubl.UblIDGeneratorProvider;
 
 import javax.crypto.spec.SecretKeySpec;
@@ -66,14 +67,20 @@ import java.util.function.Function;
  */
 public final class OpenfactModelUtils {
 
-	public static String generateUblID(OpenfactSession session, OrganizationModel organization, UblDocumentType type) {
-		UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class,
-				"ublIDGenerator_" + organization.getDefaultUblLocale());
-		return provider.getID(organization, UblDocumentType.INVOICE);
-	}
-
 	private OpenfactModelUtils() {
 	}
+	
+	public static String generateUblID(OpenfactSession session, OrganizationModel organization, UblDocumentType documentType) throws UblException {
+        String defaultLocale = organization.getDefaultUblLocale();
+        UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class, defaultLocale);
+        return provider.generateID(organization, documentType);
+    }
+    
+    public static String generateUblID(OpenfactSession session, OrganizationModel organization, UblDocumentType documentType, String typeCode) throws UblException {
+        String defaultLocale = organization.getDefaultUblLocale();
+        UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class, defaultLocale);
+        return provider.generateID(organization, documentType, typeCode);
+    }
 
 	public static String generateId() {
 		return UUID.randomUUID().toString();

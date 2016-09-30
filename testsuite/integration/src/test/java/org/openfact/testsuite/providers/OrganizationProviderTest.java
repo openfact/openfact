@@ -10,9 +10,6 @@ import static org.junit.Assert.assertThat;
 import java.util.List;
 
 import org.junit.Test;
-import org.openfact.events.EventStoreProvider;
-import org.openfact.events.admin.AdminEvent;
-import org.openfact.events.admin.AdminEventQuery;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
 

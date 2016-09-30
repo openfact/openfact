@@ -9,10 +9,10 @@ import org.w3c.dom.Document;
 
 public interface UblProvider extends Provider {
 
-    public Document getDocument(OrganizationModel organization, InvoiceModel invoice);
+    Document getDocument(OrganizationModel organization, InvoiceModel invoice);
 
-    public Document getDocument(OrganizationModel organization, CreditNoteModel creditNote);
+    Document getDocument(OrganizationModel organization, CreditNoteModel creditNote);
 
-    public Document getDocument(OrganizationModel organization, DebitNoteModel debitNote);
+    Document getDocument(OrganizationModel organization, DebitNoteModel debitNote);
 
 }

@@ -28,7 +28,7 @@ public class UblProviderFactory_PE implements UblProviderFactory {
 
     @Override
     public String getId() {
-        return "ubl_pe";
+        return "pe";
     }
 
 }

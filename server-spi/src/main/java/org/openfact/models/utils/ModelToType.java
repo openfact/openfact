@@ -76,8 +76,8 @@ public class ModelToType {
         if (model.getAccountingSupplierParty() != null) {
             type.setAccountingSupplierParty(toType(model.getAccountingSupplierParty()));
         }
-        if (model.getInvoiceModelCode() != null) {
-            type.setInvoiceTypeCode(model.getInvoiceModelCode());
+        if (model.getInvoiceTypeCode() != null) {
+            type.setInvoiceTypeCode(model.getInvoiceTypeCode());
         }
         if (model.getID() != null) {
             type.setID(model.getID());
