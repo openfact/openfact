@@ -6,10 +6,8 @@ import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.catalog.ConditionCatalogModel;
 import org.openfact.models.catalog.CurrencyCatalogModel;
 import org.openfact.models.jpa.JpaModel;
-import org.openfact.models.jpa.entities.catalog.ConditionCatalogEntity;
 import org.openfact.models.jpa.entities.catalog.CurrencyCatalogEntity;
 
 public class CurrencyCatalogAdapter  implements CurrencyCatalogModel, JpaModel<CurrencyCatalogEntity>{

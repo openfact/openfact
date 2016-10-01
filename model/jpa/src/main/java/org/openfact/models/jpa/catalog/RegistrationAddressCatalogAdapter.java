@@ -6,10 +6,8 @@ import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.catalog.ConditionCatalogModel;
 import org.openfact.models.catalog.RegistrationAddressCatalogModel;
 import org.openfact.models.jpa.JpaModel;
-import org.openfact.models.jpa.entities.catalog.ConditionCatalogEntity;
 import org.openfact.models.jpa.entities.catalog.RegistrationAddressCatalogEntity;
 
 public class RegistrationAddressCatalogAdapter  implements RegistrationAddressCatalogModel, JpaModel<RegistrationAddressCatalogEntity>{

@@ -5,7 +5,6 @@ import javax.persistence.EntityManager;
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.catalog.provider.AdditionalAccountIdCatalogProvider;
-import org.openfact.models.jpa.ubl.JpaCreditNoteProvider;
 
 public class JpaAdditionalAccountIdCatalogProvider implements AdditionalAccountIdCatalogProvider {
 	

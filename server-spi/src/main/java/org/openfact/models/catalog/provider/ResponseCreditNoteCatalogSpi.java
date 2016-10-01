@@ -7,27 +7,23 @@ import org.openfact.provider.Spi;
 public class ResponseCreditNoteCatalogSpi  implements Spi {
 
 	@Override
-	public boolean isInternal() {
-		// TODO Auto-generated method stub
+	public boolean isInternal() {		
 		return false;
 	}
 
 	@Override
-	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getName() { 
+		return "responseCreditNoteCatalog";
 	}
 
 	@Override
-	public Class<? extends Provider> getProviderClass() {
-		// TODO Auto-generated method stub
-		return null;
+	public Class<? extends Provider> getProviderClass() { 
+		return ResponseCreditNoteCatalogProvider.class;
 	}
 
 	@Override
-	public Class<? extends ProviderFactory> getProviderFactoryClass() {
-		// TODO Auto-generated method stub
-		return null;
+	public Class<? extends ProviderFactory> getProviderFactoryClass() { 
+		return ResponseCreditNoteCatalogProviderFactory.class;
 	}
 
 }

@@ -4,30 +4,26 @@ import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
 import org.openfact.provider.Spi;
 
-public class InvoiceTypeCatalogSpi  implements Spi {
+public class InvoiceTypeCatalogSpi implements Spi {
 
 	@Override
 	public boolean isInternal() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return "invoiceTypeCatalog";
 	}
 
 	@Override
 	public Class<? extends Provider> getProviderClass() {
-		// TODO Auto-generated method stub
-		return null;
+		return InvoiceTypeCatalogProvider.class;
 	}
 
 	@Override
 	public Class<? extends ProviderFactory> getProviderFactoryClass() {
-		// TODO Auto-generated method stub
-		return null;
+		return InvoiceTypeCatalogProviderFactory.class;
 	}
 
 }

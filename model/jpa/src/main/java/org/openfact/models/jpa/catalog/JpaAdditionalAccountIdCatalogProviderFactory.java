@@ -6,10 +6,8 @@ import org.openfact.Config.Scope;
 import org.openfact.connections.jpa.JpaConnectionProvider;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
-import org.openfact.models.OrganizationProviderFactory;
 import org.openfact.models.catalog.provider.AdditionalAccountIdCatalogProvider;
 import org.openfact.models.catalog.provider.AdditionalAccountIdCatalogProviderFactory;
-import org.openfact.models.jpa.ubl.JpaCreditNoteProvider;
 
 public class JpaAdditionalAccountIdCatalogProviderFactory implements AdditionalAccountIdCatalogProviderFactory {
 

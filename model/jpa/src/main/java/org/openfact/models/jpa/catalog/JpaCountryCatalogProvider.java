@@ -4,7 +4,6 @@ import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.catalog.provider.ConditionCatalogProvider;
 import org.openfact.models.catalog.provider.CountryCatalogProvider;
 
 public class JpaCountryCatalogProvider   implements CountryCatalogProvider{

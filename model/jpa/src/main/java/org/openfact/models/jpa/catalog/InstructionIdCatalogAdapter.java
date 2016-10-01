@@ -6,10 +6,8 @@ import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.catalog.ConditionCatalogModel;
 import org.openfact.models.catalog.InstructionIdCatalogModel;
 import org.openfact.models.jpa.JpaModel;
-import org.openfact.models.jpa.entities.catalog.ConditionCatalogEntity;
 import org.openfact.models.jpa.entities.catalog.InstructionIdCatalogEntity;
 
 public class InstructionIdCatalogAdapter implements InstructionIdCatalogModel, JpaModel<InstructionIdCatalogEntity> {
