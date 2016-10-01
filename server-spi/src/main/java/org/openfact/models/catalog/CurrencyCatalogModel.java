@@ -1,29 +1,29 @@
 package org.openfact.models.catalog;
 
-import java.math.BigDecimal;
-
 public interface CurrencyCatalogModel {
-	String getId();
 
-	String getID();
+    public String getId();
 
-	String getCode();
+    public void setId(String id);
 
-	void setCode(String code);
+    public String getEntityName();
 
-	String getName();
+    public void setEntityName(String entity);
 
-	void setName(String name);
+    public String getCurrency();
 
-	String getDescription();
+    public void setCurrency(String currency);
 
-	void setDescription(String description);
+    public String getAlphabeticCode();
 
-	BigDecimal getValue();
+    public void setAlphabeticCode(String alphabeticCode);
 
-	void setValue(BigDecimal value);
+    public String getNumericCode();
 
-	String getLocale();
+    public void setNumericCode(String numericCode);
 
-	void setLocale(String locale);
+    public int getMinorUnit();
+
+    public void setMinorUnit(int minorUnit);
+
 }

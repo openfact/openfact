@@ -17,7 +17,6 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.RepresentationToModel;
-import org.openfact.representations.idm.CurrencyRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
@@ -78,14 +77,6 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
 			logger.error(e.getMessage(), e);
 			return ErrorResponse.error("Failed to update organization", Response.Status.INTERNAL_SERVER_ERROR);
 		}
-	}
-
-	@Override
-	public List<CurrencyRepresentation> getCurrencies() {
-		auth.requireView();
-
-		return organization.getCurrencies().stream().map(f -> ModelToRepresentation.toRepresentation(f))
-				.collect(Collectors.toList());
 	}
 
 	@Override

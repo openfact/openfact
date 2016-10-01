@@ -18,7 +18,7 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.OrganizationRepresentation;
-import org.openfact.representatios.idm.catalog.CodeCatalogRepresentation;
+import org.openfact.representations.idm.catalog.CodeCatalogRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.OrganizationManager;

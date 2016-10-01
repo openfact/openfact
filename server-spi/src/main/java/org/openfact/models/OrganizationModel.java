@@ -156,13 +156,13 @@ public interface OrganizationModel {
     /**
      * Currencies
      */
-    CurrencyModel addCurrency(String currencyCode);
+    Set<String> getSupportedCurrencies();
 
-    CurrencyModel addCurrency(String currencyCode, int priority);
+    void setSupportedCurrencies(Set<String> currencies);
 
-    boolean removeCurrency(String currencyCode);
+    String getDefaultCurrency();
 
-    Set<CurrencyModel> getCurrencies();
+    void setDefaultCurrency(String currency);
 
     /**
      * Events

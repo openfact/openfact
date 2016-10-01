@@ -38,7 +38,6 @@ import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
 import org.openfact.representations.idm.CertificateRepresentation;
-import org.openfact.representations.idm.CurrencyRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
 import org.openfact.representations.idm.TasksScheduleRepresentation;
@@ -67,7 +66,6 @@ public class ModelToRepresentation {
         postalAddressRep.setCountryIdentificationCode(organization.getCountryIdentificationCode());
         rep.setPostalAddress(postalAddressRep);
 
-        rep.setCurrencies(organization.getCurrencies().stream().map(f -> toRepresentation(f)).collect(Collectors.toSet()));
         if (internal) {
             TasksScheduleRepresentation tasksSchedulerRep = new TasksScheduleRepresentation();
             tasksSchedulerRep.setAttempNumber(organization.getAttempNumber());
@@ -81,15 +79,7 @@ public class ModelToRepresentation {
         }
 
         return rep;
-    }
-    
-    public static CurrencyRepresentation toRepresentation(CurrencyModel currency) {
-        CurrencyRepresentation rep = new CurrencyRepresentation();
-        rep.setId(currency.getId());
-        rep.setCode(currency.getCode());
-        rep.setPriority(currency.getPriority());
-        return rep;
-    }
+    }      
     
     public static InvoiceRepresentation toRepresentation(InvoiceModel model) {
         InvoiceRepresentation rep = new InvoiceRepresentation();

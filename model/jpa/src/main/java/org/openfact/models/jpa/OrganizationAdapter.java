@@ -275,75 +275,23 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     }
 
     @Override
-    public CurrencyModel addCurrency(String currencyCode) {
-        removeDuplicateCurrencies(organization, currencyCode);
-
-        CurrencyEntity entity = new CurrencyEntity();
-        entity.setCode(currencyCode);
-
-        entity.setOrganization(organization);
-        em.persist(entity);
-        em.flush();
-        final CurrencyModel adapter = new CurrencyAdapter(this, session, em, entity);
-        return adapter;
+    public Set<String> getSupportedCurrencies() {
+        return organization.getSupportedCurrencies();
     }
 
     @Override
-    public CurrencyModel addCurrency(String currencyCode, int priority) {
-        removeDuplicateCurrencies(organization, currencyCode);
-
-        CurrencyEntity entity = new CurrencyEntity();
-        entity.setCode(currencyCode);
-        entity.setPriority(priority);
-
-        entity.setOrganization(organization);
-        em.persist(entity);
-        em.flush();
-        final CurrencyModel adapter = new CurrencyAdapter(this, session, em, entity);
-        return adapter;
-    }
-
-    private void removeDuplicateCurrencies(OrganizationEntity organization, String currencyCode) {
-        Iterator<CurrencyEntity> it = organization.getCurrencies().iterator();
-        while (it.hasNext()) {
-            CurrencyEntity ae = it.next();
-            if (ae.getCode().equals(currencyCode)) {
-                it.remove();
-                em.remove(ae);
-                em.flush();
-            }
-        }
+    public void setSupportedCurrencies(Set<String> currencies) {
+        organization.setSupportedCurrencies(currencies);
     }
 
     @Override
-    public boolean removeCurrency(String currencyCode) {
-        if (currencyCode == null) {
-            return false;
-        }
-
-        CurrencyEntity currencyEntity = null;
-        Iterator<CurrencyEntity> it = organization.getCurrencies().iterator();
-        while (it.hasNext()) {
-            CurrencyEntity ae = it.next();
-            if (ae.getCode().equals(currencyCode)) {
-                currencyEntity = ae;
-                it.remove();
-                break;
-            }
-        }
-        if (currencyEntity == null) {
-            return false;
-        }
-
-        em.remove(currencyEntity);
-        em.flush();
-        return true;
+    public String getDefaultCurrency() {
+        return organization.getDefaultCurrency();
     }
 
     @Override
-    public Set<CurrencyModel> getCurrencies() {
-        return organization.getCurrencies().stream().map(f -> new CurrencyAdapter(this, session, em, f))
-                .collect(Collectors.toSet());
+    public void setDefaultCurrency(String currency) {
+        organization.setDefaultCurrency(currency);
     }
 
     @Override

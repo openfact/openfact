@@ -9,7 +9,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.jboss.resteasy.annotations.cache.NoCache;
-import org.openfact.representatios.idm.catalog.CodeCatalogRepresentation;
+import org.openfact.representations.idm.catalog.CodeCatalogRepresentation;
 
 /**
  * @author carlosthe19916@sistcoop.com

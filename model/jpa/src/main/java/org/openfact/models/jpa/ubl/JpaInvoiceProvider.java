@@ -74,7 +74,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     }
 	
     @Override
-    public InvoiceModel addInvoice(OrganizationModel organization, String ID, String typeCode) {
+    public InvoiceModel addInvoice(OrganizationModel organization, String typeCode, String ID) {
         if (ID == null) {
             ID = OpenfactModelUtils.generateUblID(session, organization, UblDocumentType.INVOICE, typeCode);
         }

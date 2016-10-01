@@ -1,7 +1,5 @@
 package org.openfact.models.jpa.entities.catalog;
 
-import java.math.BigDecimal;
-
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
@@ -9,95 +7,81 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name = "CURRENCY_CATALOG")
 public class CurrencyCatalogEntity {
-	@Id
-	@Access(AccessType.PROPERTY)
-	@Column(name = "ID", length = 36)
-	@GeneratedValue(generator = "uuid2")
-	@GenericGenerator(name = "uuid2", strategy = "uuid2")
-	protected String id;
 
-	@Column(name = "ID_CATALOG")
-	protected String ID;
-	@Column(name = "CODE")
-	protected String code;
+    @Id
+    @Access(AccessType.PROPERTY)
+    @Column(name = "ID", length = 36)
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    protected String id;
 
-	@NotNull
-	@Column(name = "NAME")
-	protected String name;
+    @Column(name = "ENTITY_NAME")
+    protected String entityName;
 
-	@Column(name = "DESCRIPTION")
-	protected String description;
+    @Column(name = "CURRENCY")
+    protected String currency;
 
-	@Column(name = "VALUE")
-	protected BigDecimal value;
+    @Column(name = "ALPHABETIC_CODE")
+    protected String alphabetic;
 
-	/**
-	 * Locale
-	 */
+    @Column(name = "NUMERIC_CODE")
+    protected String numericCode;
 
-	@Column(name = "LOCALE")
-	protected String locale;
+    @Column(name = "MINOR_UNIT")
+    protected int minorUnit;
 
-	public String getId() {
-		return id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public String getID() {
-		return ID;
-	}
+    public String getEntityName() {
+        return entityName;
+    }
 
-	public void setID(String iD) {
-		ID = iD;
-	}
+    public void setEntityName(String entityName) {
+        this.entityName = entityName;
+    }
 
-	public String getCode() {
-		return code;
-	}
+    public String getCurrency() {
+        return currency;
+    }
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getAlphabetic() {
+        return alphabetic;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setAlphabetic(String alphabetic) {
+        this.alphabetic = alphabetic;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getNumericCode() {
+        return numericCode;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setNumericCode(String numericCode) {
+        this.numericCode = numericCode;
+    }
 
-	public BigDecimal getValue() {
-		return value;
-	}
+    public int getMinorUnit() {
+        return minorUnit;
+    }
 
-	public void setValue(BigDecimal value) {
-		this.value = value;
-	}
+    public void setMinorUnit(int minorUnit) {
+        this.minorUnit = minorUnit;
+    }
 
-	public String getLocale() {
-		return locale;
-	}
-
-	public void setLocale(String locale) {
-		this.locale = locale;
-	}
-	
 }

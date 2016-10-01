@@ -30,6 +30,10 @@ public interface AdminRoot {
     OrganizationsAdminResource getOrganizationsAdmin(@Context final HttpHeaders headers,
             @Context final HttpServletRequest httpServletRequest);
 
+    @Path("codes-catalog")
+    CodesCatalogAdminResource getCodesCatalogResource(@Context final HttpHeaders headers,
+            @Context final HttpServletRequest httpServletRequest);
+
     @Path("commons")
     CommonsAdminResource getCommonsResource(@Context final HttpHeaders headers,
             @Context final HttpServletRequest httpServletRequest);

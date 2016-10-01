@@ -11,13 +11,13 @@ import org.openfact.provider.Provider;
 public interface InvoiceProvider extends Provider {
 
     InvoiceModel addInvoice(OrganizationModel organization);
-    
-    InvoiceModel addInvoice(OrganizationModel organization, String ID);
 
-    InvoiceModel addInvoice(OrganizationModel organization, String ID, String codeType);
+    InvoiceModel addInvoice(OrganizationModel organization, String ID);
     
+    InvoiceModel addInvoice(OrganizationModel organization, String invoiceTypeCode, String ID);
+
     InvoiceModel getInvoiceById(OrganizationModel organization, String id);
-    
+
     InvoiceModel getInvoiceByID(OrganizationModel organization, String ID);
 
     boolean removeInvoice(OrganizationModel organization, String id);
@@ -41,6 +41,6 @@ public interface InvoiceProvider extends Provider {
 
     int getInvoicesCount(OrganizationModel organization);
 
-	InvoiceModel getLastInvoice(OrganizationModel organization, int IDInvoiceLength,String maskFormater);
+    InvoiceModel getLastInvoice(OrganizationModel organization, int IDInvoiceLength, String maskFormater);
 
 }

@@ -417,7 +417,7 @@ public class OrganizationAdapter implements OrganizationModel {
     @Override
     public void setDescription(String description) {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
@@ -429,7 +429,7 @@ public class OrganizationAdapter implements OrganizationModel {
     @Override
     public void setAssignedIdentificationId(String assignedIdentificationId) {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
@@ -441,7 +441,7 @@ public class OrganizationAdapter implements OrganizationModel {
     @Override
     public void setAdditionalAccountId(String additionalAccount) {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
@@ -453,7 +453,7 @@ public class OrganizationAdapter implements OrganizationModel {
     @Override
     public void setSupplierName(String supplierName) {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
@@ -465,7 +465,7 @@ public class OrganizationAdapter implements OrganizationModel {
     @Override
     public void setRegistrationName(String registrationName) {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
@@ -477,7 +477,7 @@ public class OrganizationAdapter implements OrganizationModel {
     @Override
     public void setPostalAddressId(String postalAddressId) {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
@@ -489,7 +489,7 @@ public class OrganizationAdapter implements OrganizationModel {
     @Override
     public void setStreetName(String streetName) {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
@@ -501,7 +501,7 @@ public class OrganizationAdapter implements OrganizationModel {
     @Override
     public void setCitySubdivisionName(String citySubdivisionName) {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
@@ -513,7 +513,7 @@ public class OrganizationAdapter implements OrganizationModel {
     @Override
     public void setCityName(String cityName) {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
@@ -525,7 +525,7 @@ public class OrganizationAdapter implements OrganizationModel {
     @Override
     public void setCountrySubentity(String countrySubentity) {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
@@ -537,7 +537,7 @@ public class OrganizationAdapter implements OrganizationModel {
     @Override
     public void setDistrict(String district) {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
@@ -549,7 +549,7 @@ public class OrganizationAdapter implements OrganizationModel {
     @Override
     public void setCountryIdentificationCode(String countryIdentificationCode) {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
@@ -561,169 +561,7 @@ public class OrganizationAdapter implements OrganizationModel {
     @Override
     public void setEmailTheme(String name) {
         // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public int getAttempNumber() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public void setAttempNumber(int attempNumber) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public long getLapseTime() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public void setLapseTime(long lapseTime) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public int getOnErrorAttempNumber() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public void setOnErrorAttempNumber(int OnErrorAttempNumber) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public long getOnErrorLapseTime() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public void setOnErrorLapseTime(long onErrorlapseTime) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public long getDelayTime() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public void setDelayTime(long delayTime) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public LocalTime getSubmitTime() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void setSubmitTime(LocalTime submitTime) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public Set<DayOfWeek> getSubmitDays() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void setSubmitDays(Set<DayOfWeek> submitDays) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public CurrencyModel addCurrency(String currencyCode) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public CurrencyModel addCurrency(String currencyCode, int priority) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public boolean removeCurrency(String currencyCode) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public Set<CurrencyModel> getCurrencies() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void setAttribute(String name, String value) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void removeAttribute(String name) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public String getAttribute(String name) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Set<String> getRequiredActions() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void addRequiredAction(RequiredAction action) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void addRequiredAction(String actionName) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void removeRequiredAction(RequiredAction action) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void removeRequiredAction(String actionName) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public String getCertificatePem() {
-        // TODO Auto-generated method stub
-        return null;
+        
     }
 
     @Override
@@ -762,4 +600,167 @@ public class OrganizationAdapter implements OrganizationModel {
         
     }
 
+    @Override
+    public int getAttempNumber() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public void setAttempNumber(int attempNumber) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public long getLapseTime() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public void setLapseTime(long lapseTime) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public int getOnErrorAttempNumber() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public void setOnErrorAttempNumber(int OnErrorAttempNumber) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public long getOnErrorLapseTime() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public void setOnErrorLapseTime(long onErrorlapseTime) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public long getDelayTime() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public void setDelayTime(long delayTime) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public LocalTime getSubmitTime() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void setSubmitTime(LocalTime submitTime) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public Set<DayOfWeek> getSubmitDays() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void setSubmitDays(Set<DayOfWeek> submitDays) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public Set<String> getSupportedCurrencies() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void setSupportedCurrencies(Set<String> currencies) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public String getDefaultCurrency() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void setDefaultCurrency(String currency) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public String getCertificatePem() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void setAttribute(String name, String value) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void removeAttribute(String name) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public String getAttribute(String name) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Set<String> getRequiredActions() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void addRequiredAction(RequiredAction action) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void addRequiredAction(String actionName) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void removeRequiredAction(RequiredAction action) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void removeRequiredAction(String actionName) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    
 }

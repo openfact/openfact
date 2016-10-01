@@ -117,6 +117,23 @@ public class AdminRootImpl implements AdminRoot {
         ResteasyProviderFactory.getInstance().injectProperties(adminResource);
         return adminResource;
     }
+    
+    @Override
+    public CodesCatalogAdminResource getCodesCatalogResource(HttpHeaders headers,
+            HttpServletRequest httpServletRequest) {
+        handlePreflightRequest();
+
+        AdminAuth auth = authenticateOrganizationAdminRequest(headers, httpServletRequest);
+        if (auth != null) {
+            logger.debug("authenticated admin access for: " + auth.getUser().getUsername());
+        }
+
+        Cors.add(request).allowedOrigins("*").allowedMethods("GET", "PUT", "POST", "DELETE").auth().build(response);
+        
+        CodesCatalogAdminResource catalogResource = new CodesCatalogAdminResourceImpl(auth);
+        ResteasyProviderFactory.getInstance().injectProperties(catalogResource);
+        return catalogResource;
+    }  
 
     @Override
     public CommonsAdminResource getCommonsResource(HttpHeaders headers, HttpServletRequest httpServletRequest) {
@@ -165,6 +182,6 @@ public class AdminRootImpl implements AdminRoot {
                     .allowedMethods("GET", "PUT", "POST", "DELETE").auth().build();
             throw new NoLogWebApplicationException(response);
         }
-    }  
+    }   
 
 }

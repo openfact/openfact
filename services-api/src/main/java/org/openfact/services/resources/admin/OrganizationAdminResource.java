@@ -1,7 +1,5 @@
 package org.openfact.services.resources.admin;
 
-import java.util.List;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -12,7 +10,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.jboss.resteasy.annotations.cache.NoCache;
-import org.openfact.representations.idm.CurrencyRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 
 /**
@@ -43,11 +40,6 @@ public interface OrganizationAdminResource {
     @Consumes(MediaType.APPLICATION_JSON)
     Response updateOrganization(final OrganizationRepresentation rep);
 
-    @GET
-    @Path("currencies")
-    @Produces(MediaType.APPLICATION_JSON)
-    List<CurrencyRepresentation> getCurrencies();
-    
     /**
      * Deletes organization with given name.
      *
@@ -56,7 +48,7 @@ public interface OrganizationAdminResource {
      */
     @DELETE
     Response deleteOrganization();
-    
+
     /**
      * Get the invoices sub resource for the current organization
      */

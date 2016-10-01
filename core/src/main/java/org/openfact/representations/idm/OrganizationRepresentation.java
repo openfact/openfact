@@ -2,7 +2,6 @@ package org.openfact.representations.idm;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.openfact.representations.idm.ubl.CreditNoteRepresentation;
 import org.openfact.representations.idm.ubl.DebitNoteRepresentation;
@@ -28,8 +27,6 @@ public class OrganizationRepresentation {
     protected Map<String, String> smtpServer;
     private PostalAddressRepresentation postalAddress;
     private TasksScheduleRepresentation tasksSchedule;
-    private Set<CurrencyRepresentation> currencies;
-    private Set<DocumentRepresentation> documents;
     protected Map<String, String> attributes;
 
     protected List<InvoiceRepresentation> invoices;
@@ -261,36 +258,6 @@ public class OrganizationRepresentation {
      */
     public void setTasksSchedule(TasksScheduleRepresentation tasksSchedule) {
         this.tasksSchedule = tasksSchedule;
-    }
-
-    /**
-     * @return the currencies
-     */
-    public Set<CurrencyRepresentation> getCurrencies() {
-        return currencies;
-    }
-
-    /**
-     * @param currencies
-     *            the currencies to set
-     */
-    public void setCurrencies(Set<CurrencyRepresentation> currencies) {
-        this.currencies = currencies;
-    }
-
-    /**
-     * @return the documents
-     */
-    public Set<DocumentRepresentation> getDocuments() {
-        return documents;
-    }
-
-    /**
-     * @param documents
-     *            the documents to set
-     */
-    public void setDocuments(Set<DocumentRepresentation> documents) {
-        this.documents = documents;
     }
 
     /**

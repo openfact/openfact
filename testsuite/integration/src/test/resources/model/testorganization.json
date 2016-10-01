@@ -15,20 +15,6 @@
 		"district": "Jesus nazareno",
 		"countryIdentificationCode": "PE"
 	},
-	"currencies": [
-		{
-			"code": "PEN",
-			"priority": 1
-		},
-		{
-			"code": "USD",
-			"priority": 2
-		},
-		{
-			"code": "EUR",
-			"priority": 3
-		}
-	],
 	"smtpServer": {
 		"from": "auto@openfact.org",
 		"host": "localhost",

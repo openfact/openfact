@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.representations.idm.DocumentRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
 import org.openfact.representations.idm.TasksScheduleRepresentation;
@@ -70,10 +69,6 @@ public class ImportTest extends AbstractModelTest {
         Assert.assertEquals(postalAddressRep.getCountrySubentity(), organization.getCountrySubentity());
         Assert.assertEquals(postalAddressRep.getDistrict(), organization.getDistrict());
         Assert.assertEquals(postalAddressRep.getCountryIdentificationCode(), organization.getCountryIdentificationCode());
-        
-        /**
-         * Currencies*/
-        Assert.assertEquals(rep.getCurrencies().size(), organization.getCurrencies().size());
         
         /**
          * Smtp server*/

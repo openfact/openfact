@@ -1,7 +1,5 @@
 package org.openfact.models.jpa.entities.catalog;
 
-import java.math.BigDecimal;
-
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
@@ -9,95 +7,81 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name = "COUNTRY_CATALOG")
 public class CountryCatalogEntity {
-	@Id
-	@Access(AccessType.PROPERTY)
-	@Column(name = "ID", length = 36)
-	@GeneratedValue(generator = "uuid2")
-	@GenericGenerator(name = "uuid2", strategy = "uuid2")
-	protected String id;
 
-	@Column(name = "ID_CATALOG")
-	protected String ID;
-	@Column(name = "CODE")
-	protected String code;
+    @Id
+    @Access(AccessType.PROPERTY)
+    @Column(name = "ID", length = 36)
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    protected String id;
 
-	@NotNull
-	@Column(name = "NAME")
-	protected String name;
+    @Column(name = "NAME")
+    protected String name;
 
-	@Column(name = "DESCRIPTION")
-	protected String description;
+    @Column(name = "SHORT_NAME")
+    protected String shortName;
 
-	@Column(name = "VALUE")
-	protected BigDecimal value;
+    @Column(name = "ALPHA2_CODE")
+    protected String alpha2Code;
 
-	/**
-	 * Locale
-	 */
+    @Column(name = "ALPHA3_CODE")
+    protected String alpha3Code;
 
-	@Column(name = "LOCALE")
-	protected String locale;
+    @Column(name = "NUMERIC_CODE")
+    protected String numericCode;
 
-	public String getId() {
-		return id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public String getID() {
-		return ID;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setID(String iD) {
-		ID = iD;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getCode() {
-		return code;
-	}
+    public String getShortName() {
+        return shortName;
+    }
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getAlpha2Code() {
+        return alpha2Code;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setAlpha2Code(String alpha2Code) {
+        this.alpha2Code = alpha2Code;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getAlpha3Code() {
+        return alpha3Code;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setAlpha3Code(String alpha3Code) {
+        this.alpha3Code = alpha3Code;
+    }
 
-	public BigDecimal getValue() {
-		return value;
-	}
+    public String getNumericCode() {
+        return numericCode;
+    }
 
-	public void setValue(BigDecimal value) {
-		this.value = value;
-	}
+    public void setNumericCode(String numericCode) {
+        this.numericCode = numericCode;
+    }
 
-	public String getLocale() {
-		return locale;
-	}
-
-	public void setLocale(String locale) {
-		this.locale = locale;
-	}
-	
 }

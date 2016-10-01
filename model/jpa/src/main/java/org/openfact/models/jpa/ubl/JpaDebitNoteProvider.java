@@ -57,7 +57,7 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
         }
         
         DebitNoteEntity creditNote = new DebitNoteEntity();
-        creditNote.setID(ID);
+        creditNote.setID(ID);        
         creditNote.setOrganization(OrganizationAdapter.toEntity(organization, em));
         em.persist(creditNote);
         em.flush();

@@ -84,9 +84,6 @@ public class AdapterTest extends AbstractModelTest {
         organizationModel.setPrivateKey(keyPair.getPrivate());
         organizationModel.setPublicKey(keyPair.getPublic());
 
-        organizationModel.addCurrency("PEN");
-        organizationModel.addCurrency("USD");
-
         session.getTransactionManager().commit();
         resetSession();
 
@@ -112,7 +109,6 @@ public class AdapterTest extends AbstractModelTest {
         Assert.assertEquals(organizationModel.getCountryIdentificationCode(), "PE");
         Assert.assertArrayEquals(organizationModel.getPrivateKey().getEncoded(), keyPair.getPrivate().getEncoded());
         Assert.assertArrayEquals(organizationModel.getPublicKey().getEncoded(), keyPair.getPublic().getEncoded());
-        Assert.assertTrue(organizationModel.getCurrencies().size() >= 2);
     }
 
     @Test

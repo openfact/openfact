@@ -181,17 +181,7 @@ public class RepresentationToModel {
             } else {
                 newOrganization.setSubmitDays(new HashSet<DayOfWeek>(Arrays.asList(DayOfWeek.values())));
             }
-        }
-
-        /**
-         * Currencies
-         */
-        if (rep.getCurrencies() != null && !rep.getCurrencies().isEmpty()) {
-            rep.getCurrencies().stream().forEach(f -> newOrganization.addCurrency(f.getCode(), f.getPriority()));
-        } else {
-            Currency currency = Currency.getInstance(Locale.getDefault());
-            newOrganization.addCurrency(currency.getCurrencyCode());
-        }
+        }        
 
         /**
          * Smtp server
@@ -288,11 +278,6 @@ public class RepresentationToModel {
             if (tasksScheduleRep.getSubmitDays() != null) {
                 organization.setSubmitDays(tasksScheduleRep.getSubmitDays());
             }
-        }
-        if (rep.getCurrencies() != null && !rep.getCurrencies().isEmpty()) {
-            Set<CurrencyModel> actualCurrencties = organization.getCurrencies();
-            rep.getCurrencies().stream().forEach(f -> organization.addCurrency(f.getCode(), f.getPriority()));
-            actualCurrencties.stream().forEach(f -> organization.removeCurrency(f.getCode()));
         }
 
         if (rep.getSmtpServer() != null) {

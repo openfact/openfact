@@ -1,7 +1,5 @@
 package org.openfact.models.jpa.entities.catalog;
 
-import java.math.BigDecimal;
-
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
@@ -12,93 +10,58 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name = "UNIT_CATALOG")
 public class UnitCatalogEntity {
-	@Id
-	@Access(AccessType.PROPERTY)
-	@Column(name = "ID", length = 36)
-	@GeneratedValue(generator = "uuid2")
-	@GenericGenerator(name = "uuid2", strategy = "uuid2")
-	protected String id;
 
-	@Column(name = "ID_CATALOG")
-	protected String ID;
-	@Column(name = "CODE")
-	protected String code;
+    @Id
+    @Access(AccessType.PROPERTY)
+    @Column(name = "ID", length = 36)
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    protected String id;
 
-	@NotNull
-	@Column(name = "NAME")
-	protected String name;
+    @NotNull
+    @Column(name = "NAME")
+    protected String name;
 
-	@Column(name = "DESCRIPTION")
-	protected String description;
+    @Column(name = "SYMBOL")
+    protected String symbol;
 
-	@Column(name = "VALUE")
-	protected BigDecimal value;
+    @Column(name = "DESCRIPTION")
+    protected String description;
 
-	/**
-	 * Locale
-	 */
+    public String getId() {
+        return id;
+    }
 
-	@Column(name = "LOCALE")
-	protected String locale;
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public String getId() {
-		return id;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getID() {
-		return ID;
-	}
+    public String getSymbol() {
+        return symbol;
+    }
 
-	public void setID(String iD) {
-		ID = iD;
-	}
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
 
-	public String getCode() {
-		return code;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public BigDecimal getValue() {
-		return value;
-	}
-
-	public void setValue(BigDecimal value) {
-		this.value = value;
-	}
-
-	public String getLocale() {
-		return locale;
-	}
-
-	public void setLocale(String locale) {
-		this.locale = locale;
-	}
-	
-	
 }

@@ -15,20 +15,9 @@
 		<class>org.openfact.events.jpa.AdminEventEntity</class>
 
 		<!-- catalog -->
-		<class>org.openfact.models.jpa.entities.catalog.AdditionalAccountIdCatalogEntity</class>
-		<class>org.openfact.models.jpa.entities.catalog.ConditionCatalogEntity</class>
+		<class>org.openfact.models.jpa.entities.catalog.CodeCatalogEntity</class>
 		<class>org.openfact.models.jpa.entities.catalog.CountryCatalogEntity</class>
 		<class>org.openfact.models.jpa.entities.catalog.CurrencyCatalogEntity</class>
-		<class>org.openfact.models.jpa.entities.catalog.DocumentTypeCatalogEntity</class>
-		<class>org.openfact.models.jpa.entities.catalog.InstructionIdCatalogEntity</class>
-		<class>org.openfact.models.jpa.entities.catalog.InvoiceTypeCatalogEntity</class>
-		<class>org.openfact.models.jpa.entities.catalog.PriceTypeCatalogEntity</class>
-		<class>org.openfact.models.jpa.entities.catalog.RegistrationAddressCatalogEntity</class>
-		<class>org.openfact.models.jpa.entities.catalog.ResponseCreditNoteCatalogEntity</class>
-		<class>org.openfact.models.jpa.entities.catalog.ResponseDebitNoteCatalogEntity</class>
-		<class>org.openfact.models.jpa.entities.catalog.TaxExemptionReasonCatalogEntity</class>
-		<class>org.openfact.models.jpa.entities.catalog.TaxTypeCatalogEntity</class>
-		<class>org.openfact.models.jpa.entities.catalog.TierRangeCatalogEntity</class>
 		<class>org.openfact.models.jpa.entities.catalog.UnitCatalogEntity</class>
 
 		<!-- ubl -->
