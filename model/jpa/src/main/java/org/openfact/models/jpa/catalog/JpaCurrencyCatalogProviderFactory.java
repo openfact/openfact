@@ -1,9 +1,11 @@
 package org.openfact.models.jpa.catalog;
 
+import javax.persistence.EntityManager;
+
 import org.openfact.Config.Scope;
+import org.openfact.connections.jpa.JpaConnectionProvider;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
-import org.openfact.models.catalog.provider.AdditionalAccountIdCatalogProviderFactory;
 import org.openfact.models.catalog.provider.CurrencyCatalogProvider;
 import org.openfact.models.catalog.provider.CurrencyCatalogProviderFactory;
 
@@ -11,32 +13,31 @@ public class JpaCurrencyCatalogProviderFactory implements CurrencyCatalogProvide
 
 	@Override
 	public CurrencyCatalogProvider create(OpenfactSession session) {
-		// TODO Auto-generated method stub
-		return null;
+		  EntityManager em = session.getProvider(JpaConnectionProvider.class).getEntityManager();
+	        return new JpaCurrencyCatalogProvider(session, em);
 	}
 
 	@Override
 	public void init(Scope config) {
-		// TODO Auto-generated method stub
+		 
 		
 	}
 
 	@Override
 	public void postInit(OpenfactSessionFactory factory) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void close() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
+		 return "jpa";
 	}
 
 }
