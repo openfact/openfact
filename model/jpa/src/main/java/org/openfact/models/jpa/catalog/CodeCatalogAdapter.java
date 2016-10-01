@@ -13,87 +13,74 @@ import org.openfact.models.jpa.entities.catalog.CodeCatalogEntity;;
 public class CodeCatalogAdapter implements CodeCatalogModel, JpaModel<CodeCatalogEntity> {
 
     protected static final Logger logger = Logger.getLogger(CodeCatalogAdapter.class);
-    protected CodeCatalogEntity additionalAccountIdCatalog;
+    protected CodeCatalogEntity codeCatalog;
     protected EntityManager em;
     protected OpenfactSession session;
 
-    public CodeCatalogAdapter(CodeCatalogEntity additionalAccountIdCatalog, EntityManager em,
-            OpenfactSession session) {
-        this.additionalAccountIdCatalog = additionalAccountIdCatalog;
+    public CodeCatalogAdapter(OpenfactSession session, EntityManager em, CodeCatalogEntity codeCatalog) {
+        this.codeCatalog = codeCatalog;
         this.em = em;
         this.session = session;
     }
 
     @Override
     public CodeCatalogEntity getEntity() {
-        // TODO Auto-generated method stub
-        return null;
+        return codeCatalog;
     }
 
     @Override
     public String getId() {
-        // TODO Auto-generated method stub
-        return null;
+        return codeCatalog.getId();
     }
 
     @Override
     public String getType() {
-        // TODO Auto-generated method stub
-        return null;
+        return codeCatalog.getType();
     }
 
     @Override
     public void setType(String type) {
-        // TODO Auto-generated method stub
-
+        codeCatalog.setType(type);
     }
 
     @Override
     public String getCode() {
-        // TODO Auto-generated method stub
-        return null;
+        return codeCatalog.getCode();
     }
 
     @Override
     public void setCode(String code) {
-        // TODO Auto-generated method stub
-
+        codeCatalog.setCode(code);
     }
 
     @Override
     public String getDescription() {
-        // TODO Auto-generated method stub
-        return null;
+        return codeCatalog.getDescription();
     }
 
     @Override
     public void setDescription(String description) {
-        // TODO Auto-generated method stub
-
+        codeCatalog.setDescription(description);
     }
 
     @Override
     public String getLocale() {
-        // TODO Auto-generated method stub
-        return null;
+        return codeCatalog.getLocale();
     }
 
     @Override
     public void setLocale(String locale) {
-        // TODO Auto-generated method stub
-
+        codeCatalog.setLocale(locale);
     }
 
     @Override
     public Map<String, String> getAttributes() {
-        // TODO Auto-generated method stub
-        return null;
+        return codeCatalog.getAttributes();
     }
 
     @Override
     public void setAttributes(Map<String, String> attributes) {
-        // TODO Auto-generated method stub
-
+        codeCatalog.setAttributes(attributes);
     }
 
 }

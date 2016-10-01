@@ -6,12 +6,16 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "CURRENCY_CATALOG")
+@NamedQueries({
+        @NamedQuery(name = "getCurrenciesCatalogCount", query = "select count(currencyCatalog.id) from CurrencyCatalogEntity currencyCatalog") })
 public class CurrencyCatalogEntity {
 
     @Id
@@ -28,7 +32,7 @@ public class CurrencyCatalogEntity {
     protected String currency;
 
     @Column(name = "ALPHABETIC_CODE")
-    protected String alphabetic;
+    protected String alphabeticCode;
 
     @Column(name = "NUMERIC_CODE")
     protected String numericCode;
@@ -60,12 +64,12 @@ public class CurrencyCatalogEntity {
         this.currency = currency;
     }
 
-    public String getAlphabetic() {
-        return alphabetic;
+    public String getAlphabeticCode() {
+        return alphabeticCode;
     }
 
-    public void setAlphabetic(String alphabetic) {
-        this.alphabetic = alphabetic;
+    public void setAlphabeticCode(String alphabeticCode) {
+        this.alphabeticCode = alphabeticCode;
     }
 
     public String getNumericCode() {
@@ -84,4 +88,5 @@ public class CurrencyCatalogEntity {
         this.minorUnit = minorUnit;
     }
 
+   
 }

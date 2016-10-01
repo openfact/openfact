@@ -3,6 +3,10 @@ package org.openfact.models;
 import java.util.Set;
 
 import org.openfact.authentication.ClientAuthenticatorProvider;
+import org.openfact.models.catalog.CodeCatalogProvider;
+import org.openfact.models.catalog.CountryCatalogProvider;
+import org.openfact.models.catalog.CurrencyCatalogProvider;
+import org.openfact.models.catalog.UnitCatalogProvider;
 import org.openfact.models.ubl.provider.CreditNoteProvider;
 import org.openfact.models.ubl.provider.DebitNoteProvider;
 import org.openfact.models.ubl.provider.InvoiceProvider;
@@ -42,6 +46,20 @@ public interface OpenfactSession {
 
     DebitNoteProvider debitNotes();
 
+    /**
+     * Catalog
+     */
+    CodeCatalogProvider codesCatalog();
+
+    CountryCatalogProvider countriesCatalog();
+
+    CurrencyCatalogProvider currenciesCatalog();
+
+    UnitCatalogProvider unitsCatalog();
+
+    /**
+     * Security
+     */
     ClientAuthenticatorProvider authentications();
 
     void close();

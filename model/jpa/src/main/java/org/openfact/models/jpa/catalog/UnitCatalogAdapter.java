@@ -15,7 +15,7 @@ public class UnitCatalogAdapter implements UnitCatalogModel, JpaModel<UnitCatalo
     protected EntityManager em;
     protected OpenfactSession session;
 
-    public UnitCatalogAdapter(UnitCatalogEntity unitCatalog, EntityManager em, OpenfactSession session) {
+    public UnitCatalogAdapter(OpenfactSession session, EntityManager em, UnitCatalogEntity unitCatalog) {
         this.unitCatalog = unitCatalog;
         this.em = em;
         this.session = session;
@@ -23,50 +23,42 @@ public class UnitCatalogAdapter implements UnitCatalogModel, JpaModel<UnitCatalo
 
     @Override
     public UnitCatalogEntity getEntity() {
-        // TODO Auto-generated method stub
-        return null;
+        return unitCatalog;
     }
 
     @Override
     public String getId() {
-        // TODO Auto-generated method stub
-        return null;
+        return unitCatalog.getId();
     }
 
     @Override
     public String getName() {
-        // TODO Auto-generated method stub
-        return null;
+        return unitCatalog.getName();
     }
 
     @Override
     public void setName(String name) {
-        // TODO Auto-generated method stub
-
+        unitCatalog.setName(name);
     }
 
     @Override
     public String getSymbol() {
-        // TODO Auto-generated method stub
-        return null;
+        return unitCatalog.getSymbol();
     }
 
     @Override
     public void setSymbol(String symbol) {
-        // TODO Auto-generated method stub
-
+        unitCatalog.setSymbol(symbol);
     }
 
     @Override
     public String getDescription() {
-        // TODO Auto-generated method stub
-        return null;
+        return getDescription();
     }
 
     @Override
     public void setDescription(String description) {
-        // TODO Auto-generated method stub
-
+        unitCatalog.setDescription(description);
     }
 
 }

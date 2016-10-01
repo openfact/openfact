@@ -194,6 +194,9 @@ public class OpenfactApplication extends Application {
             if (createMasterOrganization) {
                 applianceBootstrap.createMasterOrganization(contextPath);
             }
+            if (createMasterOrganization) {
+                applianceBootstrap.createDefaultCatalog(contextPath);
+            }
             session.getTransactionManager().commit();
         } catch (RuntimeException re) {
             if (session.getTransactionManager().isActive()) {

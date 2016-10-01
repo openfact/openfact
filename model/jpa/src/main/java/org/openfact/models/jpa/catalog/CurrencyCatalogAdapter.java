@@ -15,8 +15,8 @@ public class CurrencyCatalogAdapter implements CurrencyCatalogModel, JpaModel<Cu
     protected EntityManager em;
     protected OpenfactSession session;
 
-    public CurrencyCatalogAdapter(CurrencyCatalogEntity currencyCatalog, EntityManager em,
-            OpenfactSession session) {
+    public CurrencyCatalogAdapter(OpenfactSession session, EntityManager em,
+            CurrencyCatalogEntity currencyCatalog) {
         this.currencyCatalog = currencyCatalog;
         this.em = em;
         this.session = session;
@@ -24,80 +24,67 @@ public class CurrencyCatalogAdapter implements CurrencyCatalogModel, JpaModel<Cu
 
     @Override
     public CurrencyCatalogEntity getEntity() {
-        // TODO Auto-generated method stub
-        return null;
+        return currencyCatalog;
     }
 
     @Override
     public String getId() {
-        // TODO Auto-generated method stub
-        return null;
+        return currencyCatalog.getId();
     }
 
     @Override
     public void setId(String id) {
-        // TODO Auto-generated method stub
-
+        currencyCatalog.setId(id);
     }
 
     @Override
     public String getEntityName() {
-        // TODO Auto-generated method stub
-        return null;
+        return currencyCatalog.getEntityName();
     }
 
     @Override
     public void setEntityName(String entity) {
-        // TODO Auto-generated method stub
-
+        currencyCatalog.setEntityName(entity);
     }
 
     @Override
     public String getCurrency() {
-        // TODO Auto-generated method stub
-        return null;
+        return currencyCatalog.getCurrency();
     }
 
     @Override
     public void setCurrency(String currency) {
-        // TODO Auto-generated method stub
-
+        currencyCatalog.setCurrency(currency);
     }
 
     @Override
     public String getAlphabeticCode() {
-        // TODO Auto-generated method stub
-        return null;
+        return currencyCatalog.getAlphabeticCode();
     }
 
     @Override
     public void setAlphabeticCode(String alphabeticCode) {
-        // TODO Auto-generated method stub
-
+        currencyCatalog.setAlphabeticCode(alphabeticCode);
     }
 
     @Override
     public String getNumericCode() {
-        // TODO Auto-generated method stub
-        return null;
+        return currencyCatalog.getNumericCode();
     }
 
     @Override
     public void setNumericCode(String numericCode) {
-        // TODO Auto-generated method stub
-
+        currencyCatalog.setNumericCode(numericCode);
     }
 
     @Override
     public int getMinorUnit() {
-        // TODO Auto-generated method stub
-        return 0;
+        return currencyCatalog.getMinorUnit();
     }
 
     @Override
     public void setMinorUnit(int minorUnit) {
-        // TODO Auto-generated method stub
-
+        currencyCatalog.setMinorUnit(minorUnit);
     }
 
 }

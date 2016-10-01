@@ -425,4 +425,88 @@ public interface ServicesLogger extends BasicLogger {
     @LogMessage(level = ERROR)
     @Message(id=95, value="Client is not allowed to initiate browser login with given response_type. %s flow is disabled for the client.")
     void flowNotAllowed(String flowName);
+    
+    
+    @LogMessage(level = INFO)
+    @Message(id=96, value="Importing codes catalogs from '%s'")
+    void importingCodesCatalogFrom(Object from);
+    
+    @LogMessage(level = ERROR)
+    @Message(id=97, value="Failed to load 'openfact-default-codeCatalog.json'")
+    void failedToLoadCodesCatalog(@Cause Throwable t);
+    
+    @LogMessage(level = INFO)
+    @Message(id=98, value="Added codeCatalog '%s' to system '%s'")
+    void addCodeCatalogSuccess(String codeCatalog);
+    
+    @LogMessage(level = ERROR)
+    @Message(id=99, value="Failed to add codeCatalog '%s' to system '%s': codeCatalog with code exists")
+    void addCodeCatalogFailedCodeCatalogExists(String description, String code);
+
+    @LogMessage(level = ERROR)
+    @Message(id=100, value="Failed to add codeCatalog '%s' to system '%s'")
+    void addCodeCatalogFailed(@Cause Throwable t, String codeCatalogCode, String codeCatalogDescription);
+    
+    
+    @LogMessage(level = INFO)
+    @Message(id=101, value="Importing countrys catalogs from '%s'")
+    void importingCountrysCatalogFrom(Object from);
+    
+    @LogMessage(level = ERROR)
+    @Message(id=102, value="Failed to load 'openfact-default-countryCatalog.json'")
+    void failedToLoadCountrysCatalog(@Cause Throwable t);
+    
+    @LogMessage(level = INFO)
+    @Message(id=103, value="Added countryCatalog '%s' to system '%s'")
+    void addCountryCatalogSuccess(String countryCatalog);
+    
+    @LogMessage(level = ERROR)
+    @Message(id=104, value="Failed to add countryCatalog '%s' to system '%s': countryCatalog with country exists")
+    void addCountryCatalogFailedCountryCatalogExists(String description, String country);
+
+    @LogMessage(level = ERROR)
+    @Message(id=105, value="Failed to add countryCatalog '%s' to system '%s'")
+    void addCountryCatalogFailed(@Cause Throwable t, String countryCatalogCountry, String countryCatalogDescription);
+    
+    
+    @LogMessage(level = INFO)
+    @Message(id=96, value="Importing currencys catalogs from '%s'")
+    void importingCurrencysCatalogFrom(Object from);
+    
+    @LogMessage(level = ERROR)
+    @Message(id=106, value="Failed to load 'openfact-default-currencyCatalog.json'")
+    void failedToLoadCurrencysCatalog(@Cause Throwable t);
+    
+    @LogMessage(level = INFO)
+    @Message(id=107, value="Added currencyCatalog '%s' to system '%s'")
+    void addCurrencyCatalogSuccess(String currencyCatalog);
+    
+    @LogMessage(level = ERROR)
+    @Message(id=108, value="Failed to add currencyCatalog '%s' to system '%s': currencyCatalog with currency exists")
+    void addCurrencyCatalogFailedCurrencyCatalogExists(String description, String currency);
+
+    @LogMessage(level = ERROR)
+    @Message(id=109, value="Failed to add currencyCatalog '%s' to system '%s'")
+    void addCurrencyCatalogFailed(@Cause Throwable t, String currencyCatalogCurrency, String currencyCatalogDescription);
+    
+    
+    @LogMessage(level = INFO)
+    @Message(id=110, value="Importing units catalogs from '%s'")
+    void importingUnitsCatalogFrom(Object from);
+    
+    @LogMessage(level = ERROR)
+    @Message(id=111, value="Failed to load 'openfact-default-unitCatalog.json'")
+    void failedToLoadUnitsCatalog(@Cause Throwable t);
+    
+    @LogMessage(level = INFO)
+    @Message(id=112, value="Added unitCatalog '%s' to system '%s'")
+    void addUnitCatalogSuccess(String unitCatalog);
+    
+    @LogMessage(level = ERROR)
+    @Message(id=113, value="Failed to add unitCatalog '%s' to system '%s': unitCatalog with unit exists")
+    void addUnitCatalogFailedUnitCatalogExists(String description, String unit);
+
+    @LogMessage(level = ERROR)
+    @Message(id=114, value="Failed to add unitCatalog '%s' to system '%s'")
+    void addUnitCatalogFailed(@Cause Throwable t, String unitCatalogUnit, String unitCatalogDescription);
 }

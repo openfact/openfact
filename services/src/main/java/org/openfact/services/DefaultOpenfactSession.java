@@ -13,6 +13,10 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.OpenfactTransactionManager;
 import org.openfact.models.OrganizationProvider;
+import org.openfact.models.catalog.CodeCatalogProvider;
+import org.openfact.models.catalog.CountryCatalogProvider;
+import org.openfact.models.catalog.CurrencyCatalogProvider;
+import org.openfact.models.catalog.UnitCatalogProvider;
 import org.openfact.models.ubl.provider.CreditNoteProvider;
 import org.openfact.models.ubl.provider.DebitNoteProvider;
 import org.openfact.models.ubl.provider.InvoiceProvider;
@@ -28,8 +32,13 @@ public class DefaultOpenfactSession implements OpenfactSession {
 
     private ClientAuthenticatorProvider authProvider;
     private OrganizationProvider organizationProvider;
+
+    private CodeCatalogProvider codeCatalogProvider;
+    private CountryCatalogProvider countryCatalogProvider;
+    private CurrencyCatalogProvider currencyCatalogProvider;
+    private UnitCatalogProvider unitCatalogProvider;
+
     private InvoiceProvider invoiceProvider;
-    
     private CreditNoteProvider creditNoteProvider;
     private DebitNoteProvider debitNoteProvider;
 
@@ -47,8 +56,8 @@ public class DefaultOpenfactSession implements OpenfactSession {
     }
 
     /**
-     * @return OpenfactTransactionManager return transaction manager associate to
-     * the session.
+     * @return OpenfactTransactionManager return transaction manager associate
+     *         to the session.
      */
     @Override
     public OpenfactTransactionManager getTransactionManager() {
@@ -56,8 +65,9 @@ public class DefaultOpenfactSession implements OpenfactSession {
     }
 
     /**
-     * @param provider added to invoke close method of the provider on
-     *                 DefaultOpenfactSession close.
+     * @param provider
+     *            added to invoke close method of the provider on
+     *            DefaultOpenfactSession close.
      */
     @Override
     public void enlistForClose(Provider provider) {
@@ -65,8 +75,9 @@ public class DefaultOpenfactSession implements OpenfactSession {
     }
 
     /**
-     * @param clazz return provider for the given class. If the provider don't
-     *              exists then this method create it and save on local variable.
+     * @param clazz
+     *            return provider for the given class. If the provider don't
+     *            exists then this method create it and save on local variable.
      */
     @Override
     public <T extends Provider> T getProvider(Class<T> clazz) {
@@ -84,8 +95,9 @@ public class DefaultOpenfactSession implements OpenfactSession {
 
     /**
      * @param clazz
-     * @param id    return provider for the given class. If the provider don't
-     *              exists then this method create it and save on local variable.
+     * @param id
+     *            return provider for the given class. If the provider don't
+     *            exists then this method create it and save on local variable.
      */
     @Override
     public <T extends Provider> T getProvider(Class<T> clazz, String id) {
@@ -102,7 +114,8 @@ public class DefaultOpenfactSession implements OpenfactSession {
     }
 
     /**
-     * @param clazz return all the provider's id for the given class.
+     * @param clazz
+     *            return all the provider's id for the given class.
      */
     @Override
     public <T extends Provider> Set<String> listProviderIds(Class<T> clazz) {
@@ -110,7 +123,8 @@ public class DefaultOpenfactSession implements OpenfactSession {
     }
 
     /**
-     * @param clazz return all the provider's class for the given class.
+     * @param clazz
+     *            return all the provider's class for the given class.
      */
     @Override
     public <T extends Provider> Set<T> getAllProviders(Class<T> clazz) {
@@ -166,6 +180,74 @@ public class DefaultOpenfactSession implements OpenfactSession {
         }
     }
 
+    @Override
+    public CodeCatalogProvider codesCatalog() {
+        if (codeCatalogProvider == null) {
+            codeCatalogProvider = getCodeCatalogProvider();
+        }
+        return codeCatalogProvider;
+    }
+
+    private CodeCatalogProvider getCodeCatalogProvider() {
+        CodeCatalogProvider cache = getProvider(CodeCatalogProvider.class);
+        if (cache != null) {
+            return cache;
+        } else {
+            return getProvider(CodeCatalogProvider.class);
+        }
+    }
+
+    @Override
+    public CountryCatalogProvider countriesCatalog() {
+        if (countryCatalogProvider == null) {
+            countryCatalogProvider = getCountryCatalogProvider();
+        }
+        return countryCatalogProvider;
+    }
+
+    private CountryCatalogProvider getCountryCatalogProvider() {
+        CountryCatalogProvider cache = getProvider(CountryCatalogProvider.class);
+        if (cache != null) {
+            return cache;
+        } else {
+            return getProvider(CountryCatalogProvider.class);
+        }
+    }
+
+    @Override
+    public CurrencyCatalogProvider currenciesCatalog() {
+        if (currencyCatalogProvider == null) {
+            currencyCatalogProvider = getCurrencyCatalogProvider();
+        }
+        return currencyCatalogProvider;
+    }
+
+    private CurrencyCatalogProvider getCurrencyCatalogProvider() {
+        CurrencyCatalogProvider cache = getProvider(CurrencyCatalogProvider.class);
+        if (cache != null) {
+            return cache;
+        } else {
+            return getProvider(CurrencyCatalogProvider.class);
+        }
+    }
+
+    @Override
+    public UnitCatalogProvider unitsCatalog() {
+        if (unitCatalogProvider == null) {
+            unitCatalogProvider = getUnitCatalogProvider();
+        }
+        return unitCatalogProvider;
+    }
+
+    private UnitCatalogProvider getUnitCatalogProvider() {
+        UnitCatalogProvider cache = getProvider(UnitCatalogProvider.class);
+        if (cache != null) {
+            return cache;
+        } else {
+            return getProvider(UnitCatalogProvider.class);
+        }
+    }
+
     /**
      * @return InvoiceProvider
      */
@@ -185,7 +267,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
             return getProvider(InvoiceProvider.class);
         }
     }
-    
+
     @Override
     public CreditNoteProvider creditNotes() {
         if (creditNoteProvider == null) {
@@ -202,7 +284,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
             return getProvider(CreditNoteProvider.class);
         }
     }
-    
+
     @Override
     public DebitNoteProvider debitNotes() {
         if (debitNoteProvider == null) {
@@ -219,7 +301,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
             return getProvider(DebitNoteProvider.class);
         }
     }
-    
+
     /**
      * This method is invoked on destroy this method.
      */

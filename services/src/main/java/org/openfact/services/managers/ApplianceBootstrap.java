@@ -16,11 +16,27 @@
  */
 package org.openfact.services.managers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.List;
+
 import org.openfact.Config;
 import org.openfact.common.Version;
 import org.openfact.models.*;
+import org.openfact.models.catalog.CodeCatalogModel;
+import org.openfact.models.catalog.CountryCatalogModel;
+import org.openfact.models.catalog.CurrencyCatalogModel;
+import org.openfact.models.catalog.UnitCatalogModel;
 import org.openfact.models.utils.OpenfactModelUtils;
+import org.openfact.representations.idm.catalog.CodeCatalogRepresentation;
+import org.openfact.representations.idm.catalog.CountryCatalogRepresentation;
+import org.openfact.representations.idm.catalog.CurrencyCatalogRepresentation;
+import org.openfact.representations.idm.catalog.UnitCatalogRepresentation;
 import org.openfact.services.ServicesLogger;
+import org.openfact.util.JsonSerialization;
+
+import com.fasterxml.jackson.core.type.TypeReference;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
@@ -91,6 +107,194 @@ public class ApplianceBootstrap {
 
         RoleModel adminRole = organization.getRole(AdminRoles.ADMIN);
         adminUser.grantRole(adminRole);*/
+    }
+
+    public boolean createDefaultCatalog(String contextPath) {
+        createDefaultCodeCatalog(contextPath);
+        createDefaultCountryCatalog(contextPath);
+        createDefaultCurrencyCatalog(contextPath);
+        createDefaultUnitCatalog(contextPath);        
+        return true;
+    }
+    
+    public boolean createDefaultCodeCatalog(String contextPath) {
+        if (session.codesCatalog().getCodesCatalogCount() > 0) {
+            throw new IllegalStateException("Can't create initial codes catalog as codes already exists");
+        }
+        
+        String configDir = System.getProperty("jboss.server.config.dir");
+        if (configDir != null) {
+            File addCodeCatalogFile = new File(configDir + File.separator + "openfact-default-codeCatalog.json");
+            if (addCodeCatalogFile.isFile()) {
+                logger.importingCodesCatalogFrom(addCodeCatalogFile);
+
+                List<CodeCatalogRepresentation> catalogs;
+                try {
+                    catalogs = JsonSerialization.readValue(new FileInputStream(addCodeCatalogFile), new TypeReference<List<CodeCatalogRepresentation>>() {
+                    });
+                } catch (IOException e) {
+                    logger.failedToLoadCodesCatalog(e);
+                    return false;
+                }
+
+                for (CodeCatalogRepresentation catalogRep : catalogs) {
+                    try {
+                        session.getTransactionManager().begin();
+
+                        CodeCatalogModel catalog = session.codesCatalog().addCodeCatalog(catalogRep.getLocale(), catalogRep.getType(), catalogRep.getCode(), catalogRep.getDescription());
+                        catalog.setAttributes(catalogRep.getAttributes());
+
+                        session.getTransactionManager().commit();
+                        logger.addCodeCatalogSuccess(catalogRep.getDescription());
+                    } catch (ModelDuplicateException e) {
+                        session.getTransactionManager().rollback();
+                        logger.addCodeCatalogFailedCodeCatalogExists(catalogRep.getCode(), catalogRep.getDescription());
+                    } catch (Throwable t) {
+                        session.getTransactionManager().rollback();
+                        logger.addCodeCatalogFailed(t, catalogRep.getCode(), catalogRep.getDescription());
+                    } finally {
+                        session.close();
+                    }
+                }
+            }
+        }
+        return true;
+    }
+    
+    public boolean createDefaultCountryCatalog(String contextPath) {
+        if (session.countriesCatalog().getCountriesCatalogCount() > 0) {
+            throw new IllegalStateException("Can't create initial country catalog as countries already exists");
+        }
+        
+        String configDir = System.getProperty("jboss.server.config.dir");
+        if (configDir != null) {
+            File addCountryCatalogFile = new File(configDir + File.separator + "openfact-default-countryCatalog.json");
+            if (addCountryCatalogFile.isFile()) {
+                logger.importingCountrysCatalogFrom(addCountryCatalogFile);
+
+                List<CountryCatalogRepresentation> catalogs;
+                try {
+                    catalogs = JsonSerialization.readValue(new FileInputStream(addCountryCatalogFile), new TypeReference<List<CountryCatalogRepresentation>>() {
+                    });
+                } catch (IOException e) {
+                    logger.failedToLoadCountrysCatalog(e);
+                    return false;
+                }
+
+                for (CountryCatalogRepresentation catalogRep : catalogs) {
+                    try {
+                        session.getTransactionManager().begin();
+
+                        CountryCatalogModel catalog = session.countriesCatalog().addCountryCatalog(catalogRep.getName());
+                        catalog.setShortName(catalogRep.getShortName());
+                        catalog.setAlpha2Code(catalogRep.getAlpha2Code());
+                        catalog.setAlpha3Code(catalogRep.getAlpha3Code());
+                        catalog.setNumericCode(catalogRep.getNumericCode());
+                        
+                        session.getTransactionManager().commit();
+                        logger.addCountryCatalogSuccess(catalogRep.getName());
+                    } catch (ModelDuplicateException e) {
+                        session.getTransactionManager().rollback();
+                        logger.addCountryCatalogFailedCountryCatalogExists(catalogRep.getName(), catalogRep.getShortName());
+                    } catch (Throwable t) {
+                        session.getTransactionManager().rollback();
+                        logger.addCountryCatalogFailed(t, catalogRep.getName(), catalogRep.getShortName());
+                    } finally {
+                        session.close();
+                    }
+                }
+            }
+        }
+        return true;
+    }
+    
+    public boolean createDefaultCurrencyCatalog(String contextPath) {
+        if (session.currenciesCatalog().getCurrenciesCatalogCount() > 0) {
+            throw new IllegalStateException("Can't create initial currency catalog as currencys already exists");
+        }
+        
+        String configDir = System.getProperty("jboss.server.config.dir");
+        if (configDir != null) {
+            File addCurrencyCatalogFile = new File(configDir + File.separator + "openfact-default-currencyCatalog.json");
+            if (addCurrencyCatalogFile.isFile()) {
+                logger.importingCurrencysCatalogFrom(addCurrencyCatalogFile);
+
+                List<CurrencyCatalogRepresentation> catalogs;
+                try {
+                    catalogs = JsonSerialization.readValue(new FileInputStream(addCurrencyCatalogFile), new TypeReference<List<CurrencyCatalogRepresentation>>() {
+                    });
+                } catch (IOException e) {
+                    logger.failedToLoadCurrencysCatalog(e);
+                    return false;
+                }
+
+                for (CurrencyCatalogRepresentation catalogRep : catalogs) {
+                    try {
+                        session.getTransactionManager().begin();
+
+                        CurrencyCatalogModel catalog = session.currenciesCatalog().addCurrencyCatalog(catalogRep.getEntity(), catalogRep.getCurrency());
+                        catalog.setAlphabeticCode(catalogRep.getAlphabeticCode());
+                        catalog.setNumericCode(catalogRep.getNumericCode());
+                        catalog.setMinorUnit(catalogRep.getMinorUnit());
+                        
+                        session.getTransactionManager().commit();
+                        logger.addCurrencyCatalogSuccess(catalogRep.getCurrency());
+                    } catch (ModelDuplicateException e) {
+                        session.getTransactionManager().rollback();
+                        logger.addCurrencyCatalogFailedCurrencyCatalogExists(catalogRep.getCurrency(), catalogRep.getEntity());
+                    } catch (Throwable t) {
+                        session.getTransactionManager().rollback();
+                        logger.addCurrencyCatalogFailed(t, catalogRep.getCurrency(), catalogRep.getEntity());
+                    } finally {
+                        session.close();
+                    }
+                }
+            }
+        }
+        return true;
+    }
+    
+    public boolean createDefaultUnitCatalog(String contextPath) {
+        if (session.unitsCatalog().getUnitsCatalogCount() > 0) {
+            throw new IllegalStateException("Can't create initial units catalog as units already exists");
+        }
+        
+        String configDir = System.getProperty("jboss.server.config.dir");
+        if (configDir != null) {
+            File addUnitCatalogFile = new File(configDir + File.separator + "openfact-default-unitCatalog.json");
+            if (addUnitCatalogFile.isFile()) {
+                logger.importingUnitsCatalogFrom(addUnitCatalogFile);
+
+                List<UnitCatalogRepresentation> catalogs;
+                try {
+                    catalogs = JsonSerialization.readValue(new FileInputStream(addUnitCatalogFile), new TypeReference<List<UnitCatalogRepresentation>>() {
+                    });
+                } catch (IOException e) {
+                    logger.failedToLoadUnitsCatalog(e);
+                    return false;
+                }
+
+                for (UnitCatalogRepresentation catalogRep : catalogs) {
+                    try {
+                        session.getTransactionManager().begin();
+
+                        UnitCatalogModel catalog = session.unitsCatalog().addUnitCatalog(catalogRep.getName(), catalogRep.getSymbol(), catalogRep.getDescription());
+
+                        session.getTransactionManager().commit();
+                        logger.addUnitCatalogSuccess(catalogRep.getDescription());
+                    } catch (ModelDuplicateException e) {
+                        session.getTransactionManager().rollback();
+                        logger.addUnitCatalogFailedUnitCatalogExists(catalogRep.getName(), catalogRep.getDescription());
+                    } catch (Throwable t) {
+                        session.getTransactionManager().rollback();
+                        logger.addUnitCatalogFailed(t, catalogRep.getName(), catalogRep.getDescription());
+                    } finally {
+                        session.close();
+                    }
+                }
+            }
+        }
+        return true;
     }
 
 }

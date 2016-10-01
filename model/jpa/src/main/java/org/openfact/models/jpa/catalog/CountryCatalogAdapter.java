@@ -15,9 +15,8 @@ public class CountryCatalogAdapter implements CountryCatalogModel, JpaModel<Coun
     protected EntityManager em;
     protected OpenfactSession session;
 
-    public CountryCatalogAdapter(CountryCatalogEntity countryCatalog, EntityManager em,
-            OpenfactSession session) {
-
+    public CountryCatalogAdapter(OpenfactSession session, EntityManager em,
+            CountryCatalogEntity countryCatalog) {
         this.countryCatalog = countryCatalog;
         this.em = em;
         this.session = session;
@@ -25,74 +24,62 @@ public class CountryCatalogAdapter implements CountryCatalogModel, JpaModel<Coun
 
     @Override
     public CountryCatalogEntity getEntity() {
-        // TODO Auto-generated method stub
-        return null;
+        return countryCatalog;
     }
 
     @Override
     public String getId() {
-        // TODO Auto-generated method stub
-        return null;
+        return countryCatalog.getId();
     }
 
     @Override
     public String getName() {
-        // TODO Auto-generated method stub
-        return null;
+        return countryCatalog.getName();
     }
 
     @Override
     public void setName(String name) {
-        // TODO Auto-generated method stub
-
+        countryCatalog.setName(name);
     }
 
     @Override
     public String getShortName() {
-        // TODO Auto-generated method stub
-        return null;
+        return countryCatalog.getShortName();
     }
 
     @Override
     public void setShortName(String shortName) {
-        // TODO Auto-generated method stub
-
+        countryCatalog.setShortName(shortName);
     }
 
     @Override
     public String getAlpha2Code() {
-        // TODO Auto-generated method stub
-        return null;
+        return countryCatalog.getAlpha2Code();
     }
 
     @Override
     public void setAlpha2Code(String alpha2Code) {
-        // TODO Auto-generated method stub
-
+        countryCatalog.setAlpha2Code(alpha2Code);
     }
 
     @Override
     public String getAlpha3Code() {
-        // TODO Auto-generated method stub
-        return null;
+        return countryCatalog.getAlpha3Code();
     }
 
     @Override
     public void setAlpha3Code(String alpha3Code) {
-        // TODO Auto-generated method stub
-
+        countryCatalog.setAlpha3Code(alpha3Code);
     }
 
     @Override
     public String getNumericCode() {
-        // TODO Auto-generated method stub
-        return null;
+        return countryCatalog.getNumericCode();
     }
 
     @Override
     public void setNumericCode(String numericCode) {
-        // TODO Auto-generated method stub
-
+        countryCatalog.setNumericCode(numericCode);
     }
 
 }
