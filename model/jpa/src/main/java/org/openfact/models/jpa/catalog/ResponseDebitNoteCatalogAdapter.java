@@ -25,80 +25,72 @@ public class ResponseDebitNoteCatalogAdapter
 	}
 
 	@Override
-	public ResponseDebitNoteCatalogEntity getEntity() {
-		// TODO Auto-generated method stub
-		return null;
+	public ResponseDebitNoteCatalogEntity getEntity() {		
+		return responseDebitNoteCatalog;
 	}
 
 	@Override
 	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return responseDebitNoteCatalog.getId();
 	}
 
 	@Override
 	public String getID() {
-		// TODO Auto-generated method stub
-		return null;
+		return responseDebitNoteCatalog.getID();
 	}
 
 	@Override
 	public String getCode() {
-		// TODO Auto-generated method stub
-		return null;
+		return responseDebitNoteCatalog.getCode();
 	}
 
 	@Override
 	public void setCode(String code) {
-		// TODO Auto-generated method stub
+		responseDebitNoteCatalog.setCode(code);
 
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return responseDebitNoteCatalog.getName();
 	}
 
 	@Override
 	public void setName(String name) {
-		// TODO Auto-generated method stub
+		responseDebitNoteCatalog.setName(name);
 
 	}
 
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
+		return responseDebitNoteCatalog.getDescription();
 	}
 
 	@Override
 	public void setDescription(String description) {
-		// TODO Auto-generated method stub
+		responseDebitNoteCatalog.setDescription(description);
 
 	}
 
 	@Override
 	public BigDecimal getValue() {
-		// TODO Auto-generated method stub
-		return null;
+		return responseDebitNoteCatalog.getValue();
 	}
 
 	@Override
 	public void setValue(BigDecimal value) {
-		// TODO Auto-generated method stub
+		responseDebitNoteCatalog.setValue(value);
 
 	}
 
 	@Override
 	public String getLocale() {
-		// TODO Auto-generated method stub
-		return null;
+		return responseDebitNoteCatalog.getLocale();
 	}
 
 	@Override
 	public void setLocale(String locale) {
-		// TODO Auto-generated method stub
+		responseDebitNoteCatalog.setLocale(locale);
 
 	}
 

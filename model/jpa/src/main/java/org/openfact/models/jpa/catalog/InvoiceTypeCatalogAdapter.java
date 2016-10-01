@@ -23,69 +23,73 @@ public class InvoiceTypeCatalogAdapter  implements InvoiceTypeCatalogModel, JpaM
 		this.session = session;
 	}
 	@Override
-	public InvoiceTypeCatalogEntity getEntity() {
-		// TODO Auto-generated method stub
-		return null;
+	public InvoiceTypeCatalogEntity getEntity() {		
+		return invoiceTypeCatalog;
 	}
 	@Override
 	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return invoiceTypeCatalog.getId();
 	}
+
 	@Override
 	public String getID() {
-		// TODO Auto-generated method stub
-		return null;
+		return invoiceTypeCatalog.getID();
 	}
+
 	@Override
 	public String getCode() {
-		// TODO Auto-generated method stub
-		return null;
+		return invoiceTypeCatalog.getCode();
 	}
+
 	@Override
 	public void setCode(String code) {
-		// TODO Auto-generated method stub
-		
+		invoiceTypeCatalog.setCode(code);
+
 	}
+
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return invoiceTypeCatalog.getName();
 	}
+
 	@Override
 	public void setName(String name) {
-		// TODO Auto-generated method stub
-		
+		invoiceTypeCatalog.setName(name);
+
 	}
+
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
+		return invoiceTypeCatalog.getDescription();
 	}
+
 	@Override
 	public void setDescription(String description) {
-		// TODO Auto-generated method stub
-		
+		invoiceTypeCatalog.setDescription(description);
+
 	}
+
 	@Override
 	public BigDecimal getValue() {
-		// TODO Auto-generated method stub
-		return null;
+		return invoiceTypeCatalog.getValue();
 	}
+
 	@Override
 	public void setValue(BigDecimal value) {
-		// TODO Auto-generated method stub
-		
+		invoiceTypeCatalog.setValue(value);
+
 	}
+
 	@Override
 	public String getLocale() {
-		// TODO Auto-generated method stub
-		return null;
+		return invoiceTypeCatalog.getLocale();
 	}
+
 	@Override
 	public void setLocale(String locale) {
-		// TODO Auto-generated method stub
-		
+		invoiceTypeCatalog.setLocale(locale);
+
 	}
+
 	
 }

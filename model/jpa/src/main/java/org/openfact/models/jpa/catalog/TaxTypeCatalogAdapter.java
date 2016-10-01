@@ -23,80 +23,72 @@ public class TaxTypeCatalogAdapter implements TaxTypeCatalogModel, JpaModel<TaxT
 	}
 
 	@Override
-	public TaxTypeCatalogEntity getEntity() {
-		// TODO Auto-generated method stub
-		return null;
+	public TaxTypeCatalogEntity getEntity() {		
+		return taxTypeCatalog;
 	}
 
 	@Override
 	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return taxTypeCatalog.getId();
 	}
 
 	@Override
 	public String getID() {
-		// TODO Auto-generated method stub
-		return null;
+		return taxTypeCatalog.getID();
 	}
 
 	@Override
 	public String getCode() {
-		// TODO Auto-generated method stub
-		return null;
+		return taxTypeCatalog.getCode();
 	}
 
 	@Override
 	public void setCode(String code) {
-		// TODO Auto-generated method stub
+		taxTypeCatalog.setCode(code);
 
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return taxTypeCatalog.getName();
 	}
 
 	@Override
 	public void setName(String name) {
-		// TODO Auto-generated method stub
+		taxTypeCatalog.setName(name);
 
 	}
 
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
+		return taxTypeCatalog.getDescription();
 	}
 
 	@Override
 	public void setDescription(String description) {
-		// TODO Auto-generated method stub
+		taxTypeCatalog.setDescription(description);
 
 	}
 
 	@Override
 	public BigDecimal getValue() {
-		// TODO Auto-generated method stub
-		return null;
+		return taxTypeCatalog.getValue();
 	}
 
 	@Override
 	public void setValue(BigDecimal value) {
-		// TODO Auto-generated method stub
+		taxTypeCatalog.setValue(value);
 
 	}
 
 	@Override
 	public String getLocale() {
-		// TODO Auto-generated method stub
-		return null;
+		return taxTypeCatalog.getLocale();
 	}
 
 	@Override
 	public void setLocale(String locale) {
-		// TODO Auto-generated method stub
+		taxTypeCatalog.setLocale(locale);
 
 	}
 

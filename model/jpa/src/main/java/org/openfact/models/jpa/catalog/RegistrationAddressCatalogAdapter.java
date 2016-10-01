@@ -22,69 +22,72 @@ public class RegistrationAddressCatalogAdapter  implements RegistrationAddressCa
 		this.session = session;
 	}
 	@Override
-	public RegistrationAddressCatalogEntity getEntity() {
-		// TODO Auto-generated method stub
-		return null;
+	public RegistrationAddressCatalogEntity getEntity() {		
+		return registrationAddressCatalog;
 	}
 	@Override
 	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return registrationAddressCatalog.getId();
 	}
+
 	@Override
 	public String getID() {
-		// TODO Auto-generated method stub
-		return null;
+		return registrationAddressCatalog.getID();
 	}
+
 	@Override
 	public String getCode() {
-		// TODO Auto-generated method stub
-		return null;
+		return registrationAddressCatalog.getCode();
 	}
+
 	@Override
 	public void setCode(String code) {
-		// TODO Auto-generated method stub
-		
+		registrationAddressCatalog.setCode(code);
+
 	}
+
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return registrationAddressCatalog.getName();
 	}
+
 	@Override
 	public void setName(String name) {
-		// TODO Auto-generated method stub
-		
+		registrationAddressCatalog.setName(name);
+
 	}
+
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
+		return registrationAddressCatalog.getDescription();
 	}
+
 	@Override
 	public void setDescription(String description) {
-		// TODO Auto-generated method stub
-		
+		registrationAddressCatalog.setDescription(description);
+
 	}
+
 	@Override
 	public BigDecimal getValue() {
-		// TODO Auto-generated method stub
-		return null;
+		return registrationAddressCatalog.getValue();
 	}
+
 	@Override
 	public void setValue(BigDecimal value) {
-		// TODO Auto-generated method stub
-		
+		registrationAddressCatalog.setValue(value);
+
 	}
+
 	@Override
 	public String getLocale() {
-		// TODO Auto-generated method stub
-		return null;
+		return registrationAddressCatalog.getLocale();
 	}
+
 	@Override
 	public void setLocale(String locale) {
-		// TODO Auto-generated method stub
-		
+		registrationAddressCatalog.setLocale(locale);
+
 	}
-	
+
 }

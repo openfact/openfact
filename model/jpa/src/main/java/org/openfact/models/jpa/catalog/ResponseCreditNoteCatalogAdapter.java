@@ -22,69 +22,72 @@ public class ResponseCreditNoteCatalogAdapter  implements ResponseCreditNoteCata
 		this.session = session;
 	}
 	@Override
-	public ResponseCreditNoteCatalogEntity getEntity() {
-		// TODO Auto-generated method stub
-		return null;
+	public ResponseCreditNoteCatalogEntity getEntity() {	
+		return responseCreditNoteCatalog;
 	}
 	@Override
 	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return responseCreditNoteCatalog.getId();
 	}
+
 	@Override
 	public String getID() {
-		// TODO Auto-generated method stub
-		return null;
+		return responseCreditNoteCatalog.getID();
 	}
+
 	@Override
 	public String getCode() {
-		// TODO Auto-generated method stub
-		return null;
+		return responseCreditNoteCatalog.getCode();
 	}
+
 	@Override
 	public void setCode(String code) {
-		// TODO Auto-generated method stub
-		
+		responseCreditNoteCatalog.setCode(code);
+
 	}
+
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return responseCreditNoteCatalog.getName();
 	}
+
 	@Override
 	public void setName(String name) {
-		// TODO Auto-generated method stub
-		
+		responseCreditNoteCatalog.setName(name);
+
 	}
+
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
+		return responseCreditNoteCatalog.getDescription();
 	}
+
 	@Override
 	public void setDescription(String description) {
-		// TODO Auto-generated method stub
-		
+		responseCreditNoteCatalog.setDescription(description);
+
 	}
+
 	@Override
 	public BigDecimal getValue() {
-		// TODO Auto-generated method stub
-		return null;
+		return responseCreditNoteCatalog.getValue();
 	}
+
 	@Override
 	public void setValue(BigDecimal value) {
-		// TODO Auto-generated method stub
-		
+		responseCreditNoteCatalog.setValue(value);
+
 	}
+
 	@Override
 	public String getLocale() {
-		// TODO Auto-generated method stub
-		return null;
+		return responseCreditNoteCatalog.getLocale();
 	}
+
 	@Override
 	public void setLocale(String locale) {
-		// TODO Auto-generated method stub
-		
+		responseCreditNoteCatalog.setLocale(locale);
+
 	}
-	
+
 }

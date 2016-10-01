@@ -25,80 +25,72 @@ public class TaxExemptionReasonCatalogAdapter
 	}
 
 	@Override
-	public TaxExemptionReasonCatalogEntity getEntity() {
-		// TODO Auto-generated method stub
-		return null;
+	public TaxExemptionReasonCatalogEntity getEntity() {		
+		return taxExemptionReasonCatalog;
 	}
 
 	@Override
 	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return taxExemptionReasonCatalog.getId();
 	}
 
 	@Override
 	public String getID() {
-		// TODO Auto-generated method stub
-		return null;
+		return taxExemptionReasonCatalog.getID();
 	}
 
 	@Override
 	public String getCode() {
-		// TODO Auto-generated method stub
-		return null;
+		return taxExemptionReasonCatalog.getCode();
 	}
 
 	@Override
 	public void setCode(String code) {
-		// TODO Auto-generated method stub
+		taxExemptionReasonCatalog.setCode(code);
 
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return taxExemptionReasonCatalog.getName();
 	}
 
 	@Override
 	public void setName(String name) {
-		// TODO Auto-generated method stub
+		taxExemptionReasonCatalog.setName(name);
 
 	}
 
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
+		return taxExemptionReasonCatalog.getDescription();
 	}
 
 	@Override
 	public void setDescription(String description) {
-		// TODO Auto-generated method stub
+		taxExemptionReasonCatalog.setDescription(description);
 
 	}
 
 	@Override
 	public BigDecimal getValue() {
-		// TODO Auto-generated method stub
-		return null;
+		return taxExemptionReasonCatalog.getValue();
 	}
 
 	@Override
 	public void setValue(BigDecimal value) {
-		// TODO Auto-generated method stub
+		taxExemptionReasonCatalog.setValue(value);
 
 	}
 
 	@Override
 	public String getLocale() {
-		// TODO Auto-generated method stub
-		return null;
+		return taxExemptionReasonCatalog.getLocale();
 	}
 
 	@Override
 	public void setLocale(String locale) {
-		// TODO Auto-generated method stub
+		taxExemptionReasonCatalog.setLocale(locale);
 
 	}
 

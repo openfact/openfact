@@ -21,69 +21,72 @@ public class CurrencyCatalogAdapter  implements CurrencyCatalogModel, JpaModel<C
 		this.session = session;
 	}
 	@Override
-	public CurrencyCatalogEntity getEntity() {
-		// TODO Auto-generated method stub
-		return null;
+	public CurrencyCatalogEntity getEntity() {		
+		return currencyCatalog;
 	}
 	@Override
 	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return currencyCatalog.getId();
 	}
+
 	@Override
 	public String getID() {
-		// TODO Auto-generated method stub
-		return null;
+		return currencyCatalog.getID();
 	}
+
 	@Override
 	public String getCode() {
-		// TODO Auto-generated method stub
-		return null;
+		return currencyCatalog.getCode();
 	}
+
 	@Override
 	public void setCode(String code) {
-		// TODO Auto-generated method stub
-		
+		currencyCatalog.setCode(code);
+
 	}
+
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return currencyCatalog.getName();
 	}
+
 	@Override
 	public void setName(String name) {
-		// TODO Auto-generated method stub
-		
+		currencyCatalog.setName(name);
+
 	}
+
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
+		return currencyCatalog.getDescription();
 	}
+
 	@Override
 	public void setDescription(String description) {
-		// TODO Auto-generated method stub
-		
+		currencyCatalog.setDescription(description);
+
 	}
+
 	@Override
 	public BigDecimal getValue() {
-		// TODO Auto-generated method stub
-		return null;
+		return currencyCatalog.getValue();
 	}
+
 	@Override
 	public void setValue(BigDecimal value) {
-		// TODO Auto-generated method stub
-		
+		currencyCatalog.setValue(value);
+
 	}
+
 	@Override
 	public String getLocale() {
-		// TODO Auto-generated method stub
-		return null;
+		return currencyCatalog.getLocale();
 	}
+
 	@Override
 	public void setLocale(String locale) {
-		// TODO Auto-generated method stub
-		
+		currencyCatalog.setLocale(locale);
+
 	}
-	
+
 }

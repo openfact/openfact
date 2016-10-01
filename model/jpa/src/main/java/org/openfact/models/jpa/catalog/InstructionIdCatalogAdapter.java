@@ -24,81 +24,74 @@ public class InstructionIdCatalogAdapter implements InstructionIdCatalogModel, J
 	}
 
 	@Override
-	public InstructionIdCatalogEntity getEntity() {
-		// TODO Auto-generated method stub
-		return null;
+	public InstructionIdCatalogEntity getEntity() {		
+		return instructionIdCatalog;
 	}
 
 	@Override
 	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return instructionIdCatalog.getId();
 	}
 
 	@Override
 	public String getID() {
-		// TODO Auto-generated method stub
-		return null;
+		return instructionIdCatalog.getID();
 	}
 
 	@Override
 	public String getCode() {
-		// TODO Auto-generated method stub
-		return null;
+		return instructionIdCatalog.getCode();
 	}
 
 	@Override
 	public void setCode(String code) {
-		// TODO Auto-generated method stub
-		
+		instructionIdCatalog.setCode(code);
+
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return instructionIdCatalog.getName();
 	}
 
 	@Override
 	public void setName(String name) {
-		// TODO Auto-generated method stub
-		
+		instructionIdCatalog.setName(name);
+
 	}
 
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
+		return instructionIdCatalog.getDescription();
 	}
 
 	@Override
 	public void setDescription(String description) {
-		// TODO Auto-generated method stub
-		
+		instructionIdCatalog.setDescription(description);
+
 	}
 
 	@Override
 	public BigDecimal getValue() {
-		// TODO Auto-generated method stub
-		return null;
+		return instructionIdCatalog.getValue();
 	}
 
 	@Override
 	public void setValue(BigDecimal value) {
-		// TODO Auto-generated method stub
-		
+		instructionIdCatalog.setValue(value);
+
 	}
 
 	@Override
 	public String getLocale() {
-		// TODO Auto-generated method stub
-		return null;
+		return instructionIdCatalog.getLocale();
 	}
 
 	@Override
 	public void setLocale(String locale) {
-		// TODO Auto-generated method stub
-		
+		instructionIdCatalog.setLocale(locale);
+
 	}
+
 
 }

@@ -24,81 +24,74 @@ public class CountryCatalogAdapter implements CountryCatalogModel, JpaModel<Coun
 	}
 
 	@Override
-	public CountryCatalogEntity getEntity() {
-		// TODO Auto-generated method stub
-		return null;
+	public CountryCatalogEntity getEntity() {		
+		return countryCatalog;
 	}
 
 	@Override
 	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return countryCatalog.getId();
 	}
 
 	@Override
 	public String getID() {
-		// TODO Auto-generated method stub
-		return null;
+		return countryCatalog.getID();
 	}
 
 	@Override
 	public String getCode() {
-		// TODO Auto-generated method stub
-		return null;
+		return countryCatalog.getCode();
 	}
 
 	@Override
 	public void setCode(String code) {
-		// TODO Auto-generated method stub
+		countryCatalog.setCode(code);
 
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return countryCatalog.getName();
 	}
 
 	@Override
 	public void setName(String name) {
-		// TODO Auto-generated method stub
+		countryCatalog.setName(name);
 
 	}
 
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
+		return countryCatalog.getDescription();
 	}
 
 	@Override
 	public void setDescription(String description) {
-		// TODO Auto-generated method stub
+		countryCatalog.setDescription(description);
 
 	}
 
 	@Override
 	public BigDecimal getValue() {
-		// TODO Auto-generated method stub
-		return null;
+		return countryCatalog.getValue();
 	}
 
 	@Override
 	public void setValue(BigDecimal value) {
-		// TODO Auto-generated method stub
+		countryCatalog.setValue(value);
 
 	}
 
 	@Override
 	public String getLocale() {
-		// TODO Auto-generated method stub
-		return null;
+		return countryCatalog.getLocale();
 	}
 
 	@Override
 	public void setLocale(String locale) {
-		// TODO Auto-generated method stub
+		countryCatalog.setLocale(locale);
 
 	}
+
 
 }
