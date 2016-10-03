@@ -219,4 +219,17 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
     protected EntityManager getEntityManager() {
         return em;
     }
+    
+    @Override
+    public CreditNoteModel getLastCreditNote(OrganizationModel organization, int IDCreditNoteLength, String maskFormater) {
+        TypedQuery<CreditNoteEntity> query = em.createNamedQuery("getLastCreditByOrganization", CreditNoteEntity.class);
+        query.setParameter("organizationId", organization.getId());
+        query.setParameter("IDLength", IDCreditNoteLength);
+        query.setParameter("formatter", maskFormater);
+        query.setMaxResults(1);
+        List<CreditNoteEntity> entities = query.getResultList();
+        if (entities.size() == 0)
+            return null;
+        return new CreditNoteAdapter(session, organization, em, entities.get(0));
+    }
 }

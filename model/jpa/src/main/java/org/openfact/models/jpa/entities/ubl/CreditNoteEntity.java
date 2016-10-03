@@ -60,7 +60,8 @@ import org.openfact.models.jpa.entities.ubl.common.UBLExtensionsEntity;
         @NamedQuery(name = "getOrganizationCreditNoteById", query = "select i from CreditNoteEntity i where i.id = :id and i.organization.id = :organizationId"),
         @NamedQuery(name = "getOrganizationCreditNoteByID", query = "select i from CreditNoteEntity i where i.ID = :ID and i.organization.id = :organizationId"),
         @NamedQuery(name = "searchForCreditNote", query = "select i from CreditNoteEntity i where i.organization.id = :organizationId and i.ID like :search order by i.issueDate, i.issueTime"),
-        @NamedQuery(name = "getOrganizationCreditNoteCount", query = "select count(i) from CreditNoteEntity i where i.organization.id = :organizationId") })
+        @NamedQuery(name = "getOrganizationCreditNoteCount", query = "select count(i) from CreditNoteEntity i where i.organization.id = :organizationId"),
+        @NamedQuery(name = "getLastCreditNoteByOrganization", query = "select i from CreditNoteEntity i where i.organization.id = :organizationId and length(i.ID)=:IDLength and i.ID like :formatter order by i.issueDate, i.issueTime desc")})
 public class CreditNoteEntity {
 
     @Id

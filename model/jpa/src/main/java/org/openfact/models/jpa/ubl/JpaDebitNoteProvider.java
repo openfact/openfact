@@ -219,5 +219,18 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
     protected EntityManager getEntityManager() {
         return em;
     }
+    
+    @Override
+    public DebitNoteModel getLastDebitNote(OrganizationModel organization, int IDDebitNoteLength, String maskFormater) {
+        TypedQuery<DebitNoteEntity> query = em.createNamedQuery("getLastDebitByOrganization", DebitNoteEntity.class);
+        query.setParameter("organizationId", organization.getId());
+        query.setParameter("IDLength", IDDebitNoteLength);
+        query.setParameter("formatter", maskFormater);
+        query.setMaxResults(1);
+        List<DebitNoteEntity> entities = query.getResultList();
+        if (entities.size() == 0)
+            return null;
+        return new DebitNoteAdapter(session, organization, em, entities.get(0));
+    }
 
 }

@@ -153,6 +153,12 @@ public class DebitNoteCacheSession implements DebitNoteCache {
         
     }
 
+    @Override
+    public DebitNoteModel getLastDebitNote(OrganizationModel organization, int lenght, String mask) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
     
 
 }

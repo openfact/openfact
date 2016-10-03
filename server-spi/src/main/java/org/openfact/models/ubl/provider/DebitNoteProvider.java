@@ -40,4 +40,6 @@ public interface DebitNoteProvider extends Provider {
 
     int getDebitNotesCount(OrganizationModel organization);
 
+    DebitNoteModel getLastDebitNote(OrganizationModel organization, int lenght, String mask);
+
 }

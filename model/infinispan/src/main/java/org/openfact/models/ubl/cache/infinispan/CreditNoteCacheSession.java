@@ -153,6 +153,12 @@ public class CreditNoteCacheSession implements CreditNoteCache {
         
     }
 
+    @Override
+    public CreditNoteModel getLastCreditNote(OrganizationModel organization, int lenght, String mask) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
     
 
 }

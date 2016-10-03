@@ -27,35 +27,34 @@ public class InvoiceProviderTest extends AbstractProviderTest {
     }
 
     @Test
-    public void createWithoutSeriesAndNumber() throws Exception {
+    public void createWithoutSeriesAndNumber_PE() throws Exception {
         createOrganization();
         organization.setDefaultUblLocale("pe");
 
-        InvoiceProvider provider = session.invoices();
-        InvoiceModel invoice = provider.addInvoice(organization);
+        InvoiceModel invoice1 = session.invoices().addInvoice(organization, "01");
+        InvoiceModel invoice2 = session.invoices().addInvoice(organization, "03");
         commit();
 
-        assertThat(invoice, is(notNullValue()));
-        assertThat(invoice.getId(), is(notNullValue()));
-        assertThat(invoice.getID(), is("F001-00000001"));
+        assertThat(invoice1, is(notNullValue()));
+        assertThat(invoice1.getId(), is(notNullValue()));
+        assertThat(invoice1.getID(), is("F001-00000001"));
+        assertThat(invoice2, is(notNullValue()));
+        assertThat(invoice2.getId(), is(notNullValue()));
+        assertThat(invoice2.getID(), is("B001-00000001"));
     }
 
     @Test
     public void createWithAndWithoutSeriesAndNumber() throws Exception {
         createOrganization();
-        organization.setDefaultUblLocale("pe");
+        organization.setDefaultUblLocale("pe");        
 
-        InvoiceProvider provider = session.invoices();
-        InvoiceModel invoice = session.invoices().addInvoice(organization, "F001-00000001");
-        session.invoices().addInvoice(organization, "F01-001");
-        session.invoices().addInvoice(organization, "F01-002");
+        session.invoices().addInvoice(organization, "01");        
+        
+        session.invoices().addInvoice(organization, "01", "F01-001");
+        session.invoices().addInvoice(organization, "01", "F01-002");
 
-        InvoiceModel invoice1 = provider.addInvoice(organization);
+        InvoiceModel invoice1 = session.invoices().addInvoice(organization, "01");
         commit();
-
-        assertThat(invoice, is(notNullValue()));
-        assertThat(invoice.getId(), is(notNullValue()));
-        assertThat(invoice.getID(), is("F001-00000001"));
 
         assertThat(invoice1, is(notNullValue()));
         assertThat(invoice1.getId(), is(notNullValue()));
@@ -64,14 +63,28 @@ public class InvoiceProviderTest extends AbstractProviderTest {
 
     @Test
     public void createWithSeriesAndNumber() throws Exception {
-        createOrganization();
-
-        InvoiceModel invoice = session.invoices().addInvoice(organization, "F002-0003");
+        createOrganization();        
+        
+        InvoiceModel invoice = session.invoices().addInvoice(organization, "01", "F002-0003");
         commit();
 
         assertThat(invoice, is(notNullValue()));
         assertThat(invoice.getId(), is(notNullValue()));
         assertThat(invoice.getID(), is("F002-0003"));
+    }
+    
+    @Test
+    public void incrementalSeries() throws Exception {
+        createOrganization();
+        organization.setDefaultUblLocale("pe");
+        
+        session.invoices().addInvoice(organization, "01", "F099-99999999");
+        InvoiceModel invoice = session.invoices().addInvoice(organization, "01");
+        commit();
+
+        assertThat(invoice, is(notNullValue()));
+        assertThat(invoice.getId(), is(notNullValue()));
+        assertThat(invoice.getID(), is("F100-00000001"));
     }
 
     // @Test
@@ -103,14 +116,14 @@ public class InvoiceProviderTest extends AbstractProviderTest {
         OrganizationModel sistcoop2 = session.organizations().createOrganization("SISTCOOP2");
         commit();
 
-        session.invoices().addInvoice(sistcoop1, "F01-001");
-        session.invoices().addInvoice(sistcoop2, "F01-001");
+        session.invoices().addInvoice(sistcoop1, "01", "F01-001");
+        session.invoices().addInvoice(sistcoop2, "01", "F01-001");
         commit();
 
         // Try to create invoice with duplicate series and number
         try {
             sistcoop1 = session.organizations().getOrganizationByName("SISTCOOP1");
-            session.invoices().addInvoice(sistcoop1, "F01-001");
+            session.invoices().addInvoice(sistcoop1, "01", "F01-001");
             commit();
             Assert.fail("Expected exception");
         } catch (ModelDuplicateException e) {
@@ -119,7 +132,7 @@ public class InvoiceProviderTest extends AbstractProviderTest {
 
         // Ty to rename invoice to duplicate series and number
         sistcoop1 = session.organizations().getOrganizationByName("SISTCOOP1");
-        session.invoices().addInvoice(sistcoop1, "F01-002");
+        session.invoices().addInvoice(sistcoop1, "01", "F01-002");
         commit();
         try {
             sistcoop1 = session.organizations().getOrganizationByName("SISTCOOP1");
@@ -135,7 +148,7 @@ public class InvoiceProviderTest extends AbstractProviderTest {
     @Test
     public void findById() throws Exception {
         createOrganization();
-        InvoiceModel invoice1 = session.invoices().addInvoice(organization, "F01-001");
+        InvoiceModel invoice1 = session.invoices().addInvoice(organization, "01", "F01-001");
         commit();
 
         InvoiceModel invoice2 = session.invoices().getInvoiceById(organization, invoice1.getId());
@@ -149,7 +162,7 @@ public class InvoiceProviderTest extends AbstractProviderTest {
     public void findBySeriesAndNumber() throws Exception {
         createOrganization();
         InvoiceProvider provider = session.invoices();
-        InvoiceModel invoice1 = provider.addInvoice(organization, "F001-0001");
+        InvoiceModel invoice1 = provider.addInvoice(organization, "01", "F001-0001");
         commit();
 
         InvoiceModel invoice2 = session.invoices().getInvoiceByID(organization, "F001-0001");
@@ -164,7 +177,7 @@ public class InvoiceProviderTest extends AbstractProviderTest {
         createOrganization();
 
         InvoiceProvider provider = session.invoices();
-        provider.addInvoice(organization, "F001-0001");
+        provider.addInvoice(organization, "01", "F001-0001");
         commit();
 
         InvoiceModel invoice = session.invoices().getInvoiceByID(organization, "F001-0001");
@@ -182,12 +195,12 @@ public class InvoiceProviderTest extends AbstractProviderTest {
         OrganizationModel sistcoop2 = session.organizations().createOrganization("SISTCOOP2");
         commit();
 
-        session.invoices().addInvoice(sistcoop1, "F01-001");
-        session.invoices().addInvoice(sistcoop1, "F01-002");
-        session.invoices().addInvoice(sistcoop1, "F01-003");
-        session.invoices().addInvoice(sistcoop2, "F01-004");
-        session.invoices().addInvoice(sistcoop2, "F01-005");
-        session.invoices().addInvoice(sistcoop2, "F01-006");
+        session.invoices().addInvoice(sistcoop1, "01", "F01-001");
+        session.invoices().addInvoice(sistcoop1, "01", "F01-002");
+        session.invoices().addInvoice(sistcoop1, "01", "F01-003");
+        session.invoices().addInvoice(sistcoop2, "01", "F01-004");
+        session.invoices().addInvoice(sistcoop2, "01", "F01-005");
+        session.invoices().addInvoice(sistcoop2, "01", "F01-006");
         commit();
 
         List<InvoiceModel> invoices1 = session.invoices().getInvoices(sistcoop1);

@@ -40,4 +40,6 @@ public interface CreditNoteProvider extends Provider {
 
     int getCreditNotesCount(OrganizationModel organization);
 
+    CreditNoteModel getLastCreditNote(OrganizationModel organization, int lenght, String mask);
+
 }

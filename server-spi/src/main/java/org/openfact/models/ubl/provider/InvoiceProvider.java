@@ -12,7 +12,7 @@ public interface InvoiceProvider extends Provider {
 
     InvoiceModel addInvoice(OrganizationModel organization);
 
-    InvoiceModel addInvoice(OrganizationModel organization, String ID);
+    InvoiceModel addInvoice(OrganizationModel organization, String invoiceTypeCode);
     
     InvoiceModel addInvoice(OrganizationModel organization, String invoiceTypeCode, String ID);
 

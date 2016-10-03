@@ -224,7 +224,7 @@ public class UblProviderTest extends AbstractProviderTest {
 			InvoiceType invoiceType = UBL21Reader.invoice().read(xml);
 			IErrorList resourceErrorGroup = UBL21Validator.invoice().validate(invoiceType);
 
-			UBL21Writer.invoice().write(invoiceType, new File("/home/lxpary/carlos.xml"));
+			//UBL21Writer.invoice().write(invoiceType, new File("/home/lxpary/carlos.xml"));
 			assertThat(xml, is(notNullValue()));
 			assertThat(resourceErrorGroup.getAllErrors().getSize(), is(0));
 		}
