@@ -29,6 +29,9 @@ import javax.xml.crypto.dsig.keyinfo.KeyInfoFactory;
 import javax.xml.crypto.dsig.keyinfo.X509Data;
 import javax.xml.crypto.dsig.spec.C14NMethodParameterSpec;
 import javax.xml.crypto.dsig.spec.TransformParameterSpec;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.openfact.models.ModelException;
 import org.openfact.models.OrganizationModel;
@@ -62,17 +65,22 @@ public class UblSignature {
 	 * Method used to attach a generated digital signature to the existing
 	 * document
 	 */
-	public static Document ublSignatureGenerate(OrganizationModel organization, Document document)
-			throws KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException,
-			UnrecoverableEntryException {
+	public static Document ublSignatureGenerate(
+			OrganizationModel organization/* , Document document */) throws KeyStoreException, IOException,
+			NoSuchAlgorithmException, CertificateException, UnrecoverableEntryException {
 
 		// Create XML Signature Factory
 		XMLSignatureFactory xmlSigFactory = XMLSignatureFactory.getInstance(FACTORY);
 		PrivateKey privateKey = organization.getPrivateKey();
-		System.out.println(privateKey.getAlgorithm());
-		DOMSignContext domSignCtx = new DOMSignContext(privateKey,
-				document.getDocumentElement().getFirstChild().getNextSibling().getFirstChild().getNextSibling()
-						.getNextSibling().getNextSibling().getFirstChild().getNextSibling());
+
+		Document document = newEmptyDocument();
+
+		DOMSignContext domSignCtx = new DOMSignContext(privateKey, document
+		/*
+		 * document.getDocumentElement().getFirstChild().getNextSibling().
+		 * getFirstChild().getNextSibling()
+		 * .getNextSibling().getNextSibling().getFirstChild().getNextSibling()
+		 */);
 		domSignCtx.setDefaultNamespacePrefix(PREFIX);
 		Reference ref = null;
 		SignedInfo signedInfo = null;
@@ -103,5 +111,19 @@ public class UblSignature {
 			throw new ModelException("Invalid XMLSignature");
 		}
 		return document;
+	}
+
+	public static Document newEmptyDocument() {
+		DocumentBuilderFactory factory = null;
+		DocumentBuilder builder = null;
+		Document ret;
+		try {
+			factory = DocumentBuilderFactory.newInstance();
+			builder = factory.newDocumentBuilder();
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		}
+		ret = builder.newDocument();
+		return ret;
 	}
 }
