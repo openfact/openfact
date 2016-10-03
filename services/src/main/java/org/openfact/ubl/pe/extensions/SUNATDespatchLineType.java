@@ -82,7 +82,7 @@ public class SUNATDespatchLineType {
     @XmlElement(name = "Note", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected NoteType note;
     @XmlElement(name = "LineStatusCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected LineStatusCodeTypeCommBas lineStatusCode;
+    protected LineStatusCodeType lineStatusCode;
     @XmlElement(name = "DeliveredQuantity", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected DeliveredQuantityType deliveredQuantity;
     @XmlElement(name = "BackorderQuantity", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
@@ -186,7 +186,7 @@ public class SUNATDespatchLineType {
      *     {@link LineStatusCodeTypeCommBas }
      *     
      */
-    public LineStatusCodeTypeCommBas getLineStatusCode() {
+    public LineStatusCodeType getLineStatusCode() {
         return lineStatusCode;
     }
 
@@ -198,7 +198,7 @@ public class SUNATDespatchLineType {
      *     {@link LineStatusCodeTypeCommBas }
      *     
      */
-    public void setLineStatusCode(LineStatusCodeTypeCommBas value) {
+    public void setLineStatusCode(LineStatusCodeType value) {
         this.lineStatusCode = value;
     }
 

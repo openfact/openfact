@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlType;
 import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.AddressType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.IDType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.TransportMeansTypeCodeType;
+import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.TransportModeCodeType;
 
 
 /**
@@ -62,7 +63,7 @@ public class SUNATShipmentStageType {
     @XmlElement(name = "ShipmentStageTypeCode")
     protected IDType shipmentStageTypeCode;
     @XmlElement(name = "TransportModeCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected TransportModeCodeTypeCommBas transportModeCode;
+    protected TransportModeCodeType transportModeCode;
     @XmlElement(name = "TransportMeansTypeCode", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
     protected TransportMeansTypeCodeType transportMeansTypeCode;
     @XmlElement(name = "SUNATCarrierParty")
@@ -130,7 +131,7 @@ public class SUNATShipmentStageType {
      *     {@link TransportModeCodeTypeCommBas }
      *     
      */
-    public TransportModeCodeTypeCommBas getTransportModeCode() {
+    public TransportModeCodeType getTransportModeCode() {
         return transportModeCode;
     }
 
@@ -142,7 +143,7 @@ public class SUNATShipmentStageType {
      *     {@link TransportModeCodeTypeCommBas }
      *     
      */
-    public void setTransportModeCode(TransportModeCodeTypeCommBas value) {
+    public void setTransportModeCode(TransportModeCodeType value) {
         this.transportModeCode = value;
     }
 

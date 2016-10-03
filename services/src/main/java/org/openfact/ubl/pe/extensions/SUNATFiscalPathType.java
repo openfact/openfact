@@ -14,6 +14,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.IDType;
+import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.NameType;
 
 
 /**
@@ -46,7 +47,7 @@ public class SUNATFiscalPathType {
     @XmlElement(name = "ID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", required = true)
     protected IDType id;
     @XmlElement(name = "Name", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-    protected NameTypeCommBas name;
+    protected NameType name;
 
     /**
      * Gets the value of the id property.
@@ -80,7 +81,7 @@ public class SUNATFiscalPathType {
      *     {@link NameTypeCommBas }
      *     
      */
-    public NameTypeCommBas getName() {
+    public NameType getName() {
         return name;
     }
 
@@ -92,7 +93,7 @@ public class SUNATFiscalPathType {
      *     {@link NameTypeCommBas }
      *     
      */
-    public void setName(NameTypeCommBas value) {
+    public void setName(NameType value) {
         this.name = value;
     }
 
