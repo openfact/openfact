@@ -36,7 +36,7 @@ public class InvoiceRepresentation {
     private String UUID;
     private LocalDate issueDate;
     private LocalTime issueTime;
-    private String invoiceRepresentationCode;
+    private String invoiceTypeCode;
     private List<String> note;
     private LocalDate taxPointDate;
     private String documentCurrencyCode;
@@ -408,12 +408,12 @@ public class InvoiceRepresentation {
         this.orderReference = orderReference;
     }
 
-    public String getInvoiceCodeRepresentation() {
-        return this.invoiceRepresentationCode;
+    public String getInvoiceTypeCode() {
+        return this.invoiceTypeCode;
     }
 
-    public void setInvoiceRepresentationCode(String invoiceRepresentationCode) {
-        this.invoiceRepresentationCode = invoiceRepresentationCode;
+    public void setInvoiceTypeCode(String invoiceTypeCode) {
+        this.invoiceTypeCode = invoiceTypeCode;
     }
 
     public List<PaymentMeansRepresentation> getPaymentMeans() {
