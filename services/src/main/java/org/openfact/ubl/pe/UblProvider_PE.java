@@ -51,11 +51,9 @@ public class UblProvider_PE implements UblProvider {
 					"urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2");
 			namespaceContext.setMapping("qdt", "urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2");
 			namespaceContext.setMapping("ds", "http://www.w3.org/2000/09/xmldsig#");
-			namespaceContext.setMapping("xsi", "http://www.w3.org/2001/XMLSchema-instance");
+			namespaceContext.setMapping("xsi", "http://www.w3.org/2001/XMLSchema-instance");		
 			
 			
-			System.out.println(namespaceContext.getCustomNamespaceURI("sac"));
-			System.out.println(namespaceContext.getMappingCount());
 			return UBL21Writer.invoice().setNamespaceContext(namespaceContext).getAsDocument(invoiceType);
 		} catch (DatatypeConfigurationException e) {
 			log.error(e.getMessage());

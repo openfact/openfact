@@ -20,12 +20,13 @@ public class OrganizationRepresentation {
     private String supplierName;
     private String registrationName;
 
-    protected String privateKey;
-    protected String publicKey;
-    protected String certificate;
-    protected String codeSecret;
+//    protected String privateKey;
+//    protected String publicKey;
+//    protected String certificate;
+//    protected String codeSecret;
 
     protected Map<String, String> smtpServer;
+    private CertificateRepresentation certificate;
     private PostalAddressRepresentation postalAddress;
     private TasksScheduleRepresentation tasksSchedule;
     private Set<CurrencyRepresentation> currencies;
@@ -158,65 +159,7 @@ public class OrganizationRepresentation {
         this.registrationName = registrationName;
     }
 
-    /**
-     * @return the privateKey
-     */
-    public String getPrivateKey() {
-        return privateKey;
-    }
-
-    /**
-     * @param privateKey
-     *            the privateKey to set
-     */
-    public void setPrivateKey(String privateKey) {
-        this.privateKey = privateKey;
-    }
-
-    /**
-     * @return the publicKey
-     */
-    public String getPublicKey() {
-        return publicKey;
-    }
-
-    /**
-     * @param publicKey
-     *            the publicKey to set
-     */
-    public void setPublicKey(String publicKey) {
-        this.publicKey = publicKey;
-    }
-
-    /**
-     * @return the certificate
-     */
-    public String getCertificate() {
-        return certificate;
-    }
-
-    /**
-     * @param certificate
-     *            the certificate to set
-     */
-    public void setCertificate(String certificate) {
-        this.certificate = certificate;
-    }
-
-    /**
-     * @return the codeSecret
-     */
-    public String getCodeSecret() {
-        return codeSecret;
-    }
-
-    /**
-     * @param codeSecret
-     *            the codeSecret to set
-     */
-    public void setCodeSecret(String codeSecret) {
-        this.codeSecret = codeSecret;
-    }
+   
 
     /**
      * @return the smtpServer
@@ -367,5 +310,14 @@ public class OrganizationRepresentation {
     public void setOpenfactVersion(String openfactVersion) {
         this.openfactVersion = openfactVersion;
     }
+
+	public CertificateRepresentation getCertificate() {
+		return certificate;
+	}
+
+	public void setCertificate(CertificateRepresentation certificate) {
+		this.certificate = certificate;
+	}
+    
 
 }

@@ -40,6 +40,7 @@ import org.openfact.models.ubl.common.TaxSubtotalModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
+import org.openfact.models.utils.UblSignature;
 import org.openfact.ubl.UblProvider;
 import org.openfact.ubl.pe.extensions.AdditionalInformationTypeSunatAgg;
 import org.openfact.ubl.pe.extensions.AdditionalMonetaryTotalType;
@@ -215,11 +216,19 @@ public class UblProviderTest extends AbstractProviderTest {
 		Element elem = ((Document) res.getNode()).getDocumentElement();
 
 		cc.setAny(elem);
+
+		// UBLExtensionsModel e1 = invoice.getUBLExtensions();
+		// UBLExtensionModel ee1 = e1.addUblExtension();
+		// ExtensionContentModel cc1 = ee1.getExtensionContent();
+		// cc1.setAny(null);
+
 		// end demo additional information sunat
 		commit();
 
 		Set<UblProvider> providers = session.getAllProviders(UblProvider.class);
 		for (UblProvider provider : providers) {
+			// Document xml = UblSignature.ublSignatureGenerate(organization,
+			// provider.getDocument(organization, invoice));
 			Document xml = provider.getDocument(organization, invoice);
 			InvoiceType invoiceType = UBL21Reader.invoice().read(xml);
 			IErrorList resourceErrorGroup = UBL21Validator.invoice().validate(invoiceType);
