@@ -21,11 +21,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
-import java.io.File;
 import java.math.BigDecimal;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.NoSuchAlgorithmException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -40,7 +36,6 @@ import javax.xml.transform.dom.DOMResult;
 
 import org.junit.Test;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.OrganizationProvider;
 import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.AttachmentModel;
@@ -76,7 +71,6 @@ import org.w3c.dom.Element;
 import com.helger.commons.error.list.IErrorList;
 import com.helger.ubl21.UBL21Reader;
 import com.helger.ubl21.UBL21Validator;
-import com.helger.ubl21.UBL21Writer;
 
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.IDType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.PayableAmountType;
