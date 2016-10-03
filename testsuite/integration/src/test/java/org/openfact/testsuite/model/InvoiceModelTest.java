@@ -21,11 +21,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
-import java.io.File;
 import java.math.BigDecimal;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.NoSuchAlgorithmException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -40,7 +36,6 @@ import javax.xml.transform.dom.DOMResult;
 
 import org.junit.Test;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.OrganizationProvider;
 import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.AttachmentModel;
@@ -64,6 +59,7 @@ import org.openfact.models.ubl.common.TaxSubtotalModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
+import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.utils.UblSignature;
 import org.openfact.ubl.UblProvider;
 import org.openfact.ubl.pe.extensions.AdditionalInformationTypeSunatAgg;
@@ -75,7 +71,6 @@ import org.w3c.dom.Element;
 import com.helger.commons.error.list.IErrorList;
 import com.helger.ubl21.UBL21Reader;
 import com.helger.ubl21.UBL21Validator;
-import com.helger.ubl21.UBL21Writer;
 
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.IDType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.PayableAmountType;
@@ -111,10 +106,15 @@ public class InvoiceModelTest extends AbstractModelTest {
 		organization.setCountrySubentity("Region");
 		organization.setDistrict("Jesus Nazareno");
 		organization.setCountryIdentificationCode("PE");
-
-		KeyPair keyPair = generateKeypair();
-		organization.setPrivateKey(keyPair.getPrivate());
-		organization.setPublicKey(keyPair.getPublic());		
+		
+		OpenfactModelUtils.generateOrganizationKeys(organization);
+//		KeyPair keyPair = generateKeypair();
+//		organization.setPrivateKey(keyPair.getPrivate());
+//		organization.setPublicKey(keyPair.getPublic());	
+//		OpenfactModelUtils.generateOrganizationCertificate(organization);
+//		
+		organization.setDefaultLocale("es");
+		organization.setDefaultUblLocale("pe");
 
 		commit();
 	}
@@ -123,7 +123,7 @@ public class InvoiceModelTest extends AbstractModelTest {
 	public void getDocument() throws Exception {
 		createOrganization();
 
-		InvoiceModel invoice = session.invoices().addInvoice(organization, "F001-0001");
+		InvoiceModel invoice = session.invoices().addInvoice(organization, "01","F001-00000008");
 		invoice.setUBLVersionID("2.0");
 		invoice.setCustomizationID("1.0");
 
@@ -285,14 +285,10 @@ public class InvoiceModelTest extends AbstractModelTest {
 			InvoiceType invoiceType = UBL21Reader.invoice().read(xml);
 			IErrorList resourceErrorGroup = UBL21Validator.invoice().validate(invoiceType);
 
-			UBL21Writer.invoice().write(invoiceType, new File("/home/lxpary/carlos.xml"));
+			//UBL21Writer.invoice().write(invoiceType, new File("/home/lxpary/carlos.xml"));
 			assertThat(xml, is(notNullValue()));
 			assertThat(resourceErrorGroup.getAllErrors().getSize(), is(0));
 		}
-	}
-
-	private KeyPair generateKeypair() throws NoSuchAlgorithmException {
-		return KeyPairGenerator.getInstance("RSA").generateKeyPair();
 	}
 
 	// @Test

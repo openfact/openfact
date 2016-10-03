@@ -64,6 +64,7 @@ public class UblProviderTest extends AbstractProviderTest {
 	public void createOrganization() {
 		OrganizationProvider provider = session.organizations();
 		organization = provider.createOrganization("SISTCOOP");
+		organization.setDefaultUblLocale("pe");
 		commit();
 	}
 
@@ -71,7 +72,7 @@ public class UblProviderTest extends AbstractProviderTest {
 	public void getDocument() throws Exception {
 		createOrganization();
 
-		InvoiceModel invoice = session.invoices().addInvoice(organization, "F001-0001");
+		InvoiceModel invoice = session.invoices().addInvoice(organization,"01", "F001-0001");
 		invoice.setUBLVersionID("2.0");
 		invoice.setCustomizationID("1.0");
 
