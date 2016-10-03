@@ -51,7 +51,7 @@ public class UblSignature {
 	private static KeyInfo getKeyInfo(XMLSignatureFactory xmlSigFactory, OrganizationModel organization)
 			throws KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException,
 			UnrecoverableEntryException {
-		X509Certificate cert = organization.getCertificate();
+		X509Certificate cert = organization.getCertificate();		
 		KeyInfoFactory kif = xmlSigFactory.getKeyInfoFactory();
 		List<Serializable> x509Content = new ArrayList<Serializable>();
 		x509Content.add(cert.getSubjectX500Principal().getName());
@@ -73,7 +73,7 @@ public class UblSignature {
 		PrivateKey privateKey = organization.getPrivateKey();
 
 		Document document = newEmptyDocument();
-		DOMSignContext domSignCtx = new DOMSignContext(privateKey, document.getDocumentElement());
+		DOMSignContext domSignCtx = new DOMSignContext(privateKey, document);
 		// DOMSignContext domSignCtx = new DOMSignContext(privateKey,
 		// document.getDocumentElement().getFirstChild().getNextSibling().getFirstChild().getNextSibling()
 		// .getNextSibling().getNextSibling().getFirstChild().getNextSibling());
