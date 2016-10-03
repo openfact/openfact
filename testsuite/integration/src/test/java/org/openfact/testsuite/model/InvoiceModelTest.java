@@ -120,7 +120,6 @@ public class InvoiceModelTest extends AbstractModelTest {
 		organization.addCurrency("USD");
 		commit();
 
-		System.out.println(organization.getPrivateKeyPem());
 	}
 
 	@Test
