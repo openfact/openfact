@@ -214,7 +214,6 @@ public class UblProviderTest extends AbstractProviderTest {
 		DOMResult res = new DOMResult();
 		marshallerElement.marshal(jeAits, res);
 		Element elem = ((Document) res.getNode()).getDocumentElement();
-
 		cc.setAny(elem);
 
 		// UBLExtensionsModel e1 = invoice.getUBLExtensions();
@@ -227,8 +226,6 @@ public class UblProviderTest extends AbstractProviderTest {
 
 		Set<UblProvider> providers = session.getAllProviders(UblProvider.class);
 		for (UblProvider provider : providers) {
-			// Document xml = UblSignature.ublSignatureGenerate(organization,
-			// provider.getDocument(organization, invoice));
 			Document xml = provider.getDocument(organization, invoice);
 			InvoiceType invoiceType = UBL21Reader.invoice().read(xml);
 			IErrorList resourceErrorGroup = UBL21Validator.invoice().validate(invoiceType);

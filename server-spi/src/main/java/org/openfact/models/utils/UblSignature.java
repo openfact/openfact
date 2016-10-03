@@ -65,8 +65,7 @@ public class UblSignature {
 	 * Method used to attach a generated digital signature to the existing
 	 * document
 	 */
-	public static Document ublSignatureGenerate(
-			OrganizationModel organization/* , Document document */) throws KeyStoreException, IOException,
+	public static Document ublSignatureGenerate(OrganizationModel organization) throws KeyStoreException, IOException,
 			NoSuchAlgorithmException, CertificateException, UnrecoverableEntryException {
 
 		// Create XML Signature Factory
@@ -74,13 +73,11 @@ public class UblSignature {
 		PrivateKey privateKey = organization.getPrivateKey();
 
 		Document document = newEmptyDocument();
+		DOMSignContext domSignCtx = new DOMSignContext(privateKey, document.getDocumentElement());
+		// DOMSignContext domSignCtx = new DOMSignContext(privateKey,
+		// document.getDocumentElement().getFirstChild().getNextSibling().getFirstChild().getNextSibling()
+		// .getNextSibling().getNextSibling().getFirstChild().getNextSibling());
 
-		DOMSignContext domSignCtx = new DOMSignContext(privateKey, document
-		/*
-		 * document.getDocumentElement().getFirstChild().getNextSibling().
-		 * getFirstChild().getNextSibling()
-		 * .getNextSibling().getNextSibling().getFirstChild().getNextSibling()
-		 */);
 		domSignCtx.setDefaultNamespacePrefix(PREFIX);
 		Reference ref = null;
 		SignedInfo signedInfo = null;
@@ -100,8 +97,7 @@ public class UblSignature {
 		}
 		KeyInfo keyInfo = getKeyInfo(xmlSigFactory, organization);
 		// Create a new XML Signature
-		XMLSignature xmlSignature = xmlSigFactory.newXMLSignature(signedInfo, keyInfo, null, organization.getKeyId(),
-				null);
+		XMLSignature xmlSignature = xmlSigFactory.newXMLSignature(signedInfo, keyInfo);
 		try {
 			// Sign the document
 			xmlSignature.sign(domSignCtx);
@@ -121,7 +117,7 @@ public class UblSignature {
 			factory = DocumentBuilderFactory.newInstance();
 			builder = factory.newDocumentBuilder();
 		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
+			throw new ModelException("Invalid document create");
 		}
 		ret = builder.newDocument();
 		return ret;

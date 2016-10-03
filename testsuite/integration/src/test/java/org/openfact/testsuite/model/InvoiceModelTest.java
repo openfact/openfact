@@ -114,7 +114,7 @@ public class InvoiceModelTest extends AbstractModelTest {
 
 		KeyPair keyPair = generateKeypair();
 		organization.setPrivateKey(keyPair.getPrivate());
-		organization.setPublicKey(keyPair.getPublic());
+		organization.setPublicKey(keyPair.getPublic());		
 
 		organization.addCurrency("PEN");
 		organization.addCurrency("USD");
