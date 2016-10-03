@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
-import org.openfact.models.CurrencyModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.ubl.CreditNoteModel;
@@ -191,16 +190,6 @@ public class RepresentationToModel {
 		}
 
 		/**
-		 * Currencies
-		 */
-		if (rep.getCurrencies() != null && !rep.getCurrencies().isEmpty()) {
-			rep.getCurrencies().stream().forEach(f -> newOrganization.addCurrency(f.getCode(), f.getPriority()));
-		} else {
-			Currency currency = Currency.getInstance(Locale.getDefault());
-			newOrganization.addCurrency(currency.getCurrencyCode());
-		}
-
-		/**
 		 * Smtp server
 		 */
 		if (rep.getSmtpServer() != null) {
@@ -317,11 +306,6 @@ public class RepresentationToModel {
 			if (tasksScheduleRep.getSubmitDays() != null) {
 				organization.setSubmitDays(tasksScheduleRep.getSubmitDays());
 			}
-		}
-		if (rep.getCurrencies() != null && !rep.getCurrencies().isEmpty()) {
-			Set<CurrencyModel> actualCurrencties = organization.getCurrencies();
-			rep.getCurrencies().stream().forEach(f -> organization.addCurrency(f.getCode(), f.getPriority()));
-			actualCurrencties.stream().forEach(f -> organization.removeCurrency(f.getCode()));
 		}
 
 		if (rep.getSmtpServer() != null) {
