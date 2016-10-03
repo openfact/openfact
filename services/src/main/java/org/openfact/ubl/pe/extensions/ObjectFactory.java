@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlRegistry;
 import javax.xml.namespace.QName;
 
 import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.MonetaryTotalType;
+import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.AmountType;
 
 /**
  * This object contains factory methods for each Java content interface and Java
@@ -102,8 +103,8 @@ public class ObjectFactory {
 	 * }{@code <}{@link AmountTypeCommBas }{@code >}}
 	 */
 	@XmlElementDecl(namespace = "urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1", name = "ReferenceAmount")
-	public JAXBElement<AmountTypeCommBas> createReferenceAmount(AmountTypeCommBas value) {
-		return new JAXBElement<AmountTypeCommBas>(_ReferenceAmount_QNAME, AmountTypeCommBas.class, null, value);
+	public JAXBElement<AmountType> createReferenceAmount(AmountType value) {
+		return new JAXBElement<AmountType>(_ReferenceAmount_QNAME, AmountType.class, null, value);
 	}
 
 	/**
@@ -111,8 +112,8 @@ public class ObjectFactory {
 	 * }{@code <}{@link AmountTypeCommBas }{@code >}}
 	 */
 	@XmlElementDecl(namespace = "urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1", name = "TotalAmount")
-	public JAXBElement<AmountTypeCommBas> createTotalAmount(AmountTypeCommBas value) {
-		return new JAXBElement<AmountTypeCommBas>(_TotalAmount_QNAME, AmountTypeCommBas.class, null, value);
+	public JAXBElement<AmountType> createTotalAmount(AmountType value) {
+		return new JAXBElement<AmountType>(_TotalAmount_QNAME, AmountType.class, null, value);
 	}
 
 	/**

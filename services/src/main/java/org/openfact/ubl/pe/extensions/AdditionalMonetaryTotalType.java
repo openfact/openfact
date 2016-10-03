@@ -14,7 +14,9 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.AmountType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.IDType;
+import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.NameType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.PayableAmountType;
 
 /**
@@ -58,15 +60,15 @@ public class AdditionalMonetaryTotalType {
 	@XmlElement(name = "ID", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", required = true)
 	protected IDType id;
 	@XmlElement(name = "Name", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
-	protected NameTypeCommBas name;
+	protected NameType name;
 	@XmlElement(name = "ReferenceAmount")
-	protected AmountTypeCommBas referenceAmount;
+	protected AmountType referenceAmount;
 	@XmlElement(name = "PayableAmount", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2", required = true)
 	protected PayableAmountType payableAmount;
 	@XmlElement(name = "Percent", namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")
 	protected BigDecimal percent;
 	@XmlElement(name = "TotalAmount")
-	protected AmountTypeCommBas totalAmount;
+	protected AmountType totalAmount;
 
 	/**
 	 * 
@@ -103,7 +105,7 @@ public class AdditionalMonetaryTotalType {
 	 * @return possible object is {@link NameTypeCommBas }
 	 * 
 	 */
-	public NameTypeCommBas getName() {
+	public NameType getName() {
 		return name;
 	}
 
@@ -114,7 +116,7 @@ public class AdditionalMonetaryTotalType {
 	 *            allowed object is {@link NameTypeCommBas }
 	 * 
 	 */
-	public void setName(NameTypeCommBas value) {
+	public void setName(NameType value) {
 		this.name = value;
 	}
 
@@ -128,7 +130,7 @@ public class AdditionalMonetaryTotalType {
 	 * @return possible object is {@link BigDecimalCommBas }
 	 * 
 	 */
-	public AmountTypeCommBas getReferenceAmount() {
+	public AmountType getReferenceAmount() {
 		return referenceAmount;
 	}
 
@@ -139,7 +141,7 @@ public class AdditionalMonetaryTotalType {
 	 *            allowed object is {@link BigDecimalCommBas }
 	 * 
 	 */
-	public void setReferenceAmount(AmountTypeCommBas value) {
+	public void setReferenceAmount(AmountType value) {
 		this.referenceAmount = value;
 	}
 
@@ -203,7 +205,7 @@ public class AdditionalMonetaryTotalType {
 	 * @return possible object is {@link BigDecimalCommBas }
 	 * 
 	 */
-	public AmountTypeCommBas getTotalAmount() {
+	public AmountType getTotalAmount() {
 		return totalAmount;
 	}
 
@@ -214,7 +216,7 @@ public class AdditionalMonetaryTotalType {
 	 *            allowed object is {@link BigDecimalCommBas }
 	 * 
 	 */
-	public void setTotalAmount(AmountTypeCommBas value) {
+	public void setTotalAmount(AmountType value) {
 		this.totalAmount = value;
 	}
 

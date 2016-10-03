@@ -12,4 +12,6 @@ public interface UBLExtensionsModel {
 
     void setId(String value);
 
+	UBLExtensionModel addUblExtension();
+
 }
