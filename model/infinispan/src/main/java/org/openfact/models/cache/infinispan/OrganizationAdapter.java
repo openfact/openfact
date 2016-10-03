@@ -26,7 +26,6 @@ import java.time.LocalTime;
 import java.util.Map;
 import java.util.Set;
 
-import org.openfact.models.CurrencyModel;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.cache.infinispan.entities.CachedOrganization;
 import org.openfact.models.utils.OpenfactModelUtils;

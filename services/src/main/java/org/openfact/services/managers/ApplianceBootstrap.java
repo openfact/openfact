@@ -113,7 +113,7 @@ public class ApplianceBootstrap {
         createDefaultCodeCatalog(contextPath);
         createDefaultCountryCatalog(contextPath);
         createDefaultCurrencyCatalog(contextPath);
-        createDefaultUnitCatalog(contextPath);        
+        createDefaultUnitCatalog(contextPath);   
         return true;
     }
     
@@ -121,43 +121,42 @@ public class ApplianceBootstrap {
         if (session.codesCatalog().getCodesCatalogCount() > 0) {
             throw new IllegalStateException("Can't create initial codes catalog as codes already exists");
         }
+                
+        File addCodeCatalogFile = null;
         
         String configDir = System.getProperty("jboss.server.config.dir");
         if (configDir != null) {
-            File addCodeCatalogFile = new File(configDir + File.separator + "openfact-default-codeCatalog.json");
-            if (addCodeCatalogFile.isFile()) {
-                logger.importingCodesCatalogFrom(addCodeCatalogFile);
+            addCodeCatalogFile = new File(configDir + File.separator + "openfact-default-codeCatalog.json");                        
+        } else {
+            addCodeCatalogFile = new File(getClass().getResource("/META-INF/openfact-default-codeCatalog.json").getFile());
+        }
+        
+        if (addCodeCatalogFile.isFile()) {
+            logger.importingCodesCatalogFrom(addCodeCatalogFile);
 
-                List<CodeCatalogRepresentation> catalogs;
+            List<CodeCatalogRepresentation> catalogs;
+            try {
+                catalogs = JsonSerialization.readValue(new FileInputStream(addCodeCatalogFile), new TypeReference<List<CodeCatalogRepresentation>>() {
+                });
+            } catch (IOException e) {
+                logger.failedToLoadCodesCatalog(e);
+                return false;
+            }
+
+            for (CodeCatalogRepresentation catalogRep : catalogs) {
                 try {
-                    catalogs = JsonSerialization.readValue(new FileInputStream(addCodeCatalogFile), new TypeReference<List<CodeCatalogRepresentation>>() {
-                    });
-                } catch (IOException e) {
-                    logger.failedToLoadCodesCatalog(e);
-                    return false;
-                }
+                    CodeCatalogModel catalog = session.codesCatalog().addCodeCatalog(catalogRep.getLocale(), catalogRep.getType(), catalogRep.getCode(), catalogRep.getDescription());
+                    catalog.setAttributes(catalogRep.getAttributes());
 
-                for (CodeCatalogRepresentation catalogRep : catalogs) {
-                    try {
-                        session.getTransactionManager().begin();
-
-                        CodeCatalogModel catalog = session.codesCatalog().addCodeCatalog(catalogRep.getLocale(), catalogRep.getType(), catalogRep.getCode(), catalogRep.getDescription());
-                        catalog.setAttributes(catalogRep.getAttributes());
-
-                        session.getTransactionManager().commit();
-                        logger.addCodeCatalogSuccess(catalogRep.getDescription());
-                    } catch (ModelDuplicateException e) {
-                        session.getTransactionManager().rollback();
-                        logger.addCodeCatalogFailedCodeCatalogExists(catalogRep.getCode(), catalogRep.getDescription());
-                    } catch (Throwable t) {
-                        session.getTransactionManager().rollback();
-                        logger.addCodeCatalogFailed(t, catalogRep.getCode(), catalogRep.getDescription());
-                    } finally {
-                        session.close();
-                    }
-                }
+                    logger.addCodeCatalogSuccess(catalogRep.getDescription());
+                } catch (ModelDuplicateException e) {
+                    logger.addCodeCatalogFailedCodeCatalogExists(catalogRep.getCode(), catalogRep.getDescription());
+                } catch (Throwable t) {
+                    logger.addCodeCatalogFailed(t, catalogRep.getCode(), catalogRep.getDescription());
+                } 
             }
         }
+        
         return true;
     }
     
@@ -166,42 +165,40 @@ public class ApplianceBootstrap {
             throw new IllegalStateException("Can't create initial country catalog as countries already exists");
         }
         
+        File addCountryCatalogFile = null;
+        
         String configDir = System.getProperty("jboss.server.config.dir");
         if (configDir != null) {
-            File addCountryCatalogFile = new File(configDir + File.separator + "openfact-default-countryCatalog.json");
-            if (addCountryCatalogFile.isFile()) {
-                logger.importingCountrysCatalogFrom(addCountryCatalogFile);
+            addCountryCatalogFile = new File(configDir + File.separator + "openfact-default-countryCatalog.json");                        
+        } else {
+            addCountryCatalogFile = new File(getClass().getResource("/META-INF/openfact-default-countryCatalog.json").getFile());
+        }
+        
+        if (addCountryCatalogFile.isFile()) {
+            logger.importingCountrysCatalogFrom(addCountryCatalogFile);
 
-                List<CountryCatalogRepresentation> catalogs;
+            List<CountryCatalogRepresentation> catalogs;
+            try {
+                catalogs = JsonSerialization.readValue(new FileInputStream(addCountryCatalogFile), new TypeReference<List<CountryCatalogRepresentation>>() {
+                });
+            } catch (IOException e) {
+                logger.failedToLoadCountrysCatalog(e);
+                return false;
+            }
+
+            for (CountryCatalogRepresentation catalogRep : catalogs) {
                 try {
-                    catalogs = JsonSerialization.readValue(new FileInputStream(addCountryCatalogFile), new TypeReference<List<CountryCatalogRepresentation>>() {
-                    });
-                } catch (IOException e) {
-                    logger.failedToLoadCountrysCatalog(e);
-                    return false;
-                }
-
-                for (CountryCatalogRepresentation catalogRep : catalogs) {
-                    try {
-                        session.getTransactionManager().begin();
-
-                        CountryCatalogModel catalog = session.countriesCatalog().addCountryCatalog(catalogRep.getName());
-                        catalog.setShortName(catalogRep.getShortName());
-                        catalog.setAlpha2Code(catalogRep.getAlpha2Code());
-                        catalog.setAlpha3Code(catalogRep.getAlpha3Code());
-                        catalog.setNumericCode(catalogRep.getNumericCode());
-                        
-                        session.getTransactionManager().commit();
-                        logger.addCountryCatalogSuccess(catalogRep.getName());
-                    } catch (ModelDuplicateException e) {
-                        session.getTransactionManager().rollback();
-                        logger.addCountryCatalogFailedCountryCatalogExists(catalogRep.getName(), catalogRep.getShortName());
-                    } catch (Throwable t) {
-                        session.getTransactionManager().rollback();
-                        logger.addCountryCatalogFailed(t, catalogRep.getName(), catalogRep.getShortName());
-                    } finally {
-                        session.close();
-                    }
+                    CountryCatalogModel catalog = session.countriesCatalog().addCountryCatalog(catalogRep.getName());
+                    catalog.setShortName(catalogRep.getShortName());
+                    catalog.setAlpha2Code(catalogRep.getAlpha2Code());
+                    catalog.setAlpha3Code(catalogRep.getAlpha3Code());
+                    catalog.setNumericCode(catalogRep.getNumericCode());
+                    
+                    logger.addCountryCatalogSuccess(catalogRep.getName());
+                } catch (ModelDuplicateException e) {                    
+                    logger.addCountryCatalogFailedCountryCatalogExists(catalogRep.getName(), catalogRep.getShortName());
+                } catch (Throwable t) {                    
+                    logger.addCountryCatalogFailed(t, catalogRep.getName(), catalogRep.getShortName());
                 }
             }
         }
@@ -213,41 +210,39 @@ public class ApplianceBootstrap {
             throw new IllegalStateException("Can't create initial currency catalog as currencys already exists");
         }
         
+        File addCurrencyCatalogFile = null;
+        
         String configDir = System.getProperty("jboss.server.config.dir");
         if (configDir != null) {
-            File addCurrencyCatalogFile = new File(configDir + File.separator + "openfact-default-currencyCatalog.json");
-            if (addCurrencyCatalogFile.isFile()) {
-                logger.importingCurrencysCatalogFrom(addCurrencyCatalogFile);
+            addCurrencyCatalogFile = new File(configDir + File.separator + "openfact-default-currencyCatalog.json");                        
+        } else {
+            addCurrencyCatalogFile = new File(getClass().getResource("/META-INF/openfact-default-currencyCatalog.json").getFile());
+        }
+        
+        if (addCurrencyCatalogFile.isFile()) {
+            logger.importingCurrencysCatalogFrom(addCurrencyCatalogFile);
 
-                List<CurrencyCatalogRepresentation> catalogs;
+            List<CurrencyCatalogRepresentation> catalogs;
+            try {
+                catalogs = JsonSerialization.readValue(new FileInputStream(addCurrencyCatalogFile), new TypeReference<List<CurrencyCatalogRepresentation>>() {
+                });
+            } catch (IOException e) {
+                logger.failedToLoadCurrencysCatalog(e);
+                return false;
+            }
+
+            for (CurrencyCatalogRepresentation catalogRep : catalogs) {
                 try {
-                    catalogs = JsonSerialization.readValue(new FileInputStream(addCurrencyCatalogFile), new TypeReference<List<CurrencyCatalogRepresentation>>() {
-                    });
-                } catch (IOException e) {
-                    logger.failedToLoadCurrencysCatalog(e);
-                    return false;
-                }
-
-                for (CurrencyCatalogRepresentation catalogRep : catalogs) {
-                    try {
-                        session.getTransactionManager().begin();
-
-                        CurrencyCatalogModel catalog = session.currenciesCatalog().addCurrencyCatalog(catalogRep.getEntity(), catalogRep.getCurrency());
-                        catalog.setAlphabeticCode(catalogRep.getAlphabeticCode());
-                        catalog.setNumericCode(catalogRep.getNumericCode());
-                        catalog.setMinorUnit(catalogRep.getMinorUnit());
-                        
-                        session.getTransactionManager().commit();
-                        logger.addCurrencyCatalogSuccess(catalogRep.getCurrency());
-                    } catch (ModelDuplicateException e) {
-                        session.getTransactionManager().rollback();
-                        logger.addCurrencyCatalogFailedCurrencyCatalogExists(catalogRep.getCurrency(), catalogRep.getEntity());
-                    } catch (Throwable t) {
-                        session.getTransactionManager().rollback();
-                        logger.addCurrencyCatalogFailed(t, catalogRep.getCurrency(), catalogRep.getEntity());
-                    } finally {
-                        session.close();
-                    }
+                    CurrencyCatalogModel catalog = session.currenciesCatalog().addCurrencyCatalog(catalogRep.getEntity(), catalogRep.getCurrency());
+                    catalog.setAlphabeticCode(catalogRep.getAlphabeticCode());
+                    catalog.setNumericCode(catalogRep.getNumericCode());
+                    catalog.setMinorUnit(catalogRep.getMinorUnit());
+                    
+                    logger.addCurrencyCatalogSuccess(catalogRep.getCurrency());
+                } catch (ModelDuplicateException e) {                    
+                    logger.addCurrencyCatalogFailedCurrencyCatalogExists(catalogRep.getCurrency(), catalogRep.getEntity());
+                } catch (Throwable t) {                    
+                    logger.addCurrencyCatalogFailed(t, catalogRep.getCurrency(), catalogRep.getEntity());
                 }
             }
         }
@@ -259,38 +254,36 @@ public class ApplianceBootstrap {
             throw new IllegalStateException("Can't create initial units catalog as units already exists");
         }
         
+        File addUnitCatalogFile = null;
+        
         String configDir = System.getProperty("jboss.server.config.dir");
         if (configDir != null) {
-            File addUnitCatalogFile = new File(configDir + File.separator + "openfact-default-unitCatalog.json");
-            if (addUnitCatalogFile.isFile()) {
-                logger.importingUnitsCatalogFrom(addUnitCatalogFile);
+            addUnitCatalogFile = new File(configDir + File.separator + "openfact-default-unitCatalog.json");                        
+        } else {
+            addUnitCatalogFile = new File(getClass().getResource("/META-INF/openfact-default-unitCatalog.json").getFile());
+        }
+        
+        if (addUnitCatalogFile.isFile()) {
+            logger.importingUnitsCatalogFrom(addUnitCatalogFile);
 
-                List<UnitCatalogRepresentation> catalogs;
+            List<UnitCatalogRepresentation> catalogs;
+            try {
+                catalogs = JsonSerialization.readValue(new FileInputStream(addUnitCatalogFile), new TypeReference<List<UnitCatalogRepresentation>>() {
+                });
+            } catch (IOException e) {
+                logger.failedToLoadUnitsCatalog(e);
+                return false;
+            }
+
+            for (UnitCatalogRepresentation catalogRep : catalogs) {
                 try {
-                    catalogs = JsonSerialization.readValue(new FileInputStream(addUnitCatalogFile), new TypeReference<List<UnitCatalogRepresentation>>() {
-                    });
-                } catch (IOException e) {
-                    logger.failedToLoadUnitsCatalog(e);
-                    return false;
-                }
+                    UnitCatalogModel catalog = session.unitsCatalog().addUnitCatalog(catalogRep.getName(), catalogRep.getSymbol(), catalogRep.getDescription());                    
 
-                for (UnitCatalogRepresentation catalogRep : catalogs) {
-                    try {
-                        session.getTransactionManager().begin();
-
-                        UnitCatalogModel catalog = session.unitsCatalog().addUnitCatalog(catalogRep.getName(), catalogRep.getSymbol(), catalogRep.getDescription());
-
-                        session.getTransactionManager().commit();
-                        logger.addUnitCatalogSuccess(catalogRep.getDescription());
-                    } catch (ModelDuplicateException e) {
-                        session.getTransactionManager().rollback();
-                        logger.addUnitCatalogFailedUnitCatalogExists(catalogRep.getName(), catalogRep.getDescription());
-                    } catch (Throwable t) {
-                        session.getTransactionManager().rollback();
-                        logger.addUnitCatalogFailed(t, catalogRep.getName(), catalogRep.getDescription());
-                    } finally {
-                        session.close();
-                    }
+                    logger.addUnitCatalogSuccess(catalogRep.getDescription());
+                } catch (ModelDuplicateException e) {
+                    logger.addUnitCatalogFailedUnitCatalogExists(catalogRep.getName(), catalogRep.getDescription());
+                } catch (Throwable t) {
+                    logger.addUnitCatalogFailed(t, catalogRep.getName(), catalogRep.getDescription());
                 }
             }
         }

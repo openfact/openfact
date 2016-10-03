@@ -427,7 +427,7 @@ public interface ServicesLogger extends BasicLogger {
     void flowNotAllowed(String flowName);
     
     
-    @LogMessage(level = INFO)
+    @LogMessage(level = DEBUG)
     @Message(id=96, value="Importing codes catalogs from '%s'")
     void importingCodesCatalogFrom(Object from);
     
@@ -435,8 +435,8 @@ public interface ServicesLogger extends BasicLogger {
     @Message(id=97, value="Failed to load 'openfact-default-codeCatalog.json'")
     void failedToLoadCodesCatalog(@Cause Throwable t);
     
-    @LogMessage(level = INFO)
-    @Message(id=98, value="Added codeCatalog '%s' to system '%s'")
+    @LogMessage(level = DEBUG)
+    @Message(id=98, value="Added codeCatalog '%s' to system")
     void addCodeCatalogSuccess(String codeCatalog);
     
     @LogMessage(level = ERROR)
@@ -448,7 +448,7 @@ public interface ServicesLogger extends BasicLogger {
     void addCodeCatalogFailed(@Cause Throwable t, String codeCatalogCode, String codeCatalogDescription);
     
     
-    @LogMessage(level = INFO)
+    @LogMessage(level = DEBUG)
     @Message(id=101, value="Importing countrys catalogs from '%s'")
     void importingCountrysCatalogFrom(Object from);
     
@@ -456,8 +456,8 @@ public interface ServicesLogger extends BasicLogger {
     @Message(id=102, value="Failed to load 'openfact-default-countryCatalog.json'")
     void failedToLoadCountrysCatalog(@Cause Throwable t);
     
-    @LogMessage(level = INFO)
-    @Message(id=103, value="Added countryCatalog '%s' to system '%s'")
+    @LogMessage(level = DEBUG)
+    @Message(id=103, value="Added countryCatalog '%s' to system")
     void addCountryCatalogSuccess(String countryCatalog);
     
     @LogMessage(level = ERROR)
@@ -469,44 +469,44 @@ public interface ServicesLogger extends BasicLogger {
     void addCountryCatalogFailed(@Cause Throwable t, String countryCatalogCountry, String countryCatalogDescription);
     
     
-    @LogMessage(level = INFO)
-    @Message(id=96, value="Importing currencys catalogs from '%s'")
+    @LogMessage(level = DEBUG)
+    @Message(id=106, value="Importing currencys catalogs from '%s'")
     void importingCurrencysCatalogFrom(Object from);
     
     @LogMessage(level = ERROR)
-    @Message(id=106, value="Failed to load 'openfact-default-currencyCatalog.json'")
+    @Message(id=107, value="Failed to load 'openfact-default-currencyCatalog.json'")
     void failedToLoadCurrencysCatalog(@Cause Throwable t);
     
-    @LogMessage(level = INFO)
-    @Message(id=107, value="Added currencyCatalog '%s' to system '%s'")
+    @LogMessage(level = DEBUG)
+    @Message(id=108, value="Added currencyCatalog '%s' to system")
     void addCurrencyCatalogSuccess(String currencyCatalog);
     
     @LogMessage(level = ERROR)
-    @Message(id=108, value="Failed to add currencyCatalog '%s' to system '%s': currencyCatalog with currency exists")
+    @Message(id=109, value="Failed to add currencyCatalog '%s' to system '%s': currencyCatalog with currency exists")
     void addCurrencyCatalogFailedCurrencyCatalogExists(String description, String currency);
 
     @LogMessage(level = ERROR)
-    @Message(id=109, value="Failed to add currencyCatalog '%s' to system '%s'")
+    @Message(id=110, value="Failed to add currencyCatalog '%s' to system '%s'")
     void addCurrencyCatalogFailed(@Cause Throwable t, String currencyCatalogCurrency, String currencyCatalogDescription);
     
     
-    @LogMessage(level = INFO)
-    @Message(id=110, value="Importing units catalogs from '%s'")
+    @LogMessage(level = DEBUG)
+    @Message(id=111, value="Importing units catalogs from '%s'")
     void importingUnitsCatalogFrom(Object from);
     
     @LogMessage(level = ERROR)
-    @Message(id=111, value="Failed to load 'openfact-default-unitCatalog.json'")
+    @Message(id=112, value="Failed to load 'openfact-default-unitCatalog.json'")
     void failedToLoadUnitsCatalog(@Cause Throwable t);
     
-    @LogMessage(level = INFO)
-    @Message(id=112, value="Added unitCatalog '%s' to system '%s'")
+    @LogMessage(level = DEBUG)
+    @Message(id=113, value="Added unitCatalog '%s' to system")
     void addUnitCatalogSuccess(String unitCatalog);
     
     @LogMessage(level = ERROR)
-    @Message(id=113, value="Failed to add unitCatalog '%s' to system '%s': unitCatalog with unit exists")
+    @Message(id=114, value="Failed to add unitCatalog '%s' to system '%s': unitCatalog with unit exists")
     void addUnitCatalogFailedUnitCatalogExists(String description, String unit);
 
     @LogMessage(level = ERROR)
-    @Message(id=114, value="Failed to add unitCatalog '%s' to system '%s'")
+    @Message(id=115, value="Failed to add unitCatalog '%s' to system '%s'")
     void addUnitCatalogFailed(@Cause Throwable t, String unitCatalogUnit, String unitCatalogDescription);
 }

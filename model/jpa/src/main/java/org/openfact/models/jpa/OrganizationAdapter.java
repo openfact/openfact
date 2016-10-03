@@ -18,10 +18,8 @@ import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.jose.jwk.JWKBuilder;
-import org.openfact.models.CurrencyModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.jpa.entities.CurrencyEntity;
 import org.openfact.models.jpa.entities.OrganizationAttributes;
 import org.openfact.models.jpa.entities.OrganizationEntity;
 import org.openfact.models.jpa.entities.OrganizationRequiredActionEntity;

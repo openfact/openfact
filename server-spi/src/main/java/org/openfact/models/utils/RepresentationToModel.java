@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
-import org.openfact.models.CurrencyModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.ubl.CreditNoteModel;

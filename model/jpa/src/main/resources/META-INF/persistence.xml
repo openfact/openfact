@@ -8,7 +8,6 @@
 		<class>org.openfact.models.jpa.entities.MigrationModelEntity</class>
 		<class>org.openfact.models.jpa.entities.OrganizationEntity</class>
 		<class>org.openfact.models.jpa.entities.OrganizationRequiredActionEntity</class>
-		<class>org.openfact.models.jpa.entities.CurrencyEntity</class>
 
 		<!-- JpaAuditProviders -->
 		<class>org.openfact.events.jpa.EventEntity</class>

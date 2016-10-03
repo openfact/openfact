@@ -29,7 +29,7 @@ public class JpaCurrencyCatalogProvider implements CurrencyCatalogProvider {
         CurrencyCatalogEntity catalog = new CurrencyCatalogEntity();
         catalog.setEntityName(entity);
         catalog.setCurrency(currency);
-        em.persist(entity);
+        em.persist(catalog);
         em.flush();
 
         return new CurrencyCatalogAdapter(session, em, catalog);
