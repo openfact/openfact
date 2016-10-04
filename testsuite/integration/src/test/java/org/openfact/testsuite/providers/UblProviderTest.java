@@ -44,7 +44,7 @@ import org.openfact.models.utils.UblSignature;
 import org.openfact.ubl.UblProvider;
 import org.openfact.ubl.pe.extensions.AdditionalInformationTypeSunatAgg;
 import org.openfact.ubl.pe.extensions.AdditionalMonetaryTotalType;
-import org.openfact.ubl.pe.extensions.ObjectFactory;
+import org.openfact.ubl.pe.extensions.InvoiceFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -206,8 +206,8 @@ public class UblProviderTest extends AbstractProviderTest {
 		amtt1.setPayableAmount(pa1);
 		additionalInformation.getAdditionalMonetaryTotal().add(amtt1);
 
-		ObjectFactory FACTORIA = new ObjectFactory();
-		JAXBContext context = JAXBContext.newInstance(ObjectFactory.class);
+		InvoiceFactory FACTORIA = new InvoiceFactory();
+		JAXBContext context = JAXBContext.newInstance(InvoiceFactory.class);
 		Marshaller marshallerElement = context.createMarshaller();
 
 		JAXBElement<AdditionalInformationTypeSunatAgg> jeAits = FACTORIA
@@ -216,12 +216,6 @@ public class UblProviderTest extends AbstractProviderTest {
 		marshallerElement.marshal(jeAits, res);
 		Element elem = ((Document) res.getNode()).getDocumentElement();
 		cc.setAny(elem);
-
-		// UBLExtensionsModel e1 = invoice.getUBLExtensions();
-		// UBLExtensionModel ee1 = e1.addUblExtension();
-		// ExtensionContentModel cc1 = ee1.getExtensionContent();
-		// cc1.setAny(null);
-
 		// end demo additional information sunat
 		commit();
 

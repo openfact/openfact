@@ -64,7 +64,7 @@ import org.openfact.models.utils.UblSignature;
 import org.openfact.ubl.UblProvider;
 import org.openfact.ubl.pe.extensions.AdditionalInformationTypeSunatAgg;
 import org.openfact.ubl.pe.extensions.AdditionalMonetaryTotalType;
-import org.openfact.ubl.pe.extensions.ObjectFactory;
+import org.openfact.ubl.pe.extensions.InvoiceFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -257,8 +257,8 @@ public class InvoiceModelTest extends AbstractModelTest {
 		amtt1.setPayableAmount(pa1);
 		additionalInformation.getAdditionalMonetaryTotal().add(amtt1);
 
-		ObjectFactory FACTORIA = new ObjectFactory();
-		JAXBContext context = JAXBContext.newInstance(ObjectFactory.class);
+		InvoiceFactory FACTORIA = new InvoiceFactory();
+		JAXBContext context = JAXBContext.newInstance(InvoiceFactory.class);
 		Marshaller marshallerElement = context.createMarshaller();
 
 		JAXBElement<AdditionalInformationTypeSunatAgg> jeAits = FACTORIA
