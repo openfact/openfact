@@ -21,6 +21,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -71,6 +72,7 @@ import org.w3c.dom.Element;
 import com.helger.commons.error.list.IErrorList;
 import com.helger.ubl21.UBL21Reader;
 import com.helger.ubl21.UBL21Validator;
+import com.helger.ubl21.UBL21Writer;
 
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.IDType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.PayableAmountType;
@@ -285,7 +287,7 @@ public class InvoiceModelTest extends AbstractModelTest {
 			InvoiceType invoiceType = UBL21Reader.invoice().read(xml);
 			IErrorList resourceErrorGroup = UBL21Validator.invoice().validate(invoiceType);
 
-			//UBL21Writer.invoice().write(invoiceType, new File("/home/lxpary/carlos.xml"));
+			UBL21Writer.invoice().write(invoiceType, new File("/home/lxpary/InvoiceModel.xml"));
 			assertThat(xml, is(notNullValue()));
 			assertThat(resourceErrorGroup.getAllErrors().getSize(), is(0));
 		}

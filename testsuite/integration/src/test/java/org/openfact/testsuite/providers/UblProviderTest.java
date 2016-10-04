@@ -49,6 +49,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.helger.commons.error.list.IErrorList;
+import com.helger.commons.io.file.FileHelper;
 import com.helger.ubl21.UBL21Reader;
 import com.helger.ubl21.UBL21Validator;
 import com.helger.ubl21.UBL21Writer;
@@ -221,11 +222,10 @@ public class UblProviderTest extends AbstractProviderTest {
 
 		Set<UblProvider> providers = session.getAllProviders(UblProvider.class);
 		for (UblProvider provider : providers) {
-			Document xml = provider.getDocument(organization, invoice);
-			InvoiceType invoiceType = UBL21Reader.invoice().read(xml);
-			IErrorList resourceErrorGroup = UBL21Validator.invoice().validate(invoiceType);
-
-			//UBL21Writer.invoice().write(invoiceType, new File("/home/lxpary/carlos.xml"));
+			Document xml = provider.getDocument(organization, invoice);	
+			InvoiceType invoiceType = UBL21Reader.invoice().read(xml);	
+			IErrorList resourceErrorGroup = UBL21Validator.invoice().validate(invoiceType);			
+			//UBL21Writer.invoice().write (invoiceType, new File("/home/lxpary/demo.xml"));
 			assertThat(xml, is(notNullValue()));
 			assertThat(resourceErrorGroup.getAllErrors().getSize(), is(0));
 		}

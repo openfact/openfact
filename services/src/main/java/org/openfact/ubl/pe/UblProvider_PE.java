@@ -1,5 +1,7 @@
 package org.openfact.ubl.pe;
 
+import java.io.ByteArrayOutputStream;
+
 import javax.xml.datatype.DatatypeConfigurationException;
 
 import org.jboss.logging.Logger;
@@ -9,13 +11,16 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.models.ubl.CreditNoteModel;
 import org.openfact.models.ubl.DebitNoteModel;
 import org.openfact.models.ubl.InvoiceModel;
+import org.openfact.models.utils.DocumentUtils;
 import org.openfact.models.utils.ModelToType;
 import org.openfact.ubl.UblProvider;
 import org.w3c.dom.Document;
 
 import com.helger.ubl21.UBL21NamespaceContext;
 import com.helger.ubl21.UBL21Writer;
-import com.helger.ubl21.UBL21WriterBuilder;
+import com.helger.xml.microdom.serialize.MicroWriter;
+import com.helger.xml.namespace.MapBasedNamespaceContext;
+import com.helger.xml.serialize.write.XMLWriterSettings;
 
 import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
 import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
@@ -41,21 +46,38 @@ public class UblProvider_PE implements UblProvider {
 		try {
 			InvoiceType invoiceType = ModelToType.toType(invoice);
 
-			UBL21NamespaceContext namespaceContext = UBL21NamespaceContext.getInstance();
-			namespaceContext.setMapping("sac",
-					"urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1");
-			namespaceContext.setMapping("udt",
-					"urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2");
-			namespaceContext.setMapping("ccts", "urn:un:unece:uncefact:documentation:2");
-			namespaceContext.setMapping("ext",
-					"urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2");
-			namespaceContext.setMapping("qdt", "urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2");
-			namespaceContext.setMapping("ds", "http://www.w3.org/2000/09/xmldsig#");
-			namespaceContext.setMapping("xsi", "http://www.w3.org/2001/XMLSchema-instance");		
-			
-			
-			return UBL21Writer.invoice().setNamespaceContext(namespaceContext).getAsDocument(invoiceType);
+			UBL21NamespaceContext namespace = UBL21NamespaceContext.getInstance();
+			namespace.addMapping("ccts", "urn:un:unece:uncefact:documentation:2");
+			namespace.addMapping("ds", "http://www.w3.org/2000/09/xmldsig#");
+			namespace.addMapping("ext", "urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2");
+			namespace.addMapping("qdt", "urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2");
+			namespace.addMapping("sac", "urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1");
+			namespace.addMapping("udt", "urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2");
+
+			MapBasedNamespaceContext mapBasedNamespace = new MapBasedNamespaceContext();
+			mapBasedNamespace.addMappings(namespace);
+			mapBasedNamespace.setDefaultNamespaceURI("urn:oasis:names:specification:ubl:schema:xsd:Invoice-2");
+
+			//// METHOD 01
+			// String xml =
+			// MicroWriter.getNodeAsString(UBL21Writer.invoice().getAsMicroDocument(invoiceType),
+			// new XMLWriterSettings().setNamespaceContext(mapBasedNamespace)
+			// .setPutNamespaceContextPrefixesInRoot(true));
+			// return DocumentUtils.getStringToDocument(xml);
+
+			// METHOD 02
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			MicroWriter.writeToStream(UBL21Writer.invoice().getAsMicroDocument(invoiceType),
+					out/*FileHelper.getOutputStream("/home/lxpary/prueba0000.xml")*/, new XMLWriterSettings()
+							.setNamespaceContext(mapBasedNamespace).setPutNamespaceContextPrefixesInRoot(true));
+			return DocumentUtils.getByteToDocument(out.toByteArray());
+
+			// return
+			// UBL21Writer.invoice().setNamespaceContext(aNSContext).getAsDocument(invoiceType);
 		} catch (DatatypeConfigurationException e) {
+			log.error(e.getMessage());
+			throw new ModelException(e.getMessage());
+		} catch (Exception e) {
 			log.error(e.getMessage());
 			throw new ModelException(e.getMessage());
 		}

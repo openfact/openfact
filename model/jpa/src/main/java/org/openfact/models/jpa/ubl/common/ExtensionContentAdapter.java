@@ -21,6 +21,7 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.ExtensionContentEntity;
 import org.openfact.models.ubl.common.ExtensionContentModel;
+import org.openfact.models.utils.DocumentUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -43,7 +44,7 @@ public class ExtensionContentAdapter implements ExtensionContentModel, JpaModel<
 		try {
 			transformer = TransformerFactory.newInstance().newTransformer();
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-			DOMSource source = new DOMSource(getByteToDocument(this.extensionContent.getAny()));
+			DOMSource source = new DOMSource(DocumentUtils.getByteToDocument(this.extensionContent.getAny()));
 			Element elem = ((Document) source.getNode()).getDocumentElement();
 			return elem;
 		} catch (TransformerConfigurationException | TransformerFactoryConfigurationError e) {
@@ -57,7 +58,7 @@ public class ExtensionContentAdapter implements ExtensionContentModel, JpaModel<
 	public void setAny(Element value) {
 		Document document = value.getOwnerDocument();
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		ElementToByte(document.getDocumentElement(), baos);
+		DocumentUtils.getElementToByte(document.getDocumentElement(), baos);
 		this.extensionContent.setAny(baos.toByteArray());
 	}
 
@@ -92,23 +93,5 @@ public class ExtensionContentAdapter implements ExtensionContentModel, JpaModel<
 	public ExtensionContentEntity getEntity() {
 		return extensionContent;
 	}
-
-	private Document getByteToDocument(byte[] documentoXml) throws Exception {
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		factory.setNamespaceAware(true);
-		DocumentBuilder builder = factory.newDocumentBuilder();
-		return builder.parse(new ByteArrayInputStream(documentoXml));
-	}
-
-	public void ElementToByte(Element element, OutputStream out) {
-		try {
-			DOMSource source = new DOMSource(element);
-			StreamResult result = new StreamResult(out);
-			TransformerFactory transFactory = TransformerFactory.newInstance();
-			Transformer transformer = transFactory.newTransformer();
-			transformer.transform(source, result);
-		} catch (Exception ex) {
-			throw new ModelException("Error in convert element to byte");
-		}
-	}
+	
 }
