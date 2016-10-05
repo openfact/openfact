@@ -33,7 +33,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.openfact.models.ModelException;
 import org.openfact.models.OrganizationModel;
 
 import org.w3c.dom.Document;
@@ -48,9 +47,7 @@ public class UblSignature {
 	/**
 	 * Method used to get the KeyInfo
 	 */
-	private static KeyInfo getKeyInfo(XMLSignatureFactory xmlSigFactory, OrganizationModel organization)
-			throws KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException,
-			UnrecoverableEntryException {
+	private static KeyInfo getKeyInfo(XMLSignatureFactory xmlSigFactory, OrganizationModel organization) throws KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableEntryException {
 		X509Certificate cert = organization.getCertificate();		
 		KeyInfoFactory kif = xmlSigFactory.getKeyInfoFactory();
 		List<Serializable> x509Content = new ArrayList<Serializable>();
@@ -64,62 +61,39 @@ public class UblSignature {
 	/**
 	 * Method used to attach a generated digital signature to the existing
 	 * document
+	 * @throws ParserConfigurationException 
+	 * @throws NoSuchAlgorithmException 
+	 * @throws InvalidAlgorithmParameterException 
+	 * @throws IOException 
+	 * @throws UnrecoverableEntryException 
+	 * @throws CertificateException 
+	 * @throws KeyStoreException 
+	 * @throws XMLSignatureException 
+	 * @throws MarshalException 
 	 */
-	public static Document ublSignatureGenerate(OrganizationModel organization) throws KeyStoreException, IOException,
-			NoSuchAlgorithmException, CertificateException, UnrecoverableEntryException {
-
+	public static Document ublSignatureGenerate(OrganizationModel organization) throws ParserConfigurationException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, KeyStoreException, CertificateException, UnrecoverableEntryException, IOException, MarshalException, XMLSignatureException {
 		// Create XML Signature Factory
 		XMLSignatureFactory xmlSigFactory = XMLSignatureFactory.getInstance(FACTORY);
 		PrivateKey privateKey = organization.getPrivateKey();
 
 		Document document = newEmptyDocument();
 		DOMSignContext domSignCtx = new DOMSignContext(privateKey, document);
-		// DOMSignContext domSignCtx = new DOMSignContext(privateKey,
-		// document.getDocumentElement().getFirstChild().getNextSibling().getFirstChild().getNextSibling()
-		// .getNextSibling().getNextSibling().getFirstChild().getNextSibling());
 
 		domSignCtx.setDefaultNamespacePrefix(PREFIX);
-		Reference ref = null;
-		SignedInfo signedInfo = null;
-		try {
-			ref = xmlSigFactory.newReference("", xmlSigFactory.newDigestMethod(DigestMethod.SHA1, null),
-					Collections.singletonList(
-							xmlSigFactory.newTransform(Transform.ENVELOPED, (TransformParameterSpec) null)),
-					null, null);
-			signedInfo = xmlSigFactory.newSignedInfo(
-					xmlSigFactory.newCanonicalizationMethod(CanonicalizationMethod.INCLUSIVE,
-							(C14NMethodParameterSpec) null),
-					xmlSigFactory.newSignatureMethod(SignatureMethod.RSA_SHA1, null), Collections.singletonList(ref));
-		} catch (NoSuchAlgorithmException ex) {
-			throw new ModelException("No Such Algorithm");
-		} catch (InvalidAlgorithmParameterException ex) {
-			throw new ModelException("Invalid Algorithm Parameter");
-		}
+		Reference ref = xmlSigFactory.newReference("", xmlSigFactory.newDigestMethod(DigestMethod.SHA1, null), Collections.singletonList(xmlSigFactory.newTransform(Transform.ENVELOPED, (TransformParameterSpec) null)), null, null);
+		SignedInfo signedInfo = xmlSigFactory.newSignedInfo(xmlSigFactory.newCanonicalizationMethod(CanonicalizationMethod.INCLUSIVE, (C14NMethodParameterSpec) null), xmlSigFactory.newSignatureMethod(SignatureMethod.RSA_SHA1, null), Collections.singletonList(ref));
+        
 		KeyInfo keyInfo = getKeyInfo(xmlSigFactory, organization);
+		
 		// Create a new XML Signature
 		XMLSignature xmlSignature = xmlSigFactory.newXMLSignature(signedInfo, keyInfo);
-		try {
-			// Sign the document
-			xmlSignature.sign(domSignCtx);
-		} catch (MarshalException ex) {
-			throw new ModelException("Error in marshal create");
-		} catch (XMLSignatureException ex) {
-			throw new ModelException("Invalid XMLSignature");
-		}
+		xmlSignature.sign(domSignCtx);
 		return document;
 	}
 
-	public static Document newEmptyDocument() {
-		DocumentBuilderFactory factory = null;
-		DocumentBuilder builder = null;
-		Document ret;
-		try {
-			factory = DocumentBuilderFactory.newInstance();
-			builder = factory.newDocumentBuilder();
-		} catch (ParserConfigurationException e) {
-			throw new ModelException("Invalid document create");
-		}
-		ret = builder.newDocument();
-		return ret;
+	public static Document newEmptyDocument() throws ParserConfigurationException {
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder builder = factory.newDocumentBuilder();		
+		return builder.newDocument();
 	}
 }
