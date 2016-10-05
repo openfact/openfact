@@ -27,11 +27,17 @@ import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.UblDocumentType;
 import org.openfact.models.UserModel;
+import org.openfact.models.ubl.CreditNoteModel;
+import org.openfact.models.ubl.DebitNoteModel;
+import org.openfact.models.ubl.InvoiceModel;
+import org.openfact.models.ubl.common.UBLExtensionModel;
+import org.openfact.models.ubl.common.UBLExtensionsModel;
 import org.openfact.representations.idm.CertificateRepresentation;
 import org.openfact.common.util.CertificateUtils;
 import org.openfact.common.util.PemUtils;
 import org.openfact.transaction.JtaTransactionManagerLookup;
 import org.openfact.ubl.UblException;
+import org.openfact.ubl.UblExtensionContentGeneratorProvider;
 import org.openfact.ubl.UblIDGeneratorProvider;
 
 import javax.crypto.spec.SecretKeySpec;
@@ -70,18 +76,38 @@ public final class OpenfactModelUtils {
 	private OpenfactModelUtils() {
 	}
 	
-	public static String generateUblID(OpenfactSession session, OrganizationModel organization, UblDocumentType documentType) {
+    /**
+     * Openfact
+     */
+    public static String generateUblID(OpenfactSession session, OrganizationModel organization, UblDocumentType documentType) {
         String defaultLocale = organization.getDefaultUblLocale();
         UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class, defaultLocale);
         return provider.generateID(organization, documentType);
     }
-    
+
     public static String generateUblID(OpenfactSession session, OrganizationModel organization, UblDocumentType documentType, String typeCode) {
         String defaultLocale = organization.getDefaultUblLocale();
         UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class, defaultLocale);
         return provider.generateID(organization, documentType, typeCode);
     }
 
+    public static List<UBLExtensionModel> generateUBLExtensions(OpenfactSession session, OrganizationModel organization, InvoiceModel invoice) {
+        UblExtensionContentGeneratorProvider provider = session.getProvider(UblExtensionContentGeneratorProvider.class, organization.getDefaultUblLocale());
+        return provider.generateUBLExtensions(organization, invoice);
+    }
+
+    public static List<UBLExtensionModel> generateUBLExtensions(OpenfactSession session, OrganizationModel organization, CreditNoteModel creditNote) {
+        UblExtensionContentGeneratorProvider provider = session.getProvider(UblExtensionContentGeneratorProvider.class, organization.getDefaultUblLocale());
+        return provider.generateUBLExtensions(organization, creditNote);
+    }
+
+    public static List<UBLExtensionModel> generateUBLExtensions(OpenfactSession session, OrganizationModel organization, DebitNoteModel debitNote) {
+        UblExtensionContentGeneratorProvider provider = session.getProvider(UblExtensionContentGeneratorProvider.class, organization.getDefaultUblLocale());
+        return provider.generateUBLExtensions(organization, debitNote);
+    }
+    
+    /**
+     * */
 	public static String generateId() {
 		return UUID.randomUUID().toString();
 	}
@@ -644,4 +670,5 @@ public final class OpenfactModelUtils {
 		}
 
 	}
+    
 }

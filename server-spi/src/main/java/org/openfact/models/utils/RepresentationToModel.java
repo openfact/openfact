@@ -19,6 +19,7 @@ import org.openfact.models.ubl.common.CreditNoteLineModel;
 import org.openfact.models.ubl.common.CustomerPartyModel;
 import org.openfact.models.ubl.common.DebitNoteLineModel;
 import org.openfact.models.ubl.common.DocumentReferenceModel;
+import org.openfact.models.ubl.common.ExtensionContentModel;
 import org.openfact.models.ubl.common.InvoiceLineModel;
 import org.openfact.models.ubl.common.ItemIdentificationModel;
 import org.openfact.models.ubl.common.ItemModel;
@@ -34,6 +35,8 @@ import org.openfact.models.ubl.common.TaxCategoryModel;
 import org.openfact.models.ubl.common.TaxSchemeModel;
 import org.openfact.models.ubl.common.TaxSubtotalModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
+import org.openfact.models.ubl.common.UBLExtensionModel;
+import org.openfact.models.ubl.common.UBLExtensionsModel;
 import org.openfact.representations.idm.CertificateRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
@@ -49,6 +52,7 @@ import org.openfact.representations.idm.ubl.common.CreditNoteLineRepresentation;
 import org.openfact.representations.idm.ubl.common.CustomerPartyRepresentation;
 import org.openfact.representations.idm.ubl.common.DebitNoteLineRepresentation;
 import org.openfact.representations.idm.ubl.common.DocumentReferenceRepresentation;
+import org.openfact.representations.idm.ubl.common.ExtensionContentRepresentation;
 import org.openfact.representations.idm.ubl.common.InvoiceLineRepresentation;
 import org.openfact.representations.idm.ubl.common.ItemIdentificationRepresentation;
 import org.openfact.representations.idm.ubl.common.ItemRepresentation;
@@ -64,6 +68,8 @@ import org.openfact.representations.idm.ubl.common.TaxCategoryRepresentation;
 import org.openfact.representations.idm.ubl.common.TaxSchemeRepresentation;
 import org.openfact.representations.idm.ubl.common.TaxSubtotalRepresentation;
 import org.openfact.representations.idm.ubl.common.TaxTotalRepresentation;
+import org.openfact.representations.idm.ubl.common.UBLExtensionRepresentation;
+import org.openfact.representations.idm.ubl.common.UBLExtensionsRepresentation;
 
 public class RepresentationToModel {
 
@@ -351,6 +357,10 @@ public class RepresentationToModel {
         }
         model.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
 
+        if (rep.getUBLExtensions() != null) {
+            updateModel(model.getUBLExtensions(), rep.getUBLExtensions());
+        }
+
         return model;
     }
 
@@ -453,6 +463,59 @@ public class RepresentationToModel {
             for (DocumentReferenceRepresentation item : rep.getDespatchDocumentReference()) {
                 updateModel(model.addDespatchDocumentReference(), item);
             }
+        }
+    }
+
+    private static void updateModel(UBLExtensionsModel model, UBLExtensionsRepresentation rep) {
+        if (rep.getId() != null) {
+            model.setId(rep.getId());
+        }             
+        if (rep.getUBLExtension() != null) {
+            for (UBLExtensionRepresentation item : rep.getUBLExtension()) {
+                updateModel(model.addUblExtension(), item);
+            }
+        }
+    }
+
+    private static void updateModel(UBLExtensionModel model, UBLExtensionRepresentation rep) {
+        if (rep.getExtensionAgencyID() != null) {
+            model.setExtensionAgencyID(rep.getExtensionAgencyID());
+        }
+        if (rep.getExtensionAgencyName() != null) {
+            model.setExtensionAgencyName(rep.getExtensionAgencyName());
+        }
+        if (rep.getExtensionAgencyURI() != null) {
+            model.setExtensionAgencyURI(rep.getExtensionAgencyURI());
+        }
+        if (rep.getExtensionReason() != null) {
+            model.setExtensionReason(rep.getExtensionReason());
+        }
+        if (rep.getExtensionReasonCode() != null) {
+            model.setExtensionReasonCode(rep.getExtensionReasonCode());
+        }
+        if (rep.getExtensionURI() != null) {
+            model.setExtensionURI(rep.getExtensionURI());
+        }
+        if (rep.getExtensionVersionID() != null) {
+            model.setExtensionVersionID(rep.getExtensionVersionID());
+        }
+        if (rep.getIdUbl() != null) {
+            model.setID(rep.getIdUbl());
+        }
+        if (rep.getName() != null) {
+            model.setName(rep.getName());
+        }
+        if (rep.getExtensionContent() != null) {
+            updateModel(model.getExtensionContent(), rep.getExtensionContent());
+        }
+    }
+
+    private static void updateModel(ExtensionContentModel model, ExtensionContentRepresentation rep) {
+        if (rep.getAnyItem() != null) {
+            model.setAnyItem(rep.getAnyItem());
+        }
+        if (rep.getAny() != null) {
+            model.setAny(rep.getAny());
         }
     }
 

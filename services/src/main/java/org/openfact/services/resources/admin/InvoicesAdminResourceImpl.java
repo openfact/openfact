@@ -1,12 +1,8 @@
 package org.openfact.services.resources.admin;
 
-import java.io.StringWriter;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -14,12 +10,6 @@ import javax.ws.rs.core.CacheControl;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
@@ -32,6 +22,7 @@ import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.utils.ModelToRepresentation;
+import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.search.PagingRepresentation;
 import org.openfact.representations.idm.search.SearchCriteriaFilterOperatorRepresentation;
@@ -40,9 +31,6 @@ import org.openfact.representations.idm.search.SearchResultsRepresentation;
 import org.openfact.representations.idm.ubl.InvoiceRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
-import org.openfact.ubl.UblException;
-import org.openfact.ubl.UblProvider;
-import org.w3c.dom.Document;
 
 public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 
@@ -100,6 +88,8 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 
 		try {				
 			InvoiceModel invoice = RepresentationToModel.createInvoice(session, organization, rep);
+			OpenfactModelUtils.generateUBLExtensions(session, organization, invoice);
+						
             logger.addInvoiceSuccess(invoice.getId(), organization.getName());                                            
             
 			URI uri = uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build();
