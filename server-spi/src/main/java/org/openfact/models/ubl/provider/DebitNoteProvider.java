@@ -10,8 +10,6 @@ import org.openfact.provider.Provider;
 
 public interface DebitNoteProvider extends Provider {
 
-    DebitNoteModel addDebitNote(OrganizationModel organization);
-
     DebitNoteModel addDebitNote(OrganizationModel organization, String ID);
 
     DebitNoteModel getDebitNoteById(OrganizationModel organization, String id);
@@ -27,9 +25,9 @@ public interface DebitNoteProvider extends Provider {
     List<DebitNoteModel> getDebitNotes(OrganizationModel organization, Integer firstResult,
             Integer maxResults);
 
-    List<DebitNoteModel> searchForDebitNote(String filterText, OrganizationModel organization);
+    List<DebitNoteModel> searchForDebitNote(OrganizationModel organization, String filterText);
 
-    List<DebitNoteModel> searchForDebitNote(String filterText, OrganizationModel organization,
+    List<DebitNoteModel> searchForDebitNote(OrganizationModel organization, String filterText,
             Integer firstResult, Integer maxResults);
 
     SearchResultsModel<DebitNoteModel> searchForDebitNote(OrganizationModel organization,

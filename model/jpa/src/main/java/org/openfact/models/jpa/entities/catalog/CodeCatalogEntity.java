@@ -23,6 +23,9 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name = "CODE_CATALOG")
 @NamedQueries({
+        @NamedQuery(name = "getAllCodeCatalogs", query = "select codeCatalog from CodeCatalogEntity codeCatalog"),
+        @NamedQuery(name = "getCodeCatalogById", query = "select codeCatalog from CodeCatalogEntity codeCatalog where codeCatalog.id =:id"),
+        @NamedQuery(name = "searchForCodeCatalog", query = "select codeCatalog from CodeCatalogEntity codeCatalog where codeCatalog.type like :filterText or codeCatalog.code like :filterText or codeCatalog.description like :filterText"),
         @NamedQuery(name = "getCodesCatalogCount", query = "select count(codeCatalog.id) from CodeCatalogEntity codeCatalog") })
 public class CodeCatalogEntity {
 

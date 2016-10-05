@@ -10,8 +10,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.openfact.representations.idm.catalog.CodeCatalogRepresentation;
@@ -31,13 +33,14 @@ public interface CodesCatalogAdminResource {
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    Response createCodeCatalog(@Valid final CodeCatalogRepresentation rep);
+    Response createCodeCatalog(@Context final UriInfo uriInfo, @Valid final CodeCatalogRepresentation rep);
 
     @GET
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    List<CodeCatalogRepresentation> getCodesCatalog(@QueryParam("locale") final String locale,
-            @QueryParam("type") final String type, @QueryParam("code") final String code,
-            @QueryParam("description") final String description);
+    List<CodeCatalogRepresentation> getCodesCatalog(@QueryParam("filterText") final String filterText,
+            @QueryParam("locale") final String locale, @QueryParam("type") final String type,
+            @QueryParam("code") final String code, @QueryParam("description") final String description,
+            @QueryParam("first") Integer firstResult, @QueryParam("max") Integer maxResults);
 
 }

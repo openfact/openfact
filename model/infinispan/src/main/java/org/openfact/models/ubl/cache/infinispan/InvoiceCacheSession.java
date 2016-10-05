@@ -54,19 +54,7 @@ public class InvoiceCacheSession implements InvoiceCache {
     }
 
     @Override
-    public InvoiceModel addInvoice(OrganizationModel organization) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public InvoiceModel addInvoice(OrganizationModel organization, String ID) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public InvoiceModel addInvoice(OrganizationModel organization, String ID, String codeType) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -109,13 +97,13 @@ public class InvoiceCacheSession implements InvoiceCache {
     }
 
     @Override
-    public List<InvoiceModel> searchForInvoice(String filterText, OrganizationModel organization) {
+    public List<InvoiceModel> searchForInvoice(OrganizationModel organization, String filterText) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public List<InvoiceModel> searchForInvoice(String filterText, OrganizationModel organization,
+    public List<InvoiceModel> searchForInvoice(OrganizationModel organization, String filterText,
             Integer firstResult, Integer maxResults) {
         // TODO Auto-generated method stub
         return null;
@@ -166,5 +154,6 @@ public class InvoiceCacheSession implements InvoiceCache {
         
     }
 
+    
  
 }

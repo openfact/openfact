@@ -13,20 +13,20 @@ import org.openfact.common.ClientConnection;
 import org.openfact.events.admin.OperationType;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.ubl.InvoiceModel;
+import org.openfact.models.ubl.DebitNoteModel;
 import org.openfact.models.utils.ModelToRepresentation;
-import org.openfact.representations.idm.ubl.InvoiceRepresentation;
-import org.openfact.representations.idm.ubl.common.InvoiceLineRepresentation;
+import org.openfact.representations.idm.ubl.DebitNoteRepresentation;
+import org.openfact.representations.idm.ubl.common.DebitNoteLineRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
-import org.openfact.services.managers.InvoiceManager;
+import org.openfact.services.managers.DebitNoteManager;
 
-public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
+public class DebitNoteAdminResourceImpl implements DebitNoteAdminResource {
 
     private static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
 
     protected OrganizationModel organization;
-    protected InvoiceModel invoice;
+    protected DebitNoteModel debitNote;
     private OrganizationAuth auth;
     private AdminEventBuilder adminEvent;
 
@@ -42,50 +42,50 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
     @Context
     protected HttpHeaders headers;
 
-    public InvoiceAdminResourceImpl(OrganizationModel organization, OrganizationAuth auth,
-            AdminEventBuilder adminEvent, InvoiceModel invoice) {
+    public DebitNoteAdminResourceImpl(OrganizationModel organization, OrganizationAuth auth,
+            AdminEventBuilder adminEvent, DebitNoteModel debitNote) {
         this.auth = auth;
         this.organization = organization;
         this.adminEvent = adminEvent;
-        this.invoice = invoice;
+        this.debitNote = debitNote;
 
-        auth.init(OrganizationAuth.Resource.INVOICE);
+        auth.init(OrganizationAuth.Resource.DEBIT_NOTE);
     }
 
     @Override
-    public InvoiceRepresentation getInvoice() {
+    public DebitNoteRepresentation getDebitNote() {
         auth.requireView();
 
-        if (invoice == null) {
-            throw new NotFoundException("Invoice not found");
+        if (debitNote == null) {
+            throw new NotFoundException("Debit Note not found");
         }
 
-        InvoiceRepresentation rep = ModelToRepresentation.toRepresentation(invoice);
+        DebitNoteRepresentation rep = ModelToRepresentation.toRepresentation(debitNote);
         return rep;
     }
 
     @Override
-    public List<InvoiceLineRepresentation> getLines() {
+    public List<DebitNoteLineRepresentation> getLines() {
         auth.requireView();
 
-        return invoice.getInvoiceLine().stream().map(f -> ModelToRepresentation.toRepresentation(f)).collect(Collectors.toList());
+        return debitNote.getDebitNoteLine().stream().map(f -> ModelToRepresentation.toRepresentation(f)).collect(Collectors.toList());
     }
 
     @Override
-    public Response deleteInvoice() {
+    public Response deleteDebitNote() {
         auth.requireManage();
 
-        if (invoice == null) {
-            throw new NotFoundException("Invoice not found");
+        if (debitNote == null) {
+            throw new NotFoundException("Debit Note not found");
         }
 
-        boolean removed = new InvoiceManager(session).removeInvoice(organization, invoice);
+        boolean removed = new DebitNoteManager(session).removeDebitNote(organization, debitNote);
         if (removed) {
             adminEvent.operation(OperationType.DELETE).resourcePath(uriInfo).success();
             return Response.noContent().build();
         } else {
-            return ErrorResponse.error("Invoice couldn't be deleted", Response.Status.BAD_REQUEST);
+            return ErrorResponse.error("Debit Note couldn't be deleted", Response.Status.BAD_REQUEST);
         }
     }
-	
+
 }

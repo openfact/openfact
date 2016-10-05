@@ -24,7 +24,6 @@ import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.managers.OrganizationManager;
 import org.openfact.services.resources.OpenfactApplication;
-import org.openfact.ubl.UblException;
 
 public class OrganizationsAdminResourceImpl implements OrganizationsAdminResource {
 

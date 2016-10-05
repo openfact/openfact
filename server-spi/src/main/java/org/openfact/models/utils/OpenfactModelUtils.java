@@ -75,36 +75,6 @@ public final class OpenfactModelUtils {
 
 	private OpenfactModelUtils() {
 	}
-	
-    /**
-     * Openfact
-     */
-    public static String generateUblID(OpenfactSession session, OrganizationModel organization, UblDocumentType documentType) {
-        String defaultLocale = organization.getDefaultUblLocale();
-        UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class, defaultLocale);
-        return provider.generateID(organization, documentType);
-    }
-
-    public static String generateUblID(OpenfactSession session, OrganizationModel organization, UblDocumentType documentType, String typeCode) {
-        String defaultLocale = organization.getDefaultUblLocale();
-        UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class, defaultLocale);
-        return provider.generateID(organization, documentType, typeCode);
-    }
-
-    public static List<UBLExtensionModel> generateUBLExtensions(OpenfactSession session, OrganizationModel organization, InvoiceModel invoice) {
-        UblExtensionContentGeneratorProvider provider = session.getProvider(UblExtensionContentGeneratorProvider.class, organization.getDefaultUblLocale());
-        return provider.generateUBLExtensions(organization, invoice);
-    }
-
-    public static List<UBLExtensionModel> generateUBLExtensions(OpenfactSession session, OrganizationModel organization, CreditNoteModel creditNote) {
-        UblExtensionContentGeneratorProvider provider = session.getProvider(UblExtensionContentGeneratorProvider.class, organization.getDefaultUblLocale());
-        return provider.generateUBLExtensions(organization, creditNote);
-    }
-
-    public static List<UBLExtensionModel> generateUBLExtensions(OpenfactSession session, OrganizationModel organization, DebitNoteModel debitNote) {
-        UblExtensionContentGeneratorProvider provider = session.getProvider(UblExtensionContentGeneratorProvider.class, organization.getDefaultUblLocale());
-        return provider.generateUBLExtensions(organization, debitNote);
-    }
     
     /**
      * */

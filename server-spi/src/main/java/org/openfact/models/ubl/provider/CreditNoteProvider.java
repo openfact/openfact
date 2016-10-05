@@ -10,8 +10,6 @@ import org.openfact.provider.Provider;
 
 public interface CreditNoteProvider extends Provider {
 
-    CreditNoteModel addCreditNote(OrganizationModel organization);
-
     CreditNoteModel addCreditNote(OrganizationModel organization, String ID);
 
     CreditNoteModel getCreditNoteById(OrganizationModel organization, String id);
@@ -27,9 +25,9 @@ public interface CreditNoteProvider extends Provider {
     List<CreditNoteModel> getCreditNotes(OrganizationModel organization, Integer firstResult,
             Integer maxResults);
 
-    List<CreditNoteModel> searchForCreditNote(String filterText, OrganizationModel organization);
+    List<CreditNoteModel> searchForCreditNote(OrganizationModel organization, String filterText);
 
-    List<CreditNoteModel> searchForCreditNote(String filterText, OrganizationModel organization,
+    List<CreditNoteModel> searchForCreditNote(OrganizationModel organization, String filterText,
             Integer firstResult, Integer maxResults);
 
     SearchResultsModel<CreditNoteModel> searchForCreditNote(OrganizationModel organization,

@@ -13,20 +13,20 @@ import org.openfact.common.ClientConnection;
 import org.openfact.events.admin.OperationType;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.ubl.InvoiceModel;
+import org.openfact.models.ubl.CreditNoteModel;
 import org.openfact.models.utils.ModelToRepresentation;
-import org.openfact.representations.idm.ubl.InvoiceRepresentation;
-import org.openfact.representations.idm.ubl.common.InvoiceLineRepresentation;
+import org.openfact.representations.idm.ubl.CreditNoteRepresentation;
+import org.openfact.representations.idm.ubl.common.CreditNoteLineRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
-import org.openfact.services.managers.InvoiceManager;
+import org.openfact.services.managers.CreditNoteManager;
 
-public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
+public class CreditNoteAdminResourceImpl implements CreditNoteAdminResource {
 
     private static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
 
     protected OrganizationModel organization;
-    protected InvoiceModel invoice;
+    protected CreditNoteModel creditNote;
     private OrganizationAuth auth;
     private AdminEventBuilder adminEvent;
 
@@ -42,50 +42,50 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
     @Context
     protected HttpHeaders headers;
 
-    public InvoiceAdminResourceImpl(OrganizationModel organization, OrganizationAuth auth,
-            AdminEventBuilder adminEvent, InvoiceModel invoice) {
+    public CreditNoteAdminResourceImpl(OrganizationModel organization, OrganizationAuth auth,
+            AdminEventBuilder adminEvent, CreditNoteModel creditNote) {
         this.auth = auth;
         this.organization = organization;
         this.adminEvent = adminEvent;
-        this.invoice = invoice;
+        this.creditNote = creditNote;
 
-        auth.init(OrganizationAuth.Resource.INVOICE);
+        auth.init(OrganizationAuth.Resource.CREDIT_NOTE);
     }
 
     @Override
-    public InvoiceRepresentation getInvoice() {
+    public CreditNoteRepresentation getCreditNote() {
         auth.requireView();
 
-        if (invoice == null) {
-            throw new NotFoundException("Invoice not found");
+        if (creditNote == null) {
+            throw new NotFoundException("Credit Note not found");
         }
 
-        InvoiceRepresentation rep = ModelToRepresentation.toRepresentation(invoice);
+        CreditNoteRepresentation rep = ModelToRepresentation.toRepresentation(creditNote);
         return rep;
     }
 
     @Override
-    public List<InvoiceLineRepresentation> getLines() {
+    public List<CreditNoteLineRepresentation> getLines() {
         auth.requireView();
 
-        return invoice.getInvoiceLine().stream().map(f -> ModelToRepresentation.toRepresentation(f)).collect(Collectors.toList());
+        return creditNote.getCreditNoteLine().stream().map(f -> ModelToRepresentation.toRepresentation(f)).collect(Collectors.toList());
     }
 
     @Override
-    public Response deleteInvoice() {
+    public Response deleteCreditNote() {
         auth.requireManage();
 
-        if (invoice == null) {
-            throw new NotFoundException("Invoice not found");
+        if (creditNote == null) {
+            throw new NotFoundException("Credit Note not found");
         }
 
-        boolean removed = new InvoiceManager(session).removeInvoice(organization, invoice);
+        boolean removed = new CreditNoteManager(session).removeCreditNote(organization, creditNote);
         if (removed) {
             adminEvent.operation(OperationType.DELETE).resourcePath(uriInfo).success();
             return Response.noContent().build();
         } else {
-            return ErrorResponse.error("Invoice couldn't be deleted", Response.Status.BAD_REQUEST);
+            return ErrorResponse.error("Credit Note couldn't be deleted", Response.Status.BAD_REQUEST);
         }
     }
-	
+
 }

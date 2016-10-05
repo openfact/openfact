@@ -1,13 +1,13 @@
 package org.openfact.models.utils;
 
 import java.time.LocalDate;
-import java.util.stream.Collectors;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.catalog.CodeCatalogModel;
 import org.openfact.models.ubl.CreditNoteModel;
 import org.openfact.models.ubl.DebitNoteModel;
 import org.openfact.models.ubl.InvoiceModel;
@@ -36,12 +36,38 @@ import org.openfact.models.ubl.common.TaxSubtotalModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
-import org.openfact.representations.idm.CertificateRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
 import org.openfact.representations.idm.TasksScheduleRepresentation;
-import org.openfact.representations.idm.ubl.*;
-import org.openfact.representations.idm.ubl.common.*;
+import org.openfact.representations.idm.catalog.CodeCatalogRepresentation;
+import org.openfact.representations.idm.ubl.CreditNoteRepresentation;
+import org.openfact.representations.idm.ubl.DebitNoteRepresentation;
+import org.openfact.representations.idm.ubl.InvoiceRepresentation;
+import org.openfact.representations.idm.ubl.common.AddressRepresentation;
+import org.openfact.representations.idm.ubl.common.AllowanceChargeRepresentation;
+import org.openfact.representations.idm.ubl.common.BillingReferenceRepresentation;
+import org.openfact.representations.idm.ubl.common.CountryRepresentation;
+import org.openfact.representations.idm.ubl.common.CreditNoteLineRepresentation;
+import org.openfact.representations.idm.ubl.common.CustomerPartyRepresentation;
+import org.openfact.representations.idm.ubl.common.DebitNoteLineRepresentation;
+import org.openfact.representations.idm.ubl.common.DocumentReferenceRepresentation;
+import org.openfact.representations.idm.ubl.common.InvoiceLineRepresentation;
+import org.openfact.representations.idm.ubl.common.ItemIdentificationRepresentation;
+import org.openfact.representations.idm.ubl.common.ItemRepresentation;
+import org.openfact.representations.idm.ubl.common.MonetaryTotalRepresentation;
+import org.openfact.representations.idm.ubl.common.PartyLegalEntityRepresentation;
+import org.openfact.representations.idm.ubl.common.PartyRepresentation;
+import org.openfact.representations.idm.ubl.common.PriceRepresentation;
+import org.openfact.representations.idm.ubl.common.PricingReferenceRepresentation;
+import org.openfact.representations.idm.ubl.common.QuantityRepresentation;
+import org.openfact.representations.idm.ubl.common.ResponseRepresentation;
+import org.openfact.representations.idm.ubl.common.SupplierPartyRepresentation;
+import org.openfact.representations.idm.ubl.common.TaxCategoryRepresentation;
+import org.openfact.representations.idm.ubl.common.TaxSchemeRepresentation;
+import org.openfact.representations.idm.ubl.common.TaxSubtotalRepresentation;
+import org.openfact.representations.idm.ubl.common.TaxTotalRepresentation;
+import org.openfact.representations.idm.ubl.common.UBLExtensionRepresentation;
+import org.openfact.representations.idm.ubl.common.UBLExtensionsRepresentation;
 
 public class ModelToRepresentation {
 
@@ -79,6 +105,18 @@ public class ModelToRepresentation {
 
         return rep;
     }      
+    
+    public static CodeCatalogRepresentation toRepresentation(CodeCatalogModel model, boolean internal) {
+        CodeCatalogRepresentation rep = new CodeCatalogRepresentation();        
+        rep.setCode(model.getCode());
+        rep.setDescription(model.getDescription());
+        rep.setLocale(model.getLocale());
+        rep.setType(model.getLocale());
+        if(internal) {
+            rep.setId(model.getId());
+        }
+        return rep;
+    }
     
     public static InvoiceRepresentation toRepresentation(InvoiceModel model) {
         InvoiceRepresentation rep = new InvoiceRepresentation();
@@ -486,6 +524,6 @@ public class ModelToRepresentation {
 
     public static XMLGregorianCalendar toRepresentation(LocalDate date) throws DatatypeConfigurationException {
         return DatatypeFactory.newInstance().newXMLGregorianCalendar(date.toString());
-    }
+    }    
 
 }

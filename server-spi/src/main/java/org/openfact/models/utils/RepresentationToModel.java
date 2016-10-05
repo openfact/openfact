@@ -8,6 +8,7 @@ import java.util.HashSet;
 
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.catalog.CodeCatalogModel;
 import org.openfact.models.ubl.CreditNoteModel;
 import org.openfact.models.ubl.DebitNoteModel;
 import org.openfact.models.ubl.InvoiceModel;
@@ -41,6 +42,7 @@ import org.openfact.representations.idm.CertificateRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
 import org.openfact.representations.idm.TasksScheduleRepresentation;
+import org.openfact.representations.idm.catalog.CodeCatalogRepresentation;
 import org.openfact.representations.idm.ubl.CreditNoteRepresentation;
 import org.openfact.representations.idm.ubl.DebitNoteRepresentation;
 import org.openfact.representations.idm.ubl.InvoiceRepresentation;
@@ -316,17 +318,41 @@ public class RepresentationToModel {
         }
     }
 
+    public static void importCodeCatalog(OpenfactSession session, CodeCatalogRepresentation rep,
+            CodeCatalogModel codeCatalog) {
+        codeCatalog.setCode(rep.getCode());
+        codeCatalog.setDescription(rep.getDescription());
+        codeCatalog.setLocale(rep.getLocale());
+        codeCatalog.setType(rep.getType());
+        codeCatalog.setAttributes(rep.getAttributes());
+    }
+
+    public static void updateCodeCatalog(CodeCatalogRepresentation rep, CodeCatalogModel codeCatalog) {
+        if (rep.getCode() != null) {
+            codeCatalog.setCode(codeCatalog.getCode());
+        }
+        if (rep.getDescription() != null) {
+            codeCatalog.setDescription(codeCatalog.getDescription());
+        }
+        if (rep.getLocale() != null) {
+            codeCatalog.setLocale(codeCatalog.getLocale());
+        }
+        if (rep.getType() != null) {
+            codeCatalog.setType(codeCatalog.getType());
+        }
+        if (rep.getAttributes() != null) {
+            codeCatalog.setAttributes(codeCatalog.getAttributes());
+        }
+    }
+
     public static InvoiceModel createInvoice(OpenfactSession session, OrganizationModel organization,
             InvoiceRepresentation rep) {
-        InvoiceModel model = null;
-        if (rep.getInvoiceTypeCode() != null && rep.getIdUbl() != null) {
-            model = session.invoices().addInvoice(organization, rep.getInvoiceTypeCode(), rep.getIdUbl());
-        } else if (rep.getInvoiceTypeCode() != null) {
-            model = session.invoices().addInvoice(organization, rep.getInvoiceTypeCode());
-        } else {
-            model = session.invoices().addInvoice(organization);
-        }
+        InvoiceModel model = session.invoices().addInvoice(organization, rep.getIdUbl());
+        return importInvoice(session, organization, model, rep);
+    }
 
+    public static InvoiceModel importInvoice(OpenfactSession session, OrganizationModel organization,
+            InvoiceModel model, InvoiceRepresentation rep) {
         if (rep.getIssueDate() != null) {
             model.setIssueDate(rep.getIssueDate());
         }
@@ -364,15 +390,14 @@ public class RepresentationToModel {
         return model;
     }
 
-    public static void createCreditNote(OpenfactSession session, OrganizationModel organization,
+    public static CreditNoteModel createCreditNote(OpenfactSession session, OrganizationModel organization,
             CreditNoteRepresentation rep) {
-        CreditNoteModel model = session.creditNotes().addCreditNote(organization);
-        if (rep.getIdUbl() != null) {
-            model = session.creditNotes().addCreditNote(organization, rep.getIdUbl());
-        } else {
-            model = session.creditNotes().addCreditNote(organization);
-        }
+        CreditNoteModel model = session.creditNotes().addCreditNote(organization, rep.getIdUbl());
+        return importCreditNote(session, organization, model, rep);
+    }
 
+    public static CreditNoteModel importCreditNote(OpenfactSession session, OrganizationModel organization,
+            CreditNoteModel model, CreditNoteRepresentation rep) {
         if (rep.getIssueDate() != null) {
             model.setIssueDate(rep.getIssueDate());
         }
@@ -410,17 +435,17 @@ public class RepresentationToModel {
                 updateModel(model.addDespatchDocumentReference(), item);
             }
         }
+        return model;
     }
 
-    public static void createDebitNote(OpenfactSession session, OrganizationModel organization,
+    public static DebitNoteModel createDebitNote(OpenfactSession session, OrganizationModel organization,
             DebitNoteRepresentation rep) {
-        DebitNoteModel model = session.debitNotes().addDebitNote(organization);
-        if (rep.getIdUbl() != null) {
-            model = session.debitNotes().addDebitNote(organization, rep.getIdUbl());
-        } else {
-            model = session.debitNotes().addDebitNote(organization);
-        }
+        DebitNoteModel model = session.debitNotes().addDebitNote(organization, rep.getIdUbl());
+        return importDebitNote(session, organization, model, rep);
+    }
 
+    public static DebitNoteModel importDebitNote(OpenfactSession session, OrganizationModel organization,
+            DebitNoteModel model, DebitNoteRepresentation rep) {
         if (rep.getIssueDate() != null) {
             model.setIssueDate(rep.getIssueDate());
         }
@@ -464,12 +489,13 @@ public class RepresentationToModel {
                 updateModel(model.addDespatchDocumentReference(), item);
             }
         }
+        return model;
     }
 
     private static void updateModel(UBLExtensionsModel model, UBLExtensionsRepresentation rep) {
         if (rep.getId() != null) {
             model.setId(rep.getId());
-        }             
+        }
         if (rep.getUBLExtension() != null) {
             for (UBLExtensionRepresentation item : rep.getUBLExtension()) {
                 updateModel(model.addUblExtension(), item);

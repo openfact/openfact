@@ -9,9 +9,9 @@ import javax.persistence.TypedQuery;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.ModelDuplicateException;
+import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.UblDocumentType;
 import org.openfact.models.jpa.AbstractHibernateStorage;
 import org.openfact.models.jpa.OrganizationAdapter;
 import org.openfact.models.jpa.entities.ubl.DebitNoteEntity;
@@ -19,7 +19,6 @@ import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.ubl.DebitNoteModel;
 import org.openfact.models.ubl.provider.DebitNoteProvider;
-import org.openfact.models.utils.OpenfactModelUtils;
 
 public class JpaDebitNoteProvider extends AbstractHibernateStorage implements DebitNoteProvider {
 
@@ -42,14 +41,9 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
     }
 
     @Override
-    public DebitNoteModel addDebitNote(OrganizationModel organization) {
-        return addDebitNote(organization, null);
-    }
-
-    @Override
     public DebitNoteModel addDebitNote(OrganizationModel organization, String ID) {
-        if (ID == null) {
-            ID = OpenfactModelUtils.generateUblID(session, organization, UblDocumentType.DEBIT_NOTE);
+        if(ID == null) {
+            throw new ModelException("Invalid ID, Null value");
         }
         
         if (session.debitNotes().getDebitNoteByID(organization, ID) != null) {
@@ -157,12 +151,12 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
     }
 
     @Override
-    public List<DebitNoteModel> searchForDebitNote(String filterText, OrganizationModel organization) {
-        return searchForDebitNote(filterText, organization, -1, -1);
+    public List<DebitNoteModel> searchForDebitNote(OrganizationModel organization, String filterText) {
+        return searchForDebitNote(organization, filterText, -1, -1);
     }
 
     @Override
-    public List<DebitNoteModel> searchForDebitNote(String filterText, OrganizationModel organization,
+    public List<DebitNoteModel> searchForDebitNote(OrganizationModel organization, String filterText,
             Integer firstResult, Integer maxResults) {
         TypedQuery<DebitNoteEntity> query = em.createNamedQuery("searchForDebitNote", DebitNoteEntity.class);
         query.setParameter("organizationId", organization.getId());

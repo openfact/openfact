@@ -54,12 +54,6 @@ public class DebitNoteCacheSession implements DebitNoteCache {
     }
 
     @Override
-    public DebitNoteModel addDebitNote(OrganizationModel organization) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public DebitNoteModel addDebitNote(OrganizationModel organization, String ID) {
         // TODO Auto-generated method stub
         return null;
@@ -103,13 +97,13 @@ public class DebitNoteCacheSession implements DebitNoteCache {
     }
 
     @Override
-    public List<DebitNoteModel> searchForDebitNote(String filterText, OrganizationModel organization) {
+    public List<DebitNoteModel> searchForDebitNote(OrganizationModel organization, String filterText) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public List<DebitNoteModel> searchForDebitNote(String filterText, OrganizationModel organization,
+    public List<DebitNoteModel> searchForDebitNote(OrganizationModel organization, String filterText,
             Integer firstResult, Integer maxResults) {
         // TODO Auto-generated method stub
         return null;
@@ -136,6 +130,12 @@ public class DebitNoteCacheSession implements DebitNoteCache {
     }
 
     @Override
+    public DebitNoteModel getLastDebitNote(OrganizationModel organization, int lenght, String mask) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
     public void close() {
         // TODO Auto-generated method stub
         
@@ -153,12 +153,5 @@ public class DebitNoteCacheSession implements DebitNoteCache {
         
     }
 
-    @Override
-    public DebitNoteModel getLastDebitNote(OrganizationModel organization, int lenght, String mask) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
     
-
 }

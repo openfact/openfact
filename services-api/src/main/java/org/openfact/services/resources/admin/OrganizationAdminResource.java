@@ -47,12 +47,24 @@ public interface OrganizationAdminResource {
      *             The user is not authorized to delete this organization.
      */
     @DELETE
-    Response deleteOrganization();
+    void deleteOrganization();
 
     /**
      * Get the invoices sub resource for the current organization
      */
     @Path("invoices")
     InvoicesAdminResource invoices();
+
+    /**
+     * Get the invoices sub resource for the current organization
+     */
+    @Path("credit-notes")
+    CreditNotesAdminResource creditNotes();
+
+    /**
+     * Get the invoices sub resource for the current organization
+     */
+    @Path("debit-notes")
+    DebitNotesAdminResource debitNotes();
 
 }
