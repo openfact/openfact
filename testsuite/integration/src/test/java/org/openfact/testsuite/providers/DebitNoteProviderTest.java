@@ -26,19 +26,6 @@ public class DebitNoteProviderTest extends AbstractProviderTest {
         commit();
     }
 
-    /*@Test
-    public void createWithoutSeriesAndNumber() throws Exception {
-        createOrganization();
-
-        DebitNoteProvider provider = session.debitNotes();
-        DebitNoteModel debitNote = provider.addDebitNote(organization);
-        commit();
-
-        assertThat(debitNote, is(notNullValue()));
-        assertThat(debitNote.getId(), is(notNullValue()));
-        assertThat(debitNote.getID(), is("D001-0001"));
-    }*/
-
     @Test
     public void createWithSeriesAndNumber() throws Exception {
         createOrganization();
@@ -50,29 +37,6 @@ public class DebitNoteProviderTest extends AbstractProviderTest {
         assertThat(debitNote.getId(), is(notNullValue()));
         assertThat(debitNote.getID(), is("D002-0003"));
     }
-
-    /*@Test
-    public void createWithTwoMethods() throws Exception {
-        createOrganization();
-
-        DebitNoteProvider provider = session.debitNotes();
-        DebitNoteModel debitNote23 = provider.addDebitNote(organization, "D002-0003");
-        DebitNoteModel debitNote31 = provider.addDebitNote(organization);
-        DebitNoteModel debitNote32 = provider.addDebitNote(organization);
-        DebitNoteModel debitNote33 = provider.addDebitNote(organization);
-        DebitNoteModel debitNote41 = provider.addDebitNote(organization);
-        DebitNoteModel debitNote52 = provider.addDebitNote(organization, "D005-0002");
-        DebitNoteModel debitNote53 = provider.addDebitNote(organization);
-        commit();
-
-        assertThat(debitNote23.getID(), is("D002-0003"));
-        assertThat(debitNote31.getID(), is("D003-0001"));
-        assertThat(debitNote32.getID(), is("D003-0002"));
-        assertThat(debitNote33.getID(), is("D003-0003"));
-        assertThat(debitNote41.getID(), is("D004-0001"));
-        assertThat(debitNote52.getID(), is("D005-0002"));
-        assertThat(debitNote53.getID(), is("D005-0003"));
-    }*/
 
     @Test
     public void SeriesAndNumberCollision() {

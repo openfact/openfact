@@ -17,34 +17,27 @@
 
 package org.openfact.testsuite.model;
 
-import org.junit.Assert;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.runners.MethodSorters;
-import org.openfact.Config;
-import org.openfact.models.ModelDuplicateException;
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.UserModel;
-import org.openfact.models.ubl.CreditNoteModel;
-import org.openfact.models.ubl.DebitNoteModel;
-import org.openfact.models.ubl.InvoiceModel;
-import org.openfact.services.managers.OrganizationManager;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import org.junit.Assert;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runners.MethodSorters;
+import org.openfact.models.ModelDuplicateException;
+import org.openfact.models.OrganizationModel;
+import org.openfact.models.ubl.CreditNoteModel;
+import org.openfact.models.ubl.DebitNoteModel;
+import org.openfact.models.ubl.InvoiceModel;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
@@ -124,7 +117,7 @@ public class AdapterTest extends AbstractModelTest {
     public void testRemoveOrganization() throws Exception {
         test1CreateOrganization();
 
-        InvoiceModel invoice = organizationManager.getSession().invoices().addInvoice(organizationModel, "01" ,"F01-01");
+        InvoiceModel invoice = organizationManager.getSession().invoices().addInvoice(organizationModel, "F01-01");
         invoice.addInvoiceLine();
 
         CreditNoteModel creditNote = organizationManager.getSession().creditNotes().addCreditNote(organizationModel, "C01-01");
@@ -145,7 +138,7 @@ public class AdapterTest extends AbstractModelTest {
     public void testDeleteInvoice() throws Exception {
         test1CreateOrganization();
 
-        InvoiceModel invoice = organizationManager.getSession().invoices().addInvoice(organizationModel, "01", "F01-001");
+        InvoiceModel invoice = organizationManager.getSession().invoices().addInvoice(organizationModel, "F01-001");
         commit();
 
         organizationModel = model.getOrganization("SISTCOOP");
@@ -211,8 +204,8 @@ public class AdapterTest extends AbstractModelTest {
         OrganizationModel sistcoop2 = organizationManager.createOrganization("SISTCOOP2");        
         commit();
 
-        organizationManager.getSession().invoices().addInvoice(sistcoop1, "01", "F01-001");
-        organizationManager.getSession().invoices().addInvoice(sistcoop2, "01", "F01-001");
+        organizationManager.getSession().invoices().addInvoice(sistcoop1, "F01-001");
+        organizationManager.getSession().invoices().addInvoice(sistcoop2, "F01-001");
         
         organizationManager.getSession().creditNotes().addCreditNote(sistcoop1, "C01-001");
         organizationManager.getSession().creditNotes().addCreditNote(sistcoop2, "C01-001");
@@ -225,7 +218,7 @@ public class AdapterTest extends AbstractModelTest {
         // Try to create invoice with duplicate series and number
         try {
             sistcoop1 = organizationManager.getOrganizationByName("SISTCOOP1");
-            organizationManager.getSession().invoices().addInvoice(sistcoop1, "01", "F01-001");
+            organizationManager.getSession().invoices().addInvoice(sistcoop1, "F01-001");
             commit();
             Assert.fail("Expected exception");
         } catch (ModelDuplicateException e) {
@@ -255,7 +248,7 @@ public class AdapterTest extends AbstractModelTest {
         
         // Ty to rename invoice to duplicate series and number
         sistcoop1 = organizationManager.getOrganizationByName("SISTCOOP1");
-        organizationManager.getSession().invoices().addInvoice(sistcoop1, "01", "F01-002");
+        organizationManager.getSession().invoices().addInvoice(sistcoop1, "F01-002");
         commit();
         try {
             sistcoop1 = organizationManager.getOrganizationByName("SISTCOOP1");

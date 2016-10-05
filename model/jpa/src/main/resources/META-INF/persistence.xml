@@ -23,6 +23,9 @@
 		<class>org.openfact.models.jpa.entities.ubl.InvoiceEntity</class>
 		<class>org.openfact.models.jpa.entities.ubl.CreditNoteEntity</class>
 		<class>org.openfact.models.jpa.entities.ubl.DebitNoteEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.InvoiceAttributeEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.CreditNoteAttributeEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.DebitNoteAttributeEntity</class>
 
 		<class>org.openfact.models.jpa.entities.ubl.common.DebitNoteLineEntity</class>
 		<class>org.openfact.models.jpa.entities.ubl.common.LotIdentificationEntity</class>

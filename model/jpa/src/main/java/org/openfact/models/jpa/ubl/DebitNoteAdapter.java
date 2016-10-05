@@ -3,16 +3,21 @@ package org.openfact.models.jpa.ubl;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import org.jboss.logging.Logger;
+import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.OrganizationAdapter;
+import org.openfact.models.jpa.entities.ubl.DebitNoteAttributeEntity;
 import org.openfact.models.jpa.entities.ubl.DebitNoteEntity;
 import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.DebitNoteLineEntity;
@@ -53,6 +58,7 @@ import org.openfact.models.ubl.common.SignatureModel;
 import org.openfact.models.ubl.common.SupplierPartyModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
+import org.openfact.models.utils.OpenfactModelUtils;
 
 public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntity> {
 
@@ -84,6 +90,106 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
         return debitNote.getId();
     }
 
+    @Override
+    public void setSingleAttribute(String name, String value) {
+        String firstExistingAttrId = null;
+        List<DebitNoteAttributeEntity> toRemove = new ArrayList<>();
+        for (DebitNoteAttributeEntity attr : debitNote.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                if (firstExistingAttrId == null) {
+                    attr.setValue(value);
+                    firstExistingAttrId = attr.getId();
+                } else {
+                    toRemove.add(attr);
+                }
+            }
+        }
+
+        if (firstExistingAttrId != null) {
+            // Remove attributes through HQL to avoid StaleUpdateException
+            Query query = em.createNamedQuery("deleteDebitNoteAttributesOtherThan");
+            query.setParameter("attrId", firstExistingAttrId);
+            query.setParameter("debitNoteId", debitNote.getId());
+            int numUpdated = query.executeUpdate();
+
+            // Remove attribute from local entity
+            debitNote.getAttributes().removeAll(toRemove);
+        } else {
+
+            persistAttributeValue(name, value);
+        }
+    }
+
+    @Override
+    public void setAttribute(String name, List<String> values) {
+        // Remove all existing
+        removeAttribute(name);
+
+        // Put all new
+        for (String value : values) {
+            persistAttributeValue(name, value);
+        }
+    }
+
+    private void persistAttributeValue(String name, String value) {
+        DebitNoteAttributeEntity attr = new DebitNoteAttributeEntity();
+        attr.setId(OpenfactModelUtils.generateId());
+        attr.setName(name);
+        attr.setValue(value);
+        attr.setDebitNote(debitNote);
+        em.persist(attr);
+        debitNote.getAttributes().add(attr);
+    }
+
+    @Override
+    public void removeAttribute(String name) {
+        // KEYCLOAK-3296 : Remove attribute through HQL to avoid
+        // StaleUpdateException
+        Query query = em.createNamedQuery("deleteDebitNoteAttributesByNameAndDebitNote");
+        query.setParameter("name", name);
+        query.setParameter("debitNoteId", debitNote.getId());
+        int numUpdated = query.executeUpdate();
+
+        // Also remove attributes from local debitNote entity
+        List<DebitNoteAttributeEntity> toRemove = new ArrayList<>();
+        for (DebitNoteAttributeEntity attr : debitNote.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                toRemove.add(attr);
+            }
+        }
+        debitNote.getAttributes().removeAll(toRemove);
+    }
+
+    @Override
+    public String getFirstAttribute(String name) {
+        for (DebitNoteAttributeEntity attr : debitNote.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                return attr.getValue();
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<String> getAttribute(String name) {
+        List<String> result = new ArrayList<>();
+        for (DebitNoteAttributeEntity attr : debitNote.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                result.add(attr.getValue());
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public Map<String, List<String>> getAttributes() {
+        MultivaluedHashMap<String, String> result = new MultivaluedHashMap<>();
+        for (DebitNoteAttributeEntity attr : debitNote.getAttributes()) {
+            result.add(attr.getName(), attr.getValue());
+        }
+        return result;
+    }
+    
     @Override
     public OrganizationModel getOrganization() {
         return new OrganizationAdapter(session, em, debitNote.getOrganization());
