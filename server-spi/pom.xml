@@ -73,6 +73,12 @@
 			<groupId>com.helger</groupId>
 			<artifactId>ph-commons</artifactId>
 		</dependency>
+
+		<!-- xerces -->
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
