@@ -82,14 +82,17 @@ public class ModelToRepresentation {
         rep.setRegistrationName(organization.getRegistrationName());
         rep.setSupplierName(organization.getSupplierName());
 
-        PostalAddressRepresentation postalAddressRep = new PostalAddressRepresentation();
-        postalAddressRep.setStreetName(organization.getStreetName());
-        postalAddressRep.setCitySubdivisionName(organization.getCitySubdivisionName());
-        postalAddressRep.setCityName(organization.getCityName());
-        postalAddressRep.setCountrySubentity(organization.getCountrySubentity());
-        postalAddressRep.setDistrict(organization.getDistrict());
-        postalAddressRep.setCountryIdentificationCode(organization.getCountryIdentificationCode());
-        rep.setPostalAddress(postalAddressRep);
+		rep.setAuthorizedUser(organization.getAuthorizedUser());
+		rep.setAuthorizedPassword(organization.getAuthorizedPassword());
+
+		PostalAddressRepresentation postalAddressRep = new PostalAddressRepresentation();
+		postalAddressRep.setStreetName(organization.getStreetName());
+		postalAddressRep.setCitySubdivisionName(organization.getCitySubdivisionName());
+		postalAddressRep.setCityName(organization.getCityName());
+		postalAddressRep.setCountrySubentity(organization.getCountrySubentity());
+		postalAddressRep.setDistrict(organization.getDistrict());
+		postalAddressRep.setCountryIdentificationCode(organization.getCountryIdentificationCode());
+		rep.setPostalAddress(postalAddressRep);
 
         if (internal) {
             TasksScheduleRepresentation tasksSchedulerRep = new TasksScheduleRepresentation();
@@ -107,7 +110,7 @@ public class ModelToRepresentation {
     }      
     
     public static CodeCatalogRepresentation toRepresentation(CodeCatalogModel model, boolean internal) {
-        CodeCatalogRepresentation rep = new CodeCatalogRepresentation();        
+        CodeCatalogRepresentation rep = new CodeCatalogRepresentation();
         rep.setCode(model.getCode());
         rep.setDescription(model.getDescription());
         rep.setLocale(model.getLocale());
@@ -117,7 +120,7 @@ public class ModelToRepresentation {
         }
         return rep;
     }
-    
+
     public static InvoiceRepresentation toRepresentation(InvoiceModel model) {
         InvoiceRepresentation rep = new InvoiceRepresentation();
         rep.setIssueDate(model.getIssueDate());
@@ -369,20 +372,10 @@ public class ModelToRepresentation {
 
     public static PriceRepresentation toRepresentation(PriceModel model) {
         PriceRepresentation rep = new PriceRepresentation();
-        // if (model.getPriceAmount() != null) {
-        // rep.setPriceAmount(toRepresentation(model.getPriceAmount()));
-        // }
         rep.setPriceAmount(model.getPriceAmount());
 
         return rep;
     }
-
-    // public static PriceAmountRepresentation toRepresentation(PriceAmountModel model) {
-    // PriceAmountRepresentation rep = new PriceAmountRepresentation();
-    // rep.setCurrencyID(model.getCurrencyID());
-    // rep.setValue(model.getValue());
-    // return rep;
-    // }
 
     public static ItemRepresentation toRepresentation(ItemModel model) {
         ItemRepresentation rep = new ItemRepresentation();
@@ -524,6 +517,6 @@ public class ModelToRepresentation {
 
     public static XMLGregorianCalendar toRepresentation(LocalDate date) throws DatatypeConfigurationException {
         return DatatypeFactory.newInstance().newXMLGregorianCalendar(date.toString());
-    }    
+    }
 
 }

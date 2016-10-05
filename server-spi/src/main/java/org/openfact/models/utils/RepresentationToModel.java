@@ -75,31 +75,44 @@ import org.openfact.representations.idm.ubl.common.UBLExtensionsRepresentation;
 
 public class RepresentationToModel {
 
-    public static void importOrganization(OpenfactSession session, OrganizationRepresentation rep,
-            OrganizationModel newOrganization) {
-        newOrganization.setName(rep.getOrganization());
+	public static void importOrganization(OpenfactSession session, OrganizationRepresentation rep,
+			OrganizationModel newOrganization) {
+		newOrganization.setName(rep.getOrganization());
 
-        /**
-         * General information
-         */
-        if (rep.getDescription() != null) {
-            newOrganization.setDescription(rep.getDescription());
-        }
-        if (rep.getAdditionalAccountId() != null) {
-            newOrganization.setAdditionalAccountId(rep.getAdditionalAccountId());
-        }
-        if (rep.getAssignedIdentificationId() != null) {
-            newOrganization.setAssignedIdentificationId(rep.getAssignedIdentificationId());
-        }
-        if (rep.getSupplierName() != null) {
-            newOrganization.setSupplierName(rep.getSupplierName());
-        }
-        if (rep.getRegistrationName() != null) {
-            newOrganization.setRegistrationName(rep.getRegistrationName());
-        }
-        if (rep.getEnabled() != null) {
-            newOrganization.setEnabled(rep.getEnabled());
-        }
+		/**
+		 * General information
+		 */
+		if (rep.getDescription() != null) {
+			newOrganization.setDescription(rep.getDescription());
+		}
+		if (rep.getAdditionalAccountId() != null) {
+			newOrganization.setAdditionalAccountId(rep.getAdditionalAccountId());
+		}
+		if (rep.getAssignedIdentificationId() != null) {
+			newOrganization.setAssignedIdentificationId(rep.getAssignedIdentificationId());
+		}
+		if (rep.getSupplierName() != null) {
+			newOrganization.setSupplierName(rep.getSupplierName());
+		}
+		if (rep.getRegistrationName() != null) {
+			newOrganization.setRegistrationName(rep.getRegistrationName());
+		}
+		if (rep.getEnabled() != null) {
+			newOrganization.setEnabled(rep.getEnabled());
+		}
+		/**
+		 * Credential authorized
+		 */
+		if (rep.getAuthorizedUser() != null) {
+			newOrganization.setAuthorizedUser(rep.getAuthorizedUser());
+		} else {
+			newOrganization.setAuthorizedUser(rep.getRegistrationName());
+		}
+		if (rep.getAuthorizedPassword() != null) {
+			newOrganization.setAuthorizedPassword(rep.getAuthorizedPassword());
+		} else {
+			newOrganization.setAuthorizedPassword(rep.getAssignedIdentificationId());
+		}
 
         /**
          * Certificate

@@ -16,6 +16,7 @@ import org.openfact.models.utils.ModelToType;
 import org.openfact.ubl.UblProvider;
 import org.w3c.dom.Document;
 
+import com.helger.commons.io.file.FileHelper;
 import com.helger.ubl21.UBL21NamespaceContext;
 import com.helger.ubl21.UBL21Writer;
 import com.helger.xml.microdom.serialize.MicroWriter;
@@ -68,8 +69,11 @@ public class UblProvider_PE implements UblProvider {
 			// METHOD 02
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
 			MicroWriter.writeToStream(UBL21Writer.invoice().getAsMicroDocument(invoiceType),
-					out/*FileHelper.getOutputStream("/home/lxpary/prueba0000.xml")*/, new XMLWriterSettings()
-							.setNamespaceContext(mapBasedNamespace).setPutNamespaceContextPrefixesInRoot(true));
+					out/*
+						 * FileHelper.getOutputStream(
+						 * "/home/lxpary/prueba0000.xml")
+						 */, new XMLWriterSettings().setNamespaceContext(mapBasedNamespace)
+							.setPutNamespaceContextPrefixesInRoot(true));
 			return DocumentUtils.getByteToDocument(out.toByteArray());
 
 			// return

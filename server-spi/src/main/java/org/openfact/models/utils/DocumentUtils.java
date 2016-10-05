@@ -14,6 +14,7 @@ import java.io.Writer;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -32,7 +33,9 @@ public class DocumentUtils {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		factory.setNamespaceAware(true);
 		DocumentBuilder builder = factory.newDocumentBuilder();
-		return builder.parse(new ByteArrayInputStream(document));
+		Document docParse = builder.parse(new ByteArrayInputStream(document));
+		docParse.setXmlStandalone(false);
+		return docParse;
 	}
 
 	public static void getElementToByte(Element element, OutputStream out) {
@@ -41,6 +44,8 @@ public class DocumentUtils {
 			StreamResult result = new StreamResult(out);
 			TransformerFactory transFactory = TransformerFactory.newInstance();
 			Transformer transformer = transFactory.newTransformer();
+			transformer.setOutputProperty(OutputKeys.STANDALONE, "no");
+			transformer.setOutputProperty(OutputKeys.ENCODING, "ISO-8859-1");
 			transformer.transform(source, result);
 		} catch (Exception ex) {
 			throw new ModelException("Error in convert element to byte");
@@ -48,7 +53,7 @@ public class DocumentUtils {
 	}
 
 	public static ByteArrayOutputStream getStringToStream(String document) throws IOException {
-		byte[] stringByte = document.getBytes();
+		byte[] stringByte = document.getBytes("ISO-8859-1");
 		ByteArrayOutputStream bos = new ByteArrayOutputStream(document.length());
 		bos.write(stringByte);
 		return bos;
@@ -75,6 +80,7 @@ public class DocumentUtils {
 	 * @throws IOException
 	 */
 	public static InputStream getDocumentToInputStream(Document document, boolean prettyPrint) throws IOException {
+		document.setXmlStandalone(false);
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		OutputFormat outputFormat = new OutputFormat(document);
 		if (prettyPrint) {
@@ -104,7 +110,7 @@ public class DocumentUtils {
 
 		if (xml == null)
 			return null;
-		return getInputStreamToDocument(new ByteArrayInputStream(xml.getBytes()));
+		return getInputStreamToDocument(new ByteArrayInputStream(xml.getBytes("ISO-8859-1")));
 
 	}
 
@@ -123,6 +129,7 @@ public class DocumentUtils {
 		DocumentBuilderFactory newInstance = DocumentBuilderFactory.newInstance();
 		newInstance.setNamespaceAware(true);
 		Document parse = newInstance.newDocumentBuilder().parse(inputStream);
+		parse.setXmlStandalone(false);
 		return parse;
 
 	}
@@ -138,6 +145,7 @@ public class DocumentUtils {
 	 * @throws IOException
 	 */
 	public static String getDocumentToString(Document document, boolean prettyPrint) throws IOException {
+		document.setXmlStandalone(false);
 		Writer writer = new StringWriter();
 		char[] buffer = new char[1024];
 		InputStream is = null;
