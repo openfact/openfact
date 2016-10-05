@@ -44,11 +44,12 @@ import org.openfact.models.utils.UblSignature;
 import org.openfact.ubl.UblProvider;
 import org.openfact.ubl.pe.extensions.AdditionalInformationTypeSunatAgg;
 import org.openfact.ubl.pe.extensions.AdditionalMonetaryTotalType;
-import org.openfact.ubl.pe.extensions.ObjectFactory;
+import org.openfact.ubl.pe.extensions.InvoiceFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.helger.commons.error.list.IErrorList;
+import com.helger.commons.io.file.FileHelper;
 import com.helger.ubl21.UBL21Reader;
 import com.helger.ubl21.UBL21Validator;
 import com.helger.ubl21.UBL21Writer;
@@ -206,8 +207,8 @@ public class UblProviderTest extends AbstractProviderTest {
 		amtt1.setPayableAmount(pa1);
 		additionalInformation.getAdditionalMonetaryTotal().add(amtt1);
 
-		ObjectFactory FACTORIA = new ObjectFactory();
-		JAXBContext context = JAXBContext.newInstance(ObjectFactory.class);
+		InvoiceFactory FACTORIA = new InvoiceFactory();
+		JAXBContext context = JAXBContext.newInstance(InvoiceFactory.class);
 		Marshaller marshallerElement = context.createMarshaller();
 
 		JAXBElement<AdditionalInformationTypeSunatAgg> jeAits = FACTORIA
@@ -216,22 +217,15 @@ public class UblProviderTest extends AbstractProviderTest {
 		marshallerElement.marshal(jeAits, res);
 		Element elem = ((Document) res.getNode()).getDocumentElement();
 		cc.setAny(elem);
-
-		// UBLExtensionsModel e1 = invoice.getUBLExtensions();
-		// UBLExtensionModel ee1 = e1.addUblExtension();
-		// ExtensionContentModel cc1 = ee1.getExtensionContent();
-		// cc1.setAny(null);
-
 		// end demo additional information sunat
 		commit();
 
 		Set<UblProvider> providers = session.getAllProviders(UblProvider.class);
 		for (UblProvider provider : providers) {
-			Document xml = provider.getDocument(organization, invoice);
-			InvoiceType invoiceType = UBL21Reader.invoice().read(xml);
-			IErrorList resourceErrorGroup = UBL21Validator.invoice().validate(invoiceType);
-
-			//UBL21Writer.invoice().write(invoiceType, new File("/home/lxpary/carlos.xml"));
+			Document xml = provider.getDocument(organization, invoice);	
+			InvoiceType invoiceType = UBL21Reader.invoice().read(xml);	
+			IErrorList resourceErrorGroup = UBL21Validator.invoice().validate(invoiceType);			
+			//UBL21Writer.invoice().write (invoiceType, new File("/home/lxpary/demo.xml"));
 			assertThat(xml, is(notNullValue()));
 			assertThat(resourceErrorGroup.getAllErrors().getSize(), is(0));
 		}

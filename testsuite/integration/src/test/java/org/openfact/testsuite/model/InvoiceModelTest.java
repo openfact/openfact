@@ -21,6 +21,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -64,13 +65,14 @@ import org.openfact.models.utils.UblSignature;
 import org.openfact.ubl.UblProvider;
 import org.openfact.ubl.pe.extensions.AdditionalInformationTypeSunatAgg;
 import org.openfact.ubl.pe.extensions.AdditionalMonetaryTotalType;
-import org.openfact.ubl.pe.extensions.ObjectFactory;
+import org.openfact.ubl.pe.extensions.InvoiceFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.helger.commons.error.list.IErrorList;
 import com.helger.ubl21.UBL21Reader;
 import com.helger.ubl21.UBL21Validator;
+import com.helger.ubl21.UBL21Writer;
 
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.IDType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.PayableAmountType;
@@ -257,8 +259,8 @@ public class InvoiceModelTest extends AbstractModelTest {
 		amtt1.setPayableAmount(pa1);
 		additionalInformation.getAdditionalMonetaryTotal().add(amtt1);
 
-		ObjectFactory FACTORIA = new ObjectFactory();
-		JAXBContext context = JAXBContext.newInstance(ObjectFactory.class);
+		InvoiceFactory FACTORIA = new InvoiceFactory();
+		JAXBContext context = JAXBContext.newInstance(InvoiceFactory.class);
 		Marshaller marshallerElement = context.createMarshaller();
 
 		JAXBElement<AdditionalInformationTypeSunatAgg> jeAits = FACTORIA
@@ -285,7 +287,7 @@ public class InvoiceModelTest extends AbstractModelTest {
 			InvoiceType invoiceType = UBL21Reader.invoice().read(xml);
 			IErrorList resourceErrorGroup = UBL21Validator.invoice().validate(invoiceType);
 
-			//UBL21Writer.invoice().write(invoiceType, new File("/home/lxpary/carlos.xml"));
+			UBL21Writer.invoice().write(invoiceType, new File("/home/lxpary/InvoiceModel.xml"));
 			assertThat(xml, is(notNullValue()));
 			assertThat(resourceErrorGroup.getAllErrors().getSize(), is(0));
 		}

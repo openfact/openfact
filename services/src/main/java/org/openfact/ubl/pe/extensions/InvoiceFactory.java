@@ -26,7 +26,7 @@ import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.AmountT
  * methods for each of these are provided in this class.
  */
 @XmlRegistry
-public class ObjectFactory {
+public class InvoiceFactory {
 
 	private final static QName _AdditionalInformation_QNAME = new QName(
 			"urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1", "AdditionalInformation");
@@ -64,7 +64,7 @@ public class ObjectFactory {
 	 * Create a new ObjectFactory that can be used to create new instances of
 	 * schema derived classes for package: org.openfact.models.common
 	 */
-	public ObjectFactory() {
+	public InvoiceFactory() {
 	}
 
 	/**

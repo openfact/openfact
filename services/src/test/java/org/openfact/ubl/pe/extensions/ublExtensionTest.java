@@ -52,7 +52,7 @@ public class ublExtensionTest {
 
 	public void generate() throws JAXBException, DatatypeConfigurationException {
 
-		ObjectFactory fact = new ObjectFactory();
+		InvoiceFactory fact = new InvoiceFactory();
 		JAXBElement<AdditionalInformationTypeSunatAgg> jeAits = fact.createAdditionalInformation(informacionAdicional);
 		DOMResult res = new DOMResult();
 		marshallerElement.marshal(jeAits, res);
