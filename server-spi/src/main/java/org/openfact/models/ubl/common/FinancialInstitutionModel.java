@@ -16,6 +16,6 @@ public interface FinancialInstitutionModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

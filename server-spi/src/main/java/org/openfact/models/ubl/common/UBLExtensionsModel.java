@@ -8,9 +8,7 @@ public interface UBLExtensionsModel {
 
     void setUBLExtension(List<UBLExtensionModel> ublExtension);
 
-    String getId();
-
-    void setId(String value);
+    String getId();    
 
 	UBLExtensionModel addUblExtension();
 

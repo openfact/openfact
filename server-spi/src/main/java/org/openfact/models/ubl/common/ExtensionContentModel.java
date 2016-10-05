@@ -10,7 +10,7 @@ public interface ExtensionContentModel {
 
     String getId();
 
-    void setId(String value);
+    
 
     String getAnyItem();
 

@@ -97,18 +97,13 @@ public class PersonAdapter implements PersonModel, JpaModel<PersonEntity> {
     }
 
     @Override
-    public void setId(String value) {
-        this.person.setId(value);
-    }
-
-    @Override
     public PersonEntity getEntity() {
-        // TODO Auto-generated method stub
+
         return person;
     }
 
     public static PersonEntity toEntity(PersonModel model, EntityManager em) {
-        if (model instanceof PersonModel) {
+        if (model instanceof PersonAdapter) {
             return ((PersonAdapter) model).getEntity();
         }
         return em.getReference(PersonEntity.class, model.getId());

@@ -32,6 +32,6 @@ public interface PartyTaxSchemeModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

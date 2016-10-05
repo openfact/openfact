@@ -80,18 +80,15 @@ public class DimensionAdapter implements DimensionModel, JpaModel<DimensionEntit
     }
 
     @Override
-    public void setId(String value) {
-        this.dimension.setId(value);
-    }
-
-    @Override
     public DimensionEntity getEntity() {
         return this.dimension;
     }
 
     public static DimensionEntity toEntity(DimensionModel model, EntityManager em) {
-        // TODO Auto-generated method stub
-        return null;
+        if (model instanceof DimensionAdapter) {
+            return ((DimensionAdapter) model).getEntity();
+        }
+        return em.getReference(DimensionEntity.class, model.getId());
     }
 
 }

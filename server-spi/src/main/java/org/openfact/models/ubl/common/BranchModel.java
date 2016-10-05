@@ -20,6 +20,6 @@ public interface BranchModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

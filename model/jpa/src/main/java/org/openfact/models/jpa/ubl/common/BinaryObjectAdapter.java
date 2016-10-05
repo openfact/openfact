@@ -96,11 +96,6 @@ public class BinaryObjectAdapter implements BinaryObjectModel, JpaModel<BinaryOb
         return this.binaryObject.getId();
     }
 
-    @Override
-    public void setId(String value) {
-        this.binaryObject.setId(value);
-    }
-
     public static BinaryObjectEntity toEntity(BinaryObjectModel model, EntityManager em) {
         if (model instanceof BinaryObjectAdapter) {
             return ((BinaryObjectAdapter) model).getEntity();

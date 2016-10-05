@@ -48,6 +48,6 @@ public interface CatalogueReferenceModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

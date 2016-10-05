@@ -108,11 +108,6 @@ public class ItemInstanceAdapter implements ItemInstanceModel, JpaModel<ItemInst
     }
 
     @Override
-    public void setId(String value) {
-        this.itemInstance.setId(value);
-    }
-
-    @Override
     public ItemInstanceEntity getEntity() {
         return itemInstance;
     }

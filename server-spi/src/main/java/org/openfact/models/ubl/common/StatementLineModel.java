@@ -83,6 +83,6 @@ public interface StatementLineModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

@@ -66,7 +66,7 @@ public interface PartyModel {
 
     String getId();
 
-    void setId(String value);
+    
 
     /**
      * */

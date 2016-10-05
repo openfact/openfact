@@ -56,13 +56,8 @@ public class LanguageAdapter implements LanguageModel, JpaModel<LanguageEntity> 
         return this.language.getId();
     }
 
-    @Override
-    public void setId(String value) {
-        this.language.setId(value);
-    }
-
     public static LanguageEntity toEntity(LanguageModel model, EntityManager em) {
-        if (model instanceof LanguageModel) {
+        if (model instanceof LanguageAdapter) {
             return ((LanguageAdapter) model).getEntity();
         }
         return em.getReference(LanguageEntity.class, model.getId());

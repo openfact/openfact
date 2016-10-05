@@ -32,6 +32,6 @@ public interface BinaryObjectModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

@@ -32,6 +32,6 @@ public interface HazardousGoodsTransitModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

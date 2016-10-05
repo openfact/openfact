@@ -939,5 +939,14 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
         entities.add(entity);
         return new DocumentReferenceAdapter(session, em, entity);
     }
+    
+    @Override
+    public SignatureModel addSignature() {
+        List<SignatureEntity> entities = debitNote.getSignature();
+
+        SignatureEntity entity = new SignatureEntity();
+        entities.add(entity);
+        return new SignatureAdapter(session, em, entity);
+    }
 
 }

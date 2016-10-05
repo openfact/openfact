@@ -38,6 +38,6 @@ public interface BillingReferenceModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

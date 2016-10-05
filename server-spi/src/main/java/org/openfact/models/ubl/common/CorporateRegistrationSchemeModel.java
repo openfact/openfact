@@ -22,6 +22,6 @@ public interface CorporateRegistrationSchemeModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

@@ -131,13 +131,8 @@ public class TaxCategoryAdapter implements TaxCategoryModel, JpaModel<TaxCategor
         return this.taxCategory.getId();
     }
 
-    @Override
-    public void setId(String value) {
-        this.taxCategory.setId(value);
-    }
-
     public static TaxCategoryEntity toEntity(TaxCategoryModel model, EntityManager em) {
-        if (model instanceof TaxCategoryModel) {
+        if (model instanceof TaxCategoryAdapter) {
             return ((TaxCategoryAdapter) model).getEntity();
         }
         return em.getReference(TaxCategoryEntity.class, model.getId());
@@ -145,7 +140,7 @@ public class TaxCategoryAdapter implements TaxCategoryModel, JpaModel<TaxCategor
 
     @Override
     public TaxCategoryEntity getEntity() {
-        // TODO Auto-generated method stub
+
         return taxCategory;
     }
 

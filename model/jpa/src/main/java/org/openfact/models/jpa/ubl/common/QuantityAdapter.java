@@ -49,19 +49,15 @@ public class QuantityAdapter implements QuantityModel, JpaModel<QuantityEntity> 
     }
 
     @Override
-    public void setId(String value) {
-        this.quantity.setId(value);
-    }
-
-    @Override
     public QuantityEntity getEntity() {
-        // TODO Auto-generated method stub
         return quantity;
     }
 
-    public static QuantityEntity toEntity(QuantityModel value, EntityManager em) {
-        // TODO Auto-generated method stub
-        return null;
+    public static QuantityEntity toEntity(QuantityModel model, EntityManager em) {
+        if (model instanceof QuantityAdapter) {
+            return ((QuantityAdapter) model).getEntity();
+        }
+        return em.getReference(QuantityEntity.class, model.getId());
     }
 
 }

@@ -22,6 +22,6 @@ public interface TransactionConditionsModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

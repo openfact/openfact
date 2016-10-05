@@ -14,6 +14,6 @@ public interface OrderedShipmentModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

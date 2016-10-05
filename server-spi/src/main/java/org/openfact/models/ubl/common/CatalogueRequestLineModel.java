@@ -30,6 +30,6 @@ public interface CatalogueRequestLineModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

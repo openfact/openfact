@@ -100,18 +100,13 @@ public class LocationCoordinateAdapter
     }
 
     @Override
-    public void setId(String value) {
-        this.locationCoordinate.setId(value);
-    }
-
-    @Override
     public LocationCoordinateEntity getEntity() {
-        // TODO Auto-generated method stub
+
         return locationCoordinate;
     }
 
     public static LocationCoordinateEntity toEntity(LocationCoordinateModel model, EntityManager em) {
-        if (model instanceof LocationCoordinateModel) {
+        if (model instanceof LocationCoordinateAdapter) {
             return ((LocationCoordinateAdapter) model).getEntity();
         }
         return em.getReference(LocationCoordinateEntity.class, model.getId());

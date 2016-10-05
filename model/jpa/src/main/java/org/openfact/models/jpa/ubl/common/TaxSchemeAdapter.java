@@ -84,13 +84,8 @@ public class TaxSchemeAdapter implements TaxSchemeModel, JpaModel<TaxSchemeEntit
         return this.taxScheme.getId();
     }
 
-    @Override
-    public void setId(String value) {
-        this.taxScheme.setId(value);
-    }
-
     public static TaxSchemeEntity toEntity(TaxSchemeModel model, EntityManager em) {
-        if (model instanceof TaxSchemeModel) {
+        if (model instanceof TaxSchemeAdapter) {
             return ((TaxSchemeAdapter) model).getEntity();
         }
         return em.getReference(TaxSchemeEntity.class, model.getId());
@@ -98,7 +93,7 @@ public class TaxSchemeAdapter implements TaxSchemeModel, JpaModel<TaxSchemeEntit
 
     @Override
     public TaxSchemeEntity getEntity() {
-        // TODO Auto-generated method stub
+
         return taxScheme;
     }
 

@@ -250,11 +250,6 @@ public class DebitNoteLineAdapter implements DebitNoteLineModel, JpaModel<DebitN
     }
 
     @Override
-    public void setId(String value) {
-        this.debitNoteLine.setId(value);
-    }
-
-    @Override
     public DebitNoteLineEntity getEntity() {
         return this.debitNoteLine;
     }

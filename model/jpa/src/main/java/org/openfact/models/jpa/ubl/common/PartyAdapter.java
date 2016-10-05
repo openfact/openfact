@@ -194,13 +194,8 @@ public class PartyAdapter implements PartyModel, JpaModel<PartyEntity> {
         return this.party.getId();
     }
 
-    @Override
-    public void setId(String value) {
-        this.party.setId(value);
-    }
-
     public static PartyEntity toEntity(PartyModel model, EntityManager em) {
-        if (model instanceof PartyModel) {
+        if (model instanceof PartyAdapter) {
             return ((PartyAdapter) model).getEntity();
         }
         return em.getReference(PartyEntity.class, model.getId());

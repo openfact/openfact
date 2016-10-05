@@ -16,6 +16,6 @@ public interface AdditionalPropertyModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

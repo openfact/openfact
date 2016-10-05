@@ -24,6 +24,6 @@ public interface VoidedDocumentsLineModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

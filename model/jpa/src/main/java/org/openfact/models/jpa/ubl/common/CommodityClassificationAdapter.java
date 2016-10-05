@@ -69,11 +69,6 @@ public class CommodityClassificationAdapter
     }
 
     @Override
-    public void setId(String value) {
-        this.commodityClassification.setId(value);
-    }
-
-    @Override
     public CommodityClassificationEntity getEntity() {
         return commodityClassification;
     }

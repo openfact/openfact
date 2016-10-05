@@ -42,6 +42,6 @@ public interface ItemLocationQuantityModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

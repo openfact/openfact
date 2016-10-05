@@ -107,13 +107,8 @@ public class ContractAdapter implements ContractModel, JpaModel<ContractEntity> 
         return this.contract.getId();
     }
 
-    @Override
-    public void setId(String value) {
-        this.contract.setId(value);
-    }
-
     public static ContractEntity toEntity(ContractModel model, EntityManager em) {
-        if (model instanceof ContractModel) {
+        if (model instanceof ContractAdapter) {
             return ((ContractAdapter) model).getEntity();
         }
         return em.getReference(ContractEntity.class, model.getId());

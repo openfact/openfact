@@ -75,13 +75,8 @@ public class ItemPropertyAdapter implements ItemPropertyModel, JpaModel<ItemProp
         return this.itemProperty.getId();
     }
 
-    @Override
-    public void setId(String value) {
-        this.itemProperty.setId(value);
-    }
-
     public static ItemPropertyEntity toEntity(ItemPropertyModel model, EntityManager em) {
-        if (model instanceof ItemPropertyModel) {
+        if (model instanceof ItemPropertyAdapter) {
             return ((ItemPropertyAdapter) model).getEntity();
         }
         return em.getReference(ItemPropertyEntity.class, model.getId());

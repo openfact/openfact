@@ -22,6 +22,6 @@ public interface EndorserPartyModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

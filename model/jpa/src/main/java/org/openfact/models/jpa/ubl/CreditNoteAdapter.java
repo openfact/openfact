@@ -919,4 +919,13 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
         return new DocumentReferenceAdapter(session, em, entity);
     }
 
+    @Override
+    public SignatureModel addSignature() {
+        List<SignatureEntity> entities = creditNote.getSignature();
+
+        SignatureEntity entity = new SignatureEntity();
+        entities.add(entity);
+        return new SignatureAdapter(session, em, entity);
+    }
+
 }

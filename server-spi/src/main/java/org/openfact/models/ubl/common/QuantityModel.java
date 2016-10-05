@@ -14,6 +14,6 @@ public interface QuantityModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

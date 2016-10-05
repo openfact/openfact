@@ -19,6 +19,6 @@ public interface LotIdentificationModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

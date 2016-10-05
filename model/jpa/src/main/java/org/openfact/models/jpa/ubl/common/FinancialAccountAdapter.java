@@ -101,13 +101,8 @@ public class FinancialAccountAdapter implements FinancialAccountModel, JpaModel<
         return this.financialAccount.getId();
     }
 
-    @Override
-    public void setId(String value) {
-        this.financialAccount.setId(value);
-    }
-
     public static FinancialAccountEntity toEntity(FinancialAccountModel model, EntityManager em) {
-        if (model instanceof FinancialAccountModel) {
+        if (model instanceof FinancialAccountAdapter) {
             return ((FinancialAccountAdapter) model).getEntity();
         }
         return em.getReference(FinancialAccountEntity.class, model.getId());

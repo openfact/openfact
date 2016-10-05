@@ -104,11 +104,6 @@ public class SupplierPartyAdapter implements SupplierPartyModel, JpaModel<Suppli
     }
 
     @Override
-    public void setId(String value) {
-        this.supplierParty.setId(value);
-    }
-
-    @Override
     public SupplierPartyEntity getEntity() {
         return supplierParty;
     }

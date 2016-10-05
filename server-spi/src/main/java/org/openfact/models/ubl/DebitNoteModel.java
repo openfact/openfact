@@ -225,6 +225,8 @@ public interface DebitNoteModel {
 
     DocumentReferenceModel addDespatchDocumentReference();
 
+    SignatureModel addSignature();
+
     /**
      * Events interfaces
      */

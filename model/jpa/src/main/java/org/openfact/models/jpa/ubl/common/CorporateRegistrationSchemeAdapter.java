@@ -77,18 +77,13 @@ public class CorporateRegistrationSchemeAdapter
     }
 
     @Override
-    public void setId(String value) {
-        this.corporateRegistrationScheme.setId(value);
-    }
-
-    @Override
     public CorporateRegistrationSchemeEntity getEntity() {
         return corporateRegistrationScheme;
     }
 
     public static CorporateRegistrationSchemeEntity toEntity(CorporateRegistrationSchemeModel model,
             EntityManager em) {
-        if (model instanceof CorporateRegistrationSchemeModel) {
+        if (model instanceof CorporateRegistrationSchemeAdapter) {
             return ((CorporateRegistrationSchemeAdapter) model).getEntity();
         }
         return em.getReference(CorporateRegistrationSchemeEntity.class, model.getId());

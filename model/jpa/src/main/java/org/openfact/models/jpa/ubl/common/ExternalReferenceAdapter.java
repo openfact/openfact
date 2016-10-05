@@ -70,13 +70,8 @@ public class ExternalReferenceAdapter implements ExternalReferenceModel, JpaMode
         return this.externalReference.getId();
     }
 
-    @Override
-    public void setId(String value) {
-        this.externalReference.setId(value);
-    }
-
     public static ExternalReferenceEntity toEntity(ExternalReferenceModel model, EntityManager em) {
-        if (model instanceof ExternalReferenceModel) {
+        if (model instanceof ExternalReferenceAdapter) {
             return ((ExternalReferenceAdapter) model).getEntity();
         }
         return em.getReference(ExternalReferenceEntity.class, model.getId());

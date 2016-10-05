@@ -32,6 +32,6 @@ public interface PaymentModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

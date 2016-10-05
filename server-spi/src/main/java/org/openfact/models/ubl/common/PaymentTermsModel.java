@@ -47,6 +47,6 @@ public interface PaymentTermsModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

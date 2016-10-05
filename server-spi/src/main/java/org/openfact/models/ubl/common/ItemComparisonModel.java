@@ -14,6 +14,6 @@ public interface ItemComparisonModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

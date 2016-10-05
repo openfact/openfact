@@ -114,6 +114,4 @@ public interface AddressModel {
 
     String getId();
 
-    void setId(String value);
-
 }

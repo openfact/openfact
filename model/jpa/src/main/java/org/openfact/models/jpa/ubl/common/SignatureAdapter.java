@@ -133,11 +133,6 @@ public class SignatureAdapter implements SignatureModel, JpaModel<SignatureEntit
     }
 
     @Override
-    public void setId(String value) {
-        this.signature.setId(value);
-    }
-
-    @Override
     public SignatureEntity getEntity() {
         return signature;
     }

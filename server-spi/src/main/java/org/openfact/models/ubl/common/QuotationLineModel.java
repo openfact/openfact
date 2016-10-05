@@ -39,6 +39,6 @@ public interface QuotationLineModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

@@ -28,6 +28,6 @@ public interface SoundModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

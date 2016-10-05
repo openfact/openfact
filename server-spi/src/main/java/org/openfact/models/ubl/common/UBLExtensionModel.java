@@ -44,6 +44,6 @@ public interface UBLExtensionModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

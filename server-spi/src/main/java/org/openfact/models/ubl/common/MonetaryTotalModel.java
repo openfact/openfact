@@ -38,6 +38,6 @@ public interface MonetaryTotalModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

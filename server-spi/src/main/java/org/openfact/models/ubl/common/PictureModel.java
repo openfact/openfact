@@ -28,6 +28,6 @@ public interface PictureModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

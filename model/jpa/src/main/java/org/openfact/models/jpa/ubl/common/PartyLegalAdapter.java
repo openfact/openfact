@@ -71,18 +71,13 @@ public class PartyLegalAdapter implements PartyLegalModel, JpaModel<PartyLegalEn
     }
 
     @Override
-    public void setId(String value) {
-        this.partyLegalEntity.setId(value);
-    }
-
-    @Override
     public PartyLegalEntity getEntity() {
-        // TODO Auto-generated method stub
+
         return partyLegalEntity;
     }
 
     public static PartyLegalEntity toEntity(PartyLegalModel model, EntityManager em) {
-        if (model instanceof PartyLegalModel) {
+        if (model instanceof PartyLegalAdapter) {
             return ((PartyLegalAdapter) model).getEntity();
         }
         return em.getReference(PartyLegalEntity.class, model.getId());

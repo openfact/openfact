@@ -131,18 +131,13 @@ public class PaymentTermsAdapter implements PaymentTermsModel, JpaModel<PaymentT
     }
 
     @Override
-    public void setId(String value) {
-        this.paymentTerms.setId(value);
-    }
-
-    @Override
     public PaymentTermsEntity getEntity() {
-        // TODO Auto-generated method stub
+
         return paymentTerms;
     }
 
     public static PaymentTermsEntity toEntity(PaymentTermsModel model, EntityManager em) {
-        if (model instanceof PaymentTermsModel) {
+        if (model instanceof PaymentTermsAdapter) {
             return ((PaymentTermsAdapter) model).getEntity();
         }
         return em.getReference(PaymentTermsEntity.class, model.getId());

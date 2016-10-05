@@ -105,11 +105,6 @@ public class ContactAdapter implements ContactModel, JpaModel<ContactEntity> {
     }
 
     @Override
-    public void setId(String value) {
-        this.contact.setId(value);
-    }
-
-    @Override
     public ContactEntity getEntity() {
         return this.contact;
     }

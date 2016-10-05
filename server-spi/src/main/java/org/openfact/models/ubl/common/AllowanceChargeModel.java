@@ -63,6 +63,6 @@ public interface AllowanceChargeModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

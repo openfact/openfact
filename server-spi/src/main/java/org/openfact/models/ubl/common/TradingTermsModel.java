@@ -18,6 +18,6 @@ public interface TradingTermsModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

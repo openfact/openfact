@@ -12,6 +12,6 @@ public interface AttachmentModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

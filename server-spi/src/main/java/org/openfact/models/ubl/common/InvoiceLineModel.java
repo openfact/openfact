@@ -100,7 +100,7 @@ public interface InvoiceLineModel {
 
     String getId();
 
-    void setId(String value);
+    
 
     /**
      * */

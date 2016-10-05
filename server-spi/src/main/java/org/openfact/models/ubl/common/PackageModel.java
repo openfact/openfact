@@ -46,6 +46,6 @@ public interface PackageModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

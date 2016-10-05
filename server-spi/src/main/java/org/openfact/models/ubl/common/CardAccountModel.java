@@ -50,6 +50,6 @@ public interface CardAccountModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

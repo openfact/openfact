@@ -36,6 +36,6 @@ public interface ItemInstanceModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

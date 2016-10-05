@@ -18,6 +18,6 @@ public interface TemperatureModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

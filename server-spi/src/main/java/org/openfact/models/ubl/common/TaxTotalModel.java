@@ -23,7 +23,7 @@ public interface TaxTotalModel {
 
     String getId();
 
-    void setId(String value);
+    
 
     /**
      * */

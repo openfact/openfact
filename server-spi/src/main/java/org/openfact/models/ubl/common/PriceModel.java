@@ -43,6 +43,6 @@ public interface PriceModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

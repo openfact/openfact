@@ -634,4 +634,10 @@ public class CreditNoteAdapter implements CachedCreditNoteModel {
         return null;
     }
 
+    @Override
+    public SignatureModel addSignature() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

@@ -34,6 +34,6 @@ public interface FinancialAccountModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

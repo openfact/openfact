@@ -22,6 +22,6 @@ public interface ClassificationCategoryModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

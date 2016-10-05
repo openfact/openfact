@@ -20,6 +20,6 @@ public interface CatalogueItemSpecificationUpdateLineModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

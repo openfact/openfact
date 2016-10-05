@@ -20,6 +20,6 @@ public interface CommodityClassificationModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

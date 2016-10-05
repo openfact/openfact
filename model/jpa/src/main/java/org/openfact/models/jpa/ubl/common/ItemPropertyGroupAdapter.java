@@ -48,17 +48,12 @@ public class ItemPropertyGroupAdapter implements ItemPropertyGroupModel, JpaMode
     }
 
     @Override
-    public void setId(String value) {
-        this.itemPropertyGroup.setId(value);
-    }
-
-    @Override
     public ItemPropertyGroupEntity getEntity() {
         return itemPropertyGroup;
     }
 
     public static ItemPropertyGroupEntity toEntity(ItemPropertyGroupModel model, EntityManager em) {
-        if (model instanceof ItemPropertyGroupModel) {
+        if (model instanceof ItemPropertyGroupAdapter) {
             return ((ItemPropertyGroupAdapter) model).getEntity();
         }
         return em.getReference(ItemPropertyGroupEntity.class, model.getId());

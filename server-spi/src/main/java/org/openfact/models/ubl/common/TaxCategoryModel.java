@@ -46,6 +46,6 @@ public interface TaxCategoryModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

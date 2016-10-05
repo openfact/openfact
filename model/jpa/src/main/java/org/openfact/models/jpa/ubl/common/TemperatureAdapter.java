@@ -60,17 +60,12 @@ public class TemperatureAdapter implements TemperatureModel, JpaModel<Temperatur
     }
 
     @Override
-    public void setId(String value) {
-        this.temperature.setId(value);
-    }
-
-    @Override
     public TemperatureEntity getEntity() {
         return temperature;
     }
 
     public static TemperatureEntity toEntity(TemperatureModel model, EntityManager em) {
-        if (model instanceof TemperatureModel) {
+        if (model instanceof TemperatureAdapter) {
             return ((TemperatureAdapter) model).getEntity();
         }
         return em.getReference(TemperatureEntity.class, model.getId());

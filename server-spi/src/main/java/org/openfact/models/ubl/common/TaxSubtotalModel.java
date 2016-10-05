@@ -46,6 +46,6 @@ public interface TaxSubtotalModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

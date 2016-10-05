@@ -71,6 +71,6 @@ public interface DeliveryModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

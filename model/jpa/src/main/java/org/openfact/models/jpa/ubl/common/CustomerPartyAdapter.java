@@ -102,11 +102,6 @@ public class CustomerPartyAdapter implements CustomerPartyModel, JpaModel<Custom
     }
 
     @Override
-    public void setId(String value) {
-        this.customerParty.setId(value);
-    }
-
-    @Override
     public CustomerPartyEntity getEntity() {
         return this.customerParty;
     }

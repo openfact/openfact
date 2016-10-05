@@ -47,11 +47,6 @@ public class CountryAdapter implements CountryModel, JpaModel<CountryEntity> {
     }
 
     @Override
-    public void setId(String value) {
-        this.country.setId(value);
-    }
-
-    @Override
     public CountryEntity getEntity() {
         return this.country;
     }

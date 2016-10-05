@@ -26,6 +26,6 @@ public interface TaxSchemeModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

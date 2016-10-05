@@ -70,7 +70,7 @@ public class PriceListAdapter implements PriceListModel, JpaModel<PriceListEntit
     }
 
     public static PriceListEntity toEntity(PriceListModel model, EntityManager em) {
-        if (model instanceof PriceListModel) {
+        if (model instanceof PriceListAdapter) {
             return ((PriceListAdapter) model).getEntity();
         }
         return em.getReference(PriceListEntity.class, model.getId());
@@ -82,13 +82,8 @@ public class PriceListAdapter implements PriceListModel, JpaModel<PriceListEntit
     }
 
     @Override
-    public void setId(String value) {
-        this.priceList.setId(value);
-    }
-
-    @Override
     public PriceListEntity getEntity() {
-        // TODO Auto-generated method stub
+
         return priceList;
     }
 

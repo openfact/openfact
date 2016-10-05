@@ -67,17 +67,12 @@ public class LotIdentificationAdapter implements LotIdentificationModel, JpaMode
     }
 
     @Override
-    public void setId(String value) {
-        this.lotIdentification.setId(value);
-    }
-
-    @Override
     public LotIdentificationEntity getEntity() {
         return lotIdentification;
     }
 
     public static LotIdentificationEntity toEntity(LotIdentificationModel model, EntityManager em) {
-        if (model instanceof LotIdentificationModel) {
+        if (model instanceof LotIdentificationAdapter) {
             return ((LotIdentificationAdapter) model).getEntity();
         }
         return em.getReference(LotIdentificationEntity.class, model.getId());

@@ -640,4 +640,10 @@ public class DebitNoteAdapter implements CachedDebitNoteModel {
         return null;
     }
 
+    @Override
+    public SignatureModel addSignature() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

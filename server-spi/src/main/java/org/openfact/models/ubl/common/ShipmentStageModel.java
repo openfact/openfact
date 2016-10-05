@@ -54,6 +54,6 @@ public interface ShipmentStageModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

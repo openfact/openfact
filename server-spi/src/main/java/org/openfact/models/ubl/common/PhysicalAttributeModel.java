@@ -22,6 +22,6 @@ public interface PhysicalAttributeModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

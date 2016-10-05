@@ -18,6 +18,4 @@ public interface ResponseModel {
 
     String getId();
 
-    void setId(String value);
-
 }

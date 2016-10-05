@@ -139,11 +139,6 @@ public class CardAccountAdapter implements CardAccountModel, JpaModel<CardAccoun
     }
 
     @Override
-    public void setId(String value) {
-        this.cardAccount.setId(value);
-    }
-
-    @Override
     public CardAccountEntity getEntity() {
         return cardAccount;
     }

@@ -132,13 +132,8 @@ public class PriceAdapter implements PriceModel, JpaModel<PriceEntity> {
         return this.price.getId();
     }
 
-    @Override
-    public void setId(String value) {
-        this.price.setId(value);
-    }
-
     public static PriceEntity toEntity(PriceModel model, EntityManager em) {
-        if (model instanceof PriceModel) {
+        if (model instanceof PriceAdapter) {
             return ((PriceAdapter) model).getEntity();
         }
         return em.getReference(PriceEntity.class, model.getId());

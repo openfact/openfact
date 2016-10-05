@@ -12,6 +12,6 @@ public interface CountryModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

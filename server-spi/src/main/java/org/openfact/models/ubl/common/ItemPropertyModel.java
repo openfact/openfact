@@ -22,6 +22,6 @@ public interface ItemPropertyModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

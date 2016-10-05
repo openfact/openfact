@@ -36,6 +36,6 @@ public interface PeriodModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

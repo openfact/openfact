@@ -24,6 +24,6 @@ public interface SecondaryHazardModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

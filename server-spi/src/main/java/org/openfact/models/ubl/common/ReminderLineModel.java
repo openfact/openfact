@@ -51,6 +51,6 @@ public interface ReminderLineModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

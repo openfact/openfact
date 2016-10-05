@@ -47,6 +47,6 @@ public interface DespatchModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

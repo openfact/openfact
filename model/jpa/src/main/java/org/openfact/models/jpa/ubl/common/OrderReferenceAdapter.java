@@ -112,17 +112,12 @@ public class OrderReferenceAdapter implements OrderReferenceModel, JpaModel<Orde
     }
 
     @Override
-    public void setId(String value) {
-        this.orderReference.setId(value);
-    }
-
-    @Override
     public OrderReferenceEntity getEntity() {
         return this.orderReference;
     }
 
     public static OrderReferenceEntity toEntity(OrderReferenceModel model, EntityManager em) {
-        if (model instanceof OrderReferenceModel) {
+        if (model instanceof OrderReferenceAdapter) {
             return ((OrderReferenceAdapter) model).getEntity();
         }
         return em.getReference(OrderReferenceEntity.class, model.getId());

@@ -370,11 +370,6 @@ public class ItemAdapter implements ItemModel, JpaModel<ItemEntity> {
         return item.getId();
     }
 
-    @Override
-    public void setId(String value) {
-        item.setId(value);
-    }
-
     public static ItemEntity toEntity(ItemModel model, EntityManager em) {
         if (model instanceof ItemAdapter) {
             return ((ItemAdapter) model).getEntity();

@@ -115,6 +115,6 @@ public interface CatalogueLineModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

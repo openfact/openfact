@@ -30,6 +30,6 @@ public interface AdditionalMonetaryTotalModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

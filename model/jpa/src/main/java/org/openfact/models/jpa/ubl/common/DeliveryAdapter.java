@@ -195,11 +195,6 @@ public class DeliveryAdapter implements DeliveryModel, JpaModel<DeliveryEntity> 
         return this.delivery.getId();
     }
 
-    @Override
-    public void setId(String value) {
-        this.delivery.setId(value);
-    }
-
     public static DeliveryEntity toEntity(DeliveryModel model, EntityManager em) {
         if (model instanceof DeliveryAdapter) {
             return ((DeliveryAdapter) model).getEntity();

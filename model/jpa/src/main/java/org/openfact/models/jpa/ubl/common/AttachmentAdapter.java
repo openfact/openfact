@@ -6,7 +6,6 @@ import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.AttachmentEntity;
-import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.AttachmentModel;
 import org.openfact.models.ubl.common.BinaryObjectModel;
 import org.openfact.models.ubl.common.ExternalReferenceModel;
@@ -50,17 +49,12 @@ public class AttachmentAdapter implements AttachmentModel, JpaModel<AttachmentEn
     }
 
     @Override
-    public void setId(String value) {
-        attachment.setId(value);
-    }
-
-    @Override
     public AttachmentEntity getEntity() {
         return attachment;
     }
 
     public static AttachmentEntity toEntity(AttachmentModel model, EntityManager em) {
-        if (model instanceof AllowanceChargeModel) {
+        if (model instanceof AllowanceChargeAdapter) {
             return ((AttachmentAdapter) model).getEntity();
         }
         return em.getReference(AttachmentEntity.class, model.getId());

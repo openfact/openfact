@@ -493,9 +493,6 @@ public class RepresentationToModel {
     }
 
     private static void updateModel(UBLExtensionsModel model, UBLExtensionsRepresentation rep) {
-        if (rep.getId() != null) {
-            model.setId(rep.getId());
-        }
         if (rep.getUBLExtension() != null) {
             for (UBLExtensionRepresentation item : rep.getUBLExtension()) {
                 updateModel(model.addUblExtension(), item);

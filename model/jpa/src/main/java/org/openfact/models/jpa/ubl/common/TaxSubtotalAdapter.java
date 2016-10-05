@@ -132,18 +132,13 @@ public class TaxSubtotalAdapter implements TaxSubtotalModel, JpaModel<TaxSubtota
     }
 
     @Override
-    public void setId(String value) {
-        this.taxSubtotal.setId(value);
-    }
-
-    @Override
     public TaxSubtotalEntity getEntity() {
-        // TODO Auto-generated method stub
+
         return taxSubtotal;
     }
 
     public static TaxSubtotalEntity toEntity(TaxSubtotalModel model, EntityManager em) {
-        if (model instanceof TaxSubtotalModel) {
+        if (model instanceof TaxSubtotalAdapter) {
             return ((TaxSubtotalAdapter) model).getEntity();
         }
         return em.getReference(TaxSubtotalEntity.class, model.getId());

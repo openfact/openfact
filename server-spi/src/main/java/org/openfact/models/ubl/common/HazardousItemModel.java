@@ -98,6 +98,6 @@ public interface HazardousItemModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

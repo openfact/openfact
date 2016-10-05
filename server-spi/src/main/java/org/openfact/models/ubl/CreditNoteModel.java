@@ -222,6 +222,8 @@ public interface CreditNoteModel {
 
     DocumentReferenceModel addDespatchDocumentReference();
 
+    SignatureModel addSignature();
+    
     /**
      * Events interfaces
      */
@@ -240,4 +242,6 @@ public interface CreditNoteModel {
 
         OpenfactSession getOpenfactSession();
     }
+
+    
 }

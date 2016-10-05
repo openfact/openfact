@@ -119,6 +119,6 @@ public interface ItemModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

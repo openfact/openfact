@@ -250,11 +250,6 @@ public class CreditNoteLineAdapter implements CreditNoteLineModel, JpaModel<Cred
     }
 
     @Override
-    public void setId(String value) {
-        this.creditNoteLine.setId(value);
-    }
-
-    @Override
     public CreditNoteLineEntity getEntity() {
         return this.creditNoteLine;
     }

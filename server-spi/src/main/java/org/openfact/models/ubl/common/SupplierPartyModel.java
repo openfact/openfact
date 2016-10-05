@@ -34,6 +34,6 @@ public interface SupplierPartyModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

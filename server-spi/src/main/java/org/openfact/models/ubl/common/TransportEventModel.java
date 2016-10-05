@@ -44,6 +44,6 @@ public interface TransportEventModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }
