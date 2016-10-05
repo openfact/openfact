@@ -18,6 +18,9 @@ public class OrganizationRepresentation {
     private String additionalAccountId;
     private String supplierName;
     private String registrationName;
+    
+    private String authorizedUser;
+    private String authorizedPassword;
 
 //    protected String privateKey;
 //    protected String publicKey;
@@ -284,6 +287,22 @@ public class OrganizationRepresentation {
 
 	public void setCertificate(CertificateRepresentation certificate) {
 		this.certificate = certificate;
+	}
+
+	public String getAuthorizedPassword() {
+		return authorizedPassword;
+	}
+
+	public void setAuthorizedPassword(String authorizedPassword) {
+		this.authorizedPassword = authorizedPassword;
+	}
+
+	public String getAuthorizedUser() {
+		return authorizedUser;
+	}
+
+	public void setAuthorizedUser(String authorizedUser) {
+		this.authorizedUser = authorizedUser;
 	}
     
 

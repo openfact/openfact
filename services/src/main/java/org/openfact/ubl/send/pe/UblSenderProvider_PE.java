@@ -40,7 +40,7 @@ public class UblSenderProvider_PE implements UblSenderProvider {
         try {
             // Call Web Service Operation
             BillService_Service service = new BillService_Service();
-            service.setHandlerResolver(new UblHeaderHandlerResolver());
+            service.setHandlerResolver(new UblHeaderHandlerResolver(organization));
             BillService port = service.getBillServicePort();
 
             // TODO initialize WS operation arguments here
@@ -53,7 +53,6 @@ public class UblSenderProvider_PE implements UblSenderProvider {
 
             // TODO process result here
             byte[] result = port.sendBill(fileName, contentFile);
-
             System.out.println("Result = " + result);
         } catch (SOAPFaultException ex) {
             System.out.println(ex.getFault().getFaultCode());

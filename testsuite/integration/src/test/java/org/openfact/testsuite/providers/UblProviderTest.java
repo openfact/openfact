@@ -40,6 +40,7 @@ import org.openfact.models.ubl.common.TaxSubtotalModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
+import org.openfact.models.utils.DocumentUtils;
 import org.openfact.models.utils.UblSignature;
 import org.openfact.ubl.UblProvider;
 import org.openfact.ubl.pe.extensions.AdditionalInformationTypeSunatAgg;
@@ -73,7 +74,7 @@ public class UblProviderTest extends AbstractProviderTest {
 	public void getDocument() throws Exception {
 		createOrganization();
 
-		InvoiceModel invoice = session.invoices().addInvoice(organization,"01", "F001-0001");
+		InvoiceModel invoice = session.invoices().addInvoice(organization, "01", "F001-0001");
 		invoice.setUBLVersionID("2.0");
 		invoice.setCustomizationID("1.0");
 
@@ -173,7 +174,7 @@ public class UblProviderTest extends AbstractProviderTest {
 		taxSchemeInvoiceLine.setTaxTypeCode("VAT");
 
 		ItemModel item = invoiceLine.getItem();
-		item.getDescription().add("Grabadora LG Externo Modelo: GE20LU10");
+		item.getDescription().add("Grabado?¡!$#$$%&&%%/&]rtger+´ásra LG Extérno Mdelo: GE20LU10");
 
 		ItemIdentificationModel itemIdentification = item.getSellersItemIdentification();
 		itemIdentification.setID("GLG199");
@@ -222,10 +223,11 @@ public class UblProviderTest extends AbstractProviderTest {
 
 		Set<UblProvider> providers = session.getAllProviders(UblProvider.class);
 		for (UblProvider provider : providers) {
-			Document xml = provider.getDocument(organization, invoice);	
-			InvoiceType invoiceType = UBL21Reader.invoice().read(xml);	
-			IErrorList resourceErrorGroup = UBL21Validator.invoice().validate(invoiceType);			
-			//UBL21Writer.invoice().write (invoiceType, new File("/home/lxpary/demo.xml"));
+			Document xml = provider.getDocument(organization, invoice);			
+			//System.out.println(DocumentUtils.getDocumentToString(xml, true));
+			InvoiceType invoiceType = UBL21Reader.invoice().read(xml);
+			IErrorList resourceErrorGroup = UBL21Validator.invoice().validate(invoiceType);
+			//UBL21Writer.invoice().write(invoiceType, new File("/home/lxpary/demo.xml"));
 			assertThat(xml, is(notNullValue()));
 			assertThat(resourceErrorGroup.getAllErrors().getSize(), is(0));
 		}
