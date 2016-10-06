@@ -1,4 +1,4 @@
-package org.openfact.testsuite.providers;
+package org.openfact.testsuite.providers.ubl;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -12,13 +12,11 @@ import org.junit.Test;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
 import org.openfact.models.ubl.CreditNoteModel;
-import org.openfact.models.ubl.DebitNoteModel;
 import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.AttachmentModel;
 import org.openfact.models.ubl.common.CreditNoteLineModel;
 import org.openfact.models.ubl.common.CustomerPartyModel;
-import org.openfact.models.ubl.common.DebitNoteLineModel;
 import org.openfact.models.ubl.common.ExternalReferenceModel;
 import org.openfact.models.ubl.common.InvoiceLineModel;
 import org.openfact.models.ubl.common.ItemIdentificationModel;
@@ -36,6 +34,7 @@ import org.openfact.models.ubl.common.TaxCategoryModel;
 import org.openfact.models.ubl.common.TaxSchemeModel;
 import org.openfact.models.ubl.common.TaxSubtotalModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
+import org.openfact.testsuite.providers.AbstractProviderTest;
 import org.openfact.ubl.UblProvider;
 import org.w3c.dom.Document;
 
@@ -44,7 +43,6 @@ import com.helger.ubl21.UBL21Reader;
 import com.helger.ubl21.UBL21Validator;
 
 import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
-import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
 import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 
 public class UblProviderTest extends AbstractProviderTest {
