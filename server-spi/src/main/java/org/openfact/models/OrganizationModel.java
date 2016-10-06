@@ -197,6 +197,13 @@ public interface OrganizationModel {
 	Map<String, String> getSmtpConfig();
 
 	void setSmtpConfig(Map<String, String> smtpConfig);
+	
+	/**
+     * Ubl sender
+     */
+    Map<String, String> getUblSenderConfig();
+
+    void setUblSenderConfig(Map<String, String> ublSenderConfig);
 
 	/**
 	 * Certificate
@@ -287,16 +294,5 @@ public interface OrganizationModel {
 	public static enum RequiredAction {
 		ACTION1, ACTION2, ACTION3, ACTION4
 	}
-
-	/**
-	 * Credential authorized
-	 */
-	String getAuthorizedUser();
-
-	void setAuthorizedUser(String authorizedUser);
-
-	String getAuthorizedPassword();
-
-	void setAuthorizedPassword(String authorizedPassword);
 
 }

@@ -28,6 +28,7 @@ public class OrganizationRepresentation {
 //    protected String codeSecret;
 
     protected Map<String, String> smtpServer;
+    protected Map<String, String> ublSenderServer;
     private CertificateRepresentation certificate;
     private PostalAddressRepresentation postalAddress;
     private TasksScheduleRepresentation tasksSchedule;
@@ -304,6 +305,14 @@ public class OrganizationRepresentation {
 	public void setAuthorizedUser(String authorizedUser) {
 		this.authorizedUser = authorizedUser;
 	}
+
+    public Map<String, String> getUblSenderServer() {
+        return ublSenderServer;
+    }
+
+    public void setUblSenderServer(Map<String, String> ublSenderServer) {
+        this.ublSenderServer = ublSenderServer;
+    }
     
 
 }

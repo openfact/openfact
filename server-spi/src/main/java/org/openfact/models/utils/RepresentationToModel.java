@@ -100,19 +100,6 @@ public class RepresentationToModel {
 		if (rep.getEnabled() != null) {
 			newOrganization.setEnabled(rep.getEnabled());
 		}
-		/**
-		 * Credential authorized
-		 */
-		if (rep.getAuthorizedUser() != null) {
-			newOrganization.setAuthorizedUser(rep.getAuthorizedUser());
-		} else {
-			newOrganization.setAuthorizedUser("MODDATOS");
-		}
-		if (rep.getAuthorizedPassword() != null) {
-			newOrganization.setAuthorizedPassword(rep.getAuthorizedPassword());
-		} else {
-			newOrganization.setAuthorizedPassword("MODDATOS");
-		}
 
 		/**
 		 * Certificate
@@ -213,6 +200,13 @@ public class RepresentationToModel {
 		if (rep.getSmtpServer() != null) {
 			newOrganization.setSmtpConfig(new HashMap<String, String>(rep.getSmtpServer()));
 		}
+		
+		/**
+         * Smtp server
+         */
+        if (rep.getUblSenderServer() != null) {
+            newOrganization.setUblSenderConfig(new HashMap<String, String>(rep.getUblSenderServer()));
+        }
 
 		// create invoices and their lines
 		if (rep.getInvoices() != null) {
@@ -257,12 +251,6 @@ public class RepresentationToModel {
 		}
 		if (rep.getEnabled() != null) {
 			organization.setEnabled(rep.getEnabled());
-		}		
-		if (rep.getAuthorizedUser() != null) {
-			organization.setAuthorizedUser(rep.getAuthorizedUser());
-		}
-		if (rep.getAuthorizedPassword() != null) {
-			organization.setAuthorizedPassword(rep.getAuthorizedPassword());
 		}
 
 		if (rep.getPostalAddress() != null) {
@@ -336,6 +324,9 @@ public class RepresentationToModel {
 		if (rep.getSmtpServer() != null) {
 			organization.setSmtpConfig(new HashMap<String, String>(rep.getSmtpServer()));
 		}
+		if (rep.getUblSenderServer() != null) {
+            organization.setUblSenderConfig(new HashMap<String, String>(rep.getUblSenderServer()));
+        }
 	}
 
 	public static void importCodeCatalog(OpenfactSession session, CodeCatalogRepresentation rep,

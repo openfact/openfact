@@ -82,9 +82,6 @@ public class ModelToRepresentation {
         rep.setRegistrationName(organization.getRegistrationName());
         rep.setSupplierName(organization.getSupplierName());
 
-		rep.setAuthorizedUser(organization.getAuthorizedUser());
-		rep.setAuthorizedPassword(organization.getAuthorizedPassword());
-
 		PostalAddressRepresentation postalAddressRep = new PostalAddressRepresentation();
 		postalAddressRep.setStreetName(organization.getStreetName());
 		postalAddressRep.setCitySubdivisionName(organization.getCitySubdivisionName());

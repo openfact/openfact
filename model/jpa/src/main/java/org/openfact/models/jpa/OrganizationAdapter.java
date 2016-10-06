@@ -12,7 +12,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
@@ -354,6 +353,19 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
 		organization.setSmtpConfig(smtpConfig);
 		em.flush();
 	}
+	
+	@Override
+    public Map<String, String> getUblSenderConfig() {
+        Map<String, String> config = new HashMap<String, String>();
+        config.putAll(organization.getUblSenderConfig());
+        return Collections.unmodifiableMap(config);
+    }
+
+    @Override
+    public void setUblSenderConfig(Map<String, String> ublSenderConfig) {
+        organization.setUblSenderConfig(ublSenderConfig);
+        em.flush();
+    }
 
 	@Override
 	public String getKeyId() {
@@ -624,26 +636,6 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
 				em.remove(attr);
 			}
 		}
-	}
-
-	@Override
-	public String getAuthorizedUser() {
-		return organization.getAuthorizedUser();
-	}
-
-	@Override
-	public void setAuthorizedUser(String authorizedUser) {
-		organization.setAuthorizedUser(authorizedUser);
-	}
-
-	@Override
-	public String getAuthorizedPassword() {
-		return organization.getAuthorizedPassword();
-	}
-
-	@Override
-	public void setAuthorizedPassword(String authorizedPassword) {
-		organization.setAuthorizedPassword(authorizedPassword);
 	}
 
 	/*
