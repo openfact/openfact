@@ -14,6 +14,6 @@ public interface MeasureModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

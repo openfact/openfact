@@ -24,6 +24,6 @@ public interface TransportEquipmentSealModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

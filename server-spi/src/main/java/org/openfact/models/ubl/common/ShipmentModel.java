@@ -127,6 +127,6 @@ public interface ShipmentModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

@@ -80,18 +80,13 @@ public class OrderLineReferenceAdapter
     }
 
     @Override
-    public void setId(String value) {
-        this.orderLineReference.setId(value);
-    }
-
-    @Override
     public OrderLineReferenceEntity getEntity() {
-        // TODO Auto-generated method stub
+
         return orderLineReference;
     }
 
     public static OrderLineReferenceEntity toEntity(OrderLineReferenceModel model, EntityManager em) {
-        if (model instanceof OrderLineReferenceModel) {
+        if (model instanceof OrderLineReferenceAdapter) {
             return ((OrderLineReferenceAdapter) model).getEntity();
         }
         return em.getReference(OrderLineReferenceEntity.class, model.getId());

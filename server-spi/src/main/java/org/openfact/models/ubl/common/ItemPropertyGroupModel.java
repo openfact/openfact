@@ -12,6 +12,6 @@ public interface ItemPropertyGroupModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

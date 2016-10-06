@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Map;
 
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
@@ -28,6 +29,24 @@ public interface CreditNoteModel {
 
     String getId();
 
+    /**
+     * attributes
+     */
+    void setSingleAttribute(String name, String value);
+
+    void setAttribute(String name, List<String> values);
+
+    void removeAttribute(String name);
+
+    String getFirstAttribute(String name);
+
+    List<String> getAttribute(String name);
+
+    Map<String, List<String>> getAttributes();
+
+    /**
+     * Organization
+     */
     OrganizationModel getOrganization();
 
     /**
@@ -203,6 +222,8 @@ public interface CreditNoteModel {
 
     DocumentReferenceModel addDespatchDocumentReference();
 
+    SignatureModel addSignature();
+    
     /**
      * Events interfaces
      */
@@ -221,4 +242,6 @@ public interface CreditNoteModel {
 
         OpenfactSession getOpenfactSession();
     }
+
+    
 }

@@ -90,11 +90,6 @@ public class DeliveryTermsAdapter implements DeliveryTermsModel, JpaModel<Delive
     }
 
     @Override
-    public void setId(String value) {
-        this.deliveryTerms.setId(value);
-    }
-
-    @Override
     public DeliveryTermsEntity getEntity() {
         return this.deliveryTerms;
     }

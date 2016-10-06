@@ -123,6 +123,6 @@ public interface GoodsItemModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

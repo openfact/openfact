@@ -43,6 +43,6 @@ public interface SummaryDocumentsLineModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

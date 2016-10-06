@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Map;
 
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
@@ -32,6 +33,24 @@ public interface InvoiceModel {
 
     String getId();
 
+    /**
+     * attributes
+     */
+    void setSingleAttribute(String name, String value);
+
+    void setAttribute(String name, List<String> values);
+
+    void removeAttribute(String name);
+
+    String getFirstAttribute(String name);
+
+    List<String> getAttribute(String name);
+
+    Map<String, List<String>> getAttributes();
+
+    /**
+     * Organization
+     */
     OrganizationModel getOrganization();
 
     /**
@@ -229,7 +248,8 @@ public interface InvoiceModel {
     void setInvoiceLine(List<InvoiceLineModel> invoiceLine);
 
     /**
-     * Other methods*/
+     * Other methods
+     */
     InvoiceLineModel addInvoiceLine();
 
     TaxTotalModel addTaxTotal();

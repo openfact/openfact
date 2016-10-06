@@ -20,6 +20,6 @@ public interface PartyLegalModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

@@ -51,6 +51,6 @@ public interface PaymentMeansModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

@@ -26,6 +26,6 @@ public interface ItemIdentificationModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

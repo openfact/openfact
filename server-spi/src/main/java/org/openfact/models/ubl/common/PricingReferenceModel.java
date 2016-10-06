@@ -14,7 +14,7 @@ public interface PricingReferenceModel {
 
     String getId();
 
-    void setId(String value);
+    
 
     /***
      * */

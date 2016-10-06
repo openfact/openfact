@@ -26,6 +26,6 @@ public interface RequestForQuotationLineModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

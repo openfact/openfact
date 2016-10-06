@@ -143,6 +143,6 @@ public interface ConsignmentModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

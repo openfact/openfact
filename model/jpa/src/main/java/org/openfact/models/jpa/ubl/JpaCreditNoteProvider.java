@@ -9,9 +9,9 @@ import javax.persistence.TypedQuery;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.ModelDuplicateException;
+import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.UblDocumentType;
 import org.openfact.models.jpa.AbstractHibernateStorage;
 import org.openfact.models.jpa.OrganizationAdapter;
 import org.openfact.models.jpa.entities.ubl.CreditNoteEntity;
@@ -19,7 +19,6 @@ import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.ubl.CreditNoteModel;
 import org.openfact.models.ubl.provider.CreditNoteProvider;
-import org.openfact.models.utils.OpenfactModelUtils;
 
 public class JpaCreditNoteProvider extends AbstractHibernateStorage implements CreditNoteProvider {
 
@@ -42,14 +41,9 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
     }
 
     @Override
-    public CreditNoteModel addCreditNote(OrganizationModel organization) {
-        return addCreditNote(organization, null);
-    }
-
-    @Override
     public CreditNoteModel addCreditNote(OrganizationModel organization, String ID) {
-        if (ID == null) {
-            ID = OpenfactModelUtils.generateUblID(session, organization, UblDocumentType.CREDIT_NOTE);
+        if(ID == null) {
+            throw new ModelException("Invalid ID, Null value");
         }
         
         if (session.creditNotes().getCreditNoteByID(organization, ID) != null) {
@@ -157,12 +151,12 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
     }
 
     @Override
-    public List<CreditNoteModel> searchForCreditNote(String filterText, OrganizationModel organization) {
-        return searchForCreditNote(filterText, organization, -1, -1);
+    public List<CreditNoteModel> searchForCreditNote(OrganizationModel organization, String filterText) {
+        return searchForCreditNote(organization, filterText, -1, -1);
     }
 
     @Override
-    public List<CreditNoteModel> searchForCreditNote(String filterText, OrganizationModel organization,
+    public List<CreditNoteModel> searchForCreditNote(OrganizationModel organization, String filterText,
             Integer firstResult, Integer maxResults) {
         TypedQuery<CreditNoteEntity> query = em.createNamedQuery("searchForCreditNote", CreditNoteEntity.class);
         query.setParameter("organizationId", organization.getId());

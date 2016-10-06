@@ -28,6 +28,6 @@ public interface DeliveryTermsModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

@@ -183,17 +183,12 @@ public class AllowanceChargeAdapter implements AllowanceChargeModel, JpaModel<Al
     }
 
     @Override
-    public void setId(String value) {
-        allowanceCharge.setId(value);
-    }
-
-    @Override
     public AllowanceChargeEntity getEntity() {
         return allowanceCharge;
     }
 
     public static AllowanceChargeEntity toEntity(AllowanceChargeModel model, EntityManager em) {
-        if (model instanceof AllowanceChargeModel) {
+        if (model instanceof AllowanceChargeAdapter) {
             return ((AllowanceChargeAdapter) model).getEntity();
         }
         return em.getReference(AllowanceChargeEntity.class, model.getId());

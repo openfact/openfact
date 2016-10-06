@@ -39,6 +39,6 @@ public interface DocumentReferenceModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

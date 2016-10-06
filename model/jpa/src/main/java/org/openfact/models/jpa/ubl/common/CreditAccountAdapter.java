@@ -38,17 +38,12 @@ public class CreditAccountAdapter implements CreditAccountModel, JpaModel<Credit
     }
 
     @Override
-    public void setId(String value) {
-        this.creditAccount.setId(value);
-    }
-
-    @Override
     public CreditAccountEntity getEntity() {
         return this.creditAccount;
     }
 
     public static CreditAccountEntity toEntity(CreditAccountModel model, EntityManager em) {
-        if (model instanceof CreditAccountModel) {
+        if (model instanceof CreditAccountAdapter) {
             return ((CreditAccountAdapter) model).getEntity();
         }
         return em.getReference(CreditAccountEntity.class, model.getId());

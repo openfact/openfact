@@ -20,6 +20,6 @@ public interface LineReferenceModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

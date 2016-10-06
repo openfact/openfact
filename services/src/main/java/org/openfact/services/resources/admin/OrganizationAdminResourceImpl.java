@@ -1,8 +1,5 @@
 package org.openfact.services.resources.admin;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
@@ -11,8 +8,8 @@ import javax.ws.rs.core.UriInfo;
 
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
+import org.openfact.events.admin.OperationType;
 import org.openfact.models.ModelDuplicateException;
-import org.openfact.models.ModelReadOnlyException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.utils.ModelToRepresentation;
@@ -67,9 +64,13 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
 	@Override
 	public Response updateOrganization(OrganizationRepresentation rep) {
 		auth.requireManage();
+		
 		logger.debug("updating organization: " + organization.getName());
+		
 		try {
 			RepresentationToModel.updateOrganization(rep, organization);
+			
+			adminEvent.operation(OperationType.UPDATE).representation(rep).success();
 			return Response.noContent().build();
 		} catch (ModelDuplicateException e) {
 			return ErrorResponse.exists("Organization with same name exists");
@@ -80,39 +81,36 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
 	}
 
 	@Override
-	public Response deleteOrganization() {
+	public void deleteOrganization() {
 		auth.requireManage();
 
-		if (organization == null) {
-			throw new NotFoundException("Organization not found");
-		}
-
-		try {
-			OrganizationManager manager = new OrganizationManager(session);
-			if (organization.equals(manager.getOpenfactAdminstrationOrganization())) {
-				throw new ModelReadOnlyException();
-			}
-
-			boolean removed = manager.removeOrganization(organization);
-			if (removed) {
-				return Response.noContent().build();
-			} else {
-				return ErrorResponse.error("Organization couldn't be deleted", Response.Status.BAD_REQUEST);
-			}
-		} catch (ModelReadOnlyException e) {
-			return ErrorResponse.exists("Organization " + organization.getName() + " could not be deleted");
-		} catch (Exception e) {
-			logger.error(e.getMessage(), e);
-			return ErrorResponse.error("Failed to delete organization", Response.Status.INTERNAL_SERVER_ERROR);
-		}
+		if (!new OrganizationManager(session).removeOrganization(organization)) {
+            throw new NotFoundException("Organization doesn't exist");
+        }
 	}	
 
 	@Override
 	public InvoicesAdminResource invoices() {
-		InvoicesAdminResource invoices = new InvoicesAdminResourceImpl(organization, auth);
+		InvoicesAdminResource invoices = new InvoicesAdminResourceImpl(organization, auth, adminEvent);
 		ResteasyProviderFactory.getInstance().injectProperties(invoices);
 		// resourceContext.initResource(invoices);
 		return invoices;
 	}
+	
+	@Override
+    public CreditNotesAdminResource creditNotes() {
+	    CreditNotesAdminResource creditNotes = new CreditNotesAdminResourceImpl(organization, auth, adminEvent);
+        ResteasyProviderFactory.getInstance().injectProperties(creditNotes);
+        // resourceContext.initResource(invoices);
+        return creditNotes;
+    }
+	
+	@Override
+    public DebitNotesAdminResource debitNotes() {
+	    DebitNotesAdminResource debitNotes = new DebitNotesAdminResourceImpl(organization, auth, adminEvent);
+        ResteasyProviderFactory.getInstance().injectProperties(debitNotes);
+        // resourceContext.initResource(invoices);
+        return debitNotes;
+    }
 
 }

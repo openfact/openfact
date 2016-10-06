@@ -32,6 +32,6 @@ public interface LocationCoordinateModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

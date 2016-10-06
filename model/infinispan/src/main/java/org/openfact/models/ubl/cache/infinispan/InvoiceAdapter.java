@@ -21,6 +21,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.openfact.models.OpenfactSession;
@@ -687,6 +688,42 @@ public class InvoiceAdapter implements CachedInvoiceModel {
 
     @Override
     public SignatureModel addSignature() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void setSingleAttribute(String name, String value) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void setAttribute(String name, List<String> values) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void removeAttribute(String name) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public String getFirstAttribute(String name) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<String> getAttribute(String name) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Map<String, List<String>> getAttributes() {
         // TODO Auto-generated method stub
         return null;
     }

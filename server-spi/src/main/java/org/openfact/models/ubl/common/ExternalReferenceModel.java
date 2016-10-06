@@ -23,6 +23,6 @@ public interface ExternalReferenceModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

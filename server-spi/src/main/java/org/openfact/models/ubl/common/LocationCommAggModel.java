@@ -34,6 +34,6 @@ public interface LocationCommAggModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

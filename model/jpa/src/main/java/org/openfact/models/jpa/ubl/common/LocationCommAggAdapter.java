@@ -106,13 +106,8 @@ public class LocationCommAggAdapter implements LocationCommAggModel, JpaModel<Lo
         return this.locationCommAgg.getId();
     }
 
-    @Override
-    public void setId(String value) {
-        this.locationCommAgg.setId(value);
-    }
-
     public static LocationCommAggEntity toEntity(LocationCommAggModel model, EntityManager em) {
-        if (model instanceof LocationCommAggModel) {
+        if (model instanceof LocationCommAggAdapter) {
             return ((LocationCommAggAdapter) model).getEntity();
         }
         return em.getReference(LocationCommAggEntity.class, model.getId());

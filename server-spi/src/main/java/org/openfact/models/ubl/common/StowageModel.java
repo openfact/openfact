@@ -18,6 +18,6 @@ public interface StowageModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

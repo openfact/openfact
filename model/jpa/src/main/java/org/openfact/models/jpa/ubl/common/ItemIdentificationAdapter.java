@@ -93,11 +93,6 @@ public class ItemIdentificationAdapter
     }
 
     @Override
-    public void setId(String value) {
-        this.itemIdentification.setId(value);
-    }
-
-    @Override
     public ItemIdentificationEntity getEntity() {
         return itemIdentification;
     }

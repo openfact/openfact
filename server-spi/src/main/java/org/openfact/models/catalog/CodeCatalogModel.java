@@ -4,6 +4,11 @@ import java.util.Map;
 
 public interface CodeCatalogModel {
 
+    String LOCALE = "locale";
+    String TYPE = "type";
+    String CODE = "code";
+    String DESCRIPTION = "description";
+
     String getId();
 
     String getType();

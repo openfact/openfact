@@ -10,7 +10,6 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.BillingReferenceLineEntity;
-import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.BillingReferenceLineModel;
 import org.openfact.models.ubl.common.BillingReferenceModel;
 import org.openfact.models.ubl.common.DocumentReferenceModel;
@@ -122,17 +121,12 @@ public class BillingReferenceAdapter implements BillingReferenceModel, JpaModel<
     }
 
     @Override
-    public void setId(String value) {
-        billingReference.setId(value);
-    }
-
-    @Override
     public BillingReferenceEntity getEntity() {
         return billingReference;
     }
 
     public static BillingReferenceEntity toEntity(BillingReferenceModel model, EntityManager em) {
-        if (model instanceof AllowanceChargeModel) {
+        if (model instanceof BillingReferenceAdapter) {
             return ((BillingReferenceAdapter) model).getEntity();
         }
         return em.getReference(BillingReferenceEntity.class, model.getId());

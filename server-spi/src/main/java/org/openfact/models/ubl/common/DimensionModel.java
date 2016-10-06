@@ -26,6 +26,6 @@ public interface DimensionModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

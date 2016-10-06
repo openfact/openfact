@@ -62,6 +62,6 @@ public interface CertificateOfOriginApplicationModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

@@ -36,6 +36,6 @@ public interface ContractModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

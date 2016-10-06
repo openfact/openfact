@@ -99,13 +99,8 @@ public class HazardousGoodsTransitAdapter
         return this.hazardousGoodsTransit.getId();
     }
 
-    @Override
-    public void setId(String value) {
-        this.hazardousGoodsTransit.setId(value);
-    }
-
     public static HazardousGoodsTransitEntity toEntity(HazardousGoodsTransitModel model, EntityManager em) {
-        if (model instanceof HazardousGoodsTransitModel) {
+        if (model instanceof HazardousGoodsTransitAdapter) {
             return ((HazardousGoodsTransitAdapter) model).getEntity();
         }
         return em.getReference(HazardousGoodsTransitEntity.class, model.getId());

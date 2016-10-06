@@ -100,18 +100,13 @@ public class PartyTaxSchemeAdapter implements PartyTaxSchemeModel, JpaModel<Part
     }
 
     @Override
-    public void setId(String value) {
-        this.partyTaxScheme.setId(value);
-    }
-
-    @Override
     public PartyTaxSchemeEntity getEntity() {
-        // TODO Auto-generated method stub
+
         return partyTaxScheme;
     }
 
     public static PartyTaxSchemeEntity toEntity(PartyTaxSchemeModel model, EntityManager em) {
-        if (model instanceof PartyTaxSchemeModel) {
+        if (model instanceof PartyTaxSchemeAdapter) {
             return ((PartyTaxSchemeAdapter) model).getEntity();
         }
         return em.getReference(PartyTaxSchemeEntity.class, model.getId());

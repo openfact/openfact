@@ -80,7 +80,7 @@ public interface CreditNoteLineModel {
 
     String getId();
 
-    void setId(String value);
+    
 
     /*
      * **/

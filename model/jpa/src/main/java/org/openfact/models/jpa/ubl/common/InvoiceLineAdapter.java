@@ -312,11 +312,6 @@ public class InvoiceLineAdapter implements InvoiceLineModel, JpaModel<InvoiceLin
     }
 
     @Override
-    public void setId(String value) {
-        this.invoiceLine.setId(value);
-    }
-
-    @Override
     public InvoiceLineEntity getEntity() {
         return invoiceLine;
     }

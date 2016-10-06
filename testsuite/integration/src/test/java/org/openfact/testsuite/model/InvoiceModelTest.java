@@ -85,7 +85,7 @@ public class InvoiceModelTest extends AbstractModelTest {
 
 	protected OrganizationModel organization;
 
-	public void createOrganization() throws Exception {
+	/*public void createOrganization() throws Exception {
 		organization = organizationManager.createOrganization("SISTCOOP");
 		organization.setName("SISTCOOP");
 		organization.setDescription("SISTCOOP IS A SOFTWARE COMPANY");
@@ -119,9 +119,9 @@ public class InvoiceModelTest extends AbstractModelTest {
 		organization.setDefaultUblLocale("pe");
 
 		commit();
-	}
+	}*/
 
-	@Test
+	/*@Test
 	public void getDocument() throws Exception {
 		createOrganization();
 
@@ -291,7 +291,7 @@ public class InvoiceModelTest extends AbstractModelTest {
 			assertThat(xml, is(notNullValue()));
 			assertThat(resourceErrorGroup.getAllErrors().getSize(), is(0));
 		}
-	}
+	}*/
 
 	// @Test
 	// public void persistUser() {

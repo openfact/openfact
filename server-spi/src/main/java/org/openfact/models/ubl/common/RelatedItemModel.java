@@ -18,6 +18,6 @@ public interface RelatedItemModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

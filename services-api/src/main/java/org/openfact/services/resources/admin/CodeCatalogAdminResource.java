@@ -46,6 +46,6 @@ public interface CodeCatalogAdminResource {
      *             The user is not authorized to delete this invoice.
      */
     @DELETE
-    Response deleteCodeCatalog();
+    void deleteCodeCatalog();
 
 }

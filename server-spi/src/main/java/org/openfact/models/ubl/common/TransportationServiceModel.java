@@ -20,6 +20,6 @@ public interface TransportationServiceModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

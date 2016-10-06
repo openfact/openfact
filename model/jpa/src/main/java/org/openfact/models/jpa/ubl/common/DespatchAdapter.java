@@ -133,11 +133,6 @@ public class DespatchAdapter implements DespatchModel, JpaModel<DespatchEntity> 
     }
 
     @Override
-    public void setId(String value) {
-        this.despatch.setId(value);
-    }
-
-    @Override
     public DespatchEntity getEntity() {
         return this.despatch;
     }

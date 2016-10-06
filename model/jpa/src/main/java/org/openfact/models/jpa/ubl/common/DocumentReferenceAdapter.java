@@ -113,11 +113,6 @@ public class DocumentReferenceAdapter implements DocumentReferenceModel, JpaMode
     }
 
     @Override
-    public void setId(String value) {
-        this.documentReference.setId(value);
-    }
-
-    @Override
     public DocumentReferenceEntity getEntity() {
         return this.documentReference;
     }

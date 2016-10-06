@@ -9,9 +9,9 @@ import javax.persistence.TypedQuery;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.ModelDuplicateException;
+import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.UblDocumentType;
 import org.openfact.models.jpa.AbstractHibernateStorage;
 import org.openfact.models.jpa.OrganizationAdapter;
 import org.openfact.models.jpa.entities.ubl.InvoiceEntity;
@@ -19,7 +19,6 @@ import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.ubl.provider.InvoiceProvider;
-import org.openfact.models.utils.OpenfactModelUtils;
 
 public class JpaInvoiceProvider extends AbstractHibernateStorage implements InvoiceProvider {
 
@@ -39,11 +38,13 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 	@Override
 	public void close() {
 		// TODO Auto-generated method stub
-	}
+	}	
 
 	@Override
-    public InvoiceModel addInvoice(OrganizationModel organization) {
-	    String ID = OpenfactModelUtils.generateUblID(session, organization, UblDocumentType.INVOICE);
+    public InvoiceModel addInvoice(OrganizationModel organization, String ID) {
+	    if(ID == null) {
+	        throw new ModelException("Invalid ID, Null value");
+	    }
 
         if (session.invoices().getInvoiceByID(organization, ID) != null) {
             throw new ModelDuplicateException("Invoice ID existed");
@@ -64,61 +65,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
         });
 
         return adapter;
-    }
-
-	@Override
-    public InvoiceModel addInvoice(OrganizationModel organization, String typeCode) {
-	    String ID = OpenfactModelUtils.generateUblID(session, organization, UblDocumentType.INVOICE, typeCode);
-
-        if (session.invoices().getInvoiceByID(organization, ID) != null) {
-            throw new ModelDuplicateException("Invoice ID existed");
-        }
-
-        InvoiceEntity invoice = new InvoiceEntity();
-        invoice.setID(ID);
-        invoice.setInvoiceTypeCode(typeCode);
-        invoice.setOrganization(OrganizationAdapter.toEntity(organization, em));
-        em.persist(invoice);
-        em.flush();
-
-        final InvoiceModel adapter = new InvoiceAdapter(session, organization, em, invoice);
-        session.getOpenfactSessionFactory().publish(new InvoiceModel.InvoiceCreationEvent() {
-            @Override
-            public InvoiceModel getCreatedInvoice() {
-                return adapter;
-            }
-        });
-
-        return adapter;
-    }
-	
-    @Override
-    public InvoiceModel addInvoice(OrganizationModel organization, String typeCode, String ID) {
-        if (ID == null) {
-            ID = OpenfactModelUtils.generateUblID(session, organization, UblDocumentType.INVOICE, typeCode);
-        }
-
-        if (session.invoices().getInvoiceByID(organization, ID) != null) {
-            throw new ModelDuplicateException("Invoice ID existed");
-        }
-
-		InvoiceEntity invoice = new InvoiceEntity();
-		invoice.setID(ID);
-		invoice.setInvoiceTypeCode(typeCode);
-		invoice.setOrganization(OrganizationAdapter.toEntity(organization, em));
-		em.persist(invoice);
-		em.flush();
-
-		final InvoiceModel adapter = new InvoiceAdapter(session, organization, em, invoice);
-		session.getOpenfactSessionFactory().publish(new InvoiceModel.InvoiceCreationEvent() {
-			@Override
-			public InvoiceModel getCreatedInvoice() {
-				return adapter;
-			}
-		});
-
-		return adapter;
-	}
+    }    
 
 	@Override
 	public InvoiceModel getInvoiceById(OrganizationModel organization, String id) {
@@ -201,12 +148,12 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 	}
 
 	@Override
-	public List<InvoiceModel> searchForInvoice(String filterText, OrganizationModel organization) {
-		return searchForInvoice(filterText, organization, -1, -1);
+	public List<InvoiceModel> searchForInvoice(OrganizationModel organization, String filterText) {
+		return searchForInvoice(organization, filterText, -1, -1);
 	}
 
 	@Override
-	public List<InvoiceModel> searchForInvoice(String filterText, OrganizationModel organization, Integer firstResult,
+	public List<InvoiceModel> searchForInvoice(OrganizationModel organization, String filterText, Integer firstResult,
 			Integer maxResults) {
 		TypedQuery<InvoiceEntity> query = em.createNamedQuery("searchForInvoice", InvoiceEntity.class);
 		query.setParameter("organizationId", organization.getId());

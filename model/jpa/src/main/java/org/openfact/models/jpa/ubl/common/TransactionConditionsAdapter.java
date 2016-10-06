@@ -77,11 +77,6 @@ public class TransactionConditionsAdapter
     }
 
     @Override
-    public void setId(String value) {
-        this.transactionConditions.setId(value);
-    }
-
-    @Override
     public TransactionConditionsEntity getEntity() {
         return transactionConditions;
     }

@@ -302,17 +302,12 @@ public class AddressAdapter implements AddressModel, JpaModel<AddressEntity> {
     }
 
     @Override
-    public void setId(String value) {
-        address.setId(value);
-    }
-
-    @Override
     public AddressEntity getEntity() {
         return address;
     }
 
     public static AddressEntity toEntity(AddressModel model, EntityManager em) {
-        if (model instanceof AddressModel) {
+        if (model instanceof AddressAdapter) {
             return ((AddressAdapter) model).getEntity();
         }
         return em.getReference(AddressEntity.class, model.getId());

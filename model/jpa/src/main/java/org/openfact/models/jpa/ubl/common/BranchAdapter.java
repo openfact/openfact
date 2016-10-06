@@ -69,11 +69,6 @@ public class BranchAdapter implements BranchModel, JpaModel<BranchEntity> {
     }
 
     @Override
-    public void setId(String value) {
-        branch.setId(value);
-    }
-
-    @Override
     public BranchEntity getEntity() {
         return branch;
     }

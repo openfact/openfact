@@ -24,6 +24,6 @@ public interface OrderLineReferenceModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

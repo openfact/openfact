@@ -58,11 +58,6 @@ public class CommunicationAdapter implements CommunicationModel, JpaModel<Commun
     }
 
     @Override
-    public void setId(String value) {
-        this.communication.setId(value);
-    }
-
-    @Override
     public CommunicationEntity getEntity() {
         return this.communication;
     }

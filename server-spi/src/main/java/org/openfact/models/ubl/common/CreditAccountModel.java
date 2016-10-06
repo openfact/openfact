@@ -8,6 +8,6 @@ public interface CreditAccountModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

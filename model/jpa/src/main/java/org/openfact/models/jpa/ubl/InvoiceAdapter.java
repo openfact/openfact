@@ -3,16 +3,21 @@ package org.openfact.models.jpa.ubl;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import org.jboss.logging.Logger;
+import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.OrganizationAdapter;
+import org.openfact.models.jpa.entities.ubl.InvoiceAttributeEntity;
 import org.openfact.models.jpa.entities.ubl.InvoiceEntity;
 import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
@@ -64,6 +69,7 @@ import org.openfact.models.ubl.common.SignatureModel;
 import org.openfact.models.ubl.common.SupplierPartyModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
+import org.openfact.models.utils.OpenfactModelUtils;
 
 public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 
@@ -615,6 +621,106 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     @Override
     public String getId() {
         return invoice.getId();
+    }
+
+    @Override
+    public void setSingleAttribute(String name, String value) {
+        String firstExistingAttrId = null;
+        List<InvoiceAttributeEntity> toRemove = new ArrayList<>();
+        for (InvoiceAttributeEntity attr : invoice.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                if (firstExistingAttrId == null) {
+                    attr.setValue(value);
+                    firstExistingAttrId = attr.getId();
+                } else {
+                    toRemove.add(attr);
+                }
+            }
+        }
+
+        if (firstExistingAttrId != null) {
+            // Remove attributes through HQL to avoid StaleUpdateException
+            Query query = em.createNamedQuery("deleteInvoiceAttributesOtherThan");
+            query.setParameter("attrId", firstExistingAttrId);
+            query.setParameter("invoiceId", invoice.getId());
+            int numUpdated = query.executeUpdate();
+
+            // Remove attribute from local entity
+            invoice.getAttributes().removeAll(toRemove);
+        } else {
+
+            persistAttributeValue(name, value);
+        }
+    }
+
+    @Override
+    public void setAttribute(String name, List<String> values) {
+        // Remove all existing
+        removeAttribute(name);
+
+        // Put all new
+        for (String value : values) {
+            persistAttributeValue(name, value);
+        }
+    }
+
+    private void persistAttributeValue(String name, String value) {
+        InvoiceAttributeEntity attr = new InvoiceAttributeEntity();
+        attr.setId(OpenfactModelUtils.generateId());
+        attr.setName(name);
+        attr.setValue(value);
+        attr.setInvoice(invoice);
+        em.persist(attr);
+        invoice.getAttributes().add(attr);
+    }
+
+    @Override
+    public void removeAttribute(String name) {
+        // KEYCLOAK-3296 : Remove attribute through HQL to avoid
+        // StaleUpdateException
+        Query query = em.createNamedQuery("deleteInvoiceAttributesByNameAndInvoice");
+        query.setParameter("name", name);
+        query.setParameter("invoiceId", invoice.getId());
+        int numUpdated = query.executeUpdate();
+
+        // Also remove attributes from local invoice entity
+        List<InvoiceAttributeEntity> toRemove = new ArrayList<>();
+        for (InvoiceAttributeEntity attr : invoice.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                toRemove.add(attr);
+            }
+        }
+        invoice.getAttributes().removeAll(toRemove);
+    }
+
+    @Override
+    public String getFirstAttribute(String name) {
+        for (InvoiceAttributeEntity attr : invoice.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                return attr.getValue();
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<String> getAttribute(String name) {
+        List<String> result = new ArrayList<>();
+        for (InvoiceAttributeEntity attr : invoice.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                result.add(attr.getValue());
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public Map<String, List<String>> getAttributes() {
+        MultivaluedHashMap<String, String> result = new MultivaluedHashMap<>();
+        for (InvoiceAttributeEntity attr : invoice.getAttributes()) {
+            result.add(attr.getName(), attr.getValue());
+        }
+        return result;
     }
 
     @Override

@@ -8,7 +8,6 @@ import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.MeasureEntity;
-import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.MeasureModel;
 
 public class MeasureAdapter implements MeasureModel, JpaModel<MeasureEntity> {
@@ -50,17 +49,12 @@ public class MeasureAdapter implements MeasureModel, JpaModel<MeasureEntity> {
     }
 
     @Override
-    public void setId(String value) {
-        this.measure.setId(value);
-    }
-
-    @Override
     public MeasureEntity getEntity() {
         return measure;
     }
 
     public static MeasureEntity toEntity(MeasureModel model, EntityManager em) {
-        if (model instanceof AllowanceChargeModel) {
+        if (model instanceof MeasureAdapter) {
             return ((MeasureAdapter) model).getEntity();
         }
         return em.getReference(MeasureEntity.class, model.getId());

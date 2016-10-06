@@ -1,6 +1,5 @@
 package org.openfact.services.resources.admin;
 
-
 import org.openfact.models.AdminRoles;
 import org.openfact.services.ForbiddenException;
 
@@ -9,7 +8,7 @@ public class OrganizationAuth {
     private Resource resource;
 
     public enum Resource {
-        CLIENT,CERTIFIED, INVOICE, REALM, EVENTS, IDENTITY_PROVIDER, IMPERSONATION, AUTHORIZATION
+        CLIENT, CERTIFIED, INVOICE, CREDIT_NOTE, DEBIT_NOTE, REALM, CODE_CATALOG, EVENTS, IDENTITY_PROVIDER, IMPERSONATION, AUTHORIZATION
     }
 
     private AdminAuth auth;
@@ -55,20 +54,22 @@ public class OrganizationAuth {
 
     private String getViewRole(Resource resource) {
         switch (resource) {
-        /*case CLIENT:
-            return AdminRoles.VIEW_CLIENTS;*/
+        /*
+         * case CLIENT: return AdminRoles.VIEW_CLIENTS;
+         */
         case INVOICE:
             return AdminRoles.VIEW_DOCUMENTS;
         case REALM:
             return AdminRoles.VIEW_ORGANIZATION;
         case CERTIFIED:
             return AdminRoles.VIEW_CERTIFIED;
-        /*case EVENTS:
-            return AdminRoles.VIEW_EVENTS;
-        case IDENTITY_PROVIDER:
-            return AdminRoles.VIEW_IDENTITY_PROVIDERS;*/
-        /*case AUTHORIZATION:
-            return AdminRoles.VIEW_AUTHORIZATION;*/
+        /*
+         * case EVENTS: return AdminRoles.VIEW_EVENTS; case IDENTITY_PROVIDER:
+         * return AdminRoles.VIEW_IDENTITY_PROVIDERS;
+         */
+        /*
+         * case AUTHORIZATION: return AdminRoles.VIEW_AUTHORIZATION;
+         */
         default:
             throw new IllegalStateException();
         }
@@ -76,22 +77,23 @@ public class OrganizationAuth {
 
     private String getManageRole(Resource resource) {
         switch (resource) {
-        /*case CLIENT:
-            return AdminRoles.MANAGE_CLIENTS;*/
+        /*
+         * case CLIENT: return AdminRoles.MANAGE_CLIENTS;
+         */
         case INVOICE:
             return AdminRoles.MANAGE_DOCUMENT;
         case REALM:
             return AdminRoles.MANAGE_ORGANIZATION;
         case CERTIFIED:
             return AdminRoles.CREATE_CERTIFIED;
-        /*case EVENTS:
-            return AdminRoles.MANAGE_EVENTS;
-        case IDENTITY_PROVIDER:
-            return AdminRoles.MANAGE_IDENTITY_PROVIDERS;*/
-        /*case IMPERSONATION:
-            return ImpersonationConstants.IMPERSONATION_ROLE;
-        case AUTHORIZATION:
-            return AdminRoles.MANAGE_AUTHORIZATION;*/
+        /*
+         * case EVENTS: return AdminRoles.MANAGE_EVENTS; case IDENTITY_PROVIDER:
+         * return AdminRoles.MANAGE_IDENTITY_PROVIDERS;
+         */
+        /*
+         * case IMPERSONATION: return ImpersonationConstants.IMPERSONATION_ROLE;
+         * case AUTHORIZATION: return AdminRoles.MANAGE_AUTHORIZATION;
+         */
         default:
             throw new IllegalStateException();
         }

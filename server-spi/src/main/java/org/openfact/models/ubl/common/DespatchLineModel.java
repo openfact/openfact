@@ -62,6 +62,6 @@ public interface DespatchLineModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

@@ -140,13 +140,8 @@ public class ItemLocationQuantityAdapter
         return this.itemLocationQuantity.getId();
     }
 
-    @Override
-    public void setId(String value) {
-        this.itemLocationQuantity.setId(value);
-    }
-
     public static ItemLocationQuantityEntity toEntity(ItemLocationQuantityModel model, EntityManager em) {
-        if (model instanceof ItemLocationQuantityModel) {
+        if (model instanceof ItemLocationQuantityAdapter) {
             return ((ItemLocationQuantityAdapter) model).getEntity();
         }
         return em.getReference(ItemLocationQuantityEntity.class, model.getId());
@@ -154,7 +149,7 @@ public class ItemLocationQuantityAdapter
 
     @Override
     public ItemLocationQuantityEntity getEntity() {
-        // TODO Auto-generated method stub
+
         return itemLocationQuantity;
     }
 

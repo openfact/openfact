@@ -6,13 +6,15 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import javax.ws.rs.core.CacheControl;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
+import org.openfact.events.admin.OperationType;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
@@ -22,8 +24,6 @@ import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.utils.ModelToRepresentation;
-import org.openfact.models.utils.OpenfactModelUtils;
-import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.search.PagingRepresentation;
 import org.openfact.representations.idm.search.SearchCriteriaFilterOperatorRepresentation;
 import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
@@ -31,135 +31,129 @@ import org.openfact.representations.idm.search.SearchResultsRepresentation;
 import org.openfact.representations.idm.ubl.InvoiceRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
+import org.openfact.services.managers.InvoiceManager;
 
 public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 
-	private static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
+    private static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
 
-	protected OrganizationAuth auth;
-	protected OrganizationModel organization;
+    protected OrganizationModel organization;
+    private OrganizationAuth auth;
+    private AdminEventBuilder adminEvent;
 
-	@Context
-	protected UriInfo uriInfo;
+    @Context
+    protected UriInfo uriInfo;
 
-	@Context
-	protected OpenfactSession session;
+    @Context
+    protected OpenfactSession session;
 
-	@Context
-	protected ClientConnection clientConnection;
+    @Context
+    protected ClientConnection clientConnection;
 
-	public InvoicesAdminResourceImpl(OrganizationModel organization, OrganizationAuth auth) {
-		this.organization = organization;
-		this.auth = auth;
-		auth.init(OrganizationAuth.Resource.INVOICE);
-	}
+    @Context
+    protected HttpHeaders headers;
 
-	public static final CacheControl noCache = new CacheControl();
+    public InvoicesAdminResourceImpl(OrganizationModel organization, OrganizationAuth auth, AdminEventBuilder adminEvent) {
+        this.auth = auth;
+        this.organization = organization;
+        this.adminEvent = adminEvent;
 
-	static {
-		noCache.setNoCache(true);
-	}
+        auth.init(OrganizationAuth.Resource.INVOICE);
+    }
 
-	@Override
-	public List<InvoiceRepresentation> getInvoices(String filterText,
-			Integer firstResult, Integer maxResults) {
-		auth.requireView();
+    @Override
+    public InvoiceAdminResource getInvoiceAdmin(String invoiceId) {
+        InvoiceModel invoice = session.invoices().getInvoiceById(organization, invoiceId);
+        if (invoice == null) {
+            throw new NotFoundException("Debit Note not found");
+        }
+        
+        InvoiceAdminResource invoiceResource = new InvoiceAdminResourceImpl(organization, auth, adminEvent, invoice);
+        ResteasyProviderFactory.getInstance().injectProperties(invoiceResource);
+        return invoiceResource;
+    }
 
-		firstResult = firstResult != null ? firstResult : -1;
-		maxResults = maxResults != null ? maxResults : -1;
+    @Override
+    public List<InvoiceRepresentation> getInvoices(String filterText, Integer firstResult, Integer maxResults) {
+        auth.requireView();
 
-		List<InvoiceModel> invoices;
-		if (filterText != null) {
-			invoices = session.invoices().searchForInvoice(filterText.trim(), organization, firstResult, maxResults);
-		} else {
-			invoices = session.invoices().getInvoices(organization, firstResult, maxResults);
-		}
+        firstResult = firstResult != null ? firstResult : -1;
+        maxResults = maxResults != null ? maxResults : -1;
 
-		return invoices.stream().map(f -> ModelToRepresentation.toRepresentation(f)).collect(Collectors.toList());
-	}
+        List<InvoiceModel> invoices;
+        if (filterText == null) {
+            invoices = session.invoices().getInvoices(organization, firstResult, maxResults);            
+        } else {
+            invoices = session.invoices().searchForInvoice(organization, filterText.trim(), firstResult, maxResults);
+        }
+        return invoices.stream().map(f -> ModelToRepresentation.toRepresentation(f)).collect(Collectors.toList());
+    }
 
-	@Override
-	public Response createInvoice(InvoiceRepresentation rep) {
-		auth.requireManage();
-
-		if (!checkOrganization(organization)) {
-			return ErrorResponse.exists("Can't create invoice because organization has insuficient data");
-		}
-
-		try {				
-			InvoiceModel invoice = RepresentationToModel.createInvoice(session, organization, rep);
-			OpenfactModelUtils.generateUBLExtensions(session, organization, invoice);
-						
-            logger.addInvoiceSuccess(invoice.getId(), organization.getName());                                            
+    @Override
+    public Response createInvoice(InvoiceRepresentation rep) {
+        auth.requireManage();                
+        
+        InvoiceManager invoiceManager =  new InvoiceManager(session);
+        
+        // Double-check duplicated ID
+        if (rep.getIdUbl() != null && invoiceManager.getInvoiceByID(organization, rep.getIdUbl()) != null) {
+            return ErrorResponse.exists("Debit Note exists with same ID");
+        }
+        
+        try {
+            InvoiceModel invoice = invoiceManager.addInvoice(organization, rep);
+                        
+            if (session.getTransactionManager().isActive()) {
+                session.getTransactionManager().commit();
+            }
             
-			URI uri = uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build();
-            return Response.created(uri).entity(ModelToRepresentation.toRepresentation(invoice)).build();
-		} catch (ModelDuplicateException e) {
-			if (session.getTransactionManager().isActive()) {
-				session.getTransactionManager().setRollbackOnly();
-			}
-			return ErrorResponse.exists("Invoice exists with same Set and Number");
-		} catch (ModelException e) {
-			if (session.getTransactionManager().isActive()) {
-				session.getTransactionManager().setRollbackOnly();
-			}
-			return ErrorResponse.exists("Could not create invoice");
-		}
-	}
+            adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, invoice.getId()).representation(rep).success();
 
-	private boolean checkOrganization(OrganizationModel organization) {
-		if (organization.getAdditionalAccountId() == null) {
-			return false;
-		}
-		if (organization.getAssignedIdentificationId() == null) {
-			return false;
-		}
-		if (organization.getRegistrationName() == null) {
-			return false;
-		}
-		if (organization.getSupplierName() == null) {
-			return false;
-		}
-		return true;
-	}
+            URI location = uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build();
+            return Response.created(location).build();
+        } catch (ModelDuplicateException e) {
+            if (session.getTransactionManager().isActive()) {
+                session.getTransactionManager().setRollbackOnly();
+            }
+            return ErrorResponse.exists("Invoice exists with same id or ID");
+        } catch (ModelException me){
+            if (session.getTransactionManager().isActive()) {
+                session.getTransactionManager().setRollbackOnly();
+            }
+            return ErrorResponse.exists("Could not create debit note");
+        }        
+    }
 
-	@Override
-	public SearchResultsRepresentation<InvoiceRepresentation> search(SearchCriteriaRepresentation criteria) {
-		SearchCriteriaModel criteriaModel = new SearchCriteriaModel();
+    @Override
+    public SearchResultsRepresentation<InvoiceRepresentation> search(SearchCriteriaRepresentation criteria) {
+        auth.requireView();
+        
+        SearchCriteriaModel criteriaModel = new SearchCriteriaModel();
 
-		Function<SearchCriteriaFilterOperatorRepresentation, SearchCriteriaFilterOperator> function = f -> {
-			return SearchCriteriaFilterOperator.valueOf(f.toString());
-		};
-		criteria.getFilters().forEach(f -> {
-			criteriaModel.addFilter(f.getName(), f.getValue(), function.apply(f.getOperator()));
-		});
-		criteria.getOrders().forEach(f -> criteriaModel.addOrder(f.getName(), f.isAscending()));
-		PagingRepresentation paging = criteria.getPaging();
-		criteriaModel.setPageSize(paging.getPageSize());
-		criteriaModel.setPage(paging.getPage());
+        Function<SearchCriteriaFilterOperatorRepresentation, SearchCriteriaFilterOperator> function = f -> {
+            return SearchCriteriaFilterOperator.valueOf(f.toString());
+        };
+        criteria.getFilters().forEach(f -> {
+            criteriaModel.addFilter(f.getName(), f.getValue(), function.apply(f.getOperator()));
+        });
+        criteria.getOrders().forEach(f -> criteriaModel.addOrder(f.getName(), f.isAscending()));
+        PagingRepresentation paging = criteria.getPaging();
+        criteriaModel.setPageSize(paging.getPageSize());
+        criteriaModel.setPage(paging.getPage());
 
-		String filterText = criteria.getFilterText();
-		SearchResultsModel<InvoiceModel> results = null;
-		if (filterText == null) {
-			results = session.invoices().searchForInvoice(organization, criteriaModel);
-		} else {
-			results = session.invoices().searchForInvoice(organization, criteriaModel, filterText);
-		}
-		SearchResultsRepresentation<InvoiceRepresentation> rep = new SearchResultsRepresentation<>();
-		List<InvoiceRepresentation> items = new ArrayList<>();
-		results.getModels().forEach(f -> items.add(ModelToRepresentation.toRepresentation(f)));
-		rep.setItems(items);
-		rep.setTotalSize(results.getTotalSize());
-		return rep;
-	}
-
-	@Override
-	public InvoiceAdminResource getInvoiceAdmin(String invoiceId) {
-		InvoiceModel invoice = session.invoices().getInvoiceById(organization, invoiceId);
-		InvoiceAdminResource invoiceResource = new InvoiceAdminResourceImpl(auth, organization, invoice);
-		ResteasyProviderFactory.getInstance().injectProperties(invoiceResource);
-		// resourceContext.initResource(adminResource);
-		return invoiceResource;
-	}
+        String filterText = criteria.getFilterText();
+        SearchResultsModel<InvoiceModel> results = null;
+        if (filterText != null) {
+            results = session.invoices().searchForInvoice(organization, criteriaModel, filterText);            
+        } else {
+            results = session.invoices().searchForInvoice(organization, criteriaModel);
+        }
+        SearchResultsRepresentation<InvoiceRepresentation> rep = new SearchResultsRepresentation<>();
+        List<InvoiceRepresentation> items = new ArrayList<>();
+        results.getModels().forEach(f -> items.add(ModelToRepresentation.toRepresentation(f)));
+        rep.setItems(items);
+        rep.setTotalSize(results.getTotalSize());
+        return rep;
+    }
 
 }

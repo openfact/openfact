@@ -101,13 +101,8 @@ public class PeriodAdapter implements PeriodModel, JpaModel<PeriodEntity> {
         return this.period.getId();
     }
 
-    @Override
-    public void setId(String value) {
-        this.period.setId(value);
-    }
-
     public static PeriodEntity toEntity(PeriodModel model, EntityManager em) {
-        if (model instanceof PeriodModel) {
+        if (model instanceof PeriodAdapter) {
             return ((PeriodAdapter) model).getEntity();
         }
         return em.getReference(PeriodEntity.class, model.getId());

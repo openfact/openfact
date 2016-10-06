@@ -18,6 +18,6 @@ public interface DocumentDistributionModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

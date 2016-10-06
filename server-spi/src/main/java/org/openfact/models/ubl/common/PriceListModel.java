@@ -22,6 +22,6 @@ public interface PriceListModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

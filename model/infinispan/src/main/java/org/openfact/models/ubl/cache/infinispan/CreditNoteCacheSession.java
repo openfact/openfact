@@ -54,12 +54,6 @@ public class CreditNoteCacheSession implements CreditNoteCache {
     }
 
     @Override
-    public CreditNoteModel addCreditNote(OrganizationModel organization) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public CreditNoteModel addCreditNote(OrganizationModel organization, String ID) {
         // TODO Auto-generated method stub
         return null;
@@ -103,13 +97,13 @@ public class CreditNoteCacheSession implements CreditNoteCache {
     }
 
     @Override
-    public List<CreditNoteModel> searchForCreditNote(String filterText, OrganizationModel organization) {
+    public List<CreditNoteModel> searchForCreditNote(OrganizationModel organization, String filterText) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public List<CreditNoteModel> searchForCreditNote(String filterText, OrganizationModel organization,
+    public List<CreditNoteModel> searchForCreditNote(OrganizationModel organization, String filterText,
             Integer firstResult, Integer maxResults) {
         // TODO Auto-generated method stub
         return null;
@@ -136,6 +130,12 @@ public class CreditNoteCacheSession implements CreditNoteCache {
     }
 
     @Override
+    public CreditNoteModel getLastCreditNote(OrganizationModel organization, int lenght, String mask) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
     public void close() {
         // TODO Auto-generated method stub
         
@@ -151,12 +151,6 @@ public class CreditNoteCacheSession implements CreditNoteCache {
     public void clear() {
         // TODO Auto-generated method stub
         
-    }
-
-    @Override
-    public CreditNoteModel getLastCreditNote(OrganizationModel organization, int lenght, String mask) {
-        // TODO Auto-generated method stub
-        return null;
     }
 
     

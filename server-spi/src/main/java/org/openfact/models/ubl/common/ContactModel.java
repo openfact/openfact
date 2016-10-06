@@ -34,6 +34,6 @@ public interface ContactModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

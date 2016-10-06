@@ -34,6 +34,6 @@ public interface CustomerPartyModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

@@ -91,11 +91,6 @@ public class PaymentAdapter implements PaymentModel, JpaModel<PaymentEntity> {
     }
 
     @Override
-    public void setId(String value) {
-        this.payment.setId(value);
-    }
-
-    @Override
     public PaymentEntity getEntity() {
         return payment;
     }

@@ -48,6 +48,6 @@ public interface StatusModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

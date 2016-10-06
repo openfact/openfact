@@ -57,11 +57,6 @@ public class DeliveryUnitAdapter implements DeliveryUnitModel, JpaModel<Delivery
         return this.deliveryUnit.getId();
     }
 
-    @Override
-    public void setId(String value) {
-        this.deliveryUnit.setId(value);
-    }
-
     public static DeliveryUnitEntity toEntity(DeliveryUnitModel model, EntityManager em) {
         if (model instanceof DeliveryUnitAdapter) {
             return ((DeliveryUnitAdapter) model).getEntity();

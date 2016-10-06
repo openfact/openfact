@@ -8,6 +8,6 @@ public interface RoadTransportModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

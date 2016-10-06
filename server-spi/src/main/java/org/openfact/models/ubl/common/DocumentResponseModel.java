@@ -26,6 +26,6 @@ public interface DocumentResponseModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

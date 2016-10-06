@@ -43,6 +43,6 @@ public interface ExchangeRateModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

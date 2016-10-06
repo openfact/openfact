@@ -69,11 +69,6 @@ public class LineReferenceAdapter implements LineReferenceModel, JpaModel<LineRe
     }
 
     @Override
-    public void setId(String value) {
-        this.lineReference.setId(value);
-    }
-
-    @Override
     public LineReferenceEntity getEntity() {
         return lineReference;
     }

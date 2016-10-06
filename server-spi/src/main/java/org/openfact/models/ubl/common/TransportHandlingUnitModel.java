@@ -74,6 +74,6 @@ public interface TransportHandlingUnitModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

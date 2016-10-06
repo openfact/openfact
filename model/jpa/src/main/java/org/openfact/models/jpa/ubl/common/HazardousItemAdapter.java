@@ -279,11 +279,6 @@ public class HazardousItemAdapter implements HazardousItemModel, JpaModel<Hazard
     }
 
     @Override
-    public void setId(String value) {
-        this.hazardousItem.setId(value);
-    }
-
-    @Override
     public HazardousItemEntity getEntity() {
         return hazardousItem;
     }

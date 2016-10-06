@@ -38,6 +38,6 @@ public interface OrderReferenceModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

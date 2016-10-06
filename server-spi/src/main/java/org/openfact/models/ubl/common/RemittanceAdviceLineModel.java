@@ -71,6 +71,6 @@ public interface RemittanceAdviceLineModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

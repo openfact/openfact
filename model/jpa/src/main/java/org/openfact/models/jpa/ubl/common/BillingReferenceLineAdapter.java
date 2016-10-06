@@ -68,11 +68,6 @@ public class BillingReferenceLineAdapter
     }
 
     @Override
-    public void setId(String value) {
-        billingReferenceLine.setId(value);
-    }
-
-    @Override
     public BillingReferenceLineEntity getEntity() {
         return billingReferenceLine;
     }

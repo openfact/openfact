@@ -42,6 +42,6 @@ public interface OrderLineModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

@@ -26,6 +26,6 @@ public interface EndorsementModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

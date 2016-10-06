@@ -121,11 +121,6 @@ public class ExchangeRateAdapter implements ExchangeRateModel, JpaModel<Exchange
     }
 
     @Override
-    public void setId(String value) {
-        this.exchangeRate.setId(value);
-    }
-
-    @Override
     public ExchangeRateEntity getEntity() {
         return exchangeRate;
     }

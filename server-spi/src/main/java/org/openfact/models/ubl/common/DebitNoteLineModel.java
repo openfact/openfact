@@ -80,7 +80,7 @@ public interface DebitNoteLineModel {
 
     String getId();
 
-    void setId(String value);
+    
 
     /**
      * */

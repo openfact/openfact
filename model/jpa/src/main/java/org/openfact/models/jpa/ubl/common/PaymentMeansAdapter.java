@@ -142,13 +142,8 @@ public class PaymentMeansAdapter implements PaymentMeansModel, JpaModel<PaymentM
         return this.paymentMeans.getId();
     }
 
-    @Override
-    public void setId(String value) {
-        this.paymentMeans.setId(value);
-    }
-
     public static PaymentMeansEntity toEntity(PaymentMeansModel model, EntityManager em) {
-        if (model instanceof PaymentMeansModel) {
+        if (model instanceof PaymentMeansAdapter) {
             return ((PaymentMeansAdapter) model).getEntity();
         }
         return em.getReference(PaymentMeansEntity.class, model.getId());
@@ -156,7 +151,7 @@ public class PaymentMeansAdapter implements PaymentMeansModel, JpaModel<PaymentM
 
     @Override
     public PaymentMeansEntity getEntity() {
-        // TODO Auto-generated method stub
+
         return paymentMeans;
     }
 

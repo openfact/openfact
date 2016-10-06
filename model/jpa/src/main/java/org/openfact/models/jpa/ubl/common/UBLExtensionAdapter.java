@@ -128,17 +128,12 @@ public class UBLExtensionAdapter implements UBLExtensionModel, JpaModel<UBLExten
     }
 
     @Override
-    public void setId(String value) {
-        this.uBLExtension.setId(value);
-    }
-
-    @Override
     public UBLExtensionEntity getEntity() {
         return this.uBLExtension;
     }
 
     public static UBLExtensionEntity toEntity(UBLExtensionModel model, EntityManager em) {
-        if (model instanceof UBLExtensionModel) {
+        if (model instanceof UBLExtensionAdapter) {
             return ((UBLExtensionAdapter) model).getEntity();
         }
         return em.getReference(UBLExtensionEntity.class, model.getId());

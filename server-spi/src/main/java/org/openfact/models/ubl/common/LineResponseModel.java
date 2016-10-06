@@ -14,6 +14,6 @@ public interface LineResponseModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

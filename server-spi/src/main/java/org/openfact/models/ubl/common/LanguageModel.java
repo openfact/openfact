@@ -16,6 +16,6 @@ public interface LanguageModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

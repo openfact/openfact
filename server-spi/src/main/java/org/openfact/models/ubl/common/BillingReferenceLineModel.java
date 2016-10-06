@@ -19,6 +19,6 @@ public interface BillingReferenceLineModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

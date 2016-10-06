@@ -75,11 +75,6 @@ public class TaxTotalAdapter implements TaxTotalModel, JpaModel<TaxTotalEntity> 
         return this.taxTotal.getId();
     }
 
-    @Override
-    public void setId(String value) {
-        this.taxTotal.setId(value);
-    }
-
     public static TaxTotalEntity toEntity(TaxTotalModel model, EntityManager em) {
         if (model instanceof TaxTotalAdapter) {
             return ((TaxTotalAdapter) model).getEntity();

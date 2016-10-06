@@ -59,11 +59,6 @@ public class PricingReferenceAdapter implements PricingReferenceModel, JpaModel<
     }
 
     @Override
-    public void setId(String value) {
-        this.pricingReference.setId(value);
-    }
-
-    @Override
     public PricingReferenceEntity getEntity() {
         return pricingReference;
     }

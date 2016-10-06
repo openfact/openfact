@@ -59,11 +59,6 @@ public class ResponseAdapter implements ResponseModel, JpaModel<ResponseEntity> 
     }
 
     @Override
-    public void setId(String value) {
-        this.response.setId(value);
-    }
-
-    @Override
     public ResponseEntity getEntity() {
         return response;
     }

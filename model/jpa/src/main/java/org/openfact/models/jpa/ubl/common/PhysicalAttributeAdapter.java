@@ -70,18 +70,13 @@ public class PhysicalAttributeAdapter implements PhysicalAttributeModel, JpaMode
     }
 
     @Override
-    public void setId(String value) {
-        this.physicalAttribute.setId(value);
-    }
-
-    @Override
     public PhysicalAttributeEntity getEntity() {
-        // TODO Auto-generated method stub
+
         return physicalAttribute;
     }
 
     public static PhysicalAttributeEntity toEntity(PhysicalAttributeModel model, EntityManager em) {
-        if (model instanceof PhysicalAttributeModel) {
+        if (model instanceof PhysicalAttributeAdapter) {
             return ((PhysicalAttributeAdapter) model).getEntity();
         }
         return em.getReference(PhysicalAttributeEntity.class, model.getId());

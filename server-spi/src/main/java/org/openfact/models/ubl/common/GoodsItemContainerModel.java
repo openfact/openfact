@@ -18,6 +18,6 @@ public interface GoodsItemContainerModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

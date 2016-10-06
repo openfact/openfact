@@ -12,6 +12,6 @@ public interface RailTransportModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

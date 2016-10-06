@@ -3,17 +3,22 @@ package org.openfact.models.jpa.ubl;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import org.jboss.logging.Logger;
+import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.OrganizationAdapter;
 import org.openfact.models.jpa.entities.ubl.CreditNoteEntity;
+import org.openfact.models.jpa.entities.ubl.CreditNoteAttributeEntity;
 import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.CreditNoteLineEntity;
@@ -53,6 +58,7 @@ import org.openfact.models.ubl.common.SignatureModel;
 import org.openfact.models.ubl.common.SupplierPartyModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
+import org.openfact.models.utils.OpenfactModelUtils;
 
 public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEntity> {
 
@@ -64,11 +70,11 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
     protected OpenfactSession session;
 
     public CreditNoteAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em,
-            CreditNoteEntity invoice) {
+            CreditNoteEntity creditNote) {
         this.organization = organization;
         this.session = session;
         this.em = em;
-        this.creditNote = invoice;
+        this.creditNote = creditNote;
     }
 
     @Override
@@ -84,6 +90,106 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
         return creditNote.getId();
     }
 
+    @Override
+    public void setSingleAttribute(String name, String value) {
+        String firstExistingAttrId = null;
+        List<CreditNoteAttributeEntity> toRemove = new ArrayList<>();
+        for (CreditNoteAttributeEntity attr : creditNote.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                if (firstExistingAttrId == null) {
+                    attr.setValue(value);
+                    firstExistingAttrId = attr.getId();
+                } else {
+                    toRemove.add(attr);
+                }
+            }
+        }
+
+        if (firstExistingAttrId != null) {
+            // Remove attributes through HQL to avoid StaleUpdateException
+            Query query = em.createNamedQuery("deleteCreditNoteAttributesOtherThan");
+            query.setParameter("attrId", firstExistingAttrId);
+            query.setParameter("creditNoteId", creditNote.getId());
+            int numUpdated = query.executeUpdate();
+
+            // Remove attribute from local entity
+            creditNote.getAttributes().removeAll(toRemove);
+        } else {
+
+            persistAttributeValue(name, value);
+        }
+    }
+
+    @Override
+    public void setAttribute(String name, List<String> values) {
+        // Remove all existing
+        removeAttribute(name);
+
+        // Put all new
+        for (String value : values) {
+            persistAttributeValue(name, value);
+        }
+    }
+
+    private void persistAttributeValue(String name, String value) {
+        CreditNoteAttributeEntity attr = new CreditNoteAttributeEntity();
+        attr.setId(OpenfactModelUtils.generateId());
+        attr.setName(name);
+        attr.setValue(value);
+        attr.setCreditNote(creditNote);
+        em.persist(attr);
+        creditNote.getAttributes().add(attr);
+    }
+
+    @Override
+    public void removeAttribute(String name) {
+        // KEYCLOAK-3296 : Remove attribute through HQL to avoid
+        // StaleUpdateException
+        Query query = em.createNamedQuery("deleteCreditNoteAttributesByNameAndCreditNote");
+        query.setParameter("name", name);
+        query.setParameter("creditNoteId", creditNote.getId());
+        int numUpdated = query.executeUpdate();
+
+        // Also remove attributes from local creditNote entity
+        List<CreditNoteAttributeEntity> toRemove = new ArrayList<>();
+        for (CreditNoteAttributeEntity attr : creditNote.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                toRemove.add(attr);
+            }
+        }
+        creditNote.getAttributes().removeAll(toRemove);
+    }
+
+    @Override
+    public String getFirstAttribute(String name) {
+        for (CreditNoteAttributeEntity attr : creditNote.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                return attr.getValue();
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<String> getAttribute(String name) {
+        List<String> result = new ArrayList<>();
+        for (CreditNoteAttributeEntity attr : creditNote.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                result.add(attr.getValue());
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public Map<String, List<String>> getAttributes() {
+        MultivaluedHashMap<String, String> result = new MultivaluedHashMap<>();
+        for (CreditNoteAttributeEntity attr : creditNote.getAttributes()) {
+            result.add(attr.getName(), attr.getValue());
+        }
+        return result;
+    }
+    
     @Override
     public OrganizationModel getOrganization() {
         return new OrganizationAdapter(session, em, creditNote.getOrganization());
@@ -399,7 +505,7 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
     }
 
     /**
-     * @return the invoicePeriod
+     * @return the creditNotePeriod
      */
     @Override
     public List<PeriodModel> getInvoicePeriod() {
@@ -408,12 +514,12 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
     }
 
     /**
-     * @param invoicePeriod
-     *            the invoicePeriod to set
+     * @param creditNotePeriod
+     *            the creditNotePeriod to set
      */
     @Override
-    public void setInvoicePeriod(List<PeriodModel> invoicePeriod) {
-        List<PeriodEntity> entities = invoicePeriod.stream().map(f -> PeriodAdapter.toEntity(f, em))
+    public void setInvoicePeriod(List<PeriodModel> creditNotePeriod) {
+        List<PeriodEntity> entities = creditNotePeriod.stream().map(f -> PeriodAdapter.toEntity(f, em))
                 .collect(Collectors.toList());
         creditNote.setInvoicePeriod(entities);
     }
@@ -811,6 +917,15 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
         DocumentReferenceEntity entity = new DocumentReferenceEntity();
         entities.add(entity);
         return new DocumentReferenceAdapter(session, em, entity);
+    }
+
+    @Override
+    public SignatureModel addSignature() {
+        List<SignatureEntity> entities = creditNote.getSignature();
+
+        SignatureEntity entity = new SignatureEntity();
+        entities.add(entity);
+        return new SignatureAdapter(session, em, entity);
     }
 
 }

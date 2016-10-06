@@ -83,6 +83,6 @@ public interface ReceiptLineModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

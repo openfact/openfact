@@ -28,6 +28,6 @@ public interface VideoModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

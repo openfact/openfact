@@ -26,19 +26,6 @@ public class CreditNoteProviderTest extends AbstractProviderTest {
         commit();
     }
 
-    /*@Test
-    public void createWithoutSeriesAndNumber() throws Exception {
-        createOrganization();
-
-        CreditNoteProvider provider = session.creditNotes();
-        CreditNoteModel creditNote = provider.addCreditNote(organization);
-        commit();
-
-        assertThat(creditNote, is(notNullValue()));
-        assertThat(creditNote.getId(), is(notNullValue()));
-        assertThat(creditNote.getID(), is("C001-0001"));
-    }*/
-
     @Test
     public void createWithSeriesAndNumber() throws Exception {
         createOrganization();
@@ -50,29 +37,6 @@ public class CreditNoteProviderTest extends AbstractProviderTest {
         assertThat(creditNote.getId(), is(notNullValue()));
         assertThat(creditNote.getID(), is("C002-0003"));
     }
-
-    /*@Test
-    public void createWithTwoMethods() throws Exception {
-        createOrganization();
-
-        CreditNoteProvider provider = session.creditNotes();
-        CreditNoteModel creditNote23 = provider.addCreditNote(organization, "C002-0003");
-        CreditNoteModel creditNote31 = provider.addCreditNote(organization);
-        CreditNoteModel creditNote32 = provider.addCreditNote(organization);
-        CreditNoteModel creditNote33 = provider.addCreditNote(organization);
-        CreditNoteModel creditNote41 = provider.addCreditNote(organization);
-        CreditNoteModel creditNote52 = provider.addCreditNote(organization, "C005-0002");
-        CreditNoteModel creditNote53 = provider.addCreditNote(organization);
-        commit();
-
-        assertThat(creditNote23.getID(), is("C002-0003"));
-        assertThat(creditNote31.getID(), is("C003-0001"));
-        assertThat(creditNote32.getID(), is("C003-0002"));
-        assertThat(creditNote33.getID(), is("C003-0003"));
-        assertThat(creditNote41.getID(), is("C004-0001"));
-        assertThat(creditNote52.getID(), is("C005-0002"));
-        assertThat(creditNote53.getID(), is("C005-0003"));
-    }*/
 
     @Test
     public void SeriesAndNumberCollision() {

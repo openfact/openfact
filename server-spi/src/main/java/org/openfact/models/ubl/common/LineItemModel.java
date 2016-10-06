@@ -107,6 +107,6 @@ public interface LineItemModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

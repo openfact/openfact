@@ -78,6 +78,6 @@ public interface TransportEquipmentModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

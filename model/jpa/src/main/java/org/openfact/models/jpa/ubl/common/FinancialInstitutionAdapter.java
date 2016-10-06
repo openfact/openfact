@@ -59,11 +59,6 @@ public class FinancialInstitutionAdapter
         return financialInstitution.getId();
     }
 
-    @Override
-    public void setId(String value) {
-        financialInstitution.setId(value);
-    }
-
     public static FinancialInstitutionEntity toEntity(FinancialInstitutionModel model, EntityManager em) {
         if (model instanceof FinancialInstitutionAdapter) {
             return ((FinancialInstitutionAdapter) model).getEntity();

@@ -32,6 +32,6 @@ public interface PersonModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

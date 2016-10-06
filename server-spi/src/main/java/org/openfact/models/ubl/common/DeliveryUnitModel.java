@@ -16,6 +16,6 @@ public interface DeliveryUnitModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

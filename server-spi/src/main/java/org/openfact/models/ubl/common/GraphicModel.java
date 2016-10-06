@@ -28,6 +28,6 @@ public interface GraphicModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }

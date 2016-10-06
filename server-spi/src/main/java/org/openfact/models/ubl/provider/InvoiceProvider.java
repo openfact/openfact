@@ -10,11 +10,7 @@ import org.openfact.provider.Provider;
 
 public interface InvoiceProvider extends Provider {
 
-    InvoiceModel addInvoice(OrganizationModel organization);
-
-    InvoiceModel addInvoice(OrganizationModel organization, String invoiceTypeCode);
-    
-    InvoiceModel addInvoice(OrganizationModel organization, String invoiceTypeCode, String ID);
+    InvoiceModel addInvoice(OrganizationModel organization, String ID);
 
     InvoiceModel getInvoiceById(OrganizationModel organization, String id);
 
@@ -28,9 +24,9 @@ public interface InvoiceProvider extends Provider {
 
     List<InvoiceModel> getInvoices(OrganizationModel organization, Integer firstResult, Integer maxResults);
 
-    List<InvoiceModel> searchForInvoice(String filterText, OrganizationModel organization);
+    List<InvoiceModel> searchForInvoice(OrganizationModel organization, String filterText);
 
-    List<InvoiceModel> searchForInvoice(String filterText, OrganizationModel organization,
+    List<InvoiceModel> searchForInvoice(OrganizationModel organization, String filterText,
             Integer firstResult, Integer maxResults);
 
     SearchResultsModel<InvoiceModel> searchForInvoice(OrganizationModel organization,

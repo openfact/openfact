@@ -110,11 +110,6 @@ public class MonetaryTotalAdapter implements MonetaryTotalModel, JpaModel<Moneta
     }
 
     @Override
-    public void setId(String value) {
-        this.monetaryTotal.setId(value);
-    }
-
-    @Override
     public MonetaryTotalEntity getEntity() {
         return monetaryTotal;
     }

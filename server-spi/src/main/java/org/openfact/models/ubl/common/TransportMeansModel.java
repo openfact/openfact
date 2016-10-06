@@ -47,6 +47,6 @@ public interface TransportMeansModel {
 
     String getId();
 
-    void setId(String value);
+    
 
 }
