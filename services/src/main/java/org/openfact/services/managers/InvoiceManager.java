@@ -3,7 +3,6 @@ package org.openfact.services.managers;
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.UblDocumentType;
 import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.ubl.provider.InvoiceProvider;
 import org.openfact.models.utils.RepresentationToModel;
@@ -39,11 +38,7 @@ public class InvoiceManager {
                 provider = session.getProvider(UblIDGeneratorProvider.class, organization.getDefaultUblLocale());
             }
 
-            if (rep.getInvoiceTypeCode() == null) {
-                ID = provider.generateID(organization, UblDocumentType.CREDIT_NOTE);
-            } else {
-                ID = provider.generateID(organization, UblDocumentType.CREDIT_NOTE, rep.getInvoiceTypeCode());
-            }
+            ID = provider.generateInvoiceID(organization, rep.getInvoiceTypeCode());
         }
         InvoiceModel invoice = model.addInvoice(organization, ID);
 

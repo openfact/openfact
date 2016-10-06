@@ -1,9 +1,11 @@
 package org.openfact.services.managers;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.UblDocumentType;
 import org.openfact.models.ubl.CreditNoteModel;
 import org.openfact.models.ubl.provider.CreditNoteProvider;
 import org.openfact.models.utils.RepresentationToModel;
@@ -38,7 +40,9 @@ public class CreditNoteManager {
             } else {
                 provider = session.getProvider(UblIDGeneratorProvider.class, organization.getDefaultUblLocale());
             }
-            ID = provider.generateID(organization, UblDocumentType.CREDIT_NOTE);
+            
+            List<String> referencesID = rep.getDiscrepancyResponse().stream().map(f -> f.getReferenceID()).collect(Collectors.toList());
+            ID = provider.generateCreditNoteID(organization, referencesID.toArray(new String[referencesID.size()]));
         }
         CreditNoteModel creditNote = model.addCreditNote(organization, ID);
         

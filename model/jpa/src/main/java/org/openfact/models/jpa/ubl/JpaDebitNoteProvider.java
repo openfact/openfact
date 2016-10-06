@@ -14,6 +14,7 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.AbstractHibernateStorage;
 import org.openfact.models.jpa.OrganizationAdapter;
+import org.openfact.models.jpa.entities.ubl.CreditNoteEntity;
 import org.openfact.models.jpa.entities.ubl.DebitNoteEntity;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
@@ -216,7 +217,7 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
     
     @Override
     public DebitNoteModel getLastDebitNote(OrganizationModel organization, int IDDebitNoteLength, String maskFormater) {
-        TypedQuery<DebitNoteEntity> query = em.createNamedQuery("getLastDebitByOrganization", DebitNoteEntity.class);
+        TypedQuery<DebitNoteEntity> query = em.createNamedQuery("getLastDebitNoteByOrganization", DebitNoteEntity.class);
         query.setParameter("organizationId", organization.getId());
         query.setParameter("IDLength", IDDebitNoteLength);
         query.setParameter("formatter", maskFormater);

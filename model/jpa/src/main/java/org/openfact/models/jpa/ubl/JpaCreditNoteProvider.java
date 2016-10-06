@@ -216,7 +216,7 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
     
     @Override
     public CreditNoteModel getLastCreditNote(OrganizationModel organization, int IDCreditNoteLength, String maskFormater) {
-        TypedQuery<CreditNoteEntity> query = em.createNamedQuery("getLastCreditByOrganization", CreditNoteEntity.class);
+        TypedQuery<CreditNoteEntity> query = em.createNamedQuery("getLastCreditNoteByOrganization", CreditNoteEntity.class);
         query.setParameter("organizationId", organization.getId());
         query.setParameter("IDLength", IDCreditNoteLength);
         query.setParameter("formatter", maskFormater);
