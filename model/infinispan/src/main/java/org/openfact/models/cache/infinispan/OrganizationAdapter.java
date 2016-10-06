@@ -708,6 +708,18 @@ public class OrganizationAdapter implements OrganizationModel {
     }
 
     @Override
+    public Map<String, String> getUblSenderConfig() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void setUblSenderConfig(Map<String, String> ublSenderConfig) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
     public String getCertificatePem() {
         // TODO Auto-generated method stub
         return null;
@@ -761,29 +773,4 @@ public class OrganizationAdapter implements OrganizationModel {
         
     }
 
-	@Override
-	public String getAuthorizedUser() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setAuthorizedUser(String authorizedUser) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String getAuthorizedPassword() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setAuthorizedPassword(String authorizedPassword) {
-		// TODO Auto-generated method stub
-		
-	}
-
-    
 }
