@@ -47,37 +47,13 @@ public class UblProvider_PE implements UblProvider {
 		try {
 			InvoiceType invoiceType = ModelToType.toType(invoice);
 
-			UBL21NamespaceContext namespace = UBL21NamespaceContext.getInstance();
-			namespace.addMapping("ccts", "urn:un:unece:uncefact:documentation:2");
-			namespace.addMapping("ds", "http://www.w3.org/2000/09/xmldsig#");
-			namespace.addMapping("ext", "urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2");
-			namespace.addMapping("qdt", "urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2");
-			namespace.addMapping("sac", "urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1");
-			namespace.addMapping("udt", "urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2");
-
-			MapBasedNamespaceContext mapBasedNamespace = new MapBasedNamespaceContext();
-			mapBasedNamespace.addMappings(namespace);
-			mapBasedNamespace.setDefaultNamespaceURI("urn:oasis:names:specification:ubl:schema:xsd:Invoice-2");
-
-			//// METHOD 01
-			// String xml =
-			// MicroWriter.getNodeAsString(UBL21Writer.invoice().getAsMicroDocument(invoiceType),
-			// new XMLWriterSettings().setNamespaceContext(mapBasedNamespace)
-			// .setPutNamespaceContextPrefixesInRoot(true));
-			// return DocumentUtils.getStringToDocument(xml);
-
-			// METHOD 02
+			MapBasedNamespaceContext mapBasedNamespace = getBasedNamespaceContext(
+					"urn:oasis:names:specification:ubl:schema:xsd:Invoice-2");
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
-			MicroWriter.writeToStream(UBL21Writer.invoice().getAsMicroDocument(invoiceType),
-					out/*
-						 * FileHelper.getOutputStream(
-						 * "/home/lxpary/prueba0000.xml")
-						 */, new XMLWriterSettings().setNamespaceContext(mapBasedNamespace)
+			MicroWriter.writeToStream(UBL21Writer.invoice().getAsMicroDocument(invoiceType), out,
+					new XMLWriterSettings().setNamespaceContext(mapBasedNamespace)
 							.setPutNamespaceContextPrefixesInRoot(true));
 			return DocumentUtils.getByteToDocument(out.toByteArray());
-
-			// return
-			// UBL21Writer.invoice().setNamespaceContext(aNSContext).getAsDocument(invoiceType);
 		} catch (DatatypeConfigurationException e) {
 			log.error(e.getMessage());
 			throw new ModelException(e.getMessage());
@@ -91,8 +67,18 @@ public class UblProvider_PE implements UblProvider {
 	public Document getDocument(OrganizationModel organization, CreditNoteModel creditNote) {
 		try {
 			CreditNoteType creditNoteType = ModelToType.toType(creditNote);
-			return UBL21Writer.creditNote().getAsDocument(creditNoteType);
+
+			MapBasedNamespaceContext mapBasedNamespace = getBasedNamespaceContext(
+					"urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2");
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			MicroWriter.writeToStream(UBL21Writer.creditNote().getAsMicroDocument(creditNoteType), out,
+					new XMLWriterSettings().setNamespaceContext(mapBasedNamespace)
+							.setPutNamespaceContextPrefixesInRoot(true));
+			return DocumentUtils.getByteToDocument(out.toByteArray());
 		} catch (DatatypeConfigurationException e) {
+			log.error(e.getMessage());
+			throw new ModelException(e.getMessage());
+		} catch (Exception e) {
 			log.error(e.getMessage());
 			throw new ModelException(e.getMessage());
 		}
@@ -102,11 +88,34 @@ public class UblProvider_PE implements UblProvider {
 	public Document getDocument(OrganizationModel organization, DebitNoteModel debitNote) {
 		try {
 			DebitNoteType debitNoteType = ModelToType.toType(debitNote);
-			return UBL21Writer.debitNote().getAsDocument(debitNoteType);
+
+			MapBasedNamespaceContext mapBasedNamespace = getBasedNamespaceContext(
+					"urn:oasis:names:specification:ubl:schema:xsd:DebitNote-2");
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			MicroWriter.writeToStream(UBL21Writer.debitNote().getAsMicroDocument(debitNoteType), out,
+					new XMLWriterSettings().setNamespaceContext(mapBasedNamespace)
+							.setPutNamespaceContextPrefixesInRoot(true));
+			return DocumentUtils.getByteToDocument(out.toByteArray());
 		} catch (DatatypeConfigurationException e) {
+			log.error(e.getMessage());
+			throw new ModelException(e.getMessage());
+		} catch (Exception e) {
 			log.error(e.getMessage());
 			throw new ModelException(e.getMessage());
 		}
 	}
 
+	private MapBasedNamespaceContext getBasedNamespaceContext(String defaultNamespace) {
+		UBL21NamespaceContext namespace = UBL21NamespaceContext.getInstance();
+		namespace.addMapping("ccts", "urn:un:unece:uncefact:documentation:2");
+		namespace.addMapping("ds", "http://www.w3.org/2000/09/xmldsig#");
+		namespace.addMapping("ext", "urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2");
+		namespace.addMapping("qdt", "urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2");
+		namespace.addMapping("sac", "urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1");
+		namespace.addMapping("udt", "urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2");
+		MapBasedNamespaceContext mapBasedNamespace = new MapBasedNamespaceContext();
+		mapBasedNamespace.addMappings(namespace);
+		mapBasedNamespace.setDefaultNamespaceURI(defaultNamespace);
+		return mapBasedNamespace;
+	}
 }
