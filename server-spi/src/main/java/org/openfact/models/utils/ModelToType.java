@@ -300,6 +300,12 @@ public class ModelToType {
             for (TaxTotalModel item : model.getTaxTotal()) {
                 type.addTaxTotal(toType(item, currencyID));
             }
+        }       
+        if (model.getLineExtensionAmount() != null) {
+            LineExtensionAmountType extensionAmount = new LineExtensionAmountType();
+            extensionAmount.setCurrencyID(currencyID);
+            extensionAmount.setValue(model.getLineExtensionAmount());
+            type.setLineExtensionAmount(extensionAmount);
         }
         return type;
     }
@@ -326,6 +332,12 @@ public class ModelToType {
             for (TaxTotalModel item : model.getTaxTotal()) {
                 type.addTaxTotal(toType(item, currencyID));
             }
+        }
+        if (model.getLineExtensionAmount() != null) {
+            LineExtensionAmountType extensionAmount = new LineExtensionAmountType();
+            extensionAmount.setCurrencyID(currencyID);
+            extensionAmount.setValue(model.getLineExtensionAmount());
+            type.setLineExtensionAmount(extensionAmount);
         }
         return type;
     }

@@ -84,7 +84,7 @@ public class DebitNoteEntity {
      * */
     @ManyToOne(targetEntity = UBLExtensionsEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "UBLEXTENSIONS_DEBITNOTE")
-    protected UBLExtensionsEntity ublExtensions;
+    protected UBLExtensionsEntity ublExtensions = new UBLExtensionsEntity();
 
     @Column(name = "UBL_VERSIONID")
     protected String ublVersionID;

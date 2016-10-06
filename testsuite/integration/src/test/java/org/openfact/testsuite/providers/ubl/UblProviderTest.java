@@ -261,22 +261,22 @@ public class UblProviderTest extends AbstractProviderTest {
         monetaryTotal.setChargeTotalAmount(new BigDecimal("423225.00"));
 
         // CreditNoteLine
-        CreditNoteLineModel invoiceLine = creditNote.addCreditNoteLine();
-        invoiceLine.setID("1");
+        CreditNoteLineModel creditNoteLine = creditNote.addCreditNoteLine();
+        creditNoteLine.setID("1");
 
-        QuantityModel quantity = invoiceLine.getCreditedQuantity();
+        QuantityModel quantity = creditNoteLine.getCreditedQuantity();
         quantity.setUnitCode("NIU");
         quantity.setValue(new BigDecimal("2000"));
 
-        invoiceLine.setLineExtensionAmount(new BigDecimal("149491.53"));
+        creditNoteLine.setLineExtensionAmount(new BigDecimal("149491.53"));
 
-        PricingReferenceModel pricingReference = invoiceLine.getPricingReference();
+        PricingReferenceModel pricingReference = creditNoteLine.getPricingReference();
 
         PriceModel price = pricingReference.addAlternativeConditionPrice();
         price.setPriceAmount(new BigDecimal("98.00"));
         price.setPriceTypeCode("01");
 
-        TaxTotalModel taxTotalCreditNoteLine = invoiceLine.addTaxTotal();
+        TaxTotalModel taxTotalCreditNoteLine = creditNoteLine.addTaxTotal();
         taxTotalCreditNoteLine.setTaxAmount(new BigDecimal("26908.47"));
 
         TaxSubtotalModel taxSubtotalCreditNoteLine = taxTotalCreditNoteLine.addTaxSubtotal();
@@ -290,12 +290,12 @@ public class UblProviderTest extends AbstractProviderTest {
         taxSchemeCreditNoteLine.setName("IGV");
         taxSchemeCreditNoteLine.setTaxTypeCode("VAT");
 
-        ItemModel item = invoiceLine.getItem();
+        ItemModel item = creditNoteLine.getItem();
         item.getDescription().add("Grabadora LG Externo Modelo: GE20LU10");        
 
         ItemIdentificationModel itemIdentification = item.getSellersItemIdentification();
         itemIdentification.setID("GLG199");
-        invoiceLine.getPrice().setPriceAmount(new BigDecimal("83.05"));
+        creditNoteLine.getPrice().setPriceAmount(new BigDecimal("83.05"));
 
         commit();
 
@@ -385,8 +385,9 @@ public class UblProviderTest extends AbstractProviderTest {
         taxSchemeDebitNote.setTaxTypeCode("VAT");
 
         // LegalMonetaryTotal
-        //MonetaryTotalModel monetaryTotal = debitNote.getLegalMonetaryTotal();
-        //monetaryTotal.setChargeTotalAmount(new BigDecimal("423225.00"));
+        MonetaryTotalModel monetaryTotal = debitNote.getRequestedMonetaryTotal();
+        monetaryTotal.setChargeTotalAmount(new BigDecimal("423225.00"));
+        monetaryTotal.setPayableAmount(new BigDecimal("13652.36"));
 
         // DebitNoteLine
         DebitNoteLineModel debitNoteLine = debitNote.addDebitNoteLine();
