@@ -45,6 +45,7 @@ import org.openfact.models.ubl.common.TaxSubtotalModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
+import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.utils.UblSignature;
 import org.openfact.testsuite.providers.AbstractProviderTest;
 import org.openfact.ubl.UblProvider;
@@ -70,6 +71,7 @@ public class UblProviderTest_PE extends AbstractProviderTest {
     public void createOrganization() {
         OrganizationProvider provider = session.organizations();
         organization = provider.createOrganization("SISTCOOP");
+        OpenfactModelUtils.generateOrganizationKeys(organization);
         commit();
     }
 

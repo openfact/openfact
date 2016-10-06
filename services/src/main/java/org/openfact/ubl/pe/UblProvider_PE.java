@@ -16,7 +16,6 @@ import org.openfact.models.utils.ModelToType;
 import org.openfact.ubl.UblProvider;
 import org.w3c.dom.Document;
 
-import com.helger.commons.io.file.FileHelper;
 import com.helger.ubl21.UBL21NamespaceContext;
 import com.helger.ubl21.UBL21Writer;
 import com.helger.xml.microdom.serialize.MicroWriter;
@@ -105,14 +104,14 @@ public class UblProvider_PE implements UblProvider {
 		}
 	}
 
-	private MapBasedNamespaceContext getBasedNamespaceContext(String defaultNamespace) {
+	private MapBasedNamespaceContext getBasedNamespaceContext(String defaultNamespace) {		
 		UBL21NamespaceContext namespace = UBL21NamespaceContext.getInstance();
-		namespace.addMapping("ccts", "urn:un:unece:uncefact:documentation:2");
-		namespace.addMapping("ds", "http://www.w3.org/2000/09/xmldsig#");
-		namespace.addMapping("ext", "urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2");
-		namespace.addMapping("qdt", "urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2");
-		namespace.addMapping("sac", "urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1");
-		namespace.addMapping("udt", "urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2");
+		namespace.setMapping("ccts", "urn:un:unece:uncefact:documentation:2");
+		namespace.setMapping("ds", "http://www.w3.org/2000/09/xmldsig#");
+		namespace.setMapping("ext", "urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2");
+		namespace.setMapping("qdt", "urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2");
+		namespace.setMapping("sac", "urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1");
+		namespace.setMapping("udt", "urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2");
 		MapBasedNamespaceContext mapBasedNamespace = new MapBasedNamespaceContext();
 		mapBasedNamespace.addMappings(namespace);
 		mapBasedNamespace.setDefaultNamespaceURI(defaultNamespace);
