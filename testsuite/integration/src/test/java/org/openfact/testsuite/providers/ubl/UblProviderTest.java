@@ -12,11 +12,13 @@ import org.junit.Test;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
 import org.openfact.models.ubl.CreditNoteModel;
+import org.openfact.models.ubl.DebitNoteModel;
 import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.AttachmentModel;
 import org.openfact.models.ubl.common.CreditNoteLineModel;
 import org.openfact.models.ubl.common.CustomerPartyModel;
+import org.openfact.models.ubl.common.DebitNoteLineModel;
 import org.openfact.models.ubl.common.ExternalReferenceModel;
 import org.openfact.models.ubl.common.InvoiceLineModel;
 import org.openfact.models.ubl.common.ItemIdentificationModel;
@@ -43,6 +45,7 @@ import com.helger.ubl21.UBL21Reader;
 import com.helger.ubl21.UBL21Validator;
 
 import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
+import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
 import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 
 public class UblProviderTest extends AbstractProviderTest {
@@ -307,7 +310,7 @@ public class UblProviderTest extends AbstractProviderTest {
         }
     }
 
-    /*@Test
+    @Test
     public void getDebitNoteDocument() throws Exception {
         createOrganization();
 
@@ -334,7 +337,7 @@ public class UblProviderTest extends AbstractProviderTest {
 
         // DiscrepancyResponse
         ResponseModel discrepancyResponse = debitNote.addDiscrepancyResponse();
-        discrepancyResponse.setId("F001-0001");
+        discrepancyResponse.setReferenceID("F001-0001");
         discrepancyResponse.setResponseCode("01");
         discrepancyResponse.getDescription().add("No tengo motivos");
 
@@ -433,6 +436,6 @@ public class UblProviderTest extends AbstractProviderTest {
             assertThat(xml, is(notNullValue()));
             assertThat(resourceErrorGroup.getAllErrors().getSize(), is(0));
         }
-    }*/
+    }
 
 }

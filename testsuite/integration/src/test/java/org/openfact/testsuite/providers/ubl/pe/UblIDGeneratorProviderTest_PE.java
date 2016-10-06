@@ -1,7 +1,6 @@
 package org.openfact.testsuite.providers.ubl.pe;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Assert;
@@ -9,21 +8,13 @@ import org.junit.Test;
 import org.openfact.models.ModelException;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
-import org.openfact.models.UblDocumentType;
-import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.testsuite.providers.AbstractProviderTest;
 import org.openfact.ubl.UblIDGeneratorProvider;
-import org.openfact.ubl.pe.UblIDGeneratorProvider_PE;
 import org.openfact.ubl.pe.UblIDGeneratorProvider_PE.Codes_PE;
 
 public class UblIDGeneratorProviderTest_PE extends AbstractProviderTest {
 
     public static final String LOCALE = "pe";
-
-    public static final String FACTURA_CODE = "01";
-    public static final String BOLETA_CODE = "03";
-    public static final String NOTA_CREDITO_CODE = "04";
-    public static final String NOTA_DEBITO_CODE = "05";
 
     protected OrganizationModel organization;
 
