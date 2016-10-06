@@ -389,22 +389,22 @@ public class UblProviderTest extends AbstractProviderTest {
         //monetaryTotal.setChargeTotalAmount(new BigDecimal("423225.00"));
 
         // DebitNoteLine
-        DebitNoteLineModel invoiceLine = debitNote.addDebitNoteLine();
-        invoiceLine.setID("1");
+        DebitNoteLineModel debitNoteLine = debitNote.addDebitNoteLine();
+        debitNoteLine.setID("1");
 
-        QuantityModel quantity = invoiceLine.getDebitedQuantity();
+        QuantityModel quantity = debitNoteLine.getDebitedQuantity();
         quantity.setUnitCode("NIU");
         quantity.setValue(new BigDecimal("2000"));
 
-        invoiceLine.setLineExtensionAmount(new BigDecimal("149491.53"));
+        debitNoteLine.setLineExtensionAmount(new BigDecimal("149491.53"));
 
-        PricingReferenceModel pricingReference = invoiceLine.getPricingReference();
+        PricingReferenceModel pricingReference = debitNoteLine.getPricingReference();
 
         PriceModel price = pricingReference.addAlternativeConditionPrice();
         price.setPriceAmount(new BigDecimal("98.00"));
         price.setPriceTypeCode("01");
 
-        TaxTotalModel taxTotalDebitNoteLine = invoiceLine.addTaxTotal();
+        TaxTotalModel taxTotalDebitNoteLine = debitNoteLine.addTaxTotal();
         taxTotalDebitNoteLine.setTaxAmount(new BigDecimal("26908.47"));
 
         TaxSubtotalModel taxSubtotalDebitNoteLine = taxTotalDebitNoteLine.addTaxSubtotal();
@@ -418,12 +418,12 @@ public class UblProviderTest extends AbstractProviderTest {
         taxSchemeDebitNoteLine.setName("IGV");
         taxSchemeDebitNoteLine.setTaxTypeCode("VAT");
 
-        ItemModel item = invoiceLine.getItem();
+        ItemModel item = debitNoteLine.getItem();
         item.getDescription().add("Grabadora LG Externo Modelo: GE20LU10");        
 
         ItemIdentificationModel itemIdentification = item.getSellersItemIdentification();
         itemIdentification.setID("GLG199");
-        invoiceLine.getPrice().setPriceAmount(new BigDecimal("83.05"));
+        debitNoteLine.getPrice().setPriceAmount(new BigDecimal("83.05"));
 
         commit();
 

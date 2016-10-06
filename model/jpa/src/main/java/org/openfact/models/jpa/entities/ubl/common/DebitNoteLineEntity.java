@@ -47,9 +47,9 @@ public class DebitNoteLineEntity {
     @Column(name = "NOTE")
     protected String note;
 
-    @ManyToOne(targetEntity = PricingReferenceEntity.class, cascade = { CascadeType.ALL })
+    @ManyToOne(targetEntity = QuantityEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DEBITEDQUANTITY_QUANTITY")
-    protected QuantityEntity debitedQuantity;
+    protected QuantityEntity debitedQuantity = new QuantityEntity();
 
     @Column(name = "LINE_EXTENSION_AMOUNT")
     protected BigDecimal lineExtensionAmount;
