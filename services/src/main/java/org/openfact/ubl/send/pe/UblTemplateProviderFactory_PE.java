@@ -27,7 +27,7 @@ public class UblTemplateProviderFactory_PE implements UblTemplateProviderFactory
 
     @Override
     public String getId() {
-        return "ublTemplate_pe";
+        return "pe";
     }
 
 }

@@ -1,4 +1,4 @@
-package org.openfact.ubl.send.pe;
+package org.openfact.ubl.send;
 
 import org.openfact.Config.Scope;
 import org.openfact.models.OpenfactSession;
@@ -6,11 +6,11 @@ import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.ubl.send.UblSenderProvider;
 import org.openfact.ubl.send.UblSenderProviderFactory;
 
-public class UblSenderProviderFactory_PE implements UblSenderProviderFactory {
+public class SoaUblSenderProviderFactory implements UblSenderProviderFactory {
 
     @Override
     public UblSenderProvider create(OpenfactSession session) {
-        return new UblSenderProvider_PE(session);
+        return new SoaUblSenderProvider(session);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class UblSenderProviderFactory_PE implements UblSenderProviderFactory {
 
     @Override
     public String getId() {
-        return "ublSender_pe";
+        return "soa";
     }
 
 }

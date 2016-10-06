@@ -30,7 +30,7 @@ public class UblExtensionContentGeneratorProviderFactory_PE implements UblExtens
 
 	@Override
 	public String getId() {
-		return "ublExtensionContentTypeGenerator_pe";
+		return "pe";
 	}
 
 }

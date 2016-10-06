@@ -1,4 +1,4 @@
-package org.openfact.ubl.send.pe;
+package org.openfact.ubl.send;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -18,13 +18,13 @@ import org.openfact.ubl.send.pe.sunat.BillService_Service;
 
 import com.sun.xml.ws.util.ByteArrayDataSource;
 
-public class UblSenderProvider_PE implements UblSenderProvider {
+public class SoaUblSenderProvider implements UblSenderProvider {
 
     private static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
 
     private final OpenfactSession session;
 
-    public UblSenderProvider_PE(OpenfactSession session) {
+    public SoaUblSenderProvider(OpenfactSession session) {
         this.session = session;
     }
 
