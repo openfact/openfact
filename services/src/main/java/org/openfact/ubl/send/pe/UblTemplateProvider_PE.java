@@ -1,7 +1,14 @@
 package org.openfact.ubl.send.pe;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
 import javax.xml.transform.TransformerException;
 
 import org.openfact.models.ModelException;
@@ -16,7 +23,12 @@ import org.openfact.ubl.pe.constants.CodigoTipoDocumento;
 import org.openfact.ubl.send.UblSenderException;
 import org.openfact.ubl.send.UblSenderProvider;
 import org.openfact.ubl.send.UblTemplateProvider;
+import org.openfact.ubl.send.pe.header.UblHeaderHandlerResolver;
+import org.openfact.ubl.send.pe.sunat.BillService;
+import org.openfact.ubl.send.pe.sunat.BillService_Service;
 import org.w3c.dom.Document;
+
+import com.sun.xml.ws.util.ByteArrayDataSource;
 
 import jodd.io.ZipBuilder;
 
@@ -43,40 +55,76 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 	public void send(String type) throws UblSenderException {
 		throw new ModelException("method not implemented");
 	}
+	
+	
+	private byte[] getBytesFromFile() throws IOException {
+        List byteList = new ArrayList();
+
+        FileInputStream is = new FileInputStream(new File("/home/admin/10467793549-01-F001-00000001.zip"));
+        int readLen = -1;
+        byte[] buff = new byte[4096];
+
+        while ((readLen = is.read(buff)) != -1) {
+            copyBytesToList(buff, readLen, byteList);
+        }
+
+        is.close();
+        return getByteArrayFromList(byteList);
+    }
+
+    private void copyBytesToList(byte[] buff, int len, List byteList) {
+        for (int i = 0; i < len; i++) {
+            byteList.add(Byte.toString(buff[i]));
+        }
+    }
+
+    private byte[] getByteArrayFromList(List byteList) {
+        byte[] buff = new byte[byteList.size()];
+
+        for (int i = 0; i < byteList.size(); i++) {
+            buff[i] = Byte.parseByte((String) byteList.get(i));
+        }
+        return buff;
+    }
 
 	@Override
 	public void sendInvoice(InvoiceModel invoice) throws UblSenderException {
-		Document document = getUblProvider(organization).getDocument(organization, invoice);
-		send(document, generateXmlFileName(invoice));
+		String fileName = generateXmlFileName(invoice);
+	    Document document = getUblProvider(organization).getDocument(organization, invoice);
+		try {
+            byte[] zip = generateZip(document, fileName);
+            
+            // Call Web Service Operation
+            BillService_Service service = new BillService_Service();
+            service.setHandlerResolver(new UblHeaderHandlerResolver(organization));
+            BillService port = service.getBillServicePort();
+
+            // Config data
+            DataSource dataSource = new ByteArrayDataSource(zip, "application/zip");
+            DataHandler contentFile = new DataHandler(dataSource);
+
+            // Send
+            byte[] result = port.sendBill(fileName + ".zip", contentFile);
+        } catch (TransformerException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 	}
 
 	@Override
-	public void sendCreditNote(CreditNoteModel creditNote) throws UblSenderException {
-		Document document = getUblProvider(organization).getDocument(organization, creditNote);
-		send(document, generateXmlFileName(creditNote));
+	public void sendCreditNote(CreditNoteModel creditNote) throws UblSenderException {		
 	}
 
 	@Override
 	public void sendDebitNote(DebitNoteModel debitNote) throws UblSenderException {
-		Document document = getUblProvider(organization).getDocument(organization, debitNote);
-		send(document, generateXmlFileName(debitNote));
 	}
 
-	private void send(Document document, String name) throws UblSenderException {
-		try {
-			sendZip(name, DocumentUtils.getBytesFromDocument(document));
-		} catch (TransformerException e) {
-			throw new UblSenderException("Invalid document", e);
-		}
-	}
-
-	private void sendZip(String fileName, byte[] bytes) throws UblSenderException {
-		try {
-			byte[] zip = ZipBuilder.createZipInMemory().addFolder("dummy/").add(bytes).path(fileName).save().toBytes();
-			send(fileName, zip, "application/zip");
-		} catch (IOException e) {
-			throw new UblSenderException("Failed to template ubl", e);
-		}
+	private byte[] generateZip(Document document, String fileName) throws TransformerException, IOException {
+	    byte[] bytes = DocumentUtils.getBytesFromDocument(document);
+        return ZipBuilder.createZipInMemory().addFolder("dummy/").add(bytes).path(fileName + ".xml").save().toBytes();
 	}
 
 	private UblProvider getUblProvider(OrganizationModel organization) {
@@ -106,7 +154,6 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 		sb.append(organization.getAssignedIdentificationId()).append("-");
 		sb.append(codido).append("-");
 		sb.append(invoice.getID());
-		sb.append(".xml");
 		return sb.toString();
 	}
 

@@ -6,6 +6,8 @@ import static org.junit.Assert.assertThat;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -64,6 +66,12 @@ public class UblTemplateProviderTest_PE extends AbstractProviderTest {
         organization.setAssignedIdentificationId("10467793549");
         organization.setDefaultUblLocale("pe");
         OpenfactModelUtils.generateOrganizationKeys(organization);
+        
+        Map<String, String> config = new HashMap<>();
+        config.put("username", "MODDATOS");
+        config.put("password", "MODDATOS");
+        organization.setUblSenderConfig(config);
+        
         commit();
     }
 
@@ -74,7 +82,7 @@ public class UblTemplateProviderTest_PE extends AbstractProviderTest {
         invoice.setUBLVersionID("2.0");
         invoice.setCustomizationID("1.0");
 
-        invoice.setID("F001-0001");
+        invoice.setID("F001-00000001");
         invoice.setIssueDate(LocalDate.now());
         invoice.setInvoiceTypeCode("01");
         invoice.setDocumentCurrencyCode("PEN");

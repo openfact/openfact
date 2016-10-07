@@ -51,9 +51,9 @@ public class UblHeaderHandler implements SOAPHandler<SOAPMessageContext> {
 				// "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd");
 
 				SOAPElement userElem = factory.createElement("Username", prefix, uri);
-				//userElem.addTextNode(organization.getAssignedIdentificationId() + organization.getAuthorizedUser());
+				userElem.addTextNode(organization.getAssignedIdentificationId() + organization.getUblSenderConfig().get("username"));
 				SOAPElement pwdElem = factory.createElement("Password", prefix, uri);
-				//pwdElem.addTextNode(organization.getAuthorizedPassword());
+				pwdElem.addTextNode(organization.getUblSenderConfig().get("password"));
 
 				// pwdElem.addAttribute(QName.valueOf("Type"),
 				// "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText");
