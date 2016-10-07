@@ -193,6 +193,7 @@
 		<module>common</module>
 		<module>core</module>
 		<module>services</module>
+		<module>services-web-client</module>
 		<module>services-api</module>
 		<module>server-spi</module>
 		<module>model</module>
