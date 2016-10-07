@@ -1,5 +1,9 @@
 package org.openfact.soa.test;
 
+import java.util.List;
+
+import javax.xml.namespace.QName;
+
 import org.openfact.soa.builder.SoapBuilder;
 import org.openfact.soa.builder.SoapOperation;
 import org.openfact.soa.builder.core.Wsdl;
@@ -10,25 +14,48 @@ public class SoaTest {
 
 	public static void main(String[] args) {
 
-		// construct the client
-		String url = "https://e-beta.sunat.gob.pe:443/ol-ti-itcpfegem-beta/billService";
-		SoapClient client = SoapClient.builder().endpointUri(url).build();
+		Wsdl wsdl = Wsdl.parse("https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService?wsdl"); // (1)
 
-		//https://e-beta.sunat.gob.pe:443/ol-ti-itcpfegem-beta/billService
+		List<QName> bindings = wsdl.getBindings(); // (2)
 		
-		Wsdl parser = Wsdl.parse("https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService?wsdl");
-		SoapBuilder builder = parser.binding().localPart("sendBillResponse").find();
+		SoapBuilder builder = wsdl.binding().localPart("BillServicePortBinding").find(); // (3)
+		//wsdl.printBindings(); // (4)
 
-		// get the operation to invoked -> assumption our operation is the first
-		// operation in the WSDL's
-		SoapOperation operation = builder.operation().name("sendBill").find();
+		List<SoapOperation> operations = builder.getOperations(); // (5)
+		SoapOperation operation = builder.operation().name("sendBill").find(); // (6)
 
-		// construct the request
 		String request = builder.buildInputMessage(operation);
-		// post the request to the server
+
+		SoapClient client = SoapClient.builder()
+				.endpointUri("https://e-beta.sunat.gob.pe:443/ol-ti-itcpfegem-beta/billService").build();
+		System.out.println(request);
 		String response = client.post(request);
-		// get the response
-		String expectedResponse = builder.buildOutputMessage(operation, SoapContext.NO_CONTENT);
+
+		System.out.println(response);
+
+		// // construct the client
+		// String url =
+		// "https://e-beta.sunat.gob.pe:443/ol-ti-itcpfegem-beta/billService";
+		// SoapClient client = SoapClient.builder().endpointUri(url).build();
+		//
+		// Wsdl parser =
+		// Wsdl.parse("https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService?wsdl");
+		// QName bindingName = new QName("billService?ns1.wsdl", "sendBill");
+		// SoapBuilder builder = parser.binding().name(bindingName).find();
+		//
+		// // get the operation to invoked -> assumption our operation is the
+		// first
+		// // operation in the WSDL's
+		// SoapOperation operation =
+		// builder.operation().name("sendBill").find();
+		//
+		// // construct the request
+		// String request = builder.buildInputMessage(operation);
+		// // post the request to the server
+		// String response = client.post(request);
+		// // get the response
+		// String expectedResponse = builder.buildOutputMessage(operation,
+		// SoapContext.NO_CONTENT);
 
 	}
 
