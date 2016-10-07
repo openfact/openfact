@@ -22,130 +22,122 @@ import jodd.io.ZipBuilder;
 
 public class UblTemplateProvider_PE implements UblTemplateProvider {
 
-    private OpenfactSession session;
-    private OrganizationModel organization;
+	private OpenfactSession session;
+	private OrganizationModel organization;
 
-    public UblTemplateProvider_PE(OpenfactSession session) {
-        this.session = session;
-    }
+	public UblTemplateProvider_PE(OpenfactSession session) {
+		this.session = session;
+	}
 
-    @Override
-    public void close() {
-    }
+	@Override
+	public void close() {
+	}
 
-    @Override
-    public UblTemplateProvider setOrganization(OrganizationModel organization) {
-        this.organization = organization;
-        return this;
-    }
+	@Override
+	public UblTemplateProvider setOrganization(OrganizationModel organization) {
+		this.organization = organization;
+		return this;
+	}
 
-    @Override
-    public void send(String type) throws UblSenderException {
-        throw new ModelException("method not implemented");
-    }
+	@Override
+	public void send(String type) throws UblSenderException {
+		throw new ModelException("method not implemented");
+	}
 
-    @Override
-    public void sendInvoice(InvoiceModel invoice) throws UblSenderException {
-        Document document = getUblProvider(organization).getDocument(organization, invoice);
-        send(document, generateXmlFileName(invoice));
-    }
+	@Override
+	public void sendInvoice(InvoiceModel invoice) throws UblSenderException {
+		Document document = getUblProvider(organization).getDocument(organization, invoice);
+		send(document, generateXmlFileName(invoice));
+	}
 
-    @Override
-    public void sendCreditNote(CreditNoteModel creditNote) throws UblSenderException {
-        Document document = getUblProvider(organization).getDocument(organization, creditNote);
-        send(document, generateXmlFileName(creditNote));
-    }
+	@Override
+	public void sendCreditNote(CreditNoteModel creditNote) throws UblSenderException {
+		Document document = getUblProvider(organization).getDocument(organization, creditNote);
+		send(document, generateXmlFileName(creditNote));
+	}
 
-    @Override
-    public void sendDebitNote(DebitNoteModel debitNote) throws UblSenderException {
-        Document document = getUblProvider(organization).getDocument(organization, debitNote);
-        send(document, generateXmlFileName(debitNote));
-    }
+	@Override
+	public void sendDebitNote(DebitNoteModel debitNote) throws UblSenderException {
+		Document document = getUblProvider(organization).getDocument(organization, debitNote);
+		send(document, generateXmlFileName(debitNote));
+	}
 
-    private void send(Document document, String name) throws UblSenderException {        
-        try {                        
-            sendZip(name, DocumentUtils.getBytesFromDocument(document));
-        } catch (TransformerException e) {
-            throw new UblSenderException("Invalid document", e);
-        }        
-    }
+	private void send(Document document, String name) throws UblSenderException {
+		try {
+			sendZip(name, DocumentUtils.getBytesFromDocument(document));
+		} catch (TransformerException e) {
+			throw new UblSenderException("Invalid document", e);
+		}
+	}
 
-    private void sendZip(String fileName, byte[] bytes) throws UblSenderException {
-        try {
-            byte[] zip = ZipBuilder.createZipInMemory()                                    
-                    .add(bytes)
-                    .path(fileName)
-                    .save()   
+	private void sendZip(String fileName, byte[] bytes) throws UblSenderException {
+		try {
+			byte[] zip = ZipBuilder.createZipInMemory().addFolder("dummy/").add(bytes).path(fileName).save().toBytes();
+			send(fileName, zip, "application/zip");
+		} catch (IOException e) {
+			throw new UblSenderException("Failed to template ubl", e);
+		}
+	}
 
-                    .addFolder("dummy")                    
-                    
-                    .toBytes();
+	private UblProvider getUblProvider(OrganizationModel organization) {
+		return session.getProvider(UblProvider.class, organization.getDefaultUblLocale());
+	}
 
-            send(fileName, zip, "application/zip");
-        } catch (IOException e) {
-            throw new UblSenderException("Failed to template ubl", e);
-        }
-    }
+	private void send(String fileName, byte[] file, String contentType) throws UblSenderException {
+		UblSenderProvider ublSender = session.getProvider(UblSenderProvider.class, "soap");
+		ublSender.send(organization, fileName, file, contentType);
+	}
 
-    private UblProvider getUblProvider(OrganizationModel organization) {
-        return session.getProvider(UblProvider.class, organization.getDefaultUblLocale());
-    }
+	private String generateXmlFileName(InvoiceModel invoice) throws UblSenderException {
+		if (organization.getAssignedIdentificationId() == null) {
+			throw new UblSenderException("Organization doesn't have assignedIdentificationId", new Throwable());
+		}
 
-    private void send(String fileName, byte[] file, String contentType) throws UblSenderException {
-        UblSenderProvider ublSender = session.getProvider(UblSenderProvider.class, "soap");
-        ublSender.send(organization, fileName, file, contentType);
-    }
+		String codido;
+		if (invoice.getInvoiceTypeCode().equals(CodigoTipoDocumento.FACTURA.getCodigo())) {
+			codido = CodigoTipoDocumento.FACTURA.getCodigo();
+		} else if (invoice.getInvoiceTypeCode().equals(CodigoTipoDocumento.BOLETA.getCodigo())) {
+			codido = CodigoTipoDocumento.BOLETA.getCodigo();
+		} else {
+			throw new UblSenderException("Invalid invoice code", new Throwable());
+		}
 
-    private String generateXmlFileName(InvoiceModel invoice) throws UblSenderException {
-        if(organization.getAssignedIdentificationId() == null) {
-            throw new UblSenderException("Organization doesn't have assignedIdentificationId", new Throwable());
-        }
-        
-        String codido;
-        if (invoice.getInvoiceTypeCode().equals(CodigoTipoDocumento.FACTURA.getCodigo())) {
-            codido = CodigoTipoDocumento.FACTURA.getCodigo();
-        } else if (invoice.getInvoiceTypeCode().equals(CodigoTipoDocumento.BOLETA.getCodigo())) {
-            codido = CodigoTipoDocumento.BOLETA.getCodigo();
-        } else {
-            throw new UblSenderException("Invalid invoice code", new Throwable());
-        }
-        
-        StringBuilder sb = new StringBuilder();
-        sb.append(organization.getAssignedIdentificationId()).append("-");
-        sb.append(codido).append("-");
-        sb.append(invoice.getID());
-        sb.append(".xml");
-        return sb.toString();
-    }
+		StringBuilder sb = new StringBuilder();
+		sb.append(organization.getAssignedIdentificationId()).append("-");
+		sb.append(codido).append("-");
+		sb.append(invoice.getID());
+		sb.append(".xml");
+		return sb.toString();
+	}
 
-    private String generateXmlFileName(CreditNoteModel creditNote) throws UblSenderException {
-        if(organization.getAssignedIdentificationId() == null) {
-            throw new UblSenderException("Organization doesn't have assignedIdentificationId", new Throwable());
-        }
-        
-        String codido = CodigoTipoDocumento.NOTA_CREDITO.getCodigo();
-        
-        StringBuilder sb = new StringBuilder();
-        sb.append(organization.getAssignedIdentificationId()).append("-");
-        sb.append(codido).append("-");
-        sb.append(creditNote.getID());
-        sb.append(".xml");
-        return sb.toString();
-    }
+	private String generateXmlFileName(CreditNoteModel creditNote) throws UblSenderException {
+		if (organization.getAssignedIdentificationId() == null) {
+			throw new UblSenderException("Organization doesn't have assignedIdentificationId", new Throwable());
+		}
 
-    private String generateXmlFileName(DebitNoteModel debitNote) throws UblSenderException {
-        if(organization.getAssignedIdentificationId() == null) {
-            throw new UblSenderException("Organization doesn't have assignedIdentificationId", new Throwable());
-        }
-        
-        String codido = CodigoTipoDocumento.NOTA_CREDITO.getCodigo();
-        
-        StringBuilder sb = new StringBuilder();
-        sb.append(organization.getAssignedIdentificationId()).append("-");
-        sb.append(codido).append("-");
-        sb.append(debitNote.getID());
-        sb.append(".xml");
-        return sb.toString();
-    }
+		String codido = CodigoTipoDocumento.NOTA_CREDITO.getCodigo();
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(organization.getAssignedIdentificationId()).append("-");
+		sb.append(codido).append("-");
+		sb.append(creditNote.getID());
+		sb.append(".xml");
+		return sb.toString();
+	}
+
+	private String generateXmlFileName(DebitNoteModel debitNote) throws UblSenderException {
+		if (organization.getAssignedIdentificationId() == null) {
+			throw new UblSenderException("Organization doesn't have assignedIdentificationId", new Throwable());
+		}
+
+		String codido = CodigoTipoDocumento.NOTA_CREDITO.getCodigo();
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(organization.getAssignedIdentificationId()).append("-");
+		sb.append(codido).append("-");
+		sb.append(debitNote.getID());
+		sb.append(".xml");
+		return sb.toString();
+	}
 
 }

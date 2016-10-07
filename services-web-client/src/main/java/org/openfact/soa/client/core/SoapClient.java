@@ -85,8 +85,8 @@ public final class SoapClient {
 	 * @return The result returned by the SOAP server
 	 */
 	public String post(String soapAction, String requestEnvelope) {
-		log.debug(String.format("Sending request to host=[%s] action=[%s] request:%n%s", endpointUri.toString(),
-				soapAction, requestEnvelope));
+		System.out.println(String.format("Sending request to host=[%s] action=[%s] request:%n%s",
+				endpointUri.toString(), soapAction, requestEnvelope));
 		String response = transmit(soapAction, requestEnvelope);
 		log.debug("Received response:\n" + requestEnvelope);
 		return response;

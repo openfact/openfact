@@ -20,6 +20,11 @@
 	</properties>
 
 	<dependencies>
+		<!-- to compile xjc-generated sources -->
+		<dependency>
+			<groupId>org.jvnet.jaxb2_commons</groupId>
+			<artifactId>jaxb2-basics-runtime</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
@@ -42,11 +47,11 @@
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>			
+			<artifactId>log4j</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>			
+			<artifactId>junit</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.spockframework</groupId>
@@ -95,7 +100,7 @@
 		</dependency>
 		<dependency>
 			<groupId>xml-apis</groupId>
-			<artifactId>xml-apis</artifactId>		
+			<artifactId>xml-apis</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.xmlgraphics</groupId>
@@ -104,7 +109,7 @@
 		</dependency>
 		<dependency>
 			<groupId>xerces</groupId>
-			<artifactId>xercesImpl</artifactId>			
+			<artifactId>xercesImpl</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>xmlbeans</groupId>
@@ -175,7 +180,7 @@
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
 			<!-- <scope>provided</scope> -->
-		</dependency>		
+		</dependency>
 		<dependency>
 			<groupId>org.jboss.spec.javax.servlet</groupId>
 			<artifactId>jboss-servlet-api_3.0_spec</artifactId>
