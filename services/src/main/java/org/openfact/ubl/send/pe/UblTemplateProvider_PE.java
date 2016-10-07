@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.xml.transform.TransformerException;
 
 import org.openfact.models.ModelException;
@@ -54,38 +55,7 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 	@Override
 	public void send(String type) throws UblSenderException {
 		throw new ModelException("method not implemented");
-	}
-	
-	
-	private byte[] getBytesFromFile() throws IOException {
-        List byteList = new ArrayList();
-
-        FileInputStream is = new FileInputStream(new File("/home/admin/10467793549-01-F001-00000001.zip"));
-        int readLen = -1;
-        byte[] buff = new byte[4096];
-
-        while ((readLen = is.read(buff)) != -1) {
-            copyBytesToList(buff, readLen, byteList);
-        }
-
-        is.close();
-        return getByteArrayFromList(byteList);
-    }
-
-    private void copyBytesToList(byte[] buff, int len, List byteList) {
-        for (int i = 0; i < len; i++) {
-            byteList.add(Byte.toString(buff[i]));
-        }
-    }
-
-    private byte[] getByteArrayFromList(List byteList) {
-        byte[] buff = new byte[byteList.size()];
-
-        for (int i = 0; i < byteList.size(); i++) {
-            buff[i] = Byte.parseByte((String) byteList.get(i));
-        }
-        return buff;
-    }
+	}	
 
 	@Override
 	public void sendInvoice(InvoiceModel invoice) throws UblSenderException {
@@ -96,7 +66,7 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
             
             // Call Web Service Operation
             BillService_Service service = new BillService_Service();
-            service.setHandlerResolver(new UblHeaderHandlerResolver(organization));
+            service.setHandlerResolver(new UblHeaderHandlerResolver(organization.getUblSenderConfig()));
             BillService port = service.getBillServicePort();
 
             // Config data
@@ -106,11 +76,9 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
             // Send
             byte[] result = port.sendBill(fileName + ".zip", contentFile);
         } catch (TransformerException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            throw new UblSenderException(e);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            throw new UblSenderException(e);
         }
 	}
 

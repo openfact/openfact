@@ -68,7 +68,7 @@ public class UblTemplateProviderTest_PE extends AbstractProviderTest {
         OpenfactModelUtils.generateOrganizationKeys(organization);
         
         Map<String, String> config = new HashMap<>();
-        config.put("username", "MODDATOS");
+        config.put("username", "10467793549MODDATOS");
         config.put("password", "MODDATOS");
         organization.setUblSenderConfig(config);
         
