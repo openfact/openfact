@@ -49,8 +49,12 @@
 
 		<!-- Json-Xml-Converter -->
 		<version.odysseus-staxon>1.3</version.odysseus-staxon>
-		<!-- -->
+
+		<!-- xerces -->
 		<version.xerces>2.11.0</version.xerces>
+
+		<!-- jodd to zip -->
+		<version.jodd>3.7.1</version.jodd>
 
 		<!-- WildFly -->
 		<eap.version>7.0.0.Beta</eap.version>
@@ -300,6 +304,13 @@
 				<groupId>xerces</groupId>
 				<artifactId>xercesImpl</artifactId>
 				<version>${version.xerces}</version>
+			</dependency>
+
+			<!-- jodd to zip -->
+			<dependency>
+				<groupId>org.jodd</groupId>
+				<artifactId>jodd-core</artifactId>
+				<version>${version.jodd}</version>
 			</dependency>
 
 			<!-- Openfact -->

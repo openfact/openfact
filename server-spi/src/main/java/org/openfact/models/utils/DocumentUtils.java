@@ -15,7 +15,11 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
@@ -162,5 +166,16 @@ public class DocumentUtils {
 			}
 		}
 		return writer.toString();
+	}
+	
+	public static byte[] getBytesFromDocument(Document document) throws TransformerException {
+	    Source source = new DOMSource(document);
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        Result result = new StreamResult(out);
+        TransformerFactory factory = TransformerFactory.newInstance();
+        Transformer transformer = factory.newTransformer();
+        transformer.transform(source, result);
+        byte[] butesXml =  out.toByteArray();
+        return butesXml;
 	}
 }

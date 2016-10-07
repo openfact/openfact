@@ -8,29 +8,26 @@ import org.openfact.ubl.UblExtensionContentGeneratorProviderFactory;
 
 public class UblExtensionContentGeneratorProviderFactory_PE implements UblExtensionContentGeneratorProviderFactory {
 
-	@Override
-	public UblExtensionContentGeneratorProvider create(OpenfactSession session) {
-		return new UblExtensionContentGeneratorProvider_PE(session);
-	}
+    @Override
+    public UblExtensionContentGeneratorProvider create(OpenfactSession session) {
+        return new UblExtensionContentGeneratorProvider_PE(session);
+    }
 
-	@Override
-	public void init(Scope config) {
+    @Override
+    public void init(Scope config) {
+    }
 
-	}
+    @Override
+    public void postInit(OpenfactSessionFactory factory) {
+    }
 
-	@Override
-	public void postInit(OpenfactSessionFactory factory) {
+    @Override
+    public void close() {
+    }
 
-	}
-
-	@Override
-	public void close() {
-
-	}
-
-	@Override
-	public String getId() {
-		return "pe";
-	}
+    @Override
+    public String getId() {
+        return "pe";
+    }
 
 }
