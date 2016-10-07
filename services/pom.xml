@@ -52,12 +52,12 @@
 			<artifactId>ph-commons</artifactId>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.jodd/jodd-core -->
+		<!-- jodd-core to zip -->
 		<dependency>
 			<groupId>org.jodd</groupId>
 			<artifactId>jodd-core</artifactId>
-			<version>3.7.1</version>
 		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/org.apache.santuario/xmlsec -->
 		<dependency>
 			<groupId>org.apache.santuario</groupId>

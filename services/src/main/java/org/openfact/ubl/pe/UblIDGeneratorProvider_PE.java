@@ -1,7 +1,5 @@
 package org.openfact.ubl.pe;
 
-import java.util.Arrays;
-
 import org.openfact.common.Utils;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
@@ -10,55 +8,11 @@ import org.openfact.models.ubl.CreditNoteModel;
 import org.openfact.models.ubl.DebitNoteModel;
 import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.ubl.UblIDGeneratorProvider;
+import org.openfact.ubl.pe.constants.CodigoTipoDocumento;
 
 public class UblIDGeneratorProvider_PE implements UblIDGeneratorProvider {
 
-    protected OpenfactSession session;
-
-    public enum Codes_PE {
-        /**
-         * */
-        FACTURA("01", "F%-%", 13),
-
-        /**
-        * */
-        BOLETA("03", "B%-%", 13),
-
-        /**
-        * */
-        NOTA_CREDITO("04", "%C%-%", 13),
-
-        /**
-        * */
-        NOTA_DEBITO("05", "%D%-%", 13);
-
-        private String code;
-        private String mask;
-        private int lenght;
-
-        private Codes_PE(String code, String mask, int lenght) {
-            this.code = code;
-            this.mask = mask;
-            this.lenght = lenght;
-        }
-
-        public static Codes_PE getByCode(String code) {
-            return Arrays.asList(values()).stream().filter(p -> p.getCode().equals(code)).findAny()
-                    .orElse(null);
-        }
-
-        public String getCode() {
-            return code;
-        }
-
-        public String getMask() {
-            return mask;
-        }
-
-        public int getLenght() {
-            return lenght;
-        }
-    }
+    protected OpenfactSession session;    
 
     public UblIDGeneratorProvider_PE(OpenfactSession session) {
         this.session = session;
@@ -70,11 +24,11 @@ public class UblIDGeneratorProvider_PE implements UblIDGeneratorProvider {
 
     @Override
     public String generateInvoiceID(OrganizationModel organization, String invoiceTypeCode) {
-        Codes_PE code;
-        if (Codes_PE.FACTURA.getCode().equals(invoiceTypeCode)) {
-            code = Codes_PE.FACTURA;
-        } else if (Codes_PE.BOLETA.getCode().equals(invoiceTypeCode)) {
-            code = Codes_PE.BOLETA;
+        CodigoTipoDocumento code;
+        if (CodigoTipoDocumento.FACTURA.getCodigo().equals(invoiceTypeCode)) {
+            code = CodigoTipoDocumento.FACTURA;
+        } else if (CodigoTipoDocumento.BOLETA.getCodigo().equals(invoiceTypeCode)) {
+            code = CodigoTipoDocumento.BOLETA;
         } else {
             throw new ModelException("Invalid invoiceTypeCode");
         }
@@ -107,7 +61,7 @@ public class UblIDGeneratorProvider_PE implements UblIDGeneratorProvider {
             throw new ModelException("Invalid lenght refenceID");
         }
         String referenceID = referencesID[0];
-        Codes_PE code = Codes_PE.NOTA_CREDITO;
+        CodigoTipoDocumento code = CodigoTipoDocumento.NOTA_CREDITO;
 
         String firstLetter = referenceID.substring(0, 1);
         String mask;
@@ -145,7 +99,7 @@ public class UblIDGeneratorProvider_PE implements UblIDGeneratorProvider {
             throw new ModelException("Invalid lenght refenceID");
         }
         String referenceID = referencesID[0];
-        Codes_PE code = Codes_PE.NOTA_DEBITO;
+        CodigoTipoDocumento code = CodigoTipoDocumento.NOTA_DEBITO;
 
         String firstLetter = referenceID.substring(0, 1);
         String mask;

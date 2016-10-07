@@ -10,7 +10,7 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
 import org.openfact.testsuite.providers.AbstractProviderTest;
 import org.openfact.ubl.UblIDGeneratorProvider;
-import org.openfact.ubl.pe.UblIDGeneratorProvider_PE.Codes_PE;
+import org.openfact.ubl.pe.constants.CodigoTipoDocumento;
 
 public class UblIDGeneratorProviderTest_PE extends AbstractProviderTest {
 
@@ -39,10 +39,10 @@ public class UblIDGeneratorProviderTest_PE extends AbstractProviderTest {
             Assert.fail("Expected exception");
         } catch (ModelException e) {
         }
-        idInvoice1 = provider.generateInvoiceID(organization, Codes_PE.FACTURA.getCode());
+        idInvoice1 = provider.generateInvoiceID(organization, CodigoTipoDocumento.FACTURA.getCodigo());
         session.invoices().addInvoice(organization, idInvoice1);
 
-        idInvoice2 = provider.generateInvoiceID(organization, Codes_PE.FACTURA.getCode());
+        idInvoice2 = provider.generateInvoiceID(organization, CodigoTipoDocumento.FACTURA.getCodigo());
         session.invoices().addInvoice(organization, idInvoice2);
         commit();
 
@@ -61,7 +61,7 @@ public class UblIDGeneratorProviderTest_PE extends AbstractProviderTest {
 
         UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class, LOCALE);
 
-        String idInvoice1 = provider.generateInvoiceID(organization, Codes_PE.FACTURA.getCode());
+        String idInvoice1 = provider.generateInvoiceID(organization, CodigoTipoDocumento.FACTURA.getCodigo());
         session.invoices().addInvoice(organization, idInvoice1);
         commit();
 
@@ -82,10 +82,10 @@ public class UblIDGeneratorProviderTest_PE extends AbstractProviderTest {
             Assert.fail("Expected exception");
         } catch (ModelException e) {
         }
-        idInvoice1 = provider.generateInvoiceID(organization, Codes_PE.BOLETA.getCode());
+        idInvoice1 = provider.generateInvoiceID(organization, CodigoTipoDocumento.BOLETA.getCodigo());
         session.invoices().addInvoice(organization, idInvoice1);
 
-        idInvoice2 = provider.generateInvoiceID(organization, Codes_PE.BOLETA.getCode());
+        idInvoice2 = provider.generateInvoiceID(organization, CodigoTipoDocumento.BOLETA.getCodigo());
         session.invoices().addInvoice(organization, idInvoice2);
         commit();
 
@@ -104,7 +104,7 @@ public class UblIDGeneratorProviderTest_PE extends AbstractProviderTest {
 
         UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class, LOCALE);
 
-        String idInvoice1 = provider.generateInvoiceID(organization, Codes_PE.BOLETA.getCode());
+        String idInvoice1 = provider.generateInvoiceID(organization, CodigoTipoDocumento.BOLETA.getCodigo());
         session.invoices().addInvoice(organization, idInvoice1);
         commit();
 
