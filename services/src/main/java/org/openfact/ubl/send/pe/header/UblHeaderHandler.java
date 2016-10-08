@@ -15,12 +15,13 @@ import javax.xml.ws.handler.soap.SOAPMessageContext;
 import org.jboss.logging.Logger;
 import org.openfact.models.OrganizationModel;
 
-public class UblHeaderHandler implements SOAPHandler<SOAPMessageContext> {
-	
-    protected static final Logger logger = Logger.getLogger(UblHeaderHandler.class);
-	private final Map<String, String> config;
 
-	public UblHeaderHandler(Map<String, String> config) {
+
+public class UblHeaderHandler implements SOAPHandler<SOAPMessageContext> {
+	protected static final Logger logger = Logger.getLogger(UblHeaderHandler.class);
+	private final Map<String,String> config;
+
+	public UblHeaderHandler(Map<String,String> config) {
 		this.config = config;
 	}
 
@@ -56,7 +57,6 @@ public class UblHeaderHandler implements SOAPHandler<SOAPMessageContext> {
 				userElem.addTextNode(config.get("username"));
 				SOAPElement pwdElem = factory.createElement("Password", prefix, uri);
 				pwdElem.addTextNode(config.get("password"));
-
 				// pwdElem.addAttribute(QName.valueOf("Type"),
 				// "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText");
 

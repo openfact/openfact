@@ -13,7 +13,6 @@ import org.openfact.models.OrganizationModel;
 public class UblHeaderHandlerResolver implements HandlerResolver {
 	
     private Map<String, String> config;
-
 	public UblHeaderHandlerResolver(Map<String, String> config) {
 		this.config = config;
 	}
