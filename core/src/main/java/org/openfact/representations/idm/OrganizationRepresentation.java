@@ -2,6 +2,7 @@ package org.openfact.representations.idm;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.openfact.representations.idm.ubl.CreditNoteRepresentation;
 import org.openfact.representations.idm.ubl.DebitNoteRepresentation;
@@ -18,20 +19,32 @@ public class OrganizationRepresentation {
     private String additionalAccountId;
     private String supplierName;
     private String registrationName;
-    
-    private String authorizedUser;
-    private String authorizedPassword;
-
-//    protected String privateKey;
-//    protected String publicKey;
-//    protected String certificate;
-//    protected String codeSecret;
 
     protected Map<String, String> smtpServer;
     protected Map<String, String> ublSenderServer;
     private CertificateRepresentation certificate;
     private PostalAddressRepresentation postalAddress;
     private TasksScheduleRepresentation tasksSchedule;
+
+    protected String emailTheme;
+    protected Set<String> supportedLocales;
+    protected String defaultLocale;
+    protected Boolean internationalizationEnabled;
+    protected Set<String> supportedUblLocales;
+    protected String defaultUblLocale;
+    protected Boolean internationalizationUblEnabled;
+    protected Set<String> supportedCurrencies;
+    protected String defaultCurrency;
+
+    protected Boolean eventsEnabled;
+    protected Long eventsExpiration;
+    protected List<String> eventsListeners;
+    protected List<String> enabledEventTypes;
+
+    protected Boolean adminEventsEnabled;
+    protected Boolean adminEventsDetailsEnabled;
+
+    protected Set<String> requiredActions;
     protected Map<String, String> attributes;
 
     protected List<InvoiceRepresentation> invoices;
@@ -40,271 +53,77 @@ public class OrganizationRepresentation {
 
     protected String openfactVersion;
 
-    /**
-     * @return the id
-     */
     public String getId() {
         return id;
     }
 
-    /**
-     * @param id
-     *            the id to set
-     */
     public void setId(String id) {
         this.id = id;
     }
 
-    /**
-     * @return the organization
-     */
     public String getOrganization() {
         return organization;
     }
 
-    /**
-     * @param organization
-     *            the organization to set
-     */
     public void setOrganization(String organization) {
         this.organization = organization;
     }
 
-    /**
-     * @return the description
-     */
     public String getDescription() {
         return description;
     }
 
-    /**
-     * @param description
-     *            the description to set
-     */
     public void setDescription(String description) {
         this.description = description;
     }
 
-    /**
-     * @return the enabled
-     */
     public Boolean getEnabled() {
         return enabled;
     }
 
-    /**
-     * @param enabled
-     *            the enabled to set
-     */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
-    /**
-     * @return the assignedIdentificationId
-     */
     public String getAssignedIdentificationId() {
         return assignedIdentificationId;
     }
 
-    /**
-     * @param assignedIdentificationId
-     *            the assignedIdentificationId to set
-     */
     public void setAssignedIdentificationId(String assignedIdentificationId) {
         this.assignedIdentificationId = assignedIdentificationId;
     }
 
-    /**
-     * @return the additionalAccountId
-     */
     public String getAdditionalAccountId() {
         return additionalAccountId;
     }
 
-    /**
-     * @param additionalAccountId
-     *            the additionalAccountId to set
-     */
     public void setAdditionalAccountId(String additionalAccountId) {
         this.additionalAccountId = additionalAccountId;
     }
 
-    /**
-     * @return the supplierName
-     */
     public String getSupplierName() {
         return supplierName;
     }
 
-    /**
-     * @param supplierName
-     *            the supplierName to set
-     */
     public void setSupplierName(String supplierName) {
         this.supplierName = supplierName;
     }
 
-    /**
-     * @return the registrationName
-     */
     public String getRegistrationName() {
         return registrationName;
     }
 
-    /**
-     * @param registrationName
-     *            the registrationName to set
-     */
     public void setRegistrationName(String registrationName) {
         this.registrationName = registrationName;
     }
 
-   
-
-    /**
-     * @return the smtpServer
-     */
     public Map<String, String> getSmtpServer() {
         return smtpServer;
     }
 
-    /**
-     * @param smtpServer
-     *            the smtpServer to set
-     */
     public void setSmtpServer(Map<String, String> smtpServer) {
         this.smtpServer = smtpServer;
     }
-
-    /**
-     * @return the postalAddress
-     */
-    public PostalAddressRepresentation getPostalAddress() {
-        return postalAddress;
-    }
-
-    /**
-     * @param postalAddress
-     *            the postalAddress to set
-     */
-    public void setPostalAddress(PostalAddressRepresentation postalAddress) {
-        this.postalAddress = postalAddress;
-    }
-
-    /**
-     * @return the tasksSchedule
-     */
-    public TasksScheduleRepresentation getTasksSchedule() {
-        return tasksSchedule;
-    }
-
-    /**
-     * @param tasksSchedule
-     *            the tasksSchedule to set
-     */
-    public void setTasksSchedule(TasksScheduleRepresentation tasksSchedule) {
-        this.tasksSchedule = tasksSchedule;
-    }
-
-    /**
-     * @return the attributes
-     */
-    public Map<String, String> getAttributes() {
-        return attributes;
-    }
-
-    /**
-     * @param attributes
-     *            the attributes to set
-     */
-    public void setAttributes(Map<String, String> attributes) {
-        this.attributes = attributes;
-    }
-
-    /**
-     * @return the invoices
-     */
-    public List<InvoiceRepresentation> getInvoices() {
-        return invoices;
-    }
-
-    /**
-     * @param invoices
-     *            the invoices to set
-     */
-    public void setInvoices(List<InvoiceRepresentation> invoices) {
-        this.invoices = invoices;
-    }
-
-    /**
-     * @return the creditNotes
-     */
-    public List<CreditNoteRepresentation> getCreditNotes() {
-        return creditNotes;
-    }
-
-    /**
-     * @param creditNotes
-     *            the creditNotes to set
-     */
-    public void setCreditNotes(List<CreditNoteRepresentation> creditNotes) {
-        this.creditNotes = creditNotes;
-    }
-
-    /**
-     * @return the debitNotes
-     */
-    public List<DebitNoteRepresentation> getDebitNotes() {
-        return debitNotes;
-    }
-
-    /**
-     * @param debitNotes
-     *            the debitNotes to set
-     */
-    public void setDebitNotes(List<DebitNoteRepresentation> debitNotes) {
-        this.debitNotes = debitNotes;
-    }
-
-    /**
-     * @return the openfactVersion
-     */
-    public String getOpenfactVersion() {
-        return openfactVersion;
-    }
-
-    /**
-     * @param openfactVersion
-     *            the openfactVersion to set
-     */
-    public void setOpenfactVersion(String openfactVersion) {
-        this.openfactVersion = openfactVersion;
-    }
-
-	public CertificateRepresentation getCertificate() {
-		return certificate;
-	}
-
-	public void setCertificate(CertificateRepresentation certificate) {
-		this.certificate = certificate;
-	}
-
-	public String getAuthorizedPassword() {
-		return authorizedPassword;
-	}
-
-	public void setAuthorizedPassword(String authorizedPassword) {
-		this.authorizedPassword = authorizedPassword;
-	}
-
-	public String getAuthorizedUser() {
-		return authorizedUser;
-	}
-
-	public void setAuthorizedUser(String authorizedUser) {
-		this.authorizedUser = authorizedUser;
-	}
 
     public Map<String, String> getUblSenderServer() {
         return ublSenderServer;
@@ -313,6 +132,197 @@ public class OrganizationRepresentation {
     public void setUblSenderServer(Map<String, String> ublSenderServer) {
         this.ublSenderServer = ublSenderServer;
     }
-    
+
+    public CertificateRepresentation getCertificate() {
+        return certificate;
+    }
+
+    public void setCertificate(CertificateRepresentation certificate) {
+        this.certificate = certificate;
+    }
+
+    public PostalAddressRepresentation getPostalAddress() {
+        return postalAddress;
+    }
+
+    public void setPostalAddress(PostalAddressRepresentation postalAddress) {
+        this.postalAddress = postalAddress;
+    }
+
+    public TasksScheduleRepresentation getTasksSchedule() {
+        return tasksSchedule;
+    }
+
+    public void setTasksSchedule(TasksScheduleRepresentation tasksSchedule) {
+        this.tasksSchedule = tasksSchedule;
+    }
+
+    public String getEmailTheme() {
+        return emailTheme;
+    }
+
+    public void setEmailTheme(String emailTheme) {
+        this.emailTheme = emailTheme;
+    }
+
+    public Set<String> getSupportedLocales() {
+        return supportedLocales;
+    }
+
+    public void setSupportedLocales(Set<String> supportedLocales) {
+        this.supportedLocales = supportedLocales;
+    }
+
+    public String getDefaultLocale() {
+        return defaultLocale;
+    }
+
+    public void setDefaultLocale(String defaultLocale) {
+        this.defaultLocale = defaultLocale;
+    }
+
+    public Boolean getInternationalizationEnabled() {
+        return internationalizationEnabled;
+    }
+
+    public void setInternationalizationEnabled(Boolean internationalizationEnabled) {
+        this.internationalizationEnabled = internationalizationEnabled;
+    }
+
+    public Set<String> getSupportedUblLocales() {
+        return supportedUblLocales;
+    }
+
+    public void setSupportedUblLocales(Set<String> supportedUblLocales) {
+        this.supportedUblLocales = supportedUblLocales;
+    }
+
+    public String getDefaultUblLocale() {
+        return defaultUblLocale;
+    }
+
+    public void setDefaultUblLocale(String defaultUblLocale) {
+        this.defaultUblLocale = defaultUblLocale;
+    }
+
+    public Boolean getInternationalizationUblEnabled() {
+        return internationalizationUblEnabled;
+    }
+
+    public void setInternationalizationUblEnabled(Boolean internationalizationUblEnabled) {
+        this.internationalizationUblEnabled = internationalizationUblEnabled;
+    }
+
+    public Set<String> getSupportedCurrencies() {
+        return supportedCurrencies;
+    }
+
+    public void setSupportedCurrencies(Set<String> supportedCurrencies) {
+        this.supportedCurrencies = supportedCurrencies;
+    }
+
+    public String getDefaultCurrency() {
+        return defaultCurrency;
+    }
+
+    public void setDefaultCurrency(String defaultCurrency) {
+        this.defaultCurrency = defaultCurrency;
+    }
+
+    public Boolean getEventsEnabled() {
+        return eventsEnabled;
+    }
+
+    public void setEventsEnabled(Boolean eventsEnabled) {
+        this.eventsEnabled = eventsEnabled;
+    }
+
+    public Long getEventsExpiration() {
+        return eventsExpiration;
+    }
+
+    public void setEventsExpiration(Long eventsExpiration) {
+        this.eventsExpiration = eventsExpiration;
+    }
+
+    public List<String> getEventsListeners() {
+        return eventsListeners;
+    }
+
+    public void setEventsListeners(List<String> eventsListeners) {
+        this.eventsListeners = eventsListeners;
+    }
+
+    public List<String> getEnabledEventTypes() {
+        return enabledEventTypes;
+    }
+
+    public void setEnabledEventTypes(List<String> enabledEventTypes) {
+        this.enabledEventTypes = enabledEventTypes;
+    }
+
+    public Boolean getAdminEventsEnabled() {
+        return adminEventsEnabled;
+    }
+
+    public void setAdminEventsEnabled(Boolean adminEventsEnabled) {
+        this.adminEventsEnabled = adminEventsEnabled;
+    }
+
+    public Boolean getAdminEventsDetailsEnabled() {
+        return adminEventsDetailsEnabled;
+    }
+
+    public void setAdminEventsDetailsEnabled(Boolean adminEventsDetailsEnabled) {
+        this.adminEventsDetailsEnabled = adminEventsDetailsEnabled;
+    }
+
+    public Set<String> getRequiredActions() {
+        return requiredActions;
+    }
+
+    public void setRequiredActions(Set<String> requiredActions) {
+        this.requiredActions = requiredActions;
+    }
+
+    public Map<String, String> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Map<String, String> attributes) {
+        this.attributes = attributes;
+    }
+
+    public List<InvoiceRepresentation> getInvoices() {
+        return invoices;
+    }
+
+    public void setInvoices(List<InvoiceRepresentation> invoices) {
+        this.invoices = invoices;
+    }
+
+    public List<CreditNoteRepresentation> getCreditNotes() {
+        return creditNotes;
+    }
+
+    public void setCreditNotes(List<CreditNoteRepresentation> creditNotes) {
+        this.creditNotes = creditNotes;
+    }
+
+    public List<DebitNoteRepresentation> getDebitNotes() {
+        return debitNotes;
+    }
+
+    public void setDebitNotes(List<DebitNoteRepresentation> debitNotes) {
+        this.debitNotes = debitNotes;
+    }
+
+    public String getOpenfactVersion() {
+        return openfactVersion;
+    }
+
+    public void setOpenfactVersion(String openfactVersion) {
+        this.openfactVersion = openfactVersion;
+    }
 
 }

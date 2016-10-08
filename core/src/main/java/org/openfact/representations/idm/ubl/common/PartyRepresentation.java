@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PartyRepresentation {
-    private boolean markCareIndicator;
-    private boolean markAttentionIndicator;
+    private Boolean markCareIndicator;
+    private Boolean markAttentionIndicator;
     private String websiteURI;
     private String logoReferenceID;
     private String endpointID;
@@ -75,11 +75,11 @@ public class PartyRepresentation {
         this.partyLegalEntity = partyLegalEntity;
     }
 
-    public boolean getMarkAttentionIndicator() {
+    public Boolean getMarkAttentionIndicator() {
         return this.markAttentionIndicator;
     }
 
-    public void setMarkAttentionIndicator(boolean markAttentionIndicator) {
+    public void setMarkAttentionIndicator(Boolean markAttentionIndicator) {
         this.markAttentionIndicator = markAttentionIndicator;
     }
 
@@ -99,11 +99,11 @@ public class PartyRepresentation {
         this.person = person;
     }
 
-    public boolean getMarkCareIndicator() {
+    public Boolean getMarkCareIndicator() {
         return this.markCareIndicator;
     }
 
-    public void setMarkCareIndicator(boolean markCareIndicator) {
+    public void setMarkCareIndicator(Boolean markCareIndicator) {
         this.markCareIndicator = markCareIndicator;
     }
 

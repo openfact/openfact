@@ -27,13 +27,14 @@ import org.openfact.representations.idm.ubl.common.TaxTotalRepresentation;
 import org.openfact.representations.idm.ubl.common.UBLExtensionsRepresentation;
 
 public class InvoiceRepresentation {
-    private UBLExtensionsRepresentation UBLExtensions;
-    private String UBLVersionID;
+
+    private UBLExtensionsRepresentation ublExtensions;
+    private String ublVersionID;
     private String customizationID;
     private String profileID;
     private String idUbl;
-    private boolean copyIndicator;
-    private String UUID;
+    private Boolean copyIndicator;
+    private String uuid;
     private LocalDate issueDate;
     private LocalTime issueTime;
     private String invoiceTypeCode;
@@ -77,7 +78,16 @@ public class InvoiceRepresentation {
     private List<InvoiceLineRepresentation> invoiceLine;
     private String id;
 
-    /***/
+    /**
+     * Custom methods
+     */
+    public void addSignature(SignatureRepresentation representation) {
+        if (signature == null) {
+            signature = new ArrayList<>();
+        }
+        signature.add(representation);
+    }
+
     public void addInvoiceLine(InvoiceLineRepresentation representation) {
         if (invoiceLine == null) {
             invoiceLine = new ArrayList<>();
@@ -113,247 +123,144 @@ public class InvoiceRepresentation {
         taxTotal.add(representation);
     }
 
-    /**
-     * Getter and Setters
-     */
-    public LocalDate getTaxPointDate() {
-        return this.taxPointDate;
+    public UBLExtensionsRepresentation getUblExtensions() {
+        return ublExtensions;
     }
 
-    public void setTaxPointDate(LocalDate taxPointDate) {
-        this.taxPointDate = taxPointDate;
+    public void setUblExtensions(UBLExtensionsRepresentation ublExtensions) {
+        this.ublExtensions = ublExtensions;
     }
 
-    public String getIdUbl() {
-        return this.idUbl;
+    public String getUblVersionID() {
+        return ublVersionID;
     }
 
-    public void setIdUbl(String idUbl) {
-        this.idUbl = idUbl;
-    }
-
-    public String getId() {
-        return this.id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public List<DocumentReferenceRepresentation> getContractDocumentReference() {
-        return this.contractDocumentReference;
-    }
-
-    public void setContractDocumentReference(
-            List<DocumentReferenceRepresentation> contractDocumentReference) {
-        this.contractDocumentReference = contractDocumentReference;
-    }
-
-    public DeliveryTermsRepresentation getDeliveryTerms() {
-        return this.deliveryTerms;
-    }
-
-    public void setDeliveryTerms(DeliveryTermsRepresentation deliveryTerms) {
-        this.deliveryTerms = deliveryTerms;
-    }
-
-    public PartyRepresentation getPayeeParty() {
-        return this.payeeParty;
-    }
-
-    public void setPayeeParty(PartyRepresentation payeeParty) {
-        this.payeeParty = payeeParty;
-    }
-
-    public String getPricingCurrencyCode() {
-        return this.pricingCurrencyCode;
-    }
-
-    public void setPricingCurrencyCode(String pricingCurrencyCode) {
-        this.pricingCurrencyCode = pricingCurrencyCode;
-    }
-
-    public SupplierPartyRepresentation getSellerSupplierParty() {
-        return this.sellerSupplierParty;
-    }
-
-    public void setSellerSupplierParty(SupplierPartyRepresentation sellerSupplierParty) {
-        this.sellerSupplierParty = sellerSupplierParty;
-    }
-
-    public String getTaxCurrencyCode() {
-        return this.taxCurrencyCode;
-    }
-
-    public void setTaxCurrencyCode(String taxCurrencyCode) {
-        this.taxCurrencyCode = taxCurrencyCode;
-    }
-
-    public CustomerPartyRepresentation getBuyerCustomerParty() {
-        return this.buyerCustomerParty;
-    }
-
-    public void setBuyerCustomerParty(CustomerPartyRepresentation buyerCustomerParty) {
-        this.buyerCustomerParty = buyerCustomerParty;
-    }
-
-    public MonetaryTotalRepresentation getLegalMonetaryTotal() {
-        return this.legalMonetaryTotal;
-    }
-
-    public void setLegalMonetaryTotal(MonetaryTotalRepresentation legalMonetaryTotal) {
-        this.legalMonetaryTotal = legalMonetaryTotal;
-    }
-
-    public List<PaymentTermsRepresentation> getPaymentTerms() {
-        return this.paymentTerms;
-    }
-
-    public void setPaymentTerms(List<PaymentTermsRepresentation> paymentTerms) {
-        this.paymentTerms = paymentTerms;
-    }
-
-    public ExchangeRateRepresentation getPricingExchangeRate() {
-        return this.pricingExchangeRate;
-    }
-
-    public void setPricingExchangeRate(ExchangeRateRepresentation pricingExchangeRate) {
-        this.pricingExchangeRate = pricingExchangeRate;
-    }
-
-    public ExchangeRateRepresentation getPaymentExchangeRate() {
-        return this.paymentExchangeRate;
-    }
-
-    public void setPaymentExchangeRate(ExchangeRateRepresentation paymentExchangeRate) {
-        this.paymentExchangeRate = paymentExchangeRate;
-    }
-
-    public PartyRepresentation getTaxRepresentativeParty() {
-        return this.taxRepresentativeParty;
-    }
-
-    public void setTaxRepresentativeParty(PartyRepresentation taxRepresentativeParty) {
-        this.taxRepresentativeParty = taxRepresentativeParty;
-    }
-
-    public List<PeriodRepresentation> getInvoicePeriod() {
-        return this.invoicePeriod;
-    }
-
-    public void setInvoicePeriod(List<PeriodRepresentation> invoicePeriod) {
-        this.invoicePeriod = invoicePeriod;
-    }
-
-    public BigDecimal getLineCountNumeric() {
-        return this.lineCountNumeric;
-    }
-
-    public void setLineCountNumeric(BigDecimal lineCountNumeric) {
-        this.lineCountNumeric = lineCountNumeric;
-    }
-
-    public List<DocumentReferenceRepresentation> getOriginatorDocumentReference() {
-        return this.originatorDocumentReference;
-    }
-
-    public void setOriginatorDocumentReference(
-            List<DocumentReferenceRepresentation> originatorDocumentReference) {
-        this.originatorDocumentReference = originatorDocumentReference;
-    }
-
-    public ExchangeRateRepresentation getPaymentAlternativeExchangeRate() {
-        return this.paymentAlternativeExchangeRate;
-    }
-
-    public void setPaymentAlternativeExchangeRate(ExchangeRateRepresentation paymentAlternativeExchangeRate) {
-        this.paymentAlternativeExchangeRate = paymentAlternativeExchangeRate;
-    }
-
-    public String getUUID() {
-        return this.UUID;
-    }
-
-    public void setUUID(String UUID) {
-        this.UUID = UUID;
-    }
-
-    public SupplierPartyRepresentation getAccountingSupplierParty() {
-        return this.accountingSupplierParty;
-    }
-
-    public void setAccountingSupplierParty(SupplierPartyRepresentation accountingSupplierParty) {
-        this.accountingSupplierParty = accountingSupplierParty;
-    }
-
-    public List<SignatureRepresentation> getSignature() {
-        return this.signature;
-    }
-
-    public void setSignature(List<SignatureRepresentation> signature) {
-        this.signature = signature;
+    public void setUblVersionID(String ublVersionID) {
+        this.ublVersionID = ublVersionID;
     }
 
     public String getCustomizationID() {
-        return this.customizationID;
+        return customizationID;
     }
 
     public void setCustomizationID(String customizationID) {
         this.customizationID = customizationID;
     }
 
-    public List<DocumentReferenceRepresentation> getAdditionalDocumentReference() {
-        return this.additionalDocumentReference;
+    public String getProfileID() {
+        return profileID;
     }
 
-    public void setAdditionalDocumentReference(
-            List<DocumentReferenceRepresentation> additionalDocumentReference) {
-        this.additionalDocumentReference = additionalDocumentReference;
+    public void setProfileID(String profileID) {
+        this.profileID = profileID;
     }
 
-    public List<DeliveryRepresentation> getDelivery() {
-        return this.delivery;
+    public String getIdUbl() {
+        return idUbl;
     }
 
-    public void setDelivery(List<DeliveryRepresentation> delivery) {
-        this.delivery = delivery;
+    public void setIdUbl(String idUbl) {
+        this.idUbl = idUbl;
+    }
+
+    public Boolean getCopyIndicator() {
+        return copyIndicator;
+    }
+
+    public void setCopyIndicator(Boolean copyIndicator) {
+        this.copyIndicator = copyIndicator;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public LocalDate getIssueDate() {
+        return issueDate;
+    }
+
+    public void setIssueDate(LocalDate issueDate) {
+        this.issueDate = issueDate;
+    }
+
+    public LocalTime getIssueTime() {
+        return issueTime;
+    }
+
+    public void setIssueTime(LocalTime issueTime) {
+        this.issueTime = issueTime;
+    }
+
+    public String getInvoiceTypeCode() {
+        return invoiceTypeCode;
+    }
+
+    public void setInvoiceTypeCode(String invoiceTypeCode) {
+        this.invoiceTypeCode = invoiceTypeCode;
     }
 
     public List<String> getNote() {
-        return this.note;
+        return note;
     }
 
     public void setNote(List<String> note) {
         this.note = note;
     }
 
-    public List<DocumentReferenceRepresentation> getDespatchDocumentReference() {
-        return this.despatchDocumentReference;
+    public LocalDate getTaxPointDate() {
+        return taxPointDate;
     }
 
-    public void setDespatchDocumentReference(
-            List<DocumentReferenceRepresentation> despatchDocumentReference) {
-        this.despatchDocumentReference = despatchDocumentReference;
+    public void setTaxPointDate(LocalDate taxPointDate) {
+        this.taxPointDate = taxPointDate;
     }
 
     public String getDocumentCurrencyCode() {
-        return this.documentCurrencyCode;
+        return documentCurrencyCode;
     }
 
     public void setDocumentCurrencyCode(String documentCurrencyCode) {
         this.documentCurrencyCode = documentCurrencyCode;
     }
 
+    public String getTaxCurrencyCode() {
+        return taxCurrencyCode;
+    }
+
+    public void setTaxCurrencyCode(String taxCurrencyCode) {
+        this.taxCurrencyCode = taxCurrencyCode;
+    }
+
+    public String getPricingCurrencyCode() {
+        return pricingCurrencyCode;
+    }
+
+    public void setPricingCurrencyCode(String pricingCurrencyCode) {
+        this.pricingCurrencyCode = pricingCurrencyCode;
+    }
+
     public String getPaymentCurrencyCode() {
-        return this.paymentCurrencyCode;
+        return paymentCurrencyCode;
     }
 
     public void setPaymentCurrencyCode(String paymentCurrencyCode) {
         this.paymentCurrencyCode = paymentCurrencyCode;
     }
 
+    public String getPaymentAlternativeCurrencyCode() {
+        return paymentAlternativeCurrencyCode;
+    }
+
+    public void setPaymentAlternativeCurrencyCode(String paymentAlternativeCurrencyCode) {
+        this.paymentAlternativeCurrencyCode = paymentAlternativeCurrencyCode;
+    }
+
     public String getAccountingCostCode() {
-        return this.accountingCostCode;
+        return accountingCostCode;
     }
 
     public void setAccountingCostCode(String accountingCostCode) {
@@ -361,155 +268,259 @@ public class InvoiceRepresentation {
     }
 
     public String getAccountingCost() {
-        return this.accountingCost;
+        return accountingCost;
     }
 
     public void setAccountingCost(String accountingCost) {
         this.accountingCost = accountingCost;
     }
 
-    public List<BillingReferenceRepresentation> getBillingReference() {
-        return this.billingReference;
+    public BigDecimal getLineCountNumeric() {
+        return lineCountNumeric;
     }
 
-    public void setBillingReference(List<BillingReferenceRepresentation> billingReference) {
-        this.billingReference = billingReference;
+    public void setLineCountNumeric(BigDecimal lineCountNumeric) {
+        this.lineCountNumeric = lineCountNumeric;
     }
 
-    public List<AllowanceChargeRepresentation> getAllowanceCharge() {
-        return this.allowanceCharge;
+    public List<PeriodRepresentation> getInvoicePeriod() {
+        return invoicePeriod;
     }
 
-    public void setAllowanceCharge(List<AllowanceChargeRepresentation> allowanceCharge) {
-        this.allowanceCharge = allowanceCharge;
-    }
-
-    public List<InvoiceLineRepresentation> getInvoiceLine() {
-        return this.invoiceLine;
-    }
-
-    public void setInvoiceLine(List<InvoiceLineRepresentation> invoiceLine) {
-        this.invoiceLine = invoiceLine;
-    }
-
-    public LocalTime getIssueTime() {
-        return this.issueTime;
-    }
-
-    public void setIssueTime(LocalTime issueTime) {
-        this.issueTime = issueTime;
+    public void setInvoicePeriod(List<PeriodRepresentation> invoicePeriod) {
+        this.invoicePeriod = invoicePeriod;
     }
 
     public OrderReferenceRepresentation getOrderReference() {
-        return this.orderReference;
+        return orderReference;
     }
 
     public void setOrderReference(OrderReferenceRepresentation orderReference) {
         this.orderReference = orderReference;
     }
 
-    public String getInvoiceTypeCode() {
-        return this.invoiceTypeCode;
+    public List<BillingReferenceRepresentation> getBillingReference() {
+        return billingReference;
     }
 
-    public void setInvoiceTypeCode(String invoiceTypeCode) {
-        this.invoiceTypeCode = invoiceTypeCode;
+    public void setBillingReference(List<BillingReferenceRepresentation> billingReference) {
+        this.billingReference = billingReference;
     }
 
-    public List<PaymentMeansRepresentation> getPaymentMeans() {
-        return this.paymentMeans;
+    public List<DocumentReferenceRepresentation> getDespatchDocumentReference() {
+        return despatchDocumentReference;
     }
 
-    public void setPaymentMeans(List<PaymentMeansRepresentation> paymentMeans) {
-        this.paymentMeans = paymentMeans;
+    public void setDespatchDocumentReference(
+            List<DocumentReferenceRepresentation> despatchDocumentReference) {
+        this.despatchDocumentReference = despatchDocumentReference;
     }
 
-    public ExchangeRateRepresentation getTaxExchangeRate() {
-        return this.taxExchangeRate;
+    public List<DocumentReferenceRepresentation> getReceiptDocumentReference() {
+        return receiptDocumentReference;
     }
 
-    public void setTaxExchangeRate(ExchangeRateRepresentation taxExchangeRate) {
-        this.taxExchangeRate = taxExchangeRate;
+    public void setReceiptDocumentReference(List<DocumentReferenceRepresentation> receiptDocumentReference) {
+        this.receiptDocumentReference = receiptDocumentReference;
     }
 
-    public String getUBLVersionID() {
-        return this.UBLVersionID;
+    public List<DocumentReferenceRepresentation> getOriginatorDocumentReference() {
+        return originatorDocumentReference;
     }
 
-    public void setUBLVersionID(String UBLVersionID) {
-        this.UBLVersionID = UBLVersionID;
+    public void setOriginatorDocumentReference(
+            List<DocumentReferenceRepresentation> originatorDocumentReference) {
+        this.originatorDocumentReference = originatorDocumentReference;
     }
 
-    public List<TaxTotalRepresentation> getTaxTotal() {
-        return this.taxTotal;
+    public List<DocumentReferenceRepresentation> getContractDocumentReference() {
+        return contractDocumentReference;
     }
 
-    public void setTaxTotal(List<TaxTotalRepresentation> taxTotal) {
-        this.taxTotal = taxTotal;
+    public void setContractDocumentReference(
+            List<DocumentReferenceRepresentation> contractDocumentReference) {
+        this.contractDocumentReference = contractDocumentReference;
     }
 
-    public String getPaymentAlternativeCurrencyCode() {
-        return this.paymentAlternativeCurrencyCode;
+    public List<DocumentReferenceRepresentation> getAdditionalDocumentReference() {
+        return additionalDocumentReference;
     }
 
-    public void setPaymentAlternativeCurrencyCode(String paymentAlternativeCurrencyCode) {
-        this.paymentAlternativeCurrencyCode = paymentAlternativeCurrencyCode;
+    public void setAdditionalDocumentReference(
+            List<DocumentReferenceRepresentation> additionalDocumentReference) {
+        this.additionalDocumentReference = additionalDocumentReference;
     }
 
-    public UBLExtensionsRepresentation getUBLExtensions() {
-        return this.UBLExtensions;
+    public List<SignatureRepresentation> getSignature() {
+        return signature;
     }
 
-    public void setUBLExtensions(UBLExtensionsRepresentation UBLExtensions) {
-        this.UBLExtensions = UBLExtensions;
+    public void setSignature(List<SignatureRepresentation> signature) {
+        this.signature = signature;
     }
 
-    public String getProfileID() {
-        return this.profileID;
+    public SupplierPartyRepresentation getAccountingSupplierParty() {
+        return accountingSupplierParty;
     }
 
-    public void setProfileID(String profileID) {
-        this.profileID = profileID;
+    public void setAccountingSupplierParty(SupplierPartyRepresentation accountingSupplierParty) {
+        this.accountingSupplierParty = accountingSupplierParty;
     }
 
     public CustomerPartyRepresentation getAccountingCustomerParty() {
-        return this.accountingCustomerParty;
+        return accountingCustomerParty;
     }
 
     public void setAccountingCustomerParty(CustomerPartyRepresentation accountingCustomerParty) {
         this.accountingCustomerParty = accountingCustomerParty;
     }
 
-    public LocalDate getIssueDate() {
-        return this.issueDate;
+    public PartyRepresentation getPayeeParty() {
+        return payeeParty;
     }
 
-    public void setIssueDate(LocalDate issueDate) {
-        this.issueDate = issueDate;
+    public void setPayeeParty(PartyRepresentation payeeParty) {
+        this.payeeParty = payeeParty;
+    }
+
+    public CustomerPartyRepresentation getBuyerCustomerParty() {
+        return buyerCustomerParty;
+    }
+
+    public void setBuyerCustomerParty(CustomerPartyRepresentation buyerCustomerParty) {
+        this.buyerCustomerParty = buyerCustomerParty;
+    }
+
+    public SupplierPartyRepresentation getSellerSupplierParty() {
+        return sellerSupplierParty;
+    }
+
+    public void setSellerSupplierParty(SupplierPartyRepresentation sellerSupplierParty) {
+        this.sellerSupplierParty = sellerSupplierParty;
+    }
+
+    public PartyRepresentation getTaxRepresentativeParty() {
+        return taxRepresentativeParty;
+    }
+
+    public void setTaxRepresentativeParty(PartyRepresentation taxRepresentativeParty) {
+        this.taxRepresentativeParty = taxRepresentativeParty;
+    }
+
+    public List<DeliveryRepresentation> getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(List<DeliveryRepresentation> delivery) {
+        this.delivery = delivery;
+    }
+
+    public DeliveryTermsRepresentation getDeliveryTerms() {
+        return deliveryTerms;
+    }
+
+    public void setDeliveryTerms(DeliveryTermsRepresentation deliveryTerms) {
+        this.deliveryTerms = deliveryTerms;
+    }
+
+    public List<PaymentMeansRepresentation> getPaymentMeans() {
+        return paymentMeans;
+    }
+
+    public void setPaymentMeans(List<PaymentMeansRepresentation> paymentMeans) {
+        this.paymentMeans = paymentMeans;
+    }
+
+    public List<PaymentTermsRepresentation> getPaymentTerms() {
+        return paymentTerms;
+    }
+
+    public void setPaymentTerms(List<PaymentTermsRepresentation> paymentTerms) {
+        this.paymentTerms = paymentTerms;
     }
 
     public List<PaymentRepresentation> getPrepaidPayment() {
-        return this.prepaidPayment;
+        return prepaidPayment;
     }
 
     public void setPrepaidPayment(List<PaymentRepresentation> prepaidPayment) {
         this.prepaidPayment = prepaidPayment;
     }
 
-    public boolean getCopyIndicator() {
-        return this.copyIndicator;
+    public List<AllowanceChargeRepresentation> getAllowanceCharge() {
+        return allowanceCharge;
     }
 
-    public void setCopyIndicator(boolean copyIndicator) {
-        this.copyIndicator = copyIndicator;
+    public void setAllowanceCharge(List<AllowanceChargeRepresentation> allowanceCharge) {
+        this.allowanceCharge = allowanceCharge;
     }
 
-    public List<DocumentReferenceRepresentation> getReceiptDocumentReference() {
-        return this.receiptDocumentReference;
+    public ExchangeRateRepresentation getTaxExchangeRate() {
+        return taxExchangeRate;
     }
 
-    public void setReceiptDocumentReference(List<DocumentReferenceRepresentation> receiptDocumentReference) {
-        this.receiptDocumentReference = receiptDocumentReference;
+    public void setTaxExchangeRate(ExchangeRateRepresentation taxExchangeRate) {
+        this.taxExchangeRate = taxExchangeRate;
     }
+
+    public ExchangeRateRepresentation getPricingExchangeRate() {
+        return pricingExchangeRate;
+    }
+
+    public void setPricingExchangeRate(ExchangeRateRepresentation pricingExchangeRate) {
+        this.pricingExchangeRate = pricingExchangeRate;
+    }
+
+    public ExchangeRateRepresentation getPaymentExchangeRate() {
+        return paymentExchangeRate;
+    }
+
+    public void setPaymentExchangeRate(ExchangeRateRepresentation paymentExchangeRate) {
+        this.paymentExchangeRate = paymentExchangeRate;
+    }
+
+    public ExchangeRateRepresentation getPaymentAlternativeExchangeRate() {
+        return paymentAlternativeExchangeRate;
+    }
+
+    public void setPaymentAlternativeExchangeRate(ExchangeRateRepresentation paymentAlternativeExchangeRate) {
+        this.paymentAlternativeExchangeRate = paymentAlternativeExchangeRate;
+    }
+
+    public List<TaxTotalRepresentation> getTaxTotal() {
+        return taxTotal;
+    }
+
+    public void setTaxTotal(List<TaxTotalRepresentation> taxTotal) {
+        this.taxTotal = taxTotal;
+    }
+
+    public MonetaryTotalRepresentation getLegalMonetaryTotal() {
+        return legalMonetaryTotal;
+    }
+
+    public void setLegalMonetaryTotal(MonetaryTotalRepresentation legalMonetaryTotal) {
+        this.legalMonetaryTotal = legalMonetaryTotal;
+    }
+
+    public List<InvoiceLineRepresentation> getInvoiceLine() {
+        return invoiceLine;
+    }
+
+    public void setInvoiceLine(List<InvoiceLineRepresentation> invoiceLine) {
+        this.invoiceLine = invoiceLine;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * Getter and Setters
+     */
 
 }

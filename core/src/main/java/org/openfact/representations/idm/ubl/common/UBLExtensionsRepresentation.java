@@ -4,31 +4,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UBLExtensionsRepresentation {
-    private List<UBLExtensionRepresentation> UBLExtension;
+    private List<UBLExtensionRepresentation> ublExtension;
     private String id;
 
     /**/
     public void addUBLExtension(UBLExtensionRepresentation representation) {
-        if (UBLExtension == null) {
-            UBLExtension = new ArrayList<>();
+        if (ublExtension == null) {
+            ublExtension = new ArrayList<>();
         }
-        UBLExtension.add(representation);
+        ublExtension.add(representation);
     }
     /**/
 
-    public List<UBLExtensionRepresentation> getUBLExtension() {
-        return this.UBLExtension;
+    public List<UBLExtensionRepresentation> getUblExtension() {
+        return ublExtension;
     }
 
-    public void setUBLExtension(List<UBLExtensionRepresentation> UBLExtension) {
-        this.UBLExtension = UBLExtension;
+    public void setUblExtension(List<UBLExtensionRepresentation> ublExtension) {
+        this.ublExtension = ublExtension;
     }
 
     public String getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(String id) {
         this.id = id;
     }
+
 }

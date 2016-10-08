@@ -1,9 +1,9 @@
 package org.openfact.representations.idm.ubl.common;
 
 public class BinaryObjectRepresentation {
-    private byte[] value;
+    private Byte[] value;
     private String format;
-    private Byte[] mimeCode;
+    private String mimeCode;
     private String encodingCode;
     private String characterSetCode;
     private String uri;
@@ -42,11 +42,11 @@ public class BinaryObjectRepresentation {
         this.characterSetCode = characterSetCode;
     }
 
-    public Byte[] getMimeCode() {
+    public String getMimeCode() {
         return this.mimeCode;
     }
 
-    public void setMimeCode(Byte[] mimeCode) {
+    public void setMimeCode(String mimeCode) {
         this.mimeCode = mimeCode;
     }
 
@@ -66,11 +66,11 @@ public class BinaryObjectRepresentation {
         this.format = format;
     }
 
-    public byte[] getValue() {
+    public Byte[] getValue() {
         return this.value;
     }
 
-    public void setValue(byte[] value) {
+    public void setValue(Byte[] value) {
         this.value = value;
     }
 }

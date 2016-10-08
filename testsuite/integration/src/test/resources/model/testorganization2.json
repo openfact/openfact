@@ -1,0 +1,440 @@
+{
+	"id": "demo",
+	"organization": "demo",
+	"description": "demo organization",
+	"enabled": true,
+	"assignedIdentificationId": "10467793549",
+	"additionalAccountId": "RUC",
+	"supplierName": "test supplier name",
+	"registrationName": "test registration name",
+	"postalAddress": {
+		"streetName": "illinois street",
+		"citySubdivisionName": "kentuchy",
+		"cityName": "miami",
+		"countrySubentity": "Ayacucho",
+		"district": "Jesus nazareno",
+		"countryIdentificationCode": "PE"
+	},
+	"smtpServer": {
+		"from": "auto@openfact.org",
+		"host": "localhost",
+		"port": "3025"
+	},
+	"ublSenderServer": {
+		"username": "username",
+		"password": "password"
+	},
+	"certificate": {
+		"privateKey": "MIICXAIBAAKBgQCrVrCuTtArbgaZzL1hvh0xtL5mc7o0NqPVnYXkLvgcwiC3BjLGw1tGEGoJaXDuSaRllobm53JBhjx33UNv+5z/UMG4kytBWxheNVKnL6GgqlNabMaFfPLPCF8kAgKnsi79NMo+n6KnSY8YeUmec/p2vjO2NjsSAVcWEQMVhJ31LwIDAQABAoGAfmO8gVhyBxdqlxmIuglbz8bcjQbhXJLR2EoS8ngTXmN1bo2L90M0mUKSdc7qF10LgETBzqL8jYlQIbt+e6TH8fcEpKCjUlyq0Mf/vVbfZSNaVycY13nTzo27iPyWQHK5NLuJzn1xvxxrUeXI6A2WFpGEBLbHjwpx5WQG9A+2scECQQDvdn9NE75HPTVPxBqsEd2z10TKkl9CZxu10Qby3iQQmWLEJ9LNmy3acvKrE3gMiYNWb6xHPKiIqOR1as7L24aTAkEAtyvQOlCvr5kAjVqrEKXalj0Tzewjweuxc0pskvArTI2Oo070h65GpoIKLc9jf+UA69cRtquwP93aZKtW06U8dQJAF2Y44ks/mK5+eyDqik3koCI08qaC8HYq2wVl7G2QkJ6sbAaILtcvD92ToOvyGyeE0flvmDZxMYlvaZnaQ0lcSQJBAKZU6umJi3/xeEbkJqMfeLclD27XGEFoPeNrmdx0q10Azp4NfJAY+Z8KRyQCR2BEG+oNitBOZ+YXF9KCpH3cdmECQHEigJhYg+ykOvr1aiZUMFT72HU0jnmQe2FVekuG+LJUt2Tm7GtMjTFoGpf0JwrVuZN39fOYAlo+nTixgeW7X8Y=",
+		"publicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrVrCuTtArbgaZzL1hvh0xtL5mc7o0NqPVnYXkLvgcwiC3BjLGw1tGEGoJaXDuSaRllobm53JBhjx33UNv+5z/UMG4kytBWxheNVKnL6GgqlNabMaFfPLPCF8kAgKnsi79NMo+n6KnSY8YeUmec/p2vjO2NjsSAVcWEQMVhJ31LwIDAQAB"
+	},
+	"tasksSchedule": {
+		"attempNumber": 5,
+		"lapseTime": 2,
+		"onErrorAttempNumber": 2,
+		"onErrorLapseTime": 3,
+		"delayTime": 4,
+		"submitTime": "00:00:00",
+		"submitDays": [
+			"MONDAY",
+			"TUESDAY",
+			"WEDNESDAY",
+			"THURSDAY",
+			"FRIDAY",
+			"SATURDAY",
+			"SUNDAY"
+		]
+	},
+	"emailTheme": "default",
+	"internationalizationEnabled": true,
+	"supportedLocales": [
+		"es",
+		"en"
+	],
+	"defaultLocale": "es",
+	"internationalizationUblEnabled": true,
+	"supportedUblLocales": [
+		"pe",
+		"ar"
+	],
+	"defaultUblLocale": "pe",
+	"supportedCurrencies": [
+		"pen",
+		"usd"
+	],
+	"defaultCurrency": "pen",
+	"attributes": {
+		"attribute1": "attribute1",
+		"attribute2": "attribute2"
+	},
+	"invoices": [
+		{
+			"idUbl": "F001-00000001",
+			"ublVersionID": "2.0",
+			"customizationID": "1.0",
+			"issueDate": "2016-10-08",
+			"invoiceTypeCode": "01",
+			"documentCurrencyCode": "PEN",
+			"accountingSupplierParty": {
+				"customerAssignedAccountID": "10467793549",
+				"additionalAccountID": [
+					"6"
+				],
+				"party": {
+					"postalAddress": {
+						"idUbl": "050101",
+						"streetName": "MZA. A LOTE. 3",
+						"citySubdivisionName": "ASOC. SANTA TERESA",
+						"cityName": "AYACUCHO",
+						"countrySubentity": "HUAMANGA",
+						"district": "AYACUCHO",
+						"country": {
+							"identificationCode": "PE"
+						}
+					},
+					"partyLegalEntity": [
+						{
+							"registrationName": "SISTCOOP S.A.C"
+						}
+					]
+				}
+			},
+			"accountingCustomerParty": {
+				"customerAssignedAccountID": "10467793549",
+				"additionalAccountID": [
+					"6"
+				],
+				"party": {
+					"partyLegalEntity": [
+						{
+							"registrationName": "SISTCOOP S.A.C."
+						}
+					]
+				}
+			},
+			"taxTotal": [
+				{
+					"taxAmount": 0.00,
+					"taxSubtotal": [
+						{
+							"taxAmount": 0.00,
+							"taxCategory": {
+								"taxScheme": {
+									"idUbl": "1000",
+									"name": "IGV",
+									"taxCodeType": "VAT"
+								}
+							}
+						}
+					]
+				}
+			],
+			"legalMonetaryTotal": {
+				"payableAmount": 0.00
+			},
+			"invoiceLine": [
+				{
+					"idUbl": "1",
+					"invoicedQuantity": {
+						"value": 1,
+						"unitCode": "NIU"
+					},
+					"lineExtensionAmount": 166101.69,
+					"pricingReference": {
+						"alternativeConditionPrice": [
+							{
+								"priceAmount": 0.00,
+								"priceTypeCode": "01"
+							},
+							{
+								"priceAmount": 1250.00,
+								"priceTypeCode": "02"
+							}
+						]
+					},
+					"taxTotal": [
+						{
+							"taxAmount": 0.00,
+							"taxSubtotal": [
+								{
+									"taxAmount": 0.00,
+									"taxCategory": {
+										"taxExemptionReasonCode": "11",
+										"taxScheme": {
+											"idUbl": "1000",
+											"name": "IGV",
+											"taxCodeType": "VAT"
+										}
+									}
+								}
+							]
+						}
+					],
+					"item": {
+						"description": [
+							"Televisor plasma de 42', marca 'RCA'"
+						],
+						"sellersItemIdentification": {
+							"idUbl": "GLG199"
+						}
+					},
+					"price": {
+						"priceAmount": 0.00
+					}
+				}
+			]
+		}
+	],
+	"creditNotes": [
+		{
+			"idUbl": "FC01-00000001",
+			"issueDate": "2016-10-08",
+			"documentCurrencyCode": "PEN",
+			"discrepancyResponse": [
+				{
+					"referenceID": "F001-0001",
+					"responseCode": "01",
+					"description": [
+						"No tengo motivos"
+					]
+				}
+			],
+			"accountingSupplierParty": {
+				"customerAssignedAccountID": "20494637074",
+				"additionalAccountID": [
+					"6"
+				],
+				"party": {
+					"postalAddress": {
+						"idUbl": "050101",
+						"streetName": "MZA. A LOTE. 3",
+						"citySubdivisionName": "ASOC. SANTA TERESA",
+						"cityName": "AYACUCHO",
+						"countrySubentity": "HUAMANGA",
+						"district": "AYACUCHO",
+						"country": {
+							"identificationCode": "PE"
+						}
+					},
+					"partyLegalEntity": [
+						{
+							"registrationName": "SISTCOOP S.A.C"
+						}
+					]
+				}
+			},
+			"accountingCustomerParty": {
+				"customerAssignedAccountID": "20407446497",
+				"additionalAccountID": [
+					"6"
+				],
+				"party": {
+					"postalAddress": {
+						"country": {
+							
+						}
+					},
+					"partyLegalEntity": [
+						{
+							"registrationName": "AHREN CONTRATISTAS"
+						}
+					]
+				}
+			},
+			"taxTotal": [
+				{
+					"taxAmount": 62675.85,
+					"taxSubtotal": [
+						{
+							"taxAmount": 62675.85,
+							"taxCategory": {
+								"taxScheme": {
+									"idUbl": "1000",
+									"name": "IGV",
+									"taxCodeType": "VAT"
+								}
+							}
+						}
+					]
+				}
+			],
+			"legalMonetaryTotal": {
+				"chargeTotalAmount": 423225.00,
+				"payableAmount": 16523.00
+			},
+			"creditNoteLine": [
+				{
+					"idUbl": "1",
+					"creditedQuantity": {
+						"value": 2000,
+						"unitCode": "NIU"
+					},
+					"lineExtensionAmount": 149491.53,
+					"pricingReference": {
+						"alternativeConditionPrice": [
+							{
+								"priceAmount": 98.00,
+								"priceTypeCode": "01"
+							}
+						]
+					},
+					"taxTotal": [
+						{
+							"taxAmount": 26908.47,
+							"taxSubtotal": [
+								{
+									"taxAmount": 26908.47,
+									"taxCategory": {
+										"taxExemptionReasonCode": "10",
+										"taxScheme": {
+											"idUbl": "1000",
+											"name": "IGV",
+											"taxCodeType": "VAT"
+										}
+									}
+								}
+							]
+						}
+					],
+					"item": {
+						"description": [
+							"Grabadora LG Externo Modelo: GE20LU10"
+						],
+						"sellersItemIdentification": {
+							"idUbl": "GLG199"
+						}
+					},
+					"price": {
+						"priceAmount": 83.05
+					}
+				}
+			]
+		}
+	],
+	"debitNotes": [
+		{
+			"idUbl": "FD01-00000001",
+			"issueDate": "2016-10-08",
+			"documentCurrencyCode": "PEN",
+			"discrepancyResponse": [
+				{
+					"referenceID": "F001-0001",
+					"responseCode": "01",
+					"description": [
+						"No tengo motivos"
+					]
+				}
+			],
+			"accountingSupplierParty": {
+				"customerAssignedAccountID": "20494637074",
+				"additionalAccountID": [
+					"6"
+				],
+				"party": {
+					"postalAddress": {
+						"idUbl": "050101",
+						"streetName": "MZA. A LOTE. 3",
+						"citySubdivisionName": "ASOC. SANTA TERESA",
+						"cityName": "AYACUCHO",
+						"countrySubentity": "HUAMANGA",
+						"district": "AYACUCHO",
+						"country": {
+							"identificationCode": "PE"
+						}
+					},
+					"partyLegalEntity": [
+						{
+							"registrationName": "SISTCOOP S.A.C"
+						}
+					]
+				}
+			},
+			"accountingCustomerParty": {
+				"customerAssignedAccountID": "20407446497",
+				"additionalAccountID": [
+					"6"
+				],
+				"party": {
+					"postalAddress": {
+						"country": {
+							
+						}
+					},
+					"partyLegalEntity": [
+						{
+							"registrationName": "AHREN CONTRATISTAS"
+						}
+					]
+				}
+			},
+			"taxTotal": [
+				{
+					"taxAmount": 62675.85,
+					"taxSubtotal": [
+						{
+							"taxAmount": 62675.85,
+							"taxCategory": {
+								"taxScheme": {
+									"idUbl": "1000",
+									"name": "IGV",
+									"taxCodeType": "VAT"
+								}
+							}
+						}
+					]
+				}
+			],
+			"requestedMonetaryTotal": {
+				"chargeTotalAmount": 132,
+				"payableAmount": 34
+			},
+			"debitNoteLine": [
+				{
+					"idUbl": "1",
+					"debitedQuantity": {
+						"value": 2000,
+						"unitCode": "NIU"
+					},
+					"lineExtensionAmount": 149491.53,
+					"pricingReference": {
+						"alternativeConditionPrice": [
+							{
+								"priceAmount": 98.00,
+								"priceTypeCode": "01"
+							}
+						]
+					},
+					"taxTotal": [
+						{
+							"taxAmount": 26908.47,
+							"taxSubtotal": [
+								{
+									"taxAmount": 26908.47,
+									"taxCategory": {
+										"taxExemptionReasonCode": "10",
+										"taxScheme": {
+											"idUbl": "1000",
+											"name": "IGV",
+											"taxCodeType": "VAT"
+										}
+									}
+								}
+							]
+						}
+					],
+					"item": {
+						"description": [
+							"Grabadora LG Externo Modelo: GE20LU10"
+						],
+						"sellersItemIdentification": {
+							"idUbl": "GLG199"
+						}
+					},
+					"price": {
+						"priceAmount": 83.05
+					}
+				}
+			]
+		}
+	]
+}

@@ -8,9 +8,9 @@ public class ItemRepresentation {
     private List<String> description;
     private QuantityRepresentation packQuantity;
     private BigDecimal packSizeNumeric;
-    private boolean catalogueIndicator;
+    private Boolean catalogueIndicator;
     private String name;
-    private boolean hazardousRiskIndicator;
+    private Boolean hazardousRiskIndicator;
     private String additionalInformation;
     private List<String> keyword;
     private List<String> brandName;
@@ -274,11 +274,11 @@ public class ItemRepresentation {
         this.sellersItemIdentification = sellersItemIdentification;
     }
 
-    public boolean getCatalogueIndicator() {
+    public Boolean getCatalogueIndicator() {
         return this.catalogueIndicator;
     }
 
-    public void setCatalogueIndicator(boolean catalogueIndicator) {
+    public void setCatalogueIndicator(Boolean catalogueIndicator) {
         this.catalogueIndicator = catalogueIndicator;
     }
 
@@ -355,11 +355,11 @@ public class ItemRepresentation {
         this.brandName = brandName;
     }
 
-    public boolean getHazardousRiskIndicator() {
+    public Boolean getHazardousRiskIndicator() {
         return this.hazardousRiskIndicator;
     }
 
-    public void setHazardousRiskIndicator(boolean hazardousRiskIndicator) {
+    public void setHazardousRiskIndicator(Boolean hazardousRiskIndicator) {
         this.hazardousRiskIndicator = hazardousRiskIndicator;
     }
 

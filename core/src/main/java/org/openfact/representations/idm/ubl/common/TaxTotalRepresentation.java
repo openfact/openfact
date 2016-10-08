@@ -7,7 +7,7 @@ import java.util.List;
 public class TaxTotalRepresentation {
     private BigDecimal taxAmount;
     private BigDecimal roundingAmount;
-    private boolean taxEvidenceIndicator;
+    private Boolean taxEvidenceIndicator;
     private List<TaxSubtotalRepresentation> taxSubtotal;
     private String id;
 
@@ -36,11 +36,11 @@ public class TaxTotalRepresentation {
         this.taxAmount = taxAmount;
     }
 
-    public boolean getTaxEvidenceIndicator() {
+    public Boolean getTaxEvidenceIndicator() {
         return this.taxEvidenceIndicator;
     }
 
-    public void setTaxEvidenceIndicator(boolean taxEvidenceIndicator) {
+    public void setTaxEvidenceIndicator(Boolean taxEvidenceIndicator) {
         this.taxEvidenceIndicator = taxEvidenceIndicator;
     }
 

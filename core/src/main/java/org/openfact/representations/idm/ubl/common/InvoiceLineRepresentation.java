@@ -14,7 +14,7 @@ public class InvoiceLineRepresentation {
     private LocalDate taxPointDate;
     private String accountingCostCode;
     private String accountingCost;
-    private boolean freeOfChargeIndicator;
+    private Boolean freeOfChargeIndicator;
     private List<OrderLineReferenceRepresentation> orderLineReference;
     private List<LineReferenceRepresentation> despatchLineReference;
     private List<LineReferenceRepresentation> receiptLineReference;
@@ -168,11 +168,11 @@ public class InvoiceLineRepresentation {
         this.lineExtensionAmount = lineExtensionAmount;
     }
 
-    public boolean getFreeOfChargeIndicator() {
+    public Boolean getFreeOfChargeIndicator() {
         return this.freeOfChargeIndicator;
     }
 
-    public void setFreeOfChargeIndicator(boolean freeOfChargeIndicator) {
+    public void setFreeOfChargeIndicator(Boolean freeOfChargeIndicator) {
         this.freeOfChargeIndicator = freeOfChargeIndicator;
     }
 

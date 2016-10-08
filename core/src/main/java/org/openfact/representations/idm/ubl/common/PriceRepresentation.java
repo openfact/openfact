@@ -7,7 +7,7 @@ public class PriceRepresentation {
     private BigDecimal priceAmount;
     private QuantityRepresentation baseQuantity;
     private List<String> priceChangeReason;
-    private String priceRepresentationCode;
+    private String priceTypeCode;
     private String priceRepresentation;
     private BigDecimal orderableUnitFactorRate;
     private List<PeriodRepresentation> validityPeriod;
@@ -39,12 +39,12 @@ public class PriceRepresentation {
         this.orderableUnitFactorRate = orderableUnitFactorRate;
     }
 
-    public String getPriceRepresentationCode() {
-        return this.priceRepresentationCode;
+    public String getPriceTypeCode() {
+        return this.priceTypeCode;
     }
 
-    public void setPriceRepresentationCode(String priceRepresentationCode) {
-        this.priceRepresentationCode = priceRepresentationCode;
+    public void setPriceTypeCode(String priceTypeCode) {
+        this.priceTypeCode = priceTypeCode;
     }
 
     public String getPriceRepresentation() {
