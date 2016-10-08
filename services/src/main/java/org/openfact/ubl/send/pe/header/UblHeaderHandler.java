@@ -1,5 +1,6 @@
 package org.openfact.ubl.send.pe.header;
 
+import java.util.Map;
 import java.util.Set;
 
 import javax.xml.namespace.QName;
@@ -15,11 +16,12 @@ import org.jboss.logging.Logger;
 import org.openfact.models.OrganizationModel;
 
 public class UblHeaderHandler implements SOAPHandler<SOAPMessageContext> {
-	protected static final Logger logger = Logger.getLogger(UblHeaderHandler.class);
-	private final OrganizationModel organization;
+	
+    protected static final Logger logger = Logger.getLogger(UblHeaderHandler.class);
+	private final Map<String, String> config;
 
-	public UblHeaderHandler(OrganizationModel organization) {
-		this.organization = organization;
+	public UblHeaderHandler(Map<String, String> config) {
+		this.config = config;
 	}
 
 	@Override
@@ -51,9 +53,9 @@ public class UblHeaderHandler implements SOAPHandler<SOAPMessageContext> {
 				// "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd");
 
 				SOAPElement userElem = factory.createElement("Username", prefix, uri);
-				userElem.addTextNode(organization.getAssignedIdentificationId() + organization.getUblSenderConfig().get("username"));
+				userElem.addTextNode(config.get("username"));
 				SOAPElement pwdElem = factory.createElement("Password", prefix, uri);
-				pwdElem.addTextNode(organization.getUblSenderConfig().get("password"));
+				pwdElem.addTextNode(config.get("password"));
 
 				// pwdElem.addAttribute(QName.valueOf("Type"),
 				// "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText");
