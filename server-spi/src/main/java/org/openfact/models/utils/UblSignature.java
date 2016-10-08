@@ -47,8 +47,10 @@ public class UblSignature {
 	/**
 	 * Method used to get the KeyInfo
 	 */
-	private static KeyInfo getKeyInfo(XMLSignatureFactory xmlSigFactory, OrganizationModel organization) throws KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableEntryException {
-		X509Certificate cert = organization.getCertificate();		
+	private static KeyInfo getKeyInfo(XMLSignatureFactory xmlSigFactory, OrganizationModel organization)
+			throws KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException,
+			UnrecoverableEntryException {
+		X509Certificate cert = organization.getCertificate();
 		KeyInfoFactory kif = xmlSigFactory.getKeyInfoFactory();
 		List<Serializable> x509Content = new ArrayList<Serializable>();
 		x509Content.add(cert.getSubjectX500Principal().getName());
@@ -61,17 +63,20 @@ public class UblSignature {
 	/**
 	 * Method used to attach a generated digital signature to the existing
 	 * document
-	 * @throws ParserConfigurationException 
-	 * @throws NoSuchAlgorithmException 
-	 * @throws InvalidAlgorithmParameterException 
-	 * @throws IOException 
-	 * @throws UnrecoverableEntryException 
-	 * @throws CertificateException 
-	 * @throws KeyStoreException 
-	 * @throws XMLSignatureException 
-	 * @throws MarshalException 
+	 * 
+	 * @throws ParserConfigurationException
+	 * @throws NoSuchAlgorithmException
+	 * @throws InvalidAlgorithmParameterException
+	 * @throws IOException
+	 * @throws UnrecoverableEntryException
+	 * @throws CertificateException
+	 * @throws KeyStoreException
+	 * @throws XMLSignatureException
+	 * @throws MarshalException
 	 */
-	public static Document ublSignatureGenerate(OrganizationModel organization) throws ParserConfigurationException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, KeyStoreException, CertificateException, UnrecoverableEntryException, IOException, MarshalException, XMLSignatureException {
+	public static Document ublSignatureGenerate(OrganizationModel organization) throws ParserConfigurationException,
+			NoSuchAlgorithmException, InvalidAlgorithmParameterException, KeyStoreException, CertificateException,
+			UnrecoverableEntryException, IOException, MarshalException, XMLSignatureException {
 		// Create XML Signature Factory
 		XMLSignatureFactory xmlSigFactory = XMLSignatureFactory.getInstance(FACTORY);
 		PrivateKey privateKey = organization.getPrivateKey();
@@ -80,20 +85,27 @@ public class UblSignature {
 		DOMSignContext domSignCtx = new DOMSignContext(privateKey, document);
 
 		domSignCtx.setDefaultNamespacePrefix(PREFIX);
-		Reference ref = xmlSigFactory.newReference("", xmlSigFactory.newDigestMethod(DigestMethod.SHA1, null), Collections.singletonList(xmlSigFactory.newTransform(Transform.ENVELOPED, (TransformParameterSpec) null)), null, null);
-		SignedInfo signedInfo = xmlSigFactory.newSignedInfo(xmlSigFactory.newCanonicalizationMethod(CanonicalizationMethod.INCLUSIVE, (C14NMethodParameterSpec) null), xmlSigFactory.newSignatureMethod(SignatureMethod.RSA_SHA1, null), Collections.singletonList(ref));
-        
+		Reference ref = xmlSigFactory.newReference("",
+				xmlSigFactory.newDigestMethod(DigestMethod.SHA1, null), Collections.singletonList(
+						xmlSigFactory.newTransform(Transform.ENVELOPED, (TransformParameterSpec) null)),
+				null, null);
+		SignedInfo signedInfo = xmlSigFactory.newSignedInfo(
+				xmlSigFactory.newCanonicalizationMethod(CanonicalizationMethod.INCLUSIVE,
+						(C14NMethodParameterSpec) null),
+				xmlSigFactory.newSignatureMethod(SignatureMethod.RSA_SHA1, null), Collections.singletonList(ref));
+
 		KeyInfo keyInfo = getKeyInfo(xmlSigFactory, organization);
-		
+
 		// Create a new XML Signature
-		XMLSignature xmlSignature = xmlSigFactory.newXMLSignature(signedInfo, keyInfo);
+		XMLSignature xmlSignature = xmlSigFactory.newXMLSignature(signedInfo, keyInfo, null,
+				"Signature" + organization.getName(), null);
 		xmlSignature.sign(domSignCtx);
 		return document;
 	}
 
 	public static Document newEmptyDocument() throws ParserConfigurationException {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder builder = factory.newDocumentBuilder();		
+		DocumentBuilder builder = factory.newDocumentBuilder();
 		return builder.newDocument();
 	}
 }
