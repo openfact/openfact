@@ -21,6 +21,7 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
@@ -41,6 +42,12 @@ public class DocumentUtils {
 		docParse.setXmlStandalone(false);
 		return docParse;
 	}
+	
+	public Element getByteToElement(byte[] document) throws TransformerFactoryConfigurationError, Exception {
+		DOMSource source = new DOMSource(DocumentUtils.getByteToDocument(document));
+		Element elem = ((Document) source.getNode()).getDocumentElement();
+		return elem;
+	}
 
 	public static void getElementToByte(Element element, OutputStream out) {
 		try {
@@ -48,8 +55,6 @@ public class DocumentUtils {
 			StreamResult result = new StreamResult(out);
 			TransformerFactory transFactory = TransformerFactory.newInstance();
 			Transformer transformer = transFactory.newTransformer();
-			transformer.setOutputProperty(OutputKeys.STANDALONE, "no");
-			transformer.setOutputProperty(OutputKeys.ENCODING, "ISO-8859-1");
 			transformer.transform(source, result);
 		} catch (Exception ex) {
 			throw new ModelException("Error in convert element to byte");
@@ -167,15 +172,18 @@ public class DocumentUtils {
 		}
 		return writer.toString();
 	}
-	
+
 	public static byte[] getBytesFromDocument(Document document) throws TransformerException {
-	    Source source = new DOMSource(document);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        Result result = new StreamResult(out);
-        TransformerFactory factory = TransformerFactory.newInstance();
-        Transformer transformer = factory.newTransformer();
-        transformer.transform(source, result);
-        byte[] butesXml =  out.toByteArray();
-        return butesXml;
+		Source source = new DOMSource(document);
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		Result result = new StreamResult(out);
+		TransformerFactory factory = TransformerFactory.newInstance();
+		Transformer transformer = factory.newTransformer();
+		transformer.setOutputProperty(OutputKeys.ENCODING, "ISO-8859-1");
+		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+		transformer.setOutputProperty(OutputKeys.STANDALONE, "no");
+		transformer.transform(source, result);
+		byte[] butesXml = out.toByteArray();
+		return butesXml;
 	}
 }

@@ -148,7 +148,7 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 
 	private byte[] generateZip(Document document, String fileName) throws TransformerException, IOException {
 		byte[] bytes = DocumentUtils.getBytesFromDocument(document);
-		return ZipBuilder.createZipInMemory().addFolder("dummy/").add(bytes).path(fileName + ".xml").save().toBytes();
+		return ZipBuilder.createZipInMemory()/*.addFolder("dummy/")*/.add(bytes).path(fileName + ".xml").save().toBytes();
 	}
 
 	private UblProvider getUblProvider(OrganizationModel organization) {
