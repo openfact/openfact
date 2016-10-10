@@ -294,7 +294,7 @@ public class UblExtensionContentGeneratorProvider_PE implements UblExtensionCont
         UBLExtensionsModel ublExtensions = invoice.getUBLExtensions();
         UBLExtensionModel ublExtension = ublExtensions.addUblExtension();
         ExtensionContentModel extensionContent = ublExtension.getExtensionContent();
-        generateSignature(organization, extensionContent);
+        extensionContent.setAny(generateSignature(organization, extensionContent));
         return ublExtension;
     }
 
@@ -303,7 +303,7 @@ public class UblExtensionContentGeneratorProvider_PE implements UblExtensionCont
         UBLExtensionsModel ublExtensions = creditNote.getUBLExtensions();
         UBLExtensionModel ublExtension = ublExtensions.addUblExtension();
         ExtensionContentModel extensionContent = ublExtension.getExtensionContent();
-        generateSignature(organization, extensionContent);
+        extensionContent.setAny(generateSignature(organization, extensionContent));
         return ublExtension;
     }
 
@@ -312,15 +312,14 @@ public class UblExtensionContentGeneratorProvider_PE implements UblExtensionCont
         UBLExtensionsModel ublExtensions = debitNote.getUBLExtensions();
         UBLExtensionModel ublExtension = ublExtensions.addUblExtension();
         ExtensionContentModel extensionContent = ublExtension.getExtensionContent();
-        generateSignature(organization, extensionContent);
+        extensionContent.setAny(generateSignature(organization, extensionContent));
         return ublExtension;
     }
 
-    private void generateSignature(OrganizationModel organization, ExtensionContentModel extensionContent)
+    private Element generateSignature(OrganizationModel organization, ExtensionContentModel extensionContent)
             throws Exception {
         Document document = UblSignature.ublSignatureGenerate(organization);
-        Element element = document.getDocumentElement();
-        extensionContent.setAny(element);
+        return document.getDocumentElement();
     }
 
     private Element generateElement(AdditionalInformationTypeSunatAgg object) throws JAXBException {
