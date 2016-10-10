@@ -746,7 +746,7 @@ public class RepresentationToModel {
 
     public static void updateModel(ItemModel model, ItemRepresentation rep) {
         if (rep.getDescription() != null) {
-            for (String item : model.getDescription()) {
+            for (String item : rep.getDescription()) {
                 model.getDescription().add(item);
             }
         }
@@ -810,7 +810,7 @@ public class RepresentationToModel {
             model.setCustomerAssignedAccountID(rep.getCustomerAssignedAccountID());
         }
         if (rep.getAdditionalAccountID() != null) {
-            for (String item : model.getAdditionalAccountID()) {
+            for (String item : rep.getAdditionalAccountID()) {
                 model.getAdditionalAccountID().add(item);
             }
         }
@@ -827,7 +827,7 @@ public class RepresentationToModel {
             model.setCustomerAssignedAccountID(rep.getCustomerAssignedAccountID());
         }
         if (rep.getAdditionalAccountID() != null) {
-            for (String item : model.getAdditionalAccountID()) {
+            for (String item : rep.getAdditionalAccountID()) {
                 model.getAdditionalAccountID().add(item);
             }
         }
@@ -839,8 +839,13 @@ public class RepresentationToModel {
                 updateModel(model.addPartyLegalEntity(), item);
             }
         }
+        if (rep.getPartyIdentification() != null) {
+            for (String item : rep.getPartyIdentification()) {
+                model.getPartyIdentification().add(item);
+            }
+        }
         if (rep.getPartyName() != null) {
-            for (String item : model.getPartyName()) {
+            for (String item : rep.getPartyName()) {
                 model.getPartyName().add(item);
             }
         }
@@ -946,8 +951,8 @@ public class RepresentationToModel {
         if (rep.getExpiryTime() != null) {
             model.setExpiryTime(rep.getExpiryTime());
         }
-        if (rep.getURI() != null) {
-            model.setURI(rep.getURI());
+        if (rep.getUri() != null) {
+            model.setURI(rep.getUri());
         }
     }
 

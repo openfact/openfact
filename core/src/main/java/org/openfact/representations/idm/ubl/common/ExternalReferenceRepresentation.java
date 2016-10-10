@@ -4,38 +4,30 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class ExternalReferenceRepresentation {
-    private String URI;
+    private String uri;
     private String documentHash;
     private LocalDate expiryDate;
     private LocalTime expiryTime;
     private String id;
 
-    public String getId() {
-        return this.id;
+    public String getUri() {
+        return uri;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUri(String uri) {
+        this.uri = uri;
     }
 
     public String getDocumentHash() {
-        return this.documentHash;
+        return documentHash;
     }
 
     public void setDocumentHash(String documentHash) {
         this.documentHash = documentHash;
     }
 
-    public String getURI() {
-        return this.URI;
-    }
-
-    public void setURI(String URI) {
-        this.URI = URI;
-    }
-
     public LocalDate getExpiryDate() {
-        return this.expiryDate;
+        return expiryDate;
     }
 
     public void setExpiryDate(LocalDate expiryDate) {
@@ -43,10 +35,19 @@ public class ExternalReferenceRepresentation {
     }
 
     public LocalTime getExpiryTime() {
-        return this.expiryTime;
+        return expiryTime;
     }
 
     public void setExpiryTime(LocalTime expiryTime) {
         this.expiryTime = expiryTime;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
 }

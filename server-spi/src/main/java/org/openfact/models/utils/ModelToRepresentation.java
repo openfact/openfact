@@ -501,14 +501,17 @@ public class ModelToRepresentation {
 
     public static PartyRepresentation toRepresentation(PartyModel model) {
         PartyRepresentation rep = new PartyRepresentation();
+        if (model.getPostalAddress() != null) {
+            rep.setPostalAddress(toRepresentation(model.getPostalAddress()));
+        }
         for (PartyLegalModel item : model.getPartyLegalEntity()) {
             rep.addPartyLegalEntity(toRepresentation(item));
         }
         for (String item : model.getPartyName()) {
             rep.addPartyName(item);
         }
-        if (model.getPostalAddress() != null) {
-            rep.setPostalAddress(toRepresentation(model.getPostalAddress()));
+        for (String item : model.getPartyIdentification()) {
+            rep.addPartyIdentification(item);
         }
         return rep;
     }
@@ -602,7 +605,7 @@ public class ModelToRepresentation {
             rep.setExpiryTime(model.getExpiryTime());
         }
         if (model.getURI() != null) {
-            rep.setURI(model.getURI());
+            rep.setUri(model.getURI());
         }
         return rep;
     }

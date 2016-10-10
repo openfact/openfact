@@ -75,6 +75,24 @@
 			"issueDate": "2016-10-08",
 			"invoiceTypeCode": "01",
 			"documentCurrencyCode": "PEN",
+			"signature": [
+				{
+					"idUbl": "IDSignOlva",
+					"signatoryParty": {
+						"partyIdentification": [
+							"20494637074"
+						],
+						"partyName": [
+							"SISTCOOP S.A.C"
+						]
+					},
+					"digitalSignatureAttachment": {
+						"externalReference": {
+							"uri": "#SignatureOlva"
+						}
+					}
+				}
+			],
 			"accountingSupplierParty": {
 				"customerAssignedAccountID": "10467793549",
 				"additionalAccountID": [
