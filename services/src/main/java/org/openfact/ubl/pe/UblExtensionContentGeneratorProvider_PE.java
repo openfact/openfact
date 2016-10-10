@@ -21,6 +21,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.crypto.dsig.CanonicalizationMethod;
 import javax.xml.crypto.dsig.DigestMethod;
 import javax.xml.crypto.dsig.Reference;
@@ -75,9 +76,14 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.helger.ubl21.UBL21Reader;
+import com.helger.ubl21.UBL21Writer;
+import com.helger.xml.XMLHelper;
+
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.IDType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.PayableAmountType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.ValueType;
+import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 
 public class UblExtensionContentGeneratorProvider_PE implements UblExtensionContentGeneratorProvider {
 
@@ -135,7 +141,10 @@ public class UblExtensionContentGeneratorProvider_PE implements UblExtensionCont
             Document documentSign = signDocument(organization, document);   
             
             // Set new Signature
-            extensionSignature.getExtensionContent().setAny(getDigitalSignature(organization, documentSign).getDocumentElement());
+            InvoiceType invoiceType = UBL21Reader.invoice().read(documentSign);
+            
+                       
+            extensionSignature.getExtensionContent().setAny((Element) invoiceType.getUBLExtensions().getUBLExtension().get(1).getExtensionContent().getAny());
             
             // Result
             return new ArrayList<>(Arrays.asList(additionalInformation, extensionSignature));
@@ -145,16 +154,16 @@ public class UblExtensionContentGeneratorProvider_PE implements UblExtensionCont
         }
     }
     
-    public static Document getDigitalSignature(OrganizationModel organization, Document document) throws Exception {
-        NodeList nl = document.getElementsByTagNameNS(XMLSignature.XMLNS, "Signature");
-        if (nl.getLength() == 0) {
-            throw new Exception("No XML Digital Signature Found, document is discarded");
-        }
-        PublicKey publicKey = organization.getPublicKey();
-        DOMValidateContext valContext = new DOMValidateContext(publicKey, nl.item(0));
-        XMLSignatureFactory fac = XMLSignatureFactory.getInstance("DOM");
-        XMLSignature signature = fac.unmarshalXMLSignature(valContext);
-        return (Document) signature.getSignatureValue();
+    public static Element getDigitalSignature(OrganizationModel organization, Document document) throws Exception {
+        NodeList nodes = document.getElementsByTagNameNS(XMLSignature.XMLNS, "Signature");
+        
+        Element elem = null;
+        for (int i = 0; i < nodes.getLength(); i++) {
+            Node node = nodes.item(i);
+            elem = (Element) node.cloneNode(false);
+        }        
+                            
+        return elem;
     }
 
     @Override
