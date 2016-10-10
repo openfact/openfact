@@ -75,6 +75,22 @@
 			"issueDate": "2016-10-08",
 			"invoiceTypeCode": "01",
 			"documentCurrencyCode": "PEN",
+			"signature": {
+				"ID": "IDSigndemo",
+				"signatoryParty": {
+					"partyIdentification": {
+						"ID": "10467793549"
+					},
+					"partyName": {
+						"name": "AHREN CONTRATISTAS GENERALES S.A.C"
+					}
+				},
+				"digitalSignatureAttachment": {
+					"externalReference": {
+						"URI": "#Signaturedemo"
+					}
+				}
+			},
 			"accountingSupplierParty": {
 				"customerAssignedAccountID": "10467793549",
 				"additionalAccountID": [
