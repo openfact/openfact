@@ -77,10 +77,10 @@
 			"documentCurrencyCode": "PEN",
 			"signature": [
 				{
-					"idUbl": "IDSignOlva",
+					"idUbl": "IDSigndemo",
 					"signatoryParty": {
 						"partyIdentification": [
-							"20494637074"
+							"10467793549"
 						],
 						"partyName": [
 							"SISTCOOP S.A.C"
@@ -88,7 +88,7 @@
 					},
 					"digitalSignatureAttachment": {
 						"externalReference": {
-							"uri": "#SignatureOlva"
+							"uri": "#Signaturedemo"
 						}
 					}
 				}
