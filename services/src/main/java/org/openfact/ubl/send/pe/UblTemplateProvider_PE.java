@@ -84,10 +84,52 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 
 	@Override
 	public void sendCreditNote(CreditNoteModel creditNote) throws UblSenderException {		
+	    String fileName = generateXmlFileName(creditNote);
+        Document document = getUblProvider(organization).getDocument(organization, creditNote);
+        try {
+            byte[] zip = generateZip(document, fileName);
+            
+            // Call Web Service Operation
+            BillService_Service service = new BillService_Service();
+            service.setHandlerResolver(new UblHeaderHandlerResolver(organization.getUblSenderConfig()));
+            BillService port = service.getBillServicePort();
+
+            // Config data
+            DataSource dataSource = new ByteArrayDataSource(zip, "application/zip");
+            DataHandler contentFile = new DataHandler(dataSource);
+
+            // Send
+            byte[] result = port.sendBill(fileName + ".zip", contentFile);
+        } catch (TransformerException e) {
+            throw new UblSenderException(e);
+        } catch (IOException e) {
+            throw new UblSenderException(e);
+        }
 	}
 
 	@Override
 	public void sendDebitNote(DebitNoteModel debitNote) throws UblSenderException {
+	    String fileName = generateXmlFileName(debitNote);
+        Document document = getUblProvider(organization).getDocument(organization, debitNote);
+        try {
+            byte[] zip = generateZip(document, fileName);
+            
+            // Call Web Service Operation
+            BillService_Service service = new BillService_Service();
+            service.setHandlerResolver(new UblHeaderHandlerResolver(organization.getUblSenderConfig()));
+            BillService port = service.getBillServicePort();
+
+            // Config data
+            DataSource dataSource = new ByteArrayDataSource(zip, "application/zip");
+            DataHandler contentFile = new DataHandler(dataSource);
+
+            // Send
+            byte[] result = port.sendBill(fileName + ".zip", contentFile);
+        } catch (TransformerException e) {
+            throw new UblSenderException(e);
+        } catch (IOException e) {
+            throw new UblSenderException(e);
+        }
 	}
 
 	private byte[] generateZip(Document document, String fileName) throws TransformerException, IOException {
@@ -145,7 +187,7 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 			throw new UblSenderException("Organization doesn't have assignedIdentificationId", new Throwable());
 		}
 
-		String codido = CodigoTipoDocumento.NOTA_CREDITO.getCodigo();
+		String codido = CodigoTipoDocumento.NOTA_DEBITO.getCodigo();
 
 		StringBuilder sb = new StringBuilder();
 		sb.append(organization.getAssignedIdentificationId()).append("-");

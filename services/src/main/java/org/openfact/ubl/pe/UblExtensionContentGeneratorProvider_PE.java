@@ -1,6 +1,7 @@
 package org.openfact.ubl.pe;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -349,6 +350,7 @@ public class UblExtensionContentGeneratorProvider_PE implements UblExtensionCont
         BigDecimal payableAmountDiscount = getTotalGroupByExemptionReasonCode(invoice,
                 taxExemptionReasonCode);
         payableAmountDiscount = payableAmountDiscount.multiply(BigDecimal.ONE.subtract(discountPercent));
+        payableAmountDiscount = payableAmountDiscount.setScale(2, RoundingMode.CEILING);
 
         // Payable amount
         PayableAmountType payableAmount = new PayableAmountType();
@@ -375,6 +377,7 @@ public class UblExtensionContentGeneratorProvider_PE implements UblExtensionCont
         BigDecimal payableAmountDiscount = getTotalGroupByExemptionReasonCode(creditNote,
                 taxExemptionReasonCode);
         payableAmountDiscount = payableAmountDiscount.multiply(BigDecimal.ONE.subtract(discountPercent));
+        payableAmountDiscount = payableAmountDiscount.setScale(2, RoundingMode.CEILING);
 
         // Payable amount
         PayableAmountType payableAmount = new PayableAmountType();
@@ -401,6 +404,7 @@ public class UblExtensionContentGeneratorProvider_PE implements UblExtensionCont
         BigDecimal payableAmountDiscount = getTotalGroupByExemptionReasonCode(debitNote,
                 taxExemptionReasonCode);
         payableAmountDiscount = payableAmountDiscount.multiply(BigDecimal.ONE.subtract(discountPercent));
+        payableAmountDiscount = payableAmountDiscount.setScale(2, RoundingMode.CEILING);
 
         // Payable amount
         PayableAmountType payableAmount = new PayableAmountType();
