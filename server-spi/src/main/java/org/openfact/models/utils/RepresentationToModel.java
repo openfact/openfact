@@ -109,6 +109,16 @@ public class RepresentationToModel {
             newOrganization.setEnabled(rep.getEnabled());
         }
 
+        if (rep.getDefaultCurrency() != null) {
+            newOrganization.setDefaultCurrency(rep.getDefaultCurrency());
+        }
+        if (rep.getDefaultLocale() != null) {
+            newOrganization.setDefaultLocale(rep.getDefaultLocale());
+        }
+        if (rep.getDefaultUblLocale() != null) {
+            newOrganization.setDefaultUblLocale(rep.getDefaultUblLocale());
+        }
+
         /**
          * Certificate
          */
@@ -259,6 +269,16 @@ public class RepresentationToModel {
         }
         if (rep.getEnabled() != null) {
             organization.setEnabled(rep.getEnabled());
+        }
+        
+        if (rep.getDefaultCurrency() != null) {
+            organization.setDefaultCurrency(rep.getDefaultCurrency());
+        }
+        if (rep.getDefaultLocale() != null) {
+            organization.setDefaultLocale(rep.getDefaultLocale());
+        }
+        if (rep.getDefaultUblLocale() != null) {
+            organization.setDefaultUblLocale(rep.getDefaultUblLocale());
         }
 
         if (rep.getPostalAddress() != null) {

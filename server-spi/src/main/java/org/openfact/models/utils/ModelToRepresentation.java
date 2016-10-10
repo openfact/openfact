@@ -99,6 +99,13 @@ public class ModelToRepresentation {
         postalAddressRep.setDistrict(organization.getDistrict());
         postalAddressRep.setCountryIdentificationCode(organization.getCountryIdentificationCode());
         rep.setPostalAddress(postalAddressRep);
+        
+        rep.setDefaultCurrency(organization.getDefaultCurrency());
+        rep.setDefaultLocale(organization.getDefaultLocale());
+        rep.setDefaultUblLocale(organization.getDefaultLocale());
+        
+        rep.setAdminEventsEnabled(organization.isAdminEventsEnabled());
+        rep.setAdminEventsDetailsEnabled(organization.isAdminEventsDetailsEnabled());        
 
         if (internal) {
             TasksScheduleRepresentation tasksSchedulerRep = new TasksScheduleRepresentation();

@@ -343,7 +343,7 @@ public class UblExtensionContentGeneratorProvider_PE implements UblExtensionCont
         // Get discount percent = allowanceTotalAmmount/total
         // sum(lineExtensionAmount)
         MonetaryTotalModel monetaryTotal = invoice.getLegalMonetaryTotal();
-        BigDecimal allowanceTotalAmount = monetaryTotal.getAllowanceTotalAmount();
+        BigDecimal allowanceTotalAmount = monetaryTotal.getAllowanceTotalAmount() != null ? monetaryTotal.getAllowanceTotalAmount() : BigDecimal.ZERO;
         BigDecimal discountPercent = allowanceTotalAmount.divide(getTotalLineExtensionAmmount(invoice));
 
         // Apply discount = sum(lineExtensionAmount) * (1 - discountPercent)
@@ -370,7 +370,7 @@ public class UblExtensionContentGeneratorProvider_PE implements UblExtensionCont
         // Get discount percent = allowanceTotalAmmount/total
         // sum(lineExtensionAmount)
         MonetaryTotalModel monetaryTotal = creditNote.getLegalMonetaryTotal();
-        BigDecimal allowanceTotalAmount = monetaryTotal.getAllowanceTotalAmount();
+        BigDecimal allowanceTotalAmount = monetaryTotal.getAllowanceTotalAmount() != null ? monetaryTotal.getAllowanceTotalAmount() : BigDecimal.ZERO;
         BigDecimal discountPercent = allowanceTotalAmount.divide(getTotalLineExtensionAmmount(creditNote));
 
         // Apply discount = sum(lineExtensionAmount) * (1 - discountPercent)
@@ -397,7 +397,7 @@ public class UblExtensionContentGeneratorProvider_PE implements UblExtensionCont
         // Get discount percent = allowanceTotalAmmount/total
         // sum(lineExtensionAmount)
         MonetaryTotalModel monetaryTotal = debitNote.getRequestedMonetaryTotal();
-        BigDecimal allowanceTotalAmount = monetaryTotal.getAllowanceTotalAmount();
+        BigDecimal allowanceTotalAmount = monetaryTotal.getAllowanceTotalAmount() != null ? monetaryTotal.getAllowanceTotalAmount() : BigDecimal.ZERO;
         BigDecimal discountPercent = allowanceTotalAmount.divide(getTotalLineExtensionAmmount(debitNote));
 
         // Apply discount = sum(lineExtensionAmount) * (1 - discountPercent)
