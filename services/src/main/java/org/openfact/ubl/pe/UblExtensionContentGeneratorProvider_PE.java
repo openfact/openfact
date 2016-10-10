@@ -1,16 +1,45 @@
 package org.openfact.ubl.pe;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.UnrecoverableEntryException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.crypto.dsig.CanonicalizationMethod;
+import javax.xml.crypto.dsig.DigestMethod;
+import javax.xml.crypto.dsig.Reference;
+import javax.xml.crypto.dsig.SignatureMethod;
+import javax.xml.crypto.dsig.SignedInfo;
+import javax.xml.crypto.dsig.Transform;
+import javax.xml.crypto.dsig.XMLSignature;
+import javax.xml.crypto.dsig.XMLSignatureFactory;
+import javax.xml.crypto.dsig.dom.DOMSignContext;
+import javax.xml.crypto.dsig.dom.DOMValidateContext;
+import javax.xml.crypto.dsig.keyinfo.KeyInfo;
+import javax.xml.crypto.dsig.keyinfo.KeyInfoFactory;
+import javax.xml.crypto.dsig.keyinfo.X509Data;
+import javax.xml.crypto.dsig.spec.C14NMethodParameterSpec;
+import javax.xml.crypto.dsig.spec.TransformParameterSpec;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.dom.DOMResult;
+import javax.xml.xpath.XPathConstants;
 
 import org.jboss.logging.Logger;
 import org.openfact.common.finance.MoneyConverters;
@@ -30,8 +59,10 @@ import org.openfact.models.ubl.common.TaxSubtotalModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
+import org.openfact.models.utils.DocumentUtils;
 import org.openfact.models.utils.UblSignature;
 import org.openfact.ubl.UblExtensionContentGeneratorProvider;
+import org.openfact.ubl.UblProvider;
 import org.openfact.ubl.pe.constants.CodigoConceptosTributarios;
 import org.openfact.ubl.pe.constants.CodigoElementosAdicionalesComprobante;
 import org.openfact.ubl.pe.constants.CodigoTipoAfectacionIgv;
@@ -41,6 +72,8 @@ import org.openfact.ubl.pe.extensions.AdditionalPropertyType;
 import org.openfact.ubl.pe.extensions.InvoiceFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.IDType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.PayableAmountType;
@@ -60,28 +93,76 @@ public class UblExtensionContentGeneratorProvider_PE implements UblExtensionCont
     public void close() {
     }
 
+    private UBLExtensionModel generateSignature(OrganizationModel organization, InvoiceModel invoice)
+            throws Exception {
+        UBLExtensionsModel ublExtensions = invoice.getUBLExtensions();
+        UBLExtensionModel ublExtension = ublExtensions.addUblExtension();
+        ExtensionContentModel extensionContent = ublExtension.getExtensionContent();
+        
+        /*Element element = DocumentBuilderFactory
+                .newInstance()
+                .newDocumentBuilder()
+                .parse(new ByteArrayInputStream("<peru>peru</peru>".getBytes()))
+                .getDocumentElement();*/
+        extensionContent.setAny(generateSignature(organization, extensionContent));
+        return ublExtension;
+    }
+    
+    private Element generateSignature(OrganizationModel organization, ExtensionContentModel extensionContent)
+            throws Exception {
+        Document document = UblSignature.ublSignatureGenerate(organization);
+        return document.getDocumentElement();
+    }
+    
     @Override
     public List<UBLExtensionModel> generateUBLExtensions(OrganizationModel organization,
             InvoiceModel invoice) {
         try {
-            UBLExtensionModel additiontalInformation = generateAdditionalInformation(organization, invoice);
-            UBLExtensionModel signature = generateSignature(organization, invoice);
-            List<UBLExtensionModel> addedUblExtensions = new ArrayList<>();
-            addedUblExtensions.addAll(Arrays.asList(additiontalInformation, signature));
-            return addedUblExtensions;
+            UBLExtensionModel additionalInformation = generateAdditionalInformation(organization, invoice);
+            UBLExtensionModel extensionSignature = generateSignature(organization, invoice);
+            
+            // Get Document
+            Document document = session.getProvider(UblProvider.class, organization.getDefaultUblLocale()).getDocument(organization, invoice);
+                    
+            // Remove Signature
+            NodeList nodes = document.getElementsByTagName("ds:Signature");
+            for (int i = 0; i < nodes.getLength(); i++) {
+                Node node = nodes.item(i);
+                node.getParentNode().removeChild(node);
+            }           
+            
+            // Sign new Document
+            Document documentSign = signDocument(organization, document);   
+            
+            // Set new Signature
+            extensionSignature.getExtensionContent().setAny(getDigitalSignature(organization, documentSign).getDocumentElement());
+            
+            // Result
+            return new ArrayList<>(Arrays.asList(additionalInformation, extensionSignature));
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             throw new ModelException("No se pudo generar Ubl extensions PE");
         }
+    }
+    
+    public static Document getDigitalSignature(OrganizationModel organization, Document document) throws Exception {
+        NodeList nl = document.getElementsByTagNameNS(XMLSignature.XMLNS, "Signature");
+        if (nl.getLength() == 0) {
+            throw new Exception("No XML Digital Signature Found, document is discarded");
+        }
+        PublicKey publicKey = organization.getPublicKey();
+        DOMValidateContext valContext = new DOMValidateContext(publicKey, nl.item(0));
+        XMLSignatureFactory fac = XMLSignatureFactory.getInstance("DOM");
+        XMLSignature signature = fac.unmarshalXMLSignature(valContext);
+        return (Document) signature.getSignatureValue();
     }
 
     @Override
     public List<UBLExtensionModel> generateUBLExtensions(OrganizationModel organization,
             CreditNoteModel creditNote) {
         try {
-            UBLExtensionModel additiontalInformation = generateAdditionalInformation(organization,
-                    creditNote);
-            UBLExtensionModel signature = generateSignature(organization, creditNote);
+            UBLExtensionModel additiontalInformation = generateAdditionalInformation(organization, creditNote);
+            UBLExtensionModel signature = creditNote.getUBLExtensions().addUblExtension();
             List<UBLExtensionModel> addedUblExtensions = new ArrayList<>();
             addedUblExtensions.addAll(Arrays.asList(additiontalInformation, signature));
             return addedUblExtensions;
@@ -96,7 +177,7 @@ public class UblExtensionContentGeneratorProvider_PE implements UblExtensionCont
             DebitNoteModel debitNote) {
         try {
             UBLExtensionModel additiontalInformation = generateAdditionalInformation(organization, debitNote);
-            UBLExtensionModel signature = generateSignature(organization, debitNote);
+            UBLExtensionModel signature = debitNote.getUBLExtensions().addUblExtension();
             List<UBLExtensionModel> addedUblExtensions = new ArrayList<>();
             addedUblExtensions.addAll(Arrays.asList(additiontalInformation, signature));
             return addedUblExtensions;
@@ -289,39 +370,38 @@ public class UblExtensionContentGeneratorProvider_PE implements UblExtensionCont
         }
     }
 
-    private UBLExtensionModel generateSignature(OrganizationModel organization, InvoiceModel invoice)
-            throws Exception {
-        UBLExtensionsModel ublExtensions = invoice.getUBLExtensions();
-        UBLExtensionModel ublExtension = ublExtensions.addUblExtension();
-        ExtensionContentModel extensionContent = ublExtension.getExtensionContent();
-        extensionContent.setAny(generateSignature(organization, extensionContent));
-        return ublExtension;
-    }
+    private Document signDocument(OrganizationModel organization, Document document) throws Exception {
+        // Create XML Signature Factory
+        XMLSignatureFactory xmlSigFactory = XMLSignatureFactory.getInstance("DOM");
+        PrivateKey privateKey = organization.getPrivateKey();
 
-    private UBLExtensionModel generateSignature(OrganizationModel organization, CreditNoteModel creditNote)
-            throws Exception {
-        UBLExtensionsModel ublExtensions = creditNote.getUBLExtensions();
-        UBLExtensionModel ublExtension = ublExtensions.addUblExtension();
-        ExtensionContentModel extensionContent = ublExtension.getExtensionContent();
-        extensionContent.setAny(generateSignature(organization, extensionContent));
-        return ublExtension;
-    }
+        DOMSignContext domSignCtx = new DOMSignContext(privateKey, document.getDocumentElement().getFirstChild().getNextSibling().getFirstChild().getNextSibling().getNextSibling().getNextSibling().getFirstChild().getNextSibling());
 
-    private UBLExtensionModel generateSignature(OrganizationModel organization, DebitNoteModel debitNote)
-            throws Exception {
-        UBLExtensionsModel ublExtensions = debitNote.getUBLExtensions();
-        UBLExtensionModel ublExtension = ublExtensions.addUblExtension();
-        ExtensionContentModel extensionContent = ublExtension.getExtensionContent();
-        extensionContent.setAny(generateSignature(organization, extensionContent));
-        return ublExtension;
-    }
+        domSignCtx.setDefaultNamespacePrefix("ds");
+        Reference ref = xmlSigFactory.newReference("", xmlSigFactory.newDigestMethod(DigestMethod.SHA1, null), Collections.singletonList(xmlSigFactory.newTransform(Transform.ENVELOPED, (TransformParameterSpec) null)), null, null);
+        SignedInfo signedInfo = xmlSigFactory.newSignedInfo( xmlSigFactory.newCanonicalizationMethod(CanonicalizationMethod.INCLUSIVE, (C14NMethodParameterSpec) null), xmlSigFactory.newSignatureMethod(SignatureMethod.RSA_SHA1, null), Collections.singletonList(ref));
 
-    private Element generateSignature(OrganizationModel organization, ExtensionContentModel extensionContent)
-            throws Exception {
-        Document document = UblSignature.ublSignatureGenerate(organization);
-        return document.getDocumentElement();
-    }
+        KeyInfo keyInfo = getKeyInfo(xmlSigFactory, organization);
 
+        // Create a new XML Signature
+        XMLSignature xmlSignature = xmlSigFactory.newXMLSignature(signedInfo, keyInfo, null, "Signature" + organization.getName(), null);
+        xmlSignature.sign(domSignCtx);
+        return document;
+    }
+    
+    private static KeyInfo getKeyInfo(XMLSignatureFactory xmlSigFactory, OrganizationModel organization)
+            throws KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException,
+            UnrecoverableEntryException {
+        X509Certificate cert = organization.getCertificate();
+        KeyInfoFactory kif = xmlSigFactory.getKeyInfoFactory();
+        List<Serializable> x509Content = new ArrayList<Serializable>();
+        x509Content.add(cert.getSubjectX500Principal().getName());
+        x509Content.add(cert);
+        X509Data xd = kif.newX509Data(x509Content);
+        KeyInfo ki = kif.newKeyInfo(Collections.singletonList(xd));
+        return ki;
+    }
+    
     private Element generateElement(AdditionalInformationTypeSunatAgg object) throws JAXBException {
         InvoiceFactory factory = new InvoiceFactory();
         JAXBContext context = JAXBContext.newInstance(InvoiceFactory.class);
