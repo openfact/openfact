@@ -64,6 +64,11 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 		try {
             byte[] zip = generateZip(document, fileName);
             
+            File file = new File("/home/admin/ubl/"+fileName+".zip");
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write(zip);
+            fos.close();
+            
             // Call Web Service Operation
             BillService_Service service = new BillService_Service();
             service.setHandlerResolver(new UblHeaderHandlerResolver(organization.getUblSenderConfig()));
@@ -89,6 +94,11 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
         try {
             byte[] zip = generateZip(document, fileName);
             
+            File file = new File("/home/admin/ubl/"+fileName+".zip");
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write(zip);
+            fos.close();
+            
             // Call Web Service Operation
             BillService_Service service = new BillService_Service();
             service.setHandlerResolver(new UblHeaderHandlerResolver(organization.getUblSenderConfig()));
@@ -113,6 +123,11 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
         Document document = getUblProvider(organization).getDocument(organization, debitNote);
         try {
             byte[] zip = generateZip(document, fileName);
+            
+            File file = new File("/home/admin/ubl/"+fileName+".zip");
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write(zip);
+            fos.close();
             
             // Call Web Service Operation
             BillService_Service service = new BillService_Service();
@@ -178,7 +193,6 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 		sb.append(organization.getAssignedIdentificationId()).append("-");
 		sb.append(codido).append("-");
 		sb.append(creditNote.getID());
-		sb.append(".xml");
 		return sb.toString();
 	}
 
@@ -193,7 +207,6 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 		sb.append(organization.getAssignedIdentificationId()).append("-");
 		sb.append(codido).append("-");
 		sb.append(debitNote.getID());
-		sb.append(".xml");
 		return sb.toString();
 	}
 
