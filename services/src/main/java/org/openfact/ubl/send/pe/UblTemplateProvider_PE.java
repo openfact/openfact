@@ -55,101 +55,100 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 	@Override
 	public void send(String type) throws UblSenderException {
 		throw new ModelException("method not implemented");
-	}	
+	}
 
 	@Override
 	public void sendInvoice(InvoiceModel invoice) throws UblSenderException {
 		String fileName = generateXmlFileName(invoice);
-	    Document document = getUblProvider(organization).getDocument(organization, invoice);
+		Document document = getUblProvider(organization).getDocument(organization, invoice);
 		try {
-            byte[] zip = generateZip(document, fileName);
-            
-            File file = new File("/home/admin/ubl/"+fileName+".zip");
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write(zip);
-            fos.close();
-            
-            // Call Web Service Operation
-            BillService_Service service = new BillService_Service();
-            service.setHandlerResolver(new UblHeaderHandlerResolver(organization.getUblSenderConfig()));
-            BillService port = service.getBillServicePort();
+			byte[] zip = generateZip(document, fileName);
 
-            // Config data
-            DataSource dataSource = new ByteArrayDataSource(zip, "application/zip");
-            DataHandler contentFile = new DataHandler(dataSource);
+			File file = new File(System.getProperty("user.home") + "/ubl/" +fileName+ ".zip");
+			FileOutputStream fos = new FileOutputStream(file);
+			fos.write(zip);
+			fos.close();
 
-            // Send
-            byte[] result = port.sendBill(fileName + ".zip", contentFile);
-        } catch (TransformerException e) {
-            throw new UblSenderException(e);
-        } catch (IOException e) {
-            throw new UblSenderException(e);
-        }
+			// Call Web Service Operation
+			BillService_Service service = new BillService_Service();
+			service.setHandlerResolver(new UblHeaderHandlerResolver(organization.getUblSenderConfig()));
+			BillService port = service.getBillServicePort();
+
+			// Config data
+			DataSource dataSource = new ByteArrayDataSource(zip, "application/zip");
+			DataHandler contentFile = new DataHandler(dataSource);
+
+			// Send
+			byte[] result = port.sendBill(fileName + ".zip", contentFile);
+		} catch (TransformerException e) {
+			throw new UblSenderException(e);
+		} catch (IOException e) {
+			throw new UblSenderException(e);
+		}
 	}
 
 	@Override
-	public void sendCreditNote(CreditNoteModel creditNote) throws UblSenderException {		
-	    String fileName = generateXmlFileName(creditNote);
-        Document document = getUblProvider(organization).getDocument(organization, creditNote);
-        try {
-            byte[] zip = generateZip(document, fileName);
-            
-            File file = new File("/home/admin/ubl/"+fileName+".zip");
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write(zip);
-            fos.close();
-            
-            // Call Web Service Operation
-            BillService_Service service = new BillService_Service();
-            service.setHandlerResolver(new UblHeaderHandlerResolver(organization.getUblSenderConfig()));
-            BillService port = service.getBillServicePort();
+	public void sendCreditNote(CreditNoteModel creditNote) throws UblSenderException {
+		String fileName = generateXmlFileName(creditNote);
+		Document document = getUblProvider(organization).getDocument(organization, creditNote);
+		try {
+			byte[] zip = generateZip(document, fileName);
 
-            // Config data
-            DataSource dataSource = new ByteArrayDataSource(zip, "application/zip");
-            DataHandler contentFile = new DataHandler(dataSource);
+			File file = new File(System.getProperty("user.home") + "/ubl/" + fileName + ".zip");
+			FileOutputStream fos = new FileOutputStream(file);
+			fos.write(zip);
+			fos.close();
 
-            // Send
-            byte[] result = port.sendBill(fileName + ".zip", contentFile);
-        } catch (TransformerException e) {
-            throw new UblSenderException(e);
-        } catch (IOException e) {
-            throw new UblSenderException(e);
-        }
+			// Call Web Service Operation
+			BillService_Service service = new BillService_Service();
+			service.setHandlerResolver(new UblHeaderHandlerResolver(organization.getUblSenderConfig()));
+			BillService port = service.getBillServicePort();
+
+			// Config data
+			DataSource dataSource = new ByteArrayDataSource(zip, "application/zip");
+			DataHandler contentFile = new DataHandler(dataSource);
+
+			// Send
+			byte[] result = port.sendBill(fileName + ".zip", contentFile);
+		} catch (TransformerException e) {
+			throw new UblSenderException(e);
+		} catch (IOException e) {
+			throw new UblSenderException(e);
+		}
 	}
 
 	@Override
 	public void sendDebitNote(DebitNoteModel debitNote) throws UblSenderException {
-	    String fileName = generateXmlFileName(debitNote);
-        Document document = getUblProvider(organization).getDocument(organization, debitNote);
-        try {
-            byte[] zip = generateZip(document, fileName);
-            
-            File file = new File("/home/admin/ubl/"+fileName+".zip");
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write(zip);
-            fos.close();
-            
-            // Call Web Service Operation
-            BillService_Service service = new BillService_Service();
-            service.setHandlerResolver(new UblHeaderHandlerResolver(organization.getUblSenderConfig()));
-            BillService port = service.getBillServicePort();
+		String fileName = generateXmlFileName(debitNote);
+		Document document = getUblProvider(organization).getDocument(organization, debitNote);
+		try {
+			byte[] zip = generateZip(document, fileName);
+			File file = new File(System.getProperty("user.home") + "/ubl/" + fileName + ".zip");
+			FileOutputStream fos = new FileOutputStream(file);
+			fos.write(zip);
+			fos.close();
 
-            // Config data
-            DataSource dataSource = new ByteArrayDataSource(zip, "application/zip");
-            DataHandler contentFile = new DataHandler(dataSource);
+			// Call Web Service Operation
+			BillService_Service service = new BillService_Service();
+			service.setHandlerResolver(new UblHeaderHandlerResolver(organization.getUblSenderConfig()));
+			BillService port = service.getBillServicePort();
 
-            // Send
-            byte[] result = port.sendBill(fileName + ".zip", contentFile);
-        } catch (TransformerException e) {
-            throw new UblSenderException(e);
-        } catch (IOException e) {
-            throw new UblSenderException(e);
-        }
+			// Config data
+			DataSource dataSource = new ByteArrayDataSource(zip, "application/zip");
+			DataHandler contentFile = new DataHandler(dataSource);
+
+			// Send
+			byte[] result = port.sendBill(fileName + ".zip", contentFile);
+		} catch (TransformerException e) {
+			throw new UblSenderException(e);
+		} catch (IOException e) {
+			throw new UblSenderException(e);
+		}
 	}
 
 	private byte[] generateZip(Document document, String fileName) throws TransformerException, IOException {
-	    byte[] bytes = DocumentUtils.getBytesFromDocument(document);
-        return ZipBuilder.createZipInMemory().addFolder("dummy/").add(bytes).path(fileName + ".xml").save().toBytes();
+		byte[] bytes = DocumentUtils.getBytesFromDocument(document);
+		return ZipBuilder.createZipInMemory().addFolder("dummy/").add(bytes).path(fileName + ".xml").save().toBytes();
 	}
 
 	private UblProvider getUblProvider(OrganizationModel organization) {
