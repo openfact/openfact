@@ -2,7 +2,10 @@ package org.openfact.services.resources.admin;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 
 import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.NotFoundException;
@@ -19,8 +22,15 @@ import org.openfact.models.AdminRoles;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.search.SearchCriteriaFilterOperator;
+import org.openfact.models.search.SearchCriteriaModel;
+import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
+import org.openfact.representations.idm.search.PagingRepresentation;
+import org.openfact.representations.idm.search.SearchCriteriaFilterOperatorRepresentation;
+import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
+import org.openfact.representations.idm.search.SearchResultsRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.managers.OrganizationManager;
 import org.openfact.services.resources.OpenfactApplication;
@@ -49,13 +59,34 @@ public class OrganizationsAdminResourceImpl implements OrganizationsAdminResourc
     static {
         noCache.setNoCache(true);
     }
-
+    
     @Override
-	public List<OrganizationRepresentation> getOrganizations() {
+    public List<OrganizationRepresentation> getOrganizations(String filterText, String organizationName, String supplierName, String registrationName, Integer firstResult, Integer maxResults) {
         OrganizationManager organizationManager = new OrganizationManager(session);
         List<OrganizationRepresentation> reps = new ArrayList<>();
-        if (auth.getOrganization().equals(organizationManager.getOpenfactAdminstrationOrganization())) {
-            List<OrganizationModel> organizations = session.organizations().getOrganizations();
+        if (auth.getOrganization().equals(organizationManager.getOpenfactAdminstrationOrganization())) {                                   
+            firstResult = firstResult != null ? firstResult : -1;
+            maxResults = maxResults != null ? maxResults : -1;
+
+            List<OrganizationModel> organizations;
+            if (filterText != null) {
+                organizations = session.organizations().searchForOrganization(filterText.trim(), firstResult, maxResults);                        
+            } else if (organizationName != null || supplierName != null || registrationName != null) {
+                Map<String, String> attributes = new HashMap<String, String>();
+                if (organizationName != null) {
+                    attributes.put(OrganizationModel.NAME, organizationName);
+                }
+                if (supplierName != null) {
+                    attributes.put(OrganizationModel.SUPPLIER_NAME, supplierName);
+                }
+                if (registrationName != null) {
+                    attributes.put(OrganizationModel.REGISTRATION_NAME, registrationName);
+                }
+                organizations = session.organizations().searchForOrganization(attributes, firstResult, maxResults);
+            } else {            
+                organizations = session.organizations().getOrganizations(firstResult, maxResults);
+            }
+                                         
             for (OrganizationModel organization : organizations) {
                 addOrganizationRep(reps, organization);
             }
@@ -67,9 +98,47 @@ public class OrganizationsAdminResourceImpl implements OrganizationsAdminResourc
             throw new ForbiddenException();
         }
         
-		logger.debug(("getOrganizations()"));
-		return reps;
-	}
+        logger.debug(("getOrganizations()"));
+        return reps;
+    }   
+    
+    @Override
+    public SearchResultsRepresentation<OrganizationRepresentation> searchOrganizations(SearchCriteriaRepresentation criteria) {
+        OrganizationManager organizationManager = new OrganizationManager(session);
+        if (auth.getOrganization().equals(organizationManager.getOpenfactAdminstrationOrganization())) {                                              
+            SearchCriteriaModel criteriaModel = new SearchCriteriaModel();
+
+            Function<SearchCriteriaFilterOperatorRepresentation, SearchCriteriaFilterOperator> function = f -> {
+                return SearchCriteriaFilterOperator.valueOf(f.toString());
+            };
+            criteria.getFilters().forEach(f -> {
+                criteriaModel.addFilter(f.getName(), f.getValue(), function.apply(f.getOperator()));
+            });
+            criteria.getOrders().forEach(f -> criteriaModel.addOrder(f.getName(), f.isAscending()));
+            PagingRepresentation paging = criteria.getPaging();
+            criteriaModel.setPageSize(paging.getPageSize());
+            criteriaModel.setPage(paging.getPage());
+
+            String filterText = criteria.getFilterText();
+            SearchResultsModel<OrganizationModel> results = null;
+            if (filterText != null) {
+                results = session.organizations().searchForOrganization(criteriaModel, filterText);            
+            } else {
+                results = session.organizations().searchForOrganization(criteriaModel);
+            }
+            SearchResultsRepresentation<OrganizationRepresentation> rep = new SearchResultsRepresentation<>();
+            List<OrganizationRepresentation> items = new ArrayList<>();
+            results.getModels().forEach(f -> items.add(ModelToRepresentation.toRepresentation(f, true)));
+            rep.setItems(items);
+            rep.setTotalSize(results.getTotalSize());
+            
+            logger.debug(("searchOrganizations()"));
+            
+            return rep;
+        } else {            
+            throw new ForbiddenException();
+        }        
+    } 
     
     protected void addOrganizationRep(List<OrganizationRepresentation> reps, OrganizationModel organization) {
         if (auth.hasAppRole(AdminRoles.VIEW_ORGANIZATION)) {

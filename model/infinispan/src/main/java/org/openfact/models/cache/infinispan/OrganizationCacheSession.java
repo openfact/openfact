@@ -29,6 +29,8 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
 import org.openfact.models.cache.CacheOrganizationProvider;
+import org.openfact.models.search.SearchCriteriaModel;
+import org.openfact.models.search.SearchResultsModel;
 
 /**
  * - the high level architecture of this cache is an invalidation cache. - the
@@ -209,6 +211,39 @@ public class OrganizationCacheSession implements CacheOrganizationProvider {
     public void registerOrganizationInvalidation(String id) {
         // TODO Auto-generated method stub
 
+    }
+
+    @Override
+    public List<OrganizationModel> getOrganizations(Integer firstResult, Integer maxResults) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<OrganizationModel> searchForOrganization(String filterText, Integer firstResult,
+            Integer maxResults) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<OrganizationModel> searchForOrganization(Map<String, String> attributes, Integer firstResult,
+            Integer maxResults) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SearchResultsModel<OrganizationModel> searchForOrganization(SearchCriteriaModel criteriaModel) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public SearchResultsModel<OrganizationModel> searchForOrganization(SearchCriteriaModel criteriaModel,
+            String filterText) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

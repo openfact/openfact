@@ -22,6 +22,7 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.cert.X509Certificate;
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Map;
 import java.util.Set;
@@ -771,6 +772,12 @@ public class OrganizationAdapter implements OrganizationModel {
     public void removeRequiredAction(String actionName) {
         // TODO Auto-generated method stub
         
+    }
+
+    @Override
+    public LocalDate getCreatedTimestamp() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

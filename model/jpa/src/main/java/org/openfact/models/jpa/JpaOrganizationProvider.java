@@ -1,7 +1,10 @@
 package org.openfact.models.jpa;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -13,10 +16,18 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
 import org.openfact.models.jpa.entities.OrganizationEntity;
+import org.openfact.models.search.SearchCriteriaModel;
+import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.utils.OpenfactModelUtils;
 
-public class JpaOrganizationProvider implements OrganizationProvider {
+public class JpaOrganizationProvider extends AbstractHibernateStorage implements OrganizationProvider {
 
+    private static final String NAME = "name";
+    private static final String DESCRIPTION = "description";
+    private static final String ASSIGNED_IDENTIFICATION_ID = "assignedIdentificationId";
+    private static final String SUPPLIER_NAME = "supplierName";
+    private static final String REGISTRATION_NAME = "registrationName";
+    
     protected static final Logger logger = Logger.getLogger(JpaOrganizationProvider.class);
     private final OpenfactSession session;
     protected EntityManager em;
@@ -31,6 +42,11 @@ public class JpaOrganizationProvider implements OrganizationProvider {
         // TODO Auto-generated method stub
     }
 
+    @Override
+    protected EntityManager getEntityManager() {
+        return em;
+    }
+    
     @Override
     public MigrationModel getMigrationModel() {
         return new MigrationModelAdapter(em);
@@ -49,6 +65,7 @@ public class JpaOrganizationProvider implements OrganizationProvider {
         OrganizationEntity organization = new OrganizationEntity();
         organization.setName(name);
         organization.setId(id);
+        organization.setCreatedTimestamp(LocalDate.now());
         organization.setEnabled(true);
         em.persist(organization);
         em.flush();
@@ -128,7 +145,19 @@ public class JpaOrganizationProvider implements OrganizationProvider {
 
     @Override
     public List<OrganizationModel> getOrganizations() {
+        return getOrganizations(-1, -1);
+    }
+    
+    @Override
+    public List<OrganizationModel> getOrganizations(Integer firstResult, Integer maxResults) {
         TypedQuery<String> query = em.createNamedQuery("getAllOrganizationIds", String.class);
+        if (firstResult != -1) {
+            query.setFirstResult(firstResult);
+        }
+        if (maxResults != -1) {
+            query.setMaxResults(maxResults);
+        }
+        
         List<String> entities = query.getResultList();
         List<OrganizationModel> organizations = new ArrayList<>();
         for (String id : entities) {
@@ -146,5 +175,101 @@ public class JpaOrganizationProvider implements OrganizationProvider {
         Long result = (Long) query.getSingleResult();
         return result.intValue();
     }
+
+    @Override
+    public List<OrganizationModel> searchForOrganization(String filterText, Integer firstResult,
+            Integer maxResults) {
+        TypedQuery<OrganizationEntity> query = em.createNamedQuery("searchForOrganization",
+                OrganizationEntity.class);
+        query.setParameter("filterText", "%" + filterText.toLowerCase() + "%");
+        if (firstResult != -1) {
+            query.setFirstResult(firstResult);
+        }
+        if (maxResults != -1) {
+            query.setMaxResults(maxResults);
+        }
+        List<OrganizationEntity> results = query.getResultList();
+        return results.stream().map(f -> new OrganizationAdapter(session, em, f)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<OrganizationModel> searchForOrganization(Map<String, String> attributes, Integer firstResult,
+            Integer maxResults) {
+        StringBuilder builder = new StringBuilder("select u from OrganizationEntity u");
+        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+            String attribute = null;
+            String parameterName = null;
+            if (entry.getKey().equals(OrganizationModel.NAME)) {
+                attribute = "lower(u.name)";
+                parameterName = JpaOrganizationProvider.NAME;
+            } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.SUPPLIER_NAME)) {
+                attribute = "lower(u.supplierName)";
+                parameterName = JpaOrganizationProvider.SUPPLIER_NAME;
+            } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.REGISTRATION_NAME)) {
+                attribute = "lower(u.registrationName)";
+                parameterName = JpaOrganizationProvider.REGISTRATION_NAME;
+            } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.DESCRIPTION)) {
+                attribute = "lower(u.description)";
+                parameterName = JpaOrganizationProvider.DESCRIPTION;
+            }
+            if (attribute == null)
+                continue;
+            builder.append(" and ");
+            builder.append(attribute).append(" like :").append(parameterName);
+        }
+        builder.append(" order by u.id");
+        String q = builder.toString();
+        TypedQuery<OrganizationEntity> query = em.createQuery(q, OrganizationEntity.class);
+        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+            String parameterName = null;
+            if (entry.getKey().equals(OrganizationModel.NAME)) {
+                parameterName = JpaOrganizationProvider.NAME;
+            } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.SUPPLIER_NAME)) {
+                parameterName = JpaOrganizationProvider.SUPPLIER_NAME;
+            } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.REGISTRATION_NAME)) {
+                parameterName = JpaOrganizationProvider.REGISTRATION_NAME;
+            } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.DESCRIPTION)) {
+                parameterName = JpaOrganizationProvider.DESCRIPTION;
+            }
+            if (parameterName == null)
+                continue;
+            query.setParameter(parameterName, "%" + entry.getValue().toLowerCase() + "%");
+        }
+        if (firstResult != -1) {
+            query.setFirstResult(firstResult);
+        }
+        if (maxResults != -1) {
+            query.setMaxResults(maxResults);
+        }
+        List<OrganizationEntity> results = query.getResultList();
+        return results.stream().map(f -> new OrganizationAdapter(session, em, f)).collect(Collectors.toList());
+    }
+
+    @Override
+    public SearchResultsModel<OrganizationModel> searchForOrganization(SearchCriteriaModel criteria) {
+        SearchResultsModel<OrganizationEntity> entityResult = find(criteria, OrganizationEntity.class);
+        List<OrganizationEntity> entities = entityResult.getModels();
+
+        SearchResultsModel<OrganizationModel> searchResult = new SearchResultsModel<>();
+        List<OrganizationModel> models = searchResult.getModels();
+
+        entities.forEach(f -> models.add(new OrganizationAdapter(session, em, f)));
+        searchResult.setTotalSize(entityResult.getTotalSize());
+        return searchResult;
+    }
+
+    @Override
+    public SearchResultsModel<OrganizationModel> searchForOrganization(SearchCriteriaModel criteria,
+            String filterText) {
+        SearchResultsModel<OrganizationEntity> entityResult = findFullText(criteria, OrganizationEntity.class, filterText, NAME, SUPPLIER_NAME, REGISTRATION_NAME);
+        List<OrganizationEntity> entities = entityResult.getModels();
+
+        SearchResultsModel<OrganizationModel> searchResult = new SearchResultsModel<>();
+        List<OrganizationModel> models = searchResult.getModels();
+
+        entities.forEach(f -> models.add(new OrganizationAdapter(session, em, f)));
+        searchResult.setTotalSize(entityResult.getTotalSize());
+        return searchResult;
+    }    
 
 }

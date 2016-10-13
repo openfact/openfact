@@ -5,6 +5,7 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.cert.X509Certificate;
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Collections;
 import java.util.HashMap;
@@ -130,6 +131,11 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
 	public void setRegistrationName(String registrationName) {
 		organization.setRegistrationName(registrationName);
 	}
+	
+	@Override
+    public LocalDate getCreatedTimestamp() {
+        return organization.getCreatedTimestamp();
+    }
 
 	@Override
 	public String getPostalAddressId() {

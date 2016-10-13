@@ -5,6 +5,7 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.cert.X509Certificate;
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Map;
 import java.util.Set;
@@ -52,6 +53,8 @@ public interface OrganizationModel {
 	String getRegistrationName();
 
 	void setRegistrationName(String registrationName);
+	
+	LocalDate getCreatedTimestamp();
 
 	/**
 	 * Postal address

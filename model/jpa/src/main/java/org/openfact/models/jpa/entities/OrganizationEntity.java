@@ -1,6 +1,7 @@
 package org.openfact.models.jpa.entities;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -41,7 +42,8 @@ import org.openfact.models.jpa.entities.ubl.InvoiceEntity;
 @NamedQueries({
 		@NamedQuery(name = "getAllOrganizationIds", query = "select organization.id from OrganizationEntity organization"),
 		@NamedQuery(name = "getOrganizationIdByName", query = "select organization.id from OrganizationEntity organization where organization.name = :name"),
-		@NamedQuery(name = "getOrganizationsCount", query = "select count(organization.id) from OrganizationEntity organization") })
+		@NamedQuery(name = "getOrganizationsCount", query = "select count(organization.id) from OrganizationEntity organization"),
+		@NamedQuery(name = "searchForOrganization", query = "select organization from OrganizationEntity organization where lower(organization.name) like :filterText or lower(organization.supplierName) like :filterText or lower(organization.registrationName) like :filterText")})
 public class OrganizationEntity {
 
 	@Id
@@ -72,6 +74,10 @@ public class OrganizationEntity {
 	@Column(name = "REGISTRATION_NAME")
 	private String registrationName;
 
+	@Type(type = "org.hibernate.type.LocalDateType")
+	@Column(name = "CREATED_TIMESTAMP")
+	private LocalDate createdTimestamp;
+	
 	/**
 	 * Certificate
 	 */
@@ -696,6 +702,14 @@ public class OrganizationEntity {
 
     public void setDebitNotes(List<DebitNoteEntity> debitNotes) {
         this.debitNotes = debitNotes;
+    }
+
+    public LocalDate getCreatedTimestamp() {
+        return createdTimestamp;
+    }
+
+    public void setCreatedTimestamp(LocalDate createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
     }
 
 	

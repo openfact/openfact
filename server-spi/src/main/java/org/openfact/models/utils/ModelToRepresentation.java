@@ -84,7 +84,9 @@ public class ModelToRepresentation {
         OrganizationRepresentation rep = new OrganizationRepresentation();
         rep.setId(organization.getId());
         rep.setOrganization(organization.getName());
+        rep.setDescription(organization.getDescription());
         rep.setEnabled(organization.isEnabled());
+        rep.setCreatedTimestamp(organization.getCreatedTimestamp());
 
         rep.setAdditionalAccountId(organization.getAdditionalAccountId());
         rep.setAssignedIdentificationId(organization.getAssignedIdentificationId());
