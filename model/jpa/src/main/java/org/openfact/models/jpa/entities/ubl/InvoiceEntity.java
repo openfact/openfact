@@ -26,6 +26,7 @@ import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -265,7 +266,19 @@ public class InvoiceEntity {
     @JoinColumn(name = "INVOICELINE_INVOICE_ID")
     protected List<InvoiceLineEntity> invoiceLine = new ArrayList<>();
 
-    public String getId() {
+    @Lob
+    @Column(name = "XML_DOCUMENT")
+    protected byte[] xmlDocument;
+    
+    public byte[] getXmlDocument() {
+		return xmlDocument;
+	}
+
+	public void setXmlDocument(byte[] xmlDocument) {
+		this.xmlDocument = xmlDocument;
+	}
+
+	public String getId() {
         return id;
     }
 

@@ -28,251 +28,256 @@ import org.openfact.models.ubl.common.SupplierPartyModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
 import org.openfact.provider.ProviderEvent;
+import org.w3c.dom.Element;
 
 public interface InvoiceModel {
 
-    String getId();
+	String getId();
 
-    /**
-     * attributes
-     */
-    void setSingleAttribute(String name, String value);
+	/**
+	 * attributes
+	 */
+	void setSingleAttribute(String name, String value);
 
-    void setAttribute(String name, List<String> values);
+	void setAttribute(String name, List<String> values);
 
-    void removeAttribute(String name);
+	void removeAttribute(String name);
 
-    String getFirstAttribute(String name);
+	String getFirstAttribute(String name);
 
-    List<String> getAttribute(String name);
+	List<String> getAttribute(String name);
 
-    Map<String, List<String>> getAttributes();
+	Map<String, List<String>> getAttributes();
 
-    /**
-     * Organization
-     */
-    OrganizationModel getOrganization();
+	/**
+	 * Organization
+	 */
+	OrganizationModel getOrganization();
 
-    /**
-     * */
-    UBLExtensionsModel getUBLExtensions();
+	/**
+	 * */
+	UBLExtensionsModel getUBLExtensions();
 
-    void setUBLExtensions(UBLExtensionsModel value);
+	void setUBLExtensions(UBLExtensionsModel value);
 
-    String getUBLVersionID();
+	String getUBLVersionID();
 
-    void setUBLVersionID(String value);
+	void setUBLVersionID(String value);
 
-    String getCustomizationID();
+	String getCustomizationID();
 
-    void setCustomizationID(String value);
+	void setCustomizationID(String value);
 
-    String getProfileID();
+	String getProfileID();
 
-    void setProfileID(String value);
+	void setProfileID(String value);
 
-    String getID();
+	String getID();
 
-    void setID(String value);
+	void setID(String value);
 
-    boolean getCopyIndicator();
+	boolean getCopyIndicator();
 
-    void setCopyIndicator(boolean value);
+	void setCopyIndicator(boolean value);
 
-    String getUUID();
+	String getUUID();
 
-    void setUUID(String value);
+	void setUUID(String value);
 
-    LocalDate getIssueDate();
+	LocalDate getIssueDate();
 
-    void setIssueDate(LocalDate value);
+	void setIssueDate(LocalDate value);
 
-    LocalTime getIssueTime();
+	LocalTime getIssueTime();
 
-    void setIssueTime(LocalTime value);
+	void setIssueTime(LocalTime value);
 
-    String getInvoiceTypeCode();
+	String getInvoiceTypeCode();
 
-    void setInvoiceTypeCode(String value);
+	void setInvoiceTypeCode(String value);
 
-    List<String> getNote();
+	List<String> getNote();
 
-    void setNote(List<String> note);
+	void setNote(List<String> note);
 
-    LocalDate getTaxPointDate();
+	LocalDate getTaxPointDate();
 
-    void setTaxPointDate(LocalDate value);
+	void setTaxPointDate(LocalDate value);
 
-    String getDocumentCurrencyCode();
+	String getDocumentCurrencyCode();
 
-    void setDocumentCurrencyCode(String value);
+	void setDocumentCurrencyCode(String value);
 
-    String getTaxCurrencyCode();
+	String getTaxCurrencyCode();
 
-    void setTaxCurrencyCode(String value);
+	void setTaxCurrencyCode(String value);
 
-    String getPricingCurrencyCode();
+	String getPricingCurrencyCode();
 
-    void setPricingCurrencyCode(String value);
+	void setPricingCurrencyCode(String value);
 
-    String getPaymentCurrencyCode();
+	String getPaymentCurrencyCode();
 
-    void setPaymentCurrencyCode(String value);
+	void setPaymentCurrencyCode(String value);
 
-    String getPaymentAlternativeCurrencyCode();
+	String getPaymentAlternativeCurrencyCode();
 
-    void setPaymentAlternativeCurrencyCode(String value);
+	void setPaymentAlternativeCurrencyCode(String value);
 
-    String getAccountingCostCode();
+	String getAccountingCostCode();
 
-    void setAccountingCostCode(String value);
+	void setAccountingCostCode(String value);
 
-    String getAccountingCost();
+	String getAccountingCost();
 
-    void setAccountingCost(String value);
+	void setAccountingCost(String value);
 
-    BigDecimal getLineCountNumeric();
+	BigDecimal getLineCountNumeric();
 
-    void setLineCountNumeric(BigDecimal value);
+	void setLineCountNumeric(BigDecimal value);
 
-    List<PeriodModel> getInvoicePeriod();
+	List<PeriodModel> getInvoicePeriod();
 
-    void setInvoicePeriod(List<PeriodModel> invoicePeriod);
+	void setInvoicePeriod(List<PeriodModel> invoicePeriod);
 
-    OrderReferenceModel getOrderReference();
+	OrderReferenceModel getOrderReference();
 
-    void setOrderReference(OrderReferenceModel value);
+	void setOrderReference(OrderReferenceModel value);
 
-    List<BillingReferenceModel> getBillingReference();
+	List<BillingReferenceModel> getBillingReference();
 
-    void setBillingReference(List<BillingReferenceModel> billingReference);
+	void setBillingReference(List<BillingReferenceModel> billingReference);
 
-    List<DocumentReferenceModel> getDespatchDocumentReference();
+	List<DocumentReferenceModel> getDespatchDocumentReference();
 
-    void setDespatchDocumentReference(List<DocumentReferenceModel> despatchDocumentReference);
+	void setDespatchDocumentReference(List<DocumentReferenceModel> despatchDocumentReference);
 
-    List<DocumentReferenceModel> getReceiptDocumentReference();
+	List<DocumentReferenceModel> getReceiptDocumentReference();
 
-    void setReceiptDocumentReference(List<DocumentReferenceModel> receiptDocumentReference);
+	void setReceiptDocumentReference(List<DocumentReferenceModel> receiptDocumentReference);
 
-    List<DocumentReferenceModel> getOriginatorDocumentReference();
+	List<DocumentReferenceModel> getOriginatorDocumentReference();
 
-    void setOriginatorDocumentReference(List<DocumentReferenceModel> originatorDocumentReference);
+	void setOriginatorDocumentReference(List<DocumentReferenceModel> originatorDocumentReference);
 
-    List<DocumentReferenceModel> getContractDocumentReference();
+	List<DocumentReferenceModel> getContractDocumentReference();
 
-    void setContractDocumentReference(List<DocumentReferenceModel> contractDocumentReference);
+	void setContractDocumentReference(List<DocumentReferenceModel> contractDocumentReference);
 
-    List<DocumentReferenceModel> getAdditionalDocumentReference();
+	List<DocumentReferenceModel> getAdditionalDocumentReference();
 
-    void setAdditionalDocumentReference(List<DocumentReferenceModel> additionalDocumentReference);
+	void setAdditionalDocumentReference(List<DocumentReferenceModel> additionalDocumentReference);
 
-    List<SignatureModel> getSignature();
+	List<SignatureModel> getSignature();
 
-    void setSignature(List<SignatureModel> signature);
+	void setSignature(List<SignatureModel> signature);
 
-    SupplierPartyModel getAccountingSupplierParty();
+	SupplierPartyModel getAccountingSupplierParty();
 
-    void setAccountingSupplierParty(SupplierPartyModel value);
+	void setAccountingSupplierParty(SupplierPartyModel value);
 
-    CustomerPartyModel getAccountingCustomerParty();
+	CustomerPartyModel getAccountingCustomerParty();
 
-    void setAccountingCustomerParty(CustomerPartyModel value);
+	void setAccountingCustomerParty(CustomerPartyModel value);
 
-    PartyModel getPayeeParty();
+	PartyModel getPayeeParty();
 
-    void setPayeeParty(PartyModel value);
+	void setPayeeParty(PartyModel value);
 
-    CustomerPartyModel getBuyerCustomerParty();
+	CustomerPartyModel getBuyerCustomerParty();
 
-    void setBuyerCustomerParty(CustomerPartyModel value);
+	void setBuyerCustomerParty(CustomerPartyModel value);
 
-    SupplierPartyModel getSellerSupplierParty();
+	SupplierPartyModel getSellerSupplierParty();
 
-    void setSellerSupplierParty(SupplierPartyModel value);
+	void setSellerSupplierParty(SupplierPartyModel value);
 
-    PartyModel getTaxRepresentativeParty();
+	PartyModel getTaxRepresentativeParty();
 
-    void setTaxRepresentativeParty(PartyModel value);
+	void setTaxRepresentativeParty(PartyModel value);
 
-    List<DeliveryModel> getDelivery();
+	List<DeliveryModel> getDelivery();
 
-    void setDelivery(List<DeliveryModel> delivery);
+	void setDelivery(List<DeliveryModel> delivery);
 
-    DeliveryTermsModel getDeliveryTerms();
+	DeliveryTermsModel getDeliveryTerms();
 
-    void setDeliveryTerms(DeliveryTermsModel value);
+	void setDeliveryTerms(DeliveryTermsModel value);
 
-    List<PaymentMeansModel> getPaymentMeans();
+	List<PaymentMeansModel> getPaymentMeans();
 
-    void setPaymentMeans(List<PaymentMeansModel> paymentMeans);
+	void setPaymentMeans(List<PaymentMeansModel> paymentMeans);
 
-    List<PaymentTermsModel> getPaymentTerms();
+	List<PaymentTermsModel> getPaymentTerms();
 
-    void setPaymentTerms(List<PaymentTermsModel> paymentTerms);
+	void setPaymentTerms(List<PaymentTermsModel> paymentTerms);
 
-    List<PaymentModel> getPrepaidPayment();
+	List<PaymentModel> getPrepaidPayment();
 
-    void setPrepaidPayment(List<PaymentModel> prepaidPayment);
+	void setPrepaidPayment(List<PaymentModel> prepaidPayment);
 
-    List<AllowanceChargeModel> getAllowanceCharge();
+	List<AllowanceChargeModel> getAllowanceCharge();
 
-    void setAllowanceCharge(List<AllowanceChargeModel> allowanceCharge);
+	void setAllowanceCharge(List<AllowanceChargeModel> allowanceCharge);
 
-    ExchangeRateModel getTaxExchangeRate();
+	ExchangeRateModel getTaxExchangeRate();
 
-    void setTaxExchangeRate(ExchangeRateModel value);
+	void setTaxExchangeRate(ExchangeRateModel value);
 
-    ExchangeRateModel getPricingExchangeRate();
+	ExchangeRateModel getPricingExchangeRate();
 
-    void setPricingExchangeRate(ExchangeRateModel value);
+	void setPricingExchangeRate(ExchangeRateModel value);
 
-    ExchangeRateModel getPaymentExchangeRate();
+	ExchangeRateModel getPaymentExchangeRate();
 
-    void setPaymentExchangeRate(ExchangeRateModel value);
+	void setPaymentExchangeRate(ExchangeRateModel value);
 
-    ExchangeRateModel getPaymentAlternativeExchangeRate();
+	ExchangeRateModel getPaymentAlternativeExchangeRate();
 
-    void setPaymentAlternativeExchangeRate(ExchangeRateModel value);
+	void setPaymentAlternativeExchangeRate(ExchangeRateModel value);
 
-    List<TaxTotalModel> getTaxTotal();
+	List<TaxTotalModel> getTaxTotal();
 
-    void setTaxTotal(List<TaxTotalModel> taxTotal);
+	void setTaxTotal(List<TaxTotalModel> taxTotal);
 
-    MonetaryTotalModel getLegalMonetaryTotal();
+	MonetaryTotalModel getLegalMonetaryTotal();
 
-    void setLegalMonetaryTotal(MonetaryTotalModel value);
+	void setLegalMonetaryTotal(MonetaryTotalModel value);
 
-    List<InvoiceLineModel> getInvoiceLine();
+	List<InvoiceLineModel> getInvoiceLine();
 
-    void setInvoiceLine(List<InvoiceLineModel> invoiceLine);
+	void setInvoiceLine(List<InvoiceLineModel> invoiceLine);
 
-    /**
-     * Other methods
-     */
-    InvoiceLineModel addInvoiceLine();
+	/**
+	 * Other methods
+	 */
+	InvoiceLineModel addInvoiceLine();
 
-    TaxTotalModel addTaxTotal();
+	TaxTotalModel addTaxTotal();
 
-    SignatureModel addSignature();
+	SignatureModel addSignature();
 
-    /**
-     * Events interfaces
-     */
-    interface InvoiceCreationEvent extends ProviderEvent {
-        InvoiceModel getCreatedInvoice();
-    }
+	byte[] getXmlDoument();
 
-    interface InvoicePostCreateEvent extends ProviderEvent {
-        InvoiceModel getCreatedInvoice();
+	void setXmlDocument(byte[] value);
 
-        OpenfactSession getOpenfactSession();
-    }
+	/**
+	 * Events interfaces
+	 */
+	interface InvoiceCreationEvent extends ProviderEvent {
+		InvoiceModel getCreatedInvoice();
+	}
 
-    interface InvoiceRemovedEvent extends ProviderEvent {
-        InvoiceModel getInvoice();
+	interface InvoicePostCreateEvent extends ProviderEvent {
+		InvoiceModel getCreatedInvoice();
 
-        OpenfactSession getOpenfactSession();
-    }
+		OpenfactSession getOpenfactSession();
+	}
+
+	interface InvoiceRemovedEvent extends ProviderEvent {
+		InvoiceModel getInvoice();
+
+		OpenfactSession getOpenfactSession();
+	}
 
 }

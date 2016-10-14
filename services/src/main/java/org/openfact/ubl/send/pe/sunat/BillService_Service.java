@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "billService", targetNamespace = "http://service.gem.factura.comppago.registro.servicio.sunat.gob.pe/", wsdlLocation = "https://e-beta.sunat.gob.pe/ol-ti-itemision-guia-gem-beta/billService?wsdl")
+@WebServiceClient(name = "billService", targetNamespace = "http://service.gem.factura.comppago.registro.servicio.sunat.gob.pe/", wsdlLocation = "https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService?wsdl")
 public class BillService_Service
     extends Service
 {

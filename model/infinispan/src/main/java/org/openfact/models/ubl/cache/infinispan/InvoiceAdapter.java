@@ -48,6 +48,7 @@ import org.openfact.models.ubl.common.SignatureModel;
 import org.openfact.models.ubl.common.SupplierPartyModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
+import org.w3c.dom.Element;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
@@ -727,5 +728,18 @@ public class InvoiceAdapter implements CachedInvoiceModel {
         // TODO Auto-generated method stub
         return null;
     }
+
+
+	@Override
+	public byte[] getXmlDoument() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setXmlDocument(byte[] value) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

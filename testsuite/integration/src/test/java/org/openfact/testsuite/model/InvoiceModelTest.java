@@ -17,66 +17,7 @@
 
 package org.openfact.testsuite.model;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
-
-import java.io.File;
-import java.math.BigDecimal;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.Marshaller;
-import javax.xml.transform.dom.DOMResult;
-
-import org.junit.Test;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.ubl.InvoiceModel;
-import org.openfact.models.ubl.common.AddressModel;
-import org.openfact.models.ubl.common.AttachmentModel;
-import org.openfact.models.ubl.common.CustomerPartyModel;
-import org.openfact.models.ubl.common.ExtensionContentModel;
-import org.openfact.models.ubl.common.ExternalReferenceModel;
-import org.openfact.models.ubl.common.InvoiceLineModel;
-import org.openfact.models.ubl.common.ItemIdentificationModel;
-import org.openfact.models.ubl.common.ItemModel;
-import org.openfact.models.ubl.common.MonetaryTotalModel;
-import org.openfact.models.ubl.common.PartyLegalModel;
-import org.openfact.models.ubl.common.PartyModel;
-import org.openfact.models.ubl.common.PriceModel;
-import org.openfact.models.ubl.common.PricingReferenceModel;
-import org.openfact.models.ubl.common.QuantityModel;
-import org.openfact.models.ubl.common.SignatureModel;
-import org.openfact.models.ubl.common.SupplierPartyModel;
-import org.openfact.models.ubl.common.TaxCategoryModel;
-import org.openfact.models.ubl.common.TaxSchemeModel;
-import org.openfact.models.ubl.common.TaxSubtotalModel;
-import org.openfact.models.ubl.common.TaxTotalModel;
-import org.openfact.models.ubl.common.UBLExtensionModel;
-import org.openfact.models.ubl.common.UBLExtensionsModel;
-import org.openfact.models.utils.OpenfactModelUtils;
-import org.openfact.models.utils.UblSignature;
-import org.openfact.ubl.UblProvider;
-import org.openfact.ubl.pe.extensions.AdditionalInformationTypeSunatAgg;
-import org.openfact.ubl.pe.extensions.AdditionalMonetaryTotalType;
-import org.openfact.ubl.pe.extensions.InvoiceFactory;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
-import com.helger.commons.error.list.IErrorList;
-import com.helger.ubl21.UBL21Reader;
-import com.helger.ubl21.UBL21Validator;
-import com.helger.ubl21.UBL21Writer;
-
-import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.IDType;
-import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.PayableAmountType;
-import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 
 /**
  * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>

@@ -876,7 +876,7 @@ public class RepresentationToModel {
 
     public static void updateModel(PartyLegalModel model, PartyLegalEntityRepresentation rep) {
         if (rep.getRegistrationName() != null) {
-            model.setRegistrationName(model.getRegistrationName());
+            model.setRegistrationName(rep.getRegistrationName());
         }
     }
 

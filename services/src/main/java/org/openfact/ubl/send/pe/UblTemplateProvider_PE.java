@@ -1,15 +1,13 @@
 package org.openfact.ubl.send.pe;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.file.Files;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
-import javax.activation.FileDataSource;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
 import org.openfact.models.ModelException;
@@ -28,6 +26,7 @@ import org.openfact.ubl.send.pe.header.UblHeaderHandlerResolver;
 import org.openfact.ubl.send.pe.sunat.BillService;
 import org.openfact.ubl.send.pe.sunat.BillService_Service;
 import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 import com.sun.xml.ws.util.ByteArrayDataSource;
 
@@ -60,11 +59,11 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 	@Override
 	public void sendInvoice(InvoiceModel invoice) throws UblSenderException {
 		String fileName = generateXmlFileName(invoice);
-		Document document = getUblProvider(organization).getDocument(organization, invoice);
+		byte[] document = invoice.getXmlDoument();
 		try {
 			byte[] zip = generateZip(document, fileName);
 
-			File file = new File(System.getProperty("user.home") + "/ubl/" +fileName+ ".zip");
+			File file = new File(System.getProperty("user.home") + "/ubl/" + fileName + ".zip");
 			FileOutputStream fos = new FileOutputStream(file);
 			fos.write(zip);
 			fos.close();
@@ -72,14 +71,17 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 			// Call Web Service Operation
 			BillService_Service service = new BillService_Service();
 			service.setHandlerResolver(new UblHeaderHandlerResolver(organization.getUblSenderConfig()));
-			BillService port = service.getBillServicePort();
-
+			BillService port = service.getBillServicePort();			
 			// Config data
 			DataSource dataSource = new ByteArrayDataSource(zip, "application/zip");
 			DataHandler contentFile = new DataHandler(dataSource);
 
 			// Send
 			byte[] result = port.sendBill(fileName + ".zip", contentFile);
+			File res = new File(System.getProperty("user.home") + "/ubl/CDR-" + fileName + ".zip");
+			FileOutputStream fos1 = new FileOutputStream(res);
+			fos1.write(result);
+			fos1.close();
 		} catch (TransformerException e) {
 			throw new UblSenderException(e);
 		} catch (IOException e) {
@@ -90,7 +92,8 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 	@Override
 	public void sendCreditNote(CreditNoteModel creditNote) throws UblSenderException {
 		String fileName = generateXmlFileName(creditNote);
-		Document document = getUblProvider(organization).getDocument(organization, creditNote);
+		byte[] document = null;// getUblProvider(organization).getDocument(organization,
+								// creditNote);
 		try {
 			byte[] zip = generateZip(document, fileName);
 
@@ -120,7 +123,8 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 	@Override
 	public void sendDebitNote(DebitNoteModel debitNote) throws UblSenderException {
 		String fileName = generateXmlFileName(debitNote);
-		Document document = getUblProvider(organization).getDocument(organization, debitNote);
+		byte[] document = null;// getUblProvider(organization).getDocument(organization,
+								// debitNote);
 		try {
 			byte[] zip = generateZip(document, fileName);
 			File file = new File(System.getProperty("user.home") + "/ubl/" + fileName + ".zip");
@@ -146,9 +150,9 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 		}
 	}
 
-	private byte[] generateZip(Document document, String fileName) throws TransformerException, IOException {
-		byte[] bytes = DocumentUtils.getBytesFromDocument(document);
-		return ZipBuilder.createZipInMemory()/*.addFolder("dummy/")*/.add(bytes).path(fileName + ".xml").save().toBytes();
+	private byte[] generateZip(byte[] document, String fileName) throws TransformerException, IOException {
+		return ZipBuilder.createZipInMemory()/* .addFolder("dummy/") */.add(document).path(fileName + ".xml").save()
+				.toBytes();
 	}
 
 	private UblProvider getUblProvider(OrganizationModel organization) {

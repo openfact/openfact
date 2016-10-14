@@ -30,6 +30,7 @@ import org.apache.xml.serialize.XMLSerializer;
 import org.openfact.models.ModelException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 public class DocumentUtils {
@@ -39,10 +40,9 @@ public class DocumentUtils {
 		factory.setNamespaceAware(true);
 		DocumentBuilder builder = factory.newDocumentBuilder();
 		Document docParse = builder.parse(new ByteArrayInputStream(document));
-		docParse.setXmlStandalone(false);
 		return docParse;
 	}
-	
+
 	public Element getByteToElement(byte[] document) throws TransformerFactoryConfigurationError, Exception {
 		DOMSource source = new DOMSource(DocumentUtils.getByteToDocument(document));
 		Element elem = ((Document) source.getNode()).getDocumentElement();
@@ -51,11 +51,12 @@ public class DocumentUtils {
 
 	public static void getElementToByte(Element element, OutputStream out) {
 		try {
-			DOMSource source = new DOMSource(element);
-			StreamResult result = new StreamResult(out);
 			TransformerFactory transFactory = TransformerFactory.newInstance();
 			Transformer transformer = transFactory.newTransformer();
-			transformer.transform(source, result);
+			transformer.setOutputProperty("omit-xml-declaration", "no");
+			transformer.setOutputProperty("encoding", "ISO-8859-1");
+			transformer.transform(new DOMSource(element), new StreamResult(out));
+
 		} catch (Exception ex) {
 			throw new ModelException("Error in convert element to byte");
 		}
@@ -135,12 +136,14 @@ public class DocumentUtils {
 	 */
 	public static Document getInputStreamToDocument(InputStream inputStream)
 			throws IOException, SAXException, ParserConfigurationException {
-		DocumentBuilderFactory newInstance = DocumentBuilderFactory.newInstance();
-		newInstance.setNamespaceAware(true);
-		Document parse = newInstance.newDocumentBuilder().parse(inputStream);
-		parse.setXmlStandalone(false);
-		return parse;
-
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		dbf.setIgnoringElementContentWhitespace(true);
+		dbf.setNamespaceAware(true);
+		dbf.setAttribute("http://xml.org/sax/features/namespaces", Boolean.TRUE);
+		DocumentBuilder db = dbf.newDocumentBuilder();
+		Reader reader = new InputStreamReader(inputStream, "ISO8859_1");
+		Document doc = db.parse(new InputSource(reader));
+		return doc;
 	}
 
 	/**
@@ -174,16 +177,28 @@ public class DocumentUtils {
 	}
 
 	public static byte[] getBytesFromDocument(Document document) throws TransformerException {
-		Source source = new DOMSource(document);
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		Result result = new StreamResult(out);
 		TransformerFactory factory = TransformerFactory.newInstance();
 		Transformer transformer = factory.newTransformer();
-		transformer.setOutputProperty(OutputKeys.ENCODING, "ISO-8859-1");
-		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-		transformer.setOutputProperty(OutputKeys.STANDALONE, "no");
-		transformer.transform(source, result);
+		transformer.setOutputProperty("omit-xml-declaration", "no");
+		transformer.setOutputProperty("encoding", "ISO-8859-1");
+		transformer.transform(new DOMSource(document), new StreamResult(out));
 		byte[] butesXml = out.toByteArray();
 		return butesXml;
+	}
+
+	public static void getDocumentToOutputStream(Document doc, ByteArrayOutputStream signatureFile)
+			throws TransformerException {
+		TransformerFactory factory = TransformerFactory.newInstance();
+		Transformer transformer = factory.newTransformer();
+		transformer.setOutputProperty("omit-xml-declaration", "no");
+		transformer.setOutputProperty("encoding", "ISO-8859-1");
+		transformer.transform(new DOMSource(doc), new StreamResult(signatureFile));
+	}
+
+	public static Document getEmptyDocument() throws ParserConfigurationException {
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder builder = factory.newDocumentBuilder();
+		return builder.newDocument();
 	}
 }

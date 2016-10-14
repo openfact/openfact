@@ -103,7 +103,7 @@ public class ModelToType {
             type.setLegalMonetaryTotal(
                     toType(model.getLegalMonetaryTotal(), model.getDocumentCurrencyCode()));
         }
-        model.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
+        type.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
         return type;
     }
 
@@ -160,7 +160,7 @@ public class ModelToType {
             type.setLegalMonetaryTotal(
                     toType(model.getLegalMonetaryTotal(), model.getDocumentCurrencyCode()));
         }
-        model.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
+        type.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
         if (model.getBillingReference() != null) {
             for (BillingReferenceModel item : model.getBillingReference()) {
                 type.addBillingReference(toType(item));
@@ -227,7 +227,7 @@ public class ModelToType {
             type.setRequestedMonetaryTotal(
                     toType(model.getRequestedMonetaryTotal(), model.getDocumentCurrencyCode()));
         }
-        model.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
+        type.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
         if (model.getBillingReference() != null) {
             for (BillingReferenceModel item : model.getBillingReference()) {
                 type.addBillingReference(toType(item));

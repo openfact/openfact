@@ -20,6 +20,11 @@
 	</properties>
 
 	<dependencies>
+<!-- 		<dependency> -->
+<!-- 			<groupId>net.sf.saxon</groupId> -->
+<!-- 			<artifactId>saxon</artifactId> -->
+<!-- 			<version>9.1.0.8</version> -->
+<!-- 		</dependency> -->
 		<!-- Java 8 Time -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>
@@ -57,7 +62,7 @@
 			<groupId>org.jodd</groupId>
 			<artifactId>jodd-core</artifactId>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.apache.santuario/xmlsec -->
 		<dependency>
 			<groupId>org.apache.santuario</groupId>
