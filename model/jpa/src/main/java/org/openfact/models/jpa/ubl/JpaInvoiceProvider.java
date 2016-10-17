@@ -24,8 +24,9 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
 	protected static final Logger logger = Logger.getLogger(JpaInvoiceProvider.class);
 
-	private static final String TYPE = "type";
-	private static final String CURRENCY_CODE = "currencyCode";
+	private static final String ID = "ID";
+	private static final String INVOICE_TYPE_CODE = "invoiceTypeCode";
+	private static final String ISSUE_DATETIME = "issueDateTime";
 
 	private final OpenfactSession session;
 	protected EntityManager em;
@@ -187,8 +188,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 	@Override
 	public SearchResultsModel<InvoiceModel> searchForInvoice(OrganizationModel organization,
 			SearchCriteriaModel criteria, String filterText) {
-		SearchResultsModel<InvoiceEntity> entityResult = findFullText(criteria, InvoiceEntity.class, filterText, TYPE,
-				CURRENCY_CODE);
+		SearchResultsModel<InvoiceEntity> entityResult = findFullText(criteria, InvoiceEntity.class, filterText, INVOICE_TYPE_CODE, ID);
 		List<InvoiceEntity> entities = entityResult.getModels();
 
 		SearchResultsModel<InvoiceModel> searchResult = new SearchResultsModel<>();

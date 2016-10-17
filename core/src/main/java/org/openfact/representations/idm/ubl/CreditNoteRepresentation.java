@@ -2,7 +2,7 @@ package org.openfact.representations.idm.ubl;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +30,7 @@ public class CreditNoteRepresentation {
     private String idUbl;
     private Boolean copyIndicator;
     private String uuid;
-    private LocalDate issueDate;
-    private LocalTime issueTime;
+    private LocalDateTime issueDateTime;
     private LocalDate taxPointDate;
     private List<String> note;
     private String documentCurrencyCode;
@@ -110,9 +109,6 @@ public class CreditNoteRepresentation {
         despatchDocumentReference.add(representation);
     }
 
-    /**
-     * Getter and Setter
-     */
     public UBLExtensionsRepresentation getUblExtensions() {
         return ublExtensions;
     }
@@ -169,20 +165,12 @@ public class CreditNoteRepresentation {
         this.uuid = uuid;
     }
 
-    public LocalDate getIssueDate() {
-        return issueDate;
+    public LocalDateTime getIssueDateTime() {
+        return issueDateTime;
     }
 
-    public void setIssueDate(LocalDate issueDate) {
-        this.issueDate = issueDate;
-    }
-
-    public LocalTime getIssueTime() {
-        return issueTime;
-    }
-
-    public void setIssueTime(LocalTime issueTime) {
-        this.issueTime = issueTime;
+    public void setIssueDateTime(LocalDateTime issueDateTime) {
+        this.issueDateTime = issueDateTime;
     }
 
     public LocalDate getTaxPointDate() {
@@ -443,9 +431,5 @@ public class CreditNoteRepresentation {
     public void setId(String id) {
         this.id = id;
     }
-
-    /**
-     ** Gettern and Setters
-     */
 
 }

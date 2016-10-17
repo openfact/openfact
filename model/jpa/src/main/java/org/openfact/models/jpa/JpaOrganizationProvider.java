@@ -1,6 +1,6 @@
 package org.openfact.models.jpa;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -65,7 +65,7 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
         OrganizationEntity organization = new OrganizationEntity();
         organization.setName(name);
         organization.setId(id);
-        organization.setCreatedTimestamp(LocalDate.now());
+        organization.setCreatedTimestamp(LocalDateTime.now());
         organization.setEnabled(true);
         em.persist(organization);
         em.flush();

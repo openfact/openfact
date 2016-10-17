@@ -148,7 +148,7 @@ public class ModelToRepresentation {
             }
         }
 
-        rep.setIssueDate(model.getIssueDate());
+        rep.setIssueDateTime(model.getIssueDateTime());
         if (model.getUBLExtensions() != null) {
             rep.setUblExtensions(toRepresentation(model.getUBLExtensions()));
         }
@@ -191,7 +191,7 @@ public class ModelToRepresentation {
             }
         }
 
-        rep.setIssueDate(model.getIssueDate());
+        rep.setIssueDateTime(model.getIssueDateTime());
         if (model.getUBLExtensions() != null) {
             rep.setUblExtensions(toRepresentation(model.getUBLExtensions()));
         }
@@ -249,7 +249,7 @@ public class ModelToRepresentation {
             }
         }
 
-        rep.setIssueDate(model.getIssueDate());
+        rep.setIssueDateTime(model.getIssueDateTime());
         if (model.getUBLExtensions() != null) {
             rep.setUblExtensions(toRepresentation(model.getUBLExtensions()));
         }

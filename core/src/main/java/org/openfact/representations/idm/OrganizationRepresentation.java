@@ -1,6 +1,6 @@
 package org.openfact.representations.idm;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -20,7 +20,7 @@ public class OrganizationRepresentation {
     private String additionalAccountId;
     private String supplierName;
     private String registrationName;
-    private LocalDate createdTimestamp;
+    private LocalDateTime createdTimestamp;
 
     protected Map<String, String> smtpServer;
     protected Map<String, String> ublSenderServer;
@@ -327,11 +327,11 @@ public class OrganizationRepresentation {
         this.openfactVersion = openfactVersion;
     }
 
-    public LocalDate getCreatedTimestamp() {
+    public LocalDateTime getCreatedTimestamp() {
         return createdTimestamp;
     }
 
-    public void setCreatedTimestamp(LocalDate createdTimestamp) {
+    public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
         this.createdTimestamp = createdTimestamp;
     }
 

@@ -66,8 +66,8 @@ public class ModelToType {
             }
         }
 
-        if (model.getIssueDate() != null) {
-            type.setIssueDate(toType(model.getIssueDate()));
+        if (model.getIssueDateTime() != null) {
+            type.setIssueDate(toType(model.getIssueDateTime().toLocalDate()));
         }
 
         if (model.getUBLExtensions() != null) {
@@ -122,8 +122,8 @@ public class ModelToType {
             }
         }
 
-        if (model.getIssueDate() != null) {
-            type.setIssueDate(toType(model.getIssueDate()));
+        if (model.getIssueDateTime() != null) {
+            type.setIssueDate(toType(model.getIssueDateTime().toLocalDate()));
         }
         if (model.getUBLExtensions() != null) {
             UBLExtensionsType ublExtensionsType = toType(model.getUBLExtensions());
@@ -189,8 +189,8 @@ public class ModelToType {
             }
         }
 
-        if (model.getIssueDate() != null) {
-            type.setIssueDate(toType(model.getIssueDate()));
+        if (model.getIssueDateTime() != null) {
+            type.setIssueDate(toType(model.getIssueDateTime().toLocalDate()));
         }
         if (model.getUBLExtensions() != null) {
             UBLExtensionsType ublExtensionsType = toType(model.getUBLExtensions());

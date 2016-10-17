@@ -9,7 +9,7 @@ package org.openfact.models.jpa.entities.ubl;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -61,12 +61,12 @@ import org.openfact.models.jpa.entities.ubl.common.UBLExtensionsEntity;
 @Table(name = "INVOICE", uniqueConstraints = {
         @UniqueConstraint(columnNames = { "ORGANIZATION_ID", "ID_UBL" }) })
 @NamedQueries({
-        @NamedQuery(name = "getAllInvoicesByOrganization", query = "select i from InvoiceEntity i where i.organization.id = :organizationId order by i.issueDate, i.issueTime"),
+        @NamedQuery(name = "getAllInvoicesByOrganization", query = "select i from InvoiceEntity i where i.organization.id = :organizationId order by i.issueDateTime"),
         @NamedQuery(name = "getOrganizationInvoiceById", query = "select i from InvoiceEntity i where i.id = :id and i.organization.id = :organizationId"),
         @NamedQuery(name = "getOrganizationInvoiceByID", query = "select i from InvoiceEntity i where i.ID = :ID and i.organization.id = :organizationId"),
-        @NamedQuery(name = "searchForInvoice", query = "select i from InvoiceEntity i where i.organization.id = :organizationId and i.ID like :search order by i.issueDate, i.issueTime"),
+        @NamedQuery(name = "searchForInvoice", query = "select i from InvoiceEntity i where i.organization.id = :organizationId and i.ID like :search order by i.issueDateTime"),
         @NamedQuery(name = "getOrganizationInvoiceCount", query = "select count(i) from InvoiceEntity i where i.organization.id = :organizationId"),
-        @NamedQuery(name = "getLastInvoiceByOrganization", query = "select i from InvoiceEntity i where i.organization.id = :organizationId and length(i.ID)=:IDLength and i.ID like :formatter order by i.issueDate, i.issueTime desc") })
+        @NamedQuery(name = "getLastInvoiceByOrganization", query = "select i from InvoiceEntity i where i.organization.id = :organizationId and length(i.ID)=:IDLength and i.ID like :formatter order by i.issueDateTime desc") })
 public class InvoiceEntity {
 
     @Id
@@ -110,12 +110,8 @@ public class InvoiceEntity {
     protected String uuid;
 
     @Column(name = "ISSUE_DATE")
-    @Type(type = "org.hibernate.type.LocalDateType")
-    protected LocalDate issueDate;
-
-    @Column(name = "ISSUE_TIME")
-    @Type(type = "org.hibernate.type.LocalTimeType")
-    protected LocalTime issueTime;
+    @Type(type = "org.hibernate.type.LocalDateTimeType")
+    protected LocalDateTime issueDateTime;
 
     @Column(name = "INVOICE_TYOE_CODE")
     protected String invoiceTypeCode;
@@ -345,20 +341,12 @@ public class InvoiceEntity {
         this.uuid = uuid;
     }
 
-    public LocalDate getIssueDate() {
-        return issueDate;
+    public LocalDateTime getIssueDateTime() {
+        return issueDateTime;
     }
 
-    public void setIssueDate(LocalDate issueDate) {
-        this.issueDate = issueDate;
-    }
-
-    public LocalTime getIssueTime() {
-        return issueTime;
-    }
-
-    public void setIssueTime(LocalTime issueTime) {
-        this.issueTime = issueTime;
+    public void setIssueDateTime(LocalDateTime issueDateTime) {
+        this.issueDateTime = issueDateTime;
     }
 
     public String getInvoiceTypeCode() {

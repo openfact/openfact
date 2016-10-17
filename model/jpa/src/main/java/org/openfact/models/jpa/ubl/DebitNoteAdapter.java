@@ -2,7 +2,7 @@ package org.openfact.models.jpa.ubl;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -304,8 +304,8 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
      * @return the issueDate
      */
     @Override
-    public LocalDate getIssueDate() {
-        return debitNote.getIssueDate();
+    public LocalDateTime getIssueDateTime() {
+        return debitNote.getIssueDateTime();
     }
 
     /**
@@ -313,25 +313,8 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
      *            the issueDate to set
      */
     @Override
-    public void setIssueDate(LocalDate issueDate) {
-        this.debitNote.setIssueDate(issueDate);
-    }
-
-    /**
-     * @return the issueTime
-     */
-    @Override
-    public LocalTime getIssueTime() {
-        return debitNote.getIssueTime();
-    }
-
-    /**
-     * @param issueTime
-     *            the issueTime to set
-     */
-    @Override
-    public void setIssueTime(LocalTime issueTime) {
-        this.debitNote.setIssueTime(issueTime);
+    public void setIssueDateTime(LocalDateTime issueDateTime) {
+        this.debitNote.setIssueDateTime(issueDateTime);
     }
 
     /**

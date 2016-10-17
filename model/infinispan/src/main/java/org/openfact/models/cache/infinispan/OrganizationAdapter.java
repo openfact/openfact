@@ -23,6 +23,7 @@ import java.security.PublicKey;
 import java.security.cert.X509Certificate;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Map;
 import java.util.Set;
@@ -469,6 +470,12 @@ public class OrganizationAdapter implements OrganizationModel {
     }
 
     @Override
+    public LocalDateTime getCreatedTimestamp() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
     public String getPostalAddressId() {
         // TODO Auto-generated method stub
         return null;
@@ -774,10 +781,6 @@ public class OrganizationAdapter implements OrganizationModel {
         
     }
 
-    @Override
-    public LocalDate getCreatedTimestamp() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+    
 
 }

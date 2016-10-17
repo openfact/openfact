@@ -2,7 +2,7 @@ package org.openfact.models.jpa.ubl;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -17,8 +17,8 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.OrganizationAdapter;
-import org.openfact.models.jpa.entities.ubl.CreditNoteEntity;
 import org.openfact.models.jpa.entities.ubl.CreditNoteAttributeEntity;
+import org.openfact.models.jpa.entities.ubl.CreditNoteEntity;
 import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.CreditNoteLineEntity;
@@ -304,8 +304,8 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
      * @return the issueDate
      */
     @Override
-    public LocalDate getIssueDate() {
-        return creditNote.getIssueDate();
+    public LocalDateTime getIssueDateTime() {
+        return creditNote.getIssueDateTime();
     }
 
     /**
@@ -313,25 +313,8 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
      *            the issueDate to set
      */
     @Override
-    public void setIssueDate(LocalDate issueDate) {
-        this.creditNote.setIssueDate(issueDate);
-    }
-
-    /**
-     * @return the issueTime
-     */
-    @Override
-    public LocalTime getIssueTime() {
-        return creditNote.getIssueTime();
-    }
-
-    /**
-     * @param issueTime
-     *            the issueTime to set
-     */
-    @Override
-    public void setIssueTime(LocalTime issueTime) {
-        this.creditNote.setIssueTime(issueTime);
+    public void setIssueDateTime(LocalDateTime issueDateTime) {
+        this.creditNote.setIssueDateTime(issueDateTime);
     }
 
     /**

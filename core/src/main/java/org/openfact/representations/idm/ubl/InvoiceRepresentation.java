@@ -2,7 +2,7 @@ package org.openfact.representations.idm.ubl;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,8 +35,7 @@ public class InvoiceRepresentation {
     private String idUbl;
     private Boolean copyIndicator;
     private String uuid;
-    private LocalDate issueDate;
-    private LocalTime issueTime;
+    private LocalDateTime issueDateTime;
     private String invoiceTypeCode;
     private List<String> note;
     private LocalDate taxPointDate;
@@ -179,20 +178,12 @@ public class InvoiceRepresentation {
         this.uuid = uuid;
     }
 
-    public LocalDate getIssueDate() {
-        return issueDate;
+    public LocalDateTime getIssueDateTime() {
+        return issueDateTime;
     }
 
-    public void setIssueDate(LocalDate issueDate) {
-        this.issueDate = issueDate;
-    }
-
-    public LocalTime getIssueTime() {
-        return issueTime;
-    }
-
-    public void setIssueTime(LocalTime issueTime) {
-        this.issueTime = issueTime;
+    public void setIssueDateTime(LocalDateTime issueDateTime) {
+        this.issueDateTime = issueDateTime;
     }
 
     public String getInvoiceTypeCode() {
@@ -518,9 +509,5 @@ public class InvoiceRepresentation {
     public void setId(String id) {
         this.id = id;
     }
-
-    /**
-     * Getter and Setters
-     */
 
 }

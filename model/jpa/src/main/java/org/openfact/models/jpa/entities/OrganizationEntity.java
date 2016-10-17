@@ -2,6 +2,7 @@ package org.openfact.models.jpa.entities;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -74,9 +75,9 @@ public class OrganizationEntity {
 	@Column(name = "REGISTRATION_NAME")
 	private String registrationName;
 
-	@Type(type = "org.hibernate.type.LocalDateType")
+	@Type(type = "org.hibernate.type.LocalDateTimeType")
 	@Column(name = "CREATED_TIMESTAMP")
-	private LocalDate createdTimestamp;
+	private LocalDateTime createdTimestamp;
 	
 	/**
 	 * Certificate
@@ -704,11 +705,11 @@ public class OrganizationEntity {
         this.debitNotes = debitNotes;
     }
 
-    public LocalDate getCreatedTimestamp() {
+    public LocalDateTime getCreatedTimestamp() {
         return createdTimestamp;
     }
 
-    public void setCreatedTimestamp(LocalDate createdTimestamp) {
+    public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
         this.createdTimestamp = createdTimestamp;
     }
 

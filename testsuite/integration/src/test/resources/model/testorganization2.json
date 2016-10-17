@@ -72,7 +72,7 @@
 			"idUbl": "F001-00000001",
 			"ublVersionID": "2.0",
 			"customizationID": "1.0",
-			"issueDate": "2016-10-08",
+			"issueDateTime": "2016-05-15T13:34:03.595Z",
 			"invoiceTypeCode": "01",
 			"documentCurrencyCode": "PEN",
 			"signature": [
@@ -206,7 +206,7 @@
 	"creditNotes": [
 		{
 			"idUbl": "FC01-00000001",
-			"issueDate": "2016-10-08",
+			"issueDateTime": "2017-10-15T13:34:03.595Z",
 			"documentCurrencyCode": "PEN",
 			"discrepancyResponse": [
 				{
@@ -332,7 +332,7 @@
 	"debitNotes": [
 		{
 			"idUbl": "FD01-00000001",
-			"issueDate": "2016-10-08",
+			"issueDateTime": "2017-10-15T13:34:03.595Z",
 			"documentCurrencyCode": "PEN",
 			"discrepancyResponse": [
 				{

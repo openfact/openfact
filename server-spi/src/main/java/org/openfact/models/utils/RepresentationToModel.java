@@ -1,14 +1,20 @@
 package org.openfact.models.utils;
 
 import java.time.DayOfWeek;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.catalog.CodeCatalogModel;
+import org.openfact.models.search.SearchCriteriaFilterOperator;
+import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.ubl.CreditNoteModel;
 import org.openfact.models.ubl.DebitNoteModel;
 import org.openfact.models.ubl.InvoiceModel;
@@ -47,6 +53,10 @@ import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
 import org.openfact.representations.idm.TasksScheduleRepresentation;
 import org.openfact.representations.idm.catalog.CodeCatalogRepresentation;
+import org.openfact.representations.idm.search.PagingRepresentation;
+import org.openfact.representations.idm.search.SearchCriteriaFilterOperatorRepresentation;
+import org.openfact.representations.idm.search.SearchCriteriaFilterRepresentation.FilterValueType;
+import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
 import org.openfact.representations.idm.ubl.CreditNoteRepresentation;
 import org.openfact.representations.idm.ubl.DebitNoteRepresentation;
 import org.openfact.representations.idm.ubl.InvoiceRepresentation;
@@ -81,8 +91,53 @@ import org.openfact.representations.idm.ubl.common.TaxTotalRepresentation;
 import org.openfact.representations.idm.ubl.common.UBLExtensionRepresentation;
 import org.openfact.representations.idm.ubl.common.UBLExtensionsRepresentation;
 
-public class RepresentationToModel {
+public class RepresentationToModel {    
+    
+    public static SearchCriteriaModel toModel(SearchCriteriaRepresentation rep) {
+        SearchCriteriaModel model = new SearchCriteriaModel();
 
+        // filters
+        Function<SearchCriteriaFilterOperatorRepresentation, SearchCriteriaFilterOperator> operatorFunction = f -> {
+            return SearchCriteriaFilterOperator.valueOf(f.toString());
+        };
+
+        BiFunction<Object, FilterValueType, Object> valueFunction = (value, type) -> {
+            Object result = null;
+            switch (type) {
+            case LONG:
+                result = (long) value;
+                break;
+            case STRING:
+                result = (String) value;
+                break;
+            case DATE:
+                result = LocalDateTime.parse((String) value, DateTimeFormatter.ISO_DATE);
+                break;
+            case DATETIME:
+                result = LocalDateTime.parse((String) value, DateTimeFormatter.ISO_DATE_TIME);
+                break;
+            default:
+                result = value;
+                break;
+            }
+            return result;
+        };
+
+        rep.getFilters().forEach(f -> {
+            model.addFilter(f.getName(), valueFunction.apply(f.getValue(), f.getType()), operatorFunction.apply(f.getOperator()));
+        });
+
+        // sorter
+        rep.getOrders().forEach(f -> model.addOrder(f.getName(), f.isAscending()));
+
+        // paging
+        PagingRepresentation paging = rep.getPaging();
+        model.setPageSize(paging.getPageSize());
+        model.setPage(paging.getPage());
+
+        return model;
+    }
+    
     public static void importOrganization(OpenfactSession session, OrganizationRepresentation rep,
             OrganizationModel newOrganization) {
         newOrganization.setName(rep.getOrganization());
@@ -404,8 +459,8 @@ public class RepresentationToModel {
             }
         }
 
-        if (rep.getIssueDate() != null) {
-            model.setIssueDate(rep.getIssueDate());
+        if (rep.getIssueDateTime() != null) {
+            model.setIssueDateTime(rep.getIssueDateTime());
         }
         if (rep.getAccountingSupplierParty() != null) {
             updateModel(model.getAccountingSupplierParty(), rep.getAccountingSupplierParty());
@@ -461,8 +516,8 @@ public class RepresentationToModel {
             }
         }
 
-        if (rep.getIssueDate() != null) {
-            model.setIssueDate(rep.getIssueDate());
+        if (rep.getIssueDateTime() != null) {
+            model.setIssueDateTime(rep.getIssueDateTime());
         }
         if (rep.getAccountingSupplierParty() != null) {
             updateModel(model.getAccountingSupplierParty(), rep.getAccountingSupplierParty());
@@ -521,8 +576,8 @@ public class RepresentationToModel {
             }
         }
 
-        if (rep.getIssueDate() != null) {
-            model.setIssueDate(rep.getIssueDate());
+        if (rep.getIssueDateTime() != null) {
+            model.setIssueDateTime(rep.getIssueDateTime());
         }
         if (rep.getAccountingSupplierParty() != null) {
             updateModel(model.getAccountingSupplierParty(), rep.getAccountingSupplierParty());

@@ -2,7 +2,7 @@ package org.openfact.models.jpa.ubl;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -164,23 +164,13 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
-    public LocalDate getIssueDate() {
-        return invoice.getIssueDate();
+    public LocalDateTime getIssueDateTime() {
+        return invoice.getIssueDateTime();
     }
 
     @Override
-    public void setIssueDate(LocalDate value) {
-        invoice.setIssueDate(value);
-    }
-
-    @Override
-    public LocalTime getIssueTime() {
-        return invoice.getIssueTime();
-    }
-
-    @Override
-    public void setIssueTime(LocalTime value) {
-        invoice.setIssueTime(value);
+    public void setIssueDateTime(LocalDateTime value) {
+        invoice.setIssueDateTime(value);
     }
 
     @Override

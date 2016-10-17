@@ -2,7 +2,7 @@ package org.openfact.models.ubl;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +31,10 @@ import org.openfact.provider.ProviderEvent;
 
 public interface InvoiceModel {
 
+    String ID = "ID";
+    String INVOICE_TYPE_CODE = "invoiceTypeCode";
+    String ISSUE_DATETIME = "issueDateTime";
+    
     String getId();
 
     /**
@@ -83,13 +87,9 @@ public interface InvoiceModel {
 
     void setUUID(String value);
 
-    LocalDate getIssueDate();
+    LocalDateTime getIssueDateTime();
 
-    void setIssueDate(LocalDate value);
-
-    LocalTime getIssueTime();
-
-    void setIssueTime(LocalTime value);
+    void setIssueDateTime(LocalDateTime value);
 
     String getInvoiceTypeCode();
 

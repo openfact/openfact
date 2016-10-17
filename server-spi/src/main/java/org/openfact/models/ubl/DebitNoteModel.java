@@ -2,7 +2,7 @@ package org.openfact.models.ubl;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -80,13 +80,9 @@ public interface DebitNoteModel {
 
     void setUUID(String value);
 
-    LocalDate getIssueDate();
+    LocalDateTime getIssueDateTime();
 
-    void setIssueDate(LocalDate value);
-
-    LocalTime getIssueTime();
-
-    void setIssueTime(LocalTime value);
+    void setIssueDateTime(LocalDateTime value);
 
     List<String> getNote();
 

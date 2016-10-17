@@ -9,7 +9,7 @@ package org.openfact.models.jpa.entities.ubl;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -57,12 +57,12 @@ import org.openfact.models.jpa.entities.ubl.common.UBLExtensionsEntity;
 @Table(name = "DEBIT_NOTE", uniqueConstraints = {
         @UniqueConstraint(columnNames = { "ORGANIZATION_ID", "ID_UBL" }) })
 @NamedQueries({
-        @NamedQuery(name = "getAllDebitNotesByOrganization", query = "select i from DebitNoteEntity i where i.organization.id = :organizationId order by i.issueDate, i.issueTime"),
+        @NamedQuery(name = "getAllDebitNotesByOrganization", query = "select i from DebitNoteEntity i where i.organization.id = :organizationId order by i.issueDateTime"),
         @NamedQuery(name = "getOrganizationDebitNoteById", query = "select i from DebitNoteEntity i where i.id = :id and i.organization.id = :organizationId"),
         @NamedQuery(name = "getOrganizationDebitNoteByID", query = "select i from DebitNoteEntity i where i.ID = :ID and i.organization.id = :organizationId"),
-        @NamedQuery(name = "searchForDebitNote", query = "select i from DebitNoteEntity i where i.organization.id = :organizationId and i.ID like :search order by i.issueDate, i.issueTime"),
+        @NamedQuery(name = "searchForDebitNote", query = "select i from DebitNoteEntity i where i.organization.id = :organizationId and i.ID like :search order by i.issueDateTime"),
         @NamedQuery(name = "getOrganizationDebitNoteCount", query = "select count(i) from DebitNoteEntity i where i.organization.id = :organizationId"),
-        @NamedQuery(name = "getLastDebitNoteByOrganization", query = "select i from DebitNoteEntity i where i.organization.id = :organizationId and length(i.ID)=:IDLength and i.ID like :formatter order by i.issueDate, i.issueTime desc") })
+        @NamedQuery(name = "getLastDebitNoteByOrganization", query = "select i from DebitNoteEntity i where i.organization.id = :organizationId and length(i.ID)=:IDLength and i.ID like :formatter order by i.issueDateTime desc") })
 public class DebitNoteEntity {
 
     @Id
@@ -106,12 +106,8 @@ public class DebitNoteEntity {
     protected String uuid;
 
     @Column(name = "ISSUE_DATE")
-    @Type(type = "org.hibernate.type.LocalDateType")
-    protected LocalDate issueDate;
-
-    @Column(name = "ISSUE_TIME")
-    @Type(type = "org.hibernate.type.LocalTimeType")
-    protected LocalTime issueTime;
+    @Type(type = "org.hibernate.type.LocalDateTimeType")
+    protected LocalDateTime issueDateTime;
 
     @ElementCollection
     @Column(name = "VALUE")
@@ -310,20 +306,12 @@ public class DebitNoteEntity {
         this.uuid = uuid;
     }
 
-    public LocalDate getIssueDate() {
-        return issueDate;
+    public LocalDateTime getIssueDateTime() {
+        return issueDateTime;
     }
 
-    public void setIssueDate(LocalDate issueDate) {
-        this.issueDate = issueDate;
-    }
-
-    public LocalTime getIssueTime() {
-        return issueTime;
-    }
-
-    public void setIssueTime(LocalTime issueTime) {
-        this.issueTime = issueTime;
+    public void setIssueDateTime(LocalDateTime issueDateTime) {
+        this.issueDateTime = issueDateTime;
     }
 
     public List<String> getNote() {
