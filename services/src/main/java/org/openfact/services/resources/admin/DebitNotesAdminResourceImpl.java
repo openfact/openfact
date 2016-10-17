@@ -24,6 +24,7 @@ import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.ubl.DebitNoteModel;
 import org.openfact.models.utils.ModelToRepresentation;
+import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.search.PagingRepresentation;
 import org.openfact.representations.idm.search.SearchCriteriaFilterOperatorRepresentation;
 import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
@@ -128,18 +129,7 @@ public class DebitNotesAdminResourceImpl implements DebitNotesAdminResource {
     public SearchResultsRepresentation<DebitNoteRepresentation> search(SearchCriteriaRepresentation criteria) {
         auth.requireView();
         
-        SearchCriteriaModel criteriaModel = new SearchCriteriaModel();
-
-        Function<SearchCriteriaFilterOperatorRepresentation, SearchCriteriaFilterOperator> function = f -> {
-            return SearchCriteriaFilterOperator.valueOf(f.toString());
-        };
-        criteria.getFilters().forEach(f -> {
-            criteriaModel.addFilter(f.getName(), f.getValue(), function.apply(f.getOperator()));
-        });
-        criteria.getOrders().forEach(f -> criteriaModel.addOrder(f.getName(), f.isAscending()));
-        PagingRepresentation paging = criteria.getPaging();
-        criteriaModel.setPageSize(paging.getPageSize());
-        criteriaModel.setPage(paging.getPage());
+        SearchCriteriaModel criteriaModel = RepresentationToModel.toModel(criteria);
 
         String filterText = criteria.getFilterText();
         SearchResultsModel<DebitNoteModel> results = null;

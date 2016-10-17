@@ -59,6 +59,10 @@ public class OrganizationAuth {
          */
         case INVOICE:
             return AdminRoles.VIEW_DOCUMENTS;
+        case CREDIT_NOTE:
+            return AdminRoles.VIEW_DOCUMENTS;
+        case DEBIT_NOTE:
+            return AdminRoles.VIEW_DOCUMENTS;
         case REALM:
             return AdminRoles.VIEW_ORGANIZATION;
         case CERTIFIED:
@@ -81,6 +85,10 @@ public class OrganizationAuth {
          * case CLIENT: return AdminRoles.MANAGE_CLIENTS;
          */
         case INVOICE:
+            return AdminRoles.MANAGE_DOCUMENT;
+        case CREDIT_NOTE:
+            return AdminRoles.MANAGE_DOCUMENT;
+        case DEBIT_NOTE:
             return AdminRoles.MANAGE_DOCUMENT;
         case REALM:
             return AdminRoles.MANAGE_ORGANIZATION;

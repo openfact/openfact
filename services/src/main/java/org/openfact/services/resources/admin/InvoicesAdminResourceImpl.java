@@ -129,18 +129,6 @@ public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
     public SearchResultsRepresentation<InvoiceRepresentation> search(SearchCriteriaRepresentation criteria) {
         auth.requireView();
         
-        /*SearchCriteriaModel criteriaModel = new SearchCriteriaModel();
-
-        Function<SearchCriteriaFilterOperatorRepresentation, SearchCriteriaFilterOperator> function = f -> {
-            return SearchCriteriaFilterOperator.valueOf(f.toString());
-        };
-        criteria.getFilters().forEach(f -> {
-            criteriaModel.addFilter(f.getName(), f.getValue(), function.apply(f.getOperator()));
-        });
-        criteria.getOrders().forEach(f -> criteriaModel.addOrder(f.getName(), f.isAscending()));
-        PagingRepresentation paging = criteria.getPaging();
-        criteriaModel.setPageSize(paging.getPageSize());
-        criteriaModel.setPage(paging.getPage());*/
         SearchCriteriaModel criteriaModel = RepresentationToModel.toModel(criteria);
 
         String filterText = criteria.getFilterText();

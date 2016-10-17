@@ -25,8 +25,8 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
 
     protected static final Logger logger = Logger.getLogger(JpaDebitNoteProvider.class);
 
-    private static final String TYPE = "type";
-    private static final String CURRENCY_CODE = "currencyCode";
+    private static final String ID = "ID";
+    private static final String ISSUE_DATETIME = "issueDateTime";
 
     private final OpenfactSession session;
     protected EntityManager em;
@@ -192,7 +192,7 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
     public SearchResultsModel<DebitNoteModel> searchForDebitNote(OrganizationModel organization,
             SearchCriteriaModel criteria, String filterText) {
         SearchResultsModel<DebitNoteEntity> entityResult = findFullText(criteria, DebitNoteEntity.class,
-                filterText, TYPE, CURRENCY_CODE);
+                filterText, ID);
         List<DebitNoteEntity> entities = entityResult.getModels();
 
         SearchResultsModel<DebitNoteModel> searchResult = new SearchResultsModel<>();

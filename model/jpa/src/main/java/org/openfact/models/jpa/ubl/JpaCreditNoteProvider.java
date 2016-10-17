@@ -24,8 +24,8 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
 
     protected static final Logger logger = Logger.getLogger(JpaCreditNoteProvider.class);
 
-    private static final String TYPE = "type";
-    private static final String CURRENCY_CODE = "currencyCode";
+    private static final String ID = "ID";
+    private static final String ISSUE_DATETIME = "issueDateTime";
     
     private final OpenfactSession session;
     protected EntityManager em;
@@ -191,7 +191,7 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
     public SearchResultsModel<CreditNoteModel> searchForCreditNote(OrganizationModel organization,
             SearchCriteriaModel criteria, String filterText) {
         SearchResultsModel<CreditNoteEntity> entityResult = findFullText(criteria, CreditNoteEntity.class,
-                filterText, TYPE, CURRENCY_CODE);
+                filterText, ID);
         List<CreditNoteEntity> entities = entityResult.getModels();
 
         SearchResultsModel<CreditNoteModel> searchResult = new SearchResultsModel<>();

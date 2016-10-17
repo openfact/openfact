@@ -27,6 +27,9 @@ import org.openfact.provider.ProviderEvent;
 
 public interface CreditNoteModel {
 
+    String ID = "ID";
+    String ISSUE_DATETIME = "issueDateTime";
+    
     String getId();
 
     /**
