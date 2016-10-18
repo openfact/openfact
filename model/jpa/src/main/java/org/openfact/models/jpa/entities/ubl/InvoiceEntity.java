@@ -264,13 +264,13 @@ public class InvoiceEntity {
 
     @Lob
     @Column(name = "XML_DOCUMENT")
-    protected byte[] xmlDocument;
+    protected Byte[] xmlDocument;
     
-    public byte[] getXmlDocument() {
+    public Byte[] getXmlDocument() {
 		return xmlDocument;
 	}
 
-	public void setXmlDocument(byte[] xmlDocument) {
+	public void setXmlDocument(Byte[] xmlDocument) {
 		this.xmlDocument = xmlDocument;
 	}
 

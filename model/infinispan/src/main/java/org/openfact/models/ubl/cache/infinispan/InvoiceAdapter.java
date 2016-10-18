@@ -701,6 +701,18 @@ public class InvoiceAdapter implements CachedInvoiceModel {
     }
 
     @Override
+    public Byte[] getXmlDocument() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void setXmlDocument(Byte[] value) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
     public void invalidate() {
         // TODO Auto-generated method stub
         
@@ -719,18 +731,4 @@ public class InvoiceAdapter implements CachedInvoiceModel {
     }
 
     
-
-
-	@Override
-	public byte[] getXmlDoument() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setXmlDocument(byte[] value) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

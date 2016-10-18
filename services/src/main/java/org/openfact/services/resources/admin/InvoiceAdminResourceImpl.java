@@ -68,7 +68,8 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
     public List<InvoiceLineRepresentation> getLines() {
         auth.requireView();
 
-        return invoice.getInvoiceLine().stream().map(f -> ModelToRepresentation.toRepresentation(f)).collect(Collectors.toList());
+        return invoice.getInvoiceLine().stream().map(f -> ModelToRepresentation.toRepresentation(f))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -87,5 +88,5 @@ public class InvoiceAdminResourceImpl implements InvoiceAdminResource {
             return ErrorResponse.error("Invoice couldn't be deleted", Response.Status.BAD_REQUEST);
         }
     }
-	
+
 }

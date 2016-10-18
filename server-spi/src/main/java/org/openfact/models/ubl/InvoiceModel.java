@@ -28,7 +28,6 @@ import org.openfact.models.ubl.common.SupplierPartyModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
 import org.openfact.provider.ProviderEvent;
-import org.w3c.dom.Element;
 
 public interface InvoiceModel {
 
@@ -257,9 +256,9 @@ public interface InvoiceModel {
 
     SignatureModel addSignature();
 
-	byte[] getXmlDoument();
+	Byte[] getXmlDocument();
 
-	void setXmlDocument(byte[] value);
+	void setXmlDocument(Byte[] value);
 
 	/**
 	 * Events interfaces

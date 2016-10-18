@@ -6,6 +6,8 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.apache.commons.lang.ArrayUtils;
+import org.openfact.models.ModelException;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.catalog.CodeCatalogModel;
 import org.openfact.models.ubl.CreditNoteModel;
@@ -176,6 +178,14 @@ public class ModelToRepresentation {
             rep.setLegalMonetaryTotal(toRepresentation(model.getLegalMonetaryTotal()));
         }
         rep.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
+        
+        if(model.getXmlDocument() != null) {            
+            try {
+                DocumentUtils.getByteToDocument(ArrayUtils.toPrimitive(model.getXmlDocument()));
+            } catch (Exception e) {
+                throw new ModelException(e.getMessage());
+            }
+        }
         return rep;
     }
 

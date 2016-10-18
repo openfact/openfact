@@ -1,6 +1,5 @@
 package org.openfact.models.jpa.ubl;
 
-import java.io.ByteArrayOutputStream;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -11,16 +10,9 @@ import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.TransformerFactoryConfigurationError;
-import javax.xml.transform.dom.DOMSource;
 
 import org.jboss.logging.Logger;
 import org.openfact.common.util.MultivaluedHashMap;
-import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.JpaModel;
@@ -77,10 +69,7 @@ import org.openfact.models.ubl.common.SignatureModel;
 import org.openfact.models.ubl.common.SupplierPartyModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
-import org.openfact.models.utils.DocumentUtils;
 import org.openfact.models.utils.OpenfactModelUtils;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 
 public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 
@@ -757,12 +746,12 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
 	@Override
-	public byte[] getXmlDoument() {
+	public Byte[] getXmlDocument() {
 		return this.invoice.getXmlDocument();
 	}
 
 	@Override
-	public void setXmlDocument(byte[] xmlDocument) {
+	public void setXmlDocument(Byte[] xmlDocument) {
 		this.invoice.setXmlDocument(xmlDocument);
 	}
 

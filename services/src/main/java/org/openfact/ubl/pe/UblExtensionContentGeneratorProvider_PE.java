@@ -12,6 +12,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.transform.dom.DOMResult;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.jboss.logging.Logger;
 import org.openfact.common.finance.MoneyConverters;
 import org.openfact.models.ModelException;
@@ -102,7 +103,7 @@ public class UblExtensionContentGeneratorProvider_PE implements UblExtensionCont
 			Document document = UblSignature_PE.signUblDocument(organization, ubl, false);
 			// validate signature
 			if (UblSignature_PE.isSignUblDocumentValid(organization, document)) {
-				invoice.setXmlDocument(DocumentUtils.getBytesFromDocument(document));
+				invoice.setXmlDocument(ArrayUtils.toObject(DocumentUtils.getBytesFromDocument(document)));
 				// Set new Signature
 				InvoiceType invoiceType = UBL21Reader.invoice().read(document);
 				Element element = (Element) invoiceType.getUBLExtensions().getUBLExtension().get(1)

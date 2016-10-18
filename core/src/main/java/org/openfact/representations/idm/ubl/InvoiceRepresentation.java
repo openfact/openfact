@@ -76,6 +76,8 @@ public class InvoiceRepresentation {
     private MonetaryTotalRepresentation legalMonetaryTotal;
     private List<InvoiceLineRepresentation> invoiceLine;
     private String id;
+    
+    private String xml;
 
     /**
      * Custom methods
@@ -508,6 +510,14 @@ public class InvoiceRepresentation {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getXml() {
+        return xml;
+    }
+
+    public void setXml(String xml) {
+        this.xml = xml;
     }
 
 }
