@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.xml.transform.TransformerException;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.ArrayUtils;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
@@ -51,7 +52,7 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 	@Override
 	public void sendInvoice(InvoiceModel invoice) throws UblSenderException {
 		String fileName = generateXmlFileName(invoice);
-		byte[] document = invoice.getXmlDoument();
+		byte[] document = ArrayUtils.toPrimitive(invoice.getXmlDocument());
 		try {
 			byte[] zip = generateZip(document, fileName);
 

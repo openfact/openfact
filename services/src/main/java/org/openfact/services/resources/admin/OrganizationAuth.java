@@ -8,7 +8,7 @@ public class OrganizationAuth {
     private Resource resource;
 
     public enum Resource {
-        CLIENT, CERTIFIED, INVOICE, CREDIT_NOTE, DEBIT_NOTE, REALM, CODE_CATALOG, EVENTS, IDENTITY_PROVIDER, IMPERSONATION, AUTHORIZATION
+        CLIENT, CERTIFIED, INVOICE, CREDIT_NOTE, DEBIT_NOTE, ORGANIZATION, CODE_CATALOG, EVENTS, IDENTITY_PROVIDER, IMPERSONATION, AUTHORIZATION
     }
 
     private AdminAuth auth;
@@ -63,7 +63,7 @@ public class OrganizationAuth {
             return AdminRoles.VIEW_DOCUMENTS;
         case DEBIT_NOTE:
             return AdminRoles.VIEW_DOCUMENTS;
-        case REALM:
+        case ORGANIZATION:
             return AdminRoles.VIEW_ORGANIZATION;
         case CERTIFIED:
             return AdminRoles.VIEW_CERTIFIED;
@@ -90,7 +90,7 @@ public class OrganizationAuth {
             return AdminRoles.MANAGE_DOCUMENT;
         case DEBIT_NOTE:
             return AdminRoles.MANAGE_DOCUMENT;
-        case REALM:
+        case ORGANIZATION:
             return AdminRoles.MANAGE_ORGANIZATION;
         case CERTIFIED:
             return AdminRoles.CREATE_CERTIFIED;

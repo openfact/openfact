@@ -24,7 +24,12 @@ public class OrganizationRepresentation {
 
     protected Map<String, String> smtpServer;
     protected Map<String, String> ublSenderServer;
-    private CertificateRepresentation certificate;
+
+    protected String privateKey;
+    protected String publicKey;
+    protected String certificate;
+    protected String codeSecret;
+
     private PostalAddressRepresentation postalAddress;
     private TasksScheduleRepresentation tasksSchedule;
 
@@ -133,14 +138,6 @@ public class OrganizationRepresentation {
 
     public void setUblSenderServer(Map<String, String> ublSenderServer) {
         this.ublSenderServer = ublSenderServer;
-    }
-
-    public CertificateRepresentation getCertificate() {
-        return certificate;
-    }
-
-    public void setCertificate(CertificateRepresentation certificate) {
-        this.certificate = certificate;
     }
 
     public PostalAddressRepresentation getPostalAddress() {
@@ -333,6 +330,38 @@ public class OrganizationRepresentation {
 
     public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
         this.createdTimestamp = createdTimestamp;
+    }
+
+    public String getPrivateKey() {
+        return privateKey;
+    }
+
+    public void setPrivateKey(String privateKey) {
+        this.privateKey = privateKey;
+    }
+
+    public String getPublicKey() {
+        return publicKey;
+    }
+
+    public void setPublicKey(String publicKey) {
+        this.publicKey = publicKey;
+    }
+
+    public String getCertificate() {
+        return certificate;
+    }
+
+    public void setCertificate(String certificate) {
+        this.certificate = certificate;
+    }
+
+    public String getCodeSecret() {
+        return codeSecret;
+    }
+
+    public void setCodeSecret(String codeSecret) {
+        this.codeSecret = codeSecret;
     }
 
 }

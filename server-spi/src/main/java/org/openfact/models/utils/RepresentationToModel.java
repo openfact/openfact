@@ -7,8 +7,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
@@ -90,9 +94,10 @@ import org.openfact.representations.idm.ubl.common.TaxSubtotalRepresentation;
 import org.openfact.representations.idm.ubl.common.TaxTotalRepresentation;
 import org.openfact.representations.idm.ubl.common.UBLExtensionRepresentation;
 import org.openfact.representations.idm.ubl.common.UBLExtensionsRepresentation;
+import org.openfact.ubl.UblIDGeneratorProvider;
 
-public class RepresentationToModel {    
-    
+public class RepresentationToModel {
+
     public static SearchCriteriaModel toModel(SearchCriteriaRepresentation rep) {
         SearchCriteriaModel model = new SearchCriteriaModel();
 
@@ -124,7 +129,8 @@ public class RepresentationToModel {
         };
 
         rep.getFilters().forEach(f -> {
-            model.addFilter(f.getName(), valueFunction.apply(f.getValue(), f.getType()), operatorFunction.apply(f.getOperator()));
+            model.addFilter(f.getName(), valueFunction.apply(f.getValue(), f.getType()),
+                    operatorFunction.apply(f.getOperator()));
         });
 
         // sorter
@@ -137,9 +143,10 @@ public class RepresentationToModel {
 
         return model;
     }
-    
+
     public static void importOrganization(OpenfactSession session, OrganizationRepresentation rep,
             OrganizationModel newOrganization) {
+
         newOrganization.setName(rep.getOrganization());
 
         /**
@@ -148,56 +155,21 @@ public class RepresentationToModel {
         if (rep.getDescription() != null) {
             newOrganization.setDescription(rep.getDescription());
         }
-        if (rep.getAdditionalAccountId() != null) {
-            newOrganization.setAdditionalAccountId(rep.getAdditionalAccountId());
+        if (rep.getEnabled() != null) {
+            newOrganization.setEnabled(rep.getEnabled());
         }
+
         if (rep.getAssignedIdentificationId() != null) {
             newOrganization.setAssignedIdentificationId(rep.getAssignedIdentificationId());
+        }
+        if (rep.getAdditionalAccountId() != null) {
+            newOrganization.setAdditionalAccountId(rep.getAdditionalAccountId());
         }
         if (rep.getSupplierName() != null) {
             newOrganization.setSupplierName(rep.getSupplierName());
         }
         if (rep.getRegistrationName() != null) {
             newOrganization.setRegistrationName(rep.getRegistrationName());
-        }
-        if (rep.getEnabled() != null) {
-            newOrganization.setEnabled(rep.getEnabled());
-        }
-
-        if (rep.getDefaultCurrency() != null) {
-            newOrganization.setDefaultCurrency(rep.getDefaultCurrency());
-        }
-        if (rep.getDefaultLocale() != null) {
-            newOrganization.setDefaultLocale(rep.getDefaultLocale());
-        }
-        if (rep.getDefaultUblLocale() != null) {
-            newOrganization.setDefaultUblLocale(rep.getDefaultUblLocale());
-        }
-
-        /**
-         * Certificate
-         */
-        if (rep.getCertificate() != null) {
-
-            CertificateRepresentation certificateRep = rep.getCertificate();
-            if (certificateRep.getPrivateKey() == null || certificateRep.getPublicKey() == null) {
-                OpenfactModelUtils.generateOrganizationKeys(newOrganization);
-            } else {
-                newOrganization.setPrivateKeyPem(certificateRep.getPrivateKey());
-                newOrganization.setPublicKeyPem(certificateRep.getPublicKey());
-            }
-            if (rep.getCertificate() == null) {
-                OpenfactModelUtils.generateOrganizationCertificate(newOrganization);
-            } else {
-                newOrganization.setCertificatePem(certificateRep.getCertificate());
-            }
-            if (certificateRep.getCodeSecret() == null) {
-                newOrganization.setCodeSecret(OpenfactModelUtils.generateCodeSecret());
-            } else {
-                newOrganization.setCodeSecret(certificateRep.getCodeSecret());
-            }
-        } else {
-            OpenfactModelUtils.generateOrganizationKeys(newOrganization);
         }
 
         /**
@@ -223,6 +195,39 @@ public class RepresentationToModel {
             if (postalAddressRep.getStreetName() != null) {
                 newOrganization.setStreetName(postalAddressRep.getStreetName());
             }
+        }
+
+        /**
+         * Themes
+         */
+        if (rep.getEmailTheme() != null) {
+            newOrganization.setEmailTheme(rep.getEmailTheme());
+        }
+
+        /**
+         * Internationalization
+         */
+        if (rep.getInternationalizationEnabled() != null) {
+            newOrganization.setInternationalizationEnabled(rep.getInternationalizationEnabled());
+        }
+        if (rep.getSupportedLocales() != null) {
+            newOrganization.setSupportedLocales(new HashSet<String>(rep.getSupportedLocales()));
+        }
+        if (rep.getDefaultLocale() != null) {
+            newOrganization.setDefaultLocale(rep.getDefaultLocale());
+        }
+
+        /**
+         * Internationalization ubl
+         */
+        if (rep.getInternationalizationUblEnabled() != null) {
+            newOrganization.setInternationalizationUblEnabled(rep.getInternationalizationUblEnabled());
+        }
+        if (rep.getSupportedUblLocales() != null) {
+            newOrganization.setSupportedUblLocales(new HashSet<String>(rep.getSupportedUblLocales()));
+        }
+        if (rep.getDefaultUblLocale() != null) {
+            newOrganization.setDefaultUblLocale(rep.getDefaultUblLocale());
         }
 
         /**
@@ -268,6 +273,35 @@ public class RepresentationToModel {
         }
 
         /**
+         * Currencies
+         */
+        if (rep.getDefaultCurrency() != null) {
+            newOrganization.setDefaultCurrency(rep.getDefaultCurrency());
+        }
+        if (rep.getSupportedCurrencies() != null) {
+            newOrganization.setSupportedCurrencies(new HashSet<String>(rep.getSupportedCurrencies()));
+        }
+
+        /**
+         * Events
+         */
+        if (rep.getEventsEnabled() != null) {
+            newOrganization.setEventsEnabled(rep.getEventsEnabled());
+        }
+        if (rep.getEventsExpiration() != null) {
+            newOrganization.setEventsExpiration(rep.getEventsExpiration());
+        }
+        if (rep.getEventsListeners() != null) {
+            newOrganization.setEventsListeners(new HashSet<>(rep.getEventsListeners()));
+        }
+        if (rep.getAdminEventsEnabled() != null) {
+            newOrganization.setAdminEventsEnabled(rep.getAdminEventsEnabled());
+        }
+        if (rep.getAdminEventsDetailsEnabled() != null) {
+            newOrganization.setAdminEventsDetailsEnabled(rep.getAdminEventsDetailsEnabled());
+        }
+
+        /**
          * Smtp server
          */
         if (rep.getSmtpServer() != null) {
@@ -275,41 +309,98 @@ public class RepresentationToModel {
         }
 
         /**
-         * Smtp server
+         * Ubl server
          */
         if (rep.getUblSenderServer() != null) {
             newOrganization.setUblSenderConfig(new HashMap<String, String>(rep.getUblSenderServer()));
         }
 
+        /**
+         * Certificate
+         */
+        if (rep.getPrivateKey() == null || rep.getPublicKey() == null) {
+            OpenfactModelUtils.generateOrganizationKeys(newOrganization);
+        } else {
+            newOrganization.setPrivateKeyPem(rep.getPrivateKey());
+            newOrganization.setPublicKeyPem(rep.getPublicKey());
+        }
+        if (rep.getCertificate() == null) {
+            OpenfactModelUtils.generateOrganizationCertificate(newOrganization);
+        } else {
+            newOrganization.setCertificatePem(rep.getCertificate());
+        }
+        if (rep.getCodeSecret() == null) {
+            newOrganization.setCodeSecret(OpenfactModelUtils.generateCodeSecret());
+        } else {
+            newOrganization.setCodeSecret(rep.getCodeSecret());
+        }
+
+        /**
+         * Attributes
+         */
+        if (rep.getAttributes() != null) {
+            for (Map.Entry<String, String> attr : rep.getAttributes().entrySet()) {
+                newOrganization.setAttribute(attr.getKey(), attr.getValue());
+            }
+        }
+
+        /**
+         * Required actions
+         */
+
         // create invoices and their lines
         if (rep.getInvoices() != null) {
             for (InvoiceRepresentation invoiceRep : rep.getInvoices()) {
-                createInvoice(session, newOrganization, invoiceRep);
+                InvoiceModel invoice = createInvoice(session, newOrganization, invoiceRep);
             }
         }
 
         // create debit notes and their lines
         if (rep.getDebitNotes() != null) {
             for (DebitNoteRepresentation debitNoteRep : rep.getDebitNotes()) {
-                createDebitNote(session, newOrganization, debitNoteRep);
+                DebitNoteModel debitNote = createDebitNote(session, newOrganization, debitNoteRep);
             }
         }
 
         // create debit notes and their lines
         if (rep.getCreditNotes() != null) {
             for (CreditNoteRepresentation creditNoteRep : rep.getCreditNotes()) {
-                createCreditNote(session, newOrganization, creditNoteRep);
+                CreditNoteModel creditNote = createCreditNote(session, newOrganization, creditNoteRep);
             }
         }
     }
 
-    public static void updateOrganization(OrganizationRepresentation rep, OrganizationModel organization) {
+    public static void updateOrganization(OrganizationRepresentation rep, OrganizationModel organization,
+            OpenfactSession session) {
         if (rep.getOrganization() != null) {
-            organization.setName(rep.getOrganization());
+            renameOrganization(organization, rep.getOrganization());
         }
+
+        // Import attributes first, so the stuff saved directly on
+        // representation (displayName, bruteForce etc) has bigger priority
+        if (rep.getAttributes() != null) {
+            Set<String> attrsToRemove = new HashSet<>(organization.getAttributes().keySet());
+            attrsToRemove.removeAll(rep.getAttributes().keySet());
+
+            for (Map.Entry<String, String> entry : rep.getAttributes().entrySet()) {
+                organization.setAttribute(entry.getKey(), entry.getValue());
+            }
+
+            for (String attr : attrsToRemove) {
+                organization.removeAttribute(attr);
+            }
+        }
+
+        /**
+         * General information
+         */
         if (rep.getDescription() != null) {
             organization.setDescription(rep.getDescription());
         }
+        if (rep.getEnabled() != null) {
+            organization.setEnabled(rep.getEnabled());
+        }
+
         if (rep.getAssignedIdentificationId() != null) {
             organization.setAssignedIdentificationId(rep.getAssignedIdentificationId());
         }
@@ -322,20 +413,10 @@ public class RepresentationToModel {
         if (rep.getRegistrationName() != null) {
             organization.setRegistrationName(rep.getRegistrationName());
         }
-        if (rep.getEnabled() != null) {
-            organization.setEnabled(rep.getEnabled());
-        }
-        
-        if (rep.getDefaultCurrency() != null) {
-            organization.setDefaultCurrency(rep.getDefaultCurrency());
-        }
-        if (rep.getDefaultLocale() != null) {
-            organization.setDefaultLocale(rep.getDefaultLocale());
-        }
-        if (rep.getDefaultUblLocale() != null) {
-            organization.setDefaultUblLocale(rep.getDefaultUblLocale());
-        }
 
+        /**
+         * Postal address
+         */
         if (rep.getPostalAddress() != null) {
             PostalAddressRepresentation postalAddressRep = rep.getPostalAddress();
             if (postalAddressRep.getCountryIdentificationCode() != null) {
@@ -357,59 +438,138 @@ public class RepresentationToModel {
                 organization.setStreetName(postalAddressRep.getStreetName());
             }
         }
-        if (rep.getCertificate() != null) {
 
-            CertificateRepresentation certificateRep = rep.getCertificate();
-            if (certificateRep.getPrivateKey() == null || certificateRep.getPublicKey() == null) {
-                OpenfactModelUtils.generateOrganizationKeys(organization);
-            } else {
-                organization.setPrivateKeyPem(certificateRep.getPrivateKey());
-                organization.setPublicKeyPem(certificateRep.getPublicKey());
-            }
-            if (rep.getCertificate() == null) {
-                OpenfactModelUtils.generateOrganizationCertificate(organization);
-            } else {
-                organization.setCertificatePem(certificateRep.getCertificate());
-            }
-            if (certificateRep.getCodeSecret() == null) {
-                organization.setCodeSecret(OpenfactModelUtils.generateCodeSecret());
-            } else {
-                organization.setCodeSecret(certificateRep.getCodeSecret());
-            }
-        } else {
-            OpenfactModelUtils.generateOrganizationKeys(organization);
+        /**
+         * Themes
+         */
+        if (rep.getEmailTheme() != null) {
+            organization.setEmailTheme(rep.getEmailTheme());
         }
+
+        /**
+         * Internationalization
+         */
+        if (rep.getInternationalizationEnabled() != null) {
+            organization.setInternationalizationEnabled(rep.getInternationalizationEnabled());
+        }
+        if (rep.getSupportedLocales() != null) {
+            organization.setSupportedLocales(new HashSet<String>(rep.getSupportedLocales()));
+        }
+        if (rep.getDefaultLocale() != null) {
+            organization.setDefaultLocale(rep.getDefaultLocale());
+        }
+
+        /**
+         * Internationalization ubl
+         */
+        if (rep.getInternationalizationUblEnabled() != null) {
+            organization.setInternationalizationUblEnabled(rep.getInternationalizationUblEnabled());
+        }
+        if (rep.getSupportedUblLocales() != null) {
+            organization.setSupportedUblLocales(new HashSet<String>(rep.getSupportedUblLocales()));
+        }
+        if (rep.getDefaultUblLocale() != null) {
+            organization.setDefaultUblLocale(rep.getDefaultUblLocale());
+        }
+
+        /**
+         * Tasks schedule
+         */
         if (rep.getTasksSchedule() != null) {
             TasksScheduleRepresentation tasksScheduleRep = rep.getTasksSchedule();
             if (tasksScheduleRep.getAttempNumber() != null) {
                 organization.setAttempNumber(tasksScheduleRep.getAttempNumber());
+            } else {
+                organization.setAttempNumber(5);
             }
             if (tasksScheduleRep.getLapseTime() != null) {
                 organization.setLapseTime(tasksScheduleRep.getLapseTime());
+            } else {
+                organization.setAttempNumber(5);
             }
             if (tasksScheduleRep.getOnErrorAttempNumber() != null) {
                 organization.setOnErrorAttempNumber(tasksScheduleRep.getOnErrorAttempNumber());
+            } else {
+                organization.setOnErrorAttempNumber(2);
             }
             if (tasksScheduleRep.getOnErrorLapseTime() != null) {
                 organization.setOnErrorLapseTime(tasksScheduleRep.getOnErrorLapseTime());
+            } else {
+                organization.setOnErrorLapseTime(5);
             }
             if (tasksScheduleRep.getDelayTime() != null) {
                 organization.setDelayTime(tasksScheduleRep.getDelayTime());
+            } else {
+                organization.setDelayTime(0);
             }
             if (tasksScheduleRep.getSubmitTime() != null) {
                 organization.setSubmitTime(tasksScheduleRep.getSubmitTime());
+            } else {
+                organization.setSubmitTime(LocalTime.MIDNIGHT);
             }
             if (tasksScheduleRep.getSubmitDays() != null) {
                 organization.setSubmitDays(tasksScheduleRep.getSubmitDays());
+            } else {
+                organization.setSubmitDays(new HashSet<DayOfWeek>(Arrays.asList(DayOfWeek.values())));
             }
         }
 
+        /**
+         * Currencies
+         */
+        if (rep.getDefaultCurrency() != null) {
+            organization.setDefaultCurrency(rep.getDefaultCurrency());
+        }
+        if (rep.getSupportedCurrencies() != null) {
+            organization
+                    .setSupportedCurrencies(new HashSet<String>(new HashSet<>(rep.getSupportedCurrencies())));
+        }
+
+        /**
+         * Events
+         */
+        if (rep.getEventsEnabled() != null) {
+            organization.setEventsEnabled(rep.getEventsEnabled());
+        }
+        if (rep.getEventsExpiration() != null) {
+            organization.setEventsExpiration(rep.getEventsExpiration());
+        }
+        if (rep.getEventsListeners() != null) {
+            organization.setEventsListeners(new HashSet<>(rep.getEventsListeners()));
+        }
+        if (rep.getEnabledEventTypes() != null) {
+            organization.setEnabledEventTypes(new HashSet<>(rep.getEnabledEventTypes()));
+        }
+
+        if (rep.getAdminEventsEnabled() != null) {
+            organization.setAdminEventsEnabled(rep.getAdminEventsEnabled());
+        }
+        if (rep.getAdminEventsDetailsEnabled() != null) {
+            organization.setAdminEventsDetailsEnabled(rep.getAdminEventsDetailsEnabled());
+        }
+
+        /**
+         * Smtp Server
+         **/
         if (rep.getSmtpServer() != null) {
-            organization.setSmtpConfig(new HashMap<String, String>(rep.getSmtpServer()));
+            organization.setSmtpConfig(new HashMap(rep.getSmtpServer()));
         }
-        if (rep.getUblSenderServer() != null) {
-            organization.setUblSenderConfig(new HashMap<String, String>(rep.getUblSenderServer()));
+
+        /**
+         * Ubl Server
+         **/
+        if (rep.getSmtpServer() != null) {
+            organization.setUblSenderConfig(new HashMap(rep.getUblSenderServer()));
         }
+    }
+
+    public static void renameOrganization(OrganizationModel organization, String name) {
+        if (name.equals(organization.getName())) {
+            return;
+        }
+
+        String oldName = organization.getName();
+        organization.setName(name);
     }
 
     public static void importCodeCatalog(OpenfactSession session, CodeCatalogRepresentation rep,
@@ -441,7 +601,13 @@ public class RepresentationToModel {
 
     public static InvoiceModel createInvoice(OpenfactSession session, OrganizationModel organization,
             InvoiceRepresentation rep) {
-        InvoiceModel model = session.invoices().addInvoice(organization, rep.getIdUbl());
+        String idUbl = rep.getIdUbl();
+        if (idUbl == null) {
+            idUbl = session.getProvider(UblIDGeneratorProvider.class, organization.getDefaultUblLocale())
+                    .generateInvoiceID(organization, rep.getInvoiceTypeCode());
+        }
+
+        InvoiceModel model = session.invoices().addInvoice(organization, idUbl);
         return importInvoice(session, organization, model, rep);
     }
 
@@ -498,7 +664,16 @@ public class RepresentationToModel {
 
     public static CreditNoteModel createCreditNote(OpenfactSession session, OrganizationModel organization,
             CreditNoteRepresentation rep) {
-        CreditNoteModel model = session.creditNotes().addCreditNote(organization, rep.getIdUbl());
+        String idUbl = rep.getIdUbl();
+        if (idUbl == null) {
+            List<String> referenceIDs = rep.getDiscrepancyResponse().stream().map(f -> f.getReferenceID())
+                    .collect(Collectors.toList());
+            idUbl = session.getProvider(UblIDGeneratorProvider.class, organization.getDefaultUblLocale())
+                    .generateCreditNoteID(organization,
+                            referenceIDs.toArray(new String[referenceIDs.size()]));
+        }
+
+        CreditNoteModel model = session.creditNotes().addCreditNote(organization, idUbl);
         return importCreditNote(session, organization, model, rep);
     }
 
@@ -558,7 +733,15 @@ public class RepresentationToModel {
 
     public static DebitNoteModel createDebitNote(OpenfactSession session, OrganizationModel organization,
             DebitNoteRepresentation rep) {
-        DebitNoteModel model = session.debitNotes().addDebitNote(organization, rep.getIdUbl());
+        String idUbl = rep.getIdUbl();
+        if (idUbl == null) {
+            List<String> referenceIDs = rep.getDiscrepancyResponse().stream().map(f -> f.getReferenceID())
+                    .collect(Collectors.toList());
+            idUbl = session.getProvider(UblIDGeneratorProvider.class, organization.getDefaultUblLocale())
+                    .generateDebitNoteID(organization, referenceIDs.toArray(new String[referenceIDs.size()]));
+        }
+
+        DebitNoteModel model = session.debitNotes().addDebitNote(organization, idUbl);
         return importDebitNote(session, organization, model, rep);
     }
 

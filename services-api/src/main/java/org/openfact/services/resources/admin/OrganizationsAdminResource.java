@@ -2,6 +2,7 @@ package org.openfact.services.resources.admin;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -26,12 +27,16 @@ import org.openfact.representations.idm.search.SearchResultsRepresentation;
 public interface OrganizationsAdminResource {
 
     /**
-     * @param organization
-     *            The organization name
+     * Create a new organization.
+     *
+     * @param rep
+     *            The representation of the organization that will be created
+     * @return The organization created on Response format
+     * @summary Create a new organization
      */
-    @Path("{organization}")
-    OrganizationAdminResource getOrganizationAdmin(@Context final HttpHeaders headers,
-            @PathParam("organization") final String name);
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    Response importOrganization(@Context final UriInfo uriInfo, @Valid final OrganizationRepresentation rep);
 
     /**
      * Get all organizations.
@@ -47,22 +52,19 @@ public interface OrganizationsAdminResource {
             @QueryParam("supplierName") String supplierName,
             @QueryParam("registrationName") String registrationName, @QueryParam("first") Integer firstResult,
             @QueryParam("max") Integer maxResults);
-    
+
     @POST
     @Path("search")
     @Produces(MediaType.APPLICATION_JSON)
-    SearchResultsRepresentation<OrganizationRepresentation> searchOrganizations(final SearchCriteriaRepresentation criteria);
+    SearchResultsRepresentation<OrganizationRepresentation> searchOrganizations(
+            @Valid final SearchCriteriaRepresentation criteria);
 
     /**
-     * Create a new organization.
-     *
-     * @param rep
-     *            The representation of the organization that will be created
-     * @return The organization created on Response format
-     * @summary Create a new organization
+     * @param organization
+     *            The organization name
      */
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    Response importOrganization(@Context final UriInfo uriInfo, final OrganizationRepresentation rep);
+    @Path("{organization}")
+    OrganizationAdminResource getOrganizationAdmin(@Context final HttpHeaders headers,
+            @PathParam("organization") final String name);
 
 }

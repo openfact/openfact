@@ -1,12 +1,16 @@
 package org.openfact.models.utils;
 
 import java.time.LocalDate;
+import java.util.LinkedList;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.apache.commons.lang.ArrayUtils;
+import org.openfact.events.Event;
+import org.openfact.events.admin.AdminEvent;
+import org.openfact.events.admin.AuthDetails;
 import org.openfact.models.ModelException;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.catalog.CodeCatalogModel;
@@ -42,6 +46,10 @@ import org.openfact.models.ubl.common.TaxSubtotalModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
+import org.openfact.representations.idm.AdminEventRepresentation;
+import org.openfact.representations.idm.AuthDetailsRepresentation;
+import org.openfact.representations.idm.EventRepresentation;
+import org.openfact.representations.idm.OrganizationEventsConfigRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
 import org.openfact.representations.idm.TasksScheduleRepresentation;
@@ -103,13 +111,13 @@ public class ModelToRepresentation {
         postalAddressRep.setDistrict(organization.getDistrict());
         postalAddressRep.setCountryIdentificationCode(organization.getCountryIdentificationCode());
         rep.setPostalAddress(postalAddressRep);
-        
+
         rep.setDefaultCurrency(organization.getDefaultCurrency());
         rep.setDefaultLocale(organization.getDefaultLocale());
         rep.setDefaultUblLocale(organization.getDefaultLocale());
-        
+
         rep.setAdminEventsEnabled(organization.isAdminEventsEnabled());
-        rep.setAdminEventsDetailsEnabled(organization.isAdminEventsDetailsEnabled());        
+        rep.setAdminEventsDetailsEnabled(organization.isAdminEventsDetailsEnabled());
 
         if (internal) {
             TasksScheduleRepresentation tasksSchedulerRep = new TasksScheduleRepresentation();
@@ -178,8 +186,8 @@ public class ModelToRepresentation {
             rep.setLegalMonetaryTotal(toRepresentation(model.getLegalMonetaryTotal()));
         }
         rep.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
-        
-        if(model.getXmlDocument() != null) {            
+
+        if (model.getXmlDocument() != null) {
             try {
                 DocumentUtils.getByteToDocument(ArrayUtils.toPrimitive(model.getXmlDocument()));
             } catch (Exception e) {
@@ -671,6 +679,72 @@ public class ModelToRepresentation {
     public static XMLGregorianCalendar toRepresentation(LocalDate date)
             throws DatatypeConfigurationException {
         return DatatypeFactory.newInstance().newXMLGregorianCalendar(date.toString());
+    }
+
+    public static OrganizationEventsConfigRepresentation toEventsConfigReprensetation(
+            OrganizationModel organization) {
+
+        OrganizationEventsConfigRepresentation rep = new OrganizationEventsConfigRepresentation();
+        rep.setEventsEnabled(organization.isEventsEnabled());
+
+        if (organization.getEventsExpiration() != 0) {
+            rep.setEventsExpiration(organization.getEventsExpiration());
+        }
+
+        if (organization.getEventsListeners() != null) {
+            rep.setEventsListeners(new LinkedList<>(organization.getEventsListeners()));
+        }
+
+        if (organization.getEnabledEventTypes() != null) {
+            rep.setEnabledEventTypes(new LinkedList<>(organization.getEnabledEventTypes()));
+        }
+
+        rep.setAdminEventsEnabled(organization.isAdminEventsEnabled());
+
+        rep.setAdminEventsDetailsEnabled(organization.isAdminEventsDetailsEnabled());
+
+        return rep;
+    }
+
+    public static EventRepresentation toRepresentation(Event event) {
+        EventRepresentation rep = new EventRepresentation();
+        rep.setTime(event.getTime());
+        rep.setType(event.getType().toString());
+        rep.setRealmId(event.getOrganizationId());
+        rep.setClientId(event.getClientId());
+        rep.setUserId(event.getUserId());
+        rep.setSessionId(event.getSessionId());
+        rep.setIpAddress(event.getIpAddress());
+        rep.setError(event.getError());
+        rep.setDetails(event.getDetails());
+        return rep;
+    }
+
+    public static AdminEventRepresentation toRepresentation(AdminEvent adminEvent) {
+        AdminEventRepresentation rep = new AdminEventRepresentation();
+        rep.setTime(adminEvent.getTime());
+        rep.setRealmId(adminEvent.getOrganizationId());
+        if (adminEvent.getAuthDetails() != null) {
+            rep.setAuthDetails(toRepresentation(adminEvent.getAuthDetails()));
+        }
+        rep.setOperationType(adminEvent.getOperationType().toString());
+        if (adminEvent.getResourceType() != null) {
+            rep.setResourceType(adminEvent.getResourceType().toString());
+        }
+        rep.setResourcePath(adminEvent.getResourcePath());
+        rep.setRepresentation(adminEvent.getRepresentation());
+        rep.setError(adminEvent.getError());
+
+        return rep;
+    }
+
+    public static AuthDetailsRepresentation toRepresentation(AuthDetails authDetails) {
+        AuthDetailsRepresentation rep = new AuthDetailsRepresentation();
+        rep.setRealmId(authDetails.getOrganizationId());
+        rep.setClientId(authDetails.getClientId());
+        rep.setUserId(authDetails.getUserId());
+        rep.setIpAddress(authDetails.getIpAddress());
+        return rep;
     }
 
 }

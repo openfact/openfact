@@ -14,288 +14,288 @@ import org.openfact.provider.ProviderEvent;
 
 public interface OrganizationModel {
 
-	String NAME = "name";
-	String DESCRIPTION = "description";
-	String ASSIGNED_IDENTIFICATION_ID = "assignedIdentificationId";
-	String SUPPLIER_NAME = "supplierName";
-	String REGISTRATION_NAME = "registrationName";
+    String NAME = "name";
+    String DESCRIPTION = "description";
+    String ASSIGNED_IDENTIFICATION_ID = "assignedIdentificationId";
+    String SUPPLIER_NAME = "supplierName";
+    String REGISTRATION_NAME = "registrationName";
 
-	String PRIVATE_KEY = "privateKey";
-	String PUBLIC_KEY = "publicKey";
-	String X509CERTIFICATE = "X509Certificate";
+    String PRIVATE_KEY = "privateKey";
+    String PUBLIC_KEY = "publicKey";
+    String X509CERTIFICATE = "X509Certificate";
 
-	String getId();
+    String getId();
 
-	String getName();
+    String getName();
 
-	void setName(String name);
+    void setName(String name);
 
-	String getDescription();
+    String getDescription();
 
-	void setDescription(String description);
+    void setDescription(String description);
 
-	boolean isEnabled();
+    boolean isEnabled();
 
-	void setEnabled(boolean enabled);
+    void setEnabled(boolean enabled);
 
-	String getAssignedIdentificationId();
+    String getAssignedIdentificationId();
 
-	void setAssignedIdentificationId(String assignedIdentificationId);
+    void setAssignedIdentificationId(String assignedIdentificationId);
 
-	String getAdditionalAccountId();
+    String getAdditionalAccountId();
 
-	void setAdditionalAccountId(String additionalAccount);
+    void setAdditionalAccountId(String additionalAccount);
 
-	String getSupplierName();
+    String getSupplierName();
 
-	void setSupplierName(String supplierName);
+    void setSupplierName(String supplierName);
 
-	String getRegistrationName();
+    String getRegistrationName();
 
-	void setRegistrationName(String registrationName);
-	
-	LocalDateTime getCreatedTimestamp();
+    void setRegistrationName(String registrationName);
 
-	/**
-	 * Postal address
-	 */
-	String getPostalAddressId();
+    LocalDateTime getCreatedTimestamp();
 
-	void setPostalAddressId(String postalAddressId);
+    /**
+     * Postal address
+     */
+    String getPostalAddressId();
 
-	String getStreetName();
+    void setPostalAddressId(String postalAddressId);
 
-	void setStreetName(String streetName);
+    String getStreetName();
 
-	String getCitySubdivisionName();
+    void setStreetName(String streetName);
 
-	void setCitySubdivisionName(String citySubdivisionName);
+    String getCitySubdivisionName();
 
-	String getCityName();
+    void setCitySubdivisionName(String citySubdivisionName);
 
-	void setCityName(String cityName);
+    String getCityName();
 
-	String getCountrySubentity();
+    void setCityName(String cityName);
 
-	void setCountrySubentity(String countrySubentity);
+    String getCountrySubentity();
 
-	String getDistrict();
+    void setCountrySubentity(String countrySubentity);
 
-	void setDistrict(String district);
+    String getDistrict();
 
-	String getCountryIdentificationCode();
+    void setDistrict(String district);
 
-	void setCountryIdentificationCode(String countryIdentificationCode);
+    String getCountryIdentificationCode();
 
-	/**
-	 * Themes
-	 */
-	String getEmailTheme();
+    void setCountryIdentificationCode(String countryIdentificationCode);
 
-	void setEmailTheme(String name);
+    /**
+     * Themes
+     */
+    String getEmailTheme();
 
-	/**
-	 * Internationalization
-	 */
-	boolean isInternationalizationEnabled();
+    void setEmailTheme(String name);
 
-	void setInternationalizationEnabled(boolean enabled);
+    /**
+     * Internationalization
+     */
+    boolean isInternationalizationEnabled();
 
-	Set<String> getSupportedLocales();
+    void setInternationalizationEnabled(boolean enabled);
 
-	void setSupportedLocales(Set<String> locales);
+    Set<String> getSupportedLocales();
 
-	String getDefaultLocale();
+    void setSupportedLocales(Set<String> locales);
 
-	void setDefaultLocale(String locale);
+    String getDefaultLocale();
 
-	/**
-	 * Internationalization ubl
-	 */
-	boolean isInternationalizationUblEnabled();
+    void setDefaultLocale(String locale);
 
-	void setInternationalizationUblEnabled(boolean enabled);
+    /**
+     * Internationalization ubl
+     */
+    boolean isInternationalizationUblEnabled();
 
-	Set<String> getSupportedUblLocales();
+    void setInternationalizationUblEnabled(boolean enabled);
 
-	void setSupportedUblLocales(Set<String> locales);
+    Set<String> getSupportedUblLocales();
 
-	String getDefaultUblLocale();
+    void setSupportedUblLocales(Set<String> locales);
 
-	void setDefaultUblLocale(String locale);
+    String getDefaultUblLocale();
 
-	/**
-	 * Task schedules
-	 */
+    void setDefaultUblLocale(String locale);
 
-	int getAttempNumber();
+    /**
+     * Task schedules
+     */
 
-	void setAttempNumber(int attempNumber);
+    int getAttempNumber();
 
-	long getLapseTime();
+    void setAttempNumber(int attempNumber);
 
-	void setLapseTime(long lapseTime);
+    long getLapseTime();
 
-	int getOnErrorAttempNumber();
+    void setLapseTime(long lapseTime);
 
-	void setOnErrorAttempNumber(int OnErrorAttempNumber);
+    int getOnErrorAttempNumber();
 
-	long getOnErrorLapseTime();
+    void setOnErrorAttempNumber(int OnErrorAttempNumber);
 
-	void setOnErrorLapseTime(long onErrorlapseTime);
+    long getOnErrorLapseTime();
 
-	long getDelayTime();
+    void setOnErrorLapseTime(long onErrorlapseTime);
 
-	void setDelayTime(long delayTime);
+    long getDelayTime();
 
-	LocalTime getSubmitTime();
+    void setDelayTime(long delayTime);
 
-	void setSubmitTime(LocalTime submitTime);
+    LocalTime getSubmitTime();
 
-	Set<DayOfWeek> getSubmitDays();
+    void setSubmitTime(LocalTime submitTime);
 
-	void setSubmitDays(Set<DayOfWeek> submitDays);
+    Set<DayOfWeek> getSubmitDays();
 
-	/**
-	 * Currencies
-	 */
-	Set<String> getSupportedCurrencies();
+    void setSubmitDays(Set<DayOfWeek> submitDays);
 
-	void setSupportedCurrencies(Set<String> currencies);
+    /**
+     * Currencies
+     */
+    Set<String> getSupportedCurrencies();
 
-	String getDefaultCurrency();
+    void setSupportedCurrencies(Set<String> currencies);
 
-	void setDefaultCurrency(String currency);
+    String getDefaultCurrency();
 
-	/**
-	 * Events
-	 */
-	boolean isEventsEnabled();
+    void setDefaultCurrency(String currency);
 
-	void setEventsEnabled(boolean enabled);
+    /**
+     * Events
+     */
+    boolean isEventsEnabled();
 
-	Set<String> getEventsListeners();
+    void setEventsEnabled(boolean enabled);
 
-	void setEventsListeners(Set<String> listeners);
+    Set<String> getEventsListeners();
 
-	Set<String> getEnabledEventTypes();
+    void setEventsListeners(Set<String> listeners);
 
-	void setEnabledEventTypes(Set<String> enabledEventTypes);
+    Set<String> getEnabledEventTypes();
 
-	boolean isAdminEventsEnabled();
+    void setEnabledEventTypes(Set<String> enabledEventTypes);
 
-	void setAdminEventsEnabled(boolean enabled);
+    boolean isAdminEventsEnabled();
 
-	boolean isAdminEventsDetailsEnabled();
+    void setAdminEventsEnabled(boolean enabled);
 
-	void setAdminEventsDetailsEnabled(boolean enabled);
+    boolean isAdminEventsDetailsEnabled();
 
-	long getEventsExpiration();
+    void setAdminEventsDetailsEnabled(boolean enabled);
 
-	void setEventsExpiration(long expiration);
+    long getEventsExpiration();
 
-	/**
-	 * Smtp for email
-	 */
-	Map<String, String> getSmtpConfig();
+    void setEventsExpiration(long expiration);
 
-	void setSmtpConfig(Map<String, String> smtpConfig);
-	
-	/**
-     * Ubl sender
+    /**
+     * Smtp for email
+     */
+    Map<String, String> getSmtpConfig();
+
+    void setSmtpConfig(Map<String, String> smtpConfig);
+
+    /**
+     * Ubl server
      */
     Map<String, String> getUblSenderConfig();
 
     void setUblSenderConfig(Map<String, String> ublSenderConfig);
 
-	/**
-	 * Certificate
-	 */
-	String getKeyId();
+    /**
+     * Certificate
+     */
+    String getKeyId();
 
-	String getPublicKeyPem();
+    String getPublicKeyPem();
 
-	void setPublicKeyPem(String publicKeyPem);
+    void setPublicKeyPem(String publicKeyPem);
 
-	String getPrivateKeyPem();
+    String getPrivateKeyPem();
 
-	void setPrivateKeyPem(String privateKeyPem);
+    void setPrivateKeyPem(String privateKeyPem);
 
-	PublicKey getPublicKey();
+    PublicKey getPublicKey();
 
-	void setPublicKey(PublicKey publicKey);
+    void setPublicKey(PublicKey publicKey);
 
-	String getCodeSecret();
+    String getCodeSecret();
 
-	Key getCodeSecretKey();
+    Key getCodeSecretKey();
 
-	void setCodeSecret(String codeSecret);
+    void setCodeSecret(String codeSecret);
 
-	X509Certificate getCertificate();
+    X509Certificate getCertificate();
 
-	void setCertificate(X509Certificate certificate);
+    void setCertificate(X509Certificate certificate);
 
-	String getCertificatePem();
+    String getCertificatePem();
 
-	void setCertificatePem(String certificate);
+    void setCertificatePem(String certificate);
 
-	PrivateKey getPrivateKey();
+    PrivateKey getPrivateKey();
 
-	void setPrivateKey(PrivateKey privateKey);
+    void setPrivateKey(PrivateKey privateKey);
 
-	/**
-	 * Attributes
-	 */
-	void setAttribute(String name, String value);
+    /**
+     * Attributes
+     */
+    void setAttribute(String name, String value);
 
-	void removeAttribute(String name);
+    void removeAttribute(String name);
 
-	String getAttribute(String name);
+    String getAttribute(String name);
 
-	Map<String, String> getAttributes();
+    Map<String, String> getAttributes();
 
-	String getDisplayName();
+    String getDisplayName();
 
-	void setDisplayName(String displayName);
+    void setDisplayName(String displayName);
 
-	String getDisplayNameHtml();
+    String getDisplayNameHtml();
 
-	void setDisplayNameHtml(String displayNameHtml);
+    void setDisplayNameHtml(String displayNameHtml);
 
-	/**
-	 * Required actions
-	 */
-	Set<String> getRequiredActions();
+    /**
+     * Required actions
+     */
+    Set<String> getRequiredActions();
 
-	void addRequiredAction(RequiredAction action);
+    void addRequiredAction(RequiredAction action);
 
-	void addRequiredAction(String actionName);
+    void addRequiredAction(String actionName);
 
-	void removeRequiredAction(RequiredAction action);
+    void removeRequiredAction(RequiredAction action);
 
-	void removeRequiredAction(String actionName);
+    void removeRequiredAction(String actionName);
 
-	/**
-	 * Events interfaces
-	 */
-	interface OrganizationCreationEvent extends ProviderEvent {
-		OrganizationModel getCreatedOrganization();
-	}
+    /**
+     * Events interfaces
+     */
+    interface OrganizationCreationEvent extends ProviderEvent {
+        OrganizationModel getCreatedOrganization();
+    }
 
-	interface OrganizationPostCreateEvent extends ProviderEvent {
-		OrganizationModel getCreatedOrganization();
+    interface OrganizationPostCreateEvent extends ProviderEvent {
+        OrganizationModel getCreatedOrganization();
 
-		OpenfactSession getOpenfactSession();
-	}
+        OpenfactSession getOpenfactSession();
+    }
 
-	interface OrganizationRemovedEvent extends ProviderEvent {
-		OrganizationModel getOrganization();
+    interface OrganizationRemovedEvent extends ProviderEvent {
+        OrganizationModel getOrganization();
 
-		OpenfactSession getOpenfactSession();
-	}
+        OpenfactSession getOpenfactSession();
+    }
 
-	public static enum RequiredAction {
-		ACTION1, ACTION2, ACTION3, ACTION4
-	}
+    public static enum RequiredAction {
+        ACTION1, ACTION2, ACTION3, ACTION4
+    }
 
 }

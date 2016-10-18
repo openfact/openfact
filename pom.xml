@@ -56,6 +56,13 @@
 		<!-- jodd to zip -->
 		<version.jodd>3.7.1</version.jodd>
 
+		<!-- Apache commons -->
+		<version.commons.lang>2.6</version.commons.lang>
+
+		<!-- apache cfx -->
+		<version.apache.cxf>3.1.7</version.apache.cxf>
+		<version.woodstox>4.4.1</version.woodstox>
+
 		<!-- WildFly -->
 		<eap.version>7.0.0.Beta</eap.version>
 		<jboss.as.version>7.2.0.Final</jboss.as.version>
@@ -196,7 +203,7 @@
 	<modules>
 		<module>common</module>
 		<module>core</module>
-		<module>services</module>		
+		<module>services</module>
 		<module>services-api</module>
 		<module>server-spi</module>
 		<module>model</module>
@@ -299,17 +306,57 @@
 			</dependency>
 
 			<!-- xerces -->
-<!-- 			<dependency> -->
-<!-- 				<groupId>xerces</groupId> -->
-<!-- 				<artifactId>xercesImpl</artifactId> -->
-<!-- 				<version>${version.xerces}</version> -->
-<!-- 			</dependency> -->
+			<!-- <dependency> -->
+			<!-- <groupId>xerces</groupId> -->
+			<!-- <artifactId>xercesImpl</artifactId> -->
+			<!-- <version>${version.xerces}</version> -->
+			<!-- </dependency> -->
 
 			<!-- jodd to zip -->
 			<dependency>
 				<groupId>org.jodd</groupId>
 				<artifactId>jodd-core</artifactId>
 				<version>${version.jodd}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>${version.commons.lang}</version>
+			</dependency>
+
+			<!-- Apache Cfx -->
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-frontend-jaxws</artifactId>
+				<version>${version.apache.cxf}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-transports-http</artifactId>
+				<version>${version.apache.cxf}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-rs-client</artifactId>
+				<version>${version.apache.cxf}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-rs-service-description</artifactId>
+				<version>${version.apache.cxf}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-ws-security</artifactId>
+				<version>${version.apache.cxf}</version>
+			</dependency>
+
+			<!-- woodstox -->
+			<dependency>
+				<groupId>org.codehaus.woodstox</groupId>
+				<artifactId>woodstox-core-asl</artifactId>
+				<version>${version.woodstox}</version>
 			</dependency>
 
 			<!-- Openfact -->
