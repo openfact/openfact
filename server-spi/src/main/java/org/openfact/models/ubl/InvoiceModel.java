@@ -28,13 +28,14 @@ import org.openfact.models.ubl.common.SupplierPartyModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
 import org.openfact.provider.ProviderEvent;
+import org.w3c.dom.Element;
 
 public interface InvoiceModel {
 
     String ID = "ID";
     String INVOICE_TYPE_CODE = "invoiceTypeCode";
     String ISSUE_DATETIME = "issueDateTime";
-    
+
     String getId();
 
     /**
@@ -256,12 +257,16 @@ public interface InvoiceModel {
 
     SignatureModel addSignature();
 
-    /**
-     * Events interfaces
-     */
-    interface InvoiceCreationEvent extends ProviderEvent {
-        InvoiceModel getCreatedInvoice();
-    }
+	byte[] getXmlDoument();
+
+	void setXmlDocument(byte[] value);
+
+	/**
+	 * Events interfaces
+	 */
+	interface InvoiceCreationEvent extends ProviderEvent {
+		InvoiceModel getCreatedInvoice();
+	}
 
     interface InvoicePostCreateEvent extends ProviderEvent {
         InvoiceModel getCreatedInvoice();
