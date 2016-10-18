@@ -75,10 +75,10 @@
 		</dependency>
 
 		<!-- xerces -->
-		<dependency>
-			<groupId>xerces</groupId>
-			<artifactId>xercesImpl</artifactId>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>xerces</groupId> -->
+<!-- 			<artifactId>xercesImpl</artifactId> -->
+<!-- 		</dependency> -->
 	</dependencies>
 	<build>
 		<plugins>

@@ -1,34 +1,22 @@
 package org.openfact.ubl.send.pe;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
 
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
+import org.apache.commons.io.FileUtils;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.enums.InternetMediaType;
 import org.openfact.models.ubl.CreditNoteModel;
 import org.openfact.models.ubl.DebitNoteModel;
 import org.openfact.models.ubl.InvoiceModel;
-import org.openfact.models.utils.DocumentUtils;
-import org.openfact.ubl.UblProvider;
 import org.openfact.ubl.pe.constants.CodigoTipoDocumento;
 import org.openfact.ubl.send.UblSenderException;
 import org.openfact.ubl.send.UblSenderProvider;
 import org.openfact.ubl.send.UblTemplateProvider;
-import org.openfact.ubl.send.pe.header.UblHeaderHandlerResolver;
-import org.openfact.ubl.send.pe.sunat.BillService;
-import org.openfact.ubl.send.pe.sunat.BillService_Service;
-import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
-
-import com.sun.xml.ws.util.ByteArrayDataSource;
 
 import jodd.io.ZipBuilder;
 
@@ -43,6 +31,10 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 
 	@Override
 	public void close() {
+	}
+
+	private UblSenderProvider getUblSenderProvider(OrganizationModel organization) {
+		return session.getProvider(UblSenderProvider.class, "soa");
 	}
 
 	@Override
@@ -63,25 +55,15 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 		try {
 			byte[] zip = generateZip(document, fileName);
 
-			File file = new File(System.getProperty("user.home") + "/ubl/" + fileName + ".zip");
-			FileOutputStream fos = new FileOutputStream(file);
-			fos.write(zip);
-			fos.close();
-
-			// Call Web Service Operation
-			BillService_Service service = new BillService_Service();
-			service.setHandlerResolver(new UblHeaderHandlerResolver(organization.getUblSenderConfig()));
-			BillService port = service.getBillServicePort();			
-			// Config data
-			DataSource dataSource = new ByteArrayDataSource(zip, "application/zip");
-			DataHandler contentFile = new DataHandler(dataSource);
+			FileUtils.writeByteArrayToFile(new File(System.getProperty("user.home") + "/ubl/" + fileName + ".zip"),
+					zip);
 
 			// Send
-			byte[] result = port.sendBill(fileName + ".zip", contentFile);
-			File res = new File(System.getProperty("user.home") + "/ubl/CDR-" + fileName + ".zip");
-			FileOutputStream fos1 = new FileOutputStream(res);
-			fos1.write(result);
-			fos1.close();
+			byte[] result = getUblSenderProvider(organization).send(organization, zip, fileName,
+					invoice.getInvoiceTypeCode(), InternetMediaType.ZIP,
+					"https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService");
+			FileUtils.writeByteArrayToFile(new File(System.getProperty("user.home") + "/ubl/R" + fileName + ".zip"),
+					result);
 		} catch (TransformerException e) {
 			throw new UblSenderException(e);
 		} catch (IOException e) {
@@ -92,27 +74,18 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 	@Override
 	public void sendCreditNote(CreditNoteModel creditNote) throws UblSenderException {
 		String fileName = generateXmlFileName(creditNote);
-		byte[] document = null;// getUblProvider(organization).getDocument(organization,
-								// creditNote);
+		byte[] document = null;//
+		// creditNote);
 		try {
 			byte[] zip = generateZip(document, fileName);
 
-			File file = new File(System.getProperty("user.home") + "/ubl/" + fileName + ".zip");
-			FileOutputStream fos = new FileOutputStream(file);
-			fos.write(zip);
-			fos.close();
+			FileUtils.writeByteArrayToFile(new File(System.getProperty("user.home") + "/ubl/" + fileName + ".zip"),
+					zip);
+			byte[] result = getUblSenderProvider(organization).send(organization, zip, fileName, "",
+					InternetMediaType.ZIP, "https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService");
+			FileUtils.writeByteArrayToFile(new File(System.getProperty("user.home") + "/ubl/R" + fileName + ".zip"),
+					result);
 
-			// Call Web Service Operation
-			BillService_Service service = new BillService_Service();
-			service.setHandlerResolver(new UblHeaderHandlerResolver(organization.getUblSenderConfig()));
-			BillService port = service.getBillServicePort();
-
-			// Config data
-			DataSource dataSource = new ByteArrayDataSource(zip, "application/zip");
-			DataHandler contentFile = new DataHandler(dataSource);
-
-			// Send
-			byte[] result = port.sendBill(fileName + ".zip", contentFile);
 		} catch (TransformerException e) {
 			throw new UblSenderException(e);
 		} catch (IOException e) {
@@ -123,26 +96,17 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 	@Override
 	public void sendDebitNote(DebitNoteModel debitNote) throws UblSenderException {
 		String fileName = generateXmlFileName(debitNote);
-		byte[] document = null;// getUblProvider(organization).getDocument(organization,
-								// debitNote);
+		byte[] document = null;
 		try {
 			byte[] zip = generateZip(document, fileName);
-			File file = new File(System.getProperty("user.home") + "/ubl/" + fileName + ".zip");
-			FileOutputStream fos = new FileOutputStream(file);
-			fos.write(zip);
-			fos.close();
+			FileUtils.writeByteArrayToFile(new File(System.getProperty("user.home") + "/ubl/" + fileName + ".zip"),
+					zip);
 
-			// Call Web Service Operation
-			BillService_Service service = new BillService_Service();
-			service.setHandlerResolver(new UblHeaderHandlerResolver(organization.getUblSenderConfig()));
-			BillService port = service.getBillServicePort();
+			byte[] result = getUblSenderProvider(organization).send(organization, zip, fileName, "",
+					InternetMediaType.ZIP, "https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService");
 
-			// Config data
-			DataSource dataSource = new ByteArrayDataSource(zip, "application/zip");
-			DataHandler contentFile = new DataHandler(dataSource);
-
-			// Send
-			byte[] result = port.sendBill(fileName + ".zip", contentFile);
+			FileUtils.writeByteArrayToFile(new File(System.getProperty("user.home") + "/ubl/R" + fileName + ".zip"),
+					result);
 		} catch (TransformerException e) {
 			throw new UblSenderException(e);
 		} catch (IOException e) {
@@ -151,36 +115,26 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 	}
 
 	private byte[] generateZip(byte[] document, String fileName) throws TransformerException, IOException {
-		return ZipBuilder.createZipInMemory()/* .addFolder("dummy/") */.add(document).path(fileName + ".xml").save()
+		return ZipBuilder.createZipInMemory()/*.addFolder("dummy/")*/.add(document).path(fileName + ".xml").save()
 				.toBytes();
-	}
-
-	private UblProvider getUblProvider(OrganizationModel organization) {
-		return session.getProvider(UblProvider.class, organization.getDefaultUblLocale());
-	}
-
-	private void send(String fileName, byte[] file, String contentType) throws UblSenderException {
-		UblSenderProvider ublSender = session.getProvider(UblSenderProvider.class, "soap");
-		ublSender.send(organization, fileName, file, contentType);
 	}
 
 	private String generateXmlFileName(InvoiceModel invoice) throws UblSenderException {
 		if (organization.getAssignedIdentificationId() == null) {
 			throw new UblSenderException("Organization doesn't have assignedIdentificationId", new Throwable());
 		}
-
-		String codido;
+		String codigo;
 		if (invoice.getInvoiceTypeCode().equals(CodigoTipoDocumento.FACTURA.getCodigo())) {
-			codido = CodigoTipoDocumento.FACTURA.getCodigo();
+			codigo = CodigoTipoDocumento.FACTURA.getCodigo();
 		} else if (invoice.getInvoiceTypeCode().equals(CodigoTipoDocumento.BOLETA.getCodigo())) {
-			codido = CodigoTipoDocumento.BOLETA.getCodigo();
+			codigo = CodigoTipoDocumento.BOLETA.getCodigo();
 		} else {
 			throw new UblSenderException("Invalid invoice code", new Throwable());
 		}
 
 		StringBuilder sb = new StringBuilder();
 		sb.append(organization.getAssignedIdentificationId()).append("-");
-		sb.append(codido).append("-");
+		sb.append(codigo).append("-");
 		sb.append(invoice.getID());
 		return sb.toString();
 	}
@@ -190,11 +144,11 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 			throw new UblSenderException("Organization doesn't have assignedIdentificationId", new Throwable());
 		}
 
-		String codido = CodigoTipoDocumento.NOTA_CREDITO.getCodigo();
+		String codigo = CodigoTipoDocumento.NOTA_CREDITO.getCodigo();
 
 		StringBuilder sb = new StringBuilder();
 		sb.append(organization.getAssignedIdentificationId()).append("-");
-		sb.append(codido).append("-");
+		sb.append(codigo).append("-");
 		sb.append(creditNote.getID());
 		return sb.toString();
 	}
@@ -203,12 +157,10 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 		if (organization.getAssignedIdentificationId() == null) {
 			throw new UblSenderException("Organization doesn't have assignedIdentificationId", new Throwable());
 		}
-
-		String codido = CodigoTipoDocumento.NOTA_DEBITO.getCodigo();
-
+		String codigo = CodigoTipoDocumento.NOTA_DEBITO.getCodigo();
 		StringBuilder sb = new StringBuilder();
 		sb.append(organization.getAssignedIdentificationId()).append("-");
-		sb.append(codido).append("-");
+		sb.append(codigo).append("-");
 		sb.append(debitNote.getID());
 		return sb.toString();
 	}

@@ -39,7 +39,7 @@ public class UblTemplateProviderTest_PE extends AbstractProviderTest {
 		organization.setAssignedIdentificationId("10467793549");		
 		OpenfactModelUtils.generateOrganizationKeys(organization);
 		Map<String, String> config = new HashMap<>();
-		config.put("username", "20100070970MODDATOS");
+		config.put("username", "10467793549MODDATOS");
 		config.put("password", "MODDATOS");
 		organization.setUblSenderConfig(config);
 		organization.setDefaultUblLocale(LOCAL);
