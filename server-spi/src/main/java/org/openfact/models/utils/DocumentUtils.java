@@ -80,31 +80,6 @@ public class DocumentUtils {
 	}
 
 	/**
-	 * Convert a document to an Inputstream
-	 * 
-	 * @param document
-	 *            the document to convert
-	 * @param prettyPrint
-	 *            prettyPrinted if true
-	 * @return An input stream of the document
-	 * @throws IOException
-	 */
-	public static InputStream getDocumentToInputStream(Document document, boolean prettyPrint) throws IOException {
-		document.setXmlStandalone(false);
-		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		OutputFormat outputFormat = new OutputFormat(document);
-		if (prettyPrint) {
-			outputFormat.setIndenting(true);
-			outputFormat.setIndent(2);
-			outputFormat.setLineWidth(65);
-			outputFormat.setPreserveSpace(false);
-		}
-		XMLSerializer serializer = new XMLSerializer(outputStream, outputFormat);
-		serializer.serialize(document);
-		return new ByteArrayInputStream(outputStream.toByteArray());
-	}
-
-	/**
 	 * 
 	 * Convert a string to a Document Object
 	 * 
@@ -146,36 +121,6 @@ public class DocumentUtils {
 		return doc;
 	}
 
-	/**
-	 * Convert a Document object to a string
-	 * 
-	 * @param document
-	 *            The document to Convert
-	 * @param prettyPrint
-	 *            prettyPrinted if true
-	 * @return A string rapresentation of the document
-	 * @throws IOException
-	 */
-	public static String getDocumentToString(Document document, boolean prettyPrint) throws IOException {
-		document.setXmlStandalone(false);
-		Writer writer = new StringWriter();
-		char[] buffer = new char[1024];
-		InputStream is = null;
-		try {
-			is = getDocumentToInputStream(document, prettyPrint);
-			Reader reader = new BufferedReader(new InputStreamReader(is));
-			int n;
-			while ((n = reader.read(buffer)) != -1) {
-				writer.write(buffer, 0, n);
-			}
-		} finally {
-			if (is != null) {
-				is.close();
-			}
-		}
-		return writer.toString();
-	}
-
 	public static byte[] getBytesFromDocument(Document document) throws TransformerException {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		TransformerFactory factory = TransformerFactory.newInstance();
@@ -200,5 +145,48 @@ public class DocumentUtils {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
 		return builder.newDocument();
+	}
+
+	public static String getDocumentToString(Document document) throws TransformerException {
+		TransformerFactory tf = TransformerFactory.newInstance();
+		Transformer t = tf.newTransformer();
+		StringWriter sw = new StringWriter();
+		t.transform(new DOMSource(document), new StreamResult(sw));
+		return sw.toString();
+	}
+
+	public static InputStream getDocumentToInputStream(Document document, boolean prettyPrint) throws IOException {
+		document.setXmlStandalone(false);
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		OutputFormat outputFormat = new OutputFormat(document);
+		if (prettyPrint) {
+			outputFormat.setIndenting(true);
+			outputFormat.setIndent(2);
+			outputFormat.setLineWidth(65);
+			outputFormat.setPreserveSpace(false);
+		}
+		XMLSerializer serializer = new XMLSerializer(outputStream, outputFormat);
+		serializer.serialize(document);
+		return new ByteArrayInputStream(outputStream.toByteArray());
+	}
+
+	public static String getDocumentToString(Document document, boolean pretty) throws IOException {
+		document.setXmlStandalone(false);
+		Writer writer = new StringWriter();
+		char[] buffer = new char[1024];
+		InputStream is = null;
+		try {
+			is = getDocumentToInputStream(document, pretty);
+			Reader reader = new BufferedReader(new InputStreamReader(is));
+			int n;
+			while ((n = reader.read(buffer)) != -1) {
+				writer.write(buffer, 0, n);
+			}
+		} finally {
+			if (is != null) {
+				is.close();
+			}
+		}
+		return writer.toString();
 	}
 }

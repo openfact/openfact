@@ -299,11 +299,11 @@
 			</dependency>
 
 			<!-- xerces -->
-			<dependency>
-				<groupId>xerces</groupId>
-				<artifactId>xercesImpl</artifactId>
-				<version>${version.xerces}</version>
-			</dependency>
+<!-- 			<dependency> -->
+<!-- 				<groupId>xerces</groupId> -->
+<!-- 				<artifactId>xercesImpl</artifactId> -->
+<!-- 				<version>${version.xerces}</version> -->
+<!-- 			</dependency> -->
 
 			<!-- jodd to zip -->
 			<dependency>
