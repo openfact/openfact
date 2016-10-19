@@ -104,6 +104,12 @@
 			<artifactId>jackson-datatype-jsr310</artifactId>
 		</dependency>
 
+		<!-- easybatch -->
+		<dependency>
+			<groupId>org.easybatch</groupId>
+			<artifactId>easybatch-core</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.openfact</groupId>
 			<artifactId>openfact-services-api</artifactId>

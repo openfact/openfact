@@ -20,21 +20,5 @@
 		"host": "localhost",
 		"port": "3025"
 	},
-	"tasksSchedule": {
-		"attempNumber": 5,
-		"lapseTime": 2,
-		"onErrorAttempNumber": 2,
-		"onErrorLapseTime": 3,
-		"delayTime": 4,
-		"submitTime": "00:00:00",
-		"submitDays": [
-			"MONDAY",
-			"TUESDAY",
-			"WEDNESDAY",
-			"THURSDAY",
-			"FRIDAY",
-			"SATURDAY",
-			"SUNDAY"
-		]
-	}
+	"tasksEnabled": false
 }

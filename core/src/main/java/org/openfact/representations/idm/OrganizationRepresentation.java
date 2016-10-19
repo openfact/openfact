@@ -1,6 +1,7 @@
 package org.openfact.representations.idm;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -31,7 +32,10 @@ public class OrganizationRepresentation {
     protected String codeSecret;
 
     private PostalAddressRepresentation postalAddress;
-    private TasksScheduleRepresentation tasksSchedule;
+
+    private Date taskFirstTime;
+    private Long taskDelay;
+    private Boolean tasksEnabled;
 
     protected String emailTheme;
     protected Set<String> supportedLocales;
@@ -146,14 +150,6 @@ public class OrganizationRepresentation {
 
     public void setPostalAddress(PostalAddressRepresentation postalAddress) {
         this.postalAddress = postalAddress;
-    }
-
-    public TasksScheduleRepresentation getTasksSchedule() {
-        return tasksSchedule;
-    }
-
-    public void setTasksSchedule(TasksScheduleRepresentation tasksSchedule) {
-        this.tasksSchedule = tasksSchedule;
     }
 
     public String getEmailTheme() {
@@ -362,6 +358,30 @@ public class OrganizationRepresentation {
 
     public void setCodeSecret(String codeSecret) {
         this.codeSecret = codeSecret;
+    }
+
+    public Long getTaskDelay() {
+        return taskDelay;
+    }
+
+    public void setTaskDelay(Long taskDelay) {
+        this.taskDelay = taskDelay;
+    }
+
+    public Date getTaskFirstTime() {
+        return taskFirstTime;
+    }
+
+    public void setTaskFirstTime(Date taskFirstTime) {
+        this.taskFirstTime = taskFirstTime;
+    }
+
+    public Boolean isTasksEnabled() {
+        return tasksEnabled;
+    }
+
+    public void setTasksEnabled(Boolean tasksEnabled) {
+        this.tasksEnabled = tasksEnabled;
     }
 
 }

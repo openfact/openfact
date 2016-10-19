@@ -52,7 +52,6 @@ import org.openfact.representations.idm.EventRepresentation;
 import org.openfact.representations.idm.OrganizationEventsConfigRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
-import org.openfact.representations.idm.TasksScheduleRepresentation;
 import org.openfact.representations.idm.catalog.CodeCatalogRepresentation;
 import org.openfact.representations.idm.ubl.CreditNoteRepresentation;
 import org.openfact.representations.idm.ubl.DebitNoteRepresentation;
@@ -120,15 +119,9 @@ public class ModelToRepresentation {
         rep.setAdminEventsDetailsEnabled(organization.isAdminEventsDetailsEnabled());
 
         if (internal) {
-            TasksScheduleRepresentation tasksSchedulerRep = new TasksScheduleRepresentation();
-            tasksSchedulerRep.setAttempNumber(organization.getAttempNumber());
-            tasksSchedulerRep.setLapseTime(organization.getLapseTime());
-            tasksSchedulerRep.setOnErrorAttempNumber(organization.getOnErrorAttempNumber());
-            tasksSchedulerRep.setOnErrorLapseTime(organization.getOnErrorLapseTime());
-            tasksSchedulerRep.setDelayTime(organization.getDelayTime());
-            tasksSchedulerRep.setSubmitTime(organization.getSubmitTime());
-            tasksSchedulerRep.setSubmitDays(organization.getSubmitDays());
-            rep.setTasksSchedule(tasksSchedulerRep);
+            rep.setTaskFirstTime(organization.getTaskFirstTime());
+            rep.setTaskDelay(organization.getTaskDelay());
+            rep.setTasksEnabled(organization.isTasksEnabled());
         }
 
         return rep;

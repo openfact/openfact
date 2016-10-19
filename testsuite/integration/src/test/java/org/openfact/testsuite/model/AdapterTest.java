@@ -23,10 +23,6 @@ import static org.junit.Assert.assertNull;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
-import java.time.DayOfWeek;
-import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 import org.junit.Assert;
@@ -54,14 +50,7 @@ public class AdapterTest extends AbstractModelTest {
         organizationModel.setName("SISTCOOP");
         organizationModel.setDescription("SISTCOOP IS A SOFTWARE COMPANY");
         organizationModel.setEnabled(true);
-        organizationModel.setAttempNumber(5);
-        organizationModel.setLapseTime(50);
-        organizationModel.setOnErrorAttempNumber(2);
-        organizationModel.setOnErrorLapseTime(500);
-        organizationModel.setDelayTime(0);
-        organizationModel.setSubmitTime(LocalTime.now());
-        organizationModel.setSubmitDays(new HashSet<DayOfWeek>(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.THURSDAY)));
-
+        
         organizationModel.setAssignedIdentificationId("012345678910");
         organizationModel.setSupplierName("SISTCOOP SAC");
         organizationModel.setRegistrationName("SISTCOOP SOFTWARE");
@@ -84,12 +73,7 @@ public class AdapterTest extends AbstractModelTest {
         assertNotNull(organizationModel);
         Assert.assertEquals(organizationModel.getName(), "SISTCOOP");
         Assert.assertEquals(organizationModel.getDescription(), "SISTCOOP IS A SOFTWARE COMPANY");
-        Assert.assertEquals(organizationModel.isEnabled(), true);
-        Assert.assertEquals(organizationModel.getAttempNumber(), 5);
-        Assert.assertEquals(organizationModel.getLapseTime(), 50);
-        Assert.assertEquals(organizationModel.getOnErrorAttempNumber(), 2);
-        Assert.assertEquals(organizationModel.getOnErrorLapseTime(), 500);
-        Assert.assertEquals(organizationModel.getDelayTime(), 0);
+        Assert.assertEquals(organizationModel.isEnabled(), true);  
 
         Assert.assertEquals(organizationModel.getAssignedIdentificationId(), "012345678910");
         Assert.assertEquals(organizationModel.getSupplierName(), "SISTCOOP SAC");

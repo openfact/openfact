@@ -28,6 +28,7 @@ org.openfact.ubl.UblIDGeneratorSpi
 org.openfact.ubl.UblExtensionContentGeneratorSpi
 org.openfact.ubl.send.UblSenderSpi
 org.openfact.ubl.send.UblTemplateSpi
+org.openfact.ubl.send.UblTaskRunnerSpi
 org.openfact.models.cache.CacheOrganizationProviderSpi
 org.openfact.models.ubl.cache.CacheInvoiceProviderSpi
 org.openfact.models.ubl.cache.CacheCreditNoteProviderSpi

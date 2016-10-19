@@ -12,10 +12,6 @@ import org.openfact.models.utils.OrganizationImporter;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.OrganizationEventsConfigRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
-import org.openfact.services.scheduled.ClearExpiredEvents;
-import org.openfact.services.scheduled.ClearExpiredUblSessions;
-import org.openfact.services.scheduled.ClusterAwareScheduledTaskRunner;
-import org.openfact.timer.TimerProvider;
 
 public class OrganizationManager implements OrganizationImporter {
 
@@ -84,7 +80,7 @@ public class OrganizationManager implements OrganizationImporter {
         RepresentationToModel.importOrganization(session, rep, organization);
 
         // Create periodic tasks for send documents
-        OrganizationTaskManager taskManager = new OrganizationTaskManager(session);
+        OrganizationScheduledTaskManager taskManager = new OrganizationScheduledTaskManager(session);
         taskManager.schedulePeriodicTask(organization);
 
         fireOrganizationPostCreate(organization);
@@ -92,6 +88,10 @@ public class OrganizationManager implements OrganizationImporter {
     }
 
     public boolean removeOrganization(OrganizationModel organization) {
+        // Refresh periodic tasks for send documents
+        OrganizationScheduledTaskManager taskManager = new OrganizationScheduledTaskManager(session);
+        taskManager.cancelPeriodicTask(organization);
+
         boolean removed = model.removeOrganization(organization);
         return removed;
     }

@@ -1,10 +1,7 @@
 package org.openfact.models.utils;
 
-import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,10 +49,8 @@ import org.openfact.models.ubl.common.TaxSubtotalModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
-import org.openfact.representations.idm.CertificateRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
-import org.openfact.representations.idm.TasksScheduleRepresentation;
 import org.openfact.representations.idm.catalog.CodeCatalogRepresentation;
 import org.openfact.representations.idm.search.PagingRepresentation;
 import org.openfact.representations.idm.search.SearchCriteriaFilterOperatorRepresentation;
@@ -233,43 +228,16 @@ public class RepresentationToModel {
         /**
          * Tasks schedule
          */
-        if (rep.getTasksSchedule() != null) {
-            TasksScheduleRepresentation tasksScheduleRep = rep.getTasksSchedule();
-            if (tasksScheduleRep.getAttempNumber() != null) {
-                newOrganization.setAttempNumber(tasksScheduleRep.getAttempNumber());
-            } else {
-                newOrganization.setAttempNumber(5);
-            }
-            if (tasksScheduleRep.getLapseTime() != null) {
-                newOrganization.setLapseTime(tasksScheduleRep.getLapseTime());
-            } else {
-                newOrganization.setAttempNumber(5);
-            }
-            if (tasksScheduleRep.getOnErrorAttempNumber() != null) {
-                newOrganization.setOnErrorAttempNumber(tasksScheduleRep.getOnErrorAttempNumber());
-            } else {
-                newOrganization.setOnErrorAttempNumber(2);
-            }
-            if (tasksScheduleRep.getOnErrorLapseTime() != null) {
-                newOrganization.setOnErrorLapseTime(tasksScheduleRep.getOnErrorLapseTime());
-            } else {
-                newOrganization.setOnErrorLapseTime(5);
-            }
-            if (tasksScheduleRep.getDelayTime() != null) {
-                newOrganization.setDelayTime(tasksScheduleRep.getDelayTime());
-            } else {
-                newOrganization.setDelayTime(0);
-            }
-            if (tasksScheduleRep.getSubmitTime() != null) {
-                newOrganization.setSubmitTime(tasksScheduleRep.getSubmitTime());
-            } else {
-                newOrganization.setSubmitTime(LocalTime.MIDNIGHT);
-            }
-            if (tasksScheduleRep.getSubmitDays() != null) {
-                newOrganization.setSubmitDays(tasksScheduleRep.getSubmitDays());
-            } else {
-                newOrganization.setSubmitDays(new HashSet<DayOfWeek>(Arrays.asList(DayOfWeek.values())));
-            }
+        if (rep.getTaskFirstTime() != null) {
+            newOrganization.setTaskFirstTime(rep.getTaskFirstTime());
+        }
+        if (rep.getTaskDelay() != null) {
+            newOrganization.setTaskDelay(rep.getTaskDelay());
+        }
+        if (rep.isTasksEnabled() != null) {
+            newOrganization.setTaskEnabled(rep.isTasksEnabled());
+        } else {
+            newOrganization.setTaskEnabled(false);
         }
 
         /**
@@ -475,43 +443,11 @@ public class RepresentationToModel {
         /**
          * Tasks schedule
          */
-        if (rep.getTasksSchedule() != null) {
-            TasksScheduleRepresentation tasksScheduleRep = rep.getTasksSchedule();
-            if (tasksScheduleRep.getAttempNumber() != null) {
-                organization.setAttempNumber(tasksScheduleRep.getAttempNumber());
-            } else {
-                organization.setAttempNumber(5);
-            }
-            if (tasksScheduleRep.getLapseTime() != null) {
-                organization.setLapseTime(tasksScheduleRep.getLapseTime());
-            } else {
-                organization.setAttempNumber(5);
-            }
-            if (tasksScheduleRep.getOnErrorAttempNumber() != null) {
-                organization.setOnErrorAttempNumber(tasksScheduleRep.getOnErrorAttempNumber());
-            } else {
-                organization.setOnErrorAttempNumber(2);
-            }
-            if (tasksScheduleRep.getOnErrorLapseTime() != null) {
-                organization.setOnErrorLapseTime(tasksScheduleRep.getOnErrorLapseTime());
-            } else {
-                organization.setOnErrorLapseTime(5);
-            }
-            if (tasksScheduleRep.getDelayTime() != null) {
-                organization.setDelayTime(tasksScheduleRep.getDelayTime());
-            } else {
-                organization.setDelayTime(0);
-            }
-            if (tasksScheduleRep.getSubmitTime() != null) {
-                organization.setSubmitTime(tasksScheduleRep.getSubmitTime());
-            } else {
-                organization.setSubmitTime(LocalTime.MIDNIGHT);
-            }
-            if (tasksScheduleRep.getSubmitDays() != null) {
-                organization.setSubmitDays(tasksScheduleRep.getSubmitDays());
-            } else {
-                organization.setSubmitDays(new HashSet<DayOfWeek>(Arrays.asList(DayOfWeek.values())));
-            }
+        if (rep.getTaskFirstTime() != null) {
+            organization.setTaskFirstTime(rep.getTaskFirstTime());
+        }
+        if (rep.getTaskDelay() != null) {
+            organization.setTaskDelay(rep.getTaskDelay());
         }
 
         /**

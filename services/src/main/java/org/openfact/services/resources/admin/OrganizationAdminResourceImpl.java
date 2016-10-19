@@ -42,7 +42,7 @@ import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.OrganizationManager;
-import org.openfact.services.managers.OrganizationTaskManager;
+import org.openfact.services.managers.OrganizationScheduledTaskManager;
 
 public class OrganizationAdminResourceImpl implements OrganizationAdminResource {
 
@@ -122,7 +122,7 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
             RepresentationToModel.updateOrganization(rep, organization, session);
 
             // Refresh periodic tasks for send documents
-            OrganizationTaskManager taskManager = new OrganizationTaskManager(session);
+            OrganizationScheduledTaskManager taskManager = new OrganizationScheduledTaskManager(session);
             taskManager.reschedulePeriodicTask(organization);
 
             adminEvent.operation(OperationType.UPDATE).representation(rep).success();

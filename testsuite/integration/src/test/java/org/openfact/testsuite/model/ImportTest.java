@@ -1,8 +1,5 @@
 package org.openfact.testsuite.model;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -11,7 +8,6 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
-import org.openfact.representations.idm.TasksScheduleRepresentation;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ImportTest extends AbstractModelTest {
@@ -75,15 +71,7 @@ public class ImportTest extends AbstractModelTest {
         Assert.assertEquals(rep.getSmtpServer().size(), organization.getSmtpConfig().size());
         
         /**
-         * Tasks Schedule*/
-        TasksScheduleRepresentation tasksScheduleRep = rep.getTasksSchedule();
-        Assert.assertTrue(tasksScheduleRep.getAttempNumber().equals(organization.getAttempNumber()));
-        Assert.assertTrue(tasksScheduleRep.getLapseTime().equals(organization.getLapseTime()));
-        Assert.assertTrue(tasksScheduleRep.getOnErrorAttempNumber().equals(organization.getOnErrorAttempNumber()));
-        Assert.assertTrue(tasksScheduleRep.getOnErrorLapseTime().equals(organization.getOnErrorLapseTime()));
-        Assert.assertTrue(tasksScheduleRep.getDelayTime().equals(organization.getDelayTime()));
-        Assert.assertTrue(tasksScheduleRep.getSubmitDays().size() == organization.getSubmitDays().size());
-        Assert.assertEquals(tasksScheduleRep.getSubmitTime(), organization.getSubmitTime());              
+         * Tasks Schedule*/                     
         
         /**
          * Invoices

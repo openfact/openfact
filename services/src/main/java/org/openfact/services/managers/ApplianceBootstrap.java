@@ -23,7 +23,9 @@ import java.util.List;
 
 import org.openfact.Config;
 import org.openfact.common.Version;
-import org.openfact.models.*;
+import org.openfact.models.ModelDuplicateException;
+import org.openfact.models.OpenfactSession;
+import org.openfact.models.OrganizationModel;
 import org.openfact.models.catalog.CodeCatalogModel;
 import org.openfact.models.catalog.CountryCatalogModel;
 import org.openfact.models.catalog.CurrencyCatalogModel;
@@ -80,10 +82,7 @@ public class ApplianceBootstrap {
         organization.setDisplayNameHtml(Version.NAME_HTML);
         organization.setEnabled(true);
         
-        organization.setAttempNumber(1);
-        organization.setDelayTime(1);
-        organization.setOnErrorAttempNumber(1);
-        organization.setOnErrorLapseTime(1);
+        organization.setTaskEnabled(false);
         OpenfactModelUtils.generateOrganizationKeys(organization);
 
         return true;

@@ -1,10 +1,9 @@
 package org.openfact.models.jpa.entities;
 
-import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -26,6 +25,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.Type;
@@ -40,261 +41,253 @@ import org.openfact.models.jpa.entities.ubl.InvoiceEntity;
 @Entity
 @Table(name = "ORGANIZATION")
 @NamedQueries({
-		@NamedQuery(name = "getAllOrganizationIds", query = "select organization.id from OrganizationEntity organization"),
-		@NamedQuery(name = "getOrganizationIdByName", query = "select organization.id from OrganizationEntity organization where organization.name = :name"),
-		@NamedQuery(name = "getOrganizationsCount", query = "select count(organization.id) from OrganizationEntity organization"),
-		@NamedQuery(name = "searchForOrganization", query = "select organization from OrganizationEntity organization where lower(organization.name) like :filterText or lower(organization.supplierName) like :filterText or lower(organization.registrationName) like :filterText")})
+        @NamedQuery(name = "getAllOrganizationIds", query = "select organization.id from OrganizationEntity organization"),
+        @NamedQuery(name = "getOrganizationIdByName", query = "select organization.id from OrganizationEntity organization where organization.name = :name"),
+        @NamedQuery(name = "getOrganizationsCount", query = "select count(organization.id) from OrganizationEntity organization"),
+        @NamedQuery(name = "searchForOrganization", query = "select organization from OrganizationEntity organization where lower(organization.name) like :filterText or lower(organization.supplierName) like :filterText or lower(organization.registrationName) like :filterText") })
 public class OrganizationEntity {
 
-	@Id
-	@Column(name = "ID", length = 36)
-	@Access(AccessType.PROPERTY)
-	private String id;
+    @Id
+    @Column(name = "ID", length = 36)
+    @Access(AccessType.PROPERTY)
+    private String id;
 
-	@NaturalId(mutable = true)
-	@Column(name = "NAME", unique = true)
-	private String name;
+    @NaturalId(mutable = true)
+    @Column(name = "NAME", unique = true)
+    private String name;
 
-	@Column(name = "DESCRIPTION")
-	private String description;
+    @Column(name = "DESCRIPTION")
+    private String description;
 
-	@Column(name = "ENABLED")
-	@Type(type = "org.hibernate.type.NumericBooleanType")
-	private boolean enabled;
+    @Column(name = "ENABLED")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    private boolean enabled;
 
-	@Column(name = "ASSIGNED_IDENTIFICATION_ID")
-	private String assignedIdentificationId;
+    @Column(name = "ASSIGNED_IDENTIFICATION_ID")
+    private String assignedIdentificationId;
 
-	@Column(name = "ADDITIONAL_ACCOUNT_ID")
-	private String additionalAccountId;
+    @Column(name = "ADDITIONAL_ACCOUNT_ID")
+    private String additionalAccountId;
 
-	@Column(name = "SUPPLIER_NAME")
-	private String supplierName;
+    @Column(name = "SUPPLIER_NAME")
+    private String supplierName;
 
-	@Column(name = "REGISTRATION_NAME")
-	private String registrationName;
+    @Column(name = "REGISTRATION_NAME")
+    private String registrationName;
 
-	@Type(type = "org.hibernate.type.LocalDateTimeType")
-	@Column(name = "CREATED_TIMESTAMP")
-	private LocalDateTime createdTimestamp;
-	
-	/**
-	 * Certificate
-	 */
-	@Column(name = "PUBLIC_KEY", length = 4000)
-	protected String publicKeyPem;
+    @Type(type = "org.hibernate.type.LocalDateTimeType")
+    @Column(name = "CREATED_TIMESTAMP")
+    private LocalDateTime createdTimestamp;
 
-	@Column(name = "PRIVATE_KEY", length = 4000)
-	protected String privateKeyPem;
+    /**
+     * Certificate
+     */
+    @Column(name = "PUBLIC_KEY", length = 4000)
+    protected String publicKeyPem;
 
-	@Column(name = "CERTIFICATE", length = 4000)
-	protected String certificatePem;
+    @Column(name = "PRIVATE_KEY", length = 4000)
+    protected String privateKeyPem;
 
-	@Column(name = "CODE_SECRET", length = 255)
-	protected String codeSecret;
+    @Column(name = "CERTIFICATE", length = 4000)
+    protected String certificatePem;
 
-	/**
-	 * Postal address
-	 */
-	@Column(name = "POSTAL_ADRESS_ID")
-	protected String postalAddressId;
+    @Column(name = "CODE_SECRET", length = 255)
+    protected String codeSecret;
 
-	@Column(name = "STREET_NAME")
-	protected String streetName;
+    /**
+     * Postal address
+     */
+    @Column(name = "POSTAL_ADRESS_ID")
+    protected String postalAddressId;
 
-	@Column(name = "CITY_SUBDIVISION_NAME")
-	protected String citySubdivisionName;
+    @Column(name = "STREET_NAME")
+    protected String streetName;
 
-	@Column(name = "CITY_NAME")
-	protected String cityName;
+    @Column(name = "CITY_SUBDIVISION_NAME")
+    protected String citySubdivisionName;
 
-	@Column(name = "COUNTRY_SUBENTITY")
-	protected String countrySubentity;
+    @Column(name = "CITY_NAME")
+    protected String cityName;
 
-	@Column(name = "DISTRICT")
-	protected String district;
+    @Column(name = "COUNTRY_SUBENTITY")
+    protected String countrySubentity;
 
-	@Column(name = "COUNTRY_IDENTIFICATION_CODE")
-	protected String countryIdentificationCode;
+    @Column(name = "DISTRICT")
+    protected String district;
 
-	/**
-	 * Events
-	 */
-	@Column(name = "EVENTS_ENABLED")
-	@Type(type = "org.hibernate.type.NumericBooleanType")
-	protected boolean eventsEnabled;
+    @Column(name = "COUNTRY_IDENTIFICATION_CODE")
+    protected String countryIdentificationCode;
 
-	@Column(name = "EVENTS_EXPIRATION")
-	protected long eventsExpiration;
+    /**
+     * Events
+     */
+    @Column(name = "EVENTS_ENABLED")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    protected boolean eventsEnabled;
 
-	@ElementCollection
-	@Column(name = "VALUE")
-	@CollectionTable(name = "ORGANIZATION_EVENTS_LISTENERS", joinColumns = { @JoinColumn(name = "ORGANIZATION_ID") })
-	protected Set<String> eventsListeners = new HashSet<String>();
+    @Column(name = "EVENTS_EXPIRATION")
+    protected long eventsExpiration;
 
-	@ElementCollection
-	@Column(name = "VALUE")
-	@CollectionTable(name = "ORGANIZATION_ENABLED_EVENT_TYPES", joinColumns = { @JoinColumn(name = "ORGANIZATION_ID") })
-	protected Set<String> enabledEventTypes = new HashSet<String>();
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "ORGANIZATION_EVENTS_LISTENERS", joinColumns = {
+            @JoinColumn(name = "ORGANIZATION_ID") })
+    protected Set<String> eventsListeners = new HashSet<String>();
 
-	@Column(name = "ADMIN_EVENTS_ENABLED")
-	@Type(type = "org.hibernate.type.NumericBooleanType")
-	protected boolean adminEventsEnabled;
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "ORGANIZATION_ENABLED_EVENT_TYPES", joinColumns = {
+            @JoinColumn(name = "ORGANIZATION_ID") })
+    protected Set<String> enabledEventTypes = new HashSet<String>();
 
-	@Column(name = "ADMIN_EVENTS_DETAILS_ENABLED")
-	@Type(type = "org.hibernate.type.NumericBooleanType")
-	protected boolean adminEventsDetailsEnabled;
+    @Column(name = "ADMIN_EVENTS_ENABLED")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    protected boolean adminEventsEnabled;
 
-	/**
-	 * Themes
-	 */
-	@Column(name = "LOGIN_THEME")
-	protected String loginTheme;
+    @Column(name = "ADMIN_EVENTS_DETAILS_ENABLED")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    protected boolean adminEventsDetailsEnabled;
 
-	@Column(name = "ACCOUNT_THEME")
-	protected String accountTheme;
+    /**
+     * Themes
+     */
+    @Column(name = "LOGIN_THEME")
+    protected String loginTheme;
 
-	@Column(name = "ADMIN_THEME")
-	protected String adminTheme;
+    @Column(name = "ACCOUNT_THEME")
+    protected String accountTheme;
 
-	@Column(name = "EMAIL_THEME")
-	protected String emailTheme;
+    @Column(name = "ADMIN_THEME")
+    protected String adminTheme;
 
-	/**
-	 * Locale
-	 */
-	@Column(name = "INTERNATIONALIZATION_ENABLED")
-	@Type(type = "org.hibernate.type.NumericBooleanType")
-	protected boolean internationalizationEnabled;
+    @Column(name = "EMAIL_THEME")
+    protected String emailTheme;
 
-	@ElementCollection
-	@Column(name = "VALUE")
-	@CollectionTable(name = "ORGANIZATION_SUPPORTED_LOCALES", joinColumns = { @JoinColumn(name = "ORGANIZATION_ID") })
-	protected Set<String> supportedLocales = new HashSet<String>();
+    /**
+     * Locale
+     */
+    @Column(name = "INTERNATIONALIZATION_ENABLED")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    protected boolean internationalizationEnabled;
 
-	@Column(name = "DEFAULT_LOCALE")
-	protected String defaultLocale;
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "ORGANIZATION_SUPPORTED_LOCALES", joinColumns = {
+            @JoinColumn(name = "ORGANIZATION_ID") })
+    protected Set<String> supportedLocales = new HashSet<String>();
 
-	/**
-	 * Locale for taxs
-	 */
-	@Column(name = "INTERNATIONALIZATION_UBL_ENABLED")
-	@Type(type = "org.hibernate.type.NumericBooleanType")
-	protected boolean internationalizationUblEnabled;
+    @Column(name = "DEFAULT_LOCALE")
+    protected String defaultLocale;
 
-	@ElementCollection
-	@Column(name = "VALUE")
-	@CollectionTable(name = "ORGANIZATION_SUPPORTED_UBL_LOCALES", joinColumns = {
-			@JoinColumn(name = "ORGANIZATION_ID") })
-	protected Set<String> supportedUblLocales = new HashSet<String>();
+    /**
+     * Locale for taxs
+     */
+    @Column(name = "INTERNATIONALIZATION_UBL_ENABLED")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    protected boolean internationalizationUblEnabled;
 
-	@Column(name = "DEFAULT_UBL_LOCALE")
-	protected String defaultUblLocale;
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "ORGANIZATION_SUPPORTED_UBL_LOCALES", joinColumns = {
+            @JoinColumn(name = "ORGANIZATION_ID") })
+    protected Set<String> supportedUblLocales = new HashSet<String>();
 
-	/**
-	 * Tasks
-	 */
-	@Column(name = "ATTEMP_NUMBER")
-	protected int attempNumber;
+    @Column(name = "DEFAULT_UBL_LOCALE")
+    protected String defaultUblLocale;
 
-	@Column(name = "LAPSE_TIME")
-	protected long lapseTime;
+    /**
+     * Tasks
+     */
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "TASK_FIRST_TIME")
+    protected Date taskFirstTime;
 
-	@Column(name = "ON_ERROR_ATTEMP_NUMBER")
-	protected int onErrorAttempNumber;
+    @Column(name = "TASK_DELAY")
+    protected long taskDelay;
 
-	@Column(name = "ON_ERROR_LAPSE_TIME")
-	protected long onErrorLapseTime;
+    @Column(name = "TASK_ENABLED")
+    protected boolean tasksEnabled;
 
-	@Column(name = "DELAY_TIME")
-	protected long delayTime;
+    /**
+     * Smtp
+     */
+    @ElementCollection
+    @MapKeyColumn(name = "NAME")
+    @Column(name = "VALUE")
+    @CollectionTable(name = "ORGANIZATION_SMTP_CONFIG", joinColumns = {
+            @JoinColumn(name = "ORGANIZATION_ID") })
+    private Map<String, String> smtpConfig = new HashMap<String, String>();
 
-	@Column(name = "SUBMIT_TIME")
-	@Type(type = "org.hibernate.type.LocalTimeType")
-	protected LocalTime submitTime;
-
-	@ElementCollection
-	@Column(name = "VALUE")
-	@CollectionTable(name = "SUBMIT_DAY", joinColumns = { @JoinColumn(name = "SUBMIT_DAY_ID") })
-	private Set<DayOfWeek> submitDays = new HashSet<DayOfWeek>();
-
-	/**
-	 * Smtp
-	 */
-	@ElementCollection
-	@MapKeyColumn(name = "NAME")
-	@Column(name = "VALUE")
-	@CollectionTable(name = "ORGANIZATION_SMTP_CONFIG", joinColumns = { @JoinColumn(name = "ORGANIZATION_ID") })
-	private Map<String, String> smtpConfig = new HashMap<String, String>();
-	
-	/**
+    /**
      * Ubl sender config
      */
     @ElementCollection
     @MapKeyColumn(name = "NAME")
     @Column(name = "VALUE")
-    @CollectionTable(name = "ORGANIZATION_UBLSENDER_CONFIG", joinColumns = { @JoinColumn(name = "ORGANIZATION_ID") })
+    @CollectionTable(name = "ORGANIZATION_UBLSENDER_CONFIG", joinColumns = {
+            @JoinColumn(name = "ORGANIZATION_ID") })
     private Map<String, String> ublSenderConfig = new HashMap<String, String>();
 
-	/**
-	 * Atributes
-	 */
-	@ElementCollection
-	@MapKeyColumn(name = "NAME")
-	@Column(name = "VALUE", length = 2048)
-	@CollectionTable(name = "ORGANIZATION_ATTRIBUTES", joinColumns = { @JoinColumn(name = "ORGANIZATION_ID") })
-	protected Map<String, String> attributes = new HashMap<String, String>();
+    /**
+     * Atributes
+     */
+    @ElementCollection
+    @MapKeyColumn(name = "NAME")
+    @Column(name = "VALUE", length = 2048)
+    @CollectionTable(name = "ORGANIZATION_ATTRIBUTES", joinColumns = {
+            @JoinColumn(name = "ORGANIZATION_ID") })
+    protected Map<String, String> attributes = new HashMap<String, String>();
 
-	/**
-	 * Currencies
-	 */
-	@ElementCollection
-	@Column(name = "VALUE")
-	@CollectionTable(name = "ORGANIZATION_SUPPORTED_CURRENCIES", joinColumns = {
-			@JoinColumn(name = "ORGANIZATION_ID") })
-	protected Set<String> supportedCurrencies = new HashSet<String>();
+    /**
+     * Currencies
+     */
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "ORGANIZATION_SUPPORTED_CURRENCIES", joinColumns = {
+            @JoinColumn(name = "ORGANIZATION_ID") })
+    protected Set<String> supportedCurrencies = new HashSet<String>();
 
-	@Column(name = "DEFAULT_CURRENCY")
-	protected String defaultCurrency;
+    @Column(name = "DEFAULT_CURRENCY")
+    protected String defaultCurrency;
 
-	/** Required actions */
-	@OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "organization")
-	protected Collection<OrganizationRequiredActionEntity> requiredActions = new ArrayList<>();
+    /** Required actions */
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "organization")
+    protected Collection<OrganizationRequiredActionEntity> requiredActions = new ArrayList<>();
 
-	/**
-	 * Cascade relations
-	 */
-	@OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<InvoiceEntity> invoices = new ArrayList<>();
-	@OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<CreditNoteEntity> creditNotes = new ArrayList<>();
-	@OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<DebitNoteEntity> debitNotes = new ArrayList<>();
+    /**
+     * Cascade relations
+     */
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<InvoiceEntity> invoices = new ArrayList<>();
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<CreditNoteEntity> creditNotes = new ArrayList<>();
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<DebitNoteEntity> debitNotes = new ArrayList<>();
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		OrganizationEntity other = (OrganizationEntity) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        OrganizationEntity other = (OrganizationEntity) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        return true;
+    }
 
     public String getId() {
         return id;
@@ -358,6 +351,14 @@ public class OrganizationEntity {
 
     public void setRegistrationName(String registrationName) {
         this.registrationName = registrationName;
+    }
+
+    public LocalDateTime getCreatedTimestamp() {
+        return createdTimestamp;
+    }
+
+    public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
     }
 
     public String getPublicKeyPem() {
@@ -576,60 +577,12 @@ public class OrganizationEntity {
         this.defaultUblLocale = defaultUblLocale;
     }
 
-    public int getAttempNumber() {
-        return attempNumber;
+    public long getTaskDelay() {
+        return taskDelay;
     }
 
-    public void setAttempNumber(int attempNumber) {
-        this.attempNumber = attempNumber;
-    }
-
-    public long getLapseTime() {
-        return lapseTime;
-    }
-
-    public void setLapseTime(long lapseTime) {
-        this.lapseTime = lapseTime;
-    }
-
-    public int getOnErrorAttempNumber() {
-        return onErrorAttempNumber;
-    }
-
-    public void setOnErrorAttempNumber(int onErrorAttempNumber) {
-        this.onErrorAttempNumber = onErrorAttempNumber;
-    }
-
-    public long getOnErrorLapseTime() {
-        return onErrorLapseTime;
-    }
-
-    public void setOnErrorLapseTime(long onErrorLapseTime) {
-        this.onErrorLapseTime = onErrorLapseTime;
-    }
-
-    public long getDelayTime() {
-        return delayTime;
-    }
-
-    public void setDelayTime(long delayTime) {
-        this.delayTime = delayTime;
-    }
-
-    public LocalTime getSubmitTime() {
-        return submitTime;
-    }
-
-    public void setSubmitTime(LocalTime submitTime) {
-        this.submitTime = submitTime;
-    }
-
-    public Set<DayOfWeek> getSubmitDays() {
-        return submitDays;
-    }
-
-    public void setSubmitDays(Set<DayOfWeek> submitDays) {
-        this.submitDays = submitDays;
+    public void setTaskDelay(long taskDelay) {
+        this.taskDelay = taskDelay;
     }
 
     public Map<String, String> getSmtpConfig() {
@@ -704,14 +657,20 @@ public class OrganizationEntity {
         this.debitNotes = debitNotes;
     }
 
-    public LocalDateTime getCreatedTimestamp() {
-        return createdTimestamp;
+    public Date getTaskFirstTime() {
+        return taskFirstTime;
     }
 
-    public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
-        this.createdTimestamp = createdTimestamp;
+    public void setTaskFirstTime(Date taskFirstTime) {
+        this.taskFirstTime = taskFirstTime;
     }
 
-	
-	
+    public boolean getTasksEnabled() {
+        return tasksEnabled;
+    }
+
+    public void setTasksEnabled(boolean tasksEnabled) {
+        this.tasksEnabled = tasksEnabled;
+    }
+
 }

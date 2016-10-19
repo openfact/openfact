@@ -4,9 +4,8 @@ import java.security.Key;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.cert.X509Certificate;
-import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
@@ -127,34 +126,17 @@ public interface OrganizationModel {
     /**
      * Task schedules
      */
+    Date getTaskFirstTime();
 
-    int getAttempNumber();
+    void setTaskFirstTime(Date firstTime);
 
-    void setAttempNumber(int attempNumber);
+    long getTaskDelay();
 
-    long getLapseTime();
-
-    void setLapseTime(long lapseTime);
-
-    int getOnErrorAttempNumber();
-
-    void setOnErrorAttempNumber(int OnErrorAttempNumber);
-
-    long getOnErrorLapseTime();
-
-    void setOnErrorLapseTime(long onErrorlapseTime);
-
-    long getDelayTime();
-
-    void setDelayTime(long delayTime);
-
-    LocalTime getSubmitTime();
-
-    void setSubmitTime(LocalTime submitTime);
-
-    Set<DayOfWeek> getSubmitDays();
-
-    void setSubmitDays(Set<DayOfWeek> submitDays);
+    void setTaskDelay(long taskDelay);
+    
+    boolean isTasksEnabled();
+    
+    void setTaskEnabled(boolean taskEnabled);
 
     /**
      * Currencies

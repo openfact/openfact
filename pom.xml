@@ -63,6 +63,9 @@
 		<version.apache.cxf>3.1.7</version.apache.cxf>
 		<version.woodstox>4.4.1</version.woodstox>
 
+		<!-- easybatch -->
+		<version.easybatch>5.0.0-RC2</version.easybatch>
+
 		<!-- WildFly -->
 		<eap.version>7.0.0.Beta</eap.version>
 		<jboss.as.version>7.2.0.Final</jboss.as.version>
@@ -357,6 +360,13 @@
 				<groupId>org.codehaus.woodstox</groupId>
 				<artifactId>woodstox-core-asl</artifactId>
 				<version>${version.woodstox}</version>
+			</dependency>
+
+			<!-- easybatch -->
+			<dependency>
+				<groupId>org.easybatch</groupId>
+				<artifactId>easybatch-core</artifactId>
+				<version>${version.easybatch}</version>
 			</dependency>
 
 			<!-- Openfact -->
