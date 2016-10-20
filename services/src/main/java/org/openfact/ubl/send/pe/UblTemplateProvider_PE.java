@@ -2,8 +2,11 @@ package org.openfact.ubl.send.pe;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
+import javax.xml.soap.SOAPFault;
 import javax.xml.transform.TransformerException;
+import javax.xml.ws.soap.SOAPFaultException;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.ArrayUtils;
@@ -17,6 +20,7 @@ import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.ubl.pe.constants.CodigoTipoDocumento;
 import org.openfact.ubl.send.UblSenderException;
 import org.openfact.ubl.send.UblSenderProvider;
+import org.openfact.ubl.send.UblSenderResponseProvider;
 import org.openfact.ubl.send.UblTemplateProvider;
 
 import jodd.io.ZipBuilder;
@@ -38,6 +42,10 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 		return session.getProvider(UblSenderProvider.class, "soa");
 	}
 
+	private UblSenderResponseProvider getUblSenderResponseProvider(OrganizationModel organization) {
+		return session.getProvider(UblSenderResponseProvider.class, "senderResponse").setOrganization(organization);
+	}
+
 	@Override
 	public UblTemplateProvider setOrganization(OrganizationModel organization) {
 		this.organization = organization;
@@ -50,74 +58,97 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 	}
 
 	@Override
-	public void sendInvoice(InvoiceModel invoice) throws UblSenderException {
-		String fileName = generateXmlFileName(invoice);
-		byte[] document = ArrayUtils.toPrimitive(invoice.getXmlDocument());
+	public void sendInvoice(List<InvoiceModel> invoices) throws UblSenderException {
 		try {
-			byte[] zip = generateZip(document, fileName);
+			if (invoices.get(0).getInvoiceTypeCode().equals(CodigoTipoDocumento.FACTURA.getCodigo())) {
+				String fileName = generateXmlFileName(invoices.get(0));
+				byte[] zip = generateZip(ArrayUtils.toPrimitive(invoices.get(0).getXmlDocument()), fileName);
+				writeByteToFile(fileName, zip, false);
+				byte[] result = getUblSenderProvider(organization).send(organization, zip, fileName,
+						invoices.get(0).getInvoiceTypeCode(), InternetMediaType.ZIP,
+						organization.getUblSenderConfig().get("urlService"));
+				writeByteToFile(fileName, result, true);
+				getUblSenderResponseProvider(organization).senderInvoiceResponse(invoices,
+						ArrayUtils.toPrimitive(invoices.get(0).getXmlDocument()), result);
 
-			FileUtils.writeByteArrayToFile(new File(System.getProperty("user.home") + "/ubl/" + fileName + ".zip"),
-					zip);
+			} else if (invoices.get(0).getInvoiceTypeCode().equals(CodigoTipoDocumento.BOLETA.getCodigo())) {
+				throw new UblSenderException("method not implemented", new Throwable());
+			} else {
+				throw new UblSenderException("Invalid invoice template", new Throwable());
+			}
 
-			// Send
-			byte[] result = getUblSenderProvider(organization).send(organization, zip, fileName,
-					invoice.getInvoiceTypeCode(), InternetMediaType.ZIP,
-					"https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService");
-			FileUtils.writeByteArrayToFile(new File(System.getProperty("user.home") + "/ubl/R" + fileName + ".zip"),
-					result);
 		} catch (TransformerException e) {
 			throw new UblSenderException(e);
 		} catch (IOException e) {
 			throw new UblSenderException(e);
+		} catch (SOAPFaultException e) {
+			SOAPFault soapFault = e.getFault();
+			if (invoices.get(0).getInvoiceTypeCode().equals(CodigoTipoDocumento.FACTURA.getCodigo())) {
+				getUblSenderResponseProvider(organization).senderInvoiceResponse(invoices,
+						ArrayUtils.toPrimitive(invoices.get(0).getXmlDocument()), null,
+						new String[] { soapFault.getFaultCode(), soapFault.getFaultString() });
+			} else {
+				throw new UblSenderException("method not implemented", new Throwable());
+			}
 		}
 	}
 
 	@Override
 	public void sendCreditNote(CreditNoteModel creditNote) throws UblSenderException {
-		String fileName = generateXmlFileName(creditNote);
-		byte[] document = null;//
-		// creditNote);
 		try {
-			byte[] zip = generateZip(document, fileName);
-
-			FileUtils.writeByteArrayToFile(new File(System.getProperty("user.home") + "/ubl/" + fileName + ".zip"),
-					zip);
-			byte[] result = getUblSenderProvider(organization).send(organization, zip, fileName, "",
-					InternetMediaType.ZIP, "https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService");
-			FileUtils.writeByteArrayToFile(new File(System.getProperty("user.home") + "/ubl/R" + fileName + ".zip"),
-					result);
-
+			String fileName = generateXmlFileName(creditNote);
+			byte[] zip = generateZip(ArrayUtils.toPrimitive(creditNote.getXmlDoument()), fileName);
+			writeByteToFile(fileName, zip, false);
+			byte[] result = getUblSenderProvider(organization).send(organization, zip, fileName,
+					CodigoTipoDocumento.NOTA_CREDITO.getCodigo(), InternetMediaType.ZIP,
+					organization.getUblSenderConfig().get("urlService"));
+			writeByteToFile(fileName, result, true);
+			getUblSenderResponseProvider(organization).senderCreditNoteResponse(creditNote, result);
 		} catch (TransformerException e) {
 			throw new UblSenderException(e);
 		} catch (IOException e) {
 			throw new UblSenderException(e);
+		} catch (SOAPFaultException e) {
+			SOAPFault soapFault = e.getFault();
+			getUblSenderResponseProvider(organization).senderCreditNoteResponse(creditNote, null,
+					new String[] { soapFault.getFaultCode(), soapFault.getFaultString() });
 		}
 	}
 
 	@Override
 	public void sendDebitNote(DebitNoteModel debitNote) throws UblSenderException {
-		String fileName = generateXmlFileName(debitNote);
-		byte[] document = null;
 		try {
-			byte[] zip = generateZip(document, fileName);
-			FileUtils.writeByteArrayToFile(new File(System.getProperty("user.home") + "/ubl/" + fileName + ".zip"),
-					zip);
-
-			byte[] result = getUblSenderProvider(organization).send(organization, zip, fileName, "",
-					InternetMediaType.ZIP, "https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService");
-
-			FileUtils.writeByteArrayToFile(new File(System.getProperty("user.home") + "/ubl/R" + fileName + ".zip"),
-					result);
+			String fileName = generateXmlFileName(debitNote);
+			byte[] zip = generateZip(ArrayUtils.toPrimitive(debitNote.getXmlDoument()), fileName);
+			byte[] result = getUblSenderProvider(organization).send(organization, zip, fileName,
+					CodigoTipoDocumento.NOTA_DEBITO.getCodigo(), InternetMediaType.ZIP,
+					organization.getUblSenderConfig().get("urlService"));
+			writeByteToFile(fileName, result, true);
+			getUblSenderResponseProvider(organization).senderDebitNoteResponse(debitNote, result);
 		} catch (TransformerException e) {
 			throw new UblSenderException(e);
 		} catch (IOException e) {
 			throw new UblSenderException(e);
+		} catch (SOAPFaultException e) {
+			SOAPFault soapFault = e.getFault();
+			getUblSenderResponseProvider(organization).senderDebitNoteResponse(debitNote, null,
+					new String[] { soapFault.getFaultCode(), soapFault.getFaultString() });
 		}
 	}
 
 	private byte[] generateZip(byte[] document, String fileName) throws TransformerException, IOException {
-		return ZipBuilder.createZipInMemory()/*.addFolder("dummy/")*/.add(document).path(fileName + ".xml").save()
+		return ZipBuilder.createZipInMemory()/* .addFolder("dummy/") */.add(document).path(fileName + ".xml").save()
 				.toBytes();
+	}
+
+	private void writeByteToFile(String fileName, byte[] document, boolean response) throws IOException {
+		if (!response) {
+			FileUtils.writeByteArrayToFile(new File(System.getProperty("user.home") + "/ubl/" + fileName + ".zip"),
+					document);
+		} else {
+			FileUtils.writeByteArrayToFile(new File(System.getProperty("user.home") + "/ubl/R" + fileName + ".zip"),
+					document);
+		}
 	}
 
 	private String generateXmlFileName(InvoiceModel invoice) throws UblSenderException {

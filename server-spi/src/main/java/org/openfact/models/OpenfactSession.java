@@ -10,6 +10,7 @@ import org.openfact.models.catalog.UnitCatalogProvider;
 import org.openfact.models.ubl.provider.CreditNoteProvider;
 import org.openfact.models.ubl.provider.DebitNoteProvider;
 import org.openfact.models.ubl.provider.InvoiceProvider;
+import org.openfact.models.ubl.provider.SendEventProvider;
 import org.openfact.provider.Provider;
 
 public interface OpenfactSession {
@@ -41,6 +42,8 @@ public interface OpenfactSession {
     OrganizationProvider organizations();
 
     InvoiceProvider invoices();
+    
+    SendEventProvider sendEvent();
 
     CreditNoteProvider creditNotes();
 

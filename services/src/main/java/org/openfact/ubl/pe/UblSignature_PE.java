@@ -24,13 +24,14 @@ import javax.xml.crypto.dsig.spec.TransformParameterSpec;
 import org.openfact.models.OrganizationModel;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class UblSignature_PE {
 
-	public static Document signUblDocument(OrganizationModel organizacion, Document document, boolean empty)
-			throws Exception {
+	public static Document signUblDocument(OrganizationModel organizacion, Document document) throws Exception {
 		String idReference = "Sign" + organizacion.getName().toUpperCase();
+		Node parentNode = addExtensionContent(document);
 		XMLSignatureFactory signatureFactory = XMLSignatureFactory.getInstance();
 		Reference reference = signatureFactory
 				.newReference("", signatureFactory.newDigestMethod(DigestMethod.SHA1, null),
@@ -47,24 +48,20 @@ public class UblSignature_PE {
 		x509Content.add(organizacion.getCertificate());
 		X509Data xdata = keyInfoFactory.newX509Data(x509Content);
 		KeyInfo keyInfo = keyInfoFactory.newKeyInfo(Collections.singletonList(xdata));
-		DOMSignContext signContext = null;
-		if (empty) {
-			signContext = new DOMSignContext(organizacion.getPrivateKey(), document);
-		} else {
-			signContext = new DOMSignContext(organizacion.getPrivateKey(),
-					document.getDocumentElement().getFirstChild().getNextSibling().getFirstChild().getNextSibling()
-							.getNextSibling().getNextSibling().getFirstChild().getNextSibling());
+
+		DOMSignContext signContext = new DOMSignContext(organizacion.getPrivateKey(), document.getDocumentElement());
+		XMLSignature signature = signatureFactory.newXMLSignature(signedInfo, keyInfo);
+		if (parentNode != null) {
+			signContext.setParent(parentNode);
 		}
 		signContext.setDefaultNamespacePrefix("ds");
-		XMLSignature signature = signatureFactory.newXMLSignature(signedInfo, keyInfo);
 		signature.sign(signContext);
-		if (!empty) {
-			Element elementParent = (Element) signContext.getParent();
-			if ((idReference != null) && (elementParent.getElementsByTagName("ds:Signature") != null)) {
-				Element elementSignature = (Element) elementParent.getElementsByTagName("ds:Signature").item(0);
-				elementSignature.setAttribute("Id", idReference);
-			}
+		Element elementParent = (Element) signContext.getParent();
+		if ((idReference != null) && (elementParent.getElementsByTagName("ds:Signature") != null)) {
+			Element elementSignature = (Element) elementParent.getElementsByTagName("ds:Signature").item(0);
+			elementSignature.setAttribute("Id", idReference);
 		}
+
 		return document;
 	}
 
@@ -80,5 +77,18 @@ public class UblSignature_PE {
 		xmlValid = signature.validate(validateContext);
 		return xmlValid;
 	}
-	
+
+	private static Node addExtensionContent(Document document) {
+		NodeList nodeList = document.getDocumentElement().getElementsByTagName("ext:UBLExtensions");
+		Node extensions = nodeList.item(0);
+		extensions.appendChild(document.createTextNode("\t\t"));
+		Node extension = document.createElement("ext:UBLExtension");
+		extension.appendChild(document.createTextNode("\n\t\t\t"));
+		Node content = document.createElement("ext:ExtensionContent");
+		extension.appendChild(content);
+		extension.appendChild(document.createTextNode("\n\t\t"));
+		extensions.appendChild(extension);
+		extensions.appendChild(document.createTextNode("\n\t"));
+		return content;
+	}
 }

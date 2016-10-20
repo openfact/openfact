@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.jboss.logging.Logger;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
@@ -15,8 +16,12 @@ import org.openfact.models.utils.DocumentUtils;
 import org.openfact.models.utils.ModelToType;
 import org.openfact.ubl.UblProvider;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import com.helger.ubl21.UBL21NamespaceContext;
+import com.helger.ubl21.UBL21Reader;
 import com.helger.ubl21.UBL21Writer;
 import com.helger.xml.microdom.serialize.MicroWriter;
 import com.helger.xml.namespace.MapBasedNamespaceContext;
@@ -52,7 +57,16 @@ public class UblProvider_PE implements UblProvider {
 			MicroWriter.writeToStream(UBL21Writer.invoice().getAsMicroDocument(invoiceType), out,
 					new XMLWriterSettings().setNamespaceContext(mapBasedNamespace)
 							.setPutNamespaceContextPrefixesInRoot(true));
-			return DocumentUtils.getByteToDocument(out.toByteArray());
+			Document document = DocumentUtils.getByteToDocument(out.toByteArray());
+			// Sign new Document
+			Document ubl = UblSignature_PE.signUblDocument(organization, document);
+			// validate signature
+			if (UblSignature_PE.isSignUblDocumentValid(organization, ubl)) {
+				invoice.setXmlDocument(ArrayUtils.toObject(DocumentUtils.getBytesFromDocument(ubl)));
+			} else {
+				throw new ModelException("Signature invalid, please verify the invoice signature");
+			}
+			return ubl;
 		} catch (DatatypeConfigurationException e) {
 			log.error(e.getMessage());
 			throw new ModelException(e.getMessage());
@@ -73,7 +87,16 @@ public class UblProvider_PE implements UblProvider {
 			MicroWriter.writeToStream(UBL21Writer.creditNote().getAsMicroDocument(creditNoteType), out,
 					new XMLWriterSettings().setNamespaceContext(mapBasedNamespace)
 							.setPutNamespaceContextPrefixesInRoot(true));
-			return DocumentUtils.getByteToDocument(out.toByteArray());
+			Document document = DocumentUtils.getByteToDocument(out.toByteArray());
+			// Sign new Document
+			Document ubl = UblSignature_PE.signUblDocument(organization, document);
+			// validate signature
+			if (UblSignature_PE.isSignUblDocumentValid(organization, ubl)) {
+				creditNote.setXmlDocument(ArrayUtils.toObject(DocumentUtils.getBytesFromDocument(ubl)));
+			} else {
+				throw new ModelException("Signature invalid, please verify the credit Note signature");
+			}
+			return ubl;
 		} catch (DatatypeConfigurationException e) {
 			log.error(e.getMessage());
 			throw new ModelException(e.getMessage());
@@ -94,7 +117,16 @@ public class UblProvider_PE implements UblProvider {
 			MicroWriter.writeToStream(UBL21Writer.debitNote().getAsMicroDocument(debitNoteType), out,
 					new XMLWriterSettings().setNamespaceContext(mapBasedNamespace)
 							.setPutNamespaceContextPrefixesInRoot(true));
-			return DocumentUtils.getByteToDocument(out.toByteArray());
+			Document document = DocumentUtils.getByteToDocument(out.toByteArray());
+			// Sign new Document
+			Document ubl = UblSignature_PE.signUblDocument(organization, document);
+			// validate signature
+			if (UblSignature_PE.isSignUblDocumentValid(organization, ubl)) {
+				debitNote.setXmlDocument(ArrayUtils.toObject(DocumentUtils.getBytesFromDocument(ubl)));
+			} else {
+				throw new ModelException("Signature invalid, please verify the debit Note signature");
+			}
+			return ubl;
 		} catch (DatatypeConfigurationException e) {
 			log.error(e.getMessage());
 			throw new ModelException(e.getMessage());
@@ -117,4 +149,5 @@ public class UblProvider_PE implements UblProvider {
 		mapBasedNamespace.setDefaultNamespaceURI(defaultNamespace);
 		return mapBasedNamespace;
 	}
+
 }

@@ -45,18 +45,18 @@ public class ServiceMain {
 
 		Map<String, String> resultado = new HashMap();
 		if (!respon.isError()) {
-			Integer errorCode = Integer.valueOf(respon.getCode());
-			String msgError = respon.getMsj();
-			System.out.println("isError es Falso, Mensaje Error Obtenido: " + respon.getMsj());
+			Integer errorCode = Integer.valueOf(respon.getErrorCode());
+			String msgError = respon.getMessage();
+			System.out.println("isError es Falso, Mensaje Error Obtenido: " + respon.getMessage());
 			List<String> listaWarnings = respon.getWarnings() != null ? respon.getWarnings() : new ArrayList();
 			System.out.println("isError es Falso, Cantidad de Warnings: " + listaWarnings.size());
 			resultado.put("situacion", "08");
 			resultado.put("mensaje", "Nro. Ticket: " + msgError);
 
 		} else {
-			Integer errorCode = Integer.valueOf(respon.getCode());
+			Integer errorCode = Integer.valueOf(respon.getErrorCode());
 			System.out.println("isError es True, Codigo de Error : " + errorCode);
-			String msgError = respon.getMsj();
+			String msgError = respon.getMessage();
 			System.out.println("isError es True, Mensaje Error Obtenido: " + msgError);
 
 			resultado.put("situacion", "05");

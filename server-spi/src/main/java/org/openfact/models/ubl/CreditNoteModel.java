@@ -27,220 +27,224 @@ import org.openfact.provider.ProviderEvent;
 
 public interface CreditNoteModel {
 
-    String ID = "ID";
-    String ISSUE_DATETIME = "issueDateTime";
-    
-    String getId();
+	String ID = "ID";
+	String ISSUE_DATETIME = "issueDateTime";
 
-    /**
-     * attributes
-     */
-    void setSingleAttribute(String name, String value);
+	String getId();
 
-    void setAttribute(String name, List<String> values);
+	/**
+	 * attributes
+	 */
+	void setSingleAttribute(String name, String value);
 
-    void removeAttribute(String name);
+	void setAttribute(String name, List<String> values);
 
-    String getFirstAttribute(String name);
+	void removeAttribute(String name);
 
-    List<String> getAttribute(String name);
+	String getFirstAttribute(String name);
 
-    Map<String, List<String>> getAttributes();
+	List<String> getAttribute(String name);
 
-    /**
-     * Organization
-     */
-    OrganizationModel getOrganization();
+	Map<String, List<String>> getAttributes();
 
-    /**
-     * */
-    UBLExtensionsModel getUBLExtensions();
+	/**
+	 * Organization
+	 */
+	OrganizationModel getOrganization();
 
-    void setUBLExtensions(UBLExtensionsModel value);
+	List<SendEventModel> getSendEvents();
+	/**
+	 * */
+	UBLExtensionsModel getUBLExtensions();
 
-    String getUBLVersionID();
+	void setUBLExtensions(UBLExtensionsModel value);
 
-    void setUBLVersionID(String value);
+	Byte[] getXmlDoument();
 
-    String getCustomizationID();
+	void setXmlDocument(Byte[] value);
 
-    void setCustomizationID(String value);
+	String getUBLVersionID();
 
-    String getProfileID();
+	void setUBLVersionID(String value);
 
-    void setProfileID(String value);
+	String getCustomizationID();
 
-    String getID();
+	void setCustomizationID(String value);
 
-    void setID(String value);
+	String getProfileID();
 
-    boolean getCopyIndicator();
+	void setProfileID(String value);
 
-    void setCopyIndicator(boolean value);
+	String getID();
 
-    String getUUID();
+	void setID(String value);
 
-    void setUUID(String value);
+	boolean getCopyIndicator();
 
-    LocalDateTime getIssueDateTime();
+	void setCopyIndicator(boolean value);
 
-    void setIssueDateTime(LocalDateTime value);
+	String getUUID();
 
-    LocalDate getTaxPointDate();
+	void setUUID(String value);
 
-    void setTaxPointDate(LocalDate value);
+	LocalDateTime getIssueDateTime();
 
-    List<String> getNote();
+	void setIssueDateTime(LocalDateTime value);
 
-    void setNote(List<String> note);
+	LocalDate getTaxPointDate();
 
-    String getDocumentCurrencyCode();
+	void setTaxPointDate(LocalDate value);
 
-    void setDocumentCurrencyCode(String value);
+	List<String> getNote();
 
-    String getTaxCurrencyCode();
+	void setNote(List<String> note);
 
-    void setTaxCurrencyCode(String value);
+	String getDocumentCurrencyCode();
 
-    String getPricingCurrencyCode();
+	void setDocumentCurrencyCode(String value);
 
-    void setPricingCurrencyCode(String value);
+	String getTaxCurrencyCode();
 
-    String getPaymentCurrencyCode();
+	void setTaxCurrencyCode(String value);
 
-    void setPaymentCurrencyCode(String value);
+	String getPricingCurrencyCode();
 
-    String getPaymentAlternativeCurrencyCode();
+	void setPricingCurrencyCode(String value);
 
-    void setPaymentAlternativeCurrencyCode(String value);
+	String getPaymentCurrencyCode();
 
-    String getAccountingCostCode();
+	void setPaymentCurrencyCode(String value);
 
-    void setAccountingCostCode(String value);
+	String getPaymentAlternativeCurrencyCode();
 
-    String getAccountingCost();
+	void setPaymentAlternativeCurrencyCode(String value);
 
-    void setAccountingCost(String value);
+	String getAccountingCostCode();
 
-    BigDecimal getLineCountNumeric();
+	void setAccountingCostCode(String value);
 
-    void setLineCountNumeric(BigDecimal value);
+	String getAccountingCost();
 
-    List<PeriodModel> getInvoicePeriod();
+	void setAccountingCost(String value);
 
-    void setInvoicePeriod(List<PeriodModel> invoicePeriod);
+	BigDecimal getLineCountNumeric();
 
-    List<ResponseModel> getDiscrepancyResponse();
+	void setLineCountNumeric(BigDecimal value);
 
-    void setDiscrepancyResponse(List<ResponseModel> discrepancyResponse);
+	List<PeriodModel> getInvoicePeriod();
 
-    OrderReferenceModel getOrderReference();
+	void setInvoicePeriod(List<PeriodModel> invoicePeriod);
 
-    void setOrderReference(OrderReferenceModel value);
+	List<ResponseModel> getDiscrepancyResponse();
 
-    List<BillingReferenceModel> getBillingReference();
+	void setDiscrepancyResponse(List<ResponseModel> discrepancyResponse);
 
-    void setBillingReference(List<BillingReferenceModel> billingReference);
+	OrderReferenceModel getOrderReference();
 
-    List<DocumentReferenceModel> getDespatchDocumentReference();
+	void setOrderReference(OrderReferenceModel value);
 
-    void setDespatchDocumentReference(List<DocumentReferenceModel> despatchDocumentReference);
+	List<BillingReferenceModel> getBillingReference();
 
-    List<DocumentReferenceModel> getReceiptDocumentReference();
+	void setBillingReference(List<BillingReferenceModel> billingReference);
 
-    void setReceiptDocumentReference(List<DocumentReferenceModel> receiptDocumentReference);
+	List<DocumentReferenceModel> getDespatchDocumentReference();
 
-    List<DocumentReferenceModel> getContractDocumentReference();
+	void setDespatchDocumentReference(List<DocumentReferenceModel> despatchDocumentReference);
 
-    void setContractDocumentReference(List<DocumentReferenceModel> contractDocumentReference);
+	List<DocumentReferenceModel> getReceiptDocumentReference();
 
-    List<DocumentReferenceModel> getAdditionalDocumentReference();
+	void setReceiptDocumentReference(List<DocumentReferenceModel> receiptDocumentReference);
 
-    void setAdditionalDocumentReference(List<DocumentReferenceModel> additionalDocumentReference);
+	List<DocumentReferenceModel> getContractDocumentReference();
 
-    List<SignatureModel> getSignature();
+	void setContractDocumentReference(List<DocumentReferenceModel> contractDocumentReference);
 
-    void setSignature(List<SignatureModel> signature);
+	List<DocumentReferenceModel> getAdditionalDocumentReference();
 
-    SupplierPartyModel getAccountingSupplierParty();
+	void setAdditionalDocumentReference(List<DocumentReferenceModel> additionalDocumentReference);
 
-    void setAccountingSupplierParty(SupplierPartyModel value);
+	List<SignatureModel> getSignature();
 
-    CustomerPartyModel getAccountingCustomerParty();
+	void setSignature(List<SignatureModel> signature);
 
-    void setAccountingCustomerParty(CustomerPartyModel value);
+	SupplierPartyModel getAccountingSupplierParty();
 
-    PartyModel getPayeeParty();
+	void setAccountingSupplierParty(SupplierPartyModel value);
 
-    void setPayeeParty(PartyModel value);
+	CustomerPartyModel getAccountingCustomerParty();
 
-    PartyModel getTaxRepresentativeParty();
+	void setAccountingCustomerParty(CustomerPartyModel value);
 
-    void setTaxRepresentativeParty(PartyModel value);
+	PartyModel getPayeeParty();
 
-    ExchangeRateModel getTaxExchangeRate();
+	void setPayeeParty(PartyModel value);
 
-    void setTaxExchangeRate(ExchangeRateModel value);
+	PartyModel getTaxRepresentativeParty();
 
-    ExchangeRateModel getPricingExchangeRate();
+	void setTaxRepresentativeParty(PartyModel value);
 
-    void setPricingExchangeRate(ExchangeRateModel value);
+	ExchangeRateModel getTaxExchangeRate();
 
-    ExchangeRateModel getPaymentExchangeRate();
+	void setTaxExchangeRate(ExchangeRateModel value);
 
-    void setPaymentExchangeRate(ExchangeRateModel value);
+	ExchangeRateModel getPricingExchangeRate();
 
-    ExchangeRateModel getPaymentAlternativeExchangeRate();
+	void setPricingExchangeRate(ExchangeRateModel value);
 
-    void setPaymentAlternativeExchangeRate(ExchangeRateModel value);
+	ExchangeRateModel getPaymentExchangeRate();
 
-    List<AllowanceChargeModel> getAllowanceCharge();
+	void setPaymentExchangeRate(ExchangeRateModel value);
 
-    void setAllowanceCharge(List<AllowanceChargeModel> allowanceCharge);
+	ExchangeRateModel getPaymentAlternativeExchangeRate();
 
-    List<TaxTotalModel> getTaxTotal();
+	void setPaymentAlternativeExchangeRate(ExchangeRateModel value);
 
-    void setTaxTotal(List<TaxTotalModel> taxTotal);
+	List<AllowanceChargeModel> getAllowanceCharge();
 
-    MonetaryTotalModel getLegalMonetaryTotal();
+	void setAllowanceCharge(List<AllowanceChargeModel> allowanceCharge);
 
-    void setLegalMonetaryTotal(MonetaryTotalModel value);
+	List<TaxTotalModel> getTaxTotal();
 
-    List<CreditNoteLineModel> getCreditNoteLine();
+	void setTaxTotal(List<TaxTotalModel> taxTotal);
 
-    void setCreditNoteLine(List<CreditNoteLineModel> creditNoteLine);
+	MonetaryTotalModel getLegalMonetaryTotal();
 
-    /**
-     * Extra Methods
-     */
-    CreditNoteLineModel addCreditNoteLine();
+	void setLegalMonetaryTotal(MonetaryTotalModel value);
 
-    TaxTotalModel addTaxTotal();
+	List<CreditNoteLineModel> getCreditNoteLine();
 
-    ResponseModel addDiscrepancyResponse();
+	void setCreditNoteLine(List<CreditNoteLineModel> creditNoteLine);
 
-    DocumentReferenceModel addDespatchDocumentReference();
+	/**
+	 * Extra Methods
+	 */
+	CreditNoteLineModel addCreditNoteLine();
 
-    SignatureModel addSignature();
-    
-    /**
-     * Events interfaces
-     */
-    interface CreditNoteCreationEvent extends ProviderEvent {
-        CreditNoteModel getCreatedCreditNote();
-    }
+	TaxTotalModel addTaxTotal();
 
-    interface CreditNotePostCreateEvent extends ProviderEvent {
-        CreditNoteModel getCreatedCreditNote();
+	ResponseModel addDiscrepancyResponse();
 
-        OpenfactSession getOpenfactSession();
-    }
+	DocumentReferenceModel addDespatchDocumentReference();
 
-    interface CreditNoteRemovedEvent extends ProviderEvent {
-        CreditNoteModel getCreditNote();
+	SignatureModel addSignature();
 
-        OpenfactSession getOpenfactSession();
-    }
+	/**
+	 * Events interfaces
+	 */
+	interface CreditNoteCreationEvent extends ProviderEvent {
+		CreditNoteModel getCreatedCreditNote();
+	}
 
-    
+	interface CreditNotePostCreateEvent extends ProviderEvent {
+		CreditNoteModel getCreatedCreditNote();
+
+		OpenfactSession getOpenfactSession();
+	}
+
+	interface CreditNoteRemovedEvent extends ProviderEvent {
+		CreditNoteModel getCreditNote();
+
+		OpenfactSession getOpenfactSession();
+	}
+
 }

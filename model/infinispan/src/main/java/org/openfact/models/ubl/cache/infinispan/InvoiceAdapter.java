@@ -28,6 +28,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.ubl.InvoiceModel;
+import org.openfact.models.ubl.SendEventModel;
 import org.openfact.models.ubl.cache.CachedInvoiceModel;
 import org.openfact.models.ubl.cache.infinispan.entities.CachedInvoice;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
@@ -701,18 +702,6 @@ public class InvoiceAdapter implements CachedInvoiceModel {
     }
 
     @Override
-    public Byte[] getXmlDocument() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void setXmlDocument(Byte[] value) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
     public void invalidate() {
         // TODO Auto-generated method stub
         
@@ -730,5 +719,23 @@ public class InvoiceAdapter implements CachedInvoiceModel {
         return null;
     }
 
-    
+	@Override
+	public List<SendEventModel> getSendEvents() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Byte[] getXmlDocument() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setXmlDocument(Byte[] value) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }

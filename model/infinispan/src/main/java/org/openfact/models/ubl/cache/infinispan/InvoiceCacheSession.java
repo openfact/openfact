@@ -152,8 +152,6 @@ public class InvoiceCacheSession implements InvoiceCache {
     public void clear() {
         // TODO Auto-generated method stub
         
-    }
-
-    
+    }    
  
 }
