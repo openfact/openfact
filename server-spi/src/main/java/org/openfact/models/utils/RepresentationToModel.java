@@ -494,7 +494,7 @@ public class RepresentationToModel {
         /**
          * Ubl Server
          **/
-        if (rep.getSmtpServer() != null) {
+        if (rep.getUblSenderServer() != null) {
             organization.setUblSenderConfig(new HashMap(rep.getUblSenderServer()));
         }
     }
