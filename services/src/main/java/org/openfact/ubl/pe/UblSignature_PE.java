@@ -81,14 +81,13 @@ public class UblSignature_PE {
 	private static Node addExtensionContent(Document document) {
 		NodeList nodeList = document.getDocumentElement().getElementsByTagName("ext:UBLExtensions");
 		Node extensions = nodeList.item(0);
-		extensions.appendChild(document.createTextNode("\t\t"));
-		Node extension = document.createElement("ext:UBLExtension");
-		extension.appendChild(document.createTextNode("\n\t\t\t"));
-		Node content = document.createElement("ext:ExtensionContent");
-		extension.appendChild(content);
-		extension.appendChild(document.createTextNode("\n\t\t"));
-		extensions.appendChild(extension);
-		extensions.appendChild(document.createTextNode("\n\t"));
+		Node content = null;
+		if (extensions != null) {			
+			Node extension = document.createElement("ext:UBLExtension");		
+			content = document.createElement("ext:ExtensionContent");
+			extension.appendChild(content);		
+			extensions.appendChild(extension);		
+		}
 		return content;
 	}
 }

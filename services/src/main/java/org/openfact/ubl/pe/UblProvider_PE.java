@@ -68,10 +68,10 @@ public class UblProvider_PE implements UblProvider {
 			}
 			return ubl;
 		} catch (DatatypeConfigurationException e) {
-			log.error(e.getMessage());
+			e.getStackTrace();
 			throw new ModelException(e.getMessage());
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			e.getStackTrace();
 			throw new ModelException(e.getMessage());
 		}
 	}
