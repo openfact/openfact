@@ -28,6 +28,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.ubl.CreditNoteModel;
+import org.openfact.models.ubl.SendEventModel;
 import org.openfact.models.ubl.cache.CachedCreditNoteModel;
 import org.openfact.models.ubl.cache.infinispan.entities.CachedCreditNote;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
@@ -628,6 +629,24 @@ public class CreditNoteAdapter implements CachedCreditNoteModel {
         // TODO Auto-generated method stub
         return null;
     }
+
+	@Override
+	public Byte[] getXmlDoument() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setXmlDocument(Byte[] value) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<SendEventModel> getSendEvents() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
     
 

@@ -27,6 +27,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -77,13 +78,16 @@ public class InvoiceEntity {
     @Access(AccessType.PROPERTY)
     protected String id;
 
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "invoice")
-    protected Collection<InvoiceAttributeEntity> attributes = new ArrayList<>();
+	@OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "invoice")
+	protected Collection<InvoiceAttributeEntity> attributes = new ArrayList<>();
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
-    private OrganizationEntity organization;
+	@ManyToMany(mappedBy="invoices", cascade = { CascadeType.ALL })
+	protected List<SendEventEntity> sendEvents = new ArrayList<>();
+
+	@NotNull
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
+	private OrganizationEntity organization;
 
     /**
      * */
@@ -265,7 +269,7 @@ public class InvoiceEntity {
     @Lob
     @Column(name = "XML_DOCUMENT")
     protected Byte[] xmlDocument;
-    
+
     public Byte[] getXmlDocument() {
 		return xmlDocument;
 	}
@@ -673,5 +677,13 @@ public class InvoiceEntity {
     public void setInvoiceLine(List<InvoiceLineEntity> invoiceLine) {
         this.invoiceLine = invoiceLine;
     }
+
+	public List<SendEventEntity> getSendEvents() {
+		return sendEvents;
+	}
+
+	public void setSendEvents(List<SendEventEntity> sendEvents) {
+		this.sendEvents = sendEvents;
+	}
 
 }

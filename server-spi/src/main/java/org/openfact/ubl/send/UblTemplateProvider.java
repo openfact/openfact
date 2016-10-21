@@ -1,5 +1,7 @@
 package org.openfact.ubl.send;
 
+import java.util.List;
+
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.enums.InternetMediaType;
 import org.openfact.models.ubl.CreditNoteModel;
@@ -18,7 +20,7 @@ public interface UblTemplateProvider extends Provider {
 
 	public void send(String type) throws UblSenderException;
 
-	public void sendInvoice(InvoiceModel invoice) throws UblSenderException;
+	public void sendInvoice(List<InvoiceModel> invoices) throws UblSenderException;
 
 	public void sendCreditNote(CreditNoteModel creditNote) throws UblSenderException;
 

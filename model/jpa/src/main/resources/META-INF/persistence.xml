@@ -20,6 +20,7 @@
 		<class>org.openfact.models.jpa.entities.catalog.UnitCatalogEntity</class>
 
 		<!-- ubl -->
+		<class>org.openfact.models.jpa.entities.ubl.SendEventEntity</class>
 		<class>org.openfact.models.jpa.entities.ubl.InvoiceEntity</class>
 		<class>org.openfact.models.jpa.entities.ubl.CreditNoteEntity</class>
 		<class>org.openfact.models.jpa.entities.ubl.DebitNoteEntity</class>

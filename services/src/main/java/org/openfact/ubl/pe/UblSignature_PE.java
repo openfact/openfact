@@ -1,5 +1,6 @@
 package org.openfact.ubl.pe;
 
+import java.io.File;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,16 +22,20 @@ import javax.xml.crypto.dsig.keyinfo.X509Data;
 import javax.xml.crypto.dsig.spec.C14NMethodParameterSpec;
 import javax.xml.crypto.dsig.spec.TransformParameterSpec;
 
+import org.apache.commons.io.FileUtils;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.utils.DocumentUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class UblSignature_PE {
 
-	public static Document signUblDocument(OrganizationModel organizacion, Document document, boolean empty)
-			throws Exception {
+	public static Document signUblDocument(OrganizationModel organizacion, Document document) throws Exception {
 		String idReference = "Sign" + organizacion.getName().toUpperCase();
+		Document newdocument = addUBLExtensions(document);
+		Node parentNode = addExtensionContent(newdocument);
 		XMLSignatureFactory signatureFactory = XMLSignatureFactory.getInstance();
 		Reference reference = signatureFactory
 				.newReference("", signatureFactory.newDigestMethod(DigestMethod.SHA1, null),
@@ -47,25 +52,20 @@ public class UblSignature_PE {
 		x509Content.add(organizacion.getCertificate());
 		X509Data xdata = keyInfoFactory.newX509Data(x509Content);
 		KeyInfo keyInfo = keyInfoFactory.newKeyInfo(Collections.singletonList(xdata));
-		DOMSignContext signContext = null;
-		if (empty) {
-			signContext = new DOMSignContext(organizacion.getPrivateKey(), document);
-		} else {
-			signContext = new DOMSignContext(organizacion.getPrivateKey(),
-					document.getDocumentElement().getFirstChild().getNextSibling().getFirstChild().getNextSibling()
-							.getNextSibling().getNextSibling().getFirstChild().getNextSibling());
+
+		DOMSignContext signContext = new DOMSignContext(organizacion.getPrivateKey(), newdocument.getDocumentElement());
+		XMLSignature signature = signatureFactory.newXMLSignature(signedInfo, keyInfo);
+		if (parentNode != null) {
+			signContext.setParent(parentNode);
 		}
 		signContext.setDefaultNamespacePrefix("ds");
-		XMLSignature signature = signatureFactory.newXMLSignature(signedInfo, keyInfo);
 		signature.sign(signContext);
-		if (!empty) {
-			Element elementParent = (Element) signContext.getParent();
-			if ((idReference != null) && (elementParent.getElementsByTagName("ds:Signature") != null)) {
-				Element elementSignature = (Element) elementParent.getElementsByTagName("ds:Signature").item(0);
-				elementSignature.setAttribute("Id", idReference);
-			}
+		Element elementParent = (Element) signContext.getParent();
+		if ((idReference != null) && (elementParent.getElementsByTagName("ds:Signature") != null)) {
+			Element elementSignature = (Element) elementParent.getElementsByTagName("ds:Signature").item(0);
+			elementSignature.setAttribute("Id", idReference);
 		}
-		return document;
+		return newdocument;
 	}
 
 	public static boolean isSignUblDocumentValid(OrganizationModel organization, Document document) throws Exception {
@@ -80,5 +80,32 @@ public class UblSignature_PE {
 		xmlValid = signature.validate(validateContext);
 		return xmlValid;
 	}
-	
+
+	private static Node addExtensionContent(Document document) {
+		NodeList nodeList = document.getDocumentElement().getElementsByTagName("ext:UBLExtensions");
+		Node extensions = nodeList.item(0);
+		Node content = null;
+		if (extensions != null) {
+			Node extension = document.createElement("ext:UBLExtension");
+			content = document.createElement("ext:ExtensionContent");
+			extension.appendChild(content);
+			extensions.appendChild(extension);
+		}
+		return content;
+	}
+
+	private static Document addUBLExtensions(Document document) {
+		NodeList nodeList = document.getDocumentElement().getElementsByTagName("ext:UBLExtensions");
+		Node extensions = nodeList.item(0);
+		if (extensions == null) {
+			Element element = document.getDocumentElement();
+			extensions = document.createElement("ext:UBLExtensions");
+			element.appendChild(extensions);
+			extensions.appendChild(document.createTextNode("\n"));
+			return document;
+		} else {
+			return document;
+		}
+	}
+
 }

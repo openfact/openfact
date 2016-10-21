@@ -19,6 +19,7 @@ import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.managers.OrganizationManager;
 import org.openfact.testsuite.providers.AbstractProviderTest;
 import org.openfact.ubl.UblExtensionContentGeneratorProvider;
+import org.openfact.ubl.UblProvider;
 import org.openfact.ubl.send.UblTemplateProvider;
 
 public class UblTemplateProviderTest_PE extends AbstractProviderTest {
@@ -36,25 +37,27 @@ public class UblTemplateProviderTest_PE extends AbstractProviderTest {
 		rep.setId("TestTemplateProviderPE");
 
 		organization = manager.importOrganization(rep);
-		organization.setAssignedIdentificationId("10467793549");		
+		organization.setAssignedIdentificationId("10467793549");
 		OpenfactModelUtils.generateOrganizationKeys(organization);
 		Map<String, String> config = new HashMap<>();
 		config.put("username", "10467793549MODDATOS");
 		config.put("password", "MODDATOS");
+		config.put("urlService", "https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService");
 		organization.setUblSenderConfig(config);
 		organization.setDefaultUblLocale(LOCAL);
-	}	
+	}
+
 	@Test
 	public void sendInvoice() throws Exception {
 		List<InvoiceModel> invoices = session.invoices().getInvoices(organization);
 		InvoiceModel invoice = invoices.get(0);
 		session.getProvider(UblExtensionContentGeneratorProvider.class, organization.getDefaultUblLocale())
 				.generateUBLExtensions(organization, invoice);
-
+		session.getProvider(UblProvider.class, organization.getDefaultUblLocale()).getDocument(organization, invoice);
 		UblTemplateProvider template = session.getProvider(UblTemplateProvider.class,
 				organization.getDefaultUblLocale());
 		template.setOrganization(organization);
-		template.sendInvoice(invoice);
+		template.sendInvoice(invoices);
 
 		assertThat(invoice, is(notNullValue()));
 	}
@@ -65,7 +68,8 @@ public class UblTemplateProviderTest_PE extends AbstractProviderTest {
 		CreditNoteModel creditNote = creditNotes.get(0);
 		session.getProvider(UblExtensionContentGeneratorProvider.class, organization.getDefaultUblLocale())
 				.generateUBLExtensions(organization, creditNote);
-
+		session.getProvider(UblProvider.class, organization.getDefaultUblLocale()).getDocument(organization,
+				creditNote);
 		UblTemplateProvider template = session.getProvider(UblTemplateProvider.class,
 				organization.getDefaultUblLocale());
 		template.setOrganization(organization);
@@ -80,7 +84,7 @@ public class UblTemplateProviderTest_PE extends AbstractProviderTest {
 		DebitNoteModel debitNote = debitNotes.get(0);
 		session.getProvider(UblExtensionContentGeneratorProvider.class, organization.getDefaultUblLocale())
 				.generateUBLExtensions(organization, debitNote);
-
+		session.getProvider(UblProvider.class, organization.getDefaultUblLocale()).getDocument(organization, debitNote);
 		UblTemplateProvider template = session.getProvider(UblTemplateProvider.class,
 				organization.getDefaultUblLocale());
 		template.setOrganization(organization);

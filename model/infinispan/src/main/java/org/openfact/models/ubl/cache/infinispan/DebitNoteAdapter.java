@@ -28,6 +28,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.ubl.DebitNoteModel;
+import org.openfact.models.ubl.SendEventModel;
 import org.openfact.models.ubl.cache.CachedDebitNoteModel;
 import org.openfact.models.ubl.cache.infinispan.entities.CachedDebitNote;
 import org.openfact.models.ubl.common.BillingReferenceModel;
@@ -634,6 +635,24 @@ public class DebitNoteAdapter implements CachedDebitNoteModel {
         // TODO Auto-generated method stub
         return null;
     }
+
+	@Override
+	public Byte[] getXmlDoument() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setXmlDocument(Byte[] value) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<SendEventModel> getSendEvents() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
     
 }

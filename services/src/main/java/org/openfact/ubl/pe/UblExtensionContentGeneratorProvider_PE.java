@@ -66,52 +66,12 @@ public class UblExtensionContentGeneratorProvider_PE implements UblExtensionCont
 	@Override
 	public void close() {
 	}
-
-	private UBLExtensionModel generateSignature(OrganizationModel organization, InvoiceModel invoice) throws Exception {
-		UBLExtensionsModel ublExtensions = invoice.getUBLExtensions();
-		UBLExtensionModel ublExtension = ublExtensions.addUblExtension();
-		ExtensionContentModel extensionContent = ublExtension.getExtensionContent();
-		extensionContent.setAny(generateSignature(organization, extensionContent));
-		return ublExtension;
-	}
-
-	private Element generateSignature(OrganizationModel organization, ExtensionContentModel extensionContent)
-			throws Exception {
-		Document document = UblSignature_PE.signUblDocument(organization, DocumentUtils.getEmptyDocument(), true);
-		return document.getDocumentElement();
-	}
-
 	@Override
 	public List<UBLExtensionModel> generateUBLExtensions(OrganizationModel organization, InvoiceModel invoice) {
 		try {
 			UBLExtensionModel additionalInformation = generateAdditionalInformation(organization, invoice);
-			UBLExtensionModel extensionSignature = generateSignature(organization, invoice);
-
-			// Get Document
-			Document xml = session.getProvider(UblProvider.class, organization.getDefaultUblLocale())
-					.getDocument(organization, invoice);
-
-			// Remove Signature
-			NodeList nodes = xml.getElementsByTagName("ds:Signature");
-			for (int i = 0; i < nodes.getLength(); i++) {
-				Node node = nodes.item(i);
-				node.getParentNode().removeChild(node);
-			}
-			// delete white space
-			Document ubl = DocumentUtils.getStringToDocument(DocumentUtils.getDocumentToString(xml, true));
-			// Sign new Document
-			Document document = UblSignature_PE.signUblDocument(organization, ubl, false);
-			// validate signature
-			if (UblSignature_PE.isSignUblDocumentValid(organization, document)) {
-				invoice.setXmlDocument(ArrayUtils.toObject(DocumentUtils.getBytesFromDocument(document)));
-				// Set new Signature
-				InvoiceType invoiceType = UBL21Reader.invoice().read(document);
-				Element element = (Element) invoiceType.getUBLExtensions().getUBLExtension().get(1)
-						.getExtensionContent().getAny();
-				extensionSignature.getExtensionContent().setAny(element);
-			}
 			// Result
-			return new ArrayList<>(Arrays.asList(additionalInformation, extensionSignature));
+			return new ArrayList<>(Arrays.asList(additionalInformation));
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			throw new ModelException("No se pudo generar Ubl extensions PE");
@@ -122,9 +82,8 @@ public class UblExtensionContentGeneratorProvider_PE implements UblExtensionCont
 	public List<UBLExtensionModel> generateUBLExtensions(OrganizationModel organization, CreditNoteModel creditNote) {
 		try {
 			UBLExtensionModel additiontalInformation = generateAdditionalInformation(organization, creditNote);
-			UBLExtensionModel signature = creditNote.getUBLExtensions().addUblExtension();
 			List<UBLExtensionModel> addedUblExtensions = new ArrayList<>();
-			addedUblExtensions.addAll(Arrays.asList(additiontalInformation, signature));
+			addedUblExtensions.addAll(Arrays.asList(additiontalInformation));
 			return addedUblExtensions;
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
@@ -136,9 +95,8 @@ public class UblExtensionContentGeneratorProvider_PE implements UblExtensionCont
 	public List<UBLExtensionModel> generateUBLExtensions(OrganizationModel organization, DebitNoteModel debitNote) {
 		try {
 			UBLExtensionModel additiontalInformation = generateAdditionalInformation(organization, debitNote);
-			UBLExtensionModel signature = debitNote.getUBLExtensions().addUblExtension();
 			List<UBLExtensionModel> addedUblExtensions = new ArrayList<>();
-			addedUblExtensions.addAll(Arrays.asList(additiontalInformation, signature));
+			addedUblExtensions.addAll(Arrays.asList(additiontalInformation));
 			return addedUblExtensions;
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
