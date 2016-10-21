@@ -497,6 +497,22 @@ public class RepresentationToModel {
         if (rep.getUblSenderServer() != null) {
             organization.setUblSenderConfig(new HashMap(rep.getUblSenderServer()));
         }
+        
+        /**
+         * Certificates*/
+        if ("GENERATE".equals(rep.getPublicKey())) {
+            OpenfactModelUtils.generateOrganizationKeys(organization);
+        } else {
+            if (rep.getPrivateKey() != null && rep.getPublicKey() != null) {
+                organization.setPrivateKeyPem(rep.getPrivateKey());
+                organization.setPublicKeyPem(rep.getPublicKey());
+                organization.setCodeSecret(OpenfactModelUtils.generateCodeSecret());
+            }
+
+            if (rep.getCertificate() != null) {
+                organization.setCertificatePem(rep.getCertificate());
+            }
+        }
     }
 
     public static void renameOrganization(OrganizationModel organization, String name) {

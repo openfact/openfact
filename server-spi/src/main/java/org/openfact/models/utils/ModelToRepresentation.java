@@ -1,6 +1,8 @@
 package org.openfact.models.utils;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 
 import javax.xml.datatype.DatatypeConfigurationException;
@@ -90,6 +92,9 @@ public class ModelToRepresentation {
 
     public static OrganizationRepresentation toRepresentation(OrganizationModel organization,
             boolean internal) {
+        /**
+         * General information
+         */
         OrganizationRepresentation rep = new OrganizationRepresentation();
         rep.setId(organization.getId());
         rep.setOrganization(organization.getName());
@@ -102,6 +107,9 @@ public class ModelToRepresentation {
         rep.setRegistrationName(organization.getRegistrationName());
         rep.setSupplierName(organization.getSupplierName());
 
+        /**
+         * Postal address
+         */
         PostalAddressRepresentation postalAddressRep = new PostalAddressRepresentation();
         postalAddressRep.setStreetName(organization.getStreetName());
         postalAddressRep.setCitySubdivisionName(organization.getCitySubdivisionName());
@@ -111,17 +119,94 @@ public class ModelToRepresentation {
         postalAddressRep.setCountryIdentificationCode(organization.getCountryIdentificationCode());
         rep.setPostalAddress(postalAddressRep);
 
-        rep.setDefaultCurrency(organization.getDefaultCurrency());
-        rep.setDefaultLocale(organization.getDefaultLocale());
-        rep.setDefaultUblLocale(organization.getDefaultLocale());
+        /**
+         * Themes
+         */
+        rep.setEmailTheme(organization.getEmailTheme());
 
+        /**
+         * Internationalization
+         */
+        rep.setInternationalizationEnabled(organization.isInternationalizationEnabled());
+        if (organization.getSupportedLocales() != null) {
+            rep.setSupportedLocales(new HashSet<String>());
+            rep.getSupportedLocales().addAll(organization.getSupportedLocales());
+        }
+        rep.setDefaultLocale(organization.getDefaultLocale());
+
+        /**
+         * Internationalization ubl
+         */
+        rep.setInternationalizationUblEnabled(organization.isInternationalizationUblEnabled());
+        if (organization.getSupportedUblLocales() != null) {
+            rep.setSupportedUblLocales(new HashSet<String>());
+            rep.getSupportedUblLocales().addAll(organization.getSupportedUblLocales());
+        }
+        rep.setDefaultUblLocale(organization.getDefaultUblLocale());
+
+        /**
+         * Tasks schedule
+         */
+        rep.setTaskFirstTime(organization.getTaskFirstTime());
+        rep.setTaskDelay(organization.getTaskDelay());
+        rep.setTasksEnabled(organization.isTasksEnabled());
+
+        /**
+         * Currencies
+         */
+        rep.setDefaultCurrency(organization.getDefaultCurrency());
+        if (organization.getSupportedCurrencies() != null) {
+            rep.setSupportedCurrencies(new HashSet<String>());
+            rep.getSupportedCurrencies().addAll(organization.getSupportedCurrencies());
+        }
+
+        /**
+         * Events
+         */
+        rep.setEventsEnabled(organization.isEventsEnabled());
+        if (organization.getEventsExpiration() != 0) {
+            rep.setEventsExpiration(organization.getEventsExpiration());
+        }
+        if (organization.getEventsListeners() != null) {
+            rep.setEventsListeners(new LinkedList<String>(organization.getEventsListeners()));
+        }
+        if (organization.getEnabledEventTypes() != null) {
+            rep.setEnabledEventTypes(new LinkedList<String>(organization.getEnabledEventTypes()));
+        }
         rep.setAdminEventsEnabled(organization.isAdminEventsEnabled());
         rep.setAdminEventsDetailsEnabled(organization.isAdminEventsDetailsEnabled());
 
+        /**
+         * Smtp server
+         */
+        rep.setSmtpServer(new HashMap<>(organization.getSmtpConfig()));
+
+        /**
+         * Ubl server
+         */
+        rep.setUblSenderServer(new HashMap<>(organization.getUblSenderConfig()));
+
+        /**
+         * Certificate
+         */
+        rep.setCertificate(organization.getCertificatePem());
+        rep.setPublicKey(organization.getPublicKeyPem());
         if (internal) {
-            rep.setTaskFirstTime(organization.getTaskFirstTime());
-            rep.setTaskDelay(organization.getTaskDelay());
-            rep.setTasksEnabled(organization.isTasksEnabled());
+            rep.setPrivateKey(organization.getPrivateKeyPem());
+            String privateKeyPem = organization.getPrivateKeyPem();
+            if (organization.getCertificatePem() == null && privateKeyPem != null) {
+                OpenfactModelUtils.generateOrganizationCertificate(organization);
+            }
+            rep.setCodeSecret(organization.getCodeSecret());
+        }
+
+        /**
+         * Attributes
+         */
+        rep.setAttributes(new HashMap<>(organization.getAttributes()));
+
+        if (internal) {
+            
         }
 
         return rep;
