@@ -443,6 +443,9 @@ public class RepresentationToModel {
         /**
          * Tasks schedule
          */
+        if (rep.isTasksEnabled() != null) {
+            organization.setTaskEnabled(rep.isTasksEnabled());
+        }
         if (rep.getTaskFirstTime() != null) {
             organization.setTaskFirstTime(rep.getTaskFirstTime());
         }

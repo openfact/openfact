@@ -37,13 +37,16 @@ public class OrganizationRepresentation {
     private Long taskDelay;
     private Boolean tasksEnabled;
 
+    protected String adminTheme;
     protected String emailTheme;
     protected Set<String> supportedLocales;
-    protected String defaultLocale;
+    protected String defaultLocale;    
     protected Boolean internationalizationEnabled;
+    
     protected Set<String> supportedUblLocales;
     protected String defaultUblLocale;
     protected Boolean internationalizationUblEnabled;
+    
     protected Set<String> supportedCurrencies;
     protected String defaultCurrency;
 
@@ -382,6 +385,18 @@ public class OrganizationRepresentation {
 
     public void setTasksEnabled(Boolean tasksEnabled) {
         this.tasksEnabled = tasksEnabled;
+    }
+
+    public String getAdminTheme() {
+        return adminTheme;
+    }
+
+    public void setAdminTheme(String adminTheme) {
+        this.adminTheme = adminTheme;
+    }
+
+    public Boolean getTasksEnabled() {
+        return tasksEnabled;
     }
 
 }
