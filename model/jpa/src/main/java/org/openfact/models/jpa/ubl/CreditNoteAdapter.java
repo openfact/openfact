@@ -15,6 +15,7 @@ import org.jboss.logging.Logger;
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.enums.RequeridActionDocument;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.OrganizationAdapter;
 import org.openfact.models.jpa.entities.ubl.CreditNoteAttributeEntity;
@@ -930,9 +931,19 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
 	}
 
 	@Override
-	public List<SendEventModel> getSendEvents() {
+	public List<SendEventModel> getSendEvent() {
 		return creditNote.getSendEvents().stream().map(f -> new SendEventAdapter(session, organization, em, f))
 				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<RequeridActionDocument> getRequeridAction() {
+		return creditNote.getRequeridAction();
+	}
+
+	@Override
+	public void setRequeridAction(List<RequeridActionDocument> requeridAction) {
+		creditNote.setRequeridAction(requeridAction);
 	}
 
 }

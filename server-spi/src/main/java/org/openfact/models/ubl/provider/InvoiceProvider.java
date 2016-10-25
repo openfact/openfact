@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.enums.RequeridActionDocument;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.provider.Provider;
@@ -12,7 +13,7 @@ import org.openfact.provider.Provider;
 public interface InvoiceProvider extends Provider {
 
 	InvoiceModel addInvoice(OrganizationModel organization, String ID);
-	
+
 	InvoiceModel getInvoiceById(OrganizationModel organization, String id);
 
 	InvoiceModel getInvoiceByID(OrganizationModel organization, String ID);
@@ -22,6 +23,9 @@ public interface InvoiceProvider extends Provider {
 	boolean removeInvoice(OrganizationModel organization, InvoiceModel invoice);
 
 	List<InvoiceModel> getInvoices(OrganizationModel organization);
+
+	List<InvoiceModel> getInvoices(OrganizationModel organization, List<RequeridActionDocument> requeridAction,
+			boolean intoRequeridAction);
 
 	List<InvoiceModel> getInvoices(OrganizationModel organization, Integer firstResult, Integer maxResults);
 

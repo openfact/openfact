@@ -23,7 +23,7 @@ public class OrganizationScheduledTaskRunner implements Runnable {
     public void run() {
         UblTaskRunnerProvider provider = session.getProvider(UblTaskRunnerProvider.class,
                 organization.getDefaultUblLocale());
-        provider.exececuteTask();
+        provider.exececuteTask(organization);
     }
 
 }

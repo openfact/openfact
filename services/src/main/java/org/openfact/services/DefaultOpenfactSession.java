@@ -20,6 +20,7 @@ import org.openfact.models.catalog.UnitCatalogProvider;
 import org.openfact.models.ubl.provider.CreditNoteProvider;
 import org.openfact.models.ubl.provider.DebitNoteProvider;
 import org.openfact.models.ubl.provider.InvoiceProvider;
+import org.openfact.models.ubl.provider.JobReportProvider;
 import org.openfact.models.ubl.provider.SendEventProvider;
 import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
@@ -43,6 +44,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
 	private CreditNoteProvider creditNoteProvider;
 	private DebitNoteProvider debitNoteProvider;
 	private SendEventProvider sendEventProvider;
+	private JobReportProvider jobReportProvider;
 
 	private OpenfactContext context;
 
@@ -254,6 +256,14 @@ public class DefaultOpenfactSession implements OpenfactSession {
 	 * @return InvoiceProvider
 	 */
 	@Override
+	public JobReportProvider jobReport() {
+		if (jobReportProvider == null) {
+			jobReportProvider = getJobReportProvider();
+		}
+		return jobReportProvider;
+	}
+
+	@Override
 	public SendEventProvider sendEvent() {
 		if (sendEventProvider == null) {
 			sendEventProvider = getSendEventProvider();
@@ -276,6 +286,14 @@ public class DefaultOpenfactSession implements OpenfactSession {
 		} else {
 			return getProvider(SendEventProvider.class);
 		}
+	}
+
+	public JobReportProvider getJobReportProvider() {
+		JobReportProvider cache = getProvider(JobReportProvider.class);
+		if (cache == null) {
+			cache = getProvider(JobReportProvider.class);
+		}
+		return cache;
 	}
 
 	private InvoiceProvider getInvoiceProvider() {
@@ -339,5 +357,4 @@ public class DefaultOpenfactSession implements OpenfactSession {
 			}
 		}
 	}
-
 }

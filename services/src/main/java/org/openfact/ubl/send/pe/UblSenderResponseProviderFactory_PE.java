@@ -27,7 +27,7 @@ public class UblSenderResponseProviderFactory_PE implements UblSenderResponsePro
 
 	@Override
 	public String getId() {
-		return "senderResponse";
+		return "pe";
 	}
 
 }

@@ -26,6 +26,7 @@ import java.util.Set;
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.enums.RequeridActionDocument;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.ubl.InvoiceModel;
@@ -152,6 +153,13 @@ public class InvoiceCacheSession implements InvoiceCache {
     public void clear() {
         // TODO Auto-generated method stub
         
-    }    
+    }
+
+	@Override
+	public List<InvoiceModel> getInvoices(OrganizationModel organization, List<RequeridActionDocument> requeridAction,
+			boolean intoRequeridAction) {
+		// TODO Auto-generated method stub
+		return null;
+	}    
  
 }

@@ -27,6 +27,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.enums.RequeridActionDocument;
 import org.openfact.models.ubl.CreditNoteModel;
 import org.openfact.models.ubl.SendEventModel;
 import org.openfact.models.ubl.cache.CachedCreditNoteModel;
@@ -642,10 +643,23 @@ public class CreditNoteAdapter implements CachedCreditNoteModel {
 		
 	}
 
+
 	@Override
-	public List<SendEventModel> getSendEvents() {
+	public List<SendEventModel> getSendEvent() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<RequeridActionDocument> getRequeridAction() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setRequeridAction(List<RequeridActionDocument> requeridAction) {
+		// TODO Auto-generated method stub
+		
 	}
 
     

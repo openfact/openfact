@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.enums.RequeridActionDocument;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.BillingReferenceModel;
 import org.openfact.models.ubl.common.CreditNoteLineModel;
@@ -52,7 +53,6 @@ public interface CreditNoteModel {
 	 */
 	OrganizationModel getOrganization();
 
-	List<SendEventModel> getSendEvents();
 	/**
 	 * */
 	UBLExtensionsModel getUBLExtensions();
@@ -227,6 +227,12 @@ public interface CreditNoteModel {
 	DocumentReferenceModel addDespatchDocumentReference();
 
 	SignatureModel addSignature();
+
+	List<SendEventModel> getSendEvent();
+
+	List<RequeridActionDocument> getRequeridAction();
+
+	void setRequeridAction(List<RequeridActionDocument> requeridAction);
 
 	/**
 	 * Events interfaces

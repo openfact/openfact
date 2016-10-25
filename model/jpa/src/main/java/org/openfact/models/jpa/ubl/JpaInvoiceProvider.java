@@ -16,6 +16,7 @@ import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.enums.RequeridActionDocument;
 import org.openfact.models.jpa.AbstractHibernateStorage;
 import org.openfact.models.jpa.OrganizationAdapter;
 import org.openfact.models.jpa.entities.ubl.InvoiceEntity;
@@ -72,7 +73,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
 		return adapter;
 	}
-	
+
 	@Override
 	public InvoiceModel getInvoiceById(OrganizationModel organization, String id) {
 		TypedQuery<InvoiceEntity> query = em.createNamedQuery("getOrganizationInvoiceById", InvoiceEntity.class);
@@ -228,6 +229,24 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 		if (entities.size() == 0)
 			return null;
 		return new InvoiceAdapter(session, organization, em, entities.get(0));
+	}
+
+	@Override
+	public List<InvoiceModel> getInvoices(OrganizationModel organization, List<RequeridActionDocument> requeridAction,
+			boolean intoRequeridAction) {
+		String queryName = "";
+		if (intoRequeridAction) {
+			queryName = "select i from InvoiceEntity i where i.organization.id = :organizationId and i.requeridAction in (:requeridAction) order by i.invoiceTypeCode ";
+		} else {
+			queryName = "select i from InvoiceEntity i where i.organization.id = :organizationId and i.requeridAction not in (:requeridAction) order by i.invoiceTypeCode ";
+		}
+		TypedQuery<InvoiceEntity> query = em.createQuery(queryName, InvoiceEntity.class);
+		query.setParameter("organizationId", organization.getId());
+		query.setParameter("requeridAction", requeridAction);
+		List<InvoiceEntity> results = query.getResultList();
+		List<InvoiceModel> invoices = results.stream().map(f -> new InvoiceAdapter(session, organization, em, f))
+				.collect(Collectors.toList());
+		return invoices;
 	}
 
 }

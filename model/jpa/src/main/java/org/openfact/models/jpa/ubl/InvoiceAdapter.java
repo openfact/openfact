@@ -15,6 +15,7 @@ import org.jboss.logging.Logger;
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.enums.RequeridActionDocument;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.OrganizationAdapter;
 import org.openfact.models.jpa.entities.ubl.InvoiceAttributeEntity;
@@ -765,11 +766,19 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 	}
 
 	@Override
-	public List<SendEventModel> getSendEvents() {
+	public List<SendEventModel> getSendEvent() {
 		return invoice.getSendEvents().stream().map(f -> new SendEventAdapter(session, organization, em, f))
 				.collect(Collectors.toList());
 	}
 
-	
+	@Override
+	public List<RequeridActionDocument> getRequeridAction() {
+		return invoice.getRequeridAction();
+	}
+
+	@Override
+	public void setRequeridAction(List<RequeridActionDocument> requeridAction) {
+		invoice.setRequeridAction(requeridAction);
+	}
 
 }

@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.enums.RequeridActionDocument;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.BillingReferenceModel;
 import org.openfact.models.ubl.common.CustomerPartyModel;
@@ -56,8 +57,6 @@ public interface InvoiceModel {
 	 * Organization
 	 */
 	OrganizationModel getOrganization();
-
-	List<SendEventModel> getSendEvents();
 
 	/**
 	 * */
@@ -261,7 +260,12 @@ public interface InvoiceModel {
 	Byte[] getXmlDocument();
 
 	void setXmlDocument(Byte[] value);
+	
+	List<SendEventModel> getSendEvent();
 
+	List<RequeridActionDocument> getRequeridAction();
+
+	void setRequeridAction(List<RequeridActionDocument> requeridAction);
 	/**
 	 * Events interfaces
 	 */

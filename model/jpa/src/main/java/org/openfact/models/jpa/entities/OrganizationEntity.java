@@ -33,6 +33,7 @@ import org.hibernate.annotations.Type;
 import org.openfact.models.jpa.entities.ubl.CreditNoteEntity;
 import org.openfact.models.jpa.entities.ubl.DebitNoteEntity;
 import org.openfact.models.jpa.entities.ubl.InvoiceEntity;
+import org.openfact.models.jpa.entities.ubl.JobReportEntity;
 
 /**
  * @author carlosthe19916@sistcoop.com
@@ -257,6 +258,8 @@ public class OrganizationEntity {
     /**
      * Cascade relations
      */
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<JobReportEntity> jobReports= new ArrayList<>();
     @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<InvoiceEntity> invoices = new ArrayList<>();
     @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
@@ -648,8 +651,16 @@ public class OrganizationEntity {
     public void setCreditNotes(List<CreditNoteEntity> creditNotes) {
         this.creditNotes = creditNotes;
     }
+    
+    public List<JobReportEntity> getJobReports() {
+		return jobReports;
+	}
 
-    public List<DebitNoteEntity> getDebitNotes() {
+	public void setJobReports(List<JobReportEntity> jobReports) {
+		this.jobReports = jobReports;
+	}
+
+	public List<DebitNoteEntity> getDebitNotes() {
         return debitNotes;
     }
 

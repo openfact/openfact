@@ -26,6 +26,7 @@ import java.util.Set;
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.enums.RequeridActionDocument;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.ubl.DebitNoteModel;
@@ -152,6 +153,13 @@ public class DebitNoteCacheSession implements DebitNoteCache {
         // TODO Auto-generated method stub
         
     }
+
+	@Override
+	public List<DebitNoteModel> getDebitNotes(OrganizationModel organization,
+			List<RequeridActionDocument> requeridAction, boolean intoRequeridAction) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
     
 }

@@ -20,6 +20,7 @@ org.openfact.models.ubl.provider.InvoiceSpi
 org.openfact.models.ubl.provider.CreditNoteSpi
 org.openfact.models.ubl.provider.DebitNoteSpi
 org.openfact.models.ubl.provider.SendEventSpi
+org.openfact.models.ubl.provider.JobReportSpi
 org.openfact.models.catalog.CodeCatalogSpi
 org.openfact.models.catalog.CountryCatalogSpi
 org.openfact.models.catalog.CurrencyCatalogSpi

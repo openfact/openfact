@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.enums.RequeridActionDocument;
 import org.openfact.models.ubl.common.BillingReferenceModel;
 import org.openfact.models.ubl.common.CustomerPartyModel;
 import org.openfact.models.ubl.common.DebitNoteLineModel;
@@ -52,17 +53,12 @@ public interface DebitNoteModel {
 	 */
 	OrganizationModel getOrganization();
 
-	List<SendEventModel> getSendEvents();
 	/**
 	 * */
 
 	UBLExtensionsModel getUBLExtensions();
 
 	void setUBLExtensions(UBLExtensionsModel value);
-
-	Byte[] getXmlDoument();
-
-	void setXmlDocument(Byte[] value);
 
 	String getUBLVersionID();
 
@@ -230,6 +226,16 @@ public interface DebitNoteModel {
 	DocumentReferenceModel addDespatchDocumentReference();
 
 	SignatureModel addSignature();
+
+	Byte[] getXmlDoument();
+
+	void setXmlDocument(Byte[] value);
+
+	List<SendEventModel> getSendEvent();
+
+	List<RequeridActionDocument> getRequeridAction();
+
+	void setRequeridAction(List<RequeridActionDocument> requeridAction);
 
 	/**
 	 * Events interfaces

@@ -39,11 +39,12 @@ public class UblTemplateProvider_PE implements UblTemplateProvider {
 	}
 
 	private UblSenderProvider getUblSenderProvider(OrganizationModel organization) {
-		return session.getProvider(UblSenderProvider.class, "soa");
+		return session.getProvider(UblSenderProvider.class, organization.getDefaultUblLocale());
 	}
 
 	private UblSenderResponseProvider getUblSenderResponseProvider(OrganizationModel organization) {
-		return session.getProvider(UblSenderResponseProvider.class, "senderResponse").setOrganization(organization);
+		return session.getProvider(UblSenderResponseProvider.class, organization.getDefaultUblLocale())
+				.setOrganization(organization);
 	}
 
 	@Override

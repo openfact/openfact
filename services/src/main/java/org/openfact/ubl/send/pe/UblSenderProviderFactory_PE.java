@@ -27,7 +27,7 @@ public class UblSenderProviderFactory_PE implements UblSenderProviderFactory {
 
 	@Override
 	public String getId() {
-		return "soa";
+		return "pe";
 	}
 
 }

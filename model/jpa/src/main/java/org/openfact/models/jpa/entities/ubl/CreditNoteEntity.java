@@ -21,6 +21,8 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
@@ -38,6 +40,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import org.openfact.models.enums.RequeridActionDocument;
 import org.openfact.models.jpa.entities.OrganizationEntity;
 import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
@@ -234,6 +237,12 @@ public class CreditNoteEntity {
 	@Column(name = "XML_DOCUMENT")
 	protected Byte[] xmlDocument;
 
+    @ElementCollection
+    @Column(name = "REQUERID_ACTION")
+    @CollectionTable(name = "CREDITNOTE_REQUERID_ACTION", joinColumns = { @JoinColumn(name = "CREDITNOTE_ID") })
+    @Enumerated(EnumType.STRING)
+    protected List<RequeridActionDocument> requeridAction = new ArrayList<>();
+	
 	public Byte[] getXmlDocument() {
 		return xmlDocument;
 	}
@@ -584,6 +593,14 @@ public class CreditNoteEntity {
 
 	public void setSendEvents(List<SendEventEntity> sendEvents) {
 		this.sendEvents = sendEvents;
+	}
+
+	public List<RequeridActionDocument> getRequeridAction() {
+		return requeridAction;
+	}
+
+	public void setRequeridAction(List<RequeridActionDocument> requeridAction) {
+		this.requeridAction = requeridAction;
 	}
 
 }
