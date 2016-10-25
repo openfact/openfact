@@ -239,6 +239,8 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 			queryName = "select i from InvoiceEntity i where i.organization.id = :organizationId and i.requeridAction in (:requeridAction) order by i.invoiceTypeCode ";
 		} else {
 			queryName = "select i from InvoiceEntity i where i.organization.id = :organizationId and i.requeridAction not in (:requeridAction) order by i.invoiceTypeCode ";
+			// queryName = "select i from InvoiceEntity i where
+			// i.organization.id = :organizationId order by i.invoiceTypeCode ";
 		}
 		TypedQuery<InvoiceEntity> query = em.createQuery(queryName, InvoiceEntity.class);
 		query.setParameter("organizationId", organization.getId());

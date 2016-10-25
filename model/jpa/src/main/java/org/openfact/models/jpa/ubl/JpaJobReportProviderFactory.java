@@ -3,6 +3,7 @@ package org.openfact.models.jpa.ubl;
 import javax.persistence.EntityManager;
 
 import org.openfact.Config.Scope;
+import org.openfact.connections.jpa.JpaConnectionProvider;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.ubl.provider.JobReportProvider;
@@ -12,7 +13,7 @@ public class JpaJobReportProviderFactory implements JobReportProviderFactory {
 
 	@Override
 	public JobReportProvider create(OpenfactSession session) {
-		EntityManager em = session.getProvider(JpaJobReportProvider.class).getEntityManager();
+		EntityManager em = session.getProvider(JpaConnectionProvider.class).getEntityManager();
 		return new JpaJobReportProvider(session, em);
 	}
 
