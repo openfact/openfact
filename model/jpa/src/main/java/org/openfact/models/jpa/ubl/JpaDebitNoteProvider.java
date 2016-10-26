@@ -232,9 +232,9 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
 			List<RequeridActionDocument> requeridAction, boolean intoRequeridAction) {
 		String queryName = "";
 		if (intoRequeridAction) {
-			queryName = "select i from DebitNoteEntity i where i.organization.id = :organizationId and i.requeridAction in (:requeridAction) order by i.issueDateTime ";
+			queryName = "select i from DebitNoteEntity i where i.organization.id = :organizationId and :requeridAction in elements(i.requeridAction) order by i.issueDateTime ";
 		} else {
-			queryName = "select i from DebitNoteEntity i where i.organization.id = :organizationId and i.requeridAction not in (:requeridAction) order by i.issueDateTime ";
+			queryName = "select i from DebitNoteEntity i where i.organization.id = :organizationId and :requeridAction not in elements(i.requeridAction) order by i.issueDateTime ";
 		}
 		TypedQuery<DebitNoteEntity> query = em.createQuery(queryName, DebitNoteEntity.class);
 		query.setParameter("organizationId", organization.getId());
