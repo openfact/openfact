@@ -784,18 +784,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 
 	@Override
 	public boolean removeRequeridAction(RequeridActionDocument requeridAction) {
-		List<RequeridActionDocument> requeridActions = invoice.getRequeridAction();
-		List<RequeridActionDocument> newRequerid = new ArrayList<>();
-		boolean result = false;
-		for (int i = 0; i < requeridActions.size(); i++) {
-			if (!requeridAction.name().equalsIgnoreCase(requeridActions.get(i).name())) {				
-				newRequerid.add(requeridActions.get(i));
-				result = true;
-			}
-		}
-		if (result) {
-			invoice.setRequeridAction(newRequerid);
-		}
+		boolean result = invoice.getRequeridAction().remove(requeridAction);
 		return result;
 	}
 

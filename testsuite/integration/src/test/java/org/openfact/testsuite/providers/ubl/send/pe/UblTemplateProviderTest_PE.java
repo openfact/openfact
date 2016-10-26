@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -53,9 +54,12 @@ public class UblTemplateProviderTest_PE extends AbstractProviderTest {
 	public void sendInvoice() throws Exception {
 		List<InvoiceModel> invoices = session.invoices().getInvoices(organization);
 		InvoiceModel invoice = invoices.get(0);
-		invoice.setRequeridAction(
-				Arrays.asList(RequeridActionDocument.SEND_SOA_XML_DOCUMENT, RequeridActionDocument.SEND_EMAIL_CUSTOMER,
-						RequeridActionDocument.SEND_EMAIL_SUPLIER, RequeridActionDocument.SEND_EMAIL_RESPONSE));
+		List<RequeridActionDocument> requerid = new ArrayList<>();
+		requerid.add(RequeridActionDocument.SEND_SOA_XML_DOCUMENT);
+		requerid.add(RequeridActionDocument.SEND_EMAIL_CUSTOMER);
+		requerid.add(RequeridActionDocument.SEND_EMAIL_SUPLIER);
+		requerid.add(RequeridActionDocument.SEND_EMAIL_RESPONSE);
+		invoice.setRequeridAction(requerid);
 		session.getProvider(UblExtensionContentGeneratorProvider.class, organization.getDefaultUblLocale())
 				.generateUBLExtensions(organization, invoice);
 		session.getProvider(UblProvider.class, organization.getDefaultUblLocale()).getDocument(organization, invoice);
@@ -71,9 +75,12 @@ public class UblTemplateProviderTest_PE extends AbstractProviderTest {
 	public void sendCreditNote() throws Exception {
 		List<CreditNoteModel> creditNotes = session.creditNotes().getCreditNotes(organization);
 		CreditNoteModel creditNote = creditNotes.get(0);
-		creditNote.setRequeridAction(
-				Arrays.asList(RequeridActionDocument.SEND_SOA_XML_DOCUMENT, RequeridActionDocument.SEND_EMAIL_CUSTOMER,
-						RequeridActionDocument.SEND_EMAIL_SUPLIER, RequeridActionDocument.SEND_EMAIL_RESPONSE));
+		List<RequeridActionDocument> requerid = new ArrayList<>();
+		requerid.add(RequeridActionDocument.SEND_SOA_XML_DOCUMENT);
+		requerid.add(RequeridActionDocument.SEND_EMAIL_CUSTOMER);
+		requerid.add(RequeridActionDocument.SEND_EMAIL_SUPLIER);
+		requerid.add(RequeridActionDocument.SEND_EMAIL_RESPONSE);
+		creditNote.setRequeridAction(requerid);
 		session.getProvider(UblExtensionContentGeneratorProvider.class, organization.getDefaultUblLocale())
 				.generateUBLExtensions(organization, creditNote);
 		session.getProvider(UblProvider.class, organization.getDefaultUblLocale()).getDocument(organization,
@@ -90,9 +97,12 @@ public class UblTemplateProviderTest_PE extends AbstractProviderTest {
 	public void sendDebitNote() throws Exception {
 		List<DebitNoteModel> debitNotes = session.debitNotes().getDebitNotes(organization);
 		DebitNoteModel debitNote = debitNotes.get(0);
-		debitNote.setRequeridAction(
-				Arrays.asList(RequeridActionDocument.SEND_SOA_XML_DOCUMENT, RequeridActionDocument.SEND_EMAIL_CUSTOMER,
-						RequeridActionDocument.SEND_EMAIL_SUPLIER, RequeridActionDocument.SEND_EMAIL_RESPONSE));
+		List<RequeridActionDocument> requerid = new ArrayList<>();
+		requerid.add(RequeridActionDocument.SEND_SOA_XML_DOCUMENT);
+		requerid.add(RequeridActionDocument.SEND_EMAIL_CUSTOMER);
+		requerid.add(RequeridActionDocument.SEND_EMAIL_SUPLIER);
+		requerid.add(RequeridActionDocument.SEND_EMAIL_RESPONSE);
+		debitNote.setRequeridAction(requerid);
 		session.getProvider(UblExtensionContentGeneratorProvider.class, organization.getDefaultUblLocale())
 				.generateUBLExtensions(organization, debitNote);
 		session.getProvider(UblProvider.class, organization.getDefaultUblLocale()).getDocument(organization, debitNote);
