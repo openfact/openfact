@@ -50,14 +50,16 @@ public class UblTaskRunnerProviderTest_PE extends AbstractProviderTest {
 					.generateUBLExtensions(organization, invoice);
 			session.getProvider(UblProvider.class, organization.getDefaultUblLocale()).getDocument(organization,
 					invoice);
-			invoice.setRequeridAction(Arrays.asList(RequeridActionDocument.SEND_SOA_XML_DOCUMENT));
+			invoice.setRequeridAction(Arrays.asList(RequeridActionDocument.SEND_SOA_XML_DOCUMENT,
+					RequeridActionDocument.SEND_EMAIL_CUSTOMER, RequeridActionDocument.SEND_EMAIL_SUPLIER,
+					RequeridActionDocument.SEND_EMAIL_RESPONSE));
 		}
 
 		UblTaskRunnerProvider task = session.getProvider(UblTaskRunnerProvider.class,
 				organization.getDefaultUblLocale());
 		task.exececuteTask(organization);
 
-		//assertThat(invoice, is(notNullValue()));
+		// assertThat(invoice, is(notNullValue()));
 	}
 
 }

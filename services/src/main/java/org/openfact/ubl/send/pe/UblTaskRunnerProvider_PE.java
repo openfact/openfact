@@ -50,7 +50,7 @@ public class UblTaskRunnerProvider_PE implements UblTaskRunnerProvider {
 	}
 
 	protected void sendInvoices(OrganizationModel organization, UblTaskRunnerReader ublTaskRunnerReader) {
-		List<InvoiceModel> result = ublTaskRunnerReader.getInvoiceReader(false);
+		List<InvoiceModel> result = ublTaskRunnerReader.getInvoiceReader(true);
 		List<InvoiceModel> invoices = new ArrayList<>();
 		List<InvoiceModel> summary = new ArrayList<>();
 		for (InvoiceModel invoice : result) {
@@ -93,7 +93,7 @@ public class UblTaskRunnerProvider_PE implements UblTaskRunnerProvider {
 	}
 
 	protected void sendCreditNotes(OrganizationModel organization, UblTaskRunnerReader ublTaskRunnerReader) {
-		List<CreditNoteModel> creditNotes = ublTaskRunnerReader.getCreditNoteReader(false);
+		List<CreditNoteModel> creditNotes = ublTaskRunnerReader.getCreditNoteReader(true);
 		if (creditNotes.size() > 0) {
 			String jobName = generateJobName();
 			JobReportModel jobReportModel = session.jobReport().createJobReport(organization, jobName, "CREDIT NOTE");
@@ -107,7 +107,7 @@ public class UblTaskRunnerProvider_PE implements UblTaskRunnerProvider {
 	}
 
 	protected void sendDebitNotes(OrganizationModel organization, UblTaskRunnerReader ublTaskRunnerReader) {
-		List<DebitNoteModel> debitNotes = ublTaskRunnerReader.getDebitNoteReader(false);
+		List<DebitNoteModel> debitNotes = ublTaskRunnerReader.getDebitNoteReader(true);
 		if (debitNotes.size() > 0) {
 			String jobName = generateJobName();
 			JobReportModel jobReportModel = session.jobReport().createJobReport(organization, jobName, "DEBIT NOTE");

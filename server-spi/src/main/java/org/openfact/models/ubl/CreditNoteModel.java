@@ -234,6 +234,8 @@ public interface CreditNoteModel {
 
 	void setRequeridAction(List<RequeridActionDocument> requeridAction);
 
+	boolean removeRequeridAction(RequeridActionDocument requeridAction);
+
 	/**
 	 * Events interfaces
 	 */

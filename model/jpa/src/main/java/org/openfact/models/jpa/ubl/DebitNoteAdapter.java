@@ -969,4 +969,21 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
 		debitNote.setRequeridAction(requeridAction);
 	}
 
+	@Override
+	public boolean removeRequeridAction(RequeridActionDocument requeridAction) {
+		List<RequeridActionDocument> requeridActions = debitNote.getRequeridAction();
+		List<RequeridActionDocument> newRequerid = new ArrayList<>();
+		boolean result = false;
+		for (int i = 0; i < requeridActions.size(); i++) {
+			if (!requeridAction.name().equalsIgnoreCase(requeridActions.get(i).name())) {
+				newRequerid.add(requeridActions.get(i));
+				result = true;
+			}
+		}
+		if (result) {
+			debitNote.setRequeridAction(newRequerid);
+		}
+		return result;
+	}
+
 }

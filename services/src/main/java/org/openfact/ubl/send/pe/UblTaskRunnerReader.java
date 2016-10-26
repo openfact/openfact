@@ -21,19 +21,19 @@ public class UblTaskRunnerReader {
 
 	public List<InvoiceModel> getInvoiceReader(boolean intoRequeridAction) {
 		List<InvoiceModel> invoices = session.invoices().getInvoices(organization,
-				Arrays.asList(RequeridActionDocument.RESPONSE_SENDED_DOCUMENT_OK), intoRequeridAction);
+				Arrays.asList(RequeridActionDocument.SEND_SOA_XML_DOCUMENT), intoRequeridAction);
 		return invoices;
 	}
 
 	public List<CreditNoteModel> getCreditNoteReader(boolean intoRequeridAction) {
 		List<CreditNoteModel> creditNotes = session.creditNotes().getCreditNotes(organization,
-				Arrays.asList(RequeridActionDocument.RESPONSE_SENDED_DOCUMENT_OK), intoRequeridAction);
+				Arrays.asList(RequeridActionDocument.SEND_SOA_XML_DOCUMENT), intoRequeridAction);
 		return creditNotes;
 	}
 
 	public List<DebitNoteModel> getDebitNoteReader(boolean intoRequeridAction) {
 		List<DebitNoteModel> debitNotes = session.debitNotes().getDebitNotes(organization,
-				Arrays.asList(RequeridActionDocument.RESPONSE_SENDED_DOCUMENT_OK), intoRequeridAction);
+				Arrays.asList(RequeridActionDocument.SEND_SOA_XML_DOCUMENT), intoRequeridAction);
 		return debitNotes;
 	}
 

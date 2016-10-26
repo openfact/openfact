@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -779,6 +780,23 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 	@Override
 	public void setRequeridAction(List<RequeridActionDocument> requeridAction) {
 		invoice.setRequeridAction(requeridAction);
+	}
+
+	@Override
+	public boolean removeRequeridAction(RequeridActionDocument requeridAction) {
+		List<RequeridActionDocument> requeridActions = invoice.getRequeridAction();
+		List<RequeridActionDocument> newRequerid = new ArrayList<>();
+		boolean result = false;
+		for (int i = 0; i < requeridActions.size(); i++) {
+			if (!requeridAction.name().equalsIgnoreCase(requeridActions.get(i).name())) {				
+				newRequerid.add(requeridActions.get(i));
+				result = true;
+			}
+		}
+		if (result) {
+			invoice.setRequeridAction(newRequerid);
+		}
+		return result;
 	}
 
 }
