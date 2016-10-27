@@ -20,6 +20,7 @@ import org.openfact.common.converts.DocumentUtils;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.enums.RequeridActionDocument;
 import org.openfact.models.ubl.CreditNoteModel;
 import org.openfact.models.ubl.DebitNoteModel;
 import org.openfact.models.ubl.InvoiceModel;
@@ -59,6 +60,11 @@ public class UblSenderResponseProvider_PE implements UblSenderResponseProvider {
 			} else {
 				response = faultToResponse(fault);
 			}
+			if (!response.isError()) {
+				for (InvoiceModel invoice : invoices) {
+					invoice.removeRequeridAction(RequeridActionDocument.SEND_SOA_XML_DOCUMENT);
+				}
+			}
 			Map<String, String> result = getResponseToMap(response, invoices.get(0).getInvoiceTypeCode());
 			session.sendEvent().addEvent(organization, invoices, xmlDocument, eventDocument, response.isError(),
 					result);
@@ -79,6 +85,9 @@ public class UblSenderResponseProvider_PE implements UblSenderResponseProvider {
 			} else {
 				response = faultToResponse(fault);
 			}
+			if (!response.isError()) {
+				creditNote.removeRequeridAction(RequeridActionDocument.SEND_SOA_XML_DOCUMENT);
+			}
 			Map<String, String> result = getResponseToMap(response, CodigoTipoDocumento.NOTA_CREDITO.getCodigo());
 			session.sendEvent().addEvent(organization, creditNote, ArrayUtils.toPrimitive(creditNote.getXmlDoument()),
 					eventDocument, response.isError(), result);
@@ -98,6 +107,9 @@ public class UblSenderResponseProvider_PE implements UblSenderResponseProvider {
 				response = byteToResponse(eventDocument);
 			} else {
 				response = faultToResponse(fault);
+			}
+			if (!response.isError()) {
+				debitNote.removeRequeridAction(RequeridActionDocument.SEND_SOA_XML_DOCUMENT);
 			}
 			Map<String, String> result = getResponseToMap(response, CodigoTipoDocumento.NOTA_DEBITO.getCodigo());
 			session.sendEvent().addEvent(organization, debitNote, ArrayUtils.toPrimitive(debitNote.getXmlDoument()),

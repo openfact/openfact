@@ -260,12 +260,15 @@ public interface InvoiceModel {
 	Byte[] getXmlDocument();
 
 	void setXmlDocument(Byte[] value);
-	
+
 	List<SendEventModel> getSendEvent();
 
 	List<RequeridActionDocument> getRequeridAction();
 
 	void setRequeridAction(List<RequeridActionDocument> requeridAction);
+
+	boolean removeRequeridAction(RequeridActionDocument requeridAction);
+
 	/**
 	 * Events interfaces
 	 */

@@ -946,4 +946,10 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
 		creditNote.setRequeridAction(requeridAction);
 	}
 
+	@Override
+	public boolean removeRequeridAction(RequeridActionDocument requeridAction) {
+		boolean result =creditNote.getRequeridAction().remove(requeridAction);	
+		return result;
+	}
+
 }

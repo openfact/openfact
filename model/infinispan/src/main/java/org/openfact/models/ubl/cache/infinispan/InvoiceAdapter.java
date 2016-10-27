@@ -750,5 +750,11 @@ public class InvoiceAdapter implements CachedInvoiceModel {
 		
 	}
 
+	@Override
+	public boolean removeRequeridAction(RequeridActionDocument requeridAction) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 
 }

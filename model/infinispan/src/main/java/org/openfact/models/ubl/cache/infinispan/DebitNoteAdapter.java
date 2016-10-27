@@ -667,5 +667,11 @@ public class DebitNoteAdapter implements CachedDebitNoteModel {
 		
 	}
 
+	@Override
+	public boolean removeRequeridAction(RequeridActionDocument requeridAction) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
     
 }

@@ -1,5 +1,6 @@
 package org.openfact.testsuite.providers.ubl.send.pe;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -49,14 +50,19 @@ public class UblTaskRunnerProviderTest_PE extends AbstractProviderTest {
 					.generateUBLExtensions(organization, invoice);
 			session.getProvider(UblProvider.class, organization.getDefaultUblLocale()).getDocument(organization,
 					invoice);
-			invoice.setRequeridAction(Arrays.asList(RequeridActionDocument.SEND_SOA_XML_DOCUMENT));
+			List<RequeridActionDocument> requerid = new ArrayList<>();
+			requerid.add(RequeridActionDocument.SEND_SOA_XML_DOCUMENT);
+			requerid.add(RequeridActionDocument.SEND_EMAIL_CUSTOMER);
+			requerid.add(RequeridActionDocument.SEND_EMAIL_SUPLIER);
+			requerid.add(RequeridActionDocument.SEND_EMAIL_RESPONSE);
+			invoice.setRequeridAction(requerid);
 		}
 
 		UblTaskRunnerProvider task = session.getProvider(UblTaskRunnerProvider.class,
 				organization.getDefaultUblLocale());
 		task.exececuteTask(organization);
 
-		//assertThat(invoice, is(notNullValue()));
+		// assertThat(invoice, is(notNullValue()));
 	}
 
 }

@@ -66,7 +66,7 @@ import org.openfact.models.jpa.entities.ubl.common.UBLExtensionsEntity;
 		@NamedQuery(name = "getOrganizationCreditNoteByID", query = "select i from CreditNoteEntity i where i.ID = :ID and i.organization.id = :organizationId"),
 		@NamedQuery(name = "searchForCreditNote", query = "select i from CreditNoteEntity i where i.organization.id = :organizationId and i.ID like :search order by i.issueDateTime"),
 		@NamedQuery(name = "getOrganizationCreditNoteCount", query = "select count(i) from CreditNoteEntity i where i.organization.id = :organizationId"),
-		@NamedQuery(name = "getLastCreditNoteByOrganization", query = "select i from CreditNoteEntity i where i.organization.id = :organizationId and length(i.ID)=:IDLength and i.ID like :formatter order by i.issueDateTime desc") })
+		@NamedQuery(name = "getLastCreditNoteByOrganization", query = "select i from CreditNoteEntity i where i.organization.id = :organizationId and length(i.ID)=:IDLength and i.ID like :formatter order by i.issueDateTime desc"), })
 public class CreditNoteEntity {
 
 	@Id
@@ -79,7 +79,7 @@ public class CreditNoteEntity {
 	@OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "creditNote")
 	protected Collection<CreditNoteAttributeEntity> attributes = new ArrayList<>();
 
-	@ManyToMany(mappedBy="creditNotes", cascade = { CascadeType.ALL })	
+	@ManyToMany(mappedBy = "creditNotes", cascade = { CascadeType.ALL })
 	protected List<SendEventEntity> sendEvents = new ArrayList<>();
 
 	@NotNull
@@ -237,12 +237,12 @@ public class CreditNoteEntity {
 	@Column(name = "XML_DOCUMENT")
 	protected Byte[] xmlDocument;
 
-    @ElementCollection
-    @Column(name = "REQUERID_ACTION")
-    @CollectionTable(name = "CREDITNOTE_REQUERID_ACTION", joinColumns = { @JoinColumn(name = "CREDITNOTE_ID") })
-    @Enumerated(EnumType.STRING)
-    protected List<RequeridActionDocument> requeridAction = new ArrayList<>();
-	
+	@ElementCollection
+	@Column(name = "REQUERID_ACTION")
+	@CollectionTable(name = "CREDITNOTE_REQUERID_ACTION", joinColumns = { @JoinColumn(name = "CREDITNOTE_ID") })
+	@Enumerated(EnumType.STRING)
+	protected List<RequeridActionDocument> requeridAction = new ArrayList<>();
+
 	public Byte[] getXmlDocument() {
 		return xmlDocument;
 	}

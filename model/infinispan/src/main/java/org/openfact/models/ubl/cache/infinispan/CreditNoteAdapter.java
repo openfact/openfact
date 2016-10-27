@@ -662,6 +662,12 @@ public class CreditNoteAdapter implements CachedCreditNoteModel {
 		
 	}
 
+	@Override
+	public boolean removeRequeridAction(RequeridActionDocument requeridAction) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
     
 
 }

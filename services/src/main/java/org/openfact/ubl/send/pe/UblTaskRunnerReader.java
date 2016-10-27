@@ -1,6 +1,6 @@
 package org.openfact.ubl.send.pe;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.openfact.models.OpenfactSession;
@@ -20,25 +20,20 @@ public class UblTaskRunnerReader {
 	}
 
 	public List<InvoiceModel> getInvoiceReader(boolean intoRequeridAction) {
-		List<RequeridActionDocument> requeridAction = new ArrayList<>();
-		requeridAction.add(RequeridActionDocument.RESPONSE_SENDED_DOCUMENT_OK);
-		List<InvoiceModel> invoices = session.invoices().getInvoices(organization, requeridAction, intoRequeridAction);
+		List<InvoiceModel> invoices = session.invoices().getInvoices(organization,
+				Arrays.asList(RequeridActionDocument.SEND_SOA_XML_DOCUMENT), intoRequeridAction);
 		return invoices;
 	}
 
 	public List<CreditNoteModel> getCreditNoteReader(boolean intoRequeridAction) {
-		List<RequeridActionDocument> requeridAction = new ArrayList<>();
-		requeridAction.add(RequeridActionDocument.RESPONSE_SENDED_DOCUMENT_OK);
-		List<CreditNoteModel> creditNotes = session.creditNotes().getCreditNotes(organization, requeridAction,
-				intoRequeridAction);
+		List<CreditNoteModel> creditNotes = session.creditNotes().getCreditNotes(organization,
+				Arrays.asList(RequeridActionDocument.SEND_SOA_XML_DOCUMENT), intoRequeridAction);
 		return creditNotes;
 	}
 
 	public List<DebitNoteModel> getDebitNoteReader(boolean intoRequeridAction) {
-		List<RequeridActionDocument> requeridAction = new ArrayList<>();
-		requeridAction.add(RequeridActionDocument.RESPONSE_SENDED_DOCUMENT_OK);
-		List<DebitNoteModel> debitNotes = session.debitNotes().getDebitNotes(organization, requeridAction,
-				intoRequeridAction);
+		List<DebitNoteModel> debitNotes = session.debitNotes().getDebitNotes(organization,
+				Arrays.asList(RequeridActionDocument.SEND_SOA_XML_DOCUMENT), intoRequeridAction);
 		return debitNotes;
 	}
 
