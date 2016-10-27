@@ -71,7 +71,7 @@ public class AdminConsoleImpl implements AdminConsole {
                 authUrl = authUrl.substring(0, authUrl.length() - 1);
 
                 map.put("authUrl", authUrl);            
-                map.put("masterRealm", Config.getAdminOrganization());
+                map.put("masterOrganization", Config.getAdminOrganization());
                 map.put("resourceVersion", Version.RESOURCES_VERSION);
 
                 FreeMarkerUtil freeMarkerUtil = new FreeMarkerUtil();

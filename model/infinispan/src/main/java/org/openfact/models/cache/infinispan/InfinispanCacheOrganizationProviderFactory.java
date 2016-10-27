@@ -48,9 +48,9 @@ public class InfinispanCacheOrganizationProviderFactory implements CacheOrganiza
             synchronized (this) {
                 if (organizationCache == null) {
                     Cache<String, Revisioned> cache = session.getProvider(InfinispanConnectionProvider.class)
-                            .getCache(InfinispanConnectionProvider.REALM_CACHE_NAME);
+                            .getCache(InfinispanConnectionProvider.ORGANIZATION_CACHE_NAME);
                     Cache<String, Long> revisions = session.getProvider(InfinispanConnectionProvider.class)
-                            .getCache(InfinispanConnectionProvider.REALM_CACHE_NAME);
+                            .getCache(InfinispanConnectionProvider.ORGANIZATION_CACHE_NAME);
                     organizationCache = new OrganizationCacheManager(cache, revisions);
                 }
             }

@@ -20,7 +20,7 @@ package org.openfact.services.util;
 import org.jboss.logging.Logger;
 
 /**
- * IE requires P3P header to allow loading cookies from iframes when domain differs from main page (see KEYCLOAK-2828 for more details)
+ * IE requires P3P header to allow loading cookies from iframes when domain differs from main page (see OPENFACT-2828 for more details)
  *
  * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */

@@ -61,7 +61,7 @@ public class WelcomeResourceImpl implements WelcomeResource {
 
     protected static final Logger logger = Logger.getLogger(WelcomeResource.class);
 
-    private static final String KEYCLOAK_STATE_CHECKER = "KEYCLOAK_STATE_CHECKER";
+    private static final String OPENFACT_STATE_CHECKER = "OPENFACT_STATE_CHECKER";
 
     @Context
     protected HttpHeaders headers;
@@ -179,14 +179,14 @@ public class WelcomeResourceImpl implements WelcomeResource {
             stateChecker = OpenfactModelUtils.generateSecret();
             String cookiePath = uriInfo.getPath();
             boolean secureOnly = uriInfo.getRequestUri().getScheme().equalsIgnoreCase("https");
-            CookieHelper.addCookie(KEYCLOAK_STATE_CHECKER, stateChecker, cookiePath, null, null, -1,
+            CookieHelper.addCookie(OPENFACT_STATE_CHECKER, stateChecker, cookiePath, null, null, -1,
                     secureOnly, true);
             return stateChecker;
         }
     }
 
     private String getCsrfCookie() {
-        Cookie cookie = headers.getCookies().get(KEYCLOAK_STATE_CHECKER);
+        Cookie cookie = headers.getCookies().get(OPENFACT_STATE_CHECKER);
         return cookie == null ? null : cookie.getValue();
     }
 

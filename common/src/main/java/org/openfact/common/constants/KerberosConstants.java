@@ -67,7 +67,7 @@ public class KerberosConstants {
      * Configuration federation provider model attributes.
      */
     public static final String ALLOW_KERBEROS_AUTHENTICATION = "allowKerberosAuthentication";
-    public static final String KERBEROS_REALM = "kerberosRealm";
+    public static final String KERBEROS_ORGANIZATION = "kerberosOrganization";
     public static final String SERVER_PRINCIPAL = "serverPrincipal";
     public static final String KEYTAB = "keyTab";
     public static final String DEBUG = "debug";

@@ -669,7 +669,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 
 	@Override
 	public void removeAttribute(String name) {
-		// KEYCLOAK-3296 : Remove attribute through HQL to avoid
+		// OPENFACT-3296 : Remove attribute through HQL to avoid
 		// StaleUpdateException
 		Query query = em.createNamedQuery("deleteInvoiceAttributesByNameAndInvoice");
 		query.setParameter("name", name);

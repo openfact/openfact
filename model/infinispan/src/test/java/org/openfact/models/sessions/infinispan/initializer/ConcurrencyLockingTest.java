@@ -67,7 +67,7 @@ public class ConcurrencyLockingTest {
         final DefaultCacheManager cacheManager = new DefaultCacheManager(gcb.build());
         ConfigurationBuilder invalidationConfigBuilder = new ConfigurationBuilder();
         Configuration invalidationCacheConfiguration = invalidationConfigBuilder.build();
-        cacheManager.defineConfiguration(InfinispanConnectionProvider.REALM_CACHE_NAME, invalidationCacheConfiguration);
+        cacheManager.defineConfiguration(InfinispanConnectionProvider.ORGANIZATION_CACHE_NAME, invalidationCacheConfiguration);
 
         ConfigurationBuilder counterConfigBuilder = new ConfigurationBuilder();
         counterConfigBuilder.invocationBatching().enable();

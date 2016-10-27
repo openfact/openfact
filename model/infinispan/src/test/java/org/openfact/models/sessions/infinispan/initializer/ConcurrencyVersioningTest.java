@@ -56,7 +56,7 @@ public class ConcurrencyVersioningTest {
         }
 
         public void run() {
-            Cache<String, String> cache = cacheManager.getCache(InfinispanConnectionProvider.REALM_CACHE_NAME);
+            Cache<String, String> cache = cacheManager.getCache(InfinispanConnectionProvider.ORGANIZATION_CACHE_NAME);
             try {
                 startBatch(cache);
                 cache.remove("key");
@@ -78,7 +78,7 @@ public class ConcurrencyVersioningTest {
         }
 
         public void run() {
-            Cache<String, String> cache = cacheManager.getCache(InfinispanConnectionProvider.REALM_CACHE_NAME);
+            Cache<String, String> cache = cacheManager.getCache(InfinispanConnectionProvider.ORGANIZATION_CACHE_NAME);
             try {
                 startBatch(cache);
                 cache.putForExternalRead("key", "value2");
@@ -105,7 +105,7 @@ public class ConcurrencyVersioningTest {
 
         RemoveThread removeThread = new RemoveThread(cacheManager);
 
-        Cache<String, String> cache = cacheManager.getCache(InfinispanConnectionProvider.REALM_CACHE_NAME);
+        Cache<String, String> cache = cacheManager.getCache(InfinispanConnectionProvider.ORGANIZATION_CACHE_NAME);
         cache.remove("key");
         startBatch(cache);
         cache.get("key");
@@ -130,7 +130,7 @@ public class ConcurrencyVersioningTest {
 
         RemoveThread removeThread = new RemoveThread(cacheManager);
 
-        Cache<String, String> cache = cacheManager.getCache(InfinispanConnectionProvider.REALM_CACHE_NAME);
+        Cache<String, String> cache = cacheManager.getCache(InfinispanConnectionProvider.ORGANIZATION_CACHE_NAME);
         cache.put("key", "value0");
         startBatch(cache);
         cache.get("key");
@@ -160,7 +160,7 @@ public class ConcurrencyVersioningTest {
 
         RemoveThread removeThread = new RemoveThread(cacheManager);
 
-        Cache<String, String> cache = cacheManager.getCache(InfinispanConnectionProvider.REALM_CACHE_NAME);
+        Cache<String, String> cache = cacheManager.getCache(InfinispanConnectionProvider.ORGANIZATION_CACHE_NAME);
         cache.put("key", "value0");
         startBatch(cache);
         cache.get("key");
@@ -184,7 +184,7 @@ public class ConcurrencyVersioningTest {
 
         RemoveThread removeThread = new RemoveThread(cacheManager);
 
-        Cache<String, String> cache = cacheManager.getCache(InfinispanConnectionProvider.REALM_CACHE_NAME);
+        Cache<String, String> cache = cacheManager.getCache(InfinispanConnectionProvider.ORGANIZATION_CACHE_NAME);
         cache.put("key", "value0");
         startBatch(cache);
         cache.putForExternalRead("key", "value1");
@@ -261,7 +261,7 @@ public class ConcurrencyVersioningTest {
             invalidationConfigBuilder.clustering().cacheMode(async ? CacheMode.INVALIDATION_ASYNC : CacheMode.INVALIDATION_SYNC);
         }
         Configuration invalidationCacheConfiguration = invalidationConfigBuilder.build();
-        cacheManager.defineConfiguration(InfinispanConnectionProvider.REALM_CACHE_NAME, invalidationCacheConfiguration);
+        cacheManager.defineConfiguration(InfinispanConnectionProvider.ORGANIZATION_CACHE_NAME, invalidationCacheConfiguration);
         return cacheManager;
     }
 }

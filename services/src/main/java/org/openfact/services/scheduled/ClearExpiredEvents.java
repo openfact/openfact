@@ -31,10 +31,10 @@ public class ClearExpiredEvents implements ScheduledTask {
     public void run(OpenfactSession session) {
         EventStoreProvider eventStore = session.getProvider(EventStoreProvider.class);
         if (eventStore != null) {
-            for (OrganizationModel realm : session.organizations().getOrganizations()) {
-                if (realm.isEventsEnabled() && realm.getEventsExpiration() > 0) {
-                    long olderThan = System.currentTimeMillis() - realm.getEventsExpiration() * 1000;
-                    eventStore.clear(realm.getId(), olderThan);
+            for (OrganizationModel organization : session.organizations().getOrganizations()) {
+                if (organization.isEventsEnabled() && organization.getEventsExpiration() > 0) {
+                    long olderThan = System.currentTimeMillis() - organization.getEventsExpiration() * 1000;
+                    eventStore.clear(organization.getId(), olderThan);
                 }
             }
         }

@@ -69,7 +69,7 @@ public class AdminRootImpl implements AdminRoot {
     protected OrganizationModel locateOrganization(String name, OrganizationManager organizationManager) {
         OrganizationModel organization = organizationManager.getOrganizationByName(name);
         if (organization == null) {
-            throw new NotFoundException("Realm not found.  Did you type in a bad URL?");
+            throw new NotFoundException("Organization not found.  Did you type in a bad URL?");
         }
         session.getContext().setOrganization(organization);
         return organization;

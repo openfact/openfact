@@ -35,12 +35,12 @@ public class LocaleHelper {
     private static final String LOCALE_COOKIE = "OPENFACT_LOCALE";
     private static final String KC_LOCALE_PARAM = "kc_locale";
 
-    public static Locale getLocale(OpenfactSession session, OrganizationModel realm, UserModel user) {
-        if (!realm.isInternationalizationEnabled()) {
+    public static Locale getLocale(OpenfactSession session, OrganizationModel organization, UserModel user) {
+        if (!organization.isInternationalizationEnabled()) {
             return Locale.ENGLISH;
         } else {
-            Locale locale = getUserLocale(session, realm, user);
-            return locale != null ? locale : Locale.forLanguageTag(realm.getDefaultLocale());
+            Locale locale = getUserLocale(session, organization, user);
+            return locale != null ? locale : Locale.forLanguageTag(organization.getDefaultLocale());
         }
     }
 

@@ -25,9 +25,9 @@ import org.openfact.provider.Provider;
  */
 public interface InfinispanConnectionProvider extends Provider {
 
-    String REALM_CACHE_NAME = "realms";
-    String REALM_REVISIONS_CACHE_NAME = "realmRevisions";
-    int REALM_REVISIONS_CACHE_DEFAULT_MAX = 10000;
+    String ORGANIZATION_CACHE_NAME = "organizations";
+    String ORGANIZATION_REVISIONS_CACHE_NAME = "organizationRevisions";
+    int ORGANIZATION_REVISIONS_CACHE_DEFAULT_MAX = 10000;
 
     String USER_CACHE_NAME = "users";
     String USER_REVISIONS_CACHE_NAME = "userRevisions";

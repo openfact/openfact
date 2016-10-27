@@ -100,8 +100,8 @@ public class DefaultInfinispanConnectionProviderFactory implements InfinispanCon
             cacheManager = (EmbeddedCacheManager) new InitialContext().lookup(cacheContainerLookup);
             containerManaged = true;
 
-            cacheManager.defineConfiguration(InfinispanConnectionProvider.REALM_REVISIONS_CACHE_NAME, getRevisionCacheConfig(InfinispanConnectionProvider.REALM_REVISIONS_CACHE_DEFAULT_MAX));
-            cacheManager.getCache(InfinispanConnectionProvider.REALM_CACHE_NAME, true);
+            cacheManager.defineConfiguration(InfinispanConnectionProvider.ORGANIZATION_REVISIONS_CACHE_NAME, getRevisionCacheConfig(InfinispanConnectionProvider.ORGANIZATION_REVISIONS_CACHE_DEFAULT_MAX));
+            cacheManager.getCache(InfinispanConnectionProvider.ORGANIZATION_CACHE_NAME, true);
 
             long maxEntries = cacheManager.getCache(InfinispanConnectionProvider.USER_CACHE_NAME).getCacheConfiguration().eviction().maxEntries();
             if (maxEntries <= 0) {
@@ -145,7 +145,7 @@ public class DefaultInfinispanConnectionProviderFactory implements InfinispanCon
         }
         Configuration invalidationCacheConfiguration = invalidationConfigBuilder.build();
 
-        cacheManager.defineConfiguration(InfinispanConnectionProvider.REALM_CACHE_NAME, invalidationCacheConfiguration);
+        cacheManager.defineConfiguration(InfinispanConnectionProvider.ORGANIZATION_CACHE_NAME, invalidationCacheConfiguration);
         cacheManager.defineConfiguration(InfinispanConnectionProvider.USER_CACHE_NAME, invalidationCacheConfiguration);
 
         ConfigurationBuilder sessionConfigBuilder = new ConfigurationBuilder();
@@ -183,8 +183,8 @@ public class DefaultInfinispanConnectionProviderFactory implements InfinispanCon
         counterConfigBuilder.transaction().transactionManagerLookup(new DummyTransactionManagerLookup());
         counterConfigBuilder.transaction().lockingMode(LockingMode.PESSIMISTIC);
 
-        cacheManager.defineConfiguration(InfinispanConnectionProvider.REALM_REVISIONS_CACHE_NAME, getRevisionCacheConfig(InfinispanConnectionProvider.REALM_REVISIONS_CACHE_DEFAULT_MAX));
-        cacheManager.getCache(InfinispanConnectionProvider.REALM_CACHE_NAME, true);
+        cacheManager.defineConfiguration(InfinispanConnectionProvider.ORGANIZATION_REVISIONS_CACHE_NAME, getRevisionCacheConfig(InfinispanConnectionProvider.ORGANIZATION_REVISIONS_CACHE_DEFAULT_MAX));
+        cacheManager.getCache(InfinispanConnectionProvider.ORGANIZATION_CACHE_NAME, true);
 
         long maxEntries = cacheManager.getCache(InfinispanConnectionProvider.USER_CACHE_NAME).getCacheConfiguration().eviction().maxEntries();
         if (maxEntries <= 0) {

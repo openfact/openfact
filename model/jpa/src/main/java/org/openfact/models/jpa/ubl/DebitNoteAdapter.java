@@ -146,7 +146,7 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
 
 	@Override
 	public void removeAttribute(String name) {
-		// KEYCLOAK-3296 : Remove attribute through HQL to avoid
+		// OPENFACT-3296 : Remove attribute through HQL to avoid
 		// StaleUpdateException
 		Query query = em.createNamedQuery("deleteDebitNoteAttributesByNameAndDebitNote");
 		query.setParameter("name", name);

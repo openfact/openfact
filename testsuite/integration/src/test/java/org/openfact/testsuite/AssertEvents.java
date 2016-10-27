@@ -54,7 +54,7 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
     public static String DEFAULT_CLIENT_ID = "test-app";
     public static String DEFAULT_REDIRECT_URI = "http://localhost:8081/app/openfact";
     public static String DEFAULT_IP_ADDRESS = "127.0.0.1";
-    public static String DEFAULT_REALM = "test";
+    public static String DEFAULT_ORGANIZATION = "test";
     public static String DEFAULT_USERNAME = "test-user@localhost";
 
     private OpenfactRule openfact;
@@ -200,9 +200,9 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
 
     /*public ExpectedEvent expect(EventType event) {
         return new ExpectedEvent()
-                .organization(DEFAULT_REALM)
+                .organization(DEFAULT_ORGANIZATION)
                 .client(DEFAULT_CLIENT_ID)
-                .user(openfact.getUser(DEFAULT_REALM, DEFAULT_USERNAME).getId())
+                .user(openfact.getUser(DEFAULT_ORGANIZATION, DEFAULT_USERNAME).getId())
                 .ipAddress(DEFAULT_IP_ADDRESS)
                 .session((String) null)
                 .event(event);

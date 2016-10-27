@@ -253,7 +253,7 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
     }
 
     @Override
-    public List<AdminEventRepresentation> getEvents(List<String> operationTypes, String authRealm,
+    public List<AdminEventRepresentation> getEvents(List<String> operationTypes, String authOrganization,
             String authUser, String authIpAddress, String resourcePath, String dateFrom, String dateTo,
             Integer firstResult, Integer maxResults, List<String> resourceTypes) {
         auth.init(OrganizationAuth.Resource.EVENTS).requireView();
@@ -261,8 +261,8 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
         EventStoreProvider eventStore = session.getProvider(EventStoreProvider.class);
         AdminEventQuery query = eventStore.createAdminQuery().organization(organization.getId());
 
-        if (authRealm != null) {
-            query.authOrganization(authRealm);
+        if (authOrganization != null) {
+            query.authOrganization(authOrganization);
         }
 
         if (authUser != null) {

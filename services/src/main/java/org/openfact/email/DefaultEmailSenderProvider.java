@@ -54,11 +54,11 @@ public class DefaultEmailSenderProvider implements EmailSenderProvider {
     }
 
     @Override
-    public void send(OrganizationModel realm, UserModel user, String subject, String textBody, String htmlBody) throws EmailException {
+    public void send(OrganizationModel organization, UserModel user, String subject, String textBody, String htmlBody) throws EmailException {
         Transport transport = null;
         try {
             String address = user.getEmail();
-            Map<String, String> config = realm.getSmtpConfig();
+            Map<String, String> config = organization.getSmtpConfig();
 
             Properties props = new Properties();
             props.setProperty("mail.smtp.host", config.get("host"));

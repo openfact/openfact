@@ -36,7 +36,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * Reproducer for KEYCLOAK-3306. Uncomment the snippet for adding StateTransferInterceptor to have test fixed.
+ * Reproducer for OPENFACT-3306. Uncomment the snippet for adding StateTransferInterceptor to have test fixed.
  *
  * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
  */
@@ -54,7 +54,7 @@ public class OutdatedTopologyExceptionReproducerTest {
 
         try {
             node1 = createManager();
-            Cache<String, Object> node1Cache = node1.getCache(InfinispanConnectionProvider.REALM_CACHE_NAME);
+            Cache<String, Object> node1Cache = node1.getCache(InfinispanConnectionProvider.ORGANIZATION_CACHE_NAME);
             logger.info("Node1Cache started");
 
             List<CacheOperations> cacheOpsList = new ArrayList<>();
@@ -69,7 +69,7 @@ public class OutdatedTopologyExceptionReproducerTest {
             logger.infof("All CacheOperations threads started");
 
             node2 = createManager();
-            Cache<String, Object> node2Cache = node2.getCache(InfinispanConnectionProvider.REALM_CACHE_NAME);
+            Cache<String, Object> node2Cache = node2.getCache(InfinispanConnectionProvider.ORGANIZATION_CACHE_NAME);
             logger.info("Node2Cache started");
 
             for (CacheOperations cacheOps : cacheOpsList) {
@@ -125,7 +125,7 @@ public class OutdatedTopologyExceptionReproducerTest {
 
         Configuration invalidationCacheConfiguration = invalidationConfigBuilder.build();
 
-        cacheManager.defineConfiguration(InfinispanConnectionProvider.REALM_CACHE_NAME, invalidationCacheConfiguration);
+        cacheManager.defineConfiguration(InfinispanConnectionProvider.ORGANIZATION_CACHE_NAME, invalidationCacheConfiguration);
         return cacheManager;
 
     }

@@ -52,7 +52,7 @@ public class ClusteredCacheBehaviorTest {
         }
         Configuration invalidationCacheConfiguration = invalidationConfigBuilder.build();
 
-        cacheManager.defineConfiguration(InfinispanConnectionProvider.REALM_CACHE_NAME, invalidationCacheConfiguration);
+        cacheManager.defineConfiguration(InfinispanConnectionProvider.ORGANIZATION_CACHE_NAME, invalidationCacheConfiguration);
         return cacheManager;
 
     }
@@ -94,9 +94,9 @@ public class ClusteredCacheBehaviorTest {
     public void testListener() throws Exception {
         EmbeddedCacheManager node1 = createManager();
         EmbeddedCacheManager node2 = createManager();
-        Cache<String, Object> node1Cache = node1.getCache(InfinispanConnectionProvider.REALM_CACHE_NAME);
+        Cache<String, Object> node1Cache = node1.getCache(InfinispanConnectionProvider.ORGANIZATION_CACHE_NAME);
         node1Cache.addListener(new CacheListener("node1"));
-        Cache<String, Object> node2Cache = node2.getCache(InfinispanConnectionProvider.REALM_CACHE_NAME);
+        Cache<String, Object> node2Cache = node2.getCache(InfinispanConnectionProvider.ORGANIZATION_CACHE_NAME);
         node2Cache.addListener(new CacheListener("node2"));
 
         System.out.println("node1 create entry");

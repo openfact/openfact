@@ -23,19 +23,19 @@ package org.openfact.representations;
  */
 public class KeyStoreConfig {
 
-    protected Boolean realmCertificate;
+    protected Boolean organizationCertificate;
     protected String storePassword;
     protected String keyPassword;
     protected String keyAlias;
-    protected String realmAlias;
+    protected String organizationAlias;
     protected String format;
 
-    public Boolean isRealmCertificate() {
-        return realmCertificate;
+    public Boolean isOrganizationCertificate() {
+        return organizationCertificate;
     }
 
-    public void setRealmCertificate(Boolean realmCertificate) {
-        this.realmCertificate = realmCertificate;
+    public void setOrganizationCertificate(Boolean organizationCertificate) {
+        this.organizationCertificate = organizationCertificate;
     }
 
     public String getStorePassword() {
@@ -62,12 +62,12 @@ public class KeyStoreConfig {
         this.keyAlias = keyAlias;
     }
 
-    public String getRealmAlias() {
-        return realmAlias;
+    public String getOrganizationAlias() {
+        return organizationAlias;
     }
 
-    public void setRealmAlias(String realmAlias) {
-        this.realmAlias = realmAlias;
+    public void setOrganizationAlias(String organizationAlias) {
+        this.organizationAlias = organizationAlias;
     }
 
     public String getFormat() {

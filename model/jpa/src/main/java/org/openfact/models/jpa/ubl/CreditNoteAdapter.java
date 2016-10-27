@@ -146,7 +146,7 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
 
 	@Override
 	public void removeAttribute(String name) {
-		// KEYCLOAK-3296 : Remove attribute through HQL to avoid
+		// OPENFACT-3296 : Remove attribute through HQL to avoid
 		// StaleUpdateException
 		Query query = em.createNamedQuery("deleteCreditNoteAttributesByNameAndCreditNote");
 		query.setParameter("name", name);
