@@ -17,9 +17,9 @@
 
 package org.openfact.connections.jpa.entityprovider;
 
-import java.util.List;
-
 import org.openfact.provider.Provider;
+
+import java.util.List;
 
 /**
  * @author <a href="mailto:erik.mulder@docdatapayments.com">Erik Mulder</a>

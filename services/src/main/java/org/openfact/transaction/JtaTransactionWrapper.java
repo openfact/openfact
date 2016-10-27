@@ -16,12 +16,12 @@
  */
 package org.openfact.transaction;
 
+import org.jboss.logging.Logger;
+import org.openfact.models.OpenfactTransaction;
+
 import javax.transaction.Status;
 import javax.transaction.Transaction;
 import javax.transaction.TransactionManager;
-
-import org.jboss.logging.Logger;
-import org.openfact.models.OpenfactTransaction;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>

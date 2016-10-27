@@ -16,9 +16,7 @@
  */
 package org.openfact.broker.provider;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -39,10 +37,7 @@ public class BrokeredIdentityContext {
     private String brokerUserId;
     private String code;
     private String token;
-    //private IdentityProviderModel idpConfig;
-    //private IdentityProvider idp;
     private Map<String, Object> contextData = new HashMap<>();
-    //private ClientSessionModel clientSession;
 
     public BrokeredIdentityContext(String id) {
         if (id == null) {
@@ -124,23 +119,7 @@ public class BrokeredIdentityContext {
 
     public void setCode(String code) {
         this.code = code;
-    }
-
-    /*public IdentityProviderModel getIdpConfig() {
-        return idpConfig;
-    }
-
-    public void setIdpConfig(IdentityProviderModel idpConfig) {
-        this.idpConfig = idpConfig;
-    }
-
-    public IdentityProvider getIdp() {
-        return idp;
-    }
-
-    public void setIdp(IdentityProvider idp) {
-        this.idp = idp;
-    }*/
+    }   
 
     public Map<String, Object> getContextData() {
         return contextData;
@@ -148,47 +127,7 @@ public class BrokeredIdentityContext {
 
     public void setContextData(Map<String, Object> contextData) {
         this.contextData = contextData;
-    }
-
-    // Set the attribute, which will be available on "Update profile" page and in authenticators
-    /*public void setUserAttribute(String attributeName, String attributeValue) {
-        List<String> list = new ArrayList<>();
-        list.add(attributeValue);
-        getContextData().put(Constants.USER_ATTRIBUTES_PREFIX + attributeName, list);
-    }
-
-    public String getUserAttribute(String attributeName) {
-        List<String> userAttribute = (List<String>) getContextData().get(Constants.USER_ATTRIBUTES_PREFIX + attributeName);
-        if (userAttribute == null || userAttribute.isEmpty()) {
-            return null;
-        } else {
-            return userAttribute.get(0);
-        }
-    }*/
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    /*public ClientSessionModel getClientSession() {
-        return clientSession;
-    }
-
-    public void setClientSession(ClientSessionModel clientSession) {
-        this.clientSession = clientSession;
-    }*/
+    }    
 
     public void setName(String name) {
         if (name != null) {

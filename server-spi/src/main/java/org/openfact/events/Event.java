@@ -31,11 +31,7 @@ public class Event {
 
     private String organizationId;
 
-    private String clientId;
-
     private String userId;
-
-    private String sessionId;
 
     private String ipAddress;
 
@@ -67,28 +63,12 @@ public class Event {
         this.organizationId = maxLength(organizationId, 255);
     }
 
-    public String getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(String clientId) {
-        this.clientId = maxLength(clientId, 255);
-    }
-
     public String getUserId() {
         return userId;
     }
 
     public void setUserId(String userId) {
         this.userId = maxLength(userId, 255);
-    }
-
-    public String getSessionId() {
-        return sessionId;
-    }
-
-    public void setSessionId(String sessionId) {
-        this.sessionId = sessionId;
     }
 
     public String getIpAddress() {
@@ -120,9 +100,7 @@ public class Event {
         clone.time = time;
         clone.type = type;
         clone.organizationId = organizationId;
-        clone.clientId = clientId;
         clone.userId = userId;
-        clone.sessionId = sessionId;
         clone.ipAddress = ipAddress;
         clone.error = error;
         clone.details = details != null ? new HashMap<>(details) : null;

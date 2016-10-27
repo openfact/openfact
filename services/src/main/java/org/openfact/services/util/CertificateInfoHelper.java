@@ -17,16 +17,6 @@
 
 package org.openfact.services.util;
 
-import java.security.PublicKey;
-import java.security.cert.X509Certificate;
-import java.util.HashMap;
-
-import javax.ws.rs.core.Response;
-
-import org.openfact.models.ModelException;
-import org.openfact.models.utils.OpenfactModelUtils;
-import org.openfact.representations.idm.CertificateRepresentation;
-
 /**
  * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
  */
@@ -37,104 +27,6 @@ public class CertificateInfoHelper {
     public static final String X509CERTIFICATE = "certificate";
     public static final String PUBLIC_KEY = "public.key";
 
+    public static final String KID = "kid";
 
-    // CLIENT MODEL METHODS
-
-    /*public static CertificateRepresentation getCertificateFromClient(ClientModel client, String attributePrefix) {
-        String privateKeyAttribute = attributePrefix + "." + PRIVATE_KEY;
-        String certificateAttribute = attributePrefix + "." + X509CERTIFICATE;
-        String publicKeyAttribute = attributePrefix + "." + PUBLIC_KEY;
-
-        CertificateRepresentation rep = new CertificateRepresentation();
-        rep.setCertificate(client.getAttribute(certificateAttribute));
-        rep.setPublicKey(client.getAttribute(publicKeyAttribute));
-        rep.setPrivateKey(client.getAttribute(privateKeyAttribute));
-
-        return rep;
-    }
-
-
-    public static void updateClientModelCertificateInfo(ClientModel client, CertificateRepresentation rep, String attributePrefix) {
-        String privateKeyAttribute = attributePrefix + "." + PRIVATE_KEY;
-        String certificateAttribute = attributePrefix + "." + X509CERTIFICATE;
-        String publicKeyAttribute = attributePrefix + "." + PUBLIC_KEY;
-
-        if (rep.getPublicKey() == null && rep.getCertificate() == null) {
-            throw new IllegalStateException("Both certificate and publicKey are null!");
-        }
-
-        if (rep.getPublicKey() != null && rep.getCertificate() != null) {
-            throw new IllegalStateException("Both certificate and publicKey are not null!");
-        }
-
-        setOrRemoveAttr(client, privateKeyAttribute, rep.getPrivateKey());
-        setOrRemoveAttr(client, publicKeyAttribute, rep.getPublicKey());
-        setOrRemoveAttr(client, certificateAttribute, rep.getCertificate());
-    }
-
-    private static void setOrRemoveAttr(ClientModel client, String attrName, String attrValue) {
-        if (attrValue != null) {
-            client.setAttribute(attrName, attrValue);
-        } else {
-            client.removeAttribute(attrName);
-        }
-    }
-
-
-    public static PublicKey getSignatureValidationKey(ClientModel client, String attributePrefix) throws ModelException {
-        CertificateRepresentation certInfo = getCertificateFromClient(client, attributePrefix);
-
-        String encodedCertificate = certInfo.getCertificate();
-        String encodedPublicKey = certInfo.getPublicKey();
-
-        if (encodedCertificate == null && encodedPublicKey == null) {
-            throw new ModelException("Client doesn't have certificate or publicKey configured");
-        }
-
-        if (encodedCertificate != null && encodedPublicKey != null) {
-            throw new ModelException("Client has both publicKey and certificate configured");
-        }
-
-        // TODO: Caching of publicKeys / certificates, so it doesn't need to be always computed from pem. For performance reasons...
-        if (encodedCertificate != null) {
-            X509Certificate clientCert = OpenfactModelUtils.getCertificate(encodedCertificate);
-            return clientCert.getPublicKey();
-        } else {
-            return OpenfactModelUtils.getPublicKey(encodedPublicKey);
-        }
-    }*/
-
-
-    // CLIENT REPRESENTATION METHODS
-
-    /*public static void updateClientRepresentationCertificateInfo(ClientRepresentation client, CertificateRepresentation rep, String attributePrefix) {
-        String privateKeyAttribute = attributePrefix + "." + PRIVATE_KEY;
-        String certificateAttribute = attributePrefix + "." + X509CERTIFICATE;
-        String publicKeyAttribute = attributePrefix + "." + PUBLIC_KEY;
-
-        if (rep.getPublicKey() == null && rep.getCertificate() == null) {
-            throw new IllegalStateException("Both certificate and publicKey are null!");
-        }
-
-        if (rep.getPublicKey() != null && rep.getCertificate() != null) {
-            throw new IllegalStateException("Both certificate and publicKey are not null!");
-        }
-
-        setOrRemoveAttr(client, privateKeyAttribute, rep.getPrivateKey());
-        setOrRemoveAttr(client, publicKeyAttribute, rep.getPublicKey());
-        setOrRemoveAttr(client, certificateAttribute, rep.getCertificate());
-    }
-
-    private static void setOrRemoveAttr(ClientRepresentation client, String attrName, String attrValue) {
-        if (attrValue != null) {
-            if (client.getAttributes() == null) {
-                client.setAttributes(new HashMap<>());
-            }
-            client.getAttributes().put(attrName, attrValue);
-        } else {
-            if (client.getAttributes() != null) {
-                client.getAttributes().remove(attrName);
-            }
-        }
-    }*/
 }

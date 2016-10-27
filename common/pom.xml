@@ -24,12 +24,13 @@
 			*;resolution:=optional
 		</openfact.osgi.import>
 	</properties>
-	<dependencies>		
+	<dependencies>
 		<dependency>
 			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>			
+			<artifactId>guava</artifactId>
 		</dependency>
 
+		<!-- Principal Start -->
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bcprov-jdk15on</artifactId>
@@ -43,6 +44,7 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- Principal End -->
 	</dependencies>
 	<build>
 		<resources>
@@ -88,8 +90,8 @@
 						<Bundle-ClassPath>.</Bundle-ClassPath>
 						<Bundle-Name>${project.name}</Bundle-Name>
 						<Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
-						<Import-Package>${keycloak.osgi.import}</Import-Package>
-						<Export-Package>${keycloak.osgi.export}</Export-Package>
+						<Import-Package>${openfact.osgi.import}</Import-Package>
+						<Export-Package>${openfact.osgi.export}</Export-Package>
 					</instructions>
 				</configuration>
 			</plugin>

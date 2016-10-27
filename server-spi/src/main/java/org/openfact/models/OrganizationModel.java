@@ -6,9 +6,11 @@ import java.security.PublicKey;
 import java.security.cert.X509Certificate;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.openfact.component.ComponentModel;
 import org.openfact.provider.ProviderEvent;
 
 public interface OrganizationModel {
@@ -18,10 +20,6 @@ public interface OrganizationModel {
     String ASSIGNED_IDENTIFICATION_ID = "assignedIdentificationId";
     String SUPPLIER_NAME = "supplierName";
     String REGISTRATION_NAME = "registrationName";
-
-    String PRIVATE_KEY = "privateKey";
-    String PUBLIC_KEY = "publicKey";
-    String X509CERTIFICATE = "X509Certificate";
 
     String getId();
 
@@ -133,9 +131,9 @@ public interface OrganizationModel {
     long getTaskDelay();
 
     void setTaskDelay(long taskDelay);
-    
+
     boolean isTasksEnabled();
-    
+
     void setTaskEnabled(boolean taskEnabled);
 
     /**
@@ -275,6 +273,32 @@ public interface OrganizationModel {
 
         OpenfactSession getOpenfactSession();
     }
+
+    /**
+     * Components
+     */
+    ComponentModel addComponentModel(ComponentModel model);
+
+    void updateComponent(ComponentModel component);
+
+    void removeComponent(ComponentModel component);
+
+    void removeComponents(String parentId);
+
+    List<ComponentModel> getComponents(String parentId, String providerType);
+
+    List<ComponentModel> getComponents(String parentId);
+
+    List<ComponentModel> getComponents();
+
+    ComponentModel getComponent(String id);
+
+    /**
+     * Headers
+     */
+    Map<String, String> getBrowserSecurityHeaders();
+
+    void setBrowserSecurityHeaders(Map<String, String> headers);
 
     public static enum RequiredAction {
         ACTION1, ACTION2, ACTION3, ACTION4

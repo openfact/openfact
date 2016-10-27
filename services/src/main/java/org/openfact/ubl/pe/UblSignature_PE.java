@@ -24,7 +24,6 @@ import javax.xml.crypto.dsig.spec.TransformParameterSpec;
 
 import org.apache.commons.io.FileUtils;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.utils.DocumentUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

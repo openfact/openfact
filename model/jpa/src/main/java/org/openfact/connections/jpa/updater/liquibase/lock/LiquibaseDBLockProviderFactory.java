@@ -17,14 +17,14 @@
 
 package org.openfact.connections.jpa.updater.liquibase.lock;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
 import org.jboss.logging.Logger;
 import org.openfact.Config;
 import org.openfact.common.util.Time;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.dblock.DBLockProviderFactory;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>

@@ -14,15 +14,22 @@
 	<packaging>war</packaging>
 
 	<properties>
-		<failOnMissingWebXml>false</failOnMissingWebXml>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
 	</properties>
-
 	<build>
 		<finalName>openfact</finalName>
 		<plugins>
 			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.wildfly.swarm</groupId>
 				<artifactId>wildfly-swarm-plugin</artifactId>
+				<version>${version.wildfly-swarm}</version>
 				<executions>
 					<execution>
 						<goals>
@@ -32,20 +39,11 @@
 				</executions>
 				<configuration>
 					<mainClass>org.openfact.Main</mainClass>
-					<properties>
-						<swarm.http.port>9191</swarm.http.port>
-						<wildfly.swarm.keycloak.server.db>${basedir}/target/keycloak</wildfly.swarm.keycloak.server.db>
-						<keycloak.migration.provider>singleFile</keycloak.migration.provider>
-						<keycloak.migration.file>${basedir}/test-realm.json</keycloak.migration.file>
-						<keycloak.migration.strategy>OVERWRITE_EXISTING</keycloak.migration.strategy>
-						<keycloak.migration.action>import</keycloak.migration.action>
-						<!-- <keycloak.migration.action>export</keycloak.migration.action> -->
-					</properties>
 				</configuration>
 			</plugin>
+
 		</plugins>
 	</build>
-
 	<dependencies>
 		<!-- Project dependencies -->
 		<dependency>
@@ -66,11 +64,11 @@
 		</dependency>
 		<dependency>
 			<groupId>org.openfact</groupId>
-			<artifactId>openfact-services</artifactId>
+			<artifactId>openfact-server-spi</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.openfact</groupId>
-			<artifactId>openfact-server-spi</artifactId>
+			<artifactId>openfact-services</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.openfact</groupId>
@@ -81,7 +79,12 @@
 			<artifactId>openfact-model-infinispan</artifactId>
 		</dependency>
 
-		<!-- Wildfly fractions dependencies -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>org.wildfly.swarm</groupId>
 			<artifactId>jaxrs</artifactId>
@@ -96,12 +99,15 @@
 		</dependency>
 		<dependency>
 			<groupId>org.wildfly.swarm</groupId>
+			<artifactId>datasources</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.wildfly.swarm</groupId>
 			<artifactId>hibernate-validator</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.wildfly.swarm</groupId>
 			<artifactId>logging</artifactId>
 		</dependency>
-		
 	</dependencies>
 </project>

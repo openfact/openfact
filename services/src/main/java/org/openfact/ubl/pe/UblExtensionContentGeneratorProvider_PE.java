@@ -31,7 +31,6 @@ import org.openfact.models.ubl.common.TaxSubtotalModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
-import org.openfact.models.utils.DocumentUtils;
 import org.openfact.ubl.UblExtensionContentGeneratorProvider;
 import org.openfact.ubl.UblProvider;
 import org.openfact.ubl.pe.constants.CodigoConceptosTributarios;

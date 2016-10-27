@@ -18,53 +18,10 @@
 
 	<properties>
 		<product.name>Openfact</product.name>
-		<product.name-html>\u003Cdiv
-			class="kc-logo-text"\u003E\u003Cspan\u003EOpenfact\u003C\u002Fspan\u003E\u003C\u002Fdiv\u003E</product.name-html>
+		<product.name-html>\u003Cdivclass="kc-logo-text"\u003E\u003Cspan\u003EOpenfact\u003C\u002Fspan\u003E\u003C\u002Fdiv\u003E</product.name-html>
 		<product.version>${project.version}</product.version>
 		<product.build-time>${timestamp}</product.build-time>
-
-		<!-- Wildfly Swarm -->
-		<version.wildfly-swarm>2016.10.0</version.wildfly-swarm>
-		<maven.min.version>3.2.1</maven.min.version>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-		<version.arquillian-bom>1.1.10.Final</version.arquillian-bom>
-		<version.arquillian-drone-bom>2.0.0.Final</version.arquillian-drone-bom>
-
-		<version.graphene-webdriver>2.1.0.Final</version.graphene-webdriver>
-		<version.rest-assured>3.0.0</version.rest-assured>
-
-		<version.javaee-api>7.0</version.javaee-api>
-		<hibernate.validator.version>5.2.3.Final</hibernate.validator.version>
-		<jaxb2.basics.runtime>1.11.1</jaxb2.basics.runtime>
-
-		<!-- ubl -->
-		<version.ph-ubl>5.1.0</version.ph-ubl>
-
-		<!-- Google Guava -->
-		<version.google-guava>19.0</version.google-guava>
-
-		<!-- Json-Xml-Converter -->
-		<version.odysseus-staxon>1.3</version.odysseus-staxon>
-
-		<!-- xerces -->
-		<version.xerces>2.11.0</version.xerces>
-
-		<!-- jodd to zip -->
-		<version.jodd>3.7.1</version.jodd>
-
-		<!-- Apache commons -->
-		<version.commons.lang>2.6</version.commons.lang>
-
-		<!-- apache cfx -->
-		<version.apache.cxf>3.1.7</version.apache.cxf>
-		<version.woodstox>4.4.1</version.woodstox>
-
-		<!-- easybatch -->
-		<version.easybatch>5.0.0-RC2</version.easybatch>
+		<product.default-profile>community</product.default-profile>
 
 		<!-- WildFly -->
 		<eap.version>7.0.0.Beta</eap.version>
@@ -104,10 +61,11 @@
 
 		<!-- Authorization Drools Policy Provider -->
 		<version.org.drools>6.4.0.Final</version.org.drools>
+		<version.jboss-integration-platform>6.0.6.Final</version.jboss-integration-platform>
 
 		<!-- Others -->
-		<apacheds.version>2.0.0-M17</apacheds.version>
-		<apacheds.codec.version>1.0.0-M23</apacheds.codec.version>
+		<apacheds.version>2.0.0-M21</apacheds.version>
+		<apacheds.codec.version>1.0.0-M33</apacheds.codec.version>
 		<google.zxing.version>3.2.1</google.zxing.version>
 		<freemarker.version>2.3.23</freemarker.version>
 		<jetty9.version>9.1.0.v20131115</jetty9.version>
@@ -146,6 +104,42 @@
 		<!-- Surefire Settings -->
 		<surefire.memory.settings>-Xms512m -Xmx2048m -XX:MetaspaceSize=96m
 			-XX:MaxMetaspaceSize=256m</surefire.memory.settings>
+
+		<!-- Wildfly Swarm -->
+		<version.wildfly-swarm>2016.10.0</version.wildfly-swarm>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+
+		<!-- Arquillian -->
+		<version.arquillian-bom>1.1.10.Final</version.arquillian-bom>
+		<version.arquillian-drone-bom>2.0.0.Final</version.arquillian-drone-bom>
+
+		<version.graphene-webdriver>2.1.0.Final</version.graphene-webdriver>
+		<version.rest-assured>3.0.0</version.rest-assured>
+
+		<version.javaee-api>7.0</version.javaee-api>
+		<hibernate.validator.version>5.2.3.Final</hibernate.validator.version>
+		<jaxb2.basics.runtime>1.11.1</jaxb2.basics.runtime>
+
+		<!-- ubl -->
+		<version.ph-ubl>5.1.0</version.ph-ubl>
+		<!-- Google Guava -->
+		<version.google-guava>19.0</version.google-guava>
+		<!-- Json-Xml-Converter -->
+		<version.odysseus-staxon>1.3</version.odysseus-staxon>
+		<!-- jodd to zip -->
+		<version.jodd>3.7.1</version.jodd>
+		<!-- Apache commons -->
+		<version.commons.lang>2.6</version.commons.lang>
+		<!-- apache cfx -->
+		<version.apache.cxf>3.1.7</version.apache.cxf>
+		<version.woodstox>4.4.1</version.woodstox>
+		<!-- easybatch -->
+		<version.easybatch>5.0.0-RC2</version.easybatch>
+
+		<version.xerces>2.11.0</version.xerces>
+		<version.jaxws-rt>2.2.8</version.jaxws-rt>
+		<version.keycloak>2.1.0.Final</version.keycloak>
 	</properties>
 
 	<url>http://openfact.org</url>
@@ -217,158 +211,6 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<!-- Wildfly Swarm -->
-			<dependency>
-				<groupId>org.wildfly.swarm</groupId>
-				<artifactId>bom-all</artifactId>
-				<version>${version.wildfly-swarm}</version>
-				<scope>import</scope>
-				<type>pom</type>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.arquillian</groupId>
-				<artifactId>arquillian-bom</artifactId>
-				<version>${version.arquillian-bom}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.arquillian.extension</groupId>
-				<artifactId>arquillian-drone-bom</artifactId>
-				<version>${version.arquillian-drone-bom}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.arquillian.graphene</groupId>
-				<artifactId>graphene-webdriver</artifactId>
-				<version>${version.graphene-webdriver}</version>
-				<type>pom</type>
-				<scope>test</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>javax</groupId>
-				<artifactId>javaee-api</artifactId>
-				<version>${version.javaee-api}</version>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.fasterxml.jackson.datatype</groupId>
-				<artifactId>jackson-datatype-jsr310</artifactId>
-				<version>${jackson.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-validator</artifactId>
-				<version>${hibernate.validator.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-java8</artifactId>
-				<version>${hibernate.entitymanager.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.jvnet.jaxb2_commons</groupId>
-				<artifactId>jaxb2-basics-runtime</artifactId>
-				<version>${jaxb2.basics.runtime}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.fasterxml.jackson.datatype</groupId>
-				<artifactId>jackson-datatype-jsr310</artifactId>
-				<version>${jackson.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>io.rest-assured</groupId>
-				<artifactId>rest-assured</artifactId>
-				<version>${version.rest-assured}</version>
-			</dependency>
-
-			<!-- Ubl -->
-			<dependency>
-				<groupId>com.helger</groupId>
-				<artifactId>ph-ubl-parent-pom</artifactId>
-				<version>${version.ph-ubl}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-
-			<!-- Google Guava -->
-			<dependency>
-				<groupId>com.google.guava</groupId>
-				<artifactId>guava</artifactId>
-				<version>${version.google-guava}</version>
-			</dependency>
-
-			<!-- Json-Xml-Converter -->
-			<dependency>
-				<groupId>de.odysseus.staxon</groupId>
-				<artifactId>staxon-gson</artifactId>
-				<version>${version.odysseus-staxon}</version>
-			</dependency>
-
-			<!-- xerces -->
-			<!-- <dependency> -->
-			<!-- <groupId>xerces</groupId> -->
-			<!-- <artifactId>xercesImpl</artifactId> -->
-			<!-- <version>${version.xerces}</version> -->
-			<!-- </dependency> -->
-
-			<!-- jodd to zip -->
-			<dependency>
-				<groupId>org.jodd</groupId>
-				<artifactId>jodd-core</artifactId>
-				<version>${version.jodd}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>commons-lang</groupId>
-				<artifactId>commons-lang</artifactId>
-				<version>${version.commons.lang}</version>
-			</dependency>
-
-			<!-- Apache Cfx -->
-			<dependency>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-rt-frontend-jaxws</artifactId>
-				<version>${version.apache.cxf}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-rt-transports-http</artifactId>
-				<version>${version.apache.cxf}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-rt-rs-client</artifactId>
-				<version>${version.apache.cxf}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-rt-rs-service-description</artifactId>
-				<version>${version.apache.cxf}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-rt-ws-security</artifactId>
-				<version>${version.apache.cxf}</version>
-			</dependency>
-
-			<!-- woodstox -->
-			<dependency>
-				<groupId>org.codehaus.woodstox</groupId>
-				<artifactId>woodstox-core-asl</artifactId>
-				<version>${version.woodstox}</version>
-			</dependency>
-
-			<!-- easybatch -->
-			<dependency>
-				<groupId>org.easybatch</groupId>
-				<artifactId>easybatch-core</artifactId>
-				<version>${version.easybatch}</version>
-			</dependency>
-
 			<!-- Openfact -->
 			<dependency>
 				<groupId>com.github.relaxng</groupId>
@@ -456,8 +298,8 @@
 				<version>${jboss.spec.javax.xml.bind.jboss-jaxb-api_2.2_spec.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.keycloak</groupId>
-				<artifactId>keycloak-wildfly-adapter-subsystem</artifactId>
+				<groupId>org.openfact</groupId>
+				<artifactId>openfact-wildfly-adapter-subsystem</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -867,6 +709,17 @@
 				<artifactId>openfact-kerberos-federation</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			<!-- Dependencies for RHEL IdM -->
+			<dependency>
+				<groupId>org.openfact</groupId>
+				<artifactId>openfact-sssd-federation</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.java.dev.jna</groupId>
+				<artifactId>jna</artifactId>
+				<version>${jna.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.openfact</groupId>
 				<artifactId>openfact-ldap-federation</artifactId>
@@ -1106,11 +959,6 @@
 			</dependency>
 			<dependency>
 				<groupId>org.openfact</groupId>
-				<artifactId>openfact-model-storage</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
 				<artifactId>openfact-model-mongo</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -1199,16 +1047,6 @@
 				<artifactId>openfact-services</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-services-api</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>testsuite-wildfly-swarm-base</artifactId>
-				<version>${project.version}</version>
-			</dependency>
 
 			<!-- Authorization -->
 			<dependency>
@@ -1259,6 +1097,18 @@
 			</dependency>
 			<dependency>
 				<groupId>org.openfact</groupId>
+				<artifactId>openfact-fuse-adapter-dist</artifactId>
+				<version>${project.version}</version>
+				<type>zip</type>
+			</dependency>
+			<dependency>
+				<groupId>org.openfact</groupId>
+				<artifactId>openfact-fuse-adapter-dist</artifactId>
+				<version>${project.version}</version>
+				<type>tar.gz</type>
+			</dependency>
+			<dependency>
+				<groupId>org.openfact</groupId>
 				<artifactId>openfact-wildfly-adapter-dist</artifactId>
 				<version>${project.version}</version>
 				<type>zip</type>
@@ -1295,12 +1145,6 @@
 			<dependency>
 				<groupId>org.openfact</groupId>
 				<artifactId>openfact-api-docs-dist</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-src-dist</artifactId>
 				<version>${project.version}</version>
 				<type>zip</type>
 			</dependency>
@@ -1481,6 +1325,162 @@
 				<version>${project.version}</version>
 				<type>war</type>
 			</dependency>
+			<dependency>
+				<groupId>org.openfact</groupId>
+				<artifactId>openfact-client-registration-cli</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openfact</groupId>
+				<artifactId>openfact-client-cli-dist</artifactId>
+				<version>${project.version}</version>
+				<type>zip</type>
+			</dependency>
+
+			<!-- Secondary Start -->
+			<dependency>
+				<groupId>org.openfact</groupId>
+				<artifactId>openfact-services-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.wildfly.swarm</groupId>
+				<artifactId>bom-all</artifactId>
+				<version>${version.wildfly-swarm}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.arquillian</groupId>
+				<artifactId>arquillian-bom</artifactId>
+				<version>${version.arquillian-bom}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.arquillian.extension</groupId>
+				<artifactId>arquillian-drone-bom</artifactId>
+				<version>${version.arquillian-drone-bom}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.arquillian.graphene</groupId>
+				<artifactId>graphene-webdriver</artifactId>
+				<version>${version.graphene-webdriver}</version>
+				<type>pom</type>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-api</artifactId>
+				<version>${version.javaee-api}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.fasterxml.jackson.datatype</groupId>
+				<artifactId>jackson-datatype-jsr310</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${hibernate.validator.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-java8</artifactId>
+				<version>${hibernate.entitymanager.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jvnet.jaxb2_commons</groupId>
+				<artifactId>jaxb2-basics-runtime</artifactId>
+				<version>${jaxb2.basics.runtime}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.rest-assured</groupId>
+				<artifactId>rest-assured</artifactId>
+				<version>${version.rest-assured}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.helger</groupId>
+				<artifactId>ph-ubl-parent-pom</artifactId>
+				<version>${version.ph-ubl}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${version.google-guava}</version>
+			</dependency>
+			<dependency>
+				<groupId>de.odysseus.staxon</groupId>
+				<artifactId>staxon-gson</artifactId>
+				<version>${version.odysseus-staxon}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jodd</groupId>
+				<artifactId>jodd-core</artifactId>
+				<version>${version.jodd}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>${version.commons.lang}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-frontend-jaxws</artifactId>
+				<version>${version.apache.cxf}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-transports-http</artifactId>
+				<version>${version.apache.cxf}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-rs-client</artifactId>
+				<version>${version.apache.cxf}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-rs-service-description</artifactId>
+				<version>${version.apache.cxf}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-ws-security</artifactId>
+				<version>${version.apache.cxf}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.woodstox</groupId>
+				<artifactId>woodstox-core-asl</artifactId>
+				<version>${version.woodstox}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.easybatch</groupId>
+				<artifactId>easybatch-core</artifactId>
+				<version>${version.easybatch}</version>
+			</dependency>
+			<dependency>
+				<groupId>xerces</groupId>
+				<artifactId>xercesImpl</artifactId>
+				<version>${version.xerces}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.xml.ws</groupId>
+				<artifactId>jaxws-rt</artifactId>
+				<version>${version.jaxws-rt}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.keycloak</groupId>
+				<artifactId>keycloak-core</artifactId>
+				<version>${version.keycloak}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -1507,143 +1507,29 @@
 			<type>pom</type>
 			<scope>test</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>9.1-901-1.jdbc4</version>
-		</dependency>
 	</dependencies>
 
 	<repositories>
-		<!-- for wildfly swarm -->
-		<repository>
-			<id>projectodd-snapshots</id>
-			<name>Project:odd Snapshots from CI</name>
-			<url>https://repository-projectodd.forge.cloudbees.com/snapshot</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-
 		<!-- for org.jboss.web:jbossweb -->
 		<repository>
 			<id>jboss</id>
 			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
 		</repository>
-
-		<!-- jasper report -->
-		<repository>
-			<id>jasper</id>
-			<url>http://jasperreports.sourceforge.net/maven2/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>jasper1</id>
-			<url>http://jaspersoft.artifactoryonline.com/jaspersoft/jaspersoft-repo/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
 	</repositories>
+
 	<pluginRepositories>
-		<!--Miredot -->
+		<!-- for miredot -->
 		<pluginRepository>
 			<id>miredot</id>
 			<name>Miredot Releases</name>
 			<url>http://nexus.qmino.com/content/repositories/miredot</url>
-		</pluginRepository>
-
-		<pluginRepository>
-			<id>projectodd-snapshots</id>
-			<name>Project:odd Snapshots from CI</name>
-			<url>https://repository-projectodd.forge.cloudbees.com/snapshot</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-
-		<!-- needed until the latest version of gradle-maven-plugin is released 
-			to central: https://github.com/LendingClub/gradle-maven-plugin/issues/25 -->
-		<pluginRepository>
-			<id>spring</id>
-			<name>Spring releases</name>
-			<url>http://repo.spring.io/libs-release-remote/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
 
 	<build>
 		<pluginManagement>
 			<plugins>
-				<!-- Wildfly swarm -->
-				<plugin>
-					<groupId>org.wildfly.swarm</groupId>
-					<artifactId>wildfly-swarm-plugin</artifactId>
-					<version>${version.wildfly-swarm}</version>
-					<configuration>
-						<jvmArguments>
-							<jvmArgument>-Xmx128m</jvmArgument>
-						</jvmArguments>
-					</configuration>
-					<executions>
-						<execution>
-							<id>package</id>
-							<goals>
-								<goal>package</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-				<plugin>
-					<artifactId>maven-clean-plugin</artifactId>
-					<version>3.0.0</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.5.1</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-failsafe-plugin</artifactId>
-					<version>2.19.1</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.19.1</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-war-plugin</artifactId>
-					<version>2.6</version>
-				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>build-helper-maven-plugin</artifactId>
-					<version>1.10</version>
-				</plugin>
-
+				<!-- Principal -->
 				<plugin>
 					<groupId>org.sonatype.plugins</groupId>
 					<artifactId>nexus-staging-maven-plugin</artifactId>
@@ -1666,7 +1552,6 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.19.1</version>
 					<configuration>
 						<forkMode>once</forkMode>
 						<argLine>${surefire.memory.settings}</argLine>
@@ -1757,112 +1642,9 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
-		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>add-source</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>add-test-source</goal>
-						</goals>
-						<configuration>
-							<sources>
-								<source>src/it/java</source>
-							</sources>
-						</configuration>
-					</execution>
-					<execution>
-						<id>add-resource</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>add-test-resource</goal>
-						</goals>
-						<configuration>
-							<resources>
-								<resource>
-									<directory>src/it/resources</directory>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<artifactId>maven-failsafe-plugin</artifactId>
-				<configuration>
-					<includes>
-						<include>**/*IT.java</include>
-					</includes>
-					<systemPropertyVariables>
-						<phantomjs.binary.version>2.1.1</phantomjs.binary.version>
-					</systemPropertyVariables>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>integration-test</goal>
-							<goal>verify</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
 	</build>
 
 	<profiles>
-		<!-- Wildfly swarm -->
-		<profile>
-			<id>docker</id>
-		</profile>
-		<profile>
-			<id>uberjar</id>
-			<properties>
-				<wildfly-swarm.useUberJar>true</wildfly-swarm.useUberJar>
-			</properties>
-		</profile>
-		<profile>
-			<id>not-skipping-tests</id>
-			<activation>
-				<property>
-					<name>!skipTests</name>
-				</property>
-			</activation>
-			<build>
-				<pluginManagement>
-					<plugins>
-						<plugin>
-							<groupId>org.wildfly.swarm</groupId>
-							<artifactId>wildfly-swarm-plugin</artifactId>
-							<version>${version.wildfly-swarm}</version>
-							<executions>
-								<execution>
-									<id>start</id>
-									<phase>pre-integration-test</phase>
-									<goals>
-										<goal>start</goal>
-									</goals>
-									<configuration>
-										<stdoutFile>target/stdout.log</stdoutFile>
-										<stderrFile>target/stderr.log</stderrFile>
-									</configuration>
-								</execution>
-								<execution>
-									<id>stop</id>
-									<phase>post-integration-test</phase>
-									<goals>
-										<goal>stop</goal>
-									</goals>
-								</execution>
-							</executions>
-						</plugin>
-					</plugins>
-				</pluginManagement>
-			</build>
-		</profile>
-
 		<profile>
 			<id>distribution</id>
 			<modules>

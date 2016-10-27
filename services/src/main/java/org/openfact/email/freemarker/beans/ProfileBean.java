@@ -38,15 +38,9 @@ public class ProfileBean {
         this.user = user;
 
         if (user.getAttributes() != null) {
-            for (Map.Entry<String, List<String>> attr : user.getAttributes().entrySet()) {
-                List<String> attrValue = attr.getValue();
-                if (attrValue != null && attrValue.size() > 0) {
-                    attributes.put(attr.getKey(), attrValue.get(0));
-                }
-
-                if (attrValue != null && attrValue.size() > 1) {
-                    logger.warnf("There are more values for attribute '%s' of user '%s' . Will display just first value", attr.getKey(), user.getUsername());
-                }
+            for (Map.Entry<String, Object> attr : user.getAttributes().entrySet()) {
+                Object attrValue = attr.getValue();
+                attributes.put(attr.getKey(), String.valueOf(attrValue));
             }
         }
     }

@@ -25,9 +25,9 @@ import org.openfact.provider.Provider;
  */
 public interface InfinispanConnectionProvider extends Provider {
 
-    String ORGANIZATION_CACHE_NAME = "organizations";
-    String ORGANIZATION_REVISIONS_CACHE_NAME = "organizationRevisions";
-    int ORGANIZATION_REVISIONS_CACHE_DEFAULT_MAX = 10000;
+    String REALM_CACHE_NAME = "realms";
+    String REALM_REVISIONS_CACHE_NAME = "realmRevisions";
+    int REALM_REVISIONS_CACHE_DEFAULT_MAX = 10000;
 
     String USER_CACHE_NAME = "users";
     String USER_REVISIONS_CACHE_NAME = "userRevisions";
@@ -38,6 +38,11 @@ public interface InfinispanConnectionProvider extends Provider {
     String LOGIN_FAILURE_CACHE_NAME = "loginFailures";
     String WORK_CACHE_NAME = "work";
     String AUTHORIZATION_CACHE_NAME = "authorization";
+
+    String KEYS_CACHE_NAME = "keys";
+    int KEYS_CACHE_DEFAULT_MAX = 1000;
+    int KEYS_CACHE_MAX_IDLE_SECONDS = 3600;
+
 
     <K, V> Cache<K, V> getCache(String name);
 

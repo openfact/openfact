@@ -32,13 +32,11 @@ public interface OrganizationProvider extends Provider {
 
     List<OrganizationModel> searchForOrganization(String filterText, Integer firstResult, Integer maxResults);
 
-    List<OrganizationModel> searchForOrganization(Map<String, String> attributes, Integer firstResult,
-            Integer maxResults);
+    List<OrganizationModel> searchForOrganization(Map<String, String> attributes, Integer firstResult, Integer maxResults);
 
     SearchResultsModel<OrganizationModel> searchForOrganization(SearchCriteriaModel criteria);
 
-    SearchResultsModel<OrganizationModel> searchForOrganization(SearchCriteriaModel criteria,
-            String filterText);
+    SearchResultsModel<OrganizationModel> searchForOrganization(SearchCriteriaModel criteria, String filterText);
 
     void close();
 

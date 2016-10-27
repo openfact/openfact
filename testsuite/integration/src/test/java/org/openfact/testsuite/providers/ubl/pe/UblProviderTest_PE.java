@@ -15,7 +15,6 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.models.ubl.CreditNoteModel;
 import org.openfact.models.ubl.DebitNoteModel;
 import org.openfact.models.ubl.InvoiceModel;
-import org.openfact.models.utils.DocumentUtils;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.managers.OrganizationManager;
@@ -43,7 +42,6 @@ public class UblProviderTest_PE extends AbstractProviderTest {
 		OrganizationRepresentation rep = AbstractProviderTest.loadJson("model/testorganization2.json");
 		rep.setId("TestUblProvider");
 		organization = manager.importOrganization(rep);
-		OpenfactModelUtils.generateOrganizationKeys(organization);
 	}
 
 	@Test

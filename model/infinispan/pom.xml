@@ -14,6 +14,7 @@
 	<description />
 
 	<dependencies>
+		<!-- Principal Start -->
 		<dependency>
 			<groupId>org.openfact</groupId>
 			<artifactId>openfact-core</artifactId>
@@ -32,6 +33,7 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- Principal End -->
 	</dependencies>
 	<build>
 		<plugins>

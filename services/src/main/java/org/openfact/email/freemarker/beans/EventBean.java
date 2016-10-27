@@ -42,10 +42,6 @@ public class EventBean {
         return event.getType().toString().toLowerCase().replace("_", " ");
     }
 
-    public String getClient() {
-        return event.getClientId();
-    }
-
     public String getIpAddress() {
         return event.getIpAddress();
     }

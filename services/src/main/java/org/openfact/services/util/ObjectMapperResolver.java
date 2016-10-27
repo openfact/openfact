@@ -18,17 +18,14 @@
 package org.openfact.services.util;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import javax.ws.rs.ext.ContextResolver;
 import javax.ws.rs.ext.Provider;
 
 /**
- * Any class with package org.jboss.resteasy.skeleton.key will use NON_DEFAULT
- * inclusion
+ * Any class with package org.jboss.resteasy.skeleton.key will use NON_DEFAULT inclusion
  *
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
@@ -42,10 +39,6 @@ public class ObjectMapperResolver implements ContextResolver<ObjectMapper> {
         if (indent) {
             mapper.enable(SerializationFeature.INDENT_OUTPUT);
         }
-
-        mapper.registerModule(new JavaTimeModule());
-        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        mapper.disable(DeserializationFeature.READ_DATE_TIMESTAMPS_AS_NANOSECONDS);
     }
 
     @Override

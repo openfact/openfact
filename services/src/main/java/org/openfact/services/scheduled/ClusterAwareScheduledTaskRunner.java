@@ -17,13 +17,14 @@
 
 package org.openfact.services.scheduled;
 
-import java.util.concurrent.Callable;
-
+import org.jboss.logging.Logger;
 import org.openfact.cluster.ClusterProvider;
 import org.openfact.cluster.ExecutionResult;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.timer.ScheduledTask;
+
+import java.util.concurrent.Callable;
 
 /**
  * Ensures that there are not concurrent executions of same task (either on this host or any other cluster host)
@@ -31,6 +32,8 @@ import org.openfact.timer.ScheduledTask;
  * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
  */
 public class ClusterAwareScheduledTaskRunner extends ScheduledTaskRunner {
+
+    private static final Logger logger = Logger.getLogger(ClusterAwareScheduledTaskRunner.class);
 
     private final int intervalSecs;
 

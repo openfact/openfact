@@ -19,6 +19,18 @@
 	</properties>
 
 	<dependencies>
+		<!-- Secondary Start -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-java8</artifactId>
+		</dependency>
+		<!-- Secondary End -->
+
+		<!-- Principal Start -->
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bcprov-jdk15on</artifactId>
@@ -90,18 +102,7 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- Hibernate Validator -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-		</dependency>
-
-		<!-- Hibernate Java8 -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-java8</artifactId>
-		</dependency>
+		<!-- Principal End -->
 	</dependencies>
 	<build>
 		<plugins>
@@ -112,41 +113,6 @@
 					<source>${maven.compiler.source}</source>
 					<target>${maven.compiler.target}</target>
 				</configuration>
-			</plugin>
-
-			<!-- Liquibase -->
-			<plugin>
-				<groupId>org.liquibase</groupId>
-				<artifactId>liquibase-maven-plugin</artifactId>
-				<configuration>
-					<changeLogFile>${project.build.directory}/changelog-master.xml</changeLogFile>
-					<diffChangeLogFile>${project.build.directory}/changelog-diff.xml</diffChangeLogFile>
-					<outputChangeLogFile>${project.build.directory}/changelog-output.xml</outputChangeLogFile>
-					<driver>org.postgresql.Driver</driver>
-					<url>jdbc:postgresql://localhost:5432/test</url>
-					<username>postgres</username>
-					<password>123456</password>
-					<vervose>true</vervose>
-					<dropFirst>true</dropFirst>
-					<referenceUrl>hibernate:spring:org.openfact?dialect=org.hibernate.dialect.PostgreSQLDialect</referenceUrl>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>org.liquibase.ext</groupId>
-						<artifactId>liquibase-hibernate4</artifactId>
-						<version>3.5</version>
-					</dependency>
-					<dependency>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-beans</artifactId>
-						<version>4.1.7.RELEASE</version>
-					</dependency>
-					<dependency>
-						<groupId>org.springframework.data</groupId>
-						<artifactId>spring-data-jpa</artifactId>
-						<version>1.7.3.RELEASE</version>
-					</dependency>
-				</dependencies>
 			</plugin>
 		</plugins>
 	</build>

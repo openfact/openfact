@@ -29,8 +29,6 @@ public interface EventQuery {
 
     public EventQuery organization(String organizationId);
 
-    public EventQuery client(String clientId);
-
     public EventQuery user(String userId);
 
     public EventQuery fromDate(Date fromDate);

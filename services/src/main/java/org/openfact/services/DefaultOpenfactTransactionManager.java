@@ -1,22 +1,50 @@
+/*
+ * Copyright 2016 Red Hat, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.openfact.services;
 
+import org.jboss.logging.Logger;
+import org.openfact.models.OpenfactSession;
+import org.openfact.models.OpenfactTransaction;
+import org.openfact.models.OpenfactTransactionManager;
+import org.openfact.transaction.JtaTransactionManagerLookup;
+import org.openfact.transaction.JtaTransactionWrapper;
+
+import javax.transaction.TransactionManager;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.jboss.logging.Logger;
-import org.openfact.models.OpenfactTransaction;
-import org.openfact.models.OpenfactTransactionManager;
-import org.openfact.services.filters.OpenfactTransactionCommitter;
-
+/**
+ * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
+ */
 public class DefaultOpenfactTransactionManager implements OpenfactTransactionManager {
 
-    public static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
+    private static final Logger logger = Logger.getLogger(DefaultOpenfactTransactionManager.class);
 
     private List<OpenfactTransaction> prepare = new LinkedList<OpenfactTransaction>();
     private List<OpenfactTransaction> transactions = new LinkedList<OpenfactTransaction>();
     private List<OpenfactTransaction> afterCompletion = new LinkedList<OpenfactTransaction>();
     private boolean active;
     private boolean rollback;
+    private OpenfactSession session;
+    private JTAPolicy jtaPolicy = JTAPolicy.REQUIRES_NEW;
+
+    public DefaultOpenfactTransactionManager(OpenfactSession session) {
+        this.session = session;
+    }
 
     @Override
     public void enlist(OpenfactTransaction transaction) {
@@ -46,9 +74,28 @@ public class DefaultOpenfactTransactionManager implements OpenfactTransactionMan
     }
 
     @Override
+    public JTAPolicy getJTAPolicy() {
+        return jtaPolicy;
+    }
+
+    @Override
+    public void setJTAPolicy(JTAPolicy policy) {
+        jtaPolicy = policy;
+
+    }
+
+    @Override
     public void begin() {
         if (active) {
              throw new IllegalStateException("Transaction already active");
+        }
+
+        if (jtaPolicy == JTAPolicy.REQUIRES_NEW) {
+            JtaTransactionManagerLookup jtaLookup = session.getProvider(JtaTransactionManagerLookup.class);
+            TransactionManager tm = jtaLookup.getTransactionManager();
+            if (tm != null) {
+                enlist(new JtaTransactionWrapper(tm));
+            }
         }
 
         for (OpenfactTransaction tx : transactions) {
@@ -94,7 +141,7 @@ public class DefaultOpenfactTransactionManager implements OpenfactTransactionMan
                 try {
                     tx.rollback();
                 } catch (RuntimeException e) {
-                    logger.exceptionDuringRollback(e);
+                    ServicesLogger.LOGGER.exceptionDuringRollback(e);
                 }
             }
         }

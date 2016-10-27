@@ -23,7 +23,6 @@ public class OrganizationSpi implements Spi {
 
     @Override
     public boolean isInternal() {
-        // TODO Auto-generated method stub
         return false;
     }
 

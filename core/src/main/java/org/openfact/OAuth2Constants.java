@@ -81,4 +81,9 @@ public interface OAuth2Constants {
 
     String MAX_AGE = "max_age";
 
+    String JWT = "JWT";
+
+
 }
+
+

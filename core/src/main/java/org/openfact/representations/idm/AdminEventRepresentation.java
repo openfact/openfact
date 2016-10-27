@@ -23,7 +23,7 @@ package org.openfact.representations.idm;
 public class AdminEventRepresentation {
 
     private long time;
-    private String realmId;
+    private String organizationId;
     private AuthDetailsRepresentation authDetails;
     private String operationType;
     private String resourceType;
@@ -39,12 +39,12 @@ public class AdminEventRepresentation {
         this.time = time;
     }
 
-    public String getRealmId() {
-        return realmId;
+    public String getOrganizationId() {
+        return organizationId;
     }
 
-    public void setRealmId(String realmId) {
-        this.realmId = realmId;
+    public void setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
     }
 
     public AuthDetailsRepresentation getAuthDetails() {

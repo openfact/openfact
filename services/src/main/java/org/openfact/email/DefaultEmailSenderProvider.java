@@ -17,12 +17,13 @@
 
 package org.openfact.email;
 
-import org.openfact.truststore.HostnameVerificationPolicy;
-import org.openfact.truststore.JSSETruststoreConfigurator;
+import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.UserModel;
 import org.openfact.services.ServicesLogger;
+import org.openfact.truststore.HostnameVerificationPolicy;
+import org.openfact.truststore.JSSETruststoreConfigurator;
 
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
@@ -44,7 +45,7 @@ import java.util.Properties;
  */
 public class DefaultEmailSenderProvider implements EmailSenderProvider {
 
-    private static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
+    private static final Logger logger = Logger.getLogger(DefaultEmailSenderProvider.class);
 
     private final OpenfactSession session;
 
@@ -53,11 +54,11 @@ public class DefaultEmailSenderProvider implements EmailSenderProvider {
     }
 
     @Override
-    public void send(OrganizationModel organization, UserModel user, String subject, String textBody, String htmlBody) throws EmailException {
+    public void send(OrganizationModel realm, UserModel user, String subject, String textBody, String htmlBody) throws EmailException {
         Transport transport = null;
         try {
             String address = user.getEmail();
-            Map<String, String> config = organization.getSmtpConfig();
+            Map<String, String> config = realm.getSmtpConfig();
 
             Properties props = new Properties();
             props.setProperty("mail.smtp.host", config.get("host"));
@@ -123,7 +124,7 @@ public class DefaultEmailSenderProvider implements EmailSenderProvider {
             }
             transport.sendMessage(msg, new InternetAddress[]{new InternetAddress(address)});
         } catch (Exception e) {
-            logger.failedToSendEmail(e);
+            ServicesLogger.LOGGER.failedToSendEmail(e);
             throw new EmailException(e);
         } finally {
             if (transport != null) {

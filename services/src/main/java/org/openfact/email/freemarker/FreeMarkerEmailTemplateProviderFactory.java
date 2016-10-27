@@ -20,9 +20,9 @@ package org.openfact.email.freemarker;
 import org.openfact.Config;
 import org.openfact.email.EmailTemplateProvider;
 import org.openfact.email.EmailTemplateProviderFactory;
-import org.openfact.theme.FreeMarkerUtil;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
+import org.openfact.theme.FreeMarkerUtil;
 
 /**
  * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>

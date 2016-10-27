@@ -27,11 +27,11 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.jboss.logging.Logger;
 import org.openfact.Config;
-import org.openfact.truststore.TruststoreProvider;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.common.util.EnvUtil;
 import org.openfact.common.util.KeystoreUtil;
+import org.openfact.models.OpenfactSession;
+import org.openfact.models.OpenfactSessionFactory;
+import org.openfact.truststore.TruststoreProvider;
 
 import java.io.IOException;
 import java.io.InputStream;

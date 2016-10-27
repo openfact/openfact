@@ -20,7 +20,7 @@
 	</properties>
 
 	<dependencies>
-		<!-- Apache cfx -->
+		<!-- Secondary Start -->
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-frontend-jaxws</artifactId>
@@ -42,25 +42,19 @@
 			<artifactId>cxf-rt-ws-security</artifactId>
 		</dependency>
 
-		<!-- woodstox -->
 		<dependency>
 			<groupId>org.codehaus.woodstox</groupId>
 			<artifactId>woodstox-core-asl</artifactId>
 		</dependency>
-
-		<!-- Json-Xml-Converter -->
 		<dependency>
 			<groupId>de.odysseus.staxon</groupId>
 			<artifactId>staxon-gson</artifactId>
 		</dependency>
-
-		<!-- to compile xjc-generated sources -->
 		<dependency>
 			<groupId>org.jvnet.jaxb2_commons</groupId>
 			<artifactId>jaxb2-basics-runtime</artifactId>
 		</dependency>
 
-		<!-- Ph-ubl -->
 		<dependency>
 			<groupId>com.helger</groupId>
 			<artifactId>ph-ubl21</artifactId>
@@ -74,47 +68,50 @@
 			<artifactId>ph-commons</artifactId>
 		</dependency>
 
-		<!-- jodd-core to zip -->
 		<dependency>
 			<groupId>org.jodd</groupId>
 			<artifactId>jodd-core</artifactId>
 		</dependency>
-
-		<!-- xmlsec -->
 		<dependency>
 			<groupId>org.apache.santuario</groupId>
 			<artifactId>xmlsec</artifactId>
 		</dependency>
-
-		<!-- Google guava -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 		</dependency>
-
-		<!-- commons-lang -->
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
 		</dependency>
 
-		<!-- Java 8 Time -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-jsr310</artifactId>
 		</dependency>
-
-		<!-- easybatch -->
 		<dependency>
 			<groupId>org.easybatch</groupId>
 			<artifactId>easybatch-core</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.ws</groupId>
+			<artifactId>jaxws-rt</artifactId>
+		</dependency>
 
+		<dependency>
+			<groupId>org.keycloak</groupId>
+			<artifactId>keycloak-core</artifactId>
+		</dependency>
+		<!-- Secondary End -->
+
+		<!-- Extra Start -->
 		<dependency>
 			<groupId>org.openfact</groupId>
 			<artifactId>openfact-services-api</artifactId>
 		</dependency>
+		<!-- Extra End -->
 
+		<!-- Principal Start -->
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bcprov-jdk15on</artifactId>
@@ -221,12 +218,6 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>com.sun.xml.ws</groupId>
-			<artifactId>jaxws-rt</artifactId>
-			<version>2.2.8</version>
-		</dependency>
 		<dependency>
 			<groupId>com.icegreen</groupId>
 			<artifactId>greenmail</artifactId>
@@ -238,21 +229,9 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- Principal End -->
 	</dependencies>
 	<build>
-		<!-- <resources> -->
-		<!-- <resource> -->
-		<!-- <targetPath>META-INF</targetPath> -->
-		<!-- <directory>src</directory> -->
-		<!-- <includes> -->
-		<!-- <include>jax-ws-catalog.xml</include> -->
-		<!-- <include>wsdl/**</include> -->
-		<!-- </includes> -->
-		<!-- </resource> -->
-		<!-- <resource> -->
-		<!-- <directory>src/main/resources</directory> -->
-		<!-- </resource> -->
-		<!-- </resources> -->
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -260,59 +239,17 @@
 				<configuration>
 					<source>${maven.compiler.source}</source>
 					<target>${maven.compiler.target}</target>
+					<compilerArgument>
+						-AgeneratedTranslationFilesPath=${project.build.directory}/generated-translation-files
+					</compilerArgument>
 				</configuration>
 			</plugin>
-			<!-- <plugin> -->
-			<!-- <groupId>org.jvnet.jax-ws-commons</groupId> -->
-			<!-- <artifactId>jaxws-maven-plugin</artifactId> -->
-			<!-- <version>2.3</version> -->
-			<!-- <dependencies> -->
-			<!-- put xjc-plugins on the jaxws-maven-plugin's classpath -->
-			<!-- <dependency> -->
-			<!-- <groupId>org.jvnet.jaxb2_commons</groupId> -->
-			<!-- <artifactId>jaxb2-basics</artifactId> -->
-			<!-- <version>0.6.4</version> -->
-			<!-- </dependency> -->
-			<!-- </dependencies> -->
-			<!-- <configuration> -->
-			<!-- <sourceDestDir>${project.build.directory}/generated-sources/jaxws-wsimport</sourceDestDir> -->
-			<!-- <xnocompile>true</xnocompile> -->
-			<!-- <verbose>true</verbose> -->
-			<!-- <extension>true</extension> -->
-			<!-- <catalog>${project.build.directory}/generated-sources/jaxws-wsimport/jax-ws-catalog.xml</catalog> -->
-			<!-- tell JAXB to actually use xjc-plugins -->
-			<!-- <xjcArgs> -->
-			<!-- <xjcArg>-Xequals</xjcArg> -->
-			<!-- <xjcArg>-XtoString</xjcArg> -->
-			<!-- </xjcArgs> -->
-			<!-- Needed with JAXP 1.5 -->
-			<!-- <vmArgs> -->
-			<!-- <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg> -->
-			<!-- </vmArgs> -->
-			<!-- </configuration> -->
-			<!-- <executions> -->
-			<!-- <execution> -->
-			<!-- <goals> -->
-			<!-- <goal>wsimport</goal> -->
-			<!-- </goals> -->
-			<!-- <configuration> -->
-			<!-- <staleFile>${project.build.directory}/jaxws/stale/billService.stale</staleFile> -->
-			<!-- <packageName>org.openfact.ubl.pe.send</packageName> -->
-			<!-- <wsdlUrls> -->
-			<!-- <wsdlUrl>https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService?wsdl</wsdlUrl> -->
-			<!-- </wsdlUrls> -->
-			<!-- </configuration> -->
-			<!-- </execution> -->
-
-			<!-- </executions> -->
-			<!-- </plugin> -->
 		</plugins>
 	</build>
 
 	<profiles>
 		<profile>
 			<id>jboss-release</id>
-
 			<repositories>
 				<repository>
 					<snapshots>
@@ -341,7 +278,7 @@
 										<version>${version.swagger.doclet}</version>
 									</docletArtifact>
 
-									<subpackages>org.keycloak.services.resources.admin:org.keycloak.protocol.oidc</subpackages>
+									<subpackages>org.openfact.services.resources.admin:org.openfact.protocol.oidc</subpackages>
 									<detectOfflineLinks>false</detectOfflineLinks>
 									<offlineLinks>
 										<offlineLink>
@@ -354,7 +291,7 @@
 									<useStandardDocletOptions>false</useStandardDocletOptions>
 									<additionalparam> -skipUiFiles -apiVersion 1
 										-includeResourcePrefixes
-										org.keycloak.services.resources.admin,org.keycloak.protocol.oidc
+										org.openfact.services.resources.admin,org.openfact.protocol.oidc
 										-docBasePath /apidocs -apiBasePath http://localhost:8080/auth
 										-apiInfoFile ${project.basedir}/src/docs/swagger/apiinfo.json</additionalparam>
 								</configuration>

@@ -17,9 +17,9 @@
 
 package org.openfact.email.freemarker.beans;
 
-import java.util.Date;
-
 import org.openfact.events.admin.AdminEvent;
+
+import java.util.Date;
 
 /**
  * @author <a href="mailto:giriraj.sharma27@gmail.com">Giriraj Sharma</a>
@@ -38,10 +38,6 @@ public class AdminEventBean {
 
     public String getOperationType() {
         return adminEvent.getOperationType().toString().toLowerCase();
-    }
-
-    public String getClient() {
-        return adminEvent.getAuthDetails().getClientId();
     }
 
     public String getIpAddress() {

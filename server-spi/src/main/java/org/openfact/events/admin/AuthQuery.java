@@ -24,8 +24,6 @@ public class AuthQuery {
 
     private String organizationId;
 
-    private String clientId;
-
     private String userId;
 
     private String ipAddress;
@@ -36,14 +34,6 @@ public class AuthQuery {
 
     public void setOrganizationId(String organizationId) {
         this.organizationId = organizationId;
-    }
-
-    public String getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
     }
 
     public String getUserId() {

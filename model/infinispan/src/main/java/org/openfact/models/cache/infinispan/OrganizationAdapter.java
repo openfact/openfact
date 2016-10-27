@@ -27,10 +27,12 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Period;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import org.openfact.component.ComponentModel;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.cache.infinispan.entities.CachedOrganization;
 import org.openfact.models.utils.OpenfactModelUtils;
@@ -732,6 +734,66 @@ public class OrganizationAdapter implements OrganizationModel {
 
     @Override
     public void setTaskEnabled(boolean taskEnabled) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public ComponentModel addComponentModel(ComponentModel model) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void updateComponent(ComponentModel component) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void removeComponent(ComponentModel component) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void removeComponents(String parentId) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public List<ComponentModel> getComponents(String parentId, String providerType) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<ComponentModel> getComponents(String parentId) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<ComponentModel> getComponents() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public ComponentModel getComponent(String id) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Map<String, String> getBrowserSecurityHeaders() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void setBrowserSecurityHeaders(Map<String, String> headers) {
         // TODO Auto-generated method stub
         
     }

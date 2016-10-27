@@ -1,11 +1,6 @@
 package org.openfact.services.resources.admin;
 
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.ws.rs.core.UriInfo;
-
+import org.jboss.logging.Logger;
 import org.openfact.common.ClientConnection;
 import org.openfact.common.util.Time;
 import org.openfact.events.EventListenerProvider;
@@ -13,15 +8,21 @@ import org.openfact.events.EventStoreProvider;
 import org.openfact.events.admin.AdminEvent;
 import org.openfact.events.admin.AuthDetails;
 import org.openfact.events.admin.OperationType;
+import org.openfact.events.admin.ResourceType;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.UserModel;
 import org.openfact.services.ServicesLogger;
 import org.openfact.util.JsonSerialization;
 
+import javax.ws.rs.core.UriInfo;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+
 public class AdminEventBuilder {
 
-    private static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
+    protected static final Logger logger = Logger.getLogger(AdminEventBuilder.class);
 
     private EventStoreProvider store;
     private List<EventListenerProvider> listeners;
@@ -37,7 +38,7 @@ public class AdminEventBuilder {
             if (store != null) {
                 this.store = store;
             } else {
-                logger.noEventStoreProvider();
+                ServicesLogger.LOGGER.noEventStoreProvider();
             }
         }
 
@@ -48,13 +49,12 @@ public class AdminEventBuilder {
                 if (listener != null) {
                     listeners.add(listener);
                 } else {
-                    logger.providerNotFound(id);
+                    ServicesLogger.LOGGER.providerNotFound(id);
                 }
             }
         }
 
         authOrganization(auth.getOrganization());
-        //authClient(auth.getClient());
         authUser(auth.getUser());
         authIpAddress(clientConnection.getRemoteAddr());
     }
@@ -69,8 +69,13 @@ public class AdminEventBuilder {
         return this;
     }
 
-    public AdminEventBuilder operation(OperationType e) {
-        adminEvent.setOperationType(e);
+    public AdminEventBuilder operation(OperationType operationType) {
+        adminEvent.setOperationType(operationType);
+        return this;
+    }
+
+    public AdminEventBuilder resource(ResourceType resourceType){
+        adminEvent.setResourceType(resourceType);
         return this;
     }
 
@@ -86,25 +91,13 @@ public class AdminEventBuilder {
         return this;
     }
 
-    /*public AdminEventBuilder authClient(ClientModel client) {
-        AuthDetails authDetails = adminEvent.getAuthDetails();
-        if(authDetails == null) {
-            authDetails =  new AuthDetails();
-            authDetails.setClientId(client.getId());
-        } else {
-            authDetails.setClientId(client.getId());
-        }
-        adminEvent.setAuthDetails(authDetails);
-        return this;
-    }*/
-
     public AdminEventBuilder authUser(UserModel user) {
         AuthDetails authDetails = adminEvent.getAuthDetails();
         if(authDetails == null) {
             authDetails =  new AuthDetails();
-            //authDetails.setUserId(user.getId());
+            authDetails.setUserId(user.getEmail());
         } else {
-            //authDetails.setUserId(user.getId());
+            authDetails.setUserId(user.getEmail());
         }
         adminEvent.setAuthDetails(authDetails);
         return this;
@@ -161,12 +154,6 @@ public class AdminEventBuilder {
         return path.substring(path.indexOf(organizationRelative) + organizationRelative.length());
     }
 
-    public void error(String error) {
-        adminEvent.setOperationType(OperationType.valueOf(adminEvent.getOperationType().name() + "_ERROR"));
-        adminEvent.setError(error);
-        send();
-    }
-
     public AdminEventBuilder representation(Object value) {
         if (value == null || value.equals("")) {
             return this;
@@ -198,7 +185,7 @@ public class AdminEventBuilder {
             try {
                 store.onEvent(adminEvent, includeRepresentation);
             } catch (Throwable t) {
-                logger.failedToSaveEvent(t);
+                ServicesLogger.LOGGER.failedToSaveEvent(t);
             }
         }
 
@@ -207,7 +194,7 @@ public class AdminEventBuilder {
                 try {
                     l.onEvent(adminEvent, includeRepresentation);
                 } catch (Throwable t) {
-                    logger.failedToSendType(t, l);
+                    ServicesLogger.LOGGER.failedToSendType(t, l);
                 }
             }
         }

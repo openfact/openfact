@@ -31,21 +31,13 @@ public class ExportImportConfig {
     public static final String PROVIDER_DEFAULT = "dir";
 
     // Name of the organization to export. If null, then full export will be triggered
-    public static final String REALM_NAME = PREFIX + "organizationName";
+    public static final String ORGANIZATION_NAME = PREFIX + "organizationName";
 
     // used for "dir" provider
     public static final String DIR = PREFIX + "dir";
 
     // used for "singleFile" provider
     public static final String FILE = PREFIX + "file";
-
-    // How to export users when organization export is requested for "dir" provider
-    public static final String USERS_EXPORT_STRATEGY = PREFIX + "usersExportStrategy";
-    public static final UsersExportStrategy DEFAULT_USERS_EXPORT_STRATEGY = UsersExportStrategy.DIFFERENT_FILES;
-
-    // Number of users per file used in "dir" provider. Used if usersExportStrategy is DIFFERENT_FILES
-    public static final String USERS_PER_FILE = PREFIX + "usersPerFile";
-    public static final Integer DEFAULT_USERS_PER_FILE = 50;
 
     // Strategy used during import data
     public static final String STRATEGY = PREFIX + "strategy";
@@ -68,14 +60,14 @@ public class ExportImportConfig {
     }
 
     public static String getOrganizationName() {
-        return System.getProperty(REALM_NAME);
+        return System.getProperty(ORGANIZATION_NAME);
     }
 
     public static void setOrganizationName(String organizationName) {
         if (organizationName != null) {
-            System.setProperty(REALM_NAME, organizationName);
+            System.setProperty(ORGANIZATION_NAME, organizationName);
         } else {
-            System.getProperties().remove(REALM_NAME);
+            System.getProperties().remove(ORGANIZATION_NAME);
         }
     }
 
@@ -93,25 +85,7 @@ public class ExportImportConfig {
 
     public static void setFile(String file) {
         System.setProperty(FILE, file);
-    }
-
-    public static UsersExportStrategy getUsersExportStrategy() {
-        String usersExportStrategy = System.getProperty(USERS_EXPORT_STRATEGY, DEFAULT_USERS_EXPORT_STRATEGY.toString());
-        return Enum.valueOf(UsersExportStrategy.class, usersExportStrategy);
-    }
-
-    public static void setUsersExportStrategy(UsersExportStrategy usersExportStrategy) {
-        System.setProperty(USERS_EXPORT_STRATEGY, usersExportStrategy.toString());
-    }
-
-    public static Integer getUsersPerFile() {
-        String usersPerFile = System.getProperty(USERS_PER_FILE, String.valueOf(DEFAULT_USERS_PER_FILE));
-        return Integer.parseInt(usersPerFile.trim());
-    }
-
-    public static void setUsersPerFile(Integer usersPerFile) {
-        System.setProperty(USERS_PER_FILE, String.valueOf(usersPerFile));
-    }
+    }      
 
     public static Strategy getStrategy() {
         String strategy = System.getProperty(STRATEGY, DEFAULT_STRATEGY.toString());

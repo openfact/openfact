@@ -17,14 +17,15 @@
 
 package org.openfact.jose.jws.crypto;
 
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.security.Signature;
-import java.security.cert.X509Certificate;
 
 import org.openfact.common.util.PemUtils;
 import org.openfact.jose.jws.Algorithm;
 import org.openfact.jose.jws.JWSInput;
+
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.Signature;
+import java.security.cert.X509Certificate;
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
@@ -33,14 +34,14 @@ import org.openfact.jose.jws.JWSInput;
 public class RSAProvider implements SignatureProvider {
     public static String getJavaAlgorithm(Algorithm alg) {
         switch (alg) {
-        case RS256:
-            return "SHA256withRSA";
-        case RS384:
-            return "SHA384withRSA";
-        case RS512:
-            return "SHA512withRSA";
-        default:
-            throw new IllegalArgumentException("Not an RSA Algorithm");
+            case RS256:
+                return "SHA256withRSA";
+            case RS384:
+                return "SHA384withRSA";
+            case RS512:
+                return "SHA512withRSA";
+            default:
+                throw new IllegalArgumentException("Not an RSA Algorithm");
         }
     }
 
@@ -89,5 +90,6 @@ public class RSAProvider implements SignatureProvider {
     public boolean verify(JWSInput input, String key) {
         return verifyViaCertificate(input, key);
     }
+
 
 }

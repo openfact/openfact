@@ -17,9 +17,6 @@
 
 package org.openfact.connections.jpa.updater.liquibase.lock;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-
 import liquibase.Liquibase;
 import liquibase.exception.DatabaseException;
 import liquibase.exception.LiquibaseException;
@@ -30,6 +27,9 @@ import org.openfact.connections.jpa.updater.liquibase.conn.LiquibaseConnectionPr
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.dblock.DBLockProvider;
 import org.openfact.models.utils.OpenfactModelUtils;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>

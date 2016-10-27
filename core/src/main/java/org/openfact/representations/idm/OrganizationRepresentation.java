@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.representations.idm.ubl.CreditNoteRepresentation;
 import org.openfact.representations.idm.ubl.DebitNoteRepresentation;
 import org.openfact.representations.idm.ubl.InvoiceRepresentation;
@@ -65,6 +66,8 @@ public class OrganizationRepresentation {
     protected List<CreditNoteRepresentation> creditNotes;
     protected List<DebitNoteRepresentation> debitNotes;
 
+    private MultivaluedHashMap<String, ComponentExportRepresentation> components;
+    
     protected String openfactVersion;
 
     public String getId() {
@@ -397,6 +400,14 @@ public class OrganizationRepresentation {
 
     public Boolean getTasksEnabled() {
         return tasksEnabled;
+    }
+
+    public MultivaluedHashMap<String, ComponentExportRepresentation> getComponents() {
+        return components;
+    }
+
+    public void setComponents(MultivaluedHashMap<String, ComponentExportRepresentation> components) {
+        this.components = components;
     }
 
 }

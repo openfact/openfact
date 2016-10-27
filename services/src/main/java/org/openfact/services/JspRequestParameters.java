@@ -22,5 +22,5 @@ package org.openfact.services;
  * @version $Revision: 1 $
  */
 public interface JspRequestParameters {
-    public static final String KEYCLOAK_SECURITY_FAILURE_MESSAGE = "KEYCLOAK_SECURITY_FAILURE_MESSAGE";
+    public static final String OPENFACT_SECURITY_FAILURE_MESSAGE = "OPENFACT_SECURITY_FAILURE_MESSAGE";
 }

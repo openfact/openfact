@@ -47,7 +47,7 @@ import org.openfact.models.ModelDuplicateException;
 @MessageLogger(projectCode="OF-SERVICES", length=4)
 public interface ServicesLogger extends BasicLogger {
 
-    ServicesLogger ROOT_LOGGER = Logger.getMessageLogger(ServicesLogger.class, "org.openfact.services");
+    ServicesLogger LOGGER = Logger.getMessageLogger(ServicesLogger.class, "org.openfact.services");
 
     @LogMessage(level = INFO)
     @Message(id=1, value="Loading config from %s")

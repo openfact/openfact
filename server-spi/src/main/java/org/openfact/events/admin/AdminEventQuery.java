@@ -39,20 +39,12 @@ public interface AdminEventQuery {
      * @param organizationId organization name
      * @return Associated <code>AdminEventQuery</code> for method chaining
      */
-    AdminEventQuery authOrganization(String organizationId);
-    
-    /**
-     * Search by authenticated client
-     *
-     * @param clientId client uuid
-     * @return Associated <code>AdminEventQuery</code> for method chaining
-     */
-    AdminEventQuery authClient(String clientId);
+    AdminEventQuery authOrganization(String organizationId);    
 
     /**
      * Search by authenticated user
      *
-     * @param userId user uuid
+     * @param userId user email
      * @return Associated <code>AdminEventQuery</code> for method chaining
      */
     AdminEventQuery authUser(String userId);

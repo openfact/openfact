@@ -34,7 +34,7 @@ import org.openfact.services.resources.OpenfactApplication;
 
 public class OrganizationsAdminResourceImpl implements OrganizationsAdminResource {
 
-    private static final Logger logger = Logger.getLogger(OrganizationsAdminResourceImpl.class);
+    protected static final Logger logger = Logger.getLogger(OrganizationsAdminResourceImpl.class);
 
     protected AdminAuth auth;
 
@@ -95,8 +95,7 @@ public class OrganizationsAdminResourceImpl implements OrganizationsAdminResourc
 
             List<OrganizationModel> organizations;
             if (filterText != null) {
-                organizations = session.organizations().searchForOrganization(filterText.trim(), firstResult,
-                        maxResults);
+                organizations = session.organizations().searchForOrganization(filterText.trim(), firstResult, maxResults);
             } else if (organizationName != null || supplierName != null || registrationName != null) {
                 Map<String, String> attributes = new HashMap<String, String>();
                 if (organizationName != null) {
@@ -132,7 +131,7 @@ public class OrganizationsAdminResourceImpl implements OrganizationsAdminResourc
     protected void addOrganizationRep(List<OrganizationRepresentation> reps, OrganizationModel organization) {
         if (auth.hasAppRole(AdminRoles.VIEW_ORGANIZATION)) {
             reps.add(ModelToRepresentation.toRepresentation(organization, false));
-        } else if (auth.hasOneRole(AdminRoles.ALL_ORGANIZATION_ROLES)) {
+        } else if (auth.hasOneOfAppRole(AdminRoles.ALL_ORGANIZATION_ROLES)) {
             OrganizationRepresentation rep = new OrganizationRepresentation();
             rep.setOrganization(organization.getName());
             reps.add(rep);
@@ -140,9 +139,7 @@ public class OrganizationsAdminResourceImpl implements OrganizationsAdminResourc
     }
 
     @Override
-    public SearchResultsRepresentation<OrganizationRepresentation> searchOrganizations(
-            SearchCriteriaRepresentation criteria) {
-
+    public SearchResultsRepresentation<OrganizationRepresentation> searchOrganizations(SearchCriteriaRepresentation criteria) {
         OrganizationManager organizationManager = new OrganizationManager(session);
         if (auth.getOrganization().equals(organizationManager.getOpenfactAdminstrationOrganization())) {
             SearchCriteriaModel criteriaModel = RepresentationToModel.toModel(criteria);
@@ -178,19 +175,13 @@ public class OrganizationsAdminResourceImpl implements OrganizationsAdminResourc
                 && !auth.getOrganization().equals(organization)) {
             throw new ForbiddenException();
         }
-        OrganizationAuth organizationAuth;
 
-        if (auth.getOrganization().equals(organizationManager.getOpenfactAdminstrationOrganization())) {
-            organizationAuth = new OrganizationAuth(auth);
-        } else {
-            organizationAuth = new OrganizationAuth(auth);
-        }
+        OrganizationAuth organizationAuth = new OrganizationAuth(auth);
 
         AdminEventBuilder adminEvent = new AdminEventBuilder(organization, auth, session, clientConnection);
         session.getContext().setOrganization(organization);
 
-        OrganizationAdminResource adminResource = new OrganizationAdminResourceImpl(organizationAuth,
-                organization, adminEvent);
+        OrganizationAdminResource adminResource = new OrganizationAdminResourceImpl(organizationAuth, organization, adminEvent);
         ResteasyProviderFactory.getInstance().injectProperties(adminResource);
         // resourceContext.initResource(adminResource);
         return adminResource;

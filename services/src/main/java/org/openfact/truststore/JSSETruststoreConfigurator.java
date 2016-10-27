@@ -21,9 +21,6 @@ import org.apache.http.conn.ssl.BrowserCompatHostnameVerifier;
 import org.apache.http.conn.ssl.StrictHostnameVerifier;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
-import org.openfact.truststore.HostnameVerificationPolicy;
-import org.openfact.truststore.TruststoreProvider;
-import org.openfact.truststore.TruststoreProviderFactory;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;

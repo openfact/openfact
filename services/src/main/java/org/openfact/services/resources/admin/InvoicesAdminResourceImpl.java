@@ -32,7 +32,7 @@ import org.openfact.services.managers.InvoiceManager;
 
 public class InvoicesAdminResourceImpl implements InvoicesAdminResource {
 
-    private static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
+    private static final ServicesLogger logger = ServicesLogger.LOGGER;
 
     protected OrganizationModel organization;
     private OrganizationAuth auth;

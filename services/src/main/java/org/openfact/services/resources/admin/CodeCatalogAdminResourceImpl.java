@@ -19,7 +19,7 @@ import org.openfact.services.managers.CodeCatalogManager;
 
 public class CodeCatalogAdminResourceImpl implements CodeCatalogAdminResource {
 
-    protected static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
+    protected static final ServicesLogger logger = ServicesLogger.LOGGER;
 
     protected OrganizationAuth auth;
     protected CodeCatalogModel codeCatalog;

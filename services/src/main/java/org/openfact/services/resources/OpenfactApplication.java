@@ -24,7 +24,6 @@ import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -37,33 +36,29 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 
 import org.jboss.dmr.ModelNode;
+import org.jboss.logging.Logger;
 import org.jboss.resteasy.core.Dispatcher;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.Config;
 import org.openfact.common.util.SystemEnvProperties;
 import org.openfact.exportimport.ExportImportManager;
 import org.openfact.migration.MigrationModelManager;
-import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.OpenfactSessionTask;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.dblock.DBLockManager;
 import org.openfact.models.dblock.DBLockProvider;
-import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.utils.PostMigrationEvent;
 import org.openfact.representations.idm.OrganizationRepresentation;
-import org.openfact.representations.idm.ubl.InvoiceRepresentation;
 import org.openfact.services.DefaultOpenfactSessionFactory;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.filters.OpenfactTransactionCommitter;
 import org.openfact.services.managers.ApplianceBootstrap;
 import org.openfact.services.managers.OrganizationManager;
-import org.openfact.services.managers.UblSyncManager;
 import org.openfact.services.resources.admin.AdminRootImpl;
 import org.openfact.services.scheduled.ClearExpiredEvents;
-import org.openfact.services.scheduled.ClearExpiredUblSessions;
 import org.openfact.services.scheduled.ClusterAwareScheduledTaskRunner;
 import org.openfact.services.util.JsonConfigProvider;
 import org.openfact.services.util.ObjectMapperResolver;
@@ -71,21 +66,23 @@ import org.openfact.timer.TimerProvider;
 import org.openfact.transaction.JtaTransactionManagerLookup;
 import org.openfact.util.JsonSerialization;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
 public class OpenfactApplication extends Application {
-    // This param name is defined again in Openfact Server Subsystem class
+ // This param name is defined again in Openfact Server Subsystem class
     // org.openfact.subsystem.server.extension.OpenfactServerDeploymentProcessor.  We have this value in
     // two places to avoid dependency between Openfact Subsystem and Openfact Services module.
     public static final String OPENFACT_CONFIG_PARAM_NAME = "org.openfact.server-subsystem.Config";
 
-    private static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
+    public static final String OPENFACT_EMBEDDED = "openfact.embedded";
+
+    private static final Logger logger = Logger.getLogger(OpenfactApplication.class);
 
     protected boolean embedded = false;
 
@@ -97,7 +94,7 @@ public class OpenfactApplication extends Application {
 
     public OpenfactApplication(@Context ServletContext context, @Context Dispatcher dispatcher) {
         try {
-            if ("true".equals(context.getInitParameter("openfact.embedded"))) {
+            if ("true".equals(context.getInitParameter(OPENFACT_EMBEDDED))) {
                 embedded = true;
             }
 
@@ -114,8 +111,6 @@ public class OpenfactApplication extends Application {
             singletons.add(new RobotsResourceImpl());
             singletons.add(new OrganizationsResourceImpl());
             singletons.add(new AdminRootImpl());
-            //classes.add(ThemeResource.class);
-            //classes.add(JsResource.class);
 
             classes.add(OpenfactTransactionCommitter.class);
 
@@ -145,20 +140,9 @@ public class OpenfactApplication extends Application {
                 exportImportManager[0].runExport();
             }
 
-            boolean bootstrapAdminUser = false;
-            OpenfactSession session = sessionFactory.create();
-            try {
-                session.getTransactionManager().begin();
-                bootstrapAdminUser = new ApplianceBootstrap(session).isNoMasterOrganization();
-
-                session.getTransactionManager().commit();
-            } finally {
-                session.close();
-            }
-
             sessionFactory.publish(new PostMigrationEvent());
 
-            singletons.add(new WelcomeResourceImpl(bootstrapAdminUser));
+            singletons.add(new WelcomeResourceImpl());
 
             setupScheduledTasks(sessionFactory);
         } catch (Throwable t) {
@@ -206,9 +190,6 @@ public class OpenfactApplication extends Application {
             if (createMasterOrganization) {
                 applianceBootstrap.createMasterOrganization(contextPath);
             }
-            if (createMasterOrganization) {
-                applianceBootstrap.createDefaultCatalog(contextPath);
-            }
             session.getTransactionManager().commit();
         } catch (RuntimeException re) {
             if (session.getTransactionManager().isActive()) {
@@ -224,8 +205,6 @@ public class OpenfactApplication extends Application {
         } else {
             importOrganizations();
         }
-
-        importAddUser();
 
         return exportImportManager;
     }
@@ -266,14 +245,14 @@ public class OpenfactApplication extends Application {
             String dmrConfig = loadDmrConfig(context);
             if (dmrConfig != null) {
                 node = new ObjectMapper().readTree(dmrConfig);
-                logger.loadingFrom("standalone.xml or domain.xml");
+                ServicesLogger.LOGGER.loadingFrom("standalone.xml or domain.xml");
             }
 
             String configDir = System.getProperty("jboss.server.config.dir");
             if (node == null && configDir != null) {
                 File f = new File(configDir + File.separator + "openfact-server.json");
                 if (f.isFile()) {
-                    logger.loadingFrom(f.getAbsolutePath());
+                    ServicesLogger.LOGGER.loadingFrom(f.getAbsolutePath());
                     node = new ObjectMapper().readTree(f);
                 }
             }
@@ -281,7 +260,7 @@ public class OpenfactApplication extends Application {
             if (node == null) {
                 URL resource = Thread.currentThread().getContextClassLoader().getResource("META-INF/openfact-server.json");
                 if (resource != null) {
-                    logger.loadingFrom(resource);
+                    ServicesLogger.LOGGER.loadingFrom(resource);
                     node = new ObjectMapper().readTree(resource);
                 }
             }
@@ -321,8 +300,6 @@ public class OpenfactApplication extends Application {
         try {
             TimerProvider timer = session.getProvider(TimerProvider.class);
             timer.schedule(new ClusterAwareScheduledTaskRunner(sessionFactory, new ClearExpiredEvents(), interval), interval, "ClearExpiredEvents");
-            timer.schedule(new ClusterAwareScheduledTaskRunner(sessionFactory, new ClearExpiredUblSessions(), interval), interval, "ClearExpiredUserSessions");
-            new UblSyncManager().bootstrapPeriodic(sessionFactory, timer);
         } finally {
             session.close();
         }
@@ -370,82 +347,29 @@ public class OpenfactApplication extends Application {
                 manager.setContextPath(getContextPath());
 
                 if (rep.getId() != null && manager.getOrganization(rep.getId()) != null) {
-                    logger.organizationExists(rep.getOrganization(), from);
+                    ServicesLogger.LOGGER.organizationExists(rep.getOrganization(), from);
                     exists = true;
                 }
 
                 if (manager.getOrganizationByName(rep.getOrganization()) != null) {
-                    logger.organizationExists(rep.getOrganization(), from);
+                    ServicesLogger.LOGGER.organizationExists(rep.getOrganization(), from);
                     exists = true;
                 }
                 if (!exists) {
                     OrganizationModel organization = manager.importOrganization(rep);
-                    logger.importedOrganization(organization.getName(), from);
+                    ServicesLogger.LOGGER.importedOrganization(organization.getName(), from);
                 }
                 session.getTransactionManager().commit();
             } catch (Throwable t) {
                 session.getTransactionManager().rollback();
                 if (!exists) {
-                    logger.unableToImportOrganization(t, rep.getOrganization(), from);
+                    ServicesLogger.LOGGER.unableToImportOrganization(t, rep.getOrganization(), from);
                 }
             }
         } finally {
             session.close();
         }
-    }
-
-    public void importAddUser() {
-        String configDir = System.getProperty("jboss.server.config.dir");
-        if (configDir != null) {
-            File addUserFile = new File(configDir + File.separator + "openfact-add-user.json");
-            if (addUserFile.isFile()) {
-                logger.importingInvoicesFrom(addUserFile);
-
-                List<OrganizationRepresentation> organizations;
-                try {
-                    organizations = JsonSerialization.readValue(new FileInputStream(addUserFile), new TypeReference<List<OrganizationRepresentation>>() {
-                    });
-                } catch (IOException e) {
-                    logger.failedToLoadInvoices(e);
-                    return;
-                }
-
-                for (OrganizationRepresentation organizationRep : organizations) {
-                    for (InvoiceRepresentation invoiceRep : organizationRep.getInvoices()) {
-                        OpenfactSession session = sessionFactory.create();
-                        try {
-                            session.getTransactionManager().begin();
-
-                            OrganizationModel organization = session.organizations().getOrganizationByName(organizationRep.getOrganization());
-                            if (organization == null) {
-                                logger.addInvoiceFailedOrganizationNotFound(invoiceRep.getIdUbl(), organizationRep.getOrganization());
-                            } else {
-                                InvoiceModel invoice = session.invoices().addInvoice(organization, invoiceRep.getIdUbl());
-                                /*invoice.setEnabled(invoiceRep.isEnabled());
-                                RepresentationToModel.createCredentials(invoiceRep, invoice);
-                                RepresentationToModel.createRoleMappings(invoiceRep, invoice, organization);*/
-                            }
-
-                            session.getTransactionManager().commit();
-                            logger.addInvoiceSuccess(invoiceRep.getIdUbl(), organizationRep.getOrganization());
-                        } catch (ModelDuplicateException e) {
-                            session.getTransactionManager().rollback();
-                            logger.addInvoiceFailedInvoiceExists(invoiceRep.getIdUbl(), organizationRep.getOrganization());
-                        } catch (Throwable t) {
-                            session.getTransactionManager().rollback();
-                            logger.addInvoiceFailed(t, invoiceRep.getIdUbl(), organizationRep.getOrganization());
-                        } finally {
-                            session.close();
-                        }
-                    }
-                }
-
-                if (!addUserFile.delete()) {
-                    logger.failedToDeleteFile(addUserFile.getAbsolutePath());
-                }
-            }
-        }
-    }
+    }    
 
     private static <T> T loadJson(InputStream is, Class<T> type) {
         try {

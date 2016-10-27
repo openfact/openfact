@@ -52,7 +52,7 @@ public class DirImportProvider implements ImportProvider {
 
         // Delete and recreate directory inside tmp
         this.rootDirectory = new File(tempDir + "/openfact-export");
-        if (!this.rootDirectory .exists()) {
+        if (!this.rootDirectory.exists()) {
             throw new IllegalStateException("Directory " + this.rootDirectory + " doesn't exists");
         }
 
@@ -61,6 +61,10 @@ public class DirImportProvider implements ImportProvider {
 
     public DirImportProvider(File rootDirectory) {
         this.rootDirectory = rootDirectory;
+
+        if (!this.rootDirectory.exists()) {
+            throw new IllegalStateException("Directory " + this.rootDirectory + " doesn't exists");
+        }
 
         logger.infof("Importing from directory %s", this.rootDirectory.getAbsolutePath());
     }
@@ -106,8 +110,10 @@ public class DirImportProvider implements ImportProvider {
     }
 
     @Override
-    public void importOrganization(OpenfactSessionFactory factory, final String organizationName, final Strategy strategy) throws IOException {
-        File organizationFile = new File(this.rootDirectory + File.separator + organizationName + "-organization.json");
+    public void importOrganization(OpenfactSessionFactory factory, final String organizationName,
+            final Strategy strategy) throws IOException {
+        File organizationFile = new File(
+                this.rootDirectory + File.separator + organizationName + "-organization.json");
         File[] userFiles = this.rootDirectory.listFiles(new FilenameFilter() {
 
             @Override
@@ -115,10 +121,18 @@ public class DirImportProvider implements ImportProvider {
                 return name.matches(organizationName + "-users-[0-9]+\\.json");
             }
         });
+        File[] federatedUserFiles = this.rootDirectory.listFiles(new FilenameFilter() {
+
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.matches(organizationName + "-federated-users-[0-9]+\\.json");
+            }
+        });
 
         // Import organization first
         FileInputStream is = new FileInputStream(organizationFile);
-        final OrganizationRepresentation organizationRep = JsonSerialization.readValue(is, OrganizationRepresentation.class);
+        final OrganizationRepresentation organizationRep = JsonSerialization.readValue(is,
+                OrganizationRepresentation.class);
         final AtomicBoolean organizationImported = new AtomicBoolean();
 
         OpenfactModelUtils.runJobInTransaction(factory, new ExportImportSessionTask() {
@@ -138,8 +152,16 @@ public class DirImportProvider implements ImportProvider {
                 OpenfactModelUtils.runJobInTransaction(factory, new ExportImportSessionTask() {
                     @Override
                     protected void runExportImportTask(OpenfactSession session) throws IOException {
-                        ImportUtils.importInvoicesFromStream(session, organizationName, JsonSerialization.mapper, fis);
-                        logger.infof("Imported users from %s", userFile.getAbsolutePath());
+
+                    }
+                });
+            }
+            for (final File userFile : federatedUserFiles) {
+                final FileInputStream fis = new FileInputStream(userFile);
+                OpenfactModelUtils.runJobInTransaction(factory, new ExportImportSessionTask() {
+                    @Override
+                    protected void runExportImportTask(OpenfactSession session) throws IOException {
+
                     }
                 });
             }

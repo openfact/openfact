@@ -5,12 +5,11 @@ import org.openfact.services.ForbiddenException;
 
 public class OrganizationAuth {
 
-    private Resource resource;
-
     public enum Resource {
-        CLIENT, CERTIFIED, INVOICE, CREDIT_NOTE, DEBIT_NOTE, ORGANIZATION, CODE_CATALOG, EVENTS, IDENTITY_PROVIDER, IMPERSONATION, AUTHORIZATION
+        ORGANIZATION, INVOICE, CREDIT_NOTE, DEBIT_NOTE, EVENTS, CODE_CATALOG
     }
 
+    private Resource resource;
     private AdminAuth auth;
 
     public OrganizationAuth(AdminAuth auth) {
@@ -27,17 +26,17 @@ public class OrganizationAuth {
     }
 
     public void requireAny() {
-        if (!auth.hasOneRole(AdminRoles.ALL_ORGANIZATION_ROLES)) {
+        if (!auth.hasOneOfAppRole(AdminRoles.ALL_ORGANIZATION_ROLES)) {
             throw new ForbiddenException();
         }
     }
 
     public boolean hasView() {
-        return auth.hasOneRole(getViewRole(resource), getManageRole(resource));
+        return auth.hasOneOfAppRole(getViewRole(resource), getManageRole(resource));
     }
 
     public boolean hasManage() {
-        return auth.hasOneRole(getManageRole(resource));
+        return auth.hasOneOfAppRole(getManageRole(resource));
     }
 
     public void requireView() {
@@ -54,26 +53,16 @@ public class OrganizationAuth {
 
     private String getViewRole(Resource resource) {
         switch (resource) {
-        /*
-         * case CLIENT: return AdminRoles.VIEW_CLIENTS;
-         */
-        case INVOICE:
-            return AdminRoles.VIEW_DOCUMENTS;
-        case CREDIT_NOTE:
-            return AdminRoles.VIEW_DOCUMENTS;
-        case DEBIT_NOTE:
-            return AdminRoles.VIEW_DOCUMENTS;
         case ORGANIZATION:
             return AdminRoles.VIEW_ORGANIZATION;
-        case CERTIFIED:
-            return AdminRoles.VIEW_CERTIFIED;
-        /*
-         * case EVENTS: return AdminRoles.VIEW_EVENTS; case IDENTITY_PROVIDER:
-         * return AdminRoles.VIEW_IDENTITY_PROVIDERS;
-         */
-        /*
-         * case AUTHORIZATION: return AdminRoles.VIEW_AUTHORIZATION;
-         */
+        case INVOICE:
+            return AdminRoles.VIEW_INVOICES;
+        case CREDIT_NOTE:
+            return AdminRoles.VIEW_CREDIT_NOTES;
+        case DEBIT_NOTE:
+            return AdminRoles.VIEW_DEBIT_NOTES;
+        case EVENTS:
+            return AdminRoles.VIEW_EVENTS;
         default:
             throw new IllegalStateException();
         }
@@ -81,27 +70,16 @@ public class OrganizationAuth {
 
     private String getManageRole(Resource resource) {
         switch (resource) {
-        /*
-         * case CLIENT: return AdminRoles.MANAGE_CLIENTS;
-         */
-        case INVOICE:
-            return AdminRoles.MANAGE_DOCUMENT;
-        case CREDIT_NOTE:
-            return AdminRoles.MANAGE_DOCUMENT;
-        case DEBIT_NOTE:
-            return AdminRoles.MANAGE_DOCUMENT;
         case ORGANIZATION:
             return AdminRoles.MANAGE_ORGANIZATION;
-        case CERTIFIED:
-            return AdminRoles.CREATE_CERTIFIED;
-        /*
-         * case EVENTS: return AdminRoles.MANAGE_EVENTS; case IDENTITY_PROVIDER:
-         * return AdminRoles.MANAGE_IDENTITY_PROVIDERS;
-         */
-        /*
-         * case IMPERSONATION: return ImpersonationConstants.IMPERSONATION_ROLE;
-         * case AUTHORIZATION: return AdminRoles.MANAGE_AUTHORIZATION;
-         */
+        case INVOICE:
+            return AdminRoles.MANAGE_INVOICES;
+        case CREDIT_NOTE:
+            return AdminRoles.MANAGE_CREDIT_NOTES;
+        case DEBIT_NOTE:
+            return AdminRoles.MANAGE_DEBIT_NOTES;
+        case EVENTS:
+            return AdminRoles.MANAGE_EVENTS;
         default:
             throw new IllegalStateException();
         }

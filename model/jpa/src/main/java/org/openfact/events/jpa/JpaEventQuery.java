@@ -27,7 +27,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
@@ -68,12 +67,6 @@ public class JpaEventQuery implements EventQuery {
     @Override
     public EventQuery organization(String organizationId) {
         predicates.add(cb.equal(root.get("organizationId"), organizationId));
-        return this;
-    }
-
-    @Override
-    public EventQuery client(String clientId) {
-        predicates.add(cb.equal(root.get("clientId"), clientId));
         return this;
     }
 

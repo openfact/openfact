@@ -6,13 +6,13 @@ import javax.xml.datatype.DatatypeConfigurationException;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.jboss.logging.Logger;
+import org.openfact.common.converts.DocumentUtils;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.ubl.CreditNoteModel;
 import org.openfact.models.ubl.DebitNoteModel;
 import org.openfact.models.ubl.InvoiceModel;
-import org.openfact.models.utils.DocumentUtils;
 import org.openfact.models.utils.ModelToType;
 import org.openfact.ubl.UblProvider;
 import org.w3c.dom.Document;
@@ -57,7 +57,7 @@ public class UblProvider_PE implements UblProvider {
 			MicroWriter.writeToStream(UBL21Writer.invoice().getAsMicroDocument(invoiceType), out,
 					new XMLWriterSettings().setNamespaceContext(mapBasedNamespace)
 							.setPutNamespaceContextPrefixesInRoot(true));
-			Document document = DocumentUtils.getByteToDocument(out.toByteArray());
+			Document document = DocumentUtils.byteToDocument(out.toByteArray());
 			// Sign new Document
 			Document ubl = UblSignature_PE.signUblDocument(organization, document);
 			// validate signature
@@ -87,7 +87,7 @@ public class UblProvider_PE implements UblProvider {
 			MicroWriter.writeToStream(UBL21Writer.creditNote().getAsMicroDocument(creditNoteType), out,
 					new XMLWriterSettings().setNamespaceContext(mapBasedNamespace)
 							.setPutNamespaceContextPrefixesInRoot(true));
-			Document document = DocumentUtils.getByteToDocument(out.toByteArray());
+			Document document = DocumentUtils.byteToDocument(out.toByteArray());
 			// Sign new Document
 			Document ubl = UblSignature_PE.signUblDocument(organization, document);
 			// validate signature
@@ -117,7 +117,7 @@ public class UblProvider_PE implements UblProvider {
 			MicroWriter.writeToStream(UBL21Writer.debitNote().getAsMicroDocument(debitNoteType), out,
 					new XMLWriterSettings().setNamespaceContext(mapBasedNamespace)
 							.setPutNamespaceContextPrefixesInRoot(true));
-			Document document = DocumentUtils.getByteToDocument(out.toByteArray());
+			Document document = DocumentUtils.byteToDocument(out.toByteArray());
 			// Sign new Document
 			Document ubl = UblSignature_PE.signUblDocument(organization, document);
 			// validate signature

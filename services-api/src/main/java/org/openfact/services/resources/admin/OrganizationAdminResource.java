@@ -57,6 +57,17 @@ public interface OrganizationAdminResource {
     void deleteOrganization();
 
     /**
+     * Base path for managing components under this organization.
+     *
+     * @return
+     */
+    @Path("components")
+    public ComponentResource getComponents();
+
+    @Path("keys")
+    public KeyResource keys();
+
+    /**
      * Get the invoices sub resource for the current organization
      */
     @Path("invoices")
@@ -107,8 +118,6 @@ public interface OrganizationAdminResource {
      *
      * @param types
      *            The types of events to return
-     * @param client
-     *            App or oauth client name
      * @param user
      *            User id
      * @param ipAddress
@@ -128,10 +137,9 @@ public interface OrganizationAdminResource {
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
     public List<EventRepresentation> getEvents(@QueryParam("type") List<String> types,
-            @QueryParam("client") String client, @QueryParam("user") String user,
-            @QueryParam("dateFrom") String dateFrom, @QueryParam("dateTo") String dateTo,
-            @QueryParam("ipAddress") String ipAddress, @QueryParam("first") Integer firstResult,
-            @QueryParam("max") Integer maxResults);
+            @QueryParam("user") String user, @QueryParam("dateFrom") String dateFrom,
+            @QueryParam("dateTo") String dateTo, @QueryParam("ipAddress") String ipAddress,
+            @QueryParam("first") Integer firstResult, @QueryParam("max") Integer maxResults);
 
     /**
      * Get admin events
@@ -140,8 +148,7 @@ public interface OrganizationAdminResource {
      * listed here
      *
      * @param operationTypes
-     * @param authRealm
-     * @param authClient
+     * @param authOrganization
      * @param authUser
      *            user id
      * @param authIpAddress
@@ -157,8 +164,8 @@ public interface OrganizationAdminResource {
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
     public List<AdminEventRepresentation> getEvents(@QueryParam("operationTypes") List<String> operationTypes,
-            @QueryParam("authRealm") String authRealm, @QueryParam("authClient") String authClient,
-            @QueryParam("authUser") String authUser, @QueryParam("authIpAddress") String authIpAddress,
+            @QueryParam("authOrganization") String authOrganization, @QueryParam("authUser") String authUser,
+            @QueryParam("authIpAddress") String authIpAddress,
             @QueryParam("resourcePath") String resourcePath, @QueryParam("dateFrom") String dateFrom,
             @QueryParam("dateTo") String dateTo, @QueryParam("first") Integer firstResult,
             @QueryParam("max") Integer maxResults, @QueryParam("resourceTypes") List<String> resourceTypes);

@@ -1,6 +1,6 @@
 package org.openfact.ubl.pe;
 
-import org.openfact.common.Utils;
+import org.openfact.common.converts.StringUtils;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
@@ -48,9 +48,9 @@ public class UblIDGeneratorProvider_PE implements UblIDGeneratorProvider {
         int nextSeries = getNextSerie(series, number, 999, 99_999_999);
         StringBuilder ID = new StringBuilder();
         ID.append(code.getMask().substring(0, 1));
-        ID.append(Utils.padLeft(String.valueOf(nextSeries), 3, "0"));
+        ID.append(StringUtils.padLeft(String.valueOf(nextSeries), 3, "0"));
         ID.append("-");
-        ID.append(Utils.padLeft(String.valueOf(nextNumber), 8, "0"));
+        ID.append(StringUtils.padLeft(String.valueOf(nextNumber), 8, "0"));
 
         return ID.toString();
     }
@@ -86,9 +86,9 @@ public class UblIDGeneratorProvider_PE implements UblIDGeneratorProvider {
         StringBuilder ID = new StringBuilder();
         ID.append(mask.substring(0, 1));
         ID.append("C");
-        ID.append(Utils.padLeft(String.valueOf(nextSeries), 2, "0"));
+        ID.append(StringUtils.padLeft(String.valueOf(nextSeries), 2, "0"));
         ID.append("-");
-        ID.append(Utils.padLeft(String.valueOf(nextNumber), 8, "0"));
+        ID.append(StringUtils.padLeft(String.valueOf(nextNumber), 8, "0"));
 
         return ID.toString();
     }
@@ -124,9 +124,9 @@ public class UblIDGeneratorProvider_PE implements UblIDGeneratorProvider {
         StringBuilder ID = new StringBuilder();
         ID.append(mask.substring(0, 1));
         ID.append("D");
-        ID.append(Utils.padLeft(String.valueOf(nextSeries), 2, "0"));
+        ID.append(StringUtils.padLeft(String.valueOf(nextSeries), 2, "0"));
         ID.append("-");
-        ID.append(Utils.padLeft(String.valueOf(nextNumber), 8, "0"));
+        ID.append(StringUtils.padLeft(String.valueOf(nextNumber), 8, "0"));
 
         return ID.toString();
     }

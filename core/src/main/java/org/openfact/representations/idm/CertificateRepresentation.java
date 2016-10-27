@@ -27,8 +27,8 @@ public class CertificateRepresentation {
     protected String privateKey;
     protected String publicKey;
     protected String certificate;
-    protected String codeSecret;
-    
+    protected String kid;
+
     public String getPrivateKey() {
         return privateKey;
     }
@@ -53,13 +53,11 @@ public class CertificateRepresentation {
         this.certificate = certificate;
     }
 
-	public String getCodeSecret() {
-		return codeSecret;
-	}
+    public String getKid() {
+        return kid;
+    }
 
-	public void setCodeSecret(String codeSecret) {
-		this.codeSecret = codeSecret;
-	}
-    
-
+    public void setKid(String kid) {
+        this.kid = kid;
+    }
 }

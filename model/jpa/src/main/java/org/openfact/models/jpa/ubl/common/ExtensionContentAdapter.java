@@ -6,17 +6,19 @@ import javax.persistence.EntityManager;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.jboss.logging.Logger;
+import org.openfact.common.converts.DocumentUtils;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.ExtensionContentEntity;
 import org.openfact.models.ubl.common.ExtensionContentModel;
-import org.openfact.models.utils.DocumentUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -40,22 +42,29 @@ public class ExtensionContentAdapter implements ExtensionContentModel, JpaModel<
         try {
             transformer = TransformerFactory.newInstance().newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            DOMSource source = new DOMSource(DocumentUtils.getByteToDocument(this.extensionContent.getAny()));
+            DOMSource source = new DOMSource(DocumentUtils.byteToDocument(this.extensionContent.getAny()));
             Element elem = ((Document) source.getNode()).getDocumentElement();
             return elem;
         } catch (TransformerConfigurationException | TransformerFactoryConfigurationError e) {
-            throw new ModelException("Error in convert byte to element");
+            throw new ModelException(e);
         } catch (Exception e) {
-            throw new ModelException("Error in convert byte to element");
+            throw new ModelException(e);
         }
     }
 
     @Override
     public void setAny(Element value) {
-        Document document = value.getOwnerDocument();
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        DocumentUtils.getElementToByte(document.getDocumentElement(), baos);
-        this.extensionContent.setAny(baos.toByteArray());
+        if (value != null) {
+            try {
+                Document document = value.getOwnerDocument();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                DocumentUtils.elementToByte(document.getDocumentElement(), baos);
+                this.extensionContent.setAny(ArrayUtils.toObject(baos.toByteArray()));
+            } catch (TransformerException e) {
+                throw new ModelException(e);
+            }
+        }
+        this.extensionContent.setAny(null);
     }
 
     @Override

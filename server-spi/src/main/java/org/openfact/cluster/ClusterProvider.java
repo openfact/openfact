@@ -18,9 +18,9 @@
 package org.openfact.cluster;
 
 
-import java.util.concurrent.Callable;
-
 import org.openfact.provider.Provider;
+
+import java.util.concurrent.Callable;
 
 /**
  * Various utils related to clustering and concurrent tasks on cluster nodes

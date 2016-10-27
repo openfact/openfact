@@ -16,9 +16,9 @@
  */
 package org.openfact.transaction;
 
+import org.jboss.logging.Logger;
 import org.openfact.Config;
 import org.openfact.models.OpenfactSessionFactory;
-import org.openfact.services.ServicesLogger;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -29,7 +29,7 @@ import javax.transaction.TransactionManager;
  * @version $Revision: 1 $
  */
 public class JBossJtaTransactionManagerLookup implements JtaTransactionManagerLookup {
-    private static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
+    private static final Logger logger = Logger.getLogger(JBossJtaTransactionManagerLookup.class);
     private TransactionManager tm;
 
     @Override

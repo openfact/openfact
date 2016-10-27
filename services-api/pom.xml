@@ -13,6 +13,12 @@
 	<name>Openfact REST Api Services</name>
 	<description />
 
+	<properties>
+		<version.swagger.doclet>1.0.5</version.swagger.doclet>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
@@ -132,101 +138,6 @@
 			</exclusions>
 		</dependency>
 	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>com.qmino</groupId>
-				<artifactId>miredot-plugin</artifactId>
-				<version>2.0</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>restdoc</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<organizationId>1fc4cd66-1a14-4db9-aa00-95dcf61421c3</organizationId>
-					<restModel>
-						<restFramework>
-							<name>jax-rs</name>
-						</restFramework>
-						<httpStatusCodes>
-							<httpStatusCode>
-								<httpCode>200</httpCode>
-								<document>always</document>
-								<defaultMessage>The service call has completed successfully.</defaultMessage>
-							</httpStatusCode>
-							<httpStatusCode>
-								<httpCode>401</httpCode>
-								<document>explicit:
-									com.qmino.miredot.petstore.exceptions.AuthorizationException</document>
-								<defaultMessage>The user is logged in, but is not authorized to
-									use this service.
-								</defaultMessage>
-							</httpStatusCode>
-							<httpStatusCode>
-								<httpCode>412</httpCode>
-								<document>put,post</document>
-								<defaultMessage>Invalid JSON/XML input.</defaultMessage>
-							</httpStatusCode>
-							<httpStatusCode>
-								<httpCode>500</httpCode>
-								<document>always</document>
-								<defaultMessage>Internal server exception. The service call did
-									not succeed.
-								</defaultMessage>
-							</httpStatusCode>
-						</httpStatusCodes>
-						<fieldVisibility>
-							<GETTER>PUBLIC_ONLY</GETTER>
-							<IS_GETTER>PUBLIC_ONLY</IS_GETTER>
-							<SETTER>NON_PRIVATE</SETTER>
-							<CREATOR>PUBLIC_ONLY</CREATOR>
-							<FIELD>PUBLIC_ONLY</FIELD>
-						</fieldVisibility>
-						<titleNamingStrategies>
-							<strategy>tag: summary</strategy>
-							<strategy>tag: title</strategy>
-							<strategy>firstsentence</strategy>
-						</titleNamingStrategies>
-					</restModel>
-					<analysis>
-						<checks>
-							<JAVADOC_MISSING_SUMMARY>warn</JAVADOC_MISSING_SUMMARY>
-							<JAVADOC_MISSING_INTERFACEDOCUMENTATION>warn</JAVADOC_MISSING_INTERFACEDOCUMENTATION>
-							<JAVADOC_MISSING_PARAMETER_DOCUMENTATION>warn</JAVADOC_MISSING_PARAMETER_DOCUMENTATION>
-							<JAVADOC_MISSING_EXCEPTION_DOCUMENTATION>warn</JAVADOC_MISSING_EXCEPTION_DOCUMENTATION>
-							<JAVADOC_MISSING_AUTHORS>warn</JAVADOC_MISSING_AUTHORS>
-							<JAXRS_MISSING_PRODUCES>warn</JAXRS_MISSING_PRODUCES>
-							<JAXRS_MISSING_CONSUMES>warn</JAXRS_MISSING_CONSUMES>
-							<REST_UNMAPPED_EXCEPTION>warn</REST_UNMAPPED_EXCEPTION>
-						</checks>
-					</analysis>
-					<output>
-						<html>
-							<baseUrl>
-								http://localhost:8080/
-							</baseUrl>
-						</html>
-						<docx></docx>
-					</output>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>${maven.compiler.source}</source>
-					<target>${maven.compiler.target}</target>
-					<compilerArgument>
-						-AgeneratedTranslationFilesPath=${project.build.directory}/generated-translation-files
-					</compilerArgument>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 
 	<profiles>
 		<profile>
@@ -337,6 +248,22 @@
 								</configuration>
 							</execution>
 						</executions>
+					</plugin>
+
+					<plugin>
+						<groupId>com.qmino</groupId>
+						<artifactId>miredot-plugin</artifactId>
+						<version>2.0</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>restdoc</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<organizationId>1fc4cd66-1a14-4db9-aa00-95dcf61421c3</organizationId>
+						</configuration>
 					</plugin>
 				</plugins>
 			</build>

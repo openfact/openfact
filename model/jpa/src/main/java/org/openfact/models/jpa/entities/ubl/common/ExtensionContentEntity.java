@@ -35,7 +35,7 @@ public class ExtensionContentEntity {
 
     @Lob
     @Column(name = "ANYITEM")
-    protected byte[] any;
+    protected Byte[] any;
 
     /**
      * @return the id
@@ -55,7 +55,7 @@ public class ExtensionContentEntity {
     /**
      * @return the any
      */
-    public byte[] getAny() {
+    public Byte[] getAny() {
         return any;
     }
 
@@ -63,7 +63,7 @@ public class ExtensionContentEntity {
      * @param any
      *            the any to set
      */
-    public void setAny(byte[] any) {
+    public void setAny(Byte[] any) {
         this.any = any;
     }
 

@@ -23,25 +23,16 @@ package org.openfact.representations.idm;
  */
 public class AuthDetailsRepresentation {
 
-    private String realmId;
-    private String clientId;
+    private String organizationId;
     private String userId;
     private String ipAddress;
 
-    public String getRealmId() {
-        return realmId;
+    public String getOrganizationId() {
+        return organizationId;
     }
 
-    public void setRealmId(String realmId) {
-        this.realmId = realmId;
-    }
-
-    public String getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
+    public void setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
     }
 
     public String getUserId() {

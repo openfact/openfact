@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
 
+import org.jboss.logging.Logger;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.Config;
 import org.openfact.KeyPairVerifier;
@@ -46,7 +47,7 @@ import org.openfact.services.managers.OrganizationScheduledTaskManager;
 
 public class OrganizationAdminResourceImpl implements OrganizationAdminResource {
 
-    protected static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
+    protected static final Logger logger = Logger.getLogger(OrganizationAdminResourceImpl.class);
 
     protected OrganizationAuth auth;
     protected OrganizationModel organization;
@@ -64,8 +65,7 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
     @Context
     protected HttpHeaders headers;
 
-    public OrganizationAdminResourceImpl(OrganizationAuth auth, OrganizationModel organization,
-            AdminEventBuilder adminEvent) {
+    public OrganizationAdminResourceImpl(OrganizationAuth auth, OrganizationModel organization, AdminEventBuilder adminEvent) {
         this.auth = auth;
         this.organization = organization;
         this.adminEvent = adminEvent.organization(organization);
@@ -93,14 +93,12 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
 
         logger.debug("updating organization: " + organization.getName());
 
-        if (Config.getAdminOrganization().equals(organization.getName()) && (rep.getOrganization() != null
-                && !rep.getOrganization().equals(Config.getAdminOrganization()))) {
+        if (Config.getAdminOrganization().equals(organization.getName()) && (rep.getOrganization() != null && !rep.getOrganization().equals(Config.getAdminOrganization()))) {
             return ErrorResponse.error("Can't rename master organization", Status.BAD_REQUEST);
         }
 
         try {
-            if (!"GENERATE".equals(rep.getPublicKey())
-                    && (rep.getPrivateKey() != null && rep.getPublicKey() != null)) {
+            if (!"GENERATE".equals(rep.getPublicKey()) && (rep.getPrivateKey() != null && rep.getPublicKey() != null)) {
                 try {
                     KeyPairVerifier.verify(rep.getPrivateKey(), rep.getPublicKey());
                 } catch (VerificationException e) {
@@ -131,8 +129,7 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
             return ErrorResponse.exists("Organization with same name exists");
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return ErrorResponse.error("Failed to update organization",
-                    Response.Status.INTERNAL_SERVER_ERROR);
+            return ErrorResponse.error("Failed to update organization", Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -149,24 +146,21 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
     public InvoicesAdminResource invoices() {
         InvoicesAdminResource invoices = new InvoicesAdminResourceImpl(organization, auth, adminEvent);
         ResteasyProviderFactory.getInstance().injectProperties(invoices);
-        // resourceContext.initResource(invoices);
+        
         return invoices;
     }
 
     @Override
     public CreditNotesAdminResource creditNotes() {
-        CreditNotesAdminResource creditNotes = new CreditNotesAdminResourceImpl(organization, auth,
-                adminEvent);
-        ResteasyProviderFactory.getInstance().injectProperties(creditNotes);
-        // resourceContext.initResource(invoices);
+        CreditNotesAdminResource creditNotes = new CreditNotesAdminResourceImpl(organization, auth, adminEvent);
+        ResteasyProviderFactory.getInstance().injectProperties(creditNotes);        
         return creditNotes;
     }
 
     @Override
     public DebitNotesAdminResource debitNotes() {
         DebitNotesAdminResource debitNotes = new DebitNotesAdminResourceImpl(organization, auth, adminEvent);
-        ResteasyProviderFactory.getInstance().injectProperties(debitNotes);
-        // resourceContext.initResource(invoices);
+        ResteasyProviderFactory.getInstance().injectProperties(debitNotes);       
         return debitNotes;
     }
 
@@ -174,8 +168,7 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
     public OrganizationEventsConfigRepresentation getOrganizationEventsConfig() {
         auth.init(OrganizationAuth.Resource.EVENTS).requireView();
 
-        OrganizationEventsConfigRepresentation config = ModelToRepresentation
-                .toEventsConfigReprensetation(organization);
+        OrganizationEventsConfigRepresentation config = ModelToRepresentation.toEventsConfigReprensetation(organization);
         if (config.getEnabledEventTypes() == null || config.getEnabledEventTypes().isEmpty()) {
             config.setEnabledEventTypes(new LinkedList<String>());
             for (EventType e : EventType.values()) {
@@ -196,17 +189,13 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
     }
 
     @Override
-    public List<EventRepresentation> getEvents(List<String> types, String client, String user,
-            String dateFrom, String dateTo, String ipAddress, Integer firstResult, Integer maxResults) {
+    public List<EventRepresentation> getEvents(List<String> types, String user, String dateFrom,
+            String dateTo, String ipAddress, Integer firstResult, Integer maxResults) {
         auth.init(OrganizationAuth.Resource.EVENTS).requireView();
 
         EventStoreProvider eventStore = session.getProvider(EventStoreProvider.class);
 
         EventQuery query = eventStore.createQuery().organization(organization.getId());
-        if (client != null) {
-            query.client(client);
-        }
-
         if (types != null & !types.isEmpty()) {
             EventType[] t = new EventType[types.size()];
             for (int i = 0; i < t.length; i++) {
@@ -265,8 +254,8 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
 
     @Override
     public List<AdminEventRepresentation> getEvents(List<String> operationTypes, String authRealm,
-            String authClient, String authUser, String authIpAddress, String resourcePath, String dateFrom,
-            String dateTo, Integer firstResult, Integer maxResults, List<String> resourceTypes) {
+            String authUser, String authIpAddress, String resourcePath, String dateFrom, String dateTo,
+            Integer firstResult, Integer maxResults, List<String> resourceTypes) {
         auth.init(OrganizationAuth.Resource.EVENTS).requireView();
 
         EventStoreProvider eventStore = session.getProvider(EventStoreProvider.class);
@@ -274,10 +263,6 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
 
         if (authRealm != null) {
             query.authOrganization(authRealm);
-        }
-
-        if (authClient != null) {
-            query.authClient(authClient);
         }
 
         if (authUser != null) {
@@ -314,8 +299,7 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
             try {
                 from = df.parse(dateFrom);
             } catch (ParseException e) {
-                throw new BadRequestException(
-                        "Invalid value for 'Date(From)', expected format is yyyy-MM-dd");
+                throw new BadRequestException("Invalid value for 'Date(From)', expected format is yyyy-MM-dd");
             }
             query.fromTime(from);
         }
@@ -364,6 +348,20 @@ public class OrganizationAdminResourceImpl implements OrganizationAdminResource 
 
         EventStoreProvider eventStore = session.getProvider(EventStoreProvider.class);
         eventStore.clearAdmin(organization.getId());
+    }
+
+    @Override
+    public ComponentResource getComponents() {
+        ComponentResource resource = new ComponentResourceImpl(organization, auth, adminEvent);
+        ResteasyProviderFactory.getInstance().injectProperties(resource);
+        return resource;
+    }
+
+    @Override
+    public KeyResource keys() {
+        KeyResource resource =  new KeyResourceImpl(organization, session, this.auth);
+        ResteasyProviderFactory.getInstance().injectProperties(resource);
+        return resource;
     }
 
 }

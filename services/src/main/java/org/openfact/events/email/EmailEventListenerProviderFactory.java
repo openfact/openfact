@@ -36,7 +36,7 @@ public class EmailEventListenerProviderFactory implements EventListenerProviderF
 
     private static final Set<EventType> SUPPORTED_EVENTS = new HashSet<EventType>();
     static {
-        Collections.addAll(SUPPORTED_EVENTS, EventType.LOGIN_ERROR, EventType.UPDATE_PASSWORD, EventType.REMOVE_TOTP, EventType.UPDATE_TOTP);
+        Collections.addAll(SUPPORTED_EVENTS);
     }
 
     private Set<EventType> includedEvents = new HashSet<EventType>();

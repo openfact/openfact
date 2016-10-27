@@ -33,7 +33,6 @@ public class UblTaskRunnerProviderTest_PE extends AbstractProviderTest {
 
 		organization = manager.importOrganization(rep);
 		organization.setAssignedIdentificationId("10467793549");
-		OpenfactModelUtils.generateOrganizationKeys(organization);
 		Map<String, String> config = new HashMap<>();
 		config.put("username", "10467793549MODDATOS");
 		config.put("password", "MODDATOS");

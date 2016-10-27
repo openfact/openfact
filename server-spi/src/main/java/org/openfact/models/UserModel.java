@@ -7,18 +7,18 @@ public interface UserModel {
 
     String getUsername();
 
-    String getFullName();
-
     String getFirstName();
-
-    void setFirstName(String firstName);
-
+    
     String getLastName();
-
-    void setLastName(String lastName);
+    
+    String getFullName(); 
 
     String getEmail();
 
-    Map<String, List<String>> getAttributes();
+    Map<String, Object> getAttributes();
+
+    boolean hasRole(String role);
+
+   
 
 }

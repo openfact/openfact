@@ -26,6 +26,6 @@ import org.openfact.provider.Provider;
  */
 public interface EmailSenderProvider extends Provider {
 
-    void send(OrganizationModel organization, UserModel invoice, String subject, String textBody, String htmlBody) throws EmailException;
+    void send(OrganizationModel organiaztion, UserModel user, String subject, String textBody, String htmlBody) throws EmailException;
 
 }

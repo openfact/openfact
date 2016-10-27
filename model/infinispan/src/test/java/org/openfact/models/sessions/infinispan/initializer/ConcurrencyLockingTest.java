@@ -1,22 +1,16 @@
 package org.openfact.models.sessions.infinispan.initializer;
 
 import org.infinispan.Cache;
-import org.infinispan.configuration.cache.CacheMode;
 import org.infinispan.configuration.cache.Configuration;
 import org.infinispan.configuration.cache.ConfigurationBuilder;
-import org.infinispan.configuration.cache.VersioningScheme;
 import org.infinispan.configuration.global.GlobalConfigurationBuilder;
 import org.infinispan.manager.DefaultCacheManager;
-import org.infinispan.manager.EmbeddedCacheManager;
 import org.infinispan.transaction.LockingMode;
-import org.infinispan.transaction.TransactionMode;
 import org.infinispan.transaction.lookup.DummyTransactionManagerLookup;
-import org.infinispan.util.concurrent.IsolationLevel;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.openfact.connections.infinispan.InfinispanConnectionProvider;
 
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -73,7 +67,7 @@ public class ConcurrencyLockingTest {
         final DefaultCacheManager cacheManager = new DefaultCacheManager(gcb.build());
         ConfigurationBuilder invalidationConfigBuilder = new ConfigurationBuilder();
         Configuration invalidationCacheConfiguration = invalidationConfigBuilder.build();
-        cacheManager.defineConfiguration(InfinispanConnectionProvider.ORGANIZATION_CACHE_NAME, invalidationCacheConfiguration);
+        cacheManager.defineConfiguration(InfinispanConnectionProvider.REALM_CACHE_NAME, invalidationCacheConfiguration);
 
         ConfigurationBuilder counterConfigBuilder = new ConfigurationBuilder();
         counterConfigBuilder.invocationBatching().enable();

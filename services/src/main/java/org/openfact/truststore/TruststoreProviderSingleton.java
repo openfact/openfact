@@ -17,8 +17,6 @@
 
 package org.openfact.truststore;
 
-import org.openfact.truststore.TruststoreProvider;
-
 /**
  * @author <a href="mailto:mstrukel@redhat.com">Marko Strukelj</a>
  */

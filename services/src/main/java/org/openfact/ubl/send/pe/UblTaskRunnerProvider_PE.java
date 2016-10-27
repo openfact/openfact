@@ -18,7 +18,7 @@ import org.easybatch.core.reader.IterableRecordReader;
 import org.easybatch.core.record.Batch;
 import org.easybatch.core.record.Record;
 import org.easybatch.core.writer.RecordWriter;
-import org.openfact.common.DateUtils;
+import org.openfact.common.converts.DateUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.ubl.CreditNoteModel;

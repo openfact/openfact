@@ -16,13 +16,13 @@ import javax.xml.xpath.XPathFactory;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.jboss.logging.Logger;
+import org.openfact.common.converts.DocumentUtils;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.ubl.CreditNoteModel;
 import org.openfact.models.ubl.DebitNoteModel;
 import org.openfact.models.ubl.InvoiceModel;
-import org.openfact.models.utils.DocumentUtils;
 import org.openfact.ubl.pe.constants.CodigoTipoDocumento;
 import org.openfact.ubl.send.UblSenderException;
 import org.openfact.ubl.send.UblSenderResponseProvider;
@@ -157,7 +157,7 @@ public class UblSenderResponseProvider_PE implements UblSenderResponseProvider {
 		byte intCode = -1;
 		try {
 			data = unzip(data);
-			Document e = DocumentUtils.getByteToDocument(data);
+			Document e = DocumentUtils.byteToDocument(data);
 			XPath xPath = XPathFactory.newInstance().newXPath();
 			String codigo = (String) xPath.evaluate(
 					"/*[local-name()=\'ApplicationResponse\']/*[local-name()=\'DocumentResponse\']/*[local-name()=\'Response\']/*[local-name()=\'ResponseCode\']/text()",

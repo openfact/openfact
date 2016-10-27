@@ -17,25 +17,23 @@
 
 package org.openfact.models.sessions.infinispan.initializer;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicReference;
-
 import org.infinispan.Cache;
 import org.infinispan.configuration.cache.CacheMode;
 import org.infinispan.configuration.cache.Configuration;
 import org.infinispan.configuration.cache.ConfigurationBuilder;
 import org.infinispan.configuration.global.GlobalConfigurationBuilder;
-import org.infinispan.interceptors.locking.NonTransactionalLockingInterceptor;
 import org.infinispan.manager.DefaultCacheManager;
 import org.infinispan.manager.EmbeddedCacheManager;
-import org.infinispan.statetransfer.StateTransferInterceptor;
 import org.jboss.logging.Logger;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.openfact.connections.infinispan.InfinispanConnectionProvider;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Reproducer for KEYCLOAK-3306. Uncomment the snippet for adding StateTransferInterceptor to have test fixed.
@@ -56,7 +54,7 @@ public class OutdatedTopologyExceptionReproducerTest {
 
         try {
             node1 = createManager();
-            Cache<String, Object> node1Cache = node1.getCache(InfinispanConnectionProvider.ORGANIZATION_CACHE_NAME);
+            Cache<String, Object> node1Cache = node1.getCache(InfinispanConnectionProvider.REALM_CACHE_NAME);
             logger.info("Node1Cache started");
 
             List<CacheOperations> cacheOpsList = new ArrayList<>();
@@ -71,7 +69,7 @@ public class OutdatedTopologyExceptionReproducerTest {
             logger.infof("All CacheOperations threads started");
 
             node2 = createManager();
-            Cache<String, Object> node2Cache = node2.getCache(InfinispanConnectionProvider.ORGANIZATION_CACHE_NAME);
+            Cache<String, Object> node2Cache = node2.getCache(InfinispanConnectionProvider.REALM_CACHE_NAME);
             logger.info("Node2Cache started");
 
             for (CacheOperations cacheOps : cacheOpsList) {
@@ -127,7 +125,7 @@ public class OutdatedTopologyExceptionReproducerTest {
 
         Configuration invalidationCacheConfiguration = invalidationConfigBuilder.build();
 
-        cacheManager.defineConfiguration(InfinispanConnectionProvider.ORGANIZATION_CACHE_NAME, invalidationCacheConfiguration);
+        cacheManager.defineConfiguration(InfinispanConnectionProvider.REALM_CACHE_NAME, invalidationCacheConfiguration);
         return cacheManager;
 
     }

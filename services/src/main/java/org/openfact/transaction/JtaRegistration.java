@@ -17,10 +17,7 @@
 package org.openfact.transaction;
 
 import org.openfact.models.OpenfactSession;
-import org.openfact.services.ServicesLogger;
 
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.transaction.TransactionManager;
 
 /**

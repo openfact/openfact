@@ -19,7 +19,10 @@ package org.openfact.services;
 
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
-import org.openfact.models.*;
+import org.openfact.models.OpenfactContext;
+import org.openfact.models.OpenfactSession;
+import org.openfact.models.OrganizationModel;
+import org.openfact.models.UserModel;
 import org.openfact.models.utils.OrganizationImporter;
 import org.openfact.services.managers.OrganizationManager;
 import org.openfact.services.resources.OpenfactApplication;
@@ -55,6 +58,7 @@ public class DefaultOpenfactContext implements OpenfactContext {
     @Override
     public String getContextPath() {
         OpenfactApplication app = getContextObject(OpenfactApplication.class);
+        if (app == null) return null;
         return app.getContextPath();
     }
 

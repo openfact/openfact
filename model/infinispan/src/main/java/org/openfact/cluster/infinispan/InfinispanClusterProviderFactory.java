@@ -17,16 +17,6 @@
 
 package org.openfact.cluster.infinispan;
 
-import java.io.Serializable;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-
 import org.infinispan.Cache;
 import org.infinispan.manager.EmbeddedCacheManager;
 import org.infinispan.notifications.Listener;
@@ -47,6 +37,16 @@ import org.openfact.cluster.ClusterProviderFactory;
 import org.openfact.connections.infinispan.InfinispanConnectionProvider;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
+
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
@@ -71,8 +71,7 @@ public class InfinispanClusterProviderFactory implements ClusterProviderFactory 
         if (workCache == null) {
             synchronized (this) {
                 if (workCache == null) {
-                    workCache = session.getProvider(InfinispanConnectionProvider.class)
-                            .getCache(InfinispanConnectionProvider.WORK_CACHE_NAME);
+                    workCache = session.getProvider(InfinispanConnectionProvider.class).getCache(InfinispanConnectionProvider.WORK_CACHE_NAME);
                     workCache.getCacheManager().addListener(new ViewChangeListener());
                     workCache.addListener(new CacheEntryListener());
                 }
@@ -88,6 +87,7 @@ public class InfinispanClusterProviderFactory implements ClusterProviderFactory 
     public void postInit(OpenfactSessionFactory factory) {
     }
 
+
     @Override
     public void close() {
 
@@ -98,6 +98,7 @@ public class InfinispanClusterProviderFactory implements ClusterProviderFactory 
         return PROVIDER_ID;
     }
 
+
     @Listener
     public class ViewChangeListener {
 
@@ -106,8 +107,7 @@ public class InfinispanClusterProviderFactory implements ClusterProviderFactory 
             EmbeddedCacheManager cacheManager = event.getCacheManager();
             Transport transport = cacheManager.getTransport();
 
-            // Coordinator makes sure that entries for outdated nodes are
-            // cleaned up
+            // Coordinator makes sure that entries for outdated nodes are cleaned up
             if (transport != null && transport.isCoordinator()) {
 
                 Set<String> newAddresses = convertAddresses(event.getNewMembers());
@@ -118,33 +118,30 @@ public class InfinispanClusterProviderFactory implements ClusterProviderFactory 
                     return;
                 }
 
-                logger.debugf("Nodes %s removed from cluster. Removing tasks locked by this nodes",
-                        removedNodesAddresses.toString());
+                logger.debugf("Nodes %s removed from cluster. Removing tasks locked by this nodes", removedNodesAddresses.toString());
 
-                Cache<String, Serializable> cache = cacheManager
-                        .getCache(InfinispanConnectionProvider.WORK_CACHE_NAME);
+                Cache<String, Serializable> cache = cacheManager.getCache(InfinispanConnectionProvider.WORK_CACHE_NAME);
 
-                Iterator<String> toRemove = cache.entrySet().stream()
-                        .filter(new Predicate<Map.Entry<String, Serializable>>() {
+                Iterator<String> toRemove = cache.entrySet().stream().filter(new Predicate<Map.Entry<String, Serializable>>() {
 
-                            @Override
-                            public boolean test(Map.Entry<String, Serializable> entry) {
-                                if (!(entry.getValue() instanceof LockEntry)) {
-                                    return false;
-                                }
+                    @Override
+                    public boolean test(Map.Entry<String, Serializable> entry) {
+                        if (!(entry.getValue() instanceof LockEntry)) {
+                            return false;
+                        }
 
-                                LockEntry lock = (LockEntry) entry.getValue();
-                                return removedNodesAddresses.contains(lock.getNode());
-                            }
+                        LockEntry lock = (LockEntry) entry.getValue();
+                        return removedNodesAddresses.contains(lock.getNode());
+                    }
 
-                        }).map(new Function<Map.Entry<String, Serializable>, String>() {
+                }).map(new Function<Map.Entry<String, Serializable>, String>() {
 
-                            @Override
-                            public String apply(Map.Entry<String, Serializable> entry) {
-                                return entry.getKey();
-                            }
+                    @Override
+                    public String apply(Map.Entry<String, Serializable> entry) {
+                        return entry.getKey();
+                    }
 
-                        }).iterator();
+                }).iterator();
 
                 while (toRemove.hasNext()) {
                     String rem = toRemove.next();
@@ -168,6 +165,7 @@ public class InfinispanClusterProviderFactory implements ClusterProviderFactory 
         }
 
     }
+
 
     <T> void registerListener(String taskKey, ClusterListener task) {
         listeners.put(taskKey, task);

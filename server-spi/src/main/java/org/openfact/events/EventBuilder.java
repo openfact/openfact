@@ -19,10 +19,10 @@ package org.openfact.events;
 
 import org.jboss.logging.Logger;
 import org.openfact.common.ClientConnection;
+import org.openfact.common.util.Time;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.UserModel;
-import org.openfact.common.util.Time;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -85,7 +85,17 @@ public class EventBuilder {
     public EventBuilder organization(String organizationId) {
         event.setOrganizationId(organizationId);
         return this;
-    }   
+    }
+
+    public EventBuilder user(UserModel user) {
+        event.setUserId(user.getEmail());
+        return this;
+    }
+
+    public EventBuilder user(String userId) {
+        event.setUserId(userId);
+        return this;
+    }
 
     public EventBuilder ipAddress(String ipAddress) {
         event.setIpAddress(ipAddress);

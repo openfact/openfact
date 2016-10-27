@@ -26,8 +26,7 @@ public class EventRepresentation {
 
     private long time;
     private String type;
-    private String realmId;
-    private String clientId;
+    private String organizationId;
     private String userId;
     private String sessionId;
     private String ipAddress;
@@ -50,20 +49,12 @@ public class EventRepresentation {
         this.type = type;
     }
 
-    public String getRealmId() {
-        return realmId;
+    public String getOrganizationId() {
+        return organizationId;
     }
 
-    public void setRealmId(String realmId) {
-        this.realmId = realmId;
-    }
-
-    public String getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
+    public void setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
     }
 
     public String getUserId() {
@@ -108,29 +99,18 @@ public class EventRepresentation {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         EventRepresentation that = (EventRepresentation) o;
 
-        if (time != that.time)
-            return false;
-        if (type != null ? !type.equals(that.type) : that.type != null)
-            return false;
-        if (realmId != null ? !realmId.equals(that.realmId) : that.realmId != null)
-            return false;
-        if (clientId != null ? !clientId.equals(that.clientId) : that.clientId != null)
-            return false;
-        if (userId != null ? !userId.equals(that.userId) : that.userId != null)
-            return false;
-        if (sessionId != null ? !sessionId.equals(that.sessionId) : that.sessionId != null)
-            return false;
-        if (ipAddress != null ? !ipAddress.equals(that.ipAddress) : that.ipAddress != null)
-            return false;
-        if (error != null ? !error.equals(that.error) : that.error != null)
-            return false;
+        if (time != that.time) return false;
+        if (type != null ? !type.equals(that.type) : that.type != null) return false;
+        if (organizationId != null ? !organizationId.equals(that.organizationId) : that.organizationId != null) return false;
+        if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
+        if (sessionId != null ? !sessionId.equals(that.sessionId) : that.sessionId != null) return false;
+        if (ipAddress != null ? !ipAddress.equals(that.ipAddress) : that.ipAddress != null) return false;
+        if (error != null ? !error.equals(that.error) : that.error != null) return false;
         return !(details != null ? !details.equals(that.details) : that.details != null);
 
     }
@@ -139,8 +119,7 @@ public class EventRepresentation {
     public int hashCode() {
         int result = (int) (time ^ (time >>> 32));
         result = 31 * result + (type != null ? type.hashCode() : 0);
-        result = 31 * result + (realmId != null ? realmId.hashCode() : 0);
-        result = 31 * result + (clientId != null ? clientId.hashCode() : 0);
+        result = 31 * result + (organizationId != null ? organizationId.hashCode() : 0);
         result = 31 * result + (userId != null ? userId.hashCode() : 0);
         result = 31 * result + (sessionId != null ? sessionId.hashCode() : 0);
         result = 31 * result + (ipAddress != null ? ipAddress.hashCode() : 0);

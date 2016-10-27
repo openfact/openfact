@@ -31,12 +31,15 @@ import org.openfact.models.OrganizationProvider;
 import org.openfact.models.utils.OrganizationImporter;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.OrganizationRepresentation;
-import org.openfact.representations.idm.ubl.InvoiceRepresentation;
 import org.openfact.services.managers.OrganizationManager;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
@@ -62,16 +65,6 @@ public class ImportUtils {
                 importOrganization(session, organization, strategy);
             }
         }
-
-        // If master was imported, we may need to re-create organization management clients
-        if (masterImported) {
-            for (OrganizationModel organization : session.organizations().getOrganizations()) {
-                /*if (organization.getMasterAdminClient() == null) {
-                    logger.infof("Re-created management client in master organization for organization '%s'", organization.getName());
-                    new OrganizationManager(session).setupMasterAdminManagement(organization);
-                }*/
-            }
-        }
     }
 
     /**
@@ -93,12 +86,7 @@ public class ImportUtils {
                 return false;
             } else {
                 logger.infof("Organization '%s' already exists. Removing it before import", organizationName);
-                if (Config.getAdminOrganization().equals(organization.getId())) {
-                    // Delete all masterAdmin apps due to foreign key constraints
-                    for (OrganizationModel currOrganization : model.getOrganizations()) {
-                        //currOrganization.setMasterAdminClient(null);
-                    }
-                }
+
                 // TODO: For migration between versions, it should be possible to delete just organization but keep it's users
                 model.removeOrganization(organization.getId());
             }
@@ -170,7 +158,7 @@ public class ImportUtils {
 
 
     // Assuming that it's invoked inside transaction
-    public static void importInvoicesFromStream(OpenfactSession session, String organizationName, ObjectMapper mapper, InputStream is) throws IOException {
+    public static void importUsersFromStream(OpenfactSession session, String organizationName, ObjectMapper mapper, InputStream is) throws IOException {
         OrganizationProvider model = session.organizations();
         JsonFactory factory = mapper.getJsonFactory();
         JsonParser parser = factory.createJsonParser(is);
@@ -184,22 +172,34 @@ public class ImportUtils {
                     if (!currOrganizationName.equals(organizationName)) {
                         throw new IllegalStateException("Trying to import users into invalid organization. Organization name: " + organizationName + ", Expected organization name: " + currOrganizationName);
                     }
-                } else if ("invoices".equals(parser.getText())) {
+                }
+            }
+        } finally {
+            parser.close();
+        }
+    }
+
+    // Assuming that it's invoked inside transaction
+    public static void importFederatedUsersFromStream(OpenfactSession session, String organizationName, ObjectMapper mapper, InputStream is) throws IOException {
+        OrganizationProvider model = session.organizations();
+        JsonFactory factory = mapper.getJsonFactory();
+        JsonParser parser = factory.createJsonParser(is);
+        try {
+            parser.nextToken();
+
+            while (parser.nextToken() == JsonToken.FIELD_NAME) {
+                if ("organization".equals(parser.getText())) {
+                    parser.nextToken();
+                    String currOrganizationName = parser.getText();
+                    if (!currOrganizationName.equals(organizationName)) {
+                        throw new IllegalStateException("Trying to import users into invalid organization. Organization name: " + organizationName + ", Expected organization name: " + currOrganizationName);
+                    }
+                } else if ("federatedUsers".equals(parser.getText())) {
                     parser.nextToken();
 
                     if (parser.getCurrentToken() == JsonToken.START_ARRAY) {
                         parser.nextToken();
-                    }
-
-                    // TODO: support for more transactions per single users file (if needed)
-                    List<InvoiceRepresentation> userReps = new ArrayList<>();
-                    while (parser.getCurrentToken() == JsonToken.START_OBJECT) {
-                        InvoiceRepresentation user = parser.readValueAs(InvoiceRepresentation.class);
-                        userReps.add(user);
-                        parser.nextToken();
-                    }
-
-                    importInvoices(session, model, organizationName, userReps);
+                    }                    
 
                     if (parser.getCurrentToken() == JsonToken.END_ARRAY) {
                         parser.nextToken();
@@ -209,13 +209,6 @@ public class ImportUtils {
         } finally {
             parser.close();
         }
-    }
-
-    private static void importInvoices(OpenfactSession session, OrganizationProvider model, String organizationName, List<InvoiceRepresentation> invoiceReps) {
-        OrganizationModel organization = model.getOrganizationByName(organizationName);
-        for (InvoiceRepresentation invoice : invoiceReps) {
-            RepresentationToModel.createInvoice(session, organization, invoice);
-        }
-    }
+    }    
 
 }

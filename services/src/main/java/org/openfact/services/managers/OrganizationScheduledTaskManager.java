@@ -20,8 +20,7 @@ public class OrganizationScheduledTaskManager {
         OpenfactSessionFactory sessionFactory = session.getOpenfactSessionFactory();
         if (organization.isTasksEnabled()) {
             TimerProvider timer = session.getProvider(TimerProvider.class);
-            timer.schedule(new OrganizationScheduledTaskRunner(sessionFactory, organization),
-                    organization.getTaskFirstTime(), organization.getTaskDelay(), getTaskName(organization));
+            timer.schedule(new OrganizationScheduledTaskRunner(sessionFactory, organization), organization.getTaskFirstTime(), organization.getTaskDelay(), getTaskName(organization));
         }
     }
 
@@ -32,8 +31,7 @@ public class OrganizationScheduledTaskManager {
         timer.cancelTask(getTaskName(organization));
 
         if (organization.isTasksEnabled()) {
-            timer.schedule(new OrganizationScheduledTaskRunner(sessionFactory, organization),
-                    organization.getTaskFirstTime(), organization.getTaskDelay(), getTaskName(organization));
+            timer.schedule(new OrganizationScheduledTaskRunner(sessionFactory, organization), organization.getTaskFirstTime(), organization.getTaskDelay(), getTaskName(organization));
         }
 
     }

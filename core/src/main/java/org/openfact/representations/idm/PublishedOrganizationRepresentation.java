@@ -1,9 +1,16 @@
 package org.openfact.representations.idm;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class PublishedOrganizationRepresentation {
 
     protected String organization;
-    protected String supplierName;
+
+    @JsonProperty("public_key")
+    protected String publicKeyPem;
+
+    @JsonProperty("admin-api")
+    protected String adminApiUrl;
 
     public String getOrganization() {
         return organization;
@@ -13,12 +20,20 @@ public class PublishedOrganizationRepresentation {
         this.organization = organization;
     }
 
-    public String getSupplierName() {
-        return supplierName;
+    public String getPublicKeyPem() {
+        return publicKeyPem;
     }
 
-    public void setSupplierName(String supplierName) {
-        this.supplierName = supplierName;
+    public void setPublicKeyPem(String publicKeyPem) {
+        this.publicKeyPem = publicKeyPem;
+    }
+
+    public String getAdminApiUrl() {
+        return adminApiUrl;
+    }
+
+    public void setAdminApiUrl(String adminApiUrl) {
+        this.adminApiUrl = adminApiUrl;
     }
 
 }

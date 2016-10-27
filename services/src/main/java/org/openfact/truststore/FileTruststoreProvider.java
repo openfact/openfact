@@ -17,9 +17,6 @@
 
 package org.openfact.truststore;
 
-import org.openfact.truststore.HostnameVerificationPolicy;
-import org.openfact.truststore.TruststoreProvider;
-
 import java.security.KeyStore;
 
 /**

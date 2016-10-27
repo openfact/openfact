@@ -20,6 +20,8 @@ package org.openfact.representations.info;
 import java.util.List;
 import java.util.Map;
 
+import org.openfact.representations.idm.ComponentTypeRepresentation;
+
 /**
  * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
@@ -27,24 +29,17 @@ public class ServerInfoRepresentation {
 
     private SystemInfoRepresentation systemInfo;
     private MemoryInfoRepresentation memoryInfo;
+    private ProfileInfoRepresentation profileInfo;
 
     private Map<String, List<ThemeInfoRepresentation>> themes;
 
     private List<Map<String, String>> socialProviders;
     private List<Map<String, String>> identityProviders;
     private List<Map<String, String>> clientImporters;
+    
+    private Map<String, List<ComponentTypeRepresentation>> componentTypes;
 
     private Map<String, SpiInfoRepresentation> providers;
-
-    /*
-     * private Map<String, List<ProtocolMapperTypeRepresentation>>
-     * protocolMapperTypes; private Map<String,
-     * List<ProtocolMapperRepresentation>> builtinProtocolMappers; private
-     * Map<String, List<ClientInstallationRepresentation>> clientInstallations;
-     * private Map<String, List<ComponentTypeRepresentation>> componentTypes;
-     * 
-     * private List<PasswordPolicyTypeRepresentation> passwordPolicies;
-     */
 
     private Map<String, List<String>> enums;
 
@@ -62,6 +57,14 @@ public class ServerInfoRepresentation {
 
     public void setMemoryInfo(MemoryInfoRepresentation memoryInfo) {
         this.memoryInfo = memoryInfo;
+    }
+
+    public ProfileInfoRepresentation getProfileInfo() {
+        return profileInfo;
+    }
+
+    public void setProfileInfo(ProfileInfoRepresentation profileInfo) {
+        this.profileInfo = profileInfo;
     }
 
     public Map<String, List<ThemeInfoRepresentation>> getThemes() {
@@ -102,23 +105,7 @@ public class ServerInfoRepresentation {
 
     public void setProviders(Map<String, SpiInfoRepresentation> providers) {
         this.providers = providers;
-    }
-
-    /*
-     * public Map<String, List<ProtocolMapperTypeRepresentation>>
-     * getProtocolMapperTypes() { return protocolMapperTypes; }
-     * 
-     * public void setProtocolMapperTypes(Map<String,
-     * List<ProtocolMapperTypeRepresentation>> protocolMapperTypes) {
-     * this.protocolMapperTypes = protocolMapperTypes; }
-     * 
-     * public Map<String, List<ProtocolMapperRepresentation>>
-     * getBuiltinProtocolMappers() { return builtinProtocolMappers; }
-     * 
-     * public void setBuiltinProtocolMappers(Map<String,
-     * List<ProtocolMapperRepresentation>> builtinProtocolMappers) {
-     * this.builtinProtocolMappers = builtinProtocolMappers; }
-     */
+    }    
 
     public Map<String, List<String>> getEnums() {
         return enums;
@@ -128,25 +115,12 @@ public class ServerInfoRepresentation {
         this.enums = enums;
     }
 
-    /*
-     * public Map<String, List<ClientInstallationRepresentation>>
-     * getClientInstallations() { return clientInstallations; }
-     * 
-     * public void setClientInstallations(Map<String,
-     * List<ClientInstallationRepresentation>> clientInstallations) {
-     * this.clientInstallations = clientInstallations; }
-     * 
-     * public List<PasswordPolicyTypeRepresentation> getPasswordPolicies() {
-     * return passwordPolicies; }
-     * 
-     * public void setPasswordPolicies(List<PasswordPolicyTypeRepresentation>
-     * passwordPolicies) { this.passwordPolicies = passwordPolicies; }
-     * 
-     * public Map<String, List<ComponentTypeRepresentation>> getComponentTypes()
-     * { return componentTypes; }
-     * 
-     * public void setComponentTypes(Map<String,
-     * List<ComponentTypeRepresentation>> componentTypes) { this.componentTypes
-     * = componentTypes; }
-     */
+    public Map<String, List<ComponentTypeRepresentation>> getComponentTypes() {
+        return componentTypes;
+    }
+
+    public void setComponentTypes(Map<String, List<ComponentTypeRepresentation>> componentTypes) {
+        this.componentTypes = componentTypes;
+    }
+    
 }

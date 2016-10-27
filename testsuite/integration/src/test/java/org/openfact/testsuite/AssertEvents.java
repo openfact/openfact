@@ -259,21 +259,7 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
             expected.setOrganizationId(organizationId);
             return this;
         }
-
-        /*public ExpectedEvent client(ClientModel client) {
-            expected.setClientId(client.getClientId());
-            return this;
-        }*/
-
-        public ExpectedEvent client(String clientId) {
-            expected.setClientId(clientId);
-            return this;
-        }
-
-        /*public ExpectedEvent user(UserModel user) {
-            return user(user.getId());
-        }*/
-
+     
         public ExpectedEvent user(String userId) {
             return user(CoreMatchers.equalTo(userId));
         }
@@ -282,10 +268,6 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
             this.userId = userId;
             return this;
         }
-
-        /*public ExpectedEvent session(UserSessionModel session) {
-            return session(session.getId());
-        }*/
 
         public ExpectedEvent session(String sessionId) {
             return session(CoreMatchers.equalTo(sessionId));
@@ -349,11 +331,9 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
             }
             Assert.assertEquals(expected.getType(), actual.getType());
             Assert.assertEquals(expected.getOrganizationId(), actual.getOrganizationId());
-            Assert.assertEquals(expected.getClientId(), actual.getClientId());
             Assert.assertEquals(expected.getError(), actual.getError());
             Assert.assertEquals(expected.getIpAddress(), actual.getIpAddress());
             Assert.assertThat(actual.getUserId(), userId);
-            Assert.assertThat(actual.getSessionId(), sessionId);
 
             if (details == null || details.isEmpty()) {
 //                Assert.assertNull(actual.getDetails());

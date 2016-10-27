@@ -77,16 +77,10 @@ public class DirExportProvider extends MultipleStepsExportProvider {
         File file = new File(this.rootDirectory, fileName);
         FileOutputStream stream = new FileOutputStream(file);
         JsonSerialization.prettyMapper.writeValue(stream, rep);
-    }
-
-    @Override
-    protected void writeInvoices(String fileName, OpenfactSession session, OrganizationModel organization, List<InvoiceModel> invoices) throws IOException {
-        File file = new File(this.rootDirectory, fileName);
-        FileOutputStream os = new FileOutputStream(file);
-        ExportUtils.exportInvoicesToStream(session, organization, invoices, JsonSerialization.prettyMapper, os);
-    }
+    }    
 
     @Override
     public void close() {
     }
+
 }

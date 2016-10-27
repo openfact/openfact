@@ -23,7 +23,7 @@ import org.openfact.services.managers.CreditNoteManager;
 
 public class CreditNoteAdminResourceImpl implements CreditNoteAdminResource {
 
-    private static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
+    private static final ServicesLogger logger = ServicesLogger.LOGGER;
 
     protected OrganizationModel organization;
     protected CreditNoteModel creditNote;

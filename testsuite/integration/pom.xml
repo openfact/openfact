@@ -57,6 +57,7 @@
 			<artifactId>openfact-model-infinispan</artifactId>
 		</dependency>
 
+		<!-- Principal Start -->
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bcprov-jdk15on</artifactId>
@@ -65,19 +66,6 @@
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bcpkix-jdk15on</artifactId>
 		</dependency>
-		<!-- <dependency> -->
-		<!-- <groupId>org.keycloak</groupId> -->
-		<!-- <artifactId>keycloak-dependencies-server-all</artifactId> -->
-		<!-- <type>pom</type> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.keycloak</groupId> -->
-		<!-- <artifactId>keycloak-admin-client</artifactId> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.keycloak</groupId> -->
-		<!-- <artifactId>keycloak-wildfly-adduser</artifactId> -->
-		<!-- </dependency> -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -140,61 +128,10 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 		</dependency>
-		<!-- <dependency> -->
-		<!-- <groupId>org.keycloak</groupId> -->
-		<!-- <artifactId>keycloak-server-spi</artifactId> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.keycloak</groupId> -->
-		<!-- <artifactId>keycloak-ldap-federation</artifactId> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.keycloak</groupId> -->
-		<!-- <artifactId>keycloak-kerberos-federation</artifactId> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.keycloak</groupId> -->
-		<!-- <artifactId>keycloak-undertow-adapter</artifactId> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.keycloak</groupId> -->
-		<!-- <artifactId>keycloak-saml-adapter-api-public</artifactId> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.keycloak</groupId> -->
-		<!-- <artifactId>keycloak-saml-adapter-core</artifactId> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.keycloak</groupId> -->
-		<!-- <artifactId>keycloak-authz-client</artifactId> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.keycloak</groupId> -->
-		<!-- <artifactId>keycloak-saml-servlet-filter-adapter</artifactId> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.keycloak</groupId> -->
-		<!-- <artifactId>keycloak-servlet-filter-adapter</artifactId> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.keycloak</groupId> -->
-		<!-- <artifactId>keycloak-saml-undertow-adapter</artifactId> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.keycloak</groupId> -->
-		<!-- <artifactId>keycloak-jaxrs-oauth-client</artifactId> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.keycloak</groupId> -->
-		<!-- <artifactId>federation-properties-example</artifactId> -->
-		<!-- </dependency> -->
-
-		<!-- Dependency on services from integration-arquillian -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.keycloak.testsuite</groupId> -->
-		<!-- <artifactId>integration-arquillian-testsuite-providers</artifactId> -->
-		<!-- <version>${project.version}</version> -->
-		<!-- </dependency> -->
+		<dependency>
+			<groupId>org.openfact</groupId>
+			<artifactId>openfact-server-spi</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.jboss.logging</groupId>
@@ -267,12 +204,6 @@
 			<artifactId>selenium-chrome-driver</artifactId>
 		</dependency>
 
-		<!-- Apache DS -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.keycloak</groupId> -->
-		<!-- <artifactId>keycloak-util-embedded-ldap</artifactId> -->
-		<!-- </dependency> -->
-
 		<dependency>
 			<groupId>org.picketlink</groupId>
 			<artifactId>picketlink-wildfly-common</artifactId>
@@ -298,7 +229,6 @@
 			<artifactId>mariadb-java-client</artifactId>
 			<version>${mariadb.version}</version>
 		</dependency>
-
 	</dependencies>
 	<build>
 		<plugins>
@@ -481,6 +411,7 @@
 									<systemPropertyVariables>
 										<openfact.realm.provider>mongo</openfact.realm.provider>
 										<openfact.user.provider>mongo</openfact.user.provider>
+										<openfact.userFederatedStorage.provider>mongo</openfact.userFederatedStorage.provider>
 										<openfact.userSessionPersister.provider>mongo</openfact.userSessionPersister.provider>
 										<openfact.eventsStore.provider>mongo</openfact.eventsStore.provider>
 										<openfact.authorization.provider>mongo</openfact.authorization.provider>
@@ -499,6 +430,51 @@
 							</execution>
 						</executions>
 					</plugin>
+
+					<!-- Embedded mongo -->
+					<plugin>
+						<groupId>com.github.joelittlejohn.embedmongo</groupId>
+						<artifactId>embedmongo-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>start-mongodb</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>start</goal>
+								</goals>
+								<configuration>
+									<port>${openfact.connectionsMongo.port}</port>
+									<logging>file</logging>
+									<logFile>${project.build.directory}/mongodb.log</logFile>
+									<bindIp>${openfact.connectionsMongo.bindIp}</bindIp>
+								</configuration>
+							</execution>
+							<execution>
+								<id>stop-mongodb</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>stop</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+
+		</profile>
+
+		<profile>
+			<id>mongodb-server</id>
+
+			<properties>
+				<openfact.connectionsMongo.host>localhost</openfact.connectionsMongo.host>
+				<openfact.connectionsMongo.port>27018</openfact.connectionsMongo.port>
+				<openfact.connectionsMongo.db>openfact</openfact.connectionsMongo.db>
+				<openfact.connectionsMongo.bindIp>127.0.0.1</openfact.connectionsMongo.bindIp>
+			</properties>
+
+			<build>
+				<plugins>
 
 					<!-- Embedded mongo -->
 					<plugin>

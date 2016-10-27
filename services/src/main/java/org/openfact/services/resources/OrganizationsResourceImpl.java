@@ -10,6 +10,7 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.common.ClientConnection;
 import org.openfact.models.OpenfactSession;
 import org.openfact.services.managers.OrganizationManager;
+import org.openfact.services.resource.OrganizationResourceProvider;
 import org.openfact.services.resources.OrganizationsResource;
 import org.openfact.services.resources.PublicOrganizationResource;
 import org.jboss.resteasy.spi.HttpRequest;
@@ -78,5 +79,19 @@ public class OrganizationsResourceImpl implements OrganizationsResource {
 		session.getContext().setOrganization(organization);
 		return organization;
 	}
+
+    @Override
+    public Object resolveOrganizationExtension(String organizationName, String extension) {
+        OrganizationResourceProvider provider = session.getProvider(OrganizationResourceProvider.class, extension);
+        if (provider != null) {
+            init(organizationName);
+            Object resource = provider.getResource();
+            if (resource != null) {
+                return resource;
+            }
+        }
+
+        throw new NotFoundException();
+    }
 
 }

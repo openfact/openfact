@@ -17,26 +17,27 @@
 
 package org.openfact.email.freemarker;
 
-import org.openfact.broker.provider.BrokeredIdentityContext;
+import java.text.MessageFormat;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Properties;
+
 import org.openfact.common.util.ObjectUtil;
 import org.openfact.email.EmailException;
 import org.openfact.email.EmailSenderProvider;
 import org.openfact.email.EmailTemplateProvider;
-import org.openfact.email.freemarker.beans.EventBean;
-import org.openfact.email.freemarker.beans.ProfileBean;
-import org.openfact.events.Event;
 import org.openfact.events.EventType;
+import org.openfact.models.OpenfactSession;
+import org.openfact.models.OrganizationModel;
+import org.openfact.models.UserModel;
 import org.openfact.theme.FreeMarkerException;
 import org.openfact.theme.FreeMarkerUtil;
 import org.openfact.theme.Theme;
 import org.openfact.theme.ThemeProvider;
 import org.openfact.theme.beans.MessageFormatterMethod;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.UserModel;
-
-import java.text.MessageFormat;
-import java.util.*;
 
 /**
  * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
@@ -78,73 +79,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
         } else {
             return ObjectUtil.capitalize(organization.getName());
         }
-    }
-
-    @Override
-    public void sendEvent(Event event) throws EmailException {
-        Map<String, Object> attributes = new HashMap<String, Object>();
-        attributes.put("user", new ProfileBean(user));
-        attributes.put("event", new EventBean(event));
-
-        send(toCamelCase(event.getType()) + "Subject", "event-" + event.getType().toString().toLowerCase() + ".ftl", attributes);
-    }
-
-    @Override
-    public void sendPasswordReset(String link, long expirationInMinutes) throws EmailException {
-        Map<String, Object> attributes = new HashMap<String, Object>();
-        attributes.put("user", new ProfileBean(user));
-        attributes.put("link", link);
-        attributes.put("linkExpiration", expirationInMinutes);
-
-        attributes.put("organizationName", getOrganizationName());
-
-        send("passwordResetSubject", "password-reset.ftl", attributes);
-    }
-
-    @Override
-    public void sendConfirmIdentityBrokerLink(String link, long expirationInMinutes) throws EmailException {
-        /*Map<String, Object> attributes = new HashMap<String, Object>();
-        attributes.put("user", new ProfileBean(user));
-        attributes.put("link", link);
-        attributes.put("linkExpiration", expirationInMinutes);
-
-        attributes.put("organizationName", getOrganizationName());
-
-        BrokeredIdentityContext brokerContext = (BrokeredIdentityContext) this.attributes.get(IDENTITY_PROVIDER_BROKER_CONTEXT);
-        String idpAlias = brokerContext.getIdpConfig().getAlias();
-        idpAlias = ObjectUtil.capitalize(idpAlias);
-
-        attributes.put("identityProviderContext", brokerContext);
-        attributes.put("identityProviderAlias", idpAlias);
-
-        List<Object> subjectAttrs = Arrays.<Object>asList(idpAlias);
-        send("identityProviderLinkSubject", subjectAttrs, "identity-provider-link.ftl", attributes);*/
-    }
-
-    @Override
-    public void sendExecuteActions(String link, long expirationInMinutes) throws EmailException {
-        Map<String, Object> attributes = new HashMap<String, Object>();
-        attributes.put("user", new ProfileBean(user));
-        attributes.put("link", link);
-        attributes.put("linkExpiration", expirationInMinutes);
-
-        attributes.put("organizationName", getOrganizationName());
-
-        send("executeActionsSubject", "executeActions.ftl", attributes);
-
-    }
-
-    @Override
-    public void sendVerifyEmail(String link, long expirationInMinutes) throws EmailException {
-        Map<String, Object> attributes = new HashMap<String, Object>();
-        attributes.put("user", new ProfileBean(user));
-        attributes.put("link", link);
-        attributes.put("linkExpiration", expirationInMinutes);
-
-        attributes.put("organizationName", getOrganizationName());
-
-        send("emailVerificationSubject", "email-verification.ftl", attributes);
-    }
+    }    
 
     private void send(String subjectKey, String template, Map<String, Object> attributes) throws EmailException {
         send(subjectKey, Collections.emptyList(), template, attributes);

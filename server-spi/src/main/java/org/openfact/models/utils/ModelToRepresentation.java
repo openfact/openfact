@@ -4,16 +4,22 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.apache.commons.lang.ArrayUtils;
+import org.openfact.common.converts.DocumentUtils;
+import org.openfact.common.util.MultivaluedHashMap;
+import org.openfact.component.ComponentModel;
 import org.openfact.events.Event;
 import org.openfact.events.admin.AdminEvent;
 import org.openfact.events.admin.AuthDetails;
 import org.openfact.models.ModelException;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.catalog.CodeCatalogModel;
 import org.openfact.models.ubl.CreditNoteModel;
@@ -48,8 +54,11 @@ import org.openfact.models.ubl.common.TaxSubtotalModel;
 import org.openfact.models.ubl.common.TaxTotalModel;
 import org.openfact.models.ubl.common.UBLExtensionModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
+import org.openfact.provider.ProviderConfigProperty;
 import org.openfact.representations.idm.AdminEventRepresentation;
 import org.openfact.representations.idm.AuthDetailsRepresentation;
+import org.openfact.representations.idm.ComponentRepresentation;
+import org.openfact.representations.idm.ConfigPropertyRepresentation;
 import org.openfact.representations.idm.EventRepresentation;
 import org.openfact.representations.idm.OrganizationEventsConfigRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
@@ -187,20 +196,6 @@ public class ModelToRepresentation {
         rep.setUblSenderServer(new HashMap<>(organization.getUblSenderConfig()));
 
         /**
-         * Certificate
-         */
-        rep.setCertificate(organization.getCertificatePem());
-        rep.setPublicKey(organization.getPublicKeyPem());
-        if (internal) {
-            rep.setPrivateKey(organization.getPrivateKeyPem());
-            String privateKeyPem = organization.getPrivateKeyPem();
-            if (organization.getCertificatePem() == null && privateKeyPem != null) {
-                OpenfactModelUtils.generateOrganizationCertificate(organization);
-            }
-            rep.setCodeSecret(organization.getCodeSecret());
-        }
-
-        /**
          * Attributes
          */
         rep.setAttributes(new HashMap<>(organization.getAttributes()));
@@ -267,7 +262,7 @@ public class ModelToRepresentation {
 
         if (model.getXmlDocument() != null) {
             try {
-                DocumentUtils.getByteToDocument(ArrayUtils.toPrimitive(model.getXmlDocument()));
+                DocumentUtils.byteToDocument(ArrayUtils.toPrimitive(model.getXmlDocument()));
             } catch (Exception e) {
                 throw new ModelException(e.getMessage());
             }
@@ -788,10 +783,8 @@ public class ModelToRepresentation {
         EventRepresentation rep = new EventRepresentation();
         rep.setTime(event.getTime());
         rep.setType(event.getType().toString());
-        rep.setRealmId(event.getOrganizationId());
-        rep.setClientId(event.getClientId());
+        rep.setOrganizationId(event.getOrganizationId());
         rep.setUserId(event.getUserId());
-        rep.setSessionId(event.getSessionId());
         rep.setIpAddress(event.getIpAddress());
         rep.setError(event.getError());
         rep.setDetails(event.getDetails());
@@ -801,7 +794,7 @@ public class ModelToRepresentation {
     public static AdminEventRepresentation toRepresentation(AdminEvent adminEvent) {
         AdminEventRepresentation rep = new AdminEventRepresentation();
         rep.setTime(adminEvent.getTime());
-        rep.setRealmId(adminEvent.getOrganizationId());
+        rep.setOrganizationId(adminEvent.getOrganizationId());
         if (adminEvent.getAuthDetails() != null) {
             rep.setAuthDetails(toRepresentation(adminEvent.getAuthDetails()));
         }
@@ -818,10 +811,60 @@ public class ModelToRepresentation {
 
     public static AuthDetailsRepresentation toRepresentation(AuthDetails authDetails) {
         AuthDetailsRepresentation rep = new AuthDetailsRepresentation();
-        rep.setRealmId(authDetails.getOrganizationId());
-        rep.setClientId(authDetails.getClientId());
+        rep.setOrganizationId(authDetails.getOrganizationId());
         rep.setUserId(authDetails.getUserId());
         rep.setIpAddress(authDetails.getIpAddress());
+        return rep;
+    }
+    
+    public static List<ConfigPropertyRepresentation> toRepresentation(List<ProviderConfigProperty> configProperties) {
+        List<ConfigPropertyRepresentation> propertiesRep = new LinkedList<>();
+        for (ProviderConfigProperty prop : configProperties) {
+            ConfigPropertyRepresentation propRep = toRepresentation(prop);
+            propertiesRep.add(propRep);
+        }
+        return propertiesRep;
+    }
+    
+    public static ConfigPropertyRepresentation toRepresentation(ProviderConfigProperty prop) {
+        ConfigPropertyRepresentation propRep = new ConfigPropertyRepresentation();
+        propRep.setName(prop.getName());
+        propRep.setLabel(prop.getLabel());
+        propRep.setType(prop.getType());
+        propRep.setDefaultValue(prop.getDefaultValue());
+        propRep.setOptions(prop.getOptions());
+        propRep.setHelpText(prop.getHelpText());
+        propRep.setSecret(prop.isSecret());
+        return propRep;
+    }
+    
+    public static ComponentRepresentation toRepresentation(OpenfactSession session, ComponentModel component, boolean internal) {
+        ComponentRepresentation rep = new ComponentRepresentation();
+        rep.setId(component.getId());
+        rep.setName(component.getName());
+        rep.setProviderId(component.getProviderId());
+        rep.setProviderType(component.getProviderType());
+        rep.setSubType(component.getSubType());
+        rep.setParentId(component.getParentId());
+        if (internal) {
+            rep.setConfig(component.getConfig());
+        } else {
+            Map<String, ProviderConfigProperty> configProperties = ComponentUtil.getComponentConfigProperties(session, component);
+            MultivaluedHashMap<String, String> config = new MultivaluedHashMap<>();
+
+            for (Map.Entry<String, List<String>> e : component.getConfig().entrySet()) {
+                ProviderConfigProperty configProperty = configProperties.get(e.getKey());
+                if (configProperty != null) {
+                    if (configProperty.isSecret()) {
+                        config.putSingle(e.getKey(), ComponentRepresentation.SECRET_VALUE);
+                    } else {
+                        config.put(e.getKey(), e.getValue());
+                    }
+                }
+            }
+
+            rep.setConfig(config);
+        }
         return rep;
     }
 

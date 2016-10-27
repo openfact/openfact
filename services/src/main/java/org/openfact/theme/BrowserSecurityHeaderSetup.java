@@ -21,8 +21,6 @@ import org.openfact.models.BrowserSecurityHeaders;
 import org.openfact.models.OrganizationModel;
 
 import javax.ws.rs.core.Response;
-
-import java.util.Collections;
 import java.util.Map;
 
 /**
@@ -32,7 +30,7 @@ import java.util.Map;
 public class BrowserSecurityHeaderSetup {
 
     public static Response.ResponseBuilder headers(Response.ResponseBuilder builder, OrganizationModel organization) {
-        return headers(builder, Collections.emptyMap() /*organization.getBrowserSecurityHeaders()*/);
+        return headers(builder, organization.getBrowserSecurityHeaders());
     }
 
     public static Response.ResponseBuilder headers(Response.ResponseBuilder builder, Map<String, String> headers) {

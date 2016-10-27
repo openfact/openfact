@@ -17,12 +17,8 @@
 
 package org.openfact.events.jpa;
 
-import org.openfact.events.admin.ResourceType;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -50,10 +46,7 @@ public class AdminEventEntity {
     private String resourceType;
     
     @Column(name="AUTH_ORGANIZATION_ID")
-    private String authOrganizationId;
-    
-    @Column(name="AUTH_CLIENT_ID")
-    private String authClientId;
+    private String authOrganizationId;   
 
     @Column(name="AUTH_USER_ID")
     private String authUserId;
@@ -102,20 +95,20 @@ public class AdminEventEntity {
         this.operationType = operationType;
     }
 
+    public String getResourceType() {
+        return resourceType;
+    }
+
+    public void setResourceType(String resourceType) {
+        this.resourceType = resourceType;
+    }
+
     public String getAuthOrganizationId() {
         return authOrganizationId;
     }
 
     public void setAuthOrganizationId(String authOrganizationId) {
         this.authOrganizationId = authOrganizationId;
-    }
-
-    public String getAuthClientId() {
-        return authClientId;
-    }
-
-    public void setAuthClientId(String authClientId) {
-        this.authClientId = authClientId;
     }
 
     public String getAuthUserId() {
@@ -158,11 +151,5 @@ public class AdminEventEntity {
         this.error = error;
     }
 
-    public String getResourceType() {
-        return resourceType;
-    }
-
-    public void setResourceType(String resourceType) {
-        this.resourceType = resourceType;
-    }
+    
 }

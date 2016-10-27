@@ -17,6 +17,30 @@
 
 package org.openfact.connections.jpa;
 
+import org.hibernate.ejb.AvailableSettings;
+import org.hibernate.engine.transaction.jta.platform.internal.AbstractJtaPlatform;
+import org.jboss.logging.Logger;
+import org.openfact.Config;
+import org.openfact.ServerStartupError;
+import org.openfact.connections.jpa.updater.JpaUpdaterProvider;
+import org.openfact.connections.jpa.util.JpaUtils;
+import org.openfact.models.OpenfactSession;
+import org.openfact.models.OpenfactSessionFactory;
+import org.openfact.models.OpenfactSessionTask;
+import org.openfact.models.dblock.DBLockManager;
+import org.openfact.models.dblock.DBLockProvider;
+import org.openfact.models.utils.OpenfactModelUtils;
+import org.openfact.provider.ServerInfoAwareProviderFactory;
+import org.openfact.timer.TimerProvider;
+import org.openfact.transaction.JtaTransactionManagerLookup;
+
+import javax.naming.InitialContext;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.SynchronizationType;
+import javax.sql.DataSource;
+import javax.transaction.TransactionManager;
+import javax.transaction.UserTransaction;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -25,37 +49,6 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import javax.naming.InitialContext;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.SynchronizationType;
-import javax.sql.DataSource;
-import javax.transaction.InvalidTransactionException;
-import javax.transaction.Synchronization;
-import javax.transaction.SystemException;
-import javax.transaction.Transaction;
-import javax.transaction.TransactionManager;
-import javax.transaction.UserTransaction;
-
-import org.hibernate.ejb.AvailableSettings;
-import org.hibernate.engine.transaction.jta.platform.internal.AbstractJtaPlatform;
-import org.hibernate.engine.transaction.jta.platform.spi.JtaPlatform;
-import org.jboss.logging.Logger;
-import org.openfact.Config;
-import org.openfact.connections.jpa.updater.JpaUpdaterProvider;
-import org.openfact.connections.jpa.updater.liquibase.conn.LiquibaseConnectionProvider;
-import org.openfact.connections.jpa.util.JpaUtils;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OpenfactSessionFactory;
-import org.openfact.models.OpenfactSessionTask;
-import org.openfact.models.dblock.DBLockProvider;
-import org.openfact.models.utils.OpenfactModelUtils;
-import org.openfact.provider.ServerInfoAwareProviderFactory;
-import org.openfact.models.dblock.DBLockManager;
-import org.openfact.ServerStartupError;
-import org.openfact.timer.TimerProvider;
-import org.openfact.transaction.JtaTransactionManagerLookup;
 
 /**
  * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>

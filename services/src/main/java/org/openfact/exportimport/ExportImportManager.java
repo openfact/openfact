@@ -18,9 +18,10 @@
 package org.openfact.exportimport;
 
 
-import org.openfact.services.ServicesLogger;
+import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
+import org.openfact.services.ServicesLogger;
 
 import java.io.IOException;
 
@@ -29,7 +30,7 @@ import java.io.IOException;
  */
 public class ExportImportManager {
 
-    private static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
+    private static final Logger logger = Logger.getLogger(ExportImportManager.class);
 
     private OpenfactSessionFactory sessionFactory;
 
@@ -82,13 +83,13 @@ public class ExportImportManager {
         try {
             Strategy strategy = ExportImportConfig.getStrategy();
             if (organizationName == null) {
-                logger.fullModelImport(strategy.toString());
+                ServicesLogger.LOGGER.fullModelImport(strategy.toString());
                 importProvider.importModel(sessionFactory, strategy);
             } else {
-                logger.organizationImportRequested(organizationName, strategy.toString());
+                ServicesLogger.LOGGER.organizationImportRequested(organizationName, strategy.toString());
                 importProvider.importOrganization(sessionFactory, organizationName, strategy);
             }
-            logger.importSuccess();
+            ServicesLogger.LOGGER.importSuccess();
         } catch (IOException e) {
             throw new RuntimeException("Failed to run import", e);
         }
@@ -97,13 +98,13 @@ public class ExportImportManager {
     public void runExport() {
         try {
             if (organizationName == null) {
-                logger.fullModelExportRequested();
+                ServicesLogger.LOGGER.fullModelExportRequested();
                 exportProvider.exportModel(sessionFactory);
             } else {
-                logger.organizationExportRequested(organizationName);
+                ServicesLogger.LOGGER.organizationExportRequested(organizationName);
                 exportProvider.exportOrganization(sessionFactory, organizationName);
             }
-            logger.exportSuccess();
+            ServicesLogger.LOGGER.exportSuccess();
         } catch (IOException e) {
             throw new RuntimeException("Failed to run export");
         }

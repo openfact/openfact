@@ -18,16 +18,15 @@
 package org.openfact.events.log;
 
 import org.jboss.logging.Logger;
-import org.openfact.events.admin.AdminEvent;
 import org.openfact.events.Event;
 import org.openfact.events.EventListenerProvider;
+import org.openfact.events.admin.AdminEvent;
 import org.openfact.models.OpenfactContext;
 import org.openfact.models.OpenfactSession;
 
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.UriInfo;
-
 import java.util.Map;
 
 /**
@@ -58,8 +57,6 @@ public class JBossLoggingEventListenerProvider implements EventListenerProvider 
             sb.append(event.getType());
             sb.append(", organizationId=");
             sb.append(event.getOrganizationId());
-            sb.append(", clientId=");
-            sb.append(event.getClientId());
             sb.append(", userId=");
             sb.append(event.getUserId());
             sb.append(", ipAddress=");
@@ -104,8 +101,6 @@ public class JBossLoggingEventListenerProvider implements EventListenerProvider 
             sb.append(adminEvent.getOperationType());
             sb.append(", organizationId=");
             sb.append(adminEvent.getAuthDetails().getOrganizationId());
-            sb.append(", clientId=");
-            sb.append(adminEvent.getAuthDetails().getClientId());
             sb.append(", userId=");
             sb.append(adminEvent.getAuthDetails().getUserId());
             sb.append(", ipAddress=");

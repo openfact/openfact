@@ -273,21 +273,6 @@ public class OpenfactServer {
         }
     }
 
-    protected void setupDevConfig() {
-        if (System.getProperty("openfact.createAdminUser", "true").equals("true")) {
-            OpenfactSession session = sessionFactory.create();
-            try {
-                session.getTransactionManager().begin();
-                if (new ApplianceBootstrap(session).isNoMasterOrganization()) {
-                    new ApplianceBootstrap(session).createMasterOrganizationUser("admin", "admin");
-                }
-                session.getTransactionManager().commit();
-            } finally {
-                session.close();
-            }
-        }
-    }
-
     public void start() throws Throwable {
         long start = System.currentTimeMillis();
 
@@ -309,7 +294,7 @@ public class OpenfactServer {
             di.setDeploymentName("Openfact");
             di.setDefaultEncoding("UTF-8");
 
-            di.addInitParameter("openfact.embedded", "true");
+            di.addInitParameter(OpenfactApplication.OPENFACT_EMBEDDED, "true");
 
             di.setDefaultServletConfig(new DefaultServletConfig(true));
 
@@ -330,8 +315,6 @@ public class OpenfactServer {
             server.deploy(di);
 
             sessionFactory = ((OpenfactApplication) deployment.getApplication()).getSessionFactory();
-
-            setupDevConfig();
 
             if (config.getResourcesHome() != null) {
                 info("Loading resources from " + config.getResourcesHome());

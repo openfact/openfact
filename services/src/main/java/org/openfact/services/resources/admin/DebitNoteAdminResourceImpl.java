@@ -23,7 +23,7 @@ import org.openfact.services.managers.DebitNoteManager;
 
 public class DebitNoteAdminResourceImpl implements DebitNoteAdminResource {
 
-    private static final ServicesLogger logger = ServicesLogger.ROOT_LOGGER;
+    private static final ServicesLogger logger = ServicesLogger.LOGGER;
 
     protected OrganizationModel organization;
     protected DebitNoteModel debitNote;

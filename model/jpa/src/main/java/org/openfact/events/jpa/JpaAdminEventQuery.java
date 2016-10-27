@@ -17,10 +17,10 @@
 
 package org.openfact.events.jpa;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import org.openfact.events.admin.AdminEvent;
+import org.openfact.events.admin.AdminEventQuery;
+import org.openfact.events.admin.OperationType;
+import org.openfact.events.admin.ResourceType;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -29,11 +29,10 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-
-import org.openfact.events.admin.AdminEvent;
-import org.openfact.events.admin.AdminEventQuery;
-import org.openfact.events.admin.OperationType;
-import org.openfact.events.admin.ResourceType;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author <a href="mailto:giriraj.sharma27@gmail.com">Giriraj Sharma</a>
@@ -88,12 +87,6 @@ public class JpaAdminEventQuery implements AdminEventQuery {
     @Override
     public AdminEventQuery authOrganization(String authOrganizationId) {
         predicates.add(cb.equal(root.get("authOrganizationId"), authOrganizationId));
-        return this;
-    }
-
-    @Override
-    public AdminEventQuery authClient(String authClientId) {
-        predicates.add(cb.equal(root.get("authClientId"), authClientId));
         return this;
     }
 

@@ -32,15 +32,15 @@ import java.util.Set;
  */
 public class LocaleHelper {
 
-    private static final String LOCALE_COOKIE = "KEYCLOAK_LOCALE";
+    private static final String LOCALE_COOKIE = "OPENFACT_LOCALE";
     private static final String KC_LOCALE_PARAM = "kc_locale";
 
-    public static Locale getLocale(OpenfactSession session, OrganizationModel organization, UserModel user) {
-        if (!organization.isInternationalizationEnabled()) {
+    public static Locale getLocale(OpenfactSession session, OrganizationModel realm, UserModel user) {
+        if (!realm.isInternationalizationEnabled()) {
             return Locale.ENGLISH;
         } else {
-            Locale locale = getUserLocale(session, organization, user);
-            return locale != null ? locale : Locale.forLanguageTag(organization.getDefaultLocale());
+            Locale locale = getUserLocale(session, realm, user);
+            return locale != null ? locale : Locale.forLanguageTag(realm.getDefaultLocale());
         }
     }
 
@@ -65,42 +65,7 @@ public class LocaleHelper {
 
     private static Locale getUserLocale(OpenfactSession session, OrganizationModel organization, UserModel user) {
         UriInfo uriInfo = session.getContext().getUri();
-        HttpHeaders httpHeaders = session.getContext().getRequestHeaders();
-
-        // kc_locale query parameter
-        /*if (uriInfo != null && uriInfo.getQueryParameters().containsKey(KC_LOCALE_PARAM)) {
-            String localeString = uriInfo.getQueryParameters().getFirst(KC_LOCALE_PARAM);
-            Locale locale = findLocale(organization.getSupportedLocales(), localeString);
-            if (locale != null) {
-                updateLocaleCookie(session, organization, localeString);
-                if (user != null) {
-                    updateUsersLocale(user, localeString);
-                }
-                return locale;
-            }
-        }*/
-
-        // Locale cookie
-        /*if (httpHeaders != null && httpHeaders.getCookies().containsKey(LOCALE_COOKIE)) {
-            String localeString = httpHeaders.getCookies().get(LOCALE_COOKIE).getValue();
-            Locale locale = findLocale(organization.getSupportedLocales(), localeString);
-            if (locale != null) {
-                if (user != null) {
-                    updateUsersLocale(user, localeString);
-                }
-                return locale;
-            }
-        }*/
-
-        // User profile
-        /*if (user != null && user.getAttributes().containsKey(UserModel.LOCALE)) {
-            String localeString = user.getFirstAttribute(UserModel.LOCALE);
-            Locale locale = findLocale(organization.getSupportedLocales(), localeString);
-            if (locale != null) {
-                updateLocaleCookie(session, organization, localeString);
-                return locale;
-            }
-        }*/
+        HttpHeaders httpHeaders = session.getContext().getRequestHeaders();        
 
         // ui_locales query parameter
         if (uriInfo != null && uriInfo.getQueryParameters().containsKey(OAuth2Constants.UI_LOCALES_PARAM)) {
@@ -125,13 +90,6 @@ public class LocaleHelper {
         return null;
     }
 
-    /*private static void updateLocaleCookie(OpenfactSession session,
-                                           OrganizationModel organization,
-                                           String locale) {
-        boolean secure = organization.getSslRequired().isRequired(session.getContext().getUri().getRequestUri().getHost());
-        CookieHelper.addCookie(LOCALE_COOKIE, locale, AuthenticationManager.getOrganizationCookiePath(organization, session.getContext().getUri()), null, null, -1, secure, true);
-    }*/
-
     private static Locale findLocale(Set<String> supportedLocales, String... localeStrings) {
         for (String localeString : localeStrings) {
             if (localeString != null) {
@@ -155,11 +113,5 @@ public class LocaleHelper {
         }
         return null;
     }
-
-    /*private static void updateUsersLocale(UserModel user, String locale) {
-        if (!locale.equals(user.getFirstAttribute("locale"))) {
-            user.setSingleAttribute(UserModel.LOCALE, locale);
-        }
-    }*/
 
 }

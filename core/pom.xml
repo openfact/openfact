@@ -25,13 +25,13 @@
 		</openfact.osgi.import>
 	</properties>
 	<dependencies>
-
 		<!-- Java 8 Time -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-jsr310</artifactId>
 		</dependency>
 
+		<!-- Principal Start -->
 		<dependency>
 			<groupId>org.openfact</groupId>
 			<artifactId>openfact-common</artifactId>
@@ -57,6 +57,7 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- Principal End -->
 	</dependencies>
 	<build>
 		<resources>

@@ -17,18 +17,6 @@
 
 package org.openfact.connections.jpa.updater.liquibase.conn;
 
-import java.sql.Connection;
-
-import org.jboss.logging.Logger;
-import org.openfact.Config;
-import org.openfact.connections.jpa.updater.liquibase.LiquibaseJpaUpdaterProvider;
-import org.openfact.connections.jpa.updater.liquibase.PostgresPlusDatabase;
-import org.openfact.connections.jpa.updater.liquibase.lock.CustomInsertLockRecordGenerator;
-import org.openfact.connections.jpa.updater.liquibase.lock.CustomLockDatabaseChangeLogGenerator;
-import org.openfact.connections.jpa.updater.liquibase.lock.DummyLockService;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OpenfactSessionFactory;
-
 import liquibase.Liquibase;
 import liquibase.changelog.ChangeSet;
 import liquibase.changelog.DatabaseChangeLog;
@@ -43,6 +31,17 @@ import liquibase.resource.ClassLoaderResourceAccessor;
 import liquibase.resource.ResourceAccessor;
 import liquibase.servicelocator.ServiceLocator;
 import liquibase.sqlgenerator.SqlGeneratorFactory;
+import org.jboss.logging.Logger;
+import org.openfact.Config;
+import org.openfact.connections.jpa.updater.liquibase.LiquibaseJpaUpdaterProvider;
+import org.openfact.connections.jpa.updater.liquibase.PostgresPlusDatabase;
+import org.openfact.connections.jpa.updater.liquibase.lock.CustomInsertLockRecordGenerator;
+import org.openfact.connections.jpa.updater.liquibase.lock.CustomLockDatabaseChangeLogGenerator;
+import org.openfact.connections.jpa.updater.liquibase.lock.DummyLockService;
+import org.openfact.models.OpenfactSession;
+import org.openfact.models.OpenfactSessionFactory;
+
+import java.sql.Connection;
 
 /**
  * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>

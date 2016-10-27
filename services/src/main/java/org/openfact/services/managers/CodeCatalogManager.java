@@ -1,7 +1,6 @@
 package org.openfact.services.managers;
 
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
 import org.openfact.models.catalog.CodeCatalogModel;
 import org.openfact.models.catalog.CodeCatalogProvider;
 import org.openfact.models.utils.RepresentationToModel;
