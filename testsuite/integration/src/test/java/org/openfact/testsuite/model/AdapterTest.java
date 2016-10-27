@@ -63,8 +63,6 @@ public class AdapterTest extends AbstractModelTest {
         organizationModel.setCountryIdentificationCode("PE");
 
         KeyPair keyPair = generateKeypair();
-        organizationModel.setPrivateKey(keyPair.getPrivate());
-        organizationModel.setPublicKey(keyPair.getPublic());
 
         session.getTransactionManager().commit();
         resetSession();
@@ -84,8 +82,6 @@ public class AdapterTest extends AbstractModelTest {
         Assert.assertEquals(organizationModel.getCountrySubentity(), "Region");
         Assert.assertEquals(organizationModel.getDistrict(), "Jesus Nazareno");
         Assert.assertEquals(organizationModel.getCountryIdentificationCode(), "PE");
-        Assert.assertArrayEquals(organizationModel.getPrivateKey().getEncoded(), keyPair.getPrivate().getEncoded());
-        Assert.assertArrayEquals(organizationModel.getPublicKey().getEncoded(), keyPair.getPublic().getEncoded());
     }
 
     @Test

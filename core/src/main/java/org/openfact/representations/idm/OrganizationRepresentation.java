@@ -27,9 +27,13 @@ public class OrganizationRepresentation {
     protected Map<String, String> smtpServer;
     protected Map<String, String> ublSenderServer;
 
+    @Deprecated
     protected String privateKey;
+    @Deprecated
     protected String publicKey;
+    @Deprecated
     protected String certificate;
+    @Deprecated
     protected String codeSecret;
 
     private PostalAddressRepresentation postalAddress;
@@ -41,13 +45,13 @@ public class OrganizationRepresentation {
     protected String adminTheme;
     protected String emailTheme;
     protected Set<String> supportedLocales;
-    protected String defaultLocale;    
+    protected String defaultLocale;
     protected Boolean internationalizationEnabled;
-    
+
     protected Set<String> supportedUblLocales;
     protected String defaultUblLocale;
     protected Boolean internationalizationUblEnabled;
-    
+
     protected Set<String> supportedCurrencies;
     protected String defaultCurrency;
 
@@ -67,7 +71,7 @@ public class OrganizationRepresentation {
     protected List<DebitNoteRepresentation> debitNotes;
 
     private MultivaluedHashMap<String, ComponentExportRepresentation> components;
-    
+
     protected String openfactVersion;
 
     public String getId() {

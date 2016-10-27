@@ -4,6 +4,7 @@ import java.io.File;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.xml.crypto.dsig.CanonicalizationMethod;
@@ -23,7 +24,15 @@ import javax.xml.crypto.dsig.spec.C14NMethodParameterSpec;
 import javax.xml.crypto.dsig.spec.TransformParameterSpec;
 
 import org.apache.commons.io.FileUtils;
+import org.openfact.common.util.PemUtils;
+import org.openfact.component.ComponentModel;
+import org.openfact.keys.KeyMetadata;
+import org.openfact.keys.KeyProvider;
+import org.openfact.models.KeyManager;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.utils.DefaultKeyProviders;
+import org.openfact.representations.idm.KeysMetadataRepresentation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -31,7 +40,7 @@ import org.w3c.dom.NodeList;
 
 public class UblSignature_PE {
 
-	public static Document signUblDocument(OrganizationModel organizacion, Document document) throws Exception {
+	public static Document signUblDocument(OpenfactSession session, OrganizationModel organizacion, Document document) throws Exception {
 		String idReference = "Sign" + organizacion.getName().toUpperCase();
 		Document newdocument = addUBLExtensions(document);
 		Node parentNode = addExtensionContent(newdocument);
@@ -48,11 +57,15 @@ public class UblSignature_PE {
 				Collections.singletonList(reference));
 		KeyInfoFactory keyInfoFactory = signatureFactory.getKeyInfoFactory();
 		List<X509Certificate> x509Content = new ArrayList();
-		x509Content.add(organizacion.getCertificate());
+		
+		// Certificate
+		KeyManager keystore = session.keys();                    
+		
+		x509Content.add(keystore.getActiveKey(organizacion).getCertificate());
 		X509Data xdata = keyInfoFactory.newX509Data(x509Content);
 		KeyInfo keyInfo = keyInfoFactory.newKeyInfo(Collections.singletonList(xdata));
 
-		DOMSignContext signContext = new DOMSignContext(organizacion.getPrivateKey(), newdocument.getDocumentElement());
+		DOMSignContext signContext = new DOMSignContext(keystore.getActiveKey(organizacion).getPrivateKey(), newdocument.getDocumentElement());
 		XMLSignature signature = signatureFactory.newXMLSignature(signedInfo, keyInfo);
 		if (parentNode != null) {
 			signContext.setParent(parentNode);
@@ -67,13 +80,16 @@ public class UblSignature_PE {
 		return newdocument;
 	}
 
-	public static boolean isSignUblDocumentValid(OrganizationModel organization, Document document) throws Exception {
-		boolean xmlValid = false;
+	public static boolean isSignUblDocumentValid(OpenfactSession session, OrganizationModel organization, Document document) throws Exception {
+	    // Certificate
+        KeyManager keystore = session.keys();  
+        
+	    boolean xmlValid = false;
 		NodeList nodeList = document.getElementsByTagName("ds:Signature");
 		if (nodeList.getLength() == 0) {
 			throw new Exception("No XML Digital Signature Found, document is discarded");
 		}
-		DOMValidateContext validateContext = new DOMValidateContext(organization.getPublicKey(), nodeList.item(0));
+		DOMValidateContext validateContext = new DOMValidateContext(keystore.getActiveKey(organization).getPublicKey(), nodeList.item(0));
 		XMLSignatureFactory signatureFactory = XMLSignatureFactory.getInstance("DOM");
 		XMLSignature signature = signatureFactory.unmarshalXMLSignature(validateContext);
 		xmlValid = signature.validate(validateContext);

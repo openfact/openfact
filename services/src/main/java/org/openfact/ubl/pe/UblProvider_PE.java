@@ -59,9 +59,9 @@ public class UblProvider_PE implements UblProvider {
 							.setPutNamespaceContextPrefixesInRoot(true));
 			Document document = DocumentUtils.byteToDocument(out.toByteArray());
 			// Sign new Document
-			Document ubl = UblSignature_PE.signUblDocument(organization, document);
+			Document ubl = UblSignature_PE.signUblDocument(session, organization, document);
 			// validate signature
-			if (UblSignature_PE.isSignUblDocumentValid(organization, ubl)) {
+			if (UblSignature_PE.isSignUblDocumentValid(session, organization, ubl)) {
 				invoice.setXmlDocument(ArrayUtils.toObject(DocumentUtils.getBytesFromDocument(ubl)));
 			} else {
 				throw new ModelException("Signature invalid, please verify the invoice signature");
@@ -89,9 +89,9 @@ public class UblProvider_PE implements UblProvider {
 							.setPutNamespaceContextPrefixesInRoot(true));
 			Document document = DocumentUtils.byteToDocument(out.toByteArray());
 			// Sign new Document
-			Document ubl = UblSignature_PE.signUblDocument(organization, document);
+			Document ubl = UblSignature_PE.signUblDocument(session, organization, document);
 			// validate signature
-			if (UblSignature_PE.isSignUblDocumentValid(organization, ubl)) {
+			if (UblSignature_PE.isSignUblDocumentValid(session, organization, ubl)) {
 				creditNote.setXmlDocument(ArrayUtils.toObject(DocumentUtils.getBytesFromDocument(ubl)));
 			} else {
 				throw new ModelException("Signature invalid, please verify the credit Note signature");
@@ -119,9 +119,9 @@ public class UblProvider_PE implements UblProvider {
 							.setPutNamespaceContextPrefixesInRoot(true));
 			Document document = DocumentUtils.byteToDocument(out.toByteArray());
 			// Sign new Document
-			Document ubl = UblSignature_PE.signUblDocument(organization, document);
+			Document ubl = UblSignature_PE.signUblDocument(session, organization, document);
 			// validate signature
-			if (UblSignature_PE.isSignUblDocumentValid(organization, ubl)) {
+			if (UblSignature_PE.isSignUblDocumentValid(session, organization, ubl)) {
 				debitNote.setXmlDocument(ArrayUtils.toObject(DocumentUtils.getBytesFromDocument(ubl)));
 			} else {
 				throw new ModelException("Signature invalid, please verify the debit Note signature");

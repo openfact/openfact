@@ -46,10 +46,6 @@
 		</dependency>
 		<dependency>
 			<groupId>org.openfact</groupId>
-			<artifactId>openfact-server-spi</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.openfact</groupId>
 			<artifactId>openfact-model-jpa</artifactId>
 		</dependency>
 		<dependency>

@@ -1,9 +1,5 @@
 package org.openfact.models;
 
-import java.security.Key;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.security.cert.X509Certificate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -187,41 +183,6 @@ public interface OrganizationModel {
     Map<String, String> getUblSenderConfig();
 
     void setUblSenderConfig(Map<String, String> ublSenderConfig);
-
-    /**
-     * Certificate
-     */
-    String getKeyId();
-
-    String getPublicKeyPem();
-
-    void setPublicKeyPem(String publicKeyPem);
-
-    String getPrivateKeyPem();
-
-    void setPrivateKeyPem(String privateKeyPem);
-
-    PublicKey getPublicKey();
-
-    void setPublicKey(PublicKey publicKey);
-
-    String getCodeSecret();
-
-    Key getCodeSecretKey();
-
-    void setCodeSecret(String codeSecret);
-
-    X509Certificate getCertificate();
-
-    void setCertificate(X509Certificate certificate);
-
-    String getCertificatePem();
-
-    void setCertificatePem(String certificate);
-
-    PrivateKey getPrivateKey();
-
-    void setPrivateKey(PrivateKey privateKey);
 
     /**
      * Attributes

@@ -81,21 +81,6 @@ public class OrganizationEntity {
     private LocalDateTime createdTimestamp;
 
     /**
-     * Certificate
-     */
-    @Column(name = "PUBLIC_KEY", length = 4000)
-    protected String publicKeyPem;
-
-    @Column(name = "PRIVATE_KEY", length = 4000)
-    protected String privateKeyPem;
-
-    @Column(name = "CERTIFICATE", length = 4000)
-    protected String certificatePem;
-
-    @Column(name = "CODE_SECRET", length = 255)
-    protected String codeSecret;
-
-    /**
      * Postal address
      */
     @Column(name = "POSTAL_ADRESS_ID")
@@ -362,39 +347,7 @@ public class OrganizationEntity {
 
     public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
         this.createdTimestamp = createdTimestamp;
-    }
-
-    public String getPublicKeyPem() {
-        return publicKeyPem;
-    }
-
-    public void setPublicKeyPem(String publicKeyPem) {
-        this.publicKeyPem = publicKeyPem;
-    }
-
-    public String getPrivateKeyPem() {
-        return privateKeyPem;
-    }
-
-    public void setPrivateKeyPem(String privateKeyPem) {
-        this.privateKeyPem = privateKeyPem;
-    }
-
-    public String getCertificatePem() {
-        return certificatePem;
-    }
-
-    public void setCertificatePem(String certificatePem) {
-        this.certificatePem = certificatePem;
-    }
-
-    public String getCodeSecret() {
-        return codeSecret;
-    }
-
-    public void setCodeSecret(String codeSecret) {
-        this.codeSecret = codeSecret;
-    }
+    }    
 
     public String getPostalAddressId() {
         return postalAddressId;

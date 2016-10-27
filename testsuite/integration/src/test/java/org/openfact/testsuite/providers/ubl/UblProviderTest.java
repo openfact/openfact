@@ -19,14 +19,6 @@ import org.openfact.testsuite.providers.AbstractProviderTest;
 import org.openfact.ubl.UblProvider;
 import org.w3c.dom.Document;
 
-import com.helger.commons.error.list.IErrorList;
-import com.helger.ubl21.UBL21Reader;
-import com.helger.ubl21.UBL21Validator;
-
-import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
-import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
-import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
-
 public class UblProviderTest extends AbstractProviderTest {
 
 	protected OrganizationModel organization;

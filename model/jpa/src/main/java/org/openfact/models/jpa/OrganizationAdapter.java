@@ -1,9 +1,5 @@
 package org.openfact.models.jpa;
 
-import java.security.Key;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.security.cert.X509Certificate;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Date;
@@ -22,7 +18,6 @@ import org.jboss.logging.Logger;
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.component.ComponentFactory;
 import org.openfact.component.ComponentModel;
-import org.openfact.jose.jwk.JWKBuilder;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.entities.ComponentConfigEntity;
@@ -40,11 +35,6 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     protected OrganizationEntity organization;
     protected EntityManager em;
     protected OpenfactSession session;
-
-    protected volatile transient PublicKey publicKey;
-    protected volatile transient PrivateKey privateKey;
-    protected volatile transient X509Certificate certificate;
-    protected volatile transient Key codeSecretKey;
 
     public OrganizationAdapter(OpenfactSession session, EntityManager em, OrganizationEntity organization) {
         this.session = session;
@@ -342,110 +332,8 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     }
 
     @Override
-    public String getKeyId() {
-        PublicKey publicKey = getPublicKey();
-        return publicKey != null ? JWKBuilder.create().rs256(publicKey).getKeyId() : null;
-    }
-
-    @Override
-    public String getPublicKeyPem() {
-        return organization.getPublicKeyPem();
-    }
-
-    @Override
-    public void setPublicKeyPem(String publicKeyPem) {
-        organization.setPublicKeyPem(publicKeyPem);
-        em.flush();
-    }
-
-    @Override
-    public String getPrivateKeyPem() {
-        return organization.getPrivateKeyPem();
-    }
-
-    @Override
-    public void setPrivateKeyPem(String privateKeyPem) {
-        organization.setPrivateKeyPem(privateKeyPem);
-        em.flush();
-    }
-
-    @Override
-    public PublicKey getPublicKey() {
-        if (publicKey != null)
-            return publicKey;
-        publicKey = OpenfactModelUtils.getPublicKey(getPublicKeyPem());
-        return publicKey;
-    }
-
-    @Override
-    public void setPublicKey(PublicKey publicKey) {
-        this.publicKey = publicKey;
-        String publicKeyPem = OpenfactModelUtils.getPemFromKey(publicKey);
-        setPublicKeyPem(publicKeyPem);
-    }
-
-    @Override
-    public String getCodeSecret() {
-        return organization.getCodeSecret();
-    }
-
-    @Override
-    public Key getCodeSecretKey() {
-        if (codeSecretKey == null) {
-            codeSecretKey = OpenfactModelUtils.getSecretKey(getCodeSecret());
-        }
-        return codeSecretKey;
-    }
-
-    @Override
-    public void setCodeSecret(String codeSecret) {
-        organization.setCodeSecret(codeSecret);
-    }
-
-    @Override
-    public X509Certificate getCertificate() {
-        if (certificate != null)
-            return certificate;
-        certificate = OpenfactModelUtils.getCertificate(getCertificatePem());
-        return certificate;
-    }
-
-    @Override
-    public void setCertificate(X509Certificate certificate) {
-        this.certificate = certificate;
-        String certificatePem = OpenfactModelUtils.getPemFromCertificate(certificate);
-        setCertificatePem(certificatePem);
-    }
-
-    @Override
-    public String getCertificatePem() {
-        return organization.getCertificatePem();
-    }
-
-    @Override
-    public void setCertificatePem(String certificate) {
-        organization.setCertificatePem(certificate);
-    }
-
-    @Override
-    public PrivateKey getPrivateKey() {
-        if (privateKey != null)
-            return privateKey;
-        privateKey = OpenfactModelUtils.getPrivateKey(getPrivateKeyPem());
-        return privateKey;
-    }
-
-    @Override
-    public void setPrivateKey(PrivateKey privateKey) {
-        this.privateKey = privateKey;
-        String privateKeyPem = OpenfactModelUtils.getPemFromKey(privateKey);
-        setPrivateKeyPem(privateKeyPem);
-    }
-
-    @Override
     public void setAttribute(String name, String value) {
         organization.getAttributes().put(name, value);
-
     }
 
     @Override
@@ -663,7 +551,8 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         ComponentUtil.getComponentFactory(session, component).validateConfiguration(session, component);
 
         ComponentEntity c = em.find(ComponentEntity.class, component.getId());
-        if (c == null) return;
+        if (c == null)
+            return;
         c.setName(component.getName());
         c.setProviderId(component.getProviderId());
         c.setProviderType(component.getProviderType());
@@ -673,14 +562,14 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         em.flush();
         setConfig(component, c);
 
-
     }
 
     @Override
     public void removeComponent(ComponentModel component) {
         ComponentEntity c = em.find(ComponentEntity.class, component.getId());
-        if (c == null) return;
-        //session.users().preRemove(this, component);
+        if (c == null)
+            return;
+        // session.users().preRemove(this, component);
         em.createNamedQuery("deleteComponentConfigByComponent").setParameter("component", c).executeUpdate();
         em.remove(c);
     }
@@ -688,24 +577,26 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     @Override
     public void removeComponents(String parentId) {
         TypedQuery<String> query = em.createNamedQuery("getComponentIdsByParent", String.class)
-                .setParameter("organization", organization)
-                .setParameter("parentId", parentId);
+                .setParameter("organization", organization).setParameter("parentId", parentId);
         List<String> results = query.getResultList();
-        if (results.isEmpty()) return;
+        if (results.isEmpty())
+            return;
         for (String id : results) {
-            //session.users().preRemove(this, getComponent(id));
+            // session.users().preRemove(this, getComponent(id));
         }
-        em.createNamedQuery("deleteComponentConfigByParent").setParameter("parentId", parentId).executeUpdate();
+        em.createNamedQuery("deleteComponentConfigByParent").setParameter("parentId", parentId)
+                .executeUpdate();
         em.createNamedQuery("deleteComponentByParent").setParameter("parentId", parentId).executeUpdate();
 
     }
 
     @Override
     public List<ComponentModel> getComponents(String parentId, String providerType) {
-        if (parentId == null) parentId = getId();
-        TypedQuery<ComponentEntity> query = em.createNamedQuery("getComponentsByParentAndType", ComponentEntity.class)
-                .setParameter("organization", organization)
-                .setParameter("parentId", parentId)
+        if (parentId == null)
+            parentId = getId();
+        TypedQuery<ComponentEntity> query = em
+                .createNamedQuery("getComponentsByParentAndType", ComponentEntity.class)
+                .setParameter("organization", organization).setParameter("parentId", parentId)
                 .setParameter("providerType", providerType);
         List<ComponentEntity> results = query.getResultList();
         List<ComponentModel> rtn = new LinkedList<>();
@@ -719,9 +610,9 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
 
     @Override
     public List<ComponentModel> getComponents(String parentId) {
-        TypedQuery<ComponentEntity> query = em.createNamedQuery("getComponentsByParent", ComponentEntity.class)
-                .setParameter("organization", organization)
-                .setParameter("parentId", parentId);
+        TypedQuery<ComponentEntity> query = em
+                .createNamedQuery("getComponentsByParent", ComponentEntity.class)
+                .setParameter("organization", organization).setParameter("parentId", parentId);
         List<ComponentEntity> results = query.getResultList();
         List<ComponentModel> rtn = new LinkedList<>();
         for (ComponentEntity c : results) {
@@ -741,7 +632,8 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         model.setSubType(c.getSubType());
         model.setParentId(c.getParentId());
         MultivaluedHashMap<String, String> config = new MultivaluedHashMap<>();
-        TypedQuery<ComponentConfigEntity> configQuery = em.createNamedQuery("getComponentConfig", ComponentConfigEntity.class)
+        TypedQuery<ComponentConfigEntity> configQuery = em
+                .createNamedQuery("getComponentConfig", ComponentConfigEntity.class)
                 .setParameter("component", c);
         List<ComponentConfigEntity> configResults = configQuery.getResultList();
         for (ComponentConfigEntity configEntity : configResults) {
@@ -768,17 +660,18 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     @Override
     public ComponentModel getComponent(String id) {
         ComponentEntity c = em.find(ComponentEntity.class, id);
-        if (c == null) return null;
+        if (c == null)
+            return null;
         return entityToModel(c);
     }
-    
 
     private static final String BROWSER_HEADER_PREFIX = "_browser_header.";
 
     @Override
     public Map<String, String> getBrowserSecurityHeaders() {
         Map<String, String> attributes = getAttributes();
-        if (attributes.isEmpty()) return Collections.EMPTY_MAP;
+        if (attributes.isEmpty())
+            return Collections.EMPTY_MAP;
         Map<String, String> headers = new HashMap<String, String>();
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             if (entry.getKey().startsWith(BROWSER_HEADER_PREFIX)) {
@@ -794,7 +687,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
             setAttribute(BROWSER_HEADER_PREFIX + entry.getKey(), entry.getValue());
         }
     }
-    
+
     /*
      * (non-Javadoc)
      * 

@@ -142,127 +142,6 @@ public class OrganizationAdapter implements OrganizationModel {
     }
 
     @Override
-    public String getKeyId() {
-        if (isUpdated())
-            return updated.getKeyId();
-        return cached.getKeyId();
-    }
-
-    @Override
-    public String getPublicKeyPem() {
-        if (isUpdated())
-            return updated.getPublicKeyPem();
-        return cached.getPublicKeyPem();
-    }
-
-    @Override
-    public void setPublicKeyPem(String publicKeyPem) {
-        getDelegateForUpdate();
-        updated.setPublicKeyPem(publicKeyPem);
-    }
-
-    @Override
-    public String getPrivateKeyPem() {
-        if (isUpdated())
-            return updated.getPrivateKeyPem();
-        return cached.getPrivateKeyPem();
-    }
-
-    @Override
-    public void setPrivateKeyPem(String privateKeyPem) {
-        getDelegateForUpdate();
-        updated.setPrivateKeyPem(privateKeyPem);
-    }
-
-    @Override
-    public PublicKey getPublicKey() {
-        if (isUpdated())
-            return updated.getPublicKey();
-        if (publicKey != null)
-            return publicKey;
-        publicKey = cached.getPublicKey();
-        if (publicKey != null)
-            return publicKey;
-        publicKey = OpenfactModelUtils.getPublicKey(getPublicKeyPem());
-        return publicKey;
-    }
-
-    @Override
-    public void setPublicKey(PublicKey publicKey) {
-        this.publicKey = publicKey;
-        String publicKeyPem = OpenfactModelUtils.getPemFromKey(publicKey);
-        setPublicKeyPem(publicKeyPem);
-    }
-
-    @Override
-    public X509Certificate getCertificate() {
-        if (isUpdated())
-            return updated.getCertificate();
-        if (certificate != null)
-            return certificate;
-        certificate = cached.getCertificate();
-        if (certificate != null)
-            return certificate;
-        certificate = OpenfactModelUtils.getCertificate(getCertificatePem());
-        return certificate;
-    }
-
-    @Override
-    public void setCertificate(X509Certificate certificate) {
-        this.certificate = certificate;
-        String certPem = OpenfactModelUtils.getPemFromCertificate(certificate);
-        setCertificatePem(certPem);
-    }
-
-    @Override
-    public void setCertificatePem(String certificate) {
-        getDelegateForUpdate();
-        updated.setCertificatePem(certificate);
-
-    }
-
-    @Override
-    public PrivateKey getPrivateKey() {
-        if (isUpdated())
-            return updated.getPrivateKey();
-        if (privateKey != null) {
-            return privateKey;
-        }
-        privateKey = cached.getPrivateKey();
-        if (privateKey != null) {
-            return privateKey;
-        }
-        privateKey = OpenfactModelUtils.getPrivateKey(getPrivateKeyPem());
-        return privateKey;
-    }
-
-    @Override
-    public void setPrivateKey(PrivateKey privateKey) {
-        this.privateKey = privateKey;
-        String privateKeyPem = OpenfactModelUtils.getPemFromKey(privateKey);
-        setPrivateKeyPem(privateKeyPem);
-    }
-
-    @Override
-    public String getCodeSecret() {
-        return isUpdated() ? updated.getCodeSecret() : cached.getCodeSecret();
-    }
-
-    @Override
-    public Key getCodeSecretKey() {
-        if (codeSecretKey == null) {
-            codeSecretKey = OpenfactModelUtils.getSecretKey(getCodeSecret());
-        }
-        return codeSecretKey;
-    }
-
-    @Override
-    public void setCodeSecret(String codeSecret) {
-        getDelegateForUpdate();
-        updated.setCodeSecret(codeSecret);
-    }
-
-    @Override
     public Map<String, String> getSmtpConfig() {
         if (isUpdated())
             return updated.getSmtpConfig();
@@ -649,12 +528,6 @@ public class OrganizationAdapter implements OrganizationModel {
     }
 
     @Override
-    public String getCertificatePem() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public void setAttribute(String name, String value) {
         // TODO Auto-generated method stub
 
@@ -735,7 +608,7 @@ public class OrganizationAdapter implements OrganizationModel {
     @Override
     public void setTaskEnabled(boolean taskEnabled) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -747,19 +620,19 @@ public class OrganizationAdapter implements OrganizationModel {
     @Override
     public void updateComponent(ComponentModel component) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void removeComponent(ComponentModel component) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void removeComponents(String parentId) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -795,7 +668,7 @@ public class OrganizationAdapter implements OrganizationModel {
     @Override
     public void setBrowserSecurityHeaders(Map<String, String> headers) {
         // TODO Auto-generated method stub
-        
+
     }
 
 }
