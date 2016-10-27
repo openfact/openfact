@@ -13,9 +13,11 @@ org.openfact.theme.ThemeSpi
 org.openfact.truststore.TruststoreSpi
 org.openfact.connections.httpclient.HttpClientSpi
 org.openfact.cluster.ClusterSpi
-org.openfact.authentication.ClientAuthenticatorSpi
+org.openfact.authentication.AuthenticationSpi
 org.openfact.connections.httpclient.HttpClientSpi
 org.openfact.transaction.TransactionManagerLookupSpi
+org.openfact.keys.KeySpi
+org.openfact.scripting.ScriptingSpi
 org.openfact.models.ubl.provider.InvoiceSpi
 org.openfact.models.ubl.provider.CreditNoteSpi
 org.openfact.models.ubl.provider.DebitNoteSpi

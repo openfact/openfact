@@ -1,0 +1,3 @@
+org.openfact.keys.GeneratedRsaKeyProviderFactory
+org.openfact.keys.JavaKeystoreKeyProviderFactory
+org.openfact.keys.RsaKeyProviderFactory
