@@ -16,24 +16,26 @@
  */
 package org.openfact.services;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.openfact.component.ComponentFactory;
 import org.openfact.component.ComponentModel;
 import org.openfact.keys.DefaultKeyManager;
+import org.openfact.models.KeyManager;
 import org.openfact.models.OpenfactContext;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.OpenfactTransactionManager;
-import org.openfact.models.KeyManager;
 import org.openfact.models.OrganizationProvider;
-import org.openfact.models.cache.CacheOrganizationProvider;
 import org.openfact.models.catalog.CodeCatalogProvider;
 import org.openfact.models.catalog.CountryCatalogProvider;
 import org.openfact.models.catalog.CurrencyCatalogProvider;
 import org.openfact.models.catalog.UnitCatalogProvider;
-import org.openfact.models.ubl.cache.CreditNoteCache;
-import org.openfact.models.ubl.cache.DebitNoteCache;
-import org.openfact.models.ubl.cache.InvoiceCache;
-import org.openfact.models.ubl.cache.InvoiceCacheProviderFactory;
 import org.openfact.models.ubl.provider.CreditNoteProvider;
 import org.openfact.models.ubl.provider.DebitNoteProvider;
 import org.openfact.models.ubl.provider.InvoiceProvider;
@@ -42,13 +44,6 @@ import org.openfact.models.ubl.provider.SendEventProvider;
 import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
 import org.openfact.scripting.ScriptingProvider;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
@@ -89,7 +84,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
     }
 
     private OrganizationProvider getOrganizationProvider() {
-        CacheOrganizationProvider cache = getProvider(CacheOrganizationProvider.class);
+        OrganizationProvider cache = getProvider(OrganizationProvider.class);
         if (cache != null) {
             return cache;
         } else {
@@ -98,7 +93,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
     }
 
     private InvoiceProvider getInvoiceProvider() {
-        InvoiceCache cache = getProvider(InvoiceCache.class);
+        InvoiceProvider cache = getProvider(InvoiceProvider.class);
         if (cache != null) {
             return cache;
         } else {
@@ -107,7 +102,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
     }
 
     private CreditNoteProvider getCreditNoteProvider() {
-        CreditNoteCache cache = getProvider(CreditNoteCache.class);
+        CreditNoteProvider cache = getProvider(CreditNoteProvider.class);
         if (cache != null) {
             return cache;
         } else {
@@ -116,7 +111,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
     }
 
     private DebitNoteProvider getDebitNoteProvider() {
-        DebitNoteCache cache = getProvider(DebitNoteCache.class);
+        DebitNoteProvider cache = getProvider(DebitNoteProvider.class);
         if (cache != null) {
             return cache;
         } else {

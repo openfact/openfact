@@ -19,16 +19,21 @@ package org.openfact.models.cache.infinispan;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.jboss.logging.Logger;
+import org.openfact.cluster.ClusterProvider;
 import org.openfact.migration.MigrationModel;
 import org.openfact.models.OpenfactSession;
+import org.openfact.models.OpenfactTransaction;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
 import org.openfact.models.cache.CacheOrganizationProvider;
+import org.openfact.models.cache.infinispan.entities.CachedOrganization;
+import org.openfact.models.cache.infinispan.entities.OrganizationListQuery;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 
@@ -108,6 +113,9 @@ import org.openfact.models.search.SearchResultsModel;
  */
 public class OrganizationCacheSession implements CacheOrganizationProvider {
     protected static final Logger logger = Logger.getLogger(OrganizationCacheSession.class);
+    public static final String ORGANIZATION_CLIENTS_QUERY_SUFFIX = ".organization.clients";
+    public static final String ROLES_QUERY_SUFFIX = ".roles";
+    public static final String ROLE_BY_NAME_QUERY_SUFFIX = ".role.by-name";
     protected OrganizationCacheManager cache;
     protected OpenfactSession session;
     protected OrganizationProvider delegate;
@@ -122,7 +130,11 @@ public class OrganizationCacheSession implements CacheOrganizationProvider {
     protected final long startupRevision;
 
     public OrganizationCacheSession(OrganizationCacheManager cache, OpenfactSession session) {
+        this.cache = cache;
+        this.session = session;
         this.startupRevision = cache.getCurrentCounter();
+        session.getTransactionManager().enlistPrepare(getPrepareTransaction());
+        session.getTransactionManager().enlistAfterCompletion(getAfterTransaction());
     }
 
     public long getStartupRevision() {
@@ -136,6 +148,8 @@ public class OrganizationCacheSession implements CacheOrganizationProvider {
     @Override
     public void clear() {
         cache.clear();
+        ClusterProvider cluster = session.getProvider(ClusterProvider.class);
+        //cluster.notify(InfinispanCacheOrganizationProviderFactory.ORGANIZATION_CLEAR_CACHE_EVENTS, new ClearCacheEvent());
     }
 
     @Override
@@ -154,39 +168,246 @@ public class OrganizationCacheSession implements CacheOrganizationProvider {
     }
 
     @Override
+    public void registerOrganizationInvalidation(String id) {
+        invalidateOrganization(id);
+        //cache.organizationInvalidation(id, invalidations);
+    }
+
+    private void invalidateOrganization(String id) {
+        invalidations.add(id);
+        OrganizationAdapter adapter = managedOrganizations.get(id);
+        if (adapter != null)
+            adapter.invalidate();
+    }    
+
+    protected void runInvalidations() {
+        for (String id : invalidations) {
+            cache.invalidateObject(id);
+        }
+    }
+
+    private OpenfactTransaction getPrepareTransaction() {
+        return new OpenfactTransaction() {
+            @Override
+            public void begin() {
+                transactionActive = true;
+            }
+
+            @Override
+            public void commit() {
+                /*
+                 * THIS WAS CAUSING DEADLOCK IN A CLUSTER if (delegate == null)
+                 * return; List<String> locks = new LinkedList<>();
+                 * locks.addAll(invalidations); Collections.sort(locks); // lock
+                 * ordering cache.getRevisions().startBatch(); if
+                 * (!locks.isEmpty())
+                 * cache.getRevisions().getAdvancedCache().lock(locks);
+                 */
+
+            }
+
+            @Override
+            public void rollback() {
+                setRollbackOnly = true;
+                transactionActive = false;
+            }
+
+            @Override
+            public void setRollbackOnly() {
+                setRollbackOnly = true;
+            }
+
+            @Override
+            public boolean getRollbackOnly() {
+                return setRollbackOnly;
+            }
+
+            @Override
+            public boolean isActive() {
+                return transactionActive;
+            }
+        };
+    }
+
+    private OpenfactTransaction getAfterTransaction() {
+        return new OpenfactTransaction() {
+            @Override
+            public void begin() {
+                transactionActive = true;
+            }
+
+            @Override
+            public void commit() {
+                try {
+                    if (delegate == null)
+                        return;
+                    if (clearAll) {
+                        cache.clear();
+                    }
+                    runInvalidations();
+                    transactionActive = false;
+                } finally {
+                    cache.endRevisionBatch();
+                }
+            }
+
+            @Override
+            public void rollback() {
+                try {
+                    setRollbackOnly = true;
+                    runInvalidations();
+                    transactionActive = false;
+                } finally {
+                    cache.endRevisionBatch();
+                }
+            }
+
+            @Override
+            public void setRollbackOnly() {
+                setRollbackOnly = true;
+            }
+
+            @Override
+            public boolean getRollbackOnly() {
+                return setRollbackOnly;
+            }
+
+            @Override
+            public boolean isActive() {
+                return transactionActive;
+            }
+        };
+    }
+
+    @Override
     public OrganizationModel createOrganization(String name) {
-        // TODO Auto-generated method stub
-        return null;
+        OrganizationModel organization = getDelegate().createOrganization(name);
+        registerOrganizationInvalidation(organization.getId());
+        return organization;
     }
 
     @Override
     public OrganizationModel createOrganization(String id, String name) {
-        // TODO Auto-generated method stub
-        return null;
+        OrganizationModel organization = getDelegate().createOrganization(id, name);
+        registerOrganizationInvalidation(organization.getId());
+        return organization;
     }
 
     @Override
     public OrganizationModel getOrganization(String id) {
-        // TODO Auto-generated method stub
-        return null;
+        CachedOrganization cached = cache.get(id, CachedOrganization.class);
+        if (cached != null) {
+            logger.tracev("by id cache hit: {0}", cached.getName());
+        }
+        if (cached == null) {
+            Long loaded = cache.getCurrentRevision(id);
+            OrganizationModel model = getDelegate().getOrganization(id);
+            if (model == null)
+                return null;
+            if (invalidations.contains(id))
+                return model;
+            cached = new CachedOrganization(loaded, model);
+            cache.addRevisioned(cached, startupRevision);
+        } else if (invalidations.contains(id)) {
+            return getDelegate().getOrganization(id);
+        } else if (managedOrganizations.containsKey(id)) {
+            return managedOrganizations.get(id);
+        }
+        OrganizationAdapter adapter = new OrganizationAdapter(cached, this);
+        managedOrganizations.put(id, adapter);
+        return adapter;
     }
 
     @Override
     public OrganizationModel getOrganizationByName(String name) {
-        // TODO Auto-generated method stub
-        return null;
+        String cacheKey = getOrganizationByNameCacheKey(name);
+        OrganizationListQuery query = cache.get(cacheKey, OrganizationListQuery.class);
+        if (query != null) {
+            logger.tracev("organization by name cache hit: {0}", name);
+        }
+        if (query == null) {
+            Long loaded = cache.getCurrentRevision(cacheKey);
+            OrganizationModel model = getDelegate().getOrganizationByName(name);
+            if (model == null)
+                return null;
+            if (invalidations.contains(model.getId()))
+                return model;
+            query = new OrganizationListQuery(loaded, cacheKey, model.getId());
+            cache.addRevisioned(query, startupRevision);
+            return model;
+        } else if (invalidations.contains(cacheKey)) {
+            return getDelegate().getOrganizationByName(name);
+        } else {
+            String organizationId = query.getOrganizations().iterator().next();
+            if (invalidations.contains(organizationId)) {
+                return getDelegate().getOrganizationByName(name);
+            }
+            return getOrganization(organizationId);
+        }
+    }
+
+    public String getOrganizationByNameCacheKey(String name) {
+        return "organization.query.by.name." + name;
     }
 
     @Override
     public List<OrganizationModel> getOrganizations() {
-        // TODO Auto-generated method stub
-        return null;
+        // Retrieve organizations from backend
+        List<OrganizationModel> backendOrganizations = getDelegate().getOrganizations();
+
+        // Return cache delegates to ensure cache invalidated during write
+        // operations
+        List<OrganizationModel> cachedOrganizations = new LinkedList<OrganizationModel>();
+        for (OrganizationModel organization : backendOrganizations) {
+            OrganizationModel cached = getOrganization(organization.getId());
+            cachedOrganizations.add(cached);
+        }
+        return cachedOrganizations;
     }
 
     @Override
-    public boolean removeOrganization(String organizationId) {
+    public boolean removeOrganization(String id) {
+        OrganizationModel organization = getOrganization(id);
+        if (organization == null)
+            return false;
+
+        invalidations.add(getOrganizationClientsQueryCacheKey(id));
+        invalidations.add(getOrganizationByNameCacheKey(organization.getName()));
+        cache.invalidateObject(id);
+        //cache.organizationRemoval(id, invalidations);
+        return getDelegate().removeOrganization(id);
+    }
+
+    private String getOrganizationClientsQueryCacheKey(String organization) {
+        return organization + ORGANIZATION_CLIENTS_QUERY_SUFFIX;
+    }
+
+    private String getGroupsQueryCacheKey(String organization) {
+        return organization + ".groups";
+    }
+
+    private String getTopGroupsQueryCacheKey(String organization) {
+        return organization + ".top.groups";
+    }
+
+    private String getRolesCacheKey(String container) {
+        return container + ROLES_QUERY_SUFFIX;
+    }
+
+    private String getRoleByNameCacheKey(String container, String name) {
+        return container + "." + name + ROLES_QUERY_SUFFIX;
+    }    
+
+    @Override
+    public void close() {
+        if (delegate != null)
+            delegate.close();
+    }
+
+    @Override
+    public List<OrganizationModel> getOrganizations(Integer firstResult, Integer maxResults) {
         // TODO Auto-generated method stub
-        return false;
+        return null;
     }
 
     @Override
@@ -199,24 +420,6 @@ public class OrganizationCacheSession implements CacheOrganizationProvider {
     public int getOrganizationsCount() {
         // TODO Auto-generated method stub
         return 0;
-    }
-
-    @Override
-    public void close() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void registerOrganizationInvalidation(String id) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public List<OrganizationModel> getOrganizations(Integer firstResult, Integer maxResults) {
-        // TODO Auto-generated method stub
-        return null;
     }
 
     @Override
@@ -234,16 +437,16 @@ public class OrganizationCacheSession implements CacheOrganizationProvider {
     }
 
     @Override
-    public SearchResultsModel<OrganizationModel> searchForOrganization(SearchCriteriaModel criteriaModel) {
+    public SearchResultsModel<OrganizationModel> searchForOrganization(SearchCriteriaModel criteria) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public SearchResultsModel<OrganizationModel> searchForOrganization(SearchCriteriaModel criteriaModel,
+    public SearchResultsModel<OrganizationModel> searchForOrganization(SearchCriteriaModel criteria,
             String filterText) {
         // TODO Auto-generated method stub
         return null;
-    }
-
+    }        
+    
 }

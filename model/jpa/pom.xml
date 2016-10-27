@@ -114,6 +114,46 @@
 					<target>${maven.compiler.target}</target>
 				</configuration>
 			</plugin>
+
+			<!-- Liquibase -->
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<configuration>
+					<changeLogFile>${project.build.directory}/changelog-master.xml</changeLogFile>
+					<diffChangeLogFile>${project.build.directory}/changelog-diff.xml</diffChangeLogFile>
+					<outputChangeLogFile>${project.build.directory}/changelog-output.xml</outputChangeLogFile>
+					<driver>org.h2.Driver</driver>
+					<url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</url>
+					<username>sa</username>
+					<password>sa</password>
+					<vervose>true</vervose>
+					<dropFirst>true</dropFirst>
+					<referenceUrl>hibernate:spring:org.openfact?dialect=org.hibernate.dialect.H2Dialect</referenceUrl>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.liquibase.ext</groupId>
+						<artifactId>liquibase-hibernate4</artifactId>
+						<version>3.5</version>
+					</dependency>
+					<dependency>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-beans</artifactId>
+						<version>4.1.7.RELEASE</version>
+					</dependency>
+					<dependency>
+						<groupId>org.springframework.data</groupId>
+						<artifactId>spring-data-jpa</artifactId>
+						<version>1.7.3.RELEASE</version>
+					</dependency>
+					<dependency>
+						<groupId>com.h2database</groupId>
+						<artifactId>h2</artifactId>
+						<version>1.4.192</version>
+					</dependency>
+				</dependencies>
+			</plugin>
 		</plugins>
 	</build>
 </project>

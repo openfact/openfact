@@ -20,10 +20,12 @@ package org.openfact.util;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,6 +46,10 @@ public class JsonSerialization {
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         prettyMapper.enable(SerializationFeature.INDENT_OUTPUT);
         prettyMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+
+        mapper.registerModule(new JavaTimeModule());
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        mapper.disable(DeserializationFeature.READ_DATE_TIMESTAMPS_AS_NANOSECONDS);
     }
 
     public static void writeValueToStream(OutputStream os, Object obj) throws IOException {

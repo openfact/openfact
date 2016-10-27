@@ -27,7 +27,7 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
     private static final String ASSIGNED_IDENTIFICATION_ID = "assignedIdentificationId";
     private static final String SUPPLIER_NAME = "supplierName";
     private static final String REGISTRATION_NAME = "registrationName";
-    
+
     protected static final Logger logger = Logger.getLogger(JpaOrganizationProvider.class);
     private final OpenfactSession session;
     protected EntityManager em;
@@ -46,7 +46,7 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
     protected EntityManager getEntityManager() {
         return em;
     }
-    
+
     @Override
     public MigrationModel getMigrationModel() {
         return new MigrationModelAdapter(em);
@@ -122,6 +122,11 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
         }
         em.refresh(organizationEntity);
 
+        int num = em.createNamedQuery("deleteComponentConfigByOrganization")
+                .setParameter("organization", organizationEntity).executeUpdate();
+        num = em.createNamedQuery("deleteComponentByOrganization")
+                .setParameter("organization", organizationEntity).executeUpdate();
+
         final OrganizationAdapter adapter = new OrganizationAdapter(session, em, organizationEntity);
         em.remove(organizationEntity);
 
@@ -147,7 +152,7 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
     public List<OrganizationModel> getOrganizations() {
         return getOrganizations(-1, -1);
     }
-    
+
     @Override
     public List<OrganizationModel> getOrganizations(Integer firstResult, Integer maxResults) {
         TypedQuery<String> query = em.createNamedQuery("getAllOrganizationIds", String.class);
@@ -157,7 +162,7 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
         if (maxResults != -1) {
             query.setMaxResults(maxResults);
         }
-        
+
         List<String> entities = query.getResultList();
         List<OrganizationModel> organizations = new ArrayList<>();
         for (String id : entities) {
@@ -189,7 +194,8 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
             query.setMaxResults(maxResults);
         }
         List<OrganizationEntity> results = query.getResultList();
-        return results.stream().map(f -> new OrganizationAdapter(session, em, f)).collect(Collectors.toList());
+        return results.stream().map(f -> new OrganizationAdapter(session, em, f))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -242,7 +248,8 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
             query.setMaxResults(maxResults);
         }
         List<OrganizationEntity> results = query.getResultList();
-        return results.stream().map(f -> new OrganizationAdapter(session, em, f)).collect(Collectors.toList());
+        return results.stream().map(f -> new OrganizationAdapter(session, em, f))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -261,7 +268,8 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
     @Override
     public SearchResultsModel<OrganizationModel> searchForOrganization(SearchCriteriaModel criteria,
             String filterText) {
-        SearchResultsModel<OrganizationEntity> entityResult = findFullText(criteria, OrganizationEntity.class, filterText, NAME, SUPPLIER_NAME, REGISTRATION_NAME);
+        SearchResultsModel<OrganizationEntity> entityResult = findFullText(criteria, OrganizationEntity.class,
+                filterText, NAME, SUPPLIER_NAME, REGISTRATION_NAME);
         List<OrganizationEntity> entities = entityResult.getModels();
 
         SearchResultsModel<OrganizationModel> searchResult = new SearchResultsModel<>();
@@ -270,6 +278,6 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
         entities.forEach(f -> models.add(new OrganizationAdapter(session, em, f)));
         searchResult.setTotalSize(entityResult.getTotalSize());
         return searchResult;
-    }    
+    }
 
 }
