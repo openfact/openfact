@@ -14,6 +14,7 @@ import org.openfact.models.jpa.entities.ubl.common.DocumentReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.ItemEntity;
 import org.openfact.models.jpa.entities.ubl.common.LineReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.PeriodEntity;
+import org.openfact.models.jpa.entities.ubl.common.QuantityEntity;
 import org.openfact.models.jpa.entities.ubl.common.ReceiptLineEntity;
 import org.openfact.models.jpa.entities.ubl.common.ShipmentEntity;
 import org.openfact.models.ubl.common.DocumentReferenceModel;
@@ -249,6 +250,13 @@ public class ReceiptLineAdapter implements ReceiptLineModel, JpaModel<ReceiptLin
 	@Override
 	public String getId() {
 		return receiptLine.getId();
+	}
+
+	public static ReceiptLineEntity toEntity(ReceiptLineModel model, EntityManager em) {
+		if (model instanceof ReceiptLineAdapter) {
+			return ((ReceiptLineAdapter) model).getEntity();
+		}
+		return em.getReference(ReceiptLineEntity.class, model.getId());
 	}
 
 }

@@ -1,15 +1,19 @@
 package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.DimensionEntity;
+import org.openfact.models.jpa.entities.ubl.common.PeriodEntity;
 import org.openfact.models.jpa.entities.ubl.common.QuantityEntity;
 import org.openfact.models.jpa.entities.ubl.common.ShipmentEntity;
 import org.openfact.models.jpa.entities.ubl.common.TransportEquipmentEntity;
+import org.openfact.models.jpa.entities.ubl.common.TransportEquipmentSealEntity;
 import org.openfact.models.ubl.common.DimensionModel;
 import org.openfact.models.ubl.common.LocationCommAggModel;
 import org.openfact.models.ubl.common.PartyModel;
@@ -33,230 +37,213 @@ public class TransportEquipmentAdapter implements TransportEquipmentModel, JpaMo
 
 	@Override
 	public TransportEquipmentEntity getEntity() {
-		// TODO Auto-generated method stub
-		return null;
+		return transportEquipment;
 	}
 
 	@Override
 	public String getID() {
-		// TODO Auto-generated method stub
-		return null;
+		return transportEquipment.getID();
 	}
 
 	@Override
 	public void setID(String value) {
-		// TODO Auto-generated method stub
+		transportEquipment.setID(value);
+	}
+
+	@Override
+	public String getTransportEquipmentTypeCode() {
+		return transportEquipment.getTransportEquipmentTypeCode();
+	}
+
+	@Override
+	public void setTransportEquipmentTypeCode(String value) {
+		transportEquipment.setTransportEquipmentTypeCode(value);
+	}
+
+	@Override
+	public String getProviderTypeCode() {
+		return transportEquipment.getProviderTypeCode();
+	}
+
+	@Override
+	public void setProviderTypeCode(String value) {
+		transportEquipment.setProviderTypeCode(value);
 
 	}
 
 	@Override
-	public String getTransportEquipmentModelCode() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getOwnerTypeCode() {
+		return transportEquipment.getOwnerTypeCode();
 	}
 
 	@Override
-	public void setTransportEquipmentModelCode(String value) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public String getProviderModelCode() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setProviderModelCode(String value) {
-		// TODO Auto-generated method stub
+	public void setOwnerTypeCode(String value) {
+		transportEquipment.setOwnerTypeCode(value);
 
 	}
 
 	@Override
-	public String getOwnerModelCode() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getSizeTypeCode() {
+		return transportEquipment.getSizeTypeCode();
 	}
 
 	@Override
-	public void setOwnerModelCode(String value) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public String getSizeModelCode() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setSizeModelCode(String value) {
-		// TODO Auto-generated method stub
-
+	public void setSizeTypeCode(String value) {
+		transportEquipment.setSizeTypeCode(value);
 	}
 
 	@Override
 	public String getDispositionCode() {
-		// TODO Auto-generated method stub
-		return null;
+		return transportEquipment.getDispositionCode();
 	}
 
 	@Override
 	public void setDispositionCode(String value) {
-		// TODO Auto-generated method stub
+		transportEquipment.setDispositionCode(value);
 
 	}
 
 	@Override
 	public String getFullnessIndicationCode() {
-		// TODO Auto-generated method stub
-		return null;
+		return transportEquipment.getFullnessIndicationCode();
 	}
 
 	@Override
 	public void setFullnessIndicationCode(String value) {
-		// TODO Auto-generated method stub
+		transportEquipment.setFullnessIndicationCode(value);
 
 	}
 
 	@Override
 	public boolean getRefrigerationOnIndicator() {
-		// TODO Auto-generated method stub
-		return false;
+		return transportEquipment.isRefrigerationOnIndicator();
 	}
 
 	@Override
 	public void setRefrigerationOnIndicator(boolean value) {
-		// TODO Auto-generated method stub
+		transportEquipment.setRefrigerationOnIndicator(value);
 
 	}
 
 	@Override
 	public String getInformation() {
-		// TODO Auto-generated method stub
-		return null;
+		return transportEquipment.getInformation();
 	}
 
 	@Override
 	public void setInformation(String value) {
-		// TODO Auto-generated method stub
+		transportEquipment.setInformation(value);
 
 	}
 
 	@Override
 	public boolean getReturnabilityIndicator() {
-		// TODO Auto-generated method stub
-		return false;
+		return transportEquipment.isReturnabilityIndicator();
 	}
 
 	@Override
 	public void setReturnabilityIndicator(boolean value) {
-		// TODO Auto-generated method stub
+		transportEquipment.setReturnabilityIndicator(value);
 
 	}
 
 	@Override
 	public boolean getLegalStatusIndicator() {
-		// TODO Auto-generated method stub
-		return false;
+		return transportEquipment.isLegalStatusIndicator();
 	}
 
 	@Override
 	public void setLegalStatusIndicator(boolean value) {
-		// TODO Auto-generated method stub
+		transportEquipment.setLegalStatusIndicator(value);
 
 	}
 
 	@Override
 	public List<DimensionModel> getMeasurementDimension() {
-		// TODO Auto-generated method stub
-		return null;
+		return transportEquipment.getMeasurementDimension().stream().map(f -> new DimensionAdapter(session, em, f))
+				.collect(Collectors.toList());
 	}
 
 	@Override
 	public void setMeasurementDimension(List<DimensionModel> measurementDimension) {
-		// TODO Auto-generated method stub
+		List<DimensionEntity> entities = measurementDimension.stream().map(f -> DimensionAdapter.toEntity(f, em))
+				.collect(Collectors.toList());
+		transportEquipment.setMeasurementDimension(entities);
 
 	}
 
 	@Override
 	public List<TransportEquipmentSealModel> getTransportEquipmentSeal() {
-		// TODO Auto-generated method stub
-		return null;
+		return transportEquipment.getTransportEquipmentSeal().stream()
+				.map(f -> new TransportEquipmentSealAdapter(session, em, f)).collect(Collectors.toList());
 	}
 
 	@Override
 	public void setTransportEquipmentSeal(List<TransportEquipmentSealModel> transportEquipmentSeal) {
-		// TODO Auto-generated method stub
+		List<TransportEquipmentSealEntity> entities = transportEquipmentSeal.stream()
+				.map(f -> TransportEquipmentSealAdapter.toEntity(f, em)).collect(Collectors.toList());
+		transportEquipment.setTransportEquipmentSeal(entities);
 
 	}
 
 	@Override
 	public TemperatureModel getMinimumTemperature() {
-		// TODO Auto-generated method stub
-		return null;
+		return new TemperatureAdapter(session, em, transportEquipment.getMinimumTemperature());
 	}
 
 	@Override
 	public void setMinimumTemperature(TemperatureModel value) {
-		// TODO Auto-generated method stub
-
+		transportEquipment.setMinimumTemperature(TemperatureAdapter.toEntity(value, em));
 	}
 
 	@Override
 	public TemperatureModel getMaximumTemperature() {
-		// TODO Auto-generated method stub
-		return null;
+		return new TemperatureAdapter(session, em, transportEquipment.getMaximumTemperature());
 	}
 
 	@Override
 	public void setMaximumTemperature(TemperatureModel value) {
-		// TODO Auto-generated method stub
+		transportEquipment.setMaximumTemperature(TemperatureAdapter.toEntity(value, em));
 
 	}
 
 	@Override
 	public PartyModel getProviderParty() {
-		// TODO Auto-generated method stub
-		return null;
+		return new PartyAdapter(session, em, transportEquipment.getProviderParty());
 	}
 
 	@Override
 	public void setProviderParty(PartyModel value) {
-		// TODO Auto-generated method stub
-
+		transportEquipment.setProviderParty(PartyAdapter.toEntity(value, em));
+		;
 	}
 
 	@Override
 	public PartyModel getLoadingProofParty() {
-		// TODO Auto-generated method stub
-		return null;
+		return new PartyAdapter(session, em, transportEquipment.getLoadingProofParty());
 	}
 
 	@Override
 	public void setLoadingProofParty(PartyModel value) {
-		// TODO Auto-generated method stub
+		transportEquipment.setLoadingProofParty(PartyAdapter.toEntity(value, em));
+		;
 
 	}
 
 	@Override
 	public LocationCommAggModel getLoadingLocation() {
-		// TODO Auto-generated method stub
-		return null;
+		return new LocationCommAggAdapter(session, em, transportEquipment.getLoadingLocation());
 	}
 
 	@Override
 	public void setLoadingLocation(LocationCommAggModel value) {
-		// TODO Auto-generated method stub
-
+		transportEquipment.setLoadingLocation(LocationCommAggAdapter.toEntity(value, em));
+		;
 	}
 
 	@Override
 	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return transportEquipment.getId();
 	}
 
 	public static TransportEquipmentEntity toEntity(TransportEquipmentModel model, EntityManager em) {

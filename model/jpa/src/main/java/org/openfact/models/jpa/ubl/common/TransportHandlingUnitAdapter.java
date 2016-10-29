@@ -1,15 +1,24 @@
 package org.openfact.models.jpa.ubl.common;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.DimensionEntity;
+import org.openfact.models.jpa.entities.ubl.common.HazardousGoodsTransitEntity;
+import org.openfact.models.jpa.entities.ubl.common.PackageEntity;
+import org.openfact.models.jpa.entities.ubl.common.PeriodEntity;
 import org.openfact.models.jpa.entities.ubl.common.QuantityEntity;
+import org.openfact.models.jpa.entities.ubl.common.ReceiptLineEntity;
 import org.openfact.models.jpa.entities.ubl.common.ShipmentEntity;
+import org.openfact.models.jpa.entities.ubl.common.TransportEquipmentEntity;
 import org.openfact.models.jpa.entities.ubl.common.TransportHandlingUnitEntity;
+import org.openfact.models.jpa.entities.ubl.common.pe.DespatchAdviceLineEntity;
+import org.openfact.models.jpa.ubl.common.pe.DespatchAdviceLineAdapter;
 import org.openfact.models.ubl.common.DespatchLineModel;
 import org.openfact.models.ubl.common.DimensionModel;
 import org.openfact.models.ubl.common.HazardousGoodsTransitModel;
@@ -19,6 +28,7 @@ import org.openfact.models.ubl.common.ReceiptLineModel;
 import org.openfact.models.ubl.common.TemperatureModel;
 import org.openfact.models.ubl.common.TransportEquipmentModel;
 import org.openfact.models.ubl.common.TransportHandlingUnitModel;
+import org.openfact.models.ubl.common.pe.DespatchAdviceLineModel;
 
 public class TransportHandlingUnitAdapter implements TransportHandlingUnitModel, JpaModel<TransportHandlingUnitEntity> {
 
@@ -37,218 +47,211 @@ public class TransportHandlingUnitAdapter implements TransportHandlingUnitModel,
 
 	@Override
 	public TransportHandlingUnitEntity getEntity() {
-		// TODO Auto-generated method stub
-		return null;
+		return transportHandlingUnit;
 	}
 
 	@Override
 	public String getID() {
-		// TODO Auto-generated method stub
-		return null;
+		return transportHandlingUnit.getID();
 	}
 
 	@Override
 	public void setID(String value) {
-		// TODO Auto-generated method stub
-
+		transportHandlingUnit.setID(value);
 	}
 
 	@Override
-	public String getTransportHandlingUnitModelCode() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getTransportHandlingUnitTypeCode() {
+		return transportHandlingUnit.getTransportHandlingUnitTypeCode();
 	}
 
 	@Override
-	public void setTransportHandlingUnitModelCode(String value) {
-		// TODO Auto-generated method stub
+	public void setTransportHandlingUnitTypeCode(String value) {
+		transportHandlingUnit.setTransportHandlingUnitTypeCode(value);
 
 	}
 
 	@Override
 	public String getHandlingCode() {
-		// TODO Auto-generated method stub
-		return null;
+		return transportHandlingUnit.getHandlingCode();
 	}
 
 	@Override
 	public void setHandlingCode(String value) {
-		// TODO Auto-generated method stub
+		transportHandlingUnit.setHandlingCode(value);
 
 	}
 
 	@Override
 	public String getHandlingInstructions() {
-		// TODO Auto-generated method stub
-		return null;
+		return transportHandlingUnit.getHandlingInstructions();
 	}
 
 	@Override
 	public void setHandlingInstructions(String value) {
-		// TODO Auto-generated method stub
+		transportHandlingUnit.setHandlingInstructions(value);
 
 	}
 
 	@Override
 	public boolean getHazardousRiskIndicator() {
-		// TODO Auto-generated method stub
-		return false;
+		return transportHandlingUnit.isHazardousRiskIndicator();
 	}
 
 	@Override
 	public void setHazardousRiskIndicator(boolean value) {
-		// TODO Auto-generated method stub
+		transportHandlingUnit.setHazardousRiskIndicator(value);
 
 	}
 
 	@Override
 	public QuantityModel getTotalGoodsItemQuantity() {
-		// TODO Auto-generated method stub
-		return null;
+		return new QuantityAdapter(session, em, transportHandlingUnit.getTotalGoodsItemQuantity());
 	}
 
 	@Override
 	public void setTotalGoodsItemQuantity(QuantityModel value) {
-		// TODO Auto-generated method stub
-
+		transportHandlingUnit.setTotalGoodsItemQuantity(QuantityAdapter.toEntity(value, em));
 	}
 
 	@Override
 	public QuantityModel getTotalPackageQuantity() {
-		// TODO Auto-generated method stub
-		return null;
+		return new QuantityAdapter(session, em, transportHandlingUnit.getTotalPackageQuantity());
 	}
 
 	@Override
 	public void setTotalPackageQuantity(QuantityModel value) {
-		// TODO Auto-generated method stub
+		transportHandlingUnit.setTotalPackageQuantity(QuantityAdapter.toEntity(value, em));
 
 	}
 
 	@Override
 	public List<String> getDamageRemarks() {
-		// TODO Auto-generated method stub
-		return null;
+		return transportHandlingUnit.getDamageRemarks();
 	}
 
 	@Override
 	public void setDamageRemarks(List<String> damageRemarks) {
-		// TODO Auto-generated method stub
+		transportHandlingUnit.setDamageRemarks(damageRemarks);
 
 	}
 
 	@Override
 	public List<String> getShippingMarks() {
-		// TODO Auto-generated method stub
-		return null;
+		return transportHandlingUnit.getShippingMarks();
 	}
 
 	@Override
 	public void setShippingMarks(List<String> shippingMarks) {
-		// TODO Auto-generated method stub
+		transportHandlingUnit.setShippingMarks(shippingMarks);
 
 	}
 
 	@Override
-	public List<DespatchLineModel> getHandlingUnitDespatchLine() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<DespatchAdviceLineModel> getHandlingUnitDespatchLine() {
+		return transportHandlingUnit.getHandlingUnitDespatchLine().stream()
+				.map(f -> new DespatchAdviceLineAdapter(session, em, f)).collect(Collectors.toList());
 	}
 
 	@Override
-	public void setHandlingUnitDespatchLine(List<DespatchLineModel> handlingUnitDespatchLine) {
-		// TODO Auto-generated method stub
+	public void setHandlingUnitDespatchLine(List<DespatchAdviceLineModel> handlingUnitDespatchLine) {
+		List<DespatchAdviceLineEntity> entities = handlingUnitDespatchLine.stream()
+				.map(f -> DespatchAdviceLineAdapter.toEntity(f, em)).collect(Collectors.toList());
+		transportHandlingUnit.setHandlingUnitDespatchLine(entities);
 
 	}
 
 	@Override
 	public List<PackageModel> getActualPackage() {
-		// TODO Auto-generated method stub
-		return null;
+		return transportHandlingUnit.getActualPackage().stream().map(f -> new PackageAdapter(session, em, f))
+				.collect(Collectors.toList());
 	}
 
 	@Override
 	public void setActualPackage(List<PackageModel> actualPackage) {
-		// TODO Auto-generated method stub
+		List<PackageEntity> entities = actualPackage.stream().map(f -> PackageAdapter.toEntity(f, em))
+				.collect(Collectors.toList());
+		transportHandlingUnit.setActualPackage(entities);
 
 	}
 
 	@Override
 	public List<ReceiptLineModel> getReceivedHandlingUnitReceiptLine() {
-		// TODO Auto-generated method stub
-		return null;
+		return transportHandlingUnit.getReceivedHandlingUnitReceiptLine().stream()
+				.map(f -> new ReceiptLineAdapter(session, em, f)).collect(Collectors.toList());
 	}
 
 	@Override
 	public void setReceivedHandlingUnitReceiptLine(List<ReceiptLineModel> receivedHandlingUnitReceiptLine) {
-		// TODO Auto-generated method stub
-
+		List<ReceiptLineEntity> entities = receivedHandlingUnitReceiptLine.stream()
+				.map(f -> ReceiptLineAdapter.toEntity(f, em)).collect(Collectors.toList());
+		transportHandlingUnit.setReceivedHandlingUnitReceiptLine(entities);
 	}
 
 	@Override
 	public List<TransportEquipmentModel> getTransportEquipment() {
-		// TODO Auto-generated method stub
-		return null;
+		return transportHandlingUnit.getTransportEquipment().stream()
+				.map(f -> new TransportEquipmentAdapter(session, em, f)).collect(Collectors.toList());
 	}
 
 	@Override
 	public void setTransportEquipment(List<TransportEquipmentModel> transportEquipment) {
-		// TODO Auto-generated method stub
-
+		List<TransportEquipmentEntity> entities = transportEquipment.stream()
+				.map(f -> TransportEquipmentAdapter.toEntity(f, em)).collect(Collectors.toList());
+		transportHandlingUnit.setTransportEquipment(entities);
 	}
 
 	@Override
 	public List<HazardousGoodsTransitModel> getHazardousGoodsTransit() {
-		// TODO Auto-generated method stub
-		return null;
+		return transportHandlingUnit.getHazardousGoodsTransit().stream()
+				.map(f -> new HazardousGoodsTransitAdapter(session, em, f)).collect(Collectors.toList());
 	}
 
 	@Override
 	public void setHazardousGoodsTransit(List<HazardousGoodsTransitModel> hazardousGoodsTransit) {
-		// TODO Auto-generated method stub
+		List<HazardousGoodsTransitEntity> entities = hazardousGoodsTransit.stream()
+				.map(f -> HazardousGoodsTransitAdapter.toEntity(f, em)).collect(Collectors.toList());
+		transportHandlingUnit.setHazardousGoodsTransit(entities);
 
 	}
 
 	@Override
 	public List<DimensionModel> getMeasurementDimension() {
-		// TODO Auto-generated method stub
-		return null;
+		return transportHandlingUnit.getMeasurementDimension().stream().map(f -> new DimensionAdapter(session, em, f))
+				.collect(Collectors.toList());
 	}
 
 	@Override
 	public void setMeasurementDimension(List<DimensionModel> measurementDimension) {
-		// TODO Auto-generated method stub
+		List<DimensionEntity> entities = measurementDimension.stream().map(f -> DimensionAdapter.toEntity(f, em))
+				.collect(Collectors.toList());
+		transportHandlingUnit.setMeasurementDimension(entities);
 
 	}
 
 	@Override
 	public TemperatureModel getMinimumTemperature() {
-		// TODO Auto-generated method stub
-		return null;
+		return new TemperatureAdapter(session, em, transportHandlingUnit.getMinimumTemperature());
 	}
 
 	@Override
 	public void setMinimumTemperature(TemperatureModel value) {
-		// TODO Auto-generated method stub
-
+		transportHandlingUnit.setMinimumTemperature(TemperatureAdapter.toEntity(value, em));
 	}
 
 	@Override
 	public TemperatureModel getMaximumTemperature() {
-		// TODO Auto-generated method stub
-		return null;
+		return new TemperatureAdapter(session, em, transportHandlingUnit.getMaximumTemperature());
 	}
 
 	@Override
 	public void setMaximumTemperature(TemperatureModel value) {
-		// TODO Auto-generated method stub
-
+		transportHandlingUnit.setMaximumTemperature(TemperatureAdapter.toEntity(value, em));
 	}
 
 	@Override
 	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return transportHandlingUnit.getId();
 	}
 
 	public static TransportHandlingUnitEntity toEntity(TransportHandlingUnitModel model, EntityManager em) {
