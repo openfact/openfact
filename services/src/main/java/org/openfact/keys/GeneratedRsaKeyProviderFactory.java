@@ -91,7 +91,7 @@ public class GeneratedRsaKeyProviderFactory extends AbstractRsaKeyProviderFactor
         }
     }
 
-    private void generateKeys(OrganizationModel organiaztion, ComponentModel model, int size) {
+    private void generateKeys(OrganizationModel organization, ComponentModel model, int size) {
         KeyPair keyPair;
         try {
             keyPair = KeyUtils.generateRsaKeyPair(size);
@@ -100,7 +100,7 @@ public class GeneratedRsaKeyProviderFactory extends AbstractRsaKeyProviderFactor
             throw new ComponentValidationException("Failed to generate keys", t);
         }
 
-        generateCertificate(organiaztion, model, keyPair);
+        generateCertificate(organization, model, keyPair);
     }
 
     private void generateCertificate(OrganizationModel organiaztion, ComponentModel model, KeyPair keyPair) {

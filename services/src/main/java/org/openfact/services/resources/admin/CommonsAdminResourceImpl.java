@@ -9,7 +9,7 @@ public class CommonsAdminResourceImpl implements CommonsAdminResource {
     @Context
     private OpenfactSession session;
 
-    public CommonsAdminResourceImpl() {
+    public CommonsAdminResourceImpl(AdminAuth auth) {
         // TODO Auto-generated constructor stub
     }
 

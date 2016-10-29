@@ -1,7 +1,7 @@
 package org.openfact.services.resources.admin;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.ForbiddenException;
+import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
@@ -9,24 +9,23 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
-import org.jboss.as.controller.UnauthorizedException;
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.spi.HttpRequest;
 import org.jboss.resteasy.spi.HttpResponse;
 import org.jboss.resteasy.spi.NoLogWebApplicationException;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
-import org.openfact.authentication.AuthenticationProvider;
 import org.openfact.common.ClientConnection;
 import org.openfact.models.AdminRoles;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.security.SecurityContextProvider;
 import org.openfact.services.managers.OrganizationManager;
 import org.openfact.services.resources.Cors;
 import org.openfact.services.resources.admin.info.ServerInfoAdminResource;
 
 public class AdminRootImpl implements AdminRoot {
 
-    private static final Logger logger = Logger.getLogger(AdminRootImpl.class);
+    protected static final Logger logger = Logger.getLogger(AdminRootImpl.class);
 
     @Context
     protected UriInfo uriInfo;
@@ -44,7 +43,6 @@ public class AdminRootImpl implements AdminRoot {
     protected OpenfactSession session;
 
     public AdminRootImpl() {
-
     }
 
     public static UriBuilder adminBaseUrl(UriInfo uriInfo) {
@@ -55,12 +53,24 @@ public class AdminRootImpl implements AdminRoot {
         return base.path(AdminRoot.class);
     }
 
+    /**
+     * Convenience path to master Organization admin console
+     *
+     * @exclude
+     * @return
+     */
     @Override
     public Response masterOrganizationAdminConsoleRedirect() {
         OrganizationModel master = new OrganizationManager(session).getOpenfactAdminstrationOrganization();
         return Response.status(302).location(uriInfo.getBaseUriBuilder().path(AdminRoot.class).path(AdminRoot.class, "getAdminConsole").path("/").build(master.getName())).build();
     }
 
+    /**
+     * Convenience path to master Organization admin console
+     *
+     * @exclude
+     * @return
+     */
     @Override
     public Response masterOrganizationAdminConsoleRedirectHtml() {
         return masterOrganizationAdminConsoleRedirect();
@@ -83,8 +93,16 @@ public class AdminRootImpl implements AdminRoot {
         return adminBaseUrl(base).path(AdminRoot.class, "getAdminConsole");
     }
 
+    /**
+     * path to Organization admin console ui
+     *
+     * @exclude
+     * @param name
+     *            Organization name (not id!)
+     * @return
+     */
     @Override
-    public AdminConsole getAdminConsole(String name) {
+    public AdminConsole getAdminConsole(final String name) {
         OrganizationManager organizationManager = new OrganizationManager(session);
         OrganizationModel organization = locateOrganization(name, organizationManager);
         AdminConsole service = new AdminConsoleImpl(organization);
@@ -92,17 +110,17 @@ public class AdminRootImpl implements AdminRoot {
         return service;
     }
 
-    protected AdminAuth authenticateOrganizationAdminRequest(HttpHeaders headers, HttpServletRequest httpServletRequest) {       
-        AuthenticationProvider authResult = session.getProvider(AuthenticationProvider.class);
-        String organizationName = authResult.getOrganizationName(headers, httpServletRequest);
+    protected AdminAuth authenticateOrganizationAdminRequest(HttpHeaders headers) {
+        SecurityContextProvider authResult = session.getProvider(SecurityContextProvider.class);
+        String organizationName = authResult.getCurrentOrganizationName(headers);
         OrganizationManager organizationManager = new OrganizationManager(session);
         OrganizationModel organization = organizationManager.getOrganizationByName(organizationName);
         if (organization == null) {
-            throw new UnauthorizedException("Unknown organization in token");
+            throw new NotAuthorizedException("Unknown organization in token");
         }
         session.getContext().setOrganization(organization);
 
-        return new AdminAuth(organization, authResult.getUser(headers, httpServletRequest));
+        return new AdminAuth(organization, authResult.getCurrentUser(headers));
     }
 
     public static UriBuilder organizationsUrl(UriInfo uriInfo) {
@@ -113,11 +131,17 @@ public class AdminRootImpl implements AdminRoot {
         return adminBaseUrl(base).path(AdminRoot.class, "getOrganizationsAdmin");
     }
 
+    /**
+     * Base Path to Organization admin REST interface
+     *
+     * @param headers
+     * @return
+     */
     @Override
-    public OrganizationsAdminResource getOrganizationsAdmin(HttpHeaders headers, HttpServletRequest httpServletRequest) {
+    public OrganizationsAdminResource getOrganizationsAdmin(HttpHeaders headers) {
         handlePreflightRequest();
 
-        AdminAuth auth = authenticateOrganizationAdminRequest(headers, httpServletRequest);
+        AdminAuth auth = authenticateOrganizationAdminRequest(headers);
         if (auth != null) {
             logger.debug("authenticated admin access for: " + auth.getUser().getUsername());
         }
@@ -129,45 +153,17 @@ public class AdminRootImpl implements AdminRoot {
         return adminResource;
     }
 
+    /**
+     * General information about the server
+     *
+     * @param headers
+     * @return
+     */
     @Override
-    public CodesCatalogAdminResource getCodesCatalogResource(HttpHeaders headers, HttpServletRequest httpServletRequest) {
+    public ServerInfoAdminResource getServerInfo(HttpHeaders headers) {
         handlePreflightRequest();
 
-        AdminAuth auth = authenticateOrganizationAdminRequest(headers, httpServletRequest);
-
-        if (auth != null) {
-            logger.debug("authenticated admin access for: " + auth.getUser().getUsername());
-        }
-
-        Cors.add(request).allowedOrigins("*").allowedMethods("GET", "PUT", "POST", "DELETE").auth().build(response);
-
-        CodesCatalogAdminResource catalogResource = new CodesCatalogAdminResourceImpl(auth);
-        ResteasyProviderFactory.getInstance().injectProperties(catalogResource);
-        return catalogResource;
-    }
-
-    @Override
-    public CommonsAdminResource getCommonsResource(HttpHeaders headers, HttpServletRequest httpServletRequest) {
-        handlePreflightRequest();
-
-        AdminAuth auth = authenticateOrganizationAdminRequest(headers, httpServletRequest);
-
-        if (auth != null) {
-            logger.debug("authenticated admin access for: " + auth.getUser().getUsername());
-        }
-
-        Cors.add(request).allowedOrigins("*").allowedMethods("GET", "PUT", "POST", "DELETE").auth().build(response);
-
-        CommonsAdminResource commonsResource = new CommonsAdminResourceImpl();
-        ResteasyProviderFactory.getInstance().injectProperties(commonsResource);
-        return commonsResource;
-    }
-
-    @Override
-    public ServerInfoAdminResource getServerInfo(HttpHeaders headers, HttpServletRequest httpServletRequest) {
-        handlePreflightRequest();
-
-        AdminAuth auth = authenticateOrganizationAdminRequest(headers, httpServletRequest);
+        AdminAuth auth = authenticateOrganizationAdminRequest(headers);
         if (!isAdmin(auth)) {
             throw new ForbiddenException();
         }
@@ -188,7 +184,8 @@ public class AdminRootImpl implements AdminRoot {
         if (auth.getOrganization().equals(organizationManager.getOpenfactAdminstrationOrganization())) {
             if (auth.hasOneOfOrganizationRole(AdminRoles.ADMIN, AdminRoles.CREATE_ORGANIZATION)) {
                 return true;
-            }            
+            }
+            return false;
         }
         return false;
     }
@@ -200,5 +197,37 @@ public class AdminRootImpl implements AdminRoot {
             throw new NoLogWebApplicationException(response);
         }
     }
+
+    @Override
+    public CodesCatalogAdminResource getCodesCatalogResource(HttpHeaders headers) {
+        handlePreflightRequest();
+
+        AdminAuth auth = authenticateOrganizationAdminRequest(headers);
+        if (auth != null) {
+            logger.debug("authenticated admin access for: " + auth.getUser().getUsername());
+        }
+
+        Cors.add(request).allowedOrigins("*").allowedMethods("GET", "PUT", "POST", "DELETE").exposedHeaders("Location").auth().build(response);
+
+        CodesCatalogAdminResource catalogResource = new CodesCatalogAdminResourceImpl(auth);
+        ResteasyProviderFactory.getInstance().injectProperties(catalogResource);
+        return catalogResource;
+    }
+
+    @Override
+    public CommonsAdminResource getCommonsResource(HttpHeaders headers) {
+        handlePreflightRequest();
+
+        AdminAuth auth = authenticateOrganizationAdminRequest(headers);
+        if (auth != null) {
+            logger.debug("authenticated admin access for: " + auth.getUser().getUsername());
+        }
+
+        Cors.add(request).allowedOrigins("*").allowedMethods("GET", "PUT", "POST", "DELETE").exposedHeaders("Location").auth().build(response);
+
+        CommonsAdminResource commonsResource = new CommonsAdminResourceImpl(auth);
+        ResteasyProviderFactory.getInstance().injectProperties(commonsResource);
+        return commonsResource;
+    }    
 
 }

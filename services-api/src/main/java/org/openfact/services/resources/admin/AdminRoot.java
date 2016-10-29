@@ -1,6 +1,5 @@
 package org.openfact.services.resources.admin;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -27,19 +26,15 @@ public interface AdminRoot {
     AdminConsole getAdminConsole(final @PathParam("organization") String name);
 
     @Path("organizations")
-    OrganizationsAdminResource getOrganizationsAdmin(@Context final HttpHeaders headers,
-            @Context final HttpServletRequest httpServletRequest);
+    OrganizationsAdminResource getOrganizationsAdmin(@Context final HttpHeaders headers);
 
     @Path("codes-catalog")
-    CodesCatalogAdminResource getCodesCatalogResource(@Context final HttpHeaders headers,
-            @Context final HttpServletRequest httpServletRequest);
+    CodesCatalogAdminResource getCodesCatalogResource(@Context final HttpHeaders headers);
 
     @Path("commons")
-    CommonsAdminResource getCommonsResource(@Context final HttpHeaders headers,
-            @Context final HttpServletRequest httpServletRequest);
+    CommonsAdminResource getCommonsResource(@Context final HttpHeaders headers);
 
     @Path("serverinfo")
-    ServerInfoAdminResource getServerInfo(@Context final HttpHeaders headers,
-            @Context final HttpServletRequest httpServletRequest);
+    ServerInfoAdminResource getServerInfo(@Context final HttpHeaders headers);
 
 }

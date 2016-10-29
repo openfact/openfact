@@ -1466,11 +1466,11 @@
 				<artifactId>easybatch-core</artifactId>
 				<version>${version.easybatch}</version>
 			</dependency>
-			<dependency>
-				<groupId>xerces</groupId>
-				<artifactId>xercesImpl</artifactId>
-				<version>${version.xerces}</version>
-			</dependency>
+<!-- 			<dependency> -->
+<!-- 				<groupId>xerces</groupId> -->
+<!-- 				<artifactId>xercesImpl</artifactId> -->
+<!-- 				<version>${version.xerces}</version> -->
+<!-- 			</dependency> -->
 			<dependency>
 				<groupId>com.sun.xml.ws</groupId>
 				<artifactId>jaxws-rt</artifactId>

@@ -31,6 +31,7 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.OrganizationModel;
 import org.openfact.representations.idm.OrganizationRepresentation;
+import org.openfact.services.filters.OpenfactSecurityContextFilter;
 import org.openfact.services.filters.OpenfactSessionServletFilter;
 import org.openfact.services.managers.ApplianceBootstrap;
 import org.openfact.services.managers.OrganizationManager;
@@ -311,6 +312,13 @@ public class OpenfactServer {
 
             di.addFilter(filter);
             di.addFilterUrlMapping("SessionFilter", "/*", DispatcherType.REQUEST);
+            
+            /**
+             * Add Security Filter*/
+            FilterInfo scFilter = Servlets.filter("SecurityFilter", OpenfactSecurityContextFilter.class);
+            scFilter.setAsyncSupported(true);
+            di.addFilter(scFilter);
+            di.addFilterUrlMapping("SecurityFilter", "/*", DispatcherType.REQUEST);
 
             server.deploy(di);
 

@@ -13,7 +13,7 @@ org.openfact.theme.ThemeSpi
 org.openfact.truststore.TruststoreSpi
 org.openfact.connections.httpclient.HttpClientSpi
 org.openfact.cluster.ClusterSpi
-org.openfact.authentication.AuthenticationSpi
+org.openfact.security.SecurityContextSpi
 org.openfact.connections.httpclient.HttpClientSpi
 org.openfact.transaction.TransactionManagerLookupSpi
 org.openfact.keys.KeySpi

@@ -1,16 +1,16 @@
-package org.openfact.authentication.keycloak;
+package org.openfact.security.keycloak;
 
 import org.openfact.Config.Scope;
-import org.openfact.authentication.AuthenticationProvider;
-import org.openfact.authentication.AuthenticationProviderFactory;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
+import org.openfact.security.SecurityContextProvider;
+import org.openfact.security.SecurityContextProviderFactory;
 
-public class KeycloakClientAuthenticationProviderFactory implements AuthenticationProviderFactory {
+public class KeycloakSecurityContextProviderFactory implements SecurityContextProviderFactory {
 
     @Override
-    public AuthenticationProvider create(OpenfactSession session) {
-        return new KeycloakClientAuthenticationProvider(session);
+    public SecurityContextProvider create(OpenfactSession session) {
+        return new KeycloakSecurityContextProvider(session);
     }
 
     @Override

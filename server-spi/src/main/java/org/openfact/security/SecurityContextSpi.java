@@ -1,10 +1,10 @@
-package org.openfact.authentication;
+package org.openfact.security;
 
 import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
 import org.openfact.provider.Spi;
 
-public class AuthenticationSpi implements Spi {
+public class SecurityContextSpi implements Spi {
 
     @Override
     public boolean isInternal() {
@@ -13,17 +13,17 @@ public class AuthenticationSpi implements Spi {
 
     @Override
     public String getName() {
-        return "authentication";
+        return "security-context";
     }
 
     @Override
     public Class<? extends Provider> getProviderClass() {
-        return AuthenticationProvider.class;
+        return SecurityContextProvider.class;
     }
 
     @Override
     public Class<? extends ProviderFactory> getProviderFactoryClass() {
-        return AuthenticationProviderFactory.class;
+        return SecurityContextProviderFactory.class;
     }
 
 }
