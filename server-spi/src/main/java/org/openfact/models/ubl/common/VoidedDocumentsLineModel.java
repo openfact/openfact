@@ -2,28 +2,30 @@ package org.openfact.models.ubl.common;
 
 public interface VoidedDocumentsLineModel {
 
-    String getLineID();
+	String getID();
 
-    void setLineID(String value);
+	void setID(String ID);
 
-    String getDocumentModelCode();
+	String getLineID();
 
-    void setDocumentModelCode(String value);
+	void setLineID(String value);
 
-    String getDocumentSerialID();
+	String getDocumentTypeCode();
 
-    void setDocumentSerialID(String value);
+	void setDocumentTypeCode(String value);
 
-    String getDocumentNumberID();
+	String getDocumentSerialID();
 
-    void setDocumentNumberID(String value);
+	void setDocumentSerialID(String value);
 
-    String getVoidReasonDescription();
+	String getDocumentNumberID();
 
-    void setVoidReasonDescription(String value);
+	void setDocumentNumberID(String value);
 
-    String getId();
+	String getVoidReasonDescription();
 
-    
+	void setVoidReasonDescription(String value);
+
+	String getId();
 
 }

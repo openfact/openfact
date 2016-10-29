@@ -104,6 +104,43 @@
 		<class>org.openfact.models.jpa.entities.ubl.common.PartyLegalEntity</class>
 		<class>org.openfact.models.jpa.entities.ubl.common.ResponseEntity</class>
 
+		<!-- ubl pe -->
+		<class>org.openfact.models.jpa.entities.ubl.pe.DespatchAdviceEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.pe.PerceptionEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.pe.RetentionEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.pe.SummaryDocumentsEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.pe.VoidedDocumentsEntity</class>
+
+		<!-- ubl common pe -->
+		<class>org.openfact.models.jpa.entities.ubl.common.pe.DespatchAdviceLineEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.common.pe.PerceptionDocumentReferenceEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.common.pe.PerceptionInformationEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.common.pe.RetentionDocumentReferenceEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.common.pe.RetentionInformationEntity</class>
+
+		<class>org.openfact.models.jpa.entities.ubl.common.ShipmentEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.common.ShipmentStageEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.common.StatusEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.common.SummaryDocumentsLineEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.common.TransportMeansEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.common.VoidedDocumentsLineEntity</class>
+
+		<class>org.openfact.models.jpa.entities.ubl.common.ConsignmentEntity</class>		
+		<class>org.openfact.models.jpa.entities.ubl.common.GoodsItemContainerEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.common.GoodsItemEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.common.PackageEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.common.ReceiptLineEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.common.TransportationServiceEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.common.TransportEquipmentEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.common.TransportEquipmentSealEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.common.TransportHandlingUnitEntity</class>
+
+		<class>org.openfact.models.jpa.entities.ubl.common.StowageEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.common.AirTransportEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.common.RoadTransportEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.common.RailTransportEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.common.MaritimeTransportEntity</class>
+
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
 		<properties>

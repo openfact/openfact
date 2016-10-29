@@ -37,9 +37,9 @@ public interface TransportMeansModel {
 
     void setRailTransport(RailTransportModel value);
 
-    LocalTime getMaritimeTransport();
+    MaritimeTransportModel getMaritimeTransport();
 
-    void setMaritimeTransport(LocalTime value);
+    void setMaritimeTransport(MaritimeTransportModel value);
 
     PartyModel getOwnerParty();
 

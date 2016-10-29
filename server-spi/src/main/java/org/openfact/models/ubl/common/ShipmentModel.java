@@ -4,129 +4,126 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public interface ShipmentModel {
+	String getID();
 
-    String getID();
+	void setID(String iD);
 
-    void setID(String value);
+	String getShippingPriorityLevelCode();
 
-    String getShippingPriorityLevelCode();
+	void setShippingPriorityLevelCode(String value);
 
-    void setShippingPriorityLevelCode(String value);
+	String getHandlingCode();
 
-    String getHandlingCode();
+	void setHandlingCode(String value);
 
-    void setHandlingCode(String value);
+	String getHandlingInstructions();
 
-    String getHandlingInstructions();
+	void setHandlingInstructions(String value);
 
-    void setHandlingInstructions(String value);
+	String getInformation();
 
-    String getInformation();
+	void setInformation(String value);
 
-    void setInformation(String value);
+	MeasureModel getGrossWeightMeasure();
 
-    MeasureModel getGrossWeightMeasure();
+	void setGrossWeightMeasure(MeasureModel value);
 
-    void setGrossWeightMeasure(MeasureModel value);
+	MeasureModel getNetWeightMeasure();
 
-    MeasureModel getNetWeightMeasure();
+	void setNetWeightMeasure(MeasureModel value);
 
-    void setNetWeightMeasure(MeasureModel value);
+	MeasureModel getNetNetWeightMeasure();
 
-    MeasureModel getNetNetWeightMeasure();
+	void setNetNetWeightMeasure(MeasureModel value);
 
-    void setNetNetWeightMeasure(MeasureModel value);
+	MeasureModel getGrossVolumeMeasure();
 
-    MeasureModel getGrossVolumeMeasure();
+	void setGrossVolumeMeasure(MeasureModel value);
 
-    void setGrossVolumeMeasure(MeasureModel value);
+	MeasureModel getNetVolumeMeasure();
 
-    MeasureModel getNetVolumeMeasure();
+	void setNetVolumeMeasure(MeasureModel value);
 
-    void setNetVolumeMeasure(MeasureModel value);
+	QuantityModel getTotalGoodsItemQuantity();
 
-    QuantityModel getTotalGoodsItemQuantity();
+	void setTotalGoodsItemQuantity(QuantityModel value);
 
-    void setTotalGoodsItemQuantity(QuantityModel value);
+	QuantityModel getTotalTransportHandlingUnitQuantity();
 
-    QuantityModel getTotalTransportHandlingUnitQuantity();
+	void setTotalTransportHandlingUnitQuantity(QuantityModel value);
 
-    void setTotalTransportHandlingUnitQuantity(QuantityModel value);
+	BigDecimal getInsuranceValueAmount();
 
-    BigDecimal getInsuranceValueAmount();
+	void setInsuranceValueAmount(BigDecimal value);
 
-    void setInsuranceValueAmount(BigDecimal value);
+	BigDecimal getDeclaredCustomsValueAmount();
 
-    BigDecimal getDeclaredCustomsValueAmount();
+	void setDeclaredCustomsValueAmount(BigDecimal value);
 
-    void setDeclaredCustomsValueAmount(BigDecimal value);
+	BigDecimal getDeclaredForCarriageValueAmount();
 
-    BigDecimal getDeclaredForCarriageValueAmount();
+	void setDeclaredForCarriageValueAmount(BigDecimal value);
 
-    void setDeclaredForCarriageValueAmount(BigDecimal value);
+	BigDecimal getDeclaredStatisticsValueAmount();
 
-    BigDecimal getDeclaredStatisticsValueAmount();
+	void setDeclaredStatisticsValueAmount(BigDecimal value);
 
-    void setDeclaredStatisticsValueAmount(BigDecimal value);
+	BigDecimal getFreeOnBoardValueAmount();
 
-    BigDecimal getFreeOnBoardValueAmount();
+	void setFreeOnBoardValueAmount(BigDecimal value);
 
-    void setFreeOnBoardValueAmount(BigDecimal value);
+	List<String> getSpecialInstructions();
 
-    List<String> getSpecialInstructions();
+	void setSpecialInstructions(List<String> specialInstructions);
 
-    void setSpecialInstructions(List<String> specialInstructions);
+	List<String> getDeliveryInstructions();
 
-    List<String> getDeliveryInstructions();
+	void setDeliveryInstructions(List<String> deliveryInstructions);
 
-    void setDeliveryInstructions(List<String> deliveryInstructions);
+	boolean getSplitConsignmentIndicator();
 
-    boolean getSplitConsignmentIndicator();
+	void setSplitConsignmentIndicator(boolean value);
 
-    void setSplitConsignmentIndicator(boolean value);
+	ConsignmentModel getConsignment();
 
-    ConsignmentModel getConsignment();
+	void setConsignment(ConsignmentModel value);
 
-    void setConsignment(ConsignmentModel value);
+	List<GoodsItemModel> getGoodsItem();
 
-    List<GoodsItemModel> getGoodsItem();
+	void setGoodsItem(List<GoodsItemModel> goodsItem);
 
-    void setGoodsItem(List<GoodsItemModel> goodsItem);
+	List<ShipmentStageModel> getShipmentStage();
 
-    List<ShipmentStageModel> getShipmentStage();
+	void setShipmentStage(List<ShipmentStageModel> shipmentStage);
 
-    void setShipmentStage(List<ShipmentStageModel> shipmentStage);
+	DeliveryModel getDelivery();
 
-    DeliveryModel getDelivery();
+	void setDelivery(DeliveryModel value);
 
-    void setDelivery(DeliveryModel value);
+	List<TransportHandlingUnitModel> getTransportHandlingUnit();
 
-    List<TransportHandlingUnitModel> getTransportHandlingUnit();
+	void setTransportHandlingUnit(List<TransportHandlingUnitModel> transportHandlingUnit);
 
-    void setTransportHandlingUnit(List<TransportHandlingUnitModel> transportHandlingUnit);
+	AddressModel getOriginAddress();
 
-    AddressModel getOriginAddress();
+	void setOriginAddress(AddressModel value);
 
-    void setOriginAddress(AddressModel value);
+	LocationCommAggModel getFirstArrivalPortLocation();
 
-    LocationCommAggModel getFirstArrivalPortLocation();
+	void setFirstArrivalPortLocation(LocationCommAggModel value);
 
-    void setFirstArrivalPortLocation(LocationCommAggModel value);
+	LocationCommAggModel getLastExitPortLocation();
 
-    LocationCommAggModel getLastExitPortLocation();
+	void setLastExitPortLocation(LocationCommAggModel value);
 
-    void setLastExitPortLocation(LocationCommAggModel value);
+	CountryModel getExportCountry();
 
-    CountryModel getExportCountry();
+	void setExportCountry(CountryModel value);
 
-    void setExportCountry(CountryModel value);
+	List<AllowanceChargeModel> getFreightAllowanceCharge();
 
-    List<AllowanceChargeModel> getFreightAllowanceCharge();
+	void setFreightAllowanceCharge(List<AllowanceChargeModel> freightAllowanceCharge);
 
-    void setFreightAllowanceCharge(List<AllowanceChargeModel> freightAllowanceCharge);
-
-    String getId();
-
-    
+	String getId();
 
 }
