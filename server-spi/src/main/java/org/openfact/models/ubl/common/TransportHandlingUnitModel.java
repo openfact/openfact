@@ -2,15 +2,17 @@ package org.openfact.models.ubl.common;
 
 import java.util.List;
 
+import org.openfact.models.ubl.common.pe.DespatchAdviceLineModel;
+
 public interface TransportHandlingUnitModel {
 
     String getID();
 
     void setID(String value);
 
-    String getTransportHandlingUnitModelCode();
+    String getTransportHandlingUnitTypeCode();
 
-    void setTransportHandlingUnitModelCode(String value);
+    void setTransportHandlingUnitTypeCode(String value);
 
     String getHandlingCode();
 
@@ -40,9 +42,9 @@ public interface TransportHandlingUnitModel {
 
     void setShippingMarks(List<String> shippingMarks);
 
-    List<DespatchLineModel> getHandlingUnitDespatchLine();
+    List<DespatchAdviceLineModel> getHandlingUnitDespatchLine();
 
-    void setHandlingUnitDespatchLine(List<DespatchLineModel> handlingUnitDespatchLine);
+    void setHandlingUnitDespatchLine(List<DespatchAdviceLineModel> handlingUnitDespatchLine);
 
     List<PackageModel> getActualPackage();
 

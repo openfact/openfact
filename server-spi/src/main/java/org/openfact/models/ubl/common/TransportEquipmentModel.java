@@ -8,21 +8,21 @@ public interface TransportEquipmentModel {
 
     void setID(String value);
 
-    String getTransportEquipmentModelCode();
+    String getTransportEquipmentTypeCode();
 
-    void setTransportEquipmentModelCode(String value);
+    void setTransportEquipmentTypeCode(String value);
 
-    String getProviderModelCode();
+    String getProviderTypeCode();
 
-    void setProviderModelCode(String value);
+    void setProviderTypeCode(String value);
 
-    String getOwnerModelCode();
+    String getOwnerTypeCode();
 
-    void setOwnerModelCode(String value);
+    void setOwnerTypeCode(String value);
 
-    String getSizeModelCode();
+    String getSizeTypeCode();
 
-    void setSizeModelCode(String value);
+    void setSizeTypeCode(String value);
 
     String getDispositionCode();
 

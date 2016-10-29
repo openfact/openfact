@@ -160,7 +160,7 @@ public class PackageAdapter implements PackageModel, JpaModel<PackageEntity> {
 		return packageEntity.getId();
 	}
 
-	private static PackageEntity toEntity(PackageModel model, EntityManager em) {
+	public static PackageEntity toEntity(PackageModel model, EntityManager em) {
 		if (model instanceof PackageAdapter) {
 			return ((PackageAdapter) model).getEntity();
 		}
