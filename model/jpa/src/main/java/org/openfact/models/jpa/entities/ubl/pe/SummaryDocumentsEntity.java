@@ -30,9 +30,9 @@ import org.hibernate.annotations.Type;
 import org.openfact.models.enums.RequeridActionDocument;
 import org.openfact.models.jpa.entities.OrganizationEntity;
 import org.openfact.models.jpa.entities.ubl.common.SignatureEntity;
+import org.openfact.models.jpa.entities.ubl.common.SummaryDocumentsLineEntity;
 import org.openfact.models.jpa.entities.ubl.common.SupplierPartyEntity;
 import org.openfact.models.jpa.entities.ubl.common.UBLExtensionsEntity;
-import org.openfact.models.jpa.entities.ubl.common.pe.SummaryDocumentsLineEntity;
 
 @Entity
 @Table(name = "SUMMARY_DOCUMENTS", uniqueConstraints = { @UniqueConstraint(columnNames = { "ORGANIZATION_ID", "ID_UBL" }) })

@@ -8,9 +8,9 @@ public interface StowageModel {
 
     void setLocationID(String value);
 
-    List<String> getLocation();
+    List<LocationCommAggModel> getLocation();
 
-    void setLocation(List<String> location);
+    void setLocation(List<LocationCommAggModel> location);
 
     List<DimensionModel> getMeasurementDimension();
 

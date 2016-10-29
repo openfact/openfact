@@ -6,9 +6,9 @@ public interface TransportEquipmentSealModel {
 
     void setID(String value);
 
-    String getSealIssuerModelCode();
+    String getSealIssuerTypeCode();
 
-    void setSealIssuerModelCode(String value);
+    void setSealIssuerTypeCode(String value);
 
     String getCondition();
 
@@ -18,9 +18,9 @@ public interface TransportEquipmentSealModel {
 
     void setSealStatusCode(String value);
 
-    String getSealingPartyModel();
+    String getSealingPartyType();
 
-    void setSealingPartyModel(String value);
+    void setSealingPartyType(String value);
 
     String getId();
 

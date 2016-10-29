@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl.common.pe;
+package org.openfact.models.jpa.entities.ubl.common;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -52,7 +52,8 @@ public class StatusEntity {
 	protected String text;
 
 	@Column(name = "INDICATION_INDICATOR")
-	protected String indicationIndicator;
+	@Type(type = "org.hibernate.type.NumericBooleanType")
+	protected boolean indicationIndicator;
 
 	@Column(name = "PERCENT")
 	protected BigDecimal percent;
@@ -129,11 +130,13 @@ public class StatusEntity {
 		this.text = text;
 	}
 
-	public String getIndicationIndicator() {
+	
+
+	public boolean isIndicationIndicator() {
 		return indicationIndicator;
 	}
 
-	public void setIndicationIndicator(String indicationIndicator) {
+	public void setIndicationIndicator(boolean indicationIndicator) {
 		this.indicationIndicator = indicationIndicator;
 	}
 

@@ -32,7 +32,7 @@ import org.openfact.models.jpa.entities.OrganizationEntity;
 import org.openfact.models.jpa.entities.ubl.common.SignatureEntity;
 import org.openfact.models.jpa.entities.ubl.common.SupplierPartyEntity;
 import org.openfact.models.jpa.entities.ubl.common.UBLExtensionsEntity;
-import org.openfact.models.jpa.entities.ubl.common.pe.VoidedDocumentsLineEntity;
+import org.openfact.models.jpa.entities.ubl.common.VoidedDocumentsLineEntity;
 
 @Entity
 @Table(name = "VOIDED_DOCUMENTS", uniqueConstraints = {

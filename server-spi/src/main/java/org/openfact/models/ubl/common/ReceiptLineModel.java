@@ -1,6 +1,7 @@
 package org.openfact.models.ubl.common;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface ReceiptLineModel {
@@ -13,9 +14,9 @@ public interface ReceiptLineModel {
 
     void setUUID(String value);
 
-    String getNote();
+    List<String> getNote();
 
-    void setNote(String value);
+    void setNote(List<String> value);
 
     QuantityModel getReceivedQuantity();
 
@@ -49,9 +50,9 @@ public interface ReceiptLineModel {
 
     void setOversupplyQuantity(QuantityModel value);
 
-    LocalDate getReceivedDate();
+    LocalDateTime getReceivedDate();
 
-    void setReceivedDate(LocalDate value);
+    void setReceivedDate(LocalDateTime value);
 
     String getTimingComplaintCode();
 

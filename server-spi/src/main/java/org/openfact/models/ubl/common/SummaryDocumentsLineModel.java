@@ -9,9 +9,9 @@ public interface SummaryDocumentsLineModel {
 
     void setLineID(String value);
 
-    String getDocumentModelCode();
+    String getDocumentTypeCode();
 
-    void setDocumentModelCode(String value);
+    void setDocumentTypeCode(String value);
 
     String getDocumentSerialID();
 

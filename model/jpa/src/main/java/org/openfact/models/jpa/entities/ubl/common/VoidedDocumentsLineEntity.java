@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl.common.pe;
+package org.openfact.models.jpa.entities.ubl.common;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;

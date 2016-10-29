@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.entities.ubl.common.pe;
+package org.openfact.models.jpa.entities.ubl.common;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -17,11 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
-import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
-import org.openfact.models.jpa.entities.ubl.common.CustomerPartyEntity;
-import org.openfact.models.jpa.entities.ubl.common.PaymentEntity;
-import org.openfact.models.jpa.entities.ubl.common.TaxTotalEntity;
+import org.openfact.models.jpa.entities.ubl.common.pe.PerceptionDocumentReferenceEntity;
 
 @Entity
 @Table(name = "SUMMARY_DOCUMENTS_LINE")

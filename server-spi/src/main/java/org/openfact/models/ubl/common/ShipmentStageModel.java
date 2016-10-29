@@ -12,9 +12,9 @@ public interface ShipmentStageModel {
 
     void setTransportModeCode(String value);
 
-    String getTransportMeansModelCode();
+    String getTransportMeansTypeCode();
 
-    void setTransportMeansModelCode(String value);
+    void setTransportMeansTypeCode(String value);
 
     String getTransitDirectionCode();
 

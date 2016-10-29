@@ -20,9 +20,9 @@ public interface PackageModel {
 
     void setPackageLevelCode(String value);
 
-    String getPackagingModelCode();
+    String getPackagingTypeCode();
 
-    void setPackagingModelCode(String value);
+    void setPackagingTypeCode(String value);
 
     List<String> getPackingMaterial();
 

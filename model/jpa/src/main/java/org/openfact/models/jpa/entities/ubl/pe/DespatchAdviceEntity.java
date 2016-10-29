@@ -32,11 +32,11 @@ import org.openfact.models.jpa.entities.OrganizationEntity;
 import org.openfact.models.jpa.entities.ubl.common.CustomerPartyEntity;
 import org.openfact.models.jpa.entities.ubl.common.DocumentReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.OrderReferenceEntity;
+import org.openfact.models.jpa.entities.ubl.common.ShipmentEntity;
 import org.openfact.models.jpa.entities.ubl.common.SignatureEntity;
 import org.openfact.models.jpa.entities.ubl.common.SupplierPartyEntity;
 import org.openfact.models.jpa.entities.ubl.common.UBLExtensionsEntity;
 import org.openfact.models.jpa.entities.ubl.common.pe.DespatchAdviceLineEntity;
-import org.openfact.models.jpa.entities.ubl.common.pe.ShipmentEntity;
 
 @Entity
 @Table(name = "DESPATCH_ADVICE", uniqueConstraints = {
@@ -109,7 +109,7 @@ public class DespatchAdviceEntity {
 
 	@OneToMany(targetEntity = DespatchAdviceLineEntity.class, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "DESPATCHLINE_DESPATCHADVICE_ID")
-	protected List<DespatchAdviceLineEntity> invoiceLine = new ArrayList<>();
+	protected List<DespatchAdviceLineEntity> despatchAdviceLine = new ArrayList<>();
 	
 	@Lob
 	@Column(name = "XML_DOCUMENT")
@@ -247,14 +247,14 @@ public class DespatchAdviceEntity {
 
 	public void setShipment(List<ShipmentEntity> shipment) {
 		this.shipment = shipment;
+	}	
+
+	public List<DespatchAdviceLineEntity> getDespatchAdviceLine() {
+		return despatchAdviceLine;
 	}
 
-	public List<DespatchAdviceLineEntity> getInvoiceLine() {
-		return invoiceLine;
-	}
-
-	public void setInvoiceLine(List<DespatchAdviceLineEntity> invoiceLine) {
-		this.invoiceLine = invoiceLine;
+	public void setDespatchAdviceLine(List<DespatchAdviceLineEntity> despatchAdviceLine) {
+		this.despatchAdviceLine = despatchAdviceLine;
 	}
 
 	public Byte[] getXmlDocument() {

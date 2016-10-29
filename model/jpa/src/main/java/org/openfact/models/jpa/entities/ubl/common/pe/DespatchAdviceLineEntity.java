@@ -23,6 +23,8 @@ import org.openfact.models.jpa.entities.ubl.common.DocumentReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.ItemEntity;
 import org.openfact.models.jpa.entities.ubl.common.MeasureEntity;
 import org.openfact.models.jpa.entities.ubl.common.OrderLineReferenceEntity;
+import org.openfact.models.jpa.entities.ubl.common.QuantityEntity;
+import org.openfact.models.jpa.entities.ubl.common.ShipmentEntity;
 
 @Entity
 @Table(name = "DESPATCH_LINE")
@@ -48,23 +50,27 @@ public class DespatchAdviceLineEntity {
 	@Column(name = "LINE_STATUS_CODE")
 	protected String lineStatusCode;
 
-	@Column(name = "DELIVERED_QUANTITY")
-	protected BigDecimal deliveredQuantity;
-
-	@Column(name = "BACKORDER_QUANTITY")
-	protected BigDecimal backorderQuantity;
+	@ManyToOne(targetEntity = QuantityEntity.class, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "DELIVERED_QUANTITY")
+	protected QuantityEntity deliveredQuantity;
+	
+	@ManyToOne(targetEntity = QuantityEntity.class, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "BACKORDER_QUANTITY")
+	protected QuantityEntity backorderQuantity;
 
 	@Column(name = "BACKORDER_REASON")
 	protected String backorderReason;
 
-	@Column(name = "OUTSTANDING_QUANTITY")
-	protected BigDecimal outstandingQuantity;
+	@ManyToOne(targetEntity = QuantityEntity.class, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "OUTSTANDING_QUANTITY")
+	protected QuantityEntity outstandingQuantity;
 
 	@Column(name = "OUTSTANDING_REASON")
 	protected String outstandingReason;
 
-	@Column(name = "OVERSUPPLY_QUANTITY")
-	protected BigDecimal oversupplyQuantity;
+	@ManyToOne(targetEntity = QuantityEntity.class, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "OVERSUPPLY_QUANTITY")
+	protected QuantityEntity oversupplyQuantity;
 
 	@OneToMany(targetEntity = OrderLineReferenceEntity.class, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "ORDERLINEREFERENCE_DESPATCHLINE")
@@ -126,19 +132,19 @@ public class DespatchAdviceLineEntity {
 		this.lineStatusCode = lineStatusCode;
 	}
 
-	public BigDecimal getDeliveredQuantity() {
+	public QuantityEntity getDeliveredQuantity() {
 		return deliveredQuantity;
 	}
 
-	public void setDeliveredQuantity(BigDecimal deliveredQuantity) {
+	public void setDeliveredQuantity(QuantityEntity deliveredQuantity) {
 		this.deliveredQuantity = deliveredQuantity;
 	}
 
-	public BigDecimal getBackorderQuantity() {
+	public QuantityEntity getBackorderQuantity() {
 		return backorderQuantity;
 	}
 
-	public void setBackorderQuantity(BigDecimal backorderQuantity) {
+	public void setBackorderQuantity(QuantityEntity backorderQuantity) {
 		this.backorderQuantity = backorderQuantity;
 	}
 
@@ -150,11 +156,11 @@ public class DespatchAdviceLineEntity {
 		this.backorderReason = backorderReason;
 	}
 
-	public BigDecimal getOutstandingQuantity() {
+	public QuantityEntity getOutstandingQuantity() {
 		return outstandingQuantity;
 	}
 
-	public void setOutstandingQuantity(BigDecimal outstandingQuantity) {
+	public void setOutstandingQuantity(QuantityEntity outstandingQuantity) {
 		this.outstandingQuantity = outstandingQuantity;
 	}
 
@@ -166,11 +172,11 @@ public class DespatchAdviceLineEntity {
 		this.outstandingReason = outstandingReason;
 	}
 
-	public BigDecimal getOversupplyQuantity() {
+	public QuantityEntity getOversupplyQuantity() {
 		return oversupplyQuantity;
 	}
 
-	public void setOversupplyQuantity(BigDecimal oversupplyQuantity) {
+	public void setOversupplyQuantity(QuantityEntity oversupplyQuantity) {
 		this.oversupplyQuantity = oversupplyQuantity;
 	}
 
@@ -213,6 +219,6 @@ public class DespatchAdviceLineEntity {
 	public void setShipment(List<ShipmentEntity> shipment) {
 		this.shipment = shipment;
 	}
-	
+
 	
 }
