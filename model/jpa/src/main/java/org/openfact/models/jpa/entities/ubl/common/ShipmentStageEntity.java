@@ -44,7 +44,7 @@ public class ShipmentStageEntity {
 	@Column(name = "TRANSPORT_MODE_CODE")
 	protected String transportModeCode;
 
-	@Column(name = "TRANSPORT_MODE_CODE")
+	@Column(name = "TRANSPORT_DIRECTION_CODE")
 	protected String transitDirectionCode;
 
 	@Column(name = "PRE_CARRIAGE_INDICATOR")

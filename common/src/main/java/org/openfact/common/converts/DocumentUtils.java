@@ -1,6 +1,5 @@
 package org.openfact.common.converts;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -9,13 +8,11 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Reader;
 import java.io.StringWriter;
-import java.io.Writer;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.TransformerFactoryConfigurationError;
@@ -23,8 +20,6 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.apache.commons.lang.ArrayUtils;
-import org.apache.xml.serialize.OutputFormat;
-import org.apache.xml.serialize.XMLSerializer;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
@@ -155,7 +150,7 @@ public class DocumentUtils {
 		return sw.toString();
 	}
 
-	public static InputStream getDocumentToInputStream(Document document, boolean prettyPrint) throws IOException {
+	/*public static InputStream getDocumentToInputStream(Document document, boolean prettyPrint) throws IOException {
 		document.setXmlStandalone(false);
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		OutputFormat outputFormat = new OutputFormat(document);
@@ -168,9 +163,9 @@ public class DocumentUtils {
 		XMLSerializer serializer = new XMLSerializer(outputStream, outputFormat);
 		serializer.serialize(document);
 		return new ByteArrayInputStream(outputStream.toByteArray());
-	}
+	}*/
 
-	public static String getDocumentToString(Document document, boolean pretty) throws IOException {
+	/*public static String getDocumentToString(Document document, boolean pretty) throws IOException {
 		document.setXmlStandalone(false);
 		Writer writer = new StringWriter();
 		char[] buffer = new char[1024];
@@ -188,5 +183,5 @@ public class DocumentUtils {
 			}
 		}
 		return writer.toString();
-	}
+	}*/
 }
