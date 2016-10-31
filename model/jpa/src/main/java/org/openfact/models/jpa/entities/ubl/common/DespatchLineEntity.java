@@ -1,6 +1,5 @@
-package org.openfact.models.jpa.entities.ubl.common.pe;
+package org.openfact.models.jpa.entities.ubl.common;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,16 +18,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.jpa.entities.ubl.common.DocumentReferenceEntity;
-import org.openfact.models.jpa.entities.ubl.common.ItemEntity;
-import org.openfact.models.jpa.entities.ubl.common.MeasureEntity;
-import org.openfact.models.jpa.entities.ubl.common.OrderLineReferenceEntity;
-import org.openfact.models.jpa.entities.ubl.common.QuantityEntity;
-import org.openfact.models.jpa.entities.ubl.common.ShipmentEntity;
 
 @Entity
 @Table(name = "DESPATCH_LINE")
-public class DespatchAdviceLineEntity {
+public class DespatchLineEntity {
 
 	@Id
 	@Column(name = "ID")

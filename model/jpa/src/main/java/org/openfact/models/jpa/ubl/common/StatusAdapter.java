@@ -8,13 +8,8 @@ import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.JpaModel;
-import org.openfact.models.jpa.entities.ubl.common.QuantityEntity;
 import org.openfact.models.jpa.entities.ubl.common.StatusEntity;
-import org.openfact.models.jpa.entities.ubl.pe.DespatchAdviceEntity;
-import org.openfact.models.jpa.ubl.pe.DespatchAdviceAdapter;
-import org.openfact.models.ubl.common.QuantityModel;
 import org.openfact.models.ubl.common.StatusModel;
 
 public class StatusAdapter implements StatusModel, JpaModel<StatusEntity> {

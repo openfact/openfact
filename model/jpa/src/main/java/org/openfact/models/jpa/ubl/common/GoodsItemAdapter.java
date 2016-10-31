@@ -1,15 +1,5 @@
 package org.openfact.models.jpa.ubl.common;
 
-import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
-import org.openfact.models.jpa.entities.ubl.common.GoodsItemContainerEntity;
-import org.openfact.models.jpa.entities.ubl.common.GoodsItemEntity;
-import org.openfact.models.jpa.entities.ubl.common.InvoiceLineEntity;
-import org.openfact.models.jpa.entities.ubl.common.ItemEntity;
-import org.openfact.models.jpa.entities.ubl.common.PeriodEntity;
-import org.openfact.models.jpa.entities.ubl.common.QuantityEntity;
-import org.openfact.models.jpa.entities.ubl.common.ShipmentEntity;
-import org.openfact.models.jpa.entities.ubl.common.TemperatureEntity;
-
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,6 +9,12 @@ import javax.persistence.EntityManager;
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
+import org.openfact.models.jpa.entities.ubl.common.GoodsItemContainerEntity;
+import org.openfact.models.jpa.entities.ubl.common.GoodsItemEntity;
+import org.openfact.models.jpa.entities.ubl.common.InvoiceLineEntity;
+import org.openfact.models.jpa.entities.ubl.common.ItemEntity;
+import org.openfact.models.jpa.entities.ubl.common.TemperatureEntity;
 import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.GoodsItemContainerModel;

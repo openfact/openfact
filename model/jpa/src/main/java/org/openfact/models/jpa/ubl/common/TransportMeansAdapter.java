@@ -1,18 +1,13 @@
 package org.openfact.models.jpa.ubl.common;
 
-import java.time.LocalTime;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.JpaModel;
-import org.openfact.models.jpa.entities.ubl.common.QuantityEntity;
 import org.openfact.models.jpa.entities.ubl.common.TransportMeansEntity;
-import org.openfact.models.jpa.entities.ubl.pe.DespatchAdviceEntity;
-import org.openfact.models.jpa.ubl.pe.DespatchAdviceAdapter;
 import org.openfact.models.ubl.common.AirTransportModel;
 import org.openfact.models.ubl.common.MaritimeTransportModel;
 import org.openfact.models.ubl.common.PartyModel;

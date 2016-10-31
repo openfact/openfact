@@ -1,6 +1,5 @@
 package org.openfact.models.ubl.common;
 
-import java.time.LocalTime;
 import java.util.List;
 
 public interface TransportMeansModel {

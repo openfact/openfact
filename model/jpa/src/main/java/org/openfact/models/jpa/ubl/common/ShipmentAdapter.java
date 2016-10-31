@@ -8,17 +8,12 @@ import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
-import org.openfact.models.jpa.entities.ubl.common.DocumentReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.GoodsItemEntity;
-import org.openfact.models.jpa.entities.ubl.common.PeriodEntity;
 import org.openfact.models.jpa.entities.ubl.common.ShipmentEntity;
 import org.openfact.models.jpa.entities.ubl.common.ShipmentStageEntity;
 import org.openfact.models.jpa.entities.ubl.common.TransportHandlingUnitEntity;
-import org.openfact.models.jpa.entities.ubl.pe.DespatchAdviceEntity;
-import org.openfact.models.jpa.ubl.pe.DespatchAdviceAdapter;
 import org.openfact.models.ubl.common.AddressModel;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.ConsignmentModel;

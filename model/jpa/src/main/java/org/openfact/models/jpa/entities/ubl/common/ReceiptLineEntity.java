@@ -1,6 +1,5 @@
 package org.openfact.models.jpa.entities.ubl.common;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

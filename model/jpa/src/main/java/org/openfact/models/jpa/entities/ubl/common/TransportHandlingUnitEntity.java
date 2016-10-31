@@ -19,7 +19,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import org.openfact.models.jpa.entities.ubl.common.pe.DespatchAdviceLineEntity;
 
 @Entity
 @Table(name = "TRANSPORT_HANDLING_UNIT")
@@ -67,9 +66,9 @@ public class TransportHandlingUnitEntity {
 			@JoinColumn(name = "TRANSPORT_HANDLING_UNIT_ID") })
 	protected List<String> shippingMarks = new ArrayList<>();
 
-	@OneToMany(targetEntity = DespatchAdviceLineEntity.class, cascade = { CascadeType.ALL })
+	@OneToMany(targetEntity = DespatchLineEntity.class, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "HANDLINGUNITDESPATCHLINE_TRANS")
-	protected List<DespatchAdviceLineEntity> handlingUnitDespatchLine = new ArrayList<>();
+	protected List<DespatchLineEntity> handlingUnitDespatchLine = new ArrayList<>();
 
 	@OneToMany(targetEntity = PackageEntity.class, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "ACTUALPACKAGE_TRANSPORTHANDLING")
@@ -179,11 +178,11 @@ public class TransportHandlingUnitEntity {
 		this.shippingMarks = shippingMarks;
 	}
 
-	public List<DespatchAdviceLineEntity> getHandlingUnitDespatchLine() {
+	public List<DespatchLineEntity> getHandlingUnitDespatchLine() {
 		return handlingUnitDespatchLine;
 	}
 
-	public void setHandlingUnitDespatchLine(List<DespatchAdviceLineEntity> handlingUnitDespatchLine) {
+	public void setHandlingUnitDespatchLine(List<DespatchLineEntity> handlingUnitDespatchLine) {
 		this.handlingUnitDespatchLine = handlingUnitDespatchLine;
 	}
 

@@ -1,4 +1,4 @@
-package org.openfact.models.jpa.ubl.common.pe;
+package org.openfact.models.jpa.ubl.common;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -9,152 +9,152 @@ import javax.persistence.EntityManager;
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.DespatchLineEntity;
 import org.openfact.models.jpa.entities.ubl.common.DocumentReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.OrderLineReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.ShipmentEntity;
-import org.openfact.models.jpa.entities.ubl.common.pe.DespatchAdviceLineEntity;
 import org.openfact.models.jpa.ubl.common.DocumentReferenceAdapter;
 import org.openfact.models.jpa.ubl.common.ItemAdapter;
 import org.openfact.models.jpa.ubl.common.MeasureAdapter;
 import org.openfact.models.jpa.ubl.common.OrderLineReferenceAdapter;
 import org.openfact.models.jpa.ubl.common.QuantityAdapter;
 import org.openfact.models.jpa.ubl.common.ShipmentAdapter;
+import org.openfact.models.ubl.common.DespatchLineModel;
 import org.openfact.models.ubl.common.DocumentReferenceModel;
 import org.openfact.models.ubl.common.ItemModel;
 import org.openfact.models.ubl.common.MeasureModel;
 import org.openfact.models.ubl.common.OrderLineReferenceModel;
 import org.openfact.models.ubl.common.QuantityModel;
 import org.openfact.models.ubl.common.ShipmentModel;
-import org.openfact.models.ubl.common.pe.DespatchAdviceLineModel;
 
-public class DespatchAdviceLineAdapter implements DespatchAdviceLineModel, JpaModel<DespatchAdviceLineEntity> {
+public class DespatchLineAdapter implements DespatchLineModel, JpaModel<DespatchLineEntity> {
 
-	protected static final Logger logger = Logger.getLogger(DespatchAdviceLineAdapter.class);
+	protected static final Logger logger = Logger.getLogger(DespatchLineAdapter.class);
 
-	protected DespatchAdviceLineEntity despatchAdviceLine;
+	protected DespatchLineEntity despatchLine;
 	protected EntityManager em;
 	protected OpenfactSession session;
 
-	public DespatchAdviceLineAdapter(OpenfactSession session, EntityManager em,
-			DespatchAdviceLineEntity despatchAdviceLine) {
+	public DespatchLineAdapter(OpenfactSession session, EntityManager em,
+			DespatchLineEntity despatchLine) {
 		this.session = session;
 		this.em = em;
-		this.despatchAdviceLine = despatchAdviceLine;
+		this.despatchLine = despatchLine;
 	}
 
 	@Override
-	public DespatchAdviceLineEntity getEntity() {
-		return despatchAdviceLine;
+	public DespatchLineEntity getEntity() {
+		return despatchLine;
 	}
 
 	@Override
 	public String getId() {
-		return despatchAdviceLine.getId();
+		return despatchLine.getId();
 	}
 
 	@Override
 	public String getID() {
-		return despatchAdviceLine.getID();
+		return despatchLine.getID();
 	}
 
 	@Override
 	public void setID(String iD) {
-		despatchAdviceLine.setID(iD);
+		despatchLine.setID(iD);
 	}
 
 	@Override
 	public String getUuid() {
-		return despatchAdviceLine.getUuid();
+		return despatchLine.getUuid();
 	}
 
 	@Override
 	public void setUuid(String uuid) {
-		despatchAdviceLine.setUuid(uuid);
+		despatchLine.setUuid(uuid);
 	}
 
 	@Override
 	public List<String> getNote() {
-		return despatchAdviceLine.getNote();
+		return despatchLine.getNote();
 	}
 
 	@Override
 	public void setNote(List<String> note) {
-		despatchAdviceLine.setNote(note);
+		despatchLine.setNote(note);
 	}
 
 	@Override
 	public String getLineStatusCode() {
-		return despatchAdviceLine.getLineStatusCode();
+		return despatchLine.getLineStatusCode();
 	}
 
 	@Override
 	public void setLineStatusCode(String lineStatusCode) {
-		despatchAdviceLine.setLineStatusCode(lineStatusCode);
+		despatchLine.setLineStatusCode(lineStatusCode);
 	}
 
 	@Override
 	public QuantityModel getDeliveredQuantity() {
-		return new QuantityAdapter(session, em, despatchAdviceLine.getDeliveredQuantity());
+		return new QuantityAdapter(session, em, despatchLine.getDeliveredQuantity());
 	}
 
 	@Override
 	public void setDeliveredQuantity(QuantityModel deliveredQuantity) {
-		despatchAdviceLine.setDeliveredQuantity(QuantityAdapter.toEntity(deliveredQuantity, em));
+		despatchLine.setDeliveredQuantity(QuantityAdapter.toEntity(deliveredQuantity, em));
 	}
 
 	@Override
 	public QuantityModel getBackorderQuantity() {
-		return new QuantityAdapter(session, em, despatchAdviceLine.getBackorderQuantity());
+		return new QuantityAdapter(session, em, despatchLine.getBackorderQuantity());
 	}
 
 	@Override
 	public void setBackorderQuantity(QuantityModel backorderQuantity) {
-		despatchAdviceLine.setDeliveredQuantity(QuantityAdapter.toEntity(backorderQuantity, em));
+		despatchLine.setDeliveredQuantity(QuantityAdapter.toEntity(backorderQuantity, em));
 	}
 
 	@Override
 	public String getBackorderReason() {
-		return despatchAdviceLine.getBackorderReason();
+		return despatchLine.getBackorderReason();
 	}
 
 	@Override
 	public void setBackorderReason(String backorderReason) {
-		despatchAdviceLine.setBackorderReason(backorderReason);
+		despatchLine.setBackorderReason(backorderReason);
 	}
 
 	@Override
 	public QuantityModel getOutstandingQuantity() {
-		return new QuantityAdapter(session, em, despatchAdviceLine.getOutstandingQuantity());
+		return new QuantityAdapter(session, em, despatchLine.getOutstandingQuantity());
 	}
 
 	@Override
 	public void setOutstandingQuantity(QuantityModel outstandingQuantity) {
-		despatchAdviceLine.setDeliveredQuantity(QuantityAdapter.toEntity(outstandingQuantity, em));
+		despatchLine.setDeliveredQuantity(QuantityAdapter.toEntity(outstandingQuantity, em));
 	}
 
 	@Override
 	public String getOutstandingReason() {
-		return despatchAdviceLine.getOutstandingReason();
+		return despatchLine.getOutstandingReason();
 	}
 
 	@Override
 	public void setOutstandingReason(String outstandingReason) {
-		despatchAdviceLine.setOutstandingReason(outstandingReason);
+		despatchLine.setOutstandingReason(outstandingReason);
 	}
 
 	@Override
 	public QuantityModel getOversupplyQuantity() {
-		return new QuantityAdapter(session, em, despatchAdviceLine.getOversupplyQuantity());
+		return new QuantityAdapter(session, em, despatchLine.getOversupplyQuantity());
 	}
 
 	@Override
 	public void setOversupplyQuantity(QuantityModel oversupplyQuantity) {
-		despatchAdviceLine.setDeliveredQuantity(QuantityAdapter.toEntity(oversupplyQuantity, em));
+		despatchLine.setDeliveredQuantity(QuantityAdapter.toEntity(oversupplyQuantity, em));
 	}
 
 	@Override
 	public List<OrderLineReferenceModel> getOrderLineReference() {
-		return despatchAdviceLine.getOrderLineReference().stream()
+		return despatchLine.getOrderLineReference().stream()
 				.map(f -> new OrderLineReferenceAdapter(session, em, f)).collect(Collectors.toList());
 	}
 
@@ -162,12 +162,12 @@ public class DespatchAdviceLineAdapter implements DespatchAdviceLineModel, JpaMo
 	public void setOrderLineReference(List<OrderLineReferenceModel> orderLineReference) {
 		List<OrderLineReferenceEntity> entities = orderLineReference.stream()
 				.map(f -> OrderLineReferenceAdapter.toEntity(f, em)).collect(Collectors.toList());
-		despatchAdviceLine.setOrderLineReference(entities);
+		despatchLine.setOrderLineReference(entities);
 	}
 
 	@Override
 	public List<DocumentReferenceModel> getDocumentReference() {
-		return despatchAdviceLine.getDocumentReference().stream().map(f -> new DocumentReferenceAdapter(session, em, f))
+		return despatchLine.getDocumentReference().stream().map(f -> new DocumentReferenceAdapter(session, em, f))
 				.collect(Collectors.toList());
 	}
 
@@ -175,32 +175,32 @@ public class DespatchAdviceLineAdapter implements DespatchAdviceLineModel, JpaMo
 	public void setDocumentReference(List<DocumentReferenceModel> documentReference) {
 		List<DocumentReferenceEntity> entities = documentReference.stream()
 				.map(f -> DocumentReferenceAdapter.toEntity(f, em)).collect(Collectors.toList());
-		despatchAdviceLine.setDocumentReference(entities);
+		despatchLine.setDocumentReference(entities);
 	}
 
 	@Override
 	public ItemModel getItem() {
-		return new ItemAdapter(session, em, despatchAdviceLine.getItem());
+		return new ItemAdapter(session, em, despatchLine.getItem());
 	}
 
 	@Override
 	public void setItem(ItemModel item) {
-		despatchAdviceLine.setItem(ItemAdapter.toEntity(item, em));
+		despatchLine.setItem(ItemAdapter.toEntity(item, em));
 	}
 
 	@Override
 	public MeasureModel getGrossWeightMeasure() {
-		return new MeasureAdapter(session, em, despatchAdviceLine.getGrossWeightMeasure());
+		return new MeasureAdapter(session, em, despatchLine.getGrossWeightMeasure());
 	}
 
 	@Override
 	public void setGrossWeightMeasure(MeasureModel grossWeightMeasure) {
-		despatchAdviceLine.setGrossWeightMeasure(MeasureAdapter.toEntity(grossWeightMeasure, em));
+		despatchLine.setGrossWeightMeasure(MeasureAdapter.toEntity(grossWeightMeasure, em));
 	}
 
 	@Override
 	public List<ShipmentModel> getShipment() {
-		return despatchAdviceLine.getShipment().stream().map(f -> new ShipmentAdapter(session, em, f))
+		return despatchLine.getShipment().stream().map(f -> new ShipmentAdapter(session, em, f))
 				.collect(Collectors.toList());
 	}
 
@@ -208,14 +208,14 @@ public class DespatchAdviceLineAdapter implements DespatchAdviceLineModel, JpaMo
 	public void setShipment(List<ShipmentModel> shipment) {
 		List<ShipmentEntity> entities = shipment.stream().map(f -> ShipmentAdapter.toEntity(f, em))
 				.collect(Collectors.toList());
-		despatchAdviceLine.setShipment(entities);
+		despatchLine.setShipment(entities);
 	}
 
-	public static DespatchAdviceLineEntity toEntity(DespatchAdviceLineModel model, EntityManager em) {
-		if (model instanceof DespatchAdviceLineAdapter) {
-			return ((DespatchAdviceLineAdapter) model).getEntity();
+	public static DespatchLineEntity toEntity(DespatchLineModel model, EntityManager em) {
+		if (model instanceof DespatchLineAdapter) {
+			return ((DespatchLineAdapter) model).getEntity();
 		}
-		return em.getReference(DespatchAdviceLineEntity.class, model.getId());
+		return em.getReference(DespatchLineEntity.class, model.getId());
 	}
 
 }

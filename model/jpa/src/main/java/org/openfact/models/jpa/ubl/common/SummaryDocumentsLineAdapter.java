@@ -8,17 +8,11 @@ import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.PaymentEntity;
-import org.openfact.models.jpa.entities.ubl.common.PeriodEntity;
 import org.openfact.models.jpa.entities.ubl.common.SummaryDocumentsLineEntity;
 import org.openfact.models.jpa.entities.ubl.common.TaxTotalEntity;
-import org.openfact.models.jpa.entities.ubl.common.pe.PerceptionDocumentReferenceEntity;
-import org.openfact.models.jpa.entities.ubl.pe.DespatchAdviceEntity;
-import org.openfact.models.jpa.ubl.common.pe.PerceptionDocumentReferenceAdapter;
-import org.openfact.models.jpa.ubl.pe.DespatchAdviceAdapter;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.PaymentModel;
 import org.openfact.models.ubl.common.SummaryDocumentsLineModel;

@@ -1,6 +1,5 @@
 package org.openfact.models.jpa.ubl.common;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,8 +12,6 @@ import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.DocumentReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.ItemEntity;
 import org.openfact.models.jpa.entities.ubl.common.LineReferenceEntity;
-import org.openfact.models.jpa.entities.ubl.common.PeriodEntity;
-import org.openfact.models.jpa.entities.ubl.common.QuantityEntity;
 import org.openfact.models.jpa.entities.ubl.common.ReceiptLineEntity;
 import org.openfact.models.jpa.entities.ubl.common.ShipmentEntity;
 import org.openfact.models.ubl.common.DocumentReferenceModel;

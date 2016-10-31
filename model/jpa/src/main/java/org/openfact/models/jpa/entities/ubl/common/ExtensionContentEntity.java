@@ -19,7 +19,6 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.w3c.dom.Element;
 
 @Entity
 @Table(name = "EXTENSIONCONTENT")
