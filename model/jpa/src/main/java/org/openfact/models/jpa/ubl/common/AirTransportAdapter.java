@@ -6,7 +6,6 @@ import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.AirTransportEntity;
-import org.openfact.models.jpa.entities.ubl.common.QuantityEntity;
 import org.openfact.models.ubl.common.AirTransportModel;
 
 public class AirTransportAdapter implements AirTransportModel, JpaModel<AirTransportEntity> {

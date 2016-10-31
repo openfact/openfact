@@ -3,65 +3,66 @@ package org.openfact.models.ubl.common;
 import java.util.List;
 
 public interface DespatchLineModel {
+	String getId();	
 
-    String getID();
+	String getID();
 
-    void setID(String value);
+	void setID(String iD);
 
-    String getUUID();
+	String getUuid();
 
-    void setUUID(String value);
+	void setUuid(String uuid);
 
-    String getNote();
+	List<String> getNote();
 
-    void setNote(String value);
+	void setNote(List<String> note);
 
-    String getLineStatusCode();
+	String getLineStatusCode();
 
-    void setLineStatusCode(String value);
+	void setLineStatusCode(String lineStatusCode);
 
-    QuantityModel getDeliveredQuantity();
+	QuantityModel getDeliveredQuantity();
 
-    void setDeliveredQuantity(QuantityModel value);
+	void setDeliveredQuantity(QuantityModel deliveredQuantity);
 
-    QuantityModel getBackorderQuantity();
+	QuantityModel getBackorderQuantity();
 
-    void setBackorderQuantity(QuantityModel value);
+	void setBackorderQuantity(QuantityModel backorderQuantity);
 
-    String getBackorderReason();
+	String getBackorderReason();
 
-    void setBackorderReason(String value);
+	void setBackorderReason(String backorderReason);
 
-    QuantityModel getOutstandingQuantity();
+	QuantityModel getOutstandingQuantity();
 
-    void setOutstandingQuantity(QuantityModel value);
+	void setOutstandingQuantity(QuantityModel outstandingQuantity);
 
-    String getOutstandingReason();
+	String getOutstandingReason();
 
-    void setOutstandingReason(String value);
+	void setOutstandingReason(String outstandingReason);
 
-    QuantityModel getOversupplyQuantity();
+	QuantityModel getOversupplyQuantity();
 
-    void setOversupplyQuantity(QuantityModel value);
+	void setOversupplyQuantity(QuantityModel oversupplyQuantity);
 
-    List<OrderLineReferenceModel> getOrderLineReference();
+	List<OrderLineReferenceModel> getOrderLineReference();
 
-    void setOrderLineReference(List<OrderLineReferenceModel> orderLineReference);
+	void setOrderLineReference(List<OrderLineReferenceModel> orderLineReference);
 
-    List<DocumentReferenceModel> getDocumentReference();
+	List<DocumentReferenceModel> getDocumentReference();
 
-    void setDocumentReference(List<DocumentReferenceModel> documentReference);
+	void setDocumentReference(List<DocumentReferenceModel> documentReference);
 
-    ItemModel getItem();
+	ItemModel getItem();
 
-    void setItem(ItemModel value);
+	void setItem(ItemModel item);
 
-    List<ShipmentModel> getShipment();
+	MeasureModel getGrossWeightMeasure();
 
-    void setShipment(List<ShipmentModel> shipment);
+	void setGrossWeightMeasure(MeasureModel grossWeightMeasure);
 
-    String getId();
+	List<ShipmentModel> getShipment();
 
-    
+	void setShipment(List<ShipmentModel> shipment);
 
 }

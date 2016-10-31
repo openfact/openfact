@@ -2,6 +2,7 @@ package org.openfact.models.jpa.entities.ubl.pe;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Access;
@@ -20,6 +21,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -36,6 +39,13 @@ import org.openfact.models.jpa.entities.ubl.common.UBLExtensionsEntity;
 
 @Entity
 @Table(name = "SUMMARY_DOCUMENTS", uniqueConstraints = { @UniqueConstraint(columnNames = { "ORGANIZATION_ID", "ID_UBL" }) })
+@NamedQueries({
+	@NamedQuery(name = "getAllSummaryDocumentsByOrganization", query = "select i from SummaryDocumentsEntity i where i.organization.id = :organizationId order by i.issueDateTime"),
+	@NamedQuery(name = "getOrganizationSummaryDocumentsById", query = "select i from SummaryDocumentsEntity i where i.id = :id and i.organization.id = :organizationId"),
+	@NamedQuery(name = "getOrganizationSummaryDocumentsByID", query = "select i from SummaryDocumentsEntity i where i.ID = :ID and i.organization.id = :organizationId"),
+	@NamedQuery(name = "searchForSummaryDocuments", query = "select i from SummaryDocumentsEntity i where i.organization.id = :organizationId and i.ID like :search order by i.issueDateTime"),
+	@NamedQuery(name = "getOrganizationSummaryDocumentsCount", query = "select count(i) from SummaryDocumentsEntity i where i.organization.id = :organizationId"),
+	@NamedQuery(name = "getLastSummaryDocumentsByOrganization", query = "select i from SummaryDocumentsEntity i where i.organization.id = :organizationId and length(i.ID)=:IDLength and i.ID like :formatter order by i.issueDateTime desc"), })
 public class SummaryDocumentsEntity {
 
 	@Id
@@ -45,6 +55,9 @@ public class SummaryDocumentsEntity {
 	@Access(AccessType.PROPERTY)
 	protected String id;
 
+	@OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "summaryDocuments")
+	protected Collection<SummaryDocumentsAttributeEntity> attributes = new ArrayList<>();
+	
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
@@ -81,7 +94,7 @@ public class SummaryDocumentsEntity {
 
 	@OneToMany(targetEntity = SummaryDocumentsLineEntity.class, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "SUMMARYLINE_SUMMARYDOCUMENTS")
-    public List<SummaryDocumentsLineEntity> SummaryDocumentsLines =new ArrayList<>();
+	protected List<SummaryDocumentsLineEntity> SummaryDocumentsLines =new ArrayList<>();
 	
 	@Lob
 	@Column(name = "XML_DOCUMENT")
@@ -107,6 +120,14 @@ public class SummaryDocumentsEntity {
 
 	public void setOrganization(OrganizationEntity organization) {
 		this.organization = organization;
+	}
+
+	public Collection<SummaryDocumentsAttributeEntity> getAttributes() {
+		return attributes;
+	}
+
+	public void setAttributes(Collection<SummaryDocumentsAttributeEntity> attributes) {
+		this.attributes = attributes;
 	}
 
 	public UBLExtensionsEntity getUblExtensions() {

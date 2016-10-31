@@ -10,12 +10,9 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.DimensionEntity;
 import org.openfact.models.jpa.entities.ubl.common.LocationCommAggEntity;
-import org.openfact.models.jpa.entities.ubl.common.PeriodEntity;
-import org.openfact.models.jpa.entities.ubl.common.QuantityEntity;
 import org.openfact.models.jpa.entities.ubl.common.StowageEntity;
 import org.openfact.models.ubl.common.DimensionModel;
 import org.openfact.models.ubl.common.LocationCommAggModel;
-import org.openfact.models.ubl.common.QuantityModel;
 import org.openfact.models.ubl.common.StowageModel;
 
 public class StowageAdapter implements StowageModel, JpaModel<StowageEntity> {

@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -33,7 +34,8 @@ public class PackageEntity {
 	@Column(name = "ID_UBL")
 	protected String ID;
 
-	@Column(name = "QUANTITY")
+	@ManyToOne(targetEntity = QuantityEntity.class, cascade = { CascadeType.ALL })
+	@JoinColumn(name = "QUANTITY_PACKAGE")
 	protected QuantityEntity quantity;
 
 	@Column(name = "RETURNABLE_MATERIAL_INDICATOR")
@@ -154,5 +156,5 @@ public class PackageEntity {
 	public void setDeliveryUnit(List<DeliveryUnitEntity> deliveryUnit) {
 		this.deliveryUnit = deliveryUnit;
 	}
-	
+
 }

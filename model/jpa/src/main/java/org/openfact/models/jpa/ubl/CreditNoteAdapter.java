@@ -20,7 +20,6 @@ import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.OrganizationAdapter;
 import org.openfact.models.jpa.entities.ubl.CreditNoteAttributeEntity;
 import org.openfact.models.jpa.entities.ubl.CreditNoteEntity;
-import org.openfact.models.jpa.entities.ubl.InvoiceEntity;
 import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.CreditNoteLineEntity;

@@ -4,13 +4,8 @@ import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.VoidedDocumentsLineEntity;
-import org.openfact.models.jpa.entities.ubl.common.pe.PerceptionDocumentReferenceEntity;
-import org.openfact.models.jpa.entities.ubl.pe.DespatchAdviceEntity;
-import org.openfact.models.jpa.ubl.common.pe.PerceptionDocumentReferenceAdapter;
-import org.openfact.models.jpa.ubl.pe.DespatchAdviceAdapter;
 import org.openfact.models.ubl.common.VoidedDocumentsLineModel;
 
 public class VoidedDocumentsLineAdapter implements VoidedDocumentsLineModel, JpaModel<VoidedDocumentsLineEntity> {

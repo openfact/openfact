@@ -10,7 +10,6 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.OrganizationAdapter;
 import org.openfact.models.jpa.entities.ubl.JobReportEntity;
-import org.openfact.models.jpa.ubl.common.UBLExtensionsAdapter;
 import org.openfact.models.ubl.JobReportModel;
 
 public class JobReportAdapter implements JobReportModel, JpaModel<JobReportEntity> {

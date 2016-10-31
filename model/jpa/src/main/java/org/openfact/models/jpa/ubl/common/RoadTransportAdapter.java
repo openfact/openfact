@@ -5,9 +5,7 @@ import javax.persistence.EntityManager;
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
-import org.openfact.models.jpa.entities.ubl.common.QuantityEntity;
 import org.openfact.models.jpa.entities.ubl.common.RoadTransportEntity;
-import org.openfact.models.ubl.common.QuantityModel;
 import org.openfact.models.ubl.common.RoadTransportModel;
 
 public class RoadTransportAdapter implements RoadTransportModel, JpaModel<RoadTransportEntity> {

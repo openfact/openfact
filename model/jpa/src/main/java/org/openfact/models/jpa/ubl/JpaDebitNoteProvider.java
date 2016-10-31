@@ -15,7 +15,6 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.models.enums.RequeridActionDocument;
 import org.openfact.models.jpa.AbstractHibernateStorage;
 import org.openfact.models.jpa.OrganizationAdapter;
-import org.openfact.models.jpa.entities.ubl.CreditNoteEntity;
 import org.openfact.models.jpa.entities.ubl.DebitNoteEntity;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;

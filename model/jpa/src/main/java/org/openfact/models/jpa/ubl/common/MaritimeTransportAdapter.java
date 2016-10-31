@@ -6,9 +6,7 @@ import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.common.MaritimeTransportEntity;
-import org.openfact.models.jpa.entities.ubl.common.QuantityEntity;
 import org.openfact.models.ubl.common.MaritimeTransportModel;
-import org.openfact.models.ubl.common.QuantityModel;
 
 public class MaritimeTransportAdapter implements MaritimeTransportModel, JpaModel<MaritimeTransportEntity> {
 

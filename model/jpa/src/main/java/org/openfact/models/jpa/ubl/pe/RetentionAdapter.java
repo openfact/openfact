@@ -2,12 +2,16 @@ package org.openfact.models.jpa.ubl.pe;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import org.jboss.logging.Logger;
+import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.enums.RequeridActionDocument;
@@ -15,6 +19,7 @@ import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.OrganizationAdapter;
 import org.openfact.models.jpa.entities.ubl.common.SignatureEntity;
 import org.openfact.models.jpa.entities.ubl.common.pe.RetentionDocumentReferenceEntity;
+import org.openfact.models.jpa.entities.ubl.pe.RetentionAttributeEntity;
 import org.openfact.models.jpa.entities.ubl.pe.RetentionEntity;
 import org.openfact.models.jpa.ubl.common.PartyAdapter;
 import org.openfact.models.jpa.ubl.common.SignatureAdapter;
@@ -25,6 +30,7 @@ import org.openfact.models.ubl.common.SignatureModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
 import org.openfact.models.ubl.common.pe.RetentionDocumentReferenceModel;
 import org.openfact.models.ubl.pe.RetentionModel;
+import org.openfact.models.utils.OpenfactModelUtils;
 
 public class RetentionAdapter implements RetentionModel, JpaModel<RetentionEntity> {
 
@@ -51,6 +57,106 @@ public class RetentionAdapter implements RetentionModel, JpaModel<RetentionEntit
 	@Override
 	public String getId() {
 		return retention.getId();
+	}
+
+	@Override
+	public void setSingleAttribute(String name, String value) {
+		String firstExistingAttrId = null;
+		List<RetentionAttributeEntity> toRemove = new ArrayList<>();
+		for (RetentionAttributeEntity attr : retention.getAttributes()) {
+			if (attr.getName().equals(name)) {
+				if (firstExistingAttrId == null) {
+					attr.setValue(value);
+					firstExistingAttrId = attr.getId();
+				} else {
+					toRemove.add(attr);
+				}
+			}
+		}
+
+		if (firstExistingAttrId != null) {
+			// Remove attributes through HQL to avoid StaleUpdateException
+			Query query = em.createNamedQuery("deleteRetentionAttributesOtherThan");
+			query.setParameter("attrId", firstExistingAttrId);
+			query.setParameter("retentionId", retention.getId());
+			int numUpdated = query.executeUpdate();
+
+			// Remove attribute from local entity
+			retention.getAttributes().removeAll(toRemove);
+		} else {
+
+			persistAttributeValue(name, value);
+		}
+	}
+
+	@Override
+	public void setAttribute(String name, List<String> values) {
+		// Remove all existing
+		removeAttribute(name);
+
+		// Put all new
+		for (String value : values) {
+			persistAttributeValue(name, value);
+		}
+	}
+
+	private void persistAttributeValue(String name, String value) {
+		RetentionAttributeEntity attr = new RetentionAttributeEntity();
+		attr.setId(OpenfactModelUtils.generateId());
+		attr.setName(name);
+		attr.setValue(value);
+		attr.setRetention(retention);
+		em.persist(attr);
+		retention.getAttributes().add(attr);
+	}
+
+	@Override
+	public void removeAttribute(String name) {
+		// OPENFACT-3296 : Remove attribute through HQL to avoid
+		// StaleUpdateException
+		Query query = em.createNamedQuery("deleteRetentionAttributesByNameAndRetention");
+		query.setParameter("name", name);
+		query.setParameter("retentionId", retention.getId());
+		int numUpdated = query.executeUpdate();
+
+		// Also remove attributes from local retention entity
+		List<RetentionAttributeEntity> toRemove = new ArrayList<>();
+		for (RetentionAttributeEntity attr : retention.getAttributes()) {
+			if (attr.getName().equals(name)) {
+				toRemove.add(attr);
+			}
+		}
+		retention.getAttributes().removeAll(toRemove);
+	}
+
+	@Override
+	public String getFirstAttribute(String name) {
+		for (RetentionAttributeEntity attr : retention.getAttributes()) {
+			if (attr.getName().equals(name)) {
+				return attr.getValue();
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public List<String> getAttribute(String name) {
+		List<String> result = new ArrayList<>();
+		for (RetentionAttributeEntity attr : retention.getAttributes()) {
+			if (attr.getName().equals(name)) {
+				result.add(attr.getValue());
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public Map<String, List<String>> getAttributes() {
+		MultivaluedHashMap<String, String> result = new MultivaluedHashMap<>();
+		for (RetentionAttributeEntity attr : retention.getAttributes()) {
+			result.add(attr.getName(), attr.getValue());
+		}
+		return result;
 	}
 
 	@Override

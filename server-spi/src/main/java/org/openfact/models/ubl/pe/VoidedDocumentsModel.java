@@ -2,15 +2,33 @@ package org.openfact.models.ubl.pe;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.enums.RequeridActionDocument;
 import org.openfact.models.ubl.common.SignatureModel;
 import org.openfact.models.ubl.common.SupplierPartyModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
 import org.openfact.models.ubl.common.VoidedDocumentsLineModel;
+import org.openfact.provider.ProviderEvent;
 
 public interface VoidedDocumentsModel {
+	/**
+	 * attributes
+	 */
+	void setSingleAttribute(String name, String value);
+
+	void setAttribute(String name, List<String> values);
+
+	void removeAttribute(String name);
+
+	String getFirstAttribute(String name);
+
+	List<String> getAttribute(String name);
+
+	Map<String, List<String>> getAttributes();
+	
 	String getId();
 
 	OrganizationModel getOrganization();
@@ -64,4 +82,23 @@ public interface VoidedDocumentsModel {
 	List<RequeridActionDocument> getRequeridAction();
 
 	void setRequeridAction(List<RequeridActionDocument> requeridAction);
+	
+	/**
+	 * Events interfaces
+	 */
+	interface VoidedDocumentsCreationEvent extends ProviderEvent {
+		VoidedDocumentsModel getCreatedVoidedDocuments();
+	}
+
+	interface VoidedDocumentsPostCreateEvent extends ProviderEvent {
+		VoidedDocumentsModel getCreatedVoidedDocuments();
+
+		OpenfactSession getOpenfactSession();
+	}
+
+	interface VoidedDocumentsRemovedEvent extends ProviderEvent {
+		VoidedDocumentsModel getVoidedDocuments();
+
+		OpenfactSession getOpenfactSession();
+	}
 }

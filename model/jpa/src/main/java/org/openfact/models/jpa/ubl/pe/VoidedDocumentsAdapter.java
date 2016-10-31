@@ -1,12 +1,16 @@
 package org.openfact.models.jpa.ubl.pe;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import org.jboss.logging.Logger;
+import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.enums.RequeridActionDocument;
@@ -14,6 +18,7 @@ import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.OrganizationAdapter;
 import org.openfact.models.jpa.entities.ubl.common.SignatureEntity;
 import org.openfact.models.jpa.entities.ubl.common.VoidedDocumentsLineEntity;
+import org.openfact.models.jpa.entities.ubl.pe.VoidedDocumentsAttributeEntity;
 import org.openfact.models.jpa.entities.ubl.pe.VoidedDocumentsEntity;
 import org.openfact.models.jpa.ubl.common.SignatureAdapter;
 import org.openfact.models.jpa.ubl.common.SupplierPartyAdapter;
@@ -24,6 +29,7 @@ import org.openfact.models.ubl.common.SupplierPartyModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
 import org.openfact.models.ubl.common.VoidedDocumentsLineModel;
 import org.openfact.models.ubl.pe.VoidedDocumentsModel;
+import org.openfact.models.utils.OpenfactModelUtils;
 
 public class VoidedDocumentsAdapter implements VoidedDocumentsModel, JpaModel<VoidedDocumentsEntity> {
 
@@ -50,6 +56,106 @@ public class VoidedDocumentsAdapter implements VoidedDocumentsModel, JpaModel<Vo
 	@Override
 	public String getId() {
 		return voidedDocuments.getId();
+	}
+
+	@Override
+	public void setSingleAttribute(String name, String value) {
+		String firstExistingAttrId = null;
+		List<VoidedDocumentsAttributeEntity> toRemove = new ArrayList<>();
+		for (VoidedDocumentsAttributeEntity attr : voidedDocuments.getAttributes()) {
+			if (attr.getName().equals(name)) {
+				if (firstExistingAttrId == null) {
+					attr.setValue(value);
+					firstExistingAttrId = attr.getId();
+				} else {
+					toRemove.add(attr);
+				}
+			}
+		}
+
+		if (firstExistingAttrId != null) {
+			// Remove attributes through HQL to avoid StaleUpdateException
+			Query query = em.createNamedQuery("deleteVoidedDocumentsAttributesOtherThan");
+			query.setParameter("attrId", firstExistingAttrId);
+			query.setParameter("voidedDocumentsId", voidedDocuments.getId());
+			int numUpdated = query.executeUpdate();
+
+			// Remove attribute from local entity
+			voidedDocuments.getAttributes().removeAll(toRemove);
+		} else {
+
+			persistAttributeValue(name, value);
+		}
+	}
+
+	@Override
+	public void setAttribute(String name, List<String> values) {
+		// Remove all existing
+		removeAttribute(name);
+
+		// Put all new
+		for (String value : values) {
+			persistAttributeValue(name, value);
+		}
+	}
+
+	private void persistAttributeValue(String name, String value) {
+		VoidedDocumentsAttributeEntity attr = new VoidedDocumentsAttributeEntity();
+		attr.setId(OpenfactModelUtils.generateId());
+		attr.setName(name);
+		attr.setValue(value);
+		attr.setVoidedDocuments(voidedDocuments);
+		em.persist(attr);
+		voidedDocuments.getAttributes().add(attr);
+	}
+
+	@Override
+	public void removeAttribute(String name) {
+		// OPENFACT-3296 : Remove attribute through HQL to avoid
+		// StaleUpdateException
+		Query query = em.createNamedQuery("deleteVoidedDocumentsAttributesByNameAndVoidedDocuments");
+		query.setParameter("name", name);
+		query.setParameter("voidedDocumentsId", voidedDocuments.getId());
+		int numUpdated = query.executeUpdate();
+
+		// Also remove attributes from local voidedDocuments entity
+		List<VoidedDocumentsAttributeEntity> toRemove = new ArrayList<>();
+		for (VoidedDocumentsAttributeEntity attr : voidedDocuments.getAttributes()) {
+			if (attr.getName().equals(name)) {
+				toRemove.add(attr);
+			}
+		}
+		voidedDocuments.getAttributes().removeAll(toRemove);
+	}
+
+	@Override
+	public String getFirstAttribute(String name) {
+		for (VoidedDocumentsAttributeEntity attr : voidedDocuments.getAttributes()) {
+			if (attr.getName().equals(name)) {
+				return attr.getValue();
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public List<String> getAttribute(String name) {
+		List<String> result = new ArrayList<>();
+		for (VoidedDocumentsAttributeEntity attr : voidedDocuments.getAttributes()) {
+			if (attr.getName().equals(name)) {
+				result.add(attr.getValue());
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public Map<String, List<String>> getAttributes() {
+		MultivaluedHashMap<String, String> result = new MultivaluedHashMap<>();
+		for (VoidedDocumentsAttributeEntity attr : voidedDocuments.getAttributes()) {
+			result.add(attr.getName(), attr.getValue());
+		}
+		return result;
 	}
 
 	@Override

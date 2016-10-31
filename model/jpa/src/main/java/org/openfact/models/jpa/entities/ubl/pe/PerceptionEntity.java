@@ -3,6 +3,7 @@ package org.openfact.models.jpa.entities.ubl.pe;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Access;
@@ -21,6 +22,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -30,6 +33,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import org.openfact.models.enums.RequeridActionDocument;
 import org.openfact.models.jpa.entities.OrganizationEntity;
+import org.openfact.models.jpa.entities.ubl.CreditNoteAttributeEntity;
 import org.openfact.models.jpa.entities.ubl.common.PartyEntity;
 import org.openfact.models.jpa.entities.ubl.common.SignatureEntity;
 import org.openfact.models.jpa.entities.ubl.common.UBLExtensionsEntity;
@@ -37,6 +41,13 @@ import org.openfact.models.jpa.entities.ubl.common.pe.PerceptionDocumentReferenc
 
 @Entity
 @Table(name = "PERCEPTION", uniqueConstraints = { @UniqueConstraint(columnNames = { "ORGANIZATION_ID", "ID_UBL" }) })
+@NamedQueries({
+	@NamedQuery(name = "getAllPerceptionsByOrganization", query = "select i from PerceptionEntity i where i.organization.id = :organizationId order by i.issueDateTime"),
+	@NamedQuery(name = "getOrganizationPerceptionById", query = "select i from PerceptionEntity i where i.id = :id and i.organization.id = :organizationId"),
+	@NamedQuery(name = "getOrganizationPerceptionByID", query = "select i from PerceptionEntity i where i.ID = :ID and i.organization.id = :organizationId"),
+	@NamedQuery(name = "searchForPerception", query = "select i from PerceptionEntity i where i.organization.id = :organizationId and i.ID like :search order by i.issueDateTime"),
+	@NamedQuery(name = "getOrganizationPerceptionCount", query = "select count(i) from PerceptionEntity i where i.organization.id = :organizationId"),
+	@NamedQuery(name = "getLastPerceptionByOrganization", query = "select i from PerceptionEntity i where i.organization.id = :organizationId and length(i.ID)=:IDLength and i.ID like :formatter order by i.issueDateTime desc"), })
 public class PerceptionEntity {
 	@Id
 	@Column(name = "ID")
@@ -45,6 +56,9 @@ public class PerceptionEntity {
 	@Access(AccessType.PROPERTY)
 	protected String id;
 
+	@OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "perception")
+	protected Collection<PerceptionAttributeEntity> attributes = new ArrayList<>();
+	
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
@@ -98,7 +112,7 @@ public class PerceptionEntity {
 	
 	@OneToMany(targetEntity = PerceptionDocumentReferenceEntity.class, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "PERCEPTIONDOCUMENTREFERECE_PERCEPTION_ID")
-	public List<PerceptionDocumentReferenceEntity> SUNATPerceptionDocumentReference = new ArrayList<>();
+	protected List<PerceptionDocumentReferenceEntity> SUNATPerceptionDocumentReference = new ArrayList<>();
 
 	@Lob
 	@Column(name = "XML_DOCUMENT")
@@ -124,6 +138,14 @@ public class PerceptionEntity {
 
 	public void setOrganization(OrganizationEntity organization) {
 		this.organization = organization;
+	}
+
+	public Collection<PerceptionAttributeEntity> getAttributes() {
+		return attributes;
+	}
+
+	public void setAttributes(Collection<PerceptionAttributeEntity> attributes) {
+		this.attributes = attributes;
 	}
 
 	public UBLExtensionsEntity getUblExtensions() {

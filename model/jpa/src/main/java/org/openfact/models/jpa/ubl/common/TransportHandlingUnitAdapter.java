@@ -8,17 +8,13 @@ import javax.persistence.EntityManager;
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.JpaModel;
+import org.openfact.models.jpa.entities.ubl.common.DespatchLineEntity;
 import org.openfact.models.jpa.entities.ubl.common.DimensionEntity;
 import org.openfact.models.jpa.entities.ubl.common.HazardousGoodsTransitEntity;
 import org.openfact.models.jpa.entities.ubl.common.PackageEntity;
-import org.openfact.models.jpa.entities.ubl.common.PeriodEntity;
-import org.openfact.models.jpa.entities.ubl.common.QuantityEntity;
 import org.openfact.models.jpa.entities.ubl.common.ReceiptLineEntity;
-import org.openfact.models.jpa.entities.ubl.common.ShipmentEntity;
 import org.openfact.models.jpa.entities.ubl.common.TransportEquipmentEntity;
 import org.openfact.models.jpa.entities.ubl.common.TransportHandlingUnitEntity;
-import org.openfact.models.jpa.entities.ubl.common.pe.DespatchAdviceLineEntity;
-import org.openfact.models.jpa.ubl.common.pe.DespatchAdviceLineAdapter;
 import org.openfact.models.ubl.common.DespatchLineModel;
 import org.openfact.models.ubl.common.DimensionModel;
 import org.openfact.models.ubl.common.HazardousGoodsTransitModel;
@@ -28,7 +24,6 @@ import org.openfact.models.ubl.common.ReceiptLineModel;
 import org.openfact.models.ubl.common.TemperatureModel;
 import org.openfact.models.ubl.common.TransportEquipmentModel;
 import org.openfact.models.ubl.common.TransportHandlingUnitModel;
-import org.openfact.models.ubl.common.pe.DespatchAdviceLineModel;
 
 public class TransportHandlingUnitAdapter implements TransportHandlingUnitModel, JpaModel<TransportHandlingUnitEntity> {
 
@@ -148,17 +143,16 @@ public class TransportHandlingUnitAdapter implements TransportHandlingUnitModel,
 	}
 
 	@Override
-	public List<DespatchAdviceLineModel> getHandlingUnitDespatchLine() {
+	public List<DespatchLineModel> getHandlingUnitDespatchLine() {
 		return transportHandlingUnit.getHandlingUnitDespatchLine().stream()
-				.map(f -> new DespatchAdviceLineAdapter(session, em, f)).collect(Collectors.toList());
+				.map(f -> new DespatchLineAdapter(session, em, f)).collect(Collectors.toList());
 	}
 
 	@Override
-	public void setHandlingUnitDespatchLine(List<DespatchAdviceLineModel> handlingUnitDespatchLine) {
-		List<DespatchAdviceLineEntity> entities = handlingUnitDespatchLine.stream()
-				.map(f -> DespatchAdviceLineAdapter.toEntity(f, em)).collect(Collectors.toList());
+	public void setHandlingUnitDespatchLine(List<DespatchLineModel> handlingUnitDespatchLine) {		
+		List<DespatchLineEntity> entities = handlingUnitDespatchLine.stream().map(f -> DespatchLineAdapter.toEntity(f, em))
+				.collect(Collectors.toList());
 		transportHandlingUnit.setHandlingUnitDespatchLine(entities);
-
 	}
 
 	@Override

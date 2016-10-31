@@ -20,7 +20,6 @@ import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.OrganizationAdapter;
 import org.openfact.models.jpa.entities.ubl.DebitNoteAttributeEntity;
 import org.openfact.models.jpa.entities.ubl.DebitNoteEntity;
-import org.openfact.models.jpa.entities.ubl.InvoiceEntity;
 import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.DebitNoteLineEntity;
 import org.openfact.models.jpa.entities.ubl.common.DocumentReferenceEntity;
