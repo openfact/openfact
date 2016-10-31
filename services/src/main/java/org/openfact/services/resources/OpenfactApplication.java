@@ -57,7 +57,7 @@ import org.openfact.services.ServicesLogger;
 import org.openfact.services.filters.OpenfactTransactionCommitter;
 import org.openfact.services.managers.ApplianceBootstrap;
 import org.openfact.services.managers.OrganizationManager;
-import org.openfact.services.resources.admin.AdminRootImpl;
+import org.openfact.services.resources.admin.AdminRoot;
 import org.openfact.services.scheduled.ClearExpiredEvents;
 import org.openfact.services.scheduled.ClusterAwareScheduledTaskRunner;
 import org.openfact.services.util.JsonConfigProvider;
@@ -69,15 +69,16 @@ import org.openfact.util.JsonSerialization;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
 /**
  * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
 public class OpenfactApplication extends Application {
- // This param name is defined again in Openfact Server Subsystem class
-    // org.openfact.subsystem.server.extension.OpenfactServerDeploymentProcessor.  We have this value in
-    // two places to avoid dependency between Openfact Subsystem and Openfact Services module.
+    // This param name is defined again in Openfact Server Subsystem class
+    // org.openfact.subsystem.server.extension.OpenfactServerDeploymentProcessor.
+    // We have this value in
+    // two places to avoid dependency between Openfact Subsystem and Openfact
+    // Services module.
     public static final String OPENFACT_CONFIG_PARAM_NAME = "org.openfact.server-subsystem.Config";
 
     public static final String OPENFACT_EMBEDDED = "openfact.embedded";
@@ -104,17 +105,19 @@ public class OpenfactApplication extends Application {
             this.sessionFactory = createSessionFactory();
 
             dispatcher.getDefaultContextObjects().put(OpenfactApplication.class, this);
-            ResteasyProviderFactory.pushContext(OpenfactApplication.class, this); // for injection
+            ResteasyProviderFactory.pushContext(OpenfactApplication.class, this); // for
+                                                                                  // injection
             context.setAttribute(OpenfactSessionFactory.class.getName(), this.sessionFactory);
 
-            singletons.add(new ServerVersionResourceImpl());
-            singletons.add(new RobotsResourceImpl());
-            singletons.add(new OrganizationsResourceImpl());
-            singletons.add(new AdminRootImpl());
+            singletons.add(new ServerVersionResource());
+            singletons.add(new RobotsResource());
+            singletons.add(new OrganizationsResource());
+            singletons.add(new AdminRoot());
 
             classes.add(OpenfactTransactionCommitter.class);
 
-            singletons.add(new ObjectMapperResolver(Boolean.parseBoolean(System.getProperty("openfact.jsonPrettyPrint", "false"))));
+            singletons.add(new ObjectMapperResolver(
+                    Boolean.parseBoolean(System.getProperty("openfact.jsonPrettyPrint", "false"))));
 
             ExportImportManager[] exportImportManager = new ExportImportManager[1];
 
@@ -135,14 +138,13 @@ public class OpenfactApplication extends Application {
 
             });
 
-
             if (exportImportManager[0].isRunExport()) {
                 exportImportManager[0].runExport();
             }
 
             sessionFactory.publish(new PostMigrationEvent());
 
-            singletons.add(new WelcomeResourceImpl());
+            singletons.add(new WelcomeResource());
 
             setupScheduledTasks(sessionFactory);
         } catch (Throwable t) {
@@ -153,7 +155,8 @@ public class OpenfactApplication extends Application {
         }
     }
 
-    // Migrate model, bootstrap master organization, import organizations and create admin user. This is done with acquired dbLock
+    // Migrate model, bootstrap master organization, import organizations and
+    // create admin user. This is done with acquired dbLock
     protected ExportImportManager migrateAndBootstrap() {
         ExportImportManager exportImportManager;
         logger.debug("Calling migrateModel");
@@ -163,21 +166,22 @@ public class OpenfactApplication extends Application {
         OpenfactSession session = sessionFactory.create();
         try {
             session.getTransactionManager().begin();
-            JtaTransactionManagerLookup lookup = (JtaTransactionManagerLookup) sessionFactory.getProviderFactory(JtaTransactionManagerLookup.class);
+            JtaTransactionManagerLookup lookup = (JtaTransactionManagerLookup) sessionFactory
+                    .getProviderFactory(JtaTransactionManagerLookup.class);
             if (lookup != null) {
                 if (lookup.getTransactionManager() != null) {
                     try {
                         Transaction transaction = lookup.getTransactionManager().getTransaction();
                         logger.debugv("bootstrap current transaction? {0}", transaction != null);
                         if (transaction != null) {
-                            logger.debugv("bootstrap current transaction status? {0}", transaction.getStatus());
+                            logger.debugv("bootstrap current transaction status? {0}",
+                                    transaction.getStatus());
                         }
                     } catch (SystemException e) {
                         throw new RuntimeException(e);
                     }
                 }
             }
-
 
             ApplianceBootstrap applianceBootstrap = new ApplianceBootstrap(session);
             exportImportManager = new ExportImportManager(session);
@@ -208,7 +212,6 @@ public class OpenfactApplication extends Application {
 
         return exportImportManager;
     }
-
 
     protected void migrateModel() {
         OpenfactSession session = sessionFactory.create();
@@ -241,7 +244,7 @@ public class OpenfactApplication extends Application {
     public static void loadConfig(ServletContext context) {
         try {
             JsonNode node = null;
-            
+
             String dmrConfig = loadDmrConfig(context);
             if (dmrConfig != null) {
                 node = new ObjectMapper().readTree(dmrConfig);
@@ -258,7 +261,8 @@ public class OpenfactApplication extends Application {
             }
 
             if (node == null) {
-                URL resource = Thread.currentThread().getContextClassLoader().getResource("META-INF/openfact-server.json");
+                URL resource = Thread.currentThread().getContextClassLoader()
+                        .getResource("META-INF/openfact-server.json");
                 if (resource != null) {
                     ServicesLogger.LOGGER.loadingFrom(resource);
                     node = new ObjectMapper().readTree(resource);
@@ -275,14 +279,16 @@ public class OpenfactApplication extends Application {
             throw new RuntimeException("Failed to load config", e);
         }
     }
-    
+
     private static String loadDmrConfig(ServletContext context) {
         String dmrConfig = context.getInitParameter(OPENFACT_CONFIG_PARAM_NAME);
-        if (dmrConfig == null) return null;
+        if (dmrConfig == null)
+            return null;
 
         ModelNode dmrConfigNode = ModelNode.fromString(dmrConfig);
-        if (dmrConfigNode.asPropertyList().isEmpty()) return null;
-        
+        if (dmrConfigNode.asPropertyList().isEmpty())
+            return null;
+
         // note that we need to resolve expressions BEFORE we convert to JSON
         return dmrConfigNode.resolve().toJSONString(true);
     }
@@ -299,7 +305,9 @@ public class OpenfactApplication extends Application {
         OpenfactSession session = sessionFactory.create();
         try {
             TimerProvider timer = session.getProvider(TimerProvider.class);
-            timer.schedule(new ClusterAwareScheduledTaskRunner(sessionFactory, new ClearExpiredEvents(), interval), interval, "ClearExpiredEvents");
+            timer.schedule(
+                    new ClusterAwareScheduledTaskRunner(sessionFactory, new ClearExpiredEvents(), interval),
+                    interval, "ClearExpiredEvents");
         } finally {
             session.close();
         }
@@ -369,7 +377,7 @@ public class OpenfactApplication extends Application {
         } finally {
             session.close();
         }
-    }    
+    }
 
     private static <T> T loadJson(InputStream is, Class<T> type) {
         try {

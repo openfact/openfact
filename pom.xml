@@ -201,12 +201,12 @@
 		<module>core</module>
 		<module>dependencies</module>
 		<module>services</module>
-		<module>services-api</module>
 		<module>server-spi</module>
 		<module>model</module>
 		<module>themes</module>
 		<module>testsuite</module>
-		<module>distribution</module>
+		<module>wildfly</module>
+		<module>adapters</module>
 	</modules>
 
 	<dependencyManagement>
@@ -703,12 +703,12 @@
 				<groupId>org.openfact</groupId>
 				<artifactId>openfact-client-api</artifactId>
 				<version>${project.version}</version>
-			</dependency>
-			<dependency>
+			</dependency>			<dependency>
 				<groupId>org.openfact</groupId>
 				<artifactId>openfact-kerberos-federation</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+
 			<!-- Dependencies for RHEL IdM -->
 			<dependency>
 				<groupId>org.openfact</groupId>
@@ -956,17 +956,7 @@
 				<groupId>org.openfact</groupId>
 				<artifactId>openfact-model-jpa</artifactId>
 				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-model-mongo</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-model-infinispan</artifactId>
-				<version>${project.version}</version>
-			</dependency>
+			</dependency>			
 			<dependency>
 				<groupId>org.openfact</groupId>
 				<artifactId>launcher</artifactId>
@@ -1338,12 +1328,6 @@
 			</dependency>
 
 			<!-- Secondary Start -->
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-services-api</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-
 			<dependency>
 				<groupId>org.wildfly.swarm</groupId>
 				<artifactId>bom-all</artifactId>

@@ -1,0 +1,23 @@
+/subsystem=openfact-server:add(web-context=auth,master-realm-name=master,scheduled-task-interval=900,providers=[classpath:${jboss.home.dir}/providers/*])
+/subsystem=openfact-server/theme=defaults/:add(dir=${jboss.home.dir}/themes,staticMaxAge=2592000,cacheTemplates=true,cacheThemes=true)
+/subsystem=openfact-server/spi=eventsStore/:add(default-provider=jpa)
+/subsystem=openfact-server/spi=eventsStore/provider=jpa/:add(properties={exclude-events => "[\"REFRESH_TOKEN\"]"},enabled=true)
+/subsystem=openfact-server/spi=realm/:add(default-provider=jpa)
+/subsystem=openfact-server/spi=user/:add(default-provider=jpa)
+/subsystem=openfact-server/spi=userCache/:add
+/subsystem=openfact-server/spi=userCache/provider=default/:add(enabled=true)
+/subsystem=openfact-server/spi=userSessionPersister/:add(default-provider=jpa)
+/subsystem=openfact-server/spi=authorizationPersister/:add(default-provider=jpa)
+/subsystem=openfact-server/spi=timer/:add(default-provider=basic)
+/subsystem=openfact-server/spi=connectionsHttpClient/:add
+/subsystem=openfact-server/spi=connectionsHttpClient/provider=default/:add(enabled=true)
+/subsystem=openfact-server/spi=connectionsJpa/:add
+/subsystem=openfact-server/spi=connectionsJpa/provider=default/:add(properties={dataSource => "java:jboss/datasources/OpenfactDS",initializeEmpty => "true",migrationStrategy => "update",migrationExport => "${jboss.home.dir}/openfact-database-update.sql"},enabled=true)
+/subsystem=openfact-server/spi=realmCache/:add
+/subsystem=openfact-server/spi=realmCache/provider=default/:add(enabled=true)
+/subsystem=openfact-server/spi=connectionsInfinispan/:add(default-provider=default)
+/subsystem=openfact-server/spi=connectionsInfinispan/provider=default/:add(properties={cacheContainer => "java:comp/env/infinispan/Openfact"},enabled=true)
+/subsystem=openfact-server/spi=jta-lookup/:add(default-provider=${openfact.jta.lookup.provider:jboss})
+/subsystem=openfact-server/spi=jta-lookup/provider=jboss/:add(enabled=true)
+/subsystem=openfact-server/spi=publicKeyStorage/:add
+/subsystem=openfact-server/spi=publicKeyStorage/provider=infinispan/:add(properties={minTimeBetweenRequests => "10"},enabled=true)

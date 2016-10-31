@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:jboss:module:1.3" name="org.mvel" slot="main">
+    <properties>
+        <property name="jboss.api" value="private"/>
+    </properties>
+    <resources>
+        <artifact name="${org.mvel:mvel2}"/>
+    </resources>
+    <dependencies>
+        <module name="javax.api" export="false" slot="main" services="import" optional="false"/>
+    </dependencies>
+</module>

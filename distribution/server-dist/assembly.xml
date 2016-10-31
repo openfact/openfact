@@ -25,8 +25,6 @@
                 <exclude>**/*.sh</exclude>
                 <exclude>**/module.xml</exclude>
                 <exclude>welcome-content/**</exclude>
-                <exclude>appclient</exclude>
-                <exclude>appclient/**</exclude>
                 <exclude>copyright.txt</exclude>
                 <exclude>README.txt</exclude>
                 <exclude>themes/**</exclude>
@@ -60,14 +58,6 @@
             <outputDirectory>modules</outputDirectory>
             <includes>
                 <include>layers.conf</include>
-            </includes>
-        </fileSet>
-        <fileSet>
-            <directory>target/unpacked/openfact-client-tools</directory>
-            <outputDirectory/>
-            <filtered>false</filtered>
-            <includes>
-                <include>**/*</include>
             </includes>
         </fileSet>
     </fileSets>

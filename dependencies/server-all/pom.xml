@@ -36,15 +36,6 @@
 			<groupId>org.openfact</groupId>
 			<artifactId>openfact-model-jpa</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.openfact</groupId>
-			<artifactId>openfact-model-infinispan</artifactId>
-		</dependency>
-		<!-- identity providers -->
-		<dependency>
-			<groupId>org.twitter4j</groupId>
-			<artifactId>twitter4j-core</artifactId>
-		</dependency>
 
 		<dependency>
 			<groupId>org.mongodb</groupId>
@@ -62,33 +53,6 @@
 			</exclusions>
 		</dependency>
 
-		<!-- Drools -->
-		<dependency>
-			<groupId>org.kie</groupId>
-			<artifactId>kie-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.kie</groupId>
-			<artifactId>kie-ci</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.sonatype.sisu</groupId>
-					<artifactId>sisu-guice</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.kie</groupId>
-			<artifactId>kie-internal</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.drools</groupId>
-			<artifactId>drools-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.drools</groupId>
-			<artifactId>drools-compiler</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.eclipse.aether</groupId>
 			<artifactId>aether-api</artifactId>

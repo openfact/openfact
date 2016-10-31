@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:jboss:module:1.3" name="org.openfact.openfact-wildfly-extensions">
+    <properties>
+        <property name="jboss.api" value="private"/>
+    </properties>
+
+    <resources>
+        <artifact name="${org.openfact:openfact-wildfly-extensions}"/>
+    </resources>
+
+    <dependencies>
+        <module name="org.openfact.openfact-common"/>
+        <module name="org.openfact.openfact-core"/>
+        <module name="org.openfact.openfact-server-spi"/>
+        <module name="org.openfact.openfact-services"/>
+        <module name="org.jboss.modules"/>
+    </dependencies>
+</module>

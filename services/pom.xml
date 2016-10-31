@@ -104,13 +104,6 @@
 		</dependency>
 		<!-- Secondary End -->
 
-		<!-- Extra Start -->
-		<dependency>
-			<groupId>org.openfact</groupId>
-			<artifactId>openfact-services-api</artifactId>
-		</dependency>
-		<!-- Extra End -->
-
 		<!-- Principal Start -->
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
@@ -127,7 +120,7 @@
 		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
-			<!-- <scope>provided</scope> -->
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.mail</groupId>
@@ -239,9 +232,9 @@
 				<configuration>
 					<source>${maven.compiler.source}</source>
 					<target>${maven.compiler.target}</target>
-<!-- 					<compilerArgument> -->
-<!-- 						-AgeneratedTranslationFilesPath=${project.build.directory}/generated-translation-files -->
-<!-- 					</compilerArgument> -->
+					<compilerArgument>
+						-AgeneratedTranslationFilesPath=${project.build.directory}/generated-translation-files
+					</compilerArgument>
 				</configuration>
 			</plugin>
 		</plugins>

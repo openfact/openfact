@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+  xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
     <id>feature-pack</id>
     <formats>
-        <format>zip</format>
+       <format>zip</format>
     </formats>
     <includeBaseDirectory>false</includeBaseDirectory>
-
+    
     <!-- If war is filtered it will get corrupted. Only need to filter module.xml -->
     <fileSets>
         <fileSet>
             <directory>target/${project.build.finalName}</directory>
-            <outputDirectory/>
+            <outputDirectory/>    
             <filtered>true</filtered>
             <includes>
-                <include>**/module.xml</include>
-                <include>**/MANIFEST.MF</include>
+               <include>**/module.xml</include>
+               <include>**/MANIFEST.MF</include>
             </includes>
         </fileSet>
         <fileSet>
             <directory>target/${project.build.finalName}</directory>
-            <outputDirectory/>
+            <outputDirectory/>    
             <filtered>false</filtered>
             <excludes>
-                <exclude>**/module.xml</exclude>
-                <exclude>**/MANIFEST.MF</exclude>
+               <exclude>**/module.xml</exclude>
+               <exclude>**/MANIFEST.MF</exclude>
             </excludes>
         </fileSet>
         <fileSet>

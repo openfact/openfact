@@ -38,19 +38,11 @@
 		</dependency>
 		<dependency>
 			<groupId>org.openfact</groupId>
-			<artifactId>openfact-services-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.openfact</groupId>
 			<artifactId>openfact-services</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.openfact</groupId>
 			<artifactId>openfact-model-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.openfact</groupId>
-			<artifactId>openfact-model-infinispan</artifactId>
 		</dependency>
 
 		<!-- Principal Start -->
