@@ -32,10 +32,8 @@ public class ServerInfoRepresentation {
     private ProfileInfoRepresentation profileInfo;
 
     private Map<String, List<ThemeInfoRepresentation>> themes;
-
-    private List<Map<String, String>> socialProviders;
+    
     private List<Map<String, String>> identityProviders;
-    private List<Map<String, String>> clientImporters;
     
     private Map<String, List<ComponentTypeRepresentation>> componentTypes;
 
@@ -75,28 +73,12 @@ public class ServerInfoRepresentation {
         this.themes = themes;
     }
 
-    public List<Map<String, String>> getSocialProviders() {
-        return socialProviders;
-    }
-
-    public void setSocialProviders(List<Map<String, String>> socialProviders) {
-        this.socialProviders = socialProviders;
-    }
-
     public List<Map<String, String>> getIdentityProviders() {
         return identityProviders;
     }
 
     public void setIdentityProviders(List<Map<String, String>> identityProviders) {
         this.identityProviders = identityProviders;
-    }
-
-    public List<Map<String, String>> getClientImporters() {
-        return clientImporters;
-    }
-
-    public void setClientImporters(List<Map<String, String>> clientImporters) {
-        this.clientImporters = clientImporters;
     }
 
     public Map<String, SpiInfoRepresentation> getProviders() {

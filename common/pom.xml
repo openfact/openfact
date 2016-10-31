@@ -12,7 +12,7 @@
 	<artifactId>openfact-common</artifactId>
 	<name>Openfact Common</name>
 	<packaging>jar</packaging>
-	<description>Common library and dependencies shared with server and all adapters</description>
+	<description>Common library and dependencies shared with server</description>
 
 	<properties>
 		<timestamp>${maven.build.timestamp}</timestamp>
