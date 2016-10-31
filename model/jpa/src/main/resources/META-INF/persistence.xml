@@ -110,6 +110,12 @@
 		<class>org.openfact.models.jpa.entities.ubl.pe.SummaryDocumentsEntity</class>
 		<class>org.openfact.models.jpa.entities.ubl.pe.VoidedDocumentsEntity</class>
 
+		<class>org.openfact.models.jpa.entities.ubl.pe.PerceptionAttributeEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.pe.RetentionAttributeEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.pe.SummaryDocumentsAttributeEntity</class>
+		<class>org.openfact.models.jpa.entities.ubl.pe.VoidedDocumentsAttributeEntity</class>
+
+
 		<!-- ubl common pe -->
 		<class>org.openfact.models.jpa.entities.ubl.common.pe.PerceptionDocumentReferenceEntity</class>
 		<class>org.openfact.models.jpa.entities.ubl.common.pe.PerceptionInformationEntity</class>
@@ -124,7 +130,7 @@
 		<class>org.openfact.models.jpa.entities.ubl.common.VoidedDocumentsLineEntity</class>
 		<class>org.openfact.models.jpa.entities.ubl.common.DespatchLineEntity</class>
 
-		<class>org.openfact.models.jpa.entities.ubl.common.ConsignmentEntity</class>		
+		<class>org.openfact.models.jpa.entities.ubl.common.ConsignmentEntity</class>
 		<class>org.openfact.models.jpa.entities.ubl.common.GoodsItemContainerEntity</class>
 		<class>org.openfact.models.jpa.entities.ubl.common.GoodsItemEntity</class>
 		<class>org.openfact.models.jpa.entities.ubl.common.PackageEntity</class>

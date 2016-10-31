@@ -3,15 +3,33 @@ package org.openfact.models.ubl.pe;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.enums.RequeridActionDocument;
 import org.openfact.models.ubl.common.PartyModel;
 import org.openfact.models.ubl.common.SignatureModel;
 import org.openfact.models.ubl.common.UBLExtensionsModel;
 import org.openfact.models.ubl.common.pe.RetentionDocumentReferenceModel;
+import org.openfact.provider.ProviderEvent;
 
 public interface RetentionModel {
+	/**
+	 * attributes
+	 */
+	void setSingleAttribute(String name, String value);
+
+	void setAttribute(String name, List<String> values);
+
+	void removeAttribute(String name);
+
+	String getFirstAttribute(String name);
+
+	List<String> getAttribute(String name);
+
+	Map<String, List<String>> getAttributes();
+	
 	String getId();
 
 	OrganizationModel getOrganization();
@@ -81,4 +99,23 @@ public interface RetentionModel {
 	List<RequeridActionDocument> getRequeridAction();
 
 	void setRequeridAction(List<RequeridActionDocument> requeridAction);
+	
+	/**
+	 * Events interfaces
+	 */
+	interface RetentionCreationEvent extends ProviderEvent {
+		RetentionModel getCreatedRetention();
+	}
+
+	interface RetentionPostCreateEvent extends ProviderEvent {
+		RetentionModel getCreatedRetention();
+
+		OpenfactSession getOpenfactSession();
+	}
+
+	interface RetentionRemovedEvent extends ProviderEvent {
+		RetentionModel getRetention();
+
+		OpenfactSession getOpenfactSession();
+	}
 }

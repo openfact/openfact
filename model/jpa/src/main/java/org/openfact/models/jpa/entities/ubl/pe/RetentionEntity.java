@@ -3,6 +3,7 @@ package org.openfact.models.jpa.entities.ubl.pe;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Access;
@@ -21,6 +22,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -37,6 +40,13 @@ import org.openfact.models.jpa.entities.ubl.common.pe.RetentionDocumentReference
 
 @Entity
 @Table(name = "RETENTION", uniqueConstraints = { @UniqueConstraint(columnNames = { "ORGANIZATION_ID", "ID_UBL" }) })
+@NamedQueries({
+		@NamedQuery(name = "getAllRetentionsByOrganization", query = "select i from RetentionEntity i where i.organization.id = :organizationId order by i.issueDateTime"),
+		@NamedQuery(name = "getOrganizationRetentionById", query = "select i from RetentionEntity i where i.id = :id and i.organization.id = :organizationId"),
+		@NamedQuery(name = "getOrganizationRetentionByID", query = "select i from RetentionEntity i where i.ID = :ID and i.organization.id = :organizationId"),
+		@NamedQuery(name = "searchForRetention", query = "select i from RetentionEntity i where i.organization.id = :organizationId and i.ID like :search order by i.issueDateTime"),
+		@NamedQuery(name = "getOrganizationRetentionCount", query = "select count(i) from RetentionEntity i where i.organization.id = :organizationId"),
+		@NamedQuery(name = "getLastRetentionByOrganization", query = "select i from RetentionEntity i where i.organization.id = :organizationId and length(i.ID)=:IDLength and i.ID like :formatter order by i.issueDateTime desc"), })
 public class RetentionEntity {
 
 	@Id
@@ -45,6 +55,9 @@ public class RetentionEntity {
 	@GenericGenerator(name = "uuid2", strategy = "uuid2")
 	@Access(AccessType.PROPERTY)
 	protected String id;
+
+	@OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "retention")
+	protected Collection<RetentionAttributeEntity> attributes = new ArrayList<>();
 
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -99,7 +112,7 @@ public class RetentionEntity {
 
 	@OneToMany(targetEntity = RetentionDocumentReferenceEntity.class, cascade = { CascadeType.ALL })
 	@JoinColumn(name = "RETENTIONDOCUMENTREFERECE_RETENTION_ID")
-	public List<RetentionDocumentReferenceEntity> SUNATRetentionDocumentReference = new ArrayList<>();
+	protected List<RetentionDocumentReferenceEntity> SUNATRetentionDocumentReference = new ArrayList<>();
 
 	@Lob
 	@Column(name = "XML_DOCUMENT")
@@ -125,6 +138,14 @@ public class RetentionEntity {
 
 	public void setOrganization(OrganizationEntity organization) {
 		this.organization = organization;
+	}
+
+	public Collection<RetentionAttributeEntity> getAttributes() {
+		return attributes;
+	}
+
+	public void setAttributes(Collection<RetentionAttributeEntity> attributes) {
+		this.attributes = attributes;
 	}
 
 	public UBLExtensionsEntity getUblExtensions() {
@@ -235,7 +256,8 @@ public class RetentionEntity {
 		return SUNATRetentionDocumentReference;
 	}
 
-	public void setSUNATRetentionDocumentReference(List<RetentionDocumentReferenceEntity> sUNATRetentionDocumentReference) {
+	public void setSUNATRetentionDocumentReference(
+			List<RetentionDocumentReferenceEntity> sUNATRetentionDocumentReference) {
 		SUNATRetentionDocumentReference = sUNATRetentionDocumentReference;
 	}
 
@@ -254,5 +276,5 @@ public class RetentionEntity {
 	public void setRequeridAction(List<RequeridActionDocument> requeridAction) {
 		this.requeridAction = requeridAction;
 	}
-	
+
 }
