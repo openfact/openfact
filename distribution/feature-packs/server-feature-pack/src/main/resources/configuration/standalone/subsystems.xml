@@ -10,7 +10,6 @@
       <subsystem>ee.xml</subsystem>
       <subsystem>ejb3.xml</subsystem>
       <subsystem>io.xml</subsystem>
-      <subsystem>openfact-infinispan.xml</subsystem>
       <subsystem>jaxrs.xml</subsystem>
       <subsystem>jca.xml</subsystem>
       <subsystem>jdr.xml</subsystem>
