@@ -33,7 +33,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Definition of subsystem=keycloak-server.
+ * Definition of subsystem=openfact-server.
  *
  * @author Stan Silvert ssilvert@redhat.com (C) 2013 Red Hat Inc.
  */
@@ -48,8 +48,8 @@ public class OpenfactSubsystemDefinition extends SimpleResourceDefinition {
 
     static final StringListAttributeDefinition PROVIDERS = new ProvidersListAttributeBuilder().build();
     
-    static final SimpleAttributeDefinition MASTER_REALM_NAME =
-        new SimpleAttributeDefinitionBuilder("master-realm-name", ModelType.STRING, true)
+    static final SimpleAttributeDefinition MASTER_ORGANIZATION_NAME =
+        new SimpleAttributeDefinitionBuilder("master-openfact-name", ModelType.STRING, true)
             .setAllowExpression(true)
             .setDefaultValue(new ModelNode("master"))
             .setRestartAllServices()
@@ -67,7 +67,7 @@ public class OpenfactSubsystemDefinition extends SimpleResourceDefinition {
     static {
         ALL_ATTRIBUTES.add(WEB_CONTEXT);
         ALL_ATTRIBUTES.add(PROVIDERS);
-        ALL_ATTRIBUTES.add(MASTER_REALM_NAME);
+        ALL_ATTRIBUTES.add(MASTER_ORGANIZATION_NAME);
         ALL_ATTRIBUTES.add(SCHEDULED_TASK_INTERVAL);
     }
 

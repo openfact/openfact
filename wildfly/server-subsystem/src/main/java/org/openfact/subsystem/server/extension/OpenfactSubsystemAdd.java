@@ -27,7 +27,7 @@ import org.jboss.as.server.deployment.Phase;
 import org.jboss.dmr.ModelNode;
 
 /**
- * The Keycloak subsystem add update handler.
+ * The Openfact subsystem add update handler.
  *
  * @author Stan Silvert ssilvert@redhat.com (C) 2013 Red Hat Inc.
  */

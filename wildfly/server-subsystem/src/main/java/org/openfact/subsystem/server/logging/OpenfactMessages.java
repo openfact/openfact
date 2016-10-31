@@ -14,25 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.openfact.subsystem.server.logging;
 
-package org.openfact.adapters.spi;
+import org.jboss.logging.Messages;
+import org.jboss.logging.annotations.MessageBundle;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
+ * This interface to be fleshed out later when error messages are fully externalized.
+ *
+ * @author Stan Silvert ssilvert@redhat.com (C) 2012 Red Hat Inc.
  */
-public interface AuthChallenge {
-    /**
-     *
-     * @param exchange
-     * @return challenge sent
-     */
-    boolean challenge(HttpFacade exchange);
+@MessageBundle(projectCode = "OPENFACT")
+public interface OpenfactMessages {
 
     /**
-     * Some platforms need the error code that will be sent (i.e. Undertow)
-     *
-     * @return
+     * The messages
      */
-    int getResponseCode();
+    OpenfactMessages MESSAGES = Messages.getBundle(OpenfactMessages.class);
 }

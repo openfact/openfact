@@ -24,8 +24,8 @@ import org.jboss.dmr.Property;
 import static org.jboss.as.controller.descriptions.ModelDescriptionConstants.ADDRESS;
 
 /**
- * This service keeps track of the entire Keycloak management model so as to provide
- * configuration to the Keycloak Server.
+ * This service keeps track of the entire Openfact management model so as to provide
+ * configuration to the Openfact Server.
  *
  * @author Stan Silvert ssilvert@redhat.com (C) 2013 Red Hat Inc.
  */
@@ -33,7 +33,7 @@ public final class OpenfactAdapterConfigService {
 
     static final OpenfactAdapterConfigService INSTANCE = new OpenfactAdapterConfigService();
 
-    static final String DEPLOYMENT_NAME = "keycloak-server.war";
+    static final String DEPLOYMENT_NAME = "openfact-server.war";
     
     static ModelNode fullConfig = new ModelNode();
 
@@ -45,7 +45,7 @@ public final class OpenfactAdapterConfigService {
 
     void updateConfig(ModelNode operation, ModelNode config) {
         PathAddress address = PathAddress.pathAddress(operation.get(ADDRESS));
-        address = address.subAddress(1); // remove root (subsystem=keycloak-server)
+        address = address.subAddress(1); // remove root (subsystem=openfact-server)
         
         ModelNode newConfig = fullConfig.clone();
         ModelNode subNode = newConfig;
@@ -72,7 +72,7 @@ public final class OpenfactAdapterConfigService {
         //System.out.println("*****************************");
         copy.remove("web-context");
         massageScheduledTaskInterval(copy);
-        massageMasterRealm(copy);
+        massageMasterOrganization(copy);
         massageTheme(copy);
         massageSpis(copy);
         //System.out.println("******** JSON *************");
@@ -82,7 +82,7 @@ public final class OpenfactAdapterConfigService {
     }
     
     // The "massage" methods rearrange the model so that everything will
-    // be where the Keycloak server's Config interface expects it to be.
+    // be where the Openfact server's Config interface expects it to be.
     
     private void massageScheduledTaskInterval(ModelNode copy) {
         if (!copy.hasDefined("scheduled-task-intervale")) return;
@@ -90,10 +90,10 @@ public final class OpenfactAdapterConfigService {
         copy.get("scheduled", "interval").set(taskInterval);
     }
     
-    private void massageMasterRealm(ModelNode copy) {
-        if (!copy.hasDefined("master-realm-name")) return;
-        ModelNode master = copy.remove("master-realm-name");
-        copy.get("admin", "realm").set(master);
+    private void massageMasterOrganization(ModelNode copy) {
+        if (!copy.hasDefined("master-organization-name")) return;
+        ModelNode master = copy.remove("master-organization-name");
+        copy.get("admin", "organization").set(master);
     }
     
     private void massageTheme(ModelNode copy) {
@@ -172,7 +172,7 @@ public final class OpenfactAdapterConfigService {
         return webContext;
     }
 
-    boolean isKeycloakServerDeployment(String deploymentName) {
+    boolean isOpenfactServerDeployment(String deploymentName) {
         return DEPLOYMENT_NAME.equals(deploymentName);
     }
 }

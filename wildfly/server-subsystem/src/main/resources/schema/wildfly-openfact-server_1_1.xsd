@@ -31,14 +31,14 @@
         <xs:annotation>
             <xs:documentation>
                 <![CDATA[
-                    The Keycloak server subsystem, used to configure the Keycloak server
+                    The Organization server subsystem, used to configure the Organization server
                 ]]>
             </xs:documentation>
         </xs:annotation>
         <xs:choice minOccurs="0" maxOccurs="unbounded">
             <xs:element name="web-context" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="providers" type="providersLocationType" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="master-realm-name" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="master-organization-name" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="scheduled-task-interval" type="xs:long" minOccurs="0" maxOccurs="1"/>
             <xs:element name="theme" type="themeDefaultsType" minOccurs="0" maxOccurs="1"/>
             <xs:element name="spi" type="spiType" minOccurs="0" maxOccurs="unbounded"/>

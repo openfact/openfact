@@ -14,18 +14,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.openfact.subsystem.server.logging;
 
-package org.openfact.adapters.spi;
-
-import java.util.List;
+import org.jboss.logging.BasicLogger;
+import org.jboss.logging.Logger;
+import org.jboss.logging.annotations.MessageLogger;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
- * @version $Revision: 1 $
+ * This interface to be fleshed out later when error messages are fully externalized.
+ *
+ * @author Stan Silvert ssilvert@redhat.com (C) 2013 Red Hat Inc.
  */
-public interface UserSessionManagement {
+@MessageLogger(projectCode = "OPENFACT")
+public interface OpenfactLogger extends BasicLogger {
 
-    void logoutAll();
-
-    void logoutHttpSessions(List<String> ids);
+    /**
+     * A logger with a category of the package name.
+     */
+    OpenfactLogger ROOT_LOGGER = Logger.getMessageLogger(OpenfactLogger.class, "org.jboss.openfact");
 }

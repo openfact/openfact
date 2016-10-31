@@ -51,7 +51,7 @@ import static org.jboss.as.controller.descriptions.ModelDescriptionConstants.RUN
  */
 public class ServerUtil {
 
-    private static final ModuleIdentifier KEYCLOAK_SUBSYSTEM = ModuleIdentifier.create("org.keycloak.keycloak-server-subsystem");
+    private static final ModuleIdentifier OPENFACT_SUBSYSTEM = ModuleIdentifier.create("org.openfact.openfact-server-subsystem");
 
     private final String deploymentName;
     private final Module subsysModule;
@@ -65,9 +65,9 @@ public class ServerUtil {
 
     private Module findSubsysModule() {
         try {
-            return Module.getModuleFromCallerModuleLoader(KEYCLOAK_SUBSYSTEM);
+            return Module.getModuleFromCallerModuleLoader(OPENFACT_SUBSYSTEM);
         } catch (ModuleLoadException e) {
-            throw new IllegalStateException("Can't find Keycloak subsystem.", e);
+            throw new IllegalStateException("Can't find Openfact subsystem.", e);
         }
     }
 
@@ -98,7 +98,7 @@ public class ServerUtil {
         op.get("owner").set(new ModelNode().add("subsystem", OpenfactExtension.SUBSYSTEM_NAME));
 
         if (serverWar == null) {
-            throw new OperationFailedException("Keycloak Server WAR not found in keycloak-server-subsystem module");
+            throw new OperationFailedException("Openfact Server WAR not found in openfact-server-subsystem module");
         }
 
         op.get(CONTENT).add(makeContentItem());

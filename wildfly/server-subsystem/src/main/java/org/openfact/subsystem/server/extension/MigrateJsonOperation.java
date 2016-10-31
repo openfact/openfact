@@ -38,7 +38,7 @@ import static org.jboss.as.controller.descriptions.ModelDescriptionConstants.ADD
 import static org.jboss.as.controller.descriptions.ModelDescriptionConstants.OP;
 
 /**
- * This operation provides a migration path from keycloak-server.json to
+ * This operation provides a migration path from openfact-server.json to
  * standalone.xml or domain.xml.
  *
  * @author Stan Silvert ssilvert@redhat.com (C) 2016 Red Hat Inc.
@@ -47,7 +47,7 @@ public class MigrateJsonOperation implements OperationStepHandler {
     public static final String OPERATION_NAME = "migrate-json";
     
     private static final String CONFIG_DIR = System.getProperty("jboss.server.config.dir");
-    private static final Path DEFAULT_CONFIG_FILE = Paths.get(CONFIG_DIR, "keycloak-server.json");
+    private static final Path DEFAULT_CONFIG_FILE = Paths.get(CONFIG_DIR, "openfact-server.json");
 
     private static final AttributeDefinition FILE_ATTRIBUTE = SimpleAttributeDefinitionBuilder.create("file", ModelType.BYTES, true).build();
     public static final OperationDefinition DEFINITION = new SimpleOperationDefinitionBuilder(OPERATION_NAME, OpenfactExtension.getResourceDescriptionResolver())

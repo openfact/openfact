@@ -199,14 +199,13 @@
 	<modules>
 		<module>common</module>
 		<module>core</module>
-		<module>dependencies</module>
 		<module>services</module>
 		<module>server-spi</module>
 		<module>model</module>
 		<module>themes</module>
-		<module>testsuite</module>
+		<!--<module>testsuite</module>-->
+		<module>dependencies</module>
 		<module>wildfly</module>
-		<module>adapters</module>
 	</modules>
 
 	<dependencyManagement>

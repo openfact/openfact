@@ -54,31 +54,31 @@ class OpenfactSubsystemParser implements XMLStreamConstants, XMLElementReader<Li
     public void readElement(final XMLExtendedStreamReader reader, final List<ModelNode> list) throws XMLStreamException {
         // Require no attributes
         ParseUtils.requireNoAttributes(reader);
-        ModelNode addKeycloakSub = Util.createAddOperation(PathAddress.pathAddress(PATH_SUBSYSTEM));
-        list.add(addKeycloakSub);
+        ModelNode addOpenfactSub = Util.createAddOperation(PathAddress.pathAddress(PATH_SUBSYSTEM));
+        list.add(addOpenfactSub);
 
         while (reader.hasNext() && nextTag(reader) != END_ELEMENT) {
             if (reader.getLocalName().equals(OpenfactSubsystemDefinition.WEB_CONTEXT.getXmlName())) {
-                OpenfactSubsystemDefinition.WEB_CONTEXT.parseAndSetParameter(reader.getElementText(), addKeycloakSub, reader);
+                OpenfactSubsystemDefinition.WEB_CONTEXT.parseAndSetParameter(reader.getElementText(), addOpenfactSub, reader);
             } else if (reader.getLocalName().equals(OpenfactSubsystemDefinition.PROVIDERS.getXmlName())) {
-                readProviders(reader, addKeycloakSub);
-            } else if (reader.getLocalName().equals(OpenfactSubsystemDefinition.MASTER_REALM_NAME.getXmlName())) {
-                OpenfactSubsystemDefinition.MASTER_REALM_NAME.parseAndSetParameter(reader.getElementText(), addKeycloakSub, reader);
+                readProviders(reader, addOpenfactSub);
+            } else if (reader.getLocalName().equals(OpenfactSubsystemDefinition.MASTER_ORGANIZATION_NAME.getXmlName())) {
+                OpenfactSubsystemDefinition.MASTER_ORGANIZATION_NAME.parseAndSetParameter(reader.getElementText(), addOpenfactSub, reader);
             } else if (reader.getLocalName().equals(OpenfactSubsystemDefinition.SCHEDULED_TASK_INTERVAL.getXmlName())) {
-                OpenfactSubsystemDefinition.SCHEDULED_TASK_INTERVAL.parseAndSetParameter(reader.getElementText(), addKeycloakSub, reader);
+                OpenfactSubsystemDefinition.SCHEDULED_TASK_INTERVAL.parseAndSetParameter(reader.getElementText(), addOpenfactSub, reader);
             } else if (reader.getLocalName().equals(ThemeResourceDefinition.TAG_NAME)) {
                 readTheme(list, reader);
             } else if (reader.getLocalName().equals(SpiResourceDefinition.TAG_NAME)) {
                 readSpi(list, reader);
             } else {
-                throw new XMLStreamException("Unknown keycloak-server subsystem tag: " + reader.getLocalName());
+                throw new XMLStreamException("Unknown openfact-server subsystem tag: " + reader.getLocalName());
             }
         }
     }
     
-    private void readProviders(final XMLExtendedStreamReader reader, ModelNode addKeycloakSub) throws XMLStreamException {
+    private void readProviders(final XMLExtendedStreamReader reader, ModelNode addOpenfactSub) throws XMLStreamException {
         while (reader.hasNext() && nextTag(reader) != END_ELEMENT) {
-            OpenfactSubsystemDefinition.PROVIDERS.parseAndAddParameterElement(reader.getElementText(),addKeycloakSub, reader);
+            OpenfactSubsystemDefinition.PROVIDERS.parseAndAddParameterElement(reader.getElementText(),addOpenfactSub, reader);
         }
     }
     
@@ -249,11 +249,11 @@ class OpenfactSubsystemParser implements XMLStreamConstants, XMLElementReader<Li
     }
     
     private void writeAdmin(XMLExtendedStreamWriter writer, SubsystemMarshallingContext context) throws XMLStreamException {
-        if (!context.getModelNode().get(OpenfactSubsystemDefinition.MASTER_REALM_NAME.getName()).isDefined()) {
+        if (!context.getModelNode().get(OpenfactSubsystemDefinition.MASTER_ORGANIZATION_NAME.getName()).isDefined()) {
             return;
         }
 
-        OpenfactSubsystemDefinition.MASTER_REALM_NAME.marshallAsElement(context.getModelNode(), writer);
+        OpenfactSubsystemDefinition.MASTER_ORGANIZATION_NAME.marshallAsElement(context.getModelNode(), writer);
     }
     
     private void writeScheduledTaskInterval(XMLExtendedStreamWriter writer, SubsystemMarshallingContext context) throws XMLStreamException {

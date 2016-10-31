@@ -27,7 +27,7 @@ import org.jboss.as.controller.parsing.ExtensionParsingContext;
 import org.jboss.as.controller.registry.ManagementResourceRegistration;
 
 import static org.jboss.as.controller.descriptions.ModelDescriptionConstants.SUBSYSTEM;
-import static org.openfact.subsystem.server.logging.KeycloakLogger.ROOT_LOGGER;
+import static org.openfact.subsystem.server.logging.OpenfactLogger.ROOT_LOGGER;
 
 
 /**
@@ -37,12 +37,12 @@ import static org.openfact.subsystem.server.logging.KeycloakLogger.ROOT_LOGGER;
  */
 public class OpenfactExtension implements Extension {
 
-    static final String SUBSYSTEM_NAME = "keycloak-server";
-    static final String NAMESPACE = "urn:jboss:domain:keycloak-server:1.1";
+    static final String SUBSYSTEM_NAME = "openfact-server";
+    static final String NAMESPACE = "urn:jboss:domain:openfact-server:1.1";
     static final PathElement PATH_SUBSYSTEM = PathElement.pathElement(SUBSYSTEM, SUBSYSTEM_NAME);
 
     private static final String RESOURCE_NAME = OpenfactExtension.class.getPackage().getName() + ".LocalDescriptions";
-    private static final ResourceDefinition KEYCLOAK_SUBSYSTEM_RESOURCE = new OpenfactSubsystemDefinition();
+    private static final ResourceDefinition OPENFACT_SUBSYSTEM_RESOURCE = new OpenfactSubsystemDefinition();
     private static final OpenfactSubsystemParser PARSER = new OpenfactSubsystemParser();
     private static final ModelVersion MGMT_API_VERSION = ModelVersion.create(1,1,0);
     
@@ -71,10 +71,10 @@ public class OpenfactExtension implements Extension {
      */
     @Override
     public void initialize(final ExtensionContext context) {
-        ROOT_LOGGER.debug("Activating Keycloak Extension");
+        ROOT_LOGGER.debug("Activating Openfact Extension");
         final SubsystemRegistration subsystem = context.registerSubsystem(SUBSYSTEM_NAME, MGMT_API_VERSION);
 
-        ManagementResourceRegistration subsystemRegistration = subsystem.registerSubsystemModel(KEYCLOAK_SUBSYSTEM_RESOURCE);
+        ManagementResourceRegistration subsystemRegistration = subsystem.registerSubsystemModel(OPENFACT_SUBSYSTEM_RESOURCE);
         subsystemRegistration.registerSubModel(THEME_DEFINITION);
         ManagementResourceRegistration spiRegistration = subsystemRegistration.registerSubModel(SPI_DEFINITION);
         spiRegistration.registerSubModel(PROVIDER_DEFINITION);

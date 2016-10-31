@@ -82,7 +82,7 @@ public class JsonConfigConverterTestCase {
             + "    ],\n"
             + "\n"
             + "    \"admin\": {\n"
-            + "        \"realm\": \"master\"\n"
+            + "        \"organization\": \"master\"\n"
             + "    },\n"
             + "\n"
             + "    \"eventsStore\": {\n"
@@ -92,25 +92,19 @@ public class JsonConfigConverterTestCase {
             + "        }\n"
             + "    },\n"
             + "\n"
-            + "    \"realm\": {\n"
+            + "    \"organization\": {\n"
             + "        \"provider\": \"jpa\"\n"
             + "    },\n"
             + "\n"
-            + "    \"user\": {\n"
+            + "    \"invoice\": {\n"
             + "        \"provider\": \"jpa\"\n"
             + "    },\n"
             + "\n"
-            + "    \"userCache\": {\n"
-            + "        \"default\" : {\n"
-            + "            \"enabled\": true\n"
-            + "        }\n"
-            + "    },\n"
-            + "\n"
-            + "    \"userSessionPersister\": {\n"
+            + "    \"creditNote\": {\n"
             + "        \"provider\": \"jpa\"\n"
             + "    },\n"
             + "\n"
-            + "    \"authorizationPersister\": {\n"
+            + "    \"debitNote\": {\n"
             + "        \"provider\": \"jpa\"\n"
             + "    },\n"
             + "\n"
@@ -132,7 +126,7 @@ public class JsonConfigConverterTestCase {
             basicConfig +=
               "        },\n"
             + "        \"module\": {\n"
-            + "          \"modules\": [ \"org.keycloak.example.themes\" ]\n"
+            + "          \"modules\": [ \"org.openfact.example.themes\" ]\n"
             + "         }\n";
         } else {
             basicConfig +=
@@ -152,12 +146,12 @@ public class JsonConfigConverterTestCase {
             + "\n"
             + "    \"connectionsJpa\": {\n"
             + "        \"default\": {\n"
-            + "            \"dataSource\": \"java:jboss/datasources/KeycloakDS\",\n"
+            + "            \"dataSource\": \"java:jboss/datasources/OpenfactDS\",\n"
             + "            \"databaseSchema\": \"update\"\n"
             + "        }\n"
             + "    },\n"
             + "\n"
-            + "    \"realmCache\": {\n"
+            + "    \"organizationCache\": {\n"
             + "        \"default\" : {\n"
             + "            \"enabled\": true\n"
             + "        }\n"
@@ -166,7 +160,7 @@ public class JsonConfigConverterTestCase {
             + "    \"connectionsInfinispan\": {\n"
             + "        \"provider\": \"default\",\n"
             + "        \"default\": {\n"
-            + "            \"cacheContainer\" : \"java:comp/env/infinispan/Keycloak\"\n"
+            + "            \"cacheContainer\" : \"java:comp/env/infinispan/Openfact\"\n"
             + "        }\n"
             + "    }\n"
             + "}";
@@ -180,8 +174,8 @@ public class JsonConfigConverterTestCase {
         ops.add(ModelNode.fromString(
             "{\n" +
             "    \"operation\" => \"write-attribute\",\n" +
-            "    \"address\" => [(\"subsystem\" => \"keycloak-server\")],\n" +
-            "    \"name\" => \"master-realm-name\",\n" +
+            "    \"address\" => [(\"subsystem\" => \"openfact-server\")],\n" +
+            "    \"name\" => \"master-organization-name\",\n" +
             "    \"value\" => \"master\"\n" +
             "}"
         ));
@@ -189,7 +183,7 @@ public class JsonConfigConverterTestCase {
         ops.add(ModelNode.fromString(
             "{\n" +
             "    \"operation\" => \"write-attribute\",\n" +
-            "    \"address\" => [(\"subsystem\" => \"keycloak-server\")],\n" +
+            "    \"address\" => [(\"subsystem\" => \"openfact-server\")],\n" +
             "    \"name\" => \"scheduled-task-interval\",\n" +
             "    \"value\" => 900L\n" +
             "}"
@@ -198,7 +192,7 @@ public class JsonConfigConverterTestCase {
         ops.add(ModelNode.fromString(
             "{\n" +
             "    \"operation\" => \"write-attribute\",\n" +
-            "    \"address\" => [(\"subsystem\" => \"keycloak-server\")],\n" +
+            "    \"address\" => [(\"subsystem\" => \"openfact-server\")],\n" +
             "    \"name\" => \"providers\",\n" +
             "    \"value\" => [\"classpath:${jboss.home.dir}/providers/*\"]\n" +
             "}"
@@ -209,7 +203,7 @@ public class JsonConfigConverterTestCase {
                 "{\n" +
                 "    \"operation\" => \"add\",\n" +
                 "    \"address\" => [\n" +
-                "        (\"subsystem\" => \"keycloak-server\"),\n" +
+                "        (\"subsystem\" => \"openfact-server\"),\n" +
                 "        (\"theme\" => \"defaults\")\n" +
                 "    ],\n" +
                 "    \"staticMaxAge\" => 2592001L,\n" +
@@ -218,7 +212,7 @@ public class JsonConfigConverterTestCase {
                 "    \"dir\" => \"${jboss.home.dir}/themes\",\n" +
                 "    \"welcomeTheme\" => \"welcome\",\n" +
                 "    \"default\" => \"default\",\n" +
-                "    \"modules\" => [\"org.keycloak.example.themes\"]\n" +
+                "    \"modules\" => [\"org.openfact.example.themes\"]\n" +
                 "}"
             ));
         } else {
@@ -226,7 +220,7 @@ public class JsonConfigConverterTestCase {
                 "{\n" +
                 "    \"operation\" => \"add\",\n" +
                 "    \"address\" => [\n" +
-                "        (\"subsystem\" => \"keycloak-server\"),\n" +
+                "        (\"subsystem\" => \"openfact-server\"),\n" +
                 "        (\"theme\" => \"defaults\")\n" +
                 "    ],\n" +
                 "    \"staticMaxAge\" => 2592001L,\n" +
@@ -243,7 +237,7 @@ public class JsonConfigConverterTestCase {
             "{\n" +
             "    \"operation\" => \"add\",\n" +
             "    \"address\" => [\n" +
-            "        (\"subsystem\" => \"keycloak-server\"),\n" +
+            "        (\"subsystem\" => \"openfact-server\"),\n" +
             "        (\"spi\" => \"eventsStore\")\n" +
             "    ],\n" +
             "    \"default-provider\" => \"jpa\"\n" +
@@ -254,7 +248,7 @@ public class JsonConfigConverterTestCase {
             "{\n" +
             "    \"operation\" => \"add\",\n" +
             "    \"address\" => [\n" +
-            "        (\"subsystem\" => \"keycloak-server\"),\n" +
+            "        (\"subsystem\" => \"openfact-server\"),\n" +
             "        (\"spi\" => \"eventsStore\"),\n" +
             "        (\"provider\" => \"jpa\")\n" +
             "    ],\n" +
@@ -267,8 +261,8 @@ public class JsonConfigConverterTestCase {
             "{\n" +
             "    \"operation\" => \"add\",\n" +
             "    \"address\" => [\n" +
-            "        (\"subsystem\" => \"keycloak-server\"),\n" +
-            "        (\"spi\" => \"realm\")\n" +
+            "        (\"subsystem\" => \"openfact-server\"),\n" +
+            "        (\"spi\" => \"organization\")\n" +
             "    ],\n" +
             "    \"default-provider\" => \"jpa\"\n" +
             "}"
@@ -278,62 +272,40 @@ public class JsonConfigConverterTestCase {
             "{\n" +
             "    \"operation\" => \"add\",\n" +
             "    \"address\" => [\n" +
-            "        (\"subsystem\" => \"keycloak-server\"),\n" +
-            "        (\"spi\" => \"user\")\n" +
+            "        (\"subsystem\" => \"openfact-server\"),\n" +
+            "        (\"spi\" => \"invoice\")\n" +
             "    ],\n" +
             "    \"default-provider\" => \"jpa\"\n" +
             "}"
         ));
         
         ops.add(ModelNode.fromString(
-            "{\n" +
-            "    \"operation\" => \"add\",\n" +
-            "    \"address\" => [\n" +
-            "        (\"subsystem\" => \"keycloak-server\"),\n" +
-            "        (\"spi\" => \"userCache\")\n" +
-            "    ]\n" +
-            "}"
+                "{\n" +
+                "    \"operation\" => \"add\",\n" +
+                "    \"address\" => [\n" +
+                "        (\"subsystem\" => \"openfact-server\"),\n" +
+                "        (\"spi\" => \"creditNote\")\n" +
+                "    ],\n" +
+                "    \"default-provider\" => \"jpa\"\n" +
+                "}"
+        ));
+        
+        ops.add(ModelNode.fromString(
+                "{\n" +
+                "    \"operation\" => \"add\",\n" +
+                "    \"address\" => [\n" +
+                "        (\"subsystem\" => \"openfact-server\"),\n" +
+                "        (\"spi\" => \"debitNote\")\n" +
+                "    ],\n" +
+                "    \"default-provider\" => \"jpa\"\n" +
+                "}"
         ));
         
         ops.add(ModelNode.fromString(
             "{\n" +
             "    \"operation\" => \"add\",\n" +
             "    \"address\" => [\n" +
-            "        (\"subsystem\" => \"keycloak-server\"),\n" +
-            "        (\"spi\" => \"userCache\"),\n" +
-            "        (\"provider\" => \"default\")\n" +
-            "    ],\n" +
-            "    \"enabled\" => true\n" +
-            "}"
-        ));
-        
-        ops.add(ModelNode.fromString(
-            "{\n" +
-            "    \"operation\" => \"add\",\n" +
-            "    \"address\" => [\n" +
-            "        (\"subsystem\" => \"keycloak-server\"),\n" +
-            "        (\"spi\" => \"userSessionPersister\")\n" +
-            "    ],\n" +
-            "    \"default-provider\" => \"jpa\"\n" +
-            "}"
-        ));
-        
-        ops.add(ModelNode.fromString(
-            "{\n" +
-            "    \"operation\" => \"add\",\n" +
-            "    \"address\" => [\n" +
-            "        (\"subsystem\" => \"keycloak-server\"),\n" +
-            "        (\"spi\" => \"authorizationPersister\")\n" +
-            "    ],\n" +
-            "    \"default-provider\" => \"jpa\"\n" +
-            "}"
-        ));
-        
-        ops.add(ModelNode.fromString(
-            "{\n" +
-            "    \"operation\" => \"add\",\n" +
-            "    \"address\" => [\n" +
-            "        (\"subsystem\" => \"keycloak-server\"),\n" +
+            "        (\"subsystem\" => \"openfact-server\"),\n" +
             "        (\"spi\" => \"timer\")\n" +
             "    ],\n" +
             "    \"default-provider\" => \"basic\"\n" +
@@ -344,7 +316,7 @@ public class JsonConfigConverterTestCase {
             "{\n" +
             "    \"operation\" => \"add\",\n" +
             "    \"address\" => [\n" +
-            "        (\"subsystem\" => \"keycloak-server\"),\n" +
+            "        (\"subsystem\" => \"openfact-server\"),\n" +
             "        (\"spi\" => \"connectionsHttpClient\")\n" +
             "    ]\n" +
             "}"
@@ -354,7 +326,7 @@ public class JsonConfigConverterTestCase {
             "{\n" +
             "    \"operation\" => \"add\",\n" +
             "    \"address\" => [\n" +
-            "        (\"subsystem\" => \"keycloak-server\"),\n" +
+            "        (\"subsystem\" => \"openfact-server\"),\n" +
             "        (\"spi\" => \"connectionsHttpClient\"),\n" +
             "        (\"provider\" => \"default\")\n" +
             "    ],\n" +
@@ -366,7 +338,7 @@ public class JsonConfigConverterTestCase {
             "{\n" +
             "    \"operation\" => \"add\",\n" +
             "    \"address\" => [\n" +
-            "        (\"subsystem\" => \"keycloak-server\"),\n" +
+            "        (\"subsystem\" => \"openfact-server\"),\n" +
             "        (\"spi\" => \"connectionsJpa\")\n" +
             "    ]\n" +
             "}"
@@ -376,12 +348,12 @@ public class JsonConfigConverterTestCase {
             "{\n" +
             "    \"operation\" => \"add\",\n" +
             "    \"address\" => [\n" +
-            "        (\"subsystem\" => \"keycloak-server\"),\n" +
+            "        (\"subsystem\" => \"openfact-server\"),\n" +
             "        (\"spi\" => \"connectionsJpa\"),\n" +
             "        (\"provider\" => \"default\")\n" +
             "    ],\n" +
             "    \"properties\" => {\n" +
-            "        \"dataSource\" => \"java:jboss/datasources/KeycloakDS\",\n" +
+            "        \"dataSource\" => \"java:jboss/datasources/OpenfactDS\",\n" +
             "        \"databaseSchema\" => \"update\"\n" +
             "    },\n" +
             "    \"enabled\" => true\n" +
@@ -392,8 +364,8 @@ public class JsonConfigConverterTestCase {
             "{\n" +
             "    \"operation\" => \"add\",\n" +
             "    \"address\" => [\n" +
-            "        (\"subsystem\" => \"keycloak-server\"),\n" +
-            "        (\"spi\" => \"realmCache\")\n" +
+            "        (\"subsystem\" => \"openfact-server\"),\n" +
+            "        (\"spi\" => \"organizationCache\")\n" +
             "    ]\n" +
             "}"
         ));
@@ -402,8 +374,8 @@ public class JsonConfigConverterTestCase {
             "{\n" +
             "    \"operation\" => \"add\",\n" +
             "    \"address\" => [\n" +
-            "        (\"subsystem\" => \"keycloak-server\"),\n" +
-            "        (\"spi\" => \"realmCache\"),\n" +
+            "        (\"subsystem\" => \"openfact-server\"),\n" +
+            "        (\"spi\" => \"organizationCache\"),\n" +
             "        (\"provider\" => \"default\")\n" +
             "    ],\n" +
             "    \"enabled\" => true\n" +
@@ -414,7 +386,7 @@ public class JsonConfigConverterTestCase {
             "{\n" +
             "    \"operation\" => \"add\",\n" +
             "    \"address\" => [\n" +
-            "        (\"subsystem\" => \"keycloak-server\"),\n" +
+            "        (\"subsystem\" => \"openfact-server\"),\n" +
             "        (\"spi\" => \"connectionsInfinispan\")\n" +
             "    ],\n" +
             "    \"default-provider\" => \"default\"\n" +
@@ -425,11 +397,11 @@ public class JsonConfigConverterTestCase {
             "{\n" +
             "    \"operation\" => \"add\",\n" +
             "    \"address\" => [\n" +
-            "        (\"subsystem\" => \"keycloak-server\"),\n" +
+            "        (\"subsystem\" => \"openfact-server\"),\n" +
             "        (\"spi\" => \"connectionsInfinispan\"),\n" +
             "        (\"provider\" => \"default\")\n" +
             "    ],\n" +
-            "    \"properties\" => {\"cacheContainer\" => \"java:comp/env/infinispan/Keycloak\"},\n" +
+            "    \"properties\" => {\"cacheContainer\" => \"java:comp/env/infinispan/Openfact\"},\n" +
             "    \"enabled\" => true\n" +
             "}"
         ));

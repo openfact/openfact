@@ -38,7 +38,7 @@ import static org.openfact.subsystem.server.extension.ThemeResourceDefinition.ST
 import static org.openfact.subsystem.server.extension.ThemeResourceDefinition.WELCOME_THEME;
 
 /**
- * Converts json representation of Keycloak config to DMR operations.
+ * Converts json representation of openfact config to DMR operations.
  *
  * @author Stan Silvert ssilvert@redhat.com (C) 2016 Red Hat Inc.
  */
@@ -54,11 +54,11 @@ public class JsonConfigConverter {
     }
 
     /**
-     * Convert keycloak-server.json to DMR operations that write to standalone.xml
+     * Convert openfact-server.json to DMR operations that write to standalone.xml
      * or domain.xml.
      * 
      * @param json The json representation of the config.
-     * @param subsysAddress The management model address of the keycloak-server subsystem.
+     * @param subsysAddress The management model address of the openfact-server subsystem.
      * @return A list of DMR operations.
      * @throws IOException If the json can not be parsed.
      */
@@ -67,7 +67,7 @@ public class JsonConfigConverter {
 
         JsonNode root = new ObjectMapper().readTree(json);
 
-        list.add(masterRealmName(root, subsysAddress));
+        list.add(masterOrganizationName(root, subsysAddress));
         list.add(scheduledTaskInterval(root, subsysAddress));
         list.add(providers(root, subsysAddress));
         list.add(theme(root, subsysAddress.append(ThemeResourceDefinition.TAG_NAME, 
@@ -77,13 +77,13 @@ public class JsonConfigConverter {
         return list;
     }
 
-    private static ModelNode masterRealmName(JsonNode root, PathAddress addr) {
-        JsonNode targetNode = getNode(root, "admin", "realm");
-        String value = OpenfactSubsystemDefinition.MASTER_REALM_NAME.getDefaultValue().asString();
+    private static ModelNode masterOrganizationName(JsonNode root, PathAddress addr) {
+        JsonNode targetNode = getNode(root, "admin", "organization");
+        String value = OpenfactSubsystemDefinition.MASTER_ORGANIZATION_NAME.getDefaultValue().asString();
         if (targetNode != null) value = targetNode.asText(value);
         
         ModelNode op = Util.createOperation(WRITE_ATTRIBUTE_OPERATION, addr);
-        op.get("name").set(OpenfactSubsystemDefinition.MASTER_REALM_NAME.getName());
+        op.get("name").set(OpenfactSubsystemDefinition.MASTER_ORGANIZATION_NAME.getName());
         op.get("value").set(value);
         return op;
     }

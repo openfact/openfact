@@ -31,19 +31,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * DUP responsible for setting the web context of a Keycloak auth server and
- * passing the Keycloak configuration to the Keycloak server.
+ * DUP responsible for setting the web context of a Openfact auth server and
+ * passing the Openfact configuration to the Openfact server.
  *
  * @author Stan Silvert ssilvert@redhat.com (C) 2014 Red Hat Inc.
  */
 public class OpenfactServerDeploymentProcessor implements DeploymentUnitProcessor {
 
-    // This param name is defined again in Keycloak Services class
-    // org.keycloak.services.resources.KeycloakApplication.  We have this value in
-    // two places to avoid dependency between Keycloak Subsystem and Keyclaok Services module.
-    public static final String KEYCLOAK_CONFIG_PARAM_NAME = "org.keycloak.server-subsystem.Config";
+    // This param name is defined again in Openfact Services class
+    // org.openfact.services.resources.OpenfactApplication.  We have this value in
+    // two places to avoid dependency between Openfact Subsystem and Keyclaok Services module.
+    public static final String OPENFACT_CONFIG_PARAM_NAME = "org.openfact.server-subsystem.Config";
     
-    private static final ServiceName cacheContainerService = ServiceName.of("jboss", "infinispan", "keycloak");
+    private static final ServiceName cacheContainerService = ServiceName.of("jboss", "infinispan", "openfact");
     
     @Override
     public void deploy(DeploymentPhaseContext phaseContext) throws DeploymentUnitProcessingException {
@@ -51,25 +51,24 @@ public class OpenfactServerDeploymentProcessor implements DeploymentUnitProcesso
         OpenfactAdapterConfigService configService = OpenfactAdapterConfigService.INSTANCE;
         String deploymentName = deploymentUnit.getName();
 
-        if (!configService.isKeycloakServerDeployment(deploymentName)) {
+        if (!configService.isOpenfactServerDeployment(deploymentName)) {
             return;
         }
 
         final EEModuleDescription description = deploymentUnit.getAttachment(org.jboss.as.ee.component.Attachments.EE_MODULE_DESCRIPTION);
         String webContext = configService.getWebContext();
         if (webContext == null) {
-            throw new DeploymentUnitProcessingException("Can't determine web context/module for Keycloak Server");
+            throw new DeploymentUnitProcessingException("Can't determine web context/module for Openfact Server");
         }
         description.setModuleName(webContext);
 
-        addInfinispanCaches(phaseContext);
         addConfiguration(deploymentUnit, configService);
     }
     
     private void addConfiguration(DeploymentUnit deploymentUnit, OpenfactAdapterConfigService configService) throws DeploymentUnitProcessingException {
         WarMetaData warMetaData = deploymentUnit.getAttachment(WarMetaData.ATTACHMENT_KEY);
         if (warMetaData == null) {
-            throw new DeploymentUnitProcessingException("WarMetaData not found for KeycloakServer.");
+            throw new DeploymentUnitProcessingException("WarMetaData not found for OpenfactServer.");
         }
         
         JBossWebMetaData webMetaData = warMetaData.getMergedJBossWebMetaData();
@@ -84,26 +83,11 @@ public class OpenfactServerDeploymentProcessor implements DeploymentUnitProcesso
         }
 
         ParamValueMetaData param = new ParamValueMetaData();
-        param.setParamName(KEYCLOAK_CONFIG_PARAM_NAME);
+        param.setParamName(OPENFACT_CONFIG_PARAM_NAME);
         param.setParamValue(configService.getConfig().toString());
         contextParams.add(param);
 
         webMetaData.setContextParams(contextParams);
-    }
-
-    private void addInfinispanCaches(DeploymentPhaseContext context) {
-        if (context.getServiceRegistry().getService(cacheContainerService) != null) {
-            ServiceTarget st = context.getServiceTarget();
-            st.addDependency(cacheContainerService);
-            st.addDependency(cacheContainerService.append("realms"));
-            st.addDependency(cacheContainerService.append("users"));
-            st.addDependency(cacheContainerService.append("sessions"));
-            st.addDependency(cacheContainerService.append("offlineSessions"));
-            st.addDependency(cacheContainerService.append("loginFailures"));
-            st.addDependency(cacheContainerService.append("work"));
-            st.addDependency(cacheContainerService.append("authorization"));
-            st.addDependency(cacheContainerService.append("keys"));
-        }
     }
 
     @Override

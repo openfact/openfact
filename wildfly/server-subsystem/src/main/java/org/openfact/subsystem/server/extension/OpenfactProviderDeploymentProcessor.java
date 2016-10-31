@@ -42,13 +42,13 @@ public class OpenfactProviderDeploymentProcessor implements DeploymentUnitProces
         OpenfactAdapterConfigService config = OpenfactAdapterConfigService.INSTANCE;
         String deploymentName = deploymentUnit.getName();
 
-        if (config.isKeycloakServerDeployment(deploymentName)) {
+        if (config.isOpenfactServerDeployment(deploymentName)) {
             return;
         }
 
-        if (!OpenfactProviderDependencyProcessor.isKeycloakProviderDeployment(deploymentUnit)) return;
+        if (!OpenfactProviderDependencyProcessor.isOpenfactProviderDeployment(deploymentUnit)) return;
 
-        logger.infof("Deploying Keycloak provider: {0}", deploymentUnit.getName());
+        logger.infof("Deploying Openfact provider: {0}", deploymentUnit.getName());
         final Module module = deploymentUnit.getAttachment(Attachments.MODULE);
         ProviderManager pm = new ProviderManager(module.getClassLoader());
         ProviderManagerRegistry.SINGLETON.deploy(pm);
@@ -66,7 +66,7 @@ public class OpenfactProviderDeploymentProcessor implements DeploymentUnitProces
     public void undeploy(DeploymentUnit context) {
         ProviderManager pm = context.getAttachment(ATTACHMENT_KEY);
         if (pm != null) {
-            logger.infof("Undeploying Keycloak provider: {0}", context.getName());
+            logger.infof("Undeploying Openfact provider: {0}", context.getName());
             ProviderManagerRegistry.SINGLETON.undeploy(pm);
             context.removeAttachment(ATTACHMENT_KEY);
         }

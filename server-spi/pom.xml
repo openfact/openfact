@@ -23,20 +23,7 @@
 		<dependency>
 			<groupId>com.helger</groupId>
 			<artifactId>ph-ubl21</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.helger</groupId>
-			<artifactId>ph-ubl21-codelists</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.helger</groupId>
-			<artifactId>ph-commons</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>commons-lang</groupId>
-			<artifactId>commons-lang</artifactId>
-		</dependency>
+		</dependency>		
 		<!-- Secondary End -->
 
 		<!-- Principal Start -->
