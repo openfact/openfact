@@ -49,7 +49,7 @@ public class OpenfactSubsystemDefinition extends SimpleResourceDefinition {
     static final StringListAttributeDefinition PROVIDERS = new ProvidersListAttributeBuilder().build();
     
     static final SimpleAttributeDefinition MASTER_ORGANIZATION_NAME =
-        new SimpleAttributeDefinitionBuilder("master-openfact-name", ModelType.STRING, true)
+        new SimpleAttributeDefinitionBuilder("master-organization-name", ModelType.STRING, true)
             .setAllowExpression(true)
             .setDefaultValue(new ModelNode("master"))
             .setRestartAllServices()
