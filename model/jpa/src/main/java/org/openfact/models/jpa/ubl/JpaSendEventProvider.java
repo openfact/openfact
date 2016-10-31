@@ -3,10 +3,8 @@ package org.openfact.models.jpa.ubl;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
@@ -16,7 +14,6 @@ import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.AbstractHibernateStorage;
-import org.openfact.models.jpa.entities.ubl.DebitNoteEntity;
 import org.openfact.models.jpa.entities.ubl.InvoiceEntity;
 import org.openfact.models.jpa.entities.ubl.SendEventEntity;
 import org.openfact.models.ubl.CreditNoteModel;

@@ -1,10 +1,6 @@
 package org.openfact.models.jpa.ubl;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
@@ -20,7 +16,6 @@ import org.openfact.models.enums.RequeridActionDocument;
 import org.openfact.models.jpa.AbstractHibernateStorage;
 import org.openfact.models.jpa.OrganizationAdapter;
 import org.openfact.models.jpa.entities.ubl.InvoiceEntity;
-import org.openfact.models.jpa.entities.ubl.SendEventEntity;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.ubl.InvoiceModel;

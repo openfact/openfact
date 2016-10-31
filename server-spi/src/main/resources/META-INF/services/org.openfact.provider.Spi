@@ -42,3 +42,8 @@ org.openfact.models.catalog.cache.CacheCodeCatalogProviderSpi
 org.openfact.models.catalog.cache.CacheCountryCatalogProviderSpi
 org.openfact.models.catalog.cache.CacheCurrencyCatalogProviderSpi
 org.openfact.models.catalog.cache.CacheUnitCatalogProviderSpi
+
+org.openfact.models.ubl.provider.pe.PerceptionSpi
+org.openfact.models.ubl.provider.pe.RetentionSpi
+org.openfact.models.ubl.provider.pe.SummaryDocumentsSpi
+org.openfact.models.ubl.provider.pe.VoidedDocumentsSpi
