@@ -28,7 +28,6 @@ public class EventRepresentation {
     private String type;
     private String organizationId;
     private String userId;
-    private String sessionId;
     private String ipAddress;
     private String error;
     private Map<String, String> details;
@@ -63,14 +62,6 @@ public class EventRepresentation {
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public String getSessionId() {
-        return sessionId;
-    }
-
-    public void setSessionId(String sessionId) {
-        this.sessionId = sessionId;
     }
 
     public String getIpAddress() {
@@ -108,7 +99,6 @@ public class EventRepresentation {
         if (type != null ? !type.equals(that.type) : that.type != null) return false;
         if (organizationId != null ? !organizationId.equals(that.organizationId) : that.organizationId != null) return false;
         if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
-        if (sessionId != null ? !sessionId.equals(that.sessionId) : that.sessionId != null) return false;
         if (ipAddress != null ? !ipAddress.equals(that.ipAddress) : that.ipAddress != null) return false;
         if (error != null ? !error.equals(that.error) : that.error != null) return false;
         return !(details != null ? !details.equals(that.details) : that.details != null);
@@ -121,7 +111,6 @@ public class EventRepresentation {
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (organizationId != null ? organizationId.hashCode() : 0);
         result = 31 * result + (userId != null ? userId.hashCode() : 0);
-        result = 31 * result + (sessionId != null ? sessionId.hashCode() : 0);
         result = 31 * result + (ipAddress != null ? ipAddress.hashCode() : 0);
         result = 31 * result + (error != null ? error.hashCode() : 0);
         result = 31 * result + (details != null ? details.hashCode() : 0);

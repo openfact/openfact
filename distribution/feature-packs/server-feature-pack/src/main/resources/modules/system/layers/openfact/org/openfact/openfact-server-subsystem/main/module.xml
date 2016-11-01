@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:jboss:module:1.3" name="org.openfact.openfact-server-subsystem">
+    <properties>
+        <property name="jboss.api" value="private"/>
+    </properties>
+
+    <resources>
+        <resource-root path="."/>
+    </resources>
+
+    <dependencies>
+        <module name="org.openfact.openfact-wildfly-server-subsystem" services="export" export="true"/>
+    </dependencies>
+</module>

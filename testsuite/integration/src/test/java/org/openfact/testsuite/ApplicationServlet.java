@@ -17,7 +17,7 @@
 package org.openfact.testsuite;
 
 import org.openfact.services.resources.OrganizationsResource;
-import org.openfact.services.resources.OrganizationsResourceImpl;
+import org.openfact.services.resources.OrganizationsResource;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -48,7 +48,7 @@ public class ApplicationServlet extends HttpServlet {
         PrintWriter pw = resp.getWriter();
         pw.printf("<html><head><title>%s</title></head><body>", title);
         UriBuilder base = UriBuilder.fromUri("http://localhost:8081/openfact");
-        pw.printf(LINK, OrganizationsResourceImpl.accountUrl(base).build("test"), "account", "account");
+        pw.printf(LINK, OrganizationsResource.accountUrl(base).build("test"), "account", "account");
 
         pw.print("</body></html>");
         pw.flush();

@@ -108,7 +108,7 @@ public class JsonSerialization {
         }
 
         ObjectNode objectNode = createObjectNode();
-        JsonParser jsonParser = mapper.getJsonFactory().createJsonParser(writeValueAsBytes(pojo));
+        JsonParser jsonParser = mapper.getFactory().createParser(writeValueAsBytes(pojo));
         JsonNode jsonNode = jsonParser.readValueAsTree();
 
         if (!jsonNode.isObject()) {

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:jboss:module:1.3" name="org.openfact.openfact-common">
+    <properties>
+        <property name="jboss.api" value="private"/>
+    </properties>
+
+    <resources>
+        <artifact name="${org.openfact:openfact-common}"/>
+    </resources>
+
+    <dependencies>
+        <module name="org.bouncycastle" />
+        <module name="javax.api"/>
+        <module name="javax.activation.api"/>
+        <module name="sun.jdk" optional="true" />
+    </dependencies>
+</module>

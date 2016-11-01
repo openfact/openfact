@@ -1,0 +1,15 @@
+/subsystem=openfact-server:add(web-context=openfact,master-organization-name=master,scheduled-task-interval=900,providers=[classpath:${jboss.home.dir}/providers/*])
+/subsystem=openfact-server/theme=defaults/:add(dir=${jboss.home.dir}/themes,staticMaxAge=2592000,cacheTemplates=true,cacheThemes=true)
+/subsystem=openfact-server/spi=eventsStore/:add(default-provider=jpa)
+/subsystem=openfact-server/spi=eventsStore/provider=jpa/:add(properties={exclude-events => "[\"REFRESH_TOKEN\"]"},enabled=true)
+/subsystem=openfact-server/spi=organization/:add(default-provider=jpa)
+/subsystem=openfact-server/spi=invoice/:add(default-provider=jpa)
+/subsystem=openfact-server/spi=creditNote/:add(default-provider=jpa)
+/subsystem=openfact-server/spi=debitNote/:add(default-provider=jpa)
+/subsystem=openfact-server/spi=timer/:add(default-provider=basic)
+/subsystem=openfact-server/spi=connectionsHttpClient/:add
+/subsystem=openfact-server/spi=connectionsHttpClient/provider=default/:add(enabled=true)
+/subsystem=openfact-server/spi=connectionsJpa/:add
+/subsystem=openfact-server/spi=connectionsJpa/provider=default/:add(properties={dataSource => "java:jboss/datasources/OpenfactDS",initializeEmpty => "true",migrationStrategy => "update",migrationExport => "${jboss.home.dir}/openfact-database-update.sql"},enabled=true)
+/subsystem=openfact-server/spi=jta-lookup/:add(default-provider=${openfact.jta.lookup.provider:jboss})
+/subsystem=openfact-server/spi=jta-lookup/provider=jboss/:add(enabled=true)

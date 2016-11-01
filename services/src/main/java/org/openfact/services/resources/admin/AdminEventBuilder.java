@@ -1,5 +1,11 @@
 package org.openfact.services.resources.admin;
 
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.ws.rs.core.UriInfo;
+
 import org.jboss.logging.Logger;
 import org.openfact.common.ClientConnection;
 import org.openfact.common.util.Time;
@@ -15,11 +21,6 @@ import org.openfact.models.UserModel;
 import org.openfact.services.ServicesLogger;
 import org.openfact.util.JsonSerialization;
 
-import javax.ws.rs.core.UriInfo;
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
-
 public class AdminEventBuilder {
 
     protected static final Logger logger = Logger.getLogger(AdminEventBuilder.class);
@@ -29,7 +30,8 @@ public class AdminEventBuilder {
     private OrganizationModel organization;
     private AdminEvent adminEvent;
 
-    public AdminEventBuilder(OrganizationModel organization, AdminAuth auth, OpenfactSession session, ClientConnection clientConnection) {
+    public AdminEventBuilder(OrganizationModel organization, AdminAuth auth, OpenfactSession session,
+            ClientConnection clientConnection) {
         this.organization = organization;
         adminEvent = new AdminEvent();
 
@@ -74,15 +76,15 @@ public class AdminEventBuilder {
         return this;
     }
 
-    public AdminEventBuilder resource(ResourceType resourceType){
+    public AdminEventBuilder resource(ResourceType resourceType) {
         adminEvent.setResourceType(resourceType);
         return this;
     }
 
     public AdminEventBuilder authOrganization(OrganizationModel organization) {
         AuthDetails authDetails = adminEvent.getAuthDetails();
-        if(authDetails == null) {
-            authDetails =  new AuthDetails();
+        if (authDetails == null) {
+            authDetails = new AuthDetails();
             authDetails.setOrganizationId(organization.getId());
         } else {
             authDetails.setOrganizationId(organization.getId());
@@ -93,8 +95,8 @@ public class AdminEventBuilder {
 
     public AdminEventBuilder authUser(UserModel user) {
         AuthDetails authDetails = adminEvent.getAuthDetails();
-        if(authDetails == null) {
-            authDetails =  new AuthDetails();
+        if (authDetails == null) {
+            authDetails = new AuthDetails();
             authDetails.setUserId(user.getEmail());
         } else {
             authDetails.setUserId(user.getEmail());
@@ -105,8 +107,8 @@ public class AdminEventBuilder {
 
     public AdminEventBuilder authIpAddress(String ipAddress) {
         AuthDetails authDetails = adminEvent.getAuthDetails();
-        if(authDetails == null) {
-            authDetails =  new AuthDetails();
+        if (authDetails == null) {
+            authDetails = new AuthDetails();
             authDetails.setIpAddress(ipAddress);
         } else {
             authDetails.setIpAddress(ipAddress);
@@ -121,7 +123,8 @@ public class AdminEventBuilder {
             sb.append("/");
             sb.append(element);
         }
-        if (pathElements.length > 0) sb.deleteCharAt(0); // remove leading '/'
+        if (pathElements.length > 0)
+            sb.deleteCharAt(0); // remove leading '/'
 
         adminEvent.setResourcePath(sb.toString());
         return this;
@@ -176,7 +179,7 @@ public class AdminEventBuilder {
 
     private void send() {
         boolean includeRepresentation = false;
-        if(organization.isAdminEventsDetailsEnabled()) {
+        if (organization.isAdminEventsDetailsEnabled()) {
             includeRepresentation = true;
         }
         adminEvent.setTime(Time.toMillis(Time.currentTime()));

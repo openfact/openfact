@@ -16,17 +16,18 @@
  */
 package org.openfact.services.resources;
 
-import org.jboss.logging.Logger;
-import org.jboss.resteasy.spi.HttpRequest;
-import org.jboss.resteasy.spi.HttpResponse;
-import org.openfact.common.util.CollectionUtil;
-
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.ResponseBuilder;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
+
+import org.jboss.logging.Logger;
+import org.jboss.resteasy.spi.HttpRequest;
+import org.jboss.resteasy.spi.HttpResponse;
+import org.openfact.common.util.CollectionUtil;
 
 /**
  * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
@@ -109,7 +110,8 @@ public class Cors {
             return builder.build();
         }
 
-        if (!preflight && (allowedOrigins == null || (!allowedOrigins.contains(origin) && !allowedOrigins.contains(ACCESS_CONTROL_ALLOW_ORIGIN_WILDCARD)))) {
+        if (!preflight && (allowedOrigins == null || (!allowedOrigins.contains(origin)
+                && !allowedOrigins.contains(ACCESS_CONTROL_ALLOW_ORIGIN_WILDCARD)))) {
             return builder.build();
         }
 
@@ -131,7 +133,8 @@ public class Cors {
 
         if (preflight) {
             if (auth) {
-                builder.header(ACCESS_CONTROL_ALLOW_HEADERS, String.format("%s, %s", DEFAULT_ALLOW_HEADERS, AUTHORIZATION_HEADER));
+                builder.header(ACCESS_CONTROL_ALLOW_HEADERS,
+                        String.format("%s, %s", DEFAULT_ALLOW_HEADERS, AUTHORIZATION_HEADER));
             } else {
                 builder.header(ACCESS_CONTROL_ALLOW_HEADERS, DEFAULT_ALLOW_HEADERS);
             }
@@ -151,7 +154,8 @@ public class Cors {
             return;
         }
 
-        if (!preflight && (allowedOrigins == null || (!allowedOrigins.contains(origin) && !allowedOrigins.contains(ACCESS_CONTROL_ALLOW_ORIGIN_WILDCARD)))) {
+        if (!preflight && (allowedOrigins == null || (!allowedOrigins.contains(origin)
+                && !allowedOrigins.contains(ACCESS_CONTROL_ALLOW_ORIGIN_WILDCARD)))) {
             logger.debug("!preflight and no origin");
             return;
         }
@@ -162,21 +166,24 @@ public class Cors {
 
         if (preflight) {
             if (allowedMethods != null) {
-                response.getOutputHeaders().add(ACCESS_CONTROL_ALLOW_METHODS, CollectionUtil.join(allowedMethods));
+                response.getOutputHeaders().add(ACCESS_CONTROL_ALLOW_METHODS,
+                        CollectionUtil.join(allowedMethods));
             } else {
                 response.getOutputHeaders().add(ACCESS_CONTROL_ALLOW_METHODS, DEFAULT_ALLOW_METHODS);
             }
         }
 
         if (!preflight && exposedHeaders != null) {
-            response.getOutputHeaders().add(ACCESS_CONTROL_EXPOSE_HEADERS, CollectionUtil.join(exposedHeaders));
+            response.getOutputHeaders().add(ACCESS_CONTROL_EXPOSE_HEADERS,
+                    CollectionUtil.join(exposedHeaders));
         }
 
         response.getOutputHeaders().add(ACCESS_CONTROL_ALLOW_CREDENTIALS, Boolean.toString(auth));
 
         if (preflight) {
             if (auth) {
-                response.getOutputHeaders().add(ACCESS_CONTROL_ALLOW_HEADERS, String.format("%s, %s", DEFAULT_ALLOW_HEADERS, AUTHORIZATION_HEADER));
+                response.getOutputHeaders().add(ACCESS_CONTROL_ALLOW_HEADERS,
+                        String.format("%s, %s", DEFAULT_ALLOW_HEADERS, AUTHORIZATION_HEADER));
             } else {
                 response.getOutputHeaders().add(ACCESS_CONTROL_ALLOW_HEADERS, DEFAULT_ALLOW_HEADERS);
             }
