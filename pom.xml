@@ -24,9 +24,9 @@
 		<product.default-profile>community</product.default-profile>
 
 		<!-- WildFly -->
-		<eap.version>7.0.0.Beta</eap.version>
+		<eap.version>7.0.0.Final</eap.version>
 		<jboss.as.version>7.2.0.Final</jboss.as.version>
-		<wildfly.version>10.0.0.Final</wildfly.version>
+		<wildfly.version>10.1.0.Final</wildfly.version>
 
 		<aesh.version>0.66.4</aesh.version>
 		<apache.httpcomponents.version>4.5</apache.httpcomponents.version>
@@ -58,9 +58,7 @@
 		<wildfly.core.version>2.0.10.Final</wildfly.core.version>
 		<wildfly.build-tools.version>1.1.0.Final</wildfly.build-tools.version>
 		<xmlsec.version>2.0.5</xmlsec.version>
-
-		<!-- Authorization Drools Policy Provider -->
-		<version.org.drools>6.4.0.Final</version.org.drools>
+		
 		<version.jboss-integration-platform>6.0.6.Final</version.jboss-integration-platform>
 
 		<!-- Others -->
@@ -76,8 +74,7 @@
 		<pax.web.version>4.2.4</pax.web.version>
 		<postgresql.version>9.3-1100-jdbc41</postgresql.version>
 		<mariadb.version>1.3.7</mariadb.version>
-		<servlet.api.30.version>1.0.2.Final</servlet.api.30.version>
-		<twitter4j.version>4.0.4</twitter4j.version>
+		<servlet.api.30.version>1.0.2.Final</servlet.api.30.version>		
 		<jna.version>4.1.0</jna.version>
 
 		<!-- Test -->
@@ -425,14 +422,7 @@
 				<artifactId>wildfly-dist</artifactId>
 				<version>${wildfly.version}</version>
 				<type>zip</type>
-			</dependency>
-
-			<!-- Twitter -->
-			<dependency>
-				<groupId>org.twitter4j</groupId>
-				<artifactId>twitter4j-core</artifactId>
-				<version>${twitter4j.version}</version>
-			</dependency>
+			</dependency>			
 
 			<!-- QR Code Generator -->
 			<dependency>
@@ -444,16 +434,7 @@
 				<groupId>com.google.zxing</groupId>
 				<artifactId>javase</artifactId>
 				<version>${google.zxing.version}</version>
-			</dependency>
-
-			<!-- Authorization Drools Policy Provider -->
-			<dependency>
-				<groupId>org.drools</groupId>
-				<artifactId>drools-bom</artifactId>
-				<type>pom</type>
-				<version>${version.org.drools}</version>
-				<scope>import</scope>
-			</dependency>
+			</dependency>			
 
 			<!-- Email Test Servers -->
 			<dependency>
@@ -685,11 +666,6 @@
 			<!-- openfact -->
 			<dependency>
 				<groupId>org.openfact</groupId>
-				<artifactId>openfact-client-registration-api</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
 				<artifactId>openfact-common</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -697,33 +673,8 @@
 				<groupId>org.openfact</groupId>
 				<artifactId>openfact-core</artifactId>
 				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-client-api</artifactId>
-				<version>${project.version}</version>
-			</dependency>			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-kerberos-federation</artifactId>
-				<version>${project.version}</version>
-			</dependency>
+			</dependency>			
 
-			<!-- Dependencies for RHEL IdM -->
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-sssd-federation</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>net.java.dev.jna</groupId>
-				<artifactId>jna</artifactId>
-				<version>${jna.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-ldap-federation</artifactId>
-				<version>${project.version}</version>
-			</dependency>
 			<dependency>
 				<groupId>org.openfact</groupId>
 				<artifactId>openfact-dependencies-server-min</artifactId>
@@ -740,82 +691,7 @@
 				<groupId>org.openfact</groupId>
 				<artifactId>openfact-themes</artifactId>
 				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-adapter-spi</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-servlet-adapter-spi</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-adapter-core</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-admin-client</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-as7-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-as7-adapter-spi</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-installed-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-jaxrs-oauth-client</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-jboss-adapter-core</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-jetty-adapter-spi</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-jetty-core</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-jetty81-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-jetty91-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-jetty92-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-jetty93-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
+			</dependency>			
 			<dependency>
 				<groupId>org.openfact</groupId>
 				<artifactId>openfact-as7-subsystem</artifactId>
@@ -840,107 +716,7 @@
 				<groupId>org.openfact</groupId>
 				<artifactId>openfact-subsystem</artifactId>
 				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-js-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-osgi-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-servlet-oauth-client</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-spring-boot-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-tomcat-adapter-spi</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-tomcat-core-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-tomcat6-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-servlet-filter-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-servlet-filter-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-tomcat6-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-as7-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-as7-subsystem</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-tomcat7-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-tomcat8-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-tomcat7-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-tomcat8-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-undertow-adapter-spi</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-undertow-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-wildfly-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-wildfly-adduser</artifactId>
-				<version>${project.version}</version>
-			</dependency>
+			</dependency>						
 			<dependency>
 				<groupId>org.openfact</groupId>
 				<artifactId>openfact-wildfly-extensions</artifactId>
@@ -955,111 +731,18 @@
 				<groupId>org.openfact</groupId>
 				<artifactId>openfact-model-jpa</artifactId>
 				<version>${project.version}</version>
-			</dependency>			
+			</dependency>
 			<dependency>
 				<groupId>org.openfact</groupId>
 				<artifactId>launcher</artifactId>
 				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-proxy-server</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-core</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-core-public</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-adapter-api-public</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-adapter-core</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-tomcat-adapter-core</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-jetty-adapter-core</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-jetty81-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-jetty91-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-wildfly-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-wildfly-subsystem</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-jetty92-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-jetty93-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-undertow-adapter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
+			</dependency>				
 			<dependency>
 				<groupId>org.openfact</groupId>
 				<artifactId>openfact-services</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-
-			<!-- Authorization -->
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-authz-client</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-authz-policy-drools</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-authz-policy-common</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-as7-modules</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
+			
 			<dependency>
 				<groupId>org.openfact</groupId>
 				<artifactId>openfact-as7-modules</artifactId>
@@ -1077,37 +760,7 @@
 				<artifactId>openfact-wildfly-modules</artifactId>
 				<version>${project.version}</version>
 				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-wildfly-modules</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-fuse-adapter-dist</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-fuse-adapter-dist</artifactId>
-				<version>${project.version}</version>
-				<type>tar.gz</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-wildfly-adapter-dist</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-wildfly-adapter-dist</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
+			</dependency>						
 			<dependency>
 				<groupId>org.openfact</groupId>
 				<artifactId>openfact-server-overlay</artifactId>
@@ -1136,139 +789,13 @@
 				<artifactId>openfact-api-docs-dist</artifactId>
 				<version>${project.version}</version>
 				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-proxy-dist</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-examples-dist</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-wf8-adapter-dist</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-tomcat6-adapter-dist</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-tomcat7-adapter-dist</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-tomcat8-adapter-dist</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-jetty81-adapter-dist</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-jetty91-adapter-dist</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-jetty92-adapter-dist</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-jetty93-adapter-dist</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-js-adapter-dist</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-as7-adapter-dist</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-eap6-adapter-dist</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
+			</dependency>						
 			<dependency>
 				<groupId>org.openfact</groupId>
 				<artifactId>openfact-server-feature-pack</artifactId>
 				<version>${project.version}</version>
 				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-tomcat6-adapter-dist</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-tomcat7-adapter-dist</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-tomcat8-adapter-dist</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-jetty81-adapter-dist</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-jetty92-adapter-dist</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-jetty93-adapter-dist</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-as7-adapter-dist</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
-			<dependency>
-				<groupId>org.openfact</groupId>
-				<artifactId>openfact-saml-eap6-adapter-dist</artifactId>
-				<version>${project.version}</version>
-				<type>zip</type>
-			</dependency>
+			</dependency>			
 			<dependency>
 				<groupId>org.openfact</groupId>
 				<artifactId>openfact-testsuite-integration</artifactId>
