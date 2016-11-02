@@ -42,9 +42,7 @@ public class OpenfactServerDeploymentProcessor implements DeploymentUnitProcesso
     // org.openfact.services.resources.OpenfactApplication.  We have this value in
     // two places to avoid dependency between Openfact Subsystem and Keyclaok Services module.
     public static final String OPENFACT_CONFIG_PARAM_NAME = "org.openfact.server-subsystem.Config";
-    
-    private static final ServiceName cacheContainerService = ServiceName.of("jboss", "infinispan", "openfact");
-    
+
     @Override
     public void deploy(DeploymentPhaseContext phaseContext) throws DeploymentUnitProcessingException {
         DeploymentUnit deploymentUnit = phaseContext.getDeploymentUnit();

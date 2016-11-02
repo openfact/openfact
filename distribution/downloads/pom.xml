@@ -1,68 +1,80 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<parent>
-		<artifactId>openfact-distribution</artifactId>
-		<groupId>org.openfact</groupId>
-		<version>1.0.0.Final</version>
-	</parent>
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>openfact-distribution</artifactId>
+        <groupId>org.openfact</groupId>
+        <version>1.0.0.Final</version>
+    </parent>
 
-	<artifactId>openfact-dist-downloads</artifactId>
-	<name>Openfact Release Downloads</name>
-	<description/>
-	<packaging>pom</packaging>
+    <artifactId>openfact-dist-downloads</artifactId>
+    <packaging>pom</packaging>
+    <name>Openfact Release Downloads</name>
+    <description/>
 
-	<dependencies>
+    <dependencies>
 
-	</dependencies>
+    </dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<configuration>
-					<skip>true</skip>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>server-downloads</id>
-						<phase>install</phase>
-						<goals>
-							<goal>copy</goal>
-						</goals>
-						<configuration>
-							<artifactItems>
-								<artifactItem>
-									<groupId>org.openfact</groupId>
-									<artifactId>openfact-server-dist</artifactId>
-									<type>zip</type>
-									<destFileName>openfact-${project.version}.zip</destFileName>
-								</artifactItem>
-								<artifactItem>
-									<groupId>org.openfact</groupId>
-									<artifactId>openfact-server-dist</artifactId>
-									<type>tar.gz</type>
-									<destFileName>openfact-${project.version}.tar.gz</destFileName>
-								</artifactItem>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>server-downloads</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.openfact</groupId>
+                                    <artifactId>openfact-server-dist</artifactId>
+                                    <type>zip</type>
+                                    <destFileName>openfact-${project.version}.zip</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.openfact</groupId>
+                                    <artifactId>openfact-server-dist</artifactId>
+                                    <type>tar.gz</type>
+                                    <destFileName>openfact-${project.version}.tar.gz</destFileName>
+                                </artifactItem>
 
-								<artifactItem>
-									<groupId>org.openfact</groupId>
-									<artifactId>openfact-api-docs-dist</artifactId>
-									<type>zip</type>
-									<destFileName>openfact-api-docs-${project.version}.zip</destFileName>
-								</artifactItem>
-							</artifactItems>
-							<outputDirectory>target/${project.version}</outputDirectory>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
+                                <artifactItem>
+                                    <groupId>org.openfact</groupId>
+                                    <artifactId>openfact-server-overlay</artifactId>
+                                    <type>zip</type>
+                                    <destFileName>openfact-overlay-${project.version}.zip</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.openfact</groupId>
+                                    <artifactId>openfact-server-overlay</artifactId>
+                                    <type>tar.gz</type>
+                                    <destFileName>openfact-overlay-${project.version}.tar.gz</destFileName>
+                                </artifactItem>
+
+                                <artifactItem>
+                                    <groupId>org.openfact</groupId>
+                                    <artifactId>openfact-api-docs-dist</artifactId>
+                                    <type>zip</type>
+                                    <destFileName>openfact-api-docs-${project.version}.zip</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>target/${project.version}</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

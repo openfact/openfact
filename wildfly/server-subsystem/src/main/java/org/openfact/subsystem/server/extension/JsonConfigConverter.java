@@ -29,6 +29,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import static org.jboss.as.controller.descriptions.ModelDescriptionConstants.WRITE_ATTRIBUTE_OPERATION;
+import static org.openfact.subsystem.server.extension.OpenfactSubsystemDefinition.MASTER_ORGANIZATION_NAME;
+import static org.openfact.subsystem.server.extension.OpenfactSubsystemDefinition.PROVIDERS;
+import static org.openfact.subsystem.server.extension.OpenfactSubsystemDefinition.SCHEDULED_TASK_INTERVAL;
 import static org.openfact.subsystem.server.extension.ThemeResourceDefinition.CACHE_TEMPLATES;
 import static org.openfact.subsystem.server.extension.ThemeResourceDefinition.CACHE_THEMES;
 import static org.openfact.subsystem.server.extension.ThemeResourceDefinition.DEFAULT;
@@ -38,7 +41,7 @@ import static org.openfact.subsystem.server.extension.ThemeResourceDefinition.ST
 import static org.openfact.subsystem.server.extension.ThemeResourceDefinition.WELCOME_THEME;
 
 /**
- * Converts json representation of openfact config to DMR operations.
+ * Converts json representation of Openfact config to DMR operations.
  *
  * @author Stan Silvert ssilvert@redhat.com (C) 2016 Red Hat Inc.
  */
@@ -79,29 +82,29 @@ public class JsonConfigConverter {
 
     private static ModelNode masterOrganizationName(JsonNode root, PathAddress addr) {
         JsonNode targetNode = getNode(root, "admin", "organization");
-        String value = OpenfactSubsystemDefinition.MASTER_ORGANIZATION_NAME.getDefaultValue().asString();
+        String value = MASTER_ORGANIZATION_NAME.getDefaultValue().asString();
         if (targetNode != null) value = targetNode.asText(value);
         
         ModelNode op = Util.createOperation(WRITE_ATTRIBUTE_OPERATION, addr);
-        op.get("name").set(OpenfactSubsystemDefinition.MASTER_ORGANIZATION_NAME.getName());
+        op.get("name").set(MASTER_ORGANIZATION_NAME.getName());
         op.get("value").set(value);
         return op;
     }
     
     private static ModelNode scheduledTaskInterval(JsonNode root, PathAddress addr) {
         JsonNode targetNode = getNode(root, "scheduled", "interval");
-        Long value = OpenfactSubsystemDefinition.SCHEDULED_TASK_INTERVAL.getDefaultValue().asLong();
+        Long value = SCHEDULED_TASK_INTERVAL.getDefaultValue().asLong();
         if (targetNode != null) value = targetNode.asLong(value);
         
         ModelNode op = Util.createOperation(WRITE_ATTRIBUTE_OPERATION, addr);
-        op.get("name").set(OpenfactSubsystemDefinition.SCHEDULED_TASK_INTERVAL.getName());
+        op.get("name").set(SCHEDULED_TASK_INTERVAL.getName());
         op.get("value").set(value);
         return op;
     }
     
     private static ModelNode providers(JsonNode root, PathAddress addr) {
         JsonNode targetNode = getNode(root, "providers");
-        ModelNode value = OpenfactSubsystemDefinition.PROVIDERS.getDefaultValue();
+        ModelNode value = PROVIDERS.getDefaultValue();
         if (targetNode != null && targetNode.isArray()) {
             value = new ModelNode();
             for (JsonNode node : targetNode) {
@@ -110,7 +113,7 @@ public class JsonConfigConverter {
         }
         
         ModelNode op = Util.createOperation(WRITE_ATTRIBUTE_OPERATION, addr);
-        op.get("name").set(OpenfactSubsystemDefinition.PROVIDERS.getName());
+        op.get("name").set(PROVIDERS.getName());
         op.get("value").set(value);
         return op;
     }

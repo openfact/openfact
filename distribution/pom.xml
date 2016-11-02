@@ -1,29 +1,33 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<parent>
-		<artifactId>openfact</artifactId>
-		<groupId>org.openfact</groupId>
-		<version>1.0.0.Final</version>
-		<relativePath>../pom.xml</relativePath>
-	</parent>
-	<name>Openfact Distribution</name>
-	<description />
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <artifactId>openfact</artifactId>
+        <groupId>org.openfact</groupId>
+        <version>1.0.0.Final</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
 
-	<artifactId>openfact-distribution</artifactId>
-	<packaging>pom</packaging>
+    <name>Distribution Parent</name>
+    <description/>
+    <modelVersion>4.0.0</modelVersion>
 
-	<modules>
-		<module>server-dist</module>
-		<module>feature-packs</module>
-	</modules>
+    <artifactId>openfact-distribution</artifactId>
+    <packaging>pom</packaging>
 
-	<profiles>
-		<profile>
-			<id>jboss-release</id>
-			<modules>
-				<module>downloads</module>
-			</modules>
-		</profile>
-	</profiles>
+    <modules>
+        <module>api-docs-dist</module>
+        <module>server-dist</module>
+        <module>server-overlay</module>
+        <module>feature-packs</module>
+    </modules>
+
+    <profiles>
+        <profile>
+            <id>jboss-release</id>
+            <modules>
+                <module>downloads</module>
+            </modules>
+        </profile>
+    </profiles>
+
 </project>

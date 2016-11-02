@@ -20,6 +20,8 @@ import org.jboss.as.controller.PathAddress;
 import org.jboss.as.controller.PathElement;
 import org.jboss.dmr.ModelNode;
 import org.junit.Test;
+import org.openfact.subsystem.server.extension.JsonConfigConverter;
+import org.openfact.subsystem.server.extension.OpenfactExtension;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,18 +98,18 @@ public class JsonConfigConverterTestCase {
             + "        \"provider\": \"jpa\"\n"
             + "    },\n"
             + "\n"
-            + "    \"invoice\": {\n"
-            + "        \"provider\": \"jpa\"\n"
-            + "    },\n"
-            + "\n"
-            + "    \"creditNote\": {\n"
-            + "        \"provider\": \"jpa\"\n"
-            + "    },\n"
-            + "\n"
-            + "    \"debitNote\": {\n"
-            + "        \"provider\": \"jpa\"\n"
-            + "    },\n"
-            + "\n"
+                      + "    \"invoice\": {\n"
+                      + "        \"provider\": \"jpa\"\n"
+                      + "    },\n"
+                      + "\n"
+                      + "    \"creditNote\": {\n"
+                      + "        \"provider\": \"jpa\"\n"
+                      + "    },\n"
+                      + "\n"
+                      + "    \"debitNote\": {\n"
+                      + "        \"provider\": \"jpa\"\n"
+                      + "    },\n"
+                      + "\n"
             + "    \"timer\": {\n"
             + "        \"provider\": \"basic\"\n"
             + "    },\n"
@@ -148,19 +150,6 @@ public class JsonConfigConverterTestCase {
             + "        \"default\": {\n"
             + "            \"dataSource\": \"java:jboss/datasources/OpenfactDS\",\n"
             + "            \"databaseSchema\": \"update\"\n"
-            + "        }\n"
-            + "    },\n"
-            + "\n"
-            + "    \"organizationCache\": {\n"
-            + "        \"default\" : {\n"
-            + "            \"enabled\": true\n"
-            + "        }\n"
-            + "    },\n"
-            + "\n"
-            + "    \"connectionsInfinispan\": {\n"
-            + "        \"provider\": \"default\",\n"
-            + "        \"default\": {\n"
-            + "            \"cacheContainer\" : \"java:comp/env/infinispan/Openfact\"\n"
             + "        }\n"
             + "    }\n"
             + "}";
@@ -278,27 +267,27 @@ public class JsonConfigConverterTestCase {
             "    \"default-provider\" => \"jpa\"\n" +
             "}"
         ));
-        
+
         ops.add(ModelNode.fromString(
                 "{\n" +
-                "    \"operation\" => \"add\",\n" +
-                "    \"address\" => [\n" +
-                "        (\"subsystem\" => \"openfact-server\"),\n" +
-                "        (\"spi\" => \"creditNote\")\n" +
-                "    ],\n" +
-                "    \"default-provider\" => \"jpa\"\n" +
-                "}"
+                        "    \"operation\" => \"add\",\n" +
+                        "    \"address\" => [\n" +
+                        "        (\"subsystem\" => \"openfact-server\"),\n" +
+                        "        (\"spi\" => \"creditNote\")\n" +
+                        "    ],\n" +
+                        "    \"default-provider\" => \"jpa\"\n" +
+                        "}"
         ));
-        
+
         ops.add(ModelNode.fromString(
                 "{\n" +
-                "    \"operation\" => \"add\",\n" +
-                "    \"address\" => [\n" +
-                "        (\"subsystem\" => \"openfact-server\"),\n" +
-                "        (\"spi\" => \"debitNote\")\n" +
-                "    ],\n" +
-                "    \"default-provider\" => \"jpa\"\n" +
-                "}"
+                        "    \"operation\" => \"add\",\n" +
+                        "    \"address\" => [\n" +
+                        "        (\"subsystem\" => \"openfact-server\"),\n" +
+                        "        (\"spi\" => \"debitNote\")\n" +
+                        "    ],\n" +
+                        "    \"default-provider\" => \"jpa\"\n" +
+                        "}"
         ));
         
         ops.add(ModelNode.fromString(
@@ -356,52 +345,6 @@ public class JsonConfigConverterTestCase {
             "        \"dataSource\" => \"java:jboss/datasources/OpenfactDS\",\n" +
             "        \"databaseSchema\" => \"update\"\n" +
             "    },\n" +
-            "    \"enabled\" => true\n" +
-            "}"
-        ));
-        
-        ops.add(ModelNode.fromString(
-            "{\n" +
-            "    \"operation\" => \"add\",\n" +
-            "    \"address\" => [\n" +
-            "        (\"subsystem\" => \"openfact-server\"),\n" +
-            "        (\"spi\" => \"organizationCache\")\n" +
-            "    ]\n" +
-            "}"
-        ));
-        
-        ops.add(ModelNode.fromString(
-            "{\n" +
-            "    \"operation\" => \"add\",\n" +
-            "    \"address\" => [\n" +
-            "        (\"subsystem\" => \"openfact-server\"),\n" +
-            "        (\"spi\" => \"organizationCache\"),\n" +
-            "        (\"provider\" => \"default\")\n" +
-            "    ],\n" +
-            "    \"enabled\" => true\n" +
-            "}"
-        ));
-        
-        ops.add(ModelNode.fromString(
-            "{\n" +
-            "    \"operation\" => \"add\",\n" +
-            "    \"address\" => [\n" +
-            "        (\"subsystem\" => \"openfact-server\"),\n" +
-            "        (\"spi\" => \"connectionsInfinispan\")\n" +
-            "    ],\n" +
-            "    \"default-provider\" => \"default\"\n" +
-            "}"
-        ));
-        
-        ops.add(ModelNode.fromString(
-            "{\n" +
-            "    \"operation\" => \"add\",\n" +
-            "    \"address\" => [\n" +
-            "        (\"subsystem\" => \"openfact-server\"),\n" +
-            "        (\"spi\" => \"connectionsInfinispan\"),\n" +
-            "        (\"provider\" => \"default\")\n" +
-            "    ],\n" +
-            "    \"properties\" => {\"cacheContainer\" => \"java:comp/env/infinispan/Openfact\"},\n" +
             "    \"enabled\" => true\n" +
             "}"
         ));

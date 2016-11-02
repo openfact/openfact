@@ -16,6 +16,10 @@
  */
 package org.openfact.subsystem.server.extension;
 
+import static org.openfact.subsystem.server.extension.OpenfactExtension.SUBSYSTEM_NAME;
+import static org.openfact.subsystem.server.extension.OpenfactSubsystemDefinition.ALL_ATTRIBUTES;
+import static org.openfact.subsystem.server.extension.OpenfactSubsystemDefinition.WEB_CONTEXT;
+
 import org.jboss.as.controller.AbstractBoottimeAddStepHandler;
 import org.jboss.as.controller.AttributeDefinition;
 import org.jboss.as.controller.OperationContext;
@@ -40,12 +44,12 @@ class OpenfactSubsystemAdd extends AbstractBoottimeAddStepHandler {
         context.addStep(new AbstractDeploymentChainStep() {
             @Override
             protected void execute(DeploymentProcessorTarget processorTarget) {
-                processorTarget.addDeploymentProcessor(OpenfactExtension.SUBSYSTEM_NAME, Phase.DEPENDENCIES, 0, new OpenfactProviderDependencyProcessor());
-                processorTarget.addDeploymentProcessor(OpenfactExtension.SUBSYSTEM_NAME,
+                processorTarget.addDeploymentProcessor(SUBSYSTEM_NAME, Phase.DEPENDENCIES, 0, new OpenfactProviderDependencyProcessor());
+                processorTarget.addDeploymentProcessor(SUBSYSTEM_NAME,
                         Phase.POST_MODULE, // PHASE
                         Phase.POST_MODULE_VALIDATOR_FACTORY - 2, // PRIORITY
                         new OpenfactProviderDeploymentProcessor());
-                processorTarget.addDeploymentProcessor(OpenfactExtension.SUBSYSTEM_NAME,
+                processorTarget.addDeploymentProcessor(SUBSYSTEM_NAME,
                         Phase.POST_MODULE, // PHASE
                         Phase.POST_MODULE_VALIDATOR_FACTORY - 1, // PRIORITY
                         new OpenfactServerDeploymentProcessor());
@@ -63,7 +67,7 @@ class OpenfactSubsystemAdd extends AbstractBoottimeAddStepHandler {
         ModelNode model = resource.getModel();
         
         // set attribute values from parsed model
-        for (AttributeDefinition attrDef : OpenfactSubsystemDefinition.ALL_ATTRIBUTES) {
+        for (AttributeDefinition attrDef : ALL_ATTRIBUTES) {
             attrDef.validateAndSet(operation, model);
         }
 
@@ -77,9 +81,9 @@ class OpenfactSubsystemAdd extends AbstractBoottimeAddStepHandler {
             return;
         }
 
-        ModelNode webContextNode = resource.getModel().get(OpenfactSubsystemDefinition.WEB_CONTEXT.getName());
+        ModelNode webContextNode = resource.getModel().get(WEB_CONTEXT.getName());
         if (!webContextNode.isDefined()) {
-            webContextNode = OpenfactSubsystemDefinition.WEB_CONTEXT.getDefaultValue();
+            webContextNode = WEB_CONTEXT.getDefaultValue();
         }
         String webContext = webContextNode.asString();
 

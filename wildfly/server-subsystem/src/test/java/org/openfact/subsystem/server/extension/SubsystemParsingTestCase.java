@@ -17,6 +17,7 @@
 package org.openfact.subsystem.server.extension;
 
 import org.jboss.as.subsystem.test.AbstractSubsystemBaseTest;
+import org.openfact.subsystem.server.extension.OpenfactExtension;
 
 import java.io.IOException;
 import java.util.Properties;

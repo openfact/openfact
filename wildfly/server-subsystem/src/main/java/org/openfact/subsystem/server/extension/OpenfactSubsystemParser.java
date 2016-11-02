@@ -34,13 +34,18 @@ import org.jboss.staxmapper.XMLExtendedStreamWriter;
 
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
-import java.util.List;
 
 import static org.openfact.subsystem.server.extension.OpenfactExtension.PATH_SUBSYSTEM;
+import static org.openfact.subsystem.server.extension.OpenfactSubsystemDefinition.MASTER_ORGANIZATION_NAME;
+import static org.openfact.subsystem.server.extension.OpenfactSubsystemDefinition.PROVIDERS;
+import static org.openfact.subsystem.server.extension.OpenfactSubsystemDefinition.SCHEDULED_TASK_INTERVAL;
+import static org.openfact.subsystem.server.extension.OpenfactSubsystemDefinition.WEB_CONTEXT;
 import static org.openfact.subsystem.server.extension.ProviderResourceDefinition.ENABLED;
 import static org.openfact.subsystem.server.extension.ProviderResourceDefinition.PROPERTIES;
 import static org.openfact.subsystem.server.extension.SpiResourceDefinition.DEFAULT_PROVIDER;
 import static org.openfact.subsystem.server.extension.ThemeResourceDefinition.MODULES;
+
+import java.util.List;
 
 /**
  * The subsystem parser, which uses stax to read and write to and from xml
@@ -58,14 +63,14 @@ class OpenfactSubsystemParser implements XMLStreamConstants, XMLElementReader<Li
         list.add(addOpenfactSub);
 
         while (reader.hasNext() && nextTag(reader) != END_ELEMENT) {
-            if (reader.getLocalName().equals(OpenfactSubsystemDefinition.WEB_CONTEXT.getXmlName())) {
-                OpenfactSubsystemDefinition.WEB_CONTEXT.parseAndSetParameter(reader.getElementText(), addOpenfactSub, reader);
-            } else if (reader.getLocalName().equals(OpenfactSubsystemDefinition.PROVIDERS.getXmlName())) {
+            if (reader.getLocalName().equals(WEB_CONTEXT.getXmlName())) {
+                WEB_CONTEXT.parseAndSetParameter(reader.getElementText(), addOpenfactSub, reader);
+            } else if (reader.getLocalName().equals(PROVIDERS.getXmlName())) {
                 readProviders(reader, addOpenfactSub);
-            } else if (reader.getLocalName().equals(OpenfactSubsystemDefinition.MASTER_ORGANIZATION_NAME.getXmlName())) {
-                OpenfactSubsystemDefinition.MASTER_ORGANIZATION_NAME.parseAndSetParameter(reader.getElementText(), addOpenfactSub, reader);
-            } else if (reader.getLocalName().equals(OpenfactSubsystemDefinition.SCHEDULED_TASK_INTERVAL.getXmlName())) {
-                OpenfactSubsystemDefinition.SCHEDULED_TASK_INTERVAL.parseAndSetParameter(reader.getElementText(), addOpenfactSub, reader);
+            } else if (reader.getLocalName().equals(MASTER_ORGANIZATION_NAME.getXmlName())) {
+                MASTER_ORGANIZATION_NAME.parseAndSetParameter(reader.getElementText(), addOpenfactSub, reader);
+            } else if (reader.getLocalName().equals(SCHEDULED_TASK_INTERVAL.getXmlName())) {
+                SCHEDULED_TASK_INTERVAL.parseAndSetParameter(reader.getElementText(), addOpenfactSub, reader);
             } else if (reader.getLocalName().equals(ThemeResourceDefinition.TAG_NAME)) {
                 readTheme(list, reader);
             } else if (reader.getLocalName().equals(SpiResourceDefinition.TAG_NAME)) {
@@ -78,7 +83,7 @@ class OpenfactSubsystemParser implements XMLStreamConstants, XMLElementReader<Li
     
     private void readProviders(final XMLExtendedStreamReader reader, ModelNode addOpenfactSub) throws XMLStreamException {
         while (reader.hasNext() && nextTag(reader) != END_ELEMENT) {
-            OpenfactSubsystemDefinition.PROVIDERS.parseAndAddParameterElement(reader.getElementText(),addOpenfactSub, reader);
+            PROVIDERS.parseAndAddParameterElement(reader.getElementText(),addOpenfactSub, reader);
         }
     }
     
@@ -182,7 +187,7 @@ class OpenfactSubsystemParser implements XMLStreamConstants, XMLElementReader<Li
     public void writeContent(final XMLExtendedStreamWriter writer, final SubsystemMarshallingContext context) throws XMLStreamException {
         context.startSubsystemElement(OpenfactExtension.NAMESPACE, false);
         writeWebContext(writer, context);
-        writeList(writer, context.getModelNode(), OpenfactSubsystemDefinition.PROVIDERS, "provider");
+        writeList(writer, context.getModelNode(), PROVIDERS, "provider");
         writeAdmin(writer, context);
         writeScheduledTaskInterval(writer, context);
         writeThemeDefaults(writer, context);
@@ -241,27 +246,27 @@ class OpenfactSubsystemParser implements XMLStreamConstants, XMLElementReader<Li
     }
     
     private void writeWebContext(XMLExtendedStreamWriter writer, SubsystemMarshallingContext context) throws XMLStreamException {
-        if (!context.getModelNode().get(OpenfactSubsystemDefinition.WEB_CONTEXT.getName()).isDefined()) {
+        if (!context.getModelNode().get(WEB_CONTEXT.getName()).isDefined()) {
             return;
         }
 
-        OpenfactSubsystemDefinition.WEB_CONTEXT.marshallAsElement(context.getModelNode(), writer);
+        WEB_CONTEXT.marshallAsElement(context.getModelNode(), writer);
     }
     
     private void writeAdmin(XMLExtendedStreamWriter writer, SubsystemMarshallingContext context) throws XMLStreamException {
-        if (!context.getModelNode().get(OpenfactSubsystemDefinition.MASTER_ORGANIZATION_NAME.getName()).isDefined()) {
+        if (!context.getModelNode().get(MASTER_ORGANIZATION_NAME.getName()).isDefined()) {
             return;
         }
 
-        OpenfactSubsystemDefinition.MASTER_ORGANIZATION_NAME.marshallAsElement(context.getModelNode(), writer);
+        MASTER_ORGANIZATION_NAME.marshallAsElement(context.getModelNode(), writer);
     }
     
     private void writeScheduledTaskInterval(XMLExtendedStreamWriter writer, SubsystemMarshallingContext context) throws XMLStreamException {
-        if (!context.getModelNode().get(OpenfactSubsystemDefinition.SCHEDULED_TASK_INTERVAL.getName()).isDefined()) {
+        if (!context.getModelNode().get(SCHEDULED_TASK_INTERVAL.getName()).isDefined()) {
             return;
         }
 
-        OpenfactSubsystemDefinition.SCHEDULED_TASK_INTERVAL.marshallAsElement(context.getModelNode(), writer);
+        SCHEDULED_TASK_INTERVAL.marshallAsElement(context.getModelNode(), writer);
     }
     
     private void writeList(XMLExtendedStreamWriter writer, ModelNode context, AttributeDefinition def, String elementName) throws XMLStreamException {
