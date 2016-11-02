@@ -15,7 +15,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>api-docs-dist</module>
         <module>server-dist</module>
         <module>server-overlay</module>
         <module>feature-packs</module>

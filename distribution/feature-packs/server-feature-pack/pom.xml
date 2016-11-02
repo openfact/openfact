@@ -14,31 +14,31 @@
     <packaging>pom</packaging>
 
     <dependencies>
-        <dependency>
-            <groupId>org.openfact</groupId>
-            <artifactId>openfact-dependencies-server-all</artifactId>
-            <type>pom</type>
-        </dependency>
-        <dependency>
-            <groupId>org.openfact</groupId>
-            <artifactId>openfact-wildfly-extensions</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.openfact</groupId>
-            <artifactId>openfact-wildfly-server-subsystem</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.wildfly</groupId>
-            <artifactId>wildfly-feature-pack</artifactId>
-            <type>zip</type>
-            <!-- Need to exlcude that in order to use the right guava version for drools -->
-            <exclusions>
-                <exclusion>
-                    <groupId>com.google.guava</groupId>
-                    <artifactId>guava</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.openfact</groupId>-->
+            <!--<artifactId>openfact-dependencies-server-all</artifactId>-->
+            <!--<type>pom</type>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.openfact</groupId>-->
+            <!--<artifactId>openfact-wildfly-extensions</artifactId>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.openfact</groupId>-->
+            <!--<artifactId>openfact-wildfly-server-subsystem</artifactId>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.wildfly</groupId>-->
+            <!--<artifactId>wildfly-feature-pack</artifactId>-->
+            <!--<type>zip</type>-->
+            <!--&lt;!&ndash; Need to exlcude that in order to use the right guava version for drools &ndash;&gt;-->
+            <!--&lt;!&ndash;<exclusions>&ndash;&gt;-->
+                <!--&lt;!&ndash;<exclusion>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<groupId>com.google.guava</groupId>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<artifactId>guava</artifactId>&ndash;&gt;-->
+                <!--&lt;!&ndash;</exclusion>&ndash;&gt;-->
+            <!--&lt;!&ndash;</exclusions>&ndash;&gt;-->
+        <!--</dependency>-->
     </dependencies>
 
     <build>
@@ -64,30 +64,30 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>assemble</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <descriptors>
-                                <descriptor>assembly.xml</descriptor>
-                            </descriptors>
-                            <recompressZippedFiles>true</recompressZippedFiles>
-                            <finalName>${project.build.finalName}</finalName>
-                            <appendAssemblyId>false</appendAssemblyId>
-                            <outputDirectory>target/</outputDirectory>
-                            <workDirectory>target/assembly/work</workDirectory>
-                            <tarLongFileMode>gnu</tarLongFileMode>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-assembly-plugin</artifactId>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>assemble</id>-->
+                        <!--<phase>package</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>single</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<descriptors>-->
+                                <!--<descriptor>assembly.xml</descriptor>-->
+                            <!--</descriptors>-->
+                            <!--<recompressZippedFiles>true</recompressZippedFiles>-->
+                            <!--<finalName>${project.build.finalName}</finalName>-->
+                            <!--<appendAssemblyId>false</appendAssemblyId>-->
+                            <!--<outputDirectory>target/</outputDirectory>-->
+                            <!--<workDirectory>target/assembly/work</workDirectory>-->
+                            <!--<tarLongFileMode>gnu</tarLongFileMode>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 
