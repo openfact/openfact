@@ -300,7 +300,7 @@ public class OpenfactApplication extends Application {
     }
 
     public static void setupScheduledTasks(final OpenfactSessionFactory sessionFactory) {
-        long interval = Config.scope("scheduled").getLong("interval", 60L) * 1000;
+        /*long interval = Config.scope("scheduled").getLong("interval", 60L) * 1000;
 
         OpenfactSession session = sessionFactory.create();
         try {
@@ -310,7 +310,7 @@ public class OpenfactApplication extends Application {
                     interval, "ClearExpiredEvents");
         } finally {
             session.close();
-        }
+        }*/
     }
 
     public OpenfactSessionFactory getSessionFactory() {
