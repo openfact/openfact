@@ -312,13 +312,20 @@ public class OpenfactServer {
 
             di.addFilter(filter);
             di.addFilterUrlMapping("SessionFilter", "/*", DispatcherType.REQUEST);
-            
+
+
+            /**
+             * Add Keycloak Filter*/
+            FilterInfo kcFilter = Servlets.filter("KeycloakFilter", org.keycloak.adapters.servlet.KeycloakOIDCFilter.class);
+            di.addFilter(kcFilter);
+            di.addFilterUrlMapping("KeycloakFilter", "/admin/*", DispatcherType.REQUEST);
+
             /**
              * Add Security Filter*/
             FilterInfo scFilter = Servlets.filter("SecurityFilter", OpenfactSecurityContextFilter.class);
             scFilter.setAsyncSupported(true);
             di.addFilter(scFilter);
-            di.addFilterUrlMapping("SecurityFilter", "/*", DispatcherType.REQUEST);
+            di.addFilterUrlMapping("SecurityFilter", "/admin/*", DispatcherType.REQUEST);
 
             server.deploy(di);
 

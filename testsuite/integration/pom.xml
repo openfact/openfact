@@ -45,6 +45,11 @@
 			<artifactId>openfact-model-jpa</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.keycloak</groupId>
+			<artifactId>keycloak-servlet-filter-adapter</artifactId>
+		</dependency>
+
 		<!-- Principal Start -->
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
