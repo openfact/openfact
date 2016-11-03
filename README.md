@@ -24,3 +24,18 @@ java -jar distribution/wildfly-swarm/target/openfact-swarm.jar -Dswarm.http.port
 
 # Testsuite purposes
 mvn -f testsuite/integration/pom.xml exec:java -Popenfact-server -Dimport=/**/demo-organization.json
+
+# Quickstart for Developers
+There 2 steps to start the Openfact server on development mode:
+1. Run Keycloak Server
+2. Run Openfact Server on Test mode
+
+**1. RUN KEYCLOAK SERVER**
+ - You should build the docker provided image using the command:
+ `mvn clean install -Pdocker-keycloak-server`
+ 
+ - After that is necesary to start the docker image using the command:
+ `docker run -p 8080:8080 -p 9990:9990 openfact/testsuite-keycloak-server`
+ 
+ - If You need to access to your docker container:
+ `docker exec -it CONTAINER_ID /bin/bash`

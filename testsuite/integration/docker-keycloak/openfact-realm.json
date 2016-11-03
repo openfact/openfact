@@ -1,0 +1,216 @@
+{
+  "id": "openfact",
+  "realm": "openfact",
+  "notBefore": 0,
+  "revokeRefreshToken": false,
+  "accessTokenLifespan": 300,
+  "accessTokenLifespanForImplicitFlow": 900,
+  "ssoSessionIdleTimeout": 1800,
+  "ssoSessionMaxLifespan": 36000,
+  "offlineSessionIdleTimeout": 2592000,
+  "accessCodeLifespan": 60,
+  "accessCodeLifespanUserAction": 300,
+  "accessCodeLifespanLogin": 1800,
+  "enabled": true,
+  "sslRequired": "external",
+  "registrationAllowed": false,
+  "registrationEmailAsUsername": false,
+  "rememberMe": false,
+  "verifyEmail": false,
+  "resetPasswordAllowed": false,
+  "editUsernameAllowed": false,
+  "bruteForceProtected": false,
+  "maxFailureWaitSeconds": 900,
+  "minimumQuickLoginWaitSeconds": 60,
+  "waitIncrementSeconds": 60,
+  "quickLoginCheckMilliSeconds": 1000,
+  "maxDeltaTimeSeconds": 43200,
+  "failureFactor": 30,
+  "users": [
+    {
+      "username": "user1",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password"
+        }
+      ],
+      "realmRoles": [
+        "of-admin"
+      ],
+      "clientRoles": {
+        "account": [
+          "manage-account",
+          "view-profile"
+        ]
+      }
+    },
+    {
+      "username": "user2",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password"
+        }
+      ],
+      "realmRoles": [
+        "of-admin-organization"
+      ],
+      "clientRoles": {
+        "account": [
+          "manage-account",
+          "view-profile"
+        ]
+      }
+    },
+    {
+      "username": "user3",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password"
+        }
+      ],
+      "realmRoles": [
+        "of-organization-user"
+      ],
+      "clientRoles": {
+        "account": [
+          "manage-account",
+          "view-profile"
+        ]
+      }
+    }
+  ],
+  "roles": {
+    "realm": [
+      {
+        "name": "of-admin",
+        "composite": true,
+        "composites": {
+          "client": {
+            "openfact": [
+              "manage-credit-notes",
+              "manage-organization",
+              "view-debit-notes",
+              "view-organization",
+              "admin",
+              "manage-invoices",
+              "view-invoices",
+              "manage-events",
+              "view-events",
+              "create-organization",
+              "manage-debit-notes",
+              "organization-admin",
+              "view-credit-notes"
+            ]
+          }
+        },
+        "clientRole": false,
+        "containerId": "openfact"
+      },
+      {
+        "name": "of-admin-organization",
+        "composite": true,
+        "composites": {
+          "client": {
+            "openfact": [
+              "manage-credit-notes",
+              "manage-events",
+              "manage-organization",
+              "view-debit-notes",
+              "view-events",
+              "view-organization",
+              "manage-invoices",
+              "view-invoices",
+              "manage-debit-notes",
+              "organization-admin",
+              "view-credit-notes"
+            ]
+          }
+        },
+        "clientRole": false,
+        "containerId": "openfact"
+      },
+      {
+        "name": "of-organization-user",
+        "composite": true,
+        "composites": {
+          "client": {
+            "openfact": [
+              "manage-credit-notes",
+              "manage-events",
+              "view-debit-notes",
+              "view-events",
+              "view-organization",
+              "manage-invoices",
+              "view-invoices",
+              "manage-debit-notes",
+              "view-credit-notes"
+            ]
+          }
+        },
+        "clientRole": false,
+        "containerId": "openfact"
+      }
+    ],
+    "client": {
+      "openfact": [
+        {
+          "name": "manage-credit-notes"
+        },
+        {
+          "name": "manage-organization"
+        },
+        {
+          "name": "view-debit-notes"
+        },
+        {
+          "name": "view-organization"
+        },
+        {
+          "name": "admin"
+        },
+        {
+          "name": "manage-invoices"
+        },
+        {
+          "name": "view-invoices"
+        },
+        {
+          "name": "manage-events"
+        },
+        {
+          "name": "view-events"
+        },
+        {
+          "name": "create-organization"
+        },
+        {
+          "name": "organization-admin"
+        },
+        {
+          "name": "view-credit-notes"
+        },
+        {
+          "name": "manage-debit-notes"
+        }
+      ]
+    }
+  },
+  "clientScopeMappings": {
+    "realm-management": []
+  },
+  "clients": [
+    {
+      "clientId": "openfact",
+      "enabled": true,
+      "adminUrl": "/openfact",
+      "baseUrl": "/openfact",
+      "bearerOnly": true
+    }
+  ]
+}
