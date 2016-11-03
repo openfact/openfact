@@ -1,4 +1,4 @@
-/subsystem=openfact-server:add(web-context=auth,master-organization-name=master,scheduled-task-interval=900,providers=[classpath:${jboss.home.dir}/providers/*])
+/subsystem=openfact-server:add(web-context=openfact,master-organization-name=master,admin-console-url=http://localhost:4200,scheduled-task-interval=900,providers=[classpath:${jboss.home.dir}/providers/*])
 /subsystem=openfact-server/theme=defaults/:add(dir=${jboss.home.dir}/themes,staticMaxAge=2592000,cacheTemplates=true,cacheThemes=true)
 /subsystem=openfact-server/spi=eventsStore/:add(default-provider=jpa)
 /subsystem=openfact-server/spi=eventsStore/provider=jpa/:add(properties={exclude-events => "[]"},enabled=true)

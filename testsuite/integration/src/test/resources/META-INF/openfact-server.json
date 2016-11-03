@@ -3,6 +3,10 @@
         "organization": "master"
     },
 
+    "adminConsole": {
+        "url": "http://localhost:4200"
+    },
+
     "eventsStore": {
         "provider": "${openfact.eventsStore.provider:jpa}"
     },
@@ -14,26 +18,20 @@
         }
     },
 
-    "realm": {
-        "provider": "${keycloak.realm.provider:jpa}"
+    "organization": {
+        "provider": "${openfact.organization.provider:jpa}"
     },
 
-    "user": {
-        "provider": "${keycloak.user.provider:jpa}"
+    "invoice": {
+        "provider": "${openfact.invoice.provider:jpa}"
     },
 
-    "userSessionPersister": {
-        "provider": "${keycloak.userSessionPersister.provider:jpa}"
+    "creditNote": {
+        "provider": "${openfact.creditNote.provider:jpa}"
     },
 
-    "authorizationPersister": {
-        "provider": "${keycloak.authorization.provider:jpa}"
-    },
-
-    "userCache": {
-        "default" : {
-            "enabled": true
-        }
+    "debitNote": {
+        "provider": "${openfact.debitNote.provider:jpa}"
     },
 
     "timer": {
@@ -41,11 +39,11 @@
     },
 
     "theme": {
-        "staticMaxAge": "${keycloak.theme.staticMaxAge:2592000}",
-        "cacheTemplates": "${keycloak.theme.cacheTemplates:true}",
-        "cacheThemes": "${keycloak.theme.cacheThemes:true}",
+        "staticMaxAge": "${openfact.theme.staticMaxAge:2592000}",
+        "cacheTemplates": "${openfact.theme.cacheTemplates:true}",
+        "cacheThemes": "${openfact.theme.cacheThemes:true}",
         "folder": {
-            "dir": "${keycloak.theme.dir}"
+            "dir": "${openfact.theme.dir}"
         }
     },
 
@@ -60,46 +58,24 @@
 
     "connectionsJpa": {
         "default": {
-            "url": "${keycloak.connectionsJpa.url:jdbc:h2:mem:test}",
-            "driver": "${keycloak.connectionsJpa.driver:org.h2.Driver}",
-            "driverDialect": "${keycloak.connectionsJpa.driverDialect:}",
-            "user": "${keycloak.connectionsJpa.user:sa}",
-            "password": "${keycloak.connectionsJpa.password:}",
-            "databaseSchema": "${keycloak.connectionsJpa.databaseSchema:update}",
-            "showSql": "${keycloak.connectionsJpa.showSql:false}",
-            "formatSql": "${keycloak.connectionsJpa.formatSql:true}",
-            "globalStatsInterval": "${keycloak.connectionsJpa.globalStatsInterval:-1}"
+            "url": "${openfact.connectionsJpa.url:jdbc:h2:mem:test}",
+            "driver": "${openfact.connectionsJpa.driver:org.h2.Driver}",
+            "driverDialect": "${openfact.connectionsJpa.driverDialect:}",
+            "user": "${openfact.connectionsJpa.user:sa}",
+            "password": "${openfact.connectionsJpa.password:}",
+            "initializeEmpty": true,
+            "migrationStrategy": "update",
+            "showSql": "${openfact.connectionsJpa.showSql:false}",
+            "formatSql": "${openfact.connectionsJpa.formatSql:true}",
+            "globalStatsInterval": "${openfact.connectionsJpa.globalStatsInterval:-1}"
         }
     },
 
-    "connectionsMongo": {
-        "default": {
-            "host": "${keycloak.connectionsMongo.host:127.0.0.1}",
-            "port": "${keycloak.connectionsMongo.port:27017}",
-            "db": "${keycloak.connectionsMongo.db:keycloak}",
-            "databaseSchema": "${keycloak.connectionsMongo.databaseSchema:update}",
-            "connectionsPerHost": "${keycloak.connectionsMongo.connectionsPerHost:100}"
-        }
-    },
-
-    "realmCache": {
-        "default" : {
+    "jta-lookup": {
+        "provider": "${openfact.jta.lookup.provider:jboss}",
+        "jboss" : {
             "enabled": true
         }
-    },
 
-    "connectionsInfinispan": {
-        "default": {
-            "clustered": "${keycloak.connectionsInfinispan.clustered:false}",
-            "async": "${keycloak.connectionsInfinispan.async:false}",
-            "sessionsOwners": "${keycloak.connectionsInfinispan.sessionsOwners:2}"
-        }
-    },
-
-    "scripting": {
-    },
-    
-    "client-authenticator": {
-        "provider": "test"
     }
 }

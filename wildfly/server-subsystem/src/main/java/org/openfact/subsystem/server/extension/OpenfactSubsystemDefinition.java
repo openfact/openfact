@@ -54,6 +54,13 @@ public class OpenfactSubsystemDefinition extends SimpleResourceDefinition {
             .setDefaultValue(new ModelNode("master"))
             .setRestartAllServices()
             .build();
+
+    static final SimpleAttributeDefinition ADMIN_CONSOLE_URL =
+            new SimpleAttributeDefinitionBuilder("admin-console-url", ModelType.STRING, true)
+                    .setAllowExpression(true)
+                    .setDefaultValue(new ModelNode("http://localhost:4200"))
+                    .setRestartAllServices()
+                    .build();
     
     static final SimpleAttributeDefinition SCHEDULED_TASK_INTERVAL =
         new SimpleAttributeDefinitionBuilder("scheduled-task-interval", ModelType.LONG, true)
@@ -68,6 +75,7 @@ public class OpenfactSubsystemDefinition extends SimpleResourceDefinition {
         ALL_ATTRIBUTES.add(WEB_CONTEXT);
         ALL_ATTRIBUTES.add(PROVIDERS);
         ALL_ATTRIBUTES.add(MASTER_ORGANIZATION_NAME);
+        ALL_ATTRIBUTES.add(ADMIN_CONSOLE_URL);
         ALL_ATTRIBUTES.add(SCHEDULED_TASK_INTERVAL);
     }
 

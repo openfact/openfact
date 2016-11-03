@@ -1,1 +1,0 @@
-${msg("emailReceipBody",link, linkExpiration, organizationName)}

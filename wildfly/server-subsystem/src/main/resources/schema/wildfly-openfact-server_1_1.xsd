@@ -22,6 +22,7 @@
             <xs:element name="web-context" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="providers" type="providersLocationType" minOccurs="0" maxOccurs="1"/>
             <xs:element name="master-organization-name" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="admin-console-url" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="scheduled-task-interval" type="xs:long" minOccurs="0" maxOccurs="1"/>
             <xs:element name="theme" type="themeDefaultsType" minOccurs="0" maxOccurs="1"/>
             <xs:element name="spi" type="spiType" minOccurs="0" maxOccurs="unbounded"/>

@@ -199,7 +199,7 @@
 		<module>server-spi</module>
 		<module>model</module>
 		<module>themes</module>
-		<!--<module>testsuite</module>-->
+		<module>testsuite</module>
 		<module>dependencies</module>
 		<module>wildfly</module>
 	</modules>

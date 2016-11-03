@@ -16,9 +16,23 @@
  */
 package org.openfact.services;
 
+import org.openfact.common.Version;
+import org.openfact.services.resources.ThemeResource;
+
+import javax.ws.rs.core.UriBuilder;
+import java.net.URI;
+
 /**
  * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
 public class Urls {
+
+    public static URI themeRoot(URI baseUri) {
+        return themeBase(baseUri).path(Version.RESOURCES_VERSION).build();
+    }
+
+    private static UriBuilder themeBase(URI baseUri) {
+        return UriBuilder.fromUri(baseUri).path(ThemeResource.class);
+    }
 
 }

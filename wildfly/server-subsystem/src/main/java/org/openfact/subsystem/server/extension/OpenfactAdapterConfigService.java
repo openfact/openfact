@@ -73,6 +73,7 @@ public final class OpenfactAdapterConfigService {
         copy.remove("web-context");
         massageScheduledTaskInterval(copy);
         massageMasterOrganization(copy);
+        massageAdminConsole(copy);
         massageTheme(copy);
         massageSpis(copy);
         //System.out.println("******** JSON *************");
@@ -94,6 +95,12 @@ public final class OpenfactAdapterConfigService {
         if (!copy.hasDefined("master-organization-name")) return;
         ModelNode master = copy.remove("master-organization-name");
         copy.get("admin", "organization").set(master);
+    }
+
+    private void massageAdminConsole(ModelNode copy) {
+        if (!copy.hasDefined("admin-console-url")) return;
+        ModelNode adminConsole= copy.remove("admin-console-url");
+        copy.get("adminConsole", "url").set(adminConsole);
     }
     
     private void massageTheme(ModelNode copy) {

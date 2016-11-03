@@ -87,6 +87,10 @@ public class JsonConfigConverterTestCase {
             + "        \"organization\": \"master\"\n"
             + "    },\n"
             + "\n"
+                      + "    \"adminConsole\": {\n"
+                      + "        \"url\": \"http://localhost:4200\"\n"
+                      + "    },\n"
+                      + "\n"
             + "    \"eventsStore\": {\n"
             + "        \"provider\": \"jpa\",\n"
             + "        \"jpa\": {\n"
@@ -167,6 +171,15 @@ public class JsonConfigConverterTestCase {
             "    \"name\" => \"master-organization-name\",\n" +
             "    \"value\" => \"master\"\n" +
             "}"
+        ));
+
+        ops.add(ModelNode.fromString(
+                "{\n" +
+                        "    \"operation\" => \"write-attribute\",\n" +
+                        "    \"address\" => [(\"subsystem\" => \"openfact-server\")],\n" +
+                        "    \"name\" => \"admin-console-url\",\n" +
+                        "    \"value\" => \"http://localhost:4200\"\n" +
+                        "}"
         ));
         
         ops.add(ModelNode.fromString(

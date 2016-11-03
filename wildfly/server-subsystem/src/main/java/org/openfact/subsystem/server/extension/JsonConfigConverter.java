@@ -29,9 +29,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import static org.jboss.as.controller.descriptions.ModelDescriptionConstants.WRITE_ATTRIBUTE_OPERATION;
-import static org.openfact.subsystem.server.extension.OpenfactSubsystemDefinition.MASTER_ORGANIZATION_NAME;
-import static org.openfact.subsystem.server.extension.OpenfactSubsystemDefinition.PROVIDERS;
-import static org.openfact.subsystem.server.extension.OpenfactSubsystemDefinition.SCHEDULED_TASK_INTERVAL;
+import static org.openfact.subsystem.server.extension.OpenfactSubsystemDefinition.*;
 import static org.openfact.subsystem.server.extension.ThemeResourceDefinition.CACHE_TEMPLATES;
 import static org.openfact.subsystem.server.extension.ThemeResourceDefinition.CACHE_THEMES;
 import static org.openfact.subsystem.server.extension.ThemeResourceDefinition.DEFAULT;
@@ -52,6 +50,7 @@ public class JsonConfigConverter {
     static {
         NON_SPI_LIST.add("providers");
         NON_SPI_LIST.add("admin");
+        NON_SPI_LIST.add("adminConsole");
         NON_SPI_LIST.add("theme");
         NON_SPI_LIST.add("scheduled");
     }
@@ -71,6 +70,7 @@ public class JsonConfigConverter {
         JsonNode root = new ObjectMapper().readTree(json);
 
         list.add(masterOrganizationName(root, subsysAddress));
+        list.add(masterAdminConsole(root, subsysAddress));
         list.add(scheduledTaskInterval(root, subsysAddress));
         list.add(providers(root, subsysAddress));
         list.add(theme(root, subsysAddress.append(ThemeResourceDefinition.TAG_NAME, 
@@ -87,6 +87,17 @@ public class JsonConfigConverter {
         
         ModelNode op = Util.createOperation(WRITE_ATTRIBUTE_OPERATION, addr);
         op.get("name").set(MASTER_ORGANIZATION_NAME.getName());
+        op.get("value").set(value);
+        return op;
+    }
+
+    private static ModelNode masterAdminConsole(JsonNode root, PathAddress addr) {
+        JsonNode targetNode = getNode(root, "adminConsole", "url");
+        String value = ADMIN_CONSOLE_URL.getDefaultValue().asString();
+        if (targetNode != null) value = targetNode.asText(value);
+
+        ModelNode op = Util.createOperation(WRITE_ATTRIBUTE_OPERATION, addr);
+        op.get("name").set(ADMIN_CONSOLE_URL.getName());
         op.get("value").set(value);
         return op;
     }

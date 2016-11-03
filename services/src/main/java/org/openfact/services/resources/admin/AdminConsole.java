@@ -23,10 +23,12 @@ import org.openfact.common.ClientConnection;
 import org.openfact.common.Version;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.services.Urls;
 import org.openfact.services.resources.OpenfactApplication;
 import org.openfact.theme.BrowserSecurityHeaderSetup;
 import org.openfact.theme.FreeMarkerException;
 import org.openfact.theme.FreeMarkerUtil;
+import org.openfact.theme.Theme;
 import org.openfact.utils.MediaType;
 
 public class AdminConsole {
@@ -68,33 +70,26 @@ public class AdminConsole {
      */
     @GET
     @NoCache
-    public Response getMainPage() throws URISyntaxException, IOException {
-        try {
-            if (!uriInfo.getRequestUri().getPath().endsWith("/")) {
-                return Response.status(302).location(uriInfo.getRequestUriBuilder().path("/").build())
-                        .build();
-            } else {
-                Map<String, Object> map = new HashMap<>();
+    public Response getMainPage() throws URISyntaxException, IOException, FreeMarkerException {
+        if (!uriInfo.getRequestUri().getPath().endsWith("/")) {
+            return Response.status(302).location(uriInfo.getRequestUriBuilder().path("/").build()).build();
+        } else {
+            Theme theme = AdminRoot.getTheme(session, organization);
 
-                URI baseUri = uriInfo.getBaseUri();
+            Map<String, Object> map = new HashMap<>();
 
-                String authUrl = baseUri.toString();
-                authUrl = authUrl.substring(0, authUrl.length() - 1);
+            URI baseUri = uriInfo.getBaseUri();
 
-                map.put("authUrl", authUrl);
-                map.put("masterOrganization", Config.getAdminOrganization());
-                map.put("resourceVersion", Version.RESOURCES_VERSION);
+            String openfactUrl = baseUri.toString();
+            openfactUrl = openfactUrl.substring(0, openfactUrl.length() - 1);
 
-                FreeMarkerUtil freeMarkerUtil = new FreeMarkerUtil();
-                String result = freeMarkerUtil.processTemplate(map, "index.ftl", null);
-                Response.ResponseBuilder builder = Response.status(Response.Status.OK)
-                        .type(MediaType.TEXT_HTML_UTF_8).language(Locale.ENGLISH).entity(result);
-                BrowserSecurityHeaderSetup.headers(builder, organization);
-                return builder.build();
-            }
-        } catch (FreeMarkerException e) {
-            logger.error(e);
-            throw new IOException(e);
+            map.put("adminConsoleUrl", Config.getAdminConsoleUrl());
+
+            FreeMarkerUtil freeMarkerUtil = new FreeMarkerUtil();
+            String result = freeMarkerUtil.processTemplate(map, "index.ftl", theme);
+            Response.ResponseBuilder builder = Response.status(Response.Status.OK).type(MediaType.TEXT_HTML_UTF_8).language(Locale.ENGLISH).entity(result);
+            BrowserSecurityHeaderSetup.headers(builder, organization);
+            return builder.build();
         }
     }
 

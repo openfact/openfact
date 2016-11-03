@@ -25,6 +25,10 @@ import org.openfact.security.SecurityContextProvider;
 import org.openfact.services.managers.OrganizationManager;
 import org.openfact.services.resources.Cors;
 import org.openfact.services.resources.admin.info.ServerInfoAdminResource;
+import org.openfact.theme.Theme;
+import org.openfact.theme.ThemeProvider;
+
+import java.io.IOException;
 
 /**
  * @author carlosthe19916@sistcoop.com
@@ -63,8 +67,8 @@ public class AdminRoot {
     /**
      * Convenience path to master Organization admin console
      *
-     * @exclude
      * @return
+     * @exclude
      */
     @GET
     public Response masterOrganizationAdminConsoleRedirect() {
@@ -76,8 +80,8 @@ public class AdminRoot {
     /**
      * Convenience path to master Organization admin console
      *
-     * @exclude
      * @return
+     * @exclude
      */
     @GET
     @Path("index.{html:html}")
@@ -105,10 +109,9 @@ public class AdminRoot {
     /**
      * path to Organization admin console ui
      *
-     * @exclude
-     * @param name
-     *            Organization name (not id!)
+     * @param name Organization name (not id!)
      * @return
+     * @exclude
      */
     @Path("{organization}/console")
     public AdminConsole getAdminConsole(final @PathParam("organization") String name) {
@@ -242,6 +245,11 @@ public class AdminRoot {
         CommonsAdminResource commonsResource = new CommonsAdminResource(auth);
         ResteasyProviderFactory.getInstance().injectProperties(commonsResource);
         return commonsResource;
+    }
+
+    public static Theme getTheme(OpenfactSession session, OrganizationModel organization) throws IOException {
+        ThemeProvider themeProvider = session.getProvider(ThemeProvider.class, "extending");
+        return themeProvider.getTheme("adminTheme", Theme.Type.ADMIN);
     }
 
 }

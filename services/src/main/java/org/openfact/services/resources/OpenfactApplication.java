@@ -113,6 +113,7 @@ public class OpenfactApplication extends Application {
             singletons.add(new RobotsResource());
             singletons.add(new OrganizationsResource());
             singletons.add(new AdminRoot());
+            classes.add(ThemeResource.class);
 
             classes.add(OpenfactTransactionCommitter.class);
 

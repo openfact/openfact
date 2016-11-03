@@ -36,10 +36,7 @@ import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 
 import static org.openfact.subsystem.server.extension.OpenfactExtension.PATH_SUBSYSTEM;
-import static org.openfact.subsystem.server.extension.OpenfactSubsystemDefinition.MASTER_ORGANIZATION_NAME;
-import static org.openfact.subsystem.server.extension.OpenfactSubsystemDefinition.PROVIDERS;
-import static org.openfact.subsystem.server.extension.OpenfactSubsystemDefinition.SCHEDULED_TASK_INTERVAL;
-import static org.openfact.subsystem.server.extension.OpenfactSubsystemDefinition.WEB_CONTEXT;
+import static org.openfact.subsystem.server.extension.OpenfactSubsystemDefinition.*;
 import static org.openfact.subsystem.server.extension.ProviderResourceDefinition.ENABLED;
 import static org.openfact.subsystem.server.extension.ProviderResourceDefinition.PROPERTIES;
 import static org.openfact.subsystem.server.extension.SpiResourceDefinition.DEFAULT_PROVIDER;
@@ -69,6 +66,8 @@ class OpenfactSubsystemParser implements XMLStreamConstants, XMLElementReader<Li
                 readProviders(reader, addOpenfactSub);
             } else if (reader.getLocalName().equals(MASTER_ORGANIZATION_NAME.getXmlName())) {
                 MASTER_ORGANIZATION_NAME.parseAndSetParameter(reader.getElementText(), addOpenfactSub, reader);
+            } else if (reader.getLocalName().equals(ADMIN_CONSOLE_URL.getXmlName())) {
+                ADMIN_CONSOLE_URL.parseAndSetParameter(reader.getElementText(), addOpenfactSub, reader);
             } else if (reader.getLocalName().equals(SCHEDULED_TASK_INTERVAL.getXmlName())) {
                 SCHEDULED_TASK_INTERVAL.parseAndSetParameter(reader.getElementText(), addOpenfactSub, reader);
             } else if (reader.getLocalName().equals(ThemeResourceDefinition.TAG_NAME)) {
@@ -189,6 +188,7 @@ class OpenfactSubsystemParser implements XMLStreamConstants, XMLElementReader<Li
         writeWebContext(writer, context);
         writeList(writer, context.getModelNode(), PROVIDERS, "provider");
         writeAdmin(writer, context);
+        writeAdminConsole(writer, context);
         writeScheduledTaskInterval(writer, context);
         writeThemeDefaults(writer, context);
         writeSpis(writer, context);
@@ -259,6 +259,14 @@ class OpenfactSubsystemParser implements XMLStreamConstants, XMLElementReader<Li
         }
 
         MASTER_ORGANIZATION_NAME.marshallAsElement(context.getModelNode(), writer);
+    }
+
+    private void writeAdminConsole(XMLExtendedStreamWriter writer, SubsystemMarshallingContext context) throws XMLStreamException {
+        if (!context.getModelNode().get(ADMIN_CONSOLE_URL.getName()).isDefined()) {
+            return;
+        }
+
+        ADMIN_CONSOLE_URL.marshallAsElement(context.getModelNode(), writer);
     }
     
     private void writeScheduledTaskInterval(XMLExtendedStreamWriter writer, SubsystemMarshallingContext context) throws XMLStreamException {
