@@ -12,7 +12,7 @@
         <subsystem>io.xml</subsystem>
 
         <!--<subsystem supplement="ha">keycloak-infinispan.xml</subsystem>-->
-        <subsystem>infinispan.xml</subsystem>
+        <subsystem supplement="ha">infinispan.xml</subsystem>
 
         <subsystem>jaxrs.xml</subsystem>
         <subsystem>jca.xml</subsystem>

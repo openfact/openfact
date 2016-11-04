@@ -31,7 +31,7 @@
                         <include>**/*TestCase.java</include>
                     </includes>
                 </configuration>
-            </plugin>        
+            </plugin>
         </plugins>
         <filters>
             <filter>src/main/config/default-server-subsys-config.properties</filter>

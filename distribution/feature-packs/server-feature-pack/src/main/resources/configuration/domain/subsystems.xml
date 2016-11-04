@@ -13,7 +13,7 @@
       <subsystem>security.xml</subsystem>
       <subsystem>security-manager.xml</subsystem>
    </subsystems>
-   <subsystems name="auth-server-standalone">
+   <subsystems name="openfact-server-standalone">
       <!-- Each subsystem to be included relative to the src/main/resources directory -->
       <subsystem>logging.xml</subsystem>
       <subsystem>bean-validation.xml</subsystem>
@@ -22,7 +22,7 @@
       <subsystem>ejb3.xml</subsystem>
       <subsystem>io.xml</subsystem>
 
-      <!--<subsystem>keycloak-infinispan.xml</subsystem>-->
+      <!--<subsystem>openfact-infinispan.xml</subsystem>-->
       <subsystem>infinispan.xml</subsystem>
 
       <subsystem>jaxrs.xml</subsystem>
@@ -42,7 +42,7 @@
       <subsystem>openfact-server.xml</subsystem>
    </subsystems>
 
-   <subsystems name="auth-server-clustered">
+   <subsystems name="openfact-server-clustered">
       <!-- Each subsystem to be included relative to the src/main/resources directory -->
       <subsystem>logging.xml</subsystem>
       <subsystem>bean-validation.xml</subsystem>
@@ -51,8 +51,8 @@
       <subsystem supplement="ha">ejb3.xml</subsystem>
       <subsystem>io.xml</subsystem>
 
-      <!--<subsystem supplement="ha">keycloak-infinispan.xml</subsystem>-->
-      <subsystem>infinispan.xml</subsystem>
+      <!--<subsystem supplement="ha">openfact-infinispan.xml</subsystem>-->
+      <subsystem supplement="ha">infinispan.xml</subsystem>
 
       <subsystem>jaxrs.xml</subsystem>
       <subsystem>jca.xml</subsystem>

@@ -35,7 +35,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class JsonConfigConverterTestCase {
 
-    private final PathElement domainRoot = PathElement.pathElement("profile", "auth-server-clustered");
+    private final PathElement domainRoot = PathElement.pathElement("profile", "openfact-server-clustered");
     private final PathAddress domainAddress = PathAddress.pathAddress(domainRoot)
                                                          .append(OpenfactExtension.PATH_SUBSYSTEM);
     private final PathAddress standaloneAddress = PathAddress.pathAddress(OpenfactExtension.PATH_SUBSYSTEM);

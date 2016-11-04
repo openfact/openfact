@@ -37,8 +37,8 @@
                 <json-formatter name="json-formatter"/>
             </formatters>
             <handlers>
-                <file-handler name="host-file" formatter="json-formatter" path="audit-log.log" relative-to="jboss.domain.data.dir"/>
-                <file-handler name="server-file" formatter="json-formatter" path="audit-log.log" relative-to="jboss.server.data.dir"/>
+                <file-handler name="host-file" formatter="json-formatter" relative-to="jboss.domain.data.dir" path="audit-log.log"/>
+                <file-handler name="server-file" formatter="json-formatter" relative-to="jboss.server.data.dir" path="audit-log.log"/>
             </handlers>
             <logger log-boot="true" log-read-only="false" enabled="false">
                 <handlers>
@@ -63,8 +63,6 @@
 
     <domain-controller>
         <local/>
-        <!-- Alternative remote domain controller configuration with a host and port -->
-        <!-- <remote protocol="remote" host="${jboss.domain.master.address}" port="${jboss.domain.master.port:9999}" security-realm="ManagementRealm"/> -->
     </domain-controller>
 
     <interfaces>
@@ -73,11 +71,6 @@
         </interface>
         <interface name="public">
             <inet-address value="${jboss.bind.address:127.0.0.1}"/>
-        </interface>
-        <interface name="unsecure">
-            <!-- Used for IIOP sockets in the standard configuration.
-                 To secure JacORB you need to setup SSL -->
-            <inet-address value="${jboss.bind.address.unsecure:127.0.0.1}"/>
         </interface>
 
         <?INTERFACES?>
@@ -89,14 +82,15 @@
             <heap size="64m" max-size="256m"/>
             <jvm-options>
                 <option value="-server"/>
-                <option value="-XX:MetaspaceSize=96m"/>
-                <option value="-XX:MaxMetaspaceSize=256m"/>
             </jvm-options>
         </jvm>
     </jvms>
 
     <servers>
-        <server name="server-one" group="main-server-group">
+        <!-- load-balancer should be removed in production systems and replaced with a better softare or hardare based one -->
+        <server name="load-balancer" group="load-balancer-group">
+        </server>
+        <server name="server-one" group="auth-server-group" auto-start="true">
             <!-- Remote JPDA debugging for a specific server
             <jvm name="default">
               <jvm-options>
@@ -104,16 +98,9 @@
               </jvm-options>
            </jvm>
            -->
-        </server>
-        <server name="server-two" group="main-server-group" auto-start="true">
             <!-- server-two avoids port conflicts by incrementing the ports in
                  the default socket-group declared in the server-group -->
             <socket-bindings port-offset="150"/>
-        </server>
-        <server name="server-three" group="other-server-group" auto-start="false">
-            <!-- server-three avoids port conflicts by incrementing the ports in
-                 the default socket-group declared in the server-group -->
-            <socket-bindings port-offset="250"/>
         </server>
     </servers>
 
