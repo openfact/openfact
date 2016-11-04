@@ -135,7 +135,7 @@
 		<version.easybatch>5.0.0-RC2</version.easybatch>
 
 		<version.jaxws-rt>2.2.8</version.jaxws-rt>
-		<version.keycloak>2.3.0.Final</version.keycloak>
+		<version.keycloak>2.2.1.Final</version.keycloak>
 	</properties>
 
 	<url>http://openfact.org</url>
@@ -920,6 +920,12 @@
 				<groupId>org.keycloak</groupId>
 				<artifactId>keycloak-servlet-filter-adapter</artifactId>
 				<version>${version.keycloak}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.keycloak</groupId>
+				<artifactId>keycloak-adapter-feature-pack</artifactId>
+				<version>${version.keycloak}</version>
+				<type>zip</type>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
