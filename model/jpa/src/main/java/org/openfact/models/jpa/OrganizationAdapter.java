@@ -322,19 +322,6 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     }
 
     @Override
-    public Map<String, String> getUblSenderConfig() {
-        Map<String, String> config = new HashMap<String, String>();
-        config.putAll(organization.getUblSenderConfig());
-        return Collections.unmodifiableMap(config);
-    }
-
-    @Override
-    public void setUblSenderConfig(Map<String, String> ublSenderConfig) {
-        organization.setUblSenderConfig(ublSenderConfig);
-        em.flush();
-    }
-
-    @Override
     public void setAttribute(String name, String value) {
         organization.getAttributes().put(name, value);
     }
@@ -414,37 +401,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     @Override
     public void setDefaultLocale(String locale) {
         organization.setDefaultLocale(locale);
-    }
-
-    @Override
-    public boolean isInternationalizationUblEnabled() {
-        return organization.isInternationalizationUblEnabled();
-    }
-
-    @Override
-    public void setInternationalizationUblEnabled(boolean enabled) {
-        organization.setInternationalizationUblEnabled(enabled);
-    }
-
-    @Override
-    public Set<String> getSupportedUblLocales() {
-        return organization.getSupportedUblLocales();
-    }
-
-    @Override
-    public void setSupportedUblLocales(Set<String> locales) {
-        organization.setSupportedUblLocales(locales);
-    }
-
-    @Override
-    public String getDefaultUblLocale() {
-        return organization.getDefaultUblLocale();
-    }
-
-    @Override
-    public void setDefaultUblLocale(String locale) {
-        organization.setDefaultUblLocale(locale);
-    }
+    }    
 
     @Override
     public long getEventsExpiration() {
@@ -454,54 +411,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     @Override
     public void setEventsExpiration(long expiration) {
         organization.setEventsExpiration(expiration);
-    }
-
-    @Override
-    public Set<String> getRequiredActions() {
-        Set<String> result = new HashSet<>();
-        for (OrganizationRequiredActionEntity attr : organization.getRequiredActions()) {
-            result.add(attr.getAction());
-        }
-        return result;
-    }
-
-    @Override
-    public void addRequiredAction(RequiredAction action) {
-        String actionName = action.name();
-        addRequiredAction(actionName);
-    }
-
-    @Override
-    public void addRequiredAction(String actionName) {
-        for (OrganizationRequiredActionEntity attr : organization.getRequiredActions()) {
-            if (attr.getAction().equals(actionName)) {
-                return;
-            }
-        }
-        OrganizationRequiredActionEntity attr = new OrganizationRequiredActionEntity();
-        attr.setAction(actionName);
-        attr.setOrganization(organization);
-        em.persist(attr);
-        organization.getRequiredActions().add(attr);
-    }
-
-    @Override
-    public void removeRequiredAction(RequiredAction action) {
-        String actionName = action.name();
-        removeRequiredAction(actionName);
-    }
-
-    @Override
-    public void removeRequiredAction(String actionName) {
-        Iterator<OrganizationRequiredActionEntity> it = organization.getRequiredActions().iterator();
-        while (it.hasNext()) {
-            OrganizationRequiredActionEntity attr = it.next();
-            if (attr.getAction().equals(actionName)) {
-                it.remove();
-                em.remove(attr);
-            }
-        }
-    }
+    }    
 
     @Override
     public ComponentModel addComponentModel(ComponentModel model) {

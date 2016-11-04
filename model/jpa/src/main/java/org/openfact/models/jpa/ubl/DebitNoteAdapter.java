@@ -60,7 +60,6 @@ import org.openfact.models.jpa.ubl.common.SupplierPartyAdapter;
 import org.openfact.models.jpa.ubl.common.TaxTotalAdapter;
 import org.openfact.models.jpa.ubl.common.UBLExtensionsAdapter;
 import org.openfact.models.ubl.DebitNoteModel;
-import org.openfact.models.ubl.SendEventModel;
 import org.openfact.models.ubl.common.BillingReferenceModel;
 import org.openfact.models.ubl.common.CustomerPartyModel;
 import org.openfact.models.ubl.common.DebitNoteLineModel;
@@ -966,12 +965,6 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
 			return ((DebitNoteAdapter) model).getEntity();
 		}
 		return em.getReference(DebitNoteEntity.class, model.getId());
-	}
-
-	@Override
-	public List<SendEventModel> getSendEvent() {
-		return debitNote.getSendEvents().stream().map(f -> new SendEventAdapter(session, organization, em, f))
-				.collect(Collectors.toList());
 	}
 
 	@Override

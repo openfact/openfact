@@ -23,7 +23,6 @@
                       transaction-type="RESOURCE_LOCAL">
         <class>org.openfact.models.jpa.entities.MigrationModelEntity</class>
         <class>org.openfact.models.jpa.entities.OrganizationEntity</class>
-        <class>org.openfact.models.jpa.entities.OrganizationRequiredActionEntity</class>
         <class>org.openfact.models.jpa.entities.ComponentEntity</class>
         <class>org.openfact.models.jpa.entities.ComponentConfigEntity</class>
 
@@ -32,10 +31,6 @@
         <class>org.openfact.events.jpa.AdminEventEntity</class>
 
         <!-- catalog -->
-        <class>org.openfact.models.jpa.entities.catalog.CodeCatalogEntity</class>
-        <class>org.openfact.models.jpa.entities.catalog.CountryCatalogEntity</class>
-        <class>org.openfact.models.jpa.entities.catalog.CurrencyCatalogEntity</class>
-        <class>org.openfact.models.jpa.entities.catalog.UnitCatalogEntity</class>
 
         <!-- ubl -->
         <class>org.openfact.models.jpa.entities.ubl.JobReportEntity</class>
@@ -121,27 +116,13 @@
         <class>org.openfact.models.jpa.entities.ubl.common.ResponseEntity</class>
 
         <!-- ubl pe -->
-        <class>org.openfact.models.jpa.entities.ubl.pe.PerceptionEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.pe.RetentionEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.pe.SummaryDocumentsEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.pe.VoidedDocumentsEntity</class>
-
-        <class>org.openfact.models.jpa.entities.ubl.pe.PerceptionAttributeEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.pe.RetentionAttributeEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.pe.SummaryDocumentsAttributeEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.pe.VoidedDocumentsAttributeEntity</class>
 
 
         <!-- ubl common pe -->
-        <class>org.openfact.models.jpa.entities.ubl.common.pe.PerceptionDocumentReferenceEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.pe.PerceptionInformationEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.pe.RetentionDocumentReferenceEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.pe.RetentionInformationEntity</class>
 
         <class>org.openfact.models.jpa.entities.ubl.common.ShipmentEntity</class>
         <class>org.openfact.models.jpa.entities.ubl.common.ShipmentStageEntity</class>
         <class>org.openfact.models.jpa.entities.ubl.common.StatusEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.SummaryDocumentsLineEntity</class>
         <class>org.openfact.models.jpa.entities.ubl.common.TransportMeansEntity</class>
         <class>org.openfact.models.jpa.entities.ubl.common.VoidedDocumentsLineEntity</class>
         <class>org.openfact.models.jpa.entities.ubl.common.DespatchLineEntity</class>

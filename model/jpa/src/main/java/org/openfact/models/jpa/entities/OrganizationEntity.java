@@ -252,10 +252,6 @@ public class OrganizationEntity {
     @Column(name = "DEFAULT_CURRENCY")
     protected String defaultCurrency;
 
-    /** Required actions */
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "organization")
-    protected Collection<OrganizationRequiredActionEntity> requiredActions = new ArrayList<>();
-
     /**
      * Cascade relations
      */
@@ -596,15 +592,7 @@ public class OrganizationEntity {
     public void setDefaultCurrency(String defaultCurrency) {
         this.defaultCurrency = defaultCurrency;
     }
-
-    public Collection<OrganizationRequiredActionEntity> getRequiredActions() {
-        return requiredActions;
-    }
-
-    public void setRequiredActions(Collection<OrganizationRequiredActionEntity> requiredActions) {
-        this.requiredActions = requiredActions;
-    }
-
+    
     public List<InvoiceEntity> getInvoices() {
         return invoices;
     }
