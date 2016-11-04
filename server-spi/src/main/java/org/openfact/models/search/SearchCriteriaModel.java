@@ -1,18 +1,19 @@
-/*
- * Copyright 2014 JBoss Inc
- *
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 package org.openfact.models.search;
 
 import java.io.Serializable;
@@ -22,7 +23,7 @@ import java.util.List;
 /**
  * Generic search criteria used when searching for beans.
  *
- * @author eric.wittmann@redhat.com
+ * @author eric.wittmann@sistcoop.com
  */
 public class SearchCriteriaModel implements Serializable {
 
@@ -40,13 +41,10 @@ public class SearchCriteriaModel implements Serializable {
 
     /**
      * Adds a single filter to the criteria.
-     * 
-     * @param name
-     *            the filter name
-     * @param value
-     *            the filter value
-     * @param operator
-     *            the operator type
+     *
+     * @param name     the filter name
+     * @param value    the filter value
+     * @param operator the operator type
      */
     public void addFilter(String name, Object value, SearchCriteriaFilterOperator operator) {
         SearchCriteriaFilterModel filter = new SearchCriteriaFilterModel();
@@ -58,9 +56,8 @@ public class SearchCriteriaModel implements Serializable {
 
     /**
      * Adds a single filter to the criteria.
-     * 
-     * @param filter
-     *            the filter object
+     *
+     * @param filter the filter object
      */
     public void addFilter(SearchCriteriaFilterModel filter) {
         filters.add(filter);
@@ -78,8 +75,7 @@ public class SearchCriteriaModel implements Serializable {
     }
 
     /**
-     * @param page
-     *            the page
+     * @param page the page
      */
     public void setPage(int page) {
         if (this.paging == null)
@@ -88,8 +84,7 @@ public class SearchCriteriaModel implements Serializable {
     }
 
     /**
-     * @param pageSize
-     *            size of page
+     * @param pageSize size of page
      */
     public void setPageSize(int pageSize) {
         if (this.paging == null)
@@ -105,8 +100,7 @@ public class SearchCriteriaModel implements Serializable {
     }
 
     /**
-     * @param filters
-     *            the filters to set
+     * @param filters the filters to set
      */
     public void setFilters(List<SearchCriteriaFilterModel> filters) {
         this.filters = filters;
@@ -120,8 +114,7 @@ public class SearchCriteriaModel implements Serializable {
     }
 
     /**
-     * @param paging
-     *            the paging to set
+     * @param paging the paging to set
      */
     public void setPaging(PagingModel paging) {
         this.paging = paging;
@@ -135,8 +128,7 @@ public class SearchCriteriaModel implements Serializable {
     }
 
     /**
-     * @param orderBy
-     *            the orderBy to set
+     * @param orderBy the orderBy to set
      */
     public void setOrders(List<OrderByModel> orders) {
         this.orders = orders;

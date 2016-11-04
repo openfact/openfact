@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,36 +13,18 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 package org.openfact.services.managers;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.List;
 
 import org.openfact.Config;
 import org.openfact.common.Version;
-import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.catalog.CodeCatalogModel;
-import org.openfact.models.catalog.CountryCatalogModel;
-import org.openfact.models.catalog.CurrencyCatalogModel;
-import org.openfact.models.catalog.UnitCatalogModel;
 import org.openfact.models.utils.DefaultKeyProviders;
-import org.openfact.models.utils.OpenfactModelUtils;
-import org.openfact.representations.idm.catalog.CodeCatalogRepresentation;
-import org.openfact.representations.idm.catalog.CountryCatalogRepresentation;
-import org.openfact.representations.idm.catalog.CurrencyCatalogRepresentation;
-import org.openfact.representations.idm.catalog.UnitCatalogRepresentation;
 import org.openfact.services.ServicesLogger;
-import org.openfact.util.JsonSerialization;
-
-import com.fasterxml.jackson.core.type.TypeReference;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  * @version $Revision: 1 $
  */
 public class ApplianceBootstrap {

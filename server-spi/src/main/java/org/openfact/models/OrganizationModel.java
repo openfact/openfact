@@ -1,13 +1,29 @@
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
 package org.openfact.models;
+
+import org.openfact.component.ComponentModel;
+import org.openfact.provider.ProviderEvent;
 
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import org.openfact.component.ComponentModel;
-import org.openfact.provider.ProviderEvent;
 
 public interface OrganizationModel {
 
@@ -103,21 +119,6 @@ public interface OrganizationModel {
     void setDefaultLocale(String locale);
 
     /**
-     * Internationalization ubl
-     */
-    boolean isInternationalizationUblEnabled();
-
-    void setInternationalizationUblEnabled(boolean enabled);
-
-    Set<String> getSupportedUblLocales();
-
-    void setSupportedUblLocales(Set<String> locales);
-
-    String getDefaultUblLocale();
-
-    void setDefaultUblLocale(String locale);
-
-    /**
      * Task schedules
      */
     Date getTaskFirstTime();
@@ -178,13 +179,6 @@ public interface OrganizationModel {
     void setSmtpConfig(Map<String, String> smtpConfig);
 
     /**
-     * Ubl server
-     */
-    Map<String, String> getUblSenderConfig();
-
-    void setUblSenderConfig(Map<String, String> ublSenderConfig);
-
-    /**
      * Attributes
      */
     void setAttribute(String name, String value);
@@ -202,38 +196,6 @@ public interface OrganizationModel {
     String getDisplayNameHtml();
 
     void setDisplayNameHtml(String displayNameHtml);
-
-    /**
-     * Required actions
-     */
-    Set<String> getRequiredActions();
-
-    void addRequiredAction(RequiredAction action);
-
-    void addRequiredAction(String actionName);
-
-    void removeRequiredAction(RequiredAction action);
-
-    void removeRequiredAction(String actionName);
-
-    /**
-     * Events interfaces
-     */
-    interface OrganizationCreationEvent extends ProviderEvent {
-        OrganizationModel getCreatedOrganization();
-    }
-
-    interface OrganizationPostCreateEvent extends ProviderEvent {
-        OrganizationModel getCreatedOrganization();
-
-        OpenfactSession getOpenfactSession();
-    }
-
-    interface OrganizationRemovedEvent extends ProviderEvent {
-        OrganizationModel getOrganization();
-
-        OpenfactSession getOpenfactSession();
-    }
 
     /**
      * Components
@@ -263,6 +225,25 @@ public interface OrganizationModel {
 
     public static enum RequiredAction {
         ACTION1, ACTION2, ACTION3, ACTION4
+    }
+
+    /**
+     * Events interfaces
+     */
+    interface OrganizationCreationEvent extends ProviderEvent {
+        OrganizationModel getCreatedOrganization();
+    }
+
+    interface OrganizationPostCreateEvent extends ProviderEvent {
+        OrganizationModel getCreatedOrganization();
+
+        OpenfactSession getOpenfactSession();
+    }
+
+    interface OrganizationRemovedEvent extends ProviderEvent {
+        OrganizationModel getOrganization();
+
+        OpenfactSession getOpenfactSession();
     }
 
 }

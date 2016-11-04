@@ -1,62 +1,36 @@
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
 package org.openfact.models.utils;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Map;
-import java.util.Set;
-import java.util.function.BiFunction;
-import java.util.function.Function;
 
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.component.ComponentModel;
 import org.openfact.keys.KeyProvider;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.catalog.CodeCatalogModel;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.ubl.CreditNoteModel;
 import org.openfact.models.ubl.DebitNoteModel;
 import org.openfact.models.ubl.InvoiceModel;
-import org.openfact.models.ubl.common.AddressModel;
-import org.openfact.models.ubl.common.AllowanceChargeModel;
-import org.openfact.models.ubl.common.AttachmentModel;
-import org.openfact.models.ubl.common.BillingReferenceModel;
-import org.openfact.models.ubl.common.BinaryObjectModel;
-import org.openfact.models.ubl.common.CountryModel;
-import org.openfact.models.ubl.common.CreditNoteLineModel;
-import org.openfact.models.ubl.common.CustomerPartyModel;
-import org.openfact.models.ubl.common.DebitNoteLineModel;
-import org.openfact.models.ubl.common.DocumentReferenceModel;
-import org.openfact.models.ubl.common.ExtensionContentModel;
-import org.openfact.models.ubl.common.ExternalReferenceModel;
-import org.openfact.models.ubl.common.InvoiceLineModel;
-import org.openfact.models.ubl.common.ItemIdentificationModel;
-import org.openfact.models.ubl.common.ItemModel;
-import org.openfact.models.ubl.common.MonetaryTotalModel;
-import org.openfact.models.ubl.common.PartyLegalModel;
-import org.openfact.models.ubl.common.PartyModel;
-import org.openfact.models.ubl.common.PriceModel;
-import org.openfact.models.ubl.common.PricingReferenceModel;
-import org.openfact.models.ubl.common.QuantityModel;
-import org.openfact.models.ubl.common.ResponseModel;
-import org.openfact.models.ubl.common.SignatureModel;
-import org.openfact.models.ubl.common.SupplierPartyModel;
-import org.openfact.models.ubl.common.TaxCategoryModel;
-import org.openfact.models.ubl.common.TaxSchemeModel;
-import org.openfact.models.ubl.common.TaxSubtotalModel;
-import org.openfact.models.ubl.common.TaxTotalModel;
-import org.openfact.models.ubl.common.UBLExtensionModel;
-import org.openfact.models.ubl.common.UBLExtensionsModel;
+import org.openfact.models.ubl.common.*;
 import org.openfact.provider.ProviderConfigProperty;
 import org.openfact.representations.idm.ComponentRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
-import org.openfact.representations.idm.catalog.CodeCatalogRepresentation;
 import org.openfact.representations.idm.search.PagingRepresentation;
 import org.openfact.representations.idm.search.SearchCriteriaFilterOperatorRepresentation;
 import org.openfact.representations.idm.search.SearchCriteriaFilterRepresentation.FilterValueType;
@@ -64,36 +38,13 @@ import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
 import org.openfact.representations.idm.ubl.CreditNoteRepresentation;
 import org.openfact.representations.idm.ubl.DebitNoteRepresentation;
 import org.openfact.representations.idm.ubl.InvoiceRepresentation;
-import org.openfact.representations.idm.ubl.common.AddressRepresentation;
-import org.openfact.representations.idm.ubl.common.AllowanceChargeRepresentation;
-import org.openfact.representations.idm.ubl.common.AttachmentRepresentation;
-import org.openfact.representations.idm.ubl.common.BillingReferenceRepresentation;
-import org.openfact.representations.idm.ubl.common.BinaryObjectRepresentation;
-import org.openfact.representations.idm.ubl.common.CountryRepresentation;
-import org.openfact.representations.idm.ubl.common.CreditNoteLineRepresentation;
-import org.openfact.representations.idm.ubl.common.CustomerPartyRepresentation;
-import org.openfact.representations.idm.ubl.common.DebitNoteLineRepresentation;
-import org.openfact.representations.idm.ubl.common.DocumentReferenceRepresentation;
-import org.openfact.representations.idm.ubl.common.ExtensionContentRepresentation;
-import org.openfact.representations.idm.ubl.common.ExternalReferenceRepresentation;
-import org.openfact.representations.idm.ubl.common.InvoiceLineRepresentation;
-import org.openfact.representations.idm.ubl.common.ItemIdentificationRepresentation;
-import org.openfact.representations.idm.ubl.common.ItemRepresentation;
-import org.openfact.representations.idm.ubl.common.MonetaryTotalRepresentation;
-import org.openfact.representations.idm.ubl.common.PartyLegalEntityRepresentation;
-import org.openfact.representations.idm.ubl.common.PartyRepresentation;
-import org.openfact.representations.idm.ubl.common.PriceRepresentation;
-import org.openfact.representations.idm.ubl.common.PricingReferenceRepresentation;
-import org.openfact.representations.idm.ubl.common.QuantityRepresentation;
-import org.openfact.representations.idm.ubl.common.ResponseRepresentation;
-import org.openfact.representations.idm.ubl.common.SignatureRepresentation;
-import org.openfact.representations.idm.ubl.common.SupplierPartyRepresentation;
-import org.openfact.representations.idm.ubl.common.TaxCategoryRepresentation;
-import org.openfact.representations.idm.ubl.common.TaxSchemeRepresentation;
-import org.openfact.representations.idm.ubl.common.TaxSubtotalRepresentation;
-import org.openfact.representations.idm.ubl.common.TaxTotalRepresentation;
-import org.openfact.representations.idm.ubl.common.UBLExtensionRepresentation;
-import org.openfact.representations.idm.ubl.common.UBLExtensionsRepresentation;
+import org.openfact.representations.idm.ubl.common.*;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 public class RepresentationToModel {
 
@@ -108,21 +59,21 @@ public class RepresentationToModel {
         BiFunction<Object, FilterValueType, Object> valueFunction = (value, type) -> {
             Object result = null;
             switch (type) {
-            case LONG:
-                result = (long) value;
-                break;
-            case STRING:
-                result = (String) value;
-                break;
-            case DATE:
-                result = LocalDateTime.parse((String) value, DateTimeFormatter.ISO_DATE);
-                break;
-            case DATETIME:
-                result = LocalDateTime.parse((String) value, DateTimeFormatter.ISO_DATE_TIME);
-                break;
-            default:
-                result = value;
-                break;
+                case LONG:
+                    result = (long) value;
+                    break;
+                case STRING:
+                    result = (String) value;
+                    break;
+                case DATE:
+                    result = LocalDateTime.parse((String) value, DateTimeFormatter.ISO_DATE);
+                    break;
+                case DATETIME:
+                    result = LocalDateTime.parse((String) value, DateTimeFormatter.ISO_DATE_TIME);
+                    break;
+                default:
+                    result = value;
+                    break;
             }
             return result;
         };
@@ -144,7 +95,7 @@ public class RepresentationToModel {
     }
 
     public static void importOrganization(OpenfactSession session, OrganizationRepresentation rep,
-            OrganizationModel newOrganization) {
+                                          OrganizationModel newOrganization) {
 
         newOrganization.setName(rep.getOrganization());
 
@@ -217,19 +168,6 @@ public class RepresentationToModel {
         }
 
         /**
-         * Internationalization ubl
-         */
-        if (rep.getInternationalizationUblEnabled() != null) {
-            newOrganization.setInternationalizationUblEnabled(rep.getInternationalizationUblEnabled());
-        }
-        if (rep.getSupportedUblLocales() != null) {
-            newOrganization.setSupportedUblLocales(new HashSet<String>(rep.getSupportedUblLocales()));
-        }
-        if (rep.getDefaultUblLocale() != null) {
-            newOrganization.setDefaultUblLocale(rep.getDefaultUblLocale());
-        }
-
-        /**
          * Tasks schedule
          */
         if (rep.getTaskFirstTime() != null) {
@@ -281,13 +219,6 @@ public class RepresentationToModel {
         }
 
         /**
-         * Ubl server
-         */
-        if (rep.getUblSenderServer() != null) {
-            newOrganization.setUblSenderConfig(new HashMap<String, String>(rep.getUblSenderServer()));
-        }
-
-        /**
          * Certificate
          */
         if (newOrganization.getComponents(newOrganization.getId(), KeyProvider.class.getName()).isEmpty()) {
@@ -296,7 +227,7 @@ public class RepresentationToModel {
             } else {
                 DefaultKeyProviders.createProviders(newOrganization);
             }
-        }       
+        }
 
         /**
          * Attributes
@@ -340,7 +271,7 @@ public class RepresentationToModel {
     }
 
     public static void updateOrganization(OrganizationRepresentation rep, OrganizationModel organization,
-            OpenfactSession session) {
+                                          OpenfactSession session) {
         if (rep.getOrganization() != null) {
             renameOrganization(organization, rep.getOrganization());
         }
@@ -429,19 +360,6 @@ public class RepresentationToModel {
         }
 
         /**
-         * Internationalization ubl
-         */
-        if (rep.getInternationalizationUblEnabled() != null) {
-            organization.setInternationalizationUblEnabled(rep.getInternationalizationUblEnabled());
-        }
-        if (rep.getSupportedUblLocales() != null) {
-            organization.setSupportedUblLocales(new HashSet<String>(rep.getSupportedUblLocales()));
-        }
-        if (rep.getDefaultUblLocale() != null) {
-            organization.setDefaultUblLocale(rep.getDefaultUblLocale());
-        }
-
-        /**
          * Tasks schedule
          */
         if (rep.isTasksEnabled() != null) {
@@ -494,13 +412,6 @@ public class RepresentationToModel {
         if (rep.getSmtpServer() != null) {
             organization.setSmtpConfig(new HashMap(rep.getSmtpServer()));
         }
-
-        /**
-         * Ubl Server
-         **/
-        if (rep.getUblSenderServer() != null) {
-            organization.setUblSenderConfig(new HashMap(rep.getUblSenderServer()));
-        }        
     }
 
     public static void renameOrganization(OrganizationModel organization, String name) {
@@ -512,35 +423,8 @@ public class RepresentationToModel {
         organization.setName(name);
     }
 
-    public static void importCodeCatalog(OpenfactSession session, CodeCatalogRepresentation rep,
-            CodeCatalogModel codeCatalog) {
-        codeCatalog.setCode(rep.getCode());
-        codeCatalog.setDescription(rep.getDescription());
-        codeCatalog.setLocale(rep.getLocale());
-        codeCatalog.setType(rep.getType());
-        codeCatalog.setAttributes(rep.getAttributes());
-    }
-
-    public static void updateCodeCatalog(CodeCatalogRepresentation rep, CodeCatalogModel codeCatalog) {
-        if (rep.getCode() != null) {
-            codeCatalog.setCode(codeCatalog.getCode());
-        }
-        if (rep.getDescription() != null) {
-            codeCatalog.setDescription(codeCatalog.getDescription());
-        }
-        if (rep.getLocale() != null) {
-            codeCatalog.setLocale(codeCatalog.getLocale());
-        }
-        if (rep.getType() != null) {
-            codeCatalog.setType(codeCatalog.getType());
-        }
-        if (rep.getAttributes() != null) {
-            codeCatalog.setAttributes(codeCatalog.getAttributes());
-        }
-    }
-
     public static InvoiceModel importInvoice(OpenfactSession session, OrganizationModel organization,
-            InvoiceModel model, InvoiceRepresentation rep) {
+                                             InvoiceModel model, InvoiceRepresentation rep) {
         if (rep.getUblVersionID() != null) {
             model.setUBLVersionID(rep.getUblVersionID());
         }
@@ -591,7 +475,7 @@ public class RepresentationToModel {
     }
 
     public static CreditNoteModel importCreditNote(OpenfactSession session, OrganizationModel organization,
-            CreditNoteModel model, CreditNoteRepresentation rep) {
+                                                   CreditNoteModel model, CreditNoteRepresentation rep) {
         if (rep.getUblVersionID() != null) {
             model.setUBLVersionID(rep.getUblVersionID());
         }
@@ -645,7 +529,7 @@ public class RepresentationToModel {
     }
 
     public static DebitNoteModel importDebitNote(OpenfactSession session, OrganizationModel organization,
-            DebitNoteModel model, DebitNoteRepresentation rep) {
+                                                 DebitNoteModel model, DebitNoteRepresentation rep) {
         if (rep.getUblVersionID() != null) {
             model.setUBLVersionID(rep.getUblVersionID());
         }
@@ -1136,7 +1020,7 @@ public class RepresentationToModel {
             model.setValue(rep.getValue());
         }
     }
-    
+
     public static ComponentModel toModel(OpenfactSession session, ComponentRepresentation rep) {
         ComponentModel model = new ComponentModel();
         model.setParentId(rep.getParentId());
@@ -1168,7 +1052,7 @@ public class RepresentationToModel {
 
         return model;
     }
-    
+
     public static void updateComponent(OpenfactSession session, ComponentRepresentation rep, ComponentModel component, boolean internal) {
         if (rep.getParentId() != null) {
             component.setParentId(rep.getParentId());

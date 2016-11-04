@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 
 package org.openfact.truststore;
 
@@ -29,7 +29,7 @@ import java.io.InputStream;
 import java.security.KeyStore;
 
 /**
- * @author <a href="mailto:mstrukel@redhat.com">Marko Strukelj</a>
+ * @author <a href="mailto:mstrukel@sistcoop.com">Marko Strukelj</a>
  */
 public class FileTruststoreProviderFactory implements TruststoreProviderFactory {
 
@@ -71,7 +71,7 @@ public class FileTruststoreProviderFactory implements TruststoreProviderFactory 
         }
 
         try {
-            truststore = loadStore(storepath, pass == null ? null :pass.toCharArray());
+            truststore = loadStore(storepath, pass == null ? null : pass.toCharArray());
         } catch (Exception e) {
             throw new RuntimeException("Failed to initialize TruststoreProviderFactory: " + new File(storepath).getAbsolutePath(), e);
         }

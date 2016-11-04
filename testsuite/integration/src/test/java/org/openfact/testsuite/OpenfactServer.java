@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 package org.openfact.testsuite;
 
 import io.undertow.Undertow;
@@ -47,51 +47,23 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
+ * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  */
 public class OpenfactServer {
 
     private static final Logger log = Logger.getLogger(OpenfactServer.class);
 
     private boolean sysout = false;
+    private OpenfactServerConfig config;
+    private OpenfactSessionFactory sessionFactory;
+    private UndertowJaxrsServer server;
 
-    public static class OpenfactServerConfig {
-        private String host = "localhost";
-        private int port = 8081;
-        private int workerThreads = Math.max(Runtime.getRuntime().availableProcessors(), 2) * 8;
-        private String resourcesHome;
+    public OpenfactServer() {
+        this(new OpenfactServerConfig());
+    }
 
-        public String getHost() {
-            return host;
-        }
-
-        public int getPort() {
-            return port;
-        }
-
-        public String getResourcesHome() {
-            return resourcesHome;
-        }
-
-        public void setHost(String host) {
-            this.host = host;
-        }
-
-        public void setPort(int port) {
-            this.port = port;
-        }
-
-        public void setResourcesHome(String resourcesHome) {
-            this.resourcesHome = resourcesHome;
-        }
-
-        public int getWorkerThreads() {
-            return workerThreads;
-        }
-
-        public void setWorkerThreads(int workerThreads) {
-            this.workerThreads = workerThreads;
-        }
+    public OpenfactServer(OpenfactServerConfig config) {
+        this.config = config;
     }
 
     public static <T> T loadJson(InputStream is, Class<T> type) {
@@ -216,18 +188,13 @@ public class OpenfactServer {
         return openfact;
     }
 
-    private OpenfactServerConfig config;
-
-    private OpenfactSessionFactory sessionFactory;
-
-    private UndertowJaxrsServer server;
-
-    public OpenfactServer() {
-        this(new OpenfactServerConfig());
-    }
-
-    public OpenfactServer(OpenfactServerConfig config) {
-        this.config = config;
+    private static File file(String... path) {
+        StringBuilder s = new StringBuilder();
+        for (String p : path) {
+            s.append(File.separator);
+            s.append(p);
+        }
+        return new File(s.toString());
     }
 
     public OpenfactSessionFactory getSessionFactory() {
@@ -358,13 +325,43 @@ public class OpenfactServer {
         info("Stopped Openfact");
     }
 
-    private static File file(String... path) {
-        StringBuilder s = new StringBuilder();
-        for (String p : path) {
-            s.append(File.separator);
-            s.append(p);
+    public static class OpenfactServerConfig {
+        private String host = "localhost";
+        private int port = 8081;
+        private int workerThreads = Math.max(Runtime.getRuntime().availableProcessors(), 2) * 8;
+        private String resourcesHome;
+
+        public String getHost() {
+            return host;
         }
-        return new File(s.toString());
+
+        public void setHost(String host) {
+            this.host = host;
+        }
+
+        public int getPort() {
+            return port;
+        }
+
+        public void setPort(int port) {
+            this.port = port;
+        }
+
+        public String getResourcesHome() {
+            return resourcesHome;
+        }
+
+        public void setResourcesHome(String resourcesHome) {
+            this.resourcesHome = resourcesHome;
+        }
+
+        public int getWorkerThreads() {
+            return workerThreads;
+        }
+
+        public void setWorkerThreads(int workerThreads) {
+            this.workerThreads = workerThreads;
+        }
     }
 
 }

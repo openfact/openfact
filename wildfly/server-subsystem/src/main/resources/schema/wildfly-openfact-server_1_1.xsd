@@ -27,15 +27,15 @@
             <xs:element name="theme" type="themeDefaultsType" minOccurs="0" maxOccurs="1"/>
             <xs:element name="spi" type="spiType" minOccurs="0" maxOccurs="unbounded"/>
         </xs:choice>
-        
+
     </xs:complexType>
-    
+
     <xs:complexType name="providersLocationType">
         <xs:choice minOccurs="0" maxOccurs="unbounded">
             <xs:element name="provider" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
         </xs:choice>
     </xs:complexType>
-    
+
     <xs:complexType name="themeDefaultsType">
         <xs:choice minOccurs="0" maxOccurs="unbounded">
             <xs:element name="staticMaxAge" type="xs:long" minOccurs="0" maxOccurs="1"/>
@@ -47,13 +47,13 @@
             <xs:element name="modules" type="modulesType" minOccurs="0" maxOccurs="1"/>
         </xs:choice>
     </xs:complexType>
-    
+
     <xs:complexType name="modulesType">
         <xs:choice minOccurs="0" maxOccurs="unbounded">
             <xs:element name="module" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
         </xs:choice>
     </xs:complexType>
-    
+
     <xs:complexType name="spiType">
         <xs:sequence>
             <xs:element name="default-provider" type="xs:string" minOccurs="0" maxOccurs="1"/>
@@ -61,7 +61,7 @@
         </xs:sequence>
         <xs:attribute name="name" use="required"/>
     </xs:complexType>
-    
+
     <xs:complexType name="providerType">
         <xs:sequence>
             <xs:element name="properties" type="properties" minOccurs="0" maxOccurs="1"/>
@@ -69,7 +69,7 @@
         <xs:attribute name="name" use="required"/>
         <xs:attribute name="enabled" use="required"/>
     </xs:complexType>
-    
+
     <xs:complexType name="properties">
         <xs:choice minOccurs="0" maxOccurs="unbounded">
             <xs:element name="property" type="propertyType" maxOccurs="unbounded"/>
@@ -81,7 +81,7 @@
         <xs:attribute name="name" use="required"/>
         <xs:attribute name="value" use="optional"/>
     </xs:complexType>
-    
+
     <xs:complexType name="listType">
         <xs:sequence>
             <xs:element name="value" minOccurs="0" maxOccurs="unbounded"/>

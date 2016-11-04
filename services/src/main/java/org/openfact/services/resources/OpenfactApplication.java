@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 package org.openfact.services.resources;
 
 import java.io.File;
@@ -70,7 +70,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  * @version $Revision: 1 $
  */
 public class OpenfactApplication extends Application {
@@ -153,6 +153,86 @@ public class OpenfactApplication extends Application {
                 exit(1);
             }
             throw t;
+        }
+    }
+
+    public static void loadConfig(ServletContext context) {
+        try {
+            JsonNode node = null;
+
+            String dmrConfig = loadDmrConfig(context);
+            if (dmrConfig != null) {
+                node = new ObjectMapper().readTree(dmrConfig);
+                ServicesLogger.LOGGER.loadingFrom("standalone.xml or domain.xml");
+            }
+
+            String configDir = System.getProperty("jboss.server.config.dir");
+            if (node == null && configDir != null) {
+                File f = new File(configDir + File.separator + "openfact-server.json");
+                if (f.isFile()) {
+                    ServicesLogger.LOGGER.loadingFrom(f.getAbsolutePath());
+                    node = new ObjectMapper().readTree(f);
+                }
+            }
+
+            if (node == null) {
+                URL resource = Thread.currentThread().getContextClassLoader()
+                        .getResource("META-INF/openfact-server.json");
+                if (resource != null) {
+                    ServicesLogger.LOGGER.loadingFrom(resource);
+                    node = new ObjectMapper().readTree(resource);
+                }
+            }
+
+            if (node != null) {
+                Properties properties = new SystemEnvProperties();
+                Config.init(new JsonConfigProvider(node, properties));
+            } else {
+                throw new RuntimeException("Openfact config not found.");
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load config", e);
+        }
+    }
+
+    private static String loadDmrConfig(ServletContext context) {
+        String dmrConfig = context.getInitParameter(OPENFACT_CONFIG_PARAM_NAME);
+        if (dmrConfig == null)
+            return null;
+
+        ModelNode dmrConfigNode = ModelNode.fromString(dmrConfig);
+        if (dmrConfigNode.asPropertyList().isEmpty())
+            return null;
+
+        // note that we need to resolve expressions BEFORE we convert to JSON
+        return dmrConfigNode.resolve().toJSONString(true);
+    }
+
+    public static OpenfactSessionFactory createSessionFactory() {
+        DefaultOpenfactSessionFactory factory = new DefaultOpenfactSessionFactory();
+        factory.init();
+        return factory;
+    }
+
+    public static void setupScheduledTasks(final OpenfactSessionFactory sessionFactory) {
+        /*long interval = Config.scope("scheduled").getLong("interval", 60L) * 1000;
+
+        OpenfactSession session = sessionFactory.create();
+        try {
+            TimerProvider timer = session.getProvider(TimerProvider.class);
+            timer.schedule(
+                    new ClusterAwareScheduledTaskRunner(sessionFactory, new ClearExpiredEvents(), interval),
+                    interval, "ClearExpiredEvents");
+        } finally {
+            session.close();
+        }*/
+    }
+
+    private static <T> T loadJson(InputStream is, Class<T> type) {
+        try {
+            return JsonSerialization.readValue(is, type);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to parse json", e);
         }
     }
 
@@ -242,78 +322,6 @@ public class OpenfactApplication extends Application {
         return uriInfo.getBaseUriBuilder().replacePath(getContextPath()).build();
     }
 
-    public static void loadConfig(ServletContext context) {
-        try {
-            JsonNode node = null;
-
-            String dmrConfig = loadDmrConfig(context);
-            if (dmrConfig != null) {
-                node = new ObjectMapper().readTree(dmrConfig);
-                ServicesLogger.LOGGER.loadingFrom("standalone.xml or domain.xml");
-            }
-
-            String configDir = System.getProperty("jboss.server.config.dir");
-            if (node == null && configDir != null) {
-                File f = new File(configDir + File.separator + "openfact-server.json");
-                if (f.isFile()) {
-                    ServicesLogger.LOGGER.loadingFrom(f.getAbsolutePath());
-                    node = new ObjectMapper().readTree(f);
-                }
-            }
-
-            if (node == null) {
-                URL resource = Thread.currentThread().getContextClassLoader()
-                        .getResource("META-INF/openfact-server.json");
-                if (resource != null) {
-                    ServicesLogger.LOGGER.loadingFrom(resource);
-                    node = new ObjectMapper().readTree(resource);
-                }
-            }
-
-            if (node != null) {
-                Properties properties = new SystemEnvProperties();
-                Config.init(new JsonConfigProvider(node, properties));
-            } else {
-                throw new RuntimeException("Openfact config not found.");
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to load config", e);
-        }
-    }
-
-    private static String loadDmrConfig(ServletContext context) {
-        String dmrConfig = context.getInitParameter(OPENFACT_CONFIG_PARAM_NAME);
-        if (dmrConfig == null)
-            return null;
-
-        ModelNode dmrConfigNode = ModelNode.fromString(dmrConfig);
-        if (dmrConfigNode.asPropertyList().isEmpty())
-            return null;
-
-        // note that we need to resolve expressions BEFORE we convert to JSON
-        return dmrConfigNode.resolve().toJSONString(true);
-    }
-
-    public static OpenfactSessionFactory createSessionFactory() {
-        DefaultOpenfactSessionFactory factory = new DefaultOpenfactSessionFactory();
-        factory.init();
-        return factory;
-    }
-
-    public static void setupScheduledTasks(final OpenfactSessionFactory sessionFactory) {
-        /*long interval = Config.scope("scheduled").getLong("interval", 60L) * 1000;
-
-        OpenfactSession session = sessionFactory.create();
-        try {
-            TimerProvider timer = session.getProvider(TimerProvider.class);
-            timer.schedule(
-                    new ClusterAwareScheduledTaskRunner(sessionFactory, new ClearExpiredEvents(), interval),
-                    interval, "ClearExpiredEvents");
-        } finally {
-            session.close();
-        }*/
-    }
-
     public OpenfactSessionFactory getSessionFactory() {
         return sessionFactory;
     }
@@ -377,14 +385,6 @@ public class OpenfactApplication extends Application {
             }
         } finally {
             session.close();
-        }
-    }
-
-    private static <T> T loadJson(InputStream is, Class<T> type) {
-        try {
-            return JsonSerialization.readValue(is, type);
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to parse json", e);
         }
     }
 

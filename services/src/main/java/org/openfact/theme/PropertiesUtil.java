@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 
 package org.openfact.theme;
 
@@ -32,12 +32,10 @@ import java.util.regex.Pattern;
  */
 public class PropertiesUtil {
 
-    private static final Logger logger = Logger.getLogger(PropertiesUtil.class);
-
     public static final Pattern DETECT_ENCODING_PATTERN = Pattern.compile("^#\\s*encoding:\\s*([\\w.:-]+)",
             Pattern.CASE_INSENSITIVE);
-
     public static final Charset DEFAULT_ENCODING = Charset.forName("ISO-8859-1");
+    private static final Logger logger = Logger.getLogger(PropertiesUtil.class);
 
     /**
      * <p>
@@ -47,7 +45,7 @@ public class PropertiesUtil {
      * <p>
      * The specified stream is closed before this method returns.
      * </p>
-     * 
+     *
      * @param in The input stream
      * @return Encoding
      * @throws IOException

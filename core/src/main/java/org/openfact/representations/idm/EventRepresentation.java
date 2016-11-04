@@ -1,26 +1,26 @@
-/*
- * Copyright 2016 Red Hat Inc. and/or its affiliates and other contributors
- * as indicated by the @author tags. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
- *
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
- */
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
 package org.openfact.representations.idm;
 
 import java.util.Map;
 
 /**
  *
- * @author Stan Silvert ssilvert@redhat.com (C) 2016 Red Hat Inc.
+ * @author Stan Silvert ssilvert@sistcoop.com (C) 2016 Red Hat Inc.
  */
 public class EventRepresentation {
 
@@ -97,7 +97,8 @@ public class EventRepresentation {
 
         if (time != that.time) return false;
         if (type != null ? !type.equals(that.type) : that.type != null) return false;
-        if (organizationId != null ? !organizationId.equals(that.organizationId) : that.organizationId != null) return false;
+        if (organizationId != null ? !organizationId.equals(that.organizationId) : that.organizationId != null)
+            return false;
         if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
         if (ipAddress != null ? !ipAddress.equals(that.ipAddress) : that.ipAddress != null) return false;
         if (error != null ? !error.equals(that.error) : that.error != null) return false;

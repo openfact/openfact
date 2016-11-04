@@ -1,68 +1,84 @@
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
 package org.openfact.models.ubl.common;
 
 import java.util.List;
 
 public interface DespatchLineModel {
-	String getId();	
+    String getId();
 
-	String getID();
+    String getID();
 
-	void setID(String iD);
+    void setID(String iD);
 
-	String getUuid();
+    String getUuid();
 
-	void setUuid(String uuid);
+    void setUuid(String uuid);
 
-	List<String> getNote();
+    List<String> getNote();
 
-	void setNote(List<String> note);
+    void setNote(List<String> note);
 
-	String getLineStatusCode();
+    String getLineStatusCode();
 
-	void setLineStatusCode(String lineStatusCode);
+    void setLineStatusCode(String lineStatusCode);
 
-	QuantityModel getDeliveredQuantity();
+    QuantityModel getDeliveredQuantity();
 
-	void setDeliveredQuantity(QuantityModel deliveredQuantity);
+    void setDeliveredQuantity(QuantityModel deliveredQuantity);
 
-	QuantityModel getBackorderQuantity();
+    QuantityModel getBackorderQuantity();
 
-	void setBackorderQuantity(QuantityModel backorderQuantity);
+    void setBackorderQuantity(QuantityModel backorderQuantity);
 
-	String getBackorderReason();
+    String getBackorderReason();
 
-	void setBackorderReason(String backorderReason);
+    void setBackorderReason(String backorderReason);
 
-	QuantityModel getOutstandingQuantity();
+    QuantityModel getOutstandingQuantity();
 
-	void setOutstandingQuantity(QuantityModel outstandingQuantity);
+    void setOutstandingQuantity(QuantityModel outstandingQuantity);
 
-	String getOutstandingReason();
+    String getOutstandingReason();
 
-	void setOutstandingReason(String outstandingReason);
+    void setOutstandingReason(String outstandingReason);
 
-	QuantityModel getOversupplyQuantity();
+    QuantityModel getOversupplyQuantity();
 
-	void setOversupplyQuantity(QuantityModel oversupplyQuantity);
+    void setOversupplyQuantity(QuantityModel oversupplyQuantity);
 
-	List<OrderLineReferenceModel> getOrderLineReference();
+    List<OrderLineReferenceModel> getOrderLineReference();
 
-	void setOrderLineReference(List<OrderLineReferenceModel> orderLineReference);
+    void setOrderLineReference(List<OrderLineReferenceModel> orderLineReference);
 
-	List<DocumentReferenceModel> getDocumentReference();
+    List<DocumentReferenceModel> getDocumentReference();
 
-	void setDocumentReference(List<DocumentReferenceModel> documentReference);
+    void setDocumentReference(List<DocumentReferenceModel> documentReference);
 
-	ItemModel getItem();
+    ItemModel getItem();
 
-	void setItem(ItemModel item);
+    void setItem(ItemModel item);
 
-	MeasureModel getGrossWeightMeasure();
+    MeasureModel getGrossWeightMeasure();
 
-	void setGrossWeightMeasure(MeasureModel grossWeightMeasure);
+    void setGrossWeightMeasure(MeasureModel grossWeightMeasure);
 
-	List<ShipmentModel> getShipment();
+    List<ShipmentModel> getShipment();
 
-	void setShipment(List<ShipmentModel> shipment);
+    void setShipment(List<ShipmentModel> shipment);
 
 }

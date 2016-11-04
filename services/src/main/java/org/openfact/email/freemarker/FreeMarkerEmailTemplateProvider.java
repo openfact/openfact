@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,22 +13,17 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 
 package org.openfact.email.freemarker;
-
-import java.text.MessageFormat;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Properties;
 
 import org.openfact.common.util.ObjectUtil;
 import org.openfact.email.EmailException;
 import org.openfact.email.EmailSenderProvider;
 import org.openfact.email.EmailTemplateProvider;
+import org.openfact.email.freemarker.beans.EventBean;
+import org.openfact.email.freemarker.beans.ProfileBean;
+import org.openfact.events.Event;
 import org.openfact.events.EventType;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
@@ -39,16 +34,19 @@ import org.openfact.theme.Theme;
 import org.openfact.theme.ThemeProvider;
 import org.openfact.theme.beans.MessageFormatterMethod;
 
+import java.text.MessageFormat;
+import java.util.*;
+
 /**
- * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
+ * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  */
 public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
 
+    private final Map<String, Object> attributes = new HashMap<>();
     private OpenfactSession session;
     private FreeMarkerUtil freeMarker;
     private OrganizationModel organization;
     private UserModel user;
-    private final Map<String, Object> attributes = new HashMap<>();
 
     public FreeMarkerEmailTemplateProvider(OpenfactSession session, FreeMarkerUtil freeMarker) {
         this.session = session;
@@ -72,6 +70,15 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
         attributes.put(name, value);
         return this;
     }
+    
+    @Override
+    public void sendEvent(Event event) throws EmailException {
+        Map<String, Object> attributes = new HashMap<String, Object>();
+        attributes.put("user", new ProfileBean(user));
+        attributes.put("event", new EventBean(event));
+
+        send(toCamelCase(event.getType()) + "Subject", "event-" + event.getType().toString().toLowerCase() + ".ftl", attributes);
+    }
 
     private String getOrganizationName() {
         if (organization.getDisplayName() != null) {
@@ -79,7 +86,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
         } else {
             return ObjectUtil.capitalize(organization.getName());
         }
-    }    
+    }
 
     private void send(String subjectKey, String template, Map<String, Object> attributes) throws EmailException {
         send(subjectKey, Collections.emptyList(), template, attributes);
@@ -93,20 +100,20 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
             attributes.put("locale", locale);
             Properties rb = theme.getMessages(locale);
             attributes.put("msg", new MessageFormatterMethod(locale, rb));
-            String subject = new MessageFormat(rb.getProperty(subjectKey,subjectKey),locale).format(subjectAttributes.toArray());
+            String subject = new MessageFormat(rb.getProperty(subjectKey, subjectKey), locale).format(subjectAttributes.toArray());
             String textTemplate = String.format("text/%s", template);
             String textBody;
             try {
-            	textBody = freeMarker.processTemplate(attributes, textTemplate, theme);
-            } catch (final FreeMarkerException e ) {
-            	textBody = null;
+                textBody = freeMarker.processTemplate(attributes, textTemplate, theme);
+            } catch (final FreeMarkerException e) {
+                textBody = null;
             }
             String htmlTemplate = String.format("html/%s", template);
             String htmlBody;
             try {
-            	htmlBody = freeMarker.processTemplate(attributes, htmlTemplate, theme);
-            } catch (final FreeMarkerException e ) {
-            	htmlBody = null;
+                htmlBody = freeMarker.processTemplate(attributes, htmlTemplate, theme);
+            } catch (final FreeMarkerException e) {
+                htmlBody = null;
             }
 
             send(subject, textBody, htmlBody);
@@ -124,9 +131,9 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
     public void close() {
     }
 
-    private String toCamelCase(EventType event){
+    private String toCamelCase(EventType event) {
         StringBuilder sb = new StringBuilder("event");
-        for(String s : event.name().toString().toLowerCase().split("_")){
+        for (String s : event.name().toString().toLowerCase().split("_")) {
             sb.append(ObjectUtil.capitalize(s));
         }
         return sb.toString();

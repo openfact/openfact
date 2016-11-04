@@ -1,19 +1,19 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 
 package org.openfact.events.jpa;
 
@@ -24,11 +24,7 @@ import org.openfact.events.admin.ResourceType;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
@@ -38,7 +34,7 @@ import java.util.List;
  * @author <a href="mailto:giriraj.sharma27@gmail.com">Giriraj Sharma</a>
  */
 public class JpaAdminEventQuery implements AdminEventQuery {
-    
+
     private final EntityManager em;
     private final CriteriaBuilder cb;
     private final CriteriaQuery<AdminEventEntity> cq;
@@ -46,7 +42,7 @@ public class JpaAdminEventQuery implements AdminEventQuery {
     private final ArrayList<Predicate> predicates;
     private Integer firstResult;
     private Integer maxResults;
-    
+
     public JpaAdminEventQuery(EntityManager em) {
         this.em = em;
 
@@ -55,7 +51,7 @@ public class JpaAdminEventQuery implements AdminEventQuery {
         root = cq.from(AdminEventEntity.class);
         predicates = new ArrayList<Predicate>();
     }
-    
+
     @Override
     public AdminEventQuery organization(String organizationId) {
         predicates.add(cb.equal(root.get("organizationId"), organizationId));
@@ -105,7 +101,7 @@ public class JpaAdminEventQuery implements AdminEventQuery {
     @Override
     public AdminEventQuery resourcePath(String resourcePath) {
         Expression<String> rPath = root.get("resourcePath");
-        predicates.add(cb.like(rPath, "%"+resourcePath+"%"));
+        predicates.add(cb.like(rPath, "%" + resourcePath + "%"));
         return this;
     }
 
@@ -158,5 +154,5 @@ public class JpaAdminEventQuery implements AdminEventQuery {
 
         return events;
     }
-    
+
 }

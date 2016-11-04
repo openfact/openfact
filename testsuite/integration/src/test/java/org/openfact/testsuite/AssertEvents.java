@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 
 package org.openfact.testsuite;
 
@@ -47,7 +47,7 @@ import org.openfact.services.managers.OrganizationManager;
 import org.openfact.testsuite.rule.OpenfactRule;
 
 /**
- * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
+ * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  */
 public class AssertEvents implements TestRule, EventListenerProviderFactory {
 
@@ -56,16 +56,32 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
     public static String DEFAULT_IP_ADDRESS = "127.0.0.1";
     public static String DEFAULT_ORGANIZATION = "test";
     public static String DEFAULT_USERNAME = "test-user@localhost";
-
-    private OpenfactRule openfact;
-
     private static BlockingQueue<Event> events = new LinkedBlockingQueue<Event>();
+    private OpenfactRule openfact;
 
     public AssertEvents() {
     }
 
     public AssertEvents(OpenfactRule openfact) {
         this.openfact = openfact;
+    }
+
+    public static Matcher<String> isCodeId() {
+        return isUUID();
+    }
+
+    public static Matcher<String> isUUID() {
+        return new TypeSafeMatcher<String>() {
+            @Override
+            protected boolean matchesSafely(String item) {
+                return OpenfactModelUtils.generateId().length() == item.length();
+            }
+
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("Not an UUID");
+            }
+        };
     }
 
     @Override
@@ -111,18 +127,6 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
 
     public void assertEmpty() {
          Assert.assertTrue(events.isEmpty());
-    }
-
-    public Event poll() {
-        try {
-            return events.poll(10, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            return null;
-        }
-    }
-
-    public void clear() {
-        events.clear();
     }
 
     /*public ExpectedEvent expectRequiredAction(EventType event) {
@@ -208,6 +212,18 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
                 .event(event);
     }*/
 
+    public Event poll() {
+        try {
+            return events.poll(10, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            return null;
+        }
+    }
+
+    public void clear() {
+        events.clear();
+    }
+
     @Override
     public EventListenerProvider create(OpenfactSession session) {
         return new EventListenerProvider() {
@@ -226,7 +242,7 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
             @Override
             public void onEvent(AdminEvent event, boolean includeRepresentation) {
                 // TODO Auto-generated method stub
-                
+
             }
         };
     }
@@ -259,7 +275,7 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
             expected.setOrganizationId(organizationId);
             return this;
         }
-     
+
         public ExpectedEvent user(String userId) {
             return user(CoreMatchers.equalTo(userId));
         }
@@ -358,24 +374,6 @@ public class AssertEvents implements TestRule, EventListenerProviderFactory {
 
             return actual;
         }
-    }
-
-    public static Matcher<String> isCodeId() {
-        return isUUID();
-    }
-
-    public static Matcher<String> isUUID() {
-        return new TypeSafeMatcher<String>() {
-            @Override
-            protected boolean matchesSafely(String item) {
-                return OpenfactModelUtils.generateId().length() == item.length();
-            }
-
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("Not an UUID");
-            }
-        };
     }
 
 }

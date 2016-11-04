@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 
 package org.openfact.connections.jpa.updater.liquibase.lock;
 
@@ -21,7 +21,7 @@ package org.openfact.connections.jpa.updater.liquibase.lock;
  * Indicates that retrieve lock wasn't successful, but it worth to retry it in different transaction (For example if we were trying to create LOCK table, but other transaction
  * created the table in the meantime etc)
  *
- * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
+ * @author <a href="mailto:mposolda@sistcoop.com">Marek Posolda</a>
  */
 public class LockRetryException extends RuntimeException {
 

@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 
 package org.openfact.models.utils.reflection;
 
@@ -26,7 +26,6 @@ import java.lang.reflect.Type;
  * A representation of a JavaBean style property
  *
  * @param <V> the type of the properties value
- *
  * @see Properties
  */
 public interface Property<V> {
@@ -73,9 +72,7 @@ public interface Property<V> {
      * method.
      *
      * @param bean The bean to read the property from
-     *
      * @return The property value
-     *
      * @throws ClassCastException if the value is not of the type V
      */
     V getValue(Object instance);
@@ -84,7 +81,7 @@ public interface Property<V> {
      * This method sets the property value for a specified bean to the specified value. The property to be set is either
      * a field or setter method.
      *
-     * @param bean The bean containing the property to set
+     * @param bean  The bean containing the property to set
      * @param value The new property value
      */
     void setValue(Object instance, V value);
@@ -115,7 +112,6 @@ public interface Property<V> {
      * the annotations present in both field and accessor method.
      *
      * @param annotation The Annotation to check.
-     *
      * @return True if the annotation is defined. Otherwise is false.
      */
     boolean isAnnotationPresent(Class<? extends Annotation> annotation);

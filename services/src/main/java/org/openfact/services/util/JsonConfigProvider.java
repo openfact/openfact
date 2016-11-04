@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 
 package org.openfact.services.util;
 
@@ -24,7 +24,7 @@ import org.openfact.common.util.StringPropertyReplacer;
 import java.util.Properties;
 
 /**
- * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
+ * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  */
 public class JsonConfigProvider implements Config.ConfigProvider {
 
@@ -35,17 +35,6 @@ public class JsonConfigProvider implements Config.ConfigProvider {
     public JsonConfigProvider(JsonNode config, Properties properties) {
         this.config = config;
         this.properties = properties;
-    }
-
-    @Override
-    public String getProvider(String spi) {
-        JsonNode n = getNode(config, spi, "provider");
-        return n != null ? replaceProperties(n.textValue()) : null;
-    }
-
-    @Override
-    public Config.Scope scope(String... path) {
-        return new JsonScope(getNode(config, path));
     }
 
     private static JsonNode getNode(JsonNode root, String... path) {
@@ -60,6 +49,17 @@ public class JsonConfigProvider implements Config.ConfigProvider {
             }
         }
         return n;
+    }
+
+    @Override
+    public String getProvider(String spi) {
+        JsonNode n = getNode(config, spi, "provider");
+        return n != null ? replaceProperties(n.textValue()) : null;
+    }
+
+    @Override
+    public Config.Scope scope(String... path) {
+        return new JsonScope(getNode(config, path));
     }
 
     private String replaceProperties(String value) {
@@ -107,7 +107,7 @@ public class JsonConfigProvider implements Config.ConfigProvider {
                 }
                 return a;
             } else {
-               return new String[] { replaceProperties(n.textValue()) };
+                return new String[]{replaceProperties(n.textValue())};
             }
         }
 

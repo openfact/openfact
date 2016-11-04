@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 
 package org.openfact.models.utils.reflection;
 
@@ -26,17 +26,6 @@ import java.lang.reflect.Method;
  * @see PropertyCriteria
  */
 public class TypedPropertyCriteria implements PropertyCriteria {
-
-    /**
-     * <p> Different options can be used to match a specific property based on its type. Regardless of the option
-     * chosen, if the property type equals the <code>propertyClass</code> it will be selected. <p/> <ul> <li>SUB_TYPE:
-     * Also consider properties where its type is a subtype of <code>propertyClass</code>. .</li> <li>SUPER_TYPE: Also
-     * consider properties where its type is a superclass or superinterface of <code>propertyClass</code>. .</li> </ul>
-     * </p>
-     */
-    public static enum MatchOption {
-        SUB_TYPE, SUPER_TYPE, ALL
-    }
 
     private final Class<?> propertyClass;
     private final MatchOption matchOption;
@@ -83,6 +72,17 @@ public class TypedPropertyCriteria implements PropertyCriteria {
         }
 
         return false;
+    }
+
+    /**
+     * <p> Different options can be used to match a specific property based on its type. Regardless of the option
+     * chosen, if the property type equals the <code>propertyClass</code> it will be selected. <p/> <ul> <li>SUB_TYPE:
+     * Also consider properties where its type is a subtype of <code>propertyClass</code>. .</li> <li>SUPER_TYPE: Also
+     * consider properties where its type is a superclass or superinterface of <code>propertyClass</code>. .</li> </ul>
+     * </p>
+     */
+    public static enum MatchOption {
+        SUB_TYPE, SUPER_TYPE, ALL
     }
 }
 

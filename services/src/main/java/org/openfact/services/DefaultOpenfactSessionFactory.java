@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 package org.openfact.services;
 
 import org.jboss.logging.Logger;
@@ -21,35 +21,20 @@ import org.openfact.Config;
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
-import org.openfact.provider.EnvironmentDependentProviderFactory;
-import org.openfact.provider.Provider;
-import org.openfact.provider.ProviderEvent;
-import org.openfact.provider.ProviderEventListener;
-import org.openfact.provider.ProviderFactory;
-import org.openfact.provider.ProviderManager;
-import org.openfact.provider.ProviderManagerDeployer;
-import org.openfact.provider.ProviderManagerRegistry;
-import org.openfact.provider.Spi;
+import org.openfact.provider.*;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class DefaultOpenfactSessionFactory implements OpenfactSessionFactory, ProviderManagerDeployer {
 
     private static final Logger logger = Logger.getLogger(DefaultOpenfactSessionFactory.class);
-
+    protected CopyOnWriteArrayList<ProviderEventListener> listeners = new CopyOnWriteArrayList<>();
+    // TODO: Likely should be changed to int and use Time.currentTime() to be compatible with all our "time" reps
+    protected long serverStartupTimestamp;
     private Set<Spi> spis = new HashSet<>();
     private Map<Class<? extends Provider>, String> provider = new HashMap<>();
     private volatile Map<Class<? extends Provider>, Map<String, ProviderFactory>> factoriesMap = new HashMap<>();
-    protected CopyOnWriteArrayList<ProviderEventListener> listeners = new CopyOnWriteArrayList<>();
-
-    // TODO: Likely should be changed to int and use Time.currentTime() to be compatible with all our "time" reps
-    protected long serverStartupTimestamp;
 
     @Override
     public void register(ProviderEventListener listener) {
@@ -76,7 +61,7 @@ public class DefaultOpenfactSessionFactory implements OpenfactSessionFactory, Pr
         factoriesMap = loadFactories(pm);
         for (ProviderManager manager : ProviderManagerRegistry.SINGLETON.getPreBoot()) {
             Map<Class<? extends Provider>, Map<String, ProviderFactory>> factoryMap = loadFactories(manager);
-            for (Map.Entry<Class<? extends Provider>,  Map<String, ProviderFactory>> entry : factoryMap.entrySet()) {
+            for (Map.Entry<Class<? extends Provider>, Map<String, ProviderFactory>> entry : factoryMap.entrySet()) {
                 Map<String, ProviderFactory> factories = factoriesMap.get(entry.getKey());
                 if (factories == null) {
                     factoriesMap.put(entry.getKey(), entry.getValue());
@@ -86,7 +71,7 @@ public class DefaultOpenfactSessionFactory implements OpenfactSessionFactory, Pr
             }
         }
         checkProvider();
-        for ( Map<String, ProviderFactory> factories : factoriesMap.values()) {
+        for (Map<String, ProviderFactory> factories : factoriesMap.values()) {
             for (ProviderFactory factory : factories.values()) {
                 factory.postInit(this);
             }
@@ -95,6 +80,7 @@ public class DefaultOpenfactSessionFactory implements OpenfactSessionFactory, Pr
         ProviderManagerRegistry.SINGLETON.setDeployer(this);
 
     }
+
     protected Map<Class<? extends Provider>, Map<String, ProviderFactory>> getFactoriesCopy() {
         Map<Class<? extends Provider>, Map<String, ProviderFactory>> copy = new HashMap<>();
         for (Map.Entry<Class<? extends Provider>, Map<String, ProviderFactory>> entry : factoriesMap.entrySet()) {
@@ -287,7 +273,7 @@ public class DefaultOpenfactSessionFactory implements OpenfactSessionFactory, Pr
     }
 
     public OpenfactSession create() {
-        OpenfactSession session =  new DefaultOpenfactSession(this);
+        OpenfactSession session = new DefaultOpenfactSession(this);
         return session;
     }
 
@@ -310,7 +296,7 @@ public class DefaultOpenfactSessionFactory implements OpenfactSessionFactory, Pr
 
     @Override
     public <T extends Provider> ProviderFactory<T> getProviderFactory(Class<T> clazz) {
-         return getProviderFactory(clazz, provider.get(clazz));
+        return getProviderFactory(clazz, provider.get(clazz));
     }
 
     @Override

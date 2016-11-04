@@ -1,19 +1,19 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 package org.openfact.common.util;
 
 import java.io.File;
@@ -29,8 +29,7 @@ import java.util.Properties;
  * @author <a href="mailto:dimitris@jboss.org">Dimitris Andreadis</a>
  * @version <tt>$Revision: 2898 $</tt> 
  */
-public final class StringPropertyReplacer
-{
+public final class StringPropertyReplacer {
     /** New line string constant */
     public static final String NEWLINE = System.getProperty("line.separator", "\n");
 
@@ -70,8 +69,7 @@ public final class StringPropertyReplacer
      * @return the input string with all property references replaced if any.
      *    If there are no valid references the input string will be returned.
      */
-    public static String replaceProperties(final String string)
-    {
+    public static String replaceProperties(final String string) {
         return replaceProperties(string, null);
     }
 
@@ -95,15 +93,13 @@ public final class StringPropertyReplacer
      * @return the input string with all property references replaced if any.
      *    If there are no valid references the input string will be returned.
      */
-    public static String replaceProperties(final String string, final Properties props)
-    {
+    public static String replaceProperties(final String string, final Properties props) {
         final char[] chars = string.toCharArray();
         StringBuffer buffer = new StringBuffer();
         boolean properties = false;
         int state = NORMAL;
         int start = 0;
-        for (int i = 0; i < chars.length; ++i)
-        {
+        for (int i = 0; i < chars.length; ++i) {
             char c = chars[i];
 
             // Dollar sign outside brackets
@@ -111,8 +107,7 @@ public final class StringPropertyReplacer
                 state = SEEN_DOLLAR;
 
                 // Open bracket immediatley after dollar
-            else if (c == '{' && state == SEEN_DOLLAR)
-            {
+            else if (c == '{' && state == SEEN_DOLLAR) {
                 buffer.append(string.substring(start, i - 1));
                 state = IN_BRACKET;
                 start = i - 1;
@@ -123,73 +118,57 @@ public final class StringPropertyReplacer
                 state = NORMAL;
 
                 // Closed bracket after open bracket
-            else if (c == '}' && state == IN_BRACKET)
-            {
+            else if (c == '}' && state == IN_BRACKET) {
                 // No content
-                if (start + 2 == i)
-                {
+                if (start + 2 == i) {
                     buffer.append("${}"); // REVIEW: Correct?
-                }
-                else // Collect the system property
+                } else // Collect the system property
                 {
                     String value = null;
 
                     String key = string.substring(start + 2, i);
 
                     // check for alias
-                    if (FILE_SEPARATOR_ALIAS.equals(key))
-                    {
+                    if (FILE_SEPARATOR_ALIAS.equals(key)) {
                         value = FILE_SEPARATOR;
-                    }
-                    else if (PATH_SEPARATOR_ALIAS.equals(key))
-                    {
+                    } else if (PATH_SEPARATOR_ALIAS.equals(key)) {
                         value = PATH_SEPARATOR;
-                    }
-                    else
-                    {
+                    } else {
                         // check from the properties
                         if (props != null)
                             value = props.getProperty(key);
                         else
                             value = System.getProperty(key);
 
-                        if (value == null)
-                        {
+                        if (value == null) {
                             // Check for a default value ${key:default}
                             int colon = key.indexOf(':');
-                            if (colon > 0)
-                            {
+                            if (colon > 0) {
                                 String realKey = key.substring(0, colon);
                                 if (props != null)
                                     value = props.getProperty(realKey);
                                 else
                                     value = System.getProperty(realKey);
 
-                                if (value == null)
-                                {
+                                if (value == null) {
                                     // Check for a composite key, "key1,key2"
                                     value = resolveCompositeKey(realKey, props);
 
                                     // Not a composite key either, use the specified default
                                     if (value == null)
-                                        value = key.substring(colon+1);
+                                        value = key.substring(colon + 1);
                                 }
-                            }
-                            else
-                            {
+                            } else {
                                 // No default, check for a composite key, "key1,key2"
                                 value = resolveCompositeKey(key, props);
                             }
                         }
                     }
 
-                    if (value != null)
-                    {
+                    if (value != null) {
                         properties = true;
                         buffer.append(value);
-                    }
-                    else
-                    {
+                    } else {
                         buffer.append("${");
                         buffer.append(key);
                         buffer.append('}');
@@ -224,17 +203,14 @@ public final class StringPropertyReplacer
      * @param props the properties to use
      * @return the resolved key or null
      */
-    private static String resolveCompositeKey(String key, Properties props)
-    {
+    private static String resolveCompositeKey(String key, Properties props) {
         String value = null;
 
         // Look for the comma
         int comma = key.indexOf(',');
-        if (comma > -1)
-        {
+        if (comma > -1) {
             // If we have a first part, try resolve it
-            if (comma > 0)
-            {
+            if (comma > 0) {
                 // Check the first part
                 String key1 = key.substring(0, comma);
                 if (props != null)
@@ -243,8 +219,7 @@ public final class StringPropertyReplacer
                     value = System.getProperty(key1);
             }
             // Check the second part, if there is one and first lookup failed
-            if (value == null && comma < key.length() - 1)
-            {
+            if (value == null && comma < key.length() - 1) {
                 String key2 = key.substring(comma + 1);
                 if (props != null)
                     value = props.getProperty(key2);

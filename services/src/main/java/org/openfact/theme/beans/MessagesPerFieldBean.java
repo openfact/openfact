@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 package org.openfact.theme.beans;
 
 import java.util.HashMap;
@@ -21,7 +21,7 @@ import java.util.Map;
 
 /**
  * Bean used to hold form messages per field. Stored under <code>messagesPerField</code> key in Freemarker context.
- * 
+ *
  * @author Vlastimil Elias (velias at redhat dot com)
  */
 public class MessagesPerFieldBean {
@@ -44,7 +44,7 @@ public class MessagesPerFieldBean {
 
     /**
      * Check if message for given field exists
-     * 
+     *
      * @param field
      * @return
      */
@@ -54,7 +54,7 @@ public class MessagesPerFieldBean {
 
     /**
      * Get message for given field.
-     * 
+     *
      * @param fieldName
      * @return message text or empty string
      */
@@ -69,7 +69,7 @@ public class MessagesPerFieldBean {
 
     /**
      * Print text if message for given field exists. Useful eg. to add css styles for fields with message.
-     * 
+     *
      * @param fieldName to check for
      * @param text to print
      * @return text if message exists for given field, else empty string

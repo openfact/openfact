@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 package org.openfact.subsystem.server.logging;
 
 import org.jboss.logging.Messages;
@@ -22,7 +22,7 @@ import org.jboss.logging.annotations.MessageBundle;
 /**
  * This interface to be fleshed out later when error messages are fully externalized.
  *
- * @author Stan Silvert ssilvert@redhat.com (C) 2012 Red Hat Inc.
+ * @author Stan Silvert ssilvert@sistcoop.com (C) 2012 Red Hat Inc.
  */
 @MessageBundle(projectCode = "OPENFACT")
 public interface OpenfactMessages {

@@ -1,15 +1,20 @@
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
 package org.openfact.models.utils;
-
-import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.openfact.common.converts.DocumentUtils;
@@ -21,86 +26,27 @@ import org.openfact.events.admin.AuthDetails;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.catalog.CodeCatalogModel;
 import org.openfact.models.ubl.CreditNoteModel;
 import org.openfact.models.ubl.DebitNoteModel;
 import org.openfact.models.ubl.InvoiceModel;
-import org.openfact.models.ubl.common.AddressModel;
-import org.openfact.models.ubl.common.AllowanceChargeModel;
-import org.openfact.models.ubl.common.AttachmentModel;
-import org.openfact.models.ubl.common.BillingReferenceModel;
-import org.openfact.models.ubl.common.BinaryObjectModel;
-import org.openfact.models.ubl.common.CountryModel;
-import org.openfact.models.ubl.common.CreditNoteLineModel;
-import org.openfact.models.ubl.common.CustomerPartyModel;
-import org.openfact.models.ubl.common.DebitNoteLineModel;
-import org.openfact.models.ubl.common.DocumentReferenceModel;
-import org.openfact.models.ubl.common.ExternalReferenceModel;
-import org.openfact.models.ubl.common.InvoiceLineModel;
-import org.openfact.models.ubl.common.ItemIdentificationModel;
-import org.openfact.models.ubl.common.ItemModel;
-import org.openfact.models.ubl.common.MonetaryTotalModel;
-import org.openfact.models.ubl.common.PartyLegalModel;
-import org.openfact.models.ubl.common.PartyModel;
-import org.openfact.models.ubl.common.PriceModel;
-import org.openfact.models.ubl.common.PricingReferenceModel;
-import org.openfact.models.ubl.common.QuantityModel;
-import org.openfact.models.ubl.common.ResponseModel;
-import org.openfact.models.ubl.common.SignatureModel;
-import org.openfact.models.ubl.common.SupplierPartyModel;
-import org.openfact.models.ubl.common.TaxCategoryModel;
-import org.openfact.models.ubl.common.TaxSchemeModel;
-import org.openfact.models.ubl.common.TaxSubtotalModel;
-import org.openfact.models.ubl.common.TaxTotalModel;
-import org.openfact.models.ubl.common.UBLExtensionModel;
-import org.openfact.models.ubl.common.UBLExtensionsModel;
+import org.openfact.models.ubl.common.*;
 import org.openfact.provider.ProviderConfigProperty;
-import org.openfact.representations.idm.AdminEventRepresentation;
-import org.openfact.representations.idm.AuthDetailsRepresentation;
-import org.openfact.representations.idm.ComponentRepresentation;
-import org.openfact.representations.idm.ConfigPropertyRepresentation;
-import org.openfact.representations.idm.EventRepresentation;
-import org.openfact.representations.idm.OrganizationEventsConfigRepresentation;
-import org.openfact.representations.idm.OrganizationRepresentation;
-import org.openfact.representations.idm.PostalAddressRepresentation;
-import org.openfact.representations.idm.catalog.CodeCatalogRepresentation;
+import org.openfact.representations.idm.*;
 import org.openfact.representations.idm.ubl.CreditNoteRepresentation;
 import org.openfact.representations.idm.ubl.DebitNoteRepresentation;
 import org.openfact.representations.idm.ubl.InvoiceRepresentation;
-import org.openfact.representations.idm.ubl.common.AddressRepresentation;
-import org.openfact.representations.idm.ubl.common.AllowanceChargeRepresentation;
-import org.openfact.representations.idm.ubl.common.AttachmentRepresentation;
-import org.openfact.representations.idm.ubl.common.BillingReferenceRepresentation;
-import org.openfact.representations.idm.ubl.common.BinaryObjectRepresentation;
-import org.openfact.representations.idm.ubl.common.CountryRepresentation;
-import org.openfact.representations.idm.ubl.common.CreditNoteLineRepresentation;
-import org.openfact.representations.idm.ubl.common.CustomerPartyRepresentation;
-import org.openfact.representations.idm.ubl.common.DebitNoteLineRepresentation;
-import org.openfact.representations.idm.ubl.common.DocumentReferenceRepresentation;
-import org.openfact.representations.idm.ubl.common.ExternalReferenceRepresentation;
-import org.openfact.representations.idm.ubl.common.InvoiceLineRepresentation;
-import org.openfact.representations.idm.ubl.common.ItemIdentificationRepresentation;
-import org.openfact.representations.idm.ubl.common.ItemRepresentation;
-import org.openfact.representations.idm.ubl.common.MonetaryTotalRepresentation;
-import org.openfact.representations.idm.ubl.common.PartyLegalEntityRepresentation;
-import org.openfact.representations.idm.ubl.common.PartyRepresentation;
-import org.openfact.representations.idm.ubl.common.PriceRepresentation;
-import org.openfact.representations.idm.ubl.common.PricingReferenceRepresentation;
-import org.openfact.representations.idm.ubl.common.QuantityRepresentation;
-import org.openfact.representations.idm.ubl.common.ResponseRepresentation;
-import org.openfact.representations.idm.ubl.common.SignatureRepresentation;
-import org.openfact.representations.idm.ubl.common.SupplierPartyRepresentation;
-import org.openfact.representations.idm.ubl.common.TaxCategoryRepresentation;
-import org.openfact.representations.idm.ubl.common.TaxSchemeRepresentation;
-import org.openfact.representations.idm.ubl.common.TaxSubtotalRepresentation;
-import org.openfact.representations.idm.ubl.common.TaxTotalRepresentation;
-import org.openfact.representations.idm.ubl.common.UBLExtensionRepresentation;
-import org.openfact.representations.idm.ubl.common.UBLExtensionsRepresentation;
+import org.openfact.representations.idm.ubl.common.*;
+
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
+import java.time.LocalDate;
+import java.util.*;
 
 public class ModelToRepresentation {
 
     public static OrganizationRepresentation toRepresentation(OrganizationModel organization,
-            boolean internal) {
+                                                              boolean internal) {
         /**
          * General information
          */
@@ -144,16 +90,6 @@ public class ModelToRepresentation {
         rep.setDefaultLocale(organization.getDefaultLocale());
 
         /**
-         * Internationalization ubl
-         */
-        rep.setInternationalizationUblEnabled(organization.isInternationalizationUblEnabled());
-        if (organization.getSupportedUblLocales() != null) {
-            rep.setSupportedUblLocales(new HashSet<String>());
-            rep.getSupportedUblLocales().addAll(organization.getSupportedUblLocales());
-        }
-        rep.setDefaultUblLocale(organization.getDefaultUblLocale());
-
-        /**
          * Tasks schedule
          */
         rep.setTaskFirstTime(organization.getTaskFirstTime());
@@ -191,31 +127,14 @@ public class ModelToRepresentation {
         rep.setSmtpServer(new HashMap<>(organization.getSmtpConfig()));
 
         /**
-         * Ubl server
-         */
-        rep.setUblSenderServer(new HashMap<>(organization.getUblSenderConfig()));
-
-        /**
          * Attributes
          */
         rep.setAttributes(new HashMap<>(organization.getAttributes()));
 
         if (internal) {
-            
+
         }
 
-        return rep;
-    }
-
-    public static CodeCatalogRepresentation toRepresentation(CodeCatalogModel model, boolean internal) {
-        CodeCatalogRepresentation rep = new CodeCatalogRepresentation();
-        rep.setCode(model.getCode());
-        rep.setDescription(model.getDescription());
-        rep.setLocale(model.getLocale());
-        rep.setType(model.getLocale());
-        if (internal) {
-            rep.setId(model.getId());
-        }
         return rep;
     }
 
@@ -816,7 +735,7 @@ public class ModelToRepresentation {
         rep.setIpAddress(authDetails.getIpAddress());
         return rep;
     }
-    
+
     public static List<ConfigPropertyRepresentation> toRepresentation(List<ProviderConfigProperty> configProperties) {
         List<ConfigPropertyRepresentation> propertiesRep = new LinkedList<>();
         for (ProviderConfigProperty prop : configProperties) {
@@ -825,7 +744,7 @@ public class ModelToRepresentation {
         }
         return propertiesRep;
     }
-    
+
     public static ConfigPropertyRepresentation toRepresentation(ProviderConfigProperty prop) {
         ConfigPropertyRepresentation propRep = new ConfigPropertyRepresentation();
         propRep.setName(prop.getName());
@@ -837,7 +756,7 @@ public class ModelToRepresentation {
         propRep.setSecret(prop.isSecret());
         return propRep;
     }
-    
+
     public static ComponentRepresentation toRepresentation(OpenfactSession session, ComponentModel component, boolean internal) {
         ComponentRepresentation rep = new ComponentRepresentation();
         rep.setId(component.getId());

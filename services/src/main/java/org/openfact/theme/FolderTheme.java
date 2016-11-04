@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,33 +13,28 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 
 package org.openfact.theme;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.io.*;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Locale;
 import java.util.Properties;
 
 /**
- * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
+ * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  */
 public class FolderTheme implements Theme {
 
+    private final Properties properties;
     private String parentName;
     private String importName;
     private File themeDir;
     private File resourcesDir;
     private String name;
     private Type type;
-    private final Properties properties;
 
     public FolderTheme(File themeDir, String name, Type type) throws IOException {
         this.themeDir = themeDir;
@@ -48,7 +43,7 @@ public class FolderTheme implements Theme {
         this.properties = new Properties();
 
         File propertiesFile = new File(themeDir, "theme.properties");
-        if (propertiesFile .isFile()) {
+        if (propertiesFile.isFile()) {
             Charset encoding = PropertiesUtil.detectEncoding(new FileInputStream(propertiesFile));
             try (Reader reader = new InputStreamReader(new FileInputStream(propertiesFile), encoding)) {
                 properties.load(reader);
@@ -119,7 +114,7 @@ public class FolderTheme implements Theme {
 
     @Override
     public Properties getMessages(String baseBundlename, Locale locale) throws IOException {
-        if(locale == null){
+        if (locale == null) {
             return null;
         }
 

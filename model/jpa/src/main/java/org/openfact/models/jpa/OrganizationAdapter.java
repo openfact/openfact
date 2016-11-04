@@ -1,18 +1,20 @@
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
 package org.openfact.models.jpa;
-
-import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 
 import org.jboss.logging.Logger;
 import org.openfact.common.util.MultivaluedHashMap;
@@ -20,18 +22,19 @@ import org.openfact.component.ComponentFactory;
 import org.openfact.component.ComponentModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.jpa.entities.ComponentConfigEntity;
-import org.openfact.models.jpa.entities.ComponentEntity;
-import org.openfact.models.jpa.entities.OrganizationAttributes;
-import org.openfact.models.jpa.entities.OrganizationEntity;
-import org.openfact.models.jpa.entities.OrganizationRequiredActionEntity;
+import org.openfact.models.jpa.entities.*;
 import org.openfact.models.utils.ComponentUtil;
 import org.openfact.models.utils.OpenfactModelUtils;
+
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import java.time.LocalDateTime;
+import java.util.*;
 
 public class OrganizationAdapter implements OrganizationModel, JpaModel<OrganizationEntity> {
 
     protected static final Logger logger = Logger.getLogger(OrganizationAdapter.class);
-
+    private static final String BROWSER_HEADER_PREFIX = "_browser_header.";
     protected OrganizationEntity organization;
     protected EntityManager em;
     protected OpenfactSession session;
@@ -42,16 +45,16 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         this.organization = organization;
     }
 
-    @Override
-    public OrganizationEntity getEntity() {
-        return organization;
-    }
-
     public static OrganizationEntity toEntity(OrganizationModel model, EntityManager em) {
         if (model instanceof OrganizationAdapter) {
             return ((OrganizationAdapter) model).getEntity();
         }
         return em.getReference(OrganizationEntity.class, model.getId());
+    }
+
+    @Override
+    public OrganizationEntity getEntity() {
+        return organization;
     }
 
     @Override
@@ -664,8 +667,6 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
             return null;
         return entityToModel(c);
     }
-
-    private static final String BROWSER_HEADER_PREFIX = "_browser_header.";
 
     @Override
     public Map<String, String> getBrowserSecurityHeaders() {

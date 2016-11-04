@@ -1,32 +1,26 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 
 package org.openfact.common.util;
 
 import org.bouncycastle.asn1.ASN1Sequence;
 import org.bouncycastle.asn1.oiw.OIWObjectIdentifiers;
 import org.bouncycastle.asn1.x500.X500Name;
-import org.bouncycastle.asn1.x509.AlgorithmIdentifier;
-import org.bouncycastle.asn1.x509.BasicConstraints;
-import org.bouncycastle.asn1.x509.ExtendedKeyUsage;
-import org.bouncycastle.asn1.x509.Extension;
-import org.bouncycastle.asn1.x509.KeyPurposeId;
-import org.bouncycastle.asn1.x509.KeyUsage;
-import org.bouncycastle.asn1.x509.SubjectPublicKeyInfo;
+import org.bouncycastle.asn1.x509.*;
 import org.bouncycastle.cert.X509CertificateHolder;
 import org.bouncycastle.cert.X509ExtensionUtils;
 import org.bouncycastle.cert.X509v1CertificateBuilder;
@@ -52,7 +46,7 @@ import java.util.Date;
 /**
  * The Class CertificateUtils provides utility functions for generation of V1 and V3 {@link java.security.cert.X509Certificate}
  *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  * @author <a href="mailto:giriraj.sharma27@gmail.com">Giriraj Sharma</a>
  * @version $Revision: 2 $
  */
@@ -68,13 +62,13 @@ public class CertificateUtils {
      * @param caPrivateKey the CA private key
      * @param caCert the CA certificate
      * @param subject the subject name
-     * 
+     *
      * @return the x509 certificate
-     * 
+     *
      * @throws Exception the exception
      */
     public static X509Certificate generateV3Certificate(KeyPair keyPair, PrivateKey caPrivateKey, X509Certificate caCert,
-            String subject) throws Exception {
+                                                        String subject) throws Exception {
 
         try {
             X500Name subjectDN = new X500Name("CN=" + subject);
@@ -135,9 +129,9 @@ public class CertificateUtils {
      *
      * @param caKeyPair the CA key pair
      * @param subject the subject name
-     * 
+     *
      * @return the x509 certificate
-     * 
+     *
      * @throws Exception the exception
      */
     public static X509Certificate generateV1SelfSignedCertificate(KeyPair caKeyPair, String subject) {

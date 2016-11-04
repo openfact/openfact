@@ -1,4 +1,25 @@
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
 package org.openfact.representations.idm;
+
+import org.openfact.common.util.MultivaluedHashMap;
+import org.openfact.representations.idm.ubl.CreditNoteRepresentation;
+import org.openfact.representations.idm.ubl.DebitNoteRepresentation;
+import org.openfact.representations.idm.ubl.InvoiceRepresentation;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -6,27 +27,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.openfact.common.util.MultivaluedHashMap;
-import org.openfact.representations.idm.ubl.CreditNoteRepresentation;
-import org.openfact.representations.idm.ubl.DebitNoteRepresentation;
-import org.openfact.representations.idm.ubl.InvoiceRepresentation;
-
 public class OrganizationRepresentation {
 
-    private String id;
-    private String organization;
-    private String description;
-    private Boolean enabled;
-
-    private String assignedIdentificationId;
-    private String additionalAccountId;
-    private String supplierName;
-    private String registrationName;
-    private LocalDateTime createdTimestamp;
-
     protected Map<String, String> smtpServer;
-    protected Map<String, String> ublSenderServer;
-
     @Deprecated
     protected String privateKey;
     @Deprecated
@@ -35,44 +38,39 @@ public class OrganizationRepresentation {
     protected String certificate;
     @Deprecated
     protected String codeSecret;
-
-    private PostalAddressRepresentation postalAddress;
-
-    private Date taskFirstTime;
-    private Long taskDelay;
-    private Boolean tasksEnabled;
-
     protected String adminTheme;
     protected String emailTheme;
     protected Set<String> supportedLocales;
     protected String defaultLocale;
-    protected Boolean internationalizationEnabled;
-
-    protected Set<String> supportedUblLocales;
-    protected String defaultUblLocale;
-    protected Boolean internationalizationUblEnabled;
-
+    protected Boolean internationalizationEnabled;    
     protected Set<String> supportedCurrencies;
     protected String defaultCurrency;
-
     protected Boolean eventsEnabled;
     protected Long eventsExpiration;
     protected List<String> eventsListeners;
     protected List<String> enabledEventTypes;
-
     protected Boolean adminEventsEnabled;
     protected Boolean adminEventsDetailsEnabled;
-
     protected Set<String> requiredActions;
     protected Map<String, String> attributes;
-
     protected List<InvoiceRepresentation> invoices;
     protected List<CreditNoteRepresentation> creditNotes;
     protected List<DebitNoteRepresentation> debitNotes;
-
-    private MultivaluedHashMap<String, ComponentExportRepresentation> components;
-
     protected String openfactVersion;
+    private String id;
+    private String organization;
+    private String description;
+    private Boolean enabled;
+    private String assignedIdentificationId;
+    private String additionalAccountId;
+    private String supplierName;
+    private String registrationName;
+    private LocalDateTime createdTimestamp;
+    private PostalAddressRepresentation postalAddress;
+    private Date taskFirstTime;
+    private Long taskDelay;
+    private Boolean tasksEnabled;
+    private MultivaluedHashMap<String, ComponentExportRepresentation> components;
 
     public String getId() {
         return id;
@@ -146,14 +144,6 @@ public class OrganizationRepresentation {
         this.smtpServer = smtpServer;
     }
 
-    public Map<String, String> getUblSenderServer() {
-        return ublSenderServer;
-    }
-
-    public void setUblSenderServer(Map<String, String> ublSenderServer) {
-        this.ublSenderServer = ublSenderServer;
-    }
-
     public PostalAddressRepresentation getPostalAddress() {
         return postalAddress;
     }
@@ -192,31 +182,7 @@ public class OrganizationRepresentation {
 
     public void setInternationalizationEnabled(Boolean internationalizationEnabled) {
         this.internationalizationEnabled = internationalizationEnabled;
-    }
-
-    public Set<String> getSupportedUblLocales() {
-        return supportedUblLocales;
-    }
-
-    public void setSupportedUblLocales(Set<String> supportedUblLocales) {
-        this.supportedUblLocales = supportedUblLocales;
-    }
-
-    public String getDefaultUblLocale() {
-        return defaultUblLocale;
-    }
-
-    public void setDefaultUblLocale(String defaultUblLocale) {
-        this.defaultUblLocale = defaultUblLocale;
-    }
-
-    public Boolean getInternationalizationUblEnabled() {
-        return internationalizationUblEnabled;
-    }
-
-    public void setInternationalizationUblEnabled(Boolean internationalizationUblEnabled) {
-        this.internationalizationUblEnabled = internationalizationUblEnabled;
-    }
+    }    
 
     public Set<String> getSupportedCurrencies() {
         return supportedCurrencies;
@@ -390,10 +356,6 @@ public class OrganizationRepresentation {
         return tasksEnabled;
     }
 
-    public void setTasksEnabled(Boolean tasksEnabled) {
-        this.tasksEnabled = tasksEnabled;
-    }
-
     public String getAdminTheme() {
         return adminTheme;
     }
@@ -404,6 +366,10 @@ public class OrganizationRepresentation {
 
     public Boolean getTasksEnabled() {
         return tasksEnabled;
+    }
+
+    public void setTasksEnabled(Boolean tasksEnabled) {
+        this.tasksEnabled = tasksEnabled;
     }
 
     public MultivaluedHashMap<String, ComponentExportRepresentation> getComponents() {

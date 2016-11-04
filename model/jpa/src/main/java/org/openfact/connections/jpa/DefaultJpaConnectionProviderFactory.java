@@ -1,24 +1,24 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 
 package org.openfact.connections.jpa;
 
-import org.hibernate.jpa.AvailableSettings;
 import org.hibernate.engine.transaction.jta.platform.internal.AbstractJtaPlatform;
+import org.hibernate.jpa.AvailableSettings;
 import org.jboss.logging.Logger;
 import org.openfact.Config;
 import org.openfact.ServerStartupError;
@@ -51,25 +51,16 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
+ * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  */
 public class DefaultJpaConnectionProviderFactory implements JpaConnectionProviderFactory, ServerInfoAwareProviderFactory {
 
     private static final Logger logger = Logger.getLogger(DefaultJpaConnectionProviderFactory.class);
-
-    enum MigrationStrategy {
-        UPDATE, VALIDATE, MANUAL
-    }
-
     private volatile EntityManagerFactory emf;
-
     private Config.Scope config;
-
     private Map<String, String> operationalInfo;
-
     private boolean jtaEnabled;
     private JtaTransactionManagerLookup jtaLookup;
-
     private OpenfactSessionFactory factory;
 
     @Override
@@ -240,7 +231,6 @@ public class DefaultJpaConnectionProviderFactory implements JpaConnectionProvide
         }
     }
 
-
     protected String detectDialect(Connection connection) {
         String driverDialect = config.get("driverDialect");
         if (driverDialect != null && driverDialect.length() > 0) {
@@ -396,6 +386,10 @@ public class DefaultJpaConnectionProviderFactory implements JpaConnectionProvide
         } else {
             return MigrationStrategy.UPDATE;
         }
+    }
+
+    enum MigrationStrategy {
+        UPDATE, VALIDATE, MANUAL
     }
 
 }

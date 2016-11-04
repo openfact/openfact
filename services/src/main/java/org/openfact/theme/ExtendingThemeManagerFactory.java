@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 
 package org.openfact.theme;
 
@@ -24,7 +24,7 @@ import org.openfact.models.OpenfactSessionFactory;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
+ * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  */
 public class ExtendingThemeManagerFactory implements ThemeProviderFactory {
 
@@ -37,7 +37,7 @@ public class ExtendingThemeManagerFactory implements ThemeProviderFactory {
 
     @Override
     public void init(Config.Scope config) {
-        if(Config.scope("theme").getBoolean("cacheThemes", true)) {
+        if (Config.scope("theme").getBoolean("cacheThemes", true)) {
             themeCache = new ConcurrentHashMap<>();
         }
     }
@@ -61,13 +61,13 @@ public class ExtendingThemeManagerFactory implements ThemeProviderFactory {
         private String name;
         private Theme.Type type;
 
-        public static ThemeKey get(String name, Theme.Type type) {
-            return new ThemeKey(name, type);
-        }
-
         private ThemeKey(String name, Theme.Type type) {
             this.name = name;
             this.type = type;
+        }
+
+        public static ThemeKey get(String name, Theme.Type type) {
+            return new ThemeKey(name, type);
         }
 
         public String getName() {

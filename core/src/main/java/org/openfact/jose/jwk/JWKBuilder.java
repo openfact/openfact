@@ -1,19 +1,19 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 
 package org.openfact.jose.jwk;
 
@@ -21,14 +21,11 @@ import org.openfact.common.util.Base64Url;
 import org.openfact.common.util.KeyUtils;
 
 import java.math.BigInteger;
-import java.security.Key;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
 import java.security.interfaces.RSAPublicKey;
 
 /**
- * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
+ * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  */
 public class JWKBuilder {
 
@@ -42,27 +39,6 @@ public class JWKBuilder {
 
     public static JWKBuilder create() {
         return new JWKBuilder();
-    }
-
-    public JWKBuilder kid(String kid) {
-        this.kid = kid;
-        return this;
-    }
-
-    public JWK rs256(PublicKey key) {
-        RSAPublicKey rsaKey = (RSAPublicKey) key;
-
-        RSAPublicJWK k = new RSAPublicJWK();
-
-        String kid = this.kid != null ? this.kid : KeyUtils.createKeyId(key);
-        k.setKeyId(kid);
-        k.setKeyType(RSAPublicJWK.RSA);
-        k.setAlgorithm(RSAPublicJWK.RS256);
-        k.setPublicKeyUse(DEFAULT_PUBLIC_KEY_USE);
-        k.setModulus(Base64Url.encode(toIntegerBytes(rsaKey.getModulus())));
-        k.setPublicExponent(Base64Url.encode(toIntegerBytes(rsaKey.getPublicExponent())));
-
-        return k;
     }
 
     /**
@@ -90,6 +66,27 @@ public class JWKBuilder {
         final byte[] resizedBytes = new byte[bitlen / 8];
         System.arraycopy(bigBytes, startSrc, resizedBytes, startDst, len);
         return resizedBytes;
+    }
+
+    public JWKBuilder kid(String kid) {
+        this.kid = kid;
+        return this;
+    }
+
+    public JWK rs256(PublicKey key) {
+        RSAPublicKey rsaKey = (RSAPublicKey) key;
+
+        RSAPublicJWK k = new RSAPublicJWK();
+
+        String kid = this.kid != null ? this.kid : KeyUtils.createKeyId(key);
+        k.setKeyId(kid);
+        k.setKeyType(RSAPublicJWK.RSA);
+        k.setAlgorithm(RSAPublicJWK.RS256);
+        k.setPublicKeyUse(DEFAULT_PUBLIC_KEY_USE);
+        k.setModulus(Base64Url.encode(toIntegerBytes(rsaKey.getModulus())));
+        k.setPublicExponent(Base64Url.encode(toIntegerBytes(rsaKey.getPublicExponent())));
+
+        return k;
     }
 
 }

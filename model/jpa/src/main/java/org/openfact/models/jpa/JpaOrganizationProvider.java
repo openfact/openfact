@@ -1,14 +1,20 @@
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
 package org.openfact.models.jpa;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 
 import org.jboss.logging.Logger;
 import org.openfact.migration.MigrationModel;
@@ -20,15 +26,23 @@ import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.utils.OpenfactModelUtils;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 public class JpaOrganizationProvider extends AbstractHibernateStorage implements OrganizationProvider {
 
+    protected static final Logger logger = Logger.getLogger(JpaOrganizationProvider.class);
     private static final String NAME = "name";
     private static final String DESCRIPTION = "description";
     private static final String ASSIGNED_IDENTIFICATION_ID = "assignedIdentificationId";
     private static final String SUPPLIER_NAME = "supplierName";
     private static final String REGISTRATION_NAME = "registrationName";
-
-    protected static final Logger logger = Logger.getLogger(JpaOrganizationProvider.class);
     private final OpenfactSession session;
     protected EntityManager em;
 
@@ -183,7 +197,7 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
 
     @Override
     public List<OrganizationModel> searchForOrganization(String filterText, Integer firstResult,
-            Integer maxResults) {
+                                                         Integer maxResults) {
         TypedQuery<OrganizationEntity> query = em.createNamedQuery("searchForOrganization",
                 OrganizationEntity.class);
         query.setParameter("filterText", "%" + filterText.toLowerCase() + "%");
@@ -200,7 +214,7 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
 
     @Override
     public List<OrganizationModel> searchForOrganization(Map<String, String> attributes, Integer firstResult,
-            Integer maxResults) {
+                                                         Integer maxResults) {
         StringBuilder builder = new StringBuilder("select u from OrganizationEntity u");
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             String attribute = null;
@@ -267,7 +281,7 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
 
     @Override
     public SearchResultsModel<OrganizationModel> searchForOrganization(SearchCriteriaModel criteria,
-            String filterText) {
+                                                                       String filterText) {
         SearchResultsModel<OrganizationEntity> entityResult = findFullText(criteria, OrganizationEntity.class,
                 filterText, NAME, SUPPLIER_NAME, REGISTRATION_NAME);
         List<OrganizationEntity> entities = entityResult.getModels();

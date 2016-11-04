@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,18 +13,14 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 
 package org.openfact.broker.provider.util;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLSocketFactory;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.StringWriter;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -33,7 +29,7 @@ import java.util.Map;
 import java.util.zip.GZIPInputStream;
 
 /**
- * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
+ * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  * @author Vlastimil Elias (velias at redhat dot com)
  */
 public class SimpleHttp {
@@ -147,8 +143,8 @@ public class SimpleHttp {
             String ce = connection.getHeaderField("Content-Encoding");
             is = connection.getInputStream();
             if ("gzip".equals(ce)) {
-              is = new GZIPInputStream(is);
-	          }
+                is = new GZIPInputStream(is);
+            }
             return toString(is);
         } finally {
             if (os != null) {

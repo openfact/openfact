@@ -1,19 +1,19 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 
 package org.openfact.events.jpa;
 
@@ -26,41 +26,41 @@ import javax.persistence.Table;
  * @author <a href="mailto:giriraj.sharma27@gmail.com">Giriraj Sharma</a>
  */
 @Entity
-@Table(name="ADMIN_EVENT_ENTITY")
+@Table(name = "ADMIN_EVENT_ENTITY")
 public class AdminEventEntity {
-    
+
     @Id
-    @Column(name="ID", length = 36)
+    @Column(name = "ID", length = 36)
     private String id;
-    
-    @Column(name="ADMIN_EVENT_TIME")
+
+    @Column(name = "ADMIN_EVENT_TIME")
     private long time;
-    
-    @Column(name="ORGANIZATION_ID")
+
+    @Column(name = "ORGANIZATION_ID")
     private String organizationId;
-    
-    @Column(name="OPERATION_TYPE")
+
+    @Column(name = "OPERATION_TYPE")
     private String operationType;
 
-    @Column(name="RESOURCE_TYPE", length = 64)
+    @Column(name = "RESOURCE_TYPE", length = 64)
     private String resourceType;
-    
-    @Column(name="AUTH_ORGANIZATION_ID")
-    private String authOrganizationId;   
 
-    @Column(name="AUTH_USER_ID")
+    @Column(name = "AUTH_ORGANIZATION_ID")
+    private String authOrganizationId;
+
+    @Column(name = "AUTH_USER_ID")
     private String authUserId;
-    
-    @Column(name="IP_ADDRESS")
+
+    @Column(name = "IP_ADDRESS")
     private String authIpAddress;
-    
-    @Column(name="RESOURCE_PATH")
+
+    @Column(name = "RESOURCE_PATH")
     private String resourcePath;
 
-    @Column(name="REPRESENTATION", length = 25500)
+    @Column(name = "REPRESENTATION", length = 25500)
     private String representation;
 
-    @Column(name="ERROR")
+    @Column(name = "ERROR")
     private String error;
 
     public String getId() {
@@ -151,5 +151,5 @@ public class AdminEventEntity {
         this.error = error;
     }
 
-    
+
 }

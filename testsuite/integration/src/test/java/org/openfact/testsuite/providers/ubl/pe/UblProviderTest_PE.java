@@ -1,3 +1,19 @@
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
 package org.openfact.testsuite.providers.ubl.pe;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -19,7 +35,7 @@ import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.managers.OrganizationManager;
 import org.openfact.testsuite.providers.AbstractProviderTest;
-import org.openfact.ubl.UblProvider;
+import org.openfact.ubl.UblDocumentProvider;
 import org.w3c.dom.Document;
 
 import com.helger.commons.error.list.IErrorList;
@@ -49,8 +65,8 @@ public class UblProviderTest_PE extends AbstractProviderTest {
 		List<InvoiceModel> invoices = session.invoices().getInvoices(organization);
 		InvoiceModel invoice = invoices.get(0);
 
-		Set<UblProvider> providers = session.getAllProviders(UblProvider.class);
-		for (UblProvider provider : providers) {
+		Set<UblDocumentProvider> providers = session.getAllProviders(UblDocumentProvider.class);
+		for (UblDocumentProvider provider : providers) {
 			Document xml = provider.getDocument(organization, invoice);			
 			//InvoiceType invoiceType = UBL21Reader.invoice().read(xml);
 			//IErrorList resourceErrorGroup = UBL21Validator.invoice().validate(invoiceType);
@@ -65,8 +81,8 @@ public class UblProviderTest_PE extends AbstractProviderTest {
 		List<CreditNoteModel> creditNotes = session.creditNotes().getCreditNotes(organization);
 		CreditNoteModel creditNote = creditNotes.get(0);
 
-		Set<UblProvider> providers = session.getAllProviders(UblProvider.class);
-		for (UblProvider provider : providers) {
+		Set<UblDocumentProvider> providers = session.getAllProviders(UblDocumentProvider.class);
+		for (UblDocumentProvider provider : providers) {
 			Document xml = provider.getDocument(organization, creditNote);
 			// CreditNoteType creditNoteType =
 			// UBL21Reader.creditNote().read(xml);
@@ -83,8 +99,8 @@ public class UblProviderTest_PE extends AbstractProviderTest {
 		List<DebitNoteModel> debitNotes = session.debitNotes().getDebitNotes(organization);
 		DebitNoteModel debitNote = debitNotes.get(0);
 
-		Set<UblProvider> providers = session.getAllProviders(UblProvider.class);
-		for (UblProvider provider : providers) {
+		Set<UblDocumentProvider> providers = session.getAllProviders(UblDocumentProvider.class);
+		for (UblDocumentProvider provider : providers) {
 			Document xml = provider.getDocument(organization, debitNote);
 			// DebitNoteType debitNoteType = UBL21Reader.debitNote().read(xml);
 			// IErrorList resourceErrorGroup =

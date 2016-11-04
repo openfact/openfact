@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 
 package org.openfact.services;
 
@@ -24,42 +24,34 @@ import javax.ws.rs.core.Response;
 /**
  * To provide a typed exception for Forbidden (This doesn't exist in Resteasy 2.3.7)
  */
-public class ForbiddenException extends LoggableFailure
-{
-   public ForbiddenException()
-   {
-      super(403);
-   }
+public class ForbiddenException extends LoggableFailure {
+    public ForbiddenException() {
+        super(403);
+    }
 
-   public ForbiddenException(String s)
-   {
-      super(s, 403);
-   }
+    public ForbiddenException(String s) {
+        super(s, 403);
+    }
 
-   public ForbiddenException(String s, Response response)
-   {
-      super(s, response);
-   }
+    public ForbiddenException(String s, Response response) {
+        super(s, response);
+    }
 
-   public ForbiddenException(String s, Throwable throwable, Response response)
-   {
-      super(s, throwable, response);
-   }
+    public ForbiddenException(String s, Throwable throwable, Response response) {
+        super(s, throwable, response);
+    }
 
-   public ForbiddenException(String s, Throwable throwable)
-   {
-      super(s, throwable, 403);
-   }
+    public ForbiddenException(String s, Throwable throwable) {
+        super(s, throwable, 403);
+    }
 
-   public ForbiddenException(Throwable throwable)
-   {
-      super(throwable, 403);
-   }
+    public ForbiddenException(Throwable throwable) {
+        super(throwable, 403);
+    }
 
-   public ForbiddenException(Throwable throwable, Response response)
-   {
-      super(throwable, response);
-   }
+    public ForbiddenException(Throwable throwable, Response response) {
+        super(throwable, response);
+    }
 
 
 }

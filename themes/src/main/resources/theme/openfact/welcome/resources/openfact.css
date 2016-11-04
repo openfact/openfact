@@ -21,49 +21,58 @@
 */
 
 body {
-	/*background: url(bkg.gif) repeat-x;*/
-	color: #5B5B5B;
-	font-family: "Lucida Sans Unicode", "Lucida Grande", Geneva, Verdana, Arial, sans-serif;
-	margin-top: 100px;
-	text-align: center;
+    /*background: url(bkg.gif) repeat-x;*/
+    color: #5B5B5B;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Geneva, Verdana, Arial, sans-serif;
+    margin-top: 100px;
+    text-align: center;
 }
+
 .wrapper {
-	margin-left: auto;
-	margin-right: auto;
-	width: 50em;
-	text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50em;
+    text-align: left;
 }
+
 a {
-	text-decoration: none;
-	color: #008aaa;
+    text-decoration: none;
+    color: #008aaa;
 }
+
 h1 {
-	padding-top: 20px;
-	color: #008aaa;
+    padding-top: 20px;
+    color: #008aaa;
 }
+
 a:hover {
-	text-decoration: underline;
-	color: #33c6e9;
+    text-decoration: underline;
+    color: #33c6e9;
 }
+
 .content {
     margin: 0;
     padding: 0;
 }
+
 .dualbrand {
-	padding-top: 20px;
+    padding-top: 20px;
 }
+
 .wildfly {
-	float:left;
-	margin-left: 10px;
+    float: left;
+    margin-left: 10px;
 }
-.logo{
+
+.logo {
     margin-bottom: 10px;
 }
+
 .note {
-	font-size: 8pt;
-	color: #aaaaaa;
+    font-size: 8pt;
+    color: #aaaaaa;
 }
 
 p.logos {
-	padding-top: 20px;
+    padding-top: 20px;
 }

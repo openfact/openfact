@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 package org.openfact.subsystem.server.extension;
 
 import static org.openfact.subsystem.server.extension.OpenfactExtension.SUBSYSTEM_NAME;
@@ -33,7 +33,7 @@ import org.jboss.dmr.ModelNode;
 /**
  * The Openfact subsystem add update handler.
  *
- * @author Stan Silvert ssilvert@redhat.com (C) 2013 Red Hat Inc.
+ * @author Stan Silvert ssilvert@sistcoop.com (C) 2013 Red Hat Inc.
  */
 class OpenfactSubsystemAdd extends AbstractBoottimeAddStepHandler {
 

@@ -1,24 +1,24 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 
 package org.openfact;
 
 /**
- * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
+ * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  */
 public class Config {
 
@@ -46,12 +46,39 @@ public class Config {
     }
 
     public static Scope scope(String... scope) {
-         return configProvider.scope(scope);
+        return configProvider.scope(scope);
     }
 
     public static interface ConfigProvider {
 
         String getProvider(String spi);
+
+        Scope scope(String... scope);
+
+    }
+
+    /**
+     * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
+     */
+    public static interface Scope {
+
+        String get(String key);
+
+        String get(String key, String defaultValue);
+
+        String[] getArray(String key);
+
+        Integer getInt(String key);
+
+        Integer getInt(String key, Integer defaultValue);
+
+        Long getLong(String key);
+
+        Long getLong(String key, Long defaultValue);
+
+        Boolean getBoolean(String key);
+
+        Boolean getBoolean(String key, Boolean defaultValue);
 
         Scope scope(String... scope);
 
@@ -156,33 +183,6 @@ public class Config {
             }
             return new SystemPropertiesScope(sb.toString());
         }
-
-    }
-
-    /**
-     * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
-     */
-    public static interface Scope {
-
-        String get(String key);
-
-        String get(String key, String defaultValue);
-
-        String[] getArray(String key);
-
-        Integer getInt(String key);
-
-        Integer getInt(String key, Integer defaultValue);
-
-        Long getLong(String key);
-
-        Long getLong(String key, Long defaultValue);
-
-        Boolean getBoolean(String key);
-
-        Boolean getBoolean(String key, Boolean defaultValue);
-
-        Scope scope(String... scope);
 
     }
 }

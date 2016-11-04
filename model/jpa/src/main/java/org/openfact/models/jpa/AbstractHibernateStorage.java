@@ -1,25 +1,32 @@
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
 package org.openfact.models.jpa;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.EntityManager;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.*;
 import org.hibernate.sql.JoinType;
 import org.openfact.models.jpa.entities.search.SearchCriteriaJoinAliasModel;
 import org.openfact.models.jpa.entities.search.SearchCriteriaJoinModel;
-import org.openfact.models.search.OrderByModel;
-import org.openfact.models.search.PagingModel;
-import org.openfact.models.search.SearchCriteriaFilterModel;
-import org.openfact.models.search.SearchCriteriaModel;
-import org.openfact.models.search.SearchResultsModel;
+import org.openfact.models.search.*;
+
+import javax.persistence.EntityManager;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A base class that JPA storage impls can extend.
@@ -92,7 +99,7 @@ public abstract class AbstractHibernateStorage {
     }
 
     protected <T> SearchResultsModel<T> find(SearchCriteriaJoinModel criteriaJoin,
-            SearchCriteriaModel criteria, Class<T> type) {
+                                             SearchCriteriaModel criteria, Class<T> type) {
         SearchResultsModel<T> results = new SearchResultsModel<>();
         Session session = getSession();
 
@@ -136,7 +143,7 @@ public abstract class AbstractHibernateStorage {
     }
 
     protected <T> SearchResultsModel<T> findFullText(SearchCriteriaModel criteria, Class<T> type,
-            String filterText, String... field) {
+                                                     String filterText, String... field) {
         SearchResultsModel<T> results = new SearchResultsModel<>();
         Session session = getSession();
 
@@ -189,7 +196,7 @@ public abstract class AbstractHibernateStorage {
     }
 
     protected <T> SearchResultsModel<T> findFullText(SearchCriteriaJoinModel criteriaJoin,
-            SearchCriteriaModel criteria, Class<T> type, String filterText, String... field) {
+                                                     SearchCriteriaModel criteria, Class<T> type, String filterText, String... field) {
         SearchResultsModel<T> results = new SearchResultsModel<>();
         Session session = getSession();
 
@@ -243,7 +250,7 @@ public abstract class AbstractHibernateStorage {
     }
 
     protected <T> void applySearchCriteriaToQuery(SearchCriteriaModel criteria, Class<T> type,
-            Criteria criteriaQuery, boolean countOnly) {
+                                                  Criteria criteriaQuery, boolean countOnly) {
         List<SearchCriteriaFilterModel> filters = criteria.getFilters();
         applySearchCriteriaFilterToQuery(filters, type, criteriaQuery);
         List<OrderByModel> orders = criteria.getOrders();
@@ -259,33 +266,33 @@ public abstract class AbstractHibernateStorage {
     }
 
     protected <T> void applySearchCriteriaToQuery(SearchCriteriaJoinModel criteriaJoin, Class<T> type,
-            Criteria criteriaQuery, boolean countOnly) {
+                                                  Criteria criteriaQuery, boolean countOnly) {
         List<SearchCriteriaJoinAliasModel> joins = criteriaJoin.getJoins();
         List<SearchCriteriaFilterModel> filters = criteriaJoin.getFilters();
 
         if (joins != null && !joins.isEmpty()) {
             for (SearchCriteriaJoinAliasModel join : joins) {
                 switch (join.getJoinType()) {
-                case INNER_JOIN:
-                    criteriaQuery.createAlias(join.getAssociationPath(), join.getAssociationAlias(),
-                            JoinType.INNER_JOIN);
-                    break;
-                case LEFT_OUTER_JOIN:
-                    criteriaQuery.createAlias(join.getAssociationPath(), join.getAssociationAlias(),
-                            JoinType.LEFT_OUTER_JOIN);
-                    break;
-                case RIGHT_OUTER_JOIN:
-                    criteriaQuery.createAlias(join.getAssociationPath(), join.getAssociationAlias(),
-                            JoinType.RIGHT_OUTER_JOIN);
-                    break;
-                case FULL_JOIN:
-                    criteriaQuery.createAlias(join.getAssociationPath(), join.getAssociationAlias(),
-                            JoinType.FULL_JOIN);
-                    break;
-                default:
-                    criteriaQuery.createAlias(join.getAssociationPath(), join.getAssociationAlias(),
-                            JoinType.NONE);
-                    break;
+                    case INNER_JOIN:
+                        criteriaQuery.createAlias(join.getAssociationPath(), join.getAssociationAlias(),
+                                JoinType.INNER_JOIN);
+                        break;
+                    case LEFT_OUTER_JOIN:
+                        criteriaQuery.createAlias(join.getAssociationPath(), join.getAssociationAlias(),
+                                JoinType.LEFT_OUTER_JOIN);
+                        break;
+                    case RIGHT_OUTER_JOIN:
+                        criteriaQuery.createAlias(join.getAssociationPath(), join.getAssociationAlias(),
+                                JoinType.RIGHT_OUTER_JOIN);
+                        break;
+                    case FULL_JOIN:
+                        criteriaQuery.createAlias(join.getAssociationPath(), join.getAssociationAlias(),
+                                JoinType.FULL_JOIN);
+                        break;
+                    default:
+                        criteriaQuery.createAlias(join.getAssociationPath(), join.getAssociationAlias(),
+                                JoinType.NONE);
+                        break;
                 }
             }
         }
@@ -293,38 +300,38 @@ public abstract class AbstractHibernateStorage {
     }
 
     protected <T> void applySearchCriteriaFilterToQuery(List<SearchCriteriaFilterModel> filters,
-            Class<T> type, Criteria criteriaQuery) {
+                                                        Class<T> type, Criteria criteriaQuery) {
         if (filters != null && !filters.isEmpty()) {
             for (SearchCriteriaFilterModel filter : filters) {
                 switch (filter.getOperator()) {
-                case eq:
-                    criteriaQuery.add(Restrictions.eq(filter.getName(), filter.getValue()));
-                    break;
-                case bool_eq:
-                    criteriaQuery.add(Restrictions.eq(filter.getName(), filter.getValue()));
-                    break;
-                case gt:
-                    criteriaQuery.add(Restrictions.gt(filter.getName(), filter.getValue()));
-                    break;
-                case gte:
-                    criteriaQuery.add(Restrictions.ge(filter.getName(), filter.getValue()));
-                    break;
-                case lt:
-                    criteriaQuery.add(Restrictions.lt(filter.getName(), filter.getValue()));
-                    break;
-                case lte:
-                    criteriaQuery.add(Restrictions.le(filter.getName(), filter.getValue()));
-                    break;
-                case neq:
-                    criteriaQuery.add(Restrictions.ne(filter.getName(), filter.getValue()));
-                    break;
-                case like:
-                    criteriaQuery.add(Restrictions.like(filter.getName(), (String) filter.getValue(),
-                            MatchMode.ANYWHERE));
-                    break;
-                default:
-                    criteriaQuery.add(Restrictions.eq(filter.getName(), filter.getValue()));
-                    break;
+                    case eq:
+                        criteriaQuery.add(Restrictions.eq(filter.getName(), filter.getValue()));
+                        break;
+                    case bool_eq:
+                        criteriaQuery.add(Restrictions.eq(filter.getName(), filter.getValue()));
+                        break;
+                    case gt:
+                        criteriaQuery.add(Restrictions.gt(filter.getName(), filter.getValue()));
+                        break;
+                    case gte:
+                        criteriaQuery.add(Restrictions.ge(filter.getName(), filter.getValue()));
+                        break;
+                    case lt:
+                        criteriaQuery.add(Restrictions.lt(filter.getName(), filter.getValue()));
+                        break;
+                    case lte:
+                        criteriaQuery.add(Restrictions.le(filter.getName(), filter.getValue()));
+                        break;
+                    case neq:
+                        criteriaQuery.add(Restrictions.ne(filter.getName(), filter.getValue()));
+                        break;
+                    case like:
+                        criteriaQuery.add(Restrictions.like(filter.getName(), (String) filter.getValue(),
+                                MatchMode.ANYWHERE));
+                        break;
+                    default:
+                        criteriaQuery.add(Restrictions.eq(filter.getName(), filter.getValue()));
+                        break;
                 }
             }
         }
@@ -338,7 +345,7 @@ public abstract class AbstractHibernateStorage {
     }
 
     protected <T> int executeCountQuery(SearchCriteriaModel criteria, Session session, Class<T> type,
-            String filterText, String... field) {
+                                        String filterText, String... field) {
         Criteria criteriaQuery = session.createCriteria(type);
         applySearchCriteriaToQuery(criteria, type, criteriaQuery, true);
         List<Criterion> disjuntionsCount = new ArrayList<>();
@@ -352,7 +359,7 @@ public abstract class AbstractHibernateStorage {
     }
 
     protected <T> int executeCountQuery(SearchCriteriaJoinModel criteriaJoin, SearchCriteriaModel criteria,
-            Session session, Class<T> type) {
+                                        Session session, Class<T> type) {
         Criteria criteriaQuery = session.createCriteria(type, criteriaJoin.getEntityAlias());
         applySearchCriteriaToQuery(criteriaJoin, type, criteriaQuery, true);
         applySearchCriteriaToQuery(criteria, type, criteriaQuery, true);
@@ -361,7 +368,7 @@ public abstract class AbstractHibernateStorage {
     }
 
     protected <T> int executeCountQuery(SearchCriteriaJoinModel criteriaJoin, SearchCriteriaModel criteria,
-            Session session, Class<T> type, String filterText, String... field) {
+                                        Session session, Class<T> type, String filterText, String... field) {
         Criteria criteriaQuery = session.createCriteria(type, criteriaJoin.getEntityAlias());
         applySearchCriteriaToQuery(criteriaJoin, type, criteriaQuery, true);
         applySearchCriteriaToQuery(criteria, type, criteriaQuery, true);

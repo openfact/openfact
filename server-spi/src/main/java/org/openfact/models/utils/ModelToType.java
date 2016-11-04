@@ -1,56 +1,45 @@
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
 package org.openfact.models.utils;
 
-import java.time.LocalDate;
+import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.*;
+import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.*;
+import oasis.names.specification.ubl.schema.xsd.commonextensioncomponents_21.ExtensionContentType;
+import oasis.names.specification.ubl.schema.xsd.commonextensioncomponents_21.UBLExtensionType;
+import oasis.names.specification.ubl.schema.xsd.commonextensioncomponents_21.UBLExtensionsType;
+import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
+import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
+import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
+import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.QuantityType;
+
+import org.openfact.models.ModelException;
+import org.openfact.models.ubl.CreditNoteModel;
+import org.openfact.models.ubl.DebitNoteModel;
+import org.openfact.models.ubl.InvoiceModel;
+import org.openfact.models.ubl.common.*;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
-
-import org.openfact.models.ubl.CreditNoteModel;
-import org.openfact.models.ubl.DebitNoteModel;
-import org.openfact.models.ubl.InvoiceModel;
-import org.openfact.models.ubl.common.AddressModel;
-import org.openfact.models.ubl.common.AllowanceChargeModel;
-import org.openfact.models.ubl.common.AttachmentModel;
-import org.openfact.models.ubl.common.BillingReferenceModel;
-import org.openfact.models.ubl.common.CountryModel;
-import org.openfact.models.ubl.common.CreditNoteLineModel;
-import org.openfact.models.ubl.common.CustomerPartyModel;
-import org.openfact.models.ubl.common.DebitNoteLineModel;
-import org.openfact.models.ubl.common.DocumentReferenceModel;
-import org.openfact.models.ubl.common.ExtensionContentModel;
-import org.openfact.models.ubl.common.ExternalReferenceModel;
-import org.openfact.models.ubl.common.InvoiceLineModel;
-import org.openfact.models.ubl.common.ItemIdentificationModel;
-import org.openfact.models.ubl.common.ItemModel;
-import org.openfact.models.ubl.common.MonetaryTotalModel;
-import org.openfact.models.ubl.common.PartyLegalModel;
-import org.openfact.models.ubl.common.PartyModel;
-import org.openfact.models.ubl.common.PriceModel;
-import org.openfact.models.ubl.common.PricingReferenceModel;
-import org.openfact.models.ubl.common.QuantityModel;
-import org.openfact.models.ubl.common.ResponseModel;
-import org.openfact.models.ubl.common.SignatureModel;
-import org.openfact.models.ubl.common.SupplierPartyModel;
-import org.openfact.models.ubl.common.TaxCategoryModel;
-import org.openfact.models.ubl.common.TaxSchemeModel;
-import org.openfact.models.ubl.common.TaxSubtotalModel;
-import org.openfact.models.ubl.common.TaxTotalModel;
-import org.openfact.models.ubl.common.UBLExtensionModel;
-import org.openfact.models.ubl.common.UBLExtensionsModel;
-
-import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.*;
-import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.*;
-
-import oasis.names.specification.ubl.schema.xsd.unqualifieddatatypes_21.QuantityType;
-import oasis.names.specification.ubl.schema.xsd.commonextensioncomponents_21.*;
-import oasis.names.specification.ubl.schema.xsd.creditnote_21.*;
-import oasis.names.specification.ubl.schema.xsd.debitnote_21.*;
-import oasis.names.specification.ubl.schema.xsd.invoice_21.*;
+import java.time.LocalDate;
 
 public class ModelToType {
 
-    public static InvoiceType toType(InvoiceModel model) throws DatatypeConfigurationException {
+    public static InvoiceType toType(InvoiceModel model) {
         InvoiceType type = new InvoiceType();
 
         if (model.getUBLVersionID() != null) {
@@ -107,7 +96,7 @@ public class ModelToType {
         return type;
     }
 
-    public static CreditNoteType toType(CreditNoteModel model) throws DatatypeConfigurationException {
+    public static CreditNoteType toType(CreditNoteModel model) {
         CreditNoteType type = new CreditNoteType();
 
         if (model.getUBLVersionID() != null) {
@@ -174,7 +163,7 @@ public class ModelToType {
         return type;
     }
 
-    public static DebitNoteType toType(DebitNoteModel model) throws DatatypeConfigurationException {
+    public static DebitNoteType toType(DebitNoteModel model) {
         DebitNoteType type = new DebitNoteType();
 
         if (model.getUBLVersionID() != null) {
@@ -692,7 +681,11 @@ public class ModelToType {
         return type;
     }
 
-    public static XMLGregorianCalendar toType(LocalDate date) throws DatatypeConfigurationException {
-        return DatatypeFactory.newInstance().newXMLGregorianCalendar(date.toString());
+    public static XMLGregorianCalendar toType(LocalDate date) {
+        try {
+            return DatatypeFactory.newInstance().newXMLGregorianCalendar(date.toString());
+        } catch (DatatypeConfigurationException e) {
+            throw new ModelException("Invalid LocalDate, could not parse to XMLGregorianCalendar", e);
+        }
     }
 }

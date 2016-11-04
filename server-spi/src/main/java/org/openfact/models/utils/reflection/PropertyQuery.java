@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +13,12 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 
 package org.openfact.models.utils.reflection;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * <p> Queries a target class for properties that match certain criteria. A property may either be a private or public
@@ -74,7 +70,7 @@ public class PropertyQuery<V> {
      * @return the first writable result, or null if there are no results
      */
     public Property<V> getFirstWritableResult() {
-        Map<String, Property<V>>  results = getWritableResultList();
+        Map<String, Property<V>> results = getWritableResultList();
         return results.isEmpty() ? null : results.values().iterator().next();
     }
 
@@ -83,7 +79,6 @@ public class PropertyQuery<V> {
      * return exactly one result.
      *
      * @return the single result
-     *
      * @throws RuntimeException if the query does not return exactly one result
      */
     public Property<V> getSingleResult() {
@@ -105,7 +100,6 @@ public class PropertyQuery<V> {
      * thrown if the query does not return exactly one result.
      *
      * @return the single writable result
-     *
      * @throws RuntimeException if the query does not return exactly one result
      */
     public Property<V> getWritableSingleResult() {
@@ -144,7 +138,6 @@ public class PropertyQuery<V> {
      * Get the result from the query, causing the query to be run.
      *
      * @param writable if this query should only return properties that are not read only
-     *
      * @return the results, or an empty list if there are no results
      */
     private Map<String, Property<V>> getResultList(boolean writable) {

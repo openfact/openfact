@@ -1,19 +1,19 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 
 package org.openfact.common.util;
 
@@ -29,8 +29,28 @@ import java.util.TimeZone;
  * Server-side cookie representation.  borrowed from Tomcat.
  */
 public class ServerCookie implements Serializable {
+    /**
+     * GMT timezone - all HTTP dates are on GMT
+     */
+    public final static TimeZone GMT_ZONE = TimeZone.getTimeZone("GMT");
     private static final String tspecials = ",; ";
     private static final String tspecials2 = "()<>@,;:\\\"/[]?={} \t";
+    /**
+     * US locale - all HTTP dates are in english
+     */
+    private final static Locale LOCALE_US = Locale.US;
+    /**
+     * Pattern used for old cookies
+     */
+    private final static String OLD_COOKIE_PATTERN = "EEE, dd-MMM-yyyy HH:mm:ss z";
+    private final static DateFormat OLD_COOKIE_FORMAT = new SimpleDateFormat(OLD_COOKIE_PATTERN, LOCALE_US);
+
+    // -------------------- Cookie parsing tools
+    private static final String ancientDate = formatOldCookie(new Date(10000));
+
+    static {
+        OLD_COOKIE_FORMAT.setTimeZone(GMT_ZONE);
+    }
 
     /*
     * Tests a string and returns true if the string counts as a
@@ -68,7 +88,6 @@ public class ServerCookie implements Serializable {
         return false;
     }
 
-
     public static boolean isToken2(String value) {
         if (value == null) return true;
         int len = value.length();
@@ -101,9 +120,6 @@ public class ServerCookie implements Serializable {
         return true;
     }
 
-    // -------------------- Cookie parsing tools
-
-
     /**
      * Return the header name to set the cookie, based on cookie version.
      */
@@ -124,26 +140,6 @@ public class ServerCookie implements Serializable {
         }
     }
 
-    /**
-     * US locale - all HTTP dates are in english
-     */
-    private final static Locale LOCALE_US = Locale.US;
-
-    /**
-     * GMT timezone - all HTTP dates are on GMT
-     */
-    public final static TimeZone GMT_ZONE = TimeZone.getTimeZone("GMT");
-    /**
-     * Pattern used for old cookies
-     */
-    private final static String OLD_COOKIE_PATTERN = "EEE, dd-MMM-yyyy HH:mm:ss z";
-
-
-    private final static DateFormat OLD_COOKIE_FORMAT = new SimpleDateFormat(OLD_COOKIE_PATTERN, LOCALE_US);
-    static{
-        OLD_COOKIE_FORMAT.setTimeZone(GMT_ZONE);
-    }
-
     public static String formatOldCookie(Date d) {
         String ocf = null;
         synchronized (OLD_COOKIE_FORMAT) {
@@ -158,10 +154,6 @@ public class ServerCookie implements Serializable {
             OLD_COOKIE_FORMAT.format(d, sb, fp);
         }
     }
-
-
-    private static final String ancientDate = formatOldCookie(new Date(10000));
-
 
     // TODO RFC2965 fields also need to be passed
     public static void appendCookieValue(StringBuffer headerBuf,

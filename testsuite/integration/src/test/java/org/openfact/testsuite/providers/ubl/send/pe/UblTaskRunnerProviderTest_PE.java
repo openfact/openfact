@@ -1,3 +1,19 @@
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
 package org.openfact.testsuite.providers.ubl.send.pe;
 
 import java.util.ArrayList;
@@ -16,7 +32,7 @@ import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.managers.OrganizationManager;
 import org.openfact.testsuite.providers.AbstractProviderTest;
 import org.openfact.ubl.UblExtensionContentGeneratorProvider;
-import org.openfact.ubl.UblProvider;
+import org.openfact.ubl.UblDocumentProvider;
 import org.openfact.ubl.send.UblTaskRunnerProvider;
 
 public class UblTaskRunnerProviderTest_PE extends AbstractProviderTest {
@@ -48,7 +64,7 @@ public class UblTaskRunnerProviderTest_PE extends AbstractProviderTest {
 		for (InvoiceModel invoice : invoices) {
 			session.getProvider(UblExtensionContentGeneratorProvider.class, organization.getDefaultUblLocale())
 					.generateUBLExtensions(organization, invoice);
-			session.getProvider(UblProvider.class, organization.getDefaultUblLocale()).getDocument(organization,
+			session.getProvider(UblDocumentProvider.class, organization.getDefaultUblLocale()).getDocument(organization,
 					invoice);
 			List<RequeridActionDocument> requerid = new ArrayList<>();
 			requerid.add(RequeridActionDocument.SEND_SOA_XML_DOCUMENT);

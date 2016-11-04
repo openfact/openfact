@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 
 package org.openfact.models.utils.reflection;
 
@@ -89,6 +89,38 @@ class MethodPropertyImpl<V> implements MethodProperty<V> {
         this.setterMethod = getSetterMethod(method.getDeclaringClass(), propertyName);
     }
 
+    private static Method getSetterMethod(Class<?> clazz, String name) {
+        Method[] methods = clazz.getMethods();
+        for (Method method : methods) {
+            String methodName = method.getName();
+            if (methodName.startsWith(SETTER_METHOD_PREFIX) && method.getParameterTypes().length == 1) {
+                if (Introspector.decapitalize(methodName.substring(SETTER_METHOD_PREFIX_LENGTH)).equals(name)) {
+                    return method;
+                }
+            }
+        }
+        return null;
+    }
+
+    private static Method getGetterMethod(Class<?> clazz, String name) {
+        for (Method method : clazz.getDeclaredMethods()) {
+            String methodName = method.getName();
+            if (method.getParameterTypes().length == 0) {
+                if (methodName.startsWith(GETTER_METHOD_PREFIX)) {
+                    if (Introspector.decapitalize(methodName.substring(GETTER_METHOD_PREFIX_LENGTH)).equals(name)) {
+                        return method;
+                    }
+                } else if (methodName.startsWith(BOOLEAN_GETTER_METHOD_PREFIX)) {
+                    if (Introspector.decapitalize(
+                            methodName.substring(BOOLEAN_GETTER_METHOD_PREFIX_LENGTH)).equals(name)) {
+                        return method;
+                    }
+                }
+            }
+        }
+        throw new IllegalArgumentException("no such getter method: " + clazz.getName() + '.' + name);
+    }
+
     @Override
     public String getName() {
         return propertyName;
@@ -145,38 +177,6 @@ class MethodPropertyImpl<V> implements MethodProperty<V> {
                     " is read only, as there is no setter method.");
         }
         Reflections.invokeMethod(setterMethod, instance, value);
-    }
-
-    private static Method getSetterMethod(Class<?> clazz, String name) {
-        Method[] methods = clazz.getMethods();
-        for (Method method : methods) {
-            String methodName = method.getName();
-            if (methodName.startsWith(SETTER_METHOD_PREFIX) && method.getParameterTypes().length == 1) {
-                if (Introspector.decapitalize(methodName.substring(SETTER_METHOD_PREFIX_LENGTH)).equals(name)) {
-                    return method;
-                }
-            }
-        }
-        return null;
-    }
-
-    private static Method getGetterMethod(Class<?> clazz, String name) {
-        for (Method method : clazz.getDeclaredMethods()) {
-            String methodName = method.getName();
-            if (method.getParameterTypes().length == 0) {
-                if (methodName.startsWith(GETTER_METHOD_PREFIX)) {
-                    if (Introspector.decapitalize(methodName.substring(GETTER_METHOD_PREFIX_LENGTH)).equals(name)) {
-                        return method;
-                    }
-                } else if (methodName.startsWith(BOOLEAN_GETTER_METHOD_PREFIX)) {
-                    if (Introspector.decapitalize(
-                            methodName.substring(BOOLEAN_GETTER_METHOD_PREFIX_LENGTH)).equals(name)) {
-                        return method;
-                    }
-                }
-            }
-        }
-        throw new IllegalArgumentException("no such getter method: " + clazz.getName() + '.' + name);
     }
 
     @Override

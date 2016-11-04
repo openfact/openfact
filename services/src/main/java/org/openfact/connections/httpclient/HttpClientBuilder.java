@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 
 package org.openfact.connections.httpclient;
 
@@ -48,44 +48,10 @@ import java.util.concurrent.TimeUnit;
 /**
  * Abstraction for creating HttpClients. Allows SSL configuration.
  *
- * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+ * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  * @version $Revision: 1 $
  */
 public class HttpClientBuilder {
-    public static enum HostnameVerificationPolicy {
-        /**
-         * Hostname verification is not done on the server's certificate
-         */
-        ANY,
-        /**
-         * Allows wildcards in subdomain names i.e. *.foo.com
-         */
-        WILDCARD,
-        /**
-         * CN must match hostname connecting to
-         */
-        STRICT
-    }
-
-
-    /**
-     * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
-     * @version $Revision: 1 $
-     */
-    private static class PassthroughTrustManager implements X509TrustManager {
-        public void checkClientTrusted(X509Certificate[] chain,
-                                       String authType) throws CertificateException {
-        }
-
-        public void checkServerTrusted(X509Certificate[] chain,
-                                       String authType) throws CertificateException {
-        }
-
-        public X509Certificate[] getAcceptedIssuers() {
-            return null;
-        }
-    }
-
     protected KeyStore truststore;
     protected KeyStore clientKeyStore;
     protected String clientPrivateKeyPassword;
@@ -104,7 +70,6 @@ public class HttpClientBuilder {
     protected long establishConnectionTimeout = -1;
     protected TimeUnit establishConnectionTimeoutUnits = TimeUnit.MILLISECONDS;
     protected boolean disableCookies = false;
-
 
     /**
      * Socket inactivity timeout
@@ -185,7 +150,6 @@ public class HttpClientBuilder {
         return this;
     }
 
-
     public HttpClientBuilder sslContext(SSLContext sslContext) {
         this.sslContext = sslContext;
         return this;
@@ -206,35 +170,6 @@ public class HttpClientBuilder {
         this.clientKeyStore = keyStore;
         this.clientPrivateKeyPassword = new String(password);
         return this;
-    }
-
-
-    static class VerifierWrapper implements X509HostnameVerifier {
-        protected HostnameVerifier verifier;
-
-        VerifierWrapper(HostnameVerifier verifier) {
-            this.verifier = verifier;
-        }
-
-        @Override
-        public void verify(String host, SSLSocket ssl) throws IOException {
-            if (!verifier.verify(host, ssl.getSession())) throw new SSLException("Hostname verification failure");
-        }
-
-        @Override
-        public void verify(String host, X509Certificate cert) throws SSLException {
-            throw new SSLException("This verification path not implemented");
-        }
-
-        @Override
-        public void verify(String host, String[] cns, String[] subjectAlts) throws SSLException {
-            throw new SSLException("This verification path not implemented");
-        }
-
-        @Override
-        public boolean verify(String s, SSLSession sslSession) {
-            return verifier.verify(s, sslSession);
-        }
     }
 
     public CloseableHttpClient build() {
@@ -308,6 +243,68 @@ public class HttpClientBuilder {
                         .loadKeyMaterial(keystore, keyPassword != null ? keyPassword.toCharArray() : null)
                         .loadTrustMaterial(truststore)
                         .build();
+    }
+
+
+    public static enum HostnameVerificationPolicy {
+        /**
+         * Hostname verification is not done on the server's certificate
+         */
+        ANY,
+        /**
+         * Allows wildcards in subdomain names i.e. *.foo.com
+         */
+        WILDCARD,
+        /**
+         * CN must match hostname connecting to
+         */
+        STRICT
+    }
+
+    /**
+     * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
+     * @version $Revision: 1 $
+     */
+    private static class PassthroughTrustManager implements X509TrustManager {
+        public void checkClientTrusted(X509Certificate[] chain,
+                                       String authType) throws CertificateException {
+        }
+
+        public void checkServerTrusted(X509Certificate[] chain,
+                                       String authType) throws CertificateException {
+        }
+
+        public X509Certificate[] getAcceptedIssuers() {
+            return null;
+        }
+    }
+
+    static class VerifierWrapper implements X509HostnameVerifier {
+        protected HostnameVerifier verifier;
+
+        VerifierWrapper(HostnameVerifier verifier) {
+            this.verifier = verifier;
+        }
+
+        @Override
+        public void verify(String host, SSLSocket ssl) throws IOException {
+            if (!verifier.verify(host, ssl.getSession())) throw new SSLException("Hostname verification failure");
+        }
+
+        @Override
+        public void verify(String host, X509Certificate cert) throws SSLException {
+            throw new SSLException("This verification path not implemented");
+        }
+
+        @Override
+        public void verify(String host, String[] cns, String[] subjectAlts) throws SSLException {
+            throw new SSLException("This verification path not implemented");
+        }
+
+        @Override
+        public boolean verify(String s, SSLSession sslSession) {
+            return verifier.verify(s, sslSession);
+        }
     }
 
 }

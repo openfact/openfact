@@ -1,34 +1,21 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 
 package org.openfact.models.utils;
-
-import java.security.Key;
-import java.security.KeyPair;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.security.SecureRandom;
-import java.security.cert.X509Certificate;
-import java.util.UUID;
-
-import javax.crypto.spec.SecretKeySpec;
-import javax.transaction.InvalidTransactionException;
-import javax.transaction.SystemException;
-import javax.transaction.Transaction;
 
 import org.openfact.common.util.Base64Url;
 import org.openfact.common.util.CertificateUtils;
@@ -36,20 +23,24 @@ import org.openfact.common.util.KeyUtils;
 import org.openfact.common.util.PemUtils;
 import org.openfact.component.ComponentFactory;
 import org.openfact.component.ComponentModel;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OpenfactSessionFactory;
-import org.openfact.models.OpenfactSessionTask;
-import org.openfact.models.OpenfactTransaction;
-import org.openfact.models.OrganizationModel;
+import org.openfact.models.*;
 import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
 import org.openfact.representations.idm.CertificateRepresentation;
 import org.openfact.transaction.JtaTransactionManagerLookup;
 
+import javax.crypto.spec.SecretKeySpec;
+import javax.transaction.InvalidTransactionException;
+import javax.transaction.SystemException;
+import javax.transaction.Transaction;
+import java.security.*;
+import java.security.cert.X509Certificate;
+import java.util.UUID;
+
 /**
  * Set of helper methods, which are useful in various model implementations.
  *
- * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
+ * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  */
 public final class OpenfactModelUtils {
 
@@ -137,7 +128,7 @@ public final class OpenfactModelUtils {
 
     public static String generateCodeSecret() {
         return UUID.randomUUID().toString();
-    }    
+    }
 
     /**
      * Wrap given runnable job into OpenfactTransaction.
@@ -172,16 +163,16 @@ public final class OpenfactModelUtils {
 
     public static String getMasterOrganizationAdminApplicationClientId(String organizationName) {
         return organizationName + "-organization";
-    }       
+    }
 
     // END USER FEDERATION RELATED STUFF
 
     public static String toLowerCaseSafe(String str) {
-        return str==null ? null : str.toLowerCase();
-    }            
+        return str == null ? null : str.toLowerCase();
+    }
 
     public static void suspendJtaTransaction(OpenfactSessionFactory factory, Runnable runnable) {
-        JtaTransactionManagerLookup lookup = (JtaTransactionManagerLookup)factory.getProviderFactory(JtaTransactionManagerLookup.class);
+        JtaTransactionManagerLookup lookup = (JtaTransactionManagerLookup) factory.getProviderFactory(JtaTransactionManagerLookup.class);
         Transaction suspended = null;
         try {
             if (lookup != null) {
@@ -207,19 +198,19 @@ public final class OpenfactModelUtils {
 
         }
 
-    }    
+    }
 
 
     public static void notifyCreated(OpenfactSession session, OrganizationModel organization, ComponentModel model) {
         Class<? extends Provider> providerClass = null;
         try {
-            providerClass = (Class<? extends Provider>)Class.forName(model.getProviderType());
+            providerClass = (Class<? extends Provider>) Class.forName(model.getProviderType());
         } catch (ClassNotFoundException e) {
             return;
         }
         ProviderFactory factory = session.getOpenfactSessionFactory().getProviderFactory(providerClass, model.getProviderId());
         if (factory instanceof ComponentFactory && factory != null) {
-            ((ComponentFactory)factory).onCreate(session, organization, model);
+            ((ComponentFactory) factory).onCreate(session, organization, model);
         }
     }
 }

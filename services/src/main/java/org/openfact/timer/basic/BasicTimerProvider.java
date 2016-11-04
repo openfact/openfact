@@ -1,5 +1,5 @@
-/*
- * Copyright 2016 Red Hat, Inc. and/or its affiliates
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,9 +13,12 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *******************************************************************************/
 
 package org.openfact.timer.basic;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
@@ -23,12 +26,8 @@ import org.openfact.services.scheduled.ScheduledTaskRunner;
 import org.openfact.timer.ScheduledTask;
 import org.openfact.timer.TimerProvider;
 
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
-
 /**
- * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
+ * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  */
 public class BasicTimerProvider implements TimerProvider {
 
@@ -81,25 +80,6 @@ public class BasicTimerProvider implements TimerProvider {
     @Override
     public void close() {
         // do nothing
-    }
-
-    @Override
-    public void schedule(Runnable runnable, Date firstTime, long intervalMillis, String taskName) {
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                runnable.run();
-            }
-        };
-
-        TimerTask existingTask = factory.putTask(taskName, task);
-        if (existingTask != null) {
-            logger.debugf("Existing timer task '%s' found. Cancelling it", taskName);
-            existingTask.cancel();
-        }
-
-        logger.debugf("Starting task '%s' with interval '%d'", taskName, intervalMillis);
-        timer.schedule(task, firstTime, intervalMillis);
     }
 
 }
