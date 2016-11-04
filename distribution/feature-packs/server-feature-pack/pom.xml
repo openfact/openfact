@@ -28,6 +28,10 @@
             <artifactId>openfact-wildfly-server-subsystem</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.openfact</groupId>
+            <artifactId>openfact-keycloak-adapter-subsystem</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.wildfly</groupId>
             <artifactId>wildfly-feature-pack</artifactId>
             <type>zip</type>

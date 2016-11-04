@@ -31,5 +31,6 @@
         <subsystem>transactions.xml</subsystem>
         <subsystem supplement="ha">undertow.xml</subsystem>
         <subsystem>openfact-server.xml</subsystem>
+        <subsystem>keycloak-adapter.xml</subsystem>
     </subsystems>
 </config>

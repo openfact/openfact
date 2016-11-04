@@ -200,7 +200,7 @@
 		<module>server-spi</module>
 		<module>model</module>
 		<module>themes</module>
-		<module>testsuite</module>
+		<!--<module>testsuite</module>-->
 		<module>dependencies</module>
 		<module>wildfly</module>
 	</modules>
@@ -673,6 +673,11 @@
 			<dependency>
 				<groupId>org.openfact</groupId>
 				<artifactId>openfact-wildfly-server-subsystem</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openfact</groupId>
+				<artifactId>openfact-keycloak-adapter-subsystem</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>

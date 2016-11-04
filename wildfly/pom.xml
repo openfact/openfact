@@ -16,5 +16,6 @@
     <modules>
         <module>extensions</module>
         <module>server-subsystem</module>
+        <module>keycloak-adapter-subsystem</module>
     </modules>
 </project>
