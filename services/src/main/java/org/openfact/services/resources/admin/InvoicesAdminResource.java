@@ -36,12 +36,10 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.xerces.util.XML11Char;
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
@@ -66,7 +64,6 @@ import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.InvoiceManager;
 
-import com.google.gson.JsonObject;
 import com.helger.ubl21.UBL21Reader;
 
 import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;

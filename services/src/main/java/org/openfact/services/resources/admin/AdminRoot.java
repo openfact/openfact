@@ -16,6 +16,8 @@
  *******************************************************************************/
 package org.openfact.services.resources.admin;
 
+import java.io.IOException;
+
 import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotAuthorizedException;
@@ -43,8 +45,6 @@ import org.openfact.services.resources.Cors;
 import org.openfact.services.resources.admin.info.ServerInfoAdminResource;
 import org.openfact.theme.Theme;
 import org.openfact.theme.ThemeProvider;
-
-import java.io.IOException;
 
 /**
  * @author carlosthe19916@sistcoop.com
