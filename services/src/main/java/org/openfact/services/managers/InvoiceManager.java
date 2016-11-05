@@ -28,6 +28,7 @@ import org.openfact.models.enums.UblDocumentType;
 import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.ubl.provider.InvoiceProvider;
 import org.openfact.models.utils.RepresentationToModel;
+import org.openfact.models.utils.TypeToModel;
 import org.openfact.representations.idm.ubl.InvoiceRepresentation;
 import org.openfact.ubl.UblExtensionContentGeneratorProvider;
 import org.openfact.ubl.UblIDGeneratorProvider;
@@ -35,10 +36,12 @@ import org.openfact.ubl.UblDocumentProvider;
 import org.openfact.ubl.UblDocumentSignerProvider;
 import org.w3c.dom.Document;
 
+import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
+
 public class InvoiceManager {
 
     protected static final Logger logger = Logger.getLogger(DebitNoteManager.class);
-    
+
     protected OpenfactSession session;
     protected InvoiceProvider model;
 
@@ -51,42 +54,61 @@ public class InvoiceManager {
         return model.getInvoiceByID(organization, ID);
     }
 
-    public InvoiceModel addInvoice(OrganizationModel organization, InvoiceRepresentation rep) {     
+    public InvoiceModel addInvoice(OrganizationModel organization, InvoiceRepresentation rep) {
         String ID = rep.getIdUbl();
         if (ID == null) {
             UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class);
             ID = provider.generateInvoiceID(organization, rep.getInvoiceTypeCode());
         }
-        InvoiceModel invoice = model.addInvoice(organization, ID);
 
+        InvoiceModel invoice = model.addInvoice(organization, ID);
         RepresentationToModel.importInvoice(session, organization, invoice, rep);
-        
+        process(organization, invoice);
+
+        return invoice;
+    }
+
+    public InvoiceModel addInvoice(OrganizationModel organization, InvoiceType rep) {
+        String ID = rep.getIDValue();
+        if (ID == null) {
+            UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class);
+            ID = provider.generateInvoiceID(organization, rep.getInvoiceTypeCodeValue());
+        }
+
+        InvoiceModel invoice = model.addInvoice(organization, ID);
+        TypeToModel.importInvoice(session, organization, invoice, rep);
+        process(organization, invoice);
+
+        return invoice;
+    }
+
+    protected void process(OrganizationModel organization, InvoiceModel invoice) {
         // Generate extensions
-        UblExtensionContentGeneratorProvider extensionContentProvider = session.getProvider(UblExtensionContentGeneratorProvider.class);
-        if(extensionContentProvider != null) {
+        UblExtensionContentGeneratorProvider extensionContentProvider = session
+                .getProvider(UblExtensionContentGeneratorProvider.class);
+        if (extensionContentProvider != null) {
             extensionContentProvider.generateUBLExtensions(organization, invoice);
         }
-        
+
         // Generate Document from Invoice
         UblDocumentProvider documentProvider = session.getProvider(UblDocumentProvider.class);
         Document baseDocument = documentProvider.getDocument(organization, invoice);
-        
+
         // Sign Document
         Document signedDocument = null;
         UblDocumentSignerProvider signerProvider = session.getProvider(UblDocumentSignerProvider.class);
-        if(signerProvider != null) {
+        if (signerProvider != null) {
             signedDocument = signerProvider.sign(baseDocument, UblDocumentType.INVOICE, organization);
         }
-        
+
         try {
-            byte[] bytes = DocumentUtils.getBytesFromDocument(signedDocument != null ? signedDocument: baseDocument);
+            byte[] bytes = DocumentUtils
+                    .getBytesFromDocument(signedDocument != null ? signedDocument : baseDocument);
             invoice.setXmlDocument(ArrayUtils.toObject(bytes));
         } catch (TransformerException e) {
             logger.error("Error parsing to byte XML", e);
             throw new ModelException(e);
-        }        
-        
-        return invoice;
+        }
     }
 
     public boolean removeInvoice(OrganizationModel organization, InvoiceModel invoice) {
