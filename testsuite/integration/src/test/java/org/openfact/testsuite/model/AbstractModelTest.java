@@ -108,33 +108,4 @@ public class AbstractModelTest {
         return JsonSerialization.readValue(bytes, OrganizationRepresentation.class);
     }
 
-
-    // Helper methods for role equality
-
-    /*public static void assertRolesEquals(Set<RoleModel> expected, Set<RoleModel> actual) {
-        Assert.assertEquals(expected.size(), actual.size());
-        for (RoleModel current : actual) {
-            assertRolesContains(current, expected);
-        }
-    }
-
-    public static void assertRolesContains(RoleModel expected, Set<RoleModel> actual) {
-        for (RoleModel current : actual) {
-            if (current.getId().equals(expected.getId())) {
-                assertRolesEquals(current, expected);
-                return;
-            }
-        }
-
-        Assert.fail("Role with id=" + expected.getId() + " name=" + expected.getName() + " not in set " + actual);
-    }
-
-    public static void assertRolesEquals(RoleModel expected, RoleModel actual) {
-        Assert.assertEquals(expected.getId(), actual.getId());
-        Assert.assertEquals(expected.getName(), actual.getName());
-        Assert.assertEquals(expected.getDescription(), actual.getDescription());
-        Assert.assertEquals(expected.isScopeParamRequired(), actual.isScopeParamRequired());
-        Assert.assertEquals(expected.getContainer(), actual.getContainer());
-        Assert.assertEquals(expected.getComposites().size(), actual.getComposites().size());
-    }*/
 }

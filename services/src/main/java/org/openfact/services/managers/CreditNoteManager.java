@@ -25,9 +25,14 @@ import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.UserSenderModel;
-import org.openfact.models.enums.RequeridActionDocument;
+import org.openfact.models.enums.RequiredActionDocument;
 import org.openfact.models.enums.UblDocumentType;
 import org.openfact.models.ubl.CreditNoteModel;
+import org.openfact.models.ubl.DebitNoteModel;
+import org.openfact.models.ubl.InvoiceModel;
+import org.openfact.models.ubl.common.ContactModel;
+import org.openfact.models.ubl.common.CustomerPartyModel;
+import org.openfact.models.ubl.common.PartyModel;
 import org.openfact.models.ubl.provider.CreditNoteProvider;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.ubl.CreditNoteRepresentation;
@@ -67,10 +72,16 @@ public class CreditNoteManager {
             UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class);
             ID = provider.generateCreditNoteID(organization, referencesID.toArray(new String[referencesID.size()]));
         }
+
         CreditNoteModel creditNote = model.addCreditNote(organization, ID);
-
         RepresentationToModel.importCreditNote(session, organization, creditNote, rep);
+        creditNote.setRequiredAction(RequiredActionDocument.getDefaults());
 
+        process(organization, creditNote);
+        return creditNote;
+    }
+
+    protected void process(OrganizationModel organization, CreditNoteModel creditNote) {
         // Generate extensions
         UblExtensionContentGeneratorProvider extensionContentProvider = session
                 .getProvider(UblExtensionContentGeneratorProvider.class);
@@ -78,7 +89,7 @@ public class CreditNoteManager {
             extensionContentProvider.generateUBLExtensions(organization, creditNote);
         }
 
-        // Generate Document from credit note
+        // Generate Document from CreditNote
         UblDocumentProvider documentProvider = session.getProvider(UblDocumentProvider.class);
         Document baseDocument = documentProvider.getDocument(organization, creditNote);
 
@@ -90,48 +101,53 @@ public class CreditNoteManager {
         }
 
         try {
-            byte[] bytes = DocumentUtils.getBytesFromDocument(signedDocument != null ? signedDocument : baseDocument);
+            byte[] bytes = DocumentUtils
+                    .getBytesFromDocument(signedDocument != null ? signedDocument : baseDocument);
             creditNote.setXmlDocument(ArrayUtils.toObject(bytes));
-            if (rep.isSendImmediately()) {
-
-                UserSenderModel user = new UserSenderModel() {
-                    @Override
-                    public String getLastName() {
-                        return creditNote.getAccountingCustomerParty().getParty().getPartyName().get(0);
-                    }
-
-                    @Override
-                    public String getFullName() {
-                        return null;
-                    }
-
-                    @Override
-                    public String getFirstName() {
-                        return null;
-                    }
-
-                    @Override
-                    public String getEmail() {
-                        return creditNote.getAccountingCustomerParty().getAccountingContact().getElectronicMail();
-                    }
-
-                    @Override
-                    public Map<String, Object> getAttributes() {
-                        return null;
-                    }
-                };
-                session.getProvider(EmailTemplateProvider.class).setUser(user).sendCreditNote(creditNote);
-                creditNote.removeRequeridAction(RequeridActionDocument.SEND_EMAIL_CUSTOMER);
-            }
         } catch (TransformerException e) {
             logger.error("Error parsing to byte XML", e);
             throw new ModelException(e);
-        } catch (EmailException e) {
-            logger.error("Error sending email of credit note", e);
-            throw new ModelException(e);
         }
+    }
 
-        return creditNote;
+    public void sendEmailToCustomerEmail(OrganizationModel organization, CreditNoteModel creditNote)
+            throws EmailException {
+        CustomerPartyModel customerParty = creditNote.getAccountingCustomerParty();
+        if (customerParty != null) {
+            PartyModel party = customerParty.getParty();
+            if (party != null) {
+                ContactModel contact = party.getContact();
+                EmailTemplateProvider provider = session.getProvider(EmailTemplateProvider.class)
+                        .setOrganization(organization).setUser(new UserSenderModel() {
+
+                            @Override
+                            public String getLastName() {
+                                return null;
+                            }
+
+                            @Override
+                            public String getFullName() {
+                                return null;
+                            }
+
+                            @Override
+                            public String getFirstName() {
+                                return null;
+                            }
+
+                            @Override
+                            public String getEmail() {
+                                return contact.getElectronicMail();
+                            }
+
+                            @Override
+                            public Map<String, Object> getAttributes() {
+                                return null;
+                            }
+                        });
+                provider.sendCreditNote(creditNote);
+            }
+        }
     }
 
     public boolean removeCreditNote(OrganizationModel organization, CreditNoteModel creditNote) {

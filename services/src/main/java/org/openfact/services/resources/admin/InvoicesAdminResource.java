@@ -147,7 +147,7 @@ public class InvoicesAdminResource {
 
             // Send Email
             if (rep.getRequiredActions().contains(RequiredActionDocument.SEND_EMAIL_CUSTOMER.toString())) {
-                invoiceManager.sendEmailToCustomerEmail(invoice);
+                invoiceManager.sendEmailToCustomerEmail(organization, invoice);
             }
 
             URI location = uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build();

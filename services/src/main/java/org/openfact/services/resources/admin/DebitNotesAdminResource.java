@@ -19,11 +19,13 @@ package org.openfact.services.resources.admin;
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
+import org.openfact.email.EmailException;
 import org.openfact.events.admin.OperationType;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.enums.RequiredActionDocument;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.ubl.DebitNoteModel;
@@ -123,12 +125,17 @@ public class DebitNotesAdminResource {
         try {
             DebitNoteModel debitNote = debitNoteManager.addDebitNote(organization, rep);
 
+            adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, debitNote.getId())
+                    .representation(rep).success();
+
             if (session.getTransactionManager().isActive()) {
                 session.getTransactionManager().commit();
             }
 
-            adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, debitNote.getId())
-                    .representation(rep).success();
+            // Send Email
+            if (rep.getRequiredActions().contains(RequiredActionDocument.SEND_EMAIL_CUSTOMER.toString())) {
+                debitNoteManager.sendEmailToCustomerEmail(organization, debitNote);
+            }
 
             URI location = uriInfo.getAbsolutePathBuilder().path(debitNote.getId()).build();
             return Response.created(location).build();
@@ -142,6 +149,9 @@ public class DebitNotesAdminResource {
                 session.getTransactionManager().setRollbackOnly();
             }
             return ErrorResponse.exists("Could not create debit note");
+        } catch (EmailException e) {
+            ServicesLogger.LOGGER.failedToSendActionsEmail(e);
+            return ErrorResponse.error("Invoice Created but, Failed to send execute actions email", Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
 

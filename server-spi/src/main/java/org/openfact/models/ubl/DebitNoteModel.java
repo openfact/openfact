@@ -235,9 +235,9 @@ public interface DebitNoteModel {
 
     List<RequiredActionDocument> getRequeridAction();
 
-    void setRequeridAction(List<RequiredActionDocument> requeridAction);
+    void setRequiredAction(List<RequiredActionDocument> requeridAction);
 
-    boolean removeRequeridAction(RequiredActionDocument requeridAction);
+    boolean removeRequiredAction(RequiredActionDocument requeridAction);
 
     /**
      * Events interfaces

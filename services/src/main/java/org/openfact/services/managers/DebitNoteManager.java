@@ -25,9 +25,13 @@ import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.UserSenderModel;
-import org.openfact.models.enums.RequeridActionDocument;
+import org.openfact.models.enums.RequiredActionDocument;
 import org.openfact.models.enums.UblDocumentType;
 import org.openfact.models.ubl.DebitNoteModel;
+import org.openfact.models.ubl.InvoiceModel;
+import org.openfact.models.ubl.common.ContactModel;
+import org.openfact.models.ubl.common.CustomerPartyModel;
+import org.openfact.models.ubl.common.PartyModel;
 import org.openfact.models.ubl.provider.DebitNoteProvider;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.ubl.DebitNoteRepresentation;
@@ -67,10 +71,16 @@ public class DebitNoteManager {
             UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class);
             ID = provider.generateDebitNoteID(organization, referencesID.toArray(new String[referencesID.size()]));
         }
+
         DebitNoteModel debitNote = model.addDebitNote(organization, ID);
-
         RepresentationToModel.importDebitNote(session, organization, debitNote, rep);
+        debitNote.setRequiredAction(RequiredActionDocument.getDefaults());
 
+        process(organization, debitNote);
+        return debitNote;
+    }
+
+    protected void process(OrganizationModel organization, DebitNoteModel debitNote) {
         // Generate extensions
         UblExtensionContentGeneratorProvider extensionContentProvider = session
                 .getProvider(UblExtensionContentGeneratorProvider.class);
@@ -78,7 +88,7 @@ public class DebitNoteManager {
             extensionContentProvider.generateUBLExtensions(organization, debitNote);
         }
 
-        // Generate Document from debit note
+        // Generate Document from DebitNote
         UblDocumentProvider documentProvider = session.getProvider(UblDocumentProvider.class);
         Document baseDocument = documentProvider.getDocument(organization, debitNote);
 
@@ -90,48 +100,53 @@ public class DebitNoteManager {
         }
 
         try {
-            byte[] bytes = DocumentUtils.getBytesFromDocument(signedDocument != null ? signedDocument : baseDocument);
+            byte[] bytes = DocumentUtils
+                    .getBytesFromDocument(signedDocument != null ? signedDocument : baseDocument);
             debitNote.setXmlDocument(ArrayUtils.toObject(bytes));
-            if (rep.isSendImmediately()) {
-
-                UserSenderModel user = new UserSenderModel() {
-                    @Override
-                    public String getLastName() {
-                        return debitNote.getAccountingCustomerParty().getParty().getPartyName().get(0);
-                    }
-
-                    @Override
-                    public String getFullName() {
-                        return null;
-                    }
-
-                    @Override
-                    public String getFirstName() {
-                        return null;
-                    }
-
-                    @Override
-                    public String getEmail() {
-                        return debitNote.getAccountingCustomerParty().getAccountingContact().getElectronicMail();
-                    }
-
-                    @Override
-                    public Map<String, Object> getAttributes() {
-                        return null;
-                    }
-                };
-                session.getProvider(EmailTemplateProvider.class).setUser(user).sendDebitNote(debitNote);
-                debitNote.removeRequeridAction(RequeridActionDocument.SEND_EMAIL_CUSTOMER);
-            }
         } catch (TransformerException e) {
             logger.error("Error parsing to byte XML", e);
             throw new ModelException(e);
-        } catch (EmailException e) {
-            logger.error("Error sending email of debit note", e);
-            throw new ModelException(e);
         }
+    }
 
-        return debitNote;
+    public void sendEmailToCustomerEmail(OrganizationModel organization, DebitNoteModel debitNote)
+            throws EmailException {
+        CustomerPartyModel customerParty = debitNote.getAccountingCustomerParty();
+        if (customerParty != null) {
+            PartyModel party = customerParty.getParty();
+            if (party != null) {
+                ContactModel contact = party.getContact();
+                EmailTemplateProvider provider = session.getProvider(EmailTemplateProvider.class)
+                        .setOrganization(organization).setUser(new UserSenderModel() {
+
+                            @Override
+                            public String getLastName() {
+                                return null;
+                            }
+
+                            @Override
+                            public String getFullName() {
+                                return null;
+                            }
+
+                            @Override
+                            public String getFirstName() {
+                                return null;
+                            }
+
+                            @Override
+                            public String getEmail() {
+                                return contact.getElectronicMail();
+                            }
+
+                            @Override
+                            public Map<String, Object> getAttributes() {
+                                return null;
+                            }
+                        });
+                provider.sendDebitNote(debitNote);
+            }
+        }
     }
 
     public boolean removeDebitNote(OrganizationModel organization, DebitNoteModel debitNote) {
