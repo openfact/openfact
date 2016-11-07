@@ -20,10 +20,6 @@
     "host": "localhost",
     "port": "3025"
   },
-  "ublSenderServer": {
-    "username": "username",
-    "password": "password"
-  },
   "tasksEnabled": false,
   "emailTheme": "default",
   "internationalizationEnabled": true,
@@ -32,12 +28,6 @@
     "en"
   ],
   "defaultLocale": "es",
-  "internationalizationUblEnabled": true,
-  "supportedUblLocales": [
-    "pe",
-    "ar"
-  ],
-  "defaultUblLocale": "pe",
   "supportedCurrencies": [
     "pen",
     "usd"

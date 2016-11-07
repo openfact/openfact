@@ -60,7 +60,6 @@ import org.openfact.models.jpa.ubl.common.SupplierPartyAdapter;
 import org.openfact.models.jpa.ubl.common.TaxTotalAdapter;
 import org.openfact.models.jpa.ubl.common.UBLExtensionsAdapter;
 import org.openfact.models.ubl.CreditNoteModel;
-import org.openfact.models.ubl.SendEventModel;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.BillingReferenceModel;
 import org.openfact.models.ubl.common.CreditNoteLineModel;
@@ -943,12 +942,6 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
 			return ((CreditNoteAdapter) model).getEntity();
 		}
 		return em.getReference(CreditNoteEntity.class, model.getId());
-	}
-
-	@Override
-	public List<SendEventModel> getSendEvent() {
-		return creditNote.getSendEvents().stream().map(f -> new SendEventAdapter(session, organization, em, f))
-				.collect(Collectors.toList());
 	}
 
 	@Override

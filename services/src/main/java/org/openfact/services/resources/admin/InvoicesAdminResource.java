@@ -16,9 +16,12 @@
  *******************************************************************************/
 package org.openfact.services.resources.admin;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -36,8 +39,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import org.apache.commons.io.IOUtils;
 import org.jboss.resteasy.annotations.cache.NoCache;
+import org.jboss.resteasy.plugins.providers.multipart.InputPart;
+import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
+import org.json.JSONObject;
+import org.json.XML;
 import org.openfact.common.ClientConnection;
 import org.openfact.events.admin.OperationType;
 import org.openfact.models.ModelDuplicateException;
@@ -55,6 +63,10 @@ import org.openfact.representations.idm.ubl.InvoiceRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.InvoiceManager;
+
+import com.helger.ubl21.UBL21Reader;
+
+import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 
 /**
  * @author carlosthe19916@sistcoop.com
@@ -163,7 +175,57 @@ public class InvoicesAdminResource {
             return ErrorResponse.exists("Could not create debit note");
         }
     }
+    
+    @POST
+    @Path("xml")
+    @Consumes("multipart/form-data")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response createInvoiceFromXml(final MultipartFormDataInput input) {
+        auth.requireManage();
 
+        Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
+        List<InputPart> inputParts = uploadForm.get("uploadFile");
+        
+        for (InputPart inputPart : inputParts) {                        
+            try {
+                InputStream inputStream = inputPart.getBody(InputStream.class, null);
+                byte[] bytes = IOUtils.toByteArray(inputStream);
+                
+                InvoiceManager invoiceManager = new InvoiceManager(session);
+                InvoiceType invoiceType = UBL21Reader.invoice().read(bytes);
+                
+                // Double-check duplicated ID
+                if (invoiceType.getIDValue() != null && invoiceManager.getInvoiceByID(organization, invoiceType.getIDValue()) != null) {
+                    return ErrorResponse.exists("Invoice exists with same ID");
+                }
+                
+                InvoiceModel invoice = invoiceManager.addInvoice(organization, invoiceType);
+
+                if (session.getTransactionManager().isActive()) {
+                    session.getTransactionManager().commit();
+                }
+                 
+                JSONObject json = XML.toJSONObject(invoiceType.toString());
+                adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, invoice.getId()).representation(json).success();                                             
+            } catch (IOException e) {
+                logger.error("Error reading input data", e);
+                return ErrorResponse.error("Error Reading data", Response.Status.BAD_REQUEST);
+            } catch (ModelDuplicateException e) {
+                if (session.getTransactionManager().isActive()) {
+                    session.getTransactionManager().setRollbackOnly();
+                }
+                return ErrorResponse.exists("Invoice exists with same id or ID");
+            } catch (ModelException me) {
+                if (session.getTransactionManager().isActive()) {
+                    session.getTransactionManager().setRollbackOnly();
+                }
+                return ErrorResponse.exists("Could not create debit note");
+            }          
+        }    
+        
+        return Response.ok().build();
+    }
+    
     @POST
     @Path("search")
     @Produces(MediaType.APPLICATION_JSON)

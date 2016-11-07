@@ -67,7 +67,6 @@ import org.openfact.models.jpa.ubl.common.SupplierPartyAdapter;
 import org.openfact.models.jpa.ubl.common.TaxTotalAdapter;
 import org.openfact.models.jpa.ubl.common.UBLExtensionsAdapter;
 import org.openfact.models.ubl.InvoiceModel;
-import org.openfact.models.ubl.SendEventModel;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.BillingReferenceModel;
 import org.openfact.models.ubl.common.CustomerPartyModel;
@@ -778,12 +777,6 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 			return ((InvoiceAdapter) model).getEntity();
 		}
 		return em.getReference(InvoiceEntity.class, model.getId());
-	}
-
-	@Override
-	public List<SendEventModel> getSendEvent() {
-		return invoice.getSendEvents().stream().map(f -> new SendEventAdapter(session, organization, em, f))
-				.collect(Collectors.toList());
 	}
 
 	@Override
