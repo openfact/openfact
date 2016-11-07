@@ -134,23 +134,21 @@
 
 		<!-- ubl -->
 		<version.ph-ubl>5.1.0</version.ph-ubl>
+
 		<!-- Google Guava -->
 		<version.google-guava>19.0</version.google-guava>
+
 		<!-- Json-Xml-Converter -->
 		<version.odysseus-staxon>1.3</version.odysseus-staxon>
+
 		<!-- jodd to zip -->
 		<version.jodd>3.7.1</version.jodd>
+
 		<!-- Apache commons -->
 		<version.commons.lang>2.6</version.commons.lang>
-		<!-- apache cfx -->
-		<version.apache.cxf>3.1.7</version.apache.cxf>
 		<version.woodstox>4.4.1</version.woodstox>
-		<!-- easybatch -->
-		<version.easybatch>5.0.0-RC2</version.easybatch>
-		
 		<json.version>20160810</json.version>
-
-		<version.jaxws-rt>2.2.8</version.jaxws-rt>
+		<version.jasperreports>6.3.1</version.jasperreports>
 		<version.keycloak>2.2.1.Final</version.keycloak>
 	</properties>
 
@@ -891,46 +889,11 @@
 				<groupId>commons-lang</groupId>
 				<artifactId>commons-lang</artifactId>
 				<version>${version.commons.lang}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-rt-frontend-jaxws</artifactId>
-				<version>${version.apache.cxf}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-rt-transports-http</artifactId>
-				<version>${version.apache.cxf}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-rt-rs-client</artifactId>
-				<version>${version.apache.cxf}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-rt-rs-service-description</artifactId>
-				<version>${version.apache.cxf}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-rt-ws-security</artifactId>
-				<version>${version.apache.cxf}</version>
-			</dependency>
+			</dependency>			
 			<dependency>
 				<groupId>org.codehaus.woodstox</groupId>
 				<artifactId>woodstox-core-asl</artifactId>
 				<version>${version.woodstox}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.easybatch</groupId>
-				<artifactId>easybatch-core</artifactId>
-				<version>${version.easybatch}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.sun.xml.ws</groupId>
-				<artifactId>jaxws-rt</artifactId>
-				<version>${version.jaxws-rt}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.json</groupId>
@@ -938,6 +901,11 @@
 				<version>${json.version}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>net.sf.jasperreports</groupId>
+				<artifactId>jasperreports</artifactId>
+				<version>${version.jasperreports}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.keycloak</groupId>
 				<artifactId>keycloak-core</artifactId>
