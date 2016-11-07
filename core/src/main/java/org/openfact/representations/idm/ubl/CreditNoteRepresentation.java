@@ -65,6 +65,7 @@ public class CreditNoteRepresentation {
     private MonetaryTotalRepresentation legalMonetaryTotal;
     private List<CreditNoteLineRepresentation> creditNoteLine;
     private String id;
+    private boolean sendImmediately;
 
     /**
      * Custom methods
@@ -433,5 +434,13 @@ public class CreditNoteRepresentation {
     public void setId(String id) {
         this.id = id;
     }
+
+	public boolean isSendImmediately() {
+		return sendImmediately;
+	}
+
+	public void setSendImmediately(boolean sendImmediately) {
+		this.sendImmediately = sendImmediately;
+	}
 
 }

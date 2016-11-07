@@ -14,25 +14,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
+package org.openfact.models;
 
-package org.openfact.email;
+import java.util.Map;
 
-import java.util.List;
+public interface UserSenderModel extends UserModel {
 
-import org.openfact.models.AttachModel;
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.UserSenderModel;
-import org.openfact.provider.Provider;
-
-/**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
- */
-public interface EmailSenderProvider extends Provider {
-
-	void send(OrganizationModel organization, UserSenderModel user, String subject, String textBody, String htmlBody)
-			throws EmailException;
-
-	void send(OrganizationModel organization, UserSenderModel user, String subject, String textBody, String htmlBody,
-			List<AttachModel> attachments) throws EmailException;
+	default String getUsername() {
+		return null;
+	}
+	
+	default boolean hasRole(String role) {
+		return false;
+	}
 
 }

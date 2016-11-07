@@ -20,6 +20,10 @@ package org.openfact.email;
 import org.openfact.events.Event;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.UserModel;
+import org.openfact.models.UserSenderModel;
+import org.openfact.models.ubl.CreditNoteModel;
+import org.openfact.models.ubl.DebitNoteModel;
+import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.provider.Provider;
 
 /**
@@ -27,14 +31,20 @@ import org.openfact.provider.Provider;
  */
 public interface EmailTemplateProvider extends Provider {
 
-    String IDENTITY_PROVIDER_BROKER_CONTEXT = "identityProviderBrokerCtx";
+	String IDENTITY_PROVIDER_BROKER_CONTEXT = "identityProviderBrokerCtx";
 
-    public EmailTemplateProvider setOrganization(OrganizationModel organization);
+	public EmailTemplateProvider setOrganization(OrganizationModel organization);
 
-    public EmailTemplateProvider setUser(UserModel user);
+	public EmailTemplateProvider setUser(UserSenderModel user);
 
-    public EmailTemplateProvider setAttribute(String name, Object value);
+	public EmailTemplateProvider setAttribute(String name, Object value);
 
-    public void sendEvent(Event event) throws EmailException;
+	public void sendEvent(Event event) throws EmailException;
+
+	void sendInvoice(InvoiceModel invoice) throws EmailException ;
+
+	void sendCreditNote(CreditNoteModel creditNote) throws EmailException ;
+
+	void sendDebitNote(DebitNoteModel debitNote) throws EmailException ;
 
 }

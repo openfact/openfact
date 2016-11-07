@@ -74,6 +74,7 @@ public class InvoiceRepresentation {
     private MonetaryTotalRepresentation legalMonetaryTotal;
     private List<InvoiceLineRepresentation> invoiceLine;
     private String id;
+    private boolean sendImmediately;
 
     private String xml;
 
@@ -517,5 +518,13 @@ public class InvoiceRepresentation {
     public void setXml(String xml) {
         this.xml = xml;
     }
+
+	public boolean isSendImmediately() {
+		return sendImmediately;
+	}
+
+	public void setSendImmediately(boolean sendImmediately) {
+		this.sendImmediately = sendImmediately;
+	}
 
 }

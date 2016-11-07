@@ -951,7 +951,7 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
 	}
 
 	@Override
-	public Byte[] getXmlDoument() {
+	public Byte[] getXmlDocument() {
 		return debitNote.getXmlDocument();
 	}
 
