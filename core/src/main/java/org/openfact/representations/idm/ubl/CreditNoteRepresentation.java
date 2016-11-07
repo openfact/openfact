@@ -25,6 +25,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CreditNoteRepresentation {
+    private String id;
+    private String xml;
+    private List<String> requiredActions;
+
     private UBLExtensionsRepresentation ublExtensions;
     private String ublVersionID;
     private String customizationID;
@@ -64,8 +68,6 @@ public class CreditNoteRepresentation {
     private List<TaxTotalRepresentation> taxTotal;
     private MonetaryTotalRepresentation legalMonetaryTotal;
     private List<CreditNoteLineRepresentation> creditNoteLine;
-    private String id;
-    private boolean sendImmediately;
 
     /**
      * Custom methods
@@ -110,6 +112,30 @@ public class CreditNoteRepresentation {
             despatchDocumentReference = new ArrayList<>();
         }
         despatchDocumentReference.add(representation);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getXml() {
+        return xml;
+    }
+
+    public void setXml(String xml) {
+        this.xml = xml;
+    }
+
+    public List<String> getRequiredActions() {
+        return requiredActions;
+    }
+
+    public void setRequiredActions(List<String> requiredActions) {
+        this.requiredActions = requiredActions;
     }
 
     public UBLExtensionsRepresentation getUblExtensions() {
@@ -426,21 +452,5 @@ public class CreditNoteRepresentation {
     public void setCreditNoteLine(List<CreditNoteLineRepresentation> creditNoteLine) {
         this.creditNoteLine = creditNoteLine;
     }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-	public boolean isSendImmediately() {
-		return sendImmediately;
-	}
-
-	public void setSendImmediately(boolean sendImmediately) {
-		this.sendImmediately = sendImmediately;
-	}
 
 }

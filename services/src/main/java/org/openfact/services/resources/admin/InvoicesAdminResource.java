@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,29 +16,8 @@
  *******************************************************************************/
 package org.openfact.services.resources.admin;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import javax.validation.Valid;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
-
+import com.helger.ubl21.UBL21Reader;
+import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 import org.apache.commons.io.IOUtils;
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
@@ -48,20 +27,15 @@ import org.json.JSONObject;
 import org.json.XML;
 import org.openfact.common.ClientConnection;
 import org.openfact.email.EmailException;
-import org.openfact.email.EmailTemplateProvider;
 import org.openfact.events.admin.OperationType;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.UserModel;
 import org.openfact.models.enums.RequiredActionDocument;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.ubl.InvoiceModel;
-import org.openfact.models.ubl.common.ContactModel;
-import org.openfact.models.ubl.common.CustomerPartyModel;
-import org.openfact.models.ubl.common.PartyModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
@@ -71,9 +45,16 @@ import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.InvoiceManager;
 
-import com.helger.ubl21.UBL21Reader;
-
-import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
+import javax.validation.Valid;
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author carlosthe19916@sistcoop.com
@@ -84,23 +65,19 @@ public class InvoicesAdminResource {
     private static final ServicesLogger logger = ServicesLogger.LOGGER;
 
     protected OrganizationModel organization;
+    @Context
+    protected UriInfo uriInfo;
+    @Context
+    protected OpenfactSession session;
+    @Context
+    protected ClientConnection clientConnection;
+    @Context
+    protected HttpHeaders headers;
     private OrganizationAuth auth;
     private AdminEventBuilder adminEvent;
 
-    @Context
-    protected UriInfo uriInfo;
-
-    @Context
-    protected OpenfactSession session;
-
-    @Context
-    protected ClientConnection clientConnection;
-
-    @Context
-    protected HttpHeaders headers;
-
     public InvoicesAdminResource(OrganizationModel organization, OrganizationAuth auth,
-            AdminEventBuilder adminEvent) {
+                                 AdminEventBuilder adminEvent) {
         this.auth = auth;
         this.organization = organization;
         this.adminEvent = adminEvent;
@@ -129,7 +106,7 @@ public class InvoicesAdminResource {
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
     public List<InvoiceRepresentation> getInvoices(@QueryParam("filterText") String filterText,
-            @QueryParam("first") Integer firstResult, @QueryParam("max") Integer maxResults) {
+                                                   @QueryParam("first") Integer firstResult, @QueryParam("max") Integer maxResults) {
         auth.requireView();
 
         firstResult = firstResult != null ? firstResult : -1;
@@ -155,7 +132,7 @@ public class InvoicesAdminResource {
 
         // Double-check duplicated ID
         if (rep.getIdUbl() != null && invoiceManager.getInvoiceByID(organization, rep.getIdUbl()) != null) {
-            return ErrorResponse.exists("Debit Note exists with same ID");
+            return ErrorResponse.exists("Invoice exists with same ID");
         }
 
         try {
@@ -169,8 +146,8 @@ public class InvoicesAdminResource {
             }
 
             // Send Email
-            if (rep.getRequiredActions().contains(RequiredActionDocument.SEND_EMAIL_CUSTOMER)) {
-                sendEmail(organization, invoice);
+            if (rep.getRequiredActions().contains(RequiredActionDocument.SEND_EMAIL_CUSTOMER.toString())) {
+                invoiceManager.sendEmailToCustomerEmail(invoice);
             }
 
             URI location = uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build();
@@ -188,56 +165,6 @@ public class InvoicesAdminResource {
         } catch (EmailException e) {
             ServicesLogger.LOGGER.failedToSendActionsEmail(e);
             return ErrorResponse.error("Invoice Created but, Failed to send execute actions email", Response.Status.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    protected void sendEmail(OrganizationModel organization, InvoiceModel invoice) throws EmailException {
-        CustomerPartyModel customerParty = invoice.getAccountingCustomerParty();
-        if (customerParty != null) {
-            PartyModel party = customerParty.getParty();
-            if (party != null) {
-                ContactModel contact = party.getContact();
-
-                EmailTemplateProvider provider = session.getProvider(EmailTemplateProvider.class)
-                        .setOrganization(organization).setUser(new UserModel() {
-                            @Override
-                            public boolean hasRole(String role) {
-                                return false;
-                            }
-
-                            @Override
-                            public String getUsername() {
-                                return null;
-                            }
-
-                            @Override
-                            public String getLastName() {
-                                return null;
-                            }
-
-                            @Override
-                            public String getFullName() {
-                                return null;
-                            }
-
-                            @Override
-                            public String getFirstName() {
-                                return null;
-                            }
-
-                            @Override
-                            public String getEmail() {
-                                return contact.getElectronicMail();
-                            }
-
-                            @Override
-                            public Map<String, Object> getAttributes() {
-                                return null;
-                            }
-                        });
-
-                provider.sendInvoice(invoice);
-            }
         }
     }
 

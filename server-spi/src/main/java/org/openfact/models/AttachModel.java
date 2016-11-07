@@ -1,17 +1,13 @@
 package org.openfact.models;
 
-import org.openfact.models.enums.InternetMediaType;
-
 public interface AttachModel {
 
-	String getFileName();
+    String getFileName();
 
-	byte[] getFile();
+    byte[] getFile();
 
-	String getMimiType();
+    String getMimeType();
 
-	String getExtension();
-
-	// InternetMediaType getMediaType();
+    String getExtension();
 
 }

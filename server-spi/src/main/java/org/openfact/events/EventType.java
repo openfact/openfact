@@ -22,8 +22,6 @@ package org.openfact.events;
  */
 public enum EventType {
 
-	LOGIN(true),
-
 	INVOICE(true),
 
 	CREDIT_NOTE(true),

@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,31 +15,6 @@
  * limitations under the License.
  *******************************************************************************/
 package org.openfact.services.resources.admin;
-
-import java.security.cert.X509Certificate;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.validation.Valid;
-import javax.ws.rs.BadRequestException;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
-import javax.ws.rs.core.UriInfo;
 
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.annotations.cache.NoCache;
@@ -70,28 +45,36 @@ import org.openfact.services.ErrorResponse;
 import org.openfact.services.managers.OrganizationManager;
 import org.openfact.services.managers.OrganizationScheduledTaskManager;
 
+import javax.validation.Valid;
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
+import javax.ws.rs.core.Response.Status;
+import java.security.cert.X509Certificate;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+
 public class OrganizationAdminResource {
 
     protected static final Logger logger = Logger.getLogger(OrganizationAdminResource.class);
 
     protected OrganizationAuth auth;
     protected OrganizationModel organization;
-    private AdminEventBuilder adminEvent;
-
     @Context
     protected OpenfactSession session;
-
     @Context
     protected UriInfo uriInfo;
-
     @Context
     protected ClientConnection connection;
-
     @Context
     protected HttpHeaders headers;
+    private AdminEventBuilder adminEvent;
 
     public OrganizationAdminResource(OrganizationAuth auth, OrganizationModel organization,
-            AdminEventBuilder adminEvent) {
+                                     AdminEventBuilder adminEvent) {
         this.auth = auth;
         this.organization = organization;
         this.adminEvent = adminEvent.organization(organization);
@@ -296,9 +279,9 @@ public class OrganizationAdminResource {
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
     public List<EventRepresentation> getEvents(@QueryParam("type") List<String> types,
-            @QueryParam("user") String user, @QueryParam("dateFrom") String dateFrom,
-            @QueryParam("dateTo") String dateTo, @QueryParam("ipAddress") String ipAddress,
-            @QueryParam("first") Integer firstResult, @QueryParam("max") Integer maxResults) {
+                                               @QueryParam("user") String user, @QueryParam("dateFrom") String dateFrom,
+                                               @QueryParam("dateTo") String dateTo, @QueryParam("ipAddress") String ipAddress,
+                                               @QueryParam("first") Integer firstResult, @QueryParam("max") Integer maxResults) {
         auth.init(OrganizationAuth.Resource.EVENTS).requireView();
 
         EventStoreProvider eventStore = session.getProvider(EventStoreProvider.class);
@@ -383,11 +366,11 @@ public class OrganizationAdminResource {
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
     public List<AdminEventRepresentation> getEvents(@QueryParam("operationTypes") List<String> operationTypes,
-            @QueryParam("authOrganization") String authOrganization, @QueryParam("authUser") String authUser,
-            @QueryParam("authIpAddress") String authIpAddress,
-            @QueryParam("resourcePath") String resourcePath, @QueryParam("dateFrom") String dateFrom,
-            @QueryParam("dateTo") String dateTo, @QueryParam("first") Integer firstResult,
-            @QueryParam("max") Integer maxResults, @QueryParam("resourceTypes") List<String> resourceTypes) {
+                                                    @QueryParam("authOrganization") String authOrganization, @QueryParam("authUser") String authUser,
+                                                    @QueryParam("authIpAddress") String authIpAddress,
+                                                    @QueryParam("resourcePath") String resourcePath, @QueryParam("dateFrom") String dateFrom,
+                                                    @QueryParam("dateTo") String dateTo, @QueryParam("first") Integer firstResult,
+                                                    @QueryParam("max") Integer maxResults, @QueryParam("resourceTypes") List<String> resourceTypes) {
         auth.init(OrganizationAuth.Resource.EVENTS).requireView();
 
         EventStoreProvider eventStore = session.getProvider(EventStoreProvider.class);

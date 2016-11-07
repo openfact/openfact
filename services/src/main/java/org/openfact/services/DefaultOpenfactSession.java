@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,27 +16,17 @@
  *******************************************************************************/
 package org.openfact.services;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import org.openfact.component.ComponentFactory;
 import org.openfact.component.ComponentModel;
 import org.openfact.keys.DefaultKeyManager;
-import org.openfact.models.KeyManager;
-import org.openfact.models.OpenfactContext;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OpenfactSessionFactory;
-import org.openfact.models.OpenfactTransactionManager;
-import org.openfact.models.OrganizationProvider;
+import org.openfact.models.*;
 import org.openfact.models.ubl.provider.CreditNoteProvider;
 import org.openfact.models.ubl.provider.DebitNoteProvider;
 import org.openfact.models.ubl.provider.InvoiceProvider;
 import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
+
+import java.util.*;
 
 /**
  * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
@@ -101,7 +91,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
         } else {
             return getProvider(DebitNoteProvider.class);
         }
-    }    
+    }
 
     @Override
     public void enlistForClose(Provider provider) {
@@ -230,7 +220,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
             debitNotes = getDebitNoteProvider();
         }
         return debitNotes;
-    }    
+    }
 
     @Override
     public KeyManager keys() {
@@ -253,6 +243,6 @@ public class DefaultOpenfactSession implements OpenfactSession {
             } catch (Exception e) {
             }
         }
-    }	
+    }
 
 }

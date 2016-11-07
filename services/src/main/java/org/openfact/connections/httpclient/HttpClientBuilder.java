@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,29 +18,13 @@
 package org.openfact.connections.httpclient;
 
 import org.apache.http.client.config.RequestConfig;
-import org.apache.http.conn.ssl.AllowAllHostnameVerifier;
-import org.apache.http.conn.ssl.BrowserCompatHostnameVerifier;
-import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.conn.ssl.SSLContexts;
-import org.apache.http.conn.ssl.StrictHostnameVerifier;
-import org.apache.http.conn.ssl.X509HostnameVerifier;
+import org.apache.http.conn.ssl.*;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLException;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSocket;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
+import javax.net.ssl.*;
 import java.io.IOException;
-import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.security.UnrecoverableKeyException;
+import java.security.*;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.concurrent.TimeUnit;
@@ -78,8 +62,7 @@ public class HttpClientBuilder {
      * @param unit
      * @return
      */
-    public HttpClientBuilder socketTimeout(long timeout, TimeUnit unit)
-    {
+    public HttpClientBuilder socketTimeout(long timeout, TimeUnit unit) {
         this.socketTimeout = timeout;
         this.socketTimeoutUnits = unit;
         return this;
@@ -92,8 +75,7 @@ public class HttpClientBuilder {
      * @param unit
      * @return
      */
-    public HttpClientBuilder establishConnectionTimeout(long timeout, TimeUnit unit)
-    {
+    public HttpClientBuilder establishConnectionTimeout(long timeout, TimeUnit unit) {
         this.establishConnectionTimeout = timeout;
         this.establishConnectionTimeoutUnits = unit;
         return this;
@@ -238,11 +220,11 @@ public class HttpClientBuilder {
             final SecureRandom random)
             throws NoSuchAlgorithmException, KeyManagementException, KeyStoreException, UnrecoverableKeyException {
         return SSLContexts.custom()
-                        .useProtocol(algorithm)
-                        .setSecureRandom(random)
-                        .loadKeyMaterial(keystore, keyPassword != null ? keyPassword.toCharArray() : null)
-                        .loadTrustMaterial(truststore)
-                        .build();
+                .useProtocol(algorithm)
+                .setSecureRandom(random)
+                .loadKeyMaterial(keystore, keyPassword != null ? keyPassword.toCharArray() : null)
+                .loadTrustMaterial(truststore)
+                .build();
     }
 
 

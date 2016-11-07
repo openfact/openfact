@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,25 +16,8 @@
  *******************************************************************************/
 package org.openfact.services.resources;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URL;
-import java.util.HashSet;
-import java.util.Properties;
-import java.util.Set;
-import java.util.StringTokenizer;
-
-import javax.servlet.ServletContext;
-import javax.transaction.SystemException;
-import javax.transaction.Transaction;
-import javax.ws.rs.core.Application;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriInfo;
-
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jboss.dmr.ModelNode;
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.core.Dispatcher;
@@ -58,16 +41,24 @@ import org.openfact.services.filters.OpenfactTransactionCommitter;
 import org.openfact.services.managers.ApplianceBootstrap;
 import org.openfact.services.managers.OrganizationManager;
 import org.openfact.services.resources.admin.AdminRoot;
-import org.openfact.services.scheduled.ClearExpiredEvents;
-import org.openfact.services.scheduled.ClusterAwareScheduledTaskRunner;
 import org.openfact.services.util.JsonConfigProvider;
 import org.openfact.services.util.ObjectMapperResolver;
-import org.openfact.timer.TimerProvider;
 import org.openfact.transaction.JtaTransactionManagerLookup;
 import org.openfact.util.JsonSerialization;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.servlet.ServletContext;
+import javax.transaction.SystemException;
+import javax.transaction.Transaction;
+import javax.ws.rs.core.Application;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.UriInfo;
+import java.io.*;
+import java.net.URI;
+import java.net.URL;
+import java.util.HashSet;
+import java.util.Properties;
+import java.util.Set;
+import java.util.StringTokenizer;
 
 /**
  * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
@@ -106,7 +97,7 @@ public class OpenfactApplication extends Application {
 
             dispatcher.getDefaultContextObjects().put(OpenfactApplication.class, this);
             ResteasyProviderFactory.pushContext(OpenfactApplication.class, this); // for
-                                                                                  // injection
+            // injection
             context.setAttribute(OpenfactSessionFactory.class.getName(), this.sessionFactory);
 
             singletons.add(new ServerVersionResource());

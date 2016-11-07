@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,6 +17,8 @@
 
 package org.openfact.report;
 
+import org.openfact.theme.PropertiesUtil;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -25,10 +27,6 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Locale;
 import java.util.Properties;
-
-import org.openfact.report.ReportTheme;
-import org.openfact.report.ReportTheme.Type;
-import org.openfact.theme.PropertiesUtil;
 
 /**
  * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
@@ -69,7 +67,7 @@ public class ClassLoaderReport implements ReportTheme {
     @Override
     public String getName() {
         return name;
-    }   
+    }
 
     @Override
     public Type getType() {

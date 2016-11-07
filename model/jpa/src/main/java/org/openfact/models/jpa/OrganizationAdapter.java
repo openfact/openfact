@@ -374,6 +374,16 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     }
 
     @Override
+    public String getReportTheme() {
+        return organization.getReportTheme();
+    }
+
+    @Override
+    public void setReportTheme(String name) {
+        organization.setReportTheme(name);
+    }
+    
+    @Override
     public boolean isInternationalizationEnabled() {
         return organization.isInternationalizationEnabled();
     }
@@ -633,5 +643,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
             return false;
         return true;
     }
+
+    
 
 }

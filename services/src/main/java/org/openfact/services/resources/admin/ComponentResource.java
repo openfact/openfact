@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,26 +15,6 @@
  * limitations under the License.
  *******************************************************************************/
 package org.openfact.services.resources.admin;
-
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
 
 import org.jboss.logging.Logger;
 import org.openfact.common.ClientConnection;
@@ -48,30 +28,30 @@ import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.ComponentRepresentation;
 import org.openfact.services.ErrorResponse;
 
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
 public class ComponentResource {
 
     protected static final Logger logger = Logger.getLogger(ComponentResource.class);
 
     protected OrganizationModel organization;
-
-    private OrganizationAuth auth;
-
-    private AdminEventBuilder adminEvent;
-
     @Context
     protected ClientConnection clientConnection;
-
     @Context
     protected UriInfo uriInfo;
-
     @Context
     protected OpenfactSession session;
-
     @Context
     protected HttpHeaders headers;
+    private OrganizationAuth auth;
+    private AdminEventBuilder adminEvent;
 
     public ComponentResource(OrganizationModel organization, OrganizationAuth auth,
-            AdminEventBuilder adminEvent) {
+                             AdminEventBuilder adminEvent) {
         this.auth = auth;
         this.organization = organization;
         this.adminEvent = adminEvent;
@@ -82,7 +62,7 @@ public class ComponentResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<ComponentRepresentation> getComponents(@QueryParam("parent") String parent,
-            @QueryParam("type") String type) {
+                                                       @QueryParam("type") String type) {
         auth.requireManage();
         List<ComponentModel> components = Collections.EMPTY_LIST;
         if (parent == null) {

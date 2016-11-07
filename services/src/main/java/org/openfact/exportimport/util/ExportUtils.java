@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,8 +16,6 @@
  *******************************************************************************/
 
 package org.openfact.exportimport.util;
-
-import java.util.List;
 
 import org.openfact.common.Version;
 import org.openfact.common.util.MultivaluedHashMap;
@@ -28,6 +26,8 @@ import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.representations.idm.ComponentExportRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 
+import java.util.List;
+
 /**
  * @author <a href="mailto:mposolda@sistcoop.com">Marek Posolda</a>
  */
@@ -37,8 +37,8 @@ public class ExportUtils {
         OrganizationRepresentation rep = ModelToRepresentation.toRepresentation(organization, true);
 
         // Project/product version
-        rep.setOpenfactVersion(Version.VERSION);        
-        
+        rep.setOpenfactVersion(Version.VERSION);
+
         // components
         MultivaluedHashMap<String, ComponentExportRepresentation> components = exportComponents(organization, organization.getId());
         rep.setComponents(components);

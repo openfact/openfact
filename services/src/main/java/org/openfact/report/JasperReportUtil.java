@@ -31,11 +31,11 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  */
-public class JasperReportThemeUtil {
+public class JasperReportUtil {
 
     private ConcurrentHashMap<String, JasperReport> cache;
 
-    public JasperReportThemeUtil() {
+    public JasperReportUtil() {
         if (Config.scope("template").getBoolean("cacheReportThemes", true)) {
             cache = new ConcurrentHashMap<>();
         }

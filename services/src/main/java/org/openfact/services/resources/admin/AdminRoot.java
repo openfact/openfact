@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,20 +15,6 @@
  * limitations under the License.
  *******************************************************************************/
 package org.openfact.services.resources.admin;
-
-import java.io.IOException;
-
-import javax.ws.rs.ForbiddenException;
-import javax.ws.rs.GET;
-import javax.ws.rs.NotAuthorizedException;
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriBuilder;
-import javax.ws.rs.core.UriInfo;
 
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.spi.HttpRequest;
@@ -45,6 +31,10 @@ import org.openfact.services.resources.Cors;
 import org.openfact.services.resources.admin.info.ServerInfoAdminResource;
 import org.openfact.theme.Theme;
 import org.openfact.theme.ThemeProvider;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
+import java.io.IOException;
 
 /**
  * @author carlosthe19916@sistcoop.com
@@ -78,6 +68,27 @@ public class AdminRoot {
 
     public static UriBuilder adminBaseUrl(UriBuilder base) {
         return base.path(AdminRoot.class);
+    }
+
+    public static UriBuilder adminConsoleUrl(UriInfo uriInfo) {
+        return adminConsoleUrl(uriInfo.getBaseUriBuilder());
+    }
+
+    public static UriBuilder adminConsoleUrl(UriBuilder base) {
+        return adminBaseUrl(base).path(AdminRoot.class, "getAdminConsole");
+    }
+
+    public static UriBuilder organizationsUrl(UriInfo uriInfo) {
+        return organizationsUrl(uriInfo.getBaseUriBuilder());
+    }
+
+    public static UriBuilder organizationsUrl(UriBuilder base) {
+        return adminBaseUrl(base).path(AdminRoot.class, "getOrganizationsAdmin");
+    }
+
+    public static Theme getTheme(OpenfactSession session, OrganizationModel organization) throws IOException {
+        ThemeProvider themeProvider = session.getProvider(ThemeProvider.class, "extending");
+        return themeProvider.getTheme("adminTheme", Theme.Type.ADMIN);
     }
 
     /**
@@ -114,14 +125,6 @@ public class AdminRoot {
         return organization;
     }
 
-    public static UriBuilder adminConsoleUrl(UriInfo uriInfo) {
-        return adminConsoleUrl(uriInfo.getBaseUriBuilder());
-    }
-
-    public static UriBuilder adminConsoleUrl(UriBuilder base) {
-        return adminBaseUrl(base).path(AdminRoot.class, "getAdminConsole");
-    }
-
     /**
      * path to Organization admin console ui
      *
@@ -149,14 +152,6 @@ public class AdminRoot {
         session.getContext().setOrganization(organization);
 
         return new AdminAuth(organization, authResult.getCurrentUser(headers));
-    }
-
-    public static UriBuilder organizationsUrl(UriInfo uriInfo) {
-        return organizationsUrl(uriInfo.getBaseUriBuilder());
-    }
-
-    public static UriBuilder organizationsUrl(UriBuilder base) {
-        return adminBaseUrl(base).path(AdminRoot.class, "getOrganizationsAdmin");
     }
 
     /**
@@ -244,11 +239,6 @@ public class AdminRoot {
         CommonsAdminResource commonsResource = new CommonsAdminResource(auth);
         ResteasyProviderFactory.getInstance().injectProperties(commonsResource);
         return commonsResource;
-    }
-
-    public static Theme getTheme(OpenfactSession session, OrganizationModel organization) throws IOException {
-        ThemeProvider themeProvider = session.getProvider(ThemeProvider.class, "extending");
-        return themeProvider.getTheme("adminTheme", Theme.Type.ADMIN);
     }
 
 }

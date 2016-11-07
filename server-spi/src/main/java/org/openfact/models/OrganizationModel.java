@@ -105,9 +105,9 @@ public interface OrganizationModel {
     
     /**
      * ThemesUbl*/
-    String getUblTemplate();
+    String getReportTheme();
     
-    void setUblTemplate(String name);
+    void setReportTheme(String name);
 
     /**
      * Internationalization

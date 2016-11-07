@@ -25,6 +25,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DebitNoteRepresentation {
+    private String id;
+    private String xml;
+    private List<String> requiredActions;
+
     private UBLExtensionsRepresentation ublExtensions;
     private String ublVersionID;
     private String customizationID;
@@ -64,8 +68,6 @@ public class DebitNoteRepresentation {
     private List<TaxTotalRepresentation> taxTotal;
     private MonetaryTotalRepresentation requestedMonetaryTotal;
     private List<DebitNoteLineRepresentation> debitNoteLine;
-    private String id;
-    private boolean sendImmediately;
 
     /**
      * Custom methods
@@ -152,6 +154,30 @@ public class DebitNoteRepresentation {
             additionalDocumentReference = new ArrayList<>();
         }
         additionalDocumentReference.add(representation);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getXml() {
+        return xml;
+    }
+
+    public void setXml(String xml) {
+        this.xml = xml;
+    }
+
+    public List<String> getRequiredActions() {
+        return requiredActions;
+    }
+
+    public void setRequiredActions(List<String> requiredActions) {
+        this.requiredActions = requiredActions;
     }
 
     public UBLExtensionsRepresentation getUblExtensions() {
@@ -468,21 +494,5 @@ public class DebitNoteRepresentation {
     public void setDebitNoteLine(List<DebitNoteLineRepresentation> debitNoteLine) {
         this.debitNoteLine = debitNoteLine;
     }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-	public boolean isSendImmediately() {
-		return sendImmediately;
-	}
-
-	public void setSendImmediately(boolean sendImmediately) {
-		this.sendImmediately = sendImmediately;
-	}
 
 }

@@ -18,7 +18,6 @@ package org.openfact.models.jpa.entities;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -164,6 +163,9 @@ public class OrganizationEntity {
 
     @Column(name = "EMAIL_THEME")
     protected String emailTheme;
+    
+    @Column(name = "REPORT_THEME")
+    protected String reportTheme;
 
     /**
      * Locale
@@ -639,6 +641,14 @@ public class OrganizationEntity {
 
     public void setTasksEnabled(boolean tasksEnabled) {
         this.tasksEnabled = tasksEnabled;
+    }
+
+    public String getReportTheme() {
+        return reportTheme;
+    }
+
+    public void setReportTheme(String reportTheme) {
+        this.reportTheme = reportTheme;
     }
 
 }

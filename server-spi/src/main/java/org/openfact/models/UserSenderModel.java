@@ -16,16 +16,14 @@
  *******************************************************************************/
 package org.openfact.models;
 
-import java.util.Map;
+public abstract class UserSenderModel implements UserModel {
 
-public interface UserSenderModel extends UserModel {
+    public String getUsername() {
+        return null;
+    }
 
-	default String getUsername() {
-		return null;
-	}
-	
-	default boolean hasRole(String role) {
-		return false;
-	}
+    public boolean hasRole(String role) {
+        return false;
+    }
 
 }

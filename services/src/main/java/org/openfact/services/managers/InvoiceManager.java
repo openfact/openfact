@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,10 +16,7 @@
  *******************************************************************************/
 package org.openfact.services.managers;
 
-import java.util.Map;
-
-import javax.xml.transform.TransformerException;
-
+import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 import org.apache.commons.lang.ArrayUtils;
 import org.jboss.logging.Logger;
 import org.openfact.common.converts.DocumentUtils;
@@ -29,10 +26,12 @@ import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.UserSenderModel;
-import org.openfact.models.enums.RequeridActionDocument;
 import org.openfact.models.enums.RequiredActionDocument;
 import org.openfact.models.enums.UblDocumentType;
 import org.openfact.models.ubl.InvoiceModel;
+import org.openfact.models.ubl.common.ContactModel;
+import org.openfact.models.ubl.common.CustomerPartyModel;
+import org.openfact.models.ubl.common.PartyModel;
 import org.openfact.models.ubl.provider.InvoiceProvider;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.models.utils.TypeToModel;
@@ -43,72 +42,39 @@ import org.openfact.ubl.UblExtensionContentGeneratorProvider;
 import org.openfact.ubl.UblIDGeneratorProvider;
 import org.w3c.dom.Document;
 
-import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
+import javax.xml.transform.TransformerException;
+import java.util.Map;
 
 public class InvoiceManager {
 
-	protected static final Logger logger = Logger.getLogger(DebitNoteManager.class);
+    protected static final Logger logger = Logger.getLogger(DebitNoteManager.class);
 
-	protected OpenfactSession session;
-	protected InvoiceProvider model;
+    protected OpenfactSession session;
+    protected InvoiceProvider model;
 
-	public InvoiceManager(OpenfactSession session) {
-		this.session = session;
-		this.model = session.invoices();
-	}
+    public InvoiceManager(OpenfactSession session) {
+        this.session = session;
+        this.model = session.invoices();
+    }
 
-	public InvoiceModel getInvoiceByID(OrganizationModel organization, String ID) {
-		return model.getInvoiceByID(organization, ID);
-	}
+    public InvoiceModel getInvoiceByID(OrganizationModel organization, String ID) {
+        return model.getInvoiceByID(organization, ID);
+    }
 
-	public InvoiceModel addInvoice(OrganizationModel organization, InvoiceRepresentation rep) {
-		String ID = rep.getIdUbl();
-		if (ID == null) {
-			UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class);
-			ID = provider.generateInvoiceID(organization, rep.getInvoiceTypeCode());
-		}
+    public InvoiceModel addInvoice(OrganizationModel organization, InvoiceRepresentation rep) {
+        String ID = rep.getIdUbl();
+        if (ID == null) {
+            UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class);
+            ID = provider.generateInvoiceID(organization, rep.getInvoiceTypeCode());
+        }
 
-		InvoiceModel invoice = model.addInvoice(organization, ID);
-		RepresentationToModel.importInvoice(session, organization, invoice, rep);
-		process(organization, invoice);
-		try {
-			if (rep.isSendImmediately()) {
+        InvoiceModel invoice = model.addInvoice(organization, ID);
+        RepresentationToModel.importInvoice(session, organization, invoice, rep);
+        invoice.setRequiredAction(RequiredActionDocument.getDefaults());
 
-				UserSenderModel user = new UserSenderModel() {
-					@Override
-					public String getLastName() {
-						return invoice.getAccountingCustomerParty().getParty().getPartyName().get(0);
-					}
-
-					@Override
-					public String getFullName() {
-						return null;
-					}
-
-					@Override
-					public String getFirstName() {
-						return null;
-					}
-
-					@Override
-					public String getEmail() {
-						return invoice.getAccountingCustomerParty().getAccountingContact().getElectronicMail();
-					}
-
-					@Override
-					public Map<String, Object> getAttributes() {
-						return null;
-					}
-				};
-				session.getProvider(EmailTemplateProvider.class).setUser(user).sendInvoice(invoice);
-				invoice.removeRequeridAction(RequeridActionDocument.SEND_EMAIL_CUSTOMER);
-			}
-		} catch (EmailException e) {
-			logger.error("Error sending email of invoice", e);
-			throw new ModelException(e);
-		}
-		return invoice;
-	}
+        process(organization, invoice);
+        return invoice;
+    }
 
     public InvoiceModel addInvoice(OrganizationModel organization, InvoiceType rep) {
         String ID = rep.getIDValue();
@@ -122,7 +88,6 @@ public class InvoiceManager {
         invoice.setRequiredAction(RequiredActionDocument.getDefaults());
 
         process(organization, invoice);
-
         return invoice;
     }
 
@@ -160,6 +125,46 @@ public class InvoiceManager {
             return true;
         }
         return false;
+    }
+
+    public void sendEmailToCustomerEmail(OrganizationModel organization, InvoiceModel invoice)
+            throws EmailException {
+        CustomerPartyModel customerParty = invoice.getAccountingCustomerParty();
+        if (customerParty != null) {
+            PartyModel party = customerParty.getParty();
+            if (party != null) {
+                ContactModel contact = party.getContact();
+                EmailTemplateProvider provider = session.getProvider(EmailTemplateProvider.class)
+                        .setOrganization(organization).setUser(new UserSenderModel() {
+
+                            @Override
+                            public String getLastName() {
+                                return null;
+                            }
+
+                            @Override
+                            public String getFullName() {
+                                return null;
+                            }
+
+                            @Override
+                            public String getFirstName() {
+                                return null;
+                            }
+
+                            @Override
+                            public String getEmail() {
+                                return contact.getElectronicMail();
+                            }
+
+                            @Override
+                            public Map<String, Object> getAttributes() {
+                                return null;
+                            }
+                        });
+                provider.sendInvoice(invoice);
+            }
+        }
     }
 
 }

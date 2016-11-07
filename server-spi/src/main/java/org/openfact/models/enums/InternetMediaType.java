@@ -31,7 +31,7 @@ public enum InternetMediaType {
         return extension;
     }
 
-    public String getMimiType() {
+    public String getMimeType() {
         return mimiType;
     }
 }

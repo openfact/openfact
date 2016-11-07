@@ -26,6 +26,10 @@ import java.util.List;
 
 public class InvoiceRepresentation {
 
+    private String id;
+    private String xml;
+    private List<String> requiredActions;
+
     private UBLExtensionsRepresentation ublExtensions;
     private String ublVersionID;
     private String customizationID;
@@ -73,11 +77,6 @@ public class InvoiceRepresentation {
     private List<TaxTotalRepresentation> taxTotal;
     private MonetaryTotalRepresentation legalMonetaryTotal;
     private List<InvoiceLineRepresentation> invoiceLine;
-    private String id;
-    private boolean sendImmediately;
-
-    private String xml;
-    protected List<String> requiredActions;
 
     /**
      * Custom methods
@@ -122,6 +121,30 @@ public class InvoiceRepresentation {
             taxTotal = new ArrayList<>();
         }
         taxTotal.add(representation);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getXml() {
+        return xml;
+    }
+
+    public void setXml(String xml) {
+        this.xml = xml;
+    }
+
+    public List<String> getRequiredActions() {
+        return requiredActions;
+    }
+
+    public void setRequiredActions(List<String> requiredActions) {
+        this.requiredActions = requiredActions;
     }
 
     public UBLExtensionsRepresentation getUblExtensions() {
@@ -503,37 +526,5 @@ public class InvoiceRepresentation {
     public void setInvoiceLine(List<InvoiceLineRepresentation> invoiceLine) {
         this.invoiceLine = invoiceLine;
     }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getXml() {
-        return xml;
-    }
-
-    public void setXml(String xml) {
-        this.xml = xml;
-    }
-
-    public List<String> getRequiredActions() {
-        return requiredActions;
-    }
-
-    public void setRequiredActions(List<String> requiredActions) {
-        this.requiredActions = requiredActions;
-    }
-
-	public boolean isSendImmediately() {
-		return sendImmediately;
-	}
-
-	public void setSendImmediately(boolean sendImmediately) {
-		this.sendImmediately = sendImmediately;
-	}
 
 }

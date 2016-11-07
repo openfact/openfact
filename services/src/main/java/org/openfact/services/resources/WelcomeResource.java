@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,28 +15,6 @@
  * limitations under the License.
  *******************************************************************************/
 package org.openfact.services.resources;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.InetAddress;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.UnknownHostException;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Cookie;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.ResponseBuilder;
-import javax.ws.rs.core.Response.Status;
-import javax.ws.rs.core.UriInfo;
 
 import org.jboss.logging.Logger;
 import org.openfact.Config;
@@ -46,7 +24,6 @@ import org.openfact.models.BrowserSecurityHeaders;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.services.ForbiddenException;
-import org.openfact.services.managers.ApplianceBootstrap;
 import org.openfact.services.util.CacheControlUtil;
 import org.openfact.services.util.CookieHelper;
 import org.openfact.theme.BrowserSecurityHeaderSetup;
@@ -54,6 +31,19 @@ import org.openfact.theme.FreeMarkerUtil;
 import org.openfact.theme.Theme;
 import org.openfact.theme.ThemeProvider;
 import org.openfact.utils.MediaType;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
+import javax.ws.rs.core.Response.ResponseBuilder;
+import javax.ws.rs.core.Response.Status;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.InetAddress;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.UnknownHostException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author carlosthe19916@sistcoop.com
@@ -186,7 +176,7 @@ public class WelcomeResource {
 
     private String getCsrfCookie() {
         Cookie cookie = headers.getCookies().get(OPENFACT_STATE_CHECKER);
-        return cookie==null ? null : cookie.getValue();
+        return cookie == null ? null : cookie.getValue();
     }
 
     private void csrfCheck(String cookieStateChecker, String formStateChecker) {

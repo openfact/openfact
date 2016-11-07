@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,25 +15,6 @@
  * limitations under the License.
  *******************************************************************************/
 package org.openfact.services.resources.admin;
-
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.validation.Valid;
-import javax.ws.rs.GET;
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
 
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
@@ -55,28 +36,32 @@ import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.DebitNoteManager;
 
+import javax.validation.Valid;
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class DebitNotesAdminResource {
 
     private static final ServicesLogger logger = ServicesLogger.LOGGER;
 
     protected OrganizationModel organization;
+    @Context
+    protected UriInfo uriInfo;
+    @Context
+    protected OpenfactSession session;
+    @Context
+    protected ClientConnection clientConnection;
+    @Context
+    protected HttpHeaders headers;
     private OrganizationAuth auth;
     private AdminEventBuilder adminEvent;
 
-    @Context
-    protected UriInfo uriInfo;
-
-    @Context
-    protected OpenfactSession session;
-
-    @Context
-    protected ClientConnection clientConnection;
-
-    @Context
-    protected HttpHeaders headers;
-
     public DebitNotesAdminResource(OrganizationModel organization, OrganizationAuth auth,
-            AdminEventBuilder adminEvent) {
+                                   AdminEventBuilder adminEvent) {
         this.auth = auth;
         this.organization = organization;
         this.adminEvent = adminEvent;
@@ -105,7 +90,7 @@ public class DebitNotesAdminResource {
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
     public List<DebitNoteRepresentation> getDebitNotes(@QueryParam("filterText") String filterText,
-            @QueryParam("first") Integer firstResult, @QueryParam("max") Integer maxResults) {
+                                                       @QueryParam("first") Integer firstResult, @QueryParam("max") Integer maxResults) {
         auth.requireView();
 
         firstResult = firstResult != null ? firstResult : -1;
