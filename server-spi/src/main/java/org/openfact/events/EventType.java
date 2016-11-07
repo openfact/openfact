@@ -22,16 +22,22 @@ package org.openfact.events;
  */
 public enum EventType {
 
-    LOGIN(true);
+	LOGIN(true),
 
-    private boolean saveByDefault;
+	INVOICE(true),
 
-    EventType(boolean saveByDefault) {
-        this.saveByDefault = saveByDefault;
-    }
+	CREDIT_NOTE(true),
 
-    public boolean isSaveByDefault() {
-        return saveByDefault;
-    }
+	DEBIT_NOTE(true);
+
+	private boolean saveByDefault;
+
+	EventType(boolean saveByDefault) {
+		this.saveByDefault = saveByDefault;
+	}
+
+	public boolean isSaveByDefault() {
+		return saveByDefault;
+	}
 
 }

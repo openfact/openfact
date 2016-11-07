@@ -18,13 +18,18 @@
 package org.openfact.email;
 
 import org.jboss.logging.Logger;
+import org.openfact.models.AttachModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.UserModel;
+import org.openfact.models.UserSenderModel;
+import org.openfact.models.enums.InternetMediaType;
 import org.openfact.services.ServicesLogger;
 import org.openfact.truststore.HostnameVerificationPolicy;
 import org.openfact.truststore.JSSETruststoreConfigurator;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.Session;
@@ -34,124 +39,152 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.net.ssl.SSLSocketFactory;
+
+import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+
+import javax.mail.util.ByteArrayDataSource;
 
 /**
  * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  */
 public class DefaultEmailSenderProvider implements EmailSenderProvider {
 
-    private static final Logger logger = Logger.getLogger(DefaultEmailSenderProvider.class);
+	private static final Logger logger = Logger.getLogger(DefaultEmailSenderProvider.class);
 
-    private final OpenfactSession session;
+	private final OpenfactSession session;
 
-    public DefaultEmailSenderProvider(OpenfactSession session) {
-        this.session = session;
-    }
+	public DefaultEmailSenderProvider(OpenfactSession session) {
+		this.session = session;
+	}
 
-    @Override
-    public void send(OrganizationModel organization, UserModel user, String subject, String textBody, String htmlBody) throws EmailException {
-        Transport transport = null;
-        try {
-            String address = user.getEmail();
-            Map<String, String> config = organization.getSmtpConfig();
+	@Override
+	public void send(OrganizationModel organization, UserSenderModel user, String subject, String textBody,
+			String htmlBody) throws EmailException {
+		send(organization, user, subject, textBody, htmlBody, null);
+	}
 
-            Properties props = new Properties();
-            props.setProperty("mail.smtp.host", config.get("host"));
+	private void setupTruststore(Properties props) throws NoSuchAlgorithmException, KeyManagementException {
 
-            boolean auth = "true".equals(config.get("auth"));
-            boolean ssl = "true".equals(config.get("ssl"));
-            boolean starttls = "true".equals(config.get("starttls"));
+		JSSETruststoreConfigurator configurator = new JSSETruststoreConfigurator(session);
 
-            if (config.containsKey("port")) {
-                props.setProperty("mail.smtp.port", config.get("port"));
-            }
+		SSLSocketFactory factory = configurator.getSSLSocketFactory();
+		if (factory != null) {
+			props.put("mail.smtp.ssl.socketFactory", factory);
+			if (configurator.getProvider().getPolicy() == HostnameVerificationPolicy.ANY) {
+				props.setProperty("mail.smtp.ssl.trust", "*");
+			}
+		}
+	}
 
-            if (auth) {
-                props.setProperty("mail.smtp.auth", "true");
-            }
+	@Override
+	public void close() {
 
-            if (ssl) {
-                props.setProperty("mail.smtp.ssl.enable", "true");
-            }
+	}
 
-            if (starttls) {
-                props.setProperty("mail.smtp.starttls.enable", "true");
-            }
+	@Override
+	public void send(OrganizationModel organization, UserSenderModel user, String subject, String textBody,
+			String htmlBody, List<AttachModel> attachments) throws EmailException {
 
-            if (ssl || starttls) {
-                setupTruststore(props);
-            }
+		Transport transport = null;
+		try {
+			String address = user.getEmail();
+			Map<String, String> config = organization.getSmtpConfig();
 
-            props.setProperty("mail.smtp.timeout", "10000");
-            props.setProperty("mail.smtp.connectiontimeout", "10000");
+			Properties props = new Properties();
+			props.setProperty("mail.smtp.host", config.get("host"));
 
-            String from = config.get("from");
+			boolean auth = "true".equals(config.get("auth"));
+			boolean ssl = "true".equals(config.get("ssl"));
+			boolean starttls = "true".equals(config.get("starttls"));
 
-            Session session = Session.getInstance(props);
+			if (config.containsKey("port")) {
+				props.setProperty("mail.smtp.port", config.get("port"));
+			}
 
-            Multipart multipart = new MimeMultipart("alternative");
+			if (auth) {
+				props.setProperty("mail.smtp.auth", "true");
+			}
 
-            if (textBody != null) {
-                MimeBodyPart textPart = new MimeBodyPart();
-                textPart.setText(textBody, "UTF-8");
-                multipart.addBodyPart(textPart);
-            }
+			if (ssl) {
+				props.setProperty("mail.smtp.ssl.enable", "true");
+			}
 
-            if (htmlBody != null) {
-                MimeBodyPart htmlPart = new MimeBodyPart();
-                htmlPart.setContent(htmlBody, "text/html; charset=UTF-8");
-                multipart.addBodyPart(htmlPart);
-            }
+			if (starttls) {
+				props.setProperty("mail.smtp.starttls.enable", "true");
+			}
 
-            MimeMessage msg = new MimeMessage(session);
-            msg.setFrom(new InternetAddress(from));
-            msg.setHeader("To", address);
-            msg.setSubject(subject, "utf-8");
-            msg.setContent(multipart);
-            msg.saveChanges();
-            msg.setSentDate(new Date());
+			if (ssl || starttls) {
+				setupTruststore(props);
+			}
 
-            transport = session.getTransport("smtp");
-            if (auth) {
-                transport.connect(config.get("user"), config.get("password"));
-            } else {
-                transport.connect();
-            }
-            transport.sendMessage(msg, new InternetAddress[]{new InternetAddress(address)});
-        } catch (Exception e) {
-            ServicesLogger.LOGGER.failedToSendEmail(e);
-            throw new EmailException(e);
-        } finally {
-            if (transport != null) {
-                try {
-                    transport.close();
-                } catch (MessagingException e) {
-                    logger.warn("Failed to close transport", e);
-                }
-            }
-        }
-    }
+			props.setProperty("mail.smtp.timeout", "10000");
+			props.setProperty("mail.smtp.connectiontimeout", "10000");
 
-    private void setupTruststore(Properties props) throws NoSuchAlgorithmException, KeyManagementException {
+			String from = config.get("from");
 
-        JSSETruststoreConfigurator configurator = new JSSETruststoreConfigurator(session);
+			Session session = Session.getInstance(props);
 
-        SSLSocketFactory factory = configurator.getSSLSocketFactory();
-        if (factory != null) {
-            props.put("mail.smtp.ssl.socketFactory", factory);
-            if (configurator.getProvider().getPolicy() == HostnameVerificationPolicy.ANY) {
-                props.setProperty("mail.smtp.ssl.trust", "*");
-            }
-        }
-    }
+			Multipart multipart = new MimeMultipart("alternative");
 
-    @Override
-    public void close() {
+			if (textBody != null) {
+				MimeBodyPart textPart = new MimeBodyPart();
+				textPart.setText(textBody, "UTF-8");
+				multipart.addBodyPart(textPart);
+			}
 
-    }
+			if (htmlBody != null) {
+				MimeBodyPart htmlPart = new MimeBodyPart();
+				htmlPart.setContent(htmlBody, "text/html; charset=UTF-8");
+				multipart.addBodyPart(htmlPart);
+			}
+
+			if (attachments != null && attachments.size() > 0) {
+				for (AttachModel attach : attachments) {
+					if (attach.getFile() != null) {
+						DataSource dataSource = new ByteArrayDataSource(attach.getFile(), attach.getMimiType());
+						MimeBodyPart attachPart = new MimeBodyPart();
+						attachPart.setDataHandler(new DataHandler(dataSource));
+						attachPart.setFileName(attach.getFileName() + attach.getExtension());
+						MimeMultipart mimeMultipart = new MimeMultipart();
+						mimeMultipart.addBodyPart(attachPart);
+
+						// multipart.addBodyPart(attachPart);
+					}
+				}
+			}
+
+			MimeMessage msg = new MimeMessage(session);
+			msg.setFrom(new InternetAddress(from));
+			msg.setHeader("To", address);
+			msg.setSubject(subject, "utf-8");
+			msg.setContent(multipart);
+			msg.saveChanges();
+			msg.setSentDate(new Date());
+
+			transport = session.getTransport("smtp");
+			if (auth) {
+				transport.connect(config.get("user"), config.get("password"));
+			} else {
+				transport.connect();
+			}
+			transport.sendMessage(msg, new InternetAddress[] { new InternetAddress(address) });
+		} catch (Exception e) {
+			ServicesLogger.LOGGER.failedToSendEmail(e);
+			throw new EmailException(e);
+		} finally {
+			if (transport != null) {
+				try {
+					transport.close();
+				} catch (MessagingException e) {
+					logger.warn("Failed to close transport", e);
+				}
+			}
+		}
+	}
 }

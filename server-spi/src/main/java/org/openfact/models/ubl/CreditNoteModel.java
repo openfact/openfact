@@ -61,7 +61,7 @@ public interface CreditNoteModel {
 
     void setUBLExtensions(UBLExtensionsModel value);
 
-    Byte[] getXmlDoument();
+    Byte[] getXmlDocument();
 
     void setXmlDocument(Byte[] value);
 

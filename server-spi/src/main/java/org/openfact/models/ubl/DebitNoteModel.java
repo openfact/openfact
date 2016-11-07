@@ -229,7 +229,7 @@ public interface DebitNoteModel {
 
     SignatureModel addSignature();
 
-    Byte[] getXmlDoument();
+    Byte[] getXmlDocument();
 
     void setXmlDocument(Byte[] value);
 

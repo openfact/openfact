@@ -927,7 +927,7 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
 	}
 
 	@Override
-	public Byte[] getXmlDoument() {
+	public Byte[] getXmlDocument() {
 		return creditNote.getXmlDocument();
 	}
 

@@ -65,6 +65,7 @@ public class DebitNoteRepresentation {
     private MonetaryTotalRepresentation requestedMonetaryTotal;
     private List<DebitNoteLineRepresentation> debitNoteLine;
     private String id;
+    private boolean sendImmediately;
 
     /**
      * Custom methods
@@ -475,5 +476,13 @@ public class DebitNoteRepresentation {
     public void setId(String id) {
         this.id = id;
     }
+
+	public boolean isSendImmediately() {
+		return sendImmediately;
+	}
+
+	public void setSendImmediately(boolean sendImmediately) {
+		this.sendImmediately = sendImmediately;
+	}
 
 }
