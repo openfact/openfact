@@ -14,18 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package org.openfact.models.enums;
 
-public enum RequeridActionDocument {
+package org.openfact.report;
 
-    SEND_REST_XML_DOCUMENT,
+import org.openfact.provider.ProviderFactory;
 
-    SEND_SOA_XML_DOCUMENT,
-
-    SEND_EMAIL_CUSTOMER,
-
-    SEND_EMAIL_SUPLIER,
-
-    SEND_EMAIL_RESPONSE
-
+/**
+ * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
+ */
+public interface ReportThemeProviderFactory extends ProviderFactory<ReportThemeProvider> {
 }

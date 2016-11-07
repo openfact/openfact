@@ -30,8 +30,6 @@ public interface Theme {
 
     public String getName();
 
-    ;
-
     public String getParentName();
 
     public String getImportName();

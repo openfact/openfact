@@ -28,7 +28,7 @@ import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.enums.RequeridActionDocument;
+import org.openfact.models.enums.RequiredActionDocument;
 import org.openfact.models.jpa.AbstractHibernateStorage;
 import org.openfact.models.jpa.OrganizationAdapter;
 import org.openfact.models.jpa.entities.ubl.DebitNoteEntity;
@@ -244,7 +244,7 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
 
 	@Override
 	public List<DebitNoteModel> getDebitNotes(OrganizationModel organization,
-			List<RequeridActionDocument> requeridAction, boolean intoRequeridAction) {
+			List<RequiredActionDocument> requeridAction, boolean intoRequeridAction) {
 		String queryName = "";
 		if (intoRequeridAction) {
 			queryName = "select i from DebitNoteEntity i where i.organization.id = :organizationId and :requeridAction in elements(i.requeridAction) order by i.issueDateTime ";

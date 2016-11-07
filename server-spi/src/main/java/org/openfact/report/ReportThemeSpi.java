@@ -15,29 +15,34 @@
  * limitations under the License.
  *******************************************************************************/
 
-package org.openfact.email;
+package org.openfact.report;
 
-import org.openfact.events.Event;
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.UserModel;
-import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.provider.Provider;
+import org.openfact.provider.ProviderFactory;
+import org.openfact.provider.Spi;
 
 /**
  * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  */
-public interface EmailTemplateProvider extends Provider {
+public class ReportThemeSpi implements Spi {
 
-    String IDENTITY_PROVIDER_BROKER_CONTEXT = "identityProviderBrokerCtx";
+    @Override
+    public boolean isInternal() {
+        return true;
+    }
 
-    public EmailTemplateProvider setOrganization(OrganizationModel organization);
+    @Override
+    public String getName() {
+        return "report-theme";
+    }
 
-    public EmailTemplateProvider setUser(UserModel user);
+    @Override
+    public Class<? extends Provider> getProviderClass() {
+        return ReportThemeProvider.class;
+    }
 
-    public EmailTemplateProvider setAttribute(String name, Object value);
-
-    public void sendEvent(Event event) throws EmailException;
-
-    public void sendInvoice(InvoiceModel invoice) throws EmailException;
-
+    @Override
+    public Class<? extends ProviderFactory> getProviderFactoryClass() {
+        return ReportThemeProviderFactory.class;
+    }
 }

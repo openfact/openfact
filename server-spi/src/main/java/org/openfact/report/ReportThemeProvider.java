@@ -15,7 +15,7 @@
  * limitations under the License.
  *******************************************************************************/
 
-package org.openfact.ubl.template;
+package org.openfact.report;
 
 import org.openfact.provider.Provider;
 
@@ -25,14 +25,14 @@ import java.util.Set;
 /**
  * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  */
-public interface TemplateProvider extends Provider {
+public interface ReportThemeProvider extends Provider {
 
     public int getProviderPriority();
 
-    public Template getTemplate(String name, Template.Type type) throws IOException;
+    public ReportTheme getReportTheme(String name, ReportTheme.Type type) throws IOException;
 
-    public Set<String> nameSet(Template.Type type);
+    public Set<String> nameSet(ReportTheme.Type type);
 
-    public boolean hasTheme(String name, Template.Type type);
+    public boolean hasReportTheme(String name, ReportTheme.Type type);
 
 }

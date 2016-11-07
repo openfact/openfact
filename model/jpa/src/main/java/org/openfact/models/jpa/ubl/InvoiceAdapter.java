@@ -31,7 +31,7 @@ import org.jboss.logging.Logger;
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.enums.RequeridActionDocument;
+import org.openfact.models.enums.RequiredActionDocument;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.OrganizationAdapter;
 import org.openfact.models.jpa.entities.ubl.InvoiceAttributeEntity;
@@ -780,17 +780,17 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 	}
 
 	@Override
-	public List<RequeridActionDocument> getRequeridAction() {
+	public List<RequiredActionDocument> getRequiredAction() {
 		return invoice.getRequeridAction();
 	}
 
 	@Override
-	public void setRequeridAction(List<RequeridActionDocument> requeridAction) {
+	public void setRequiredAction(List<RequiredActionDocument> requeridAction) {
 		invoice.setRequeridAction(requeridAction);
 	}
 
 	@Override
-	public boolean removeRequeridAction(RequeridActionDocument requeridAction) {
+	public boolean removeRequeridAction(RequiredActionDocument requeridAction) {
 		boolean result = invoice.getRequeridAction().remove(requeridAction);
 		return result;
 	}

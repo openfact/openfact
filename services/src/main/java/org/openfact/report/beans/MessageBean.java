@@ -1,48 +1,62 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-
-package org.openfact.ubl.template;
-
-import org.openfact.provider.Provider;
-import org.openfact.provider.ProviderFactory;
-import org.openfact.provider.Spi;
+package org.openfact.report.beans;
 
 /**
  * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  */
-public class TemplateSpi implements Spi {
+public class MessageBean {
 
-    @Override
-    public boolean isInternal() {
-        return true;
+    private String summary;
+
+    private MessageType type;
+
+    public MessageBean(String message, MessageType type) {
+        this.summary = message;
+        this.type = type;
     }
 
-    @Override
-    public String getName() {
-        return "template";
+    public String getSummary() {
+        return summary;
     }
 
-    @Override
-    public Class<? extends Provider> getProviderClass() {
-        return TemplateProvider.class;
+    public void appendSummaryLine(String newLine) {
+        if (newLine == null)
+            return;
+        if (summary == null)
+            summary = newLine;
+        else
+            summary = summary + "<br>" + newLine;
     }
 
-    @Override
-    public Class<? extends ProviderFactory> getProviderFactoryClass() {
-        return TemplateProviderFactory.class;
+    public String getType() {
+        return this.type.toString().toLowerCase();
     }
+
+    public boolean isSuccess() {
+        return MessageType.SUCCESS.equals(this.type);
+    }
+
+    public boolean isWarning() {
+        return MessageType.WARNING.equals(this.type);
+    }
+
+    public boolean isError() {
+        return MessageType.ERROR.equals(this.type);
+    }
+
 }

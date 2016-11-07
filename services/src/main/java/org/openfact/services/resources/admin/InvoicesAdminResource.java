@@ -47,14 +47,21 @@ import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.json.JSONObject;
 import org.json.XML;
 import org.openfact.common.ClientConnection;
+import org.openfact.email.EmailException;
+import org.openfact.email.EmailTemplateProvider;
 import org.openfact.events.admin.OperationType;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.UserModel;
+import org.openfact.models.enums.RequiredActionDocument;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.ubl.InvoiceModel;
+import org.openfact.models.ubl.common.ContactModel;
+import org.openfact.models.ubl.common.CustomerPartyModel;
+import org.openfact.models.ubl.common.PartyModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
@@ -154,12 +161,17 @@ public class InvoicesAdminResource {
         try {
             InvoiceModel invoice = invoiceManager.addInvoice(organization, rep);
 
+            adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, invoice.getId())
+                    .representation(rep).success();
+
             if (session.getTransactionManager().isActive()) {
                 session.getTransactionManager().commit();
             }
 
-            adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, invoice.getId())
-                    .representation(rep).success();
+            // Send Email
+            if (rep.getRequiredActions().contains(RequiredActionDocument.SEND_EMAIL_CUSTOMER)) {
+                sendEmail(organization, invoice);
+            }
 
             URI location = uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build();
             return Response.created(location).build();
@@ -173,9 +185,62 @@ public class InvoicesAdminResource {
                 session.getTransactionManager().setRollbackOnly();
             }
             return ErrorResponse.exists("Could not create debit note");
+        } catch (EmailException e) {
+            ServicesLogger.LOGGER.failedToSendActionsEmail(e);
+            return ErrorResponse.error("Invoice Created but, Failed to send execute actions email", Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
+    protected void sendEmail(OrganizationModel organization, InvoiceModel invoice) throws EmailException {
+        CustomerPartyModel customerParty = invoice.getAccountingCustomerParty();
+        if (customerParty != null) {
+            PartyModel party = customerParty.getParty();
+            if (party != null) {
+                ContactModel contact = party.getContact();
+
+                EmailTemplateProvider provider = session.getProvider(EmailTemplateProvider.class)
+                        .setOrganization(organization).setUser(new UserModel() {
+                            @Override
+                            public boolean hasRole(String role) {
+                                return false;
+                            }
+
+                            @Override
+                            public String getUsername() {
+                                return null;
+                            }
+
+                            @Override
+                            public String getLastName() {
+                                return null;
+                            }
+
+                            @Override
+                            public String getFullName() {
+                                return null;
+                            }
+
+                            @Override
+                            public String getFirstName() {
+                                return null;
+                            }
+
+                            @Override
+                            public String getEmail() {
+                                return contact.getElectronicMail();
+                            }
+
+                            @Override
+                            public Map<String, Object> getAttributes() {
+                                return null;
+                            }
+                        });
+
+                provider.sendInvoice(invoice);
+            }
+        }
+    }
+
     @POST
     @Path("xml")
     @Consumes("multipart/form-data")
@@ -185,28 +250,30 @@ public class InvoicesAdminResource {
 
         Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
         List<InputPart> inputParts = uploadForm.get("uploadFile");
-        
-        for (InputPart inputPart : inputParts) {                        
+
+        for (InputPart inputPart : inputParts) {
             try {
                 InputStream inputStream = inputPart.getBody(InputStream.class, null);
                 byte[] bytes = IOUtils.toByteArray(inputStream);
-                
+
                 InvoiceManager invoiceManager = new InvoiceManager(session);
                 InvoiceType invoiceType = UBL21Reader.invoice().read(bytes);
-                
+
                 // Double-check duplicated ID
-                if (invoiceType.getIDValue() != null && invoiceManager.getInvoiceByID(organization, invoiceType.getIDValue()) != null) {
+                if (invoiceType.getIDValue() != null
+                        && invoiceManager.getInvoiceByID(organization, invoiceType.getIDValue()) != null) {
                     return ErrorResponse.exists("Invoice exists with same ID");
                 }
-                
+
                 InvoiceModel invoice = invoiceManager.addInvoice(organization, invoiceType);
 
                 if (session.getTransactionManager().isActive()) {
                     session.getTransactionManager().commit();
                 }
-                 
+
                 JSONObject json = XML.toJSONObject(invoiceType.toString());
-                adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, invoice.getId()).representation(json).success();                                             
+                adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, invoice.getId())
+                        .representation(json).success();
             } catch (IOException e) {
                 logger.error("Error reading input data", e);
                 return ErrorResponse.error("Error Reading data", Response.Status.BAD_REQUEST);
@@ -220,12 +287,12 @@ public class InvoicesAdminResource {
                     session.getTransactionManager().setRollbackOnly();
                 }
                 return ErrorResponse.exists("Could not create debit note");
-            }          
-        }    
-        
+            }
+        }
+
         return Response.ok().build();
     }
-    
+
     @POST
     @Path("search")
     @Produces(MediaType.APPLICATION_JSON)

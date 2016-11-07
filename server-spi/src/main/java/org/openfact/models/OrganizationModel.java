@@ -102,6 +102,12 @@ public interface OrganizationModel {
     String getEmailTheme();
 
     void setEmailTheme(String name);
+    
+    /**
+     * ThemesUbl*/
+    String getUblTemplate();
+    
+    void setUblTemplate(String name);
 
     /**
      * Internationalization
@@ -244,6 +250,6 @@ public interface OrganizationModel {
         OrganizationModel getOrganization();
 
         OpenfactSession getOpenfactSession();
-    }
+    }    
 
 }

@@ -10,6 +10,7 @@ org.openfact.services.resource.OrganizationResourceSPI
 org.openfact.email.EmailSenderSpi
 org.openfact.email.EmailTemplateSpi
 org.openfact.theme.ThemeSpi
+org.openfact.report.ReportThemeSpi
 org.openfact.truststore.TruststoreSpi
 org.openfact.connections.httpclient.HttpClientSpi
 org.openfact.cluster.ClusterSpi

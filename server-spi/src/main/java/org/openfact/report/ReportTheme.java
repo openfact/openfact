@@ -15,7 +15,7 @@
  * limitations under the License.
  *******************************************************************************/
 
-package org.openfact.ubl.template;
+package org.openfact.report;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,14 +26,9 @@ import java.util.Properties;
 /**
  * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  */
-public interface Template {
+public interface ReportTheme {
 
     public String getName();
-
-
-    public String getParentName();
-
-    public String getImportName();
 
     public Type getType();
 
@@ -68,6 +63,6 @@ public interface Template {
 
     public Properties getProperties() throws IOException;
 
-    public enum Type {INVOICE, CREDIT_NOTE, DEBIT_NOTE}
+    public enum Type {ADMIN, CLIENT}
 
 }

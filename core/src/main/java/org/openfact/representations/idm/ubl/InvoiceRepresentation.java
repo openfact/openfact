@@ -76,6 +76,7 @@ public class InvoiceRepresentation {
     private String id;
 
     private String xml;
+    protected List<String> requiredActions;
 
     /**
      * Custom methods
@@ -516,6 +517,14 @@ public class InvoiceRepresentation {
 
     public void setXml(String xml) {
         this.xml = xml;
+    }
+
+    public List<String> getRequiredActions() {
+        return requiredActions;
+    }
+
+    public void setRequiredActions(List<String> requiredActions) {
+        this.requiredActions = requiredActions;
     }
 
 }

@@ -15,47 +15,50 @@
  * limitations under the License.
  *******************************************************************************/
 
-package org.openfact.email.freemarker;
+package org.openfact.report;
 
 import org.openfact.Config;
-import org.openfact.email.EmailTemplateProvider;
-import org.openfact.email.EmailTemplateProviderFactory;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
-import org.openfact.report.JasperReportUtil;
-import org.openfact.theme.FreeMarkerUtil;
+import org.openfact.report.ReportThemeProvider;
+import org.openfact.report.ReportThemeProviderFactory;
+
+import java.io.File;
 
 /**
  * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  */
-public class FreeMarkerEmailTemplateProviderFactory implements EmailTemplateProviderFactory {
+public class FolderReportProviderFactory implements ReportThemeProviderFactory {
 
-    private FreeMarkerUtil freeMarker;
-    private JasperReportUtil jasperReport;
+    private FolderReportProvider reportProvider;
 
     @Override
-    public EmailTemplateProvider create(OpenfactSession session) {
-        return new FreeMarkerEmailTemplateProvider(session, freeMarker, jasperReport);
+    public ReportThemeProvider create(OpenfactSession sessions) {
+        return reportProvider;
     }
 
     @Override
     public void init(Config.Scope config) {
-        freeMarker = new FreeMarkerUtil();
-        jasperReport = new JasperReportUtil();
+        String d = config.get("dir");
+        File rootDir = null;
+        if (d != null) {
+            rootDir = new File(d);
+        }
+        reportProvider = new FolderReportProvider(rootDir);
     }
 
     @Override
     public void postInit(OpenfactSessionFactory factory) {
+
     }
 
     @Override
     public void close() {
-        freeMarker = null;
+
     }
 
     @Override
     public String getId() {
-        return "freemarker";
+        return "folder";
     }
-
 }

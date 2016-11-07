@@ -1,0 +1,11 @@
+{
+	"reports": [
+		{
+			"name": "openfact",
+			"types": [
+				"admin",
+				"client"
+			]
+		}
+	]
+}

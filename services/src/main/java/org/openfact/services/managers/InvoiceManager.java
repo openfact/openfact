@@ -24,16 +24,17 @@ import org.openfact.common.converts.DocumentUtils;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.enums.RequiredActionDocument;
 import org.openfact.models.enums.UblDocumentType;
 import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.ubl.provider.InvoiceProvider;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.models.utils.TypeToModel;
 import org.openfact.representations.idm.ubl.InvoiceRepresentation;
-import org.openfact.ubl.UblExtensionContentGeneratorProvider;
-import org.openfact.ubl.UblIDGeneratorProvider;
 import org.openfact.ubl.UblDocumentProvider;
 import org.openfact.ubl.UblDocumentSignerProvider;
+import org.openfact.ubl.UblExtensionContentGeneratorProvider;
+import org.openfact.ubl.UblIDGeneratorProvider;
 import org.w3c.dom.Document;
 
 import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
@@ -63,6 +64,8 @@ public class InvoiceManager {
 
         InvoiceModel invoice = model.addInvoice(organization, ID);
         RepresentationToModel.importInvoice(session, organization, invoice, rep);
+        invoice.setRequiredAction(RequiredActionDocument.getDefaults());
+
         process(organization, invoice);
 
         return invoice;
@@ -77,6 +80,8 @@ public class InvoiceManager {
 
         InvoiceModel invoice = model.addInvoice(organization, ID);
         TypeToModel.importInvoice(session, organization, invoice, rep);
+        invoice.setRequiredAction(RequiredActionDocument.getDefaults());
+
         process(organization, invoice);
 
         return invoice;

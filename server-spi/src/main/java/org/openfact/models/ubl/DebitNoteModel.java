@@ -18,7 +18,7 @@ package org.openfact.models.ubl;
 
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.enums.RequeridActionDocument;
+import org.openfact.models.enums.RequiredActionDocument;
 import org.openfact.models.ubl.common.*;
 import org.openfact.provider.ProviderEvent;
 
@@ -233,11 +233,11 @@ public interface DebitNoteModel {
 
     void setXmlDocument(Byte[] value);
 
-    List<RequeridActionDocument> getRequeridAction();
+    List<RequiredActionDocument> getRequeridAction();
 
-    void setRequeridAction(List<RequeridActionDocument> requeridAction);
+    void setRequeridAction(List<RequiredActionDocument> requeridAction);
 
-    boolean removeRequeridAction(RequeridActionDocument requeridAction);
+    boolean removeRequeridAction(RequiredActionDocument requeridAction);
 
     /**
      * Events interfaces

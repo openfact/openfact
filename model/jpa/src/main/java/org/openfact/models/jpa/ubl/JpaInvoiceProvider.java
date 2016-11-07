@@ -28,7 +28,7 @@ import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.enums.RequeridActionDocument;
+import org.openfact.models.enums.RequiredActionDocument;
 import org.openfact.models.jpa.AbstractHibernateStorage;
 import org.openfact.models.jpa.OrganizationAdapter;
 import org.openfact.models.jpa.entities.ubl.InvoiceEntity;
@@ -243,7 +243,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 	}
 
 	@Override
-	public List<InvoiceModel> getInvoices(OrganizationModel organization, List<RequeridActionDocument> requeridAction,
+	public List<InvoiceModel> getInvoices(OrganizationModel organization, List<RequiredActionDocument> requeridAction,
 			boolean intoRequeridAction) {
 		String queryName = "";
 		if (intoRequeridAction) {

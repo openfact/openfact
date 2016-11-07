@@ -56,7 +56,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import org.openfact.models.enums.RequeridActionDocument;
+import org.openfact.models.enums.RequiredActionDocument;
 import org.openfact.models.jpa.entities.OrganizationEntity;
 import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
@@ -292,7 +292,7 @@ public class InvoiceEntity {
 	@Column(name = "REQUERID_ACTION")
 	@CollectionTable(name = "INVOICE_REQUERID_ACTION", joinColumns = { @JoinColumn(name = "INVOICE_ID") })
 	@Enumerated(EnumType.STRING)
-	protected List<RequeridActionDocument> requeridAction = new ArrayList<>();
+	protected List<RequiredActionDocument> requeridAction = new ArrayList<>();
 
 	public Byte[] getXmlDocument() {
 		return xmlDocument;
@@ -710,11 +710,11 @@ public class InvoiceEntity {
 		this.sendEvents = sendEvents;
 	}
 
-	public List<RequeridActionDocument> getRequeridAction() {
+	public List<RequiredActionDocument> getRequeridAction() {
 		return requeridAction;
 	}
 
-	public void setRequeridAction(List<RequeridActionDocument> requeridAction) {
+	public void setRequeridAction(List<RequiredActionDocument> requeridAction) {
 		this.requeridAction = requeridAction;
 	}
 

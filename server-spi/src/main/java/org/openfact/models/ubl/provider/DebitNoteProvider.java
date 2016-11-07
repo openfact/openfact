@@ -17,7 +17,7 @@
 package org.openfact.models.ubl.provider;
 
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.enums.RequeridActionDocument;
+import org.openfact.models.enums.RequiredActionDocument;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.ubl.DebitNoteModel;
@@ -39,7 +39,7 @@ public interface DebitNoteProvider extends Provider {
 
     List<DebitNoteModel> getDebitNotes(OrganizationModel organization);
 
-    List<DebitNoteModel> getDebitNotes(OrganizationModel organization, List<RequeridActionDocument> requeridAction, boolean intoRequeridAction);
+    List<DebitNoteModel> getDebitNotes(OrganizationModel organization, List<RequiredActionDocument> requeridAction, boolean intoRequeridAction);
 
     List<DebitNoteModel> getDebitNotes(OrganizationModel organization, Integer firstResult, Integer maxResults);
 

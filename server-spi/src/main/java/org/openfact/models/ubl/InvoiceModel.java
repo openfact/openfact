@@ -18,7 +18,7 @@ package org.openfact.models.ubl;
 
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.enums.RequeridActionDocument;
+import org.openfact.models.enums.RequiredActionDocument;
 import org.openfact.models.ubl.common.*;
 import org.openfact.provider.ProviderEvent;
 
@@ -259,11 +259,11 @@ public interface InvoiceModel {
 
     void setXmlDocument(Byte[] value);
 
-    List<RequeridActionDocument> getRequeridAction();
+    List<RequiredActionDocument> getRequiredAction();
 
-    void setRequeridAction(List<RequeridActionDocument> requeridAction);
+    void setRequiredAction(List<RequiredActionDocument> requiredActions);
 
-    boolean removeRequeridAction(RequeridActionDocument requeridAction);
+    boolean removeRequeridAction(RequiredActionDocument requiredAction);
 
     /**
      * Events interfaces

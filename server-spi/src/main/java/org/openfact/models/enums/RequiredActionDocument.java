@@ -14,30 +14,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
+package org.openfact.models.enums;
 
-package org.openfact.email;
+import java.util.List;
+import java.util.stream.Collectors;
 
-import org.openfact.events.Event;
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.UserModel;
-import org.openfact.models.ubl.InvoiceModel;
-import org.openfact.provider.Provider;
+public enum RequiredActionDocument {
 
-/**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
- */
-public interface EmailTemplateProvider extends Provider {
+    SEND_EMAIL_CUSTOMER(true);
 
-    String IDENTITY_PROVIDER_BROKER_CONTEXT = "identityProviderBrokerCtx";
+    private boolean isDefault;
 
-    public EmailTemplateProvider setOrganization(OrganizationModel organization);
+    private RequiredActionDocument(boolean isDefault) {
+        this.isDefault = isDefault;
+    }
 
-    public EmailTemplateProvider setUser(UserModel user);
+    public boolean isDefault() {
+        return isDefault;
+    }
 
-    public EmailTemplateProvider setAttribute(String name, Object value);
-
-    public void sendEvent(Event event) throws EmailException;
-
-    public void sendInvoice(InvoiceModel invoice) throws EmailException;
+    public static List<RequiredActionDocument> getDefaults() {
+        return RequiredActionDocument.getDefaults().stream().filter(p -> p.isDefault)
+                .collect(Collectors.toList());
+    }
 
 }

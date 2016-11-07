@@ -28,7 +28,7 @@ import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.enums.RequeridActionDocument;
+import org.openfact.models.enums.RequiredActionDocument;
 import org.openfact.models.jpa.AbstractHibernateStorage;
 import org.openfact.models.jpa.OrganizationAdapter;
 import org.openfact.models.jpa.entities.ubl.CreditNoteEntity;
@@ -248,7 +248,7 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
 
 	@Override
 	public List<CreditNoteModel> getCreditNotes(OrganizationModel organization,
-			List<RequeridActionDocument> requeridAction, boolean intoRequeridAction) {
+			List<RequiredActionDocument> requeridAction, boolean intoRequeridAction) {
 		String queryName = "";
 		if (intoRequeridAction) {
 			queryName = "select i from CreditNoteEntity i where i.organization.id = :organizationId and :requeridAction in elements(i.requeridAction) order by i.issueDateTime ";
