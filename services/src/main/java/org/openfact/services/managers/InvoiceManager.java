@@ -16,14 +16,20 @@
  *******************************************************************************/
 package org.openfact.services.managers;
 
+import java.util.Map;
+
 import javax.xml.transform.TransformerException;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.jboss.logging.Logger;
 import org.openfact.common.converts.DocumentUtils;
+import org.openfact.email.EmailException;
+import org.openfact.email.EmailTemplateProvider;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.UserSenderModel;
+import org.openfact.models.enums.RequeridActionDocument;
 import org.openfact.models.enums.UblDocumentType;
 import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.ubl.provider.InvoiceProvider;
@@ -40,82 +46,116 @@ import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 
 public class InvoiceManager {
 
-    protected static final Logger logger = Logger.getLogger(DebitNoteManager.class);
+	protected static final Logger logger = Logger.getLogger(DebitNoteManager.class);
 
-    protected OpenfactSession session;
-    protected InvoiceProvider model;
+	protected OpenfactSession session;
+	protected InvoiceProvider model;
 
-    public InvoiceManager(OpenfactSession session) {
-        this.session = session;
-        this.model = session.invoices();
-    }
+	public InvoiceManager(OpenfactSession session) {
+		this.session = session;
+		this.model = session.invoices();
+	}
 
-    public InvoiceModel getInvoiceByID(OrganizationModel organization, String ID) {
-        return model.getInvoiceByID(organization, ID);
-    }
+	public InvoiceModel getInvoiceByID(OrganizationModel organization, String ID) {
+		return model.getInvoiceByID(organization, ID);
+	}
 
-    public InvoiceModel addInvoice(OrganizationModel organization, InvoiceRepresentation rep) {
-        String ID = rep.getIdUbl();
-        if (ID == null) {
-            UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class);
-            ID = provider.generateInvoiceID(organization, rep.getInvoiceTypeCode());
-        }
+	public InvoiceModel addInvoice(OrganizationModel organization, InvoiceRepresentation rep) {
+		String ID = rep.getIdUbl();
+		if (ID == null) {
+			UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class);
+			ID = provider.generateInvoiceID(organization, rep.getInvoiceTypeCode());
+		}
 
-        InvoiceModel invoice = model.addInvoice(organization, ID);
-        RepresentationToModel.importInvoice(session, organization, invoice, rep);
-        process(organization, invoice);
+		InvoiceModel invoice = model.addInvoice(organization, ID);
+		RepresentationToModel.importInvoice(session, organization, invoice, rep);
+		process(organization, invoice);
+		try {
+			if (rep.isSendImmediately()) {
 
-        return invoice;
-    }
+				UserSenderModel user = new UserSenderModel() {
+					@Override
+					public String getLastName() {
+						return invoice.getAccountingCustomerParty().getParty().getPartyName().get(0);
+					}
 
-    public InvoiceModel addInvoice(OrganizationModel organization, InvoiceType rep) {
-        String ID = rep.getIDValue();
-        if (ID == null) {
-            UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class);
-            ID = provider.generateInvoiceID(organization, rep.getInvoiceTypeCodeValue());
-        }
+					@Override
+					public String getFullName() {
+						return null;
+					}
 
-        InvoiceModel invoice = model.addInvoice(organization, ID);
-        TypeToModel.importInvoice(session, organization, invoice, rep);
-        process(organization, invoice);
+					@Override
+					public String getFirstName() {
+						return null;
+					}
 
-        return invoice;
-    }
+					@Override
+					public String getEmail() {
+						return invoice.getAccountingCustomerParty().getAccountingContact().getElectronicMail();
+					}
 
-    protected void process(OrganizationModel organization, InvoiceModel invoice) {
-        // Generate extensions
-        UblExtensionContentGeneratorProvider extensionContentProvider = session
-                .getProvider(UblExtensionContentGeneratorProvider.class);
-        if (extensionContentProvider != null) {
-            extensionContentProvider.generateUBLExtensions(organization, invoice);
-        }
+					@Override
+					public Map<String, Object> getAttributes() {
+						return null;
+					}
+				};
+				session.getProvider(EmailTemplateProvider.class).setUser(user).sendInvoice(invoice);
+				invoice.removeRequeridAction(RequeridActionDocument.SEND_EMAIL_CUSTOMER);
+			}
+		} catch (EmailException e) {
+			logger.error("Error sending email of invoice", e);
+			throw new ModelException(e);
+		}
+		return invoice;
+	}
 
-        // Generate Document from Invoice
-        UblDocumentProvider documentProvider = session.getProvider(UblDocumentProvider.class);
-        Document baseDocument = documentProvider.getDocument(organization, invoice);
+	public InvoiceModel addInvoice(OrganizationModel organization, InvoiceType rep) {
+		String ID = rep.getIDValue();
+		if (ID == null) {
+			UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class);
+			ID = provider.generateInvoiceID(organization, rep.getInvoiceTypeCodeValue());
+		}
 
-        // Sign Document
-        Document signedDocument = null;
-        UblDocumentSignerProvider signerProvider = session.getProvider(UblDocumentSignerProvider.class);
-        if (signerProvider != null) {
-            signedDocument = signerProvider.sign(baseDocument, UblDocumentType.INVOICE, organization);
-        }
+		InvoiceModel invoice = model.addInvoice(organization, ID);
+		TypeToModel.importInvoice(session, organization, invoice, rep);
+		process(organization, invoice);
+		return invoice;
+	}
 
-        try {
-            byte[] bytes = DocumentUtils
-                    .getBytesFromDocument(signedDocument != null ? signedDocument : baseDocument);
-            invoice.setXmlDocument(ArrayUtils.toObject(bytes));
-        } catch (TransformerException e) {
-            logger.error("Error parsing to byte XML", e);
-            throw new ModelException(e);
-        }
-    }
+	protected void process(OrganizationModel organization, InvoiceModel invoice) {
+		// Generate extensions
+		UblExtensionContentGeneratorProvider extensionContentProvider = session
+				.getProvider(UblExtensionContentGeneratorProvider.class);
+		if (extensionContentProvider != null) {
+			extensionContentProvider.generateUBLExtensions(organization, invoice);
+		}
 
-    public boolean removeInvoice(OrganizationModel organization, InvoiceModel invoice) {
-        if (model.removeInvoice(organization, invoice)) {
-            return true;
-        }
-        return false;
-    }
+		// Generate Document from Invoice
+		UblDocumentProvider documentProvider = session.getProvider(UblDocumentProvider.class);
+		Document baseDocument = documentProvider.getDocument(organization, invoice);
+
+		// Sign Document
+		Document signedDocument = null;
+		UblDocumentSignerProvider signerProvider = session.getProvider(UblDocumentSignerProvider.class);
+		if (signerProvider != null) {
+			signedDocument = signerProvider.sign(baseDocument, UblDocumentType.INVOICE, organization);
+		}
+
+		try {
+			byte[] bytes = DocumentUtils.getBytesFromDocument(signedDocument != null ? signedDocument : baseDocument);
+			invoice.setXmlDocument(ArrayUtils.toObject(bytes));
+
+		} catch (TransformerException e) {
+			logger.error("Error parsing to byte XML", e);
+			throw new ModelException(e);
+		}
+	}
+
+	public boolean removeInvoice(OrganizationModel organization, InvoiceModel invoice) {
+		if (model.removeInvoice(organization, invoice)) {
+			return true;
+		}
+		return false;
+	}
 
 }
