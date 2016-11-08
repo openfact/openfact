@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,7 +33,6 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.filters.OpenfactSecurityContextFilter;
 import org.openfact.services.filters.OpenfactSessionServletFilter;
-import org.openfact.services.managers.ApplianceBootstrap;
 import org.openfact.services.managers.OrganizationManager;
 import org.openfact.services.resources.OpenfactApplication;
 import org.openfact.testsuite.util.cli.TestsuiteCLI;
@@ -44,6 +43,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Properties;
 
 /**
@@ -215,7 +215,8 @@ public class OpenfactServer {
     }
 
     public void importOrganization(OrganizationRepresentation rep) {
-        OpenfactSession session = sessionFactory.create();;
+        OpenfactSession session = sessionFactory.create();
+
         session.getTransactionManager().begin();
 
         try {
@@ -284,6 +285,9 @@ public class OpenfactServer {
             /**
              * Add Keycloak Filter*/
             FilterInfo kcFilter = Servlets.filter("KeycloakFilter", org.keycloak.adapters.servlet.KeycloakOIDCFilter.class);
+            kcFilter.setAsyncSupported(true);
+            URL kcConfigURL = getClass().getClassLoader().getResource("META-INF/keycloak.json");
+            kcFilter.addInitParam("keycloak.config.file", kcConfigURL.getPath().toString());
             di.addFilter(kcFilter);
             di.addFilterUrlMapping("KeycloakFilter", "/admin/*", DispatcherType.REQUEST);
 

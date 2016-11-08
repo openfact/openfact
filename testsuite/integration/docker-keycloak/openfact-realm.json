@@ -39,11 +39,8 @@
       "realmRoles": [
         "admin"
       ],
-      "clientRoles": {
-        "account": [
-          "manage-account",
-          "view-profile"
-        ]
+      "attributes": {
+        "organization": "master"
       }
     },
     {
@@ -58,11 +55,8 @@
       "realmRoles": [
         "admin-organization"
       ],
-      "clientRoles": {
-        "account": [
-          "manage-account",
-          "view-profile"
-        ]
+      "attributes": {
+        "organization": "demo"
       }
     },
     {
@@ -77,11 +71,8 @@
       "realmRoles": [
         "organization-user"
       ],
-      "clientRoles": {
-        "account": [
-          "manage-account",
-          "view-profile"
-        ]
+      "attributes": {
+        "organization": "demo"
       }
     }
   ],
@@ -93,19 +84,10 @@
         "composites": {
           "client": {
             "openfact": [
-              "manage-credit-notes",
-              "manage-organization",
-              "view-debit-notes",
-              "view-organization",
               "admin",
-              "manage-invoices",
-              "view-invoices",
-              "manage-events",
-              "view-events",
-              "create-organization",
-              "manage-debit-notes",
-              "organization-admin",
-              "view-credit-notes"
+              "create-organization", "organization-admin",
+              "manage-organization", "manage-invoices", "manage-credit-notes", "manage-debit-notes", "manage-events",
+              "view-organization", "view-invoices", "view-credit-notes", "view-debit-notes", "view-events"
             ]
           }
         },
@@ -118,17 +100,9 @@
         "composites": {
           "client": {
             "openfact": [
-              "manage-credit-notes",
-              "manage-events",
-              "manage-organization",
-              "view-debit-notes",
-              "view-events",
-              "view-organization",
-              "manage-invoices",
-              "view-invoices",
-              "manage-debit-notes",
               "organization-admin",
-              "view-credit-notes"
+              "manage-organization", "manage-invoices", "manage-credit-notes", "manage-debit-notes", "manage-events",
+              "view-organization", "view-invoices", "view-credit-notes", "view-debit-notes", "view-events"
             ]
           }
         },
@@ -141,15 +115,8 @@
         "composites": {
           "client": {
             "openfact": [
-              "manage-credit-notes",
-              "manage-events",
-              "view-debit-notes",
-              "view-events",
-              "view-organization",
-              "manage-invoices",
-              "view-invoices",
-              "manage-debit-notes",
-              "view-credit-notes"
+              "manage-invoices", "manage-credit-notes", "manage-debit-notes", "manage-events",
+              "view-organization", "view-invoices", "view-credit-notes", "view-debit-notes", "view-events"
             ]
           }
         },
@@ -159,45 +126,10 @@
     ],
     "client": {
       "openfact": [
-        {
-          "name": "manage-credit-notes"
-        },
-        {
-          "name": "manage-organization"
-        },
-        {
-          "name": "view-debit-notes"
-        },
-        {
-          "name": "view-organization"
-        },
-        {
-          "name": "admin"
-        },
-        {
-          "name": "manage-invoices"
-        },
-        {
-          "name": "view-invoices"
-        },
-        {
-          "name": "manage-events"
-        },
-        {
-          "name": "view-events"
-        },
-        {
-          "name": "create-organization"
-        },
-        {
-          "name": "organization-admin"
-        },
-        {
-          "name": "view-credit-notes"
-        },
-        {
-          "name": "manage-debit-notes"
-        }
+        { "name": "admin" },
+        { "name": "create-organization" }, { "name": "organization-admin" },
+        { "name": "manage-organization" }, { "name": "manage-invoices" }, { "name": "manage-credit-notes" }, { "name": "manage-debit-notes" }, { "name": "manage-events" },
+        { "name": "view-organization" }, { "name": "view-invoices" }, { "name": "view-credit-notes" }, { "name": "view-debit-notes" }, { "name": "view-events" }
       ]
     }
   },
@@ -217,6 +149,7 @@
       "enabled": true,
       "publicClient": true,
       "baseUrl": "/openfact-web-console",
+      "adminUrl": "/openfact-web-console/keycloak",
       "redirectUris": [
         "/openfact-web-console/*",
         "http://localhost:4200/*"
