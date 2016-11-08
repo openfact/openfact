@@ -37,7 +37,7 @@
         }
       ],
       "realmRoles": [
-        "of-admin"
+        "admin"
       ],
       "clientRoles": {
         "account": [
@@ -56,7 +56,7 @@
         }
       ],
       "realmRoles": [
-        "of-admin-organization"
+        "admin-organization"
       ],
       "clientRoles": {
         "account": [
@@ -75,7 +75,7 @@
         }
       ],
       "realmRoles": [
-        "of-organization-user"
+        "organization-user"
       ],
       "clientRoles": {
         "account": [
@@ -88,7 +88,7 @@
   "roles": {
     "realm": [
       {
-        "name": "of-admin",
+        "name": "admin",
         "composite": true,
         "composites": {
           "client": {
@@ -113,7 +113,7 @@
         "containerId": "openfact"
       },
       {
-        "name": "of-admin-organization",
+        "name": "admin-organization",
         "composite": true,
         "composites": {
           "client": {
@@ -136,7 +136,7 @@
         "containerId": "openfact"
       },
       {
-        "name": "of-organization-user",
+        "name": "organization-user",
         "composite": true,
         "composites": {
           "client": {
@@ -211,6 +211,16 @@
       "adminUrl": "/openfact",
       "baseUrl": "/openfact",
       "bearerOnly": true
+    },
+    {
+      "clientId": "openfact-web-console",
+      "enabled": true,
+      "publicClient": true,
+      "baseUrl": "/openfact-web-console",
+      "redirectUris": [
+        "/openfact-web-console/*",
+        "http://localhost:4200/*"
+      ]
     }
   ]
 }
