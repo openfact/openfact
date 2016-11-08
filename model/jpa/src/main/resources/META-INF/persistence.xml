@@ -25,6 +25,7 @@
         <class>org.openfact.models.jpa.entities.OrganizationEntity</class>
         <class>org.openfact.models.jpa.entities.ComponentEntity</class>
         <class>org.openfact.models.jpa.entities.ComponentConfigEntity</class>
+        <class>org.openfact.models.jpa.entities.UserEntity</class>
 
         <!-- JpaAuditProviders -->
         <class>org.openfact.events.jpa.EventEntity</class>
