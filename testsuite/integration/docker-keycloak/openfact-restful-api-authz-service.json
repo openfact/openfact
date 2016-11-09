@@ -3,7 +3,7 @@
 	"policyEnforcementMode": "ENFORCING",
 	"resources": [
 		{
-			"name": "Admin Server Info Profile Resource",
+			"name": "Admin Server Info Resource",
 			"uri": "/admin/serverinfo",
 			"type": "http://openfact.com/admin/serverinfo",
 			"scopes": [

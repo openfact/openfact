@@ -8,16 +8,20 @@
 		"secret": "secret"
 	},
 	"policy-enforcer": {
-		"user-managed-access": {
-
-		},
+		"user-managed-access": {},
 		"paths": [
 			{
-				"name:": "Admin Server Info Resource",
-				"path": "/admin/serverinfo"
+				"path": "/admin/serverinfo",
+				"methods": [
+					{
+						"method": "GET",
+						"scopes": [
+							"urn:openfact.com:scopes:serverinfo:view"
+						]
+					}
+				]
 			},
 			{
-				"name": "Admin Organization Resource",
 				"path": "/admin/organizations",
 				"methods": [
 					{
