@@ -35,7 +35,7 @@ There 2 steps to start the Openfact server on development mode:
  `mvn clean install -Pdocker-keycloak-server`
  
  - After that is necesary to start the docker image using the command:
- `docker run -p 8080:8080 -p 9990:9990 openfact/testsuite-keycloak-server`
+ `docker run -p 8080:8080 openfact/testsuite-keycloak-server`
  
  - If You need to access to your docker container:
  `docker exec -it CONTAINER_ID /bin/bash`

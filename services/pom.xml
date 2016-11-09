@@ -98,6 +98,10 @@
 			<groupId>org.keycloak</groupId>
 			<artifactId>keycloak-core</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.keycloak</groupId>
+			<artifactId>keycloak-authz-client</artifactId>
+		</dependency>
 		<!-- Secondary End -->
 
 		<!-- Principal Start -->

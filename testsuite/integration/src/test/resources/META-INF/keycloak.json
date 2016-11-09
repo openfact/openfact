@@ -1,9 +1,41 @@
 {
-  "realm": "openfact",
-  "bearer-only": true,
-  "auth-server-url": "http://localhost:8080/auth",
-  "ssl-required": "external",
-  "resource": "openfact",
-  "use-resource-role-mappings": true,
-  "enable-cors": true
+	"realm": "openfact",
+	"auth-server-url": "http://localhost:8080/auth",
+	"ssl-required": "external",
+	"resource": "openfact-restful-api",
+	"bearer-only": true,
+	"credentials": {
+		"secret": "secret"
+	},
+	"policy-enforcer": {
+		"user-managed-access": {
+
+		},
+		"paths": [
+			{
+				"name:": "Admin Server Info Resource",
+				"path": "/admin/serverinfo"
+			},
+			{
+				"name": "Admin Organization Resource",
+				"path": "/admin/organizations",
+				"methods": [
+					{
+						"method": "POST",
+						"scopes": [
+							"urn:openfact.com:scopes:organization:create"
+						]
+					},
+					{
+						"method": "GET",
+						"scopes": [
+							"urn:openfact.com:scopes:organization:view"
+						]
+					}
+				]
+			}
+		]
+	},
+	"use-resource-role-mappings": true,
+	"enable-cors": true
 }
