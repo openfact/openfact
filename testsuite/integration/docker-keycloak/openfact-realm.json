@@ -1,159 +1,191 @@
 {
-  "id": "openfact",
-  "realm": "openfact",
-  "notBefore": 0,
-  "revokeRefreshToken": false,
-  "accessTokenLifespan": 300,
-  "accessTokenLifespanForImplicitFlow": 900,
-  "ssoSessionIdleTimeout": 1800,
-  "ssoSessionMaxLifespan": 36000,
-  "offlineSessionIdleTimeout": 2592000,
-  "accessCodeLifespan": 60,
-  "accessCodeLifespanUserAction": 300,
-  "accessCodeLifespanLogin": 1800,
-  "enabled": true,
-  "sslRequired": "external",
-  "registrationAllowed": false,
-  "registrationEmailAsUsername": false,
-  "rememberMe": false,
-  "verifyEmail": false,
-  "resetPasswordAllowed": false,
-  "editUsernameAllowed": false,
-  "bruteForceProtected": false,
-  "maxFailureWaitSeconds": 900,
-  "minimumQuickLoginWaitSeconds": 60,
-  "waitIncrementSeconds": 60,
-  "quickLoginCheckMilliSeconds": 1000,
-  "maxDeltaTimeSeconds": 43200,
-  "failureFactor": 30,
-  "users": [
-    {
-      "username": "user1",
-      "enabled": true,
-      "credentials": [
-        {
-          "type": "password",
-          "value": "password"
-        }
-      ],
-      "realmRoles": [
-        "admin"
-      ],
-      "attributes": {
-        "organization": "master"
-      }
-    },
-    {
-      "username": "user2",
-      "enabled": true,
-      "credentials": [
-        {
-          "type": "password",
-          "value": "password"
-        }
-      ],
-      "realmRoles": [
-        "admin-organization"
-      ],
-      "attributes": {
-        "organization": "demo"
-      }
-    },
-    {
-      "username": "user3",
-      "enabled": true,
-      "credentials": [
-        {
-          "type": "password",
-          "value": "password"
-        }
-      ],
-      "realmRoles": [
-        "organization-user"
-      ],
-      "attributes": {
-        "organization": "demo"
-      }
-    }
-  ],
-  "roles": {
-    "realm": [
-      {
-        "name": "admin",
-        "composite": true,
-        "composites": {
-          "client": {
-            "openfact": [
-              "admin",
-              "create-organization", "organization-admin",
-              "manage-organization", "manage-invoices", "manage-credit-notes", "manage-debit-notes", "manage-events",
-              "view-organization", "view-invoices", "view-credit-notes", "view-debit-notes", "view-events"
-            ]
-          }
-        },
-        "clientRole": false,
-        "containerId": "openfact"
-      },
-      {
-        "name": "admin-organization",
-        "composite": true,
-        "composites": {
-          "client": {
-            "openfact": [
-              "organization-admin",
-              "manage-organization", "manage-invoices", "manage-credit-notes", "manage-debit-notes", "manage-events",
-              "view-organization", "view-invoices", "view-credit-notes", "view-debit-notes", "view-events"
-            ]
-          }
-        },
-        "clientRole": false,
-        "containerId": "openfact"
-      },
-      {
-        "name": "organization-user",
-        "composite": true,
-        "composites": {
-          "client": {
-            "openfact": [
-              "manage-invoices", "manage-credit-notes", "manage-debit-notes", "manage-events",
-              "view-organization", "view-invoices", "view-credit-notes", "view-debit-notes", "view-events"
-            ]
-          }
-        },
-        "clientRole": false,
-        "containerId": "openfact"
-      }
-    ],
-    "client": {
-      "openfact": [
-        { "name": "admin" },
-        { "name": "create-organization" }, { "name": "organization-admin" },
-        { "name": "manage-organization" }, { "name": "manage-invoices" }, { "name": "manage-credit-notes" }, { "name": "manage-debit-notes" }, { "name": "manage-events" },
-        { "name": "view-organization" }, { "name": "view-invoices" }, { "name": "view-credit-notes" }, { "name": "view-debit-notes" }, { "name": "view-events" }
-      ]
-    }
-  },
-  "clientScopeMappings": {
-    "realm-management": []
-  },
-  "clients": [
-    {
-      "clientId": "openfact",
-      "enabled": true,
-      "adminUrl": "/openfact",
-      "baseUrl": "/openfact",
-      "bearerOnly": true
-    },
-    {
-      "clientId": "openfact-web-console",
-      "enabled": true,
-      "publicClient": true,
-      "baseUrl": "/openfact-web-console",
-      "adminUrl": "/openfact-web-console/keycloak",
-      "redirectUris": [
-        "/openfact-web-console/*",
-        "http://localhost:4200/*"
-      ]
-    }
-  ]
+	"id": "openfact",
+	"realm": "openfact",
+	"enabled": true,
+	"sslRequired": "external",
+	"requiredCredentials": [
+		"password"
+	],
+	"users": [
+		{
+			"username": "user1",
+			"enabled": true,
+			"credentials": [
+				{
+					"type": "password",
+					"value": "password"
+				}
+			],
+			"realmRoles": [
+				"admin"
+			]
+		},
+		{
+			"username": "user2",
+			"enabled": true,
+			"credentials": [
+				{
+					"type": "password",
+					"value": "password"
+				}
+			],
+			"realmRoles": [
+				"admin-organization"
+			]
+		},
+		{
+			"username": "user3",
+			"enabled": true,
+			"credentials": [
+				{
+					"type": "password",
+					"value": "password"
+				}
+			],
+			"realmRoles": [
+				"organization-user"
+			]
+		}
+	],
+	"roles": {
+		"realm": [
+			{
+				"name": "admin",
+				"description": "Admin privileges",
+				"composite": true,
+				"composites": {
+					"client": {
+						"openfact-restful-api": [
+							"manage-organization",
+							"manage-invoices",
+							"manage-credit-notes",
+							"manage-debit-notes",
+							"manage-events",
+							"view-organization",
+							"view-invoices",
+							"view-credit-notes",
+							"view-debit-notes",
+							"view-events"
+						]
+					}
+				}
+			},
+			{
+				"name": "admin-organization",
+				"description": "Admin privileges on one Organization",
+				"composite": true,
+				"composites": {
+					"client": {
+						"openfact-restful-api": [
+							"manage-organization",
+							"manage-invoices",
+							"manage-credit-notes",
+							"manage-debit-notes",
+							"manage-events",
+							"view-organization",
+							"view-invoices",
+							"view-credit-notes",
+							"view-debit-notes",
+							"view-events"
+						]
+					}
+				}
+			},
+			{
+				"name": "organization-user",
+				"description": "User privileges on one organization",
+				"composite": true,
+				"composites": {
+					"client": {
+						"openfact-restful-api": [
+							"manage-invoices",
+							"manage-credit-notes",
+							"manage-debit-notes",
+							"manage-events",
+							"view-organization",
+							"view-invoices",
+							"view-credit-notes",
+							"view-debit-notes",
+							"view-events"
+						]
+					}
+				}
+			}
+		],
+		"client": {
+			"openfact-restful-api": [
+				{
+					"name": "manage-organization",
+					"description": "Admin Only One Organization"
+				},
+				{
+					"name": "manage-invoices",
+					"description": "Manage Invoices"
+				},
+				{
+					"name": "manage-credit-notes",
+					"description": "Manage Credit Notes"
+				},
+				{
+					"name": "manage-debit-notes",
+					"description": "Manage Debit Notes"
+				},
+				{
+					"name": "manage-events",
+					"description": "Manage Events"
+				},
+				{
+					"name": "view-organization",
+					"description": "View Organization"
+				},
+				{
+					"name": "view-invoices",
+					"description": "View Invoices"
+				},
+				{
+					"name": "view-credit-notes",
+					"description": "View Credit Notes"
+				},
+				{
+					"name": "view-debit-notes",
+					"description": "View Debit Notes"
+				},
+				{
+					"name": "view-events",
+					"description": "View Events"
+				}
+			]
+		}
+	},
+	"clients": [
+		{
+			"clientId": "openfact-web-console",
+			"enabled": true,
+			"publicClient": true,
+			"consentRequired": true,
+			"fullScopeAllowed": true,
+			"baseUrl": "/openfact-web-console",
+			"adminUrl": "/openfact-web-console",
+			"redirectUris": [
+				"http://localhost:4200/*",
+				"/openfact-web-console/*"
+			],
+			"webOrigins": [
+				"*"
+			]
+		},
+		{
+			"clientId": "openfact-restful-api",
+			"secret": "secret",
+			"enabled": true,
+			"baseUrl": "/openfact",
+			"authorizationServicesEnabled": true,
+			"redirectUris": [
+				"/openfact-restful-api/*"
+			],
+			"webOrigins": [
+				"*"
+			]
+		}
+	]
 }

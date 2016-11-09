@@ -1,0 +1,95 @@
+{
+	"allowRemoteResourceManagement": true,
+	"policyEnforcementMode": "ENFORCING",
+	"resources": [
+		{
+			"name": "Admin Server Info Profile Resource",
+			"uri": "/admin/serverinfo",
+			"type": "http://openfact.com/admin/serverinfo",
+			"scopes": [
+				{
+					"name": "urn:openfact.com:scopes:serverinfo:view"
+				}
+			]
+		},
+		{
+			"name": "Admin Organizations Resource",
+			"uri": "/admin/organizations",
+			"type": "http://openfact.com/admin/organizations",
+			"scopes": [
+				{
+					"name": "urn:openfact.com:scopes:organization:create"
+				},
+				{
+					"name": "urn:openfact.com:scopes:organization:view"
+				}
+			]
+		}
+	],
+	"policies": [
+		{
+			"name": "Only Admin Realm Role",
+			"description": "Defines that only Admin users can do something",
+			"type": "role",
+			"logic": "POSITIVE",
+			"decisionStrategy": "UNANIMOUS",
+			"config": {
+				"roles": "[{\"id\":\"admin\",\"required\":true}]"
+			}
+		},
+		{
+			"name": "Only View Organization Client Role",
+			"description": "Defines that only view-organization role can do something.",
+			"type": "role",
+			"logic": "POSITIVE",
+			"decisionStrategy": "UNANIMOUS",
+			"config": {
+				"roles": "[{\"id\":\"view-organization\",\"required\":true}]"
+			}
+		},
+		{
+			"name": "View Server Info Permission",
+			"description": "Defines who is allowed to view Sever Info",
+			"type": "scope",
+			"logic": "POSITIVE",
+			"decisionStrategy": "UNANIMOUS",
+			"config": {
+				"applyPolicies": "[\"Only Admin Realm Role\"]",
+				"scopes": "[\"urn:openfact.com:scopes:serverinfo:view\"]"
+			}
+		},
+		{
+			"name": "Create Organization Permission",
+			"description": "A policy that only allows the admin to create organizations.",
+			"type": "scope",
+			"logic": "POSITIVE",
+			"decisionStrategy": "UNANIMOUS",
+			"config": {
+				"applyPolicies": "[\"Only Admin Realm Role\"]",
+				"scopes": "[\"urn:openfact.com:scopes:organization:create\"]"
+			}
+		},
+		{
+			"name": "View Organization Permission",
+			"description": "A policy that only allows the admin to view organizations.",
+			"type": "scope",
+			"logic": "POSITIVE",
+			"decisionStrategy": "UNANIMOUS",
+			"config": {
+				"applyPolicies": "[\"Only View Organization Client Role\"]",
+				"scopes": "[\"urn:openfact.com:scopes:organization:view\"]"
+			}
+		}
+	],
+	"scopes": [
+		{
+			"name": "urn:openfact.com:scopes:serverinfo:view"
+		},
+		{
+			"name": "urn:openfact.com:scopes:organization:create"
+		},
+		{
+			"name": "urn:openfact.com:scopes:organization:view"
+		}
+	]
+}
