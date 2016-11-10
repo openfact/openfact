@@ -224,21 +224,4 @@ public class AdminRoot {
         }
     }
 
-    @Path("commons")
-    public CommonsAdminResource getCommonsResource(@Context final HttpHeaders headers) {
-        handlePreflightRequest();
-
-        AdminAuth auth = authenticateOrganizationAdminRequest(headers);
-        if (auth != null) {
-            logger.debug("authenticated admin access for: " + auth.getUser().getUsername());
-        }
-
-        Cors.add(request).allowedOrigins("*").allowedMethods("GET", "PUT", "POST", "DELETE")
-                .exposedHeaders("Location").auth().build(response);
-
-        CommonsAdminResource commonsResource = new CommonsAdminResource(auth);
-        ResteasyProviderFactory.getInstance().injectProperties(commonsResource);
-        return commonsResource;
-    }
-
 }
