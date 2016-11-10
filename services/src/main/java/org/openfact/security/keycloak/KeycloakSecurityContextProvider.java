@@ -16,6 +16,7 @@
  *******************************************************************************/
 package org.openfact.security.keycloak;
 
+import org.keycloak.KeycloakSecurityContext;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.UserModel;
 import org.openfact.security.AbstractSecurityContext;
@@ -36,7 +37,7 @@ public class KeycloakSecurityContextProvider extends AbstractSecurityContext {
     @Override
     public String getCurrentOrganizationName(HttpHeaders headers) {
         HttpServletRequest request = servletRequest.get();
-        org.keycloak.KeycloakPrincipal kcPrincipal = (org.keycloak.KeycloakPrincipal) request.getUserPrincipal();
+        org.keycloak.KeycloakPrincipal<KeycloakSecurityContext> kcPrincipal = (org.keycloak.KeycloakPrincipal<KeycloakSecurityContext>) request.getUserPrincipal();
         org.keycloak.representations.AccessToken accessToken = kcPrincipal.getKeycloakSecurityContext().getToken();
 
         Map<String, Object> otherClaims = accessToken.getOtherClaims();
@@ -59,7 +60,7 @@ public class KeycloakSecurityContextProvider extends AbstractSecurityContext {
                 org.keycloak.representations.AccessToken accessToken = kcPrincipal.getKeycloakSecurityContext().getToken();
 
                 Set<String> realmRoles = accessToken.getRealmAccess().getRoles();
-                Set<String> applicationRoles = accessToken.getResourceAccess("openfact").getRoles();
+                Set<String> applicationRoles = accessToken.getResourceAccess("openfact-restful-api").getRoles();
                 return realmRoles.contains(role) || applicationRoles.contains(role);
             }
 
