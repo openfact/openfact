@@ -201,7 +201,7 @@ public class AdminRoot {
     protected boolean isAdmin(AdminAuth auth) {
         OrganizationManager organizationManager = new OrganizationManager(session);
         if (auth.getOrganization().equals(organizationManager.getOpenfactAdminstrationOrganization())) {
-            if (auth.hasOneOfOrganizationRole(AdminRoles.ADMIN, AdminRoles.CREATE_ORGANIZATION)) {
+            if (auth.hasOneOfOrganizationRole(AdminRoles.ADMIN)) {
                 return true;
             }
             return false;
