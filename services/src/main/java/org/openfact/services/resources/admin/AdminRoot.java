@@ -169,9 +169,6 @@ public class AdminRoot {
             logger.debug("authenticated admin access for: " + auth.getUser().getUsername());
         }
 
-        Cors.add(request).allowedOrigins("*").allowedMethods("GET", "PUT", "POST", "DELETE")
-                .exposedHeaders("Location").auth().build(response);
-
         OrganizationsAdminResource adminResource = new OrganizationsAdminResource(auth);
         ResteasyProviderFactory.getInstance().injectProperties(adminResource);
         return adminResource;
@@ -195,9 +192,6 @@ public class AdminRoot {
         if (auth != null) {
             logger.debug("authenticated admin access for: " + auth.getUser().getUsername());
         }
-
-        Cors.add(request).allowedOrigins("*").allowedMethods("GET", "PUT", "POST", "DELETE").auth()
-                .build(response);
 
         ServerInfoAdminResource adminResource = new ServerInfoAdminResource();
         ResteasyProviderFactory.getInstance().injectProperties(adminResource);
