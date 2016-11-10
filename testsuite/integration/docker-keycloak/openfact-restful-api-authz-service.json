@@ -38,7 +38,7 @@
 			}
 		},
 		{
-			"name": "Only View Organization Client Role",
+			"name": "Only View-Organization Client Role",
 			"description": "Defines that only view-organization role can do something.",
 			"type": "role",
 			"logic": "POSITIVE",
@@ -76,7 +76,7 @@
 			"logic": "POSITIVE",
 			"decisionStrategy": "UNANIMOUS",
 			"config": {
-				"applyPolicies": "[\"Only View Organization Client Role\"]",
+				"applyPolicies": "[\"Only View-Organization Client Role\"]",
 				"scopes": "[\"urn:openfact.com:scopes:organization:view\"]"
 			}
 		}

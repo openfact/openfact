@@ -37,6 +37,8 @@ import java.util.*;
 
 public class ServerInfoAdminResource {
 
+    public static final String SCOPE_SERVERINFO_VIEW = "urn:openfact.com:scopes:serverinfo:view";
+
     private static final Map<String, List<String>> ENUMS = createEnumsMap(EventType.class,
             OperationType.class, ResourceType.class);
 

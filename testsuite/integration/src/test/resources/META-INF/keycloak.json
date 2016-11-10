@@ -3,10 +3,10 @@
 	"auth-server-url": "http://localhost:8080/auth",
 	"ssl-required": "external",
 	"resource": "openfact-restful-api",
-	"bearer-only": true,
 	"credentials": {
 		"secret": "secret"
 	},
+	"use-resource-role-mappings": true,
 	"policy-enforcer": {
 		"user-managed-access": {},
 		"paths": [
@@ -22,7 +22,7 @@
 				]
 			},
 			{
-				"path": "/admin/organizations",
+				"path" : "/admin/organizations",
 				"methods": [
 					{
 						"method": "POST",
@@ -40,6 +40,5 @@
 			}
 		]
 	},
-	"use-resource-role-mappings": true,
 	"enable-cors": true
 }

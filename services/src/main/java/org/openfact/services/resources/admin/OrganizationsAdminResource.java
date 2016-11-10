@@ -82,7 +82,7 @@ public class OrganizationsAdminResource {
         if (!auth.getOrganization().equals(organizationManager.getOpenfactAdminstrationOrganization())) {
             throw new ForbiddenException();
         }
-        if (!auth.hasOrganizationRole(AdminRoles.CREATE_ORGANIZATION)) {
+        if (!auth.hasOrganizationRole(AdminRoles.ADMIN)) {
             throw new ForbiddenException();
         }
 
