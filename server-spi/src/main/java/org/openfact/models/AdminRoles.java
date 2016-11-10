@@ -26,11 +26,6 @@ public class AdminRoles {
 
     public static String ADMIN = "admin";
 
-    // for admin each organization
-    public static String ORGANIZATION_ADMIN = "organization-admin";
-
-    public static String CREATE_ORGANIZATION = "create-organization";
-
     public static String VIEW_ORGANIZATION = "view-organization";
     public static String VIEW_INVOICES = "view-invoices";
     public static String VIEW_CREDIT_NOTES = "view-credit-notes";
@@ -46,7 +41,7 @@ public class AdminRoles {
     public static String[] ALL_ORGANIZATION_ROLES = {
             /**
              * */
-            VIEW_EVENTS, VIEW_INVOICES, VIEW_CREDIT_NOTES, VIEW_DEBIT_NOTES,
+            VIEW_ORGANIZATION, VIEW_INVOICES, VIEW_CREDIT_NOTES, VIEW_DEBIT_NOTES, VIEW_EVENTS,
 
             /**
              * */
