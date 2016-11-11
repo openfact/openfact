@@ -217,6 +217,7 @@
 		<module>testsuite</module>
 		<module>dependencies</module>
 		<module>wildfly</module>
+		<module>authz-policy</module>
 	</modules>
 
 	<dependencyManagement>

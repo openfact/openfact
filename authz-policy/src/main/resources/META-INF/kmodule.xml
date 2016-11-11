@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kmodule
+        xmlns="http://jboss.org/kie/6.0.0/kmodule">
+
+    <kbase name="OpenfactAuthzAdminPolicy" packages="com.openfact.authz.policy.admin">
+        <ksession name="MainAdminSession" default="true"/>
+    </kbase>
+
+    <kbase name="OpenfactAuthzUserPolicy" packages="com.openfact.authz.policy.user">
+        <ksession name="MainUserSession" default="true"/>
+    </kbase>
+
+    <kbase name="OpenfactAuthzOwnerPolicy" packages="com.openfact.authz.policy.resource.owner">
+        <ksession name="MainOwnerSession" default="true"/>
+    </kbase>
+
+    <kbase name="OpenfactAuthzContextualPolicy" packages="com.openfact.authz.policy.contextual">
+        <ksession name="MainContextualSession" default="true"/>
+    </kbase>
+
+</kmodule>
