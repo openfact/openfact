@@ -19,6 +19,12 @@ package org.openfact.services.resources.admin;
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
+import org.keycloak.authorization.client.AuthzClient;
+import org.keycloak.authorization.client.representation.ResourceRepresentation;
+import org.keycloak.authorization.client.representation.ScopeRepresentation;
+import org.keycloak.authorization.client.resource.ProtectionResource;
+import org.keycloak.representations.adapters.config.AdapterConfig;
+import org.keycloak.util.JsonSerialization;
 import org.openfact.common.ClientConnection;
 import org.openfact.models.AdminRoles;
 import org.openfact.models.ModelDuplicateException;
@@ -31,20 +37,23 @@ import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
 import org.openfact.representations.idm.search.SearchResultsRepresentation;
+import org.openfact.security.AbstractSecurityContext;
 import org.openfact.services.ErrorResponse;
+import org.openfact.services.managers.AuthzManager;
 import org.openfact.services.managers.OrganizationManager;
 import org.openfact.services.resources.OpenfactApplication;
 
+import javax.servlet.ServletContext;
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class OrganizationsAdminResource {
+
+    public static final String SCOPE_ORGANIZATION_VIEW = "urn:openfact.com:scopes:organization:view";
+    public static final String SCOPE_ORGANIZATION_MANAGE = "urn:openfact.com:scopes:organization:manage";
 
     public static final CacheControl noCache = new CacheControl();
     protected static final Logger logger = Logger.getLogger(OrganizationsAdminResource.class);
@@ -68,8 +77,7 @@ public class OrganizationsAdminResource {
     /**
      * Create a new organization.
      *
-     * @param rep
-     *            The representation of the organization that will be created
+     * @param rep The representation of the organization that will be created
      * @return The organization created on Response format
      * @summary Create a new organization
      */
@@ -90,6 +98,7 @@ public class OrganizationsAdminResource {
 
         try {
             OrganizationModel organization = organizationManager.importOrganization(rep);
+            AuthzManager.createProtectedResource(organization, uriInfo.getPath());
 
             URI location = AdminRoot.organizationsUrl(uriInfo).path(organization.getName()).build();
             logger.debugv("imported organization success, sending back: {0}", location.toString());
@@ -168,38 +177,8 @@ public class OrganizationsAdminResource {
         }
     }
 
-    @POST
-    @Path("search")
-    @Produces(MediaType.APPLICATION_JSON)
-    public SearchResultsRepresentation<OrganizationRepresentation> searchOrganizations(
-            @Valid final SearchCriteriaRepresentation criteria) {
-        OrganizationManager organizationManager = new OrganizationManager(session);
-        if (auth.getOrganization().equals(organizationManager.getOpenfactAdminstrationOrganization())) {
-            SearchCriteriaModel criteriaModel = RepresentationToModel.toModel(criteria);
-
-            String filterText = criteria.getFilterText();
-            SearchResultsModel<OrganizationModel> results = null;
-            if (filterText != null) {
-                results = session.organizations().searchForOrganization(criteriaModel, filterText);
-            } else {
-                results = session.organizations().searchForOrganization(criteriaModel);
-            }
-            SearchResultsRepresentation<OrganizationRepresentation> rep = new SearchResultsRepresentation<>();
-            List<OrganizationRepresentation> items = new ArrayList<>();
-            results.getModels().forEach(f -> items.add(ModelToRepresentation.toRepresentation(f, true)));
-            rep.setItems(items);
-            rep.setTotalSize(results.getTotalSize());
-
-            logger.debug(("searchOrganizations()"));
-            return rep;
-        } else {
-            throw new ForbiddenException();
-        }
-    }
-
     /**
-     * @param organization
-     *            The organization name
+     * @param organization The organization name
      */
     @Path("{organization}")
     public OrganizationAdminResource getOrganizationAdmin(@Context final HttpHeaders headers,

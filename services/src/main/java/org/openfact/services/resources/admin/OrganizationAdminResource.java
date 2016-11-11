@@ -42,9 +42,11 @@ import org.openfact.representations.idm.EventRepresentation;
 import org.openfact.representations.idm.OrganizationEventsConfigRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.ErrorResponse;
+import org.openfact.services.managers.AuthzManager;
 import org.openfact.services.managers.OrganizationManager;
 import org.openfact.services.managers.OrganizationScheduledTaskManager;
 
+import javax.servlet.ServletContext;
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
@@ -169,8 +171,10 @@ public class OrganizationAdminResource {
      *             The user is not authorized to delete this organization.
      */
     @DELETE
-    public void deleteOrganization() {
+    public void deleteOrganization(@Context final UriInfo uriInfo) {
         auth.requireManage();
+
+        AuthzManager.deleteProtectedResource(organization, uriInfo.getPath());
 
         if (!new OrganizationManager(session).removeOrganization(organization)) {
             throw new NotFoundException("Organization doesn't exist");
