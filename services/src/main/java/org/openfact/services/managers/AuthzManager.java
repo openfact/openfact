@@ -62,15 +62,15 @@ public class AuthzManager {
         return AuthzClient.create(AuthzManager.kcConfig);
     }
 
-    public static void createProtectedResource(OrganizationModel organization, String uri) {
+    public static void createProtectedResource(OrganizationModel organization) {
         try {
             HashSet<ScopeRepresentation> scopes = new HashSet<>();
 
             scopes.add(new ScopeRepresentation(OrganizationsAdminResource.SCOPE_ORGANIZATION_VIEW));
             scopes.add(new ScopeRepresentation(OrganizationsAdminResource.SCOPE_ORGANIZATION_MANAGE));
+            scopes.add(new ScopeRepresentation(OrganizationsAdminResource.SCOPE_ORGANIZATION_DELETE));
 
-            ResourceRepresentation organizationResource = new ResourceRepresentation(organization.getName(), scopes, uri + "/" + organization.getName(), "http://openfact.com/" + uri);
-            organizationResource.setOwner(organization.getName());
+            ResourceRepresentation organizationResource = new ResourceRepresentation("Admin " + organization.getName() + " Resource", scopes, "/admin/organizations/" + organization.getName(), "http://openfact.com//admin/organizations");
             getAuthzClient().protection().resource().create(organizationResource);
         } catch (Exception e) {
             throw new RuntimeException("Could not register protected resource.", e);

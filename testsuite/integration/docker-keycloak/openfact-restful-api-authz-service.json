@@ -18,17 +18,43 @@
 			"type": "http://openfact.com/admin/organizations",
 			"scopes": [
 				{
-					"name": "urn:openfact.com:scopes:organization:create"
+					"name": "urn:openfact.com:scopes:organization:view"
 				},
 				{
+					"name": "urn:openfact.com:scopes:organization:create"
+				}
+			]
+		},
+		{
+			"name": "Admin One Organization Resource",
+			"uri": "/admin/organizations/*",
+			"type": "http://openfact.com/admin/organizations",
+			"scopes": [
+				{
 					"name": "urn:openfact.com:scopes:organization:view"
+				},
+				{
+					"name": "urn:openfact.com:scopes:organization:manage"
+				},
+				{
+					"name": "urn:openfact.com:scopes:organization:delete"
 				}
 			]
 		}
 	],
 	"policies": [
 		{
-			"name": "Only Admin Realm Role",
+			"name": "Any Realm Role Policy",
+			"description": "Defines that only users who have at least one Realm Role can do something.",
+			"type": "role",
+			"logic": "POSITIVE",
+			"decisionStrategy": "UNANIMOUS",
+			"config": {
+				"roles": "[{\"id\":\"admin\",\"required\":false},{\"id\":\"admin-organization\",\"required\":false},{\"id\":\"organization-user\",\"required\":false}]"
+			}
+		},
+		{
+			"name": "Only Admin Realm Role Policy",
 			"description": "Defines that only Admin users can do something",
 			"type": "role",
 			"logic": "POSITIVE",
@@ -38,13 +64,43 @@
 			}
 		},
 		{
-			"name": "Only View-Organization Client Role",
-			"description": "Defines that only view-organization role can do something.",
+			"name": "Only Admin-Organization Realm Role Policy",
+			"description": "Defines that only Admin-Organization users can do something",
 			"type": "role",
 			"logic": "POSITIVE",
 			"decisionStrategy": "UNANIMOUS",
 			"config": {
-				"roles": "[{\"id\":\"view-organization\",\"required\":true}]"
+				"roles": "[{\"id\":\"admin-organization\",\"required\":true}]"
+			}
+		},
+		{
+			"name": "Only Master Organization Policy",
+			"description": "Defines that only who are registered on master organization can do something.",
+			"type": "js",
+			"logic": "POSITIVE",
+			"decisionStrategy": "UNANIMOUS",
+			"config": {
+				"code": "var context = $evaluation.getContext();\nvar identity = context.getIdentity();\nvar attributes = identity.getAttributes();\nvar organization = attributes.getValue('organization').asString(0);\n\nif (organization == 'master') {\n    $evaluation.grant();\n}"
+			}
+		},
+		{
+			"name": "Only Organization Owner by Attribute Policy",
+			"description": "Defines that only the owner of an organization can do something.",
+			"type": "js",
+			"logic": "POSITIVE",
+			"decisionStrategy": "UNANIMOUS",
+			"config": {
+				"code": "var context = $evaluation.getContext();\nvar identity = context.getIdentity();\nvar attributes = identity.getAttributes();\nvar organization = attributes.getValue('organization').asString(0);\n\nvar permission = $evaluation.getPermission();\nvar resource = permission.getResource();\n\n if (resource != null && resource.getUri().endsWith('/' + organization)) {\n    $evaluation.grant();\n}"
+			}
+		},
+		{
+			"name": "Only Admin Realm Role on Master Organization Policy",
+			"description": "Defines that only the owner of an organization can do something.",
+			"type": "aggregate",
+			"logic": "POSITIVE",
+			"decisionStrategy": "UNANIMOUS",
+			"config": {
+				"applyPolicies": "[\"Only Admin Realm Role Policy\",\"Only Master Organization Policy\"]"
 			}
 		},
 		{
@@ -54,30 +110,41 @@
 			"logic": "POSITIVE",
 			"decisionStrategy": "UNANIMOUS",
 			"config": {
-				"applyPolicies": "[\"Only Admin Realm Role\"]",
+				"applyPolicies": "[\"Only Admin Realm Role on Master Organization Policy\"]",
 				"scopes": "[\"urn:openfact.com:scopes:serverinfo:view\"]"
 			}
 		},
 		{
-			"name": "Create Organization Permission",
-			"description": "A policy that only allows the admin to create organizations.",
+			"name": "View Organization Permission",
+			"description": "A policy that allows to get organization information to any valid roles.",
 			"type": "scope",
 			"logic": "POSITIVE",
 			"decisionStrategy": "UNANIMOUS",
 			"config": {
-				"applyPolicies": "[\"Only Admin Realm Role\"]",
-				"scopes": "[\"urn:openfact.com:scopes:organization:create\"]"
+				"applyPolicies": "[\"Any Realm Role Policy\"]",
+				"scopes": "[\"urn:openfact.com:scopes:organization:view\"]"
 			}
 		},
 		{
-			"name": "View Organization Permission",
-			"description": "A policy that only allows the admin to view organizations.",
+			"name": "Create and Delete Organization Permission",
+			"description": "A policy that only allows the admin on master organization to create and delete organizations.",
 			"type": "scope",
 			"logic": "POSITIVE",
 			"decisionStrategy": "UNANIMOUS",
 			"config": {
-				"applyPolicies": "[\"Only View-Organization Client Role\"]",
-				"scopes": "[\"urn:openfact.com:scopes:organization:view\"]"
+				"applyPolicies": "[\"Only Admin Realm Role on Master Organization Policy\"]",
+				"scopes": "[\"urn:openfact.com:scopes:organization:create\",\"urn:openfact.com:scopes:organization:delete\"]"
+			}
+		},
+		{
+			"name": "Manage One Organization Resource Permission",
+			"description": "General policy that decide who can manage organizations settings.",
+			"type": "scope",
+			"logic": "POSITIVE",
+			"decisionStrategy": "AFFIRMATIVE",
+			"config": {
+				"applyPolicies": "[\"Only Admin Realm Role on Master Organization Policy\",\"Only Organization Owner by Attribute Policy\"]",
+				"scopes": "[\"urn:openfact.com:scopes:organization:manage\"]"
 			}
 		}
 	],
@@ -86,10 +153,16 @@
 			"name": "urn:openfact.com:scopes:serverinfo:view"
 		},
 		{
+			"name": "urn:openfact.com:scopes:organization:view"
+		},
+		{
 			"name": "urn:openfact.com:scopes:organization:create"
 		},
 		{
-			"name": "urn:openfact.com:scopes:organization:view"
+			"name": "urn:openfact.com:scopes:organization:manage"
+		},
+		{
+			"name": "urn:openfact.com:scopes:organization:delete"
 		}
 	]
 }

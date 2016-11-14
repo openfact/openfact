@@ -54,6 +54,7 @@ public class OrganizationsAdminResource {
 
     public static final String SCOPE_ORGANIZATION_VIEW = "urn:openfact.com:scopes:organization:view";
     public static final String SCOPE_ORGANIZATION_MANAGE = "urn:openfact.com:scopes:organization:manage";
+    public static final String SCOPE_ORGANIZATION_DELETE = "urn:openfact.com:scopes:organization:delete";
 
     public static final CacheControl noCache = new CacheControl();
     protected static final Logger logger = Logger.getLogger(OrganizationsAdminResource.class);
@@ -98,7 +99,6 @@ public class OrganizationsAdminResource {
 
         try {
             OrganizationModel organization = organizationManager.importOrganization(rep);
-            AuthzManager.createProtectedResource(organization, uriInfo.getPath());
 
             URI location = AdminRoot.organizationsUrl(uriInfo).path(organization.getName()).build();
             logger.debugv("imported organization success, sending back: {0}", location.toString());

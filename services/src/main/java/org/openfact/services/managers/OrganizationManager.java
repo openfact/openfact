@@ -78,6 +78,9 @@ public class OrganizationManager implements OrganizationImporter {
         setupOrganizationDefaults(organization);
 
         fireOrganizationPostCreate(organization);
+
+        AuthzManager.createProtectedResource(organization);
+
         return organization;
     }
 

@@ -54,7 +54,6 @@ public class ApplianceBootstrap {
         OrganizationManager manager = new OrganizationManager(session);
         manager.setContextPath(contextPath);
         OrganizationModel organization = manager.createOrganization(adminOrganizationName, adminOrganizationName);
-        organization.setName(adminOrganizationName);
         organization.setDisplayName(Version.NAME);
         organization.setDisplayNameHtml(Version.NAME_HTML);
         organization.setEnabled(true);

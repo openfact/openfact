@@ -25,16 +25,34 @@
 				"path" : "/admin/organizations",
 				"methods": [
 					{
-						"method": "POST",
-						"scopes": [
-							"urn:openfact.com:scopes:organization:create"
-						]
-					},
-					{
 						"method": "GET",
 						"scopes": [
 							"urn:openfact.com:scopes:organization:view"
 						]
+					},
+					{
+						"method": "POST",
+						"scopes": [
+							"urn:openfact.com:scopes:organization:create"
+						]
+					}
+				]
+			},
+			{
+				"name" : "Admin One Organization Resource",
+				"path" : "/admin/organizations/{organization}",
+				"methods" : [
+					{
+						"method": "GET",
+						"scopes" : ["urn:openfact.com:scopes:organization:view"]
+					},
+					{
+						"method": "PUT",
+						"scopes" : ["urn:openfact.com:scopes:organization:manage"]
+					},
+					{
+						"method": "DELETE",
+						"scopes" : ["urn:openfact.com:scopes:organization:delete"]
 					}
 				]
 			}
