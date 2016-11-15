@@ -27,6 +27,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public interface InvoiceModel {
 
@@ -259,11 +260,17 @@ public interface InvoiceModel {
 
     void setXmlDocument(Byte[] value);
 
-    List<RequiredActionDocument> getRequiredAction();
+    /**
+     * Required Actions*/
+    Set<String> getRequiredActions();
 
-    void setRequiredAction(List<RequiredActionDocument> requiredActions);
+    void addRequiredAction(String action);
 
-    boolean removeRequeridAction(RequiredActionDocument requiredAction);
+    void removeRequiredAction(String action);
+
+    void addRequiredAction(RequiredActionDocument action);
+
+    void removeRequiredAction(RequiredActionDocument action);
 
     /**
      * Events interfaces

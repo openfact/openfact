@@ -27,6 +27,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public interface DebitNoteModel {
 
@@ -233,11 +234,17 @@ public interface DebitNoteModel {
 
     void setXmlDocument(Byte[] value);
 
-    List<RequiredActionDocument> getRequeridAction();
+    /**
+     * Required Actions*/
+    Set<String> getRequiredActions();
 
-    void setRequiredAction(List<RequiredActionDocument> requeridAction);
+    void addRequiredAction(String action);
 
-    boolean removeRequiredAction(RequiredActionDocument requeridAction);
+    void removeRequiredAction(String action);
+
+    void addRequiredAction(RequiredActionDocument action);
+
+    void removeRequiredAction(RequiredActionDocument action);
 
     /**
      * Events interfaces

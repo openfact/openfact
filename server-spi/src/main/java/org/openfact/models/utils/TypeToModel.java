@@ -122,7 +122,7 @@ public class TypeToModel {
         if (type.getIssueDateValue() != null) {
             issueDateTime = toDateTime(type.getIssueDateValue());
         }
-        if (type.getIssueDateValue() != null && type.getIssueDateValue() != null) {
+        if (type.getIssueDateValue() != null && type.getIssueTimeValue() != null) {
             LocalDateTime issueTime = toDateTime(type.getIssueTimeValue());
             issueDateTime = LocalDateTime.of(issueDateTime.toLocalDate(), issueTime.toLocalTime());
         }
@@ -180,7 +180,7 @@ public class TypeToModel {
         if (type.getIssueDateValue() != null) {
             issueDateTime = toDateTime(type.getIssueDateValue());
         }
-        if (type.getIssueDateValue() != null && type.getIssueDateValue() != null) {
+        if (type.getIssueDateValue() != null && type.getIssueTimeValue() != null) {
             LocalDateTime issueTime = toDateTime(type.getIssueTimeValue());
             issueDateTime = LocalDateTime.of(issueDateTime.toLocalDate(), issueTime.toLocalTime());
         }
@@ -241,7 +241,7 @@ public class TypeToModel {
         if (type.getIssueDateValue() != null) {
             issueDateTime = toDateTime(type.getIssueDateValue());
         }
-        if (type.getIssueDateValue() != null && type.getIssueDateValue() != null) {
+        if (type.getIssueDateValue() != null && type.getIssueTimeValue() != null) {
             LocalDateTime issueTime = toDateTime(type.getIssueTimeValue());
             issueDateTime = LocalDateTime.of(issueDateTime.toLocalDate(), issueTime.toLocalTime());
         }

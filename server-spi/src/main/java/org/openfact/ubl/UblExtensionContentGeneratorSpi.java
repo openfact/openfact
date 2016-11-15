@@ -29,7 +29,7 @@ public class UblExtensionContentGeneratorSpi implements Spi {
 
     @Override
     public String getName() {
-        return "ublExtensionsGenerator";
+        return "ublExtensionContentGenerator";
     }
 
     @Override

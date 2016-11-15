@@ -54,18 +54,21 @@ public class ExtensionContentAdapter implements ExtensionContentModel, JpaModel<
 
     @Override
     public Element getAny() {
-        Transformer transformer;
-        try {
-            transformer = TransformerFactory.newInstance().newTransformer();
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            DOMSource source = new DOMSource(DocumentUtils.byteToDocument(this.extensionContent.getAny()));
-            Element elem = ((Document) source.getNode()).getDocumentElement();
-            return elem;
-        } catch (TransformerConfigurationException | TransformerFactoryConfigurationError e) {
-            throw new ModelException(e);
-        } catch (Exception e) {
-            throw new ModelException(e);
+        if(this.extensionContent.getAny() != null) {
+            Transformer transformer;
+            try {
+                transformer = TransformerFactory.newInstance().newTransformer();
+                transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+                DOMSource source = new DOMSource(DocumentUtils.byteToDocument(this.extensionContent.getAny()));
+                Element elem = ((Document) source.getNode()).getDocumentElement();
+                return elem;
+            } catch (TransformerConfigurationException | TransformerFactoryConfigurationError e) {
+                throw new ModelException(e);
+            } catch (Exception e) {
+                throw new ModelException(e);
+            }
         }
+        return  null;
     }
 
     @Override
@@ -79,8 +82,9 @@ public class ExtensionContentAdapter implements ExtensionContentModel, JpaModel<
             } catch (TransformerException e) {
                 throw new ModelException(e);
             }
+        } else {
+            this.extensionContent.setAny(null);
         }
-        this.extensionContent.setAny(null);
     }
 
     @Override

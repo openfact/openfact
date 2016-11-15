@@ -75,7 +75,7 @@ public class CreditNoteManager {
 
         CreditNoteModel creditNote = model.addCreditNote(organization, ID);
         RepresentationToModel.importCreditNote(session, organization, creditNote, rep);
-        creditNote.setRequiredAction(RequiredActionDocument.getDefaults());
+        RequiredActionDocument.getDefaults().stream().forEach(c -> creditNote.addRequiredAction(c));
 
         process(organization, creditNote);
         return creditNote;

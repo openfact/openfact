@@ -27,6 +27,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public interface CreditNoteModel {
 
@@ -230,11 +231,17 @@ public interface CreditNoteModel {
 
     SignatureModel addSignature();
 
-    List<RequiredActionDocument> getRequeridAction();
+    /**
+     * Required Actions*/
+    Set<String> getRequiredActions();
 
-    void setRequiredAction(List<RequiredActionDocument> requiredAction);
+    void addRequiredAction(String action);
 
-    boolean removeRequiredAction(RequiredActionDocument requiredAction);
+    void removeRequiredAction(String action);
+
+    void addRequiredAction(RequiredActionDocument action);
+
+    void removeRequiredAction(RequiredActionDocument action);
 
     /**
      * Events interfaces

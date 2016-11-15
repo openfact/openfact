@@ -16,8 +16,10 @@
  *******************************************************************************/
 package org.openfact.models.enums;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public enum RequiredActionDocument {
 
@@ -34,8 +36,8 @@ public enum RequiredActionDocument {
     }
 
     public static List<RequiredActionDocument> getDefaults() {
-        return RequiredActionDocument.getDefaults().stream().filter(p -> p.isDefault)
-                .collect(Collectors.toList());
+        Stream<RequiredActionDocument> stream = Arrays.stream(RequiredActionDocument.values());
+        return stream.filter(p -> p.isDefault).collect(Collectors.toList());
     }
 
 }
