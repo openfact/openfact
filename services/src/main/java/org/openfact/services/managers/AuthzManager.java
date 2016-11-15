@@ -70,7 +70,7 @@ public class AuthzManager {
             scopes.add(new ScopeRepresentation(OrganizationsAdminResource.SCOPE_ORGANIZATION_MANAGE));
             scopes.add(new ScopeRepresentation(OrganizationsAdminResource.SCOPE_ORGANIZATION_DELETE));
 
-            ResourceRepresentation organizationResource = new ResourceRepresentation("Admin " + organization.getName() + " Resource", scopes, "/admin/organizations/" + organization.getName(), "http://openfact.com//admin/organizations");
+            ResourceRepresentation organizationResource = new ResourceRepresentation("Admin " + organization.getName() + " Organization Resource", scopes, "/admin/organizations/" + organization.getName(), "http://openfact.com//admin/organizations");
             getAuthzClient().protection().resource().create(organizationResource);
         } catch (Exception e) {
             throw new RuntimeException("Could not register protected resource.", e);

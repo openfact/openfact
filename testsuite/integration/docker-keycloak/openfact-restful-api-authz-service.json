@@ -40,6 +40,22 @@
 					"name": "urn:openfact.com:scopes:organization:delete"
 				}
 			]
+		},
+		{
+			"name": "Admin Master Organization Resource",
+			"uri": "/admin/organizations/master",
+			"type": "http://openfact.com/admin/organizations/master",
+			"scopes": [
+				{
+					"name": "urn:openfact.com:scopes:organization:view"
+				},
+				{
+					"name": "urn:openfact.com:scopes:organization:manage"
+				},
+				{
+					"name": "urn:openfact.com:scopes:organization:delete"
+				}
+			]
 		}
 	],
 	"policies": [
