@@ -52,6 +52,9 @@ import java.util.stream.Collectors;
 @Consumes(MediaType.APPLICATION_JSON)
 public class CreditNotesAdminResource {
 
+    public static final String SCOPE_CREDIT_NOTE_VIEW = "urn:openfact.com:scopes:organization:creditnote:view";
+    public static final String SCOPE_CREDIT_NOTE_MANAGE = "urn:openfact.com:scopes:organization:creditnote:manage";
+
     private static final ServicesLogger logger = ServicesLogger.LOGGER;
 
     protected OrganizationModel organization;

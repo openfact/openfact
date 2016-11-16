@@ -23,8 +23,6 @@ import org.jboss.resteasy.annotations.cache.NoCache;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
-import org.json.JSONObject;
-import org.json.XML;
 import org.openfact.common.ClientConnection;
 import org.openfact.email.EmailException;
 import org.openfact.events.admin.OperationType;
@@ -62,6 +60,9 @@ import java.util.stream.Collectors;
 @Consumes(MediaType.APPLICATION_JSON)
 public class InvoicesAdminResource {
 
+    public static final String SCOPE_INVOICE_VIEW = "urn:openfact.com:scopes:organization:invoice:view";
+    public static final String SCOPE_INVOICE_MANAGE = "urn:openfact.com:scopes:organization:invoice:manage";
+
     private static final ServicesLogger logger = ServicesLogger.LOGGER;
 
     protected OrganizationModel organization;
@@ -86,8 +87,7 @@ public class InvoicesAdminResource {
     }
 
     /**
-     * @param invoiceId
-     *            The invoiceId of the invoice
+     * @param invoiceId The invoiceId of the invoice
      */
     @Path("{invoiceId}")
     public InvoiceAdminResource getInvoiceAdmin(@PathParam("invoiceId") final String invoiceId) {
@@ -184,7 +184,7 @@ public class InvoicesAdminResource {
                 byte[] bytes = IOUtils.toByteArray(inputStream);
 
                 InvoiceType invoiceType = UBL21Reader.invoice().read(bytes);
-                if(invoiceType == null) {
+                if (invoiceType == null) {
                     throw new ModelException("Invalid invoice Xml");
                 }
 
@@ -201,8 +201,7 @@ public class InvoicesAdminResource {
                     session.getTransactionManager().commit();
                 }
 
-                //JSONObject json = XML.toJSONObject(invoiceType.toString());
-                //adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, invoice.getId()).representation(json).success();
+                adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, invoice.getId()).representation(invoiceType).success();
             } catch (IOException e) {
                 logger.error("Error reading input data", e);
                 return ErrorResponse.error("Error Reading data", Response.Status.BAD_REQUEST);

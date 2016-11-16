@@ -48,6 +48,9 @@ import java.util.stream.Collectors;
 
 public class DebitNotesAdminResource {
 
+    public static final String SCOPE_DEBIT_NOTE_VIEW = "urn:openfact.com:scopes:organization:debitnote:view";
+    public static final String SCOPE_DEBIT_NOTE_MANAGE = "urn:openfact.com:scopes:organization:debitnote:manage";
+
     private static final ServicesLogger logger = ServicesLogger.LOGGER;
 
     protected OrganizationModel organization;
