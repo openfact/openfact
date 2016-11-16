@@ -253,11 +253,8 @@ public class DebitNoteEntity {
 	@Column(name = "XML_DOCUMENT")
 	protected Byte[] xmlDocument;
 
-    @ElementCollection
-    @Column(name = "REQUERID_ACTION")
-    @CollectionTable(name = "DEBITNOTE_REQUERID_ACTION", joinColumns = { @JoinColumn(name = "DEBITNOTE_ID") })
-    @Enumerated(EnumType.STRING)
-    protected List<RequiredActionDocument> requeridAction = new ArrayList<>();
+	@OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy="debitNote")
+	private Collection<DebitNoteRequiredActionEntity> requiredActions = new ArrayList<DebitNoteRequiredActionEntity>();
 	
 	public Byte[] getXmlDocument() {
 		return xmlDocument;
@@ -611,12 +608,11 @@ public class DebitNoteEntity {
 		this.sendEvents = sendEvents;
 	}
 
-	public List<RequiredActionDocument> getRequeridAction() {
-		return requeridAction;
+	public Collection<DebitNoteRequiredActionEntity> getRequiredActions() {
+		return requiredActions;
 	}
 
-	public void setRequeridAction(List<RequiredActionDocument> requeridAction) {
-		this.requeridAction = requeridAction;
+	public void setRequiredActions(Collection<DebitNoteRequiredActionEntity> requiredActions) {
+		this.requiredActions = requiredActions;
 	}
-
 }

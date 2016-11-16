@@ -19,9 +19,7 @@ package org.openfact.models.jpa.ubl;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
@@ -36,6 +34,8 @@ import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.OrganizationAdapter;
 import org.openfact.models.jpa.entities.ubl.DebitNoteAttributeEntity;
 import org.openfact.models.jpa.entities.ubl.DebitNoteEntity;
+import org.openfact.models.jpa.entities.ubl.DebitNoteRequiredActionEntity;
+import org.openfact.models.jpa.entities.ubl.InvoiceRequiredActionEntity;
 import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.DebitNoteLineEntity;
 import org.openfact.models.jpa.entities.ubl.common.DocumentReferenceEntity;
@@ -60,6 +60,7 @@ import org.openfact.models.jpa.ubl.common.SupplierPartyAdapter;
 import org.openfact.models.jpa.ubl.common.TaxTotalAdapter;
 import org.openfact.models.jpa.ubl.common.UBLExtensionsAdapter;
 import org.openfact.models.ubl.DebitNoteModel;
+import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.ubl.common.BillingReferenceModel;
 import org.openfact.models.ubl.common.CustomerPartyModel;
 import org.openfact.models.ubl.common.DebitNoteLineModel;
@@ -968,19 +969,50 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
 	}
 
 	@Override
-	public List<RequiredActionDocument> getRequeridAction() {
-		return debitNote.getRequeridAction();
-	}
-
-	@Override
-	public void setRequiredAction(List<RequiredActionDocument> requeridAction) {
-		debitNote.setRequeridAction(requeridAction);
-	}
-
-	@Override
-	public boolean removeRequiredAction(RequiredActionDocument requeridAction) {
-		boolean result =debitNote.getRequeridAction().remove(requeridAction);	
+	public Set<String> getRequiredActions() {
+		Set<String> result = new HashSet<>();
+		for (DebitNoteRequiredActionEntity attr : debitNote.getRequiredActions()) {
+			result.add(attr.getAction());
+		}
 		return result;
+	}
+
+	@Override
+	public void addRequiredAction(RequiredActionDocument action) {
+		String actionName = action.name();
+		addRequiredAction(actionName);
+	}
+
+	@Override
+	public void addRequiredAction(String actionName) {
+		for (DebitNoteRequiredActionEntity attr : debitNote.getRequiredActions()) {
+			if (attr.getAction().equals(actionName)) {
+				return;
+			}
+		}
+		DebitNoteRequiredActionEntity attr = new DebitNoteRequiredActionEntity();
+		attr.setAction(actionName);
+		attr.setDebitNote(debitNote);
+		em.persist(attr);
+		debitNote.getRequiredActions().add(attr);
+	}
+
+	@Override
+	public void removeRequiredAction(RequiredActionDocument action) {
+		String actionName = action.name();
+		removeRequiredAction(actionName);
+	}
+
+	@Override
+	public void removeRequiredAction(String actionName) {
+		Iterator<DebitNoteRequiredActionEntity> it = debitNote.getRequiredActions().iterator();
+		while (it.hasNext()) {
+			DebitNoteRequiredActionEntity attr = it.next();
+			if (attr.getAction().equals(actionName)) {
+				it.remove();
+				em.remove(attr);
+			}
+		}
 	}
 
 }

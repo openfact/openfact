@@ -74,7 +74,7 @@ public class DebitNoteManager {
 
         DebitNoteModel debitNote = model.addDebitNote(organization, ID);
         RepresentationToModel.importDebitNote(session, organization, debitNote, rep);
-        debitNote.setRequiredAction(RequiredActionDocument.getDefaults());
+        RequiredActionDocument.getDefaults().stream().forEach(c -> debitNote.addRequiredAction(c));
 
         process(organization, debitNote);
         return debitNote;

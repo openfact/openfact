@@ -19,9 +19,7 @@ package org.openfact.models.jpa.ubl;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
@@ -36,6 +34,7 @@ import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.OrganizationAdapter;
 import org.openfact.models.jpa.entities.ubl.CreditNoteAttributeEntity;
 import org.openfact.models.jpa.entities.ubl.CreditNoteEntity;
+import org.openfact.models.jpa.entities.ubl.CreditNoteRequiredActionEntity;
 import org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity;
 import org.openfact.models.jpa.entities.ubl.common.CreditNoteLineEntity;
@@ -60,6 +59,7 @@ import org.openfact.models.jpa.ubl.common.SupplierPartyAdapter;
 import org.openfact.models.jpa.ubl.common.TaxTotalAdapter;
 import org.openfact.models.jpa.ubl.common.UBLExtensionsAdapter;
 import org.openfact.models.ubl.CreditNoteModel;
+import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.ubl.common.AllowanceChargeModel;
 import org.openfact.models.ubl.common.BillingReferenceModel;
 import org.openfact.models.ubl.common.CreditNoteLineModel;
@@ -945,19 +945,50 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
 	}
 
 	@Override
-	public List<RequiredActionDocument> getRequeridAction() {
-		return creditNote.getRequeridAction();
-	}
-
-	@Override
-	public void setRequiredAction(List<RequiredActionDocument> requiredAction) {
-		creditNote.setRequeridAction(requiredAction);
-	}
-
-	@Override
-	public boolean removeRequiredAction(RequiredActionDocument requeridAction) {
-		boolean result =creditNote.getRequeridAction().remove(requeridAction);	
+	public Set<String> getRequiredActions() {
+		Set<String> result = new HashSet<>();
+		for (CreditNoteRequiredActionEntity attr : creditNote.getRequiredActions()) {
+			result.add(attr.getAction());
+		}
 		return result;
+	}
+
+	@Override
+	public void addRequiredAction(RequiredActionDocument action) {
+		String actionName = action.name();
+		addRequiredAction(actionName);
+	}
+
+	@Override
+	public void addRequiredAction(String actionName) {
+		for (CreditNoteRequiredActionEntity attr : creditNote.getRequiredActions()) {
+			if (attr.getAction().equals(actionName)) {
+				return;
+			}
+		}
+		CreditNoteRequiredActionEntity attr = new CreditNoteRequiredActionEntity();
+		attr.setAction(actionName);
+		attr.setCreditNote(creditNote);
+		em.persist(attr);
+		creditNote.getRequiredActions().add(attr);
+	}
+
+	@Override
+	public void removeRequiredAction(RequiredActionDocument action) {
+		String actionName = action.name();
+		removeRequiredAction(actionName);
+	}
+
+	@Override
+	public void removeRequiredAction(String actionName) {
+		Iterator<CreditNoteRequiredActionEntity> it = creditNote.getRequiredActions().iterator();
+		while (it.hasNext()) {
+			CreditNoteRequiredActionEntity attr = it.next();
+			if (attr.getAction().equals(actionName)) {
+				it.remove();
+				em.remove(attr);
+			}
+		}
 	}
 
 }

@@ -253,11 +253,8 @@ public class CreditNoteEntity {
 	@Column(name = "XML_DOCUMENT")
 	protected Byte[] xmlDocument;
 
-	@ElementCollection
-	@Column(name = "REQUERID_ACTION")
-	@CollectionTable(name = "CREDITNOTE_REQUERID_ACTION", joinColumns = { @JoinColumn(name = "CREDITNOTE_ID") })
-	@Enumerated(EnumType.STRING)
-	protected List<RequiredActionDocument> requeridAction = new ArrayList<>();
+	@OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy="creditNote")
+	private Collection<CreditNoteRequiredActionEntity> requiredActions = new ArrayList<CreditNoteRequiredActionEntity>();
 
 	public Byte[] getXmlDocument() {
 		return xmlDocument;
@@ -611,12 +608,11 @@ public class CreditNoteEntity {
 		this.sendEvents = sendEvents;
 	}
 
-	public List<RequiredActionDocument> getRequeridAction() {
-		return requeridAction;
+	public Collection<CreditNoteRequiredActionEntity> getRequiredActions() {
+		return requiredActions;
 	}
 
-	public void setRequeridAction(List<RequiredActionDocument> requeridAction) {
-		this.requeridAction = requeridAction;
+	public void setRequiredActions(Collection<CreditNoteRequiredActionEntity> requiredActions) {
+		this.requiredActions = requiredActions;
 	}
-
 }

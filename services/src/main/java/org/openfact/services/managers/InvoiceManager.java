@@ -70,7 +70,7 @@ public class InvoiceManager {
 
         InvoiceModel invoice = model.addInvoice(organization, ID);
         RepresentationToModel.importInvoice(session, organization, invoice, rep);
-        invoice.setRequiredAction(RequiredActionDocument.getDefaults());
+        RequiredActionDocument.getDefaults().stream().forEach(c -> invoice.addRequiredAction(c));
 
         process(organization, invoice);
         return invoice;
@@ -85,7 +85,7 @@ public class InvoiceManager {
 
         InvoiceModel invoice = model.addInvoice(organization, ID);
         TypeToModel.importInvoice(session, organization, invoice, rep);
-        invoice.setRequiredAction(RequiredActionDocument.getDefaults());
+        RequiredActionDocument.getDefaults().stream().forEach(c -> invoice.addRequiredAction(c));
 
         process(organization, invoice);
         return invoice;
