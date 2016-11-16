@@ -23,6 +23,7 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.ubl.CreditNoteModel;
 import org.openfact.models.utils.ModelToRepresentation;
+import org.openfact.report.ReportProvider;
 import org.openfact.representations.idm.ubl.CreditNoteRepresentation;
 import org.openfact.representations.idm.ubl.common.CreditNoteLineRepresentation;
 import org.openfact.services.ErrorResponse;
@@ -36,82 +37,103 @@ import java.util.stream.Collectors;
 
 public class CreditNoteAdminResource {
 
-    private static final ServicesLogger logger = ServicesLogger.LOGGER;
+	private static final ServicesLogger logger = ServicesLogger.LOGGER;
 
-    protected OrganizationModel organization;
-    protected CreditNoteModel creditNote;
-    @Context
-    protected UriInfo uriInfo;
-    @Context
-    protected OpenfactSession session;
-    @Context
-    protected ClientConnection clientConnection;
-    @Context
-    protected HttpHeaders headers;
-    private OrganizationAuth auth;
-    private AdminEventBuilder adminEvent;
+	protected OrganizationModel organization;
+	protected CreditNoteModel creditNote;
+	@Context
+	protected UriInfo uriInfo;
+	@Context
+	protected OpenfactSession session;
+	@Context
+	protected ClientConnection clientConnection;
+	@Context
+	protected HttpHeaders headers;
+	private OrganizationAuth auth;
+	private AdminEventBuilder adminEvent;
 
-    public CreditNoteAdminResource(OrganizationModel organization, OrganizationAuth auth,
-                                   AdminEventBuilder adminEvent, CreditNoteModel creditNote) {
-        this.auth = auth;
-        this.organization = organization;
-        this.adminEvent = adminEvent;
-        this.creditNote = creditNote;
+	public CreditNoteAdminResource(OrganizationModel organization, OrganizationAuth auth, AdminEventBuilder adminEvent,
+			CreditNoteModel creditNote) {
+		this.auth = auth;
+		this.organization = organization;
+		this.adminEvent = adminEvent;
+		this.creditNote = creditNote;
 
-        auth.init(OrganizationAuth.Resource.CREDIT_NOTE);
-    }
+		auth.init(OrganizationAuth.Resource.CREDIT_NOTE);
+	}
 
-    /**
-     * Get the creditNote with the specified creditNoteId.
-     *
-     * @return The creditNote with the specified creditNoteId
-     * @summary Get the creditNote with the specified creditNoteId
-     */
-    @GET
-    @NoCache
-    @Produces(MediaType.APPLICATION_JSON)
-    public CreditNoteRepresentation getCreditNote() {
-        auth.requireView();
+	/**
+	 * Get the creditNote with the specified creditNoteId.
+	 *
+	 * @return The creditNote with the specified creditNoteId
+	 * @summary Get the creditNote with the specified creditNoteId
+	 */
+	@GET
+	@NoCache
+	@Produces(MediaType.APPLICATION_JSON)
+	public CreditNoteRepresentation getCreditNote() {
+		auth.requireView();
 
-        if (creditNote == null) {
-            throw new NotFoundException("Credit Note not found");
-        }
+		if (creditNote == null) {
+			throw new NotFoundException("Credit Note not found");
+		}
 
-        CreditNoteRepresentation rep = ModelToRepresentation.toRepresentation(creditNote);
-        return rep;
-    }
+		CreditNoteRepresentation rep = ModelToRepresentation.toRepresentation(creditNote);
+		return rep;
+	}
 
-    @GET
-    @Path("lines")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<CreditNoteLineRepresentation> getLines() {
-        auth.requireView();
+	@GET
+	@Path("lines")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<CreditNoteLineRepresentation> getLines() {
+		auth.requireView();
 
-        return creditNote.getCreditNoteLine().stream().map(f -> ModelToRepresentation.toRepresentation(f))
-                .collect(Collectors.toList());
-    }
+		return creditNote.getCreditNoteLine().stream().map(f -> ModelToRepresentation.toRepresentation(f))
+				.collect(Collectors.toList());
+	}
 
-    /**
-     * Deletes creditNote with given creditNoteId.
-     *
-     * @throws AuthorizationException
-     *             The user is not authorized to delete this creditNote.
-     */
-    @DELETE
-    public Response deleteCreditNote() {
-        auth.requireManage();
+	/**
+	 * Get the creditNote report with the specified creditNoteId.
+	 *
+	 * @return The byte[] with the specified creditNoteId
+	 * @throws Exception
+	 * @summary Get the byte[] with the specified creditNoteId
+	 */
+	@GET
+	@Path("pdf")
+	@Produces(MediaType.APPLICATION_OCTET_STREAM)
+	public byte[] getPdf() throws Exception {
+		auth.requireView();
 
-        if (creditNote == null) {
-            throw new NotFoundException("Credit Note not found");
-        }
+		if (creditNote == null) {
+			throw new NotFoundException("Invoice not found");
+		}
+		ReportProvider provider = session.getProvider(ReportProvider.class);
+		byte[] report = provider.processReport(creditNote);
+		return report;
+	}
 
-        boolean removed = new CreditNoteManager(session).removeCreditNote(organization, creditNote);
-        if (removed) {
-            adminEvent.operation(OperationType.DELETE).resourcePath(uriInfo).success();
-            return Response.noContent().build();
-        } else {
-            return ErrorResponse.error("Credit Note couldn't be deleted", Response.Status.BAD_REQUEST);
-        }
-    }
+	/**
+	 * Deletes creditNote with given creditNoteId.
+	 *
+	 * @throws AuthorizationException
+	 *             The user is not authorized to delete this creditNote.
+	 */
+	@DELETE
+	public Response deleteCreditNote() {
+		auth.requireManage();
+
+		if (creditNote == null) {
+			throw new NotFoundException("Credit Note not found");
+		}
+
+		boolean removed = new CreditNoteManager(session).removeCreditNote(organization, creditNote);
+		if (removed) {
+			adminEvent.operation(OperationType.DELETE).resourcePath(uriInfo).success();
+			return Response.noContent().build();
+		} else {
+			return ErrorResponse.error("Credit Note couldn't be deleted", Response.Status.BAD_REQUEST);
+		}
+	}
 
 }

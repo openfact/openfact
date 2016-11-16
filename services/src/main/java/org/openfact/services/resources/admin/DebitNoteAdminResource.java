@@ -23,6 +23,7 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.ubl.DebitNoteModel;
 import org.openfact.models.utils.ModelToRepresentation;
+import org.openfact.report.ReportProvider;
 import org.openfact.representations.idm.ubl.DebitNoteRepresentation;
 import org.openfact.representations.idm.ubl.common.DebitNoteLineRepresentation;
 import org.openfact.services.ErrorResponse;
@@ -90,6 +91,27 @@ public class DebitNoteAdminResource {
         return debitNote.getDebitNoteLine().stream().map(f -> ModelToRepresentation.toRepresentation(f))
                 .collect(Collectors.toList());
     }
+
+	/**
+	 * Get the debitNote report with the specified debitNoteId.
+	 *
+	 * @return The byte[] with the specified debitNoteId
+	 * @throws Exception
+	 * @summary Get the byte[] with the specified debitNoteId
+	 */
+	@GET
+	@Path("pdf")
+	@Produces(MediaType.APPLICATION_OCTET_STREAM)
+	public byte[] getPdf() throws Exception {
+		auth.requireView();
+
+		if (debitNote == null) {
+			throw new NotFoundException("Invoice not found");
+		}
+		ReportProvider provider = session.getProvider(ReportProvider.class);
+		byte[] report = provider.processReport(debitNote);
+		return report;
+	}
 
     /**
      * Deletes debitNote with given debitNoteId.
