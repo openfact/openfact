@@ -70,14 +70,14 @@ public class CreditNoteAdminResource {
     @GET
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    public CreditNoteRepresentation getCreditNote() {
+    public CreditNoteRepresentation getCreditNote(@QueryParam("includeXml") boolean includeXml) {
         auth.requireView();
 
         if (creditNote == null) {
             throw new NotFoundException("Credit Note not found");
         }
 
-        CreditNoteRepresentation rep = ModelToRepresentation.toRepresentation(creditNote);
+        CreditNoteRepresentation rep = ModelToRepresentation.toRepresentation(creditNote, includeXml);
         return rep;
     }
 

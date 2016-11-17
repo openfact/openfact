@@ -70,14 +70,14 @@ public class DebitNoteAdminResource {
     @GET
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    public DebitNoteRepresentation getDebitNote() {
+    public DebitNoteRepresentation getDebitNote(@QueryParam("includeXml") boolean includeXml) {
         auth.requireView();
 
         if (debitNote == null) {
             throw new NotFoundException("Debit Note not found");
         }
 
-        DebitNoteRepresentation rep = ModelToRepresentation.toRepresentation(debitNote);
+        DebitNoteRepresentation rep = ModelToRepresentation.toRepresentation(debitNote, includeXml);
         return rep;
     }
 

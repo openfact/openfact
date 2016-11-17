@@ -70,14 +70,14 @@ public class InvoiceAdminResource {
     @GET
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    public InvoiceRepresentation getInvoice() {
+    public InvoiceRepresentation getInvoice(@QueryParam("includeXml") boolean includeXml) {
         auth.requireView();
 
         if (invoice == null) {
             throw new NotFoundException("Invoice not found");
         }
 
-        InvoiceRepresentation rep = ModelToRepresentation.toRepresentation(invoice);
+        InvoiceRepresentation rep = ModelToRepresentation.toRepresentation(invoice, includeXml);
         return rep;
     }
 

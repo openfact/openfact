@@ -112,7 +112,7 @@ public class CreditNotesAdminResource {
         } else {
             creditNotes = session.creditNotes().getCreditNotes(organization, firstResult, maxResults);
         }
-        return creditNotes.stream().map(f -> ModelToRepresentation.toRepresentation(f))
+        return creditNotes.stream().map(f -> ModelToRepresentation.toRepresentation(f, false))
                 .collect(Collectors.toList());
     }
 
@@ -180,7 +180,7 @@ public class CreditNotesAdminResource {
         }
         SearchResultsRepresentation<CreditNoteRepresentation> rep = new SearchResultsRepresentation<>();
         List<CreditNoteRepresentation> items = new ArrayList<>();
-        results.getModels().forEach(f -> items.add(ModelToRepresentation.toRepresentation(f)));
+        results.getModels().forEach(f -> items.add(ModelToRepresentation.toRepresentation(f, false)));
         rep.setItems(items);
         rep.setTotalSize(results.getTotalSize());
         return rep;

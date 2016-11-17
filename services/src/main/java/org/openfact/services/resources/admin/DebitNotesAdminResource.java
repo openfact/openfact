@@ -108,7 +108,7 @@ public class DebitNotesAdminResource {
         } else {
             debitNotes = session.debitNotes().getDebitNotes(organization, firstResult, maxResults);
         }
-        return debitNotes.stream().map(f -> ModelToRepresentation.toRepresentation(f))
+        return debitNotes.stream().map(f -> ModelToRepresentation.toRepresentation(f, false))
                 .collect(Collectors.toList());
     }
 
@@ -176,7 +176,7 @@ public class DebitNotesAdminResource {
         }
         SearchResultsRepresentation<DebitNoteRepresentation> rep = new SearchResultsRepresentation<>();
         List<DebitNoteRepresentation> items = new ArrayList<>();
-        results.getModels().forEach(f -> items.add(ModelToRepresentation.toRepresentation(f)));
+        results.getModels().forEach(f -> items.add(ModelToRepresentation.toRepresentation(f, false)));
         rep.setItems(items);
         rep.setTotalSize(results.getTotalSize());
         return rep;
