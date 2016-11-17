@@ -16,7 +16,13 @@
  *******************************************************************************/
 package org.openfact.services.resources.admin;
 
+import com.helger.ubl21.UBL21Reader;
+import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
+import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
+import org.apache.commons.io.IOUtils;
 import org.jboss.resteasy.annotations.cache.NoCache;
+import org.jboss.resteasy.plugins.providers.multipart.InputPart;
+import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
 import org.openfact.email.EmailException;
@@ -29,6 +35,7 @@ import org.openfact.models.enums.RequiredActionDocument;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.ubl.DebitNoteModel;
+import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
@@ -37,13 +44,17 @@ import org.openfact.representations.idm.ubl.DebitNoteRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.DebitNoteManager;
+import org.openfact.services.managers.InvoiceManager;
 
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class DebitNotesAdminResource {
@@ -156,6 +167,59 @@ public class DebitNotesAdminResource {
             ServicesLogger.LOGGER.failedToSendActionsEmail(e);
             return ErrorResponse.error("Invoice Created but, Failed to send execute actions email", Response.Status.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @POST
+    @Path("xml")
+    @Consumes("multipart/form-data")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response createDebitNoteFromXml(final MultipartFormDataInput input) {
+        auth.requireManage();
+
+        Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
+        List<InputPart> inputParts = uploadForm.get("file");
+
+        for (InputPart inputPart : inputParts) {
+            try {
+                InputStream inputStream = inputPart.getBody(InputStream.class, null);
+                byte[] bytes = IOUtils.toByteArray(inputStream);
+
+                DebitNoteType debitNoteType = UBL21Reader.debitNote().read(bytes);
+                if (debitNoteType == null) {
+                    throw new ModelException("Invalid debit note Xml");
+                }
+
+                DebitNoteManager debitNoteManager = new DebitNoteManager(session);
+
+                // Double-check duplicated ID
+                if (debitNoteType.getIDValue() != null && debitNoteManager.getDebitNoteByID(organization, debitNoteType.getIDValue()) != null) {
+                    return ErrorResponse.exists("Debit Note exists with same ID");
+                }
+
+                DebitNoteModel debitNote = debitNoteManager.addDebitNote(organization, debitNoteType);
+
+                if (session.getTransactionManager().isActive()) {
+                    session.getTransactionManager().commit();
+                }
+
+                adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, debitNote.getId()).representation(debitNoteType).success();
+            } catch (IOException e) {
+                logger.error("Error reading input data", e);
+                return ErrorResponse.error("Error Reading data", Response.Status.BAD_REQUEST);
+            } catch (ModelDuplicateException e) {
+                if (session.getTransactionManager().isActive()) {
+                    session.getTransactionManager().setRollbackOnly();
+                }
+                return ErrorResponse.exists("Invoice exists with same id or ID");
+            } catch (ModelException me) {
+                if (session.getTransactionManager().isActive()) {
+                    session.getTransactionManager().setRollbackOnly();
+                }
+                return ErrorResponse.exists("Could not create invoice");
+            }
+        }
+
+        return Response.ok().build();
     }
 
     @POST

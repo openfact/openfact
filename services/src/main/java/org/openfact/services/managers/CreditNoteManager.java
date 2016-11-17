@@ -16,6 +16,7 @@
  *******************************************************************************/
 package org.openfact.services.managers;
 
+import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
 import org.apache.commons.lang.ArrayUtils;
 import org.jboss.logging.Logger;
 import org.openfact.common.converts.DocumentUtils;
@@ -28,13 +29,12 @@ import org.openfact.models.UserSenderModel;
 import org.openfact.models.enums.RequiredActionDocument;
 import org.openfact.models.enums.UblDocumentType;
 import org.openfact.models.ubl.CreditNoteModel;
-import org.openfact.models.ubl.DebitNoteModel;
-import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.ubl.common.ContactModel;
 import org.openfact.models.ubl.common.CustomerPartyModel;
 import org.openfact.models.ubl.common.PartyModel;
 import org.openfact.models.ubl.provider.CreditNoteProvider;
 import org.openfact.models.utils.RepresentationToModel;
+import org.openfact.models.utils.TypeToModel;
 import org.openfact.representations.idm.ubl.CreditNoteRepresentation;
 import org.openfact.ubl.UblDocumentProvider;
 import org.openfact.ubl.UblDocumentSignerProvider;
@@ -66,8 +66,7 @@ public class CreditNoteManager {
     public CreditNoteModel addCreditNote(OrganizationModel organization, CreditNoteRepresentation rep) {
         String ID = rep.getIdUbl();
         if (ID == null) {
-            List<String> referencesID = rep.getDiscrepancyResponse().stream().map(f -> f.getReferenceID())
-                    .collect(Collectors.toList());
+            List<String> referencesID = rep.getDiscrepancyResponse().stream().map(f -> f.getReferenceID()).collect(Collectors.toList());
 
             UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class);
             ID = provider.generateCreditNoteID(organization, referencesID.toArray(new String[referencesID.size()]));
@@ -75,6 +74,22 @@ public class CreditNoteManager {
 
         CreditNoteModel creditNote = model.addCreditNote(organization, ID);
         RepresentationToModel.importCreditNote(session, organization, creditNote, rep);
+        RequiredActionDocument.getDefaults().stream().forEach(c -> creditNote.addRequiredAction(c));
+
+        process(organization, creditNote);
+        return creditNote;
+    }
+
+    public CreditNoteModel addCreditNote(OrganizationModel organization, CreditNoteType rep) {
+        String ID = rep.getIDValue();
+        if (ID == null) {
+            List<String> referencesID = rep.getDiscrepancyResponse().stream().map(f -> f.getReferenceIDValue()).collect(Collectors.toList());
+            UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class);
+            ID = provider.generateCreditNoteID(organization, referencesID.toArray(new String[referencesID.size()]));
+        }
+
+        CreditNoteModel creditNote = model.addCreditNote(organization, ID);
+        TypeToModel.importCreditNote(session, organization, creditNote, rep);
         RequiredActionDocument.getDefaults().stream().forEach(c -> creditNote.addRequiredAction(c));
 
         process(organization, creditNote);
