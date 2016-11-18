@@ -43,6 +43,7 @@ import org.w3c.dom.Document;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
+import javax.ws.rs.core.Response.ResponseBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -111,8 +112,8 @@ public class InvoiceAdminResource {
 	 */
 	@GET
 	@Path("pdf")
-	@Produces(MediaType.APPLICATION_OCTET_STREAM)
-	public byte[] getPdf(@PathParam("themeType") String themType, @PathParam("themeName") String themeName)
+	@Produces("application/pdf")
+	public Response getPdf(@PathParam("themeType") String themType, @PathParam("themeName") String themeName)
 			throws Exception {
 		auth.requireView();
 
@@ -123,7 +124,10 @@ public class InvoiceAdminResource {
 		ReportTheme theme = themeProvider.getReportTheme(themeName, ReportTheme.Type.valueOf(themType.toUpperCase()));
 		ReportProvider provider = session.getProvider(ReportProvider.class, themeName);
 		byte[] report = provider.processReport(invoice, theme);
-		return report;
+		ResponseBuilder response = Response.ok(report);
+		response.type("application/pdf");
+		response.header("content-disposition", "attachment; filename=\"" + invoice.getID() + ".pdf\"");
+		return response.build();
 	}
 
 	@GET
@@ -132,31 +136,31 @@ public class InvoiceAdminResource {
 	public List<InvoiceLineRepresentation> getLines() {
 		auth.requireView();
 
-        return invoice.getInvoiceLine().stream().map(f -> ModelToRepresentation.toRepresentation(f))
-                .collect(Collectors.toList());
-    }
+		return invoice.getInvoiceLine().stream().map(f -> ModelToRepresentation.toRepresentation(f))
+				.collect(Collectors.toList());
+	}
 
-    /**
-     * Deletes invoice with given invoiceId.
-     *
-     * @throws AuthorizationException
-     *             The user is not authorized to delete this invoice.
-     */
-    @DELETE
-    public Response deleteInvoice() {
-        auth.requireManage();
+	/**
+	 * Deletes invoice with given invoiceId.
+	 *
+	 * @throws AuthorizationException
+	 *             The user is not authorized to delete this invoice.
+	 */
+	@DELETE
+	public Response deleteInvoice() {
+		auth.requireManage();
 
-        if (invoice == null) {
-            throw new NotFoundException("Invoice not found");
-        }
+		if (invoice == null) {
+			throw new NotFoundException("Invoice not found");
+		}
 
-        boolean removed = new InvoiceManager(session).removeInvoice(organization, invoice);
-        if (removed) {
-            adminEvent.operation(OperationType.DELETE).resourcePath(uriInfo).success();
-            return Response.noContent().build();
-        } else {
-            return ErrorResponse.error("Invoice couldn't be deleted", Response.Status.BAD_REQUEST);
-        }
-    }
+		boolean removed = new InvoiceManager(session).removeInvoice(organization, invoice);
+		if (removed) {
+			adminEvent.operation(OperationType.DELETE).resourcePath(uriInfo).success();
+			return Response.noContent().build();
+		} else {
+			return ErrorResponse.error("Invoice couldn't be deleted", Response.Status.BAD_REQUEST);
+		}
+	}
 
 }

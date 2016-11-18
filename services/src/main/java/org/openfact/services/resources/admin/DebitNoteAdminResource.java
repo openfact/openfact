@@ -37,6 +37,8 @@ import org.w3c.dom.Document;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
+import javax.ws.rs.core.Response.ResponseBuilder;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -129,8 +131,8 @@ public class DebitNoteAdminResource {
 	 */
 	@GET
 	@Path("pdf")
-	@Produces(MediaType.APPLICATION_OCTET_STREAM)
-	public byte[] getPdf(@PathParam("themeType") String themType, @PathParam("themeName") String themeName)
+	@Produces("application/pdf")
+	public Response getPdf(@PathParam("themeType") String themType, @PathParam("themeName") String themeName)
 			throws Exception {
 		auth.requireView();
 
@@ -141,7 +143,11 @@ public class DebitNoteAdminResource {
 		ReportTheme theme = themeProvider.getReportTheme(themeName, ReportTheme.Type.valueOf(themType.toUpperCase()));
 		ReportProvider provider = session.getProvider(ReportProvider.class, themeName);
 		byte[] report = provider.processReport(debitNote, theme);
-		return report;
+
+		ResponseBuilder response = Response.ok(report);
+		response.type("application/pdf");
+		response.header("content-disposition", "attachment; filename=\"" + debitNote.getID() + ".pdf\"");
+		return response.build();
 	}
 
 	/**

@@ -37,6 +37,8 @@ import org.w3c.dom.Document;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
+import javax.ws.rs.core.Response.ResponseBuilder;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -73,52 +75,52 @@ public class CreditNoteAdminResource {
 	 * @return The creditNote with the specified creditNoteId
 	 * @summary Get the creditNote with the specified creditNoteId
 	 */
-    @GET
-    @NoCache
-    @Produces(MediaType.APPLICATION_JSON)
-    public CreditNoteRepresentation getCreditNote(@QueryParam("includeXml") boolean includeXml) {
-        auth.requireView();
+	@GET
+	@NoCache
+	@Produces(MediaType.APPLICATION_JSON)
+	public CreditNoteRepresentation getCreditNote(@QueryParam("includeXml") boolean includeXml) {
+		auth.requireView();
 
 		if (creditNote == null) {
 			throw new NotFoundException("Credit Note not found");
 		}
 
-        CreditNoteRepresentation rep = ModelToRepresentation.toRepresentation(creditNote, includeXml);
-        return rep;
-    }
+		CreditNoteRepresentation rep = ModelToRepresentation.toRepresentation(creditNote, includeXml);
+		return rep;
+	}
 
-    @GET
-    @Path("xml")
-    @NoCache
-    @Produces("application/xml")
-    public Response getCreditNoteAsXml() {
-        auth.requireView();
+	@GET
+	@Path("xml")
+	@NoCache
+	@Produces("application/xml")
+	public Response getCreditNoteAsXml() {
+		auth.requireView();
 
-        if (creditNote == null) {
-            throw new NotFoundException("Credit Note not found");
-        }
+		if (creditNote == null) {
+			throw new NotFoundException("Credit Note not found");
+		}
 
-        Document document = null;
-        try {
-            document = DocumentUtils.byteToDocument(ArrayUtils.toPrimitive(creditNote.getXmlDocument()));
-        } catch (Exception e) {
-            return ErrorResponse.exists("Invalid xml");
-        }
+		Document document = null;
+		try {
+			document = DocumentUtils.byteToDocument(ArrayUtils.toPrimitive(creditNote.getXmlDocument()));
+		} catch (Exception e) {
+			return ErrorResponse.exists("Invalid xml");
+		}
 
-        Response.ResponseBuilder response = Response.ok((Object) document);
-        response.header("Content-Disposition", "attachment; filename=\"" + creditNote.getID() + ".xml\"");
-        return response.build();
-    }
+		Response.ResponseBuilder response = Response.ok((Object) document);
+		response.header("Content-Disposition", "attachment; filename=\"" + creditNote.getID() + ".xml\"");
+		return response.build();
+	}
 
-    @GET
-    @Path("lines")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<CreditNoteLineRepresentation> getLines() {
-        auth.requireView();
+	@GET
+	@Path("lines")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<CreditNoteLineRepresentation> getLines() {
+		auth.requireView();
 
-        return creditNote.getCreditNoteLine().stream().map(f -> ModelToRepresentation.toRepresentation(f))
-                .collect(Collectors.toList());
-    }
+		return creditNote.getCreditNoteLine().stream().map(f -> ModelToRepresentation.toRepresentation(f))
+				.collect(Collectors.toList());
+	}
 
 	/**
 	 * Get the creditNote report with the specified creditNoteId.
@@ -129,8 +131,8 @@ public class CreditNoteAdminResource {
 	 */
 	@GET
 	@Path("pdf")
-	@Produces(MediaType.APPLICATION_OCTET_STREAM)
-	public byte[] getPdf(@PathParam("themeType") String themType, @PathParam("themeName") String themeName)
+	@Produces("application/pdf")
+	public Response getPdf(@PathParam("themeType") String themType, @PathParam("themeName") String themeName)
 			throws Exception {
 		auth.requireView();
 
@@ -141,7 +143,10 @@ public class CreditNoteAdminResource {
 		ReportTheme theme = themeProvider.getReportTheme(themeName, ReportTheme.Type.valueOf(themType.toUpperCase()));
 		ReportProvider provider = session.getProvider(ReportProvider.class, themeName);
 		byte[] report = provider.processReport(creditNote, theme);
-		return report;
+		ResponseBuilder response = Response.ok(report);
+		response.type("application/pdf");
+		response.header("content-disposition", "attachment; filename=\"" + creditNote.getID() + ".pdf\"");
+		return response.build();
 	}
 
 	/**
