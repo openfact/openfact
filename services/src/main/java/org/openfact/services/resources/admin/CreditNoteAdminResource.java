@@ -16,8 +16,10 @@
  *******************************************************************************/
 package org.openfact.services.resources.admin;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.openfact.common.ClientConnection;
+import org.openfact.common.converts.DocumentUtils;
 import org.openfact.events.admin.OperationType;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
@@ -31,6 +33,7 @@ import org.openfact.representations.idm.ubl.common.CreditNoteLineRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.CreditNoteManager;
+import org.w3c.dom.Document;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
@@ -70,29 +73,52 @@ public class CreditNoteAdminResource {
 	 * @return The creditNote with the specified creditNoteId
 	 * @summary Get the creditNote with the specified creditNoteId
 	 */
-	@GET
-	@NoCache
-	@Produces(MediaType.APPLICATION_JSON)
-	public CreditNoteRepresentation getCreditNote() {
-		auth.requireView();
+    @GET
+    @NoCache
+    @Produces(MediaType.APPLICATION_JSON)
+    public CreditNoteRepresentation getCreditNote(@QueryParam("includeXml") boolean includeXml) {
+        auth.requireView();
 
 		if (creditNote == null) {
 			throw new NotFoundException("Credit Note not found");
 		}
 
-		CreditNoteRepresentation rep = ModelToRepresentation.toRepresentation(creditNote);
-		return rep;
-	}
+        CreditNoteRepresentation rep = ModelToRepresentation.toRepresentation(creditNote, includeXml);
+        return rep;
+    }
 
-	@GET
-	@Path("lines")
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<CreditNoteLineRepresentation> getLines() {
-		auth.requireView();
+    @GET
+    @Path("xml")
+    @NoCache
+    @Produces("application/xml")
+    public Response getCreditNoteAsXml() {
+        auth.requireView();
 
-		return creditNote.getCreditNoteLine().stream().map(f -> ModelToRepresentation.toRepresentation(f))
-				.collect(Collectors.toList());
-	}
+        if (creditNote == null) {
+            throw new NotFoundException("Credit Note not found");
+        }
+
+        Document document = null;
+        try {
+            document = DocumentUtils.byteToDocument(ArrayUtils.toPrimitive(creditNote.getXmlDocument()));
+        } catch (Exception e) {
+            return ErrorResponse.exists("Invalid xml");
+        }
+
+        Response.ResponseBuilder response = Response.ok((Object) document);
+        response.header("Content-Disposition", "attachment; filename=\"" + creditNote.getID() + ".xml\"");
+        return response.build();
+    }
+
+    @GET
+    @Path("lines")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<CreditNoteLineRepresentation> getLines() {
+        auth.requireView();
+
+        return creditNote.getCreditNoteLine().stream().map(f -> ModelToRepresentation.toRepresentation(f))
+                .collect(Collectors.toList());
+    }
 
 	/**
 	 * Get the creditNote report with the specified creditNoteId.

@@ -16,7 +16,13 @@
  *******************************************************************************/
 package org.openfact.services.resources.admin;
 
+import com.helger.ubl21.UBL21Reader;
+import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
+import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
+import org.apache.commons.io.IOUtils;
 import org.jboss.resteasy.annotations.cache.NoCache;
+import org.jboss.resteasy.plugins.providers.multipart.InputPart;
+import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
 import org.openfact.email.EmailException;
@@ -29,6 +35,7 @@ import org.openfact.models.enums.RequiredActionDocument;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.ubl.CreditNoteModel;
+import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
@@ -37,13 +44,17 @@ import org.openfact.representations.idm.ubl.CreditNoteRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.CreditNoteManager;
+import org.openfact.services.managers.InvoiceManager;
 
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -112,7 +123,7 @@ public class CreditNotesAdminResource {
         } else {
             creditNotes = session.creditNotes().getCreditNotes(organization, firstResult, maxResults);
         }
-        return creditNotes.stream().map(f -> ModelToRepresentation.toRepresentation(f))
+        return creditNotes.stream().map(f -> ModelToRepresentation.toRepresentation(f, false))
                 .collect(Collectors.toList());
     }
 
@@ -163,6 +174,59 @@ public class CreditNotesAdminResource {
     }
 
     @POST
+    @Path("xml")
+    @Consumes("multipart/form-data")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response createCreditNoteFromXml(final MultipartFormDataInput input) {
+        auth.requireManage();
+
+        Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
+        List<InputPart> inputParts = uploadForm.get("file");
+
+        for (InputPart inputPart : inputParts) {
+            try {
+                InputStream inputStream = inputPart.getBody(InputStream.class, null);
+                byte[] bytes = IOUtils.toByteArray(inputStream);
+
+                CreditNoteType creditNoteType = UBL21Reader.creditNote().read(bytes);
+                if (creditNoteType == null) {
+                    throw new ModelException("Invalid credit note Xml");
+                }
+
+                CreditNoteManager creditNoteManager = new CreditNoteManager(session);
+
+                // Double-check duplicated ID
+                if (creditNoteType.getIDValue() != null && creditNoteManager.getCreditNoteByID(organization, creditNoteType.getIDValue()) != null) {
+                    return ErrorResponse.exists("Credit Note exists with same ID");
+                }
+
+                CreditNoteModel creditNote = creditNoteManager.addCreditNote(organization, creditNoteType);
+
+                if (session.getTransactionManager().isActive()) {
+                    session.getTransactionManager().commit();
+                }
+
+                adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, creditNote.getId()).representation(creditNoteType).success();
+            } catch (IOException e) {
+                logger.error("Error reading input data", e);
+                return ErrorResponse.error("Error Reading data", Response.Status.BAD_REQUEST);
+            } catch (ModelDuplicateException e) {
+                if (session.getTransactionManager().isActive()) {
+                    session.getTransactionManager().setRollbackOnly();
+                }
+                return ErrorResponse.exists("Invoice exists with same id or ID");
+            } catch (ModelException me) {
+                if (session.getTransactionManager().isActive()) {
+                    session.getTransactionManager().setRollbackOnly();
+                }
+                return ErrorResponse.exists("Could not create invoice");
+            }
+        }
+
+        return Response.ok().build();
+    }
+
+    @POST
     @Path("search")
     @Produces(MediaType.APPLICATION_JSON)
     public SearchResultsRepresentation<CreditNoteRepresentation> search(
@@ -180,7 +244,7 @@ public class CreditNotesAdminResource {
         }
         SearchResultsRepresentation<CreditNoteRepresentation> rep = new SearchResultsRepresentation<>();
         List<CreditNoteRepresentation> items = new ArrayList<>();
-        results.getModels().forEach(f -> items.add(ModelToRepresentation.toRepresentation(f)));
+        results.getModels().forEach(f -> items.add(ModelToRepresentation.toRepresentation(f, false)));
         rep.setItems(items);
         rep.setTotalSize(results.getTotalSize());
         return rep;

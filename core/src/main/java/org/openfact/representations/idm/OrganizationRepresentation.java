@@ -29,6 +29,9 @@ import java.util.Set;
 
 public class OrganizationRepresentation {
 
+    private String id;
+    private String organization;
+
     protected Map<String, String> smtpServer;
     @Deprecated
     protected String privateKey;
@@ -57,8 +60,7 @@ public class OrganizationRepresentation {
     protected List<CreditNoteRepresentation> creditNotes;
     protected List<DebitNoteRepresentation> debitNotes;
     protected String openfactVersion;
-    private String id;
-    private String organization;
+
     private String description;
     private Boolean enabled;
     private String assignedIdentificationId;

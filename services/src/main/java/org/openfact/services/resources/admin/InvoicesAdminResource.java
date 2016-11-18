@@ -119,7 +119,7 @@ public class InvoicesAdminResource {
             invoices = session.invoices().searchForInvoice(organization, filterText.trim(), firstResult,
                     maxResults);
         }
-        return invoices.stream().map(f -> ModelToRepresentation.toRepresentation(f))
+        return invoices.stream().map(f -> ModelToRepresentation.toRepresentation(f, false))
                 .collect(Collectors.toList());
     }
 
@@ -239,7 +239,7 @@ public class InvoicesAdminResource {
         }
         SearchResultsRepresentation<InvoiceRepresentation> rep = new SearchResultsRepresentation<>();
         List<InvoiceRepresentation> items = new ArrayList<>();
-        results.getModels().forEach(f -> items.add(ModelToRepresentation.toRepresentation(f)));
+        results.getModels().forEach(f -> items.add(ModelToRepresentation.toRepresentation(f, false)));
         rep.setItems(items);
         rep.setTotalSize(results.getTotalSize());
         return rep;

@@ -16,9 +16,12 @@
  *******************************************************************************/
 package org.openfact.services.resources.admin;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.openfact.common.ClientConnection;
+import org.openfact.common.converts.DocumentUtils;
 import org.openfact.events.admin.OperationType;
+import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.ubl.InvoiceModel;
@@ -36,6 +39,7 @@ import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.InvoiceManager;
 import org.openfact.theme.ThemeProvider;
 import org.openfact.ubl.UblIDGeneratorProvider;
+import org.w3c.dom.Document;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
@@ -87,14 +91,14 @@ public class InvoiceAdminResource {
 	@GET
 	@NoCache
 	@Produces(MediaType.APPLICATION_JSON)
-	public InvoiceRepresentation getInvoice() {
+	public InvoiceRepresentation getInvoice(@QueryParam("includeXml") boolean includeXml) {
 		auth.requireView();
 
 		if (invoice == null) {
 			throw new NotFoundException("Invoice not found");
 		}
 
-		InvoiceRepresentation rep = ModelToRepresentation.toRepresentation(invoice);
+		InvoiceRepresentation rep = ModelToRepresentation.toRepresentation(invoice, includeXml);
 		return rep;
 	}
 
@@ -128,31 +132,31 @@ public class InvoiceAdminResource {
 	public List<InvoiceLineRepresentation> getLines() {
 		auth.requireView();
 
-		return invoice.getInvoiceLine().stream().map(f -> ModelToRepresentation.toRepresentation(f))
-				.collect(Collectors.toList());
-	}
+        return invoice.getInvoiceLine().stream().map(f -> ModelToRepresentation.toRepresentation(f))
+                .collect(Collectors.toList());
+    }
 
-	/**
-	 * Deletes invoice with given invoiceId.
-	 *
-	 * @throws AuthorizationException
-	 *             The user is not authorized to delete this invoice.
-	 */
-	@DELETE
-	public Response deleteInvoice() {
-		auth.requireManage();
+    /**
+     * Deletes invoice with given invoiceId.
+     *
+     * @throws AuthorizationException
+     *             The user is not authorized to delete this invoice.
+     */
+    @DELETE
+    public Response deleteInvoice() {
+        auth.requireManage();
 
-		if (invoice == null) {
-			throw new NotFoundException("Invoice not found");
-		}
+        if (invoice == null) {
+            throw new NotFoundException("Invoice not found");
+        }
 
-		boolean removed = new InvoiceManager(session).removeInvoice(organization, invoice);
-		if (removed) {
-			adminEvent.operation(OperationType.DELETE).resourcePath(uriInfo).success();
-			return Response.noContent().build();
-		} else {
-			return ErrorResponse.error("Invoice couldn't be deleted", Response.Status.BAD_REQUEST);
-		}
-	}
+        boolean removed = new InvoiceManager(session).removeInvoice(organization, invoice);
+        if (removed) {
+            adminEvent.operation(OperationType.DELETE).resourcePath(uriInfo).success();
+            return Response.noContent().build();
+        } else {
+            return ErrorResponse.error("Invoice couldn't be deleted", Response.Status.BAD_REQUEST);
+        }
+    }
 
 }

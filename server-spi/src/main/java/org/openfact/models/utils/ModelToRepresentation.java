@@ -36,6 +36,7 @@ import org.openfact.representations.idm.ubl.CreditNoteRepresentation;
 import org.openfact.representations.idm.ubl.DebitNoteRepresentation;
 import org.openfact.representations.idm.ubl.InvoiceRepresentation;
 import org.openfact.representations.idm.ubl.common.*;
+import org.w3c.dom.Document;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
@@ -138,7 +139,7 @@ public class ModelToRepresentation {
         return rep;
     }
 
-    public static InvoiceRepresentation toRepresentation(InvoiceModel model) {
+    public static InvoiceRepresentation toRepresentation(InvoiceModel model, boolean includeXml) {
         InvoiceRepresentation rep = new InvoiceRepresentation();
 
         rep.setId(model.getId());
@@ -179,9 +180,10 @@ public class ModelToRepresentation {
         }
         rep.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
 
-        if (model.getXmlDocument() != null) {
+        if(includeXml) {
             try {
-                DocumentUtils.byteToDocument(ArrayUtils.toPrimitive(model.getXmlDocument()));
+                Document document = DocumentUtils.byteToDocument(ArrayUtils.toPrimitive(model.getXmlDocument()));
+                rep.setXml(DocumentUtils.getDocumentToString(document));
             } catch (Exception e) {
                 throw new ModelException(e.getMessage());
             }
@@ -189,7 +191,7 @@ public class ModelToRepresentation {
         return rep;
     }
 
-    public static CreditNoteRepresentation toRepresentation(CreditNoteModel model) {
+    public static CreditNoteRepresentation toRepresentation(CreditNoteModel model, boolean includeXml) {
         CreditNoteRepresentation rep = new CreditNoteRepresentation();
 
         rep.setId(model.getId());
@@ -244,10 +246,19 @@ public class ModelToRepresentation {
                 rep.addDespatchDocumentReference(toRepresentation(item));
             }
         }
+
+        if(includeXml) {
+            try {
+                Document document = DocumentUtils.byteToDocument(ArrayUtils.toPrimitive(model.getXmlDocument()));
+                rep.setXml(DocumentUtils.getDocumentToString(document));
+            } catch (Exception e) {
+                throw new ModelException(e.getMessage());
+            }
+        }
         return rep;
     }
 
-    public static DebitNoteRepresentation toRepresentation(DebitNoteModel model) {
+    public static DebitNoteRepresentation toRepresentation(DebitNoteModel model, boolean includeXml) {
         DebitNoteRepresentation rep = new DebitNoteRepresentation();
 
         rep.setId(model.getId());
@@ -302,6 +313,16 @@ public class ModelToRepresentation {
                 rep.addDespatchDocumentReference(toRepresentation(item));
             }
         }
+
+        if(includeXml) {
+            try {
+                Document document = DocumentUtils.byteToDocument(ArrayUtils.toPrimitive(model.getXmlDocument()));
+                rep.setXml(DocumentUtils.getDocumentToString(document));
+            } catch (Exception e) {
+                throw new ModelException(e.getMessage());
+            }
+        }
+
         return rep;
     }
 
