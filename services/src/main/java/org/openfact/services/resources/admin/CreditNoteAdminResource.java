@@ -16,8 +16,10 @@
  *******************************************************************************/
 package org.openfact.services.resources.admin;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.openfact.common.ClientConnection;
+import org.openfact.common.converts.DocumentUtils;
 import org.openfact.events.admin.OperationType;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
@@ -28,6 +30,7 @@ import org.openfact.representations.idm.ubl.common.CreditNoteLineRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.CreditNoteManager;
+import org.w3c.dom.Document;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
@@ -79,6 +82,29 @@ public class CreditNoteAdminResource {
 
         CreditNoteRepresentation rep = ModelToRepresentation.toRepresentation(creditNote, includeXml);
         return rep;
+    }
+
+    @GET
+    @Path("xml")
+    @NoCache
+    @Produces("application/xml")
+    public Response getCreditNoteAsXml() {
+        auth.requireView();
+
+        if (creditNote == null) {
+            throw new NotFoundException("Credit Note not found");
+        }
+
+        Document document = null;
+        try {
+            document = DocumentUtils.byteToDocument(ArrayUtils.toPrimitive(creditNote.getXmlDocument()));
+        } catch (Exception e) {
+            return ErrorResponse.exists("Invalid xml");
+        }
+
+        Response.ResponseBuilder response = Response.ok((Object) document);
+        response.header("Content-Disposition", "attachment; filename=\"" + creditNote.getID() + ".xml\"");
+        return response.build();
     }
 
     @GET
