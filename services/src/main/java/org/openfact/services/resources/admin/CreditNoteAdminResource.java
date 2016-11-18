@@ -71,17 +71,6 @@ public class CreditNoteAdminResource {
 	 * @return The creditNote with the specified creditNoteId
 	 * @summary Get the creditNote with the specified creditNoteId
 	 */
-	@GET
-	@NoCache
-	@Produces(MediaType.APPLICATION_JSON)
-	public CreditNoteRepresentation getCreditNote() {
-		auth.requireView();
-    /**
-     * Get the creditNote with the specified creditNoteId.
-     *
-     * @return The creditNote with the specified creditNoteId
-     * @summary Get the creditNote with the specified creditNoteId
-     */
     @GET
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
