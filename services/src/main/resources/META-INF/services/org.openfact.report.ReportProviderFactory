@@ -1,1 +1,3 @@
-org.openfact.report.DefaultReportProviderFactory
+org.openfact.report.DefaultCreditNoteReportProviderFactory
+org.openfact.report.DefaultDebitNoteReportProviderFactory
+org.openfact.report.DefaultInvoiceReportProviderFactory

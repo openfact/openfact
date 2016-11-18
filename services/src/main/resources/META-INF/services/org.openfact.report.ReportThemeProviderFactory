@@ -1,0 +1,3 @@
+org.openfact.report.theme.ExtendingReportManagerFactory
+org.openfact.report.theme.JarReportProviderFactory
+org.openfact.report.theme.FolderReportProviderFactory

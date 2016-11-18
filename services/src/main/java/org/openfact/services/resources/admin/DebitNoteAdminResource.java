@@ -24,6 +24,8 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.models.ubl.DebitNoteModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.report.ReportProvider;
+import org.openfact.report.ReportTheme;
+import org.openfact.report.ReportThemeProvider;
 import org.openfact.representations.idm.ubl.DebitNoteRepresentation;
 import org.openfact.representations.idm.ubl.common.DebitNoteLineRepresentation;
 import org.openfact.services.ErrorResponse;
@@ -37,60 +39,60 @@ import java.util.stream.Collectors;
 
 public class DebitNoteAdminResource {
 
-    private static final ServicesLogger logger = ServicesLogger.LOGGER;
+	private static final ServicesLogger logger = ServicesLogger.LOGGER;
 
-    protected OrganizationModel organization;
-    protected DebitNoteModel debitNote;
-    @Context
-    protected UriInfo uriInfo;
-    @Context
-    protected OpenfactSession session;
-    @Context
-    protected ClientConnection clientConnection;
-    @Context
-    protected HttpHeaders headers;
-    private OrganizationAuth auth;
-    private AdminEventBuilder adminEvent;
+	protected OrganizationModel organization;
+	protected DebitNoteModel debitNote;
+	@Context
+	protected UriInfo uriInfo;
+	@Context
+	protected OpenfactSession session;
+	@Context
+	protected ClientConnection clientConnection;
+	@Context
+	protected HttpHeaders headers;
+	private OrganizationAuth auth;
+	private AdminEventBuilder adminEvent;
 
-    public DebitNoteAdminResource(OrganizationModel organization, OrganizationAuth auth,
-                                  AdminEventBuilder adminEvent, DebitNoteModel debitNote) {
-        this.auth = auth;
-        this.organization = organization;
-        this.adminEvent = adminEvent;
-        this.debitNote = debitNote;
+	public DebitNoteAdminResource(OrganizationModel organization, OrganizationAuth auth, AdminEventBuilder adminEvent,
+			DebitNoteModel debitNote) {
+		this.auth = auth;
+		this.organization = organization;
+		this.adminEvent = adminEvent;
+		this.debitNote = debitNote;
 
-        auth.init(OrganizationAuth.Resource.DEBIT_NOTE);
-    }
+		auth.init(OrganizationAuth.Resource.DEBIT_NOTE);
+	}
 
-    /**
-     * Get the debitNote with the specified debitNoteId.
-     *
-     * @return The debitNote with the specified debitNoteId
-     * @summary Get the debitNote with the specified debitNoteId
-     */
-    @GET
-    @NoCache
-    @Produces(MediaType.APPLICATION_JSON)
-    public DebitNoteRepresentation getDebitNote() {
-        auth.requireView();
+	/**
+	 * Get the debitNote with the specified debitNoteId.
+	 *
+	 * @return The debitNote with the specified debitNoteId
+	 * @summary Get the debitNote with the specified debitNoteId
+	 */
+	@GET
+	@NoCache
+	@Produces(MediaType.APPLICATION_JSON)
+	public DebitNoteRepresentation getDebitNote() {
+		auth.requireView();
 
-        if (debitNote == null) {
-            throw new NotFoundException("Debit Note not found");
-        }
+		if (debitNote == null) {
+			throw new NotFoundException("Debit Note not found");
+		}
 
-        DebitNoteRepresentation rep = ModelToRepresentation.toRepresentation(debitNote);
-        return rep;
-    }
+		DebitNoteRepresentation rep = ModelToRepresentation.toRepresentation(debitNote);
+		return rep;
+	}
 
-    @GET
-    @Path("lines")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<DebitNoteLineRepresentation> getLines() {
-        auth.requireView();
+	@GET
+	@Path("lines")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<DebitNoteLineRepresentation> getLines() {
+		auth.requireView();
 
-        return debitNote.getDebitNoteLine().stream().map(f -> ModelToRepresentation.toRepresentation(f))
-                .collect(Collectors.toList());
-    }
+		return debitNote.getDebitNoteLine().stream().map(f -> ModelToRepresentation.toRepresentation(f))
+				.collect(Collectors.toList());
+	}
 
 	/**
 	 * Get the debitNote report with the specified debitNoteId.
@@ -102,38 +104,41 @@ public class DebitNoteAdminResource {
 	@GET
 	@Path("pdf")
 	@Produces(MediaType.APPLICATION_OCTET_STREAM)
-	public byte[] getPdf() throws Exception {
+	public byte[] getPdf(@PathParam("themeType") String themType, @PathParam("themeName") String themeName)
+			throws Exception {
 		auth.requireView();
 
 		if (debitNote == null) {
-			throw new NotFoundException("Invoice not found");
+			throw new NotFoundException("Debit Note not found");
 		}
-		ReportProvider provider = session.getProvider(ReportProvider.class);
-		byte[] report = provider.processReport(debitNote);
+		ReportThemeProvider themeProvider = session.getProvider(ReportThemeProvider.class, "extending");
+		ReportTheme theme = themeProvider.getReportTheme(themeName, ReportTheme.Type.valueOf(themType.toUpperCase()));
+		ReportProvider provider = session.getProvider(ReportProvider.class, themeName);
+		byte[] report = provider.processReport(debitNote, theme);
 		return report;
 	}
 
-    /**
-     * Deletes debitNote with given debitNoteId.
-     *
-     * @throws AuthorizationException
-     *             The user is not authorized to delete this debitNote.
-     */
-    @DELETE
-    public Response deleteDebitNote() {
-        auth.requireManage();
+	/**
+	 * Deletes debitNote with given debitNoteId.
+	 *
+	 * @throws AuthorizationException
+	 *             The user is not authorized to delete this debitNote.
+	 */
+	@DELETE
+	public Response deleteDebitNote() {
+		auth.requireManage();
 
-        if (debitNote == null) {
-            throw new NotFoundException("Debit Note not found");
-        }
+		if (debitNote == null) {
+			throw new NotFoundException("Debit Note not found");
+		}
 
-        boolean removed = new DebitNoteManager(session).removeDebitNote(organization, debitNote);
-        if (removed) {
-            adminEvent.operation(OperationType.DELETE).resourcePath(uriInfo).success();
-            return Response.noContent().build();
-        } else {
-            return ErrorResponse.error("Debit Note couldn't be deleted", Response.Status.BAD_REQUEST);
-        }
-    }
+		boolean removed = new DebitNoteManager(session).removeDebitNote(organization, debitNote);
+		if (removed) {
+			adminEvent.operation(OperationType.DELETE).resourcePath(uriInfo).success();
+			return Response.noContent().build();
+		} else {
+			return ErrorResponse.error("Debit Note couldn't be deleted", Response.Status.BAD_REQUEST);
+		}
+	}
 
 }

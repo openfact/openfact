@@ -15,13 +15,16 @@
  * limitations under the License.
  *******************************************************************************/
 
-package org.openfact.report;
+package org.openfact.report.theme;
 
 import java.io.*;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Locale;
 import java.util.Properties;
+
+import org.openfact.report.ReportTheme;
+import org.openfact.report.ReportTheme.Type;
 
 /**
  * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>

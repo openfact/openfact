@@ -15,8 +15,10 @@
  * limitations under the License.
  *******************************************************************************/
 
-package org.openfact.report;
+package org.openfact.report.theme;
 
+import org.openfact.report.ReportTheme;
+import org.openfact.report.ReportTheme.Type;
 import org.openfact.theme.PropertiesUtil;
 
 import java.io.IOException;

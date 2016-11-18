@@ -15,50 +15,50 @@
  * limitations under the License.
  *******************************************************************************/
 
-package org.openfact.report;
+package org.openfact.report.theme;
 
-import java.io.IOException;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Set;
+import org.openfact.Config;
+import org.openfact.models.OpenfactSession;
+import org.openfact.models.OpenfactSessionFactory;
+import org.openfact.report.ReportThemeProvider;
+import org.openfact.report.ReportThemeProviderFactory;
+
+import java.io.File;
 
 /**
  * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  */
-public class JarReportProvider implements ReportThemeProvider {
+public class FolderReportProviderFactory implements ReportThemeProviderFactory {
 
-    private Map<ReportTheme.Type, Map<String, ClassLoaderReport>> reports;
+    private FolderReportProvider reportProvider;
 
-    public JarReportProvider(Map<ReportTheme.Type, Map<String, ClassLoaderReport>> reports) {
-        this.reports = reports;
+    @Override
+    public ReportThemeProvider create(OpenfactSession sessions) {
+        return reportProvider;
     }
 
     @Override
-    public int getProviderPriority() {
-        return 0;
-    }
-
-    @Override
-    public ReportTheme getReportTheme(String name, ReportTheme.Type type) throws IOException {
-        return hasReportTheme(name, type) ? reports.get(type).get(name) : null;
-    }
-
-    @Override
-    public Set<String> nameSet(ReportTheme.Type type) {
-        if (reports.containsKey(type)) {
-            return reports.get(type).keySet();
-        } else {
-            return Collections.emptySet();
+    public void init(Config.Scope config) {
+        String d = config.get("dir");
+        File rootDir = null;
+        if (d != null) {
+            rootDir = new File(d);
         }
+        reportProvider = new FolderReportProvider(rootDir);
     }
 
     @Override
-    public boolean hasReportTheme(String name, ReportTheme.Type type) {
-        return reports.containsKey(type) && reports.get(type).containsKey(name);
+    public void postInit(OpenfactSessionFactory factory) {
+
     }
 
     @Override
     public void close() {
+
     }
 
+    @Override
+    public String getId() {
+        return "folder";
+    }
 }

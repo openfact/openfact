@@ -15,48 +15,18 @@
  * limitations under the License.
  *******************************************************************************/
 
-package org.openfact.report;
-
-import org.openfact.Config;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OpenfactSessionFactory;
-
-import java.io.File;
+package org.openfact.report.theme;
 
 /**
  * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  */
-public class FolderReportProviderFactory implements ReportThemeProviderFactory {
+public class JasperReportException extends Exception {
 
-    private FolderReportProvider reportProvider;
-
-    @Override
-    public ReportThemeProvider create(OpenfactSession sessions) {
-        return reportProvider;
+    public JasperReportException(String message) {
+        super(message);
     }
 
-    @Override
-    public void init(Config.Scope config) {
-        String d = config.get("dir");
-        File rootDir = null;
-        if (d != null) {
-            rootDir = new File(d);
-        }
-        reportProvider = new FolderReportProvider(rootDir);
-    }
-
-    @Override
-    public void postInit(OpenfactSessionFactory factory) {
-
-    }
-
-    @Override
-    public void close() {
-
-    }
-
-    @Override
-    public String getId() {
-        return "folder";
+    public JasperReportException(String message, Throwable cause) {
+        super(message, cause);
     }
 }

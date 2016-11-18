@@ -24,6 +24,8 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.models.ubl.CreditNoteModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.report.ReportProvider;
+import org.openfact.report.ReportTheme;
+import org.openfact.report.ReportThemeProvider;
 import org.openfact.representations.idm.ubl.CreditNoteRepresentation;
 import org.openfact.representations.idm.ubl.common.CreditNoteLineRepresentation;
 import org.openfact.services.ErrorResponse;
@@ -102,14 +104,17 @@ public class CreditNoteAdminResource {
 	@GET
 	@Path("pdf")
 	@Produces(MediaType.APPLICATION_OCTET_STREAM)
-	public byte[] getPdf() throws Exception {
+	public byte[] getPdf(@PathParam("themeType") String themType, @PathParam("themeName") String themeName)
+			throws Exception {
 		auth.requireView();
 
 		if (creditNote == null) {
-			throw new NotFoundException("Invoice not found");
+			throw new NotFoundException("Debit Note not found");
 		}
-		ReportProvider provider = session.getProvider(ReportProvider.class);
-		byte[] report = provider.processReport(creditNote);
+		ReportThemeProvider themeProvider = session.getProvider(ReportThemeProvider.class, "extending");
+		ReportTheme theme = themeProvider.getReportTheme(themeName, ReportTheme.Type.valueOf(themType.toUpperCase()));
+		ReportProvider provider = session.getProvider(ReportProvider.class, themeName);
+		byte[] report = provider.processReport(creditNote, theme);
 		return report;
 	}
 

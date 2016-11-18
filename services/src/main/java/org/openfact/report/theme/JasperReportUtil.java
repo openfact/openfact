@@ -15,12 +15,13 @@
  * limitations under the License.
  *******************************************************************************/
 
-package org.openfact.report;
+package org.openfact.report.theme;
 
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import org.openfact.Config;
+import org.openfact.report.ReportTheme;
 
 import java.io.IOException;
 import java.net.URL;

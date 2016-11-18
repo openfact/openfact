@@ -15,52 +15,42 @@
  * limitations under the License.
  *******************************************************************************/
 
-package org.openfact.report;
+package org.openfact.report.theme;
 
-import java.io.File;
-import java.io.FileFilter;
 import java.io.IOException;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+
+import org.openfact.report.ReportTheme;
+import org.openfact.report.ReportThemeProvider;
+import org.openfact.report.ReportTheme.Type;
 
 /**
  * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  */
-public class FolderReportProvider implements ReportThemeProvider {
+public class JarReportProvider implements ReportThemeProvider {
 
-    private File templatesDir;
+    private Map<ReportTheme.Type, Map<String, ClassLoaderReport>> reports;
 
-    public FolderReportProvider(File templatesDir) {
-        this.templatesDir = templatesDir;
+    public JarReportProvider(Map<ReportTheme.Type, Map<String, ClassLoaderReport>> reports) {
+        this.reports = reports;
     }
 
     @Override
     public int getProviderPriority() {
-        return 100;
+        return 0;
     }
 
     @Override
     public ReportTheme getReportTheme(String name, ReportTheme.Type type) throws IOException {
-        File templateDir = getTemplateDir(name, type);
-        return templateDir.isDirectory() ? new FolderReport(templateDir, name, type) : null;
+        return hasReportTheme(name, type) ? reports.get(type).get(name) : null;
     }
 
     @Override
     public Set<String> nameSet(ReportTheme.Type type) {
-        final String typeName = type.name().toLowerCase();
-        File[] templateDirs = templatesDir.listFiles(new FileFilter() {
-            @Override
-            public boolean accept(File pathname) {
-                return pathname.isDirectory() && new File(pathname, typeName).isDirectory();
-            }
-        });
-        if (templateDirs != null) {
-            Set<String> names = new HashSet<String>();
-            for (File templateDir : templateDirs) {
-                names.add(templateDir.getName());
-            }
-            return names;
+        if (reports.containsKey(type)) {
+            return reports.get(type).keySet();
         } else {
             return Collections.emptySet();
         }
@@ -68,15 +58,11 @@ public class FolderReportProvider implements ReportThemeProvider {
 
     @Override
     public boolean hasReportTheme(String name, ReportTheme.Type type) {
-        return getTemplateDir(name, type).isDirectory();
+        return reports.containsKey(type) && reports.get(type).containsKey(name);
     }
 
     @Override
     public void close() {
-    }
-
-    private File getTemplateDir(String name, ReportTheme.Type type) {
-        return new File(templatesDir, name + File.separator + type.name().toLowerCase());
     }
 
 }
