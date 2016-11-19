@@ -4,11 +4,11 @@ import org.openfact.Config.Scope;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 
-public class DefaultReportProviderFactory implements ReportProviderFactory {
+public class DefaultDebitNoteReportProviderFactory implements ReportProviderFactory {
 
 	@Override
 	public ReportProvider create(OpenfactSession session) {
-		return new DefaultReportProvider(session);
+		return new DefaultDebitNoteReportProvider(session);
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class DefaultReportProviderFactory implements ReportProviderFactory {
 
 	@Override
 	public String getId() {
-		return "default";
+		return "default-debitnote";
 	}
 
 }

@@ -30,17 +30,20 @@ import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.report.ReportProvider;
 import org.openfact.report.ReportTheme;
 import org.openfact.report.ReportTheme.Type;
+import org.openfact.report.ReportThemeProvider;
 import org.openfact.representations.idm.report.InvoiceReport;
 import org.openfact.representations.idm.ubl.InvoiceRepresentation;
 import org.openfact.representations.idm.ubl.common.InvoiceLineRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.InvoiceManager;
+import org.openfact.theme.ThemeProvider;
 import org.openfact.ubl.UblIDGeneratorProvider;
 import org.w3c.dom.Document;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
+import javax.ws.rs.core.Response.ResponseBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -155,16 +158,22 @@ public class InvoiceAdminResource {
 	 */
 	@GET
 	@Path("pdf")
-	@Produces(MediaType.APPLICATION_OCTET_STREAM)
-	public byte[] getPdf() throws Exception {
+	@Produces("application/pdf")
+	public Response getPdf(@PathParam("themeType") String themType, @PathParam("themeName") String themeName)
+			throws Exception {
 		auth.requireView();
 
 		if (invoice == null) {
 			throw new NotFoundException("Invoice not found");
 		}
-		ReportProvider provider = session.getProvider(ReportProvider.class);
-		byte[] report = provider.processReport(invoice);
-		return report;
+		ReportThemeProvider themeProvider = session.getProvider(ReportThemeProvider.class, "extending");
+		ReportTheme theme = themeProvider.getReportTheme(themeName, ReportTheme.Type.valueOf(themType.toUpperCase()));
+		ReportProvider provider = session.getProvider(ReportProvider.class, themeName);
+		byte[] report = provider.processReport(invoice, theme);
+		ResponseBuilder response = Response.ok(report);
+		response.type("application/pdf");
+		response.header("content-disposition", "attachment; filename=\"" + invoice.getID() + ".pdf\"");
+		return response.build();
 	}
 
 	@GET
@@ -173,31 +182,31 @@ public class InvoiceAdminResource {
 	public List<InvoiceLineRepresentation> getLines() {
 		auth.requireView();
 
-        return invoice.getInvoiceLine().stream().map(f -> ModelToRepresentation.toRepresentation(f))
-                .collect(Collectors.toList());
-    }
+		return invoice.getInvoiceLine().stream().map(f -> ModelToRepresentation.toRepresentation(f))
+				.collect(Collectors.toList());
+	}
 
-    /**
-     * Deletes invoice with given invoiceId.
-     *
-     * @throws AuthorizationException
-     *             The user is not authorized to delete this invoice.
-     */
-    @DELETE
-    public Response deleteInvoice() {
-        auth.requireManage();
+	/**
+	 * Deletes invoice with given invoiceId.
+	 *
+	 * @throws AuthorizationException
+	 *             The user is not authorized to delete this invoice.
+	 */
+	@DELETE
+	public Response deleteInvoice() {
+		auth.requireManage();
 
-        if (invoice == null) {
-            throw new NotFoundException("Invoice not found");
-        }
+		if (invoice == null) {
+			throw new NotFoundException("Invoice not found");
+		}
 
-        boolean removed = new InvoiceManager(session).removeInvoice(organization, invoice);
-        if (removed) {
-            adminEvent.operation(OperationType.DELETE).resourcePath(uriInfo).success();
-            return Response.noContent().build();
-        } else {
-            return ErrorResponse.error("Invoice couldn't be deleted", Response.Status.BAD_REQUEST);
-        }
-    }
+		boolean removed = new InvoiceManager(session).removeInvoice(organization, invoice);
+		if (removed) {
+			adminEvent.operation(OperationType.DELETE).resourcePath(uriInfo).success();
+			return Response.noContent().build();
+		} else {
+			return ErrorResponse.error("Invoice couldn't be deleted", Response.Status.BAD_REQUEST);
+		}
+	}
 
 }

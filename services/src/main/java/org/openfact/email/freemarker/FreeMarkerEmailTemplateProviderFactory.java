@@ -22,7 +22,7 @@ import org.openfact.email.EmailTemplateProvider;
 import org.openfact.email.EmailTemplateProviderFactory;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
-import org.openfact.report.JasperReportUtil;
+import org.openfact.report.theme.JasperReportUtil;
 import org.openfact.theme.FreeMarkerUtil;
 
 /**
