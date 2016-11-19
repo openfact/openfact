@@ -85,6 +85,29 @@ public class CreditNoteAdminResource {
         return rep;
     }
 
+	@GET
+	@Path("text")
+	@NoCache
+	@Produces("application/text")
+	public Response getCreditNoteAsText() {
+		auth.requireView();
+
+		if (creditNote == null) {
+			throw new NotFoundException("Invoice not found");
+		}
+
+		String text = null;
+		try {
+			Document document = DocumentUtils.byteToDocument(ArrayUtils.toPrimitive(creditNote.getXmlDocument()));
+			text = DocumentUtils.getDocumentToString(document);
+		} catch (Exception e) {
+			return ErrorResponse.exists("Invalid xml");
+		}
+
+		Response.ResponseBuilder response = Response.ok(text);
+		return response.build();
+	}
+
     @GET
     @Path("xml")
     @NoCache

@@ -100,6 +100,52 @@ public class InvoiceAdminResource {
 		return rep;
 	}
 
+	@GET
+	@Path("text")
+	@NoCache
+	@Produces("application/text")
+	public Response getInvoiceAsText() {
+		auth.requireView();
+
+		if (invoice == null) {
+			throw new NotFoundException("Invoice not found");
+		}
+
+		String text = null;
+		try {
+			Document document = DocumentUtils.byteToDocument(ArrayUtils.toPrimitive(invoice.getXmlDocument()));
+			text = DocumentUtils.getDocumentToString(document);
+		} catch (Exception e) {
+			return ErrorResponse.exists("Invalid xml");
+		}
+
+		Response.ResponseBuilder response = Response.ok(text);
+		return response.build();
+	}
+
+	@GET
+	@Path("xml")
+	@NoCache
+	@Produces("application/xml")
+	public Response getDebitNoteAsXml() {
+		auth.requireView();
+
+		if (invoice == null) {
+			throw new NotFoundException("Invoice not found");
+		}
+
+		Document document = null;
+		try {
+			document = DocumentUtils.byteToDocument(ArrayUtils.toPrimitive(invoice.getXmlDocument()));
+		} catch (Exception e) {
+			return ErrorResponse.exists("Invalid xml");
+		}
+
+		Response.ResponseBuilder response = Response.ok((Object) document);
+		response.header("Content-Disposition", "attachment; filename=\"" + invoice.getID() + ".xml\"");
+		return response.build();
+	}
+
 	/**
 	 * Get the invoice report with the specified invoiceId.
 	 *

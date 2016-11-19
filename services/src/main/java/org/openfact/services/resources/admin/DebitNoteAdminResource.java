@@ -86,6 +86,29 @@ public class DebitNoteAdminResource {
     }
 
     @GET
+    @Path("text")
+    @NoCache
+    @Produces("application/text")
+    public Response getDebitNoteAsText() {
+        auth.requireView();
+
+        if (debitNote == null) {
+            throw new NotFoundException("Invoice not found");
+        }
+
+        String text = null;
+        try {
+            Document document = DocumentUtils.byteToDocument(ArrayUtils.toPrimitive(debitNote.getXmlDocument()));
+            text = DocumentUtils.getDocumentToString(document);
+        } catch (Exception e) {
+            return ErrorResponse.exists("Invalid xml");
+        }
+
+        Response.ResponseBuilder response = Response.ok(text);
+        return response.build();
+    }
+
+    @GET
     @Path("xml")
     @NoCache
     @Produces("application/xml")
