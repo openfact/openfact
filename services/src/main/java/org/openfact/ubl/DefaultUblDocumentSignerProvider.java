@@ -44,7 +44,7 @@ public class DefaultUblDocumentSignerProvider implements UblDocumentSignerProvid
     }
 
     @Override
-    public Document sign(Document document, UblDocumentType type, OrganizationModel organization) {
+    public Document sign(Document document, OrganizationModel organization) {
         try {
             XMLSignatureFactory signatureFactory = XMLSignatureFactory.getInstance();
             Reference reference = signatureFactory.newReference("",

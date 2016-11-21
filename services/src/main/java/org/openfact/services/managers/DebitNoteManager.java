@@ -115,7 +115,7 @@ public class DebitNoteManager {
         Document signedDocument = null;
         UblDocumentSignerProvider signerProvider = session.getProvider(UblDocumentSignerProvider.class);
         if (signerProvider != null) {
-            signedDocument = signerProvider.sign(baseDocument, UblDocumentType.DEBIT_NOTE, organization);
+            signedDocument = signerProvider.sign(baseDocument, organization);
         }
 
         try {

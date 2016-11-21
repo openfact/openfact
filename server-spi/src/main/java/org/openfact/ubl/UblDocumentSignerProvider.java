@@ -23,6 +23,6 @@ import org.w3c.dom.Document;
 
 public interface UblDocumentSignerProvider extends Provider {
 
-    Document sign(Document document, UblDocumentType type, OrganizationModel organization);
+    Document sign(Document document, OrganizationModel organization);
 
 }
