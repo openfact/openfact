@@ -96,7 +96,7 @@ public class DebitNoteEntity {
 	protected Collection<DebitNoteAttributeEntity> attributes = new ArrayList<>();
 
 	@ManyToMany(mappedBy="debitNotes", cascade = { CascadeType.ALL })	
-	protected List<SendEventEntity> sendEvents = new ArrayList<>();
+	protected List<DebitNoteSendEventEntity> sendEvents = new ArrayList<>();
 
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -600,11 +600,11 @@ public class DebitNoteEntity {
 		this.debitNoteLine = debitNoteLine;
 	}
 
-	public List<SendEventEntity> getSendEvents() {
+	public List<DebitNoteSendEventEntity> getSendEvents() {
 		return sendEvents;
 	}
 
-	public void setSendEvents(List<SendEventEntity> sendEvents) {
+	public void setSendEvents(List<DebitNoteSendEventEntity> sendEvents) {
 		this.sendEvents = sendEvents;
 	}
 

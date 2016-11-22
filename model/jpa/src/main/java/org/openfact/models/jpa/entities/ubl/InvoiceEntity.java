@@ -100,7 +100,7 @@ public class InvoiceEntity {
 	protected Collection<InvoiceAttributeEntity> attributes = new ArrayList<>();
 
 	@ManyToMany(mappedBy = "invoices", cascade = { CascadeType.ALL })
-	protected List<SendEventEntity> sendEvents = new ArrayList<>();
+	protected List<InvoiceSendEventEntity> sendEvents = new ArrayList<>();
 
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -699,11 +699,11 @@ public class InvoiceEntity {
 		this.invoiceLine = invoiceLine;
 	}
 
-	public List<SendEventEntity> getSendEvents() {
+	public List<InvoiceSendEventEntity> getSendEvents() {
 		return sendEvents;
 	}
 
-	public void setSendEvents(List<SendEventEntity> sendEvents) {
+	public void setSendEvents(List<InvoiceSendEventEntity> sendEvents) {
 		this.sendEvents = sendEvents;
 	}
 
