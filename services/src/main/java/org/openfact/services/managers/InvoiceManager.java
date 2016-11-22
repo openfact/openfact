@@ -107,7 +107,7 @@ public class InvoiceManager {
         Document signedDocument = null;
         UblDocumentSignerProvider signerProvider = session.getProvider(UblDocumentSignerProvider.class);
         if (signerProvider != null) {
-            signedDocument = signerProvider.sign(baseDocument, UblDocumentType.INVOICE, organization);
+            signedDocument = signerProvider.sign(baseDocument, organization);
         }
 
         try {

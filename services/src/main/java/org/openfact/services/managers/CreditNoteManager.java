@@ -112,7 +112,7 @@ public class CreditNoteManager {
         Document signedDocument = null;
         UblDocumentSignerProvider signerProvider = session.getProvider(UblDocumentSignerProvider.class);
         if (signerProvider != null) {
-            signedDocument = signerProvider.sign(baseDocument, UblDocumentType.CREDIT_NOTE, organization);
+            signedDocument = signerProvider.sign(baseDocument, organization);
         }
 
         try {
