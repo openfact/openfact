@@ -25,6 +25,7 @@ import org.openfact.models.ubl.provider.DebitNoteProvider;
 import org.openfact.models.ubl.provider.InvoiceProvider;
 import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
+import org.openfact.ubl.UblSendEventProvider;
 
 import java.util.*;
 
@@ -33,216 +34,233 @@ import java.util.*;
  */
 public class DefaultOpenfactSession implements OpenfactSession {
 
-    private final DefaultOpenfactSessionFactory factory;
-    private final Map<Integer, Provider> providers = new HashMap<>();
-    private final List<Provider> closable = new LinkedList<Provider>();
-    private final DefaultOpenfactTransactionManager transactionManager;
-    private final Map<String, Object> attributes = new HashMap<>();
-    private OrganizationProvider model;
-    private OpenfactContext context;
-    private KeyManager keyManager;
+	private final DefaultOpenfactSessionFactory factory;
+	private final Map<Integer, Provider> providers = new HashMap<>();
+	private final List<Provider> closable = new LinkedList<Provider>();
+	private final DefaultOpenfactTransactionManager transactionManager;
+	private final Map<String, Object> attributes = new HashMap<>();
+	private OrganizationProvider model;
+	private OpenfactContext context;
+	private KeyManager keyManager;
 
-    private InvoiceProvider invoices;
-    private CreditNoteProvider creditNotes;
-    private DebitNoteProvider debitNotes;
+	private InvoiceProvider invoices;
+	private CreditNoteProvider creditNotes;
+	private DebitNoteProvider debitNotes;
+	private UblSendEventProvider ublSendEvent;
 
-    public DefaultOpenfactSession(DefaultOpenfactSessionFactory factory) {
-        this.factory = factory;
-        this.transactionManager = new DefaultOpenfactTransactionManager(this);
-        context = new DefaultOpenfactContext(this);
-    }
+	public DefaultOpenfactSession(DefaultOpenfactSessionFactory factory) {
+		this.factory = factory;
+		this.transactionManager = new DefaultOpenfactTransactionManager(this);
+		context = new DefaultOpenfactContext(this);
+	}
 
-    @Override
-    public OpenfactContext getContext() {
-        return context;
-    }
+	@Override
+	public OpenfactContext getContext() {
+		return context;
+	}
 
-    private OrganizationProvider getOrganizationProvider() {
-        OrganizationProvider cache = getProvider(OrganizationProvider.class);
-        if (cache != null) {
-            return cache;
-        } else {
-            return getProvider(OrganizationProvider.class);
-        }
-    }
+	private OrganizationProvider getOrganizationProvider() {
+		OrganizationProvider cache = getProvider(OrganizationProvider.class);
+		if (cache != null) {
+			return cache;
+		} else {
+			return getProvider(OrganizationProvider.class);
+		}
+	}
 
-    private InvoiceProvider getInvoiceProvider() {
-        InvoiceProvider cache = getProvider(InvoiceProvider.class);
-        if (cache != null) {
-            return cache;
-        } else {
-            return getProvider(InvoiceProvider.class);
-        }
-    }
+	private InvoiceProvider getInvoiceProvider() {
+		InvoiceProvider cache = getProvider(InvoiceProvider.class);
+		if (cache != null) {
+			return cache;
+		} else {
+			return getProvider(InvoiceProvider.class);
+		}
+	}
 
-    private CreditNoteProvider getCreditNoteProvider() {
-        CreditNoteProvider cache = getProvider(CreditNoteProvider.class);
-        if (cache != null) {
-            return cache;
-        } else {
-            return getProvider(CreditNoteProvider.class);
-        }
-    }
+	private CreditNoteProvider getCreditNoteProvider() {
+		CreditNoteProvider cache = getProvider(CreditNoteProvider.class);
+		if (cache != null) {
+			return cache;
+		} else {
+			return getProvider(CreditNoteProvider.class);
+		}
+	}
 
-    private DebitNoteProvider getDebitNoteProvider() {
-        DebitNoteProvider cache = getProvider(DebitNoteProvider.class);
-        if (cache != null) {
-            return cache;
-        } else {
-            return getProvider(DebitNoteProvider.class);
-        }
-    }
+	private DebitNoteProvider getDebitNoteProvider() {
+		DebitNoteProvider cache = getProvider(DebitNoteProvider.class);
+		if (cache != null) {
+			return cache;
+		} else {
+			return getProvider(DebitNoteProvider.class);
+		}
+	}
 
-    @Override
-    public void enlistForClose(Provider provider) {
-        closable.add(provider);
-    }
+	@Override
+	public void enlistForClose(Provider provider) {
+		closable.add(provider);
+	}
 
-    @Override
-    public Object getAttribute(String attribute) {
-        return attributes.get(attribute);
-    }
+	@Override
+	public Object getAttribute(String attribute) {
+		return attributes.get(attribute);
+	}
 
-    @Override
-    public Object removeAttribute(String attribute) {
-        return attributes.remove(attribute);
-    }
+	@Override
+	public Object removeAttribute(String attribute) {
+		return attributes.remove(attribute);
+	}
 
-    @Override
-    public void setAttribute(String name, Object value) {
-        attributes.put(name, value);
-    }
+	@Override
+	public void setAttribute(String name, Object value) {
+		attributes.put(name, value);
+	}
 
-    @Override
-    public OpenfactTransactionManager getTransactionManager() {
-        return transactionManager;
-    }
+	@Override
+	public OpenfactTransactionManager getTransactionManager() {
+		return transactionManager;
+	}
 
-    @Override
-    public OpenfactSessionFactory getOpenfactSessionFactory() {
-        return factory;
-    }
+	@Override
+	public OpenfactSessionFactory getOpenfactSessionFactory() {
+		return factory;
+	}
 
-    public <T extends Provider> T getProvider(Class<T> clazz) {
-        Integer hash = clazz.hashCode();
-        T provider = (T) providers.get(hash);
-        if (provider == null) {
-            ProviderFactory<T> providerFactory = factory.getProviderFactory(clazz);
-            if (providerFactory != null) {
-                provider = providerFactory.create(this);
-                providers.put(hash, provider);
-            }
-        }
-        return provider;
-    }
+	public <T extends Provider> T getProvider(Class<T> clazz) {
+		Integer hash = clazz.hashCode();
+		T provider = (T) providers.get(hash);
+		if (provider == null) {
+			ProviderFactory<T> providerFactory = factory.getProviderFactory(clazz);
+			if (providerFactory != null) {
+				provider = providerFactory.create(this);
+				providers.put(hash, provider);
+			}
+		}
+		return provider;
+	}
 
-    public <T extends Provider> T getProvider(Class<T> clazz, String id) {
-        Integer hash = clazz.hashCode() + id.hashCode();
-        T provider = (T) providers.get(hash);
-        if (provider == null) {
-            ProviderFactory<T> providerFactory = factory.getProviderFactory(clazz, id);
+	public <T extends Provider> T getProvider(Class<T> clazz, String id) {
+		Integer hash = clazz.hashCode() + id.hashCode();
+		T provider = (T) providers.get(hash);
+		if (provider == null) {
+			ProviderFactory<T> providerFactory = factory.getProviderFactory(clazz, id);
 
-            if (providerFactory != null) {
-                provider = providerFactory.create(this);
-                providers.put(hash, provider);
-            }
-        }
-        return provider;
-    }
+			if (providerFactory != null) {
+				provider = providerFactory.create(this);
+				providers.put(hash, provider);
+			}
+		}
+		return provider;
+	}
 
-    @Override
-    public <T extends Provider> T getProvider(Class<T> clazz, ComponentModel componentModel) {
-        String modelId = componentModel.getProviderType() + "::" + componentModel.getId();
+	@Override
+	public <T extends Provider> T getProvider(Class<T> clazz, ComponentModel componentModel) {
+		String modelId = componentModel.getProviderType() + "::" + componentModel.getId();
 
-        Object found = getAttribute(modelId);
-        if (found != null) {
-            return clazz.cast(found);
-        }
+		Object found = getAttribute(modelId);
+		if (found != null) {
+			return clazz.cast(found);
+		}
 
-        ProviderFactory<T> providerFactory = factory.getProviderFactory(clazz, componentModel.getProviderId());
-        if (providerFactory == null) {
-            return null;
-        }
+		ProviderFactory<T> providerFactory = factory.getProviderFactory(clazz, componentModel.getProviderId());
+		if (providerFactory == null) {
+			return null;
+		}
 
-        ComponentFactory<T, T> componentFactory = (ComponentFactory<T, T>) providerFactory;
-        T provider = componentFactory.create(this, componentModel);
-        enlistForClose(provider);
-        setAttribute(modelId, provider);
+		ComponentFactory<T, T> componentFactory = (ComponentFactory<T, T>) providerFactory;
+		T provider = componentFactory.create(this, componentModel);
+		enlistForClose(provider);
+		setAttribute(modelId, provider);
 
-        return provider;
-    }
+		return provider;
+	}
 
-    public <T extends Provider> Set<String> listProviderIds(Class<T> clazz) {
-        return factory.getAllProviderIds(clazz);
-    }
+	public <T extends Provider> Set<String> listProviderIds(Class<T> clazz) {
+		return factory.getAllProviderIds(clazz);
+	}
 
-    @Override
-    public <T extends Provider> Set<T> getAllProviders(Class<T> clazz) {
-        Set<T> providers = new HashSet<T>();
-        for (String id : listProviderIds(clazz)) {
-            providers.add(getProvider(clazz, id));
-        }
-        return providers;
-    }
+	@Override
+	public <T extends Provider> Set<T> getAllProviders(Class<T> clazz) {
+		Set<T> providers = new HashSet<T>();
+		for (String id : listProviderIds(clazz)) {
+			providers.add(getProvider(clazz, id));
+		}
+		return providers;
+	}
 
-    @Override
-    public Class<? extends Provider> getProviderClass(String providerClassName) {
-        return factory.getProviderClass(providerClassName);
-    }
+	@Override
+	public Class<? extends Provider> getProviderClass(String providerClassName) {
+		return factory.getProviderClass(providerClassName);
+	}
 
-    @Override
-    public OrganizationProvider organizations() {
-        if (model == null) {
-            model = getOrganizationProvider();
-        }
-        return model;
-    }
+	@Override
+	public OrganizationProvider organizations() {
+		if (model == null) {
+			model = getOrganizationProvider();
+		}
+		return model;
+	}
 
-    @Override
-    public InvoiceProvider invoices() {
-        if (invoices == null) {
-            invoices = getInvoiceProvider();
-        }
-        return invoices;
-    }
+	@Override
+	public InvoiceProvider invoices() {
+		if (invoices == null) {
+			invoices = getInvoiceProvider();
+		}
+		return invoices;
+	}
 
-    @Override
-    public CreditNoteProvider creditNotes() {
-        if (creditNotes == null) {
-            creditNotes = getCreditNoteProvider();
-        }
-        return creditNotes;
-    }
+	@Override
+	public CreditNoteProvider creditNotes() {
+		if (creditNotes == null) {
+			creditNotes = getCreditNoteProvider();
+		}
+		return creditNotes;
+	}
 
-    @Override
-    public DebitNoteProvider debitNotes() {
-        if (debitNotes == null) {
-            debitNotes = getDebitNoteProvider();
-        }
-        return debitNotes;
-    }
+	@Override
+	public DebitNoteProvider debitNotes() {
+		if (debitNotes == null) {
+			debitNotes = getDebitNoteProvider();
+		}
+		return debitNotes;
+	}
 
-    @Override
-    public KeyManager keys() {
-        if (keyManager == null) {
-            keyManager = new DefaultKeyManager(this);
-        }
-        return keyManager;
-    }
+	@Override
+	public KeyManager keys() {
+		if (keyManager == null) {
+			keyManager = new DefaultKeyManager(this);
+		}
+		return keyManager;
+	}
 
-    public void close() {
-        for (Provider p : providers.values()) {
-            try {
-                p.close();
-            } catch (Exception e) {
-            }
-        }
-        for (Provider p : closable) {
-            try {
-                p.close();
-            } catch (Exception e) {
-            }
-        }
-    }
+	public void close() {
+		for (Provider p : providers.values()) {
+			try {
+				p.close();
+			} catch (Exception e) {
+			}
+		}
+		for (Provider p : closable) {
+			try {
+				p.close();
+			} catch (Exception e) {
+			}
+		}
+	}
 
+	@Override
+	public UblSendEventProvider sendEvents(String id) {
+		if (ublSendEvent == null) {
+			ublSendEvent = getSendEventProvider(id);
+		}
+		return ublSendEvent;
+	}
+
+	public UblSendEventProvider getSendEventProvider(String id) {
+		UblSendEventProvider cache = getProvider(UblSendEventProvider.class, id);
+		if (cache != null) {
+			return cache;
+		} else {
+			return getProvider(UblSendEventProvider.class, id);
+		}
+	}
 }

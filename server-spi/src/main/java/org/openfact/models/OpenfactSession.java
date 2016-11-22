@@ -22,6 +22,7 @@ import org.openfact.models.ubl.provider.CreditNoteProvider;
 import org.openfact.models.ubl.provider.DebitNoteProvider;
 import org.openfact.models.ubl.provider.InvoiceProvider;
 import org.openfact.provider.Provider;
+import org.openfact.ubl.UblSendEventProvider;
 
 import java.util.Set;
 
@@ -100,6 +101,8 @@ public interface OpenfactSession {
     CreditNoteProvider creditNotes();
 
     DebitNoteProvider debitNotes();
+    
+    UblSendEventProvider sendEvents(String id);
 
     void close();
 

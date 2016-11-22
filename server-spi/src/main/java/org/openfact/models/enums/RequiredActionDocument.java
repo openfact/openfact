@@ -23,21 +23,22 @@ import java.util.stream.Stream;
 
 public enum RequiredActionDocument {
 
-    SEND_EMAIL_CUSTOMER(true);
+	SEND_EMAIL_CUSTOMER(true), 
+	SEND_SOA_DOCUMENT(true);
 
-    private boolean isDefault;
+	private boolean isDefault;
 
-    private RequiredActionDocument(boolean isDefault) {
-        this.isDefault = isDefault;
-    }
+	private RequiredActionDocument(boolean isDefault) {
+		this.isDefault = isDefault;
+	}
 
-    public boolean isDefault() {
-        return isDefault;
-    }
+	public boolean isDefault() {
+		return isDefault;
+	}
 
-    public static List<RequiredActionDocument> getDefaults() {
-        Stream<RequiredActionDocument> stream = Arrays.stream(RequiredActionDocument.values());
-        return stream.filter(p -> p.isDefault).collect(Collectors.toList());
-    }
+	public static List<RequiredActionDocument> getDefaults() {
+		Stream<RequiredActionDocument> stream = Arrays.stream(RequiredActionDocument.values());
+		return stream.filter(p -> p.isDefault).collect(Collectors.toList());
+	}
 
 }
