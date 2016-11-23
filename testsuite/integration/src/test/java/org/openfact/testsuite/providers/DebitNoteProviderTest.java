@@ -26,11 +26,11 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.openfact.models.DebitNoteModel;
+import org.openfact.models.DebitNoteProvider;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
-import org.openfact.models.ubl.DebitNoteModel;
-import org.openfact.models.ubl.provider.DebitNoteProvider;
 
 public class DebitNoteProviderTest extends AbstractProviderTest {
 
@@ -51,7 +51,7 @@ public class DebitNoteProviderTest extends AbstractProviderTest {
 
         assertThat(debitNote, is(notNullValue()));
         assertThat(debitNote.getId(), is(notNullValue()));
-        assertThat(debitNote.getID(), is("D002-0003"));
+        assertThat(debitNote.getDocumentId(), is("D002-0003"));
     }
 
     @Test
@@ -74,18 +74,6 @@ public class DebitNoteProviderTest extends AbstractProviderTest {
         }
         commit(true);
 
-        // Ty to rename debitNote to duplicate series and number
-        sistcoop1 = session.organizations().getOrganizationByName("SISTCOOP1");
-        session.debitNotes().addDebitNote(sistcoop1, "D01-002");
-        commit();
-        try {
-            sistcoop1 = session.organizations().getOrganizationByName("SISTCOOP1");
-            session.debitNotes().getDebitNoteByID(sistcoop1, "D01-002").setID("D01-001");
-            commit();
-            Assert.fail("Expected exception");
-        } catch (ModelDuplicateException e) {
-        }
-
         resetSession();
     }
 
@@ -99,7 +87,7 @@ public class DebitNoteProviderTest extends AbstractProviderTest {
         assertThat(debitNote2, is(notNullValue()));
         assertThat(debitNote2.getId(), is(notNullValue()));
         assertThat(debitNote2.getId(), is(equalTo(debitNote1.getId())));
-        assertThat(debitNote2.getID(), is(equalTo(debitNote1.getID())));
+        assertThat(debitNote2.getDocumentId(), is(equalTo(debitNote1.getDocumentId())));
     }
 
     @Test
@@ -113,7 +101,7 @@ public class DebitNoteProviderTest extends AbstractProviderTest {
         assertThat(debitNote2, is(notNullValue()));
         assertThat(debitNote2.getId(), is(notNullValue()));
         assertThat(debitNote2.getId(), is(equalTo(debitNote1.getId())));
-        assertThat(debitNote2.getID(), is(equalTo(debitNote1.getID())));
+        assertThat(debitNote2.getDocumentId(), is(equalTo(debitNote1.getDocumentId())));
     }
 
     @Test

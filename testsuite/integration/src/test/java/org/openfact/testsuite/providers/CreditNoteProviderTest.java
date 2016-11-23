@@ -26,11 +26,11 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.openfact.models.CreditNoteModel;
+import org.openfact.models.CreditNoteProvider;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
-import org.openfact.models.ubl.CreditNoteModel;
-import org.openfact.models.ubl.provider.CreditNoteProvider;
 
 public class CreditNoteProviderTest extends AbstractProviderTest {
 
@@ -51,7 +51,7 @@ public class CreditNoteProviderTest extends AbstractProviderTest {
 
         assertThat(creditNote, is(notNullValue()));
         assertThat(creditNote.getId(), is(notNullValue()));
-        assertThat(creditNote.getID(), is("C002-0003"));
+        assertThat(creditNote.getDocumentId(), is("C002-0003"));
     }
 
     @Test
@@ -74,18 +74,6 @@ public class CreditNoteProviderTest extends AbstractProviderTest {
         }
         commit(true);
 
-        // Ty to rename creditNote to duplicate series and number
-        sistcoop1 = session.organizations().getOrganizationByName("SISTCOOP1");
-        session.creditNotes().addCreditNote(sistcoop1, "C01-002");
-        commit();
-        try {
-            sistcoop1 = session.organizations().getOrganizationByName("SISTCOOP1");
-            session.creditNotes().getCreditNoteByID(sistcoop1, "C01-002").setID("C01-001");
-            commit();
-            Assert.fail("Expected exception");
-        } catch (ModelDuplicateException e) {
-        }
-
         resetSession();
     }
 
@@ -99,7 +87,7 @@ public class CreditNoteProviderTest extends AbstractProviderTest {
         assertThat(creditNote2, is(notNullValue()));
         assertThat(creditNote2.getId(), is(notNullValue()));
         assertThat(creditNote2.getId(), is(equalTo(creditNote1.getId())));
-        assertThat(creditNote2.getID(), is(equalTo(creditNote1.getID())));
+        assertThat(creditNote2.getDocumentId(), is(equalTo(creditNote1.getDocumentId())));
     }
 
     @Test
@@ -113,7 +101,7 @@ public class CreditNoteProviderTest extends AbstractProviderTest {
         assertThat(creditNote2, is(notNullValue()));
         assertThat(creditNote2.getId(), is(notNullValue()));
         assertThat(creditNote2.getId(), is(equalTo(creditNote1.getId())));
-        assertThat(creditNote2.getID(), is(equalTo(creditNote1.getID())));
+        assertThat(creditNote2.getDocumentId(), is(equalTo(creditNote1.getDocumentId())));
     }
 
     @Test

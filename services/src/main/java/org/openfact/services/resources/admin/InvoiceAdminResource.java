@@ -16,197 +16,208 @@
  *******************************************************************************/
 package org.openfact.services.resources.admin;
 
-import org.apache.commons.lang.ArrayUtils;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
+import javax.ws.rs.core.UriInfo;
+
 import org.jboss.resteasy.annotations.cache.NoCache;
+import org.json.JSONObject;
+import org.json.XML;
 import org.openfact.common.ClientConnection;
 import org.openfact.common.converts.DocumentUtils;
 import org.openfact.events.admin.OperationType;
-import org.openfact.models.ModelException;
+import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.ubl.InvoiceModel;
-import org.openfact.models.utils.ModelToReport;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.report.ReportProvider;
 import org.openfact.report.ReportTheme;
-import org.openfact.report.ReportTheme.Type;
 import org.openfact.report.ReportThemeProvider;
-import org.openfact.representations.idm.report.InvoiceReport;
-import org.openfact.representations.idm.ubl.InvoiceRepresentation;
-import org.openfact.representations.idm.ubl.common.InvoiceLineRepresentation;
+import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.InvoiceManager;
-import org.openfact.theme.ThemeProvider;
-import org.openfact.ubl.UblIDGeneratorProvider;
 import org.w3c.dom.Document;
-
-import javax.ws.rs.*;
-import javax.ws.rs.core.*;
-import javax.ws.rs.core.Response.ResponseBuilder;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Properties;
-import java.util.stream.Collectors;
 
 public class InvoiceAdminResource {
 
-	private static final ServicesLogger logger = ServicesLogger.LOGGER;
+    private static final ServicesLogger logger = ServicesLogger.LOGGER;
 
-	protected OrganizationModel organization;
-	protected InvoiceModel invoice;
-	@Context
-	protected UriInfo uriInfo;
-	@Context
-	protected OpenfactSession session;
-	@Context
-	protected ClientConnection clientConnection;
-	@Context
-	protected HttpHeaders headers;
-	private OrganizationAuth auth;
-	private AdminEventBuilder adminEvent;
+    @Context
+    protected UriInfo uriInfo;
 
-	public InvoiceAdminResource(OrganizationModel organization, OrganizationAuth auth, AdminEventBuilder adminEvent,
-			InvoiceModel invoice) {
-		this.auth = auth;
-		this.organization = organization;
-		this.adminEvent = adminEvent;
-		this.invoice = invoice;
+    @Context
+    protected OpenfactSession session;
 
-		auth.init(OrganizationAuth.Resource.INVOICE);
-	}
+    @Context
+    protected ClientConnection clientConnection;
 
-	/**
-	 * Get the invoice with the specified invoiceId.
-	 *
-	 * @return The invoice with the specified invoiceId
-	 * @summary Get the invoice with the specified invoiceId
-	 */
-	@GET
-	@NoCache
-	@Produces(MediaType.APPLICATION_JSON)
-	public InvoiceRepresentation getInvoice(@QueryParam("includeXml") boolean includeXml) {
-		auth.requireView();
+    @Context
+    protected HttpHeaders headers;
 
-		if (invoice == null) {
-			throw new NotFoundException("Invoice not found");
-		}
+    protected OrganizationModel organization;
+    protected InvoiceModel invoice;
 
-		InvoiceRepresentation rep = ModelToRepresentation.toRepresentation(invoice, includeXml);
-		return rep;
-	}
+    private OrganizationAuth auth;
+    private AdminEventBuilder adminEvent;
 
-	@GET
-	@Path("text")
-	@NoCache
-	@Produces("application/text")
-	public Response getInvoiceAsText() {
-		auth.requireView();
+    public InvoiceAdminResource(OrganizationModel organization, OrganizationAuth auth,
+            AdminEventBuilder adminEvent, InvoiceModel invoice) {
+        this.auth = auth;
+        this.organization = organization;
+        this.adminEvent = adminEvent;
+        this.invoice = invoice;
+        auth.init(OrganizationAuth.Resource.INVOICE);
+    }
 
-		if (invoice == null) {
-			throw new NotFoundException("Invoice not found");
-		}
+    /**
+     * Get the invoice with the specified invoiceId.
+     *
+     * @return The invoice with the specified invoiceId
+     * @summary Get the invoice with the specified invoiceId
+     */
+    @GET
+    @NoCache
+    @Produces(MediaType.APPLICATION_JSON)
+    public InvoiceRepresentation getInvoice() {
+        auth.requireView();
 
-		String text = null;
-		try {
-			Document document = DocumentUtils.byteToDocument(ArrayUtils.toPrimitive(invoice.getXmlDocument()));
-			text = DocumentUtils.getDocumentToString(document);
-		} catch (Exception e) {
-			return ErrorResponse.exists("Invalid xml");
-		}
+        if (invoice == null) {
+            throw new NotFoundException("Invoice not found");
+        }
 
-		Response.ResponseBuilder response = Response.ok(text);
-		return response.build();
-	}
+        InvoiceRepresentation rep = ModelToRepresentation.toRepresentation(invoice);
+        return rep;
+    }
 
-	@GET
-	@Path("xml")
-	@NoCache
-	@Produces("application/xml")
-	public Response getDebitNoteAsXml() {
-		auth.requireView();
+    @GET
+    @Path("representation/json")
+    @NoCache
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getInvoiceAsJson() {
+        auth.requireView();
 
-		if (invoice == null) {
-			throw new NotFoundException("Invoice not found");
-		}
+        if (invoice == null) {
+            throw new NotFoundException("Invoice not found");
+        }
 
-		Document document = null;
-		try {
-			document = DocumentUtils.byteToDocument(ArrayUtils.toPrimitive(invoice.getXmlDocument()));
-		} catch (Exception e) {
-			return ErrorResponse.exists("Invalid xml");
-		}
+        JSONObject result = null;
+        try {
+            Document document = DocumentUtils.byteToDocument(invoice.getXmlDocument());
+            String text = DocumentUtils.getDocumentToString(document);
+            result = XML.toJSONObject(text);
+        } catch (Exception e) {
+            return ErrorResponse.exists("Invalid xml");
+        }
 
-		Response.ResponseBuilder response = Response.ok((Object) document);
-		response.header("Content-Disposition", "attachment; filename=\"" + invoice.getID() + ".xml\"");
-		return response.build();
-	}
+        Response.ResponseBuilder response = Response.ok(result);
+        return response.build();
+    }
 
-	/**
-	 * Get the invoice report with the specified invoiceId.
-	 *
-	 * @return The byte[] with the specified invoiceId
-	 * @throws Exception
-	 * @summary Get the byte[] with the specified invoiceId
-	 */
-	@GET
-	@Path("pdf")
-	@Produces("application/pdf")
-	public Response getPdf(@PathParam("themeType") String themType, @PathParam("themeName") String themeName)
-			throws Exception {
-		auth.requireView();
+    @GET
+    @Path("representation/text")
+    @NoCache
+    @Produces("application/text")
+    public Response getInvoiceAsText() {
+        auth.requireView();
 
-		if (invoice == null) {
-			throw new NotFoundException("Invoice not found");
-		}
-		ReportThemeProvider themeProvider = session.getProvider(ReportThemeProvider.class, "extending");
-		ReportTheme theme = themeProvider.getReportTheme(themeName, ReportTheme.Type.valueOf(themType.toUpperCase()));
-		ReportProvider provider = session.getProvider(ReportProvider.class, themeName);
-		byte[] report = provider.processReport(invoice, theme);
-		ResponseBuilder response = Response.ok(report);
-		response.type("application/pdf");
-		response.header("content-disposition", "attachment; filename=\"" + invoice.getID() + ".pdf\"");
-		return response.build();
-	}
+        if (invoice == null) {
+            throw new NotFoundException("Invoice not found");
+        }
 
-	@GET
-	@Path("lines")
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<InvoiceLineRepresentation> getLines() {
-		auth.requireView();
+        String result = null;
+        try {
+            Document document = DocumentUtils.byteToDocument(invoice.getXmlDocument());
+            result = DocumentUtils.getDocumentToString(document);
+        } catch (Exception e) {
+            return ErrorResponse.exists("Invalid xml");
+        }
 
-		return invoice.getInvoiceLine().stream().map(f -> ModelToRepresentation.toRepresentation(f))
-				.collect(Collectors.toList());
-	}
+        Response.ResponseBuilder response = Response.ok(result);
+        return response.build();
+    }
 
-	/**
-	 * Deletes invoice with given invoiceId.
-	 *
-	 * @throws AuthorizationException
-	 *             The user is not authorized to delete this invoice.
-	 */
-	@DELETE
-	public Response deleteInvoice() {
-		auth.requireManage();
+    @GET
+    @Path("representation/xml")
+    @NoCache
+    @Produces("application/xml")
+    public Response getDebitNoteAsXml() {
+        auth.requireView();
 
-		if (invoice == null) {
-			throw new NotFoundException("Invoice not found");
-		}
+        if (invoice == null) {
+            throw new NotFoundException("Invoice not found");
+        }
 
-		boolean removed = new InvoiceManager(session).removeInvoice(organization, invoice);
-		if (removed) {
-			adminEvent.operation(OperationType.DELETE).resourcePath(uriInfo).success();
-			return Response.noContent().build();
-		} else {
-			return ErrorResponse.error("Invoice couldn't be deleted", Response.Status.BAD_REQUEST);
-		}
-	}
+        Document result = null;
+        try {
+            result = DocumentUtils.byteToDocument(invoice.getXmlDocument());
+        } catch (Exception e) {
+            return ErrorResponse.exists("Invalid xml parser");
+        }
+
+        Response.ResponseBuilder response = Response.ok((Object) result);
+        return response.build();
+    }
+
+    /**
+     * Get the invoice report with the specified invoiceId.
+     *
+     * @return The byte[] with the specified invoiceId
+     * @throws Exception
+     * @summary Get the byte[] with the specified invoiceId
+     */
+    @GET
+    @Path("representation/pdf")
+    @Produces("application/pdf")
+    public Response getPdf(@PathParam("themeType") String themType, @PathParam("themeName") String themeName)
+            throws Exception {
+        auth.requireView();
+
+        if (invoice == null) {
+            throw new NotFoundException("Invoice not found");
+        }
+        ReportThemeProvider themeProvider = session.getProvider(ReportThemeProvider.class, "extending");
+        ReportTheme theme = themeProvider.getReportTheme(themeName,
+                ReportTheme.Type.valueOf(themType.toUpperCase()));
+        ReportProvider provider = session.getProvider(ReportProvider.class, themeName);
+        byte[] report = provider.processReport(invoice, theme);
+        ResponseBuilder response = Response.ok(report);
+        response.type("application/pdf");
+        response.header("content-disposition",
+                "attachment; filename=\"" + invoice.getDocumentId() + ".pdf\"");
+        return response.build();
+    }
+
+    /**
+     * Deletes invoice with given invoiceId.
+     *
+     * @throws AuthorizationException
+     *             The user is not authorized to delete this invoice.
+     */
+    @DELETE
+    public Response deleteInvoice() {
+        auth.requireManage();
+
+        if (invoice == null) {
+            throw new NotFoundException("Invoice not found");
+        }
+
+        boolean removed = new InvoiceManager(session).removeInvoice(organization, invoice);
+        if (removed) {
+            adminEvent.operation(OperationType.DELETE).resourcePath(uriInfo).success();
+            return Response.noContent().build();
+        } else {
+            return ErrorResponse.error("Invoice couldn't be deleted", Response.Status.BAD_REQUEST);
+        }
+    }
 
 }

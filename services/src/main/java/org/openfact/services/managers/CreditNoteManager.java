@@ -16,36 +16,26 @@
  *******************************************************************************/
 package org.openfact.services.managers;
 
-import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
-import org.apache.commons.lang.ArrayUtils;
+import java.util.Map;
+
+import javax.xml.transform.TransformerException;
+
 import org.jboss.logging.Logger;
 import org.openfact.common.converts.DocumentUtils;
-import org.openfact.email.EmailException;
-import org.openfact.email.EmailTemplateProvider;
+import org.openfact.models.CreditNoteModel;
+import org.openfact.models.CreditNoteProvider;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.UserSenderModel;
 import org.openfact.models.enums.RequiredActionDocument;
-import org.openfact.models.enums.UblDocumentType;
-import org.openfact.models.ubl.CreditNoteModel;
-import org.openfact.models.ubl.common.ContactModel;
-import org.openfact.models.ubl.common.CustomerPartyModel;
-import org.openfact.models.ubl.common.PartyModel;
-import org.openfact.models.ubl.provider.CreditNoteProvider;
-import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.models.utils.TypeToModel;
-import org.openfact.representations.idm.ubl.CreditNoteRepresentation;
-import org.openfact.ubl.UblDocumentProvider;
-import org.openfact.ubl.UblDocumentSignerProvider;
-import org.openfact.ubl.UblExtensionContentGeneratorProvider;
-import org.openfact.ubl.UblIDGeneratorProvider;
+import org.openfact.ubl.CreditNoteIDGeneratorProvider;
+import org.openfact.ubl.CreditNoteReaderWriterProvider;
+import org.openfact.ubl.SignerProvider;
 import org.w3c.dom.Document;
 
-import javax.xml.transform.TransformerException;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.IDType;
+import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
 
 public class CreditNoteManager {
 
@@ -63,106 +53,42 @@ public class CreditNoteManager {
         return model.getCreditNoteByID(organization, ID);
     }
 
-    public CreditNoteModel addCreditNote(OrganizationModel organization, CreditNoteRepresentation rep) {
-        String ID = rep.getIdUbl();
-        if (ID == null) {
-            List<String> referencesID = rep.getDiscrepancyResponse().stream().map(f -> f.getReferenceID()).collect(Collectors.toList());
-
-            UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class);
-            ID = provider.generateCreditNoteID(organization, referencesID.toArray(new String[referencesID.size()]));
+    public CreditNoteModel addCreditNote(OrganizationModel organization, CreditNoteType type,
+            Map<String, String> attributes) {
+        IDType documentId = type.getID();
+        if (documentId == null) {
+            String generatedId = session.getProvider(CreditNoteIDGeneratorProvider.class)
+                    .generateID(organization, type);
+            documentId = new IDType(generatedId);
+            type.setID(documentId);
         }
 
-        CreditNoteModel creditNote = model.addCreditNote(organization, ID);
-        RepresentationToModel.importCreditNote(session, organization, creditNote, rep);
+        CreditNoteModel creditNote = model.addCreditNote(organization, documentId.getValue());
+        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+            creditNote.setAttribute(entry.getKey(), entry.getValue());
+        }
+
+        TypeToModel.importCreditNote(session, organization, creditNote, type);
         RequiredActionDocument.getDefaults().stream().forEach(c -> creditNote.addRequiredAction(c));
-
-        process(organization, creditNote);
-        return creditNote;
-    }
-
-    public CreditNoteModel addCreditNote(OrganizationModel organization, CreditNoteType rep) {
-        String ID = rep.getIDValue();
-        if (ID == null) {
-            List<String> referencesID = rep.getDiscrepancyResponse().stream().map(f -> f.getReferenceIDValue()).collect(Collectors.toList());
-            UblIDGeneratorProvider provider = session.getProvider(UblIDGeneratorProvider.class);
-            ID = provider.generateCreditNoteID(organization, referencesID.toArray(new String[referencesID.size()]));
-        }
-
-        CreditNoteModel creditNote = model.addCreditNote(organization, ID);
-        TypeToModel.importCreditNote(session, organization, creditNote, rep);
-        RequiredActionDocument.getDefaults().stream().forEach(c -> creditNote.addRequiredAction(c));
-
-        process(organization, creditNote);
-        return creditNote;
-    }
-
-    protected void process(OrganizationModel organization, CreditNoteModel creditNote) {
-        // Generate extensions
-        UblExtensionContentGeneratorProvider extensionContentProvider = session
-                .getProvider(UblExtensionContentGeneratorProvider.class);
-        if (extensionContentProvider != null) {
-            extensionContentProvider.generateUBLExtensions(organization, creditNote);
-        }
-
-        // Generate Document from CreditNote
-        UblDocumentProvider documentProvider = session.getProvider(UblDocumentProvider.class);
-        Document baseDocument = documentProvider.getDocument(organization, creditNote);
-
-        // Sign Document
-        Document signedDocument = null;
-        UblDocumentSignerProvider signerProvider = session.getProvider(UblDocumentSignerProvider.class);
-        if (signerProvider != null) {
-            signedDocument = signerProvider.sign(baseDocument, organization);
-        }
 
         try {
-            byte[] bytes = DocumentUtils
-                    .getBytesFromDocument(signedDocument != null ? signedDocument : baseDocument);
-            creditNote.setXmlDocument(ArrayUtils.toObject(bytes));
+            // Generate Document
+            CreditNoteReaderWriterProvider creditNoteReaderProvider = session
+                    .getProvider(CreditNoteReaderWriterProvider.class);
+            Document baseDocument = creditNoteReaderProvider.writeAsDocument(organization, type, attributes);
+
+            // Sign Document
+            SignerProvider signerProvider = session.getProvider(SignerProvider.class);
+            Document signedDocument = signerProvider.sign(baseDocument, organization);
+
+            byte[] bytes = DocumentUtils.getBytesFromDocument(signedDocument);
+            creditNote.setXmlDocument(bytes);
         } catch (TransformerException e) {
             logger.error("Error parsing to byte XML", e);
             throw new ModelException(e);
         }
-    }
 
-    public void sendEmailToCustomerEmail(OrganizationModel organization, CreditNoteModel creditNote)
-            throws EmailException {
-        CustomerPartyModel customerParty = creditNote.getAccountingCustomerParty();
-        if (customerParty != null) {
-            PartyModel party = customerParty.getParty();
-            if (party != null) {
-                ContactModel contact = party.getContact();
-                EmailTemplateProvider provider = session.getProvider(EmailTemplateProvider.class)
-                        .setOrganization(organization).setUser(new UserSenderModel() {
-
-                            @Override
-                            public String getLastName() {
-                                return null;
-                            }
-
-                            @Override
-                            public String getFullName() {
-                                return null;
-                            }
-
-                            @Override
-                            public String getFirstName() {
-                                return null;
-                            }
-
-                            @Override
-                            public String getEmail() {
-                                return contact.getElectronicMail();
-                            }
-
-                            @Override
-                            public Map<String, Object> getAttributes() {
-                                return null;
-                            }
-                        });
-                provider.sendCreditNote(creditNote);
-            }
-        }
+        return creditNote;
     }
 
     public boolean removeCreditNote(OrganizationModel organization, CreditNoteModel creditNote) {
@@ -170,6 +96,16 @@ public class CreditNoteManager {
             return true;
         }
         return false;
+    }
+
+    public void sendToCustomerParty(OrganizationModel organization, CreditNoteModel creditNote) {
+        // TODO Auto-generated method stub
+
+    }
+
+    public void sendToTrirdParty(OrganizationModel organization, CreditNoteModel creditNote) {
+        // TODO Auto-generated method stub
+
     }
 
 }

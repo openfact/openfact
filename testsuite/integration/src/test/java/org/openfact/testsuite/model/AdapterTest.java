@@ -29,11 +29,11 @@ import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.openfact.models.CreditNoteModel;
+import org.openfact.models.DebitNoteModel;
+import org.openfact.models.InvoiceModel;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.ubl.CreditNoteModel;
-import org.openfact.models.ubl.DebitNoteModel;
-import org.openfact.models.ubl.InvoiceModel;
 
 /**
  * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
@@ -98,13 +98,10 @@ public class AdapterTest extends AbstractModelTest {
         test1CreateOrganization();
 
         InvoiceModel invoice = organizationManager.getSession().invoices().addInvoice(organizationModel, "F01-01");
-        invoice.addInvoiceLine();
 
         CreditNoteModel creditNote = organizationManager.getSession().creditNotes().addCreditNote(organizationModel, "C01-01");
-        creditNote.addCreditNoteLine();
         
         DebitNoteModel debitNote = organizationManager.getSession().debitNotes().addDebitNote(organizationModel, "D01-01");
-        debitNote.addDebitNoteLine();
         
         commit();
         organizationModel = model.getOrganization("SISTCOOP");
@@ -224,45 +221,7 @@ public class AdapterTest extends AbstractModelTest {
         } catch (ModelDuplicateException e) {
         }
         commit(true);
-
         
-        // Ty to rename invoice to duplicate series and number
-        sistcoop1 = organizationManager.getOrganizationByName("SISTCOOP1");
-        organizationManager.getSession().invoices().addInvoice(sistcoop1, "F01-002");
-        commit();
-        try {
-            sistcoop1 = organizationManager.getOrganizationByName("SISTCOOP1");
-            organizationManager.getSession().invoices().getInvoiceByID(sistcoop1, "F01-002").setID("F01-001");
-            commit();
-            Assert.fail("Expected exception");
-        } catch (ModelDuplicateException e) {
-        }
-        resetSession();
-        
-        // Ty to rename creditNote to duplicate series and number
-        sistcoop1 = organizationManager.getOrganizationByName("SISTCOOP1");
-        organizationManager.getSession().creditNotes().addCreditNote(sistcoop1, "C01-002");
-        commit();
-        try {
-            sistcoop1 = organizationManager.getOrganizationByName("SISTCOOP1");
-            organizationManager.getSession().creditNotes().getCreditNoteByID(sistcoop1, "C01-002").setID("C01-001");
-            commit();
-            Assert.fail("Expected exception");
-        } catch (ModelDuplicateException e) {
-        }
-        resetSession();
-        
-        // Ty to rename debitNote to duplicate series and number
-        sistcoop1 = organizationManager.getOrganizationByName("SISTCOOP1");
-        organizationManager.getSession().debitNotes().addDebitNote(sistcoop1, "D01-002");
-        commit();
-        try {
-            sistcoop1 = organizationManager.getOrganizationByName("SISTCOOP1");
-            organizationManager.getSession().debitNotes().getDebitNoteByID(sistcoop1, "D01-002").setID("D01-001");
-            commit();
-            Assert.fail("Expected exception");
-        } catch (ModelDuplicateException e) {
-        }
         resetSession();
     }
 

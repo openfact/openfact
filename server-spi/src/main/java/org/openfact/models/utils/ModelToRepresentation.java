@@ -16,38 +16,55 @@
  *******************************************************************************/
 package org.openfact.models.utils;
 
-import org.apache.commons.lang.ArrayUtils;
-import org.openfact.common.converts.DocumentUtils;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.component.ComponentModel;
 import org.openfact.events.Event;
 import org.openfact.events.admin.AdminEvent;
 import org.openfact.events.admin.AuthDetails;
-import org.openfact.models.ModelException;
+import org.openfact.models.AllowanceChargeModel;
+import org.openfact.models.CreditNoteModel;
+import org.openfact.models.CustomerPartyModel;
+import org.openfact.models.DebitNoteModel;
+import org.openfact.models.InvoiceModel;
+import org.openfact.models.MonetaryTotalModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.ubl.CreditNoteModel;
-import org.openfact.models.ubl.DebitNoteModel;
-import org.openfact.models.ubl.InvoiceModel;
-import org.openfact.models.ubl.common.*;
+import org.openfact.models.PartyLegalEntityModel;
+import org.openfact.models.PartyModel;
+import org.openfact.models.ResponseModel;
+import org.openfact.models.SupplierPartyModel;
+import org.openfact.models.TaxTotalModel;
 import org.openfact.provider.ProviderConfigProperty;
-import org.openfact.representations.idm.*;
-import org.openfact.representations.idm.ubl.CreditNoteRepresentation;
-import org.openfact.representations.idm.ubl.DebitNoteRepresentation;
-import org.openfact.representations.idm.ubl.InvoiceRepresentation;
-import org.openfact.representations.idm.ubl.common.*;
-import org.w3c.dom.Document;
-
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
-import java.time.LocalDate;
-import java.util.*;
+import org.openfact.representations.idm.AdminEventRepresentation;
+import org.openfact.representations.idm.AllowanceChargeRepresentation;
+import org.openfact.representations.idm.AuthDetailsRepresentation;
+import org.openfact.representations.idm.ComponentRepresentation;
+import org.openfact.representations.idm.ConfigPropertyRepresentation;
+import org.openfact.representations.idm.CreditNoteRepresentation;
+import org.openfact.representations.idm.CustomerPartyRepresentation;
+import org.openfact.representations.idm.DebitNoteRepresentation;
+import org.openfact.representations.idm.EventRepresentation;
+import org.openfact.representations.idm.InvoiceRepresentation;
+import org.openfact.representations.idm.MonetaryTotalRepresentation;
+import org.openfact.representations.idm.OrganizationEventsConfigRepresentation;
+import org.openfact.representations.idm.OrganizationRepresentation;
+import org.openfact.representations.idm.PartyLegalEntityRepresentation;
+import org.openfact.representations.idm.PartyRepresentation;
+import org.openfact.representations.idm.PostalAddressRepresentation;
+import org.openfact.representations.idm.ResponseRepresentation;
+import org.openfact.representations.idm.SupplierPartyRepresentation;
+import org.openfact.representations.idm.TaxTotalRepresentation;
 
 public class ModelToRepresentation {
 
     public static OrganizationRepresentation toRepresentation(OrganizationModel organization,
-                                                              boolean internal) {
+            boolean internal) {
         /**
          * General information
          */
@@ -139,293 +156,85 @@ public class ModelToRepresentation {
         return rep;
     }
 
-    public static InvoiceRepresentation toRepresentation(InvoiceModel model, boolean includeXml) {
+    public static InvoiceRepresentation toRepresentation(InvoiceModel model) {
         InvoiceRepresentation rep = new InvoiceRepresentation();
 
         rep.setId(model.getId());
-        rep.setUblVersionID(model.getUBLVersionID());
-        rep.setCustomizationID(model.getCustomizationID());
-        if (model.getSignature() != null) {
-            for (SignatureModel item : model.getSignature()) {
-                rep.addSignature(toRepresentation(item));
-            }
-        }
-
+        rep.setDocumentId(model.getDocumentId());
         rep.setIssueDateTime(model.getIssueDateTime());
-        if (model.getUBLExtensions() != null) {
-            rep.setUblExtensions(toRepresentation(model.getUBLExtensions()));
-        }
         if (model.getAccountingSupplierParty() != null) {
             rep.setAccountingSupplierParty(toRepresentation(model.getAccountingSupplierParty()));
         }
-
-        rep.setIdUbl(model.getID());
         rep.setInvoiceTypeCode(model.getInvoiceTypeCode());
 
         if (model.getAccountingCustomerParty() != null) {
             rep.setAccountingCustomerParty(toRepresentation(model.getAccountingCustomerParty()));
         }
-        if (model.getInvoiceLine() != null) {
-            for (InvoiceLineModel item : model.getInvoiceLine()) {
-                rep.addInvoiceLine(toRepresentation(item));
-            }
-        }
+
         if (model.getTaxTotal() != null) {
             for (TaxTotalModel item : model.getTaxTotal()) {
-                rep.addTaxTotal(toRepresentation(item));
+                rep.getTaxTotal().add(toRepresentation(item));
             }
         }
         if (model.getLegalMonetaryTotal() != null) {
             rep.setLegalMonetaryTotal(toRepresentation(model.getLegalMonetaryTotal()));
         }
         rep.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
-
-        if(includeXml) {
-            try {
-                Document document = DocumentUtils.byteToDocument(ArrayUtils.toPrimitive(model.getXmlDocument()));
-                rep.setXml(DocumentUtils.getDocumentToString(document));
-            } catch (Exception e) {
-                throw new ModelException(e.getMessage());
-            }
-        }
         return rep;
     }
 
-    public static CreditNoteRepresentation toRepresentation(CreditNoteModel model, boolean includeXml) {
+    public static CreditNoteRepresentation toRepresentation(CreditNoteModel model) {
         CreditNoteRepresentation rep = new CreditNoteRepresentation();
 
         rep.setId(model.getId());
-        rep.setUblVersionID(model.getUBLVersionID());
-        rep.setCustomizationID(model.getCustomizationID());
-        if (model.getSignature() != null) {
-            for (SignatureModel item : model.getSignature()) {
-                rep.addSignature(toRepresentation(item));
-            }
-        }
-
+        rep.setDocumentId(model.getDocumentId());
         rep.setIssueDateTime(model.getIssueDateTime());
-        if (model.getUBLExtensions() != null) {
-            rep.setUblExtensions(toRepresentation(model.getUBLExtensions()));
-        }
         if (model.getAccountingSupplierParty() != null) {
             rep.setAccountingSupplierParty(toRepresentation(model.getAccountingSupplierParty()));
         }
         if (model.getDiscrepancyResponse() != null) {
             for (ResponseModel item : model.getDiscrepancyResponse()) {
-                rep.addDiscrepancyResponse(toRepresentation(item));
+                rep.getDiscrepancyResponse().add(toRepresentation(item));
             }
         }
-
-        rep.setIdUbl(model.getID());
-
         if (model.getAccountingCustomerParty() != null) {
             rep.setAccountingCustomerParty(toRepresentation(model.getAccountingCustomerParty()));
         }
 
-        if (model.getCreditNoteLine() != null) {
-            for (CreditNoteLineModel item : model.getCreditNoteLine()) {
-                rep.addCreditNoteLine(toRepresentation(item));
-            }
-        }
         if (model.getTaxTotal() != null) {
             for (TaxTotalModel item : model.getTaxTotal()) {
-                rep.addTaxTotal(toRepresentation(item));
+                rep.getTaxTotal().add(toRepresentation(item));
             }
         }
         if (model.getLegalMonetaryTotal() != null) {
             rep.setLegalMonetaryTotal(toRepresentation(model.getLegalMonetaryTotal()));
         }
         rep.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
-        if (model.getBillingReference() != null) {
-            for (BillingReferenceModel item : model.getBillingReference()) {
-                rep.addBillingReference(toRepresentation(item));
-            }
-        }
-        if (model.getDespatchDocumentReference() != null) {
-            for (DocumentReferenceModel item : model.getDespatchDocumentReference()) {
-                rep.addDespatchDocumentReference(toRepresentation(item));
-            }
-        }
-
-        if(includeXml) {
-            try {
-                Document document = DocumentUtils.byteToDocument(ArrayUtils.toPrimitive(model.getXmlDocument()));
-                rep.setXml(DocumentUtils.getDocumentToString(document));
-            } catch (Exception e) {
-                throw new ModelException(e.getMessage());
-            }
-        }
         return rep;
     }
 
-    public static DebitNoteRepresentation toRepresentation(DebitNoteModel model, boolean includeXml) {
+    public static DebitNoteRepresentation toRepresentation(DebitNoteModel model) {
         DebitNoteRepresentation rep = new DebitNoteRepresentation();
 
         rep.setId(model.getId());
-        rep.setUblVersionID(model.getUBLVersionID());
-        rep.setCustomizationID(model.getCustomizationID());
-        if (model.getSignature() != null) {
-            for (SignatureModel item : model.getSignature()) {
-                rep.addSignature(toRepresentation(item));
-            }
-        }
-
+        rep.setDocumentId(model.getDocumentId());
         rep.setIssueDateTime(model.getIssueDateTime());
-        if (model.getUBLExtensions() != null) {
-            rep.setUblExtensions(toRepresentation(model.getUBLExtensions()));
-        }
         if (model.getAccountingSupplierParty() != null) {
             rep.setAccountingSupplierParty(toRepresentation(model.getAccountingSupplierParty()));
         }
-        if (model.getDiscrepancyResponse() != null) {
-            for (ResponseModel item : model.getDiscrepancyResponse()) {
-                rep.addDiscrepancyResponse(toRepresentation(item));
-            }
-        }
-
-        rep.setIdUbl(model.getID());
 
         if (model.getAccountingCustomerParty() != null) {
             rep.setAccountingCustomerParty(toRepresentation(model.getAccountingCustomerParty()));
         }
-
-        if (model.getDebitNoteLine() != null) {
-            for (DebitNoteLineModel item : model.getDebitNoteLine()) {
-                rep.addDebitNoteLine(toRepresentation(item));
-            }
-        }
         if (model.getTaxTotal() != null) {
             for (TaxTotalModel item : model.getTaxTotal()) {
-                rep.addTaxTotal(toRepresentation(item));
+                rep.getTaxTotal().add(toRepresentation(item));
             }
         }
         if (model.getRequestedMonetaryTotal() != null) {
             rep.setRequestedMonetaryTotal(toRepresentation(model.getRequestedMonetaryTotal()));
         }
         rep.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
-        if (model.getBillingReference() != null) {
-            for (BillingReferenceModel item : model.getBillingReference()) {
-                rep.addBillingReference(toRepresentation(item));
-            }
-        }
-        if (model.getDespatchDocumentReference() != null) {
-            for (DocumentReferenceModel item : model.getDespatchDocumentReference()) {
-                rep.addDespatchDocumentReference(toRepresentation(item));
-            }
-        }
-
-        if(includeXml) {
-            try {
-                Document document = DocumentUtils.byteToDocument(ArrayUtils.toPrimitive(model.getXmlDocument()));
-                rep.setXml(DocumentUtils.getDocumentToString(document));
-            } catch (Exception e) {
-                throw new ModelException(e.getMessage());
-            }
-        }
-
-        return rep;
-    }
-
-    public static InvoiceLineRepresentation toRepresentation(InvoiceLineModel model) {
-        InvoiceLineRepresentation rep = new InvoiceLineRepresentation();
-        if (model.getInvoicedQuantity() != null) {
-            rep.setInvoicedQuantity(toRepresentation(model.getInvoicedQuantity()));
-        }
-        if (model.getItem() != null) {
-            rep.setItem(toRepresentation(model.getItem()));
-        }
-        if (model.getPrice() != null) {
-            rep.setPrice(toRepresentation(model.getPrice()));
-        }
-        if (model.getPricingReference() != null) {
-            rep.setPricingReference(toRepresentation(model.getPricingReference()));
-        }
-        if (model.getTaxTotal() != null) {
-            for (TaxTotalModel item : model.getTaxTotal()) {
-                rep.addTaxTotal(toRepresentation(item));
-            }
-        }
-        rep.setLineExtensionAmount(model.getLineExtensionAmount());
-        rep.setIdUbl(model.getID());
-        if (model.getAllowanceCharge() != null) {
-            for (AllowanceChargeModel item : model.getAllowanceCharge()) {
-                rep.addAllowanceCharge(toRepresentation(item));
-            }
-        }
-        return rep;
-    }
-
-    public static CreditNoteLineRepresentation toRepresentation(CreditNoteLineModel model) {
-        CreditNoteLineRepresentation rep = new CreditNoteLineRepresentation();
-        rep.setIdUbl(model.getID());
-        if (model.getCreditedQuantity() != null) {
-            rep.setCreditedQuantity(toRepresentation(model.getCreditedQuantity()));
-        }
-        if (model.getItem() != null) {
-            rep.setItem(toRepresentation(model.getItem()));
-        }
-        if (model.getPrice() != null) {
-            rep.setPrice(toRepresentation(model.getPrice()));
-        }
-        if (model.getPricingReference() != null) {
-            rep.setPricingReference(toRepresentation(model.getPricingReference()));
-        }
-        if (model.getTaxTotal() != null) {
-            for (TaxTotalModel item : model.getTaxTotal()) {
-                rep.addTaxTotal(toRepresentation(item));
-            }
-        }
-        rep.setLineExtensionAmount(model.getLineExtensionAmount());
-        return rep;
-    }
-
-    public static DebitNoteLineRepresentation toRepresentation(DebitNoteLineModel model) {
-        DebitNoteLineRepresentation rep = new DebitNoteLineRepresentation();
-        rep.setIdUbl(model.getID());
-        if (model.getDebitedQuantity() != null) {
-            rep.setDebitedQuantity(toRepresentation(model.getDebitedQuantity()));
-        }
-        if (model.getItem() != null) {
-            rep.setItem(toRepresentation(model.getItem()));
-        }
-        if (model.getPrice() != null) {
-            rep.setPrice(toRepresentation(model.getPrice()));
-        }
-        if (model.getPricingReference() != null) {
-            rep.setPricingReference(toRepresentation(model.getPricingReference()));
-        }
-        if (model.getTaxTotal() != null) {
-            for (TaxTotalModel item : model.getTaxTotal()) {
-                rep.addTaxTotal(toRepresentation(item));
-            }
-        }
-        rep.setLineExtensionAmount(model.getLineExtensionAmount());
-        return rep;
-    }
-
-    public static BillingReferenceRepresentation toRepresentation(BillingReferenceModel model) {
-        BillingReferenceRepresentation rep = new BillingReferenceRepresentation();
-        if (model.getInvoiceDocumentReference() != null) {
-            rep.setInvoiceDocumentReference(toRepresentation(model.getInvoiceDocumentReference()));
-        }
-        return rep;
-    }
-
-    public static DocumentReferenceRepresentation toRepresentation(DocumentReferenceModel model) {
-        DocumentReferenceRepresentation rep = new DocumentReferenceRepresentation();
-        rep.setDocumentCodeRepresentation(model.getDocumentCode());
-        return rep;
-    }
-
-    public static ResponseRepresentation toRepresentation(ResponseModel model) {
-        ResponseRepresentation rep = new ResponseRepresentation();
-        rep.setReferenceID(model.getReferenceID());
-        rep.setResponseCode(model.getResponseCode());
-        if (model.getDescription() != null) {
-            for (String item : model.getDescription()) {
-                rep.addDescription(item);
-            }
-        }
         return rep;
     }
 
@@ -440,86 +249,32 @@ public class ModelToRepresentation {
     public static AllowanceChargeRepresentation toRepresentation(AllowanceChargeModel model) {
         AllowanceChargeRepresentation rep = new AllowanceChargeRepresentation();
         rep.setAmount(model.getAmount());
-        rep.setChargeIndicator(model.getChargeIndicator());
-        return rep;
-    }
-
-    public static PricingReferenceRepresentation toRepresentation(PricingReferenceModel model) {
-        PricingReferenceRepresentation rep = new PricingReferenceRepresentation();
-        if (model.getAlternativeConditionPrice() != null) {
-            for (PriceModel item : model.getAlternativeConditionPrice()) {
-                rep.addAlternativeConditionPrice(toRepresentation(item));
-            }
-        }
-        return rep;
-    }
-
-    public static PriceRepresentation toRepresentation(PriceModel model) {
-        PriceRepresentation rep = new PriceRepresentation();
-        rep.setPriceAmount(model.getPriceAmount());
-        rep.setPriceTypeCode(model.getPriceTypeCode());
-
-        return rep;
-    }
-
-    public static ItemRepresentation toRepresentation(ItemModel model) {
-        ItemRepresentation rep = new ItemRepresentation();
-        for (String item : model.getDescription()) {
-            rep.addDescription(item);
-        }
-        if (model.getSellersItemIdentification() != null) {
-            rep.setSellersItemIdentification(toRepresentation(model.getSellersItemIdentification()));
-        }
-        return rep;
-    }
-
-    public static ItemIdentificationRepresentation toRepresentation(ItemIdentificationModel model) {
-        ItemIdentificationRepresentation rep = new ItemIdentificationRepresentation();
-        rep.setIdUbl(model.getID());
         return rep;
     }
 
     public static TaxTotalRepresentation toRepresentation(TaxTotalModel model) {
         TaxTotalRepresentation rep = new TaxTotalRepresentation();
         rep.setTaxAmount(model.getTaxAmount());
-        if (model.getTaxSubtotal() != null) {
-            for (TaxSubtotalModel item : model.getTaxSubtotal()) {
-                rep.addTaxSubtotal(toRepresentation(item));
+        return rep;
+    }
+
+    private static ResponseRepresentation toRepresentation(ResponseModel model) {
+        ResponseRepresentation rep = new ResponseRepresentation();
+        rep.setReferenceId(model.getReferenceID());
+        rep.setResponseCode(model.getResponseCode());
+        if (model.getDescription() != null) {
+            for (String item : model.getDescription()) {
+                rep.getDescriptions().add(item);
             }
         }
         return rep;
     }
 
-    public static TaxSubtotalRepresentation toRepresentation(TaxSubtotalModel model) {
-        TaxSubtotalRepresentation rep = new TaxSubtotalRepresentation();
-        rep.setTaxAmount(model.getTaxAmount());
-        rep.setTaxCategory(toRepresentation(model.getTaxCategory()));
-        return rep;
-    }
-
-    public static TaxCategoryRepresentation toRepresentation(TaxCategoryModel model) {
-        TaxCategoryRepresentation rep = new TaxCategoryRepresentation();
-        rep.setTaxExemptionReasonCode(model.getTaxExemptionReasonCode());
-        if (model.getTaxScheme() != null) {
-            rep.setTaxScheme(toRepresentation(model.getTaxScheme()));
-        }
-        rep.setTierRange(model.getTierRange());
-        return rep;
-    }
-
-    public static TaxSchemeRepresentation toRepresentation(TaxSchemeModel model) {
-        TaxSchemeRepresentation rep = new TaxSchemeRepresentation();
-        rep.setIdUbl(model.getID());
-        rep.setName(model.getName());
-        rep.setTaxCodeType(model.getTaxCode());
-        return rep;
-    }
-
     public static CustomerPartyRepresentation toRepresentation(CustomerPartyModel model) {
         CustomerPartyRepresentation rep = new CustomerPartyRepresentation();
-        rep.setCustomerAssignedAccountID(model.getCustomerAssignedAccountID());
+        rep.setCustomerAssignedAccountId(model.getCustomerAssignedAccountID());
         for (String item : model.getAdditionalAccountID()) {
-            rep.addAdditionalAccountID(item);
+            rep.getAdditionalAccountId().add(item);
         }
         if (model.getParty() != null) {
             rep.setParty(toRepresentation(model.getParty()));
@@ -532,166 +287,26 @@ public class ModelToRepresentation {
         if (model.getParty() != null) {
             rep.setParty(toRepresentation(model.getParty()));
         }
-        rep.setCustomerAssignedAccountID(model.getCustomerAssignedAccountID());
+        rep.setCustomerAssignedAccountId(model.getCustomerAssignedAccountID());
         for (String item : model.getAdditionalAccountID()) {
-            rep.addAdditionalAccountID(item);
+            rep.getAdditionalAccountId().add(item);
         }
         return rep;
     }
 
     public static PartyRepresentation toRepresentation(PartyModel model) {
         PartyRepresentation rep = new PartyRepresentation();
-        if (model.getPostalAddress() != null) {
-            rep.setPostalAddress(toRepresentation(model.getPostalAddress()));
-        }
-        for (PartyLegalModel item : model.getPartyLegalEntity()) {
-            rep.addPartyLegalEntity(toRepresentation(item));
-        }
-        for (String item : model.getPartyName()) {
-            rep.addPartyName(item);
-        }
-        for (String item : model.getPartyIdentification()) {
-            rep.addPartyIdentification(item);
+        for (PartyLegalEntityModel item : model.getPartyLegalEntity()) {
+            rep.getPartyLegalEntity().add(toRepresentation(item));
         }
         return rep;
     }
 
-    public static PartyLegalEntityRepresentation toRepresentation(PartyLegalModel model) {
+    public static PartyLegalEntityRepresentation toRepresentation(PartyLegalEntityModel model) {
         PartyLegalEntityRepresentation rep = new PartyLegalEntityRepresentation();
         rep.setRegistrationName(model.getRegistrationName());
+        rep.setCompanyId(model.getCompanyID());
         return rep;
-    }
-
-    public static AddressRepresentation toRepresentation(AddressModel model) {
-        AddressRepresentation rep = new AddressRepresentation();
-        rep.setIdUbl(model.getID());
-        rep.setStreetName(model.getStreetName());
-        rep.setCitySubdivisionName(model.getCitySubdivisionName());
-        rep.setCityName(model.getCityName());
-        rep.setCountrySubentity(model.getCountrySubentity());
-        rep.setDistrict(model.getDistrict());
-        rep.setDepartment(model.getDepartment());
-        if (model.getCountry() != null) {
-            rep.setCountry(toRepresentation(model.getCountry()));
-        }
-        return rep;
-    }
-
-    public static CountryRepresentation toRepresentation(CountryModel model) {
-        CountryRepresentation rep = new CountryRepresentation();
-        rep.setIdentificationCode(model.getIdentificationCode());
-        return rep;
-    }
-
-    public static QuantityRepresentation toRepresentation(QuantityModel model) {
-        QuantityRepresentation rep = new QuantityRepresentation();
-        rep.setUnitCode(model.getUnitCode());
-        rep.setValue(model.getValue());
-        return rep;
-    }
-
-    public static SignatureRepresentation toRepresentation(SignatureModel model) {
-        SignatureRepresentation rep = new SignatureRepresentation();
-        if (model.getCanonicalizationMethod() != null) {
-            rep.setCanonicalizationMethod(model.getCanonicalizationMethod());
-        }
-        if (model.getID() != null) {
-            rep.setIdUbl(model.getID());
-        }
-        if (model.getNote() != null) {
-            rep.setNote(model.getNote());
-        }
-        if (model.getSignatureMethod() != null) {
-            rep.setSignatureMethod(model.getSignatureMethod());
-        }
-        if (model.getValidationDate() != null) {
-            rep.setValidationDate(model.getValidationDate());
-        }
-        if (model.getValidationTime() != null) {
-            rep.setValidationTime(model.getValidationTime());
-        }
-        if (model.getValidatorID() != null) {
-            rep.setValidatorID(model.getValidatorID());
-        }
-        if (model.getSignatoryParty() != null) {
-            rep.setSignatoryParty(toRepresentation(model.getSignatoryParty()));
-        }
-        if (model.getDigitalSignatureAttachment() != null) {
-            rep.setDigitalSignatureAttachment(toRepresentation(model.getDigitalSignatureAttachment()));
-        }
-        return rep;
-    }
-
-    public static AttachmentRepresentation toRepresentation(AttachmentModel model) {
-        AttachmentRepresentation rep = new AttachmentRepresentation();
-        if (model.getExternalReference() != null) {
-            rep.setExternalReference(toRepresentation(model.getExternalReference()));
-        }
-        if (model.getEmbeddedDocumentBinaryObject() != null) {
-            rep.setEmbeddedDocumentBinaryObject(toRepresentation(model.getEmbeddedDocumentBinaryObject()));
-        }
-        return rep;
-    }
-
-    public static ExternalReferenceRepresentation toRepresentation(ExternalReferenceModel model) {
-        ExternalReferenceRepresentation rep = new ExternalReferenceRepresentation();
-        if (model.getDocumentHash() != null) {
-            rep.setDocumentHash(model.getDocumentHash());
-        }
-        if (model.getExpiryDate() != null) {
-            rep.setExpiryDate(model.getExpiryDate());
-        }
-        if (model.getExpiryTime() != null) {
-            rep.setExpiryTime(model.getExpiryTime());
-        }
-        if (model.getURI() != null) {
-            rep.setUri(model.getURI());
-        }
-        return rep;
-    }
-
-    public static BinaryObjectRepresentation toRepresentation(BinaryObjectModel model) {
-        BinaryObjectRepresentation rep = new BinaryObjectRepresentation();
-        if (model.getCharacterSetCode() != null) {
-            rep.setCharacterSetCode(model.getCharacterSetCode());
-        }
-        if (model.getEncodingCode() != null) {
-            rep.setEncodingCode(model.getEncodingCode());
-        }
-        if (model.getFilename() != null) {
-            rep.setFilename(model.getFilename());
-        }
-        if (model.getFormat() != null) {
-            rep.setFormat(model.getFormat());
-        }
-        if (model.getMimeCode() != null) {
-            rep.setMimeCode(model.getMimeCode());
-        }
-        if (model.getUri() != null) {
-            rep.setUri(model.getUri());
-        }
-        if (model.getValue() != null) {
-            rep.setValue(model.getValue());
-        }
-        return rep;
-    }
-
-    public static UBLExtensionsRepresentation toRepresentation(UBLExtensionsModel model) {
-        UBLExtensionsRepresentation rep = new UBLExtensionsRepresentation();
-        for (UBLExtensionModel item : model.getUBLExtension()) {
-            rep.addUBLExtension(toRepresentation(item));
-        }
-        return null;
-    }
-
-    public static UBLExtensionRepresentation toRepresentation(UBLExtensionModel model) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    public static XMLGregorianCalendar toRepresentation(LocalDate date)
-            throws DatatypeConfigurationException {
-        return DatatypeFactory.newInstance().newXMLGregorianCalendar(date.toString());
     }
 
     public static OrganizationEventsConfigRepresentation toEventsConfigReprensetation(
@@ -703,17 +318,13 @@ public class ModelToRepresentation {
         if (organization.getEventsExpiration() != 0) {
             rep.setEventsExpiration(organization.getEventsExpiration());
         }
-
         if (organization.getEventsListeners() != null) {
             rep.setEventsListeners(new LinkedList<>(organization.getEventsListeners()));
         }
-
         if (organization.getEnabledEventTypes() != null) {
             rep.setEnabledEventTypes(new LinkedList<>(organization.getEnabledEventTypes()));
         }
-
         rep.setAdminEventsEnabled(organization.isAdminEventsEnabled());
-
         rep.setAdminEventsDetailsEnabled(organization.isAdminEventsDetailsEnabled());
 
         return rep;
@@ -757,7 +368,8 @@ public class ModelToRepresentation {
         return rep;
     }
 
-    public static List<ConfigPropertyRepresentation> toRepresentation(List<ProviderConfigProperty> configProperties) {
+    public static List<ConfigPropertyRepresentation> toRepresentation(
+            List<ProviderConfigProperty> configProperties) {
         List<ConfigPropertyRepresentation> propertiesRep = new LinkedList<>();
         for (ProviderConfigProperty prop : configProperties) {
             ConfigPropertyRepresentation propRep = toRepresentation(prop);
@@ -778,7 +390,8 @@ public class ModelToRepresentation {
         return propRep;
     }
 
-    public static ComponentRepresentation toRepresentation(OpenfactSession session, ComponentModel component, boolean internal) {
+    public static ComponentRepresentation toRepresentation(OpenfactSession session, ComponentModel component,
+            boolean internal) {
         ComponentRepresentation rep = new ComponentRepresentation();
         rep.setId(component.getId());
         rep.setName(component.getName());
@@ -789,7 +402,8 @@ public class ModelToRepresentation {
         if (internal) {
             rep.setConfig(component.getConfig());
         } else {
-            Map<String, ProviderConfigProperty> configProperties = ComponentUtil.getComponentConfigProperties(session, component);
+            Map<String, ProviderConfigProperty> configProperties = ComponentUtil
+                    .getComponentConfigProperties(session, component);
             MultivaluedHashMap<String, String> config = new MultivaluedHashMap<>();
 
             for (Map.Entry<String, List<String>> e : component.getConfig().entrySet()) {

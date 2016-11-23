@@ -27,13 +27,13 @@ import org.openfact.email.freemarker.beans.ProfileBean;
 import org.openfact.events.Event;
 import org.openfact.events.EventType;
 import org.openfact.models.AttachModel;
+import org.openfact.models.CreditNoteModel;
+import org.openfact.models.DebitNoteModel;
+import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.UserSenderModel;
 import org.openfact.models.enums.InternetMediaType;
-import org.openfact.models.ubl.CreditNoteModel;
-import org.openfact.models.ubl.DebitNoteModel;
-import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.report.ReportTheme;
 import org.openfact.report.ReportThemeProvider;
 import org.openfact.report.theme.JasperReportException;
@@ -61,7 +61,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
     private UserSenderModel user;
 
     public FreeMarkerEmailTemplateProvider(OpenfactSession session, FreeMarkerUtil freeMarker,
-                                           JasperReportUtil jasperReport) {
+            JasperReportUtil jasperReport) {
         this.session = session;
         this.freeMarker = freeMarker;
         this.jasperReport = jasperReport;
@@ -104,12 +104,12 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
     }
 
     private void send(String subjectKey, String template, Map<String, Object> attributes,
-                      List<AttachModel> attachments) throws EmailException {
+            List<AttachModel> attachments) throws EmailException {
         send(subjectKey, Collections.emptyList(), template, attributes, attachments);
     }
 
     private void send(String subjectKey, List<Object> subjectAttributes, String template,
-                      Map<String, Object> attributes, List<AttachModel> attachments) throws EmailException {
+            Map<String, Object> attributes, List<AttachModel> attachments) throws EmailException {
         try {
             ThemeProvider themeProvider = session.getProvider(ThemeProvider.class, "extending");
             Theme theme = themeProvider.getTheme(organization.getEmailTheme(), Theme.Type.EMAIL);
@@ -177,7 +177,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
 
             @Override
             public String getFileName() {
-                return invoice.getID();
+                return invoice.getDocumentId();
             }
 
             @Override
@@ -187,7 +187,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
 
             @Override
             public byte[] getFile() {
-                return ArrayUtils.toPrimitive(invoice.getXmlDocument());
+                return invoice.getXmlDocument();
             }
         });
 
@@ -218,7 +218,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
 
             @Override
             public String getFileName() {
-                return creditNote.getID();
+                return creditNote.getDocumentId();
             }
 
             @Override
@@ -228,7 +228,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
 
             @Override
             public byte[] getFile() {
-                return ArrayUtils.toPrimitive(creditNote.getXmlDocument());
+                return creditNote.getXmlDocument();
             }
         });
 
@@ -259,7 +259,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
 
             @Override
             public String getFileName() {
-                return debitNote.getID();
+                return debitNote.getDocumentId();
             }
 
             @Override
@@ -269,7 +269,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
 
             @Override
             public byte[] getFile() {
-                return ArrayUtils.toPrimitive(debitNote.getXmlDocument());
+                return debitNote.getXmlDocument();
             }
         });
 

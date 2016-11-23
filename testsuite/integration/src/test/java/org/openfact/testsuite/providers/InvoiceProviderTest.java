@@ -26,11 +26,11 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.openfact.models.InvoiceModel;
+import org.openfact.models.InvoiceProvider;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
-import org.openfact.models.ubl.InvoiceModel;
-import org.openfact.models.ubl.provider.InvoiceProvider;
 
 public class InvoiceProviderTest extends AbstractProviderTest {
 
@@ -51,7 +51,7 @@ public class InvoiceProviderTest extends AbstractProviderTest {
 
         assertThat(invoice, is(notNullValue()));
         assertThat(invoice.getId(), is(notNullValue()));
-        assertThat(invoice.getID(), is("F002-0003"));
+        assertThat(invoice.getDocumentId(), is("F002-0003"));
     }    
 
     @Test
@@ -72,19 +72,7 @@ public class InvoiceProviderTest extends AbstractProviderTest {
             Assert.fail("Expected exception");
         } catch (ModelDuplicateException e) {
         }
-        commit(true);
-
-        // Ty to rename invoice to duplicate series and number
-        sistcoop1 = session.organizations().getOrganizationByName("SISTCOOP1");
-        session.invoices().addInvoice(sistcoop1, "F01-002");
-        commit();
-        try {
-            sistcoop1 = session.organizations().getOrganizationByName("SISTCOOP1");
-            session.invoices().getInvoiceByID(sistcoop1, "F01-002").setID("F01-001");
-            commit();
-            Assert.fail("Expected exception");
-        } catch (ModelDuplicateException e) {
-        }
+        commit(true);       
 
         resetSession();
     }
@@ -99,7 +87,7 @@ public class InvoiceProviderTest extends AbstractProviderTest {
         assertThat(invoice2, is(notNullValue()));
         assertThat(invoice2.getId(), is(notNullValue()));
         assertThat(invoice2.getId(), is(equalTo(invoice1.getId())));
-        assertThat(invoice2.getID(), is(equalTo(invoice1.getID())));
+        assertThat(invoice2.getDocumentId(), is(equalTo(invoice1.getDocumentId())));
     }
 
     @Test
@@ -113,7 +101,7 @@ public class InvoiceProviderTest extends AbstractProviderTest {
         assertThat(invoice2, is(notNullValue()));
         assertThat(invoice2.getId(), is(notNullValue()));
         assertThat(invoice2.getId(), is(equalTo(invoice1.getId())));
-        assertThat(invoice2.getID(), is(equalTo(invoice1.getID())));
+        assertThat(invoice2.getDocumentId(), is(equalTo(invoice1.getDocumentId())));
     }
 
     @Test

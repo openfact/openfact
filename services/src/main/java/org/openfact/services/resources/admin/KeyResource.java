@@ -16,6 +16,14 @@
  *******************************************************************************/
 package org.openfact.services.resources.admin;
 
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.openfact.common.util.PemUtils;
 import org.openfact.keys.KeyMetadata;
@@ -23,13 +31,6 @@ import org.openfact.models.KeyManager;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.representations.idm.KeysMetadataRepresentation;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
 
 public class KeyResource {
 

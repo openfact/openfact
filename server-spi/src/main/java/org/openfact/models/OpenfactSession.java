@@ -18,9 +18,6 @@
 package org.openfact.models;
 
 import org.openfact.component.ComponentModel;
-import org.openfact.models.ubl.provider.CreditNoteProvider;
-import org.openfact.models.ubl.provider.DebitNoteProvider;
-import org.openfact.models.ubl.provider.InvoiceProvider;
 import org.openfact.provider.Provider;
 
 import java.util.Set;

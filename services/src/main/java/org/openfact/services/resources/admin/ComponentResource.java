@@ -16,6 +16,26 @@
  *******************************************************************************/
 package org.openfact.services.resources.admin;
 
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
+
 import org.jboss.logging.Logger;
 import org.openfact.common.ClientConnection;
 import org.openfact.component.ComponentModel;
@@ -27,12 +47,6 @@ import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.ComponentRepresentation;
 import org.openfact.services.ErrorResponse;
-
-import javax.ws.rs.*;
-import javax.ws.rs.core.*;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
 
 public class ComponentResource {
 

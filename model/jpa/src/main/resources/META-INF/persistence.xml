@@ -1,157 +1,52 @@
-<!--
-    Copyright 2016 Sistcoop, Inc. and/or its affiliates
-    and other contributors as indicated by the @author tags.
-   
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-   
-    http://www.apache.org/licenses/LICENSE-2.0
-   
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
- -->
+<!-- Copyright 2016 Sistcoop, Inc. and/or its affiliates and other contributors 
+	as indicated by the @author tags. Licensed under the Apache License, Version 
+	2.0 (the "License"); you may not use this file except in compliance with 
+	the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+	Unless required by applicable law or agreed to in writing, software distributed 
+	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+	the specific language governing permissions and limitations under the License. -->
 <persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xmlns="http://java.sun.com/xml/ns/persistence"
-             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
-             version="1.0">
+	xmlns="http://java.sun.com/xml/ns/persistence"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+	version="1.0">
 
-    <persistence-unit name="openfact-default"
-                      transaction-type="RESOURCE_LOCAL">
-        <class>org.openfact.models.jpa.entities.MigrationModelEntity</class>
-        <class>org.openfact.models.jpa.entities.OrganizationEntity</class>
-        <class>org.openfact.models.jpa.entities.ComponentEntity</class>
-        <class>org.openfact.models.jpa.entities.ComponentConfigEntity</class>
-        <class>org.openfact.models.jpa.entities.UserEntity</class>
+	<persistence-unit name="openfact-default"
+		transaction-type="RESOURCE_LOCAL">
+		<class>org.openfact.models.jpa.entities.MigrationModelEntity</class>
+		<class>org.openfact.models.jpa.entities.OrganizationEntity</class>
+		<class>org.openfact.models.jpa.entities.ComponentEntity</class>
+		<class>org.openfact.models.jpa.entities.ComponentConfigEntity</class>
+		<class>org.openfact.models.jpa.entities.UserEntity</class>
 
-        <!-- JpaAuditProviders -->
-        <class>org.openfact.events.jpa.EventEntity</class>
-        <class>org.openfact.events.jpa.AdminEventEntity</class>
+		<!-- JpaAuditProviders -->
+		<class>org.openfact.events.jpa.EventEntity</class>
+		<class>org.openfact.events.jpa.AdminEventEntity</class>
 
-        <!-- catalog -->
+		<!-- ubl -->
+		<class>org.openfact.models.jpa.entities.InvoiceEntity</class>
+		<class>org.openfact.models.jpa.entities.CreditNoteEntity</class>
+		<class>org.openfact.models.jpa.entities.DebitNoteEntity</class>
+		<class>org.openfact.models.jpa.entities.InvoiceRequiredActionEntity</class>
+		<class>org.openfact.models.jpa.entities.CreditNoteRequiredActionEntity</class>
+		<class>org.openfact.models.jpa.entities.DebitNoteRequiredActionEntity</class>
+		<class>org.openfact.models.jpa.entities.AllowanceChargeEntity</class>
+		<class>org.openfact.models.jpa.entities.CustomerPartyEntity</class>
+		<class>org.openfact.models.jpa.entities.MonetaryTotalEntity</class>
+		<class>org.openfact.models.jpa.entities.PartyEntity</class>
+		<class>org.openfact.models.jpa.entities.PartyLegalEntity</class>
+		<class>org.openfact.models.jpa.entities.ResponseEntity</class>
+		<class>org.openfact.models.jpa.entities.SupplierPartyEntity</class>
+		<class>org.openfact.models.jpa.entities.TaxTotalEntity</class>
 
-        <!-- ubl -->
-        <class>org.openfact.models.jpa.entities.ubl.JobReportEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.SendEventEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.InvoiceEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.CreditNoteEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.DebitNoteEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.InvoiceAttributeEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.CreditNoteAttributeEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.DebitNoteAttributeEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.InvoiceRequiredActionEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.CreditNoteRequiredActionEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.DebitNoteRequiredActionEntity</class>
+		<class>org.openfact.models.jpa.entities.JobReportEntity</class>
+		<class>org.openfact.models.jpa.entities.SendEventEntity</class>
 
-        <class>org.openfact.models.jpa.entities.ubl.common.DebitNoteLineEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.LotIdentificationEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.SupplierPartyEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.PricingReferenceEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.CreditAccountEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.PaymentTermsEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.SecondaryHazardEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.BranchEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.ExternalReferenceEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.ItemEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.CountryEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.ItemInstanceEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.DespatchEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.PhysicalAttributeEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.CorporateRegistrationSchemeEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.TaxTotalEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.LanguageEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.DimensionEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.HazardousItemEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.DeliveryTermsEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.AddressEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.OrderLineReferenceEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.ItemIdentificationEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.BinaryObjectEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.BillingReferenceEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.CardAccountEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.PriceEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.PaymentEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.PartyTaxSchemeEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.TaxCategoryEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.LocationCommAggEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.QuantityEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.PartyEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.LineReferenceEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.CommodityClassificationEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.LocationCoordinateEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.DocumentReferenceEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.DeliveryEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.CustomerPartyEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.BillingReferenceLineEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.MonetaryTotalEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.FinancialAccountEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.AttachmentEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.SignatureEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.ItemPropertyEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.TaxSchemeEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.DeliveryUnitEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.UBLExtensionEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.TaxSubtotalEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.TransactionConditionsEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.ExchangeRateEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.PeriodEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.ContactEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.AllowanceChargeEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.CommunicationEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.MeasureEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.UBLExtensionsEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.OrderReferenceEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.ItemLocationQuantityEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.TemperatureEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.FinancialInstitutionEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.HazardousGoodsTransitEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.PersonEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.PaymentMeansEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.ItemPropertyGroupEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.CreditNoteLineEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.ContractEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.InvoiceLineEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.PriceListEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.ExtensionContentEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.PartyLegalEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.ResponseEntity</class>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
-        <!-- ubl pe -->
-
-
-        <!-- ubl common pe -->
-
-        <class>org.openfact.models.jpa.entities.ubl.common.ShipmentEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.ShipmentStageEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.StatusEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.TransportMeansEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.VoidedDocumentsLineEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.DespatchLineEntity</class>
-
-        <class>org.openfact.models.jpa.entities.ubl.common.ConsignmentEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.GoodsItemContainerEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.GoodsItemEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.PackageEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.ReceiptLineEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.TransportationServiceEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.TransportEquipmentEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.TransportEquipmentSealEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.TransportHandlingUnitEntity</class>
-
-        <class>org.openfact.models.jpa.entities.ubl.common.StowageEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.AirTransportEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.RoadTransportEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.RailTransportEntity</class>
-        <class>org.openfact.models.jpa.entities.ubl.common.MaritimeTransportEntity</class>
-
-        <exclude-unlisted-classes>true</exclude-unlisted-classes>
-
-        <properties>
-            <property name="jboss.as.jpa.managed" value="false"/>
-        </properties>
-    </persistence-unit>
+		<properties>
+			<property name="jboss.as.jpa.managed" value="false" />
+		</properties>
+	</persistence-unit>
 
 </persistence>

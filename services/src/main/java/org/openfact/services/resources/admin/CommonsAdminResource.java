@@ -16,11 +16,11 @@
  *******************************************************************************/
 package org.openfact.services.resources.admin;
 
-import org.openfact.models.OpenfactSession;
-
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+
+import org.openfact.models.OpenfactSession;
 
 /**
  * @author carlosthe19916@sistcoop.com

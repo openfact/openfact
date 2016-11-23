@@ -16,43 +16,53 @@
  *******************************************************************************/
 package org.openfact.services.resources.admin;
 
-import com.helger.ubl21.UBL21Reader;
-import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
+
 import org.apache.commons.io.IOUtils;
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
-import org.openfact.email.EmailException;
 import org.openfact.events.admin.OperationType;
+import org.openfact.models.InvoiceModel;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.enums.RequiredActionDocument;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
-import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.RepresentationToModel;
+import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
 import org.openfact.representations.idm.search.SearchResultsRepresentation;
-import org.openfact.representations.idm.ubl.InvoiceRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.InvoiceManager;
+import org.openfact.ubl.InvoiceReaderWriterProvider;
 
-import javax.validation.Valid;
-import javax.ws.rs.*;
-import javax.ws.rs.core.*;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 
 /**
  * @author carlosthe19916@sistcoop.com
@@ -65,35 +75,39 @@ public class InvoicesAdminResource {
 
     private static final ServicesLogger logger = ServicesLogger.LOGGER;
 
-    protected OrganizationModel organization;
     @Context
     protected UriInfo uriInfo;
+
     @Context
     protected OpenfactSession session;
+
     @Context
     protected ClientConnection clientConnection;
+
     @Context
     protected HttpHeaders headers;
+
+    protected OrganizationModel organization;
     private OrganizationAuth auth;
     private AdminEventBuilder adminEvent;
 
     public InvoicesAdminResource(OrganizationModel organization, OrganizationAuth auth,
-                                 AdminEventBuilder adminEvent) {
+            AdminEventBuilder adminEvent) {
         this.auth = auth;
         this.organization = organization;
         this.adminEvent = adminEvent;
-
         auth.init(OrganizationAuth.Resource.INVOICE);
     }
 
     /**
-     * @param invoiceId The invoiceId of the invoice
+     * @param invoiceId
+     *            The invoiceId of the invoice
      */
     @Path("{invoiceId}")
     public InvoiceAdminResource getInvoiceAdmin(@PathParam("invoiceId") final String invoiceId) {
         InvoiceModel invoice = session.invoices().getInvoiceById(organization, invoiceId);
         if (invoice == null) {
-            throw new NotFoundException("Debit Note not found");
+            throw new NotFoundException("Invoice not found");
         }
 
         InvoiceAdminResource invoiceResource = new InvoiceAdminResource(organization, auth, adminEvent,
@@ -106,7 +120,7 @@ public class InvoicesAdminResource {
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
     public List<InvoiceRepresentation> getInvoices(@QueryParam("filterText") String filterText,
-                                                   @QueryParam("first") Integer firstResult, @QueryParam("max") Integer maxResults) {
+            @QueryParam("first") Integer firstResult, @QueryParam("max") Integer maxResults) {
         auth.requireView();
 
         firstResult = firstResult != null ? firstResult : -1;
@@ -119,57 +133,12 @@ public class InvoicesAdminResource {
             invoices = session.invoices().searchForInvoice(organization, filterText.trim(), firstResult,
                     maxResults);
         }
-        return invoices.stream().map(f -> ModelToRepresentation.toRepresentation(f, false))
+        return invoices.stream().map(f -> ModelToRepresentation.toRepresentation(f))
                 .collect(Collectors.toList());
-    }
+    }    
 
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response createInvoice(@Valid final InvoiceRepresentation rep) {
-        auth.requireManage();
-
-        InvoiceManager invoiceManager = new InvoiceManager(session);
-
-        // Double-check duplicated ID
-        if (rep.getIdUbl() != null && invoiceManager.getInvoiceByID(organization, rep.getIdUbl()) != null) {
-            return ErrorResponse.exists("Invoice exists with same ID");
-        }
-
-        try {
-            InvoiceModel invoice = invoiceManager.addInvoice(organization, rep);
-
-            adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, invoice.getId())
-                    .representation(rep).success();
-
-            if (session.getTransactionManager().isActive()) {
-                session.getTransactionManager().commit();
-            }
-
-            // Send Email
-            if (rep.getRequiredActions().contains(RequiredActionDocument.SEND_EMAIL_CUSTOMER.toString())) {
-                invoiceManager.sendEmailToCustomerEmail(organization, invoice);
-            }
-
-            URI location = uriInfo.getAbsolutePathBuilder().path(invoice.getId()).build();
-            return Response.created(location).build();
-        } catch (ModelDuplicateException e) {
-            if (session.getTransactionManager().isActive()) {
-                session.getTransactionManager().setRollbackOnly();
-            }
-            return ErrorResponse.exists("Invoice exists with same id or ID");
-        } catch (ModelException me) {
-            if (session.getTransactionManager().isActive()) {
-                session.getTransactionManager().setRollbackOnly();
-            }
-            return ErrorResponse.exists("Could not create debit note");
-        } catch (EmailException e) {
-            ServicesLogger.LOGGER.failedToSendActionsEmail(e);
-            return ErrorResponse.error("Invoice Created but, Failed to send execute actions email", Response.Status.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @POST
-    @Path("xml")
+    @Path("upload")
     @Consumes("multipart/form-data")
     @Produces(MediaType.APPLICATION_JSON)
     public Response createInvoiceFromXml(final MultipartFormDataInput input) {
@@ -183,7 +152,7 @@ public class InvoicesAdminResource {
                 InputStream inputStream = inputPart.getBody(InputStream.class, null);
                 byte[] bytes = IOUtils.toByteArray(inputStream);
 
-                InvoiceType invoiceType = UBL21Reader.invoice().read(bytes);
+                InvoiceType invoiceType = session.getProvider(InvoiceReaderWriterProvider.class).read(bytes);
                 if (invoiceType == null) {
                     throw new ModelException("Invalid invoice Xml");
                 }
@@ -191,17 +160,19 @@ public class InvoicesAdminResource {
                 InvoiceManager invoiceManager = new InvoiceManager(session);
 
                 // Double-check duplicated ID
-                if (invoiceType.getIDValue() != null && invoiceManager.getInvoiceByID(organization, invoiceType.getIDValue()) != null) {
+                if (invoiceType.getIDValue() != null
+                        && invoiceManager.getInvoiceByID(organization, invoiceType.getIDValue()) != null) {
                     return ErrorResponse.exists("Invoice exists with same ID");
                 }
 
-                InvoiceModel invoice = invoiceManager.addInvoice(organization, invoiceType);
+                InvoiceModel invoice = invoiceManager.addInvoice(organization, invoiceType,
+                        Collections.emptyMap());
+                adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, invoice.getId())
+                        .representation(invoiceType).success();
 
                 if (session.getTransactionManager().isActive()) {
                     session.getTransactionManager().commit();
                 }
-
-                adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, invoice.getId()).representation(invoiceType).success();
             } catch (IOException e) {
                 logger.error("Error reading input data", e);
                 return ErrorResponse.error("Error Reading data", Response.Status.BAD_REQUEST);
@@ -239,7 +210,7 @@ public class InvoicesAdminResource {
         }
         SearchResultsRepresentation<InvoiceRepresentation> rep = new SearchResultsRepresentation<>();
         List<InvoiceRepresentation> items = new ArrayList<>();
-        results.getModels().forEach(f -> items.add(ModelToRepresentation.toRepresentation(f, false)));
+        results.getModels().forEach(f -> items.add(ModelToRepresentation.toRepresentation(f)));
         rep.setItems(items);
         rep.setTotalSize(results.getTotalSize());
         return rep;

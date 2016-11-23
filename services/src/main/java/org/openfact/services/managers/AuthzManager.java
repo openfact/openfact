@@ -1,5 +1,13 @@
 package org.openfact.services.managers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.jboss.logging.Logger;
 import org.keycloak.authorization.client.AuthzClient;
 import org.keycloak.authorization.client.Configuration;
@@ -11,14 +19,6 @@ import org.keycloak.util.JsonSerialization;
 import org.openfact.models.OrganizationModel;
 import org.openfact.services.resources.admin.OrganizationAdminResource;
 import org.openfact.services.resources.admin.OrganizationsAdminResource;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.HashSet;
-import java.util.Set;
 
 public class AuthzManager {
 

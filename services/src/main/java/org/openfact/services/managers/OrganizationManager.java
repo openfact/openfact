@@ -16,6 +16,9 @@
  *******************************************************************************/
 package org.openfact.services.managers;
 
+import java.util.Collections;
+import java.util.HashSet;
+
 import org.openfact.Config;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
@@ -25,9 +28,6 @@ import org.openfact.models.utils.OrganizationImporter;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.OrganizationEventsConfigRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
-
-import java.util.Collections;
-import java.util.HashSet;
 
 public class OrganizationManager implements OrganizationImporter {
 

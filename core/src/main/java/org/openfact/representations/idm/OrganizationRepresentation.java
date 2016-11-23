@@ -17,9 +17,6 @@
 package org.openfact.representations.idm;
 
 import org.openfact.common.util.MultivaluedHashMap;
-import org.openfact.representations.idm.ubl.CreditNoteRepresentation;
-import org.openfact.representations.idm.ubl.DebitNoteRepresentation;
-import org.openfact.representations.idm.ubl.InvoiceRepresentation;
 
 import java.time.LocalDateTime;
 import java.util.Date;

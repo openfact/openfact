@@ -20,9 +20,6 @@ import org.openfact.component.ComponentFactory;
 import org.openfact.component.ComponentModel;
 import org.openfact.keys.DefaultKeyManager;
 import org.openfact.models.*;
-import org.openfact.models.ubl.provider.CreditNoteProvider;
-import org.openfact.models.ubl.provider.DebitNoteProvider;
-import org.openfact.models.ubl.provider.InvoiceProvider;
 import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
 

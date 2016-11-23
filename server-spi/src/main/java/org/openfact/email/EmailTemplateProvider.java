@@ -18,12 +18,12 @@
 package org.openfact.email;
 
 import org.openfact.events.Event;
+import org.openfact.models.CreditNoteModel;
+import org.openfact.models.DebitNoteModel;
+import org.openfact.models.InvoiceModel;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.UserModel;
 import org.openfact.models.UserSenderModel;
-import org.openfact.models.ubl.CreditNoteModel;
-import org.openfact.models.ubl.DebitNoteModel;
-import org.openfact.models.ubl.InvoiceModel;
 import org.openfact.provider.Provider;
 
 /**

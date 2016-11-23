@@ -16,183 +16,204 @@
  *******************************************************************************/
 package org.openfact.services.resources.admin;
 
-import org.apache.commons.lang.ArrayUtils;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
+import javax.ws.rs.core.UriInfo;
+
 import org.jboss.resteasy.annotations.cache.NoCache;
+import org.json.JSONObject;
+import org.json.XML;
 import org.openfact.common.ClientConnection;
 import org.openfact.common.converts.DocumentUtils;
 import org.openfact.events.admin.OperationType;
+import org.openfact.models.CreditNoteModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.ubl.CreditNoteModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.report.ReportProvider;
 import org.openfact.report.ReportTheme;
 import org.openfact.report.ReportThemeProvider;
-import org.openfact.representations.idm.ubl.CreditNoteRepresentation;
-import org.openfact.representations.idm.ubl.common.CreditNoteLineRepresentation;
+import org.openfact.representations.idm.CreditNoteRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.CreditNoteManager;
 import org.w3c.dom.Document;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.*;
-import javax.ws.rs.core.Response.ResponseBuilder;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class CreditNoteAdminResource {
 
-	private static final ServicesLogger logger = ServicesLogger.LOGGER;
+    private static final ServicesLogger logger = ServicesLogger.LOGGER;
 
-	protected OrganizationModel organization;
-	protected CreditNoteModel creditNote;
-	@Context
-	protected UriInfo uriInfo;
-	@Context
-	protected OpenfactSession session;
-	@Context
-	protected ClientConnection clientConnection;
-	@Context
-	protected HttpHeaders headers;
-	private OrganizationAuth auth;
-	private AdminEventBuilder adminEvent;
+    protected OrganizationModel organization;
+    protected CreditNoteModel creditNote;
+    @Context
+    protected UriInfo uriInfo;
+    @Context
+    protected OpenfactSession session;
+    @Context
+    protected ClientConnection clientConnection;
+    @Context
+    protected HttpHeaders headers;
+    private OrganizationAuth auth;
+    private AdminEventBuilder adminEvent;
 
-	public CreditNoteAdminResource(OrganizationModel organization, OrganizationAuth auth, AdminEventBuilder adminEvent,
-			CreditNoteModel creditNote) {
-		this.auth = auth;
-		this.organization = organization;
-		this.adminEvent = adminEvent;
-		this.creditNote = creditNote;
+    public CreditNoteAdminResource(OrganizationModel organization, OrganizationAuth auth,
+            AdminEventBuilder adminEvent, CreditNoteModel creditNote) {
+        this.auth = auth;
+        this.organization = organization;
+        this.adminEvent = adminEvent;
+        this.creditNote = creditNote;
 
-		auth.init(OrganizationAuth.Resource.CREDIT_NOTE);
-	}
+        auth.init(OrganizationAuth.Resource.CREDIT_NOTE);
+    }
 
-	/**
-	 * Get the creditNote with the specified creditNoteId.
-	 *
-	 * @return The creditNote with the specified creditNoteId
-	 * @summary Get the creditNote with the specified creditNoteId
-	 */
+    /**
+     * Get the creditNote with the specified creditNoteId.
+     *
+     * @return The creditNote with the specified creditNoteId
+     * @summary Get the creditNote with the specified creditNoteId
+     */
     @GET
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    public CreditNoteRepresentation getCreditNote(@QueryParam("includeXml") boolean includeXml) {
+    public CreditNoteRepresentation getCreditNote() {
         auth.requireView();
 
-		if (creditNote == null) {
-			throw new NotFoundException("Credit Note not found");
-		}
+        if (creditNote == null) {
+            throw new NotFoundException("CreditNote not found");
+        }
 
-        CreditNoteRepresentation rep = ModelToRepresentation.toRepresentation(creditNote, includeXml);
+        CreditNoteRepresentation rep = ModelToRepresentation.toRepresentation(creditNote);
         return rep;
     }
 
-	@GET
-	@Path("text")
-	@NoCache
-	@Produces("application/text")
-	public Response getCreditNoteAsText() {
-		auth.requireView();
+    @GET
+    @Path("representation/json")
+    @NoCache
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getCreditNoteAsJson() {
+        auth.requireView();
 
-		if (creditNote == null) {
-			throw new NotFoundException("Invoice not found");
-		}
+        if (creditNote == null) {
+            throw new NotFoundException("CreditNote not found");
+        }
 
-		String text = null;
-		try {
-			Document document = DocumentUtils.byteToDocument(ArrayUtils.toPrimitive(creditNote.getXmlDocument()));
-			text = DocumentUtils.getDocumentToString(document);
-		} catch (Exception e) {
-			return ErrorResponse.exists("Invalid xml");
-		}
+        JSONObject result = null;
+        try {
+            Document document = DocumentUtils.byteToDocument(creditNote.getXmlDocument());
+            String text = DocumentUtils.getDocumentToString(document);
+            result = XML.toJSONObject(text);
+        } catch (Exception e) {
+            return ErrorResponse.exists("Invalid xml");
+        }
 
-		Response.ResponseBuilder response = Response.ok(text);
-		return response.build();
-	}
+        Response.ResponseBuilder response = Response.ok(result);
+        return response.build();
+    }
 
     @GET
-    @Path("xml")
+    @Path("representation/text")
+    @NoCache
+    @Produces("application/text")
+    public Response getCreditNoteAsText() {
+        auth.requireView();
+
+        if (creditNote == null) {
+            throw new NotFoundException("CreditNote not found");
+        }
+
+        String result = null;
+        try {
+            Document document = DocumentUtils.byteToDocument(creditNote.getXmlDocument());
+            result = DocumentUtils.getDocumentToString(document);
+        } catch (Exception e) {
+            return ErrorResponse.exists("Invalid xml");
+        }
+
+        Response.ResponseBuilder response = Response.ok(result);
+        return response.build();
+    }
+
+    @GET
+    @Path("representation/xml")
     @NoCache
     @Produces("application/xml")
     public Response getCreditNoteAsXml() {
         auth.requireView();
 
         if (creditNote == null) {
-            throw new NotFoundException("Credit Note not found");
+            throw new NotFoundException("CreditNote not found");
         }
 
-        Document document = null;
+        Document result = null;
         try {
-            document = DocumentUtils.byteToDocument(ArrayUtils.toPrimitive(creditNote.getXmlDocument()));
+            result = DocumentUtils.byteToDocument(creditNote.getXmlDocument());
         } catch (Exception e) {
-            return ErrorResponse.exists("Invalid xml");
+            return ErrorResponse.exists("Invalid xml parser");
         }
 
-        Response.ResponseBuilder response = Response.ok((Object) document);
-        response.header("Content-Disposition", "attachment; filename=\"" + creditNote.getID() + ".xml\"");
+        Response.ResponseBuilder response = Response.ok((Object) result);
         return response.build();
     }
 
+    /**
+     * Get the creditNote report with the specified creditNoteId.
+     *
+     * @return The byte[] with the specified creditNoteId
+     * @throws Exception
+     * @summary Get the byte[] with the specified creditNoteId
+     */
     @GET
-    @Path("lines")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<CreditNoteLineRepresentation> getLines() {
+    @Path("representation/pdf")
+    @Produces("application/pdf")
+    public Response getPdf(@PathParam("themeType") String themType, @PathParam("themeName") String themeName)
+            throws Exception {
         auth.requireView();
 
-        return creditNote.getCreditNoteLine().stream().map(f -> ModelToRepresentation.toRepresentation(f))
-                .collect(Collectors.toList());
+        if (creditNote == null) {
+            throw new NotFoundException("CreditNote not found");
+        }
+        ReportThemeProvider themeProvider = session.getProvider(ReportThemeProvider.class, "extending");
+        ReportTheme theme = themeProvider.getReportTheme(themeName,
+                ReportTheme.Type.valueOf(themType.toUpperCase()));
+        ReportProvider provider = session.getProvider(ReportProvider.class, themeName);
+        byte[] report = provider.processReport(creditNote, theme);
+        ResponseBuilder response = Response.ok(report);
+        response.type("application/pdf");
+        response.header("content-disposition",
+                "attachment; filename=\"" + creditNote.getDocumentId() + ".pdf\"");
+        return response.build();
     }
 
-	/**
-	 * Get the creditNote report with the specified creditNoteId.
-	 *
-	 * @return The byte[] with the specified creditNoteId
-	 * @throws Exception
-	 * @summary Get the byte[] with the specified creditNoteId
-	 */
-	@GET
-	@Path("pdf")
-	@Produces("application/pdf")
-	public Response getPdf(@PathParam("themeType") String themType, @PathParam("themeName") String themeName)
-			throws Exception {
-		auth.requireView();
+    /**
+     * Deletes creditNote with given creditNoteId.
+     *
+     * @throws AuthorizationException
+     *             The user is not authorized to delete this creditNote.
+     */
+    @DELETE
+    public Response deleteCreditNote() {
+        auth.requireManage();
 
-		if (creditNote == null) {
-			throw new NotFoundException("Debit Note not found");
-		}
-		ReportThemeProvider themeProvider = session.getProvider(ReportThemeProvider.class, "extending");
-		ReportTheme theme = themeProvider.getReportTheme(themeName, ReportTheme.Type.valueOf(themType.toUpperCase()));
-		ReportProvider provider = session.getProvider(ReportProvider.class, themeName);
-		byte[] report = provider.processReport(creditNote, theme);
-		ResponseBuilder response = Response.ok(report);
-		response.type("application/pdf");
-		response.header("content-disposition", "attachment; filename=\"" + creditNote.getID() + ".pdf\"");
-		return response.build();
-	}
+        if (creditNote == null) {
+            throw new NotFoundException("CreditNote not found");
+        }
 
-	/**
-	 * Deletes creditNote with given creditNoteId.
-	 *
-	 * @throws AuthorizationException
-	 *             The user is not authorized to delete this creditNote.
-	 */
-	@DELETE
-	public Response deleteCreditNote() {
-		auth.requireManage();
-
-		if (creditNote == null) {
-			throw new NotFoundException("Credit Note not found");
-		}
-
-		boolean removed = new CreditNoteManager(session).removeCreditNote(organization, creditNote);
-		if (removed) {
-			adminEvent.operation(OperationType.DELETE).resourcePath(uriInfo).success();
-			return Response.noContent().build();
-		} else {
-			return ErrorResponse.error("Credit Note couldn't be deleted", Response.Status.BAD_REQUEST);
-		}
-	}
+        boolean removed = new CreditNoteManager(session).removeCreditNote(organization, creditNote);
+        if (removed) {
+            adminEvent.operation(OperationType.DELETE).resourcePath(uriInfo).success();
+            return Response.noContent().build();
+        } else {
+            return ErrorResponse.error("CreditNote couldn't be deleted", Response.Status.BAD_REQUEST);
+        }
+    }
 
 }

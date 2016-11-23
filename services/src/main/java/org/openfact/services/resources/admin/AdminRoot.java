@@ -16,6 +16,20 @@
  *******************************************************************************/
 package org.openfact.services.resources.admin;
 
+import java.io.IOException;
+
+import javax.ws.rs.ForbiddenException;
+import javax.ws.rs.GET;
+import javax.ws.rs.NotAuthorizedException;
+import javax.ws.rs.NotFoundException;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.UriInfo;
+
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.spi.HttpRequest;
 import org.jboss.resteasy.spi.HttpResponse;
@@ -31,10 +45,6 @@ import org.openfact.services.resources.Cors;
 import org.openfact.services.resources.admin.info.ServerInfoAdminResource;
 import org.openfact.theme.Theme;
 import org.openfact.theme.ThemeProvider;
-
-import javax.ws.rs.*;
-import javax.ws.rs.core.*;
-import java.io.IOException;
 
 /**
  * @author carlosthe19916@sistcoop.com

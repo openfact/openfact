@@ -45,10 +45,6 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.Type;
-import org.openfact.models.jpa.entities.ubl.CreditNoteEntity;
-import org.openfact.models.jpa.entities.ubl.DebitNoteEntity;
-import org.openfact.models.jpa.entities.ubl.InvoiceEntity;
-import org.openfact.models.jpa.entities.ubl.JobReportEntity;
 
 /**
  * @author carlosthe19916@sistcoop.com

@@ -16,6 +16,12 @@
  *******************************************************************************/
 package org.openfact.services.resources.admin;
 
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.ws.rs.core.UriInfo;
+
 import org.jboss.logging.Logger;
 import org.openfact.common.ClientConnection;
 import org.openfact.common.util.Time;
@@ -30,11 +36,6 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.models.UserModel;
 import org.openfact.services.ServicesLogger;
 import org.openfact.util.JsonSerialization;
-
-import javax.ws.rs.core.UriInfo;
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 
 public class AdminEventBuilder {
 
