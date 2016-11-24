@@ -245,22 +245,5 @@ public class DefaultOpenfactSession implements OpenfactSession {
 			} catch (Exception e) {
 			}
 		}
-	}
-
-	@Override
-	public UblSendEventProvider sendEvents(String id) {
-		if (ublSendEvent == null) {
-			ublSendEvent = getSendEventProvider(id);
-		}
-		return ublSendEvent;
-	}
-
-	public UblSendEventProvider getSendEventProvider(String id) {
-		UblSendEventProvider cache = getProvider(UblSendEventProvider.class, id);
-		if (cache != null) {
-			return cache;
-		} else {
-			return getProvider(UblSendEventProvider.class, id);
-		}
-	}
+	}	
 }

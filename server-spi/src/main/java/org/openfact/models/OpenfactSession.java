@@ -101,8 +101,6 @@ public interface OpenfactSession {
     CreditNoteProvider creditNotes();
 
     DebitNoteProvider debitNotes();
-    
-    UblSendEventProvider sendEvents(String id);
 
     void close();
 

@@ -1123,7 +1123,9 @@ public class RepresentationToModel {
 		if (rep.getError() != null) {
 			model.setError(rep.getError());
 		}
-		model.setID(rep.getID());
+		if (rep.getID() != null) {
+			model.setID(rep.getID());
+		}
 		if (rep.getNote() != null) {
 			model.setNote(rep.getNote());
 		}

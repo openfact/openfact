@@ -9,12 +9,11 @@ import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.ubl.UblSendEventProvider;
 import org.openfact.ubl.UblSendEventProviderFactory;
 
-public class JpaInvoiceSendEventProviderFactory implements UblSendEventProviderFactory {
-
+public class JpaSendEventProviderFactory implements UblSendEventProviderFactory{
 	@Override
 	public UblSendEventProvider create(OpenfactSession session) {
 		EntityManager em = session.getProvider(JpaConnectionProvider.class).getEntityManager();
-		return new JpaInvoiceSendEventProvider(session, em);
+		return new JpaSendEventProvider(session, em);
 	}
 
 	@Override
@@ -34,7 +33,6 @@ public class JpaInvoiceSendEventProviderFactory implements UblSendEventProviderF
 
 	@Override
 	public String getId() {
-		return "invoice";
+		return "jpa";
 	}
-
 }
