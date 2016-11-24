@@ -26,3 +26,7 @@ org.openfact.ubl.UblDocumentSpi
 org.openfact.ubl.UblIDGeneratorSpi
 org.openfact.ubl.UblDocumentSignerSpi
 org.openfact.ubl.UblExtensionContentGeneratorSpi
+org.openfact.ubl.UblSenderResponseSpi
+org.openfact.ubl.UblSenderSpi
+org.openfact.ubl.UblSendEventSpi
+org.openfact.ubl.UblTemplateSpi
