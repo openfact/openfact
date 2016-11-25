@@ -35,20 +35,33 @@ public interface InvoiceProvider extends Provider {
 
     boolean removeInvoice(OrganizationModel organization, InvoiceModel invoice);
 
+    int getInvoicesCount(OrganizationModel organization);
+
     List<InvoiceModel> getInvoices(OrganizationModel organization);
 
-    List<InvoiceModel> getInvoices(OrganizationModel organization, List<RequiredActionDocument> requeridAction, boolean intoRequeridAction);
+    List<InvoiceModel> getInvoices(OrganizationModel organization,
+            List<RequiredActionDocument> requeridAction, boolean intoRequeridAction);
 
     List<InvoiceModel> getInvoices(OrganizationModel organization, Integer firstResult, Integer maxResults);
 
     List<InvoiceModel> searchForInvoice(OrganizationModel organization, String filterText);
 
-    List<InvoiceModel> searchForInvoice(OrganizationModel organization, String filterText, Integer firstResult, Integer maxResults);
+    List<InvoiceModel> searchForInvoice(OrganizationModel organization, String filterText,
+            Integer firstResult, Integer maxResults);
 
-    SearchResultsModel<InvoiceModel> searchForInvoice(OrganizationModel organization, SearchCriteriaModel criteria);
+    SearchResultsModel<InvoiceModel> searchForInvoice(OrganizationModel organization,
+            SearchCriteriaModel criteria);
 
-    SearchResultsModel<InvoiceModel> searchForInvoice(OrganizationModel organization, SearchCriteriaModel criteria, String filterText);
+    SearchResultsModel<InvoiceModel> searchForInvoice(OrganizationModel organization,
+            SearchCriteriaModel criteria, String filterText);
 
-    int getInvoicesCount(OrganizationModel organization);
+    ScrollModel<InvoiceModel> getInvoicesScroll(OrganizationModel organization);
+
+    ScrollModel<InvoiceModel> getInvoicesScroll(OrganizationModel organization, boolean asc);
+
+    ScrollModel<InvoiceModel> getInvoicesScroll(OrganizationModel organization, boolean asc, int scrollSize);
+
+    ScrollModel<InvoiceModel> getInvoicesScroll(OrganizationModel organization, boolean asc, int scrollSize,
+            int fetchSize);
 
 }

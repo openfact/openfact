@@ -88,6 +88,10 @@ public class DebitNoteEntity {
     @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
     private OrganizationEntity organization;
 
+    @Type(type = "org.hibernate.type.LocalDateTimeType")
+    @Column(name = "CREATED_TIMESTAMP")
+    private LocalDateTime createdTimestamp;
+
     /**
      * UBL
      */
@@ -246,6 +250,14 @@ public class DebitNoteEntity {
 
     public void setAllowanceCharge(List<AllowanceChargeEntity> allowanceCharge) {
         this.allowanceCharge = allowanceCharge;
+    }
+
+    public LocalDateTime getCreatedTimestamp() {
+        return createdTimestamp;
+    }
+
+    public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
     }
 
 }

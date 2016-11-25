@@ -35,20 +35,34 @@ public interface CreditNoteProvider extends Provider {
 
     boolean removeCreditNote(OrganizationModel organization, CreditNoteModel crebitNote);
 
+    int getCreditNotesCount(OrganizationModel organization);
+
     List<CreditNoteModel> getCreditNotes(OrganizationModel organization);
 
-    List<CreditNoteModel> getCreditNotes(OrganizationModel organization, List<RequiredActionDocument> requeridAction, boolean intoRequeridAction);
+    List<CreditNoteModel> getCreditNotes(OrganizationModel organization,
+            List<RequiredActionDocument> requeridAction, boolean intoRequeridAction);
 
-    List<CreditNoteModel> getCreditNotes(OrganizationModel organization, Integer firstResult, Integer maxResults);
+    List<CreditNoteModel> getCreditNotes(OrganizationModel organization, Integer firstResult,
+            Integer maxResults);
 
     List<CreditNoteModel> searchForCreditNote(OrganizationModel organization, String filterText);
 
-    List<CreditNoteModel> searchForCreditNote(OrganizationModel organization, String filterText, Integer firstResult, Integer maxResults);
+    List<CreditNoteModel> searchForCreditNote(OrganizationModel organization, String filterText,
+            Integer firstResult, Integer maxResults);
 
-    SearchResultsModel<CreditNoteModel> searchForCreditNote(OrganizationModel organization, SearchCriteriaModel criteria);
+    SearchResultsModel<CreditNoteModel> searchForCreditNote(OrganizationModel organization,
+            SearchCriteriaModel criteria);
 
-    SearchResultsModel<CreditNoteModel> searchForCreditNote(OrganizationModel organization, SearchCriteriaModel criteria, String filterText);
+    SearchResultsModel<CreditNoteModel> searchForCreditNote(OrganizationModel organization,
+            SearchCriteriaModel criteria, String filterText);
 
-    int getCreditNotesCount(OrganizationModel organization);
+    ScrollModel<CreditNoteModel> getCreditNotesScroll(OrganizationModel organization);
 
+    ScrollModel<CreditNoteModel> getCreditNotesScroll(OrganizationModel organization, boolean asc);
+
+    ScrollModel<CreditNoteModel> getCreditNotesScroll(OrganizationModel organization, boolean asc,
+            int scrollSize);
+
+    ScrollModel<CreditNoteModel> getCreditNotesScroll(OrganizationModel organization, boolean asc,
+            int scrollSize, int fetchSize);
 }

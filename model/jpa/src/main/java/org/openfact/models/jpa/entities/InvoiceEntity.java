@@ -87,6 +87,10 @@ public class InvoiceEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
     private OrganizationEntity organization;
+    
+    @Type(type = "org.hibernate.type.LocalDateTimeType")
+    @Column(name = "CREATED_TIMESTAMP")
+    private LocalDateTime createdTimestamp;
 
     /**
      * UBL
@@ -249,6 +253,14 @@ public class InvoiceEntity {
 
     public void setSendEvents(List<SendEventEntity> sendEvents) {
         this.sendEvents = sendEvents;
+    }
+
+    public LocalDateTime getCreatedTimestamp() {
+        return createdTimestamp;
+    }
+
+    public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
     }
 
 }

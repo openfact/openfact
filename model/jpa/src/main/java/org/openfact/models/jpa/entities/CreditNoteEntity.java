@@ -88,6 +88,10 @@ public class CreditNoteEntity {
     @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
     private OrganizationEntity organization;
 
+    @Type(type = "org.hibernate.type.LocalDateTimeType")
+    @Column(name = "CREATED_TIMESTAMP")
+    private LocalDateTime createdTimestamp;
+   
     /**
      * UBL
      */
@@ -258,6 +262,14 @@ public class CreditNoteEntity {
 
     public void setDocumentCurrencyCode(String documentCurrencyCode) {
         this.documentCurrencyCode = documentCurrencyCode;
+    }
+
+    public LocalDateTime getCreatedTimestamp() {
+        return createdTimestamp;
+    }
+
+    public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
     }
 
 }

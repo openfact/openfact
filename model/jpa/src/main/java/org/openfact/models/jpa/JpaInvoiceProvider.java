@@ -16,6 +16,7 @@
  *******************************************************************************/
 package org.openfact.models.jpa;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,6 +24,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.jboss.logging.Logger;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.InvoiceProvider;
@@ -30,6 +34,7 @@ import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.ScrollModel;
 import org.openfact.models.enums.RequiredActionDocument;
 import org.openfact.models.jpa.entities.InvoiceEntity;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
@@ -61,7 +66,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     protected EntityManager getEntityManager() {
         return em;
     }
-    
+
     @Override
     public InvoiceModel addInvoice(OrganizationModel organization, String documentId) {
         if (documentId == null) {
@@ -74,6 +79,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
         InvoiceEntity invoice = new InvoiceEntity();
         invoice.setDocumentId(documentId);
+        invoice.setCreatedTimestamp(LocalDateTime.now());
         invoice.setOrganization(OrganizationAdapter.toEntity(organization, em));
         em.persist(invoice);
         em.flush();
@@ -91,7 +97,8 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
     @Override
     public InvoiceModel getInvoiceById(OrganizationModel organization, String id) {
-        TypedQuery<InvoiceEntity> query = em.createNamedQuery("getOrganizationInvoiceById", InvoiceEntity.class);
+        TypedQuery<InvoiceEntity> query = em.createNamedQuery("getOrganizationInvoiceById",
+                InvoiceEntity.class);
         query.setParameter("id", id);
         query.setParameter("organizationId", organization.getId());
         List<InvoiceEntity> entities = query.getResultList();
@@ -102,7 +109,8 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
     @Override
     public InvoiceModel getInvoiceByID(OrganizationModel organization, String ID) {
-        TypedQuery<InvoiceEntity> query = em.createNamedQuery("getOrganizationInvoiceByDocumentId", InvoiceEntity.class);
+        TypedQuery<InvoiceEntity> query = em.createNamedQuery("getOrganizationInvoiceByDocumentId",
+                InvoiceEntity.class);
         query.setParameter("documentId", ID);
         query.setParameter("organizationId", organization.getId());
         List<InvoiceEntity> entities = query.getResultList();
@@ -152,7 +160,8 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     }
 
     @Override
-    public List<InvoiceModel> getInvoices(OrganizationModel organization, Integer firstResult, Integer maxResults) {
+    public List<InvoiceModel> getInvoices(OrganizationModel organization, Integer firstResult,
+            Integer maxResults) {
         String queryName = "getAllInvoicesByOrganization";
 
         TypedQuery<InvoiceEntity> query = em.createNamedQuery(queryName, InvoiceEntity.class);
@@ -164,8 +173,8 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
             query.setMaxResults(maxResults);
         }
         List<InvoiceEntity> results = query.getResultList();
-        List<InvoiceModel> invoices = results.stream().map(f -> new InvoiceAdapter(session, organization, em, f))
-                .collect(Collectors.toList());
+        List<InvoiceModel> invoices = results.stream()
+                .map(f -> new InvoiceAdapter(session, organization, em, f)).collect(Collectors.toList());
         return invoices;
     }
 
@@ -175,8 +184,8 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     }
 
     @Override
-    public List<InvoiceModel> searchForInvoice(OrganizationModel organization, String filterText, Integer firstResult,
-                                               Integer maxResults) {
+    public List<InvoiceModel> searchForInvoice(OrganizationModel organization, String filterText,
+            Integer firstResult, Integer maxResults) {
         TypedQuery<InvoiceEntity> query = em.createNamedQuery("searchForInvoice", InvoiceEntity.class);
         query.setParameter("organizationId", organization.getId());
         query.setParameter("search", "%" + filterText.toLowerCase() + "%");
@@ -187,14 +196,14 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
             query.setMaxResults(maxResults);
         }
         List<InvoiceEntity> results = query.getResultList();
-        List<InvoiceModel> invoices = results.stream().map(f -> new InvoiceAdapter(session, organization, em, f))
-                .collect(Collectors.toList());
+        List<InvoiceModel> invoices = results.stream()
+                .map(f -> new InvoiceAdapter(session, organization, em, f)).collect(Collectors.toList());
         return invoices;
     }
 
     @Override
     public SearchResultsModel<InvoiceModel> searchForInvoice(OrganizationModel organization,
-                                                             SearchCriteriaModel criteria) {
+            SearchCriteriaModel criteria) {
         criteria.addFilter("organization.id", organization.getId(), SearchCriteriaFilterOperator.eq);
 
         SearchResultsModel<InvoiceEntity> entityResult = find(criteria, InvoiceEntity.class);
@@ -210,11 +219,11 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
     @Override
     public SearchResultsModel<InvoiceModel> searchForInvoice(OrganizationModel organization,
-                                                             SearchCriteriaModel criteria, String filterText) {
+            SearchCriteriaModel criteria, String filterText) {
         criteria.addFilter("organization.id", organization.getId(), SearchCriteriaFilterOperator.eq);
 
-        SearchResultsModel<InvoiceEntity> entityResult = findFullText(criteria, InvoiceEntity.class, filterText,
-                INVOICE_TYPE_CODE, ID);
+        SearchResultsModel<InvoiceEntity> entityResult = findFullText(criteria, InvoiceEntity.class,
+                filterText, INVOICE_TYPE_CODE, ID);
         List<InvoiceEntity> entities = entityResult.getModels();
 
         SearchResultsModel<InvoiceModel> searchResult = new SearchResultsModel<>();
@@ -230,11 +239,11 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
         Query query = em.createNamedQuery("getOrganizationInvoiceCount");
         Long result = (Long) query.getSingleResult();
         return result.intValue();
-    }    
+    }
 
     @Override
-    public List<InvoiceModel> getInvoices(OrganizationModel organization, List<RequiredActionDocument> requeridAction,
-                                          boolean intoRequeridAction) {
+    public List<InvoiceModel> getInvoices(OrganizationModel organization,
+            List<RequiredActionDocument> requeridAction, boolean intoRequeridAction) {
         String queryName = "";
         if (intoRequeridAction) {
             queryName = "select i from InvoiceEntity i where i.organization.id = :organizationId and :requeridAction in elements(i.requeridAction) order by i.invoiceTypeCode ";
@@ -246,9 +255,43 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
         query.setParameter("organizationId", organization.getId());
         query.setParameter("requeridAction", requeridAction);
         List<InvoiceEntity> results = query.getResultList();
-        List<InvoiceModel> invoices = results.stream().map(f -> new InvoiceAdapter(session, organization, em, f))
-                .collect(Collectors.toList());
+        List<InvoiceModel> invoices = results.stream()
+                .map(f -> new InvoiceAdapter(session, organization, em, f)).collect(Collectors.toList());
         return invoices;
     }
 
+    @Override
+    public ScrollModel<InvoiceModel> getInvoicesScroll(OrganizationModel organization) {
+        return getInvoicesScroll(organization, true);
+    }
+
+    @Override
+    public ScrollModel<InvoiceModel> getInvoicesScroll(OrganizationModel organization, boolean asc) {
+        return getInvoicesScroll(organization, asc, -1);
+    }
+
+    @Override
+    public ScrollModel<InvoiceModel> getInvoicesScroll(OrganizationModel organization, boolean asc,
+            int scrollSize) {
+        return getInvoicesScroll(organization, asc, scrollSize, -1);
+    }
+
+    @Override
+    public ScrollModel<InvoiceModel> getInvoicesScroll(OrganizationModel organization, boolean asc,
+            int scrollSize, int fetchSize) {
+        if (scrollSize == -1) {
+            scrollSize = 5;
+        }
+        if (fetchSize == -1) {
+            scrollSize = 1;
+        }
+
+        Criteria criteria = getSession().createCriteria(InvoiceEntity.class)
+                .add(Restrictions.eq("organization.id", organization.getId()))
+                .addOrder(asc ? Order.asc("createdTimestamp") : Order.desc("createdTimestamp"));
+
+        JpaScrollAdapter<InvoiceModel, InvoiceEntity> result = new JpaScrollAdapter<>(criteria, scrollSize,
+                f -> new InvoiceAdapter(session, organization, em, f));
+        return result;
+    }
 }
