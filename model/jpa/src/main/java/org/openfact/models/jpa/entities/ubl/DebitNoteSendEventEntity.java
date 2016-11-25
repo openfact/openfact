@@ -40,158 +40,138 @@ public class DebitNoteSendEventEntity {
 	@ManyToMany(cascade = { CascadeType.ALL })
 	protected List<DebitNoteEntity> debitNotes = new ArrayList<>();
 	@Column(name = "ID_UBL")
-	protected String ID;
+	protected String documentId;
 	@Column(name = "IS_ACCEPTED")
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	boolean accepted;
 	@Column(name = "DESCRIPTION")
-	protected String Description;
+	protected String description;
 	@Column(name = "NOTE")
-	protected String Note;
+	protected String note;
 	@Column(name = "RESPONSE_CODE")
-	protected String ResponseCode;
-	@Column(name = "ERROR")
-	protected String Error;
+	protected String responseCode;
+	@Column(name = "ERROR_MESSAGE")
+	protected String errorMessage;
 	@Column(name = "DIGEST_VALUE")
-	protected String DigestValue;
+	protected String digestValue;
 	@Column(name = "BAR_CODE")
 	protected String barCode;
 	@Lob
-	@Column(name = "XML_DOCUMENT")
-	byte[] xmlDoument;
+	@Column(name = "DOCUMENT_SUBMITTED")
+	protected byte[] documentSubmitted;
 	@Lob
 	@Column(name = "DOCUMENT_RESPONSE")
-	byte[] documentResponse;
+	protected byte[] documentResponse;
 	@Lob
 	@Column(name = "CUSTOMER_DOCUMENT")
-	byte[] customerDoument;
+	protected byte[] customerDocument;
 	@ElementCollection
 	@MapKeyColumn(name = "NAME")
 	@Column(name = "VALUE")
-	@CollectionTable(name = "SEND_WARNING", joinColumns = { @JoinColumn(name = "DEBIT_NOTE_SEND_EVENT_ID") })
-	private Map<String, String> sendWarning = new HashMap<String, String>();
+	@CollectionTable(name = "WARNING", joinColumns = { @JoinColumn(name = "CREDIT_NOTE_SEND_EVENT_ID") })
+	protected Map<String, String> warning = new HashMap<String, String>();
+	@ElementCollection
+	@MapKeyColumn(name = "NAME")
+	@Column(name = "VALUE")
+	@CollectionTable(name = "SUCCESS", joinColumns = { @JoinColumn(name = "CREDIT_NOTE_SEND_EVENT_ID") })
+	protected Map<String, String> success = new HashMap<String, String>();
 	@Type(type = "org.hibernate.type.LocalDateTimeType")
 	@Column(name = "CREATED_TIMESTAMP")
-	private LocalDateTime createdTimestamp;
-
+	protected LocalDateTime createdTimestamp;
 	public String getId() {
 		return id;
 	}
-
 	public void setId(String id) {
 		this.id = id;
 	}
-
-	public List<DebitNoteEntity> getDebitNotes() {
-		return debitNotes;
+	public String getDocumentId() {
+		return documentId;
 	}
-
-	public void setDebitNotes(List<DebitNoteEntity> debitNotes) {
-		this.debitNotes = debitNotes;
+	public void setDocumentId(String documentId) {
+		this.documentId = documentId;
 	}
-
-	public String getID() {
-		return ID;
-	}
-
-	public void setID(String iD) {
-		ID = iD;
-	}
-
 	public boolean isAccepted() {
 		return accepted;
 	}
-
 	public void setAccepted(boolean accepted) {
 		this.accepted = accepted;
 	}
-
 	public String getDescription() {
-		return Description;
+		return description;
 	}
-
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
-
 	public String getNote() {
-		return Note;
+		return note;
 	}
-
 	public void setNote(String note) {
-		Note = note;
+		this.note = note;
 	}
-
 	public String getResponseCode() {
-		return ResponseCode;
+		return responseCode;
 	}
-
 	public void setResponseCode(String responseCode) {
-		ResponseCode = responseCode;
+		this.responseCode = responseCode;
 	}
-
-	public String getError() {
-		return Error;
+	public String getErrorMessage() {
+		return errorMessage;
 	}
-
-	public void setError(String error) {
-		Error = error;
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
 	}
-
 	public String getDigestValue() {
-		return DigestValue;
+		return digestValue;
 	}
-
 	public void setDigestValue(String digestValue) {
-		DigestValue = digestValue;
+		this.digestValue = digestValue;
 	}
-
 	public String getBarCode() {
 		return barCode;
 	}
-
 	public void setBarCode(String barCode) {
 		this.barCode = barCode;
-	}	
-
-	public byte[] getXmlDoument() {
-		return xmlDoument;
 	}
-
-	public void setXmlDoument(byte[] xmlDoument) {
-		this.xmlDoument = xmlDoument;
+	public byte[] getDocumentSubmitted() {
+		return documentSubmitted;
 	}
-
+	public void setDocumentSubmitted(byte[] documentSubmitted) {
+		this.documentSubmitted = documentSubmitted;
+	}
 	public byte[] getDocumentResponse() {
 		return documentResponse;
 	}
-
 	public void setDocumentResponse(byte[] documentResponse) {
 		this.documentResponse = documentResponse;
 	}
-
-	public byte[] getCustomerDoument() {
-		return customerDoument;
+	public byte[] getCustomerDocument() {
+		return customerDocument;
 	}
-
-	public void setCustomerDoument(byte[] customerDoument) {
-		this.customerDoument = customerDoument;
+	public void setCustomerDocument(byte[] customerDocument) {
+		this.customerDocument = customerDocument;
 	}
-
-	public Map<String, String> getSendWarning() {
-		return sendWarning;
+	public Map<String, String> getWarning() {
+		return warning;
 	}
-
-	public void setSendWarning(Map<String, String> sendWarning) {
-		this.sendWarning = sendWarning;
+	public void setWarning(Map<String, String> warning) {
+		this.warning = warning;
 	}
-
+	public Map<String, String> getSuccess() {
+		return success;
+	}
+	public void setSuccess(Map<String, String> success) {
+		this.success = success;
+	}
 	public LocalDateTime getCreatedTimestamp() {
 		return createdTimestamp;
 	}
-
 	public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
 		this.createdTimestamp = createdTimestamp;
 	}
-
+	public List<DebitNoteEntity> getDebitNotes() {
+		return debitNotes;
+	}
+	public void setDebitNotes(List<DebitNoteEntity> debitNotes) {
+		this.debitNotes = debitNotes;
+	}
 }

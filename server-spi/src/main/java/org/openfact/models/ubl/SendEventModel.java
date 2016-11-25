@@ -3,55 +3,59 @@ package org.openfact.models.ubl;
 import java.util.Map;
 
 public interface SendEventModel {
+
 	String getId();
 
-	void setId(String id);
+	String getDocumentId();
 
-	String getID();
-
-	void setID(String ID);
-
-	boolean isAccepted();
-
-	void setAccepted(boolean accepted);
+	boolean getAccepted();
 
 	String getDescription();
 
-	void setDescription(String description);
-
 	String getNote();
-
-	void setNote(String note);
 
 	String getResponseCode();
 
-	void setResponseCode(String responseCode);
-
-	String getError();
-
-	void setError(String error);
+	String getErrorMessage();
 
 	String getDigestValue();
 
-	void setDigestValue(String digestValue);
+	String getBarCode();
 
-	String getbarCode();
-
-	void setbarCode(String barCode);
-
-	byte[] getXmlDoument();
-
-	void setXmlDocument(byte[] xmlDocument);
+	byte[] getDocumentSubmitted();
 
 	byte[] getDocumentResponse();
 
+	byte[] getCustomerDocument();
+
+	Map<String, String> getWarning();
+
+	Map<String, String> getSuccess();
+
+	void setDocumentId(String documentId);
+
+	void setAccepted(boolean accepted);
+
+	void setDescription(String description);
+
+	void setNote(String note);
+
+	void setResponseCode(String responseCode);
+
+	void setErrorMessage(String errorMessage);
+
+	void setDigestValue(String digestValue);
+
+	void setBarCode(String barCode);
+
+	void setDocumentSubmitted(byte[] documentSubmitted);
+
 	void setDocumentResponse(byte[] documentResponse);
 
-	byte[] getCustomerDoument();
+	void setCustomerDocument(byte[] customerDocument);
 
-	void setCustomerDoument(byte[] customerDoument);
+	void setWarning(Map<String, String> warning);
 
-	Map<String, String> getSendWarning();
+	void setSuccess(Map<String, String> success);
 
-	void setSendWarning(Map<String, String> sendWarning);
 }

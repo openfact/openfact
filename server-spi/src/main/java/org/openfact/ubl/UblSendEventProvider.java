@@ -11,14 +11,14 @@ import org.openfact.models.ubl.SendEventModel;
 import org.openfact.provider.Provider;
 
 public interface UblSendEventProvider extends Provider {
-	SendEventModel addInvoiceSendEvent(OrganizationModel organization, InvoiceModel invoice, byte[] xmlSubmitted,
-			byte[] response, boolean isAccepted) throws UblSenderException;
+	SendEventModel addInvoiceSendEvent(OrganizationModel organization, InvoiceModel invoice, boolean isAccepted)
+			throws UblSenderException;
 
 	SendEventModel addCreditNoteSendEvent(OrganizationModel organization, CreditNoteModel creditNote,
-			byte[] xmlSubmitted, byte[] response, boolean isAccepted) throws UblSenderException;
+			boolean isAccepted) throws UblSenderException;
 
-	SendEventModel addDebitNoteSendEvent(OrganizationModel organization, DebitNoteModel debitNote, byte[] xmlSubmitted,
-			byte[] response, boolean isAccepted) throws UblSenderException;
+	SendEventModel addDebitNoteSendEvent(OrganizationModel organization, DebitNoteModel debitNote, boolean isAccepted)
+			throws UblSenderException;
 
 	List<SendEventModel> getInvoiceSendEvents(OrganizationModel organization, InvoiceModel invoice)
 			throws UblSenderException;

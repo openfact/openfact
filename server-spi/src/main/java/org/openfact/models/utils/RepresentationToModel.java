@@ -1106,10 +1106,10 @@ public class RepresentationToModel {
 	public static void toModel(SendEventRepresentation rep, SendEventModel model) {
 		model.setAccepted(rep.isAccepted());
 		if (rep.getBarCode() != null) {
-			model.setbarCode(rep.getBarCode());
+			model.setBarCode(rep.getBarCode());
 		}
-		if (rep.getCustomerDoument() != null) {
-			model.setCustomerDoument(rep.getCustomerDoument());
+		if (rep.getCustomerDocument() != null) {
+			model.setCustomerDocument(rep.getCustomerDocument());
 		}
 		if (rep.getDescription() != null) {
 			model.setDescription(rep.getDescription());
@@ -1120,11 +1120,11 @@ public class RepresentationToModel {
 		if (rep.getDocumentResponse() != null) {
 			model.setDocumentResponse(rep.getDocumentResponse());
 		}
-		if (rep.getError() != null) {
-			model.setError(rep.getError());
+		if (rep.getErrorMessage() != null) {
+			model.setErrorMessage(rep.getErrorMessage());
 		}
-		if (rep.getID() != null) {
-			model.setID(rep.getID());
+		if (rep.getDocumentId() != null) {
+			model.setDocumentId(rep.getDocumentId());
 		}
 		if (rep.getNote() != null) {
 			model.setNote(rep.getNote());
@@ -1132,11 +1132,14 @@ public class RepresentationToModel {
 		if (rep.getResponseCode() != null) {
 			model.setResponseCode(rep.getResponseCode());
 		}
-		if (rep.getSendWarning() != null) {
-			model.setSendWarning(rep.getSendWarning());
+		if (rep.getWarning() != null) {
+			model.setWarning(rep.getWarning());
 		}
-		if (rep.getXmlDoument() != null) {
-			model.setXmlDocument(rep.getXmlDoument());
+		if (rep.getSuccess() != null) {
+			model.setSuccess(rep.getSuccess());
+		}
+		if (rep.getDocumentSubmitted() != null) {
+			model.setDocumentSubmitted(rep.getDocumentSubmitted());
 		}
 	}
 }

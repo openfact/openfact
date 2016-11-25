@@ -4,18 +4,19 @@ import java.util.Map;
 
 public class SendEventRepresentation {
 	private String id;
-	private String ID;
+	private String documentId;
 	private boolean accepted;
-	private String Description;
-	private String Note;
-	private String ResponseCode;
-	private String Error;
-	private String DigestValue;
+	private String description;
+	private String note;
+	private String responseCode;
+	private String errorMessage;
+	private String digestValue;
 	private String barCode;
-	private byte[] xmlDoument;
+	private byte[] documentSubmitted;
 	private byte[] documentResponse;
-	private byte[] customerDoument;
-	private Map<String, String> sendWarning;
+	private byte[] customerDocument;
+	private Map<String, String> warning;
+	private Map<String, String> success;
 
 	public String getId() {
 		return id;
@@ -25,12 +26,12 @@ public class SendEventRepresentation {
 		this.id = id;
 	}
 
-	public String getID() {
-		return ID;
+	public String getDocumentId() {
+		return documentId;
 	}
 
-	public void setID(String iD) {
-		ID = iD;
+	public void setDocumentId(String documentId) {
+		this.documentId = documentId;
 	}
 
 	public boolean isAccepted() {
@@ -42,43 +43,43 @@ public class SendEventRepresentation {
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
 	public String getNote() {
-		return Note;
+		return note;
 	}
 
 	public void setNote(String note) {
-		Note = note;
+		this.note = note;
 	}
 
 	public String getResponseCode() {
-		return ResponseCode;
+		return responseCode;
 	}
 
 	public void setResponseCode(String responseCode) {
-		ResponseCode = responseCode;
+		this.responseCode = responseCode;
 	}
 
-	public String getError() {
-		return Error;
+	public String getErrorMessage() {
+		return errorMessage;
 	}
 
-	public void setError(String error) {
-		Error = error;
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
 	}
 
 	public String getDigestValue() {
-		return DigestValue;
+		return digestValue;
 	}
 
 	public void setDigestValue(String digestValue) {
-		DigestValue = digestValue;
+		this.digestValue = digestValue;
 	}
 
 	public String getBarCode() {
@@ -89,12 +90,12 @@ public class SendEventRepresentation {
 		this.barCode = barCode;
 	}
 
-	public byte[] getXmlDoument() {
-		return xmlDoument;
+	public byte[] getDocumentSubmitted() {
+		return documentSubmitted;
 	}
 
-	public void setXmlDoument(byte[] xmlDoument) {
-		this.xmlDoument = xmlDoument;
+	public void setDocumentSubmitted(byte[] documentSubmitted) {
+		this.documentSubmitted = documentSubmitted;
 	}
 
 	public byte[] getDocumentResponse() {
@@ -105,20 +106,28 @@ public class SendEventRepresentation {
 		this.documentResponse = documentResponse;
 	}
 
-	public byte[] getCustomerDoument() {
-		return customerDoument;
+	public Map<String, String> getWarning() {
+		return warning;
 	}
 
-	public void setCustomerDoument(byte[] customerDoument) {
-		this.customerDoument = customerDoument;
+	public void setWarning(Map<String, String> warning) {
+		this.warning = warning;
 	}
 
-	public Map<String, String> getSendWarning() {
-		return sendWarning;
+	public Map<String, String> getSuccess() {
+		return success;
 	}
 
-	public void setSendWarning(Map<String, String> sendWarning) {
-		this.sendWarning = sendWarning;
+	public void setSuccess(Map<String, String> success) {
+		this.success = success;
+	}
+
+	public byte[] getCustomerDocument() {
+		return customerDocument;
+	}
+
+	public void setCustomerDocument(byte[] customerDocument) {
+		this.customerDocument = customerDocument;
 	}
 
 }

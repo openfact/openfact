@@ -811,18 +811,19 @@ public class ModelToRepresentation {
 
 	public static SendEventRepresentation toRepresentation(SendEventModel model) {
 		SendEventRepresentation rep = new SendEventRepresentation();
-		rep.setAccepted(model.isAccepted());
-		rep.setBarCode(model.getbarCode());
-		rep.setCustomerDoument(model.getCustomerDoument());
+		rep.setAccepted(model.getAccepted());
+		rep.setBarCode(model.getBarCode());
+		rep.setCustomerDocument(model.getCustomerDocument());
 		rep.setDescription(model.getDescription());
 		rep.setDigestValue(model.getDigestValue());
 		rep.setDocumentResponse(model.getDocumentResponse());
-		rep.setError(model.getError());
-		rep.setID(model.getID());
+		rep.setErrorMessage(model.getErrorMessage());
+		rep.setDocumentId(model.getDocumentId());
 		rep.setNote(model.getNote());
 		rep.setResponseCode(model.getResponseCode());
-		rep.setSendWarning(model.getSendWarning());
-		rep.setXmlDoument(model.getXmlDoument());
+		rep.setWarning(model.getWarning());
+		rep.setDocumentSubmitted(model.getDocumentSubmitted());
+		rep.setSuccess(model.getSuccess());
 		return rep;
 	}
 

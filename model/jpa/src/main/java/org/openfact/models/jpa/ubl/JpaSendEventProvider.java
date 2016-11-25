@@ -40,15 +40,12 @@ public class JpaSendEventProvider extends AbstractHibernateStorage implements Ub
 	}
 
 	@Override
-	public SendEventModel addInvoiceSendEvent(OrganizationModel organization, InvoiceModel invoice, byte[] xmlSubmitted,
-			byte[] response, boolean isAccepted) throws UblSenderException {
+	public SendEventModel addInvoiceSendEvent(OrganizationModel organization, InvoiceModel invoice, boolean isAccepted)
+			throws UblSenderException {
 		InvoiceSendEventEntity sendEventEntity = new InvoiceSendEventEntity();
 		sendEventEntity.setInvoices(Arrays.asList(InvoiceAdapter.toEntity(invoice, em)));
-		sendEventEntity.setXmlDoument(xmlSubmitted);
-		if (response != null) {
-			sendEventEntity.setDocumentResponse(response);
-		}
-		sendEventEntity.setID(invoice.getID());
+
+		sendEventEntity.setDocumentId(invoice.getID());
 		sendEventEntity.setAccepted(isAccepted);
 		sendEventEntity.setCreatedTimestamp(LocalDateTime.now());
 		em.persist(sendEventEntity);
@@ -59,14 +56,11 @@ public class JpaSendEventProvider extends AbstractHibernateStorage implements Ub
 
 	@Override
 	public SendEventModel addCreditNoteSendEvent(OrganizationModel organization, CreditNoteModel creditNote,
-			byte[] xmlSubmitted, byte[] response, boolean isAccepted) throws UblSenderException {
+			boolean isAccepted) throws UblSenderException {
 		CreditNoteSendEventEntity sendEventEntity = new CreditNoteSendEventEntity();
 		sendEventEntity.setCreditNotes(Arrays.asList(CreditNoteAdapter.toEntity(creditNote, em)));
-		sendEventEntity.setXmlDoument(xmlSubmitted);
-		if (response != null) {
-			sendEventEntity.setDocumentResponse(response);
-		}
-		sendEventEntity.setID(creditNote.getID());
+
+		sendEventEntity.setDocumentId(creditNote.getID());
 		sendEventEntity.setAccepted(isAccepted);
 		sendEventEntity.setCreatedTimestamp(LocalDateTime.now());
 		em.persist(sendEventEntity);
@@ -77,14 +71,10 @@ public class JpaSendEventProvider extends AbstractHibernateStorage implements Ub
 
 	@Override
 	public SendEventModel addDebitNoteSendEvent(OrganizationModel organization, DebitNoteModel debitNote,
-			byte[] xmlSubmitted, byte[] response, boolean isAccepted) throws UblSenderException {
+			boolean isAccepted) throws UblSenderException {
 		DebitNoteSendEventEntity sendEventEntity = new DebitNoteSendEventEntity();
 		sendEventEntity.setDebitNotes(Arrays.asList(DebitNoteAdapter.toEntity(debitNote, em)));
-		sendEventEntity.setXmlDoument(xmlSubmitted);
-		if (response != null) {
-			sendEventEntity.setDocumentResponse(response);
-		}
-		sendEventEntity.setID(debitNote.getID());
+		sendEventEntity.setDocumentId(debitNote.getID());
 		sendEventEntity.setAccepted(isAccepted);
 		sendEventEntity.setCreatedTimestamp(LocalDateTime.now());
 		em.persist(sendEventEntity);
