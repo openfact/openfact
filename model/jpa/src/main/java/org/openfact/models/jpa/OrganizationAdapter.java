@@ -644,6 +644,19 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         return true;
     }
 
+    @Override
+    public Map<String, String> getUblSenderConfig() {
+        Map<String, String> config = new HashMap<String, String>();
+        config.putAll(organization.getUblSenderConfig());
+        return Collections.unmodifiableMap(config);
+    }
+
+    @Override
+    public void setUblSenderConfig(Map<String, String> ublSenderConfig) {
+        organization.setUblSenderConfig(ublSenderConfig);
+        em.flush();
+    }
+
     
 
 }

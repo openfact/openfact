@@ -23,8 +23,7 @@ import java.util.stream.Stream;
 
 public enum RequiredActionDocument {
 
-    SEND_TO_CUSTOMER(true), SEND_TO_TRIRD_PARTY(false),
-
+	SEND_TO_TRIRD_PARTY(false),
     SEND_EMAIL_CUSTOMER(true);
 
     private boolean isDefault;
