@@ -45,6 +45,11 @@ public class DefaultInvoiceReaderWriterProvider implements InvoiceReaderWriterPr
     }
 
     @Override
+    public InvoiceType read(Document document) {
+        return UBL21Reader.invoice().read(document);
+    }
+
+    @Override
     public Document writeAsDocument(OrganizationModel organization, InvoiceType invoice,
             Map<String, String> attributes) {
         return UBL21Writer.invoice().getAsDocument(invoice);

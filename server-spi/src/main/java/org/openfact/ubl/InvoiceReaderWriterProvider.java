@@ -28,6 +28,8 @@ public interface InvoiceReaderWriterProvider extends Provider {
 
     InvoiceType read(byte[] bytes);
 
+    InvoiceType read(Document document);
+
     Document writeAsDocument(OrganizationModel organization, InvoiceType invoice,
             Map<String, String> attributes);
 

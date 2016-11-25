@@ -16,11 +16,7 @@
  *******************************************************************************/
 package org.openfact.models.utils;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.component.ComponentModel;
@@ -173,6 +169,9 @@ public class ModelToRepresentation {
 
         if (model.getTaxTotal() != null) {
             for (TaxTotalModel item : model.getTaxTotal()) {
+                if(rep.getTaxTotal() == null) {
+                    rep.setTaxTotal(new ArrayList<>());
+                }
                 rep.getTaxTotal().add(toRepresentation(item));
             }
         }
@@ -194,6 +193,9 @@ public class ModelToRepresentation {
         }
         if (model.getDiscrepancyResponse() != null) {
             for (ResponseModel item : model.getDiscrepancyResponse()) {
+                if (rep.getDiscrepancyResponse() == null) {
+                    rep.setDiscrepancyResponse(new ArrayList<>());
+                }
                 rep.getDiscrepancyResponse().add(toRepresentation(item));
             }
         }
@@ -203,6 +205,9 @@ public class ModelToRepresentation {
 
         if (model.getTaxTotal() != null) {
             for (TaxTotalModel item : model.getTaxTotal()) {
+                if(rep.getTaxTotal() == null) {
+                    rep.setTaxTotal(new ArrayList<>());
+                }
                 rep.getTaxTotal().add(toRepresentation(item));
             }
         }
@@ -228,6 +233,9 @@ public class ModelToRepresentation {
         }
         if (model.getTaxTotal() != null) {
             for (TaxTotalModel item : model.getTaxTotal()) {
+                if(rep.getTaxTotal() == null) {
+                    rep.setTaxTotal(new ArrayList<>());
+                }
                 rep.getTaxTotal().add(toRepresentation(item));
             }
         }
@@ -264,6 +272,9 @@ public class ModelToRepresentation {
         rep.setResponseCode(model.getResponseCode());
         if (model.getDescription() != null) {
             for (String item : model.getDescription()) {
+                if(rep.getDescriptions() == null) {
+                    rep.setDescriptions(new ArrayList<>());
+                }
                 rep.getDescriptions().add(item);
             }
         }
@@ -274,6 +285,9 @@ public class ModelToRepresentation {
         CustomerPartyRepresentation rep = new CustomerPartyRepresentation();
         rep.setCustomerAssignedAccountId(model.getCustomerAssignedAccountID());
         for (String item : model.getAdditionalAccountID()) {
+            if(rep.getAdditionalAccountId() == null) {
+                rep.setAdditionalAccountId(new ArrayList<>());
+            }
             rep.getAdditionalAccountId().add(item);
         }
         if (model.getParty() != null) {
@@ -289,6 +303,9 @@ public class ModelToRepresentation {
         }
         rep.setCustomerAssignedAccountId(model.getCustomerAssignedAccountID());
         for (String item : model.getAdditionalAccountID()) {
+            if(rep.getAdditionalAccountId() == null) {
+                rep.setAdditionalAccountId(new ArrayList<>());
+            }
             rep.getAdditionalAccountId().add(item);
         }
         return rep;
@@ -297,6 +314,9 @@ public class ModelToRepresentation {
     public static PartyRepresentation toRepresentation(PartyModel model) {
         PartyRepresentation rep = new PartyRepresentation();
         for (PartyLegalEntityModel item : model.getPartyLegalEntity()) {
+            if(rep.getPartyLegalEntity() == null) {
+                rep.setPartyLegalEntity(new ArrayList<>());
+            }
             rep.getPartyLegalEntity().add(toRepresentation(item));
         }
         return rep;

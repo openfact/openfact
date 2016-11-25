@@ -29,6 +29,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.UriInfo;
 
+import com.helger.ubl21.UBL21Reader;
+import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.json.JSONObject;
 import org.json.XML;
@@ -46,6 +48,7 @@ import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.InvoiceManager;
+import org.openfact.ubl.InvoiceReaderWriterProvider;
 import org.w3c.dom.Document;
 
 public class InvoiceAdminResource {
@@ -110,16 +113,16 @@ public class InvoiceAdminResource {
             throw new NotFoundException("Invoice not found");
         }
 
-        JSONObject result = null;
+        Document document;
         try {
-            Document document = DocumentUtils.byteToDocument(invoice.getXmlDocument());
-            String text = DocumentUtils.getDocumentToString(document);
-            result = XML.toJSONObject(text);
+            document = DocumentUtils.byteToDocument(invoice.getXmlDocument());
         } catch (Exception e) {
             return ErrorResponse.exists("Invalid xml");
         }
 
-        Response.ResponseBuilder response = Response.ok(result);
+        InvoiceType type = session.getProvider(InvoiceReaderWriterProvider.class).read(document);
+
+        Response.ResponseBuilder response = Response.ok(type);
         return response.build();
     }
 

@@ -46,6 +46,9 @@ import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 public class DefaultSignerProvider implements SignerProvider {
 
@@ -56,54 +59,79 @@ public class DefaultSignerProvider implements SignerProvider {
     }
 
     @Override
-    public Document sign(Document document, OrganizationModel organization) {
+    public Document sign(Document document, OrganizationModel organizacion) {
+        String idReference = "Sign" + organizacion.getName().toUpperCase();
+        Document newdocument = addUBLExtensions(document);
+        Node parentNode = addExtensionContent(newdocument);
+
+        XMLSignatureFactory signatureFactory = XMLSignatureFactory.getInstance();
         try {
-            // Create XML Signature Factory
-            XMLSignatureFactory xmlSigFactory = XMLSignatureFactory.getInstance("DOM");
+            Reference reference = signatureFactory.newReference("", signatureFactory.newDigestMethod(DigestMethod.SHA1, null),
+                    Collections.singletonList(signatureFactory.newTransform(Transform.ENVELOPED, (TransformParameterSpec) null)),  null, null);
+
+            SignedInfo signedInfo = signatureFactory.newSignedInfo(
+                    signatureFactory.newCanonicalizationMethod(CanonicalizationMethod.INCLUSIVE, (C14NMethodParameterSpec) null),
+                    signatureFactory.newSignatureMethod(SignatureMethod.RSA_SHA1, null), Collections.singletonList(reference));
+
+            KeyInfoFactory keyInfoFactory = signatureFactory.getKeyInfoFactory();
+            List<X509Certificate> x509Content = new ArrayList<>();
+
+            // Certificate
             KeyManager keystore = session.keys();
-            PrivateKey privateKey = keystore.getActiveKey(organization).getPrivateKey();
 
-            DOMSignContext domSignCtx = new DOMSignContext(privateKey, document.getDocumentElement());
-            Reference ref = null;
-            SignedInfo signedInfo = null;
+            x509Content.add(keystore.getActiveKey(organizacion).getCertificate());
+            X509Data xdata = keyInfoFactory.newX509Data(x509Content);
+            KeyInfo keyInfo = keyInfoFactory.newKeyInfo(Collections.singletonList(xdata));
 
-            ref = xmlSigFactory.newReference("", xmlSigFactory.newDigestMethod(DigestMethod.SHA1, null),
-                    Collections.singletonList(xmlSigFactory.newTransform(Transform.ENVELOPED, 
-                            (TransformParameterSpec) null)), null, null);
-            
-            signedInfo = xmlSigFactory.newSignedInfo(
-                    xmlSigFactory.newCanonicalizationMethod(CanonicalizationMethod.INCLUSIVE, (C14NMethodParameterSpec) null), 
-                    xmlSigFactory.newSignatureMethod(SignatureMethod.RSA_SHA1, null), Collections.singletonList(ref));
-
-            // Pass the Public Key File Path
-            KeyInfo keyInfo = getKeyInfo(organization, keystore);
-
-            // Create a new XML Signature
-            XMLSignature xmlSignature = xmlSigFactory.newXMLSignature(signedInfo, keyInfo);
-
-            // Sign the document
-            xmlSignature.sign(domSignCtx);
-            return document;
-        } catch (NoSuchAlgorithmException ex) {
-            throw new ModelException(ex);
-        } catch (InvalidAlgorithmParameterException ex) {
-            throw new ModelException(ex);
-        } catch (MarshalException ex) {
-            throw new ModelException(ex);
-        } catch (XMLSignatureException ex) {
-            throw new ModelException(ex);
+            DOMSignContext signContext = new DOMSignContext(keystore.getActiveKey(organizacion).getPrivateKey(), newdocument.getDocumentElement());
+            XMLSignature signature = signatureFactory.newXMLSignature(signedInfo, keyInfo);
+            if (parentNode != null) {
+                signContext.setParent(parentNode);
+            }
+            signContext.setDefaultNamespacePrefix("ds");
+            signature.sign(signContext);
+            Element elementParent = (Element) signContext.getParent();
+            if ((idReference != null) && (elementParent.getElementsByTagName("ds:Signature") != null)) {
+                Element elementSignature = (Element) elementParent.getElementsByTagName("ds:Signature").item(0);
+                elementSignature.setAttribute("Id", idReference);
+            }
+            return newdocument;
+        } catch (NoSuchAlgorithmException e) {
+            throw new ModelException(e);
+        } catch (InvalidAlgorithmParameterException e) {
+            throw new ModelException(e);
+        } catch (MarshalException e) {
+            throw new ModelException(e);
+        } catch (XMLSignatureException e) {
+            throw new ModelException(e);
         }
     }
 
-    protected KeyInfo getKeyInfo(OrganizationModel organization, KeyManager keystore) {
-        XMLSignatureFactory signatureFactory = XMLSignatureFactory.getInstance();
-        KeyInfoFactory keyInfoFactory = signatureFactory.getKeyInfoFactory();
-        List<X509Certificate> x509Content = new ArrayList<>();
+    private static Document addUBLExtensions(Document document) {
+        NodeList nodeList = document.getDocumentElement().getElementsByTagName("cec:UBLExtensions");
+        Node extensions = nodeList.item(0);
+        if (extensions == null) {
+            Element element = document.getDocumentElement();
+            extensions = document.createElement("cec:UBLExtensions");
+            element.appendChild(extensions);
+            extensions.appendChild(document.createTextNode("\n"));
+            return document;
+        } else {
+            return document;
+        }
+    }
 
-        x509Content.add(keystore.getActiveKey(organization).getCertificate());
-        X509Data xdata = keyInfoFactory.newX509Data(x509Content);
-        KeyInfo keyInfo = keyInfoFactory.newKeyInfo(Collections.singletonList(xdata));
-        return keyInfo;
+    private static Node addExtensionContent(Document document) {
+        NodeList nodeList = document.getDocumentElement().getElementsByTagName("cec:UBLExtensions");
+        Node extensions = nodeList.item(0);
+        Node content = null;
+        if (extensions != null) {
+            Node extension = document.createElement("cec:UBLExtension");
+            content = document.createElement("cec:ExtensionContent");
+            extension.appendChild(content);
+            extensions.appendChild(extension);
+        }
+        return content;
     }
 
     @Override
