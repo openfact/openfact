@@ -30,9 +30,11 @@ import org.jboss.logging.Logger;
 import org.openfact.models.AllowanceChargeModel;
 import org.openfact.models.CustomerPartyModel;
 import org.openfact.models.DebitNoteModel;
+import org.openfact.models.InvoiceModel;
 import org.openfact.models.MonetaryTotalModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.SendEventModel;
 import org.openfact.models.SupplierPartyModel;
 import org.openfact.models.TaxTotalModel;
 import org.openfact.models.enums.RequiredAction;
@@ -40,6 +42,7 @@ import org.openfact.models.jpa.entities.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.CustomerPartyEntity;
 import org.openfact.models.jpa.entities.DebitNoteEntity;
 import org.openfact.models.jpa.entities.DebitNoteRequiredActionEntity;
+import org.openfact.models.jpa.entities.InvoiceEntity;
 import org.openfact.models.jpa.entities.MonetaryTotalEntity;
 import org.openfact.models.jpa.entities.SupplierPartyEntity;
 import org.openfact.models.jpa.entities.TaxTotalEntity;
@@ -59,6 +62,13 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
         this.session = session;
         this.em = em;
         this.debitNote = debitNote;
+    }
+    
+    public static DebitNoteEntity toEntity(DebitNoteModel model, EntityManager em) {
+        if (model instanceof DebitNoteAdapter) {
+            return ((DebitNoteAdapter) model).getEntity();
+        }
+        return em.getReference(DebitNoteEntity.class, model.getId());
     }
 
     @Override
@@ -259,4 +269,10 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
         removeRequiredAction(actionName);
     }
 
+    @Override
+    public List<SendEventModel> getSendEvents() {
+        return debitNote.getSendEvents().stream().map(f -> new SendEventAdapter(session, organization, em, f))
+                .collect(Collectors.toList());
+    }
+    
 }

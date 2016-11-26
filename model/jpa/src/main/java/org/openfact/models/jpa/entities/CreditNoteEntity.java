@@ -141,8 +141,8 @@ public class CreditNoteEntity {
     /**
      * Send Events
      */
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "creditNotes", cascade = { CascadeType.ALL })
-    protected List<SendEventEntity> sendEvents = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "creditNote", cascade = { CascadeType.ALL })
+    protected Collection<CreditNoteSendEventEntity> sendEvents = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -174,6 +174,22 @@ public class CreditNoteEntity {
 
     public void setOrganization(OrganizationEntity organization) {
         this.organization = organization;
+    }
+
+    public LocalDateTime getCreatedTimestamp() {
+        return createdTimestamp;
+    }
+
+    public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
+    }
+
+    public String getDocumentCurrencyCode() {
+        return documentCurrencyCode;
+    }
+
+    public void setDocumentCurrencyCode(String documentCurrencyCode) {
+        this.documentCurrencyCode = documentCurrencyCode;
     }
 
     public LocalDateTime getIssueDateTime() {
@@ -248,28 +264,13 @@ public class CreditNoteEntity {
         this.requiredActions = requiredActions;
     }
 
-    public List<SendEventEntity> getSendEvents() {
+    public Collection<CreditNoteSendEventEntity> getSendEvents() {
         return sendEvents;
     }
 
-    public void setSendEvents(List<SendEventEntity> sendEvents) {
+    public void setSendEvents(Collection<CreditNoteSendEventEntity> sendEvents) {
         this.sendEvents = sendEvents;
     }
 
-    public String getDocumentCurrencyCode() {
-        return documentCurrencyCode;
-    }
-
-    public void setDocumentCurrencyCode(String documentCurrencyCode) {
-        this.documentCurrencyCode = documentCurrencyCode;
-    }
-
-    public LocalDateTime getCreatedTimestamp() {
-        return createdTimestamp;
-    }
-
-    public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
-        this.createdTimestamp = createdTimestamp;
-    }
-
+    
 }

@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,6 +28,10 @@ public class PartyEntity {
     @Access(AccessType.PROPERTY)
     protected String id;
 
+    @ManyToOne(targetEntity = ContactEntity.class, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "CONTACT")
+    protected ContactEntity contact;
+    
     @OneToMany(targetEntity = PartyLegalEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PARTYLEGALENTITY")
     protected List<PartyLegalEntity> partyLegalEntity = new ArrayList<>();
@@ -45,6 +50,14 @@ public class PartyEntity {
 
     public void setPartyLegalEntity(List<PartyLegalEntity> partyLegalEntity) {
         this.partyLegalEntity = partyLegalEntity;
+    }
+
+    public ContactEntity getContact() {
+        return contact;
+    }
+
+    public void setContact(ContactEntity contact) {
+        this.contact = contact;
     }
 
 }

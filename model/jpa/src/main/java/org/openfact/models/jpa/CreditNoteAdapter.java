@@ -30,10 +30,12 @@ import org.jboss.logging.Logger;
 import org.openfact.models.AllowanceChargeModel;
 import org.openfact.models.CreditNoteModel;
 import org.openfact.models.CustomerPartyModel;
+import org.openfact.models.InvoiceModel;
 import org.openfact.models.MonetaryTotalModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.ResponseModel;
+import org.openfact.models.SendEventModel;
 import org.openfact.models.SupplierPartyModel;
 import org.openfact.models.TaxTotalModel;
 import org.openfact.models.enums.RequiredAction;
@@ -41,6 +43,7 @@ import org.openfact.models.jpa.entities.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.CreditNoteEntity;
 import org.openfact.models.jpa.entities.CreditNoteRequiredActionEntity;
 import org.openfact.models.jpa.entities.CustomerPartyEntity;
+import org.openfact.models.jpa.entities.InvoiceEntity;
 import org.openfact.models.jpa.entities.MonetaryTotalEntity;
 import org.openfact.models.jpa.entities.ResponseEntity;
 import org.openfact.models.jpa.entities.SupplierPartyEntity;
@@ -63,6 +66,13 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
         this.creditNote = creditNote;
     }
 
+    public static CreditNoteEntity toEntity(CreditNoteModel model, EntityManager em) {
+        if (model instanceof CreditNoteAdapter) {
+            return ((CreditNoteAdapter) model).getEntity();
+        }
+        return em.getReference(CreditNoteEntity.class, model.getId());
+    }
+    
     @Override
     public CreditNoteEntity getEntity() {
         return creditNote;
@@ -274,6 +284,12 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
     public void removeRequiredAction(RequiredAction action) {
         String actionName = action.name();
         removeRequiredAction(actionName);
+    }
+    
+    @Override
+    public List<SendEventModel> getSendEvents() {
+        return creditNote.getSendEvents().stream().map(f -> new SendEventAdapter(session, organization, em, f))
+                .collect(Collectors.toList());
     }
 
 }

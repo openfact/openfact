@@ -140,8 +140,8 @@ public class InvoiceEntity {
     /**
      * Send Events
      */
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "invoices", cascade = { CascadeType.ALL })
-    protected List<SendEventEntity> sendEvents = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "invoice", cascade = { CascadeType.ALL })
+    protected Collection<InvoiceSendEventEntity> sendEvents = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -173,6 +173,14 @@ public class InvoiceEntity {
 
     public void setOrganization(OrganizationEntity organization) {
         this.organization = organization;
+    }
+
+    public LocalDateTime getCreatedTimestamp() {
+        return createdTimestamp;
+    }
+
+    public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
     }
 
     public LocalDateTime getIssueDateTime() {
@@ -247,20 +255,13 @@ public class InvoiceEntity {
         this.requiredActions = requiredActions;
     }
 
-    public List<SendEventEntity> getSendEvents() {
+    public Collection<InvoiceSendEventEntity> getSendEvents() {
         return sendEvents;
     }
 
-    public void setSendEvents(List<SendEventEntity> sendEvents) {
+    public void setSendEvents(Collection<InvoiceSendEventEntity> sendEvents) {
         this.sendEvents = sendEvents;
     }
 
-    public LocalDateTime getCreatedTimestamp() {
-        return createdTimestamp;
-    }
-
-    public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
-        this.createdTimestamp = createdTimestamp;
-    }
-
+    
 }

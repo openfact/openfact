@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
@@ -32,6 +33,7 @@ import org.openfact.models.InvoiceModel;
 import org.openfact.models.MonetaryTotalModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.SendEventModel;
 import org.openfact.models.SupplierPartyModel;
 import org.openfact.models.TaxTotalModel;
 import org.openfact.models.enums.RequiredAction;
@@ -39,6 +41,7 @@ import org.openfact.models.jpa.entities.CustomerPartyEntity;
 import org.openfact.models.jpa.entities.InvoiceEntity;
 import org.openfact.models.jpa.entities.InvoiceRequiredActionEntity;
 import org.openfact.models.jpa.entities.MonetaryTotalEntity;
+import org.openfact.models.jpa.entities.OrganizationEntity;
 import org.openfact.models.jpa.entities.SupplierPartyEntity;
 import org.openfact.models.jpa.entities.TaxTotalEntity;
 
@@ -59,6 +62,13 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
         this.invoice = invoice;
     }
 
+    public static InvoiceEntity toEntity(InvoiceModel model, EntityManager em) {
+        if (model instanceof InvoiceAdapter) {
+            return ((InvoiceAdapter) model).getEntity();
+        }
+        return em.getReference(InvoiceEntity.class, model.getId());
+    }
+    
     @Override
     public InvoiceEntity getEntity() {
         return invoice;
@@ -250,5 +260,11 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     public void removeRequiredAction(RequiredAction action) {
         String actionName = action.name();
         removeRequiredAction(actionName);
+    }
+
+    @Override
+    public List<SendEventModel> getSendEvents() {
+        return invoice.getSendEvents().stream().map(f -> new SendEventAdapter(session, organization, em, f))
+                .collect(Collectors.toList());
     }
 }

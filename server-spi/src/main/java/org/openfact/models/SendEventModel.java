@@ -1,7 +1,5 @@
 package org.openfact.models;
 
-import java.util.List;
-
 public interface SendEventModel {
 
     String getId();
@@ -14,8 +12,5 @@ public interface SendEventModel {
 
     void setDescription(String description);
 
-    List<FileModel> getAttachments();
-
-    void setAttachments(List<FileModel> files);
-
+    OrganizationModel getOrganization();
 }

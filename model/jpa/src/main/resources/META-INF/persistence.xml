@@ -38,9 +38,13 @@
 		<class>org.openfact.models.jpa.entities.ResponseEntity</class>
 		<class>org.openfact.models.jpa.entities.SupplierPartyEntity</class>
 		<class>org.openfact.models.jpa.entities.TaxTotalEntity</class>
+		<class>org.openfact.models.jpa.entities.ContactEntity</class>
 
 		<class>org.openfact.models.jpa.entities.JobReportEntity</class>
 		<class>org.openfact.models.jpa.entities.SendEventEntity</class>
+		<class>org.openfact.models.jpa.entities.InvoiceSendEventEntity</class>
+		<class>org.openfact.models.jpa.entities.CreditNoteSendEventEntity</class>
+		<class>org.openfact.models.jpa.entities.DebitNoteSendEventEntity</class>
 
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 

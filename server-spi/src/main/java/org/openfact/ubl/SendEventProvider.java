@@ -15,7 +15,7 @@ import org.openfact.provider.Provider;
 
 public interface SendEventProvider extends Provider {
 
-    SendEventModel addSendEvent(OrganizationModel organization, SendResultType type, InvoiceModel invoice);
+    SendEventModel addSendEvent(OrganizationModel organization, SendResultType type, InvoiceModel sendEvent);
 
     SendEventModel addSendEvent(OrganizationModel organization, SendResultType type,
             CreditNoteModel creditNote);
@@ -27,9 +27,7 @@ public interface SendEventProvider extends Provider {
 
     boolean removeSendEvent(OrganizationModel organization, String id);
 
-    boolean removeSendEvent(OrganizationModel organization, SendEventModel invoice);
-
-    int getSendEventsCount(OrganizationModel organization);
+    boolean removeSendEvent(OrganizationModel organization, SendEventModel sendEvent);
 
     List<SendEventModel> getSendEvents(OrganizationModel organization);
 

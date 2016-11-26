@@ -137,8 +137,8 @@ public class DebitNoteEntity {
     /**
      * Send Events
      */
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "debitNotes", cascade = { CascadeType.ALL })
-    protected List<SendEventEntity> sendEvents = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "debitNote", cascade = { CascadeType.ALL })
+    protected Collection<DebitNoteSendEventEntity> sendEvents = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -170,6 +170,22 @@ public class DebitNoteEntity {
 
     public void setOrganization(OrganizationEntity organization) {
         this.organization = organization;
+    }
+
+    public LocalDateTime getCreatedTimestamp() {
+        return createdTimestamp;
+    }
+
+    public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
+    }
+
+    public String getDocumentCurrencyCode() {
+        return documentCurrencyCode;
+    }
+
+    public void setDocumentCurrencyCode(String documentCurrencyCode) {
+        this.documentCurrencyCode = documentCurrencyCode;
     }
 
     public LocalDateTime getIssueDateTime() {
@@ -212,6 +228,14 @@ public class DebitNoteEntity {
         this.taxTotal = taxTotal;
     }
 
+    public List<AllowanceChargeEntity> getAllowanceCharge() {
+        return allowanceCharge;
+    }
+
+    public void setAllowanceCharge(List<AllowanceChargeEntity> allowanceCharge) {
+        this.allowanceCharge = allowanceCharge;
+    }
+
     public Map<String, String> getAttributes() {
         return attributes;
     }
@@ -228,36 +252,13 @@ public class DebitNoteEntity {
         this.requiredActions = requiredActions;
     }
 
-    public List<SendEventEntity> getSendEvents() {
+    public Collection<DebitNoteSendEventEntity> getSendEvents() {
         return sendEvents;
     }
 
-    public void setSendEvents(List<SendEventEntity> sendEvents) {
+    public void setSendEvents(Collection<DebitNoteSendEventEntity> sendEvents) {
         this.sendEvents = sendEvents;
     }
 
-    public String getDocumentCurrencyCode() {
-        return documentCurrencyCode;
-    }
-
-    public void setDocumentCurrencyCode(String documentCurrencyCode) {
-        this.documentCurrencyCode = documentCurrencyCode;
-    }
-
-    public List<AllowanceChargeEntity> getAllowanceCharge() {
-        return allowanceCharge;
-    }
-
-    public void setAllowanceCharge(List<AllowanceChargeEntity> allowanceCharge) {
-        this.allowanceCharge = allowanceCharge;
-    }
-
-    public LocalDateTime getCreatedTimestamp() {
-        return createdTimestamp;
-    }
-
-    public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
-        this.createdTimestamp = createdTimestamp;
-    }
-
+    
 }

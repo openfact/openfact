@@ -6,9 +6,11 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
+import org.openfact.models.ContactModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.PartyLegalEntityModel;
 import org.openfact.models.PartyModel;
+import org.openfact.models.jpa.entities.ContactEntity;
 import org.openfact.models.jpa.entities.PartyEntity;
 import org.openfact.models.jpa.entities.PartyLegalEntity;
 
@@ -48,6 +50,23 @@ public class PartyAdapter implements PartyModel, JpaModel<PartyEntity> {
         PartyLegalEntity entity = new PartyLegalEntity();
         entities.add(entity);
         return new PartyLegalEntityAdapter(session, em, entity);
+    }
+
+    @Override
+    public ContactModel getContact() {
+        if (party.getContact() == null) {
+            return null;
+        }
+        return new ContactAdapter(session, em, party.getContact());
+    }
+
+    @Override
+    public ContactModel getContactAsNotNull() {
+        if (party.getContact() == null) {
+            ContactEntity contact = new ContactEntity();
+            party.setContact(contact);            
+        }
+        return new ContactAdapter(session, em, party.getContact());
     }
 
 }
