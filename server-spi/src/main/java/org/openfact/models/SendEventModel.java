@@ -6,9 +6,9 @@ public interface SendEventModel {
 
     String getId();
 
-    String getResult();
+    boolean getResult();
 
-    void setResult(String result);
+    void setResult(boolean result);
 
     String getDescription();
 
