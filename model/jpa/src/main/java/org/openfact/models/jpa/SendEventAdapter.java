@@ -21,7 +21,7 @@ import javax.persistence.EntityManager;
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.SendEventModel;
+import org.openfact.ubl.SendEventModel;
 import org.openfact.models.jpa.entities.SendEventEntity;
 
 public class SendEventAdapter implements SendEventModel, JpaModel<SendEventEntity> {

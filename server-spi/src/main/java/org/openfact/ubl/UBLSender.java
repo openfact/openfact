@@ -17,7 +17,6 @@
 package org.openfact.ubl;
 
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.SendEventModel;
 import org.openfact.provider.Provider;
 
 public interface UBLSender<T> extends Provider {

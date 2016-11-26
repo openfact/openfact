@@ -23,6 +23,7 @@ import java.util.Set;
 
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.provider.ProviderEvent;
+import org.openfact.ubl.SendEventModel;
 
 public interface CreditNoteModel {
 

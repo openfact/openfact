@@ -33,7 +33,7 @@ import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.ScrollModel;
-import org.openfact.models.SendEventModel;
+import org.openfact.ubl.SendEventModel;
 import org.openfact.models.enums.SendResultType;
 import org.openfact.models.jpa.entities.CreditNoteSendEventEntity;
 import org.openfact.models.jpa.entities.DebitNoteSendEventEntity;

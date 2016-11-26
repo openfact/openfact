@@ -27,7 +27,7 @@ import org.openfact.models.InvoiceProvider;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.SendEventModel;
+import org.openfact.ubl.SendEventModel;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.utils.TypeToModel;
 import org.openfact.ubl.SendException;

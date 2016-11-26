@@ -13,7 +13,6 @@ import org.openfact.models.CreditNoteModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.PartyLegalEntityModel;
-import org.openfact.models.SendEventModel;
 import org.openfact.models.UserSenderModel;
 import org.openfact.models.enums.SendResultType;
 import org.openfact.models.utils.OpenfactModelUtils;

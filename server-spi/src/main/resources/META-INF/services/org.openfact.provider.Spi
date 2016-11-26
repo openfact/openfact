@@ -28,3 +28,5 @@ org.openfact.ubl.UBLInvoiceSpi
 org.openfact.ubl.UBLCreditNoteSpi
 org.openfact.ubl.UBLDebitNoteSpi
 org.openfact.ubl.SignerSpi
+org.openfact.models.OrganizationScheduleTaskSpi
+org.openfact.timer.TimerSpi

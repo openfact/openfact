@@ -13,7 +13,6 @@ import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.PartyLegalEntityModel;
-import org.openfact.models.SendEventModel;
 import org.openfact.models.UserSenderModel;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.enums.SendResultType;

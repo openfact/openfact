@@ -7,7 +7,6 @@ import org.openfact.models.DebitNoteModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.ScrollModel;
-import org.openfact.models.SendEventModel;
 import org.openfact.models.enums.SendResultType;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
