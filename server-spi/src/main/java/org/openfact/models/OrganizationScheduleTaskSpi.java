@@ -14,37 +14,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package org.openfact.services.managers;
+package org.openfact.models;
 
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
-import org.openfact.timer.TimerProvider;
+import org.openfact.provider.Provider;
+import org.openfact.provider.ProviderFactory;
+import org.openfact.provider.Spi;
 
-public class OrganizationScheduledTaskManager {
+public class OrganizationScheduleTaskSpi implements Spi {
 
-    public static final String PREFIX = "ORG_";
-
-    protected OpenfactSession session;
-
-    public OrganizationScheduledTaskManager(OpenfactSession session) {
-        this.session = session;
+    @Override
+    public String getName() {
+        return "organizationScheduleTask";
     }
 
-    public void schedulePeriodicTask(OrganizationModel organization) {
-
+    @Override
+    public Class<? extends Provider> getProviderClass() {
+        return OrganizationScheduleTaskProvider.class;
     }
 
-    public void reschedulePeriodicTask(OrganizationModel organization) {
-
+    @Override
+    public Class<? extends ProviderFactory> getProviderFactoryClass() {
+        return OrganizationScheduleTaskProviderFactory.class;
     }
 
-    public void cancelPeriodicTask(OrganizationModel organization) {
-        TimerProvider timer = session.getProvider(TimerProvider.class);
-        timer.cancelTask(getTaskName(organization));
-    }
-
-    protected String getTaskName(OrganizationModel organization) {
-        return PREFIX + organization.getId();
+    @Override
+    public boolean isInternal() {
+        return false;
     }
 
 }

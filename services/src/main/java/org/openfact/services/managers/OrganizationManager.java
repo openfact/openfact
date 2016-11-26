@@ -28,6 +28,7 @@ import org.openfact.models.utils.OrganizationImporter;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.OrganizationEventsConfigRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
+import org.openfact.timer.TimerDelayProvider;
 
 public class OrganizationManager implements OrganizationImporter {
 
@@ -96,17 +97,14 @@ public class OrganizationManager implements OrganizationImporter {
         RepresentationToModel.importOrganization(session, rep, organization);
 
         // Create periodic tasks for send documents
-        OrganizationScheduledTaskManager taskManager = new OrganizationScheduledTaskManager(session);
-        taskManager.schedulePeriodicTask(organization);
+        schedulePeriodicTask(organization);
 
         fireOrganizationPostCreate(organization);
         return organization;
     }
 
     public boolean removeOrganization(OrganizationModel organization) {
-        // Refresh periodic tasks for send documents
-        OrganizationScheduledTaskManager taskManager = new OrganizationScheduledTaskManager(session);
-        taskManager.cancelPeriodicTask(organization);
+        cancelPeriodicTask(organization);
 
         boolean removed = model.removeOrganization(organization);
         return removed;
@@ -131,7 +129,7 @@ public class OrganizationManager implements OrganizationImporter {
     }
 
     public void updateOrganizationEventsConfig(OrganizationEventsConfigRepresentation rep,
-                                               OrganizationModel organization) {
+            OrganizationModel organization) {
         organization.setEventsEnabled(rep.isEventsEnabled());
         organization.setEventsExpiration(rep.getEventsExpiration() != null ? rep.getEventsExpiration() : 0);
         if (rep.getEventsListeners() != null) {
@@ -146,6 +144,31 @@ public class OrganizationManager implements OrganizationImporter {
         if (rep.isAdminEventsDetailsEnabled() != null) {
             organization.setAdminEventsDetailsEnabled(rep.isAdminEventsDetailsEnabled());
         }
+    }
+
+    public void schedulePeriodicTask(OrganizationModel organization) {
+        if (organization.isTasksEnabled()) {
+            TimerDelayProvider timer = session.getProvider(TimerDelayProvider.class);
+            timer.scheduleTask(new OrganizationScheduledTaskRunner(organization), organization.getTaskFirstTime(), organization.getTaskDelay(), getTaskName(organization));
+        }
+    }
+
+    public void reschedulePeriodicTask(OrganizationModel organization) {
+        TimerDelayProvider timer = session.getProvider(TimerDelayProvider.class);
+        timer.cancelTask(getTaskName(organization));
+
+        if (organization.isTasksEnabled()) {
+            timer.scheduleTask(new OrganizationScheduledTaskRunner(organization), organization.getTaskFirstTime(), organization.getTaskDelay(), getTaskName(organization));
+        }
+    }
+
+    public void cancelPeriodicTask(OrganizationModel organization) {
+        TimerDelayProvider timer = session.getProvider(TimerDelayProvider.class);
+        timer.cancelTask(getTaskName(organization));
+    }
+
+    protected String getTaskName(OrganizationModel organization) {
+        return organization.getId();
     }
 
 }

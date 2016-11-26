@@ -14,23 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-
-package org.openfact.timer;
-
-import java.util.Date;
+package org.openfact.models;
 
 import org.openfact.provider.Provider;
 
-/**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
- */
-public interface TimerDelayProvider extends Provider {
+public interface OrganizationScheduleTaskProvider extends Provider {
 
-    public void schedule(Runnable runnable, Date firstTime, long intervalMillis, String taskName);
-
-    public void scheduleTask(ScheduledTask scheduledTask, Date firstTime, long intervalMillis,
-            String taskName);
-
-    public void cancelTask(String taskName);
+    void run(OrganizationModel organization);
 
 }

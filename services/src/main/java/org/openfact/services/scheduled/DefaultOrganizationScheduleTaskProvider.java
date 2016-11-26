@@ -14,23 +14,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
+package org.openfact.services.scheduled;
 
-package org.openfact.timer;
+import org.openfact.models.OpenfactSession;
+import org.openfact.models.OrganizationModel;
+import org.openfact.models.OrganizationScheduleTaskProvider;
 
-import java.util.Date;
+public class DefaultOrganizationScheduleTaskProvider implements OrganizationScheduleTaskProvider {
 
-import org.openfact.provider.Provider;
+    protected OpenfactSession session;
 
-/**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
- */
-public interface TimerDelayProvider extends Provider {
+    public DefaultOrganizationScheduleTaskProvider(OpenfactSession session) {
+        this.session = session;
+    }
 
-    public void schedule(Runnable runnable, Date firstTime, long intervalMillis, String taskName);
+    @Override
+    public void close() {
+    }
 
-    public void scheduleTask(ScheduledTask scheduledTask, Date firstTime, long intervalMillis,
-            String taskName);
-
-    public void cancelTask(String taskName);
+    @Override
+    public void run(OrganizationModel organization) {
+        // TODO Auto-generated method stub
+    }
 
 }
