@@ -119,7 +119,7 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
                 
                 // Attatchments
                 FileModel file = new FileModel();
-                file.setFileName(invoice.getDocumentId());
+                file.setFileName(invoice.getDocumentId() + ".xml");
                 file.setFile(invoice.getXmlDocument());
                 file.setMimeType("application/xml");
                 

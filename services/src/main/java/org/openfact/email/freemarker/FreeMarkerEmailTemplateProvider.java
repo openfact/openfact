@@ -17,7 +17,14 @@
 
 package org.openfact.email.freemarker;
 
-import org.apache.commons.lang.ArrayUtils;
+import java.text.MessageFormat;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Properties;
+
 import org.openfact.common.util.ObjectUtil;
 import org.openfact.email.EmailException;
 import org.openfact.email.EmailSenderProvider;
@@ -26,27 +33,19 @@ import org.openfact.email.freemarker.beans.EventBean;
 import org.openfact.email.freemarker.beans.ProfileBean;
 import org.openfact.events.Event;
 import org.openfact.events.EventType;
-import org.openfact.models.AttachModel;
 import org.openfact.models.CreditNoteModel;
 import org.openfact.models.DebitNoteModel;
+import org.openfact.models.FileModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.UserSenderModel;
-import org.openfact.models.enums.InternetMediaType;
-import org.openfact.report.ReportTheme;
-import org.openfact.report.ReportThemeProvider;
-import org.openfact.report.theme.JasperReportException;
 import org.openfact.report.theme.JasperReportUtil;
 import org.openfact.theme.FreeMarkerException;
 import org.openfact.theme.FreeMarkerUtil;
 import org.openfact.theme.Theme;
 import org.openfact.theme.ThemeProvider;
 import org.openfact.theme.beans.MessageFormatterMethod;
-
-import java.io.IOException;
-import java.text.MessageFormat;
-import java.util.*;
 
 /**
  * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
@@ -59,6 +58,8 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
     private JasperReportUtil jasperReport;
     private OrganizationModel organization;
     private UserSenderModel user;
+    
+    private List<FileModel> attachments;
 
     public FreeMarkerEmailTemplateProvider(OpenfactSession session, FreeMarkerUtil freeMarker,
             JasperReportUtil jasperReport) {
@@ -84,6 +85,12 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
         attributes.put(name, value);
         return this;
     }
+    
+    @Override
+    public EmailTemplateProvider setAttachments(List<FileModel> attachments) {
+        this.attachments = attachments;
+        return this;
+    }
 
     @Override
     public void sendEvent(Event event) throws EmailException {
@@ -91,8 +98,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
         attributes.put("user", new ProfileBean(user));
         attributes.put("event", new EventBean(event));
 
-        send(toCamelCase(event.getType()) + "Subject",
-                "event-" + event.getType().toString().toLowerCase() + ".ftl", attributes, null);
+        send(toCamelCase(event.getType()) + "Subject", "event-" + event.getType().toString().toLowerCase() + ".ftl", attributes);
     }
 
     private String getOrganizationName() {
@@ -103,13 +109,11 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
         }
     }
 
-    private void send(String subjectKey, String template, Map<String, Object> attributes,
-            List<AttachModel> attachments) throws EmailException {
-        send(subjectKey, Collections.emptyList(), template, attributes, attachments);
+    private void send(String subjectKey, String template, Map<String, Object> attributes) throws EmailException {
+        send(subjectKey, Collections.emptyList(), template, attributes);
     }
 
-    private void send(String subjectKey, List<Object> subjectAttributes, String template,
-            Map<String, Object> attributes, List<AttachModel> attachments) throws EmailException {
+    private void send(String subjectKey, List<Object> subjectAttributes, String template, Map<String, Object> attributes) throws EmailException {
         try {
             ThemeProvider themeProvider = session.getProvider(ThemeProvider.class, "extending");
             Theme theme = themeProvider.getTheme(organization.getEmailTheme(), Theme.Type.EMAIL);
@@ -134,14 +138,13 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
                 htmlBody = null;
             }
 
-            send(subject, textBody, htmlBody, attachments);
+            send(subject, textBody, htmlBody);
         } catch (Exception e) {
             throw new EmailException("Failed to template email", e);
         }
     }
 
-    private void send(String subject, String textBody, String htmlBody, List<AttachModel> attachments)
-            throws EmailException {
+    private void send(String subject, String textBody, String htmlBody) throws EmailException {
         EmailSenderProvider emailSender = session.getProvider(EmailSenderProvider.class);
         if (attachments == null || attachments.isEmpty()) {
             emailSender.send(organization, user, subject, textBody, htmlBody);
@@ -168,39 +171,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
         attributes.put("user", new ProfileBean(user));
         attributes.put("organizationName", getOrganizationName());
 
-        List<AttachModel> attachments = new ArrayList<>();
-        attachments.add(new AttachModel() {
-            @Override
-            public String getMimeType() {
-                return InternetMediaType.XML.getMimeType();
-            }
-
-            @Override
-            public String getFileName() {
-                return invoice.getDocumentId();
-            }
-
-            @Override
-            public String getExtension() {
-                return InternetMediaType.XML.getExtension();
-            }
-
-            @Override
-            public byte[] getFile() {
-                return invoice.getXmlDocument();
-            }
-        });
-
-        try {
-            attachments.add(generateReport("", invoice));
-        } catch (IOException e) {
-            throw new EmailException("Failed to attach pdf", e);
-        } catch (JasperReportException e) {
-            throw new EmailException("Failed to generate JasperReport", e);
-        }
-
-        send(toCamelCase(EventType.INVOICE) + "Subject",
-                "event-" + EventType.INVOICE.toString().toLowerCase() + ".ftl", attributes, attachments);
+        send(toCamelCase(EventType.INVOICE) + "Subject",  "event-" + EventType.INVOICE.toString().toLowerCase() + ".ftl", attributes);
     }
 
     @Override
@@ -209,39 +180,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
         attributes.put("user", new ProfileBean(user));
         attributes.put("organizationName", getOrganizationName());
 
-        List<AttachModel> attachments = new ArrayList<>();
-        attachments.add(new AttachModel() {
-            @Override
-            public String getMimeType() {
-                return InternetMediaType.XML.getMimeType();
-            }
-
-            @Override
-            public String getFileName() {
-                return creditNote.getDocumentId();
-            }
-
-            @Override
-            public String getExtension() {
-                return InternetMediaType.XML.getExtension();
-            }
-
-            @Override
-            public byte[] getFile() {
-                return creditNote.getXmlDocument();
-            }
-        });
-
-        try {
-            attachments.add(generateReport("", creditNote));
-        } catch (IOException e) {
-            throw new EmailException("Failed to attach pdf", e);
-        } catch (JasperReportException e) {
-            throw new EmailException("Failed to generate JasperReport", e);
-        }
-
-        send(toCamelCase(EventType.CREDIT_NOTE) + "Subject",
-                "event-" + EventType.CREDIT_NOTE.toString().toLowerCase() + ".ftl", attributes, attachments);
+        send(toCamelCase(EventType.INVOICE) + "Subject",  "event-" + EventType.INVOICE.toString().toLowerCase() + ".ftl", attributes);
     }
 
     @Override
@@ -250,72 +189,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
         attributes.put("user", new ProfileBean(user));
         attributes.put("organizationName", getOrganizationName());
 
-        List<AttachModel> attachments = new ArrayList<>();
-        attachments.add(new AttachModel() {
-            @Override
-            public String getMimeType() {
-                return InternetMediaType.XML.getMimeType();
-            }
-
-            @Override
-            public String getFileName() {
-                return debitNote.getDocumentId();
-            }
-
-            @Override
-            public String getExtension() {
-                return InternetMediaType.XML.getExtension();
-            }
-
-            @Override
-            public byte[] getFile() {
-                return debitNote.getXmlDocument();
-            }
-        });
-
-        try {
-            attachments.add(generateReport("", debitNote));
-        } catch (IOException e) {
-            throw new EmailException("Failed to attach pdf", e);
-        } catch (JasperReportException e) {
-            throw new EmailException("Failed to generate JasperReport", e);
-        }
-
-        send(toCamelCase(EventType.DEBIT_NOTE) + "Subject",
-                "event-" + EventType.DEBIT_NOTE.toString().toLowerCase() + ".ftl", attributes, attachments);
-    }
-
-    protected AttachModel generateReport(String templateName, Object data)
-            throws IOException, JasperReportException {
-        ReportThemeProvider reportProvider = session.getProvider(ReportThemeProvider.class, "extending");
-        ReportTheme theme = reportProvider.getReportTheme(organization.getReportTheme(),
-                ReportTheme.Type.CLIENT);
-
-        byte[] report = jasperReport.processReportTheme(Collections.emptyMap(), templateName, theme,
-                Arrays.asList(data));
-
-        return new AttachModel() {
-
-            @Override
-            public String getMimeType() {
-                return InternetMediaType.PDF.getMimeType();
-            }
-
-            @Override
-            public String getFileName() {
-                return "Receip";
-            }
-
-            @Override
-            public byte[] getFile() {
-                return report;
-            }
-
-            @Override
-            public String getExtension() {
-                return InternetMediaType.PDF.getExtension();
-            }
-        };
-    }
+        send(toCamelCase(EventType.INVOICE) + "Subject",  "event-" + EventType.INVOICE.toString().toLowerCase() + ".ftl", attributes);
+    }      
 
 }

@@ -119,7 +119,7 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
                 
                 // Attatchments
                 FileModel file = new FileModel();
-                file.setFileName(debitNote.getDocumentId());
+                file.setFileName(debitNote.getDocumentId() + ".xml");
                 file.setFile(debitNote.getXmlDocument());
                 file.setMimeType("application/xml");
                 

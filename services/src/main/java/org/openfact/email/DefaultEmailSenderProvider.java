@@ -18,7 +18,7 @@
 package org.openfact.email;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.AttachModel;
+import org.openfact.models.FileModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.UserSenderModel;
@@ -84,7 +84,7 @@ public class DefaultEmailSenderProvider implements EmailSenderProvider {
 
     @Override
     public void send(OrganizationModel organization, UserSenderModel user, String subject, String textBody,
-                     String htmlBody, List<AttachModel> attachments) throws EmailException {
+                     String htmlBody, List<FileModel> attachments) throws EmailException {
 
         Transport transport = null;
         try {
@@ -140,12 +140,12 @@ public class DefaultEmailSenderProvider implements EmailSenderProvider {
             }
 
             if (attachments != null && attachments.size() > 0) {
-                for (AttachModel attach : attachments) {
+                for (FileModel attach : attachments) {
                     if (attach.getFile() != null) {
                         DataSource dataSource = new ByteArrayDataSource(attach.getFile(), attach.getMimeType());
                         MimeBodyPart attachPart = new MimeBodyPart();
                         attachPart.setDataHandler(new DataHandler(dataSource));
-                        attachPart.setFileName(attach.getFileName() + attach.getExtension());
+                        attachPart.setFileName(attach.getFileName());
                         MimeMultipart mimeMultipart = new MimeMultipart();
                         mimeMultipart.addBodyPart(attachPart);
 
