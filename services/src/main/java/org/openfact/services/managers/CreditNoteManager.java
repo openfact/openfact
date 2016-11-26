@@ -27,11 +27,12 @@ import org.openfact.models.CreditNoteProvider;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.enums.RequiredActionDocument;
+import org.openfact.models.SendEventModel;
+import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.utils.TypeToModel;
-import org.openfact.ubl.CreditNoteIDGeneratorProvider;
-import org.openfact.ubl.CreditNoteReaderWriterProvider;
+import org.openfact.ubl.SendException;
 import org.openfact.ubl.SignerProvider;
+import org.openfact.ubl.UBLCreditNoteProvider;
 import org.w3c.dom.Document;
 
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.IDType;
@@ -43,10 +44,12 @@ public class CreditNoteManager {
 
     protected OpenfactSession session;
     protected CreditNoteProvider model;
+    protected UBLCreditNoteProvider ubl;
 
     public CreditNoteManager(OpenfactSession session) {
         this.session = session;
         this.model = session.creditNotes();
+        this.ubl = session.getProvider(UBLCreditNoteProvider.class);
     }
 
     public CreditNoteModel getCreditNoteByID(OrganizationModel organization, String ID) {
@@ -57,8 +60,7 @@ public class CreditNoteManager {
             Map<String, String> attributes) {
         IDType documentId = type.getID();
         if (documentId == null) {
-            String generatedId = session.getProvider(CreditNoteIDGeneratorProvider.class)
-                    .generateID(organization, type);
+            String generatedId = ubl.idGenerator().generateID(organization, type);
             documentId = new IDType(generatedId);
             type.setID(documentId);
         }
@@ -69,13 +71,11 @@ public class CreditNoteManager {
         }
 
         TypeToModel.importCreditNote(session, organization, creditNote, type);
-        RequiredActionDocument.getDefaults().stream().forEach(c -> creditNote.addRequiredAction(c));
+        RequiredAction.getDefaults().stream().forEach(c -> creditNote.addRequiredAction(c));
 
         try {
             // Generate Document
-            CreditNoteReaderWriterProvider creditNoteReaderProvider = session
-                    .getProvider(CreditNoteReaderWriterProvider.class);
-            Document baseDocument = creditNoteReaderProvider.writeAsDocument(organization, type, attributes);
+            Document baseDocument = ubl.writer().write(organization, type, attributes);
 
             // Sign Document
             SignerProvider signerProvider = session.getProvider(SignerProvider.class);
@@ -98,14 +98,14 @@ public class CreditNoteManager {
         return false;
     }
 
-    public void sendToCustomerParty(OrganizationModel organization, CreditNoteModel creditNote) {
-        // TODO Auto-generated method stub
-
+    public SendEventModel sendToCustomerParty(OrganizationModel organization, CreditNoteModel creditNote)
+            throws SendException {
+        return ubl.sender().sendToCustomer(organization, creditNote);
     }
 
-    public void sendToTrirdParty(OrganizationModel organization, CreditNoteModel creditNote) {
-        // TODO Auto-generated method stub
-
+    public SendEventModel sendToTrirdParty(OrganizationModel organization, CreditNoteModel creditNote)
+            throws SendException {
+        return ubl.sender().sendToThridParty(organization, creditNote);
     }
 
 }

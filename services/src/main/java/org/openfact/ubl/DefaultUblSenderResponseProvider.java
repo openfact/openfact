@@ -5,10 +5,10 @@ import java.util.Map;
 
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.SendEventModel;
 import org.openfact.models.ubl.CreditNoteModel;
 import org.openfact.models.ubl.DebitNoteModel;
 import org.openfact.models.ubl.InvoiceModel;
-import org.openfact.models.ubl.SendEventModel;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.ubl.SendEventRepresentation;
 
@@ -24,8 +24,8 @@ public class DefaultUblSenderResponseProvider implements UblSenderResponseProvid
 
 	}
 
-	private UblSendEventProvider getSendEventProvider(OrganizationModel organization) {
-		return session.getProvider(UblSendEventProvider.class, organization.getDefaultLocale());
+	private SendEventProvider getSendEventProvider(OrganizationModel organization) {
+		return session.getProvider(SendEventProvider.class, organization.getDefaultLocale());
 	}
 
 	@Override

@@ -27,11 +27,12 @@ import org.openfact.models.InvoiceProvider;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.enums.RequiredActionDocument;
+import org.openfact.models.SendEventModel;
+import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.utils.TypeToModel;
-import org.openfact.ubl.InvoiceIDGeneratorProvider;
-import org.openfact.ubl.InvoiceReaderWriterProvider;
+import org.openfact.ubl.SendException;
 import org.openfact.ubl.SignerProvider;
+import org.openfact.ubl.UBLInvoiceProvider;
 import org.w3c.dom.Document;
 
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.IDType;
@@ -43,10 +44,12 @@ public class InvoiceManager {
 
     protected OpenfactSession session;
     protected InvoiceProvider model;
+    protected UBLInvoiceProvider ubl;
 
     public InvoiceManager(OpenfactSession session) {
         this.session = session;
         this.model = session.invoices();
+        this.ubl = session.getProvider(UBLInvoiceProvider.class);
     }
 
     public InvoiceModel getInvoiceByID(OrganizationModel organization, String ID) {
@@ -57,8 +60,7 @@ public class InvoiceManager {
             Map<String, String> attributes) {
         IDType documentId = type.getID();
         if (documentId == null) {
-            String generatedId = session.getProvider(InvoiceIDGeneratorProvider.class)
-                    .generateID(organization, type);
+            String generatedId = ubl.idGenerator().generateID(organization, type);
             documentId = new IDType(generatedId);
             type.setID(documentId);
         }
@@ -69,13 +71,11 @@ public class InvoiceManager {
         }
 
         TypeToModel.importInvoice(session, organization, invoice, type);
-        RequiredActionDocument.getDefaults().stream().forEach(c -> invoice.addRequiredAction(c));
+        RequiredAction.getDefaults().stream().forEach(c -> invoice.addRequiredAction(c));
 
         try {
             // Generate Document
-            InvoiceReaderWriterProvider invoiceReaderProvider = session
-                    .getProvider(InvoiceReaderWriterProvider.class);
-            Document baseDocument = invoiceReaderProvider.writeAsDocument(organization, type, attributes);
+            Document baseDocument = ubl.writer().write(organization, type, attributes);
 
             // Sign Document
             SignerProvider signerProvider = session.getProvider(SignerProvider.class);
@@ -98,14 +98,14 @@ public class InvoiceManager {
         return false;
     }
 
-    public void sendToCustomerParty(OrganizationModel organization, InvoiceModel invoice) {
-        // TODO Auto-generated method stub
-
+    public SendEventModel sendToCustomerParty(OrganizationModel organization, InvoiceModel invoice)
+            throws SendException {
+        return ubl.sender().sendToCustomer(organization, invoice);
     }
 
-    public void sendToTrirdParty(OrganizationModel organization, InvoiceModel invoice) {
-        // TODO Auto-generated method stub
-
+    public SendEventModel sendToTrirdParty(OrganizationModel organization, InvoiceModel invoice)
+            throws SendException {
+        return ubl.sender().sendToThridParty(organization, invoice);
     }
 
 }

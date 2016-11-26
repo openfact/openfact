@@ -6,6 +6,10 @@ public interface PartyModel {
 
     String getId();
 
+    ContactModel getContact();
+
+    ContactModel getContactAsNotNull();
+
     List<PartyLegalEntityModel> getPartyLegalEntity();
 
     PartyLegalEntityModel addPartyLegalEntity();

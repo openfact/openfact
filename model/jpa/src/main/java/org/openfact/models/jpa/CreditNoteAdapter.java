@@ -36,7 +36,7 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.models.ResponseModel;
 import org.openfact.models.SupplierPartyModel;
 import org.openfact.models.TaxTotalModel;
-import org.openfact.models.enums.RequiredActionDocument;
+import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.jpa.entities.AllowanceChargeEntity;
 import org.openfact.models.jpa.entities.CreditNoteEntity;
 import org.openfact.models.jpa.entities.CreditNoteRequiredActionEntity;
@@ -265,13 +265,13 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
     }
 
     @Override
-    public void addRequiredAction(RequiredActionDocument action) {
+    public void addRequiredAction(RequiredAction action) {
         String actionName = action.name();
         addRequiredAction(actionName);
     }
 
     @Override
-    public void removeRequiredAction(RequiredActionDocument action) {
+    public void removeRequiredAction(RequiredAction action) {
         String actionName = action.name();
         removeRequiredAction(actionName);
     }

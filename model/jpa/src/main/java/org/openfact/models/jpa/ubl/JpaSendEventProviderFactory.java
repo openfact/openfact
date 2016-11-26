@@ -6,12 +6,12 @@ import org.openfact.Config.Scope;
 import org.openfact.connections.jpa.JpaConnectionProvider;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
-import org.openfact.ubl.UblSendEventProvider;
-import org.openfact.ubl.UblSendEventProviderFactory;
+import org.openfact.ubl.SendEventProvider;
+import org.openfact.ubl.SendEventProviderFactory;
 
-public class JpaSendEventProviderFactory implements UblSendEventProviderFactory{
+public class JpaSendEventProviderFactory implements SendEventProviderFactory{
 	@Override
-	public UblSendEventProvider create(OpenfactSession session) {
+	public SendEventProvider create(OpenfactSession session) {
 		EntityManager em = session.getProvider(JpaConnectionProvider.class).getEntityManager();
 		return new JpaSendEventProvider(session, em);
 	}

@@ -32,9 +32,9 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.managers.OrganizationManager;
 import org.openfact.testsuite.providers.AbstractProviderTest;
-import org.openfact.ubl.CreditNoteReaderWriterProvider;
-import org.openfact.ubl.DebitNoteReaderWriterProvider;
-import org.openfact.ubl.InvoiceReaderWriterProvider;
+import org.openfact.ubl.CreditNoteReader;
+import org.openfact.ubl.DebitNoteReader;
+import org.openfact.ubl.InvoiceReader;
 import org.w3c.dom.Document;
 
 import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;

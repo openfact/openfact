@@ -60,7 +60,8 @@ import org.openfact.representations.idm.search.SearchResultsRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.InvoiceManager;
-import org.openfact.ubl.InvoiceReaderWriterProvider;
+import org.openfact.ubl.SendException;
+import org.openfact.ubl.UBLInvoiceProvider;
 
 import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 
@@ -135,7 +136,7 @@ public class InvoicesAdminResource {
         }
         return invoices.stream().map(f -> ModelToRepresentation.toRepresentation(f))
                 .collect(Collectors.toList());
-    }    
+    }
 
     @POST
     @Path("upload")
@@ -152,7 +153,7 @@ public class InvoicesAdminResource {
                 InputStream inputStream = inputPart.getBody(InputStream.class, null);
                 byte[] bytes = IOUtils.toByteArray(inputStream);
 
-                InvoiceType invoiceType = session.getProvider(InvoiceReaderWriterProvider.class).read(bytes);
+                InvoiceType invoiceType = session.getProvider(UBLInvoiceProvider.class).reader().read(bytes);
                 if (invoiceType == null) {
                     throw new ModelException("Invalid invoice Xml");
                 }
@@ -170,6 +171,10 @@ public class InvoicesAdminResource {
                 adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, invoice.getId())
                         .representation(invoiceType).success();
 
+                // Send
+                invoiceManager.sendToCustomerParty(organization, invoice);
+                invoiceManager.sendToTrirdParty(organization, invoice);
+
                 if (session.getTransactionManager().isActive()) {
                     session.getTransactionManager().commit();
                 }
@@ -186,6 +191,11 @@ public class InvoicesAdminResource {
                     session.getTransactionManager().setRollbackOnly();
                 }
                 return ErrorResponse.exists("Could not create invoice");
+            } catch (SendException e) {
+                if (session.getTransactionManager().isActive()) {
+                    session.getTransactionManager().setRollbackOnly();
+                }
+                return ErrorResponse.exists("Problem sending the invoice to customer/third party");
             }
         }
 

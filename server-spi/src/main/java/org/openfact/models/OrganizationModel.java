@@ -186,13 +186,6 @@ public interface OrganizationModel {
 	void setSmtpConfig(Map<String, String> smtpConfig);
 
 	/**
-	 * Ubl server
-	 */
-	Map<String, String> getUblSenderConfig();
-
-	void setUblSenderConfig(Map<String, String> ublSenderConfig);
-
-	/**
 	 * Attributes
 	 */
 	void setAttribute(String name, String value);

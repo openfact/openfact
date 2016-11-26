@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.openfact.provider.ProviderEvent;
-import org.openfact.models.enums.RequiredActionDocument;
+import org.openfact.models.enums.RequiredAction;
 
 public interface InvoiceModel {
 
@@ -96,10 +96,14 @@ public interface InvoiceModel {
 
     void removeRequiredAction(String action);
 
-    void addRequiredAction(RequiredActionDocument action);
+    void addRequiredAction(RequiredAction action);
 
-    void removeRequiredAction(RequiredActionDocument action);
+    void removeRequiredAction(RequiredAction action);
 
+    /**
+     * Send events*/
+    List<SendEventModel> getSendEvents();
+    
     /**
      * Events interfaces
      */

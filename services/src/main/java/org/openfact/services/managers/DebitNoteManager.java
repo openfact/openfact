@@ -27,11 +27,12 @@ import org.openfact.models.DebitNoteProvider;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.enums.RequiredActionDocument;
+import org.openfact.models.SendEventModel;
+import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.utils.TypeToModel;
-import org.openfact.ubl.DebitNoteIDGeneratorProvider;
-import org.openfact.ubl.DebitNoteReaderWriterProvider;
+import org.openfact.ubl.SendException;
 import org.openfact.ubl.SignerProvider;
+import org.openfact.ubl.UBLDebitNoteProvider;
 import org.w3c.dom.Document;
 
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.IDType;
@@ -43,10 +44,12 @@ public class DebitNoteManager {
 
     protected OpenfactSession session;
     protected DebitNoteProvider model;
+    protected UBLDebitNoteProvider ubl;
 
     public DebitNoteManager(OpenfactSession session) {
         this.session = session;
         this.model = session.debitNotes();
+        this.ubl = session.getProvider(UBLDebitNoteProvider.class);
     }
 
     public DebitNoteModel getDebitNoteByID(OrganizationModel organization, String ID) {
@@ -57,8 +60,7 @@ public class DebitNoteManager {
             Map<String, String> attributes) {
         IDType documentId = type.getID();
         if (documentId == null) {
-            String generatedId = session.getProvider(DebitNoteIDGeneratorProvider.class)
-                    .generateID(organization, type);
+            String generatedId = ubl.idGenerator().generateID(organization, type);
             documentId = new IDType(generatedId);
             type.setID(documentId);
         }
@@ -69,13 +71,11 @@ public class DebitNoteManager {
         }
 
         TypeToModel.importDebitNote(session, organization, debitNote, type);
-        RequiredActionDocument.getDefaults().stream().forEach(c -> debitNote.addRequiredAction(c));
+        RequiredAction.getDefaults().stream().forEach(c -> debitNote.addRequiredAction(c));
 
         try {
             // Generate Document
-            DebitNoteReaderWriterProvider debitNoteReaderProvider = session
-                    .getProvider(DebitNoteReaderWriterProvider.class);
-            Document baseDocument = debitNoteReaderProvider.writeAsDocument(organization, type, attributes);
+            Document baseDocument = ubl.writer().write(organization, type, attributes);
 
             // Sign Document
             SignerProvider signerProvider = session.getProvider(SignerProvider.class);
@@ -98,14 +98,14 @@ public class DebitNoteManager {
         return false;
     }
 
-    public void sendToCustomerParty(OrganizationModel organization, DebitNoteModel debitNote) {
-        // TODO Auto-generated method stub
-
+    public SendEventModel sendToCustomerParty(OrganizationModel organization, DebitNoteModel debitNote)
+            throws SendException {
+        return ubl.sender().sendToCustomer(organization, debitNote);
     }
 
-    public void sendToTrirdParty(OrganizationModel organization, DebitNoteModel debitNote) {
-        // TODO Auto-generated method stub
-
+    public SendEventModel sendToTrirdParty(OrganizationModel organization, DebitNoteModel debitNote)
+            throws SendException {
+        return ubl.sender().sendToThridParty(organization, debitNote);
     }
 
 }

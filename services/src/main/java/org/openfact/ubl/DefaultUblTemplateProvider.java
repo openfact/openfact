@@ -9,11 +9,11 @@ import javax.xml.ws.soap.SOAPFaultException;
 import org.apache.commons.lang.ArrayUtils;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.SendEventModel;
 import org.openfact.models.enums.InternetMediaType;
 import org.openfact.models.ubl.CreditNoteModel;
 import org.openfact.models.ubl.DebitNoteModel;
 import org.openfact.models.ubl.InvoiceModel;
-import org.openfact.models.ubl.SendEventModel;
 
 public class DefaultUblTemplateProvider implements UblTemplateProvider {
 	private OpenfactSession session;

@@ -16,7 +16,7 @@
  *******************************************************************************/
 package org.openfact.models;
 
-import org.openfact.models.enums.RequiredActionDocument;
+import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.provider.Provider;
@@ -40,7 +40,7 @@ public interface InvoiceProvider extends Provider {
     List<InvoiceModel> getInvoices(OrganizationModel organization);
 
     List<InvoiceModel> getInvoices(OrganizationModel organization,
-            List<RequiredActionDocument> requeridAction, boolean intoRequeridAction);
+            List<RequiredAction> requeridAction, boolean intoRequeridAction);
 
     List<InvoiceModel> getInvoices(OrganizationModel organization, Integer firstResult, Integer maxResults);
 

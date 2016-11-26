@@ -35,7 +35,7 @@ import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.ScrollModel;
-import org.openfact.models.enums.RequiredActionDocument;
+import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.jpa.entities.InvoiceEntity;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchCriteriaModel;
@@ -243,7 +243,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
     @Override
     public List<InvoiceModel> getInvoices(OrganizationModel organization,
-            List<RequiredActionDocument> requeridAction, boolean intoRequeridAction) {
+            List<RequiredAction> requeridAction, boolean intoRequeridAction) {
         String queryName = "";
         if (intoRequeridAction) {
             queryName = "select i from InvoiceEntity i where i.organization.id = :organizationId and :requeridAction in elements(i.requeridAction) order by i.invoiceTypeCode ";

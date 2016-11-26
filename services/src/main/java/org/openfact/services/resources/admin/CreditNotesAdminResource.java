@@ -60,7 +60,7 @@ import org.openfact.representations.idm.search.SearchResultsRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.CreditNoteManager;
-import org.openfact.ubl.CreditNoteReaderWriterProvider;
+import org.openfact.ubl.UBLCreditNoteProvider;
 
 import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
 
@@ -88,7 +88,7 @@ public class CreditNotesAdminResource {
     private AdminEventBuilder adminEvent;
 
     public CreditNotesAdminResource(OrganizationModel organization, OrganizationAuth auth,
-                                    AdminEventBuilder adminEvent) {
+            AdminEventBuilder adminEvent) {
         this.auth = auth;
         this.organization = organization;
         this.adminEvent = adminEvent;
@@ -107,8 +107,8 @@ public class CreditNotesAdminResource {
             throw new NotFoundException("CreditNote not found");
         }
 
-        CreditNoteAdminResource creditNoteResource = new CreditNoteAdminResource(organization, auth, adminEvent,
-                creditNote);
+        CreditNoteAdminResource creditNoteResource = new CreditNoteAdminResource(organization, auth,
+                adminEvent, creditNote);
         ResteasyProviderFactory.getInstance().injectProperties(creditNoteResource);
         return creditNoteResource;
     }
@@ -127,12 +127,12 @@ public class CreditNotesAdminResource {
         if (filterText == null) {
             creditNotes = session.creditNotes().getCreditNotes(organization, firstResult, maxResults);
         } else {
-            creditNotes = session.creditNotes().searchForCreditNote(organization, filterText.trim(), firstResult,
-                    maxResults);
+            creditNotes = session.creditNotes().searchForCreditNote(organization, filterText.trim(),
+                    firstResult, maxResults);
         }
         return creditNotes.stream().map(f -> ModelToRepresentation.toRepresentation(f))
                 .collect(Collectors.toList());
-    }    
+    }
 
     @POST
     @Path("upload")
@@ -149,7 +149,7 @@ public class CreditNotesAdminResource {
                 InputStream inputStream = inputPart.getBody(InputStream.class, null);
                 byte[] bytes = IOUtils.toByteArray(inputStream);
 
-                CreditNoteType creditNoteType = session.getProvider(CreditNoteReaderWriterProvider.class)
+                CreditNoteType creditNoteType = session.getProvider(UBLCreditNoteProvider.class).reader()
                         .read(bytes);
                 if (creditNoteType == null) {
                     throw new ModelException("Invalid creditNote Xml");

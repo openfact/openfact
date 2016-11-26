@@ -11,6 +11,7 @@ import javax.persistence.TypedQuery;
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.SendEventModel;
 import org.openfact.models.jpa.AbstractHibernateStorage;
 import org.openfact.models.jpa.entities.ubl.CreditNoteSendEventEntity;
 import org.openfact.models.jpa.entities.ubl.DebitNoteSendEventEntity;
@@ -18,11 +19,10 @@ import org.openfact.models.jpa.entities.ubl.InvoiceSendEventEntity;
 import org.openfact.models.ubl.CreditNoteModel;
 import org.openfact.models.ubl.DebitNoteModel;
 import org.openfact.models.ubl.InvoiceModel;
-import org.openfact.models.ubl.SendEventModel;
-import org.openfact.ubl.UblSendEventProvider;
+import org.openfact.ubl.SendEventProvider;
 import org.openfact.ubl.UblSenderException;
 
-public class JpaSendEventProvider extends AbstractHibernateStorage implements UblSendEventProvider {
+public class JpaSendEventProvider extends AbstractHibernateStorage implements SendEventProvider {
 
 	protected static final Logger logger = Logger.getLogger(JpaSendEventProvider.class);
 

@@ -19,7 +19,6 @@ package org.openfact.models;
 
 import org.openfact.component.ComponentModel;
 import org.openfact.provider.Provider;
-import org.openfact.ubl.UblSendEventProvider;
 
 import java.util.Set;
 

@@ -17,12 +17,14 @@
 
 package org.openfact.email;
 
+import java.util.List;
+
 import org.openfact.events.Event;
 import org.openfact.models.CreditNoteModel;
 import org.openfact.models.DebitNoteModel;
+import org.openfact.models.FileModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.UserModel;
 import org.openfact.models.UserSenderModel;
 import org.openfact.provider.Provider;
 
@@ -38,6 +40,8 @@ public interface EmailTemplateProvider extends Provider {
 	public EmailTemplateProvider setUser(UserSenderModel user);
 
 	public EmailTemplateProvider setAttribute(String name, Object value);
+	
+	public EmailTemplateProvider setAttachments(List<FileModel> files);
 
 	public void sendEvent(Event event) throws EmailException;
 

@@ -7,13 +7,13 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
+import org.openfact.models.DebitNoteSendEventModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.DebitNoteEntity;
 import org.openfact.models.jpa.entities.ubl.DebitNoteSendEventEntity;
 import org.openfact.models.ubl.DebitNoteModel;
-import org.openfact.models.ubl.DebitNoteSendEventModel;
 
 public class DebitNoteSendEventAdapter implements DebitNoteSendEventModel, JpaModel<DebitNoteSendEventEntity> {
 	protected static final Logger logger = Logger.getLogger(DebitNoteSendEventAdapter.class);

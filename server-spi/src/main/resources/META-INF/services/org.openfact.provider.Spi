@@ -6,6 +6,7 @@ org.openfact.events.EventStoreSpi
 org.openfact.exportimport.ExportSpi
 org.openfact.exportimport.ImportSpi
 org.openfact.timer.TimerSpi
+org.openfact.timer.TimerDelaySpi
 org.openfact.services.resource.OrganizationResourceSPI
 org.openfact.email.EmailSenderSpi
 org.openfact.email.EmailTemplateSpi
@@ -22,10 +23,8 @@ org.openfact.keys.KeySpi
 org.openfact.models.InvoiceSpi
 org.openfact.models.CreditNoteSpi
 org.openfact.models.DebitNoteSpi
-org.openfact.ubl.InvoiceReaderWriterSpi
-org.openfact.ubl.CreditNoteReaderWriterSpi
-org.openfact.ubl.DebitNoteReaderWriterSpi
-org.openfact.ubl.InvoiceIDGeneratorSpi
-org.openfact.ubl.CreditNoteIDGeneratorSpi
-org.openfact.ubl.DebitNoteIDGeneratorSpi
+org.openfact.ubl.SendEventSpi
+org.openfact.ubl.UBLInvoiceSpi
+org.openfact.ubl.UBLCreditNoteSpi
+org.openfact.ubl.UBLDebitNoteSpi
 org.openfact.ubl.SignerSpi

@@ -16,15 +16,27 @@
  *******************************************************************************/
 package org.openfact.services;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.openfact.component.ComponentFactory;
 import org.openfact.component.ComponentModel;
 import org.openfact.keys.DefaultKeyManager;
-import org.openfact.models.*;
+import org.openfact.models.CreditNoteProvider;
+import org.openfact.models.DebitNoteProvider;
+import org.openfact.models.InvoiceProvider;
+import org.openfact.models.KeyManager;
+import org.openfact.models.OpenfactContext;
+import org.openfact.models.OpenfactSession;
+import org.openfact.models.OpenfactSessionFactory;
+import org.openfact.models.OpenfactTransactionManager;
+import org.openfact.models.OrganizationProvider;
 import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
-import org.openfact.ubl.UblSendEventProvider;
-
-import java.util.*;
 
 /**
  * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
@@ -43,7 +55,6 @@ public class DefaultOpenfactSession implements OpenfactSession {
 	private InvoiceProvider invoices;
 	private CreditNoteProvider creditNotes;
 	private DebitNoteProvider debitNotes;
-	private UblSendEventProvider ublSendEvent;
 
 	public DefaultOpenfactSession(DefaultOpenfactSessionFactory factory) {
 		this.factory = factory;

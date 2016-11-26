@@ -7,13 +7,13 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
+import org.openfact.models.CreditNoteSendEventModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.CreditNoteEntity;
 import org.openfact.models.jpa.entities.ubl.CreditNoteSendEventEntity;
 import org.openfact.models.ubl.CreditNoteModel;
-import org.openfact.models.ubl.CreditNoteSendEventModel;
 
 public class CreditNoteSendEventAdapter implements CreditNoteSendEventModel, JpaModel<CreditNoteSendEventEntity> {
 	protected static final Logger logger = Logger.getLogger(CreditNoteSendEventAdapter.class);

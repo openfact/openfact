@@ -7,13 +7,13 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
+import org.openfact.models.InvoiceSendEventModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.ubl.InvoiceEntity;
 import org.openfact.models.jpa.entities.ubl.InvoiceSendEventEntity;
 import org.openfact.models.ubl.InvoiceModel;
-import org.openfact.models.ubl.InvoiceSendEventModel;
 
 public class InvoiceSendEventAdapter implements InvoiceSendEventModel, JpaModel<InvoiceSendEventEntity> {
 	protected static final Logger logger = Logger.getLogger(InvoiceSendEventAdapter.class);

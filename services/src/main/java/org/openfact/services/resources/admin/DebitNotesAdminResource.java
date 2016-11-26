@@ -60,7 +60,7 @@ import org.openfact.representations.idm.search.SearchResultsRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.DebitNoteManager;
-import org.openfact.ubl.DebitNoteReaderWriterProvider;
+import org.openfact.ubl.UBLDebitNoteProvider;
 
 import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
 
@@ -128,7 +128,7 @@ public class DebitNotesAdminResource {
         }
         return debitNotes.stream().map(f -> ModelToRepresentation.toRepresentation(f))
                 .collect(Collectors.toList());
-    }    
+    }
 
     @POST
     @Path("upload")
@@ -145,7 +145,7 @@ public class DebitNotesAdminResource {
                 InputStream inputStream = inputPart.getBody(InputStream.class, null);
                 byte[] bytes = IOUtils.toByteArray(inputStream);
 
-                DebitNoteType debitNoteType = session.getProvider(DebitNoteReaderWriterProvider.class)
+                DebitNoteType debitNoteType = session.getProvider(UBLDebitNoteProvider.class).reader()
                         .read(bytes);
                 if (debitNoteType == null) {
                     throw new ModelException("Invalid debitNote Xml");

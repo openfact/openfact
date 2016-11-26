@@ -34,7 +34,7 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.SupplierPartyModel;
 import org.openfact.models.TaxTotalModel;
-import org.openfact.models.enums.RequiredActionDocument;
+import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.jpa.entities.CustomerPartyEntity;
 import org.openfact.models.jpa.entities.InvoiceEntity;
 import org.openfact.models.jpa.entities.InvoiceRequiredActionEntity;
@@ -241,13 +241,13 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
-    public void addRequiredAction(RequiredActionDocument action) {
+    public void addRequiredAction(RequiredAction action) {
         String actionName = action.name();
         addRequiredAction(actionName);
     }
 
     @Override
-    public void removeRequiredAction(RequiredActionDocument action) {
+    public void removeRequiredAction(RequiredAction action) {
         String actionName = action.name();
         removeRequiredAction(actionName);
     }
