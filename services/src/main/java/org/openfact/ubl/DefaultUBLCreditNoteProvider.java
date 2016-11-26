@@ -119,7 +119,7 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
                 
                 // Attatchments
                 FileModel file = new FileModel();
-                file.setFileName(creditNote.getDocumentId());
+                file.setFileName(creditNote.getDocumentId() + ".xml");
                 file.setFile(creditNote.getXmlDocument());
                 file.setMimeType("application/xml");
                 

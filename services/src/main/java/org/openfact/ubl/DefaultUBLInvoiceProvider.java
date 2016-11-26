@@ -27,75 +27,76 @@ import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 
 public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
 
-	protected OpenfactSession session;
+    protected OpenfactSession session;
 
-	public DefaultUBLInvoiceProvider(OpenfactSession session) {
-		this.session = session;
-	}
+    public DefaultUBLInvoiceProvider(OpenfactSession session) {
+        this.session = session;
+    }
 
-	@Override
-	public void close() {
-	}
+    @Override
+    public void close() {
+    }
 
-	@Override
-	public UBLIDGenerator<InvoiceType> idGenerator() {
-		return new UBLIDGenerator<InvoiceType>() {
-			@Override
-			public void close() {
-			}
+    @Override
+    public UBLIDGenerator<InvoiceType> idGenerator() {
+        return new UBLIDGenerator<InvoiceType>() {
+            @Override
+            public void close() {
+            }
 
-			@Override
-			public String generateID(OrganizationModel organization, InvoiceType t) {
-				return OpenfactModelUtils.generateId();
-			}
-		};
-	}
+            @Override
+            public String generateID(OrganizationModel organization, InvoiceType t) {
+                return OpenfactModelUtils.generateId();
+            }
+        };
+    }
 
-	@Override
-	public UBLReader<InvoiceType> reader() {
-		return new UBLReader<InvoiceType>() {
-			@Override
-			public void close() {
-			}
+    @Override
+    public UBLReader<InvoiceType> reader() {
+        return new UBLReader<InvoiceType>() {
+            @Override
+            public void close() {
+            }
 
-			@Override
-			public InvoiceType read(Document document) {
-				return UBL21Reader.invoice().read(document);
-			}
+            @Override
+            public InvoiceType read(Document document) {
+                return UBL21Reader.invoice().read(document);
+            }
 
-			@Override
-			public InvoiceType read(byte[] bytes) {
-				return UBL21Reader.invoice().read(bytes);
-			}
-		};
-	}
+            @Override
+            public InvoiceType read(byte[] bytes) {
+                return UBL21Reader.invoice().read(bytes);
+            }
+        };
+    }
 
-	@Override
-	public UBLWriter<InvoiceType> writer() {
-		return new UBLWriter<InvoiceType>() {
-			@Override
-			public void close() {
-			}
+    @Override
+    public UBLWriter<InvoiceType> writer() {
+        return new UBLWriter<InvoiceType>() {
+            @Override
+            public void close() {
+            }
 
-			@Override
-			public Document write(OrganizationModel organization, InvoiceType t) {
-				return UBL21Writer.invoice().getAsDocument(t);
-			}
+            @Override
+            public Document write(OrganizationModel organization, InvoiceType t) {
+                return UBL21Writer.invoice().getAsDocument(t);
+            }
 
-			@Override
-			public Document write(OrganizationModel organization, InvoiceType t, Map<String, String> attributes) {
-				return UBL21Writer.invoice().getAsDocument(t);
-			}
-		};
-	}
+            @Override
+            public Document write(OrganizationModel organization, InvoiceType t,
+                    Map<String, String> attributes) {
+                return UBL21Writer.invoice().getAsDocument(t);
+            }
+        };
+    }
 
-	@Override
-	public UBLSender<InvoiceModel> sender() {
-		return new UBLSender<InvoiceModel>() {
-
-			@Override
-			public void close() {
-			}
+    @Override
+    public UBLSender<InvoiceModel> sender() {
+        return new UBLSender<InvoiceModel>() {           
+            
+            @Override
+            public void close() {
+            }
 
 			@Override
 			public SendEventModel sendToCustomer(OrganizationModel organization, InvoiceModel invoice)
@@ -146,13 +147,12 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
 				}
 			}
 
-			@Override
-			public SendEventModel sendToThridParty(OrganizationModel organization, InvoiceModel t)
-					throws SendException {
-				return null;
-			}
-
-		};
-	}
+            @Override
+            public SendEventModel sendToThridParty(OrganizationModel organization, InvoiceModel t) throws SendException {
+                return null;
+            }
+            
+        };
+    }
 
 }

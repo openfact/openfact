@@ -4,7 +4,7 @@ public class FileModel {
 
     protected String mimeType;
     protected String fileName;
-    protected byte[] file;
+    protected byte[] file;   
 
     public String getFileName() {
         return fileName;
