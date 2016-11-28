@@ -20,6 +20,7 @@ import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.keycloak.representations.idm.RealmRepresentation;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.representations.idm.OrganizationRepresentation;
@@ -27,6 +28,16 @@ import org.openfact.representations.idm.PostalAddressRepresentation;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ImportTest extends AbstractModelTest {
+
+    @Test
+    public void demoDelete() throws Exception {
+        // was having trouble deleting this realm from admin console
+        OrganizationRepresentation rep = AbstractModelTest.loadJson("model/testorganization2.json");
+        OrganizationModel organization= organizationManager.importOrganization(rep);
+        commit();
+        organization = organizationManager.getOrganizationByName("demo-delete");
+        organizationManager.removeOrganization(organization);
+    }
 
     @Test
     public void install() throws Exception {
@@ -85,13 +96,5 @@ public class ImportTest extends AbstractModelTest {
         /**
          * Smtp server*/
         Assert.assertEquals(rep.getSmtpServer().size(), organization.getSmtpConfig().size());
-        
-        /**
-         * Tasks Schedule*/                     
-        
-        /**
-         * Invoices
-         */
-        //Assert.assertEquals(rep.getInvoices().size(), session.invoices().getInvoices(organization).size());                
     }
 }

@@ -1,6 +1,5 @@
 {
-	"id": "demo",
-	"organization": "demo",
+	"organization": "demo-delete",
 	"description": "demo organization",
 	"enabled": true,
 	"assignedIdentificationId": "10467793549",

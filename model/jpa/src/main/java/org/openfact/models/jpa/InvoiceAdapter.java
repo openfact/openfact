@@ -17,6 +17,7 @@
 package org.openfact.models.jpa;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -80,6 +81,11 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     @Override
     public String getDocumentId() {
         return invoice.getDocumentId();
+    }
+    
+    @Override
+    public LocalDateTime getCreatedTimestamp() {
+        return invoice.getCreatedTimestamp();
     }
 
     @Override
@@ -265,4 +271,5 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
         return invoice.getSendEvents().stream().map(f -> new SendEventAdapter(session, organization, em, f))
                 .collect(Collectors.toList());
     }
+    
 }
