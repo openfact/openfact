@@ -24,7 +24,7 @@ import org.openfact.provider.Provider;
 import java.sql.Connection;
 
 /**
- * @author <a href="mailto:mposolda@sistcoop.com">Marek Posolda</a>
+ * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
  */
 public interface LiquibaseConnectionProvider extends Provider {
 

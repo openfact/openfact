@@ -32,7 +32,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * @author <a href="mailto:mposolda@sistcoop.com">Marek Posolda</a>
+ * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
  */
 public class LiquibaseDBLockProvider implements DBLockProvider {
 

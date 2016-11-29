@@ -27,7 +27,7 @@ import org.openfact.models.dblock.DBLockProviderFactory;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * @author <a href="mailto:mposolda@sistcoop.com">Marek Posolda</a>
+ * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
  */
 public class LiquibaseDBLockProviderFactory implements DBLockProviderFactory {
 

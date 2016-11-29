@@ -22,7 +22,7 @@ import org.openfact.provider.ProviderFactory;
 import org.openfact.provider.Spi;
 
 /**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
+ * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
 public class JpaUpdaterSpi implements Spi {
 

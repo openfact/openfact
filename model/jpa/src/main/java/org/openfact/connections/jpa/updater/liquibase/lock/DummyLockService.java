@@ -24,7 +24,7 @@ import liquibase.lockservice.StandardLockService;
 /**
  * Dummy lock service injected to Liquibase. Doesn't need to do anything as we already have a lock when Liquibase update is called.
  *
- * @author <a href="mailto:mposolda@sistcoop.com">Marek Posolda</a>
+ * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
  */
 public class DummyLockService extends StandardLockService {
 

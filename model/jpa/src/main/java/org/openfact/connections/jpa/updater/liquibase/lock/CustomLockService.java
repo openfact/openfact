@@ -22,11 +22,7 @@ import liquibase.exception.DatabaseException;
 import liquibase.executor.Executor;
 import liquibase.executor.ExecutorService;
 import liquibase.lockservice.StandardLockService;
-import liquibase.statement.core.CreateDatabaseChangeLogLockTableStatement;
-import liquibase.statement.core.DropTableStatement;
-import liquibase.statement.core.InitializeDatabaseChangeLogLockTableStatement;
-import liquibase.statement.core.LockDatabaseChangeLogStatement;
-import liquibase.statement.core.RawSqlStatement;
+import liquibase.statement.core.*;
 import org.jboss.logging.Logger;
 import org.openfact.common.util.Time;
 import org.openfact.common.util.reflections.Reflections;
@@ -36,7 +32,7 @@ import java.lang.reflect.Field;
 /**
  * Liquibase lock service, which has some bugfixes and assumes timeouts to be configured in milliseconds
  *
- * @author <a href="mailto:mposolda@sistcoop.com">Marek Posolda</a>
+ * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
  */
 public class CustomLockService extends StandardLockService {
 

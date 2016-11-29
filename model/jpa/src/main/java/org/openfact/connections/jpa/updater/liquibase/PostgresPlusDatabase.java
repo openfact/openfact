@@ -24,7 +24,7 @@ import liquibase.executor.ExecutorService;
 import liquibase.statement.core.RawSqlStatement;
 
 /**
- * @author <a href="mailto:mposolda@sistcoop.com">Marek Posolda</a>
+ * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
  */
 public class PostgresPlusDatabase extends PostgresDatabase {
 

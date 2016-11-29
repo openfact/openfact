@@ -20,7 +20,7 @@ package org.openfact.connections.jpa.updater.liquibase.conn;
 import org.openfact.provider.ProviderFactory;
 
 /**
- * @author <a href="mailto:mposolda@sistcoop.com">Marek Posolda</a>
+ * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
  */
 public interface LiquibaseConnectionProviderFactory extends ProviderFactory<LiquibaseConnectionProvider> {
 }

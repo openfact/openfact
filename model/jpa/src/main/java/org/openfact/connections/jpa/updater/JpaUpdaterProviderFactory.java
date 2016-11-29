@@ -20,7 +20,7 @@ package org.openfact.connections.jpa.updater;
 import org.openfact.provider.ProviderFactory;
 
 /**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
+ * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
 public interface JpaUpdaterProviderFactory extends ProviderFactory<JpaUpdaterProvider> {
 }
