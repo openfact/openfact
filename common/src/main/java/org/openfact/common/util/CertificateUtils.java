@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -44,9 +44,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * The Class CertificateUtils provides utility functions for generation of V1 and V3 {@link java.security.cert.X509Certificate}
+ * The Class CertificateUtils provides utility functions for generation of V1 and V3 {@link X509Certificate}
  *
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @author <a href="mailto:giriraj.sharma27@gmail.com">Giriraj Sharma</a>
  * @version $Revision: 2 $
  */
@@ -56,7 +56,7 @@ public class CertificateUtils {
     }
 
     /**
-     * Generates version 3 {@link java.security.cert.X509Certificate}.
+     * Generates version 3 {@link X509Certificate}.
      *
      * @param keyPair the key pair
      * @param caPrivateKey the CA private key
@@ -68,7 +68,7 @@ public class CertificateUtils {
      * @throws Exception the exception
      */
     public static X509Certificate generateV3Certificate(KeyPair keyPair, PrivateKey caPrivateKey, X509Certificate caCert,
-                                                        String subject) throws Exception {
+            String subject) throws Exception {
 
         try {
             X500Name subjectDN = new X500Name("CN=" + subject);
@@ -125,7 +125,7 @@ public class CertificateUtils {
     }
 
     /**
-     * Generate version 1 self signed {@link java.security.cert.X509Certificate}..
+     * Generate version 1 self signed {@link X509Certificate}..
      *
      * @param caKeyPair the CA key pair
      * @param subject the subject name
@@ -158,7 +158,7 @@ public class CertificateUtils {
     }
 
     /**
-     * Creates the content signer for generation of Version 1 {@link java.security.cert.X509Certificate}.
+     * Creates the content signer for generation of Version 1 {@link X509Certificate}.
      *
      * @param privateKey the private key
      *

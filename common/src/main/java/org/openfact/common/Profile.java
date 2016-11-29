@@ -27,6 +27,10 @@ import java.util.Properties;
  */
 public class Profile {
 
+    private enum ProfileValue {
+        PRODUCT, PREVIEW, COMMUNITY
+    }
+
     private static ProfileValue value = load();
 
     static ProfileValue load() {
@@ -60,10 +64,6 @@ public class Profile {
 
     public static boolean isPreviewEnabled() {
         return value.ordinal() >= ProfileValue.PREVIEW.ordinal();
-    }
-
-    private enum ProfileValue {
-        PRODUCT, PREVIEW, COMMUNITY
     }
 
 }
