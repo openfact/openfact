@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,6 +30,7 @@ public class OrganizationRepresentation {
     private String organization;
 
     protected Map<String, String> smtpServer;
+
     @Deprecated
     protected String privateKey;
     @Deprecated
@@ -38,6 +39,7 @@ public class OrganizationRepresentation {
     protected String certificate;
     @Deprecated
     protected String codeSecret;
+
     protected String adminTheme;
     protected String emailTheme;
     protected Set<String> supportedLocales;

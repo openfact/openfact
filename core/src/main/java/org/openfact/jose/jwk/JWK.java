@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
+ * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
 public class JWK {
 
@@ -36,7 +36,22 @@ public class JWK {
     public static final String ALGORITHM = "alg";
 
     public static final String PUBLIC_KEY_USE = "use";
-    protected Map<String, Object> otherClaims = new HashMap<String, Object>();
+
+    public enum Use {
+        SIG("sig"),
+        ENCRYPTION("enc");
+
+        private String str;
+
+        Use(String str) {
+            this.str = str;
+        }
+
+        public String asString() {
+            return str;
+        }
+    }
+
     @JsonProperty(KEY_ID)
     private String keyId;
 
@@ -48,6 +63,9 @@ public class JWK {
 
     @JsonProperty(PUBLIC_KEY_USE)
     private String publicKeyUse;
+
+    protected Map<String, Object> otherClaims = new HashMap<String, Object>();
+
 
     public String getKeyId() {
         return keyId;
@@ -89,21 +107,6 @@ public class JWK {
     @JsonAnySetter
     public void setOtherClaims(String name, Object value) {
         otherClaims.put(name, value);
-    }
-
-    public enum Use {
-        SIG("sig"),
-        ENCRYPTION("enc");
-
-        private String str;
-
-        Use(String str) {
-            this.str = str;
-        }
-
-        public String asString() {
-            return str;
-        }
     }
 
 
