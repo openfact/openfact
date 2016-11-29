@@ -108,8 +108,8 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
             return ObjectUtil.capitalize(organization.getName());
         }
     }
-
-    private void send(String subjectKey, String template, Map<String, Object> attributes) throws EmailException {
+    @Override
+    public void send(String subjectKey, String template, Map<String, Object> attributes) throws EmailException {
         send(subjectKey, Collections.emptyList(), template, attributes);
     }
 
@@ -180,7 +180,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
         attributes.put("user", new ProfileBean(user));
         attributes.put("organizationName", getOrganizationName());
 
-        send(toCamelCase(EventType.INVOICE) + "Subject",  "event-" + EventType.INVOICE.toString().toLowerCase() + ".ftl", attributes);
+        send(toCamelCase(EventType.CREDIT_NOTE) + "Subject",  "event-" + EventType.CREDIT_NOTE.toString().toLowerCase() + ".ftl", attributes);
     }
 
     @Override
@@ -189,7 +189,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
         attributes.put("user", new ProfileBean(user));
         attributes.put("organizationName", getOrganizationName());
 
-        send(toCamelCase(EventType.INVOICE) + "Subject",  "event-" + EventType.INVOICE.toString().toLowerCase() + ".ftl", attributes);
+        send(toCamelCase(EventType.DEBIT_NOTE) + "Subject",  "event-" + EventType.CREDIT_NOTE.toString().toLowerCase() + ".ftl", attributes);
     }      
 
 }

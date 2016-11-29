@@ -18,6 +18,7 @@
 package org.openfact.email;
 
 import java.util.List;
+import java.util.Map;
 
 import org.openfact.events.Event;
 import org.openfact.models.CreditNoteModel;
@@ -44,6 +45,8 @@ public interface EmailTemplateProvider extends Provider {
 	public EmailTemplateProvider setAttachments(List<FileModel> files);
 
 	public void sendEvent(Event event) throws EmailException;
+	
+	void send(String subjectKey, String template, Map<String, Object> attributes) throws EmailException;
 
 	public void sendInvoice(InvoiceModel invoice) throws EmailException ;
 
