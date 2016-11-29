@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,7 +22,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
+ * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
 public class ProviderConfigurationBuilder {
 
@@ -51,7 +51,6 @@ public class ProviderConfigurationBuilder {
         properties.add(property);
         return this;
     }
-
     public ProviderConfigurationBuilder property(String name, String label, String helpText, String type, Object defaultValue, List<String> options) {
         ProviderConfigProperty property = new ProviderConfigProperty(name, label, helpText, type, defaultValue);
         property.setOptions(options);
@@ -102,6 +101,12 @@ public class ProviderConfigurationBuilder {
             this.options = Arrays.asList(options);
             return this;
         }
+
+        public ProviderConfigPropertyBuilder options(List<String> options) {
+            this.options = options;
+            return this;
+        }
+
 
         public ProviderConfigPropertyBuilder secret(boolean secret) {
             this.secret = secret;
