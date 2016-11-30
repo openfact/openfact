@@ -38,6 +38,8 @@ public interface SendEventProvider extends Provider {
 
     boolean removeSendEvent(OrganizationModel organization, SendEventModel sendEvent);
 
+    int getSendEventsCount(OrganizationModel organization);
+
     List<SendEventModel> getSendEvents(OrganizationModel organization);
 
     List<SendEventModel> getSendEvents(OrganizationModel organization, Integer firstResult, Integer maxResults);

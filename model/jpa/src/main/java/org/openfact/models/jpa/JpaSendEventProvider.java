@@ -208,4 +208,10 @@ public class JpaSendEventProvider extends AbstractHibernateStorage implements Se
                 f -> new SendEventAdapter(session, organization, em, f));
         return result;
     }
+
+	@Override
+	public int getSendEventsCount(OrganizationModel organization) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
