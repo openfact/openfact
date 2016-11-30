@@ -146,10 +146,7 @@ public class DefaultEmailSenderProvider implements EmailSenderProvider {
                         MimeBodyPart attachPart = new MimeBodyPart();
                         attachPart.setDataHandler(new DataHandler(dataSource));
                         attachPart.setFileName(attach.getFileName());
-                        MimeMultipart mimeMultipart = new MimeMultipart();
-                        mimeMultipart.addBodyPart(attachPart);
-
-                        // multipart.addBodyPart(attachPart);
+                        multipart.addBodyPart(attachPart);
                     }
                 }
             }

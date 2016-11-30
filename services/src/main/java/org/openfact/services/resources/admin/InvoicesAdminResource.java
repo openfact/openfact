@@ -161,23 +161,20 @@ public class InvoicesAdminResource {
                 InvoiceManager invoiceManager = new InvoiceManager(session);
 
                 // Double-check duplicated ID
-                if (invoiceType.getIDValue() != null
-                        && invoiceManager.getInvoiceByID(organization, invoiceType.getIDValue()) != null) {
+                if (invoiceType.getIDValue() != null && invoiceManager.getInvoiceByID(organization, invoiceType.getIDValue()) != null) {
                     return ErrorResponse.exists("Invoice exists with same ID");
                 }
 
-                InvoiceModel invoice = invoiceManager.addInvoice(organization, invoiceType,
-                        Collections.emptyMap());
-                adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, invoice.getId())
-                        .representation(invoiceType).success();
-
-                // Send
-                invoiceManager.sendToCustomerParty(organization, invoice);
-                invoiceManager.sendToTrirdParty(organization, invoice);
+                InvoiceModel invoice = invoiceManager.addInvoice(organization, invoiceType, Collections.emptyMap());
+                adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, invoice.getId()).representation(invoiceType).success();
 
                 if (session.getTransactionManager().isActive()) {
                     session.getTransactionManager().commit();
                 }
+
+                // Send
+                invoiceManager.sendToCustomerParty(organization, invoice);
+                invoiceManager.sendToTrirdParty(organization, invoice);
             } catch (IOException e) {
                 logger.error("Error reading input data", e);
                 return ErrorResponse.error("Error Reading data", Response.Status.BAD_REQUEST);
@@ -192,10 +189,7 @@ public class InvoicesAdminResource {
                 }
                 return ErrorResponse.exists("Could not create invoice");
             } catch (SendException e) {
-                if (session.getTransactionManager().isActive()) {
-                    session.getTransactionManager().setRollbackOnly();
-                }
-                return ErrorResponse.exists("Problem sending the invoice to customer/third party");
+                return ErrorResponse.error("Invoice uploaded successfully but we found an error sending the invoice", Response.Status.ACCEPTED);
             }
         }
 

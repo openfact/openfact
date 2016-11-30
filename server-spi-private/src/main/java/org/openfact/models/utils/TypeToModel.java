@@ -22,28 +22,9 @@ import java.time.LocalTime;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import org.openfact.models.AllowanceChargeModel;
-import org.openfact.models.CreditNoteModel;
-import org.openfact.models.CustomerPartyModel;
-import org.openfact.models.DebitNoteModel;
-import org.openfact.models.InvoiceModel;
-import org.openfact.models.MonetaryTotalModel;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.PartyLegalEntityModel;
-import org.openfact.models.PartyModel;
-import org.openfact.models.ResponseModel;
-import org.openfact.models.SupplierPartyModel;
-import org.openfact.models.TaxTotalModel;
+import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.*;
+import org.openfact.models.*;
 
-import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.AllowanceChargeType;
-import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.CustomerPartyType;
-import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.MonetaryTotalType;
-import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.PartyLegalEntityType;
-import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.PartyType;
-import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.ResponseType;
-import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.SupplierPartyType;
-import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.TaxTotalType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.AdditionalAccountIDType;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.DescriptionType;
 import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
@@ -255,6 +236,9 @@ public class TypeToModel {
                 updateModel(model.addPartyLegalEntity(), item);
             }
         }
+        if(type.getContact() != null) {
+            updateModel(model.getContactAsNotNull(), type.getContact());
+        }
     }
 
     public static void updateModel(PartyLegalEntityModel model, PartyLegalEntityType type) {
@@ -263,6 +247,12 @@ public class TypeToModel {
         }
         if (type.getRegistrationNameValue() != null) {
             model.setRegistrationName(type.getRegistrationNameValue());
+        }
+    }
+
+    public static void updateModel(ContactModel model, ContactType type) {
+        if (type.getElectronicMail() != null) {
+            model.setElectronicMail(type.getElectronicMailValue());
         }
     }
 

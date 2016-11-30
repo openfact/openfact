@@ -18,6 +18,6 @@ package org.openfact.models.enums;
 
 public enum SendResultType {
 
-    SUCCESS, ERROR;
+    SUCCESS, WARNING, ERROR;
 
 }

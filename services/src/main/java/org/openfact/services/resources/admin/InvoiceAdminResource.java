@@ -16,12 +16,7 @@
  *******************************************************************************/
 package org.openfact.services.resources.admin;
 
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
@@ -44,6 +39,8 @@ import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.InvoiceManager;
+import org.openfact.ubl.SendEventModel;
+import org.openfact.ubl.SendException;
 import org.openfact.ubl.UBLInvoiceProvider;
 import org.w3c.dom.Document;
 
@@ -218,6 +215,45 @@ public class InvoiceAdminResource {
             return Response.noContent().build();
         } else {
             return ErrorResponse.error("Invoice couldn't be deleted", Response.Status.BAD_REQUEST);
+        }
+    }
+
+    @POST
+    @Path("send-to-customer")
+    @NoCache
+    @Produces(MediaType.APPLICATION_JSON)
+    public void sendToCustomer() {
+        auth.requireManage();
+
+        if (invoice == null) {
+            throw new NotFoundException("Invoice not found");
+        }
+
+        InvoiceManager invoiceManager = new InvoiceManager(session);
+        try {
+            invoiceManager.sendToCustomerParty(organization, invoice);
+        } catch (SendException e) {
+            throw new InternalServerErrorException(e);
+        }
+    }
+
+    @POST
+    @Path("send-to-third-party")
+    @NoCache
+    @Produces(MediaType.APPLICATION_JSON)
+    public void sendToThridParty() {
+        auth.requireManage();
+
+        if (invoice == null) {
+            throw new NotFoundException("Invoice not found");
+        }
+
+        InvoiceManager invoiceManager = new InvoiceManager(session);
+        SendEventModel sentEvent;
+        try {
+            sentEvent = invoiceManager.sendToTrirdParty(organization, invoice);
+        } catch (SendException e) {
+            throw new InternalServerErrorException(e);
         }
     }
 

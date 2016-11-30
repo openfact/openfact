@@ -2,19 +2,11 @@
   "themes": [
     {
       "name": "base",
-      "types": [
-        "admin",
-        "email"
-      ]
+      "types": ["admin", "email"]
     },
     {
       "name": "openfact",
-      "types": [
-        "admin",
-        "common",
-        "email",
-        "welcome"
-      ]
+      "types": ["admin", "common", "email", "welcome"]
     }
   ]
 }

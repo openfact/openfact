@@ -121,8 +121,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
             attributes.put("locale", locale);
             Properties rb = theme.getMessages(locale);
             attributes.put("msg", new MessageFormatterMethod(locale, rb));
-            String subject = new MessageFormat(rb.getProperty(subjectKey, subjectKey), locale)
-                    .format(subjectAttributes.toArray());
+            String subject = new MessageFormat(rb.getProperty(subjectKey, subjectKey), locale).format(subjectAttributes.toArray());
             String textTemplate = String.format("text/%s", template);
             String textBody;
             try {
@@ -171,7 +170,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
         attributes.put("user", new ProfileBean(user));
         attributes.put("organizationName", getOrganizationName());
 
-        send(toCamelCase(EventType.INVOICE) + "Subject",  "event-" + EventType.INVOICE.toString().toLowerCase() + ".ftl", attributes);
+        send(organization.getDisplayName() + " " + toCamelCase(EventType.INVOICE) + "-" + invoice.getDocumentId() + "Subject",  "invoice.ftl", attributes);
     }
 
     @Override
@@ -180,7 +179,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
         attributes.put("user", new ProfileBean(user));
         attributes.put("organizationName", getOrganizationName());
 
-        send(toCamelCase(EventType.CREDIT_NOTE) + "Subject",  "event-" + EventType.CREDIT_NOTE.toString().toLowerCase() + ".ftl", attributes);
+        send(organization.getDisplayName() + "-" + toCamelCase(EventType.CREDIT_NOTE) + "Subject",  "event-" + EventType.CREDIT_NOTE.toString().toLowerCase() + ".ftl", attributes);
     }
 
     @Override

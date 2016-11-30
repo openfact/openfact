@@ -114,13 +114,12 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
             }
 
 			@Override
-			public SendEventModel sendToCustomer(OrganizationModel organization, InvoiceModel invoice)
-					throws SendException {
+			public SendEventModel sendToCustomer(OrganizationModel organization, InvoiceModel invoice) throws SendException {
 				CustomerPartyModel customerParty = invoice.getAccountingCustomerParty();
-				if (customerParty == null || customerParty.getParty() == null
-						|| customerParty.getParty().getContact() == null
-						|| customerParty.getParty().getContact().getElectronicMail() == null) {
-					return null;
+				if (customerParty == null || customerParty.getParty() == null || customerParty.getParty().getContact() == null || customerParty.getParty().getContact().getElectronicMail() == null) {
+                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.WARNING, invoice);
+                    sendEvent.setDescription("Could not find a valid email for the customer.");
+                    return sendEvent;
 				}
 
 				// User where the email will be send
@@ -128,8 +127,7 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
 					@Override
 					public String getFullName() {
 						List<PartyLegalEntityModel> partyLegalEntities = customerParty.getParty().getPartyLegalEntity();
-						return partyLegalEntities.stream().map(f -> f.getRegistrationName())
-								.reduce((t, u) -> t + "," + u).get();
+						return partyLegalEntities.stream().map(f -> f.getRegistrationName()).reduce((t, u) -> t + "," + u).get();
 					}
 
 					@Override
@@ -145,12 +143,10 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
 				file.setMimeType("application/xml");
 
 				try {
-					session.getProvider(EmailTemplateProvider.class).setOrganization(organization).setUser(user)
-							.setAttachments(new ArrayList<>(Arrays.asList(file))).sendInvoice(invoice);
+					session.getProvider(EmailTemplateProvider.class).setOrganization(organization).setUser(user).setAttachments(new ArrayList<>(Arrays.asList(file))).sendInvoice(invoice);
 
 					// Write event to the database
-					SendEventModel sendEvent = session.getProvider(SendEventProvider.class).addSendEvent(organization,
-							SendResultType.SUCCESS, invoice);
+					SendEventModel sendEvent = session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.SUCCESS, invoice);
 					sendEvent.setDescription("Invoice Sended by Email");
 
 					if (sendEvent.getResult()) {
@@ -163,8 +159,10 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
 			}
 
             @Override
-            public SendEventModel sendToThridParty(OrganizationModel organization, InvoiceModel t) throws SendException {
-                return null;
+            public SendEventModel sendToThridParty(OrganizationModel organization, InvoiceModel invoice) throws SendException {
+                SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.WARNING, invoice);
+                sendEvent.setDescription("Could not send the invoice because there is no a valid Third Party. This feature should be implemented by your own code");
+                return sendEvent;
             }
             
         };
