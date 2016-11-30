@@ -45,7 +45,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
     protected static final Logger logger = Logger.getLogger(JpaInvoiceProvider.class);
 
-    private static final String ID = "ID";
+    private static final String DOCUMENT_ID = "documentId";
     private static final String INVOICE_TYPE_CODE = "invoiceTypeCode";
     private static final String ISSUE_DATETIME = "issueDateTime";
 
@@ -70,11 +70,11 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     @Override
     public InvoiceModel addInvoice(OrganizationModel organization, String documentId) {
         if (documentId == null) {
-            throw new ModelException("Invalid ID, Null value");
+            throw new ModelException("Invalid documentId, Null value");
         }
 
         if (session.invoices().getInvoiceByID(organization, documentId) != null) {
-            throw new ModelDuplicateException("Invoice ID existed");
+            throw new ModelDuplicateException("Invoice documentId existed");
         }
 
         InvoiceEntity invoice = new InvoiceEntity();
@@ -218,12 +218,10 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     }
 
     @Override
-    public SearchResultsModel<InvoiceModel> searchForInvoice(OrganizationModel organization,
-            SearchCriteriaModel criteria, String filterText) {
+    public SearchResultsModel<InvoiceModel> searchForInvoice(OrganizationModel organization, SearchCriteriaModel criteria, String filterText) {
         criteria.addFilter("organization.id", organization.getId(), SearchCriteriaFilterOperator.eq);
 
-        SearchResultsModel<InvoiceEntity> entityResult = findFullText(criteria, InvoiceEntity.class,
-                filterText, INVOICE_TYPE_CODE, ID);
+        SearchResultsModel<InvoiceEntity> entityResult = findFullText(criteria, InvoiceEntity.class, filterText, INVOICE_TYPE_CODE, DOCUMENT_ID);
         List<InvoiceEntity> entities = entityResult.getModels();
 
         SearchResultsModel<InvoiceModel> searchResult = new SearchResultsModel<>();
@@ -242,8 +240,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     }
 
     @Override
-    public List<InvoiceModel> getInvoices(OrganizationModel organization,
-            List<RequiredAction> requeridAction, boolean intoRequeridAction) {
+    public List<InvoiceModel> getInvoices(OrganizationModel organization, List<RequiredAction> requeridAction, boolean intoRequeridAction) {
         String queryName = "";
         if (intoRequeridAction) {
             queryName = "select i from InvoiceEntity i where i.organization.id = :organizationId and :requeridAction in elements(i.requeridAction) order by i.invoiceTypeCode ";
@@ -271,8 +268,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     }
 
     @Override
-    public ScrollModel<InvoiceModel> getInvoicesScroll(OrganizationModel organization, boolean asc,
-            int scrollSize) {
+    public ScrollModel<InvoiceModel> getInvoicesScroll(OrganizationModel organization, boolean asc, int scrollSize) {
         return getInvoicesScroll(organization, asc, scrollSize, -1);
     }
 
