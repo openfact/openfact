@@ -37,25 +37,8 @@ import org.openfact.models.ResponseModel;
 import org.openfact.models.SupplierPartyModel;
 import org.openfact.models.TaxTotalModel;
 import org.openfact.provider.ProviderConfigProperty;
-import org.openfact.representations.idm.AdminEventRepresentation;
-import org.openfact.representations.idm.AllowanceChargeRepresentation;
-import org.openfact.representations.idm.AuthDetailsRepresentation;
-import org.openfact.representations.idm.ComponentRepresentation;
-import org.openfact.representations.idm.ConfigPropertyRepresentation;
-import org.openfact.representations.idm.CreditNoteRepresentation;
-import org.openfact.representations.idm.CustomerPartyRepresentation;
-import org.openfact.representations.idm.DebitNoteRepresentation;
-import org.openfact.representations.idm.EventRepresentation;
-import org.openfact.representations.idm.InvoiceRepresentation;
-import org.openfact.representations.idm.MonetaryTotalRepresentation;
-import org.openfact.representations.idm.OrganizationEventsConfigRepresentation;
-import org.openfact.representations.idm.OrganizationRepresentation;
-import org.openfact.representations.idm.PartyLegalEntityRepresentation;
-import org.openfact.representations.idm.PartyRepresentation;
-import org.openfact.representations.idm.PostalAddressRepresentation;
-import org.openfact.representations.idm.ResponseRepresentation;
-import org.openfact.representations.idm.SupplierPartyRepresentation;
-import org.openfact.representations.idm.TaxTotalRepresentation;
+import org.openfact.representations.idm.*;
+import org.openfact.ubl.SendEventModel;
 
 public class ModelToRepresentation {
 
@@ -442,4 +425,11 @@ public class ModelToRepresentation {
         return rep;
     }
 
+    public static SendEventRepresentation toRepresentation(SendEventModel model) {
+        SendEventRepresentation rep = new SendEventRepresentation();
+        rep.setId(model.getId());
+        rep.setResult(model.getResult());
+        rep.setDescription(model.getDescription());
+        return rep;
+    }
 }

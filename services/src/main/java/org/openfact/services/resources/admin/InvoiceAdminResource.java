@@ -36,6 +36,7 @@ import org.openfact.report.ReportProvider;
 import org.openfact.report.ReportTheme;
 import org.openfact.report.ReportThemeProvider;
 import org.openfact.representations.idm.InvoiceRepresentation;
+import org.openfact.representations.idm.SendEventRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.InvoiceManager;
@@ -45,6 +46,9 @@ import org.openfact.ubl.UBLInvoiceProvider;
 import org.w3c.dom.Document;
 
 import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class InvoiceAdminResource {
 
@@ -255,6 +259,20 @@ public class InvoiceAdminResource {
         } catch (SendException e) {
             throw new InternalServerErrorException(e);
         }
+    }
+
+    @GET
+    @Path("send-events")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<SendEventRepresentation> getSendEvents() {
+        auth.requireView();
+
+        if (invoice == null) {
+            throw new NotFoundException("Invoice not found");
+        }
+
+        List<SendEventModel> sendEvents = invoice.getSendEvents();
+        return sendEvents.stream().map(f -> ModelToRepresentation.toRepresentation(f)).collect(Collectors.toList());
     }
 
 }

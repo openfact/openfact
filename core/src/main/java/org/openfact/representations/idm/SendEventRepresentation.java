@@ -20,14 +20,31 @@ import java.util.Map;
 
 public class SendEventRepresentation {
 
-    Map<String, EventRepresentation> events;
+    private String id;
+    private String description;
+    private boolean result;
 
-    public Map<String, EventRepresentation> getEvents() {
-        return events;
+    public String getId() {
+        return id;
     }
 
-    public void setEvents(Map<String, EventRepresentation> events) {
-        this.events = events;
+    public void setId(String id) {
+        this.id = id;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean isResult() {
+        return result;
+    }
+
+    public void setResult(boolean result) {
+        this.result = result;
+    }
 }
