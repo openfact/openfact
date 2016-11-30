@@ -28,6 +28,7 @@
         <module name="org.openfact.openfact-common"/>
         <module name="org.openfact.openfact-core"/>
         <module name="org.openfact.openfact-server-spi"/>
+        <module name="org.openfact.openfact-server-spi-private"/>
         <module name="org.openfact.openfact-services"/>
         <module name="org.jboss.modules"/>
     </dependencies>

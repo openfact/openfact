@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,34 +15,34 @@
  * limitations under the License.
  *******************************************************************************/
 
-package org.openfact;
+package org.openfact.keys;
+
+import org.openfact.provider.Provider;
+import org.openfact.provider.ProviderFactory;
+import org.openfact.provider.Spi;
 
 /**
- * Non-recoverable error thrown during server startup
- *
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
+ * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
  */
-public class ServerStartupError extends Error {
+public class PublicKeyStorageSpi implements Spi {
 
-    private final boolean fillStackTrace;
-
-    public ServerStartupError(String message) {
-        super(message);
-        fillStackTrace = true;
-    }
-
-    public ServerStartupError(String message, boolean fillStackTrace) {
-        super(message);
-        this.fillStackTrace = fillStackTrace;
+    @Override
+    public boolean isInternal() {
+        return true;
     }
 
     @Override
-    public synchronized Throwable fillInStackTrace() {
-        if (fillStackTrace) {
-            return super.fillInStackTrace();
-        } else {
-            return this;
-        }
+    public String getName() {
+        return "publicKeyStorage";
     }
 
+    @Override
+    public Class<? extends Provider> getProviderClass() {
+        return PublicKeyStorageProvider.class;
+    }
+
+    @Override
+    public Class<? extends ProviderFactory> getProviderFactoryClass() {
+        return PublicKeyStorageProviderFactory.class;
+    }
 }

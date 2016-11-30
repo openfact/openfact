@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,13 +22,17 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
 public class ProviderManagerRegistry {
     public static final ProviderManagerRegistry SINGLETON = new ProviderManagerRegistry();
     protected List<ProviderManager> preBoot = Collections.synchronizedList(new LinkedList<>());
     protected AtomicReference<ProviderManagerDeployer> deployerRef = new AtomicReference<>();
+
+    public void setDeployer(ProviderManagerDeployer deployer) {
+        this.deployerRef.set(deployer);
+    }
 
     public void deploy(ProviderManager pm) {
         ProviderManagerDeployer deployer = getDeployer();
@@ -50,10 +54,6 @@ public class ProviderManagerRegistry {
 
     public ProviderManagerDeployer getDeployer() {
         return deployerRef.get();
-    }
-
-    public void setDeployer(ProviderManagerDeployer deployer) {
-        this.deployerRef.set(deployer);
     }
 
     public List<ProviderManager> getPreBoot() {

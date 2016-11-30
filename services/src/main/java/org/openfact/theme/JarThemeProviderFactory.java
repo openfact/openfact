@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,12 +30,45 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
+ * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
 public class JarThemeProviderFactory implements ThemeProviderFactory {
 
     protected static final String OPENFACT_THEMES_JSON = "META-INF/openfact-themes.json";
     protected static Map<Theme.Type, Map<String, ClassLoaderTheme>> themes = new HashMap<>();
+
+    public static class ThemeRepresentation {
+        private String name;
+        private String[] types;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String[] getTypes() {
+            return types;
+        }
+
+        public void setTypes(String[] types) {
+            this.types = types;
+        }
+    }
+
+    public static class ThemesRepresentation {
+        private ThemeRepresentation[] themes;
+
+        public ThemeRepresentation[] getThemes() {
+            return themes;
+        }
+
+        public void setThemes(ThemeRepresentation[] themes) {
+            this.themes = themes;
+        }
+    }
 
     @Override
     public ThemeProvider create(OpenfactSession session) {
@@ -83,39 +116,6 @@ public class JarThemeProviderFactory implements ThemeProviderFactory {
             }
         } catch (Exception e) {
             throw new RuntimeException("Failed to load themes", e);
-        }
-    }
-
-    public static class ThemeRepresentation {
-        private String name;
-        private String[] types;
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String[] getTypes() {
-            return types;
-        }
-
-        public void setTypes(String[] types) {
-            this.types = types;
-        }
-    }
-
-    public static class ThemesRepresentation {
-        private ThemeRepresentation[] themes;
-
-        public ThemeRepresentation[] getThemes() {
-            return themes;
-        }
-
-        public void setThemes(ThemeRepresentation[] themes) {
-            this.themes = themes;
         }
     }
 

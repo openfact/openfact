@@ -27,230 +27,241 @@ import java.util.Set;
 
 public interface OrganizationModel {
 
-	String NAME = "name";
-	String DESCRIPTION = "description";
-	String ASSIGNED_IDENTIFICATION_ID = "assignedIdentificationId";
-	String SUPPLIER_NAME = "supplierName";
-	String REGISTRATION_NAME = "registrationName";
+    String NAME = "name";
+    String DESCRIPTION = "description";
+    String ASSIGNED_IDENTIFICATION_ID = "assignedIdentificationId";
+    String SUPPLIER_NAME = "supplierName";
+    String REGISTRATION_NAME = "registrationName";
 
-	String getId();
+    String getId();
 
-	String getName();
+    String getName();
 
-	void setName(String name);
+    void setName(String name);
 
-	String getDescription();
+    String getDescription();
 
-	void setDescription(String description);
+    void setDescription(String description);
 
-	boolean isEnabled();
+    boolean isEnabled();
 
-	void setEnabled(boolean enabled);
+    void setEnabled(boolean enabled);
 
-	String getAssignedIdentificationId();
+    String getAssignedIdentificationId();
 
-	void setAssignedIdentificationId(String assignedIdentificationId);
+    void setAssignedIdentificationId(String assignedIdentificationId);
 
-	String getAdditionalAccountId();
+    String getAdditionalAccountId();
 
-	void setAdditionalAccountId(String additionalAccount);
+    void setAdditionalAccountId(String additionalAccount);
 
-	String getSupplierName();
+    String getSupplierName();
 
-	void setSupplierName(String supplierName);
+    void setSupplierName(String supplierName);
 
-	String getRegistrationName();
+    String getRegistrationName();
 
-	void setRegistrationName(String registrationName);
+    void setRegistrationName(String registrationName);
 
-	LocalDateTime getCreatedTimestamp();
+    LocalDateTime getCreatedTimestamp();
 
-	/**
-	 * Postal address
-	 */
-	String getPostalAddressId();
+    /**
+     * Postal address
+     */
+    String getPostalAddressId();
 
-	void setPostalAddressId(String postalAddressId);
+    void setPostalAddressId(String postalAddressId);
 
-	String getStreetName();
+    String getStreetName();
 
-	void setStreetName(String streetName);
+    void setStreetName(String streetName);
 
-	String getCitySubdivisionName();
+    String getCitySubdivisionName();
 
-	void setCitySubdivisionName(String citySubdivisionName);
+    void setCitySubdivisionName(String citySubdivisionName);
 
-	String getCityName();
+    String getCityName();
 
-	void setCityName(String cityName);
+    void setCityName(String cityName);
 
-	String getCountrySubentity();
+    String getCountrySubentity();
 
-	void setCountrySubentity(String countrySubentity);
+    void setCountrySubentity(String countrySubentity);
 
-	String getDistrict();
+    String getDistrict();
 
-	void setDistrict(String district);
+    void setDistrict(String district);
 
-	String getCountryIdentificationCode();
+    String getCountryIdentificationCode();
 
-	void setCountryIdentificationCode(String countryIdentificationCode);
+    void setCountryIdentificationCode(String countryIdentificationCode);
 
-	/**
-	 * Themes
-	 */
-	String getEmailTheme();
+    /**
+     * Themes
+     */
+    String getEmailTheme();
 
-	void setEmailTheme(String name);
+    void setEmailTheme(String name);
 
-	/**
-	 * ThemesUbl
-	 */
-	String getReportTheme();
+    /**
+     * ThemesUbl
+     */
+    String getReportTheme();
 
-	void setReportTheme(String name);
+    void setReportTheme(String name);
 
-	/**
-	 * Internationalization
-	 */
-	boolean isInternationalizationEnabled();
+    /**
+     * Internationalization
+     */
+    boolean isInternationalizationEnabled();
 
-	void setInternationalizationEnabled(boolean enabled);
+    void setInternationalizationEnabled(boolean enabled);
 
-	Set<String> getSupportedLocales();
+    Set<String> getSupportedLocales();
 
-	void setSupportedLocales(Set<String> locales);
+    void setSupportedLocales(Set<String> locales);
 
-	String getDefaultLocale();
+    String getDefaultLocale();
 
-	void setDefaultLocale(String locale);
+    void setDefaultLocale(String locale);
 
-	/**
-	 * Task schedules
-	 */
-	Date getTaskFirstTime();
+    /**
+     * Task schedules
+     */
+    Date getTaskFirstTime();
 
-	void setTaskFirstTime(Date firstTime);
+    void setTaskFirstTime(Date firstTime);
 
-	long getTaskDelay();
+    long getTaskDelay();
 
-	void setTaskDelay(long taskDelay);
+    void setTaskDelay(long taskDelay);
 
-	boolean isTasksEnabled();
+    boolean isTasksEnabled();
 
-	void setTaskEnabled(boolean taskEnabled);
+    void setTaskEnabled(boolean taskEnabled);
 
-	/**
-	 * Currencies
-	 */
-	Set<String> getSupportedCurrencies();
+    /**
+     * Currencies
+     */
+    Set<String> getSupportedCurrencies();
 
-	void setSupportedCurrencies(Set<String> currencies);
+    void setSupportedCurrencies(Set<String> currencies);
 
-	String getDefaultCurrency();
+    String getDefaultCurrency();
 
-	void setDefaultCurrency(String currency);
+    void setDefaultCurrency(String currency);
 
-	/**
-	 * Events
-	 */
-	boolean isEventsEnabled();
+    /**
+     * Events
+     */
+    boolean isEventsEnabled();
 
-	void setEventsEnabled(boolean enabled);
+    void setEventsEnabled(boolean enabled);
 
-	Set<String> getEventsListeners();
+    Set<String> getEventsListeners();
 
-	void setEventsListeners(Set<String> listeners);
+    void setEventsListeners(Set<String> listeners);
 
-	Set<String> getEnabledEventTypes();
+    Set<String> getEnabledEventTypes();
 
-	void setEnabledEventTypes(Set<String> enabledEventTypes);
+    void setEnabledEventTypes(Set<String> enabledEventTypes);
 
-	boolean isAdminEventsEnabled();
+    boolean isAdminEventsEnabled();
 
-	void setAdminEventsEnabled(boolean enabled);
+    void setAdminEventsEnabled(boolean enabled);
 
-	boolean isAdminEventsDetailsEnabled();
+    boolean isAdminEventsDetailsEnabled();
 
-	void setAdminEventsDetailsEnabled(boolean enabled);
+    void setAdminEventsDetailsEnabled(boolean enabled);
 
-	long getEventsExpiration();
+    long getEventsExpiration();
 
-	void setEventsExpiration(long expiration);
+    void setEventsExpiration(long expiration);
 
-	/**
-	 * Smtp for email
-	 */
-	Map<String, String> getSmtpConfig();
+    /**
+     * Smtp for email
+     */
+    Map<String, String> getSmtpConfig();
 
-	void setSmtpConfig(Map<String, String> smtpConfig);
+    void setSmtpConfig(Map<String, String> smtpConfig);
 
-	/**
-	 * Attributes
-	 */
-	void setAttribute(String name, String value);
+    /**
+     * Attributes
+     */
+    void setAttribute(String name, String value);
 
-	void removeAttribute(String name);
+    void removeAttribute(String name);
 
-	String getAttribute(String name);
+    String getAttribute(String name);
 
-	Map<String, String> getAttributes();
+    Map<String, String> getAttributes();
 
-	String getDisplayName();
+    String getDisplayName();
 
-	void setDisplayName(String displayName);
+    void setDisplayName(String displayName);
 
-	String getDisplayNameHtml();
+    String getDisplayNameHtml();
 
-	void setDisplayNameHtml(String displayNameHtml);
+    void setDisplayNameHtml(String displayNameHtml);
 
-	/**
-	 * Components
-	 */
-	ComponentModel addComponentModel(ComponentModel model);
+    /**
+     * Adds component model. Will call onCreate() method of ComponentFactory
+     *
+     * @param model
+     * @return
+     */
+    ComponentModel addComponentModel(ComponentModel model);
 
-	void updateComponent(ComponentModel component);
+    /**
+     * Adds component model. Will NOT call onCreate() method of ComponentFactory
+     *
+     * @param model
+     * @return
+     */
+    ComponentModel importComponentModel(ComponentModel model);
 
-	void removeComponent(ComponentModel component);
+    void updateComponent(ComponentModel component);
 
-	void removeComponents(String parentId);
+    void removeComponent(ComponentModel component);
 
-	List<ComponentModel> getComponents(String parentId, String providerType);
+    void removeComponents(String parentId);
 
-	List<ComponentModel> getComponents(String parentId);
+    List<ComponentModel> getComponents(String parentId, String providerType);
 
-	List<ComponentModel> getComponents();
+    List<ComponentModel> getComponents(String parentId);
 
-	ComponentModel getComponent(String id);
+    List<ComponentModel> getComponents();
 
-	/**
-	 * Headers
-	 */
-	Map<String, String> getBrowserSecurityHeaders();
+    ComponentModel getComponent(String id);
 
-	void setBrowserSecurityHeaders(Map<String, String> headers);
+    /**
+     * Headers
+     */
+    Map<String, String> getBrowserSecurityHeaders();
 
-	public static enum RequiredAction {
-		ACTION1, ACTION2, ACTION3, ACTION4
-	}
+    void setBrowserSecurityHeaders(Map<String, String> headers);
 
-	/**
-	 * Events interfaces
-	 */
-	interface OrganizationCreationEvent extends ProviderEvent {
-		OrganizationModel getCreatedOrganization();
-	}
+    public static enum RequiredAction {
+        ACTION1, ACTION2, ACTION3, ACTION4
+    }
 
-	interface OrganizationPostCreateEvent extends ProviderEvent {
-		OrganizationModel getCreatedOrganization();
+    /**
+     * Events interfaces
+     */
+    interface OrganizationCreationEvent extends ProviderEvent {
+        OrganizationModel getCreatedOrganization();
+    }
 
-		OpenfactSession getOpenfactSession();
-	}
+    interface OrganizationPostCreateEvent extends ProviderEvent {
+        OrganizationModel getCreatedOrganization();
 
-	interface OrganizationRemovedEvent extends ProviderEvent {
-		OrganizationModel getOrganization();
+        OpenfactSession getOpenfactSession();
+    }
 
-		OpenfactSession getOpenfactSession();
-	}
+    interface OrganizationRemovedEvent extends ProviderEvent {
+        OrganizationModel getOrganization();
+
+        OpenfactSession getOpenfactSession();
+    }
 
 }

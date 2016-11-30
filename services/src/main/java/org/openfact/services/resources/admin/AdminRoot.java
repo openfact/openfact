@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,6 +17,8 @@
 package org.openfact.services.resources.admin;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.Properties;
 
 import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.GET;
@@ -225,6 +227,37 @@ public class AdminRoot {
             Response response = Cors.add(request, Response.ok()).preflight()
                     .allowedMethods("GET", "PUT", "POST", "DELETE").auth().build();
             throw new NoLogWebApplicationException(response);
+        }
+    }
+    
+    public static Properties getMessages(OpenfactSession session, OrganizationModel organization, String lang) {
+        try {
+            Theme theme = getTheme(session, organization);
+            Locale locale = lang != null ? Locale.forLanguageTag(lang) : Locale.ENGLISH;
+            return theme.getMessages(locale);
+        } catch (IOException e) {
+            logger.error("Failed to load messages from theme", e);
+            return new Properties();
+        }
+    }
+
+    public static Properties getMessages(OpenfactSession session, OrganizationModel organization, String lang, String... bundles) {
+        Properties compound = new Properties();
+        for (String bundle : bundles) {
+            Properties current = getMessages(session, organization, lang, bundle);
+            compound.putAll(current);
+        }
+        return compound;
+    }
+
+    private static Properties getMessages(OpenfactSession session, OrganizationModel organization, String lang, String bundle) {
+        try {
+            Theme theme = getTheme(session, organization);
+            Locale locale = lang != null ? Locale.forLanguageTag(lang) : Locale.ENGLISH;
+            return theme.getMessages(bundle, locale);
+        } catch (IOException e) {
+            logger.error("Failed to load messages from theme", e);
+            return new Properties();
         }
     }
 

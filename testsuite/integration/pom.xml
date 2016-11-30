@@ -140,7 +140,7 @@
         </dependency>
         <dependency>
             <groupId>org.openfact</groupId>
-            <artifactId>openfact-server-spi</artifactId>
+            <artifactId>openfact-server-spi-private</artifactId>
         </dependency>
 
         <dependency>

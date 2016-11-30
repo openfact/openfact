@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,11 +17,13 @@
 
 package org.openfact.keys;
 
+import org.jboss.logging.Logger;
 import org.openfact.Config;
 import org.openfact.component.ComponentModel;
 import org.openfact.component.ComponentValidationException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
+import org.openfact.models.OrganizationModel;
 import org.openfact.provider.ConfigurationValidationHelper;
 import org.openfact.provider.ProviderConfigProperty;
 
@@ -30,20 +32,27 @@ import java.util.List;
 import static org.openfact.provider.ProviderConfigProperty.STRING_TYPE;
 
 /**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
+ * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
 public class JavaKeystoreKeyProviderFactory extends AbstractRsaKeyProviderFactory {
+    private static final Logger logger = Logger.getLogger(JavaKeystoreKeyProviderFactory.class);
 
     public static final String ID = "java-keystore";
-    private static final String HELP_TEXT = "Loads keys from a Java keys file";
+
     public static String KEYSTORE_KEY = "keystore";
     public static ProviderConfigProperty KEYSTORE_PROPERTY = new ProviderConfigProperty(KEYSTORE_KEY, "Keystore", "Path to keys file", STRING_TYPE, null);
+
     public static String KEYSTORE_PASSWORD_KEY = "keystorePassword";
     public static ProviderConfigProperty KEYSTORE_PASSWORD_PROPERTY = new ProviderConfigProperty(KEYSTORE_PASSWORD_KEY, "Keystore Password", "Password for the keys", STRING_TYPE, null, true);
+
     public static String KEY_ALIAS_KEY = "keyAlias";
     public static ProviderConfigProperty KEY_ALIAS_PROPERTY = new ProviderConfigProperty(KEY_ALIAS_KEY, "Key Alias", "Alias for the private key", STRING_TYPE, null);
+
     public static String KEY_PASSWORD_KEY = "keyPassword";
     public static ProviderConfigProperty KEY_PASSWORD_PROPERTY = new ProviderConfigProperty(KEY_PASSWORD_KEY, "Key Password", "Password for the private key", STRING_TYPE, null, true);
+
+    private static final String HELP_TEXT = "Loads keys from a Java keys file";
+
     private static final List<ProviderConfigProperty> CONFIG_PROPERTIES = AbstractRsaKeyProviderFactory.configurationBuilder()
             .property(KEYSTORE_PROPERTY)
             .property(KEYSTORE_PASSWORD_PROPERTY)
@@ -57,8 +66,8 @@ public class JavaKeystoreKeyProviderFactory extends AbstractRsaKeyProviderFactor
     }
 
     @Override
-    public void validateConfiguration(OpenfactSession session, ComponentModel model) throws ComponentValidationException {
-        super.validateConfiguration(session, model);
+    public void validateConfiguration(OpenfactSession session, OrganizationModel organization, ComponentModel model) throws ComponentValidationException {
+        super.validateConfiguration(session, organization, model);
 
         ConfigurationValidationHelper.check(model)
                 .checkSingle(KEYSTORE_PROPERTY, true)
@@ -70,7 +79,8 @@ public class JavaKeystoreKeyProviderFactory extends AbstractRsaKeyProviderFactor
             new JavaKeystoreKeyProvider(session.getContext().getOrganization(), model)
                     .loadKeys(session.getContext().getOrganization(), model);
         } catch (Throwable t) {
-            throw new ComponentValidationException("Failed to load keys", t);
+            logger.error("Failed to load keys.", t);
+            throw new ComponentValidationException("Failed to load keys. " + t.getMessage(), t);
         }
     }
 
