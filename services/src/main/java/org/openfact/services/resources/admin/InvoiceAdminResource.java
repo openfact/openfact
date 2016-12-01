@@ -32,9 +32,6 @@ import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.utils.ModelToRepresentation;
-import org.openfact.report.ReportProvider;
-import org.openfact.report.ReportTheme;
-import org.openfact.report.ReportThemeProvider;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.representations.idm.SendEventRepresentation;
 import org.openfact.services.ErrorResponse;
@@ -43,6 +40,7 @@ import org.openfact.services.managers.InvoiceManager;
 import org.openfact.ubl.SendEventModel;
 import org.openfact.ubl.SendException;
 import org.openfact.ubl.UBLInvoiceProvider;
+import org.openfact.ubl.UBLReportProvider;
 import org.w3c.dom.Document;
 
 import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
@@ -180,22 +178,19 @@ public class InvoiceAdminResource {
     @GET
     @Path("representation/pdf")
     @Produces("application/pdf")
-    public Response getPdf(@PathParam("themeType") String themType, @PathParam("themeName") String themeName)
-            throws Exception {
+    public Response getPdf(@QueryParam("theme") String theme) throws Exception {
         auth.requireView();
 
         if (invoice == null) {
             throw new NotFoundException("Invoice not found");
         }
-        ReportThemeProvider themeProvider = session.getProvider(ReportThemeProvider.class, "extending");
-        ReportTheme theme = themeProvider.getReportTheme(themeName,
-                ReportTheme.Type.valueOf(themType.toUpperCase()));
-        ReportProvider provider = session.getProvider(ReportProvider.class, themeName);
-        byte[] report = provider.processReport(invoice, theme);
-        ResponseBuilder response = Response.ok(report);
+
+        UBLReportProvider reportProvider = session.getProvider(UBLReportProvider.class);
+        byte[] bytes = reportProvider.invoice().setOrganization(organization).setThemeName(theme).getReportAsPdf(invoice);
+
+        ResponseBuilder response = Response.ok(bytes);
         response.type("application/pdf");
-        response.header("content-disposition",
-                "attachment; filename=\"" + invoice.getDocumentId() + ".pdf\"");
+        response.header("content-disposition", "attachment; filename=\"" + invoice.getDocumentId() + ".pdf\"");
         return response.build();
     }
 

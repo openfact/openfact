@@ -17,32 +17,16 @@
 
 package org.openfact.report;
 
-import org.openfact.provider.Provider;
-import org.openfact.provider.ProviderFactory;
-import org.openfact.provider.Spi;
-
 /**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
+ * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
-public class ReportThemeSpi implements Spi {
+public class JasperReportException extends Exception {
 
-    @Override
-    public boolean isInternal() {
-        return true;
+    public JasperReportException(String message) {
+        super(message);
     }
 
-    @Override
-    public String getName() {
-        return "reportTheme";
-    }
-
-    @Override
-    public Class<? extends Provider> getProviderClass() {
-        return ReportThemeProvider.class;
-    }
-
-    @Override
-    public Class<? extends ProviderFactory> getProviderFactoryClass() {
-        return ReportThemeProviderFactory.class;
+    public JasperReportException(String message, Throwable cause) {
+        super(message, cause);
     }
 }

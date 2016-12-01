@@ -223,6 +223,7 @@
 		<module>server-spi-private</module>
 		<module>model</module>
 		<module>themes</module>
+		<module>reports</module>
 		<module>testsuite</module>
 		<module>dependencies</module>
 		<module>wildfly</module>
@@ -677,6 +678,11 @@
 			<dependency>
 				<groupId>org.openfact</groupId>
 				<artifactId>openfact-themes</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openfact</groupId>
+				<artifactId>openfact-reports</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>

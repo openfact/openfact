@@ -12,7 +12,6 @@ org.openfact.email.EmailSenderSpi
 org.openfact.email.EmailTemplateSpi
 org.openfact.theme.ThemeSpi
 org.openfact.report.ReportThemeSpi
-org.openfact.report.ReportSpi
 org.openfact.truststore.TruststoreSpi
 org.openfact.connections.httpclient.HttpClientSpi
 org.openfact.cluster.ClusterSpi
@@ -29,5 +28,6 @@ org.openfact.ubl.UBLInvoiceSpi
 org.openfact.ubl.UBLCreditNoteSpi
 org.openfact.ubl.UBLDebitNoteSpi
 org.openfact.ubl.SignerSpi
+org.openfact.ubl.UBLReportProviderSpi
 org.openfact.models.OrganizationScheduleTaskSpi
 org.openfact.timer.TimerSpi

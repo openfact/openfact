@@ -14,17 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-
-package org.openfact.report;
+package org.openfact.ubl;
 
 import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
 import org.openfact.provider.Spi;
 
-/**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
- */
-public class ReportThemeSpi implements Spi {
+public class UBLReportProviderSpi implements Spi {
 
     @Override
     public boolean isInternal() {
@@ -33,16 +29,17 @@ public class ReportThemeSpi implements Spi {
 
     @Override
     public String getName() {
-        return "reportTheme";
+        return "ublReport";
     }
 
     @Override
     public Class<? extends Provider> getProviderClass() {
-        return ReportThemeProvider.class;
+        return UBLReportProvider.class;
     }
 
     @Override
     public Class<? extends ProviderFactory> getProviderFactoryClass() {
-        return ReportThemeProviderFactory.class;
+        return UBLReportProviderFactory.class;
     }
+
 }

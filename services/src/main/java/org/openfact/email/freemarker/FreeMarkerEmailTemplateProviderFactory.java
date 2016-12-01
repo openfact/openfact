@@ -22,7 +22,6 @@ import org.openfact.email.EmailTemplateProvider;
 import org.openfact.email.EmailTemplateProviderFactory;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
-import org.openfact.report.theme.JasperReportUtil;
 import org.openfact.theme.FreeMarkerUtil;
 
 /**
@@ -31,17 +30,15 @@ import org.openfact.theme.FreeMarkerUtil;
 public class FreeMarkerEmailTemplateProviderFactory implements EmailTemplateProviderFactory {
 
     private FreeMarkerUtil freeMarker;
-    private JasperReportUtil jasperReport;
 
     @Override
     public EmailTemplateProvider create(OpenfactSession session) {
-        return new FreeMarkerEmailTemplateProvider(session, freeMarker, jasperReport);
+        return new FreeMarkerEmailTemplateProvider(session, freeMarker);
     }
 
     @Override
     public void init(Config.Scope config) {
         freeMarker = new FreeMarkerUtil();
-        jasperReport = new JasperReportUtil();
     }
 
     @Override

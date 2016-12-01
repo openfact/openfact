@@ -40,7 +40,6 @@ import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.UserSenderModel;
-import org.openfact.report.theme.JasperReportUtil;
 import org.openfact.theme.FreeMarkerException;
 import org.openfact.theme.FreeMarkerUtil;
 import org.openfact.theme.Theme;
@@ -55,17 +54,14 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
     private final Map<String, Object> attributes = new HashMap<>();
     private OpenfactSession session;
     private FreeMarkerUtil freeMarker;
-    private JasperReportUtil jasperReport;
     private OrganizationModel organization;
     private UserSenderModel user;
     
     private List<FileModel> attachments;
 
-    public FreeMarkerEmailTemplateProvider(OpenfactSession session, FreeMarkerUtil freeMarker,
-            JasperReportUtil jasperReport) {
+    public FreeMarkerEmailTemplateProvider(OpenfactSession session, FreeMarkerUtil freeMarker) {
         this.session = session;
         this.freeMarker = freeMarker;
-        this.jasperReport = jasperReport;
     }
 
     @Override

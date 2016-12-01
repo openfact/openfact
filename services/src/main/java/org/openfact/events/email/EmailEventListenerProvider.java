@@ -59,7 +59,7 @@ public class EmailEventListenerProvider implements EventListenerProvider {
                 if (user != null && user.getEmail() != null && user.isEmailVerified()) {
                     try {
                         emailTemplateProvider.setOrganization(organization).setUser(user).sendEvent(event);
-                    } catch (EmailException e) {
+                    } catch (ReportException e) {
                         log.error("Failed to send type mail", e);
                     }
                 }

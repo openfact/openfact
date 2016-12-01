@@ -14,35 +14,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
+package org.openfact.ubl;
 
-package org.openfact.report;
+import org.openfact.Config.Scope;
+import org.openfact.models.OpenfactSession;
+import org.openfact.models.OpenfactSessionFactory;
 
-import org.openfact.provider.Provider;
-import org.openfact.provider.ProviderFactory;
-import org.openfact.provider.Spi;
-
-/**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
- */
-public class ReportThemeSpi implements Spi {
+public class JasperUBLReportProviderFactory implements UBLReportProviderFactory {
 
     @Override
-    public boolean isInternal() {
-        return true;
+    public UBLReportProvider create(OpenfactSession session) {
+        return new JasperUBLReportProvider(session);
     }
 
     @Override
-    public String getName() {
-        return "reportTheme";
+    public void init(Scope config) {
     }
 
     @Override
-    public Class<? extends Provider> getProviderClass() {
-        return ReportThemeProvider.class;
+    public void postInit(OpenfactSessionFactory factory) {
     }
 
     @Override
-    public Class<? extends ProviderFactory> getProviderFactoryClass() {
-        return ReportThemeProviderFactory.class;
+    public void close() {
     }
+
+    @Override
+    public String getId() {
+        return "jasper";
+    }
+
 }

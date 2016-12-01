@@ -47,6 +47,10 @@
         </dependency>
         <dependency>
             <groupId>org.openfact</groupId>
+            <artifactId>openfact-reports</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openfact</groupId>
             <artifactId>openfact-common</artifactId>
         </dependency>
         <dependency>

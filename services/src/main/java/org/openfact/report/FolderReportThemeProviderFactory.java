@@ -17,32 +17,46 @@
 
 package org.openfact.report;
 
-import org.openfact.provider.Provider;
-import org.openfact.provider.ProviderFactory;
-import org.openfact.provider.Spi;
+import org.openfact.Config;
+import org.openfact.models.OpenfactSession;
+import org.openfact.models.OpenfactSessionFactory;
+import org.openfact.theme.ThemeProvider;
+import org.openfact.theme.ThemeProviderFactory;
+
+import java.io.File;
 
 /**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
+ * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
-public class ReportThemeSpi implements Spi {
+public class FolderReportThemeProviderFactory implements ReportThemeProviderFactory {
+
+    private FolderReportThemeProvider themeProvider;
 
     @Override
-    public boolean isInternal() {
-        return true;
+    public ReportThemeProvider create(OpenfactSession sessions) {
+        return themeProvider;
     }
 
     @Override
-    public String getName() {
-        return "reportTheme";
+    public void init(Config.Scope config) {
+        String d = config.get("dir");
+        File rootDir = null;
+        if (d != null) {
+            rootDir = new File(d);
+        }
+        themeProvider = new FolderReportThemeProvider(rootDir);
     }
 
     @Override
-    public Class<? extends Provider> getProviderClass() {
-        return ReportThemeProvider.class;
+    public void postInit(OpenfactSessionFactory factory) {
     }
 
     @Override
-    public Class<? extends ProviderFactory> getProviderFactoryClass() {
-        return ReportThemeProviderFactory.class;
+    public void close() {
+    }
+
+    @Override
+    public String getId() {
+        return "folder";
     }
 }

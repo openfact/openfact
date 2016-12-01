@@ -39,7 +39,7 @@ import org.openfact.models.CreditNoteModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.utils.ModelToRepresentation;
-import org.openfact.report.ReportProvider;
+import org.openfact.report.ReportTemplateProvider;
 import org.openfact.report.ReportTheme;
 import org.openfact.report.ReportThemeProvider;
 import org.openfact.representations.idm.CreditNoteRepresentation;
@@ -161,35 +161,6 @@ public class CreditNoteAdminResource {
         }
 
         Response.ResponseBuilder response = Response.ok((Object) result);
-        return response.build();
-    }
-
-    /**
-     * Get the creditNote report with the specified creditNoteId.
-     *
-     * @return The byte[] with the specified creditNoteId
-     * @throws Exception
-     * @summary Get the byte[] with the specified creditNoteId
-     */
-    @GET
-    @Path("representation/pdf")
-    @Produces("application/pdf")
-    public Response getPdf(@PathParam("themeType") String themType, @PathParam("themeName") String themeName)
-            throws Exception {
-        auth.requireView();
-
-        if (creditNote == null) {
-            throw new NotFoundException("CreditNote not found");
-        }
-        ReportThemeProvider themeProvider = session.getProvider(ReportThemeProvider.class, "extending");
-        ReportTheme theme = themeProvider.getReportTheme(themeName,
-                ReportTheme.Type.valueOf(themType.toUpperCase()));
-        ReportProvider provider = session.getProvider(ReportProvider.class, themeName);
-        byte[] report = provider.processReport(creditNote, theme);
-        ResponseBuilder response = Response.ok(report);
-        response.type("application/pdf");
-        response.header("content-disposition",
-                "attachment; filename=\"" + creditNote.getDocumentId() + ".pdf\"");
         return response.build();
     }
 

@@ -18,31 +18,21 @@
 package org.openfact.report;
 
 import org.openfact.provider.Provider;
-import org.openfact.provider.ProviderFactory;
-import org.openfact.provider.Spi;
+
+import java.io.IOException;
+import java.util.Set;
 
 /**
  * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  */
-public class ReportThemeSpi implements Spi {
+public interface ReportThemeProvider extends Provider {
 
-    @Override
-    public boolean isInternal() {
-        return true;
-    }
+    int getProviderPriority();
 
-    @Override
-    public String getName() {
-        return "reportTheme";
-    }
+    ReportTheme getTheme(String name, ReportTheme.Type type) throws IOException;
 
-    @Override
-    public Class<? extends Provider> getProviderClass() {
-        return ReportThemeProvider.class;
-    }
+    Set<String> nameSet(ReportTheme.Type type);
 
-    @Override
-    public Class<? extends ProviderFactory> getProviderFactoryClass() {
-        return ReportThemeProviderFactory.class;
-    }
+    boolean hasTheme(String name, ReportTheme.Type type);
+
 }
