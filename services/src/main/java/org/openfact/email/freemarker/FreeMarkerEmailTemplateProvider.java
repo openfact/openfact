@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -121,8 +121,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
             attributes.put("locale", locale);
             Properties rb = theme.getMessages(locale);
             attributes.put("msg", new MessageFormatterMethod(locale, rb));
-            String subject = new MessageFormat(rb.getProperty(subjectKey, subjectKey), locale)
-                    .format(subjectAttributes.toArray());
+            String subject = new MessageFormat(rb.getProperty(subjectKey, subjectKey), locale).format(subjectAttributes.toArray());
             String textTemplate = String.format("text/%s", template);
             String textBody;
             try {
@@ -171,7 +170,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
         attributes.put("user", new ProfileBean(user));
         attributes.put("organizationName", getOrganizationName());
 
-        send(toCamelCase(EventType.INVOICE) + "Subject",  "event-" + EventType.INVOICE.toString().toLowerCase() + ".ftl", attributes);
+        send(organization.getDisplayName() + " " + toCamelCase(EventType.INVOICE) + "-" + invoice.getDocumentId() + "Subject",  "invoice.ftl", attributes);
     }
 
     @Override
@@ -180,7 +179,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
         attributes.put("user", new ProfileBean(user));
         attributes.put("organizationName", getOrganizationName());
 
-        send(toCamelCase(EventType.CREDIT_NOTE) + "Subject",  "event-" + EventType.CREDIT_NOTE.toString().toLowerCase() + ".ftl", attributes);
+        send(organization.getDisplayName() + "-" + toCamelCase(EventType.CREDIT_NOTE) + "Subject",  "event-" + EventType.CREDIT_NOTE.toString().toLowerCase() + ".ftl", attributes);
     }
 
     @Override

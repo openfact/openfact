@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -425,12 +425,20 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
 
     @Override
     public ComponentModel addComponentModel(ComponentModel model) {
+        model = importComponentModel(model);
+        ComponentUtil.notifyCreated(session, this, model);
+
+        return model;
+    }
+
+    @Override
+    public ComponentModel importComponentModel(ComponentModel model) {
         ComponentFactory componentFactory = ComponentUtil.getComponentFactory(session, model);
         if (componentFactory == null) {
             throw new IllegalArgumentException("Invalid component type");
         }
 
-        componentFactory.validateConfiguration(session, model);
+        componentFactory.validateConfiguration(session, this, model);
 
         ComponentEntity c = new ComponentEntity();
         if (model.getId() == null) {
@@ -440,6 +448,10 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         }
         c.setName(model.getName());
         c.setParentId(model.getParentId());
+        if (model.getParentId() == null) {
+            c.setParentId(this.getId());
+            model.setParentId(this.getId());
+        }
         c.setProviderType(model.getProviderType());
         c.setProviderId(model.getProviderId());
         c.setSubType(model.getSubType());
@@ -447,8 +459,6 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         em.persist(c);
         setConfig(model, c);
         model.setId(c.getId());
-        OpenfactModelUtils.notifyCreated(session, this, model);
-
         return model;
     }
 
@@ -471,11 +481,10 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
 
     @Override
     public void updateComponent(ComponentModel component) {
-        ComponentUtil.getComponentFactory(session, component).validateConfiguration(session, component);
+        ComponentUtil.getComponentFactory(session, component).validateConfiguration(session, this, component);
 
         ComponentEntity c = em.find(ComponentEntity.class, component.getId());
-        if (c == null)
-            return;
+        if (c == null) return;
         c.setName(component.getName());
         c.setProviderId(component.getProviderId());
         c.setProviderType(component.getProviderType());
@@ -485,14 +494,15 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         em.flush();
         setConfig(component, c);
 
+
     }
 
     @Override
     public void removeComponent(ComponentModel component) {
         ComponentEntity c = em.find(ComponentEntity.class, component.getId());
-        if (c == null)
-            return;
-        // session.users().preRemove(this, component);
+        if (c == null) return;
+        //session.users().preRemove(this, component);
+        removeComponents(component.getId());
         em.createNamedQuery("deleteComponentConfigByComponent").setParameter("component", c).executeUpdate();
         em.remove(c);
     }
@@ -500,26 +510,24 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     @Override
     public void removeComponents(String parentId) {
         TypedQuery<String> query = em.createNamedQuery("getComponentIdsByParent", String.class)
-                .setParameter("organization", organization).setParameter("parentId", parentId);
+                .setParameter("organization", organization)
+                .setParameter("parentId", parentId);
         List<String> results = query.getResultList();
-        if (results.isEmpty())
-            return;
+        if (results.isEmpty()) return;
         for (String id : results) {
-            // session.users().preRemove(this, getComponent(id));
+            //session.users().preRemove(this, getComponent(id));
         }
-        em.createNamedQuery("deleteComponentConfigByParent").setParameter("parentId", parentId)
-                .executeUpdate();
+        em.createNamedQuery("deleteComponentConfigByParent").setParameter("parentId", parentId).executeUpdate();
         em.createNamedQuery("deleteComponentByParent").setParameter("parentId", parentId).executeUpdate();
 
     }
 
     @Override
     public List<ComponentModel> getComponents(String parentId, String providerType) {
-        if (parentId == null)
-            parentId = getId();
-        TypedQuery<ComponentEntity> query = em
-                .createNamedQuery("getComponentsByParentAndType", ComponentEntity.class)
-                .setParameter("organization", organization).setParameter("parentId", parentId)
+        if (parentId == null) parentId = getId();
+        TypedQuery<ComponentEntity> query = em.createNamedQuery("getComponentsByParentAndType", ComponentEntity.class)
+                .setParameter("organization", organization)
+                .setParameter("parentId", parentId)
                 .setParameter("providerType", providerType);
         List<ComponentEntity> results = query.getResultList();
         List<ComponentModel> rtn = new LinkedList<>();
@@ -533,9 +541,9 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
 
     @Override
     public List<ComponentModel> getComponents(String parentId) {
-        TypedQuery<ComponentEntity> query = em
-                .createNamedQuery("getComponentsByParent", ComponentEntity.class)
-                .setParameter("organization", organization).setParameter("parentId", parentId);
+        TypedQuery<ComponentEntity> query = em.createNamedQuery("getComponentsByParent", ComponentEntity.class)
+                .setParameter("organization", organization)
+                .setParameter("parentId", parentId);
         List<ComponentEntity> results = query.getResultList();
         List<ComponentModel> rtn = new LinkedList<>();
         for (ComponentEntity c : results) {
@@ -555,8 +563,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         model.setSubType(c.getSubType());
         model.setParentId(c.getParentId());
         MultivaluedHashMap<String, String> config = new MultivaluedHashMap<>();
-        TypedQuery<ComponentConfigEntity> configQuery = em
-                .createNamedQuery("getComponentConfig", ComponentConfigEntity.class)
+        TypedQuery<ComponentConfigEntity> configQuery = em.createNamedQuery("getComponentConfig", ComponentConfigEntity.class)
                 .setParameter("component", c);
         List<ComponentConfigEntity> configResults = configQuery.getResultList();
         for (ComponentConfigEntity configEntity : configResults) {
@@ -583,8 +590,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     @Override
     public ComponentModel getComponent(String id) {
         ComponentEntity c = em.find(ComponentEntity.class, id);
-        if (c == null)
-            return null;
+        if (c == null) return null;
         return entityToModel(c);
     }
 

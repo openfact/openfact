@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * We need to remove DELETE SQL command, which liquibase adds by default when inserting record to table lock. This is causing buggy behaviour
  *
- * @author <a href="mailto:mposolda@sistcoop.com">Marek Posolda</a>
+ * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
  */
 public class CustomInsertLockRecordGenerator extends AbstractSqlGenerator<InitializeDatabaseChangeLogLockTableStatement> {
 

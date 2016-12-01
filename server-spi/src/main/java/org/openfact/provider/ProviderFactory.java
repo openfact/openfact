@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,10 +24,10 @@ import org.openfact.models.OpenfactSessionFactory;
 /**
  * At boot time, openfact discovers all factories.  For each discovered factory, the init() method is called.  After
  * all factories have been initialized, the postInit() method is called.  close() is called when the server shuts down.
- * <p>
+ *
  * Only one instance of a factory exists per server.
  *
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
+ * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
 public interface ProviderFactory<T extends Provider> {
 
@@ -47,6 +47,7 @@ public interface ProviderFactory<T extends Provider> {
 
     /**
      * This is called when the server shuts down.
+     *
      */
     public void close();
 

@@ -18,12 +18,7 @@
 package org.openfact.connections.jpa.updater.liquibase.lock;
 
 import liquibase.database.Database;
-import liquibase.database.core.DB2Database;
-import liquibase.database.core.H2Database;
-import liquibase.database.core.MSSQLDatabase;
-import liquibase.database.core.MySQLDatabase;
-import liquibase.database.core.OracleDatabase;
-import liquibase.database.core.PostgresDatabase;
+import liquibase.database.core.*;
 import liquibase.sql.Sql;
 import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorChain;
@@ -34,7 +29,7 @@ import org.jboss.logging.Logger;
 /**
  * We use "SELECT FOR UPDATE" pessimistic locking (Same algorithm like Hibernate LockMode.PESSIMISTIC_WRITE )
  *
- * @author <a href="mailto:mposolda@sistcoop.com">Marek Posolda</a>
+ * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
  */
 public class CustomLockDatabaseChangeLogGenerator extends LockDatabaseChangeLogGenerator {
 

@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,8 +25,8 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Stored configuration of a User Storage provider instance.
  *
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
- * @author <a href="mailto:bburke@sistcoop.com">Carlos Feria</a>
+ * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
+ * @author <a href="mailto:bburke@redhat.com">Bill Burke</a>
  */
 public class ComponentModel implements Serializable {
 
@@ -39,8 +39,7 @@ public class ComponentModel implements Serializable {
     private MultivaluedHashMap<String, String> config = new MultivaluedHashMap<>();
     private transient ConcurrentHashMap<String, Object> notes = new ConcurrentHashMap<>();
 
-    public ComponentModel() {
-    }
+    public ComponentModel() {}
 
     public ComponentModel(ComponentModel copy) {
         this.id = copy.id;
@@ -49,7 +48,7 @@ public class ComponentModel implements Serializable {
         this.providerType = copy.providerType;
         this.parentId = copy.parentId;
         this.subType = copy.subType;
-        this.config = copy.config;
+        this.config.addAll(copy.config);
     }
 
 

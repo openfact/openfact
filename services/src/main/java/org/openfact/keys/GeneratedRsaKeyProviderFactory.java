@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -37,12 +37,14 @@ import java.security.interfaces.RSAPrivateKey;
 import java.util.List;
 
 /**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
+ * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
 public class GeneratedRsaKeyProviderFactory extends AbstractRsaKeyProviderFactory {
 
-    public static final String ID = "rsa-generated";
     private static final Logger logger = Logger.getLogger(GeneratedRsaKeyProviderFactory.class);
+
+    public static final String ID = "rsa-generated";
+
     private static final String HELP_TEXT = "Generates RSA keys and creates a self-signed certificate";
 
     private static final List<ProviderConfigProperty> CONFIG_PROPERTIES = AbstractRsaKeyProviderFactory.configurationBuilder()
@@ -55,8 +57,8 @@ public class GeneratedRsaKeyProviderFactory extends AbstractRsaKeyProviderFactor
     }
 
     @Override
-    public void validateConfiguration(OpenfactSession session, ComponentModel model) throws ComponentValidationException {
-        super.validateConfiguration(session, model);
+    public void validateConfiguration(OpenfactSession session, OrganizationModel organization, ComponentModel model) throws ComponentValidationException {
+        super.validateConfiguration(session, organization, model);
 
         ConfigurationValidationHelper.check(model)
                 .checkInt(Attributes.KEY_SIZE_PROPERTY, false);
@@ -73,18 +75,16 @@ public class GeneratedRsaKeyProviderFactory extends AbstractRsaKeyProviderFactor
         }
 
         if (!(model.contains(Attributes.PRIVATE_KEY_KEY) && model.contains(Attributes.CERTIFICATE_KEY))) {
-            OrganizationModel organiaztion = session.organizations().getOrganization(model.getParentId());
-            generateKeys(organiaztion, model, size);
+            generateKeys(organization, model, size);
 
-            logger.debugv("Generated keys for {0}", organiaztion.getName());
+            logger.debugv("Generated keys for {0}", organization.getName());
         } else {
             PrivateKey privateKey = PemUtils.decodePrivateKey(model.get(Attributes.PRIVATE_KEY_KEY));
             int currentSize = ((RSAPrivateKey) privateKey).getModulus().bitLength();
             if (currentSize != size) {
-                OrganizationModel organiaztion = session.organizations().getOrganization(model.getParentId());
-                generateKeys(organiaztion, model, size);
+                generateKeys(organization, model, size);
 
-                logger.debugv("Key size changed, generating new keys for {0}", organiaztion.getName());
+                logger.debugv("Key size changed, generating new keys for {0}", organization.getName());
             }
         }
     }
@@ -101,9 +101,9 @@ public class GeneratedRsaKeyProviderFactory extends AbstractRsaKeyProviderFactor
         generateCertificate(organization, model, keyPair);
     }
 
-    private void generateCertificate(OrganizationModel organiaztion, ComponentModel model, KeyPair keyPair) {
+    private void generateCertificate(OrganizationModel organization, ComponentModel model, KeyPair keyPair) {
         try {
-            Certificate certificate = CertificateUtils.generateV1SelfSignedCertificate(keyPair, organiaztion.getName());
+            Certificate certificate = CertificateUtils.generateV1SelfSignedCertificate(keyPair, organization.getName());
             model.put(Attributes.CERTIFICATE_KEY, PemUtils.encodeCertificate(certificate));
         } catch (Throwable t) {
             throw new ComponentValidationException("Failed to generate certificate", t);

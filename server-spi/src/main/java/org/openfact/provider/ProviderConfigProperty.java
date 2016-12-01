@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,31 +17,32 @@
 
 package org.openfact.provider;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
- * @version $Revision: 1 $
- */
+* @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
+* @version $Revision: 1 $
+*/
 public class ProviderConfigProperty {
-    public static final String BOOLEAN_TYPE = "boolean";
-    public static final String STRING_TYPE = "String";
+    public static final String BOOLEAN_TYPE="boolean";
+    public static final String STRING_TYPE="String";
 
     // Possibility to configure multiple String values of any value (something like "redirect_uris" for clients)
-    public static final String MULTIVALUED_STRING_TYPE = "MultivaluedString";
+    public static final String MULTIVALUED_STRING_TYPE="MultivaluedString";
 
-    public static final String SCRIPT_TYPE = "Script";
-    public static final String FILE_TYPE = "File";
-    public static final String ROLE_TYPE = "Role";
+    public static final String SCRIPT_TYPE="Script";
+    public static final String FILE_TYPE="File";
+    public static final String ROLE_TYPE="Role";
 
     // Possibility to configure single String value, which needs to be chosen from the list of predefined values (HTML select)
-    public static final String LIST_TYPE = "List";
+    public static final String LIST_TYPE="List";
 
     // Possibility to configure multiple String values, which needs to be chosen from the list of predefined values (HTML select with multiple)
-    public static final String MULTIVALUED_LIST_TYPE = "MultivaluedList";
+    public static final String MULTIVALUED_LIST_TYPE="MultivaluedList";
 
-    public static final String CLIENT_LIST_TYPE = "ClientList";
-    public static final String PASSWORD = "Password";
+    public static final String CLIENT_LIST_TYPE="ClientList";
+    public static final String PASSWORD="Password";
 
     protected String name;
     protected String label;
@@ -60,6 +61,15 @@ public class ProviderConfigProperty {
         this.helpText = helpText;
         this.type = type;
         this.defaultValue = defaultValue;
+    }
+
+    public ProviderConfigProperty(String name, String label, String helpText, String type, Object defaultValue, String... options) {
+        this.name = name;
+        this.label = label;
+        this.helpText = helpText;
+        this.type = type;
+        this.defaultValue = defaultValue;
+        this.options = Arrays.asList(options);
     }
 
     public ProviderConfigProperty(String name, String label, String helpText, String type, Object defaultValue, boolean secret) {

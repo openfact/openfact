@@ -44,7 +44,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.NamedQueries;
@@ -64,7 +63,7 @@ import org.hibernate.annotations.Type;
         @NamedQuery(name = "getAllInvoicesByOrganization", query = "select i from InvoiceEntity i where i.organization.id = :organizationId order by i.issueDateTime"),
         @NamedQuery(name = "getOrganizationInvoiceById", query = "select i from InvoiceEntity i where i.id = :id and i.organization.id = :organizationId"),
         @NamedQuery(name = "getOrganizationInvoiceByDocumentId", query = "select i from InvoiceEntity i where i.documentId = :documentId and i.organization.id = :organizationId"),
-        @NamedQuery(name = "searchForInvoice", query = "select i from InvoiceEntity i where i.organization.id = :organizationId and i.documentId like :search order by i.issueDateTime"),
+        @NamedQuery(name = "searchForInvoice", query = "select i from InvoiceEntity i where i.organization.id = :organizationId and lower(i.documentId) like :search order by i.issueDateTime"),
         @NamedQuery(name = "getOrganizationInvoiceCount", query = "select count(i) from InvoiceEntity i where i.organization.id = :organizationId") })
 public class InvoiceEntity {
 

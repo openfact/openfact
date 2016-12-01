@@ -44,7 +44,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.NamedQueries;
@@ -64,7 +63,7 @@ import org.hibernate.annotations.Type;
         @NamedQuery(name = "getAllDebitNotesByOrganization", query = "select d from DebitNoteEntity d where d.organization.id = :organizationId order by d.issueDateTime"),
         @NamedQuery(name = "getOrganizationDebitNoteById", query = "select d from DebitNoteEntity d where d.id = :id and d.organization.id = :organizationId"),
         @NamedQuery(name = "getOrganizationDebitNoteByDocumentId", query = "select d from DebitNoteEntity d where d.documentId = :documentId and d.organization.id = :organizationId"),
-        @NamedQuery(name = "searchForDebitNote", query = "select d from DebitNoteEntity d where d.organization.id = :organizationId and d.documentId like :search order by d.issueDateTime"),
+        @NamedQuery(name = "searchForDebitNote", query = "select d from DebitNoteEntity d where d.organization.id = :organizationId and lower(d.documentId) like :search order by d.issueDateTime"),
         @NamedQuery(name = "getOrganizationDebitNoteCount", query = "select count(d) from DebitNoteEntity d where d.organization.id = :organizationId") })
 public class DebitNoteEntity {
 

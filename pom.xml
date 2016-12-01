@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2016 Sistcoop, Inc. and/or its affiliates and other contributors 
-	as indicated by the @author tags. Licensed under the Apache License, Version 
-	2.0 (the "License"); you may not use this file except in compliance with 
-	the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
-	Unless required by applicable law or agreed to in writing, software distributed 
-	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
-	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
-	the specific language governing permissions and limitations under the License. -->
+<!--
+    Copyright 2016 Sistcoop, Inc. and/or its affiliates
+    and other contributors as indicated by the @author tags.
+   
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+   
+    http://www.apache.org/licenses/LICENSE-2.0
+   
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+ -->
 
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://maven.apache.org/POM/4.0.0"
@@ -149,7 +157,7 @@
 		<version.woodstox>4.4.1</version.woodstox>
 		<json.version>20160810</json.version>
 		<version.jasperreports>6.3.1</version.jasperreports>
-		<version.keycloak>2.3.0.Final</version.keycloak>
+		<version.keycloak>2.4.0.Final</version.keycloak>
 	</properties>
 
 	<url>http://openfact.org</url>
@@ -212,6 +220,7 @@
 		<module>core</module>
 		<module>services</module>
 		<module>server-spi</module>
+		<module>server-spi-private</module>
 		<module>model</module>
 		<module>themes</module>
 		<module>testsuite</module>
@@ -708,6 +717,11 @@
 			<dependency>
 				<groupId>org.openfact</groupId>
 				<artifactId>openfact-server-spi</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openfact</groupId>
+				<artifactId>openfact-server-spi-private</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>

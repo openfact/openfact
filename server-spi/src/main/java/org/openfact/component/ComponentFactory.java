@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,10 +20,15 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.provider.ConfiguredProvider;
 import org.openfact.provider.Provider;
+import org.openfact.provider.ProviderConfigProperty;
 import org.openfact.provider.ProviderFactory;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
 /**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
 public interface ComponentFactory<CreatedType, ProviderType extends Provider> extends ProviderFactory<ProviderType>, ConfiguredProvider {
@@ -34,10 +39,34 @@ public interface ComponentFactory<CreatedType, ProviderType extends Provider> ex
         return null;
     }
 
-    void validateConfiguration(OpenfactSession session, ComponentModel model) throws ComponentValidationException;
+    void validateConfiguration(OpenfactSession session, OrganizationModel organization, ComponentModel model) throws ComponentValidationException;
 
-    default void onCreate(OpenfactSession session, OrganizationModel organization, ComponentModel model) {
+    default
+    void onCreate(OpenfactSession session, OrganizationModel organization, ComponentModel model) {
 
     }
+
+    /**
+     * These are config properties that are common across all implementation of this component type
+     *
+     * @return
+     */
+    default
+    List<ProviderConfigProperty> getCommonProviderConfigProperties() {
+        return Collections.EMPTY_LIST;
+    }
+
+    /**
+     * This is metadata about this component type.  Its really configuration information about the component type and not
+     * an individual instance
+     *
+     * @return
+     */
+    default
+    Map<String, Object> getTypeMetadata() {
+        return Collections.EMPTY_MAP;
+
+    }
+
 
 }

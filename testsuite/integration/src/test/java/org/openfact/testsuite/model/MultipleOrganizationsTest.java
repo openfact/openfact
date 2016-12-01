@@ -17,6 +17,11 @@
 
 package org.openfact.testsuite.model;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.openfact.models.InvoiceModel;
+import org.openfact.models.InvoiceProvider;
 import org.openfact.models.OrganizationModel;
 
 /**
@@ -27,7 +32,7 @@ public class MultipleOrganizationsTest extends AbstractModelTest {
     private OrganizationModel organization1;
     private OrganizationModel organization2;
 
-    /*@Before
+    @Before
     @Override
     public void before() throws Exception {
         super.before();
@@ -39,77 +44,29 @@ public class MultipleOrganizationsTest extends AbstractModelTest {
     }
 
     @Test
-    public void testUsers() {
-        UserModel r1user1 = session.users().getUserByUsername("user1", organization1);
-        UserModel r2user1 = session.users().getUserByUsername("user1", organization2);
-        Assert.assertEquals(r1user1.getUsername(), r2user1.getUsername());
-        Assert.assertNotEquals(r1user1.getId(), r2user1.getId());
-
-        // Test password
-        r1user1.updateCredential(UserCredentialModel.password("pass1"));
-        r2user1.updateCredential(UserCredentialModel.password("pass2"));
-
-        Assert.assertTrue(session.users().validCredentials(session, organization1, r1user1, UserCredentialModel.password("pass1")));
-        Assert.assertFalse(session.users().validCredentials(session, organization1, r1user1, UserCredentialModel.password("pass2")));
-        Assert.assertFalse(session.users().validCredentials(session, organization2, r2user1, UserCredentialModel.password("pass1")));
-        Assert.assertTrue(session.users().validCredentials(session, organization2, r2user1, UserCredentialModel.password("pass2")));
+    public void testInvoices() {
+        InvoiceModel r1invoice1 = session.invoices().getInvoiceByID(organization1, "F01-001");
+        InvoiceModel r2invoice1 = session.invoices().getInvoiceByID(organization2, "F01-001");
+        Assert.assertEquals(r1invoice1.getDocumentId(), r2invoice1.getDocumentId());
+        Assert.assertNotEquals(r1invoice1.getId(), r2invoice1.getId());
 
         // Test searching
-        Assert.assertEquals(2, session.users().searchForUser("user", organization1).size());
+        Assert.assertEquals(2, session.invoices().searchForInvoice(organization1, "F01").size());
 
         commit();
         organization1 = model.getOrganization("id1");
         organization2 = model.getOrganization("id2");
 
-        session.users().removeUser(organization1, r1user1);
-        UserModel user2 = session.users().getUserByUsername("user2", organization1);
-        session.users().removeUser(organization1, user2);
-        Assert.assertEquals(0, session.users().searchForUser("user", organization1).size());
-        Assert.assertEquals(2, session.users().searchForUser("user", organization2).size());
-    }
-
-    @Test
-    public void testGetById() {
-        Assert.assertEquals(organization1, model.getOrganization("id1"));
-        Assert.assertEquals(organization1, model.getOrganizationByName("organization1"));
-        Assert.assertEquals(organization2, model.getOrganization("id2"));
-        Assert.assertEquals(organization2, model.getOrganizationByName("organization2"));
-
-        ClientModel r1app1 = organization1.getClientByClientId("app1");
-        ClientModel r1app2 = organization1.getClientByClientId("app2");
-        ClientModel r2app1 = organization2.getClientByClientId("app1");
-        ClientModel r2app2 = organization2.getClientByClientId("app2");
-
-        Assert.assertEquals(r1app1, organization1.getClientById(r1app1.getId()));
-        Assert.assertNull(organization2.getClientById(r1app1.getId()));
-
-        ClientModel r2cl1 = organization2.getClientByClientId("cl1");
-        Assert.assertEquals(r2cl1.getId(), organization2.getClientById(r2cl1.getId()).getId());
-        Assert.assertNull(organization1.getClientByClientId(r2cl1.getId()));
-
-        RoleModel r1App1Role = r1app1.getRole("app1Role1");
-        Assert.assertEquals(r1App1Role, organization1.getRoleById(r1App1Role.getId()));
-        Assert.assertNull(organization2.getRoleById(r1App1Role.getId()));
-
-        RoleModel r2Role1 = organization2.getRole("role2");
-        Assert.assertNull(organization1.getRoleById(r2Role1.getId()));
-        Assert.assertEquals(r2Role1, organization2.getRoleById(r2Role1.getId()));
+        session.invoices().removeInvoice(organization1, r1invoice1);
+        InvoiceModel invoice2 = session.invoices().getInvoiceByID(organization1, "F01-002");
+        session.invoices().removeInvoice(organization1, invoice2);
+        Assert.assertEquals(0, session.invoices().searchForInvoice(organization1, "F01").size());
+        Assert.assertEquals(2, session.invoices().searchForInvoice(organization2, "F01").size());
     }
 
     private void createObjects(OrganizationModel organization) {
-        ClientModel app1 = organization.addClient("app1");
-        organization.addClient("app2");
-
-        organizationManager.getSession().users().addUser(organization, "user1");
-        organizationManager.getSession().users().addUser(organization, "user2");
-
-        organization.addRole("role1");
-        organization.addRole("role2");
-
-        app1.addRole("app1Role1");
-        app1.addScopeMapping(organization.getRole("role1"));
-
-        organization.addClient("cl1");
-    }*/
+        organizationManager.getSession().invoices().addInvoice(organization, "F01-001");
+        organizationManager.getSession().invoices().addInvoice(organization, "F01-002");
+    }
 
 }

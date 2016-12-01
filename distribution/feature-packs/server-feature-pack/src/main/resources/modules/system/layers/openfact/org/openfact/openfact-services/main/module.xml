@@ -28,6 +28,7 @@
         <module name="org.openfact.openfact-common" services="import"/>
         <module name="org.openfact.openfact-core" services="import"/>
         <module name="org.openfact.openfact-server-spi" services="import"/>
+        <module name="org.openfact.openfact-server-spi-private" services="import"/>
         <module name="org.openfact.openfact-model-jpa" services="import"/>
         <module name="org.openfact.openfact-services" export="true" services="import"/>
         <module name="org.openfact.openfact-wildfly-extensions" services="import"/>

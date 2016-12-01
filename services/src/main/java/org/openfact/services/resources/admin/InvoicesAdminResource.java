@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -161,23 +161,20 @@ public class InvoicesAdminResource {
                 InvoiceManager invoiceManager = new InvoiceManager(session);
 
                 // Double-check duplicated ID
-                if (invoiceType.getIDValue() != null
-                        && invoiceManager.getInvoiceByID(organization, invoiceType.getIDValue()) != null) {
+                if (invoiceType.getIDValue() != null && invoiceManager.getInvoiceByID(organization, invoiceType.getIDValue()) != null) {
                     return ErrorResponse.exists("Invoice exists with same ID");
                 }
 
-                InvoiceModel invoice = invoiceManager.addInvoice(organization, invoiceType,
-                        Collections.emptyMap());
-                adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, invoice.getId())
-                        .representation(invoiceType).success();
-
-                // Send
-                invoiceManager.sendToCustomerParty(organization, invoice);
-                invoiceManager.sendToTrirdParty(organization, invoice);
+                InvoiceModel invoice = invoiceManager.addInvoice(organization, invoiceType, Collections.emptyMap());
+                adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, invoice.getId()).representation(invoiceType).success();
 
                 if (session.getTransactionManager().isActive()) {
                     session.getTransactionManager().commit();
                 }
+
+                // Send
+                invoiceManager.sendToCustomerParty(organization, invoice);
+                invoiceManager.sendToTrirdParty(organization, invoice);
             } catch (IOException e) {
                 logger.error("Error reading input data", e);
                 return ErrorResponse.error("Error Reading data", Response.Status.BAD_REQUEST);
@@ -192,10 +189,7 @@ public class InvoicesAdminResource {
                 }
                 return ErrorResponse.exists("Could not create invoice");
             } catch (SendException e) {
-                if (session.getTransactionManager().isActive()) {
-                    session.getTransactionManager().setRollbackOnly();
-                }
-                return ErrorResponse.exists("Problem sending the invoice to customer/third party");
+                return ErrorResponse.error("Invoice uploaded successfully but we found an error sending the invoice", Response.Status.ACCEPTED);
             }
         }
 

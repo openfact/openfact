@@ -167,7 +167,4 @@ public class DBLockTest extends AbstractModelTest {
         }
     }
 
-
-
-
 }

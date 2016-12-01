@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,12 +16,7 @@
  *******************************************************************************/
 package org.openfact.services.resources.admin;
 
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
@@ -41,13 +36,19 @@ import org.openfact.report.ReportProvider;
 import org.openfact.report.ReportTheme;
 import org.openfact.report.ReportThemeProvider;
 import org.openfact.representations.idm.InvoiceRepresentation;
+import org.openfact.representations.idm.SendEventRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.InvoiceManager;
+import org.openfact.ubl.SendEventModel;
+import org.openfact.ubl.SendException;
 import org.openfact.ubl.UBLInvoiceProvider;
 import org.w3c.dom.Document;
 
 import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class InvoiceAdminResource {
 
@@ -219,6 +220,59 @@ public class InvoiceAdminResource {
         } else {
             return ErrorResponse.error("Invoice couldn't be deleted", Response.Status.BAD_REQUEST);
         }
+    }
+
+    @POST
+    @Path("send-to-customer")
+    @NoCache
+    @Produces(MediaType.APPLICATION_JSON)
+    public void sendToCustomer() {
+        auth.requireManage();
+
+        if (invoice == null) {
+            throw new NotFoundException("Invoice not found");
+        }
+
+        InvoiceManager invoiceManager = new InvoiceManager(session);
+        try {
+            invoiceManager.sendToCustomerParty(organization, invoice);
+        } catch (SendException e) {
+            throw new InternalServerErrorException(e);
+        }
+    }
+
+    @POST
+    @Path("send-to-third-party")
+    @NoCache
+    @Produces(MediaType.APPLICATION_JSON)
+    public void sendToThridParty() {
+        auth.requireManage();
+
+        if (invoice == null) {
+            throw new NotFoundException("Invoice not found");
+        }
+
+        InvoiceManager invoiceManager = new InvoiceManager(session);
+        SendEventModel sentEvent;
+        try {
+            sentEvent = invoiceManager.sendToTrirdParty(organization, invoice);
+        } catch (SendException e) {
+            throw new InternalServerErrorException(e);
+        }
+    }
+
+    @GET
+    @Path("send-events")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<SendEventRepresentation> getSendEvents() {
+        auth.requireView();
+
+        if (invoice == null) {
+            throw new NotFoundException("Invoice not found");
+        }
+
+        List<SendEventModel> sendEvents = invoice.getSendEvents();
+        return sendEvents.stream().map(f -> ModelToRepresentation.toRepresentation(f)).collect(Collectors.toList());
     }
 
 }

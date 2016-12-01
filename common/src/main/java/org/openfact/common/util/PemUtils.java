@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +18,7 @@
 package org.openfact.common.util;
 
 
-import org.bouncycastle.openssl.jcajce.JcaPEMWriter;
+import org.bouncycastle.openssl.PEMWriter;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -32,7 +32,7 @@ import java.security.cert.X509Certificate;
 /**
  * Utility classes to extract PublicKey, PrivateKey, and X509Certificate from openssl generated PEM files
  *
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
+ * @author <a href="mailto:bill@burkecentral.com">Bill Burke</a>
  * @version $Revision: 1 $
  */
 public final class PemUtils {
@@ -133,7 +133,7 @@ public final class PemUtils {
 
         try {
             StringWriter writer = new StringWriter();
-            JcaPEMWriter pemWriter = new JcaPEMWriter(writer);
+            PEMWriter pemWriter = new PEMWriter(writer);
             pemWriter.writeObject(obj);
             pemWriter.flush();
             pemWriter.close();

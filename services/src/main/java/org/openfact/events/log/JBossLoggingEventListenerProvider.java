@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,7 +30,7 @@ import javax.ws.rs.core.UriInfo;
 import java.util.Map;
 
 /**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
+ * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
 public class JBossLoggingEventListenerProvider implements EventListenerProvider {
 
@@ -81,8 +81,8 @@ public class JBossLoggingEventListenerProvider implements EventListenerProvider 
                     }
                 }
             }
-
-            if (logger.isTraceEnabled()) {
+            
+            if(logger.isTraceEnabled()) {
                 setOpenfactContext(sb);
             }
 
@@ -112,8 +112,8 @@ public class JBossLoggingEventListenerProvider implements EventListenerProvider 
                 sb.append(", error=");
                 sb.append(adminEvent.getError());
             }
-
-            if (logger.isTraceEnabled()) {
+            
+            if(logger.isTraceEnabled()) {
                 setOpenfactContext(sb);
             }
 
@@ -124,7 +124,7 @@ public class JBossLoggingEventListenerProvider implements EventListenerProvider 
     @Override
     public void close() {
     }
-
+    
     private void setOpenfactContext(StringBuilder sb) {
         OpenfactContext context = session.getContext();
         UriInfo uriInfo = context.getUri();
@@ -147,7 +147,7 @@ public class JBossLoggingEventListenerProvider implements EventListenerProvider 
             }
             sb.append("]");
         }
-
+        
     }
 
 }

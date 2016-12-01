@@ -24,7 +24,7 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 
 /**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
+ * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
 public class LiquibaseJpaUpdaterProviderFactory implements JpaUpdaterProviderFactory {
 

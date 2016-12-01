@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
+ * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
 public class ServerInfoRepresentation {
 
@@ -33,11 +33,13 @@ public class ServerInfoRepresentation {
 
     private Map<String, List<ThemeInfoRepresentation>> themes;
 
+    private List<Map<String, String>> socialProviders;
     private List<Map<String, String>> identityProviders;
-
-    private Map<String, List<ComponentTypeRepresentation>> componentTypes;
+    private List<Map<String, String>> clientImporters;
 
     private Map<String, SpiInfoRepresentation> providers;
+
+    private Map<String, List<ComponentTypeRepresentation>> componentTypes;
 
     private Map<String, List<String>> enums;
 
@@ -73,6 +75,14 @@ public class ServerInfoRepresentation {
         this.themes = themes;
     }
 
+    public List<Map<String, String>> getSocialProviders() {
+        return socialProviders;
+    }
+
+    public void setSocialProviders(List<Map<String, String>> socialProviders) {
+        this.socialProviders = socialProviders;
+    }
+
     public List<Map<String, String>> getIdentityProviders() {
         return identityProviders;
     }
@@ -81,13 +91,21 @@ public class ServerInfoRepresentation {
         this.identityProviders = identityProviders;
     }
 
+    public List<Map<String, String>> getClientImporters() {
+        return clientImporters;
+    }
+
+    public void setClientImporters(List<Map<String, String>> clientImporters) {
+        this.clientImporters = clientImporters;
+    }
+
     public Map<String, SpiInfoRepresentation> getProviders() {
         return providers;
     }
 
     public void setProviders(Map<String, SpiInfoRepresentation> providers) {
         this.providers = providers;
-    }
+    }    
 
     public Map<String, List<String>> getEnums() {
         return enums;
@@ -95,7 +113,7 @@ public class ServerInfoRepresentation {
 
     public void setEnums(Map<String, List<String>> enums) {
         this.enums = enums;
-    }
+    }    
 
     public Map<String, List<ComponentTypeRepresentation>> getComponentTypes() {
         return componentTypes;
@@ -104,5 +122,4 @@ public class ServerInfoRepresentation {
     public void setComponentTypes(Map<String, List<ComponentTypeRepresentation>> componentTypes) {
         this.componentTypes = componentTypes;
     }
-
 }

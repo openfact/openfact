@@ -20,7 +20,7 @@ package org.openfact.connections.jpa.updater.liquibase;
 import org.openfact.models.OpenfactSession;
 
 /**
- * @author <a href="mailto:mposolda@sistcoop.com">Marek Posolda</a>
+ * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
  */
 public class ThreadLocalSessionContext {
 

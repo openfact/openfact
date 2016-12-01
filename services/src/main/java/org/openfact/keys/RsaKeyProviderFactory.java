@@ -1,13 +1,13 @@
 /*******************************************************************************
  * Copyright 2016 Sistcoop, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,7 +36,7 @@ import java.security.cert.Certificate;
 import java.util.List;
 
 /**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
+ * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
 public class RsaKeyProviderFactory extends AbstractRsaKeyProviderFactory {
 
@@ -55,8 +55,8 @@ public class RsaKeyProviderFactory extends AbstractRsaKeyProviderFactory {
     }
 
     @Override
-    public void validateConfiguration(OpenfactSession session, ComponentModel model) throws ComponentValidationException {
-        super.validateConfiguration(session, model);
+    public void validateConfiguration(OpenfactSession session, OrganizationModel organization, ComponentModel model) throws ComponentValidationException {
+        super.validateConfiguration(session, organization, model);
 
         ConfigurationValidationHelper.check(model)
                 .checkSingle(Attributes.PRIVATE_KEY_PROPERTY, true)
@@ -88,7 +88,6 @@ public class RsaKeyProviderFactory extends AbstractRsaKeyProviderFactory {
             }
         } else {
             try {
-                OrganizationModel organization = session.organizations().getOrganization(model.getParentId());
                 Certificate certificate = CertificateUtils.generateV1SelfSignedCertificate(keyPair, organization.getName());
                 model.put(Attributes.CERTIFICATE_KEY, PemUtils.encodeCertificate(certificate));
             } catch (Throwable t) {

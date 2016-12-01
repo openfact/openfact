@@ -55,21 +55,6 @@ public class OrganizationProviderTest extends AbstractProviderTest {
         assertThat(organization.getName(), is(equalTo("SISTCOOP_NAME")));
     }
     
-    /*@Test
-    public void createAdminEvent() throws Exception {
-        OrganizationProvider provider = session.organizations();
-        provider.createOrganization("SISTCOOP1");
-        provider.createOrganization("SISTCOOP2");
-        commit();
-        
-        EventStoreProvider eventStore = session.getProvider(EventStoreProvider.class);
-        AdminEventQuery query = eventStore.createAdminQuery();        
-        List<AdminEvent> events = query.getResultList();
-        
-        assertThat(events, is(notNullValue()));
-        assertThat(events.size(), is(2));
-    }*/
-    
     @Test
     public void getOrganizationById() throws Exception {
         OrganizationModel organization1 = session.organizations().createOrganization("SISTCOOP");
