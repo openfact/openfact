@@ -180,22 +180,6 @@ public class OrganizationEntity {
     protected String defaultLocale;
 
     /**
-     * Locale for taxs
-     */
-    @Column(name = "INTERNATIONALIZATION_UBL_ENABLED")
-    @Type(type = "org.hibernate.type.NumericBooleanType")
-    protected boolean internationalizationUblEnabled;
-
-    @ElementCollection
-    @Column(name = "VALUE")
-    @CollectionTable(name = "ORGANIZATION_SUPPORTED_UBL_LOCALES", joinColumns = {
-            @JoinColumn(name = "ORGANIZATION_ID") })
-    protected Set<String> supportedUblLocales = new HashSet<String>();
-
-    @Column(name = "DEFAULT_UBL_LOCALE")
-    protected String defaultUblLocale;
-
-    /**
      * Tasks
      */
     @Temporal(TemporalType.TIMESTAMP)
@@ -219,23 +203,12 @@ public class OrganizationEntity {
     private Map<String, String> smtpConfig = new HashMap<String, String>();
 
     /**
-     * Ubl sender config
-     */
-    @ElementCollection
-    @MapKeyColumn(name = "NAME")
-    @Column(name = "VALUE")
-    @CollectionTable(name = "ORGANIZATION_UBLSENDER_CONFIG", joinColumns = {
-            @JoinColumn(name = "ORGANIZATION_ID") })
-    private Map<String, String> ublSenderConfig = new HashMap<String, String>();
-
-    /**
      * Atributes
      */
     @ElementCollection
     @MapKeyColumn(name = "NAME")
     @Column(name = "VALUE", length = 2048)
-    @CollectionTable(name = "ORGANIZATION_ATTRIBUTES", joinColumns = {
-            @JoinColumn(name = "ORGANIZATION_ID") })
+    @CollectionTable(name = "ORGANIZATION_ATTRIBUTES", joinColumns = {@JoinColumn(name = "ORGANIZATION_ID") })
     protected Map<String, String> attributes = new HashMap<String, String>();
 
     /**
@@ -519,30 +492,6 @@ public class OrganizationEntity {
         this.defaultLocale = defaultLocale;
     }
 
-    public boolean isInternationalizationUblEnabled() {
-        return internationalizationUblEnabled;
-    }
-
-    public void setInternationalizationUblEnabled(boolean internationalizationUblEnabled) {
-        this.internationalizationUblEnabled = internationalizationUblEnabled;
-    }
-
-    public Set<String> getSupportedUblLocales() {
-        return supportedUblLocales;
-    }
-
-    public void setSupportedUblLocales(Set<String> supportedUblLocales) {
-        this.supportedUblLocales = supportedUblLocales;
-    }
-
-    public String getDefaultUblLocale() {
-        return defaultUblLocale;
-    }
-
-    public void setDefaultUblLocale(String defaultUblLocale) {
-        this.defaultUblLocale = defaultUblLocale;
-    }
-
     public long getTaskDelay() {
         return taskDelay;
     }
@@ -557,14 +506,6 @@ public class OrganizationEntity {
 
     public void setSmtpConfig(Map<String, String> smtpConfig) {
         this.smtpConfig = smtpConfig;
-    }
-
-    public Map<String, String> getUblSenderConfig() {
-        return ublSenderConfig;
-    }
-
-    public void setUblSenderConfig(Map<String, String> ublSenderConfig) {
-        this.ublSenderConfig = ublSenderConfig;
     }
 
     public Map<String, String> getAttributes() {

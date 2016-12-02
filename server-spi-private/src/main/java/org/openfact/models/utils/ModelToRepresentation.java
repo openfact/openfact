@@ -17,6 +17,7 @@
 package org.openfact.models.utils;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.component.ComponentModel;
@@ -218,7 +219,7 @@ public class ModelToRepresentation {
             rep.setRequiredActions(new HashSet<String>());
             rep.getRequiredActions().addAll(model.getRequiredActions());
         }
-        
+
         rep.setId(model.getId());
         rep.setDocumentId(model.getDocumentId());
         rep.setIssueDateTime(model.getIssueDateTime());
@@ -445,6 +446,20 @@ public class ModelToRepresentation {
         rep.setId(model.getId());
         rep.setResult(model.getResult());
         rep.setDescription(model.getDescription());
+        rep.setType(model.getType());
+        rep.setDestiny(new HashMap<>(model.getDestity()));
+        rep.setCreatedTimestamp(model.getCreatedTimestamp());
+        if(model.getFileAttatchments() != null) {
+            rep.setFileAttatchments(new ArrayList<>());
+            List<FileRepresentation> filesRep = model.getFileAttatchments().stream().map(f -> {
+                FileRepresentation fileRep = new FileRepresentation();
+                fileRep.setId(f.getId());
+                fileRep.setFileName(f.getFileName());
+                fileRep.setMimeType(f.getMimeType());
+                return fileRep;
+            }).collect(Collectors.toList());
+            rep.getFileAttatchments().addAll(filesRep);
+        }
         return rep;
     }
 }

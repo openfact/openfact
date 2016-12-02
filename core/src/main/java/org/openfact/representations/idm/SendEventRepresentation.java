@@ -16,6 +16,8 @@
  *******************************************************************************/
 package org.openfact.representations.idm;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 
 public class SendEventRepresentation {
@@ -23,6 +25,12 @@ public class SendEventRepresentation {
     private String id;
     private String description;
     private boolean result;
+
+    private String type;
+    private Map<String, String> destiny;
+    private List<FileRepresentation> fileAttatchments;
+
+    private LocalDateTime createdTimestamp;
 
     public String getId() {
         return id;
@@ -46,5 +54,37 @@ public class SendEventRepresentation {
 
     public void setResult(boolean result) {
         this.result = result;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Map<String, String> getDestiny() {
+        return destiny;
+    }
+
+    public void setDestiny(Map<String, String> destiny) {
+        this.destiny = destiny;
+    }
+
+    public List<FileRepresentation> getFileAttatchments() {
+        return fileAttatchments;
+    }
+
+    public void setFileAttatchments(List<FileRepresentation> fileAttatchments) {
+        this.fileAttatchments = fileAttatchments;
+    }
+
+    public LocalDateTime getCreatedTimestamp() {
+        return createdTimestamp;
+    }
+
+    public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
     }
 }

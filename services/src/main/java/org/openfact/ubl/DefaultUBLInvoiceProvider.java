@@ -16,10 +16,7 @@
  *******************************************************************************/
 package org.openfact.ubl;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.openfact.email.EmailException;
 import org.openfact.email.EmailTemplateProvider;
@@ -33,6 +30,7 @@ import org.openfact.models.UserSenderModel;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.enums.SendResultType;
 import org.openfact.models.utils.OpenfactModelUtils;
+import org.openfact.report.ReportException;
 import org.w3c.dom.Document;
 
 import com.helger.ubl21.UBL21Reader;
@@ -116,8 +114,11 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
 			@Override
 			public SendEventModel sendToCustomer(OrganizationModel organization, InvoiceModel invoice) throws SendException {
 				CustomerPartyModel customerParty = invoice.getAccountingCustomerParty();
-				if (customerParty == null || customerParty.getParty() == null || customerParty.getParty().getContact() == null || customerParty.getParty().getContact().getElectronicMail() == null) {
-                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.WARNING, invoice);
+
+                SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, invoice);
+                sendEvent.setType("EMAIL");
+
+                if (customerParty == null || customerParty.getParty() == null || customerParty.getParty().getContact() == null || customerParty.getParty().getContact().getElectronicMail() == null) {
                     sendEvent.setDescription("Could not find a valid email for the customer.");
                     return sendEvent;
 				}
@@ -136,31 +137,50 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
 					}
 				};
 
-				// Attatchments
-				FileModel file = new FileModel();
-				file.setFileName(invoice.getDocumentId());
-				file.setFile(invoice.getXmlDocument());
-				file.setMimeType("application/xml");
+                try {
+                    // Attatchments
+                    FileModel xmlFile = new FileModel();
+                    xmlFile.setFileName(invoice.getDocumentId() + ".xml");
+                    xmlFile.setFile(invoice.getXmlDocument());
+                    xmlFile.setMimeType("application/xml");
 
-				try {
-					session.getProvider(EmailTemplateProvider.class).setOrganization(organization).setUser(user).setAttachments(new ArrayList<>(Arrays.asList(file))).sendInvoice(invoice);
+                    FileModel pdfFile = new FileModel();
 
-					// Write event to the database
-					SendEventModel sendEvent = session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.SUCCESS, invoice);
-					sendEvent.setDescription("Invoice Sended by Email");
+                    xmlFile.setFileName(invoice.getDocumentId() + ".pdf");
+                    xmlFile.setFile(session.getProvider(UBLReportProvider.class).invoice().getReportAsPdf(invoice));
+                    xmlFile.setMimeType("application/pdf");
 
-					if (sendEvent.getResult()) {
-						invoice.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
-					}
-					return sendEvent;
-				} catch (EmailException e) {
-					throw new SendException(e);
-				}
+                    List<FileModel> fileAttatchments = new ArrayList<>(Arrays.asList(xmlFile, pdfFile));
+
+                    session.getProvider(EmailTemplateProvider.class)
+                            .setOrganization(organization).setUser(user)
+                            .setAttachments(fileAttatchments)
+                            .sendInvoice(invoice);
+
+                    // Write event to the database
+                    sendEvent.setDescription("Ivoice successfully sended");
+                    sendEvent.setFileAttatchments(fileAttatchments);
+
+                    Map<String, String> destiny = new HashMap<>();
+                    destiny.put("email", user.getEmail());
+                    sendEvent.setDestiny(destiny);
+
+                    // Remove required action
+                    invoice.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
+
+                    return sendEvent;
+                } catch (ReportException e) {
+                    sendEvent.setDescription(e.getMessage());
+                    throw new SendException("Could not generate pdf report", e);
+                } catch (EmailException e) {
+                    sendEvent.setDescription(e.getMessage());
+                    throw new SendException("Could not send email", e);
+                }
 			}
 
             @Override
             public SendEventModel sendToThridParty(OrganizationModel organization, InvoiceModel invoice) throws SendException {
-                SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.WARNING, invoice);
+                SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, invoice);
                 sendEvent.setDescription("Could not send the invoice because there is no a valid Third Party. This feature should be implemented by your own code");
                 return sendEvent;
             }

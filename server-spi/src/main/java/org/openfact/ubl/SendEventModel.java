@@ -16,7 +16,12 @@
  *******************************************************************************/
 package org.openfact.ubl;
 
+import org.openfact.models.FileModel;
 import org.openfact.models.OrganizationModel;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
 
 public interface SendEventModel {
 
@@ -31,4 +36,19 @@ public interface SendEventModel {
     void setDescription(String description);
 
     OrganizationModel getOrganization();
+
+    List<FileModel> getFileAttatchments();
+
+    void setFileAttatchments(List<FileModel> files);
+
+    String getType();
+
+    void setType(String type);
+
+    Map<String, String> getDestity();
+
+    void setDestiny(Map<String, String> destiny);
+
+    LocalDateTime getCreatedTimestamp();
+
 }

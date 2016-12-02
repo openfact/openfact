@@ -3,11 +3,12 @@ package org.openfact.models.jpa;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.CreditNoteModel;
-import org.openfact.models.CreditNoteSendEventModel;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
+import org.openfact.models.*;
 import org.openfact.models.jpa.entities.CreditNoteSendEventEntity;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
 
 public class CreditNoteSendEventAdapter implements CreditNoteSendEventModel, JpaModel<CreditNoteSendEventEntity> {
 	protected static final Logger logger = Logger.getLogger(CreditNoteSendEventAdapter.class);
@@ -56,6 +57,41 @@ public class CreditNoteSendEventAdapter implements CreditNoteSendEventModel, Jpa
 			return null;
 		}
 		return new OrganizationAdapter(session, em, creditNoteSendEvent.getOrganization());
+	}
+
+	@Override
+	public List<FileModel> getFileAttatchments() {
+		return null;
+	}
+
+	@Override
+	public void setFileAttatchments(List<FileModel> files) {
+
+	}
+
+	@Override
+	public String getType() {
+		return null;
+	}
+
+	@Override
+	public void setType(String type) {
+
+	}
+
+	@Override
+	public Map<String, String> getDestity() {
+		return null;
+	}
+
+	@Override
+	public void setDestiny(Map<String, String> destiny) {
+
+	}
+
+	@Override
+	public LocalDateTime getCreatedTimestamp() {
+		return null;
 	}
 
 	@Override

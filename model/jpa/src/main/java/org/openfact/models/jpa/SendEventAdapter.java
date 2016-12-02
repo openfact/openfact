@@ -19,10 +19,17 @@ package org.openfact.models.jpa;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
+import org.openfact.models.FileModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.jpa.entities.FileEntity;
 import org.openfact.ubl.SendEventModel;
 import org.openfact.models.jpa.entities.SendEventEntity;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class SendEventAdapter implements SendEventModel, JpaModel<SendEventEntity> {
 
@@ -80,6 +87,62 @@ public class SendEventAdapter implements SendEventModel, JpaModel<SendEventEntit
     @Override
     public OrganizationModel getOrganization() {
         return organization;
+    }
+
+    @Override
+    public List<FileModel> getFileAttatchments() {
+        List<FileModel> files = new ArrayList<>();
+        for (Map.Entry<String, FileEntity> entry : sendEvent.getFileAttatchments().entrySet())
+        {
+            FileEntity entity = entry.getValue();
+
+            FileModel model = new FileModel();
+            model.setId(entity.getId());
+            model.setFile(entity.getFile());
+            model.setFileName(entity.getFileName());
+            model.setMimeType(entity.getMimeType());
+
+            files.add(model);
+        }
+        return files;
+    }
+
+    @Override
+    public void setFileAttatchments(List<FileModel> files) {
+        for (FileModel model: files) {
+            FileEntity entity = new FileEntity();
+            entity.setFileName(model.getFileName());
+            entity.setMimeType(model.getMimeType());
+            entity.setFile(model.getFile());
+            em.persist(entity);
+
+            sendEvent.getFileAttatchments().put(entity.getId(), entity);
+        }
+    }
+
+    @Override
+    public String getType() {
+        return sendEvent.getType();
+    }
+
+    @Override
+    public void setType(String type) {
+        sendEvent.setType(type);
+    }
+
+    @Override
+    public Map<String, String> getDestity() {
+        return sendEvent.getDestiny();
+    }
+
+    @Override
+    public void setDestiny(Map<String, String> destiny) {
+        sendEvent.setDestiny(destiny);
+    }
+
+    @Override
+    public LocalDateTime getCreatedTimestamp() {
+        return sendEvent.getCreatedTimestamp();
     }
 
 }

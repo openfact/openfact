@@ -32,6 +32,7 @@ import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.utils.ModelToRepresentation;
+import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.representations.idm.SendEventRepresentation;
 import org.openfact.services.ErrorResponse;

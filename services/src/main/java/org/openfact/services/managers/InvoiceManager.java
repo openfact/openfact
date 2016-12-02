@@ -98,8 +98,7 @@ public class InvoiceManager {
         return false;
     }
 
-    public SendEventModel sendToCustomerParty(OrganizationModel organization, InvoiceModel invoice)
-            throws SendException {
+    public SendEventModel sendToCustomerParty(OrganizationModel organization, InvoiceModel invoice) throws SendException {
         return ubl.sender().sendToCustomer(organization, invoice);
     }
 
