@@ -25,7 +25,10 @@
 			},
 			"realmRoles": [
 				"admin", "uma_authorization"
-			]
+			],
+			"clientRoles": {
+				"account": ["view-profile", "manage-account"]
+			}
 		},
 		{
 			"username": "alex",
@@ -44,7 +47,10 @@
 			},
 			"realmRoles": [
 				"admin-organization", "uma_authorization"
-			]
+			],
+			"clientRoles": {
+				"account": ["view-profile", "manage-account"]
+			}
 		},
 		{
 			"username": "shano",
@@ -63,7 +69,10 @@
 			},
 			"realmRoles": [
 				"organization-user", "uma_authorization"
-			]
+			],
+			"clientRoles": {
+				"account": ["view-profile", "manage-account"]
+			}
 		},
 		{
 			"username": "pavel",
@@ -79,7 +88,10 @@
 			],
 			"realmRoles": [
 				"uma_authorization"
-			]
+			],
+			"clientRoles": {
+				"account": ["view-profile", "manage-account"]
+			}
 		},
 		{
 			"username": "service-account-openfact-restful-api",
