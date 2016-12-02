@@ -57,17 +57,7 @@ public class CreditNoteSendEventAdapter implements CreditNoteSendEventModel, Jpa
 			return null;
 		}
 		return new OrganizationAdapter(session, em, creditNoteSendEvent.getOrganization());
-	}
-
-	@Override
-	public List<FileModel> getFileAttatchments() {
-		return null;
-	}
-
-	@Override
-	public void setFileAttatchments(List<FileModel> files) {
-
-	}
+	}	
 
 	@Override
 	public String getType() {
@@ -118,4 +108,16 @@ public class CreditNoteSendEventAdapter implements CreditNoteSendEventModel, Jpa
 		}
 		return em.getReference(CreditNoteSendEventEntity.class, model.getId());
 	}
+
+    @Override
+    public StorageFileModel addFileAttatchments(FileModel file) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<StorageFileModel> getFileAttatchments() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

@@ -47,7 +47,7 @@ public class SendEventEntity {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @Column(name = "TYPE")
+    @Column(name = "SEND_TYPE")
     private String type;
 
     @Type(type = "org.hibernate.type.LocalDateTimeType")
@@ -69,7 +69,7 @@ public class SendEventEntity {
     @ElementCollection
     @CollectionTable(name = "SEND_EVENT_FILES", joinColumns = @JoinColumn(name = "SEND_EVENT_ID"))
     @MapKeyColumn(name = "FILE_TYPE")
-    private Map<String, FileEntity> fileAttatchments = new HashMap<>();
+    private Map<String, StorageFileEntity> fileAttatchments = new HashMap<>();
 
     public String getId() {
         return id;
@@ -127,11 +127,11 @@ public class SendEventEntity {
         this.destiny = destiny;
     }
 
-    public Map<String, FileEntity> getFileAttatchments() {
+    public Map<String, StorageFileEntity> getFileAttatchments() {
         return fileAttatchments;
     }
 
-    public void setFileAttatchments(Map<String, FileEntity> fileAttatchments) {
+    public void setFileAttatchments(Map<String, StorageFileEntity> fileAttatchments) {
         this.fileAttatchments = fileAttatchments;
     }
 }

@@ -22,7 +22,8 @@ import org.jboss.logging.Logger;
 import org.openfact.models.FileModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.jpa.entities.FileEntity;
+import org.openfact.models.StorageFileModel;
+import org.openfact.models.jpa.entities.StorageFileEntity;
 import org.openfact.ubl.SendEventModel;
 import org.openfact.models.jpa.entities.SendEventEntity;
 
@@ -90,34 +91,25 @@ public class SendEventAdapter implements SendEventModel, JpaModel<SendEventEntit
     }
 
     @Override
-    public List<FileModel> getFileAttatchments() {
-        List<FileModel> files = new ArrayList<>();
-        for (Map.Entry<String, FileEntity> entry : sendEvent.getFileAttatchments().entrySet())
+    public List<StorageFileModel> getFileAttatchments() {
+        List<StorageFileModel> files = new ArrayList<>();
+        for (Map.Entry<String, StorageFileEntity> entry : sendEvent.getFileAttatchments().entrySet())
         {
-            FileEntity entity = entry.getValue();
-
-            FileModel model = new FileModel();
-            model.setId(entity.getId());
-            model.setFile(entity.getFile());
-            model.setFileName(entity.getFileName());
-            model.setMimeType(entity.getMimeType());
-
-            files.add(model);
+            files.add(new StorageFileAdapter(session, em, entry.getValue()));
         }
         return files;
     }
 
     @Override
-    public void setFileAttatchments(List<FileModel> files) {
-        for (FileModel model: files) {
-            FileEntity entity = new FileEntity();
-            entity.setFileName(model.getFileName());
-            entity.setMimeType(model.getMimeType());
-            entity.setFile(model.getFile());
-            em.persist(entity);
+    public StorageFileModel addFileAttatchments(FileModel file) {
+        StorageFileEntity entity = new StorageFileEntity();
+        entity.setFileName(file.getFileName());
+        entity.setMimeType(file.getMimeType());
+        entity.setFile(file.getFile());
+        em.persist(entity);
 
-            sendEvent.getFileAttatchments().put(entity.getId(), entity);
-        }
+        sendEvent.getFileAttatchments().put(entity.getId(), entity);
+        return new StorageFileAdapter(session, em, entity);
     }
 
     @Override

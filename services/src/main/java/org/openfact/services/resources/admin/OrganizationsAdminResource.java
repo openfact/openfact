@@ -61,6 +61,7 @@ public class OrganizationsAdminResource {
     public static final String SCOPE_ORGANIZATION_DELETE = "urn:openfact.com:scopes:organization:delete";
 
     public static final CacheControl noCache = new CacheControl();
+
     protected static final Logger logger = Logger.getLogger(OrganizationsAdminResource.class);
 
     static {
@@ -68,10 +69,13 @@ public class OrganizationsAdminResource {
     }
 
     protected AdminAuth auth;
+
     @Context
     protected OpenfactSession session;
+
     @Context
     protected OpenfactApplication openfact;
+
     @Context
     protected ClientConnection clientConnection;
 

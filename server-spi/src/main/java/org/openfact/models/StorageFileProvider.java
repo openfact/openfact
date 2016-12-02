@@ -24,36 +24,18 @@ import org.openfact.provider.Provider;
 import java.util.List;
 import java.util.Map;
 
-public interface OrganizationProvider extends Provider {
+public interface StorageFileProvider extends Provider {
 
-    MigrationModel getMigrationModel();
+    StorageFileModel createFile(OrganizationModel organization, String fileName, byte[] file);
 
-    OrganizationModel createOrganization(String name);
+    StorageFileModel getFileById(OrganizationModel organization, String id);
 
-    OrganizationModel createOrganization(String id, String name);
+    List<StorageFileModel> getFiles(OrganizationModel organization);
 
-    OrganizationModel getOrganization(String id);
+    List<StorageFileModel> getFiles(OrganizationModel organization, Integer firstResult, Integer maxResults);
 
-    OrganizationModel getOrganizationByName(String name);
+    boolean removeFile(OrganizationModel organization, String id);
 
-    List<OrganizationModel> getOrganizations();
-
-    List<OrganizationModel> getOrganizations(Integer firstResult, Integer maxResults);
-
-    boolean removeOrganization(String organizationId);
-
-    boolean removeOrganization(OrganizationModel organization);
-
-    int getOrganizationsCount();
-
-    List<OrganizationModel> searchForOrganization(String filterText, Integer firstResult, Integer maxResults);
-
-    List<OrganizationModel> searchForOrganization(Map<String, String> attributes, Integer firstResult, Integer maxResults);
-
-    SearchResultsModel<OrganizationModel> searchForOrganization(SearchCriteriaModel criteria);
-
-    SearchResultsModel<OrganizationModel> searchForOrganization(SearchCriteriaModel criteria, String filterText);
-
-    void close();
+    boolean removeFile(OrganizationModel organization, StorageFileModel file);
 
 }

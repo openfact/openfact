@@ -60,16 +60,6 @@ public class InvoiceSendEventAdapter implements InvoiceSendEventModel, JpaModel<
 	}
 
 	@Override
-	public List<FileModel> getFileAttatchments() {
-		return null;
-	}
-
-	@Override
-	public void setFileAttatchments(List<FileModel> files) {
-
-	}
-
-	@Override
 	public String getType() {
 		return null;
 	}
@@ -118,4 +108,16 @@ public class InvoiceSendEventAdapter implements InvoiceSendEventModel, JpaModel<
 		}
 		return em.getReference(InvoiceSendEventEntity.class, model.getId());
 	}
+
+    @Override
+    public List<StorageFileModel> getFileAttatchments() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public StorageFileModel addFileAttatchments(FileModel file) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

@@ -18,6 +18,7 @@ package org.openfact.ubl;
 
 import org.openfact.models.FileModel;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.StorageFileModel;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -37,9 +38,9 @@ public interface SendEventModel {
 
     OrganizationModel getOrganization();
 
-    List<FileModel> getFileAttatchments();
+    List<StorageFileModel> getFileAttatchments();
 
-    void setFileAttatchments(List<FileModel> files);
+    StorageFileModel addFileAttatchments(FileModel file);
 
     String getType();
 

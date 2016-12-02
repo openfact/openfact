@@ -29,6 +29,7 @@ import org.openfact.models.CreditNoteModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.PartyLegalEntityModel;
+import org.openfact.models.SimpleFileModel;
 import org.openfact.models.UserSenderModel;
 import org.openfact.models.enums.SendResultType;
 import org.openfact.models.utils.OpenfactModelUtils;
@@ -133,7 +134,7 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
                 }; 
                 
                 // Attatchments
-                FileModel file = new FileModel();
+                FileModel file = new SimpleFileModel();
                 file.setFileName(creditNote.getDocumentId() + ".xml");
                 file.setFile(creditNote.getXmlDocument());
                 file.setMimeType("application/xml");

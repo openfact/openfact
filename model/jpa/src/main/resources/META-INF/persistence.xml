@@ -48,7 +48,7 @@
 		<class>org.openfact.models.jpa.entities.TaxTotalEntity</class>
 		<class>org.openfact.models.jpa.entities.ContactEntity</class>
 
-		<class>org.openfact.models.jpa.entities.FileEntity</class>
+		<class>org.openfact.models.jpa.entities.StorageFileEntity</class>
 
 		<class>org.openfact.models.jpa.entities.JobReportEntity</class>
 		<class>org.openfact.models.jpa.entities.SendEventEntity</class>

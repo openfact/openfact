@@ -17,9 +17,29 @@
 package org.openfact.models;
 
 import org.openfact.provider.Provider;
+import org.openfact.provider.ProviderFactory;
+import org.openfact.provider.Spi;
 
-public interface OrganizationScheduleTaskProvider extends Provider {
+public class StorageFileSpi implements Spi {
 
-    void run(OrganizationModel organization);
+    @Override
+    public String getName() {
+        return "storageFile";
+    }
+
+    @Override
+    public Class<? extends Provider> getProviderClass() {
+        return StorageFileProvider.class;
+    }
+
+    @Override
+    public Class<? extends ProviderFactory> getProviderFactoryClass() {
+        return StorageFileProviderFactory.class;
+    }
+
+    @Override
+    public boolean isInternal() {
+        return false;
+    }
 
 }

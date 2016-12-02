@@ -69,6 +69,7 @@ import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.managers.AuthzManager;
 import org.openfact.services.managers.OrganizationManager;
+import org.openfact.services.resources.admin.storage.StorageFilesAdminResource;
 
 public class OrganizationAdminResource {
 
@@ -221,6 +222,13 @@ public class OrganizationAdminResource {
         DebitNotesAdminResource debitNotes = new DebitNotesAdminResource(organization, auth, adminEvent);
         ResteasyProviderFactory.getInstance().injectProperties(debitNotes);
         return debitNotes;
+    }
+
+    @Path("storage-files")
+    public StorageFilesAdminResource getStorageFilesAdmin() {
+        StorageFilesAdminResource storageFiles = new StorageFilesAdminResource(organization, auth, adminEvent);
+        ResteasyProviderFactory.getInstance().injectProperties(storageFiles);
+        return storageFiles;
     }
 
     /**

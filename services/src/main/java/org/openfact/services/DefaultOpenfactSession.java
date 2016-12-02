@@ -26,15 +26,7 @@ import java.util.Set;
 import org.openfact.component.ComponentFactory;
 import org.openfact.component.ComponentModel;
 import org.openfact.keys.DefaultKeyManager;
-import org.openfact.models.CreditNoteProvider;
-import org.openfact.models.DebitNoteProvider;
-import org.openfact.models.InvoiceProvider;
-import org.openfact.models.KeyManager;
-import org.openfact.models.OpenfactContext;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OpenfactSessionFactory;
-import org.openfact.models.OpenfactTransactionManager;
-import org.openfact.models.OrganizationProvider;
+import org.openfact.models.*;
 import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
 
@@ -55,6 +47,8 @@ public class DefaultOpenfactSession implements OpenfactSession {
 	private InvoiceProvider invoices;
 	private CreditNoteProvider creditNotes;
 	private DebitNoteProvider debitNotes;
+
+	private StorageFileProvider storageFiles;
 
 	public DefaultOpenfactSession(DefaultOpenfactSessionFactory factory) {
 		this.factory = factory;
@@ -100,6 +94,15 @@ public class DefaultOpenfactSession implements OpenfactSession {
 			return cache;
 		} else {
 			return getProvider(DebitNoteProvider.class);
+		}
+	}
+
+	private StorageFileProvider getStorageFileProvider() {
+		StorageFileProvider cache = getProvider(StorageFileProvider.class);
+		if (cache != null) {
+			return cache;
+		} else {
+			return getProvider(StorageFileProvider.class);
 		}
 	}
 
@@ -230,6 +233,14 @@ public class DefaultOpenfactSession implements OpenfactSession {
 			debitNotes = getDebitNoteProvider();
 		}
 		return debitNotes;
+	}
+
+	@Override
+	public StorageFileProvider storageFiles() {
+		if (storageFiles == null) {
+			storageFiles = getStorageFileProvider();
+		}
+		return storageFiles;
 	}
 
 	@Override

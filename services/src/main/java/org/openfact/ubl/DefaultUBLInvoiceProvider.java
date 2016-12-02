@@ -26,6 +26,7 @@ import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.PartyLegalEntityModel;
+import org.openfact.models.SimpleFileModel;
 import org.openfact.models.UserSenderModel;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.enums.SendResultType;
@@ -123,6 +124,11 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
                     return sendEvent;
 				}
 
+                if (organization.getSmtpConfig().size() == 0) {
+                    sendEvent.setDescription("Could not find a valid smtp configuration on organization.");
+                    return sendEvent;
+                }
+
 				// User where the email will be send
 				UserSenderModel user = new UserSenderModel() {
 					@Override
@@ -139,27 +145,27 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
 
                 try {
                     // Attatchments
-                    FileModel xmlFile = new FileModel();
+                    FileModel xmlFile = new SimpleFileModel();
                     xmlFile.setFileName(invoice.getDocumentId() + ".xml");
                     xmlFile.setFile(invoice.getXmlDocument());
                     xmlFile.setMimeType("application/xml");
 
-                    FileModel pdfFile = new FileModel();
+                    FileModel pdfFile = new SimpleFileModel();
 
-                    xmlFile.setFileName(invoice.getDocumentId() + ".pdf");
-                    xmlFile.setFile(session.getProvider(UBLReportProvider.class).invoice().getReportAsPdf(invoice));
-                    xmlFile.setMimeType("application/pdf");
-
-                    List<FileModel> fileAttatchments = new ArrayList<>(Arrays.asList(xmlFile, pdfFile));
+                    pdfFile.setFileName(invoice.getDocumentId() + ".pdf");
+                    pdfFile.setFile(session.getProvider(UBLReportProvider.class).invoice().setOrganization(organization).getReportAsPdf(invoice));
+                    pdfFile.setMimeType("application/pdf");
 
                     session.getProvider(EmailTemplateProvider.class)
                             .setOrganization(organization).setUser(user)
-                            .setAttachments(fileAttatchments)
+                            .setAttachments(Arrays.asList(xmlFile, pdfFile))
                             .sendInvoice(invoice);
 
                     // Write event to the database
                     sendEvent.setDescription("Ivoice successfully sended");
-                    sendEvent.setFileAttatchments(fileAttatchments);
+                    sendEvent.addFileAttatchments(xmlFile);
+                    sendEvent.addFileAttatchments(pdfFile);
+                    sendEvent.setResult(true);
 
                     Map<String, String> destiny = new HashMap<>();
                     destiny.put("email", user.getEmail());

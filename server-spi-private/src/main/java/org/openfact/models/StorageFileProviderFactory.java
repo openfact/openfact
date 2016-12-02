@@ -16,18 +16,7 @@
  *******************************************************************************/
 package org.openfact.models;
 
-public interface FileModel {
+import org.openfact.provider.ProviderFactory;
 
-    String getFileName();
-
-    void setFileName(String fileName);
-
-    String getMimeType();
-
-    void setMimeType(String mimeType);
-
-    byte[] getFile();
-
-    void setFile(byte[] file);
-
+public interface StorageFileProviderFactory extends ProviderFactory<StorageFileProvider> {
 }

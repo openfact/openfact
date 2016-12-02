@@ -74,6 +74,8 @@ public class OrganizationAuth {
                 return AdminRoles.VIEW_DEBIT_NOTES;
             case EVENTS:
                 return AdminRoles.VIEW_EVENTS;
+            case FILES:
+                return AdminRoles.VIEW_FILES;
             default:
                 throw new IllegalStateException();
         }
@@ -91,13 +93,15 @@ public class OrganizationAuth {
                 return AdminRoles.MANAGE_DEBIT_NOTES;
             case EVENTS:
                 return AdminRoles.MANAGE_EVENTS;
+            case FILES:
+                return AdminRoles.MANAGE_FILES;
             default:
                 throw new IllegalStateException();
         }
     }
 
     public enum Resource {
-        ORGANIZATION, INVOICE, CREDIT_NOTE, DEBIT_NOTE, EVENTS, CODE_CATALOG
+        ORGANIZATION, INVOICE, CREDIT_NOTE, DEBIT_NOTE, EVENTS, FILES
     }
 
 }

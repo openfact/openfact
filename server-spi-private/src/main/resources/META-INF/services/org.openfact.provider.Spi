@@ -31,3 +31,4 @@ org.openfact.ubl.SignerSpi
 org.openfact.ubl.UBLReportProviderSpi
 org.openfact.models.OrganizationScheduleTaskSpi
 org.openfact.timer.TimerSpi
+org.openfact.models.StorageFileSpi

@@ -29,6 +29,7 @@ import org.openfact.models.DebitNoteModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.PartyLegalEntityModel;
+import org.openfact.models.SimpleFileModel;
 import org.openfact.models.UserSenderModel;
 import org.openfact.models.enums.SendResultType;
 import org.openfact.models.utils.OpenfactModelUtils;
@@ -133,7 +134,7 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
                 }; 
                 
                 // Attatchments
-                FileModel file = new FileModel();
+                FileModel file = new SimpleFileModel();
                 file.setFileName(debitNote.getDocumentId() + ".xml");
                 file.setFile(debitNote.getXmlDocument());
                 file.setMimeType("application/xml");

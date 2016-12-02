@@ -60,16 +60,6 @@ public class DebitNoteSendEventAdapter implements DebitNoteSendEventModel, JpaMo
 	}
 
 	@Override
-	public List<FileModel> getFileAttatchments() {
-		return null;
-	}
-
-	@Override
-	public void setFileAttatchments(List<FileModel> files) {
-
-	}
-
-	@Override
 	public String getType() {
 		return null;
 	}
@@ -118,4 +108,16 @@ public class DebitNoteSendEventAdapter implements DebitNoteSendEventModel, JpaMo
 		}
 		return em.getReference(DebitNoteSendEventEntity.class, model.getId());
 	}
+
+    @Override
+    public StorageFileModel addFileAttatchments(FileModel file) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<StorageFileModel> getFileAttatchments() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }
