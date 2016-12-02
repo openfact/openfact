@@ -22,6 +22,7 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import org.openfact.models.*;
 import org.openfact.report.*;
+import org.openfact.theme.FreeMarkerUtil;
 import org.openfact.theme.beans.LocaleBean;
 
 import javax.ejb.Local;
@@ -34,10 +35,15 @@ import java.util.Map;
 
 public class JasperUBLReportProvider implements UBLReportProvider {
 
-    protected OpenfactSession session;
+    private final Map<String, Object> attributes = new HashMap<>();
+    private OpenfactSession session;
+    private JasperReportUtil jasperReport;
+    private OrganizationModel organization;
+    private String themeName;
 
-    public JasperUBLReportProvider(OpenfactSession session) {
+    public JasperUBLReportProvider(OpenfactSession session, JasperReportUtil jasperReport) {
         this.session = session;
+        this.jasperReport = jasperReport;
     }
 
     @Override
@@ -46,7 +52,7 @@ public class JasperUBLReportProvider implements UBLReportProvider {
 
     @Override
     public ReportTemplateProvider<InvoiceModel> invoice() {
-        return new JasperReportTemplateProvider<InvoiceModel>(session, new JasperReportUtil()) {
+        return new JasperReportTemplateProvider<InvoiceModel>() {
             @Override
             public byte[] getReportAsPdf(InvoiceModel invoiceModel) throws ReportException {
                 ReportThemeProvider themeProvider = session.getProvider(ReportThemeProvider.class, "extending");
@@ -80,7 +86,7 @@ public class JasperUBLReportProvider implements UBLReportProvider {
 
     @Override
     public ReportTemplateProvider<CreditNoteModel> creditNote() {
-        return new JasperReportTemplateProvider<CreditNoteModel>(session, new JasperReportUtil()) {
+        return new JasperReportTemplateProvider<CreditNoteModel>() {
             @Override
             public byte[] getReportAsPdf(CreditNoteModel creditNoteModel) throws ReportException {
                 return new byte[0];
@@ -95,7 +101,7 @@ public class JasperUBLReportProvider implements UBLReportProvider {
 
     @Override
     public ReportTemplateProvider<DebitNoteModel> debitNote() {
-        return new JasperReportTemplateProvider<DebitNoteModel>(session, new JasperReportUtil()) {
+        return new JasperReportTemplateProvider<DebitNoteModel>() {
             @Override
             public byte[] getReportAsPdf(DebitNoteModel debitNoteModel) throws ReportException {
                 return new byte[0];
@@ -108,22 +114,11 @@ public class JasperUBLReportProvider implements UBLReportProvider {
         };
     }
 
-    static abstract class JasperReportTemplateProvider<T> implements ReportTemplateProvider<T> {
-        protected final Map<String, Object> attributes = new HashMap<>();
-        protected OpenfactSession session;
-        protected JasperReportUtil jasperReport;
-        protected OrganizationModel organization;
-
-        protected String themeName;
-
-        public JasperReportTemplateProvider(OpenfactSession session, JasperReportUtil jasperReport) {
-            this.session = session;
-            this.jasperReport = jasperReport;
-        }
+    abstract class JasperReportTemplateProvider<T> implements ReportTemplateProvider<T> {
 
         @Override
-        public ReportTemplateProvider setOrganization(OrganizationModel organization) {
-            this.organization = organization;
+        public ReportTemplateProvider setOrganization(OrganizationModel org) {
+            organization = org;
             return this;
         }
 
@@ -135,7 +130,7 @@ public class JasperUBLReportProvider implements UBLReportProvider {
 
         @Override
         public ReportTemplateProvider setThemeName(String theme) {
-            this.themeName = theme;
+            themeName = theme;
             return this;
         }
 

@@ -19,16 +19,21 @@ package org.openfact.ubl;
 import org.openfact.Config.Scope;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
+import org.openfact.report.JasperReportUtil;
+import org.openfact.theme.FreeMarkerUtil;
 
 public class JasperUBLReportProviderFactory implements UBLReportProviderFactory {
 
+    private JasperReportUtil jasperReport;
+
     @Override
     public UBLReportProvider create(OpenfactSession session) {
-        return new JasperUBLReportProvider(session);
+        return new JasperUBLReportProvider(session, jasperReport);
     }
 
     @Override
     public void init(Scope config) {
+        jasperReport = new JasperReportUtil();
     }
 
     @Override
@@ -37,11 +42,12 @@ public class JasperUBLReportProviderFactory implements UBLReportProviderFactory 
 
     @Override
     public void close() {
+        jasperReport = null;
     }
 
     @Override
     public String getId() {
-        return "jasper";
+        return "jasperreport";
     }
 
 }

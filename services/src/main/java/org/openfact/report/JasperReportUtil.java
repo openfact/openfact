@@ -71,8 +71,8 @@ public class JasperReportUtil {
     }
 
     private JasperReport getReport(String templateName, ReportTheme theme) throws IOException, JRException {
-        InputStream is = theme.getResourceAsStream(templateName);
-        JasperReport jr = (JasperReport) JRLoader.loadObject(is);
+        URL url = theme.getTemplate(templateName);
+        JasperReport jr = JasperCompileManager.compileReport(url.openStream());
         return jr;
     }
 
