@@ -138,6 +138,11 @@ public class ModelToRepresentation {
     public static InvoiceRepresentation toRepresentation(InvoiceModel model) {
         InvoiceRepresentation rep = new InvoiceRepresentation();
 
+        if(model.getRequiredActions() != null) {
+            rep.setRequiredActions(new HashSet<String>());
+            rep.getRequiredActions().addAll(model.getRequiredActions());
+        }
+
         rep.setId(model.getId());
         rep.setDocumentId(model.getDocumentId());
         rep.setIssueDateTime(model.getIssueDateTime());
@@ -167,6 +172,11 @@ public class ModelToRepresentation {
 
     public static CreditNoteRepresentation toRepresentation(CreditNoteModel model) {
         CreditNoteRepresentation rep = new CreditNoteRepresentation();
+
+        if(model.getRequiredActions() != null) {
+            rep.setRequiredActions(new HashSet<String>());
+            rep.getRequiredActions().addAll(model.getRequiredActions());
+        }
 
         rep.setId(model.getId());
         rep.setDocumentId(model.getDocumentId());
@@ -204,6 +214,11 @@ public class ModelToRepresentation {
     public static DebitNoteRepresentation toRepresentation(DebitNoteModel model) {
         DebitNoteRepresentation rep = new DebitNoteRepresentation();
 
+        if(model.getRequiredActions() != null) {
+            rep.setRequiredActions(new HashSet<String>());
+            rep.getRequiredActions().addAll(model.getRequiredActions());
+        }
+        
         rep.setId(model.getId());
         rep.setDocumentId(model.getDocumentId());
         rep.setIssueDateTime(model.getIssueDateTime());

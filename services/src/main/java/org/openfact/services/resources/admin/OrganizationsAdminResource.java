@@ -123,40 +123,12 @@ public class OrganizationsAdminResource {
     @GET
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    public List<OrganizationRepresentation> getOrganizations(@QueryParam("filterText") String filterText,
-                                                             @QueryParam("organization") String organizationName,
-                                                             @QueryParam("supplierName") String supplierName,
-                                                             @QueryParam("registrationName") String registrationName, @QueryParam("first") Integer firstResult,
-                                                             @QueryParam("max") Integer maxResults) {
-
+    public List<OrganizationRepresentation> getOrganizations() {
         OrganizationManager organizationManager = new OrganizationManager(session);
         List<OrganizationRepresentation> reps = new ArrayList<>();
 
         if (auth.getOrganization().equals(organizationManager.getOpenfactAdminstrationOrganization())) {
-            firstResult = firstResult != null ? firstResult : -1;
-            maxResults = maxResults != null ? maxResults : -1;
-
-            List<OrganizationModel> organizations;
-            if (filterText != null) {
-                organizations = session.organizations().searchForOrganization(filterText.trim(), firstResult,
-                        maxResults);
-            } else if (organizationName != null || supplierName != null || registrationName != null) {
-                Map<String, String> attributes = new HashMap<String, String>();
-                if (organizationName != null) {
-                    attributes.put(OrganizationModel.NAME, organizationName);
-                }
-                if (supplierName != null) {
-                    attributes.put(OrganizationModel.SUPPLIER_NAME, supplierName);
-                }
-                if (registrationName != null) {
-                    attributes.put(OrganizationModel.REGISTRATION_NAME, registrationName);
-                }
-                organizations = session.organizations().searchForOrganization(attributes, firstResult,
-                        maxResults);
-            } else {
-                organizations = session.organizations().getOrganizations(firstResult, maxResults);
-            }
-
+            List<OrganizationModel> organizations = session.organizations().getOrganizations();
             for (OrganizationModel organization : organizations) {
                 addOrganizationRep(reps, organization);
             }
@@ -193,8 +165,7 @@ public class OrganizationsAdminResource {
         if (organization == null)
             throw new NotFoundException("Organization not found.");
 
-        if (!auth.getOrganization().equals(organizationManager.getOpenfactAdminstrationOrganization())
-                && !auth.getOrganization().equals(organization)) {
+        if (!auth.getOrganization().equals(organizationManager.getOpenfactAdminstrationOrganization()) && !auth.getOrganization().equals(organization)) {
             throw new ForbiddenException();
         }
 
@@ -203,8 +174,7 @@ public class OrganizationsAdminResource {
         AdminEventBuilder adminEvent = new AdminEventBuilder(organization, auth, session, clientConnection);
         session.getContext().setOrganization(organization);
 
-        OrganizationAdminResource adminResource = new OrganizationAdminResource(organizationAuth,
-                organization, adminEvent);
+        OrganizationAdminResource adminResource = new OrganizationAdminResource(organizationAuth, organization, adminEvent);
         ResteasyProviderFactory.getInstance().injectProperties(adminResource);
         // resourceContext.initResource(adminResource);
         return adminResource;
