@@ -157,6 +157,7 @@
 		<version.woodstox>4.4.1</version.woodstox>
 		<json.version>20160810</json.version>
 		<version.jasperreports>6.3.1</version.jasperreports>
+		<version.jasperreports.fonts>6.0.0</version.jasperreports.fonts>
 		<version.keycloak>2.4.0.Final</version.keycloak>
 	</properties>
 
@@ -926,6 +927,11 @@
 				<groupId>net.sf.jasperreports</groupId>
 				<artifactId>jasperreports</artifactId>
 				<version>${version.jasperreports}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sf.jasperreports</groupId>
+				<artifactId>jasperreports-fonts</artifactId>
+				<version>${version.jasperreports.fonts}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.keycloak</groupId>

@@ -61,6 +61,9 @@ public class JasperUBLReportProvider implements UBLReportProvider {
                     Locale locale = organization.getDefaultLocale() != null ? new Locale(organization.getDefaultLocale()) : Locale.ENGLISH;
                     attributes.put(JRParameter.REPORT_LOCALE, locale);
 
+                    // Put parameters
+                    attributes.putIfAbsent("OF_ORGANIZATION", organization.getName());
+
                     JasperPrint jp = jasperReport.processReport(theme, Templates.getTemplate(ReportTheme.Type.INVOICE), attributes, new JREmptyDataSource());
                     return JasperExportManager.exportReportToPdf(jp);
                 } catch (Exception e) {
