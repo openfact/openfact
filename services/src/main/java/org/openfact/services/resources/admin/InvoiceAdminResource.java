@@ -30,6 +30,7 @@ import org.openfact.common.converts.DocumentUtils;
 import org.openfact.events.admin.OperationType;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
+import org.openfact.models.OpenfactSessionTask;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.OpenfactModelUtils;
@@ -38,6 +39,7 @@ import org.openfact.representations.idm.SendEventRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.InvoiceManager;
+import org.openfact.services.resources.OpenfactApplication;
 import org.openfact.ubl.SendEventModel;
 import org.openfact.ubl.SendException;
 import org.openfact.ubl.UBLInvoiceProvider;
@@ -47,6 +49,8 @@ import org.w3c.dom.Document;
 import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 public class InvoiceAdminResource {
@@ -72,7 +76,7 @@ public class InvoiceAdminResource {
     private AdminEventBuilder adminEvent;
 
     public InvoiceAdminResource(OrganizationModel organization, OrganizationAuth auth,
-            AdminEventBuilder adminEvent, InvoiceModel invoice) {
+                                AdminEventBuilder adminEvent, InvoiceModel invoice) {
         this.auth = auth;
         this.organization = organization;
         this.adminEvent = adminEvent;
@@ -198,8 +202,7 @@ public class InvoiceAdminResource {
     /**
      * Deletes invoice with given invoiceId.
      *
-     * @throws AuthorizationException
-     *             The user is not authorized to delete this invoice.
+     * @throws AuthorizationException The user is not authorized to delete this invoice.
      */
     @DELETE
     public Response deleteInvoice() {
@@ -229,11 +232,26 @@ public class InvoiceAdminResource {
             throw new NotFoundException("Invoice not found");
         }
 
-        InvoiceManager invoiceManager = new InvoiceManager(session);
+        ExecutorService executorService = null;
         try {
-            invoiceManager.sendToCustomerParty(organization, invoice);
-        } catch (SendException e) {
-            throw new InternalServerErrorException(e);
+            executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                OpenfactModelUtils.runJobInTransaction(OpenfactApplication.createSessionFactory(), new OpenfactSessionTask() {
+                    @Override
+                    public void run(OpenfactSession session) {
+                        InvoiceManager invoiceManager = new InvoiceManager(session);
+                        try {
+                            invoiceManager.sendToCustomerParty(organization, session.invoices().getInvoiceById(organization, invoice.getId()));
+                        } catch (SendException e) {
+                            throw new InternalServerErrorException(e);
+                        }
+                    }
+                });
+            });
+        } finally {
+            if (executorService != null) {
+                executorService.shutdown();
+            }
         }
     }
 
@@ -248,12 +266,26 @@ public class InvoiceAdminResource {
             throw new NotFoundException("Invoice not found");
         }
 
-        InvoiceManager invoiceManager = new InvoiceManager(session);
-        SendEventModel sentEvent;
+        ExecutorService executorService = null;
         try {
-            sentEvent = invoiceManager.sendToTrirdParty(organization, invoice);
-        } catch (SendException e) {
-            throw new InternalServerErrorException(e);
+            executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                OpenfactModelUtils.runJobInTransaction(OpenfactApplication.createSessionFactory(), new OpenfactSessionTask() {
+                    @Override
+                    public void run(OpenfactSession session) {
+                        InvoiceManager invoiceManager = new InvoiceManager(session);
+                        try {
+                            invoiceManager.sendToTrirdParty(organization, session.invoices().getInvoiceById(organization, invoice.getId()));
+                        } catch (SendException e) {
+                            throw new InternalServerErrorException(e);
+                        }
+                    }
+                });
+            });
+        } finally {
+            if (executorService != null) {
+                executorService.shutdown();
+            }
         }
     }
 
