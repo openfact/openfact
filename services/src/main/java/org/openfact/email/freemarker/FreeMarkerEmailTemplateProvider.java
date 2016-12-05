@@ -113,7 +113,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
         try {
             ThemeProvider themeProvider = session.getProvider(ThemeProvider.class, "extending");
             Theme theme = themeProvider.getTheme(organization.getEmailTheme(), Theme.Type.EMAIL);
-            Locale locale = session.getContext().resolveLocale(user);
+            Locale locale = organization.getDefaultLocale() != null ? new Locale(organization.getDefaultLocale()) : Locale.ENGLISH;
             attributes.put("locale", locale);
             Properties rb = theme.getMessages(locale);
             attributes.put("msg", new MessageFormatterMethod(locale, rb));
