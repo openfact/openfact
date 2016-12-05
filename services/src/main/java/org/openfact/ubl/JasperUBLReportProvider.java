@@ -22,16 +22,15 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import org.openfact.models.*;
 import org.openfact.report.*;
+import org.openfact.theme.ExtendingThemeManager;
 import org.openfact.theme.FreeMarkerUtil;
+import org.openfact.theme.ThemeProvider;
 import org.openfact.theme.beans.LocaleBean;
 
 import javax.ejb.Local;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 public class JasperUBLReportProvider implements UBLReportProvider {
 
@@ -46,6 +45,23 @@ public class JasperUBLReportProvider implements UBLReportProvider {
         this.jasperReport = jasperReport;
     }
 
+    private List<UBLReportDataProvider> getDataProviders() {
+        List<UBLReportDataProvider> providers = new LinkedList<>();
+
+        for (UBLReportDataProvider p : session.getAllProviders(UBLReportDataProvider.class)) {
+            providers.add(p);
+        }
+
+        Collections.sort(providers, new Comparator<UBLReportDataProvider>() {
+            @Override
+            public int compare(UBLReportDataProvider o1, UBLReportDataProvider o2) {
+                return o2.getProviderPriority() - o1.getProviderPriority();
+            }
+        });
+
+        return providers;
+    }
+
     @Override
     public void close() {
     }
@@ -54,7 +70,7 @@ public class JasperUBLReportProvider implements UBLReportProvider {
     public ReportTemplateProvider<InvoiceModel> invoice() {
         return new JasperReportTemplateProvider<InvoiceModel>() {
             @Override
-            public byte[] getReportAsPdf(InvoiceModel invoiceModel) throws ReportException {
+            public byte[] getReportAsPdf(InvoiceModel invoice) throws ReportException {
                 ReportThemeProvider themeProvider = session.getProvider(ReportThemeProvider.class, "extending");
                 try {
                     ReportTheme theme = themeProvider.getTheme(themeName, ReportTheme.Type.INVOICE);
@@ -62,7 +78,9 @@ public class JasperUBLReportProvider implements UBLReportProvider {
                     attributes.put(JRParameter.REPORT_LOCALE, locale);
 
                     // Put parameters
-                    attributes.putIfAbsent("OF_ORGANIZATION", organization.getName());
+                    for (UBLReportDataProvider provider: getDataProviders()) {
+                        attributes.putAll(provider.invoice().getParameters(organization, invoice));
+                    }
 
                     JasperPrint jp = jasperReport.processReport(theme, Templates.getTemplate(ReportTheme.Type.INVOICE), attributes, new JREmptyDataSource());
                     return JasperExportManager.exportReportToPdf(jp);
