@@ -17,9 +17,19 @@
 package org.openfact.ubl;
 
 import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.export.HtmlExporter;
+import net.sf.jasperreports.engine.export.JRCsvExporter;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.export.JRXmlExporter;
+import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
+import net.sf.jasperreports.export.Exporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleHtmlExporterOutput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import org.openfact.models.*;
 import org.openfact.report.*;
 
+import java.io.ByteArrayOutputStream;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -37,6 +47,10 @@ public class JasperUBLReportProvider implements UBLReportProvider {
         this.jasperReport = jasperReport;
     }
 
+    public enum JasperExportFormat {
+        HTML, CSV, XML, XLSX, PDF
+    }
+
     private List<UBLReportDataProvider> getDataProviders() {
         List<UBLReportDataProvider> providers = new LinkedList<>();
 
@@ -52,6 +66,42 @@ public class JasperUBLReportProvider implements UBLReportProvider {
         });
 
         return providers;
+    }
+
+    public byte[] export(final JasperPrint print, JasperExportFormat format) throws JRException {
+        final Exporter exporter;
+        final ByteArrayOutputStream out = new ByteArrayOutputStream();
+        boolean html = false;
+        switch (format) {
+            case HTML:
+                exporter = new HtmlExporter();
+                exporter.setExporterOutput(new SimpleHtmlExporterOutput(out));
+                html = true;
+                break;
+            case CSV:
+                exporter = new JRCsvExporter();
+                break;
+            case XML:
+                exporter = new JRXmlExporter();
+                break;
+            case XLSX:
+                exporter = new JRXlsxExporter();
+                break;
+            case PDF:
+                exporter = new JRPdfExporter();
+                break;
+            default:
+                throw new JRException("Unknown report format: " + format.toString());
+        }
+
+        if (!html) {
+            exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(out));
+        }
+
+        exporter.setExporterInput(new SimpleExporterInput(print));
+        exporter.exportReport();
+
+        return out.toByteArray();
     }
 
     @Override
@@ -91,7 +141,8 @@ public class JasperUBLReportProvider implements UBLReportProvider {
                         }
                     });
 
-                    return JasperExportManager.exportReportToPdf(jp);
+                    //return JasperExportManager.exportReportToPdf(jp);
+                    return export(jp, JasperExportFormat.PDF);
                 } catch (Exception e) {
                     throw new ReportException("Failed to template report", e);
                 }
