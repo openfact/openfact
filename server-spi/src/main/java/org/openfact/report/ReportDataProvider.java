@@ -24,6 +24,8 @@ import java.util.Map;
 
 public interface ReportDataProvider<T> extends Provider {
 
+    Object getFieldValue(T t, String fieldName);
+
     Map<String, Object> getParameters(OrganizationModel organization, T t);
 
 }

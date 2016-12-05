@@ -16,21 +16,13 @@
  *******************************************************************************/
 package org.openfact.ubl;
 
-import net.sf.jasperreports.engine.JREmptyDataSource;
-import net.sf.jasperreports.engine.JRParameter;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.*;
 import org.openfact.models.*;
 import org.openfact.report.*;
-import org.openfact.theme.ExtendingThemeManager;
-import org.openfact.theme.FreeMarkerUtil;
-import org.openfact.theme.ThemeProvider;
-import org.openfact.theme.beans.LocaleBean;
 
-import javax.ejb.Local;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class JasperUBLReportProvider implements UBLReportProvider {
 
@@ -77,12 +69,28 @@ public class JasperUBLReportProvider implements UBLReportProvider {
                     Locale locale = organization.getDefaultLocale() != null ? new Locale(organization.getDefaultLocale()) : Locale.ENGLISH;
                     attributes.put(JRParameter.REPORT_LOCALE, locale);
 
+                    // Data providers
+                    List<UBLReportDataProvider> dataProviders = getDataProviders();
+
                     // Put parameters
-                    for (UBLReportDataProvider provider: getDataProviders()) {
+                    for (UBLReportDataProvider provider : dataProviders) {
                         attributes.putAll(provider.invoice().getParameters(organization, invoice));
                     }
 
-                    JasperPrint jp = jasperReport.processReport(theme, Templates.getTemplate(ReportTheme.Type.INVOICE), attributes, new JREmptyDataSource());
+                    // Put datasource
+                    JasperPrint jp = jasperReport.processReport(theme, Templates.getTemplate(ReportTheme.Type.INVOICE), attributes, new BasicJRDataSource<InvoiceModel>(Arrays.asList(invoice)) {
+                        @Override
+                        public Object getFieldValue(JRField jrField) throws JRException {
+                            InvoiceModel current = super.dataSource.get(super.current.get());
+
+                            Object fieldValue = null;
+                            for (UBLReportDataProvider provider : dataProviders) {
+                                fieldValue = provider.invoice().getFieldValue(invoice, jrField.getName());
+                            }
+                            return fieldValue;
+                        }
+                    });
+
                     return JasperExportManager.exportReportToPdf(jp);
                 } catch (Exception e) {
                     throw new ReportException("Failed to template report", e);
@@ -133,6 +141,25 @@ public class JasperUBLReportProvider implements UBLReportProvider {
                 return new byte[0];
             }
         };
+    }
+
+    static abstract class BasicJRDataSource<T> implements JRDataSource {
+        protected CopyOnWriteArrayList<T> dataSource = new CopyOnWriteArrayList<T>();
+        protected AtomicInteger current = new AtomicInteger();
+
+        public BasicJRDataSource(List<T> data) {
+            this.current.set(0);
+            this.dataSource.addAll(data);
+        }
+
+        @Override
+        public boolean next() throws JRException {
+            if (current.getAndIncrement() < this.dataSource.size()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 
     abstract class JasperReportTemplateProvider<T> implements ReportTemplateProvider<T> {

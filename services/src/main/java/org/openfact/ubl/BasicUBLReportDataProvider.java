@@ -49,6 +49,14 @@ public class BasicUBLReportDataProvider implements UBLReportDataProvider {
     public ReportDataProvider<InvoiceModel> invoice() {
         return new ReportDataProvider<InvoiceModel>() {
             @Override
+            public Object getFieldValue(InvoiceModel invoice, String fieldName) {
+                if(fieldName.equals("documentId")){
+                    return invoice.getDocumentId();
+                }
+                return null;
+            }
+
+            @Override
             public Map<String, Object> getParameters(OrganizationModel organization, InvoiceModel invoiceModel) {
                 Map<String, Object> parameters = new HashMap<>();
                 parameters.put(PARAMETERS.OF_ORGANIZATION.toString(), organization.getName());
@@ -58,6 +66,7 @@ public class BasicUBLReportDataProvider implements UBLReportDataProvider {
             @Override
             public void close() {
             }
+
         };
     }
 
