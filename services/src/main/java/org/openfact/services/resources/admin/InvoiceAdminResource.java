@@ -241,7 +241,9 @@ public class InvoiceAdminResource {
                     public void run(OpenfactSession session) {
                         InvoiceManager invoiceManager = new InvoiceManager(session);
                         try {
-                            invoiceManager.sendToCustomerParty(organization, session.invoices().getInvoiceById(organization, invoice.getId()));
+                            OrganizationModel organizationThread = session.organizations().getOrganization(organization.getId());
+                            InvoiceModel invoiceThread = session.invoices().getInvoiceById(organizationThread, invoice.getId());
+                            invoiceManager.sendToCustomerParty(organizationThread, invoiceThread);
                         } catch (SendException e) {
                             throw new InternalServerErrorException(e);
                         }
@@ -275,7 +277,9 @@ public class InvoiceAdminResource {
                     public void run(OpenfactSession session) {
                         InvoiceManager invoiceManager = new InvoiceManager(session);
                         try {
-                            invoiceManager.sendToTrirdParty(organization, session.invoices().getInvoiceById(organization, invoice.getId()));
+                            OrganizationModel organizationThread = session.organizations().getOrganization(organization.getId());
+                            InvoiceModel invoiceThread = session.invoices().getInvoiceById(organizationThread, invoice.getId());
+                            invoiceManager.sendToTrirdParty(organizationThread, invoiceThread);
                         } catch (SendException e) {
                             throw new InternalServerErrorException(e);
                         }
