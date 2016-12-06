@@ -41,14 +41,23 @@ public interface SendEventModel {
     List<StorageFileModel> getFileAttatchments();
 
     StorageFileModel addFileAttatchments(FileModel file);
+    
+    List<StorageFileModel> getFileResponseAttatchments();
 
+    StorageFileModel addFileResponseAttatchments(FileModel file);    
+    
     String getType();
 
     void setType(String type);
 
     Map<String, String> getDestity();
 
-    void setDestiny(Map<String, String> destiny);
+    void setDestiny(Map<String, String> destiny);    
+    
+    Map<String, String> getResponse();
+
+    void setResponse(Map<String, String> response);
+    
 
     LocalDateTime getCreatedTimestamp();
 

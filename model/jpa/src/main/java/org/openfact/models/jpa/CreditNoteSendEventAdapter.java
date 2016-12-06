@@ -120,4 +120,28 @@ public class CreditNoteSendEventAdapter implements CreditNoteSendEventModel, Jpa
         // TODO Auto-generated method stub
         return null;
     }
+
+	@Override
+	public List<StorageFileModel> getFileResponseAttatchments() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public StorageFileModel addFileResponseAttatchments(FileModel file) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map<String, String> getResponse() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setResponse(Map<String, String> response) {
+		// TODO Auto-generated method stub
+		
+	}
 }

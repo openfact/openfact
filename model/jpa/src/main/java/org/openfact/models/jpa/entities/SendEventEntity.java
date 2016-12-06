@@ -64,12 +64,24 @@ public class SendEventEntity {
     @Column(name = "VALUE")
     @CollectionTable(name = "SEND_EVENT_DESTINY", joinColumns = {@JoinColumn(name = "SEND_EVENT_ID")})
     private Map<String, String> destiny = new HashMap<String, String>();
-
+    
+    @ElementCollection
+    @MapKeyColumn(name = "NAME")
+    @Column(name = "VALUE")
+    @CollectionTable(name = "SEND_EVENT_REPONSE", joinColumns = {@JoinColumn(name = "SEND_EVENT_ID")})
+    private Map<String, String> response = new HashMap<String, String>();
+    
     @OneToMany(fetch = FetchType.LAZY)
     @ElementCollection
     @CollectionTable(name = "SEND_EVENT_FILES", joinColumns = @JoinColumn(name = "SEND_EVENT_ID"))
     @MapKeyColumn(name = "FILE_TYPE")
     private Map<String, StorageFileEntity> fileAttatchments = new HashMap<>();
+    
+    @OneToMany(fetch = FetchType.LAZY)
+    @ElementCollection
+    @CollectionTable(name = "RESPONSE_EVENT_FILES", joinColumns = @JoinColumn(name = "SEND_EVENT_ID"))
+    @MapKeyColumn(name = "FILE_TYPE")
+    private Map<String, StorageFileEntity> fileResponseAttatchments = new HashMap<>();
 
     public String getId() {
         return id;
@@ -134,4 +146,20 @@ public class SendEventEntity {
     public void setFileAttatchments(Map<String, StorageFileEntity> fileAttatchments) {
         this.fileAttatchments = fileAttatchments;
     }
+
+	public Map<String, String> getResponse() {
+		return response;
+	}
+
+	public void setResponse(Map<String, String> response) {
+		this.response = response;
+	}
+
+	public Map<String, StorageFileEntity> getFileResponseAttatchments() {
+		return fileResponseAttatchments;
+	}
+
+	public void setFileResponseAttatchments(Map<String, StorageFileEntity> fileResponseAttatchments) {
+		this.fileResponseAttatchments = fileResponseAttatchments;
+	}
 }
