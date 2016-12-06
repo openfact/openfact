@@ -28,7 +28,9 @@ public class SendEventRepresentation {
 
     private String type;
     private Map<String, String> destiny;
-    private List<FileRepresentation> fileAttatchments;
+    private List<FileRepresentation> filesAttatchment;
+    private Map<String, String> response;
+    private List<FileRepresentation> responseFilesAttatchment;
 
     private LocalDateTime createdTimestamp;
 
@@ -72,12 +74,28 @@ public class SendEventRepresentation {
         this.destiny = destiny;
     }
 
-    public List<FileRepresentation> getFileAttatchments() {
-        return fileAttatchments;
+    public List<FileRepresentation> getFilesAttatchment() {
+        return filesAttatchment;
     }
 
-    public void setFileAttatchments(List<FileRepresentation> fileAttatchments) {
-        this.fileAttatchments = fileAttatchments;
+    public void setFilesAttatchment(List<FileRepresentation> filesAttatchment) {
+        this.filesAttatchment = filesAttatchment;
+    }
+
+    public Map<String, String> getResponse() {
+        return response;
+    }
+
+    public void setResponse(Map<String, String> response) {
+        this.response = response;
+    }
+
+    public List<FileRepresentation> getResponseFilesAttatchment() {
+        return responseFilesAttatchment;
+    }
+
+    public void setResponseFilesAttatchment(List<FileRepresentation> responseFilesAttatchment) {
+        this.responseFilesAttatchment = responseFilesAttatchment;
     }
 
     public LocalDateTime getCreatedTimestamp() {

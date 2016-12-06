@@ -448,9 +448,10 @@ public class ModelToRepresentation {
         rep.setDescription(model.getDescription());
         rep.setType(model.getType());
         rep.setDestiny(new HashMap<>(model.getDestity()));
+        rep.setResponse(new HashMap<>(model.getResponse()));
         rep.setCreatedTimestamp(model.getCreatedTimestamp());
         if(model.getFileAttatchments() != null) {
-            rep.setFileAttatchments(new ArrayList<>());
+            rep.setFilesAttatchment(new ArrayList<>());
             List<FileRepresentation> filesRep = model.getFileAttatchments().stream().map(f -> {
                 FileRepresentation fileRep = new FileRepresentation();
                 fileRep.setId(f.getId());
@@ -458,7 +459,18 @@ public class ModelToRepresentation {
                 fileRep.setMimeType(f.getMimeType());
                 return fileRep;
             }).collect(Collectors.toList());
-            rep.getFileAttatchments().addAll(filesRep);
+            rep.getFilesAttatchment().addAll(filesRep);
+        }
+        if(model.getFileResponseAttatchments()!= null) {
+            rep.setResponseFilesAttatchment(new ArrayList<>());
+            List<FileRepresentation> filesRep = model.getFileResponseAttatchments().stream().map(f -> {
+                FileRepresentation fileRep = new FileRepresentation();
+                fileRep.setId(f.getId());
+                fileRep.setFileName(f.getFileName());
+                fileRep.setMimeType(f.getMimeType());
+                return fileRep;
+            }).collect(Collectors.toList());
+            rep.getResponseFilesAttatchment().addAll(filesRep);
         }
         return rep;
     }
