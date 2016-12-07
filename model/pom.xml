@@ -42,5 +42,6 @@
     </build>
     <modules>
         <module>jpa</module>
+        <module>dropbox</module>
     </modules>
 </project>

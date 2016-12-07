@@ -159,6 +159,9 @@
 		<version.jasperreports>6.3.1</version.jasperreports>
 		<version.jasperreports.fonts>6.0.0</version.jasperreports.fonts>
 		<version.keycloak>2.4.0.Final</version.keycloak>
+
+		<!-- Dropbox -->
+		<version.dropbox>2.1.1</version.dropbox>
 	</properties>
 
 	<url>http://openfact.org</url>
@@ -953,6 +956,11 @@
 				<artifactId>keycloak-adapter-feature-pack</artifactId>
 				<version>${version.keycloak}</version>
 				<type>zip</type>
+			</dependency>
+			<dependency>
+				<groupId>com.dropbox.core</groupId>
+				<artifactId>dropbox-core-sdk</artifactId>
+				<version>${version.dropbox}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
