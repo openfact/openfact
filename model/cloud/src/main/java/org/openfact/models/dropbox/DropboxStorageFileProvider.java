@@ -16,9 +16,11 @@
  *******************************************************************************/
 package org.openfact.models.dropbox;
 
+import com.dropbox.core.DbxDownloader;
 import com.dropbox.core.DbxException;
 import com.dropbox.core.v2.DbxClientV2;
 import com.dropbox.core.v2.files.FileMetadata;
+import com.dropbox.core.v2.files.Metadata;
 import org.jboss.logging.Logger;
 import org.openfact.models.*;
 import org.openfact.models.utils.OpenfactModelUtils;
@@ -51,7 +53,7 @@ public class DropboxStorageFileProvider implements StorageFileProvider {
         InputStream is = new ByteArrayInputStream(file);
         FileMetadata fileMetadata;
         try {
-           fileMetadata = client.files().upload(OpenfactModelUtils.generateCodeSecret()).uploadAndFinish(is);
+           fileMetadata = client.files().upload(buildFileNema(organization, OpenfactModelUtils.generateCodeSecret())).uploadAndFinish(is);
         } catch (DbxException e) {
             throw new ModelException("Could not create file", e);
         } catch (IOException e) {
@@ -62,7 +64,14 @@ public class DropboxStorageFileProvider implements StorageFileProvider {
 
     @Override
     public StorageFileModel getFileById(OrganizationModel organization, String id) {
-        return null;
+        FileMetadata fileMetadata;
+        try {
+            DbxDownloader<FileMetadata> dbxDownloader = client.files().download(buildFileNema(organization, id));
+            fileMetadata = dbxDownloader.getResult();
+        } catch (DbxException e) {
+            throw new ModelException("Could not read file", e);
+        }
+        return new StorageFileAdapter(session, client, fileMetadata);
     }
 
     @Override
@@ -77,11 +86,36 @@ public class DropboxStorageFileProvider implements StorageFileProvider {
 
     @Override
     public boolean removeFile(OrganizationModel organization, String id) {
-        return false;
+        try {
+            Metadata metadata = client.files().delete(buildFileNema(organization, id));
+            logger.debug(metadata.getName() + " removed.");
+            return true;
+        } catch (DbxException e) {
+            return false;
+        }
     }
 
     @Override
     public boolean removeFile(OrganizationModel organization, StorageFileModel file) {
-        return false;
+        try {
+            Metadata metadata = client.files().delete(buildFileNema(organization, file));
+            logger.debug(metadata.getName() + " removed.");
+            return true;
+        } catch (DbxException e) {
+            return false;
+        }
     }
+
+    private String buildFileNema(OrganizationModel organizationModel) {
+        return organizationModel.getId();
+    }
+
+    private String buildFileNema(OrganizationModel organizationModel, String fileName) {
+        return organizationModel.getId() + "/" + fileName;
+    }
+
+    private String buildFileNema(OrganizationModel organizationModel, StorageFileModel file) {
+        return organizationModel.getId() + "/" + file.getFileName();
+    }
+
 }

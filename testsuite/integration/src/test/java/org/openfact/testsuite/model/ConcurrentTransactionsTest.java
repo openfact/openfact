@@ -152,10 +152,10 @@ public class ConcurrentTransactionsTest extends AbstractModelTest {
         OpenfactSession session = organizationManager.getSession();
 
         InvoiceModel invoice1 = session.invoices().addInvoice(organization, "F01-12");
-        invoice1.setAttribute("foo", "val1");
+        invoice1.setSingleAttribute("foo", "val1");
 
         InvoiceModel invoice2 = session.invoices().addInvoice(organization, "F01-123");
-        invoice2.setAttribute("foo", "val2");
+        invoice2.setSingleAttribute("foo", "val2");
 
         final OpenfactSessionFactory sessionFactory = session.getOpenfactSessionFactory();
         commit();
@@ -177,10 +177,10 @@ public class ConcurrentTransactionsTest extends AbstractModelTest {
                                 // Read user attribute
                                 OrganizationModel organization = session.organizations().getOrganizationByName("original");
                                 InvoiceModel invoice1 = session.invoices().getInvoiceByID(organization, "F01-12");
-                                String attrVal = invoice1.getAttribute("foo");
+                                String attrVal = invoice1.getFirstAttribute("foo");
 
                                 InvoiceModel invoice2 = session.invoices().getInvoiceByID(organization, "F01-123");
-                                String attrVal2 = invoice2.getAttribute("foo");
+                                String attrVal2 = invoice2.getFirstAttribute("foo");
 
                                 // Wait until it's read in both threads
                                 readAttrLatch.countDown();
@@ -190,7 +190,7 @@ public class ConcurrentTransactionsTest extends AbstractModelTest {
                                 invoice1.removeAttribute("foo");
 
                                 // KEYCLOAK-3494 : Set single attribute in both threads
-                                invoice2.setAttribute("foo", "bar");
+                                invoice2.setSingleAttribute("foo", "bar");
                             } catch (Exception e) {
                                 throw new RuntimeException(e);
                             }

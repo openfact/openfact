@@ -49,6 +49,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
 	private DebitNoteProvider debitNotes;
 
 	private StorageFileProvider storageFiles;
+	private JobReportProvider jobReports;
 
 	public DefaultOpenfactSession(DefaultOpenfactSessionFactory factory) {
 		this.factory = factory;
@@ -103,6 +104,15 @@ public class DefaultOpenfactSession implements OpenfactSession {
 			return cache;
 		} else {
 			return getProvider(StorageFileProvider.class);
+		}
+	}
+
+	private JobReportProvider getJobReportProvider() {
+		JobReportProvider cache = getProvider(JobReportProvider.class);
+		if (cache != null) {
+			return cache;
+		} else {
+			return getProvider(JobReportProvider.class);
 		}
 	}
 
@@ -241,6 +251,14 @@ public class DefaultOpenfactSession implements OpenfactSession {
 			storageFiles = getStorageFileProvider();
 		}
 		return storageFiles;
+	}
+
+	@Override
+	public JobReportProvider jobReports() {
+		if (jobReports == null) {
+			jobReports = getJobReportProvider();
+		}
+		return jobReports;
 	}
 
 	@Override

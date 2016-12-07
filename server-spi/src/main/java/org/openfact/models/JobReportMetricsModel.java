@@ -16,10 +16,14 @@
  *******************************************************************************/
 package org.openfact.models;
 
-import org.openfact.provider.Provider;
+import java.util.HashMap;
+import java.util.Map;
 
-public interface OrganizationScheduleTaskProvider extends Provider {
+public interface JobReportMetricsModel {
 
-    void run(OrganizationModel organization) throws JobException;
+    String getId();
+
+
+
 
 }

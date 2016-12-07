@@ -67,7 +67,7 @@ public class InvoiceManager {
 
         InvoiceModel invoice = model.addInvoice(organization, documentId.getValue());
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
-            invoice.setAttribute(entry.getKey(), entry.getValue());
+            invoice.setSingleAttribute(entry.getKey(), entry.getValue());
         }
 
         TypeToModel.importInvoice(session, organization, invoice, type);

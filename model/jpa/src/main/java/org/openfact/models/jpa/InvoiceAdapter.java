@@ -17,32 +17,25 @@
 package org.openfact.models.jpa;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import org.jboss.logging.Logger;
+import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.models.CustomerPartyModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.MonetaryTotalModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.jpa.entities.*;
+import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.ubl.SendEventModel;
 import org.openfact.models.SupplierPartyModel;
 import org.openfact.models.TaxTotalModel;
 import org.openfact.models.enums.RequiredAction;
-import org.openfact.models.jpa.entities.CustomerPartyEntity;
-import org.openfact.models.jpa.entities.InvoiceEntity;
-import org.openfact.models.jpa.entities.InvoiceRequiredActionEntity;
-import org.openfact.models.jpa.entities.MonetaryTotalEntity;
-import org.openfact.models.jpa.entities.SupplierPartyEntity;
-import org.openfact.models.jpa.entities.TaxTotalEntity;
 
 public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 
@@ -200,25 +193,107 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
-    public void setAttribute(String name, String value) {
-        invoice.getAttributes().put(name, value);
+    public void setSingleAttribute(String name, String value) {
+        String firstExistingAttrId = null;
+        List<InvoiceAttributeEntity> toRemove = new ArrayList<>();
+        for (InvoiceAttributeEntity attr : invoice.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                if (firstExistingAttrId == null) {
+                    attr.setValue(value);
+                    firstExistingAttrId = attr.getId();
+                } else {
+                    toRemove.add(attr);
+                }
+            }
+        }
+
+        if (firstExistingAttrId != null) {
+            // Remove attributes through HQL to avoid StaleUpdateException
+            Query query = em.createNamedQuery("deleteInvoiceAttributesByNameAndInvoiceOtherThan");
+            query.setParameter("name", name);
+            query.setParameter("invoiceId", invoice.getId());
+            query.setParameter("attrId", firstExistingAttrId);
+            int numUpdated = query.executeUpdate();
+
+            // Remove attribute from local entity
+            invoice.getAttributes().removeAll(toRemove);
+        } else {
+
+            persistAttributeValue(name, value);
+        }
+    }
+
+    @Override
+    public void setAttribute(String name, List<String> values) {
+        // Remove all existing
+        removeAttribute(name);
+
+        // Put all new
+        for (String value : values) {
+            persistAttributeValue(name, value);
+        }
+    }
+
+    private void persistAttributeValue(String name, String value) {
+        InvoiceAttributeEntity attr = new InvoiceAttributeEntity();
+        attr.setId(OpenfactModelUtils.generateId());
+        attr.setName(name);
+        attr.setValue(value);
+        attr.setInvoice(invoice);
+        em.persist(attr);
+        invoice.getAttributes().add(attr);
     }
 
     @Override
     public void removeAttribute(String name) {
-        invoice.getAttributes().remove(name);
+        // Remove attribute through HQL to avoid StaleUpdateException
+        Query query = em.createNamedQuery("deleteInvoiceAttributesByNameAndInvoice");
+        query.setParameter("name", name);
+        query.setParameter("invoiceId", invoice.getId());
+        int numUpdated = query.executeUpdate();
+
+        // Also remove attributes from local user entity
+        List<InvoiceAttributeEntity> toRemove = new ArrayList<>();
+        for (InvoiceAttributeEntity attr : invoice.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                toRemove.add(attr);
+            }
+        }
+        invoice.getAttributes().removeAll(toRemove);
     }
 
     @Override
-    public String getAttribute(String name) {
-        return invoice.getAttributes().get(name);
+    public String getFirstAttribute(String name) {
+        for (InvoiceAttributeEntity attr : invoice.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                return attr.getValue();
+            }
+        }
+        return null;
     }
 
     @Override
-    public Map<String, String> getAttributes() {
-        return invoice.getAttributes();
+    public List<String> getAttribute(String name) {
+        List<String> result = new ArrayList<>();
+        for (InvoiceAttributeEntity attr : invoice.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                result.add(attr.getValue());
+            }
+        }
+        return result;
     }
 
+    @Override
+    public Map<String, List<String>> getAttributes() {
+        MultivaluedHashMap<String, String> result = new MultivaluedHashMap<>();
+        for (InvoiceAttributeEntity attr : invoice.getAttributes()) {
+            result.add(attr.getName(), attr.getValue());
+        }
+        return result;
+    }
+
+    /**
+     * Required actions*/
     @Override
     public Set<String> getRequiredActions() {
         Set<String> result = new HashSet<>();
@@ -226,6 +301,12 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
             result.add(attr.getAction());
         }
         return result;
+    }
+
+    @Override
+    public void addRequiredAction(RequiredAction action) {
+        String actionName = action.name();
+        addRequiredAction(actionName);
     }
 
     @Override
@@ -243,6 +324,12 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
+    public void removeRequiredAction(RequiredAction action) {
+        String actionName = action.name();
+        removeRequiredAction(actionName);
+    }
+
+    @Override
     public void removeRequiredAction(String actionName) {
         Iterator<InvoiceRequiredActionEntity> it = invoice.getRequiredActions().iterator();
         while (it.hasNext()) {
@@ -252,18 +339,6 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
                 em.remove(attr);
             }
         }
-    }
-
-    @Override
-    public void addRequiredAction(RequiredAction action) {
-        String actionName = action.name();
-        addRequiredAction(actionName);
-    }
-
-    @Override
-    public void removeRequiredAction(RequiredAction action) {
-        String actionName = action.name();
-        removeRequiredAction(actionName);
     }
 
     @Override

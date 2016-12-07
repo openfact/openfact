@@ -100,6 +100,8 @@ public interface OpenfactSession {
 
     StorageFileProvider storageFiles();
 
+    JobReportProvider jobReports();
+
     void close();
 
     /**

@@ -160,6 +160,9 @@
 		<version.jasperreports.fonts>6.0.0</version.jasperreports.fonts>
 		<version.keycloak>2.4.0.Final</version.keycloak>
 
+		<!-- easybatch -->
+		<version.easybatch>5.0.0</version.easybatch>
+
 		<!-- Dropbox -->
 		<version.dropbox>2.1.1</version.dropbox>
 	</properties>
@@ -961,6 +964,16 @@
 				<groupId>com.dropbox.core</groupId>
 				<artifactId>dropbox-core-sdk</artifactId>
 				<version>${version.dropbox}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.easybatch</groupId>
+				<artifactId>easybatch-core</artifactId>
+				<version>${version.easybatch}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.easybatch</groupId>
+				<artifactId>easybatch-tools</artifactId>
+				<version>${version.easybatch}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

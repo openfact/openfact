@@ -16,9 +16,30 @@
  *******************************************************************************/
 package org.openfact.services.scheduled;
 
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.OrganizationScheduleTaskProvider;
+import org.easybatch.core.filter.HeaderRecordFilter;
+import org.easybatch.core.job.*;
+import org.easybatch.core.listener.BatchListener;
+import org.easybatch.core.processor.RecordProcessor;
+import org.easybatch.core.reader.IterableRecordReader;
+import org.easybatch.core.reader.RecordReader;
+import org.easybatch.core.reader.RetryableRecordReader;
+import org.easybatch.core.record.GenericRecord;
+import org.easybatch.core.record.Header;
+import org.easybatch.core.record.Record;
+import org.easybatch.core.retry.RetryPolicy;
+import org.easybatch.tools.reporting.HtmlJobReportFormatter;
+import org.openfact.models.*;
+import org.openfact.models.enums.RequiredAction;
+import org.openfact.services.managers.CreditNoteManager;
+import org.openfact.services.managers.DebitNoteManager;
+import org.openfact.services.managers.InvoiceManager;
+import org.openfact.ubl.SendEventModel;
+import org.openfact.ubl.SendException;
+
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 public class DefaultOrganizationScheduleTaskProvider implements OrganizationScheduleTaskProvider {
 
@@ -34,7 +55,52 @@ public class DefaultOrganizationScheduleTaskProvider implements OrganizationSche
 
     @Override
     public void run(OrganizationModel organization) {
-        // TODO Auto-generated method stub
+        ScrollModel<InvoiceModel> invoices = session.invoices().getInvoicesScroll(organization, false, 100);
+        Iterator<InvoiceModel> iterator = invoices.iterator();
+        Iterable<InvoiceModel> iterable = () -> iterator;
+        Stream<InvoiceModel> iteratorStream = StreamSupport.stream(iterable.spliterator(), true);
+
+        while (iterator.hasNext()) {
+            InvoiceModel invoice = iterator.next();
+            InvoiceManager manager = new InvoiceManager(session);
+
+            try {
+                Set<String> requiredActions = invoice.getRequiredActions();
+                if(requiredActions.contains(RequiredAction.SEND_TO_CUSTOMER.toString())) {
+                    SendEventModel sendEvent = manager.sendToCustomerParty(organization, invoice);
+                    if(sendEvent.getResult()) {
+                        invoice.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
+                    }
+                }
+            } catch (SendException e) {
+                throw new JobException("error on execute job", e);
+            }
+        }
+    }
+
+    private void processJobReport(OrganizationModel organization, JobReport jobReport) {
+        // Save Report
+        JobReportModel jobReportModel = session.jobReports().createJobReport(organization, jobReport.getJobName());
+
+        // Metrics
+        JobMetrics metrics = jobReport.getMetrics();
+        jobReportModel.setStartTime(metrics.getStartTime());
+        jobReportModel.setEndTime(metrics.getEndTime());
+        jobReportModel.setDuration(metrics.getDuration());
+        jobReportModel.setFilteredCount(metrics.getFilteredCount());
+        jobReportModel.setReadCount(metrics.getReadCount());
+        jobReportModel.setWriteCount(metrics.getWriteCount());
+        jobReportModel.setErrorCount(metrics.getErrorCount());
+        for (Map.Entry<String, Object> entry : metrics.getCustomMetrics().entrySet())
+        {
+            jobReportModel.addAttribute(entry.getKey(), entry.getValue().toString());
+        }
+
+        // Parameters
+        JobParameters jobParameters = jobReport.getParameters();
+        jobReportModel.addAttribute("batchSize", String.valueOf(jobParameters.getBatchSize()));
+        jobReportModel.addAttribute("errorThreshold", String.valueOf(jobParameters.getErrorThreshold()));
+        jobReportModel.addAttribute("jxmMonitoring", String.valueOf(jobParameters.isJmxMonitoring()));
     }
 
 }

@@ -16,14 +16,19 @@
  *******************************************************************************/
 package org.openfact.models.dropbox;
 
+import com.dropbox.core.DbxDownloader;
+import com.dropbox.core.DbxException;
 import com.dropbox.core.v2.DbxClientV2;
 import com.dropbox.core.v2.files.FileMetadata;
 import org.jboss.logging.Logger;
+import org.openfact.models.ModelReadOnlyException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.StorageFileModel;
 import org.openfact.models.jpa.entities.*;
 
 import javax.persistence.EntityManager;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 public class StorageFileAdapter implements StorageFileModel {
 
@@ -51,7 +56,7 @@ public class StorageFileAdapter implements StorageFileModel {
 
     @Override
     public void setFileName(String fileName) {
-
+        throw new ModelReadOnlyException("Is not posible to change the name");
     }
 
     @Override
@@ -61,17 +66,27 @@ public class StorageFileAdapter implements StorageFileModel {
 
     @Override
     public void setMimeType(String mimeType) {
-
+        throw new ModelReadOnlyException("Is not posible to set mimetype");
     }
 
     @Override
     public byte[] getFile() {
-        return new byte[0];
+        ByteArrayOutputStream os = null;
+        try {
+            DbxDownloader<FileMetadata> dbxDownloader = client.files().download(file.getName());
+            os = new ByteArrayOutputStream();
+            dbxDownloader.download(os);
+        } catch (DbxException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+
+        }
+        return os.toByteArray();
     }
 
     @Override
     public void setFile(byte[] file) {
-
+        throw new ModelReadOnlyException("Is not posible to set mimetype");
     }
 
 }

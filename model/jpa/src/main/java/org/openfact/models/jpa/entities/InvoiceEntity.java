@@ -61,6 +61,7 @@ import org.hibernate.annotations.Type;
         @UniqueConstraint(columnNames = { "ORGANIZATION_ID", "DOCUMENT_ID" }) })
 @NamedQueries({
         @NamedQuery(name = "getAllInvoicesByOrganization", query = "select i from InvoiceEntity i where i.organization.id = :organizationId order by i.issueDateTime"),
+        @NamedQuery(name = "getAllInvoicesIdByOrganization", query = "select i.id from InvoiceEntity i where i.organization.id = :organizationId order by i.issueDateTime"),
         @NamedQuery(name = "getOrganizationInvoiceById", query = "select i from InvoiceEntity i where i.id = :id and i.organization.id = :organizationId"),
         @NamedQuery(name = "getOrganizationInvoiceByDocumentId", query = "select i from InvoiceEntity i where i.documentId = :documentId and i.organization.id = :organizationId"),
         @NamedQuery(name = "searchForInvoice", query = "select i from InvoiceEntity i where i.organization.id = :organizationId and lower(i.documentId) like :search order by i.issueDateTime"),
@@ -72,15 +73,15 @@ public class InvoiceEntity {
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
-    protected String id;
+    private String id;
 
     @Column(name = "DOCUMENT_ID")
-    protected String documentId;
+    private String documentId;
 
     @Lob
     @Basic(fetch = FetchType.LAZY)
     @Column(name = "XML_DOCUMENT")
-    protected byte[] xmlDocument;
+    private byte[] xmlDocument;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
@@ -91,56 +92,44 @@ public class InvoiceEntity {
     @Column(name = "CREATED_TIMESTAMP")
     private LocalDateTime createdTimestamp;
 
-    /**
-     * UBL
-     */
     @Column(name = "ISSUE_DATE")
     @Type(type = "org.hibernate.type.LocalDateTimeType")
-    protected LocalDateTime issueDateTime;
+    private LocalDateTime issueDateTime;
 
     @Column(name = "INVOICE_TYPE_CODE")
-    protected String invoiceTypeCode;
+    private String invoiceTypeCode;
 
     @Column(name = "DOCUMENT_CURRENCY_CODE")
-    protected String documentCurrencyCode;
+    private String documentCurrencyCode;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = SupplierPartyEntity.class, cascade = {
             CascadeType.ALL })
     @JoinColumn(name = "ACCOUNTINGSUPPLIERPARTY_INVOICE")
-    protected SupplierPartyEntity accountingSupplierParty;
+    private SupplierPartyEntity accountingSupplierParty;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = CustomerPartyEntity.class, cascade = {
             CascadeType.ALL })
     @JoinColumn(name = "ACCOUNTINGCUSTOMERPARTY_INVOICE")
-    protected CustomerPartyEntity accountingCustomerParty;
+    private CustomerPartyEntity accountingCustomerParty;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = MonetaryTotalEntity.class, cascade = {
             CascadeType.ALL })
     @JoinColumn(name = "LEGALMONETARYTOTAL_INVOICE")
-    protected MonetaryTotalEntity legalMonetaryTotal;
+    private MonetaryTotalEntity legalMonetaryTotal;
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = TaxTotalEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "TAXTOTAL_INVOICE_ID")
-    protected List<TaxTotalEntity> taxTotal = new ArrayList<>();
+    private List<TaxTotalEntity> taxTotal = new ArrayList<>();
 
-    /**
-     * Openfact
-     */
-    @ElementCollection
-    @MapKeyColumn(name = "NAME")
-    @Column(name = "VALUE")
-    @CollectionTable(name = "INVOICE_NOTE_ATTRIBUTES", joinColumns = {
-            @JoinColumn(name = "INVOICE_NOTE_ID") })
-    protected Map<String, String> attributes = new HashMap<>();
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy="invoice")
+    private Collection<InvoiceAttributeEntity> attributes = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "invoice", orphanRemoval = true, cascade = CascadeType.REMOVE)
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy="invoice")
     private Collection<InvoiceRequiredActionEntity> requiredActions = new ArrayList<>();
 
-    /**
-     * Send Events
-     */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "invoice", cascade = { CascadeType.ALL })
-    protected Collection<InvoiceSendEventEntity> sendEvents = new ArrayList<>();
+    private Collection<InvoiceSendEventEntity> sendEvents = new ArrayList<>();
+
 
     public String getId() {
         return id;
@@ -182,6 +171,9 @@ public class InvoiceEntity {
         this.createdTimestamp = createdTimestamp;
     }
 
+    /**
+     * UBL
+     */
     public LocalDateTime getIssueDateTime() {
         return issueDateTime;
     }
@@ -238,11 +230,14 @@ public class InvoiceEntity {
         this.taxTotal = taxTotal;
     }
 
-    public Map<String, String> getAttributes() {
+    /**
+     * Openfact
+     */
+    public Collection<InvoiceAttributeEntity> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(Map<String, String> attributes) {
+    public void setAttributes(Collection<InvoiceAttributeEntity> attributes) {
         this.attributes = attributes;
     }
 
@@ -254,6 +249,9 @@ public class InvoiceEntity {
         this.requiredActions = requiredActions;
     }
 
+    /**
+     * Send Events
+     */
     public Collection<InvoiceSendEventEntity> getSendEvents() {
         return sendEvents;
     }
@@ -261,6 +259,4 @@ public class InvoiceEntity {
     public void setSendEvents(Collection<InvoiceSendEventEntity> sendEvents) {
         this.sendEvents = sendEvents;
     }
-
-    
 }

@@ -110,6 +110,14 @@
 			<groupId>org.keycloak</groupId>
 			<artifactId>keycloak-authz-client</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.easybatch</groupId>
+			<artifactId>easybatch-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.easybatch</groupId>
+			<artifactId>easybatch-tools</artifactId>
+		</dependency>
 		<!-- Secondary End -->
 
 		<!-- Principal Start -->

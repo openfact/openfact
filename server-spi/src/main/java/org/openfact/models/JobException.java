@@ -14,12 +14,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
+
 package org.openfact.models;
 
-import org.openfact.provider.Provider;
+/**
+ * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
+ */
+public class JobException extends RuntimeException {
 
-public interface OrganizationScheduleTaskProvider extends Provider {
+    private Object[] parameters;
 
-    void run(OrganizationModel organization) throws JobException;
+    public JobException() {
+    }
 
+    public JobException(String message) {
+        super(message);
+    }
+
+    public JobException(String message, Object... parameters) {
+        super(message);
+        this.parameters = parameters;
+    }
+
+    public JobException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public JobException(Throwable cause) {
+        super(cause);
+    }
+
+    public Object[] getParameters() {
+        return parameters;
+    }
+
+    public void setParameters(Object[] parameters) {
+        this.parameters = parameters;
+    }
+    
 }

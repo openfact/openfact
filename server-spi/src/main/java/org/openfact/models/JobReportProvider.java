@@ -18,8 +18,20 @@ package org.openfact.models;
 
 import org.openfact.provider.Provider;
 
-public interface OrganizationScheduleTaskProvider extends Provider {
+import java.util.List;
 
-    void run(OrganizationModel organization) throws JobException;
+public interface JobReportProvider extends Provider {
+
+    JobReportModel createJobReport(OrganizationModel organization, String jobReportName);
+
+    JobReportModel getJobReportById(OrganizationModel organization, String id);
+
+    List<JobReportModel> getJobReports(OrganizationModel organization);
+
+    List<JobReportModel> getJobReports(OrganizationModel organization, Integer firstResult, Integer maxResults);
+
+    boolean removeJobReport(OrganizationModel organization, String id);
+
+    boolean removeJobReport(OrganizationModel organization, JobReportModel jobReport);
 
 }

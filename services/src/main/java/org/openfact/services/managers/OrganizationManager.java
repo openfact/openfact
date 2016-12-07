@@ -18,11 +18,13 @@ package org.openfact.services.managers;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Set;
 
 import org.openfact.Config;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
+import org.openfact.models.OrganizationScheduleTaskProvider;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.utils.OrganizationImporter;
 import org.openfact.models.utils.RepresentationToModel;
@@ -149,26 +151,37 @@ public class OrganizationManager implements OrganizationImporter {
     public void schedulePeriodicTask(OrganizationModel organization) {
         if (organization.isTasksEnabled()) {
             TimerDelayProvider timer = session.getProvider(TimerDelayProvider.class);
-            timer.scheduleTask(new OrganizationScheduledTaskRunner(organization), organization.getTaskFirstTime(), organization.getTaskDelay(), getTaskName(organization));
+            Set<String> providerIds = session.listProviderIds(OrganizationScheduleTaskProvider.class);
+            for (String providerId: providerIds) {
+                timer.scheduleTask(new OrganizationScheduledTaskRunner(organization, providerId), organization.getTaskFirstTime(), organization.getTaskDelay(), getTaskName(organization, providerId));
+            }
         }
     }
 
     public void reschedulePeriodicTask(OrganizationModel organization) {
         TimerDelayProvider timer = session.getProvider(TimerDelayProvider.class);
-        timer.cancelTask(getTaskName(organization));
+        Set<String> providerIds = session.listProviderIds(OrganizationScheduleTaskProvider.class);
+        for (String providerId: providerIds) {
+            timer.cancelTask(getTaskName(organization, providerId));
+        }
 
         if (organization.isTasksEnabled()) {
-            timer.scheduleTask(new OrganizationScheduledTaskRunner(organization), organization.getTaskFirstTime(), organization.getTaskDelay(), getTaskName(organization));
+            for (String providerId: providerIds) {
+                timer.scheduleTask(new OrganizationScheduledTaskRunner(organization, providerId), organization.getTaskFirstTime(), organization.getTaskDelay(), getTaskName(organization, providerId));
+            }
         }
     }
 
     public void cancelPeriodicTask(OrganizationModel organization) {
         TimerDelayProvider timer = session.getProvider(TimerDelayProvider.class);
-        timer.cancelTask(getTaskName(organization));
+        Set<String> providerIds = session.listProviderIds(OrganizationScheduleTaskProvider.class);
+        for (String providerId: providerIds) {
+            timer.cancelTask(getTaskName(organization, providerId));
+        }
     }
 
-    protected String getTaskName(OrganizationModel organization) {
-        return organization.getId();
+    protected String getTaskName(OrganizationModel organization, String providerId) {
+        return organization.getId() + "_" + providerId;
     }
 
 }

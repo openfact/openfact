@@ -75,7 +75,6 @@ public class JpaSendEventProvider extends AbstractHibernateStorage implements Se
         buildSendEvent(sendEvent, organization, type);
         sendEvent.setInvoice(InvoiceAdapter.toEntity(invoice, em));        
         em.persist(sendEvent);
-        em.flush();
 
         return new SendEventAdapter(session, organization, em, sendEvent);
     }
@@ -86,7 +85,6 @@ public class JpaSendEventProvider extends AbstractHibernateStorage implements Se
         buildSendEvent(sendEvent, organization, type);
         sendEvent.setCreditNote(CreditNoteAdapter.toEntity(creditNote, em));        
         em.persist(sendEvent);
-        em.flush();
 
         return new SendEventAdapter(session, organization, em, sendEvent);
     }
@@ -97,7 +95,6 @@ public class JpaSendEventProvider extends AbstractHibernateStorage implements Se
         buildSendEvent(sendEvent, organization, type);
         sendEvent.setDebitNote(DebitNoteAdapter.toEntity(debitNote, em));        
         em.persist(sendEvent);
-        em.flush();
 
         return new SendEventAdapter(session, organization, em, sendEvent);
     }
@@ -193,20 +190,21 @@ public class JpaSendEventProvider extends AbstractHibernateStorage implements Se
     @Override
     public ScrollModel<SendEventModel> getSendEventsScroll(OrganizationModel organization, boolean asc,
             int scrollSize, int fetchSize) {
-        if (scrollSize == -1) {
-            scrollSize = 5;
+        /*if (size == -1) {
+            size = 5;
         }
         if (fetchSize == -1) {
-            scrollSize = 1;
+            size = 1;
         }
 
         Criteria criteria = getSession().createCriteria(SendEventEntity.class)
                 .add(Restrictions.eq("organization.id", organization.getId()))
                 .addOrder(asc ? Order.asc("createdTimestamp") : Order.desc("createdTimestamp"));
 
-        JpaScrollAdapter<SendEventModel, SendEventEntity> result = new JpaScrollAdapter<>(criteria, scrollSize,
+        ScrollAdapter<SendEventModel, SendEventEntity> result = new ScrollAdapter<>(criteria, size,
                 f -> new SendEventAdapter(session, organization, em, f));
-        return result;
+        return result;*/
+        return null;
     }
 
 	@Override

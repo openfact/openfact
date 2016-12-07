@@ -16,10 +16,20 @@
  *******************************************************************************/
 package org.openfact.models;
 
-import org.openfact.provider.Provider;
+public interface JobReportParametersModel {
 
-public interface OrganizationScheduleTaskProvider extends Provider {
+    String getId();
 
-    void run(OrganizationModel organization) throws JobException;
+    long getErrorThreshold();
+
+    void setErrorThreshold(long errorThreshold);
+
+    boolean isJmxMonitoring();
+
+    void setJmxMonitoring(boolean jmxMonitoring);
+
+    int getBatchSize();
+
+    void setBatchSize(int batchSize);
 
 }

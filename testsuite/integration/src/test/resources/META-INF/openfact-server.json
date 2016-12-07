@@ -26,6 +26,9 @@
   "debitNote": {
     "provider": "${openfact.debitNote.provider:jpa}"
   },
+  "storageFile": {
+    "provider": "${openfact.storageFile.provider:jpa}"
+  },
   "timer": {
     "provider": "basic"
   },

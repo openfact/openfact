@@ -278,20 +278,21 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
     @Override
     public ScrollModel<CreditNoteModel> getCreditNotesScroll(OrganizationModel organization, boolean asc,
             int scrollSize, int fetchSize) {
-        if (scrollSize == -1) {
-            scrollSize = 5;
+        /*if (size == -1) {
+            size = 5;
         }
         if (fetchSize == -1) {
-            scrollSize = 1;
+            size = 1;
         }
 
         Criteria criteria = getSession().createCriteria(CreditNoteEntity.class)
                 .add(Restrictions.eq("organization.id", organization.getId()))
                 .addOrder(asc ? Order.asc("createdTimestamp") : Order.desc("createdTimestamp"));
 
-        JpaScrollAdapter<CreditNoteModel, CreditNoteEntity> result = new JpaScrollAdapter<>(criteria,
-                scrollSize, f -> new CreditNoteAdapter(session, organization, em, f));
-        return result;
+        ScrollAdapter<CreditNoteModel, CreditNoteEntity> result = new ScrollAdapter<>(criteria,
+                size, f -> new CreditNoteAdapter(session, organization, em, f));
+        return result;*/
+        return null;
     }
 
 }

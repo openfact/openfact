@@ -68,9 +68,11 @@ public class OrganizationRepresentation {
     private String registrationName;
     private LocalDateTime createdTimestamp;
     private PostalAddressRepresentation postalAddress;
+
     private Date taskFirstTime;
     private Long taskDelay;
     private Boolean tasksEnabled;
+
     private MultivaluedHashMap<String, ComponentExportRepresentation> components;
 
     public String getId() {

@@ -26,8 +26,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>openfact-model-dropbox</artifactId>
-    <name>Openfact Model Dropbox</name>
+    <artifactId>openfact-model-cloud</artifactId>
+    <name>Openfact Model Cloud</name>
     <description/>
 
     <properties>

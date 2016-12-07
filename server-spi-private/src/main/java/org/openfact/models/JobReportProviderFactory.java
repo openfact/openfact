@@ -16,10 +16,7 @@
  *******************************************************************************/
 package org.openfact.models;
 
-import org.openfact.provider.Provider;
+import org.openfact.provider.ProviderFactory;
 
-public interface OrganizationScheduleTaskProvider extends Provider {
-
-    void run(OrganizationModel organization) throws JobException;
-
+public interface JobReportProviderFactory extends ProviderFactory<JobReportProvider> {
 }

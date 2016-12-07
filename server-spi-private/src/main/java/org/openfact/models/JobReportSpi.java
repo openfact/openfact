@@ -17,9 +17,29 @@
 package org.openfact.models;
 
 import org.openfact.provider.Provider;
+import org.openfact.provider.ProviderFactory;
+import org.openfact.provider.Spi;
 
-public interface OrganizationScheduleTaskProvider extends Provider {
+public class JobReportSpi implements Spi {
 
-    void run(OrganizationModel organization) throws JobException;
+    @Override
+    public String getName() {
+        return "jobReport";
+    }
+
+    @Override
+    public Class<? extends Provider> getProviderClass() {
+        return JobReportProvider.class;
+    }
+
+    @Override
+    public Class<? extends ProviderFactory> getProviderFactoryClass() {
+        return JobReportProviderFactory.class;
+    }
+
+    @Override
+    public boolean isInternal() {
+        return false;
+    }
 
 }
