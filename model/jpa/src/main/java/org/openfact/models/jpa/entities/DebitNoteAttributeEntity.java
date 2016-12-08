@@ -28,10 +28,10 @@ import javax.persistence.*;
 @Entity
 @Table(name = "DEBIT_NOTE_ATTRIBUTE")
 @NamedQueries({
-        @NamedQuery(name="getAttributesByNameAndValue", query="select attr from DebitNoteAttributeEntity attr where attr.name = :name and attr.value = :value"),
+        @NamedQuery(name="getDebitNoteAttributesByNameAndValue", query="select attr from DebitNoteAttributeEntity attr where attr.name = :name and attr.value = :value"),
         @NamedQuery(name="deleteDebitNoteAttributesByOrganization", query="delete from  DebitNoteAttributeEntity attr where attr.debitNote IN (select u from DebitNoteEntity u where u.organizationId=:organizationId)"),
-        @NamedQuery(name="deleteDebitNoteAttributesByNameAndDebitNote", query="delete from  DebitNoteAttributeEntity attr where attr.debitNote.id = :userId and attr.name = :name"),
-        @NamedQuery(name="deleteDebitNoteAttributesByNameAndDebitNoteOtherThan", query="delete from  DebitNoteAttributeEntity attr where attr.debitNote.id = :userId and attr.name = :name and attr.id <> :attrId")
+        @NamedQuery(name="deleteDebitNoteAttributesByNameAndDebitNote", query="delete from  DebitNoteAttributeEntity attr where attr.debitNote.id = :debitNoteId and attr.name = :name"),
+        @NamedQuery(name="deleteDebitNoteAttributesByNameAndDebitNoteOtherThan", query="delete from  DebitNoteAttributeEntity attr where attr.debitNote.id = :debitNoteId and attr.name = :name and attr.id <> :attrId")
 })
 public class DebitNoteAttributeEntity {
 

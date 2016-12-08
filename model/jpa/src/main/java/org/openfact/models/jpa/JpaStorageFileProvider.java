@@ -51,6 +51,7 @@ public class JpaStorageFileProvider extends AbstractHibernateStorage implements 
         entity.setFileName(fileName);
         entity.setFile(file);
         em.persist(file);
+        em.flush();
 
         return new StorageFileAdapter(session, em, entity);
     }

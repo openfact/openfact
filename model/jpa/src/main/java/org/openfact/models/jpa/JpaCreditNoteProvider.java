@@ -148,9 +148,9 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
 
     @Override
     public void preRemove(OrganizationModel organization) {
-        int num = em.createNamedQuery("deleteCreditNoteRequiredActionsByOrganization").setParameter("realmId", organization.getId()).executeUpdate();
-        num = em.createNamedQuery("deleteCreditNoteAttributesByOrganization").setParameter("realmId", organization.getId()).executeUpdate();
-        num = em.createNamedQuery("deleteCreditNotesByOrganization").setParameter("realmId", organization.getId()).executeUpdate();
+        int num = em.createNamedQuery("deleteCreditNoteRequiredActionsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        num = em.createNamedQuery("deleteCreditNoteAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        num = em.createNamedQuery("deleteCreditNotesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
     }
 
     @Override
@@ -261,21 +261,15 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
 
     @Override
     public ScrollModel<CreditNoteModel> getCreditNotesScroll(OrganizationModel organization, boolean asc, int scrollSize) {
-        return getCreditNotesScroll(organization, asc, scrollSize, -1);
-    }
-
-    @Override
-    public ScrollModel<CreditNoteModel> getCreditNotesScroll(OrganizationModel organization, boolean asc, int scrollSize, int fetchSize) {
         if (scrollSize == -1) {
             scrollSize = 10;
         }
 
-        TypedQuery<String> query = em.createNamedQuery("getAllCreditNotesIdsByOrganization", String.class);
+        TypedQuery<CreditNoteEntity> query = em.createNamedQuery("getAllCreditNotesByOrganization", CreditNoteEntity.class);
         query.setParameter("organizationId", organization.getId());
 
-        ScrollAdapter<CreditNoteModel, String> result = new ScrollAdapter<>(String.class, query, f -> {
-            CreditNoteEntity entity = em.find(CreditNoteEntity.class, f);
-            return new CreditNoteAdapter(session, organization, em, entity);
+        ScrollAdapter<CreditNoteModel, CreditNoteEntity> result = new ScrollAdapter<>(CreditNoteEntity.class, query, f -> {
+            return new CreditNoteAdapter(session, organization, em, f);
         });
 
         return result;
@@ -287,17 +281,14 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
             scrollSize = 10;
         }
 
-        TypedQuery<String> query = em.createNamedQuery("getAllCreditNotesIdsRequiredActionByOrganization", String.class);
+        TypedQuery<CreditNoteEntity> query = em.createNamedQuery("getAllCreditNotesByRequiredActionAndOrganization", CreditNoteEntity.class);
         query.setParameter("organizationId", organization.getId());
         query.setParameter("requiredAction", new ArrayList<RequiredAction>(Arrays.asList(requiredAction)));
 
-        ScrollAdapter<List<CreditNoteModel>, String> result = new ScrollAdapter<>(String.class, query, f -> {
-            /*CreditNoteEntity entity = em.find(CreditNoteEntity.class, f);
-            return new CreditNoteAdapter(session, organization, em, entity);*/
-            return null;
+        ScrollModel<List<CreditNoteModel>> result = new ScrollPagingAdapter<>(CreditNoteEntity.class, query, f -> {
+            return f.stream().map(m -> new CreditNoteAdapter(session, organization, em, m)).collect(Collectors.toList());
         });
-
-        return result;
+        return null;
     }
 
 }

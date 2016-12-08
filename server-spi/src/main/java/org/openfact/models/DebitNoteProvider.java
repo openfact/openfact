@@ -31,6 +31,8 @@ public interface DebitNoteProvider extends Provider {
 
     DebitNoteModel getDebitNoteByID(OrganizationModel organization, String ID);
 
+    void preRemove(OrganizationModel organization);
+
     boolean removeDebitNote(OrganizationModel organization, String id);
 
     boolean removeDebitNote(OrganizationModel organization, DebitNoteModel debitNote);
@@ -39,31 +41,24 @@ public interface DebitNoteProvider extends Provider {
 
     List<DebitNoteModel> getDebitNotes(OrganizationModel organization);
 
-    List<DebitNoteModel> getDebitNotes(OrganizationModel organization,
-            List<RequiredAction> requeridAction, boolean intoRequeridAction);
+    List<DebitNoteModel> getDebitNotes(OrganizationModel organization, List<RequiredAction> requeridAction, boolean intoRequeridAction);
 
-    List<DebitNoteModel> getDebitNotes(OrganizationModel organization, Integer firstResult,
-            Integer maxResults);
+    List<DebitNoteModel> getDebitNotes(OrganizationModel organization, Integer firstResult, Integer maxResults);
 
     List<DebitNoteModel> searchForDebitNote(OrganizationModel organization, String filterText);
 
-    List<DebitNoteModel> searchForDebitNote(OrganizationModel organization, String filterText,
-            Integer firstResult, Integer maxResults);
+    List<DebitNoteModel> searchForDebitNote(OrganizationModel organization, String filterText, Integer firstResult, Integer maxResults);
 
-    SearchResultsModel<DebitNoteModel> searchForDebitNote(OrganizationModel organization,
-            SearchCriteriaModel criteria);
+    SearchResultsModel<DebitNoteModel> searchForDebitNote(OrganizationModel organization, SearchCriteriaModel criteria);
 
-    SearchResultsModel<DebitNoteModel> searchForDebitNote(OrganizationModel organization,
-            SearchCriteriaModel criteria, String filterText);
+    SearchResultsModel<DebitNoteModel> searchForDebitNote(OrganizationModel organization, SearchCriteriaModel criteria, String filterText);
 
     ScrollModel<DebitNoteModel> getDebitNotesScroll(OrganizationModel organization);
 
     ScrollModel<DebitNoteModel> getDebitNotesScroll(OrganizationModel organization, boolean asc);
 
-    ScrollModel<DebitNoteModel> getDebitNotesScroll(OrganizationModel organization, boolean asc,
-            int scrollSize);
+    ScrollModel<DebitNoteModel> getDebitNotesScroll(OrganizationModel organization, boolean asc, int scrollSize);
 
-    ScrollModel<DebitNoteModel> getDebitNotesScroll(OrganizationModel organization, boolean asc,
-            int scrollSize, int fetchSize);
+    ScrollModel<List<DebitNoteModel>> getDebitNotesScroll(OrganizationModel organization, int scrollSize, RequiredAction... requiredAction);
 
 }

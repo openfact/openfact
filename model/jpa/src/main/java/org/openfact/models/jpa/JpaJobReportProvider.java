@@ -53,6 +53,7 @@ public class JpaJobReportProvider extends AbstractHibernateStorage implements Jo
         entity.setJobName(jobReportName);
         entity.setOrganization(OrganizationAdapter.toEntity(organization, em));
         em.persist(entity);
+        em.flush();
         return new JobReportAdapter(session, organization, em, entity);
     }
 

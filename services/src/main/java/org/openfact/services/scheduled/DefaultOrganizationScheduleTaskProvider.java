@@ -87,20 +87,9 @@ public class DefaultOrganizationScheduleTaskProvider implements OrganizationSche
         jobReportModel.setStartTime(metrics.getStartTime());
         jobReportModel.setEndTime(metrics.getEndTime());
         jobReportModel.setDuration(metrics.getDuration());
-        jobReportModel.setFilteredCount(metrics.getFilteredCount());
         jobReportModel.setReadCount(metrics.getReadCount());
         jobReportModel.setWriteCount(metrics.getWriteCount());
         jobReportModel.setErrorCount(metrics.getErrorCount());
-        for (Map.Entry<String, Object> entry : metrics.getCustomMetrics().entrySet())
-        {
-            jobReportModel.addAttribute(entry.getKey(), entry.getValue().toString());
-        }
-
-        // Parameters
-        JobParameters jobParameters = jobReport.getParameters();
-        jobReportModel.addAttribute("batchSize", String.valueOf(jobParameters.getBatchSize()));
-        jobReportModel.addAttribute("errorThreshold", String.valueOf(jobParameters.getErrorThreshold()));
-        jobReportModel.addAttribute("jxmMonitoring", String.valueOf(jobParameters.isJmxMonitoring()));
     }
 
 }

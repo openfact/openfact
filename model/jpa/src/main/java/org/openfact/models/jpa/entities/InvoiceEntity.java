@@ -61,12 +61,14 @@ import org.hibernate.annotations.Type;
         @UniqueConstraint(columnNames = { "ORGANIZATION_ID", "DOCUMENT_ID" })
 })
 @NamedQueries({
-        @NamedQuery(name = "getAllInvoicesByOrganization", query = "select i from InvoiceEntity i where i.organizationId = :organizationId order by i.issueDateTime"),
-        @NamedQuery(name = "getAllInvoicesIdByOrganization", query = "select i.id from InvoiceEntity i where i.organizationId = :organizationId order by i.issueDateTime"),
+        @NamedQuery(name = "getAllInvoicesByOrganization", query = "select c from InvoiceEntity c where c.organizationId = :organizationId order by c.issueDateTime"),
+        @NamedQuery(name = "getAllInvoiceIdsByOrganization", query = "select c.id from InvoiceEntity c where c.organizationId = :organizationId order by c.issueDateTime"),
+        @NamedQuery(name = "getAllInvoicesByRequiredActionAndOrganization", query = "select c.id from InvoiceEntity c inner join c.requiredActions r where c.organizationId = :organizationId and r.action in :requiredAction order by c.issueDateTime"),
         @NamedQuery(name = "getOrganizationInvoiceById", query = "select i from InvoiceEntity i where i.id = :id and i.organizationId = :organizationId"),
         @NamedQuery(name = "getOrganizationInvoiceByDocumentId", query = "select i from InvoiceEntity i where i.documentId = :documentId and i.organizationId = :organizationId"),
         @NamedQuery(name = "searchForInvoice", query = "select i from InvoiceEntity i where i.organizationId = :organizationId and lower(i.documentId) like :search order by i.issueDateTime"),
-        @NamedQuery(name = "getOrganizationInvoiceCount", query = "select count(i) from InvoiceEntity i where i.organizationId = :organizationId") })
+        @NamedQuery(name = "getOrganizationInvoiceCount", query = "select count(i) from InvoiceEntity i where i.organizationId = :organizationId"),
+        @NamedQuery(name="deleteInvoicesByOrganization", query="delete from InvoiceEntity u where u.organizationId = :organizationId") })
 public class InvoiceEntity {
 
     @Id

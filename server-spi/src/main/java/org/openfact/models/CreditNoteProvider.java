@@ -59,7 +59,5 @@ public interface CreditNoteProvider extends Provider {
 
     ScrollModel<CreditNoteModel> getCreditNotesScroll(OrganizationModel organization, boolean asc, int scrollSize);
 
-    ScrollModel<CreditNoteModel> getCreditNotesScroll(OrganizationModel organization, boolean asc, int scrollSize, int fetchSize);
-
     ScrollModel<List<CreditNoteModel>> getCreditNotesScroll(OrganizationModel organization, int scrollSize, RequiredAction... requiredAction);
 }

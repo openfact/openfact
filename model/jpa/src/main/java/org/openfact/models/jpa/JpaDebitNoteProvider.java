@@ -17,6 +17,8 @@
 package org.openfact.models.jpa;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,18 +26,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
 import org.jboss.logging.Logger;
-import org.openfact.models.DebitNoteModel;
-import org.openfact.models.DebitNoteProvider;
-import org.openfact.models.ModelDuplicateException;
-import org.openfact.models.ModelException;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.ScrollModel;
+import org.openfact.models.*;
 import org.openfact.models.enums.RequiredAction;
+import org.openfact.models.jpa.entities.DebitNoteEntity;
+import org.openfact.models.jpa.entities.DebitNoteEntity;
 import org.openfact.models.jpa.entities.DebitNoteEntity;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchCriteriaModel;
@@ -45,7 +40,7 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
 
     protected static final Logger logger = Logger.getLogger(JpaDebitNoteProvider.class);
 
-    private static final String ID = "ID";
+    private static final String DOCUMENT_ID = "DOCUMENT_ID";
     private static final String ISSUE_DATETIME = "issueDateTime";
 
     private final OpenfactSession session;
@@ -58,7 +53,6 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
 
     @Override
     public void close() {
-        // TODO Auto-generated method stub
     }
 
     @Override
@@ -69,17 +63,17 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
     @Override
     public DebitNoteModel addDebitNote(OrganizationModel organization, String documentId) {
         if (documentId == null) {
-            throw new ModelException("Invalid ID, Null value");
+            throw new ModelException("Invalid documentId, Null value");
         }
 
         if (session.debitNotes().getDebitNoteByID(organization, documentId) != null) {
-            throw new ModelDuplicateException("Debit note ID existed");
+            throw new ModelDuplicateException("Debit note documentId existed");
         }
 
         DebitNoteEntity debitNote = new DebitNoteEntity();
         debitNote.setDocumentId(documentId);
         debitNote.setCreatedTimestamp(LocalDateTime.now());
-        debitNote.setOrganization(OrganizationAdapter.toEntity(organization, em));
+        debitNote.setOrganizationId(organization.getId());
         em.persist(debitNote);
         em.flush();
 
@@ -96,8 +90,7 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
 
     @Override
     public DebitNoteModel getDebitNoteById(OrganizationModel organization, String id) {
-        TypedQuery<DebitNoteEntity> query = em.createNamedQuery("getOrganizationDebitNoteById",
-                DebitNoteEntity.class);
+        TypedQuery<DebitNoteEntity> query = em.createNamedQuery("getOrganizationDebitNoteById", DebitNoteEntity.class);
         query.setParameter("id", id);
         query.setParameter("organizationId", organization.getId());
         List<DebitNoteEntity> entities = query.getResultList();
@@ -108,8 +101,7 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
 
     @Override
     public DebitNoteModel getDebitNoteByID(OrganizationModel organization, String ID) {
-        TypedQuery<DebitNoteEntity> query = em.createNamedQuery("getOrganizationDebitNoteByDocumentId",
-                DebitNoteEntity.class);
+        TypedQuery<DebitNoteEntity> query = em.createNamedQuery("getOrganizationDebitNoteByDocumentId", DebitNoteEntity.class);
         query.setParameter("documentId", ID);
         query.setParameter("organizationId", organization.getId());
         List<DebitNoteEntity> entities = query.getResultList();
@@ -124,15 +116,14 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
     }
 
     @Override
-    public boolean removeDebitNote(OrganizationModel organization, DebitNoteModel creditNote) {
-        DebitNoteEntity creditNoteEntity = em.find(DebitNoteEntity.class, creditNote.getId());
-        if (creditNoteEntity == null)
-            return false;
-        removeDebitNote(creditNoteEntity);
+    public boolean removeDebitNote(OrganizationModel organization, DebitNoteModel debitNote) {
+        DebitNoteEntity debitNoteEntity = em.find(DebitNoteEntity.class, debitNote.getId());
+        if (debitNoteEntity == null) return false;
+        removeDebitNote(debitNoteEntity);
         session.getOpenfactSessionFactory().publish(new DebitNoteModel.DebitNoteRemovedEvent() {
             @Override
             public DebitNoteModel getDebitNote() {
-                return creditNote;
+                return debitNote;
             }
 
             @Override
@@ -143,24 +134,33 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
         return true;
     }
 
-    private void removeDebitNote(DebitNoteEntity creditNote) {
-        String id = creditNote.getId();
-        creditNote = em.find(DebitNoteEntity.class, id);
-        if (creditNote != null) {
-            em.remove(creditNote);
+    private void removeDebitNote(DebitNoteEntity debitNote) {
+        String id = debitNote.getId();
+        em.flush();
+        em.clear();
+
+        debitNote = em.find(DebitNoteEntity.class, id);
+        if (debitNote != null) {
+            em.remove(debitNote);
         }
 
         em.flush();
     }
 
     @Override
+    public void preRemove(OrganizationModel organization) {
+        int num = em.createNamedQuery("deleteDebitNoteRequiredActionsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        num = em.createNamedQuery("deleteDebitNoteAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        num = em.createNamedQuery("deleteDebitNotesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+    }
+    
+    @Override
     public List<DebitNoteModel> getDebitNotes(OrganizationModel organization) {
         return getDebitNotes(organization, -1, -1);
     }
 
     @Override
-    public List<DebitNoteModel> getDebitNotes(OrganizationModel organization, Integer firstResult,
-            Integer maxResults) {
+    public List<DebitNoteModel> getDebitNotes(OrganizationModel organization, Integer firstResult, Integer maxResults) {
         String queryName = "getAllDebitNotesByOrganization";
 
         TypedQuery<DebitNoteEntity> query = em.createNamedQuery(queryName, DebitNoteEntity.class);
@@ -172,9 +172,8 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
             query.setMaxResults(maxResults);
         }
         List<DebitNoteEntity> results = query.getResultList();
-        List<DebitNoteModel> creditNotes = results.stream()
-                .map(f -> new DebitNoteAdapter(session, organization, em, f)).collect(Collectors.toList());
-        return creditNotes;
+        List<DebitNoteModel> debitNotes = results.stream().map(f -> new DebitNoteAdapter(session, organization, em, f)).collect(Collectors.toList());
+        return debitNotes;
     }
 
     @Override
@@ -183,8 +182,7 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
     }
 
     @Override
-    public List<DebitNoteModel> searchForDebitNote(OrganizationModel organization, String filterText,
-            Integer firstResult, Integer maxResults) {
+    public List<DebitNoteModel> searchForDebitNote(OrganizationModel organization, String filterText, Integer firstResult, Integer maxResults) {
         TypedQuery<DebitNoteEntity> query = em.createNamedQuery("searchForDebitNote", DebitNoteEntity.class);
         query.setParameter("organizationId", organization.getId());
         query.setParameter("search", "%" + filterText.toLowerCase() + "%");
@@ -195,14 +193,12 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
             query.setMaxResults(maxResults);
         }
         List<DebitNoteEntity> results = query.getResultList();
-        List<DebitNoteModel> creditNotes = results.stream()
-                .map(f -> new DebitNoteAdapter(session, organization, em, f)).collect(Collectors.toList());
-        return creditNotes;
+        List<DebitNoteModel> debitNotes = results.stream().map(f -> new DebitNoteAdapter(session, organization, em, f)).collect(Collectors.toList());
+        return debitNotes;
     }
 
     @Override
-    public SearchResultsModel<DebitNoteModel> searchForDebitNote(OrganizationModel organization,
-            SearchCriteriaModel criteria) {
+    public SearchResultsModel<DebitNoteModel> searchForDebitNote(OrganizationModel organization, SearchCriteriaModel criteria) {
         criteria.addFilter("organization.id", organization.getId(), SearchCriteriaFilterOperator.eq);
 
         SearchResultsModel<DebitNoteEntity> entityResult = find(criteria, DebitNoteEntity.class);
@@ -217,12 +213,10 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
     }
 
     @Override
-    public SearchResultsModel<DebitNoteModel> searchForDebitNote(OrganizationModel organization,
-            SearchCriteriaModel criteria, String filterText) {
+    public SearchResultsModel<DebitNoteModel> searchForDebitNote(OrganizationModel organization, SearchCriteriaModel criteria, String filterText) {
         criteria.addFilter("organization.id", organization.getId(), SearchCriteriaFilterOperator.eq);
 
-        SearchResultsModel<DebitNoteEntity> entityResult = findFullText(criteria, DebitNoteEntity.class,
-                filterText, ID);
+        SearchResultsModel<DebitNoteEntity> entityResult = findFullText(criteria, DebitNoteEntity.class, filterText, DOCUMENT_ID);
         List<DebitNoteEntity> entities = entityResult.getModels();
 
         SearchResultsModel<DebitNoteModel> searchResult = new SearchResultsModel<>();
@@ -241,8 +235,7 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
     }
 
     @Override
-    public List<DebitNoteModel> getDebitNotes(OrganizationModel organization,
-            List<RequiredAction> requeridAction, boolean intoRequeridAction) {
+    public List<DebitNoteModel> getDebitNotes(OrganizationModel organization, List<RequiredAction> requeridAction, boolean intoRequeridAction) {
         String queryName = "";
         if (intoRequeridAction) {
             queryName = "select i from DebitNoteEntity i where i.organization.id = :organizationId and :requeridAction in elements(i.requeridAction) order by i.issueDateTime ";
@@ -253,9 +246,8 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
         query.setParameter("organizationId", organization.getId());
         query.setParameter("requeridAction", requeridAction);
         List<DebitNoteEntity> results = query.getResultList();
-        List<DebitNoteModel> creditNotes = results.stream()
-                .map(f -> new DebitNoteAdapter(session, organization, em, f)).collect(Collectors.toList());
-        return creditNotes;
+        List<DebitNoteModel> debitNotes = results.stream().map(f -> new DebitNoteAdapter(session, organization, em, f)).collect(Collectors.toList());
+        return debitNotes;
     }
 
     @Override
@@ -269,28 +261,34 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
     }
 
     @Override
-    public ScrollModel<DebitNoteModel> getDebitNotesScroll(OrganizationModel organization, boolean asc,
-            int scrollSize) {
-        return getDebitNotesScroll(organization, asc, scrollSize, -1);
+    public ScrollModel<DebitNoteModel> getDebitNotesScroll(OrganizationModel organization, boolean asc, int scrollSize) {
+        if (scrollSize == -1) {
+            scrollSize = 10;
+        }
+
+        TypedQuery<DebitNoteEntity> query = em.createNamedQuery("getAllDebitNotesByOrganization", DebitNoteEntity.class);
+        query.setParameter("organizationId", organization.getId());
+
+        ScrollAdapter<DebitNoteModel, DebitNoteEntity> result = new ScrollAdapter<>(DebitNoteEntity.class, query, f -> {
+            return new DebitNoteAdapter(session, organization, em, f);
+        });
+
+        return result;
     }
 
     @Override
-    public ScrollModel<DebitNoteModel> getDebitNotesScroll(OrganizationModel organization, boolean asc,
-            int scrollSize, int fetchSize) {
-        /*if (size == -1) {
-            size = 5;
-        }
-        if (fetchSize == -1) {
-            size = 1;
+    public ScrollModel<List<DebitNoteModel>> getDebitNotesScroll(OrganizationModel organization, int scrollSize, RequiredAction... requiredAction) {
+        if (scrollSize == -1) {
+            scrollSize = 10;
         }
 
-        Criteria criteria = getSession().createCriteria(DebitNoteEntity.class)
-                .add(Restrictions.eq("organization.id", organization.getId()))
-                .addOrder(asc ? Order.asc("createdTimestamp") : Order.desc("createdTimestamp"));
+        TypedQuery<DebitNoteEntity> query = em.createNamedQuery("getAllDebitNotesByRequiredActionAndOrganization", DebitNoteEntity.class);
+        query.setParameter("organizationId", organization.getId());
+        query.setParameter("requiredAction", new ArrayList<RequiredAction>(Arrays.asList(requiredAction)));
 
-        ScrollAdapter<DebitNoteModel, DebitNoteEntity> result = new ScrollAdapter<>(criteria, size,
-                f -> new DebitNoteAdapter(session, organization, em, f));
-        return result;*/
+        ScrollModel<List<DebitNoteModel>> result = new ScrollPagingAdapter<>(DebitNoteEntity.class, query, f -> {
+            return f.stream().map(m -> new DebitNoteAdapter(session, organization, em, m)).collect(Collectors.toList());
+        });
         return null;
     }
 

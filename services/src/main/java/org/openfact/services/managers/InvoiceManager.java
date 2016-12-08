@@ -56,8 +56,7 @@ public class InvoiceManager {
         return model.getInvoiceByID(organization, ID);
     }
 
-    public InvoiceModel addInvoice(OrganizationModel organization, InvoiceType type,
-            Map<String, String> attributes) {
+    public InvoiceModel addInvoice(OrganizationModel organization, InvoiceType type, Map<String, String> attributes) {
         IDType documentId = type.getID();
         if (documentId == null) {
             String generatedId = ubl.idGenerator().generateID(organization, type);
@@ -102,8 +101,7 @@ public class InvoiceManager {
         return ubl.sender().sendToCustomer(organization, invoice);
     }
 
-    public SendEventModel sendToTrirdParty(OrganizationModel organization, InvoiceModel invoice)
-            throws SendException {
+    public SendEventModel sendToTrirdParty(OrganizationModel organization, InvoiceModel invoice) throws SendException {
         return ubl.sender().sendToThridParty(organization, invoice);
     }
 

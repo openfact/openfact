@@ -53,7 +53,6 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
 
     @Override
     public void close() {
-        // TODO Auto-generated method stub
     }
 
     @Override
@@ -125,24 +124,18 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
         if (organization == null) {
             return false;
         }
-        return removeOrganization(new OrganizationAdapter(session, em, organization));
-    }
+        em.refresh(organization);
+        final OrganizationAdapter adapter = new OrganizationAdapter(session, em, organization);
+        session.invoices().preRemove(adapter);
+        session.creditNotes().preRemove(adapter);
+        session.debitNotes().preRemove(adapter);
 
-    @Override
-    public boolean removeOrganization(OrganizationModel organization) {
-        OrganizationEntity organizationEntity = em.find(OrganizationEntity.class, organization.getId());
-        if (organizationEntity == null) {
-            return false;
-        }
-        em.refresh(organizationEntity);
+        em.flush();
 
-        int num = em.createNamedQuery("deleteComponentConfigByOrganization")
-                .setParameter("organization", organizationEntity).executeUpdate();
-        num = em.createNamedQuery("deleteComponentByOrganization")
-                .setParameter("organization", organizationEntity).executeUpdate();
+        int num = em.createNamedQuery("deleteComponentConfigByOrganization").setParameter("organization", organization).executeUpdate();
+        num = em.createNamedQuery("deleteComponentByOrganization").setParameter("organization", organization).executeUpdate();
 
-        final OrganizationAdapter adapter = new OrganizationAdapter(session, em, organizationEntity);
-        em.remove(organizationEntity);
+        em.remove(organization);
 
         em.flush();
         em.clear();
@@ -160,6 +153,11 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
         });
 
         return true;
+    }
+
+    @Override
+    public boolean removeOrganization(OrganizationModel organization) {
+        return removeOrganization(organization.getId());
     }
 
     @Override
@@ -196,10 +194,8 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
     }
 
     @Override
-    public List<OrganizationModel> searchForOrganization(String filterText, Integer firstResult,
-                                                         Integer maxResults) {
-        TypedQuery<OrganizationEntity> query = em.createNamedQuery("searchForOrganization",
-                OrganizationEntity.class);
+    public List<OrganizationModel> searchForOrganization(String filterText, Integer firstResult, Integer maxResults) {
+        TypedQuery<OrganizationEntity> query = em.createNamedQuery("searchForOrganization", OrganizationEntity.class);
         query.setParameter("filterText", "%" + filterText.toLowerCase() + "%");
         if (firstResult != -1) {
             query.setFirstResult(firstResult);
@@ -208,13 +204,11 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
             query.setMaxResults(maxResults);
         }
         List<OrganizationEntity> results = query.getResultList();
-        return results.stream().map(f -> new OrganizationAdapter(session, em, f))
-                .collect(Collectors.toList());
+        return results.stream().map(f -> new OrganizationAdapter(session, em, f)).collect(Collectors.toList());
     }
 
     @Override
-    public List<OrganizationModel> searchForOrganization(Map<String, String> attributes, Integer firstResult,
-                                                         Integer maxResults) {
+    public List<OrganizationModel> searchForOrganization(Map<String, String> attributes, Integer firstResult, Integer maxResults) {
         StringBuilder builder = new StringBuilder("select u from OrganizationEntity u");
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             String attribute = null;
@@ -262,8 +256,7 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
             query.setMaxResults(maxResults);
         }
         List<OrganizationEntity> results = query.getResultList();
-        return results.stream().map(f -> new OrganizationAdapter(session, em, f))
-                .collect(Collectors.toList());
+        return results.stream().map(f -> new OrganizationAdapter(session, em, f)).collect(Collectors.toList());
     }
 
     @Override
@@ -280,10 +273,8 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
     }
 
     @Override
-    public SearchResultsModel<OrganizationModel> searchForOrganization(SearchCriteriaModel criteria,
-                                                                       String filterText) {
-        SearchResultsModel<OrganizationEntity> entityResult = findFullText(criteria, OrganizationEntity.class,
-                filterText, NAME, SUPPLIER_NAME, REGISTRATION_NAME);
+    public SearchResultsModel<OrganizationModel> searchForOrganization(SearchCriteriaModel criteria, String filterText) {
+        SearchResultsModel<OrganizationEntity> entityResult = findFullText(criteria, OrganizationEntity.class, filterText, NAME, SUPPLIER_NAME, REGISTRATION_NAME);
         List<OrganizationEntity> entities = entityResult.getModels();
 
         SearchResultsModel<OrganizationModel> searchResult = new SearchResultsModel<>();

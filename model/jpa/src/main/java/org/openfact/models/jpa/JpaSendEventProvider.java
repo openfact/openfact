@@ -75,6 +75,7 @@ public class JpaSendEventProvider extends AbstractHibernateStorage implements Se
         buildSendEvent(sendEvent, organization, type);
         sendEvent.setInvoice(InvoiceAdapter.toEntity(invoice, em));        
         em.persist(sendEvent);
+        em.flush();
 
         return new SendEventAdapter(session, organization, em, sendEvent);
     }
@@ -85,6 +86,7 @@ public class JpaSendEventProvider extends AbstractHibernateStorage implements Se
         buildSendEvent(sendEvent, organization, type);
         sendEvent.setCreditNote(CreditNoteAdapter.toEntity(creditNote, em));        
         em.persist(sendEvent);
+        em.flush();
 
         return new SendEventAdapter(session, organization, em, sendEvent);
     }
@@ -95,6 +97,7 @@ public class JpaSendEventProvider extends AbstractHibernateStorage implements Se
         buildSendEvent(sendEvent, organization, type);
         sendEvent.setDebitNote(DebitNoteAdapter.toEntity(debitNote, em));        
         em.persist(sendEvent);
+        em.flush();
 
         return new SendEventAdapter(session, organization, em, sendEvent);
     }
@@ -138,8 +141,7 @@ public class JpaSendEventProvider extends AbstractHibernateStorage implements Se
     }
 
     @Override
-    public List<SendEventModel> getSendEvents(OrganizationModel organization, Integer firstResult,
-            Integer maxResults) {
+    public List<SendEventModel> getSendEvents(OrganizationModel organization, Integer firstResult, Integer maxResults) {
         String queryName = "getAllSendEventsByOrganization";
 
         TypedQuery<SendEventEntity> query = em.createNamedQuery(queryName, SendEventEntity.class);
@@ -153,63 +155,6 @@ public class JpaSendEventProvider extends AbstractHibernateStorage implements Se
         List<SendEventEntity> results = query.getResultList();
         List<SendEventModel> invoices = results.stream().map(f -> new SendEventAdapter(session, organization, em, f)).collect(Collectors.toList());
         return invoices;
-    }    
-
-    @Override
-    public SearchResultsModel<SendEventModel> searchForSendEvent(OrganizationModel organization,
-            SearchCriteriaModel criteria) {
-        criteria.addFilter("organization.id", organization.getId(), SearchCriteriaFilterOperator.eq);
-
-        SearchResultsModel<SendEventEntity> entityResult = find(criteria, SendEventEntity.class);
-        List<SendEventEntity> entities = entityResult.getModels();
-
-        SearchResultsModel<SendEventModel> searchResult = new SearchResultsModel<>();
-        List<SendEventModel> models = searchResult.getModels();
-
-        entities.forEach(f -> models.add(new SendEventAdapter(session, organization, em, f)));
-        searchResult.setTotalSize(entityResult.getTotalSize());
-        return searchResult;
-    }    
-
-    @Override
-    public ScrollModel<SendEventModel> getSendEventsScroll(OrganizationModel organization) {
-        return getSendEventsScroll(organization, true);
     }
 
-    @Override
-    public ScrollModel<SendEventModel> getSendEventsScroll(OrganizationModel organization, boolean asc) {
-        return getSendEventsScroll(organization, asc, -1);
-    }
-
-    @Override
-    public ScrollModel<SendEventModel> getSendEventsScroll(OrganizationModel organization, boolean asc,
-            int scrollSize) {
-        return getSendEventsScroll(organization, asc, scrollSize, -1);
-    }
-
-    @Override
-    public ScrollModel<SendEventModel> getSendEventsScroll(OrganizationModel organization, boolean asc,
-            int scrollSize, int fetchSize) {
-        /*if (size == -1) {
-            size = 5;
-        }
-        if (fetchSize == -1) {
-            size = 1;
-        }
-
-        Criteria criteria = getSession().createCriteria(SendEventEntity.class)
-                .add(Restrictions.eq("organization.id", organization.getId()))
-                .addOrder(asc ? Order.asc("createdTimestamp") : Order.desc("createdTimestamp"));
-
-        ScrollAdapter<SendEventModel, SendEventEntity> result = new ScrollAdapter<>(criteria, size,
-                f -> new SendEventAdapter(session, organization, em, f));
-        return result;*/
-        return null;
-    }
-
-	@Override
-	public int getSendEventsCount(OrganizationModel organization) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 }

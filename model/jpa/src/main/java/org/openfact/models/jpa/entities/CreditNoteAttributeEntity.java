@@ -28,10 +28,10 @@ import javax.persistence.*;
 @Entity
 @Table(name = "CREDIT_NOTE_ATTRIBUTE")
 @NamedQueries({
-        @NamedQuery(name="getAttributesByNameAndValue", query="select attr from CreditNoteAttributeEntity attr where attr.name = :name and attr.value = :value"),
+        @NamedQuery(name="getCreditNoteAttributesByNameAndValue", query="select attr from CreditNoteAttributeEntity attr where attr.name = :name and attr.value = :value"),
         @NamedQuery(name="deleteCreditNoteAttributesByOrganization", query="delete from  CreditNoteAttributeEntity attr where attr.creditNote IN (select u from CreditNoteEntity u where u.organizationId=:organizationId)"),
-        @NamedQuery(name="deleteCreditNoteAttributesByNameAndCreditNote", query="delete from  CreditNoteAttributeEntity attr where attr.creditNote.id = :userId and attr.name = :name"),
-        @NamedQuery(name="deleteCreditNoteAttributesByNameAndCreditNoteOtherThan", query="delete from  CreditNoteAttributeEntity attr where attr.creditNote.id = :userId and attr.name = :name and attr.id <> :attrId")
+        @NamedQuery(name="deleteCreditNoteAttributesByNameAndCreditNote", query="delete from  CreditNoteAttributeEntity attr where attr.creditNote.id = :creditNoteId and attr.name = :name"),
+        @NamedQuery(name="deleteCreditNoteAttributesByNameAndCreditNoteOtherThan", query="delete from  CreditNoteAttributeEntity attr where attr.creditNote.id = :creditNoteId and attr.name = :name and attr.id <> :attrId")
 })
 public class CreditNoteAttributeEntity {
 

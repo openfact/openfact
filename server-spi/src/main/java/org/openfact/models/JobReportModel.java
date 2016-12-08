@@ -26,18 +26,6 @@ public interface JobReportModel {
 
     void setJobName(String jobName);
 
-    long getIncrementFilteredCount();
-
-    void setIncrementFilteredCount(long value);
-
-    long getIncrementErrorCount();
-
-    void setIncrementErrorCount(long value);
-
-    long getIncrementReadCount();
-
-    void setIncrementWriteCount(long count);
-
     long getStartTime();
 
     void setStartTime(long startTime);
@@ -50,10 +38,6 @@ public interface JobReportModel {
 
     void setDuration(long value);
 
-    long getFilteredCount();
-
-    void setFilteredCount(long value);
-
     long getErrorCount();
 
     void setErrorCount(long value);
@@ -65,9 +49,5 @@ public interface JobReportModel {
     long getWriteCount();
 
     void setWriteCount(long value);
-
-    Map<String, String> getAttributes();
-
-    void addAttribute(String name, String value);
 
 }

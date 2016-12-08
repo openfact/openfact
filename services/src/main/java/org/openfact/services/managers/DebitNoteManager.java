@@ -56,8 +56,7 @@ public class DebitNoteManager {
         return model.getDebitNoteByID(organization, ID);
     }
 
-    public DebitNoteModel addDebitNote(OrganizationModel organization, DebitNoteType type,
-            Map<String, String> attributes) {
+    public DebitNoteModel addDebitNote(OrganizationModel organization, DebitNoteType type, Map<String, String> attributes) {
         IDType documentId = type.getID();
         if (documentId == null) {
             String generatedId = ubl.idGenerator().generateID(organization, type);
@@ -67,7 +66,7 @@ public class DebitNoteManager {
 
         DebitNoteModel debitNote = model.addDebitNote(organization, documentId.getValue());
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
-            debitNote.setAttribute(entry.getKey(), entry.getValue());
+            debitNote.setSingleAttribute(entry.getKey(), entry.getValue());
         }
 
         TypeToModel.importDebitNote(session, organization, debitNote, type);
@@ -98,13 +97,11 @@ public class DebitNoteManager {
         return false;
     }
 
-    public SendEventModel sendToCustomerParty(OrganizationModel organization, DebitNoteModel debitNote)
-            throws SendException {
+    public SendEventModel sendToCustomerParty(OrganizationModel organization, DebitNoteModel debitNote) throws SendException {
         return ubl.sender().sendToCustomer(organization, debitNote);
     }
 
-    public SendEventModel sendToTrirdParty(OrganizationModel organization, DebitNoteModel debitNote)
-            throws SendException {
+    public SendEventModel sendToTrirdParty(OrganizationModel organization, DebitNoteModel debitNote) throws SendException {
         return ubl.sender().sendToThridParty(organization, debitNote);
     }
 

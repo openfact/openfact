@@ -56,8 +56,7 @@ public class CreditNoteManager {
         return model.getCreditNoteByDocumentId(organization, ID);
     }
 
-    public CreditNoteModel addCreditNote(OrganizationModel organization, CreditNoteType type,
-            Map<String, String> attributes) {
+    public CreditNoteModel addCreditNote(OrganizationModel organization, CreditNoteType type, Map<String, String> attributes) {
         IDType documentId = type.getID();
         if (documentId == null) {
             String generatedId = ubl.idGenerator().generateID(organization, type);
@@ -67,7 +66,7 @@ public class CreditNoteManager {
 
         CreditNoteModel creditNote = model.addCreditNote(organization, documentId.getValue());
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
-            creditNote.setAttribute(entry.getKey(), entry.getValue());
+            creditNote.setSingleAttribute(entry.getKey(), entry.getValue());
         }
 
         TypeToModel.importCreditNote(session, organization, creditNote, type);
@@ -98,13 +97,11 @@ public class CreditNoteManager {
         return false;
     }
 
-    public SendEventModel sendToCustomerParty(OrganizationModel organization, CreditNoteModel creditNote)
-            throws SendException {
+    public SendEventModel sendToCustomerParty(OrganizationModel organization, CreditNoteModel creditNote) throws SendException {
         return ubl.sender().sendToCustomer(organization, creditNote);
     }
 
-    public SendEventModel sendToTrirdParty(OrganizationModel organization, CreditNoteModel creditNote)
-            throws SendException {
+    public SendEventModel sendToTrirdParty(OrganizationModel organization, CreditNoteModel creditNote) throws SendException {
         return ubl.sender().sendToThridParty(organization, creditNote);
     }
 

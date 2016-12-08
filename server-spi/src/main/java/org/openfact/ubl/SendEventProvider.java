@@ -38,20 +38,8 @@ public interface SendEventProvider extends Provider {
 
     boolean removeSendEvent(OrganizationModel organization, SendEventModel sendEvent);
 
-    int getSendEventsCount(OrganizationModel organization);
-
     List<SendEventModel> getSendEvents(OrganizationModel organization);
 
     List<SendEventModel> getSendEvents(OrganizationModel organization, Integer firstResult, Integer maxResults);
-
-    SearchResultsModel<SendEventModel> searchForSendEvent(OrganizationModel organization, SearchCriteriaModel criteria);
-
-    ScrollModel<SendEventModel> getSendEventsScroll(OrganizationModel organization);
-
-    ScrollModel<SendEventModel> getSendEventsScroll(OrganizationModel organization, boolean asc);
-
-    ScrollModel<SendEventModel> getSendEventsScroll(OrganizationModel organization, boolean asc, int scrollSize);
-
-    ScrollModel<SendEventModel> getSendEventsScroll(OrganizationModel organization, boolean asc, int scrollSize, int fetchSize);
 
 }

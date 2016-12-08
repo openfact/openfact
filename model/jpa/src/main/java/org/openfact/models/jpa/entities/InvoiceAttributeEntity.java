@@ -59,10 +59,10 @@ import org.hibernate.annotations.Type;
 @Entity
 @Table(name = "INVOICE_ATTRIBUTE")
 @NamedQueries({
-        @NamedQuery(name="getAttributesByNameAndValue", query="select attr from InvoiceAttributeEntity attr where attr.name = :name and attr.value = :value"),
+        @NamedQuery(name="getInvoiceAttributesByNameAndValue", query="select attr from InvoiceAttributeEntity attr where attr.name = :name and attr.value = :value"),
         @NamedQuery(name="deleteInvoiceAttributesByOrganization", query="delete from  InvoiceAttributeEntity attr where attr.invoice IN (select u from InvoiceEntity u where u.organizationId=:organizationId)"),
-        @NamedQuery(name="deleteInvoiceAttributesByNameAndInvoice", query="delete from  InvoiceAttributeEntity attr where attr.invoice.id = :userId and attr.name = :name"),
-        @NamedQuery(name="deleteInvoiceAttributesByNameAndInvoiceOtherThan", query="delete from  InvoiceAttributeEntity attr where attr.invoice.id = :userId and attr.name = :name and attr.id <> :attrId")
+        @NamedQuery(name="deleteInvoiceAttributesByNameAndInvoice", query="delete from  InvoiceAttributeEntity attr where attr.invoice.id = :invoiceId and attr.name = :name"),
+        @NamedQuery(name="deleteInvoiceAttributesByNameAndInvoiceOtherThan", query="delete from  InvoiceAttributeEntity attr where attr.invoice.id = :invoiceId and attr.name = :name and attr.id <> :attrId")
 })
 public class InvoiceAttributeEntity {
 
