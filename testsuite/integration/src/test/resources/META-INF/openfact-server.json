@@ -27,7 +27,7 @@
     "provider": "${openfact.debitNote.provider:jpa}"
   },
   "storageFile": {
-    "provider": "${openfact.storageFile.provider:dropbox}",
+    "provider": "${openfact.storageFile.provider:jpa}",
     "dropbox": {
       "access_token": "hhPoLjoclSAAAAAAAAAFYJciAVx2FFBeADlSMKTwd0rkwax1-sTgv9pWLt5FYQYd"
     }
