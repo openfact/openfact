@@ -70,32 +70,35 @@ public class JobReportAdapter implements JobReportModel, JpaModel<JobReportEntit
 
     @Override
     public long getIncrementFilteredCount() {
-        return jobReport.getIncrementFilteredCount();
+        //return jobReport.getIncrementFilteredCount();
+        return 0;
     }
 
     @Override
     public void setIncrementFilteredCount(long value) {
-        jobReport.setIncrementFilteredCount(value);
+        //jobReport.setIncrementFilteredCount(value);
     }
 
     @Override
     public long getIncrementErrorCount() {
-        return jobReport.getIncrementErrorCount();
+        //return jobReport.getIncrementErrorCount();
+        return 0;
     }
 
     @Override
     public void setIncrementErrorCount(long value) {
-        jobReport.setIncrementErrorCount(value);
+        //jobReport.setIncrementErrorCount(value);
     }
 
     @Override
     public long getIncrementReadCount() {
-        return jobReport.getIncrementReadCount();
+        //return jobReport.getIncrementReadCount();
+        return 0;
     }
 
     @Override
     public void setIncrementWriteCount(long count) {
-        jobReport.setIncrementWriteCount(count);
+        //jobReport.setIncrementWriteCount(count);
     }
 
     @Override
@@ -130,12 +133,13 @@ public class JobReportAdapter implements JobReportModel, JpaModel<JobReportEntit
 
     @Override
     public long getFilteredCount() {
-        return jobReport.getFilteredCount();
+        //return jobReport.getFilteredCount();
+        return 0;
     }
 
     @Override
     public void setFilteredCount(long value) {
-        jobReport.setFilteredCount(value);
+        //jobReport.setFilteredCount(value);
     }
 
     @Override
@@ -170,12 +174,13 @@ public class JobReportAdapter implements JobReportModel, JpaModel<JobReportEntit
 
     @Override
     public Map<String, String> getAttributes() {
-        return jobReport.getAttributes();
+        //return jobReport.getAttributes();
+        return null;
     }
 
     @Override
     public void addAttribute(String name, String value) {
-        jobReport.getAttributes().put(name, value);
+        //jobReport.getAttributes().put(name, value);
     }
 
 }

@@ -17,17 +17,8 @@
 
 package org.openfact.models.jpa.entities;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author <a href="mailto:bburke@sistcoop.com">Carlos Feria</a>
@@ -49,8 +40,9 @@ public class ComponentEntity {
     @Access(AccessType.PROPERTY) // we do this because relationships often fetch id, but not entity.  This avoids an extra SQL
     protected String id;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ORGANIZATION_ID")
+    @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
     protected OrganizationEntity organization;
 
     @Column(name="NAME")

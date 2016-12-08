@@ -51,18 +51,6 @@ public class JobReportEntity {
     @Column(name = "JOB_NAME")
     private String jobName;
 
-    @Column(name = "INCREMENT_FILTERED_COUNT")
-    private long incrementFilteredCount;
-
-    @Column(name = "INCREMENT_ERROR_COUNT")
-    private long incrementErrorCount;
-
-    @Column(name = "INCREMENT_READ_COUNT")
-    private long incrementReadCount;
-
-    @Column(name = "INCREMENT_WRITE_COUNT")
-    private long incrementWriteCount;
-
     @Column(name = "START_TIME")
     private long startTime;
 
@@ -72,9 +60,6 @@ public class JobReportEntity {
     @Column(name = "DURATION")
     private long duration;
 
-    @Column(name = "FILTERED_COUNT")
-    private long filteredCount;
-
     @Column(name = "ERROR_COUNT")
     private long errorCount;
 
@@ -83,12 +68,6 @@ public class JobReportEntity {
 
     @Column(name = "WRITE_COUNT")
     private long writeCount;
-
-    @ElementCollection
-    @MapKeyColumn(name = "NAME")
-    @Column(name = "VALUE")
-    @CollectionTable(name = "JOB_REPORT_ATTRIBUTES", joinColumns = {@JoinColumn(name = "JOB_REPORT_ID") })
-    private Map<String, String> attributes = new HashMap<>();
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
@@ -109,38 +88,6 @@ public class JobReportEntity {
 
     public void setJobName(String jobName) {
         this.jobName = jobName;
-    }
-
-    public long getIncrementFilteredCount() {
-        return incrementFilteredCount;
-    }
-
-    public void setIncrementFilteredCount(long incrementFilteredCount) {
-        this.incrementFilteredCount = incrementFilteredCount;
-    }
-
-    public long getIncrementErrorCount() {
-        return incrementErrorCount;
-    }
-
-    public void setIncrementErrorCount(long incrementErrorCount) {
-        this.incrementErrorCount = incrementErrorCount;
-    }
-
-    public long getIncrementReadCount() {
-        return incrementReadCount;
-    }
-
-    public void setIncrementReadCount(long incrementReadCount) {
-        this.incrementReadCount = incrementReadCount;
-    }
-
-    public long getIncrementWriteCount() {
-        return incrementWriteCount;
-    }
-
-    public void setIncrementWriteCount(long incrementWriteCount) {
-        this.incrementWriteCount = incrementWriteCount;
     }
 
     public long getStartTime() {
@@ -167,14 +114,6 @@ public class JobReportEntity {
         this.duration = duration;
     }
 
-    public long getFilteredCount() {
-        return filteredCount;
-    }
-
-    public void setFilteredCount(long filteredCount) {
-        this.filteredCount = filteredCount;
-    }
-
     public long getErrorCount() {
         return errorCount;
     }
@@ -199,19 +138,29 @@ public class JobReportEntity {
         this.writeCount = writeCount;
     }
 
-    public Map<String, String> getAttributes() {
-        return attributes;
-    }
-
-    public void setAttributes(Map<String, String> attributes) {
-        this.attributes = attributes;
-    }
-
     public OrganizationEntity getOrganization() {
         return organization;
     }
 
     public void setOrganization(OrganizationEntity organization) {
         this.organization = organization;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        if (!(o instanceof JobReportEntity)) return false;
+
+        JobReportEntity that = (JobReportEntity) o;
+
+        if (!id.equals(that.getId())) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 }
