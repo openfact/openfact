@@ -20,6 +20,8 @@ import org.openfact.provider.Provider;
 
 public interface OrganizationScheduleTaskProvider extends Provider {
 
-    void run(OrganizationModel organization) throws JobException;
+    boolean isActive();
+
+    void run(OpenfactSession session, OrganizationModel organization) throws JobException;
 
 }

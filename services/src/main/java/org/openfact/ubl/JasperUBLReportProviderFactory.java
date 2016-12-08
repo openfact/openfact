@@ -47,7 +47,7 @@ public class JasperUBLReportProviderFactory implements UBLReportProviderFactory 
 
     @Override
     public String getId() {
-        return "jasperreport";
+        return "jasperReport";
     }
 
 }

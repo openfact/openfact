@@ -22,15 +22,18 @@ import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.OrganizationScheduleTaskProvider;
 import org.openfact.models.OrganizationScheduleTaskProviderFactory;
 
-public class DefaultOrganizationScheduleTaskProviderFactory implements OrganizationScheduleTaskProviderFactory {
+public class SendToCustomerOrganizationScheduleTaskProviderFactory implements OrganizationScheduleTaskProviderFactory {
+
+    protected boolean isActive;
 
     @Override
     public OrganizationScheduleTaskProvider create(OpenfactSession session) {
-        return new DefaultOrganizationScheduleTaskProvider(session);
+        return new SendToCustomerOrganizationScheduleTaskProvider(isActive);
     }
 
     @Override
     public void init(Scope config) {
+        isActive = config.getBoolean("active", true);
     }
 
     @Override
@@ -43,6 +46,6 @@ public class DefaultOrganizationScheduleTaskProviderFactory implements Organizat
 
     @Override
     public String getId() {
-        return "default";
+        return "sendToCustomer";
     }
 }

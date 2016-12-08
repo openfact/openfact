@@ -130,8 +130,7 @@ public class OrganizationManager implements OrganizationImporter {
         });
     }
 
-    public void updateOrganizationEventsConfig(OrganizationEventsConfigRepresentation rep,
-            OrganizationModel organization) {
+    public void updateOrganizationEventsConfig(OrganizationEventsConfigRepresentation rep, OrganizationModel organization) {
         organization.setEventsEnabled(rep.isEventsEnabled());
         organization.setEventsExpiration(rep.getEventsExpiration() != null ? rep.getEventsExpiration() : 0);
         if (rep.getEventsListeners() != null) {
@@ -151,37 +150,26 @@ public class OrganizationManager implements OrganizationImporter {
     public void schedulePeriodicTask(OrganizationModel organization) {
         if (organization.isTasksEnabled()) {
             TimerDelayProvider timer = session.getProvider(TimerDelayProvider.class);
-            Set<String> providerIds = session.listProviderIds(OrganizationScheduleTaskProvider.class);
-            for (String providerId: providerIds) {
-                timer.scheduleTask(new OrganizationScheduledTaskRunner(organization, providerId), organization.getTaskFirstTime(), organization.getTaskDelay(), getTaskName(organization, providerId));
-            }
+            timer.scheduleTask(new OrganizationScheduledTaskRunner(organization), organization.getTaskFirstTime(), organization.getTaskDelay(), getTaskName(organization));
         }
     }
 
     public void reschedulePeriodicTask(OrganizationModel organization) {
         TimerDelayProvider timer = session.getProvider(TimerDelayProvider.class);
-        Set<String> providerIds = session.listProviderIds(OrganizationScheduleTaskProvider.class);
-        for (String providerId: providerIds) {
-            timer.cancelTask(getTaskName(organization, providerId));
-        }
+        timer.cancelTask(getTaskName(organization));
 
         if (organization.isTasksEnabled()) {
-            for (String providerId: providerIds) {
-                timer.scheduleTask(new OrganizationScheduledTaskRunner(organization, providerId), organization.getTaskFirstTime(), organization.getTaskDelay(), getTaskName(organization, providerId));
-            }
+            timer.scheduleTask(new OrganizationScheduledTaskRunner(organization), organization.getTaskFirstTime(), organization.getTaskDelay(), getTaskName(organization));
         }
     }
 
     public void cancelPeriodicTask(OrganizationModel organization) {
         TimerDelayProvider timer = session.getProvider(TimerDelayProvider.class);
-        Set<String> providerIds = session.listProviderIds(OrganizationScheduleTaskProvider.class);
-        for (String providerId: providerIds) {
-            timer.cancelTask(getTaskName(organization, providerId));
-        }
+        timer.cancelTask(getTaskName(organization));
     }
 
-    protected String getTaskName(OrganizationModel organization, String providerId) {
-        return organization.getId() + "_" + providerId;
+    protected String getTaskName(OrganizationModel organization) {
+        return organization.getId();
     }
 
 }

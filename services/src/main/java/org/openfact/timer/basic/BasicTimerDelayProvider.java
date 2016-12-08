@@ -38,8 +38,7 @@ public class BasicTimerDelayProvider implements TimerDelayProvider {
     private final Timer timer;
     private final BasicTimerDelayProviderFactory factory;
 
-    public BasicTimerDelayProvider(OpenfactSession session, Timer timer,
-            BasicTimerDelayProviderFactory factory) {
+    public BasicTimerDelayProvider(OpenfactSession session, Timer timer, BasicTimerDelayProviderFactory factory) {
         this.session = session;
         this.timer = timer;
         this.factory = factory;

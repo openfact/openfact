@@ -28,8 +28,7 @@ public interface TimerDelayProvider extends Provider {
 
     public void schedule(Runnable runnable, Date firstTime, long intervalMillis, String taskName);
 
-    public void scheduleTask(ScheduledTask scheduledTask, Date firstTime, long intervalMillis,
-            String taskName);
+    public void scheduleTask(ScheduledTask scheduledTask, Date firstTime, long intervalMillis, String taskName);
 
     public void cancelTask(String taskName);
 
