@@ -19,6 +19,7 @@ package org.openfact.models;
 import org.openfact.component.ComponentModel;
 import org.openfact.provider.ProviderEvent;
 
+import javax.persistence.Column;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -103,12 +104,10 @@ public interface OrganizationModel {
 
     void setEmailTheme(String name);
 
-    /**
-     * ThemesUbl
-     */
     String getReportTheme();
 
     void setReportTheme(String name);
+
 
     /**
      * Internationalization
@@ -189,20 +188,29 @@ public interface OrganizationModel {
      * Attributes
      */
     void setAttribute(String name, String value);
-
+    void setAttribute(String name, Boolean value);
+    void setAttribute(String name, Integer value);
+    void setAttribute(String name, Long value);
     void removeAttribute(String name);
-
     String getAttribute(String name);
-
+    Integer getAttribute(String name, Integer defaultValue);
+    Long getAttribute(String name, Long defaultValue);
+    Boolean getAttribute(String name, Boolean defaultValue);
     Map<String, String> getAttributes();
 
     String getDisplayName();
-
     void setDisplayName(String displayName);
-
     String getDisplayNameHtml();
-
     void setDisplayNameHtml(String displayNameHtml);
+
+    /**
+     * Required actions providers*/
+    List<RequiredActionProviderModel> getRequiredActionProviders();
+    RequiredActionProviderModel addRequiredActionProvider(RequiredActionProviderModel model);
+    void updateRequiredActionProvider(RequiredActionProviderModel model);
+    void removeRequiredActionProvider(RequiredActionProviderModel model);
+    RequiredActionProviderModel getRequiredActionProviderById(String id);
+    RequiredActionProviderModel getRequiredActionProviderByAlias(String alias);
 
     /**
      * Adds component model. Will call onCreate() method of ComponentFactory

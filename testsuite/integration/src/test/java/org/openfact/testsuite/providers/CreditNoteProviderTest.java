@@ -97,7 +97,7 @@ public class CreditNoteProviderTest extends AbstractProviderTest {
         CreditNoteModel creditNote1 = provider.addCreditNote(organization, "C001-0001");
         commit();
 
-        CreditNoteModel creditNote2 = session.creditNotes().getCreditNoteByID(organization, "C001-0001");
+        CreditNoteModel creditNote2 = session.creditNotes().getCreditNoteByDocumentId(organization, "C001-0001");
         assertThat(creditNote2, is(notNullValue()));
         assertThat(creditNote2.getId(), is(notNullValue()));
         assertThat(creditNote2.getId(), is(equalTo(creditNote1.getId())));
@@ -112,10 +112,10 @@ public class CreditNoteProviderTest extends AbstractProviderTest {
         provider.addCreditNote(organization, "C001-0001");
         commit();
 
-        CreditNoteModel creditNote = session.creditNotes().getCreditNoteByID(organization, "C001-0001");
+        CreditNoteModel creditNote = session.creditNotes().getCreditNoteByDocumentId(organization, "C001-0001");
         assertThat(session.creditNotes().removeCreditNote(organization, creditNote), is(true));
         assertThat(session.creditNotes().removeCreditNote(organization, creditNote), is(false));
-        assertThat(session.creditNotes().getCreditNoteByID(organization, "C001-0001"), is(nullValue()));
+        assertThat(session.creditNotes().getCreditNoteByDocumentId(organization, "C001-0001"), is(nullValue()));
     }  
 
     /**

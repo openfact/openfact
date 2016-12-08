@@ -24,7 +24,7 @@ import java.io.Serializable;
  * @version $Revision: 1 $
  */
 @NamedQueries({
-        @NamedQuery(name = "deleteInvoiceRequiredActionsByOrganization", query = "delete from InvoiceRequiredActionEntity action where action.invoice IN (select u from InvoiceEntity u where u.organization.id=:organizationId)")
+        @NamedQuery(name = "deleteInvoiceRequiredActionsByOrganization", query = "delete from InvoiceRequiredActionEntity action where action.invoice IN (select u from InvoiceEntity u where u.organizationId=:organizationId)")
 })
 @Entity
 @Table(name = "INVOICE_REQUIRED_ACTION")

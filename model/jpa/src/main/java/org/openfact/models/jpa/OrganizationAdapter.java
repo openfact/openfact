@@ -22,6 +22,7 @@ import org.openfact.component.ComponentFactory;
 import org.openfact.component.ComponentModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.RequiredActionProviderModel;
 import org.openfact.models.jpa.entities.*;
 import org.openfact.models.utils.ComponentUtil;
 import org.openfact.models.utils.OpenfactModelUtils;
@@ -34,6 +35,7 @@ import java.util.*;
 public class OrganizationAdapter implements OrganizationModel, JpaModel<OrganizationEntity> {
 
     protected static final Logger logger = Logger.getLogger(OrganizationAdapter.class);
+
     private static final String BROWSER_HEADER_PREFIX = "_browser_header.";
     protected OrganizationEntity organization;
     protected EntityManager em;
@@ -91,6 +93,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     @Override
     public void setEnabled(boolean enabled) {
         organization.setEnabled(enabled);
+        em.flush();
     }
 
     @Override
@@ -230,7 +233,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
 
     @Override
     public boolean isTasksEnabled() {
-        return organization.getTasksEnabled();
+        return organization.isTasksEnabled();
     }
 
     @Override
@@ -240,12 +243,17 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
 
     @Override
     public Set<String> getSupportedCurrencies() {
-        return organization.getSupportedCurrencies();
+        Set<String> supportedCurrencies = organization.getSupportedCurrencies();
+        if (supportedCurrencies == null || supportedCurrencies.isEmpty()) return Collections.EMPTY_SET;
+        Set<String> copy = new HashSet<>();
+        copy.addAll(supportedCurrencies);
+        return Collections.unmodifiableSet(copy);
     }
 
     @Override
     public void setSupportedCurrencies(Set<String> currencies) {
         organization.setSupportedCurrencies(currencies);
+        em.flush();
     }
 
     @Override
@@ -266,26 +274,37 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     @Override
     public void setEventsEnabled(boolean enabled) {
         organization.setEventsEnabled(enabled);
+        em.flush();
     }
 
     @Override
     public Set<String> getEventsListeners() {
-        return organization.getEventsListeners();
+        Set<String> eventsListeners = organization.getEventsListeners();
+        if (eventsListeners.isEmpty()) return Collections.EMPTY_SET;
+        Set<String> copy = new HashSet<>();
+        copy.addAll(eventsListeners);
+        return Collections.unmodifiableSet(copy);
     }
 
     @Override
     public void setEventsListeners(Set<String> listeners) {
         organization.setEventsListeners(listeners);
+        em.flush();
     }
 
     @Override
     public Set<String> getEnabledEventTypes() {
-        return organization.getEnabledEventTypes();
+        Set<String> enabledEventTypes = organization.getEnabledEventTypes();
+        if (enabledEventTypes.isEmpty()) return Collections.EMPTY_SET;
+        Set<String> copy = new HashSet<>();
+        copy.addAll(enabledEventTypes);
+        return Collections.unmodifiableSet(copy);
     }
 
     @Override
     public void setEnabledEventTypes(Set<String> enabledEventTypes) {
         organization.setEnabledEventTypes(enabledEventTypes);
+        em.flush();
     }
 
     @Override
@@ -296,6 +315,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     @Override
     public void setAdminEventsEnabled(boolean enabled) {
         organization.setAdminEventsEnabled(enabled);
+        em.flush();
     }
 
     @Override
@@ -306,6 +326,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     @Override
     public void setAdminEventsDetailsEnabled(boolean enabled) {
         organization.setAdminEventsDetailsEnabled(enabled);
+        em.flush();
     }
 
     @Override
@@ -321,27 +342,94 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         em.flush();
     }
 
+    /**
+     * Attribute*/
     @Override
     public void setAttribute(String name, String value) {
-        organization.getAttributes().put(name, value);
+        for (OrganizationAttributeEntity attr : organization.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                attr.setValue(value);
+                return;
+            }
+        }
+        OrganizationAttributeEntity attr = new OrganizationAttributeEntity();
+        attr.setName(name);
+        attr.setValue(value);
+        attr.setOrganization(organization);
+        em.persist(attr);
+        organization.getAttributes().add(attr);
+    }
+
+    @Override
+    public void setAttribute(String name, Boolean value) {
+        setAttribute(name, value.toString());
+    }
+
+    @Override
+    public void setAttribute(String name, Integer value) {
+        setAttribute(name, value.toString());
+    }
+
+    @Override
+    public void setAttribute(String name, Long value) {
+        setAttribute(name, value.toString());
     }
 
     @Override
     public void removeAttribute(String name) {
-        organization.getAttributes().remove(name);
+        Iterator<OrganizationAttributeEntity> it = organization.getAttributes().iterator();
+        while (it.hasNext()) {
+            OrganizationAttributeEntity attr = it.next();
+            if (attr.getName().equals(name)) {
+                it.remove();
+                em.remove(attr);
+            }
+        }
     }
 
     @Override
     public String getAttribute(String name) {
-        return organization.getAttributes().get(name);
+        for (OrganizationAttributeEntity attr : organization.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                return attr.getValue();
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Integer getAttribute(String name, Integer defaultValue) {
+        String v = getAttribute(name);
+        return v != null ? Integer.parseInt(v) : defaultValue;
+
+    }
+
+    @Override
+    public Long getAttribute(String name, Long defaultValue) {
+        String v = getAttribute(name);
+        return v != null ? Long.parseLong(v) : defaultValue;
+
+    }
+
+    @Override
+    public Boolean getAttribute(String name, Boolean defaultValue) {
+        String v = getAttribute(name);
+        return v != null ? Boolean.parseBoolean(v) : defaultValue;
+
     }
 
     @Override
     public Map<String, String> getAttributes() {
-        Map<String, String> copy = new HashMap<>();
-        copy.putAll(organization.getAttributes());
-        return copy;
+        // should always return a copy
+        Map<String, String> result = new HashMap<String, String>();
+        for (OrganizationAttributeEntity attr : organization.getAttributes()) {
+            result.put(attr.getName(), attr.getValue());
+        }
+        return result;
     }
+    
+    /**
+     * */
 
     @Override
     public String getDisplayName() {
@@ -371,6 +459,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     @Override
     public void setEmailTheme(String name) {
         organization.setEmailTheme(name);
+        em.flush();
     }
 
     @Override
@@ -381,6 +470,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     @Override
     public void setReportTheme(String name) {
         organization.setReportTheme(name);
+        em.flush();
     }
     
     @Override
@@ -391,16 +481,22 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     @Override
     public void setInternationalizationEnabled(boolean enabled) {
         organization.setInternationalizationEnabled(enabled);
+        em.flush();
     }
 
     @Override
     public Set<String> getSupportedLocales() {
-        return organization.getSupportedLocales();
+        Set<String> supportedLocales = organization.getSupportedLocales();
+        if (supportedLocales == null || supportedLocales.isEmpty()) return Collections.EMPTY_SET;
+        Set<String> copy = new HashSet<>();
+        copy.addAll(supportedLocales);
+        return Collections.unmodifiableSet(copy);
     }
 
     @Override
     public void setSupportedLocales(Set<String> locales) {
         organization.setSupportedLocales(locales);
+        em.flush();
     }
 
     @Override
@@ -411,6 +507,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     @Override
     public void setDefaultLocale(String locale) {
         organization.setDefaultLocale(locale);
+        em.flush();
     }    
 
     @Override
@@ -421,8 +518,100 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     @Override
     public void setEventsExpiration(long expiration) {
         organization.setEventsExpiration(expiration);
+        em.flush();
     }    
 
+    /**
+     * Required actions*/
+    @Override
+    public RequiredActionProviderModel addRequiredActionProvider(RequiredActionProviderModel model) {
+        RequiredActionProviderEntity auth = new RequiredActionProviderEntity();
+        String id = (model.getId() == null) ? OpenfactModelUtils.generateId(): model.getId();
+        auth.setId(id);
+        auth.setAlias(model.getAlias());
+        auth.setName(model.getName());
+        auth.setOrganization(organization);
+        auth.setProviderId(model.getProviderId());
+        auth.setConfig(model.getConfig());
+        auth.setEnabled(model.isEnabled());
+        auth.setDefaultAction(model.isDefaultAction());
+        organization.getRequiredActionProviders().add(auth);
+        em.persist(auth);
+        em.flush();
+        model.setId(auth.getId());
+        return model;
+    }
+
+    @Override
+    public void removeRequiredActionProvider(RequiredActionProviderModel model) {
+        RequiredActionProviderEntity entity = em.find(RequiredActionProviderEntity.class, model.getId());
+        if (entity == null) return;
+        em.remove(entity);
+        em.flush();
+
+    }
+
+    @Override
+    public RequiredActionProviderModel getRequiredActionProviderById(String id) {
+        RequiredActionProviderEntity entity = em.find(RequiredActionProviderEntity.class, id);
+        if (entity == null) return null;
+        return entityToModel(entity);
+    }
+
+    public RequiredActionProviderModel entityToModel(RequiredActionProviderEntity entity) {
+        RequiredActionProviderModel model = new RequiredActionProviderModel();
+        model.setId(entity.getId());
+        model.setProviderId(entity.getProviderId());
+        model.setAlias(entity.getAlias());
+        model.setEnabled(entity.isEnabled());
+        model.setDefaultAction(entity.isDefaultAction());
+        model.setName(entity.getName());
+        Map<String, String> config = new HashMap<>();
+        if (entity.getConfig() != null) config.putAll(entity.getConfig());
+        model.setConfig(config);
+        return model;
+    }
+
+    @Override
+    public void updateRequiredActionProvider(RequiredActionProviderModel model) {
+        RequiredActionProviderEntity entity = em.find(RequiredActionProviderEntity.class, model.getId());
+        if (entity == null) return;
+        entity.setAlias(model.getAlias());
+        entity.setProviderId(model.getProviderId());
+        entity.setEnabled(model.isEnabled());
+        entity.setDefaultAction(model.isDefaultAction());
+        entity.setName(model.getName());
+        if (entity.getConfig() == null) {
+            entity.setConfig(model.getConfig());
+        } else {
+            entity.getConfig().clear();
+            entity.getConfig().putAll(model.getConfig());
+        }
+        em.flush();
+
+    }
+
+    @Override
+    public List<RequiredActionProviderModel> getRequiredActionProviders() {
+        Collection<RequiredActionProviderEntity> entities = organization.getRequiredActionProviders();
+        if (entities.isEmpty()) return Collections.EMPTY_LIST;
+        List<RequiredActionProviderModel> actions = new LinkedList<>();
+        for (RequiredActionProviderEntity entity : entities) {
+            actions.add(entityToModel(entity));
+        }
+        return Collections.unmodifiableList(actions);
+    }
+
+    @Override
+    public RequiredActionProviderModel getRequiredActionProviderByAlias(String alias) {
+        for (RequiredActionProviderModel action : getRequiredActionProviders()) {
+            if (action.getAlias().equals(alias)) return action;
+        }
+        return null;
+    }
+    
+    /**
+     * Components*/
     @Override
     public ComponentModel addComponentModel(ComponentModel model) {
         model = importComponentModel(model);
@@ -615,39 +804,19 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#hashCode()
-     */
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !(o instanceof OrganizationModel)) return false;
+
+        OrganizationModel that = (OrganizationModel) o;
+        return that.getId().equals(getId());
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        OrganizationModel other = (OrganizationModel) obj;
-        if (getId() == null) {
-            if (other.getId() != null)
-                return false;
-        } else if (!getId().equals(other.getId()))
-            return false;
-        return true;
-    }   
+    public int hashCode() {
+        return getId().hashCode();
+    }
+
 
 }

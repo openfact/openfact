@@ -20,7 +20,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @NamedQueries({
-        @NamedQuery(name = "deleteCreditNoteRequiredActionsByOrganization", query = "delete from CreditNoteRequiredActionEntity action where action.creditNote IN (select u from CreditNoteEntity u where u.organization.id=:organizationId)")
+        @NamedQuery(name = "deleteCreditNoteRequiredActionsByOrganization", query = "delete from CreditNoteRequiredActionEntity action where action.creditNote IN (select u from CreditNoteEntity u where u.organizationId=:organizationId)")
 })
 @Entity
 @Table(name = "CREDIT_NOTE_REQUIRED_ACTION")

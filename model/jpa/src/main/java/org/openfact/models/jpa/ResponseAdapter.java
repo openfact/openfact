@@ -22,6 +22,7 @@ import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
+import org.openfact.models.PartyLegalEntityModel;
 import org.openfact.models.ResponseModel;
 import org.openfact.models.jpa.entities.ResponseEntity;
 
@@ -76,6 +77,20 @@ public class ResponseAdapter implements ResponseModel, JpaModel<ResponseEntity> 
     @Override
     public void setDescription(List<String> description) {
         party.setDescription(description);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !(o instanceof ResponseModel)) return false;
+
+        ResponseModel that = (ResponseModel) o;
+        return that.getId().equals(getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
     }
 
 }

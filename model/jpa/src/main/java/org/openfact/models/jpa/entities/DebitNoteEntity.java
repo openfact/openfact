@@ -60,11 +60,11 @@ import org.hibernate.annotations.Type;
 @Table(name = "DEBIT_NOTE", uniqueConstraints = {
         @UniqueConstraint(columnNames = { "ORGANIZATION_ID", "DOCUMENT_ID" }) })
 @NamedQueries({
-        @NamedQuery(name = "getAllDebitNotesByOrganization", query = "select d from DebitNoteEntity d where d.organization.id = :organizationId order by d.issueDateTime"),
-        @NamedQuery(name = "getOrganizationDebitNoteById", query = "select d from DebitNoteEntity d where d.id = :id and d.organization.id = :organizationId"),
-        @NamedQuery(name = "getOrganizationDebitNoteByDocumentId", query = "select d from DebitNoteEntity d where d.documentId = :documentId and d.organization.id = :organizationId"),
-        @NamedQuery(name = "searchForDebitNote", query = "select d from DebitNoteEntity d where d.organization.id = :organizationId and lower(d.documentId) like :search order by d.issueDateTime"),
-        @NamedQuery(name = "getOrganizationDebitNoteCount", query = "select count(d) from DebitNoteEntity d where d.organization.id = :organizationId") })
+        @NamedQuery(name = "getAllDebitNotesByOrganization", query = "select d from DebitNoteEntity d where d.organizationId = :organizationId order by d.issueDateTime"),
+        @NamedQuery(name = "getOrganizationDebitNoteById", query = "select d from DebitNoteEntity d where d.id = :id and d.organizationId = :organizationId"),
+        @NamedQuery(name = "getOrganizationDebitNoteByDocumentId", query = "select d from DebitNoteEntity d where d.documentId = :documentId and d.organizationId = :organizationId"),
+        @NamedQuery(name = "searchForDebitNote", query = "select d from DebitNoteEntity d where d.organizationId = :organizationId and lower(d.documentId) like :search order by d.issueDateTime"),
+        @NamedQuery(name = "getOrganizationDebitNoteCount", query = "select count(d) from DebitNoteEntity d where d.organizationId = :organizationId") })
 public class DebitNoteEntity {
 
     @Id
@@ -72,72 +72,59 @@ public class DebitNoteEntity {
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
-    protected String id;
+    private String id;
 
     @Column(name = "DOCUMENT_ID")
-    protected String documentId;
+    private String documentId;
 
     @Lob
     @Basic(fetch = FetchType.LAZY)
     @Column(name = "XML_DOCUMENT")
-    protected byte[] xmlDocument;
+    private byte[] xmlDocument;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
-    private OrganizationEntity organization;
+    @Column(name = "ORGANIZATION_ID")
+    private String organizationId;
 
     @Type(type = "org.hibernate.type.LocalDateTimeType")
     @Column(name = "CREATED_TIMESTAMP")
     private LocalDateTime createdTimestamp;
 
-    /**
-     * UBL
-     */
     @Column(name = "DOCUMENT_CURRENCY_CODE")
-    protected String documentCurrencyCode;
+    private String documentCurrencyCode;
     
     @Column(name = "ISSUE_DATE")
     @Type(type = "org.hibernate.type.LocalDateTimeType")
-    protected LocalDateTime issueDateTime;
+    private LocalDateTime issueDateTime;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = SupplierPartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ACCOUNTINGSUPPLIERPARTY_DEBITNOTE")
-    protected SupplierPartyEntity accountingSupplierParty;
+    private SupplierPartyEntity accountingSupplierParty;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = CustomerPartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ACCOUNTINGCUSTOMERPARTY_DEBITNOTE")
-    protected CustomerPartyEntity accountingCustomerParty;
+    private CustomerPartyEntity accountingCustomerParty;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = MonetaryTotalEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "REQUESTEDMONETARYTOTAL_DEBITNOTE")
-    protected MonetaryTotalEntity requestedMonetaryTotal;
+    private MonetaryTotalEntity requestedMonetaryTotal;
     
     @OneToMany(fetch = FetchType.LAZY, targetEntity = TaxTotalEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "TAXTOTAL_DEBITNOTE_ID")
-    protected List<TaxTotalEntity> taxTotal = new ArrayList<>();
+    private List<TaxTotalEntity> taxTotal = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = AllowanceChargeEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ALLOWANCECHARGE_DEBITNOTE")
-    protected List<AllowanceChargeEntity> allowanceCharge = new ArrayList<>();
+    private List<AllowanceChargeEntity> allowanceCharge = new ArrayList<>();
 
-    /**
-     * Openfact
-     */
-    @ElementCollection
-    @MapKeyColumn(name = "NAME")
-    @Column(name = "VALUE")
-    @CollectionTable(name = "DEBIT_NOTE_ATTRIBUTES", joinColumns = { @JoinColumn(name = "DEBIT_NOTE_ID") })
-    protected Map<String, String> attributes = new HashMap<>();
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy="debitNote")
+    private Collection<DebitNoteAttributeEntity> attributes = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "debitNote", orphanRemoval = true, cascade = CascadeType.REMOVE)
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy="debitNote")
     private Collection<DebitNoteRequiredActionEntity> requiredActions = new ArrayList<>();
 
-    /**
-     * Send Events
-     */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "debitNote", cascade = { CascadeType.ALL })
-    protected Collection<DebitNoteSendEventEntity> sendEvents = new ArrayList<>();
+    @OneToMany(cascade = { CascadeType.REMOVE }, orphanRemoval = true, mappedBy = "debitNote", fetch = FetchType.LAZY)
+    private Collection<DebitNoteSendEventEntity> sendEvents = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -163,12 +150,12 @@ public class DebitNoteEntity {
         this.xmlDocument = xmlDocument;
     }
 
-    public OrganizationEntity getOrganization() {
-        return organization;
+    public String getOrganizationId() {
+        return organizationId;
     }
 
-    public void setOrganization(OrganizationEntity organization) {
-        this.organization = organization;
+    public void setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
     }
 
     public LocalDateTime getCreatedTimestamp() {
@@ -179,6 +166,9 @@ public class DebitNoteEntity {
         this.createdTimestamp = createdTimestamp;
     }
 
+    /**
+     * UBL
+     */
     public String getDocumentCurrencyCode() {
         return documentCurrencyCode;
     }
@@ -235,11 +225,14 @@ public class DebitNoteEntity {
         this.allowanceCharge = allowanceCharge;
     }
 
-    public Map<String, String> getAttributes() {
+    /**
+     * Openfact
+     */
+    public Collection<DebitNoteAttributeEntity> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(Map<String, String> attributes) {
+    public void setAttributes(Collection<DebitNoteAttributeEntity> attributes) {
         this.attributes = attributes;
     }
 
@@ -259,5 +252,28 @@ public class DebitNoteEntity {
         this.sendEvents = sendEvents;
     }
 
-    
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        DebitNoteEntity other = (DebitNoteEntity) obj;
+        if (getId() == null) {
+            if (other.getId() != null)
+                return false;
+        } else if (!getId().equals(other.getId()))
+            return false;
+        return true;
+    }
 }

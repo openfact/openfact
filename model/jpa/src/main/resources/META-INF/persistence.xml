@@ -23,9 +23,10 @@
 		transaction-type="RESOURCE_LOCAL">
 		<class>org.openfact.models.jpa.entities.MigrationModelEntity</class>
 		<class>org.openfact.models.jpa.entities.OrganizationEntity</class>
+		<class>org.openfact.models.jpa.entities.OrganizationAttributeEntity</class>
 		<class>org.openfact.models.jpa.entities.ComponentEntity</class>
 		<class>org.openfact.models.jpa.entities.ComponentConfigEntity</class>
-		<class>org.openfact.models.jpa.entities.UserEntity</class>
+		<class>org.openfact.models.jpa.entities.RequiredActionProviderEntity</class>
 
 		<!-- JpaAuditProviders -->
 		<class>org.openfact.events.jpa.EventEntity</class>
@@ -35,10 +36,15 @@
 		<class>org.openfact.models.jpa.entities.InvoiceEntity</class>
 		<class>org.openfact.models.jpa.entities.CreditNoteEntity</class>
 		<class>org.openfact.models.jpa.entities.DebitNoteEntity</class>
+
 		<class>org.openfact.models.jpa.entities.InvoiceAttributeEntity</class>
+		<class>org.openfact.models.jpa.entities.CreditNoteAttributeEntity</class>
+		<class>org.openfact.models.jpa.entities.DebitNoteAttributeEntity</class>
+
 		<class>org.openfact.models.jpa.entities.InvoiceRequiredActionEntity</class>
 		<class>org.openfact.models.jpa.entities.CreditNoteRequiredActionEntity</class>
 		<class>org.openfact.models.jpa.entities.DebitNoteRequiredActionEntity</class>
+
 		<class>org.openfact.models.jpa.entities.AllowanceChargeEntity</class>
 		<class>org.openfact.models.jpa.entities.CustomerPartyEntity</class>
 		<class>org.openfact.models.jpa.entities.MonetaryTotalEntity</class>

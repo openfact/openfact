@@ -19,10 +19,7 @@ package org.openfact.models.jpa;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.FileModel;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.StorageFileModel;
+import org.openfact.models.*;
 import org.openfact.models.jpa.entities.StorageFileEntity;
 import org.openfact.ubl.SendEventModel;
 import org.openfact.models.jpa.entities.SendEventEntity;
@@ -40,8 +37,7 @@ public class SendEventAdapter implements SendEventModel, JpaModel<SendEventEntit
 	protected EntityManager em;
 	protected OpenfactSession session;
 
-	public SendEventAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em,
-			SendEventEntity sendEvent) {
+	public SendEventAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em, SendEventEntity sendEvent) {
 		this.session = session;
 		this.em = em;
 		this.organization = organization;
@@ -106,6 +102,7 @@ public class SendEventAdapter implements SendEventModel, JpaModel<SendEventEntit
 		entity.setMimeType(file.getMimeType());
 		entity.setFile(file.getFile());
 		em.persist(entity);
+		em.flush();
 
 		sendEvent.getFileAttatchments().put(entity.getId(), entity);
 		return new StorageFileAdapter(session, em, entity);
@@ -152,6 +149,7 @@ public class SendEventAdapter implements SendEventModel, JpaModel<SendEventEntit
 		entity.setMimeType(file.getMimeType());
 		entity.setFile(file.getFile());
 		em.persist(entity);
+		em.flush();
 
 		sendEvent.getFileResponseAttatchments().put(entity.getId(), entity);
 		return new StorageFileAdapter(session, em, entity);
@@ -165,6 +163,20 @@ public class SendEventAdapter implements SendEventModel, JpaModel<SendEventEntit
 	@Override
 	public void setResponse(Map<String, String> response) {
 		sendEvent.setResponse(response);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || !(o instanceof SendEventModel)) return false;
+
+		SendEventModel that = (SendEventModel) o;
+		return that.getId().equals(getId());
+	}
+
+	@Override
+	public int hashCode() {
+		return getId().hashCode();
 	}
 
 }

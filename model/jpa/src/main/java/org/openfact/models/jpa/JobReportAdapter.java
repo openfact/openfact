@@ -183,4 +183,18 @@ public class JobReportAdapter implements JobReportModel, JpaModel<JobReportEntit
         //jobReport.getAttributes().put(name, value);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !(o instanceof JobReportModel)) return false;
+
+        JobReportModel that = (JobReportModel) o;
+        return that.getId().equals(getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
+    }
+
 }

@@ -20,6 +20,7 @@ import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.StorageFileModel;
 import org.openfact.models.jpa.entities.*;
+import org.openfact.ubl.SendEventModel;
 
 import javax.persistence.EntityManager;
 
@@ -82,6 +83,20 @@ public class StorageFileAdapter implements StorageFileModel, JpaModel<StorageFil
     @Override
     public void setFile(byte[] bytes) {
         file.setFile(bytes);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !(o instanceof StorageFileModel)) return false;
+
+        StorageFileModel that = (StorageFileModel) o;
+        return that.getId().equals(getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
     }
 
 }

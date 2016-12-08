@@ -25,16 +25,10 @@ import javax.persistence.Query;
 
 import org.jboss.logging.Logger;
 import org.openfact.common.util.MultivaluedHashMap;
-import org.openfact.models.CustomerPartyModel;
-import org.openfact.models.InvoiceModel;
-import org.openfact.models.MonetaryTotalModel;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
+import org.openfact.models.*;
 import org.openfact.models.jpa.entities.*;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.ubl.SendEventModel;
-import org.openfact.models.SupplierPartyModel;
-import org.openfact.models.TaxTotalModel;
 import org.openfact.models.enums.RequiredAction;
 
 public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
@@ -192,6 +186,8 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
         invoice.setXmlDocument(value);
     }
 
+    /**
+     * Attributes*/
     @Override
     public void setSingleAttribute(String name, String value) {
         String firstExistingAttrId = null;
@@ -341,10 +337,26 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
         }
     }
 
+    /**
+     * Send events*/
     @Override
     public List<SendEventModel> getSendEvents() {
         return invoice.getSendEvents().stream().map(f -> new SendEventAdapter(session, organization, em, f))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !(o instanceof InvoiceModel)) return false;
+
+        InvoiceModel that = (InvoiceModel) o;
+        return that.getId().equals(getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
     }
     
 }

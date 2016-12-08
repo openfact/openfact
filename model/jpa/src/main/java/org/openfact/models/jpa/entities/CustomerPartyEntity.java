@@ -101,4 +101,22 @@ public class CustomerPartyEntity {
         this.party = party;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        if (!(o instanceof CustomerPartyEntity)) return false;
+
+        CustomerPartyEntity that = (CustomerPartyEntity) o;
+
+        if (!id.equals(that.getId())) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+
 }

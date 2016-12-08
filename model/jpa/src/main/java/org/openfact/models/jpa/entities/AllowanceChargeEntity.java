@@ -58,4 +58,21 @@ public class AllowanceChargeEntity {
         this.amount = amount;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        if (!(o instanceof AllowanceChargeEntity)) return false;
+
+        AllowanceChargeEntity that = (AllowanceChargeEntity) o;
+
+        if (!id.equals(that.getId())) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }

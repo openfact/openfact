@@ -19,6 +19,7 @@ package org.openfact.models.jpa;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
+import org.openfact.models.AllowanceChargeModel;
 import org.openfact.models.ContactModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.entities.ContactEntity;
@@ -26,6 +27,7 @@ import org.openfact.models.jpa.entities.ContactEntity;
 public class ContactAdapter implements ContactModel, JpaModel<ContactEntity> {
 
     protected static final Logger logger = Logger.getLogger(ContactAdapter.class);
+
     protected ContactEntity contact;
     protected EntityManager em;
     protected OpenfactSession session;
@@ -54,6 +56,20 @@ public class ContactAdapter implements ContactModel, JpaModel<ContactEntity> {
     @Override
     public void setElectronicMail(String value) {
         contact.setElectronicMail(value);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !(o instanceof ContactModel)) return false;
+
+        ContactModel that = (ContactModel) o;
+        return that.getId().equals(getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
     }
 
 }

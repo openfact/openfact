@@ -21,6 +21,7 @@ import javax.persistence.EntityManager;
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.PartyLegalEntityModel;
+import org.openfact.models.PartyModel;
 import org.openfact.models.jpa.entities.PartyLegalEntity;
 
 public class PartyLegalEntityAdapter implements PartyLegalEntityModel, JpaModel<PartyLegalEntity> {
@@ -67,4 +68,17 @@ public class PartyLegalEntityAdapter implements PartyLegalEntityModel, JpaModel<
         partyLegalEntity.setCompanyId(value);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !(o instanceof PartyLegalEntityModel)) return false;
+
+        PartyLegalEntityModel that = (PartyLegalEntityModel) o;
+        return that.getId().equals(getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
+    }
 }

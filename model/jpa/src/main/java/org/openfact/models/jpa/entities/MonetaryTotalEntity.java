@@ -80,4 +80,22 @@ public class MonetaryTotalEntity {
         this.payableAmount = payableAmount;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        if (!(o instanceof MonetaryTotalEntity)) return false;
+
+        MonetaryTotalEntity that = (MonetaryTotalEntity) o;
+
+        if (!id.equals(that.getId())) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+
 }

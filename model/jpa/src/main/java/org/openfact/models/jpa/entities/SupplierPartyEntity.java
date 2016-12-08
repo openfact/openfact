@@ -89,4 +89,22 @@ public class SupplierPartyEntity {
         this.additionalAccountId = additionalAccountId;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        if (!(o instanceof SupplierPartyEntity)) return false;
+
+        SupplierPartyEntity that = (SupplierPartyEntity) o;
+
+        if (!id.equals(that.getId())) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+
 }

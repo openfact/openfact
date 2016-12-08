@@ -23,6 +23,7 @@ import javax.persistence.EntityManager;
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.PartyModel;
+import org.openfact.models.StorageFileModel;
 import org.openfact.models.SupplierPartyModel;
 import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.PartyEntity;
@@ -87,6 +88,20 @@ public class SupplierPartyAdapter implements SupplierPartyModel, JpaModel<Suppli
             supplierParty.setParty(entity);
         }
         return new PartyAdapter(session, em, supplierParty.getParty());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !(o instanceof SupplierPartyModel)) return false;
+
+        SupplierPartyModel that = (SupplierPartyModel) o;
+        return that.getId().equals(getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
     }
 
 }

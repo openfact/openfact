@@ -53,7 +53,7 @@ public class CreditNoteManager {
     }
 
     public CreditNoteModel getCreditNoteByID(OrganizationModel organization, String ID) {
-        return model.getCreditNoteByID(organization, ID);
+        return model.getCreditNoteByDocumentId(organization, ID);
     }
 
     public CreditNoteModel addCreditNote(OrganizationModel organization, CreditNoteType type,

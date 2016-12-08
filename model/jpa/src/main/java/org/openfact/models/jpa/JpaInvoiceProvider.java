@@ -284,13 +284,6 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
             return new InvoiceAdapter(session, organization, em, entity);
         });
 
-        Iterator<InvoiceModel> iterator = result.iterator();
-        while (iterator.hasNext()) {
-            InvoiceModel invoiceModel = iterator.next();
-            System.out.println("-------------------");
-            System.out.println(invoiceModel.getRequiredActions());
-        }
-
         return result;
     }
 }

@@ -17,13 +17,7 @@
 package org.openfact.models.jpa.entities;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -32,7 +26,6 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapKeyColumn;
@@ -91,174 +84,108 @@ public class OrganizationEntity {
     @Column(name = "CREATED_TIMESTAMP")
     private LocalDateTime createdTimestamp;
 
-    /**
-     * Postal address
-     */
     @Column(name = "POSTAL_ADRESS_ID")
-    protected String postalAddressId;
+    private String postalAddressId;
 
     @Column(name = "STREET_NAME")
-    protected String streetName;
+    private String streetName;
 
     @Column(name = "CITY_SUBDIVISION_NAME")
-    protected String citySubdivisionName;
+    private String citySubdivisionName;
 
     @Column(name = "CITY_NAME")
-    protected String cityName;
+    private String cityName;
 
     @Column(name = "COUNTRY_SUBENTITY")
-    protected String countrySubentity;
+    private String countrySubentity;
 
     @Column(name = "DISTRICT")
-    protected String district;
+    private String district;
 
     @Column(name = "COUNTRY_IDENTIFICATION_CODE")
-    protected String countryIdentificationCode;
+    private String countryIdentificationCode;
 
-    /**
-     * Events
-     */
     @Column(name = "EVENTS_ENABLED")
     @Type(type = "org.hibernate.type.NumericBooleanType")
-    protected boolean eventsEnabled;
+    private boolean eventsEnabled;
 
     @Column(name = "EVENTS_EXPIRATION")
-    protected long eventsExpiration;
+    private long eventsExpiration;
 
     @ElementCollection
     @Column(name = "VALUE")
-    @CollectionTable(name = "ORGANIZATION_EVENTS_LISTENERS", joinColumns = {
-            @JoinColumn(name = "ORGANIZATION_ID") })
-    protected Set<String> eventsListeners = new HashSet<String>();
+    @CollectionTable(name = "ORGANIZATION_EVENTS_LISTENERS", joinColumns = { @JoinColumn(name = "ORGANIZATION_ID") })
+    private Set<String> eventsListeners = new HashSet<String>();
 
     @ElementCollection
     @Column(name = "VALUE")
-    @CollectionTable(name = "ORGANIZATION_ENABLED_EVENT_TYPES", joinColumns = {
-            @JoinColumn(name = "ORGANIZATION_ID") })
-    protected Set<String> enabledEventTypes = new HashSet<String>();
+    @CollectionTable(name = "ORGANIZATION_ENABLED_EVENT_TYPES", joinColumns = { @JoinColumn(name = "ORGANIZATION_ID") })
+    private Set<String> enabledEventTypes = new HashSet<String>();
 
     @Column(name = "ADMIN_EVENTS_ENABLED")
     @Type(type = "org.hibernate.type.NumericBooleanType")
-    protected boolean adminEventsEnabled;
+    private boolean adminEventsEnabled;
 
     @Column(name = "ADMIN_EVENTS_DETAILS_ENABLED")
     @Type(type = "org.hibernate.type.NumericBooleanType")
-    protected boolean adminEventsDetailsEnabled;
+    private boolean adminEventsDetailsEnabled;
 
-    /**
-     * Themes
-     */
     @Column(name = "LOGIN_THEME")
-    protected String loginTheme;
+    private String loginTheme;
 
     @Column(name = "ACCOUNT_THEME")
-    protected String accountTheme;
+    private String accountTheme;
 
     @Column(name = "ADMIN_THEME")
-    protected String adminTheme;
+    private String adminTheme;
 
     @Column(name = "EMAIL_THEME")
-    protected String emailTheme;
+    private String emailTheme;
     
     @Column(name = "REPORT_THEME")
-    protected String reportTheme;
+    private String reportTheme;
 
-    /**
-     * Locale
-     */
     @Column(name = "INTERNATIONALIZATION_ENABLED")
     @Type(type = "org.hibernate.type.NumericBooleanType")
-    protected boolean internationalizationEnabled;
+    private boolean internationalizationEnabled;
 
     @ElementCollection
     @Column(name = "VALUE")
-    @CollectionTable(name = "ORGANIZATION_SUPPORTED_LOCALES", joinColumns = {
-            @JoinColumn(name = "ORGANIZATION_ID") })
-    protected Set<String> supportedLocales = new HashSet<String>();
+    @CollectionTable(name = "ORGANIZATION_SUPPORTED_LOCALES", joinColumns = { @JoinColumn(name = "ORGANIZATION_ID") })
+    private Set<String> supportedLocales = new HashSet<String>();
 
     @Column(name = "DEFAULT_LOCALE")
-    protected String defaultLocale;
+    private String defaultLocale;
 
-    /**
-     * Tasks
-     */
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "TASK_FIRST_TIME")
-    protected Date taskFirstTime;
+    private Date taskFirstTime;
 
     @Column(name = "TASK_DELAY")
-    protected long taskDelay;
+    private long taskDelay;
 
     @Column(name = "TASK_ENABLED")
-    protected boolean tasksEnabled;
+    private boolean tasksEnabled;
 
-    /**
-     * Smtp
-     */
     @ElementCollection
     @MapKeyColumn(name = "NAME")
     @Column(name = "VALUE")
-    @CollectionTable(name = "ORGANIZATION_SMTP_CONFIG", joinColumns = {
-            @JoinColumn(name = "ORGANIZATION_ID") })
+    @CollectionTable(name = "ORGANIZATION_SMTP_CONFIG", joinColumns = {@JoinColumn(name = "ORGANIZATION_ID") })
     private Map<String, String> smtpConfig = new HashMap<String, String>();
 
-    /**
-     * Atributes
-     */
-    @ElementCollection
-    @MapKeyColumn(name = "NAME")
-    @Column(name = "VALUE", length = 2048)
-    @CollectionTable(name = "ORGANIZATION_ATTRIBUTES", joinColumns = {@JoinColumn(name = "ORGANIZATION_ID") })
-    protected Map<String, String> attributes = new HashMap<String, String>();
+    @OneToMany(cascade ={CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "organization")
+    private Collection<OrganizationAttributeEntity> attributes = new ArrayList<>();
 
-    /**
-     * Currencies
-     */
+    @OneToMany(cascade ={CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "organization")
+    private Collection<RequiredActionProviderEntity> requiredActionProviders = new ArrayList<>();
+
     @ElementCollection
     @Column(name = "VALUE")
-    @CollectionTable(name = "ORGANIZATION_SUPPORTED_CURRENCIES", joinColumns = {
-            @JoinColumn(name = "ORGANIZATION_ID") })
-    protected Set<String> supportedCurrencies = new HashSet<String>();
+    @CollectionTable(name = "ORGANIZATION_SUPPORTED_CURRENCIES", joinColumns = { @JoinColumn(name = "ORGANIZATION_ID") })
+    private Set<String> supportedCurrencies = new HashSet<String>();
 
     @Column(name = "DEFAULT_CURRENCY")
-    protected String defaultCurrency;
-
-    /**
-     * Cascade relations
-     */
-    @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<JobReportEntity> jobReports= new ArrayList<>();
-    @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<InvoiceEntity> invoices = new ArrayList<>();
-    @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<CreditNoteEntity> creditNotes = new ArrayList<>();
-    @OneToMany(mappedBy = "organization", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<DebitNoteEntity> debitNotes = new ArrayList<>();
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        OrganizationEntity other = (OrganizationEntity) obj;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        return true;
-    }
+    private String defaultCurrency;
 
     public String getId() {
         return id;
@@ -330,8 +257,11 @@ public class OrganizationEntity {
 
     public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
         this.createdTimestamp = createdTimestamp;
-    }    
+    }
 
+    /**
+     * Postal address
+     */
     public String getPostalAddressId() {
         return postalAddressId;
     }
@@ -388,6 +318,9 @@ public class OrganizationEntity {
         this.countryIdentificationCode = countryIdentificationCode;
     }
 
+    /**
+     * Events
+     */
     public boolean isEventsEnabled() {
         return eventsEnabled;
     }
@@ -436,6 +369,9 @@ public class OrganizationEntity {
         this.adminEventsDetailsEnabled = adminEventsDetailsEnabled;
     }
 
+    /**
+     * Themes
+     */
     public String getLoginTheme() {
         return loginTheme;
     }
@@ -468,6 +404,17 @@ public class OrganizationEntity {
         this.emailTheme = emailTheme;
     }
 
+    public String getReportTheme() {
+        return reportTheme;
+    }
+
+    public void setReportTheme(String reportTheme) {
+        this.reportTheme = reportTheme;
+    }
+
+    /**
+     * Locale
+     */
     public boolean isInternationalizationEnabled() {
         return internationalizationEnabled;
     }
@@ -492,6 +439,17 @@ public class OrganizationEntity {
         this.defaultLocale = defaultLocale;
     }
 
+    /**
+     * Tasks
+     */
+    public Date getTaskFirstTime() {
+        return taskFirstTime;
+    }
+
+    public void setTaskFirstTime(Date taskFirstTime) {
+        this.taskFirstTime = taskFirstTime;
+    }
+
     public long getTaskDelay() {
         return taskDelay;
     }
@@ -500,6 +458,17 @@ public class OrganizationEntity {
         this.taskDelay = taskDelay;
     }
 
+    public boolean isTasksEnabled() {
+        return tasksEnabled;
+    }
+
+    public void setTasksEnabled(boolean tasksEnabled) {
+        this.tasksEnabled = tasksEnabled;
+    }
+
+    /**
+     * Smtp
+     */
     public Map<String, String> getSmtpConfig() {
         return smtpConfig;
     }
@@ -508,14 +477,28 @@ public class OrganizationEntity {
         this.smtpConfig = smtpConfig;
     }
 
-    public Map<String, String> getAttributes() {
+    /**
+     * Atributes
+     */
+    public Collection<OrganizationAttributeEntity> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(Map<String, String> attributes) {
+    public void setAttributes(Collection<OrganizationAttributeEntity> attributes) {
         this.attributes = attributes;
     }
 
+    public Collection<RequiredActionProviderEntity> getRequiredActionProviders() {
+        return requiredActionProviders;
+    }
+
+    public void setRequiredActionProviders(Collection<RequiredActionProviderEntity> requiredActionProviders) {
+        this.requiredActionProviders = requiredActionProviders;
+    }
+
+    /**
+     * Currencies
+     */
     public Set<String> getSupportedCurrencies() {
         return supportedCurrencies;
     }
@@ -531,61 +514,30 @@ public class OrganizationEntity {
     public void setDefaultCurrency(String defaultCurrency) {
         this.defaultCurrency = defaultCurrency;
     }
-    
-    public List<InvoiceEntity> getInvoices() {
-        return invoices;
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        return result;
     }
 
-    public void setInvoices(List<InvoiceEntity> invoices) {
-        this.invoices = invoices;
-    }
-
-    public List<CreditNoteEntity> getCreditNotes() {
-        return creditNotes;
-    }
-
-    public void setCreditNotes(List<CreditNoteEntity> creditNotes) {
-        this.creditNotes = creditNotes;
-    }
-    
-    public List<JobReportEntity> getJobReports() {
-		return jobReports;
-	}
-
-	public void setJobReports(List<JobReportEntity> jobReports) {
-		this.jobReports = jobReports;
-	}
-
-	public List<DebitNoteEntity> getDebitNotes() {
-        return debitNotes;
-    }
-
-    public void setDebitNotes(List<DebitNoteEntity> debitNotes) {
-        this.debitNotes = debitNotes;
-    }
-
-    public Date getTaskFirstTime() {
-        return taskFirstTime;
-    }
-
-    public void setTaskFirstTime(Date taskFirstTime) {
-        this.taskFirstTime = taskFirstTime;
-    }
-
-    public boolean getTasksEnabled() {
-        return tasksEnabled;
-    }
-
-    public void setTasksEnabled(boolean tasksEnabled) {
-        this.tasksEnabled = tasksEnabled;
-    }
-
-    public String getReportTheme() {
-        return reportTheme;
-    }
-
-    public void setReportTheme(String reportTheme) {
-        this.reportTheme = reportTheme;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        OrganizationEntity other = (OrganizationEntity) obj;
+        if (getId() == null) {
+            if (other.getId() != null)
+                return false;
+        } else if (!getId().equals(other.getId()))
+            return false;
+        return true;
     }
 
 }

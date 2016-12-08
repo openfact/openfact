@@ -132,7 +132,7 @@ public class AdapterTest extends AbstractModelTest {
 
         organizationModel = model.getOrganization("SISTCOOP");
         Assert.assertTrue(organizationManager.getSession().creditNotes().removeCreditNote(organizationModel, creditNote));
-        assertNull(organizationManager.getSession().creditNotes().getCreditNoteByID(organizationModel, "C01-001"));
+        assertNull(organizationManager.getSession().creditNotes().getCreditNoteByDocumentId(organizationModel, "C01-001"));
     }
     
     @Test

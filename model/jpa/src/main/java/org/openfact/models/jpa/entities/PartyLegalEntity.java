@@ -67,4 +67,22 @@ public class PartyLegalEntity {
         this.companyId = companyId;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        if (!(o instanceof PartyLegalEntity)) return false;
+
+        PartyLegalEntity that = (PartyLegalEntity) o;
+
+        if (!id.equals(that.getId())) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+
 }

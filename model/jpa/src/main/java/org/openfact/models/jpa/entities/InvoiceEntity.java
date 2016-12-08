@@ -58,14 +58,15 @@ import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "INVOICE", uniqueConstraints = {
-        @UniqueConstraint(columnNames = { "ORGANIZATION_ID", "DOCUMENT_ID" }) })
+        @UniqueConstraint(columnNames = { "ORGANIZATION_ID", "DOCUMENT_ID" })
+})
 @NamedQueries({
-        @NamedQuery(name = "getAllInvoicesByOrganization", query = "select i from InvoiceEntity i where i.organization.id = :organizationId order by i.issueDateTime"),
-        @NamedQuery(name = "getAllInvoicesIdByOrganization", query = "select i.id from InvoiceEntity i where i.organization.id = :organizationId order by i.issueDateTime"),
-        @NamedQuery(name = "getOrganizationInvoiceById", query = "select i from InvoiceEntity i where i.id = :id and i.organization.id = :organizationId"),
-        @NamedQuery(name = "getOrganizationInvoiceByDocumentId", query = "select i from InvoiceEntity i where i.documentId = :documentId and i.organization.id = :organizationId"),
-        @NamedQuery(name = "searchForInvoice", query = "select i from InvoiceEntity i where i.organization.id = :organizationId and lower(i.documentId) like :search order by i.issueDateTime"),
-        @NamedQuery(name = "getOrganizationInvoiceCount", query = "select count(i) from InvoiceEntity i where i.organization.id = :organizationId") })
+        @NamedQuery(name = "getAllInvoicesByOrganization", query = "select i from InvoiceEntity i where i.organizationId = :organizationId order by i.issueDateTime"),
+        @NamedQuery(name = "getAllInvoicesIdByOrganization", query = "select i.id from InvoiceEntity i where i.organizationId = :organizationId order by i.issueDateTime"),
+        @NamedQuery(name = "getOrganizationInvoiceById", query = "select i from InvoiceEntity i where i.id = :id and i.organizationId = :organizationId"),
+        @NamedQuery(name = "getOrganizationInvoiceByDocumentId", query = "select i from InvoiceEntity i where i.documentId = :documentId and i.organizationId = :organizationId"),
+        @NamedQuery(name = "searchForInvoice", query = "select i from InvoiceEntity i where i.organizationId = :organizationId and lower(i.documentId) like :search order by i.issueDateTime"),
+        @NamedQuery(name = "getOrganizationInvoiceCount", query = "select count(i) from InvoiceEntity i where i.organizationId = :organizationId") })
 public class InvoiceEntity {
 
     @Id
@@ -84,9 +85,8 @@ public class InvoiceEntity {
     private byte[] xmlDocument;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
-    private OrganizationEntity organization;
+    @Column(name = "ORGANIZATION_ID")
+    private String organizationId;
     
     @Type(type = "org.hibernate.type.LocalDateTimeType")
     @Column(name = "CREATED_TIMESTAMP")
@@ -102,18 +102,15 @@ public class InvoiceEntity {
     @Column(name = "DOCUMENT_CURRENCY_CODE")
     private String documentCurrencyCode;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = SupplierPartyEntity.class, cascade = {
-            CascadeType.ALL })
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = SupplierPartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ACCOUNTINGSUPPLIERPARTY_INVOICE")
     private SupplierPartyEntity accountingSupplierParty;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = CustomerPartyEntity.class, cascade = {
-            CascadeType.ALL })
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = CustomerPartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ACCOUNTINGCUSTOMERPARTY_INVOICE")
     private CustomerPartyEntity accountingCustomerParty;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = MonetaryTotalEntity.class, cascade = {
-            CascadeType.ALL })
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = MonetaryTotalEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "LEGALMONETARYTOTAL_INVOICE")
     private MonetaryTotalEntity legalMonetaryTotal;
 
@@ -127,9 +124,8 @@ public class InvoiceEntity {
     @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy="invoice")
     private Collection<InvoiceRequiredActionEntity> requiredActions = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "invoice", cascade = { CascadeType.ALL })
+    @OneToMany(cascade = { CascadeType.REMOVE }, orphanRemoval = true, mappedBy = "invoice", fetch = FetchType.LAZY)
     private Collection<InvoiceSendEventEntity> sendEvents = new ArrayList<>();
-
 
     public String getId() {
         return id;
@@ -155,12 +151,12 @@ public class InvoiceEntity {
         this.xmlDocument = xmlDocument;
     }
 
-    public OrganizationEntity getOrganization() {
-        return organization;
+    public String getOrganizationId() {
+        return organizationId;
     }
 
-    public void setOrganization(OrganizationEntity organization) {
-        this.organization = organization;
+    public void setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
     }
 
     public LocalDateTime getCreatedTimestamp() {
@@ -171,9 +167,6 @@ public class InvoiceEntity {
         this.createdTimestamp = createdTimestamp;
     }
 
-    /**
-     * UBL
-     */
     public LocalDateTime getIssueDateTime() {
         return issueDateTime;
     }
@@ -230,9 +223,6 @@ public class InvoiceEntity {
         this.taxTotal = taxTotal;
     }
 
-    /**
-     * Openfact
-     */
     public Collection<InvoiceAttributeEntity> getAttributes() {
         return attributes;
     }
@@ -249,9 +239,6 @@ public class InvoiceEntity {
         this.requiredActions = requiredActions;
     }
 
-    /**
-     * Send Events
-     */
     public Collection<InvoiceSendEventEntity> getSendEvents() {
         return sendEvents;
     }
@@ -259,4 +246,30 @@ public class InvoiceEntity {
     public void setSendEvents(Collection<InvoiceSendEventEntity> sendEvents) {
         this.sendEvents = sendEvents;
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        InvoiceEntity other = (InvoiceEntity) obj;
+        if (getId() == null) {
+            if (other.getId() != null)
+                return false;
+        } else if (!getId().equals(other.getId()))
+            return false;
+        return true;
+    }
+
 }

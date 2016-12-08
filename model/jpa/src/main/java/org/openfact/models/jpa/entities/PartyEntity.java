@@ -76,4 +76,22 @@ public class PartyEntity {
         this.contact = contact;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        if (!(o instanceof PartyEntity)) return false;
+
+        PartyEntity that = (PartyEntity) o;
+
+        if (!id.equals(that.getId())) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+
 }

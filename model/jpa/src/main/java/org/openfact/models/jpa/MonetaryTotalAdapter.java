@@ -21,6 +21,7 @@ import java.math.BigDecimal;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
+import org.openfact.models.JobReportModel;
 import org.openfact.models.MonetaryTotalModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.entities.MonetaryTotalEntity;
@@ -77,6 +78,20 @@ public class MonetaryTotalAdapter implements MonetaryTotalModel, JpaModel<Moneta
     @Override
     public void setPayableAmount(BigDecimal value) {
         monetaryTotal.setPayableAmount(value);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !(o instanceof MonetaryTotalModel)) return false;
+
+        MonetaryTotalModel that = (MonetaryTotalModel) o;
+        return that.getId().equals(getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
     }
 
 }

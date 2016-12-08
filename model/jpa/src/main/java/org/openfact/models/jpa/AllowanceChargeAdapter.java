@@ -28,12 +28,12 @@ import org.openfact.models.jpa.entities.AllowanceChargeEntity;
 public class AllowanceChargeAdapter implements AllowanceChargeModel, JpaModel<AllowanceChargeEntity> {
 
     protected static final Logger logger = Logger.getLogger(AllowanceChargeAdapter.class);
+
     protected AllowanceChargeEntity allowanceCharge;
     protected EntityManager em;
     protected OpenfactSession session;
 
-    public AllowanceChargeAdapter(OpenfactSession session, EntityManager em,
-            AllowanceChargeEntity allowanceCharge) {
+    public AllowanceChargeAdapter(OpenfactSession session, EntityManager em, AllowanceChargeEntity allowanceCharge) {
         this.session = session;
         this.em = em;
         this.allowanceCharge = allowanceCharge;
@@ -57,6 +57,20 @@ public class AllowanceChargeAdapter implements AllowanceChargeModel, JpaModel<Al
     @Override
     public void setAmount(BigDecimal value) {
         allowanceCharge.setAmount(value);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !(o instanceof AllowanceChargeModel)) return false;
+
+        AllowanceChargeModel that = (AllowanceChargeModel) o;
+        return that.getId().equals(getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
     }
 
 }

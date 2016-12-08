@@ -21,6 +21,7 @@ import java.math.BigDecimal;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
+import org.openfact.models.SupplierPartyModel;
 import org.openfact.models.TaxTotalModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.entities.TaxTotalEntity;
@@ -56,6 +57,20 @@ public class TaxTotalAdapter implements TaxTotalModel, JpaModel<TaxTotalEntity> 
     @Override
     public void setTaxAmount(BigDecimal value) {
         taxTotal.setTaxAmount(value);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !(o instanceof TaxTotalModel)) return false;
+
+        TaxTotalModel that = (TaxTotalModel) o;
+        return that.getId().equals(getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
     }
 
 }

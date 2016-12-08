@@ -23,48 +23,17 @@
 
 package org.openfact.models.jpa.entities;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.MapKeyColumn;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "INVOICE_ATTRIBUTE")
+@Table(name = "DEBIT_NOTE_ATTRIBUTE")
 @NamedQueries({
-        @NamedQuery(name="getAttributesByNameAndValue", query="select attr from InvoiceAttributeEntity attr where attr.name = :name and attr.value = :value"),
-        @NamedQuery(name="deleteInvoiceAttributesByOrganization", query="delete from  InvoiceAttributeEntity attr where attr.invoice IN (select u from InvoiceEntity u where u.organizationId=:organizationId)"),
-        @NamedQuery(name="deleteInvoiceAttributesByNameAndInvoice", query="delete from  InvoiceAttributeEntity attr where attr.invoice.id = :userId and attr.name = :name"),
-        @NamedQuery(name="deleteInvoiceAttributesByNameAndInvoiceOtherThan", query="delete from  InvoiceAttributeEntity attr where attr.invoice.id = :userId and attr.name = :name and attr.id <> :attrId")
+        @NamedQuery(name="getAttributesByNameAndValue", query="select attr from DebitNoteAttributeEntity attr where attr.name = :name and attr.value = :value"),
+        @NamedQuery(name="deleteDebitNoteAttributesByOrganization", query="delete from  DebitNoteAttributeEntity attr where attr.debitNote IN (select u from DebitNoteEntity u where u.organizationId=:organizationId)"),
+        @NamedQuery(name="deleteDebitNoteAttributesByNameAndDebitNote", query="delete from  DebitNoteAttributeEntity attr where attr.debitNote.id = :userId and attr.name = :name"),
+        @NamedQuery(name="deleteDebitNoteAttributesByNameAndDebitNoteOtherThan", query="delete from  DebitNoteAttributeEntity attr where attr.debitNote.id = :userId and attr.name = :name and attr.id <> :attrId")
 })
-public class InvoiceAttributeEntity {
+public class DebitNoteAttributeEntity {
 
     @Id
     @Column(name="ID", length = 36)
@@ -72,8 +41,8 @@ public class InvoiceAttributeEntity {
     protected String id;
 
     @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name = "INVOICE_ID")
-    protected InvoiceEntity invoice;
+    @JoinColumn(name = "DEBIT_NOTE_ID")
+    protected DebitNoteEntity debitNote;
 
     @Column(name = "NAME")
     protected String name;
@@ -105,21 +74,21 @@ public class InvoiceAttributeEntity {
         this.value = value;
     }
 
-    public InvoiceEntity getInvoice() {
-        return invoice;
+    public DebitNoteEntity getDebitNote() {
+        return debitNote;
     }
 
-    public void setInvoice(InvoiceEntity invoice) {
-        this.invoice = invoice;
+    public void setDebitNote(DebitNoteEntity debitNote) {
+        this.debitNote = debitNote;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null) return false;
-        if (!(o instanceof InvoiceAttributeEntity)) return false;
+        if (!(o instanceof DebitNoteAttributeEntity)) return false;
 
-        InvoiceAttributeEntity that = (InvoiceAttributeEntity) o;
+        DebitNoteAttributeEntity that = (DebitNoteAttributeEntity) o;
 
         if (!id.equals(that.getId())) return false;
 

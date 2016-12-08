@@ -21,6 +21,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
+import org.openfact.models.CreditNoteModel;
 import org.openfact.models.CustomerPartyModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.PartyModel;
@@ -86,6 +87,20 @@ public class CustomerPartyAdapter implements CustomerPartyModel, JpaModel<Custom
             customerParty.setParty(entity);
         }
         return new PartyAdapter(session, em, customerParty.getParty());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !(o instanceof CustomerPartyModel)) return false;
+
+        CustomerPartyModel that = (CustomerPartyModel) o;
+        return that.getId().equals(getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
     }
 
 }

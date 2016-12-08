@@ -24,7 +24,7 @@ import java.io.Serializable;
  * @version $Revision: 1 $
  */
 @NamedQueries({
-        @NamedQuery(name = "deleteDebitNoteRequiredActionsByOrganization", query = "delete from DebitNoteRequiredActionEntity action where action.debitNote IN (select u from DebitNoteEntity u where u.organization.id=:organizationId)")
+        @NamedQuery(name = "deleteDebitNoteRequiredActionsByOrganization", query = "delete from DebitNoteRequiredActionEntity action where action.debitNote IN (select u from DebitNoteEntity u where u.organizationId=:organizationId)")
 })
 @Entity
 @Table(name = "DEBIT_NOTE_REQUIRED_ACTION")

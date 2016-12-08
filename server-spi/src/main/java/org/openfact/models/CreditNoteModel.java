@@ -84,25 +84,20 @@ public interface CreditNoteModel {
     /**
      * attributes
      */
-    void setAttribute(String name, String value);
-
+    void setSingleAttribute(String name, String value);
+    void setAttribute(String name, List<String> values);
     void removeAttribute(String name);
-
-    String getAttribute(String name);
-
-    Map<String, String> getAttributes();
+    String getFirstAttribute(String name);
+    List<String> getAttribute(String name);
+    Map<String, List<String>> getAttributes();
 
     /**
      * Required Actions
      */
     Set<String> getRequiredActions();
-
     void addRequiredAction(String action);
-
     void removeRequiredAction(String action);
-
     void addRequiredAction(RequiredAction action);
-
     void removeRequiredAction(RequiredAction action);
     
     /**

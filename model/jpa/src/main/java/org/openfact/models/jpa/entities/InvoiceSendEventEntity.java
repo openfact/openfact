@@ -25,7 +25,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@DiscriminatorValue(value = "invoice")
+@DiscriminatorValue(value = "INVOICE")
 public class InvoiceSendEventEntity extends SendEventEntity {
 
     @NotNull

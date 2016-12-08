@@ -58,4 +58,22 @@ public class TaxTotalEntity {
         this.taxAmount = taxAmount;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        if (!(o instanceof TaxTotalEntity)) return false;
+
+        TaxTotalEntity that = (TaxTotalEntity) o;
+
+        if (!id.equals(that.getId())) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+
 }

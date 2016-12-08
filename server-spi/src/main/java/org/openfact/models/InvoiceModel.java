@@ -94,13 +94,9 @@ public interface InvoiceModel {
      * Required Actions
      */
     Set<String> getRequiredActions();
-
     void addRequiredAction(String action);
-
     void removeRequiredAction(String action);
-
     void addRequiredAction(RequiredAction action);
-
     void removeRequiredAction(RequiredAction action);
 
     /**

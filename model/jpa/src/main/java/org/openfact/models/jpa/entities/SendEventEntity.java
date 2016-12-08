@@ -54,11 +54,6 @@ public class SendEventEntity {
     @Column(name = "CREATED_TIMESTAMP")
     private LocalDateTime createdTimestamp;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
-    private OrganizationEntity organization;
-
     @ElementCollection
     @MapKeyColumn(name = "NAME")
     @Column(name = "VALUE")
@@ -82,6 +77,11 @@ public class SendEventEntity {
     @CollectionTable(name = "RESPONSE_EVENT_FILES", joinColumns = @JoinColumn(name = "SEND_EVENT_ID"))
     @MapKeyColumn(name = "FILE_TYPE")
     private Map<String, StorageFileEntity> fileResponseAttatchments = new HashMap<>();
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
+    private OrganizationEntity organization;
 
     public String getId() {
         return id;
@@ -162,4 +162,22 @@ public class SendEventEntity {
 	public void setFileResponseAttatchments(Map<String, StorageFileEntity> fileResponseAttatchments) {
 		this.fileResponseAttatchments = fileResponseAttatchments;
 	}
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        if (!(o instanceof SendEventEntity)) return false;
+
+        SendEventEntity that = (SendEventEntity) o;
+
+        if (!id.equals(that.getId())) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }

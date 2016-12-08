@@ -59,13 +59,14 @@ import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "CREDIT_NOTE", uniqueConstraints = {
-        @UniqueConstraint(columnNames = { "ORGANIZATION_ID", "DOCUMENT_ID" }) })
+        @UniqueConstraint(columnNames = { "ORGANIZATION_ID", "DOCUMENT_ID" })
+})
 @NamedQueries({
-        @NamedQuery(name = "getAllCreditNotesByOrganization", query = "select c from CreditNoteEntity c where c.organization.id = :organizationId order by c.issueDateTime"),
-        @NamedQuery(name = "getOrganizationCreditNoteById", query = "select c from CreditNoteEntity c where c.id = :id and c.organization.id = :organizationId"),
-        @NamedQuery(name = "getOrganizationCreditNoteByDocumentId", query = "select c from CreditNoteEntity c where c.documentId = :documentId and c.organization.id = :organizationId"),
-        @NamedQuery(name = "searchForCreditNote", query = "select c from CreditNoteEntity c where c.organization.id = :organizationId and lower(c.documentId) like :search order by c.issueDateTime"),
-        @NamedQuery(name = "getOrganizationCreditNoteCount", query = "select count(c) from CreditNoteEntity c where c.organization.id = :organizationId") })
+        @NamedQuery(name = "getAllCreditNotesByOrganization", query = "select c from CreditNoteEntity c where c.organizationId = :organizationId order by c.issueDateTime"),
+        @NamedQuery(name = "getOrganizationCreditNoteById", query = "select c from CreditNoteEntity c where c.id = :id and c.organizationId = :organizationId"),
+        @NamedQuery(name = "getOrganizationCreditNoteByDocumentId", query = "select c from CreditNoteEntity c where c.documentId = :documentId and c.organizationId = :organizationId"),
+        @NamedQuery(name = "searchForCreditNote", query = "select c from CreditNoteEntity c where c.organizationId = :organizationId and lower(c.documentId) like :search order by c.issueDateTime"),
+        @NamedQuery(name = "getOrganizationCreditNoteCount", query = "select count(c) from CreditNoteEntity c where c.organizationId = :organizationId") })
 public class CreditNoteEntity {
 
     @Id
@@ -73,76 +74,63 @@ public class CreditNoteEntity {
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Access(AccessType.PROPERTY)
-    protected String id;
+    private String id;
 
     @Column(name = "DOCUMENT_ID")
-    protected String documentId;
+    private String documentId;
 
     @Lob
     @Basic(fetch = FetchType.LAZY)
     @Column(name = "XML_DOCUMENT")
-    protected byte[] xmlDocument;
+    private byte[] xmlDocument;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
-    private OrganizationEntity organization;
+    @Column(name = "ORGANIZATION_ID")
+    private String organizationId;
 
     @Type(type = "org.hibernate.type.LocalDateTimeType")
     @Column(name = "CREATED_TIMESTAMP")
     private LocalDateTime createdTimestamp;
    
-    /**
-     * UBL
-     */
     @Column(name = "DOCUMENT_CURRENCY_CODE")
-    protected String documentCurrencyCode;
+    private String documentCurrencyCode;
     
     @Column(name = "ISSUE_DATE_TIME")
     @Type(type = "org.hibernate.type.LocalDateTimeType")
-    protected LocalDateTime issueDateTime;
+    private LocalDateTime issueDateTime;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = MonetaryTotalEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "LEGALMONETARYTOTAL_CREDITNOTE")
-    protected MonetaryTotalEntity legalMonetaryTotal;
+    private MonetaryTotalEntity legalMonetaryTotal;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = SupplierPartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ACCOUNTINGSUPPLIERPARTY_CREDITNOTE")
-    protected SupplierPartyEntity accountingSupplierParty;
+    private SupplierPartyEntity accountingSupplierParty;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = CustomerPartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ACCOUNTINGCUSTOMERPARTY_CREDITNOTE")
-    protected CustomerPartyEntity accountingCustomerParty;
+    private CustomerPartyEntity accountingCustomerParty;
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = ResponseEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "DISCREPANCYRESPONSE_CREDITNOTE")
-    protected List<ResponseEntity> discrepancyResponse = new ArrayList<>();
+    private List<ResponseEntity> discrepancyResponse = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = AllowanceChargeEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ALLOWANCECHARGE_CREDITNOTE")
-    protected List<AllowanceChargeEntity> allowanceCharge = new ArrayList<>();
+    private List<AllowanceChargeEntity> allowanceCharge = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = TaxTotalEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "TAXTOTAL_CREDITNOTE_ID")
-    protected List<TaxTotalEntity> taxTotal = new ArrayList<>();
+    private List<TaxTotalEntity> taxTotal = new ArrayList<>();
 
-    /**
-     * Openfact
-     */
-    @ElementCollection
-    @MapKeyColumn(name = "NAME")
-    @Column(name = "VALUE")
-    @CollectionTable(name = "CREDIT_NOTE_ATTRIBUTES", joinColumns = { @JoinColumn(name = "CREDIT_NOTE_ID") })
-    protected Map<String, String> attributes = new HashMap<String, String>();
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy="creditNote")
+    private Collection<CreditNoteAttributeEntity> attributes = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "creditNote", orphanRemoval = true, cascade = CascadeType.REMOVE)
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy="creditNote")
     private Collection<CreditNoteRequiredActionEntity> requiredActions = new ArrayList<>();
 
-    /**
-     * Send Events
-     */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "creditNote", cascade = { CascadeType.ALL })
-    protected Collection<CreditNoteSendEventEntity> sendEvents = new ArrayList<>();
+    @OneToMany(cascade = { CascadeType.REMOVE }, orphanRemoval = true, mappedBy = "creditNote", fetch = FetchType.LAZY)
+    private Collection<CreditNoteSendEventEntity> sendEvents = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -168,12 +156,12 @@ public class CreditNoteEntity {
         this.xmlDocument = xmlDocument;
     }
 
-    public OrganizationEntity getOrganization() {
-        return organization;
+    public String getOrganizationId() {
+        return organizationId;
     }
 
-    public void setOrganization(OrganizationEntity organization) {
-        this.organization = organization;
+    public void setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
     }
 
     public LocalDateTime getCreatedTimestamp() {
@@ -184,6 +172,9 @@ public class CreditNoteEntity {
         this.createdTimestamp = createdTimestamp;
     }
 
+    /**
+     * UBL
+     */
     public String getDocumentCurrencyCode() {
         return documentCurrencyCode;
     }
@@ -248,11 +239,14 @@ public class CreditNoteEntity {
         this.taxTotal = taxTotal;
     }
 
-    public Map<String, String> getAttributes() {
+    /**
+     * Openfact
+     */
+    public Collection<CreditNoteAttributeEntity> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(Map<String, String> attributes) {
+    public void setAttributes(Collection<CreditNoteAttributeEntity> attributes) {
         this.attributes = attributes;
     }
 
@@ -272,5 +266,28 @@ public class CreditNoteEntity {
         this.sendEvents = sendEvents;
     }
 
-    
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        CreditNoteEntity other = (CreditNoteEntity) obj;
+        if (getId() == null) {
+            if (other.getId() != null)
+                return false;
+        } else if (!getId().equals(other.getId()))
+            return false;
+        return true;
+    }
 }

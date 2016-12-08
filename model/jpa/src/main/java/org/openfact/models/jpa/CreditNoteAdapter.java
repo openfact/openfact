@@ -17,35 +17,19 @@
 package org.openfact.models.jpa;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.AllowanceChargeModel;
-import org.openfact.models.CreditNoteModel;
-import org.openfact.models.CustomerPartyModel;
-import org.openfact.models.MonetaryTotalModel;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.ResponseModel;
+import org.openfact.common.util.MultivaluedHashMap;
+import org.openfact.models.*;
+import org.openfact.models.jpa.entities.*;
+import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.ubl.SendEventModel;
-import org.openfact.models.SupplierPartyModel;
-import org.openfact.models.TaxTotalModel;
 import org.openfact.models.enums.RequiredAction;
-import org.openfact.models.jpa.entities.AllowanceChargeEntity;
-import org.openfact.models.jpa.entities.CreditNoteEntity;
-import org.openfact.models.jpa.entities.CreditNoteRequiredActionEntity;
-import org.openfact.models.jpa.entities.CustomerPartyEntity;
-import org.openfact.models.jpa.entities.MonetaryTotalEntity;
-import org.openfact.models.jpa.entities.ResponseEntity;
-import org.openfact.models.jpa.entities.SupplierPartyEntity;
-import org.openfact.models.jpa.entities.TaxTotalEntity;
 
 public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEntity> {
 
@@ -147,8 +131,7 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
 
     @Override
     public List<AllowanceChargeModel> getAllowanceCharge() {
-        return creditNote.getAllowanceCharge().stream().map(f -> new AllowanceChargeAdapter(session, em, f))
-                .collect(Collectors.toList());
+        return creditNote.getAllowanceCharge().stream().map(f -> new AllowanceChargeAdapter(session, em, f)).collect(Collectors.toList());
     }
 
     @Override
@@ -162,8 +145,7 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
 
     @Override
     public List<TaxTotalModel> getTaxTotal() {
-        return creditNote.getTaxTotal().stream().map(f -> new TaxTotalAdapter(session, em, f))
-                .collect(Collectors.toList());
+        return creditNote.getTaxTotal().stream().map(f -> new TaxTotalAdapter(session, em, f)).collect(Collectors.toList());
     }
 
     @Override
@@ -194,8 +176,7 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
 
     @Override
     public List<ResponseModel> getDiscrepancyResponse() {
-        return creditNote.getDiscrepancyResponse().stream().map(f -> new ResponseAdapter(session, em, f))
-                .collect(Collectors.toList());
+        return creditNote.getDiscrepancyResponse().stream().map(f -> new ResponseAdapter(session, em, f)).collect(Collectors.toList());
     }
 
     @Override
@@ -217,26 +198,110 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
         creditNote.setXmlDocument(value);
     }
 
+    /**
+     * Attributes*/
     @Override
-    public void setAttribute(String name, String value) {
-        creditNote.getAttributes().put(name, value);
+    public void setSingleAttribute(String name, String value) {
+        String firstExistingAttrId = null;
+        List<CreditNoteAttributeEntity> toRemove = new ArrayList<>();
+        for (CreditNoteAttributeEntity attr : creditNote.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                if (firstExistingAttrId == null) {
+                    attr.setValue(value);
+                    firstExistingAttrId = attr.getId();
+                } else {
+                    toRemove.add(attr);
+                }
+            }
+        }
+
+        if (firstExistingAttrId != null) {
+            // Remove attributes through HQL to avoid StaleUpdateException
+            Query query = em.createNamedQuery("deleteCreditNoteAttributesByNameAndCreditNoteOtherThan");
+            query.setParameter("name", name);
+            query.setParameter("creditNoteId", creditNote.getId());
+            query.setParameter("attrId", firstExistingAttrId);
+            int numUpdated = query.executeUpdate();
+
+            // Remove attribute from local entity
+            creditNote.getAttributes().removeAll(toRemove);
+        } else {
+
+            persistAttributeValue(name, value);
+        }
+    }
+
+    @Override
+    public void setAttribute(String name, List<String> values) {
+        // Remove all existing
+        removeAttribute(name);
+
+        // Put all new
+        for (String value : values) {
+            persistAttributeValue(name, value);
+        }
+    }
+
+    private void persistAttributeValue(String name, String value) {
+        CreditNoteAttributeEntity attr = new CreditNoteAttributeEntity();
+        attr.setId(OpenfactModelUtils.generateId());
+        attr.setName(name);
+        attr.setValue(value);
+        attr.setCreditNote(creditNote);
+        em.persist(attr);
+        creditNote.getAttributes().add(attr);
     }
 
     @Override
     public void removeAttribute(String name) {
-        creditNote.getAttributes().remove(name);
+        // Remove attribute through HQL to avoid StaleUpdateException
+        Query query = em.createNamedQuery("deleteCreditNoteAttributesByNameAndCreditNote");
+        query.setParameter("name", name);
+        query.setParameter("creditNoteId", creditNote.getId());
+        int numUpdated = query.executeUpdate();
+
+        // Also remove attributes from local user entity
+        List<CreditNoteAttributeEntity> toRemove = new ArrayList<>();
+        for (CreditNoteAttributeEntity attr : creditNote.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                toRemove.add(attr);
+            }
+        }
+        creditNote.getAttributes().removeAll(toRemove);
     }
 
     @Override
-    public String getAttribute(String name) {
-        return creditNote.getAttributes().get(name);
+    public String getFirstAttribute(String name) {
+        for (CreditNoteAttributeEntity attr : creditNote.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                return attr.getValue();
+            }
+        }
+        return null;
     }
 
     @Override
-    public Map<String, String> getAttributes() {
-        return creditNote.getAttributes();
+    public List<String> getAttribute(String name) {
+        List<String> result = new ArrayList<>();
+        for (CreditNoteAttributeEntity attr : creditNote.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                result.add(attr.getValue());
+            }
+        }
+        return result;
     }
 
+    @Override
+    public Map<String, List<String>> getAttributes() {
+        MultivaluedHashMap<String, String> result = new MultivaluedHashMap<>();
+        for (CreditNoteAttributeEntity attr : creditNote.getAttributes()) {
+            result.add(attr.getName(), attr.getValue());
+        }
+        return result;
+    }
+
+    /**
+     * Required actions*/
     @Override
     public Set<String> getRequiredActions() {
         Set<String> result = new HashSet<>();
@@ -244,6 +309,12 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
             result.add(attr.getAction());
         }
         return result;
+    }
+
+    @Override
+    public void addRequiredAction(RequiredAction action) {
+        String actionName = action.name();
+        addRequiredAction(actionName);
     }
 
     @Override
@@ -261,6 +332,12 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
     }
 
     @Override
+    public void removeRequiredAction(RequiredAction action) {
+        String actionName = action.name();
+        removeRequiredAction(actionName);
+    }
+
+    @Override
     public void removeRequiredAction(String actionName) {
         Iterator<CreditNoteRequiredActionEntity> it = creditNote.getRequiredActions().iterator();
         while (it.hasNext()) {
@@ -271,23 +348,27 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
             }
         }
     }
-
-    @Override
-    public void addRequiredAction(RequiredAction action) {
-        String actionName = action.name();
-        addRequiredAction(actionName);
-    }
-
-    @Override
-    public void removeRequiredAction(RequiredAction action) {
-        String actionName = action.name();
-        removeRequiredAction(actionName);
-    }
+    
+    /**
+     * Send events*/
     
     @Override
     public List<SendEventModel> getSendEvents() {
-        return creditNote.getSendEvents().stream().map(f -> new SendEventAdapter(session, organization, em, f))
-                .collect(Collectors.toList());
+        return creditNote.getSendEvents().stream().map(f -> new SendEventAdapter(session, organization, em, f)).collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !(o instanceof CreditNoteModel)) return false;
+
+        CreditNoteModel that = (CreditNoteModel) o;
+        return that.getId().equals(getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
     }
 
 }

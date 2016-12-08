@@ -22,10 +22,7 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.ContactModel;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.PartyLegalEntityModel;
-import org.openfact.models.PartyModel;
+import org.openfact.models.*;
 import org.openfact.models.jpa.entities.ContactEntity;
 import org.openfact.models.jpa.entities.PartyEntity;
 import org.openfact.models.jpa.entities.PartyLegalEntity;
@@ -83,6 +80,20 @@ public class PartyAdapter implements PartyModel, JpaModel<PartyEntity> {
             party.setContact(contact);            
         }
         return new ContactAdapter(session, em, party.getContact());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !(o instanceof PartyModel)) return false;
+
+        PartyModel that = (PartyModel) o;
+        return that.getId().equals(getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
     }
 
 }
