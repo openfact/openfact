@@ -24,9 +24,7 @@ import org.jboss.logging.Logger;
 import org.openfact.models.ModelReadOnlyException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.StorageFileModel;
-import org.openfact.models.jpa.entities.*;
 
-import javax.persistence.EntityManager;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 

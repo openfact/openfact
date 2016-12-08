@@ -744,6 +744,11 @@
 			</dependency>
 			<dependency>
 				<groupId>org.openfact</groupId>
+				<artifactId>openfact-model-cloud</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openfact</groupId>
 				<artifactId>launcher</artifactId>
 				<version>${project.version}</version>
 			</dependency>

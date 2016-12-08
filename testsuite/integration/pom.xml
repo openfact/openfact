@@ -65,6 +65,10 @@
             <groupId>org.openfact</groupId>
             <artifactId>openfact-model-jpa</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.openfact</groupId>
+            <artifactId>openfact-model-cloud</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.keycloak</groupId>
