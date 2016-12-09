@@ -28,10 +28,7 @@ import org.jboss.resteasy.annotations.cache.NoCache;
 import org.openfact.common.ClientConnection;
 import org.openfact.common.converts.DocumentUtils;
 import org.openfact.events.admin.OperationType;
-import org.openfact.models.InvoiceModel;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OpenfactSessionTask;
-import org.openfact.models.OrganizationModel;
+import org.openfact.models.*;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.representations.idm.InvoiceRepresentation;
@@ -40,6 +37,8 @@ import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.InvoiceManager;
 import org.openfact.services.resources.OpenfactApplication;
+import org.openfact.services.scheduled.ScheduledTaskRunner;
+import org.openfact.timer.ScheduledTask;
 import org.openfact.ubl.SendEventModel;
 import org.openfact.ubl.SendException;
 import org.openfact.ubl.UBLInvoiceProvider;
@@ -234,24 +233,24 @@ public class InvoiceAdminResource {
 
         ExecutorService executorService = null;
         try {
-            executorService = Executors.newSingleThreadExecutor();
-            executorService.execute(() -> {
-                OpenfactModelUtils.runJobInTransaction(OpenfactApplication.createSessionFactory(), new OpenfactSessionTask() {
-                    @Override
-                    public void run(OpenfactSession session) {
-                        InvoiceManager invoiceManager = new InvoiceManager(session);
-                        try {
-                            OrganizationModel organizationThread = session.organizations().getOrganization(organization.getId());
-                            InvoiceModel invoiceThread = session.invoices().getInvoiceById(organizationThread, invoice.getId());
-                            invoiceManager.sendToCustomerParty(organizationThread, invoiceThread);
-                        } catch (SendException e) {
-                            throw new InternalServerErrorException(e);
-                        }
+            executorService = Executors.newCachedThreadPool();
+
+            ScheduledTaskRunner scheduledTaskRunner = new ScheduledTaskRunner(session.getOpenfactSessionFactory(), new ScheduledTask() {
+                @Override
+                public void run(OpenfactSession session) {
+                    InvoiceManager invoiceManager = new InvoiceManager(session);
+                    try {
+                        OrganizationModel organizationThread = session.organizations().getOrganization(organization.getId());
+                        InvoiceModel invoiceThread = session.invoices().getInvoiceById(organizationThread, invoice.getId());
+                        invoiceManager.sendToCustomerParty(organizationThread, invoiceThread);
+                    } catch (SendException e) {
+                        throw new InternalServerErrorException(e);
                     }
-                });
+                }
             });
+            executorService.execute(scheduledTaskRunner);
         } finally {
-            if (executorService != null) {
+            if(executorService != null) {
                 executorService.shutdown();
             }
         }
@@ -270,24 +269,24 @@ public class InvoiceAdminResource {
 
         ExecutorService executorService = null;
         try {
-            executorService = Executors.newSingleThreadExecutor();
-            executorService.execute(() -> {
-                OpenfactModelUtils.runJobInTransaction(OpenfactApplication.createSessionFactory(), new OpenfactSessionTask() {
-                    @Override
-                    public void run(OpenfactSession session) {
-                        InvoiceManager invoiceManager = new InvoiceManager(session);
-                        try {
-                            OrganizationModel organizationThread = session.organizations().getOrganization(organization.getId());
-                            InvoiceModel invoiceThread = session.invoices().getInvoiceById(organizationThread, invoice.getId());
-                            invoiceManager.sendToTrirdParty(organizationThread, invoiceThread);
-                        } catch (SendException e) {
-                            throw new InternalServerErrorException(e);
-                        }
+            executorService = Executors.newCachedThreadPool();
+
+            ScheduledTaskRunner scheduledTaskRunner = new ScheduledTaskRunner(session.getOpenfactSessionFactory(), new ScheduledTask() {
+                @Override
+                public void run(OpenfactSession session) {
+                    InvoiceManager invoiceManager = new InvoiceManager(session);
+                    try {
+                        OrganizationModel organizationThread = session.organizations().getOrganization(organization.getId());
+                        InvoiceModel invoiceThread = session.invoices().getInvoiceById(organizationThread, invoice.getId());
+                        invoiceManager.sendToTrirdParty(organizationThread, invoiceThread);
+                    } catch (SendException e) {
+                        throw new InternalServerErrorException(e);
                     }
-                });
+                }
             });
+            executorService.execute(scheduledTaskRunner);
         } finally {
-            if (executorService != null) {
+            if(executorService != null) {
                 executorService.shutdown();
             }
         }
