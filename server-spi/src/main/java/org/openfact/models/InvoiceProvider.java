@@ -59,6 +59,6 @@ public interface InvoiceProvider extends Provider {
 
     ScrollModel<InvoiceModel> getInvoicesScroll(OrganizationModel organization, boolean asc, int scrollSize);
 
-    ScrollModel<List<InvoiceModel>> getInvoicesScroll(OrganizationModel organization, int scrollSize, RequiredAction... requiredAction);
+    ScrollModel<List<InvoiceModel>> getInvoicesScroll(OrganizationModel organization, int scrollSize, String... requiredAction);
 
 }

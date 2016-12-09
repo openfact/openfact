@@ -116,15 +116,16 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
 			public SendEventModel sendToCustomer(OrganizationModel organization, InvoiceModel invoice) throws SendException {
 				CustomerPartyModel customerParty = invoice.getAccountingCustomerParty();
 
-                SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, invoice);
-                sendEvent.setType("EMAIL");
-
                 if (customerParty == null || customerParty.getParty() == null || customerParty.getParty().getContact() == null || customerParty.getParty().getContact().getElectronicMail() == null) {
+                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, invoice);
+                    sendEvent.setType("EMAIL");
                     sendEvent.setDescription("Could not find a valid email for the customer.");
                     return sendEvent;
 				}
 
                 if (organization.getSmtpConfig().size() == 0) {
+                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, invoice);
+                    sendEvent.setType("EMAIL");
                     sendEvent.setDescription("Could not find a valid smtp configuration on organization.");
                     return sendEvent;
                 }
@@ -162,6 +163,9 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
                             .sendInvoice(invoice);
 
                     // Write event to the database
+                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.SUCCESS, invoice);
+                    sendEvent.setType("EMAIL");
+
                     sendEvent.setDescription("Ivoice successfully sended");
                     sendEvent.addFileAttatchments(xmlFile);
                     sendEvent.addFileAttatchments(pdfFile);
@@ -176,9 +180,13 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
 
                     return sendEvent;
                 } catch (ReportException e) {
+                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, invoice);
+                    sendEvent.setType("EMAIL");
                     sendEvent.setDescription(e.getMessage());
                     throw new SendException("Could not generate pdf report", e);
                 } catch (EmailException e) {
+                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, invoice);
+                    sendEvent.setType("EMAIL");
                     sendEvent.setDescription(e.getMessage());
                     throw new SendException("Could not send email", e);
                 }

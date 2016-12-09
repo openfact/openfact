@@ -198,7 +198,7 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
 
     @Override
     public SearchResultsModel<CreditNoteModel> searchForCreditNote(OrganizationModel organization, SearchCriteriaModel criteria) {
-        criteria.addFilter("organization.id", organization.getId(), SearchCriteriaFilterOperator.eq);
+        criteria.addFilter("organizationId", organization.getId(), SearchCriteriaFilterOperator.eq);
 
         SearchResultsModel<CreditNoteEntity> entityResult = find(criteria, CreditNoteEntity.class);
         List<CreditNoteEntity> entities = entityResult.getModels();
@@ -213,7 +213,7 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
 
     @Override
     public SearchResultsModel<CreditNoteModel> searchForCreditNote(OrganizationModel organization, SearchCriteriaModel criteria, String filterText) {
-        criteria.addFilter("organization.id", organization.getId(), SearchCriteriaFilterOperator.eq);
+        criteria.addFilter("organizationId", organization.getId(), SearchCriteriaFilterOperator.eq);
 
         SearchResultsModel<CreditNoteEntity> entityResult = findFullText(criteria, CreditNoteEntity.class, filterText, DOCUMENT_ID);
         List<CreditNoteEntity> entities = entityResult.getModels();
@@ -237,9 +237,9 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
     public List<CreditNoteModel> getCreditNotes(OrganizationModel organization, List<RequiredAction> requeridAction, boolean intoRequeridAction) {
         String queryName = "";
         if (intoRequeridAction) {
-            queryName = "select i from CreditNoteEntity i where i.organization.id = :organizationId and :requeridAction in elements(i.requeridAction) order by i.issueDateTime ";
+            queryName = "select i from CreditNoteEntity i where i.organizationId = :organizationId and :requeridAction in elements(i.requeridAction) order by i.issueDateTime ";
         } else {
-            queryName = "select i from CreditNoteEntity i where i.organization.id = :organizationId and :requeridAction not in elements(i.requeridAction) order by i.issueDateTime ";
+            queryName = "select i from CreditNoteEntity i where i.organizationId = :organizationId and :requeridAction not in elements(i.requeridAction) order by i.issueDateTime ";
         }
         TypedQuery<CreditNoteEntity> query = em.createQuery(queryName, CreditNoteEntity.class);
         query.setParameter("organizationId", organization.getId());
@@ -276,19 +276,19 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
     }
 
     @Override
-    public ScrollModel<List<CreditNoteModel>> getCreditNotesScroll(OrganizationModel organization, int scrollSize, RequiredAction... requiredAction) {
+    public ScrollModel<List<CreditNoteModel>> getCreditNotesScroll(OrganizationModel organization, int scrollSize, String... requiredAction) {
         if (scrollSize == -1) {
             scrollSize = 10;
         }
 
         TypedQuery<CreditNoteEntity> query = em.createNamedQuery("getAllCreditNotesByRequiredActionAndOrganization", CreditNoteEntity.class);
         query.setParameter("organizationId", organization.getId());
-        query.setParameter("requiredAction", new ArrayList<RequiredAction>(Arrays.asList(requiredAction)));
+        query.setParameter("requiredAction", new ArrayList<>(Arrays.asList(requiredAction)));
 
         ScrollModel<List<CreditNoteModel>> result = new ScrollPagingAdapter<>(CreditNoteEntity.class, query, f -> {
             return f.stream().map(m -> new CreditNoteAdapter(session, organization, em, m)).collect(Collectors.toList());
         });
-        return null;
+        return result;
     }
 
 }

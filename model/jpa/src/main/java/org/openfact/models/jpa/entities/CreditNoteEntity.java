@@ -64,7 +64,7 @@ import org.hibernate.annotations.Type;
 @NamedQueries({
         @NamedQuery(name = "getAllCreditNotesByOrganization", query = "select c from CreditNoteEntity c where c.organizationId = :organizationId order by c.issueDateTime"),
         @NamedQuery(name = "getAllCreditNoteIdsByOrganization", query = "select c.id from CreditNoteEntity c where c.organizationId = :organizationId order by c.issueDateTime"),
-        @NamedQuery(name = "getAllCreditNotesByRequiredActionAndOrganization", query = "select c.id from CreditNoteEntity c inner join c.requiredActions r where c.organizationId = :organizationId and r.action in :requiredAction order by c.issueDateTime"),
+        @NamedQuery(name = "getAllCreditNotesByRequiredActionAndOrganization", query = "select c from CreditNoteEntity c inner join c.requiredActions r where c.organizationId = :organizationId and r.action in :requiredAction order by c.issueDateTime"),
         @NamedQuery(name = "getOrganizationCreditNoteById", query = "select c from CreditNoteEntity c where c.id = :id and c.organizationId = :organizationId"),
         @NamedQuery(name = "getOrganizationCreditNoteByDocumentId", query = "select c from CreditNoteEntity c where c.documentId = :documentId and c.organizationId = :organizationId"),
         @NamedQuery(name = "searchForCreditNote", query = "select c from CreditNoteEntity c where c.organizationId = :organizationId and lower(c.documentId) like :search order by c.issueDateTime"),

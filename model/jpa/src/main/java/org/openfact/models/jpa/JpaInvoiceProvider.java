@@ -203,7 +203,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
     @Override
     public SearchResultsModel<InvoiceModel> searchForInvoice(OrganizationModel organization, SearchCriteriaModel criteria) {
-        criteria.addFilter("organization.id", organization.getId(), SearchCriteriaFilterOperator.eq);
+        criteria.addFilter("organizationId", organization.getId(), SearchCriteriaFilterOperator.eq);
 
         SearchResultsModel<InvoiceEntity> entityResult = find(criteria, InvoiceEntity.class);
         List<InvoiceEntity> entities = entityResult.getModels();
@@ -218,7 +218,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
     @Override
     public SearchResultsModel<InvoiceModel> searchForInvoice(OrganizationModel organization, SearchCriteriaModel criteria, String filterText) {
-        criteria.addFilter("organization.id", organization.getId(), SearchCriteriaFilterOperator.eq);
+        criteria.addFilter("organizationId", organization.getId(), SearchCriteriaFilterOperator.eq);
 
         SearchResultsModel<InvoiceEntity> entityResult = findFullText(criteria, InvoiceEntity.class, filterText, INVOICE_TYPE_CODE, DOCUMENT_ID);
         List<InvoiceEntity> entities = entityResult.getModels();
@@ -242,9 +242,9 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     public List<InvoiceModel> getInvoices(OrganizationModel organization, List<RequiredAction> requeridAction, boolean intoRequeridAction) {
         String queryName = "";
         if (intoRequeridAction) {
-            queryName = "select i from InvoiceEntity i where i.organization.id = :organizationId and :requeridAction in elements(i.requeridAction) order by i.invoiceTypeCode ";
+            queryName = "select i from InvoiceEntity i where i.organizationId = :organizationId and :requeridAction in elements(i.requeridAction) order by i.invoiceTypeCode ";
         } else {
-            queryName = "select i from InvoiceEntity i where i.organization.id = :organizationId and :requeridAction not in elements(i.requeridAction) order by i.invoiceTypeCode ";
+            queryName = "select i from InvoiceEntity i where i.organizationId = :organizationId and :requeridAction not in elements(i.requeridAction) order by i.invoiceTypeCode ";
 
         }
         TypedQuery<InvoiceEntity> query = em.createQuery(queryName, InvoiceEntity.class);
@@ -282,18 +282,18 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     }
 
     @Override
-    public ScrollModel<List<InvoiceModel>> getInvoicesScroll(OrganizationModel organization, int scrollSize, RequiredAction... requiredAction) {
+    public ScrollModel<List<InvoiceModel>> getInvoicesScroll(OrganizationModel organization, int scrollSize, String... requiredAction) {
         if (scrollSize == -1) {
             scrollSize = 10;
         }
 
         TypedQuery<InvoiceEntity> query = em.createNamedQuery("getAllInvoicesByRequiredActionAndOrganization", InvoiceEntity.class);
         query.setParameter("organizationId", organization.getId());
-        query.setParameter("requiredAction", new ArrayList<RequiredAction>(Arrays.asList(requiredAction)));
+        query.setParameter("requiredAction", new ArrayList<>(Arrays.asList(requiredAction)));
 
         ScrollModel<List<InvoiceModel>> result = new ScrollPagingAdapter<>(InvoiceEntity.class, query, f -> {
             return f.stream().map(m -> new InvoiceAdapter(session, organization, em, m)).collect(Collectors.toList());
         });
-        return null;
+        return result;
     }
 }

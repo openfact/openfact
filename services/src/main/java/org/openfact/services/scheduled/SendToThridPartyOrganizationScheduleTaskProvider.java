@@ -16,18 +16,6 @@
  *******************************************************************************/
 package org.openfact.services.scheduled;
 
-import org.easybatch.core.filter.HeaderRecordFilter;
-import org.easybatch.core.job.*;
-import org.easybatch.core.listener.BatchListener;
-import org.easybatch.core.processor.RecordProcessor;
-import org.easybatch.core.reader.IterableRecordReader;
-import org.easybatch.core.reader.RecordReader;
-import org.easybatch.core.reader.RetryableRecordReader;
-import org.easybatch.core.record.GenericRecord;
-import org.easybatch.core.record.Header;
-import org.easybatch.core.record.Record;
-import org.easybatch.core.retry.RetryPolicy;
-import org.easybatch.tools.reporting.HtmlJobReportFormatter;
 import org.openfact.models.*;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.services.managers.CreditNoteManager;
@@ -36,19 +24,17 @@ import org.openfact.services.managers.InvoiceManager;
 import org.openfact.ubl.SendEventModel;
 import org.openfact.ubl.SendException;
 
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
+import java.util.Iterator;
+import java.util.List;
 
-public class SendToCustomerOrganizationScheduleTaskProvider implements OrganizationScheduleTaskProvider {
+public class SendToThridPartyOrganizationScheduleTaskProvider implements OrganizationScheduleTaskProvider {
 
-    public static final String JOB_NAME = "SENT_TO_CUSTOMER";
+    public static final String JOB_NAME = "SENT_TO_THRID_PARTY";
     public static final int RETRY = 20;
 
     protected boolean isActive;
 
-    public SendToCustomerOrganizationScheduleTaskProvider(boolean isActive) {
+    public SendToThridPartyOrganizationScheduleTaskProvider(boolean isActive) {
         this.isActive = isActive;
     }
 
@@ -86,7 +72,7 @@ public class SendToCustomerOrganizationScheduleTaskProvider implements Organizat
     private long sendInvoices(OpenfactSession session, OrganizationModel organization) {
         long readCount = 0;
 
-        ScrollModel<List<InvoiceModel>> scroll = session.invoices().getInvoicesScroll(organization, 100, RequiredAction.SEND_TO_CUSTOMER.toString());
+        ScrollModel<List<InvoiceModel>> scroll = session.invoices().getInvoicesScroll(organization, 100, RequiredAction.SEND_TO_TRIRD_PARTY.toString());
         Iterator<List<InvoiceModel>> iterator = scroll.iterator();
 
         while (iterator.hasNext()) {
@@ -95,14 +81,14 @@ public class SendToCustomerOrganizationScheduleTaskProvider implements Organizat
             readCount += invoices.size();
 
             invoices.stream()
-                    .filter(p -> p.getRequiredActions().contains(RequiredAction.SEND_TO_CUSTOMER.toString()))
+                    .filter(p -> p.getRequiredActions().contains(RequiredAction.SEND_TO_TRIRD_PARTY.toString()))
                     .filter(p -> p.getSendEvents().size() < RETRY)
                     .forEach(c -> {
                         InvoiceManager manager = new InvoiceManager(session);
                         try {
-                            SendEventModel sendEvent = manager.sendToCustomerParty(organization, c);
+                            SendEventModel sendEvent = manager.sendToTrirdParty(organization, c);
                             if (sendEvent.getResult()) {
-                                c.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
+                                c.removeRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
                             }
                         } catch (SendException e) {
                             throw new JobException("error on execute job", e);
@@ -116,7 +102,7 @@ public class SendToCustomerOrganizationScheduleTaskProvider implements Organizat
     private long sendCreditNotes(OpenfactSession session, OrganizationModel organization) {
         long readCount = 0;
 
-        ScrollModel<List<CreditNoteModel>> scroll = session.creditNotes().getCreditNotesScroll(organization, 100, RequiredAction.SEND_TO_CUSTOMER.toString());
+        ScrollModel<List<CreditNoteModel>> scroll = session.creditNotes().getCreditNotesScroll(organization, 100, RequiredAction.SEND_TO_TRIRD_PARTY.toString());
         Iterator<List<CreditNoteModel>> iterator = scroll.iterator();
 
         while (iterator.hasNext()) {
@@ -125,14 +111,14 @@ public class SendToCustomerOrganizationScheduleTaskProvider implements Organizat
             readCount += creditNotes.size();
 
             creditNotes.stream()
-                    .filter(p -> p.getRequiredActions().contains(RequiredAction.SEND_TO_CUSTOMER))
+                    .filter(p -> p.getRequiredActions().contains(RequiredAction.SEND_TO_TRIRD_PARTY))
                     .filter(p -> p.getSendEvents().size() < RETRY)
                     .forEach(c -> {
                         CreditNoteManager manager = new CreditNoteManager(session);
                         try {
-                            SendEventModel sendEvent = manager.sendToCustomerParty(organization, c);
+                            SendEventModel sendEvent = manager.sendToTrirdParty(organization, c);
                             if (sendEvent.getResult()) {
-                                c.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
+                                c.removeRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
                             }
                         } catch (SendException e) {
                             throw new JobException("error on execute job", e);
@@ -146,7 +132,7 @@ public class SendToCustomerOrganizationScheduleTaskProvider implements Organizat
     private long sendDebitNotes(OpenfactSession session, OrganizationModel organization) {
         long readCount = 0;
 
-        ScrollModel<List<DebitNoteModel>> scroll = session.debitNotes().getDebitNotesScroll(organization, 100, RequiredAction.SEND_TO_CUSTOMER.toString());
+        ScrollModel<List<DebitNoteModel>> scroll = session.debitNotes().getDebitNotesScroll(organization, 100, RequiredAction.SEND_TO_TRIRD_PARTY.toString());
         Iterator<List<DebitNoteModel>> iterator = scroll.iterator();
 
         while (iterator.hasNext()) {
@@ -155,14 +141,14 @@ public class SendToCustomerOrganizationScheduleTaskProvider implements Organizat
             readCount += debitNotes.size();
 
             debitNotes.stream()
-                    .filter(p -> p.getRequiredActions().contains(RequiredAction.SEND_TO_CUSTOMER))
+                    .filter(p -> p.getRequiredActions().contains(RequiredAction.SEND_TO_TRIRD_PARTY))
                     .filter(p -> p.getSendEvents().size() < RETRY)
                     .forEach(c -> {
                         DebitNoteManager manager = new DebitNoteManager(session);
                         try {
-                            SendEventModel sendEvent = manager.sendToCustomerParty(organization, c);
+                            SendEventModel sendEvent = manager.sendToTrirdParty(organization, c);
                             if (sendEvent.getResult()) {
-                                c.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
+                                c.removeRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
                             }
                         } catch (SendException e) {
                             throw new JobException("error on execute job", e);

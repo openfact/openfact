@@ -81,8 +81,10 @@ public class ScrollPagingAdapter<T, R> implements ScrollModel<T> {
             int start = (page - 1) * pageSize;
             List<R> results = (List<R>) query.setFirstResult(start).setMaxResults(pageSize + 1).getResultList();
             page++;
-            if(results.size() > pageSize) hasMore = true;
-            results.remove(results.size());
+            if(results.size() > pageSize) {
+                hasMore = true;
+                results.remove(results.size());
+            }
             this.results = results;
         }
 

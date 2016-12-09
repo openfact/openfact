@@ -59,6 +59,6 @@ public interface DebitNoteProvider extends Provider {
 
     ScrollModel<DebitNoteModel> getDebitNotesScroll(OrganizationModel organization, boolean asc, int scrollSize);
 
-    ScrollModel<List<DebitNoteModel>> getDebitNotesScroll(OrganizationModel organization, int scrollSize, RequiredAction... requiredAction);
+    ScrollModel<List<DebitNoteModel>> getDebitNotesScroll(OrganizationModel organization, int scrollSize, String... requiredAction);
 
 }

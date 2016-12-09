@@ -199,7 +199,7 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
 
     @Override
     public SearchResultsModel<DebitNoteModel> searchForDebitNote(OrganizationModel organization, SearchCriteriaModel criteria) {
-        criteria.addFilter("organization.id", organization.getId(), SearchCriteriaFilterOperator.eq);
+        criteria.addFilter("organizationId", organization.getId(), SearchCriteriaFilterOperator.eq);
 
         SearchResultsModel<DebitNoteEntity> entityResult = find(criteria, DebitNoteEntity.class);
         List<DebitNoteEntity> entities = entityResult.getModels();
@@ -214,7 +214,7 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
 
     @Override
     public SearchResultsModel<DebitNoteModel> searchForDebitNote(OrganizationModel organization, SearchCriteriaModel criteria, String filterText) {
-        criteria.addFilter("organization.id", organization.getId(), SearchCriteriaFilterOperator.eq);
+        criteria.addFilter("organizationId", organization.getId(), SearchCriteriaFilterOperator.eq);
 
         SearchResultsModel<DebitNoteEntity> entityResult = findFullText(criteria, DebitNoteEntity.class, filterText, DOCUMENT_ID);
         List<DebitNoteEntity> entities = entityResult.getModels();
@@ -238,9 +238,9 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
     public List<DebitNoteModel> getDebitNotes(OrganizationModel organization, List<RequiredAction> requeridAction, boolean intoRequeridAction) {
         String queryName = "";
         if (intoRequeridAction) {
-            queryName = "select i from DebitNoteEntity i where i.organization.id = :organizationId and :requeridAction in elements(i.requeridAction) order by i.issueDateTime ";
+            queryName = "select i from DebitNoteEntity i where i.organizationId = :organizationId and :requeridAction in elements(i.requeridAction) order by i.issueDateTime ";
         } else {
-            queryName = "select i from DebitNoteEntity i where i.organization.id = :organizationId and :requeridAction not in elements(i.requeridAction) order by i.issueDateTime ";
+            queryName = "select i from DebitNoteEntity i where i.organizationId = :organizationId and :requeridAction not in elements(i.requeridAction) order by i.issueDateTime ";
         }
         TypedQuery<DebitNoteEntity> query = em.createQuery(queryName, DebitNoteEntity.class);
         query.setParameter("organizationId", organization.getId());
@@ -277,19 +277,19 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
     }
 
     @Override
-    public ScrollModel<List<DebitNoteModel>> getDebitNotesScroll(OrganizationModel organization, int scrollSize, RequiredAction... requiredAction) {
+    public ScrollModel<List<DebitNoteModel>> getDebitNotesScroll(OrganizationModel organization, int scrollSize, String... requiredAction) {
         if (scrollSize == -1) {
             scrollSize = 10;
         }
 
         TypedQuery<DebitNoteEntity> query = em.createNamedQuery("getAllDebitNotesByRequiredActionAndOrganization", DebitNoteEntity.class);
         query.setParameter("organizationId", organization.getId());
-        query.setParameter("requiredAction", new ArrayList<RequiredAction>(Arrays.asList(requiredAction)));
+        query.setParameter("requiredAction", new ArrayList<>(Arrays.asList(requiredAction)));
 
         ScrollModel<List<DebitNoteModel>> result = new ScrollPagingAdapter<>(DebitNoteEntity.class, query, f -> {
             return f.stream().map(m -> new DebitNoteAdapter(session, organization, em, m)).collect(Collectors.toList());
         });
-        return null;
+        return result;
     }
 
 }

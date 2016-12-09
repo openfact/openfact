@@ -63,7 +63,7 @@ import org.hibernate.annotations.Type;
 @NamedQueries({
         @NamedQuery(name = "getAllInvoicesByOrganization", query = "select c from InvoiceEntity c where c.organizationId = :organizationId order by c.issueDateTime"),
         @NamedQuery(name = "getAllInvoiceIdsByOrganization", query = "select c.id from InvoiceEntity c where c.organizationId = :organizationId order by c.issueDateTime"),
-        @NamedQuery(name = "getAllInvoicesByRequiredActionAndOrganization", query = "select c.id from InvoiceEntity c inner join c.requiredActions r where c.organizationId = :organizationId and r.action in :requiredAction order by c.issueDateTime"),
+        @NamedQuery(name = "getAllInvoicesByRequiredActionAndOrganization", query = "select c from InvoiceEntity c inner join c.requiredActions r where c.organizationId = :organizationId and r.action in :requiredAction order by c.issueDateTime"),
         @NamedQuery(name = "getOrganizationInvoiceById", query = "select i from InvoiceEntity i where i.id = :id and i.organizationId = :organizationId"),
         @NamedQuery(name = "getOrganizationInvoiceByDocumentId", query = "select i from InvoiceEntity i where i.documentId = :documentId and i.organizationId = :organizationId"),
         @NamedQuery(name = "searchForInvoice", query = "select i from InvoiceEntity i where i.organizationId = :organizationId and lower(i.documentId) like :search order by i.issueDateTime"),
