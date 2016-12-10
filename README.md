@@ -15,7 +15,7 @@ Ensure you have JDK 8 (or newer), Maven 3.1.1 (or newer) and Git installed
 Clone the Openfact repository:
 
     git clone https://github.com/openfact/openfact.git
-    cd keycloak
+    cd openfact
 
 To build Openfact run:
 

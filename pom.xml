@@ -118,6 +118,7 @@
 		<wildfly.plugin.version>1.0.2.Final</wildfly.plugin.version>
 		<nexus.staging.plugin.version>1.6.5</nexus.staging.plugin.version>
 		<docker.maven.plugin.version>0.4.13</docker.maven.plugin.version>
+		<version.com.qmino.miredot-plugin>2.0.2</version.com.qmino.miredot-plugin>
 
 		<!-- Surefire Settings -->
 		<surefire.memory.settings>-Xms512m -Xmx2048m -XX:MetaspaceSize=96m
@@ -1033,6 +1034,11 @@
 					<artifactId>docker-maven-plugin</artifactId>
 					<version>${docker.maven.plugin.version}</version>
 				</plugin>
+				<plugin>
+					<groupId>com.qmino</groupId>
+					<artifactId>miredot-plugin</artifactId>
+					<version>${version.com.qmino.miredot-plugin}</version>
+				</plugin>
 
 				<!-- Principal -->
 				<plugin>
@@ -1145,6 +1151,17 @@
 	</build>
 
 	<profiles>
+		<profile>
+			<id>apidocs</id>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>miredot</id>
+					<name>MireDot Releases</name>
+					<url>http://nexus.qmino.com/content/repositories/miredot</url>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+
 		<profile>
 			<id>distribution</id>
 			<modules>

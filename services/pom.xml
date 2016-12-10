@@ -256,4 +256,37 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>apidocs</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.qmino</groupId>
+						<artifactId>miredot-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>restdoc</goal>
+								</goals>
+								<configuration>
+									<output>
+										<title>API Manager REST Services (${project.version})</title>
+										<html>
+											<initialCollapseLevel>1</initialCollapseLevel>
+											<baseUrl>http://localhost:8080/openfact</baseUrl>
+											<hideIssuesTab>true</hideIssuesTab>
+										</html>
+									</output>
+								</configuration>
+							</execution>
+						</executions>
+						<configuration>
+							<licence>UHJvamVjdHxvcmcuc2lzdGNvb3Auc29jaW8tY2xpZW50fDIwMTYtMDgtMjF8dHJ1ZSNNQzBDRlFDQ0huYW1PbmF5ekJkQ1JKWncrRElteHdoQ013SVVaQm85NHFrSk9tTEtGWkFjQ3hZQ21GSjhSUGc9</licence>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
