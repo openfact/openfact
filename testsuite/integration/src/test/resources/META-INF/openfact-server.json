@@ -2,39 +2,46 @@
   "admin": {
     "organization": "master"
   },
+
   "adminConsole": {
     "url": "http://localhost:4200"
   },
+
   "eventsStore": {
     "provider": "${openfact.eventsStore.provider:jpa}"
   },
+
   "eventsListener": {
     "jboss-logging": {
       "success-level": "debug",
       "error-level": "warn"
     }
   },
+
   "organization": {
     "provider": "${openfact.organization.provider:jpa}"
   },
+
   "invoice": {
     "provider": "${openfact.invoice.provider:jpa}"
   },
+
   "creditNote": {
     "provider": "${openfact.creditNote.provider:jpa}"
   },
+
   "debitNote": {
     "provider": "${openfact.debitNote.provider:jpa}"
   },
+
   "storageFile": {
-    "provider": "${openfact.storageFile.provider:jpa}",
-    "dropbox": {
-      "access_token": "hhPoLjoclSAAAAAAAAAFYJciAVx2FFBeADlSMKTwd0rkwax1-sTgv9pWLt5FYQYd"
-    }
+    "provider": "${openfact.storageFile.provider:jpa}"
   },
+
   "timer": {
     "provider": "basic"
   },
+
   "theme": {
     "staticMaxAge": "${openfact.theme.staticMaxAge:2592000}",
     "cacheTemplates": "${openfact.theme.cacheTemplates:true}",
@@ -43,12 +50,16 @@
       "dir": "${openfact.theme.dir}"
     }
   },
+
   "scheduled": {
     "interval": 900
   },
+
   "connectionsHttpClient": {
     "default": {}
   },
+
+
   "connectionsJpa": {
     "default": {
       "url": "${openfact.connectionsJpa.url:jdbc:h2:mem:test}",
@@ -63,6 +74,7 @@
       "globalStatsInterval": "${openfact.connectionsJpa.globalStatsInterval:-1}"
     }
   },
+
   "jta-lookup": {
     "provider": "${openfact.jta.lookup.provider:jboss}",
     "jboss": {
