@@ -56,9 +56,9 @@ import org.openfact.services.resources.OpenfactApplication;
 
 public class OrganizationsAdminResource {
 
-    public static final String SCOPE_ORGANIZATION_VIEW = "urn:openfact.com:scopes:organization:view";
-    public static final String SCOPE_ORGANIZATION_MANAGE = "urn:openfact.com:scopes:organization:manage";
-    public static final String SCOPE_ORGANIZATION_DELETE = "urn:openfact.com:scopes:organization:delete";
+    public static final String SCOPE_ORGANIZATION_VIEW = "urn:openfact.com:scopes:admin:organization:view";
+    public static final String SCOPE_ORGANIZATION_MANAGE = "urn:openfact.com:scopes:admin:organization:manage";
+    public static final String SCOPE_ORGANIZATION_DELETE = "urn:openfact.com:scopes:admin:organization:delete";
 
     public static final CacheControl noCache = new CacheControl();
 

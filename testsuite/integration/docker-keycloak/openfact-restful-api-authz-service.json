@@ -1,184 +1,358 @@
 {
-	"allowRemoteResourceManagement": true,
-	"policyEnforcementMode": "ENFORCING",
-	"resources": [
-		{
-			"name": "Admin Server Info Resource",
-			"uri": "/admin/serverinfo",
-			"type": "http://openfact.com/admin/serverinfo",
-			"scopes": [
-				{
-					"name": "urn:openfact.com:scopes:serverinfo:view"
-				}
-			]
-		},
-		{
-			"name": "Admin Organizations Resource",
-			"uri": "/admin/organizations",
-			"type": "http://openfact.com/admin/organizations",
-			"scopes": [
-				{
-					"name": "urn:openfact.com:scopes:organization:view"
-				},
-				{
-					"name": "urn:openfact.com:scopes:organization:create"
-				}
-			]
-		},
-		{
-			"name": "Admin One Organization Resource",
-			"uri": "/admin/organizations/*",
-			"type": "http://openfact.com/admin/organizations",
-			"scopes": [
-				{
-					"name": "urn:openfact.com:scopes:organization:view"
-				},
-				{
-					"name": "urn:openfact.com:scopes:organization:manage"
-				},
-				{
-					"name": "urn:openfact.com:scopes:organization:delete"
-				}
-			]
-		},
-		{
-			"name": "Admin Master Organization Resource",
-			"uri": "/admin/organizations/master",
-			"type": "http://openfact.com/admin/organizations/master",
-			"scopes": [
-				{
-					"name": "urn:openfact.com:scopes:organization:view"
-				},
-				{
-					"name": "urn:openfact.com:scopes:organization:manage"
-				},
-				{
-					"name": "urn:openfact.com:scopes:organization:delete"
-				}
-			]
-		}
-	],
-	"policies": [
-		{
-			"name": "Any Realm Role Policy",
-			"description": "Defines that only users who have at least one Realm Role can do something.",
-			"type": "role",
-			"logic": "POSITIVE",
-			"decisionStrategy": "UNANIMOUS",
-			"config": {
-				"roles": "[{\"id\":\"admin\",\"required\":false},{\"id\":\"admin-organization\",\"required\":false},{\"id\":\"organization-user\",\"required\":false}]"
-			}
-		},
-		{
-			"name": "Only Admin Realm Role Policy",
-			"description": "Defines that only Admin users can do something",
-			"type": "role",
-			"logic": "POSITIVE",
-			"decisionStrategy": "UNANIMOUS",
-			"config": {
-				"roles": "[{\"id\":\"admin\",\"required\":true}]"
-			}
-		},
-		{
-			"name": "Only Admin-Organization Realm Role Policy",
-			"description": "Defines that only Admin-Organization users can do something",
-			"type": "role",
-			"logic": "POSITIVE",
-			"decisionStrategy": "UNANIMOUS",
-			"config": {
-				"roles": "[{\"id\":\"admin-organization\",\"required\":true}]"
-			}
-		},
-		{
-			"name": "Only Master Organization Policy",
-			"description": "Defines that only who are registered on master organization can do something.",
-			"type": "js",
-			"logic": "POSITIVE",
-			"decisionStrategy": "UNANIMOUS",
-			"config": {
-				"code": "var context = $evaluation.getContext();\nvar identity = context.getIdentity();\nvar attributes = identity.getAttributes();\nvar organization = attributes.getValue('organization').asString(0);\n\nif (organization == 'master') {\n    $evaluation.grant();\n}"
-			}
-		},
-		{
-			"name": "Only Organization Owner by Attribute Policy",
-			"description": "Defines that only the owner of an organization can do something.",
-			"type": "js",
-			"logic": "POSITIVE",
-			"decisionStrategy": "UNANIMOUS",
-			"config": {
-				"code": "var context = $evaluation.getContext();\nvar identity = context.getIdentity();\nvar attributes = identity.getAttributes();\nvar organization = attributes.getValue('organization').asString(0);\n\nvar permission = $evaluation.getPermission();\nvar resource = permission.getResource();\n\n if (resource != null && resource.getUri().endsWith('/' + organization)) {\n    $evaluation.grant();\n}"
-			}
-		},
-		{
-			"name": "Only Admin Realm Role on Master Organization Policy",
-			"description": "Defines that only the owner of an organization can do something.",
-			"type": "aggregate",
-			"logic": "POSITIVE",
-			"decisionStrategy": "UNANIMOUS",
-			"config": {
-				"applyPolicies": "[\"Only Admin Realm Role Policy\",\"Only Master Organization Policy\"]"
-			}
-		},
-		{
-			"name": "View Server Info Permission",
-			"description": "Defines who is allowed to view Sever Info",
-			"type": "scope",
-			"logic": "POSITIVE",
-			"decisionStrategy": "UNANIMOUS",
-			"config": {
-				"applyPolicies": "[\"Only Admin Realm Role on Master Organization Policy\"]",
-				"scopes": "[\"urn:openfact.com:scopes:serverinfo:view\"]"
-			}
-		},
-		{
-			"name": "View Organization Permission",
-			"description": "A policy that allows to get organization information to any valid roles.",
-			"type": "scope",
-			"logic": "POSITIVE",
-			"decisionStrategy": "UNANIMOUS",
-			"config": {
-				"applyPolicies": "[\"Any Realm Role Policy\"]",
-				"scopes": "[\"urn:openfact.com:scopes:organization:view\"]"
-			}
-		},
-		{
-			"name": "Create and Delete Organization Permission",
-			"description": "A policy that only allows the admin on master organization to create and delete organizations.",
-			"type": "scope",
-			"logic": "POSITIVE",
-			"decisionStrategy": "UNANIMOUS",
-			"config": {
-				"applyPolicies": "[\"Only Admin Realm Role on Master Organization Policy\"]",
-				"scopes": "[\"urn:openfact.com:scopes:organization:create\",\"urn:openfact.com:scopes:organization:delete\"]"
-			}
-		},
-		{
-			"name": "Manage One Organization Resource Permission",
-			"description": "General policy that decide who can manage organizations settings.",
-			"type": "scope",
-			"logic": "POSITIVE",
-			"decisionStrategy": "AFFIRMATIVE",
-			"config": {
-				"applyPolicies": "[\"Only Admin Realm Role on Master Organization Policy\",\"Only Organization Owner by Attribute Policy\"]",
-				"scopes": "[\"urn:openfact.com:scopes:organization:manage\"]"
-			}
-		}
-	],
-	"scopes": [
-		{
-			"name": "urn:openfact.com:scopes:serverinfo:view"
-		},
-		{
-			"name": "urn:openfact.com:scopes:organization:view"
-		},
-		{
-			"name": "urn:openfact.com:scopes:organization:create"
-		},
-		{
-			"name": "urn:openfact.com:scopes:organization:manage"
-		},
-		{
-			"name": "urn:openfact.com:scopes:organization:delete"
-		}
-	]
+  "allowRemoteResourceManagement": true,
+  "policyEnforcementMode": "ENFORCING",
+  "resources": [
+    {
+      "name": "Organizations Resource",
+      "uri": "/organizations",
+      "type": "http://openfact.com/organizations/*",
+      "scopes": [
+        {
+          "name": "urn:openfact.com:scopes:organizations:view"
+        }
+      ]
+    },
+    {
+      "name": "Organizations Resource Extension",
+      "uri": "/organizations/*",
+      "type": "http://openfact.com/organizations/*",
+      "scopes": [
+        {
+          "name": "urn:openfact.com:scopes:organizations:extension:view"
+        },
+        {
+          "name": "urn:openfact.com:scopes:organizations:extension:manage"
+        },
+        {
+          "name": "urn:openfact.com:scopes:organizations:extension:delete"
+        }
+      ]
+    },
+    {
+      "name": "Admin Organizations Resource",
+      "uri": "/admin/organizations",
+      "type": "http://openfact.com/admin/organizations/*",
+      "scopes": [
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:view"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:create"
+        }
+      ]
+    },
+    {
+      "name": "Admin Organizations Sub Resource",
+      "uri": "/admin/organizations/*",
+      "type": "http://openfact.com/admin/organizations/*",
+      "scopes": [
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:view"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:manage"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:delete"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:invoice:view"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:invoice:manage"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:invoice:delete"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:creditnote:view"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:creditnote:manage"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:creditnote:delete"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:debitnote:view"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:debitnote:manage"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:debitnote:delete"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:storagefile:view"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:storagefile:manage"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:storagefile:delete"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:event:view"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:event:manage"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:event:delete"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:adminevent:view"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:adminevent:manage"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:adminevent:delete"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:component:view"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:component:manage"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:component:delete"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:key:view"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:key:manage"
+        },
+        {
+          "name": "urn:openfact.com:scopes:admin:organization:key:delete"
+        }
+      ]
+    },
+    {
+      "name": "Admin Server Info Resource",
+      "uri": "/admin/serverinfo",
+      "type": "http://openfact.com/admin/serverinfo",
+      "scopes": [
+        {
+          "name": "urn:openfact.com:scopes:admin:serverinfo:view"
+        }
+      ]
+    }
+  ],
+  "policies": [
+    {
+      "name": "Any Realm Role Policy",
+      "description": "Defines that only users who have at least one Realm Role can do something.",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "roles": "[{\"id\":\"admin\",\"required\":false},{\"id\":\"admin-organization\",\"required\":false},{\"id\":\"organization-user\",\"required\":false}]"
+      }
+    },
+    {
+      "name": "Only Admin Realm Role Policy",
+      "description": "Defines that only Admin users can do something",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "roles": "[{\"id\":\"admin\",\"required\":true}]"
+      }
+    },
+    {
+      "name": "Only Admin-Organization Realm Role Policy",
+      "description": "Defines that only Admin-Organization users can do something",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "roles": "[{\"id\":\"admin-organization\",\"required\":true}]"
+      }
+    },
+    {
+      "name": "Only Master Organization Policy",
+      "description": "Defines that only who are registered on master organization can do something.",
+      "type": "js",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "code": "var context = $evaluation.getContext();\nvar identity = context.getIdentity();\nvar attributes = identity.getAttributes();\nvar organization = attributes.getValue('organization').asString(0);\n\nif (organization == 'master') {\n    $evaluation.grant();\n}"
+      }
+    },
+    {
+      "name": "Only Organization Owner by Attribute Policy",
+      "description": "Defines that only the owner of an organization can do something.",
+      "type": "js",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "code": "var context = $evaluation.getContext();\nvar identity = context.getIdentity();\nvar attributes = identity.getAttributes();\nvar organization = attributes.getValue('organization').asString(0);\n\nvar permission = $evaluation.getPermission();\nvar resource = permission.getResource();\n\n if (resource != null && resource.getUri().endsWith('/' + organization)) {\n    $evaluation.grant();\n}"
+      }
+    },
+    {
+      "name": "Only Admin Realm Role on Master Organization Policy",
+      "description": "Defines that only the owner of an organization can do something.",
+      "type": "aggregate",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[\"Only Admin Realm Role Policy\",\"Only Master Organization Policy\"]"
+      }
+    },
+    {
+      "name": "View Organization Permission",
+      "description": "A policy that allows to get organization information to any valid roles.",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[\"Any Realm Role Policy\"]",
+        "scopes": "[\"urn:openfact.com:scopes:admin:organization:view\"]"
+      }
+    },
+    {
+      "name": "Create Organization Permission",
+      "description": "A policy that only allows the admin on master organization to create organizations.",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[\"Only Admin Realm Role on Master Organization Policy\"]",
+        "scopes": "[\"urn:openfact.com:scopes:admin:organization:create\"]"
+      }
+    },
+    {
+      "name": "Update Organization Permission",
+      "description": "A policy that only allows the admin on organization to update organization.",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "AFFIRMATIVE",
+      "config": {
+        "applyPolicies": "[\"Only Organization Owner by Attribute Policy\",\"Only Admin Realm Role on Master Organization Policy\"]",
+        "scopes": "[\"urn:openfact.com:scopes:admin:organization:manage\"]"
+      }
+    },
+    {
+      "name": "Delete Organization Permission",
+      "description": "A policy that only allows the admin on master organization to delete organizations.",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[\"Only Admin Realm Role on Master Organization Policy\"]",
+        "scopes": "[\"urn:openfact.com:scopes:admin:organization:delete\"]"
+      }
+    },
+    {
+      "name": "Admin Server Info Permission",
+      "description": "Defines who is allowed to manage Sever Info",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[\"Only Admin Realm Role on Master Organization Policy\"]",
+        "scopes": "[\"urn:openfact.com:scopes:admin:serverinfo:view\"]"
+      }
+    }
+  ],
+  "scopes": [
+    {
+      "name": "urn:openfact.com:scopes:organizations:view"
+    },
+    {
+      "name": "urn:openfact.com:scopes:organizations:extension:view"
+    },
+    {
+      "name": "urn:openfact.com:scopes:organizations:extension:manage"
+    },
+    {
+      "name": "urn:openfact.com:scopes:organizations:extension:delete"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:view"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:create"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:manage"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:delete"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:invoice:view"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:invoice:manage"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:invoice:delete"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:creditnote:view"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:creditnote:manage"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:creditnote:delete"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:debitnote:view"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:debitnote:manage"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:debitnote:delete"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:storagefile:view"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:storagefile:manage"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:storagefile:delete"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:event:view"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:event:manage"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:event:delete"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:adminevent:view"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:adminevent:manage"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:adminevent:delete"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:component:view"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:component:manage"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:component:delete"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:key:view"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:key:manage"
+    },
+    {
+      "name": "urn:openfact.com:scopes:admin:organization:key:delete"
+    }
+  ]
 }

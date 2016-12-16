@@ -1,62 +1,68 @@
 {
-	"realm": "openfact",
-	"auth-server-url": "http://localhost:8080/auth",
-	"ssl-required": "external",
-	"resource": "openfact-restful-api",
-	"credentials": {
-		"secret": "secret"
-	},
-	"use-resource-role-mappings": true,
-	"policy-enforcer": {
-		"user-managed-access": {},
-		"paths": [
-			{
-				"path": "/admin/serverinfo",
-				"methods": [
-					{
-						"method": "GET",
-						"scopes": [
-							"urn:openfact.com:scopes:serverinfo:view"
-						]
-					}
-				]
-			},
-			{
-				"path" : "/admin/organizations",
-				"methods": [
-					{
-						"method": "GET",
-						"scopes": [
-							"urn:openfact.com:scopes:organization:view"
-						]
-					},
-					{
-						"method": "POST",
-						"scopes": [
-							"urn:openfact.com:scopes:organization:create"
-						]
-					}
-				]
-			},
-			{
-				"name" : "Admin One Organization Resource",
-				"path" : "/admin/organizations/{organization}",
-				"methods" : [
-					{
-						"method": "GET",
-						"scopes" : ["urn:openfact.com:scopes:organization:view"]
-					},
-					{
-						"method": "PUT",
-						"scopes" : ["urn:openfact.com:scopes:organization:manage"]
-					},
-					{
-						"method": "DELETE",
-						"scopes" : ["urn:openfact.com:scopes:organization:delete"]
-					}
-				]
-			}
-		]
-	},
-	"enable-cors": true
+  "realm": "openfact",
+  "auth-server-url": "http://localhost:8080/auth",
+  "ssl-required": "external",
+  "resource": "openfact-restful-api",
+  "credentials": {
+    "secret": "secret"
+  },
+  "use-resource-role-mappings": true,
+  "policy-enforcer": {
+    "user-managed-access": {},
+    "paths": [
+      {
+        "path": "/admin/organizations",
+        "methods": [
+          {
+            "method": "GET",
+            "scopes": [
+              "urn:openfact.com:scopes:admin:organization:view"
+            ]
+          },
+          {
+            "method": "POST",
+            "scopes": [
+              "urn:openfact.com:scopes:admin:organization:create"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Admin Organizations Sub Resource",
+        "path": "/admin/organizations/{organization}",
+        "methods": [
+          {
+            "method": "GET",
+            "scopes": [
+              "urn:openfact.com:scopes:admin:organization:view"
+            ]
+          },
+          {
+            "method": "PUT",
+            "scopes": [
+              "urn:openfact.com:scopes:admin:organization:manage"
+            ]
+          },
+          {
+            "method": "DELETE",
+            "scopes": [
+              "urn:openfact.com:scopes:admin:organization:delete"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "/admin/serverinfo",
+        "methods": [
+          {
+            "method": "GET",
+            "scopes": [
+              "urn:openfact.com:scopes:admin:serverinfo:view"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "enable-cors": true
 }
