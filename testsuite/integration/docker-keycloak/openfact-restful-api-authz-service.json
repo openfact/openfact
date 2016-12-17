@@ -5,7 +5,7 @@
     {
       "name": "Organizations Resource",
       "uri": "/organizations",
-      "type": "http://openfact.com/organizations/*",
+      "type": "http://openfact.com/organizations",
       "scopes": [
         {
           "name": "urn:openfact.com:scopes:organizations:view"
