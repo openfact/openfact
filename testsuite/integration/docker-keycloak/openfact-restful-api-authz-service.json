@@ -4,19 +4,12 @@
   "resources": [
     {
       "name": "Organizations Resource",
-      "uri": "/organizations",
-      "type": "http://openfact.com/organizations",
-      "scopes": [
-        {
-          "name": "urn:openfact.com:scopes:organizations:view"
-        }
-      ]
-    },
-    {
-      "name": "Organizations Resource Extension",
       "uri": "/organizations/*",
       "type": "http://openfact.com/organizations/*",
       "scopes": [
+        {
+          "name": "urn:openfact.com:scopes:organizations:view"
+        },
         {
           "name": "urn:openfact.com:scopes:organizations:extension:view"
         },
@@ -86,18 +79,6 @@
         },
         {
           "name": "urn:openfact.com:scopes:admin:organization:event:manage"
-        },
-        {
-          "name": "urn:openfact.com:scopes:admin:organization:event:delete"
-        },
-        {
-          "name": "urn:openfact.com:scopes:admin:organization:adminevent:view"
-        },
-        {
-          "name": "urn:openfact.com:scopes:admin:organization:adminevent:manage"
-        },
-        {
-          "name": "urn:openfact.com:scopes:admin:organization:adminevent:delete"
         },
         {
           "name": "urn:openfact.com:scopes:admin:organization:component:view"
@@ -245,6 +226,232 @@
         "applyPolicies": "[\"Only Admin Realm Role on Master Organization Policy\"]",
         "scopes": "[\"urn:openfact.com:scopes:admin:serverinfo:view\"]"
       }
+    },
+
+
+
+    {
+      "name": "Only View Invoices Client Role",
+      "description": "Defines that only view-invoices client role can do something",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[]",
+        "roles": "[{\"id\":\"view-invoices\"}]"
+      }
+    },
+    {
+      "name": "Only Manage Invoices Client Role",
+      "description": "Defines that only manage-invoices client role can do something",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[]",
+        "roles": "[{\"id\":\"manage-invoices\"}]"
+      }
+    },
+    {
+      "name": "Only View Credit Notes Client Role",
+      "description": "Defines that only view-credit-notes client role can do something",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[]",
+        "roles": "[{\"id\":\"view-credit-notes\"}]"
+      }
+    },
+    {
+      "name": "Only Manage Credit Notes Client Role",
+      "description": "Defines that only manage-credit-notes client role can do something",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[]",
+        "roles": "[{\"id\":\"manage-credit-notes\"}]"
+      }
+    },
+    {
+      "name": "Only View Debit Notes Client Role",
+      "description": "Defines that only view-debit-notes client role can do something",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[]",
+        "roles": "[{\"id\":\"view-debit-notes\"}]"
+      }
+    },
+    {
+      "name": "Only Manage Debit Notes Client Role",
+      "description": "Defines that only manage-debit-notes client role can do something",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[]",
+        "roles": "[{\"id\":\"manage-debit-notes\"}]"
+      }
+    },
+    {
+      "name": "Only View Files Client Role",
+      "description": "Defines that only view-files client role can do something",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[]",
+        "roles": "[{\"id\":\"view-files\"}]"
+      }
+    },
+    {
+      "name": "Only Manage Files Client Role",
+      "description": "Defines that only manage-files client role can do something",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[]",
+        "roles": "[{\"id\":\"manage-files\"}]"
+      }
+    },
+    {
+      "name": "Only View Events Client Role",
+      "description": "Defines that only view-events client role can do something",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[]",
+        "roles": "[{\"id\":\"view-events\"}]"
+      }
+    },
+    {
+      "name": "Only Manage Events Client Role",
+      "description": "Defines that only manage-events client role can do something",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[]",
+        "roles": "[{\"id\":\"manage-events\"}]"
+      }
+    },
+
+
+
+    {
+      "name": "View Invoices Permission",
+      "description": "Defines who is allowed to view invoices",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[\"Only View Invoices Client Role\"]",
+        "scopes": "[\"urn:openfact.com:scopes:admin:organization:invoice:view\"]"
+      }
+    },
+    {
+      "name": "Manage Invoices Permission",
+      "description": "Defines who is allowed to manage invoices",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[\"Only Manage Invoices Client Role\"]",
+        "scopes": "[\"urn:openfact.com:scopes:admin:organization:invoice:manage\"]"
+      }
+    },
+    {
+      "name": "View Credit Notes Permission",
+      "description": "Defines who is allowed to view credit notes",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[\"Only View Credit Notes Client Role\"]",
+        "scopes": "[\"urn:openfact.com:scopes:admin:organization:creditnote:view\"]"
+      }
+    },
+    {
+      "name": "Manage Credit Notes Permission",
+      "description": "Defines who is allowed to manage credit notes",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[\"Only Manage Credit Notes Client Role\"]",
+        "scopes": "[\"urn:openfact.com:scopes:admin:organization:creditnote:manage\"]"
+      }
+    },
+    {
+      "name": "View Debit Notes Permission",
+      "description": "Defines who is allowed to view debit notes",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[\"Only View Debit Notes Client Role\"]",
+        "scopes": "[\"urn:openfact.com:scopes:admin:organization:debitnote:view\"]"
+      }
+    },
+    {
+      "name": "Manage Debit Notes Permission",
+      "description": "Defines who is allowed to manage debit notes",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[\"Only Manage Debit Notes Client Role\"]",
+        "scopes": "[\"urn:openfact.com:scopes:admin:organization:debitnote:manage\"]"
+      }
+    },
+    {
+      "name": "View Files Permission",
+      "description": "Defines who is allowed to view files",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[\"Only View Files Client Role\"]",
+        "scopes": "[\"urn:openfact.com:scopes:admin:organization:storagefile:view\"]"
+      }
+    },
+    {
+      "name": "Manage Files Permission",
+      "description": "Defines who is allowed to manage debit notes",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[\"Only Manage Files Client Role\"]",
+        "scopes": "[\"urn:openfact.com:scopes:admin:organization:storagefile:manage\"]"
+      }
+    },
+    {
+      "name": "View Events Permission",
+      "description": "Defines who is allowed to view events",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[\"Only View Events Client Role\"]",
+        "scopes": "[\"urn:openfact.com:scopes:admin:organization:event:view\"]"
+      }
+    },
+    {
+      "name": "Manage Events Permission",
+      "description": "Defines who is allowed to manage events",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[\"Only Manage Events Client Role\"]",
+        "scopes": "[\"urn:openfact.com:scopes:admin:organization:event:manage\"]"
+      }
     }
   ],
   "scopes": [
@@ -313,18 +520,6 @@
     },
     {
       "name": "urn:openfact.com:scopes:admin:organization:event:manage"
-    },
-    {
-      "name": "urn:openfact.com:scopes:admin:organization:event:delete"
-    },
-    {
-      "name": "urn:openfact.com:scopes:admin:organization:adminevent:view"
-    },
-    {
-      "name": "urn:openfact.com:scopes:admin:organization:adminevent:manage"
-    },
-    {
-      "name": "urn:openfact.com:scopes:admin:organization:adminevent:delete"
     },
     {
       "name": "urn:openfact.com:scopes:admin:organization:component:view"
