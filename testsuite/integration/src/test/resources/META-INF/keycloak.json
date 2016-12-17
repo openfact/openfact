@@ -11,6 +11,7 @@
     "user-managed-access": {},
     "paths": [
       {
+        "name": "Admin Organizations Resource",
         "path": "/admin/organizations",
         "methods": [
           {
@@ -28,7 +29,7 @@
         ]
       },
       {
-        "name": "Admin Organizations Sub Resource",
+        "name": "Admin Organizations Resource",
         "path": "/admin/organizations/{organization}",
         "methods": [
           {

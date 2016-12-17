@@ -30,7 +30,7 @@
     },
     {
       "name": "Admin Organizations Resource",
-      "uri": "/admin/organizations",
+      "uri": "/admin/organizations/*",
       "type": "http://openfact.com/admin/organizations/*",
       "scopes": [
         {
@@ -38,16 +38,6 @@
         },
         {
           "name": "urn:openfact.com:scopes:admin:organization:create"
-        }
-      ]
-    },
-    {
-      "name": "Admin Organizations Sub Resource",
-      "uri": "/admin/organizations/*",
-      "type": "http://openfact.com/admin/organizations/*",
-      "scopes": [
-        {
-          "name": "urn:openfact.com:scopes:admin:organization:view"
         },
         {
           "name": "urn:openfact.com:scopes:admin:organization:manage"
