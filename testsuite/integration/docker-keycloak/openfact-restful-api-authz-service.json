@@ -15,9 +15,6 @@
         },
         {
           "name": "urn:openfact.com:scopes:organizations:extension:manage"
-        },
-        {
-          "name": "urn:openfact.com:scopes:organizations:extension:delete"
         }
       ]
     },
@@ -39,64 +36,22 @@
           "name": "urn:openfact.com:scopes:admin:organization:delete"
         },
         {
-          "name": "urn:openfact.com:scopes:admin:organization:invoice:view"
+          "name": "urn:openfact.com:scopes:admin:organization:document:view"
         },
         {
-          "name": "urn:openfact.com:scopes:admin:organization:invoice:manage"
+          "name": "urn:openfact.com:scopes:admin:organization:document:manage"
         },
         {
-          "name": "urn:openfact.com:scopes:admin:organization:invoice:delete"
+          "name": "urn:openfact.com:scopes:admin:organization:file:view"
         },
         {
-          "name": "urn:openfact.com:scopes:admin:organization:creditnote:view"
-        },
-        {
-          "name": "urn:openfact.com:scopes:admin:organization:creditnote:manage"
-        },
-        {
-          "name": "urn:openfact.com:scopes:admin:organization:creditnote:delete"
-        },
-        {
-          "name": "urn:openfact.com:scopes:admin:organization:debitnote:view"
-        },
-        {
-          "name": "urn:openfact.com:scopes:admin:organization:debitnote:manage"
-        },
-        {
-          "name": "urn:openfact.com:scopes:admin:organization:debitnote:delete"
-        },
-        {
-          "name": "urn:openfact.com:scopes:admin:organization:storagefile:view"
-        },
-        {
-          "name": "urn:openfact.com:scopes:admin:organization:storagefile:manage"
-        },
-        {
-          "name": "urn:openfact.com:scopes:admin:organization:storagefile:delete"
+          "name": "urn:openfact.com:scopes:admin:organization:file:manage"
         },
         {
           "name": "urn:openfact.com:scopes:admin:organization:event:view"
         },
         {
           "name": "urn:openfact.com:scopes:admin:organization:event:manage"
-        },
-        {
-          "name": "urn:openfact.com:scopes:admin:organization:component:view"
-        },
-        {
-          "name": "urn:openfact.com:scopes:admin:organization:component:manage"
-        },
-        {
-          "name": "urn:openfact.com:scopes:admin:organization:component:delete"
-        },
-        {
-          "name": "urn:openfact.com:scopes:admin:organization:key:view"
-        },
-        {
-          "name": "urn:openfact.com:scopes:admin:organization:key:manage"
-        },
-        {
-          "name": "urn:openfact.com:scopes:admin:organization:key:delete"
         }
       ]
     },
@@ -231,69 +186,25 @@
 
 
     {
-      "name": "Only View Invoices Client Role",
-      "description": "Defines that only view-invoices client role can do something",
+      "name": "Only View Documents Client Role",
+      "description": "Defines that only view-invoices, view-credit-notes, view-debit-notes client role can do something",
       "type": "role",
       "logic": "POSITIVE",
       "decisionStrategy": "UNANIMOUS",
       "config": {
         "applyPolicies": "[]",
-        "roles": "[{\"id\":\"view-invoices\"}]"
+        "roles": "[{\"id\":\"view-invoices\"},{\"id\":\"view-credit-notes\"},{\"id\":\"view-debit-notes\"}]"
       }
     },
     {
-      "name": "Only Manage Invoices Client Role",
-      "description": "Defines that only manage-invoices client role can do something",
+      "name": "Only Manage Documents Client Role",
+      "description": "Defines that only manage-invoices, manage-credit-notes, manage-debit-notes client role can do something",
       "type": "role",
       "logic": "POSITIVE",
       "decisionStrategy": "UNANIMOUS",
       "config": {
         "applyPolicies": "[]",
-        "roles": "[{\"id\":\"manage-invoices\"}]"
-      }
-    },
-    {
-      "name": "Only View Credit Notes Client Role",
-      "description": "Defines that only view-credit-notes client role can do something",
-      "type": "role",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[]",
-        "roles": "[{\"id\":\"view-credit-notes\"}]"
-      }
-    },
-    {
-      "name": "Only Manage Credit Notes Client Role",
-      "description": "Defines that only manage-credit-notes client role can do something",
-      "type": "role",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[]",
-        "roles": "[{\"id\":\"manage-credit-notes\"}]"
-      }
-    },
-    {
-      "name": "Only View Debit Notes Client Role",
-      "description": "Defines that only view-debit-notes client role can do something",
-      "type": "role",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[]",
-        "roles": "[{\"id\":\"view-debit-notes\"}]"
-      }
-    },
-    {
-      "name": "Only Manage Debit Notes Client Role",
-      "description": "Defines that only manage-debit-notes client role can do something",
-      "type": "role",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[]",
-        "roles": "[{\"id\":\"manage-debit-notes\"}]"
+        "roles": "[{\"id\":\"manage-invoices\"},{\"id\":\"manage-credit-notes\"},{\"id\":\"manage-debit-notes\"}]"
       }
     },
     {
@@ -340,73 +251,51 @@
         "roles": "[{\"id\":\"manage-events\"}]"
       }
     },
+    {
+      "name": "Only View Extensions Client Role",
+      "description": "Defines that only view-extensions client role can do something",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[]",
+        "roles": "[{\"id\":\"view-extensions\"}]"
+      }
+    },
+    {
+      "name": "Only Manage Extensions Client Role",
+      "description": "Defines that only manage-extensions client role can do something",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[]",
+        "roles": "[{\"id\":\"manage-extensions\"}]"
+      }
+    },
 
 
 
     {
-      "name": "View Invoices Permission",
-      "description": "Defines who is allowed to view invoices",
+      "name": "View Documents Permission",
+      "description": "Defines who is allowed to view documents",
       "type": "scope",
       "logic": "POSITIVE",
       "decisionStrategy": "UNANIMOUS",
       "config": {
-        "applyPolicies": "[\"Only View Invoices Client Role\"]",
-        "scopes": "[\"urn:openfact.com:scopes:admin:organization:invoice:view\"]"
+        "applyPolicies": "[\"Only View Documents Client Role\"]",
+        "scopes": "[\"urn:openfact.com:scopes:admin:organization:document:view\"]"
       }
     },
     {
-      "name": "Manage Invoices Permission",
-      "description": "Defines who is allowed to manage invoices",
+      "name": "Manage Documents Permission",
+      "description": "Defines who is allowed to manage documents",
       "type": "scope",
       "logic": "POSITIVE",
       "decisionStrategy": "UNANIMOUS",
       "config": {
-        "applyPolicies": "[\"Only Manage Invoices Client Role\"]",
-        "scopes": "[\"urn:openfact.com:scopes:admin:organization:invoice:manage\"]"
-      }
-    },
-    {
-      "name": "View Credit Notes Permission",
-      "description": "Defines who is allowed to view credit notes",
-      "type": "scope",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[\"Only View Credit Notes Client Role\"]",
-        "scopes": "[\"urn:openfact.com:scopes:admin:organization:creditnote:view\"]"
-      }
-    },
-    {
-      "name": "Manage Credit Notes Permission",
-      "description": "Defines who is allowed to manage credit notes",
-      "type": "scope",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[\"Only Manage Credit Notes Client Role\"]",
-        "scopes": "[\"urn:openfact.com:scopes:admin:organization:creditnote:manage\"]"
-      }
-    },
-    {
-      "name": "View Debit Notes Permission",
-      "description": "Defines who is allowed to view debit notes",
-      "type": "scope",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[\"Only View Debit Notes Client Role\"]",
-        "scopes": "[\"urn:openfact.com:scopes:admin:organization:debitnote:view\"]"
-      }
-    },
-    {
-      "name": "Manage Debit Notes Permission",
-      "description": "Defines who is allowed to manage debit notes",
-      "type": "scope",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[\"Only Manage Debit Notes Client Role\"]",
-        "scopes": "[\"urn:openfact.com:scopes:admin:organization:debitnote:manage\"]"
+        "applyPolicies": "[\"Only Manage Documents Client Role\"]",
+        "scopes": "[\"urn:openfact.com:scopes:admin:organization:document:manage\"]"
       }
     },
     {
@@ -417,7 +306,7 @@
       "decisionStrategy": "UNANIMOUS",
       "config": {
         "applyPolicies": "[\"Only View Files Client Role\"]",
-        "scopes": "[\"urn:openfact.com:scopes:admin:organization:storagefile:view\"]"
+        "scopes": "[\"urn:openfact.com:scopes:admin:organization:file:view\"]"
       }
     },
     {
@@ -428,7 +317,7 @@
       "decisionStrategy": "UNANIMOUS",
       "config": {
         "applyPolicies": "[\"Only Manage Files Client Role\"]",
-        "scopes": "[\"urn:openfact.com:scopes:admin:organization:storagefile:manage\"]"
+        "scopes": "[\"urn:openfact.com:scopes:admin:organization:file:manage\"]"
       }
     },
     {
@@ -452,6 +341,28 @@
         "applyPolicies": "[\"Only Manage Events Client Role\"]",
         "scopes": "[\"urn:openfact.com:scopes:admin:organization:event:manage\"]"
       }
+    },
+    {
+      "name": "View Extensions Permission",
+      "description": "Defines who is allowed to view extensions",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[\"Only View Extensions Client Role\"]",
+        "scopes": "[\"urn:openfact.com:scopes:organizations:extension:view\"]"
+      }
+    },
+    {
+      "name": "Manage Extensions Permission",
+      "description": "Defines who is allowed to manage extensions",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[\"Only Manage Extensions Client Role\"]",
+        "scopes": "[\"urn:openfact.com:scopes:organizations:extension:manage\"]"
+      }
     }
   ],
   "scopes": [
@@ -463,9 +374,6 @@
     },
     {
       "name": "urn:openfact.com:scopes:organizations:extension:manage"
-    },
-    {
-      "name": "urn:openfact.com:scopes:organizations:extension:delete"
     },
     {
       "name": "urn:openfact.com:scopes:admin:organization:view"
@@ -480,64 +388,22 @@
       "name": "urn:openfact.com:scopes:admin:organization:delete"
     },
     {
-      "name": "urn:openfact.com:scopes:admin:organization:invoice:view"
+      "name": "urn:openfact.com:scopes:admin:organization:document:view"
     },
     {
-      "name": "urn:openfact.com:scopes:admin:organization:invoice:manage"
+      "name": "urn:openfact.com:scopes:admin:organization:document:manage"
     },
     {
-      "name": "urn:openfact.com:scopes:admin:organization:invoice:delete"
+      "name": "urn:openfact.com:scopes:admin:organization:file:view"
     },
     {
-      "name": "urn:openfact.com:scopes:admin:organization:creditnote:view"
-    },
-    {
-      "name": "urn:openfact.com:scopes:admin:organization:creditnote:manage"
-    },
-    {
-      "name": "urn:openfact.com:scopes:admin:organization:creditnote:delete"
-    },
-    {
-      "name": "urn:openfact.com:scopes:admin:organization:debitnote:view"
-    },
-    {
-      "name": "urn:openfact.com:scopes:admin:organization:debitnote:manage"
-    },
-    {
-      "name": "urn:openfact.com:scopes:admin:organization:debitnote:delete"
-    },
-    {
-      "name": "urn:openfact.com:scopes:admin:organization:storagefile:view"
-    },
-    {
-      "name": "urn:openfact.com:scopes:admin:organization:storagefile:manage"
-    },
-    {
-      "name": "urn:openfact.com:scopes:admin:organization:storagefile:delete"
+      "name": "urn:openfact.com:scopes:admin:organization:file:manage"
     },
     {
       "name": "urn:openfact.com:scopes:admin:organization:event:view"
     },
     {
       "name": "urn:openfact.com:scopes:admin:organization:event:manage"
-    },
-    {
-      "name": "urn:openfact.com:scopes:admin:organization:component:view"
-    },
-    {
-      "name": "urn:openfact.com:scopes:admin:organization:component:manage"
-    },
-    {
-      "name": "urn:openfact.com:scopes:admin:organization:component:delete"
-    },
-    {
-      "name": "urn:openfact.com:scopes:admin:organization:key:view"
-    },
-    {
-      "name": "urn:openfact.com:scopes:admin:organization:key:manage"
-    },
-    {
-      "name": "urn:openfact.com:scopes:admin:organization:key:delete"
     }
   ]
 }
