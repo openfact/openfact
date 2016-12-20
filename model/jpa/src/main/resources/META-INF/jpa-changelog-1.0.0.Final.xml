@@ -408,7 +408,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="CREATED_TIMESTAMP" type="timestamp"/>
-            <column name="DESCRIPTION" type="VARCHAR(255)"/>
+            <column name="DESCRIPTION" type="VARCHAR(400)"/>
             <column name="RESULT" type="INT"/>
             <column name="SEND_TYPE" type="VARCHAR(255)"/>
             <column name="ORGANIZATION_ID" type="VARCHAR(36)"/>

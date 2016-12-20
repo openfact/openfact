@@ -59,10 +59,11 @@ import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "CREDIT_NOTE", uniqueConstraints = {
-        @UniqueConstraint(columnNames = { "ORGANIZATION_ID", "DOCUMENT_ID" })
+        @UniqueConstraint(columnNames = { "ORGANIZATION_ID", "DOCUMENT_ID"})
 })
 @NamedQueries({
-        @NamedQuery(name = "getAllCreditNotesByOrganization", query = "select c from CreditNoteEntity c where c.organizationId = :organizationId order by c.issueDateTime"),
+        @NamedQuery(name = "getAllCreditNotesByOrganization", query = "select c from CreditNoteEntity c where c.organizationId = :organizationId order by c.createdTimestamp"),
+        @NamedQuery(name = "getAllCreditNotesByOrganizationDesc", query = "select c from CreditNoteEntity c where c.organizationId = :organizationId order by c.createdTimestamp desc"),
         @NamedQuery(name = "getAllCreditNoteIdsByOrganization", query = "select c.id from CreditNoteEntity c where c.organizationId = :organizationId order by c.issueDateTime"),
         @NamedQuery(name = "getAllCreditNotesByRequiredActionAndOrganization", query = "select c from CreditNoteEntity c inner join c.requiredActions r where c.organizationId = :organizationId and r.action in :requiredAction order by c.issueDateTime"),
         @NamedQuery(name = "getOrganizationCreditNoteById", query = "select c from CreditNoteEntity c where c.id = :id and c.organizationId = :organizationId"),

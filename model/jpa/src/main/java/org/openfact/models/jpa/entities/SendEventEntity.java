@@ -44,7 +44,7 @@ public class SendEventEntity {
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean result;
 
-    @Column(name = "DESCRIPTION")
+    @Column(name = "DESCRIPTION", length = 400)
     private String description;
 
     @Column(name = "SEND_TYPE")
