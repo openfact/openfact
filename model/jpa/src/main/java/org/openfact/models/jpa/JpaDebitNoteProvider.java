@@ -266,7 +266,14 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
             scrollSize = 10;
         }
 
-        TypedQuery<DebitNoteEntity> query = em.createNamedQuery("getAllDebitNotesByOrganization", DebitNoteEntity.class);
+        String queryName = null;
+        if(asc) {
+            queryName = "getAllDebitNotesByOrganization";
+        } else {
+            queryName = "getAllDebitNotesByOrganizationDesc";
+        }
+
+        TypedQuery<DebitNoteEntity> query = em.createNamedQuery(queryName, DebitNoteEntity.class);
         query.setParameter("organizationId", organization.getId());
 
         ScrollAdapter<DebitNoteModel, DebitNoteEntity> result = new ScrollAdapter<>(DebitNoteEntity.class, query, f -> {

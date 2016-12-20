@@ -271,7 +271,14 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
             scrollSize = 10;
         }
 
-        TypedQuery<InvoiceEntity> query = em.createNamedQuery("getAllInvoicesByOrganization", InvoiceEntity.class);
+        String queryName = null;
+        if(asc) {
+            queryName = "getAllInvoicesByOrganization";
+        } else {
+            queryName = "getAllInvoicesByOrganizationDesc";
+        }
+
+        TypedQuery<InvoiceEntity> query = em.createNamedQuery(queryName, InvoiceEntity.class);
         query.setParameter("organizationId", organization.getId());
 
         ScrollAdapter<InvoiceModel, InvoiceEntity> result = new ScrollAdapter<>(InvoiceEntity.class, query, f -> {

@@ -265,7 +265,14 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
             scrollSize = 10;
         }
 
-        TypedQuery<CreditNoteEntity> query = em.createNamedQuery("getAllCreditNotesByOrganization", CreditNoteEntity.class);
+        String queryName = null;
+        if(asc) {
+            queryName = "getAllCreditNotesByOrganization";
+        } else {
+            queryName = "getAllCreditNotesByOrganizationDesc";
+        }
+
+        TypedQuery<CreditNoteEntity> query = em.createNamedQuery(queryName, CreditNoteEntity.class);
         query.setParameter("organizationId", organization.getId());
 
         ScrollAdapter<CreditNoteModel, CreditNoteEntity> result = new ScrollAdapter<>(CreditNoteEntity.class, query, f -> {
