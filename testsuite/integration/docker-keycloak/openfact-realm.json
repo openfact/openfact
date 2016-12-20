@@ -245,7 +245,7 @@
 			"clientId": "openfact-web-console",
 			"enabled": true,
 			"publicClient": true,
-			"consentRequired": true,
+			"consentRequired": false,
 			"fullScopeAllowed": true,
 			"baseUrl": "/openfact-web-console",
 			"adminUrl": "/openfact-web-console",

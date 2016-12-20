@@ -107,7 +107,6 @@ public class OrganizationsAdminResource {
 
         try {
             OrganizationModel organization = organizationManager.importOrganization(rep);
-            AuthzManager.createProtectedResource(organization);
 
             URI location = AdminRoot.organizationsUrl(uriInfo).path(organization.getName()).build();
             logger.debugv("imported organization success, sending back: {0}", location.toString());

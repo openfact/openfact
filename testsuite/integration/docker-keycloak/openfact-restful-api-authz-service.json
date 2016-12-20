@@ -68,16 +68,6 @@
   ],
   "policies": [
     {
-      "name": "Any Realm Role Policy",
-      "description": "Defines that only users who have at least one Realm Role can do something.",
-      "type": "role",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "roles": "[{\"id\":\"admin\",\"required\":false},{\"id\":\"admin-organization\",\"required\":false},{\"id\":\"organization-user\",\"required\":false}]"
-      }
-    },
-    {
       "name": "Only Admin Realm Role Policy",
       "description": "Defines that only Admin users can do something",
       "type": "role",
@@ -88,7 +78,7 @@
       }
     },
     {
-      "name": "Only Admin-Organization Realm Role Policy",
+      "name": "Only Admin Organization Realm Role Policy",
       "description": "Defines that only Admin-Organization users can do something",
       "type": "role",
       "logic": "POSITIVE",
@@ -98,35 +88,16 @@
       }
     },
     {
-      "name": "Only Master Organization Policy",
-      "description": "Defines that only who are registered on master organization can do something.",
-      "type": "js",
+      "name": "Any Realm Role Policy",
+      "description": "Defines that only users who have at least one Realm Role can do something.",
+      "type": "role",
       "logic": "POSITIVE",
       "decisionStrategy": "UNANIMOUS",
       "config": {
-        "code": "var context = $evaluation.getContext();\nvar identity = context.getIdentity();\nvar attributes = identity.getAttributes();\nvar organization = attributes.getValue('organization').asString(0);\n\nif (organization == 'master') {\n    $evaluation.grant();\n}"
+        "roles": "[{\"id\":\"admin\",\"required\":false},{\"id\":\"admin-organization\",\"required\":false},{\"id\":\"organization-user\",\"required\":false}]"
       }
     },
-    {
-      "name": "Only Organization Owner by Attribute Policy",
-      "description": "Defines that only the owner of an organization can do something.",
-      "type": "js",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "code": "var context = $evaluation.getContext();\nvar identity = context.getIdentity();\nvar attributes = identity.getAttributes();\nvar organization = attributes.getValue('organization').asString(0);\n\nvar permission = $evaluation.getPermission();\nvar resource = permission.getResource();\n\n if (resource != null && resource.getUri().endsWith('/' + organization)) {\n    $evaluation.grant();\n}"
-      }
-    },
-    {
-      "name": "Only Admin Realm Role on Master Organization Policy",
-      "description": "Defines that only the owner of an organization can do something.",
-      "type": "aggregate",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[\"Only Admin Realm Role Policy\",\"Only Master Organization Policy\"]"
-      }
-    },
+
     {
       "name": "View Organization Permission",
       "description": "A policy that allows to get organization information to any valid roles.",
@@ -140,12 +111,12 @@
     },
     {
       "name": "Create Organization Permission",
-      "description": "A policy that only allows the admin on master organization to create organizations.",
+      "description": "A policy that only allows the admin to create organizations.",
       "type": "scope",
       "logic": "POSITIVE",
       "decisionStrategy": "UNANIMOUS",
       "config": {
-        "applyPolicies": "[\"Only Admin Realm Role on Master Organization Policy\"]",
+        "applyPolicies": "[\"Only Admin Realm Role Policy\"]",
         "scopes": "[\"urn:openfact.com:scopes:admin:organization:create\"]"
       }
     },
@@ -156,7 +127,7 @@
       "logic": "POSITIVE",
       "decisionStrategy": "AFFIRMATIVE",
       "config": {
-        "applyPolicies": "[\"Only Organization Owner by Attribute Policy\",\"Only Admin Realm Role on Master Organization Policy\"]",
+        "applyPolicies": "[\"Only Admin Realm Role Policy\",\"Only Admin Organization Realm Role Policy\"]",
         "scopes": "[\"urn:openfact.com:scopes:admin:organization:manage\"]"
       }
     },
@@ -167,7 +138,7 @@
       "logic": "POSITIVE",
       "decisionStrategy": "UNANIMOUS",
       "config": {
-        "applyPolicies": "[\"Only Admin Realm Role on Master Organization Policy\"]",
+        "applyPolicies": "[\"Only Admin Realm Role Policy\"]",
         "scopes": "[\"urn:openfact.com:scopes:admin:organization:delete\"]"
       }
     },
@@ -178,15 +149,14 @@
       "logic": "POSITIVE",
       "decisionStrategy": "UNANIMOUS",
       "config": {
-        "applyPolicies": "[\"Only Admin Realm Role on Master Organization Policy\"]",
+        "applyPolicies": "[\"Only Admin Realm Role Policy\"]",
         "scopes": "[\"urn:openfact.com:scopes:admin:serverinfo:view\"]"
       }
     },
 
 
-
     {
-      "name": "Only View Documents Client Role",
+      "name": "Only View Documents Client Role Policy",
       "description": "Defines that only view-invoices, view-credit-notes, view-debit-notes client role can do something",
       "type": "role",
       "logic": "POSITIVE",
@@ -197,7 +167,7 @@
       }
     },
     {
-      "name": "Only Manage Documents Client Role",
+      "name": "Only Manage Documents Client Role Policy",
       "description": "Defines that only manage-invoices, manage-credit-notes, manage-debit-notes client role can do something",
       "type": "role",
       "logic": "POSITIVE",
@@ -208,7 +178,7 @@
       }
     },
     {
-      "name": "Only View Files Client Role",
+      "name": "Only View Files Client Role Policy",
       "description": "Defines that only view-files client role can do something",
       "type": "role",
       "logic": "POSITIVE",
@@ -219,7 +189,7 @@
       }
     },
     {
-      "name": "Only Manage Files Client Role",
+      "name": "Only Manage Files Client Role Policy",
       "description": "Defines that only manage-files client role can do something",
       "type": "role",
       "logic": "POSITIVE",
@@ -230,7 +200,7 @@
       }
     },
     {
-      "name": "Only View Events Client Role",
+      "name": "Only View Events Client Role Policy",
       "description": "Defines that only view-events client role can do something",
       "type": "role",
       "logic": "POSITIVE",
@@ -241,7 +211,7 @@
       }
     },
     {
-      "name": "Only Manage Events Client Role",
+      "name": "Only Manage Events Client Role Policy",
       "description": "Defines that only manage-events client role can do something",
       "type": "role",
       "logic": "POSITIVE",
@@ -252,7 +222,7 @@
       }
     },
     {
-      "name": "Only View Extensions Client Role",
+      "name": "Only View Extensions Client Role Policy",
       "description": "Defines that only view-extensions client role can do something",
       "type": "role",
       "logic": "POSITIVE",
@@ -263,7 +233,7 @@
       }
     },
     {
-      "name": "Only Manage Extensions Client Role",
+      "name": "Only Manage Extensions Client Role Policy",
       "description": "Defines that only manage-extensions client role can do something",
       "type": "role",
       "logic": "POSITIVE",
@@ -274,8 +244,6 @@
       }
     },
 
-
-
     {
       "name": "View Documents Permission",
       "description": "Defines who is allowed to view documents",
@@ -283,7 +251,7 @@
       "logic": "POSITIVE",
       "decisionStrategy": "UNANIMOUS",
       "config": {
-        "applyPolicies": "[\"Only View Documents Client Role\"]",
+        "applyPolicies": "[\"Only View Documents Client Role Policy\"]",
         "scopes": "[\"urn:openfact.com:scopes:admin:organization:document:view\"]"
       }
     },
@@ -294,7 +262,7 @@
       "logic": "POSITIVE",
       "decisionStrategy": "UNANIMOUS",
       "config": {
-        "applyPolicies": "[\"Only Manage Documents Client Role\"]",
+        "applyPolicies": "[\"Only Manage Documents Client Role Policy\"]",
         "scopes": "[\"urn:openfact.com:scopes:admin:organization:document:manage\"]"
       }
     },
@@ -305,7 +273,7 @@
       "logic": "POSITIVE",
       "decisionStrategy": "UNANIMOUS",
       "config": {
-        "applyPolicies": "[\"Only View Files Client Role\"]",
+        "applyPolicies": "[\"Only View Files Client Role Policy\"]",
         "scopes": "[\"urn:openfact.com:scopes:admin:organization:file:view\"]"
       }
     },
@@ -316,7 +284,7 @@
       "logic": "POSITIVE",
       "decisionStrategy": "UNANIMOUS",
       "config": {
-        "applyPolicies": "[\"Only Manage Files Client Role\"]",
+        "applyPolicies": "[\"Only Manage Files Client Role Policy\"]",
         "scopes": "[\"urn:openfact.com:scopes:admin:organization:file:manage\"]"
       }
     },
@@ -327,7 +295,7 @@
       "logic": "POSITIVE",
       "decisionStrategy": "UNANIMOUS",
       "config": {
-        "applyPolicies": "[\"Only View Events Client Role\"]",
+        "applyPolicies": "[\"Only View Events Client Role Policy\"]",
         "scopes": "[\"urn:openfact.com:scopes:admin:organization:event:view\"]"
       }
     },
@@ -338,7 +306,7 @@
       "logic": "POSITIVE",
       "decisionStrategy": "UNANIMOUS",
       "config": {
-        "applyPolicies": "[\"Only Manage Events Client Role\"]",
+        "applyPolicies": "[\"Only Manage Events Client Role Policy\"]",
         "scopes": "[\"urn:openfact.com:scopes:admin:organization:event:manage\"]"
       }
     },
@@ -349,7 +317,7 @@
       "logic": "POSITIVE",
       "decisionStrategy": "UNANIMOUS",
       "config": {
-        "applyPolicies": "[\"Only View Extensions Client Role\"]",
+        "applyPolicies": "[\"Only View Extensions Client Role Policy\"]",
         "scopes": "[\"urn:openfact.com:scopes:organizations:extension:view\"]"
       }
     },
@@ -360,7 +328,7 @@
       "logic": "POSITIVE",
       "decisionStrategy": "UNANIMOUS",
       "config": {
-        "applyPolicies": "[\"Only Manage Extensions Client Role\"]",
+        "applyPolicies": "[\"Only Manage Extensions Client Role Policy\"]",
         "scopes": "[\"urn:openfact.com:scopes:organizations:extension:manage\"]"
       }
     }
