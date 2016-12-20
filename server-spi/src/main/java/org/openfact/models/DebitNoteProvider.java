@@ -22,6 +22,7 @@ import org.openfact.models.search.SearchResultsModel;
 import org.openfact.provider.Provider;
 
 import java.util.List;
+import java.util.Map;
 
 public interface DebitNoteProvider extends Provider {
 
@@ -60,5 +61,36 @@ public interface DebitNoteProvider extends Provider {
     ScrollModel<DebitNoteModel> getDebitNotesScroll(OrganizationModel organization, boolean asc, int scrollSize);
 
     ScrollModel<List<DebitNoteModel>> getDebitNotesScroll(OrganizationModel organization, int scrollSize, String... requiredAction);
+
+    /**
+     * Search for debitNote by parameter.  Valid parameters are:
+     * "documentId" - documentId
+     *
+     * If possible, implementations should treat the parameter values as partial match patterns i.e. in RDMBS terms use LIKE.
+     *
+     * This method is used by the REST API when querying debitNotes.
+     *
+     *
+     * @param params
+     * @param organization
+     * @return
+     */
+    List<DebitNoteModel> searchForDebitNote(Map<String, String> params, OrganizationModel organization);
+
+    /**
+     * Search for debitNote by parameter.  Valid parameters are:
+     * "documentId" - documentId
+     *
+     * If possible, implementations should treat the parameter values as patterns i.e. in RDMBS terms use LIKE.
+     * This method is used by the REST API when querying debitNotes.
+     *
+     *
+     * @param params
+     * @param organization
+     * @param firstResult
+     * @param maxResults
+     * @return
+     */
+    List<DebitNoteModel> searchForDebitNote(Map<String, String> params, OrganizationModel organization, int firstResult, int maxResults);
 
 }

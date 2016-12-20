@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
@@ -31,7 +32,7 @@ import org.openfact.models.*;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.jpa.entities.CreditNoteAttributeEntity;
 import org.openfact.models.jpa.entities.CreditNoteEntity;
-import org.openfact.models.jpa.entities.InvoiceEntity;
+import org.openfact.models.jpa.entities.CreditNoteEntity;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
@@ -40,7 +41,7 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
 
     protected static final Logger logger = Logger.getLogger(JpaCreditNoteProvider.class);
 
-    private static final String DOCUMENT_ID = "DOCUMENT_ID";
+    private static final String DOCUMENT_ID = "documentId";
     private static final String ISSUE_DATETIME = "issueDateTime";
 
     private final OpenfactSession session;
@@ -296,6 +297,48 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
             return f.stream().map(m -> new CreditNoteAdapter(session, organization, em, m)).collect(Collectors.toList());
         });
         return result;
+    }
+
+    @Override
+    public List<CreditNoteModel> searchForCreditNote(Map<String, String> attributes, OrganizationModel organization) {
+        return searchForCreditNote(attributes, organization, -1, -1);
+    }
+
+    @Override
+    public List<CreditNoteModel> searchForCreditNote(Map<String, String> attributes, OrganizationModel organization, int firstResult, int maxResults) {
+        StringBuilder builder = new StringBuilder("select u from CreditNoteEntity u where u.organizationId = :organizationId");
+        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+            String attribute = null;
+            String parameterName = null;
+            if (entry.getKey().equals(CreditNoteModel.DOCUMENT_ID)) {
+                attribute = "lower(u.documentId)";
+                parameterName = JpaCreditNoteProvider.DOCUMENT_ID;
+            }
+            if (attribute == null) continue;
+            builder.append(" and ");
+            builder.append(attribute).append(" like :").append(parameterName);
+        }
+        builder.append(" order by u.createdTimestamp");
+        String q = builder.toString();
+        TypedQuery<CreditNoteEntity> query = em.createQuery(q, CreditNoteEntity.class);
+        query.setParameter("organizationId", organization.getId());
+        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+            String parameterName = null;
+            if (entry.getKey().equals(CreditNoteModel.DOCUMENT_ID)) {
+                parameterName = JpaCreditNoteProvider.DOCUMENT_ID;
+            }
+            if (parameterName == null) continue;
+            query.setParameter(parameterName, "%" + entry.getValue().toLowerCase() + "%");
+        }
+        if (firstResult != -1) {
+            query.setFirstResult(firstResult);
+        }
+        if (maxResults != -1) {
+            query.setMaxResults(maxResults);
+        }
+        List<CreditNoteEntity> results = query.getResultList();
+        List<CreditNoteModel> creditNotes = results.stream().map(f -> new CreditNoteAdapter(session, organization, em, f)).collect(Collectors.toList());
+        return creditNotes;
     }
 
 }

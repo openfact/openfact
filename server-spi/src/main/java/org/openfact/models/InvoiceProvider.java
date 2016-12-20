@@ -22,6 +22,7 @@ import org.openfact.models.search.SearchResultsModel;
 import org.openfact.provider.Provider;
 
 import java.util.List;
+import java.util.Map;
 
 public interface InvoiceProvider extends Provider {
 
@@ -60,5 +61,36 @@ public interface InvoiceProvider extends Provider {
     ScrollModel<InvoiceModel> getInvoicesScroll(OrganizationModel organization, boolean asc, int scrollSize);
 
     ScrollModel<List<InvoiceModel>> getInvoicesScroll(OrganizationModel organization, int scrollSize, String... requiredAction);
+    
+    /**
+     * Search for invoice by parameter.  Valid parameters are:
+     * "documentId" - documentId
+     *
+     * If possible, implementations should treat the parameter values as partial match patterns i.e. in RDMBS terms use LIKE.
+     *
+     * This method is used by the REST API when querying invoices.
+     *
+     *
+     * @param params
+     * @param organization
+     * @return
+     */
+    List<InvoiceModel> searchForInvoice(Map<String, String> params, OrganizationModel organization);
+
+    /**
+     * Search for invoice by parameter.  Valid parameters are:
+     * "documentId" - documentId
+     *
+     * If possible, implementations should treat the parameter values as patterns i.e. in RDMBS terms use LIKE.
+     * This method is used by the REST API when querying invoices.
+     *
+     *
+     * @param params
+     * @param organization
+     * @param firstResult
+     * @param maxResults
+     * @return
+     */
+    List<InvoiceModel> searchForInvoice(Map<String, String> params, OrganizationModel organization, int firstResult, int maxResults);
 
 }

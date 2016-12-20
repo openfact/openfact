@@ -22,6 +22,7 @@ import org.openfact.models.search.SearchResultsModel;
 import org.openfact.provider.Provider;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CreditNoteProvider extends Provider {
 
@@ -60,4 +61,36 @@ public interface CreditNoteProvider extends Provider {
     ScrollModel<CreditNoteModel> getCreditNotesScroll(OrganizationModel organization, boolean asc, int scrollSize);
 
     ScrollModel<List<CreditNoteModel>> getCreditNotesScroll(OrganizationModel organization, int scrollSize, String... requiredAction);
+
+    /**
+     * Search for creditNote by parameter.  Valid parameters are:
+     * "documentId" - documentId
+     *
+     * If possible, implementations should treat the parameter values as partial match patterns i.e. in RDMBS terms use LIKE.
+     *
+     * This method is used by the REST API when querying creditNotes.
+     *
+     *
+     * @param params
+     * @param organization
+     * @return
+     */
+    List<CreditNoteModel> searchForCreditNote(Map<String, String> params, OrganizationModel organization);
+
+    /**
+     * Search for creditNote by parameter.  Valid parameters are:
+     * "documentId" - documentId
+     *
+     * If possible, implementations should treat the parameter values as patterns i.e. in RDMBS terms use LIKE.
+     * This method is used by the REST API when querying creditNotes.
+     *
+     *
+     * @param params
+     * @param organization
+     * @param firstResult
+     * @param maxResults
+     * @return
+     */
+    List<CreditNoteModel> searchForCreditNote(Map<String, String> params, OrganizationModel organization, int firstResult, int maxResults);
+
 }

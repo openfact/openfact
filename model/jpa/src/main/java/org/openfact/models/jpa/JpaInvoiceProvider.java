@@ -303,4 +303,46 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
         });
         return result;
     }
+
+    @Override
+    public List<InvoiceModel> searchForInvoice(Map<String, String> attributes, OrganizationModel organization) {
+        return searchForInvoice(attributes, organization, -1, -1);
+    }
+
+    @Override
+    public List<InvoiceModel> searchForInvoice(Map<String, String> attributes, OrganizationModel organization, int firstResult, int maxResults) {
+        StringBuilder builder = new StringBuilder("select u from InvoiceEntity u where u.organizationId = :organizationId");
+        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+            String attribute = null;
+            String parameterName = null;
+            if (entry.getKey().equals(InvoiceModel.DOCUMENT_ID)) {
+                attribute = "lower(u.documentId)";
+                parameterName = JpaInvoiceProvider.DOCUMENT_ID;
+            }
+            if (attribute == null) continue;
+            builder.append(" and ");
+            builder.append(attribute).append(" like :").append(parameterName);
+        }
+        builder.append(" order by u.createdTimestamp");
+        String q = builder.toString();
+        TypedQuery<InvoiceEntity> query = em.createQuery(q, InvoiceEntity.class);
+        query.setParameter("organizationId", organization.getId());
+        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+            String parameterName = null;
+            if (entry.getKey().equals(InvoiceModel.DOCUMENT_ID)) {
+                parameterName = JpaInvoiceProvider.DOCUMENT_ID;
+            }
+            if (parameterName == null) continue;
+            query.setParameter(parameterName, "%" + entry.getValue().toLowerCase() + "%");
+        }
+        if (firstResult != -1) {
+            query.setFirstResult(firstResult);
+        }
+        if (maxResults != -1) {
+            query.setMaxResults(maxResults);
+        }
+        List<InvoiceEntity> results = query.getResultList();
+        List<InvoiceModel> invoices = results.stream().map(f -> new InvoiceAdapter(session, organization, em, f)).collect(Collectors.toList());
+        return invoices;
+    }
 }

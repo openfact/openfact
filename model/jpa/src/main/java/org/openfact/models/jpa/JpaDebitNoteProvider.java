@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
@@ -32,6 +33,7 @@ import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.jpa.entities.DebitNoteEntity;
 import org.openfact.models.jpa.entities.DebitNoteEntity;
 import org.openfact.models.jpa.entities.DebitNoteEntity;
+import org.openfact.models.jpa.entities.DebitNoteEntity;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
@@ -40,7 +42,7 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
 
     protected static final Logger logger = Logger.getLogger(JpaDebitNoteProvider.class);
 
-    private static final String DOCUMENT_ID = "DOCUMENT_ID";
+    private static final String DOCUMENT_ID = "documentId";
     private static final String ISSUE_DATETIME = "issueDateTime";
 
     private final OpenfactSession session;
@@ -297,6 +299,48 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
             return f.stream().map(m -> new DebitNoteAdapter(session, organization, em, m)).collect(Collectors.toList());
         });
         return result;
+    }
+
+    @Override
+    public List<DebitNoteModel> searchForDebitNote(Map<String, String> attributes, OrganizationModel organization) {
+        return searchForDebitNote(attributes, organization, -1, -1);
+    }
+
+    @Override
+    public List<DebitNoteModel> searchForDebitNote(Map<String, String> attributes, OrganizationModel organization, int firstResult, int maxResults) {
+        StringBuilder builder = new StringBuilder("select u from DebitNoteEntity u where u.organizationId = :organizationId");
+        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+            String attribute = null;
+            String parameterName = null;
+            if (entry.getKey().equals(DebitNoteModel.DOCUMENT_ID)) {
+                attribute = "lower(u.documentId)";
+                parameterName = JpaDebitNoteProvider.DOCUMENT_ID;
+            }
+            if (attribute == null) continue;
+            builder.append(" and ");
+            builder.append(attribute).append(" like :").append(parameterName);
+        }
+        builder.append(" order by u.createdTimestamp");
+        String q = builder.toString();
+        TypedQuery<DebitNoteEntity> query = em.createQuery(q, DebitNoteEntity.class);
+        query.setParameter("organizationId", organization.getId());
+        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+            String parameterName = null;
+            if (entry.getKey().equals(DebitNoteModel.DOCUMENT_ID)) {
+                parameterName = JpaDebitNoteProvider.DOCUMENT_ID;
+            }
+            if (parameterName == null) continue;
+            query.setParameter(parameterName, "%" + entry.getValue().toLowerCase() + "%");
+        }
+        if (firstResult != -1) {
+            query.setFirstResult(firstResult);
+        }
+        if (maxResults != -1) {
+            query.setMaxResults(maxResults);
+        }
+        List<DebitNoteEntity> results = query.getResultList();
+        List<DebitNoteModel> debitNotes = results.stream().map(f -> new DebitNoteAdapter(session, organization, em, f)).collect(Collectors.toList());
+        return debitNotes;
     }
 
 }

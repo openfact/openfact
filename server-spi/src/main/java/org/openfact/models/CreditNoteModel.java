@@ -27,7 +27,7 @@ import org.openfact.ubl.SendEventModel;
 
 public interface CreditNoteModel {
 
-    String ID = "ID";
+    String DOCUMENT_ID = "documentId";
     String ISSUE_DATETIME = "issueDateTime";
 
     String getId();

@@ -28,7 +28,7 @@ import org.openfact.ubl.SendEventModel;
 
 public interface InvoiceModel {
 
-    String ID = "ID";
+    String DOCUMENT_ID = "documentId";
     String INVOICE_TYPE_CODE = "invoiceTypeCode";
     String ISSUE_DATETIME = "issueDateTime";
 
