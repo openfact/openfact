@@ -18,10 +18,7 @@ package org.openfact.services.resources.admin;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import javax.ws.rs.Consumes;
@@ -45,11 +42,7 @@ import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
 import org.openfact.events.admin.OperationType;
-import org.openfact.models.CreditNoteModel;
-import org.openfact.models.ModelDuplicateException;
-import org.openfact.models.ModelException;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
+import org.openfact.models.*;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.utils.ModelToRepresentation;
@@ -116,22 +109,29 @@ public class CreditNotesAdminResource {
     @GET
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    public List<CreditNoteRepresentation> getCreditNotes(@QueryParam("filterText") String filterText,
-            @QueryParam("first") Integer firstResult, @QueryParam("max") Integer maxResults) {
+    public List<CreditNoteRepresentation> getCreditNotes(
+            @QueryParam("filterText") String filterText,
+            @QueryParam("documentId") String documentId,
+            @QueryParam("first") Integer firstResult,
+            @QueryParam("max") Integer maxResults) {
         auth.requireView();
 
         firstResult = firstResult != null ? firstResult : -1;
-        maxResults = maxResults != null ? maxResults : -1;
+        maxResults = maxResults != null ? maxResults : Constants.DEFAULT_MAX_RESULTS;
 
-        List<CreditNoteModel> creditNotes;
-        if (filterText == null) {
-            creditNotes = session.creditNotes().getCreditNotes(organization, firstResult, maxResults);
+        List<CreditNoteModel> creditNoteModels;
+        if (filterText != null) {
+            creditNoteModels = session.creditNotes().searchForCreditNote(organization, filterText.trim(), firstResult, maxResults);
+        } else if (documentId != null) {
+            Map<String, String> attributes = new HashMap<>();
+            if(documentId != null) {
+                attributes.put(InvoiceModel.DOCUMENT_ID, documentId);
+            }
+            creditNoteModels = session.creditNotes().searchForCreditNote(attributes, organization, firstResult, maxResults);
         } else {
-            creditNotes = session.creditNotes().searchForCreditNote(organization, filterText.trim(),
-                    firstResult, maxResults);
+            creditNoteModels = session.creditNotes().getCreditNotes(organization, firstResult, maxResults);
         }
-        return creditNotes.stream().map(f -> ModelToRepresentation.toRepresentation(f))
-                .collect(Collectors.toList());
+        return creditNoteModels.stream().map(f -> ModelToRepresentation.toRepresentation(f)).collect(Collectors.toList());
     }
 
     @POST

@@ -18,10 +18,7 @@ package org.openfact.services.resources.admin;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import javax.ws.rs.Consumes;
@@ -45,11 +42,7 @@ import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
 import org.openfact.events.admin.OperationType;
-import org.openfact.models.InvoiceModel;
-import org.openfact.models.ModelDuplicateException;
-import org.openfact.models.ModelException;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
+import org.openfact.models.*;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.utils.ModelToRepresentation;
@@ -60,7 +53,6 @@ import org.openfact.representations.idm.search.SearchResultsRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.InvoiceManager;
-import org.openfact.ubl.SendException;
 import org.openfact.ubl.UBLInvoiceProvider;
 
 import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
@@ -120,22 +112,29 @@ public class InvoicesAdminResource {
     @GET
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    public List<InvoiceRepresentation> getInvoices(@QueryParam("filterText") String filterText,
-            @QueryParam("first") Integer firstResult, @QueryParam("max") Integer maxResults) {
+    public List<InvoiceRepresentation> getInvoices(
+            @QueryParam("filterText") String filterText,
+            @QueryParam("documentId") String documentId,
+            @QueryParam("first") Integer firstResult,
+            @QueryParam("max") Integer maxResults) {
         auth.requireView();
 
         firstResult = firstResult != null ? firstResult : -1;
-        maxResults = maxResults != null ? maxResults : -1;
+        maxResults = maxResults != null ? maxResults : Constants.DEFAULT_MAX_RESULTS;
 
-        List<InvoiceModel> invoices;
-        if (filterText == null) {
-            invoices = session.invoices().getInvoices(organization, firstResult, maxResults);
+        List<InvoiceModel> invoiceModels;
+        if (filterText != null) {
+            invoiceModels = session.invoices().searchForInvoice(organization, filterText.trim(), firstResult, maxResults);
+        } else if (documentId != null) {
+            Map<String, String> attributes = new HashMap<>();
+            if(documentId != null) {
+                attributes.put(InvoiceModel.DOCUMENT_ID, documentId);
+            }
+            invoiceModels = session.invoices().searchForInvoice(attributes, organization, firstResult, maxResults);
         } else {
-            invoices = session.invoices().searchForInvoice(organization, filterText.trim(), firstResult,
-                    maxResults);
+            invoiceModels = session.invoices().getInvoices(organization, firstResult, maxResults);
         }
-        return invoices.stream().map(f -> ModelToRepresentation.toRepresentation(f))
-                .collect(Collectors.toList());
+        return invoiceModels.stream().map(f -> ModelToRepresentation.toRepresentation(f)).collect(Collectors.toList());
     }
 
     @POST
