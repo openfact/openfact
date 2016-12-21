@@ -136,12 +136,12 @@ public class JasperUBLReportProvider implements UBLReportProvider {
                             Object fieldValue = null;
                             for (UBLReportDataProvider provider : dataProviders) {
                                 fieldValue = provider.invoice().getFieldValue(invoice, jrField.getName());
+                                if(fieldValue != null) break;
                             }
                             return fieldValue;
                         }
                     });
 
-                    //return JasperExportManager.exportReportToPdf(jp);
                     return export(jp, JasperExportFormat.PDF);
                 } catch (Exception e) {
                     throw new ReportException("Failed to template report", e);

@@ -20,8 +20,13 @@ import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRParameter;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import org.jboss.logging.Logger;
+import org.openfact.common.converts.DocumentUtils;
 import org.openfact.models.*;
 import org.openfact.report.*;
+import org.openfact.services.resources.admin.AdminConsole;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import java.util.HashMap;
 import java.util.List;
@@ -30,11 +35,13 @@ import java.util.Map;
 
 public class BasicUBLReportDataProvider implements UBLReportDataProvider {
 
+    private static final Logger logger = Logger.getLogger(BasicUBLReportDataProvider.class);
+
     public enum PARAMETERS {
         OF_ORGANIZATION
     }
 
-    protected  OpenfactSession session;
+    protected OpenfactSession session;
 
     public BasicUBLReportDataProvider(OpenfactSession session) {
         this.session = session;
@@ -50,10 +57,31 @@ public class BasicUBLReportDataProvider implements UBLReportDataProvider {
         return new ReportDataProvider<InvoiceModel>() {
             @Override
             public Object getFieldValue(InvoiceModel invoice, String fieldName) {
-                if(fieldName.equals("documentId")){
-                    return invoice.getDocumentId();
+
+                Document document = null;
+                try {
+                    document = DocumentUtils.byteToDocument(invoice.getXmlDocument());
+                } catch (Exception e) {
+                    logger.error(e);
                 }
-                return null;
+                if (document == null) {
+                    return null;
+                }
+
+
+                Object result = null;
+                Element element = document.getDocumentElement();
+
+                String[] fieldNameTree = fieldName.split(".");
+                for (int i = 0; i < fieldNameTree.length; i++) {
+                    if (i == fieldNameTree.length) {
+                        result = element.getAttribute(fieldNameTree[i]);
+                    } else {
+                        element = element.getAttributeNode(fieldNameTree[i]).getOwnerElement();
+                    }
+                }
+
+                return result;
             }
 
             @Override
