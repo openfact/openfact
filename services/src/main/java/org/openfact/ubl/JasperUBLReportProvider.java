@@ -131,7 +131,7 @@ public class JasperUBLReportProvider implements UBLReportProvider {
                     JasperPrint jp = jasperReport.processReport(theme, Templates.getTemplate(ReportTheme.Type.INVOICE), attributes, new BasicJRDataSource<InvoiceModel>(Arrays.asList(invoice)) {
                         @Override
                         public Object getFieldValue(JRField jrField) throws JRException {
-                            InvoiceModel current = super.dataSource.get(super.current.get());
+                            InvoiceModel current = super.dataSource.get(super.current.get() - 1);
 
                             Object fieldValue = null;
                             for (UBLReportDataProvider provider : dataProviders) {
@@ -205,11 +205,7 @@ public class JasperUBLReportProvider implements UBLReportProvider {
 
         @Override
         public boolean next() throws JRException {
-            if (current.getAndIncrement() < this.dataSource.size()) {
-                return true;
-            } else {
-                return false;
-            }
+            return current.getAndIncrement() < this.dataSource.size();
         }
     }
 
