@@ -55,6 +55,7 @@ public class RepresentationToModel {
         };
 
         BiFunction<Object, FilterValueType, Object> valueFunction = (value, type) -> {
+            if(type == null) return value;
             Object result = null;
             switch (type) {
             case LONG:
