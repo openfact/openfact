@@ -16,6 +16,7 @@
  *******************************************************************************/
 package org.openfact.models.utils;
 
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -40,6 +41,8 @@ import org.openfact.models.TaxTotalModel;
 import org.openfact.provider.ProviderConfigProperty;
 import org.openfact.representations.idm.*;
 import org.openfact.ubl.SendEventModel;
+
+import javax.persistence.Column;
 
 public class ModelToRepresentation {
 
@@ -139,35 +142,25 @@ public class ModelToRepresentation {
     public static InvoiceRepresentation toRepresentation(InvoiceModel model) {
         InvoiceRepresentation rep = new InvoiceRepresentation();
 
+        rep.setId(model.getId());
+        rep.setDocumentId(model.getDocumentId());
+        rep.setIssueDateTime(model.getIssueDateTime());
+        rep.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
+        rep.setInvoiceTypeCode(model.getInvoiceTypeCode());
+        rep.setCustomerRegistrationName(model.getCustomerRegistrationName());
+        rep.setCustomerAssignedAccountId(model.getCustomerAssignedAccountId());
+        rep.setCustomerElectronicMail(model.getCustomerElectronicMail());
+        rep.setSupplierPartyRegistrationName(model.getSupplierPartyRegistrationName());
+        rep.setSupplierPartyAssignedAccountId(model.getSupplierPartyAssignedAccountId());
+        rep.setAllowanceTotalAmount(model.getAllowanceTotalAmount());
+        rep.setChargeTotalAmount(model.getChargeTotalAmount());
+        rep.setPayableAmount(model.getPayableAmount());
+
         if(model.getRequiredActions() != null) {
             rep.setRequiredActions(new HashSet<String>());
             rep.getRequiredActions().addAll(model.getRequiredActions());
         }
 
-        rep.setId(model.getId());
-        rep.setDocumentId(model.getDocumentId());
-        rep.setIssueDateTime(model.getIssueDateTime());
-        if (model.getAccountingSupplierParty() != null) {
-            rep.setAccountingSupplierParty(toRepresentation(model.getAccountingSupplierParty()));
-        }
-        rep.setInvoiceTypeCode(model.getInvoiceTypeCode());
-
-        if (model.getAccountingCustomerParty() != null) {
-            rep.setAccountingCustomerParty(toRepresentation(model.getAccountingCustomerParty()));
-        }
-
-        if (model.getTaxTotal() != null) {
-            for (TaxTotalModel item : model.getTaxTotal()) {
-                if(rep.getTaxTotal() == null) {
-                    rep.setTaxTotal(new ArrayList<>());
-                }
-                rep.getTaxTotal().add(toRepresentation(item));
-            }
-        }
-        if (model.getLegalMonetaryTotal() != null) {
-            rep.setLegalMonetaryTotal(toRepresentation(model.getLegalMonetaryTotal()));
-        }
-        rep.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
         return rep;
     }
 

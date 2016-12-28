@@ -114,9 +114,7 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
 
 			@Override
 			public SendEventModel sendToCustomer(OrganizationModel organization, InvoiceModel invoice) throws SendException {
-				CustomerPartyModel customerParty = invoice.getAccountingCustomerParty();
-
-                if (customerParty == null || customerParty.getParty() == null || customerParty.getParty().getContact() == null || customerParty.getParty().getContact().getElectronicMail() == null) {
+                if (invoice.getCustomerElectronicMail() == null) {
                     SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, invoice);
                     sendEvent.setType("EMAIL");
                     sendEvent.setDescription("Could not find a valid email for the customer.");
@@ -134,13 +132,12 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
 				UserSenderModel user = new UserSenderModel() {
 					@Override
 					public String getFullName() {
-						List<PartyLegalEntityModel> partyLegalEntities = customerParty.getParty().getPartyLegalEntity();
-						return partyLegalEntities.stream().map(f -> f.getRegistrationName()).reduce((t, u) -> t + "," + u).get();
+						return invoice.getCustomerRegistrationName();
 					}
 
 					@Override
 					public String getEmail() {
-						return customerParty.getParty().getContact().getElectronicMail();
+						return invoice.getCustomerElectronicMail();
 					}
 				};
 

@@ -16,23 +16,29 @@
  *******************************************************************************/
 package org.openfact.representations.idm;
 
+import javax.persistence.Column;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
 
 public class InvoiceRepresentation {
 
-    protected String id;
-    protected String documentId;
-    protected String invoiceTypeCode;
-    protected LocalDateTime issueDateTime;
-    protected String documentCurrencyCode;
-    protected SupplierPartyRepresentation accountingSupplierParty;
-    protected CustomerPartyRepresentation accountingCustomerParty;
-    protected MonetaryTotalRepresentation legalMonetaryTotal;
-    protected List<TaxTotalRepresentation> taxTotal;
+    private String id;
+    private String documentId;
+    private String invoiceTypeCode;
+    private LocalDateTime issueDateTime;
+    private String documentCurrencyCode;
+    private String customerRegistrationName;
+    private String customerAssignedAccountId;
+    private String customerElectronicMail;
+    private String supplierPartyRegistrationName;
+    private String supplierPartyAssignedAccountId;
+    private BigDecimal allowanceTotalAmount;
+    private BigDecimal chargeTotalAmount;
+    private BigDecimal payableAmount;
 
-    protected Map<String, String> attributes;
-    protected Set<String> requiredActions;
+    private Map<String, String> attributes;
+    private Set<String> requiredActions;
 
     public String getId() {
         return id;
@@ -74,36 +80,68 @@ public class InvoiceRepresentation {
         this.documentCurrencyCode = documentCurrencyCode;
     }
 
-    public SupplierPartyRepresentation getAccountingSupplierParty() {
-        return accountingSupplierParty;
+    public String getCustomerRegistrationName() {
+        return customerRegistrationName;
     }
 
-    public void setAccountingSupplierParty(SupplierPartyRepresentation accountingSupplierParty) {
-        this.accountingSupplierParty = accountingSupplierParty;
+    public void setCustomerRegistrationName(String customerRegistrationName) {
+        this.customerRegistrationName = customerRegistrationName;
     }
 
-    public CustomerPartyRepresentation getAccountingCustomerParty() {
-        return accountingCustomerParty;
+    public String getCustomerAssignedAccountId() {
+        return customerAssignedAccountId;
     }
 
-    public void setAccountingCustomerParty(CustomerPartyRepresentation accountingCustomerParty) {
-        this.accountingCustomerParty = accountingCustomerParty;
+    public void setCustomerAssignedAccountId(String customerAssignedAccountId) {
+        this.customerAssignedAccountId = customerAssignedAccountId;
     }
 
-    public MonetaryTotalRepresentation getLegalMonetaryTotal() {
-        return legalMonetaryTotal;
+    public String getCustomerElectronicMail() {
+        return customerElectronicMail;
     }
 
-    public void setLegalMonetaryTotal(MonetaryTotalRepresentation legalMonetaryTotal) {
-        this.legalMonetaryTotal = legalMonetaryTotal;
+    public void setCustomerElectronicMail(String customerElectronicMail) {
+        this.customerElectronicMail = customerElectronicMail;
     }
 
-    public List<TaxTotalRepresentation> getTaxTotal() {
-        return taxTotal;
+    public String getSupplierPartyRegistrationName() {
+        return supplierPartyRegistrationName;
     }
 
-    public void setTaxTotal(List<TaxTotalRepresentation> taxTotal) {
-        this.taxTotal = taxTotal;
+    public void setSupplierPartyRegistrationName(String supplierPartyRegistrationName) {
+        this.supplierPartyRegistrationName = supplierPartyRegistrationName;
+    }
+
+    public String getSupplierPartyAssignedAccountId() {
+        return supplierPartyAssignedAccountId;
+    }
+
+    public void setSupplierPartyAssignedAccountId(String supplierPartyAssignedAccountId) {
+        this.supplierPartyAssignedAccountId = supplierPartyAssignedAccountId;
+    }
+
+    public BigDecimal getAllowanceTotalAmount() {
+        return allowanceTotalAmount;
+    }
+
+    public void setAllowanceTotalAmount(BigDecimal allowanceTotalAmount) {
+        this.allowanceTotalAmount = allowanceTotalAmount;
+    }
+
+    public BigDecimal getChargeTotalAmount() {
+        return chargeTotalAmount;
+    }
+
+    public void setChargeTotalAmount(BigDecimal chargeTotalAmount) {
+        this.chargeTotalAmount = chargeTotalAmount;
+    }
+
+    public BigDecimal getPayableAmount() {
+        return payableAmount;
+    }
+
+    public void setPayableAmount(BigDecimal payableAmount) {
+        this.payableAmount = payableAmount;
     }
 
     public Map<String, String> getAttributes() {
@@ -121,5 +159,4 @@ public class InvoiceRepresentation {
     public void setRequiredActions(Set<String> requiredActions) {
         this.requiredActions = requiredActions;
     }
-
 }

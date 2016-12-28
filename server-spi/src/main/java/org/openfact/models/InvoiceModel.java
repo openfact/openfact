@@ -16,6 +16,7 @@
  *******************************************************************************/
 package org.openfact.models;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -26,11 +27,17 @@ import org.openfact.provider.ProviderEvent;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.ubl.SendEventModel;
 
+import javax.persistence.Column;
+
 public interface InvoiceModel {
 
     String DOCUMENT_ID = "documentId";
     String INVOICE_TYPE_CODE = "invoiceTypeCode";
     String ISSUE_DATETIME = "issueDateTime";
+    String DOCUMENT_CURRENCY_CODE = "documentCurrencyCode";
+    String CUSTOMER_REGISTRATION_NAME = "customerRegistrationName";
+    String CUSTOMER_ASSIGNED_ACCOUNT_ID = "customerAssignedAccountId";
+    String PAYABLE_AMOUNT = "payableAmount";
 
     String getId();
 
@@ -57,21 +64,37 @@ public interface InvoiceModel {
 
     void setDocumentCurrencyCode(String value);
 
-    SupplierPartyModel getAccountingSupplierParty();
+    String getCustomerRegistrationName();
 
-    SupplierPartyModel getAccountingSupplierPartyAsNotNull();
+    void setCustomerRegistrationName(String value);
 
-    CustomerPartyModel getAccountingCustomerParty();
+    String getCustomerAssignedAccountId();
 
-    CustomerPartyModel getAccountingCustomerPartyAsNotNull();
+    void setCustomerAssignedAccountId(String value);
 
-    MonetaryTotalModel getLegalMonetaryTotal();
+    String getCustomerElectronicMail();
 
-    MonetaryTotalModel getLegalMonetaryTotalAsNotNull();
+    void setCustomerElectronicMail(String value);
 
-    List<TaxTotalModel> getTaxTotal();
+    String getSupplierPartyRegistrationName();
 
-    TaxTotalModel addTaxTotal();
+    void setSupplierPartyRegistrationName(String value);
+
+    String getSupplierPartyAssignedAccountId();
+
+    void setSupplierPartyAssignedAccountId(String value);
+
+    BigDecimal getAllowanceTotalAmount();
+
+    void setAllowanceTotalAmount(BigDecimal value);
+
+    BigDecimal getChargeTotalAmount();
+
+    void setChargeTotalAmount(BigDecimal value);
+
+    BigDecimal getPayableAmount();
+
+    void setPayableAmount(BigDecimal value);
 
     /**
      * Xml

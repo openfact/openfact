@@ -50,8 +50,8 @@ public class SupplierPartyEntity {
 
     @ManyToOne(targetEntity = PartyEntity.class, cascade = { CascadeType.ALL })
     @JoinColumn(name = "PARTY_SUPPLIERPARTY_ID")
-
     protected PartyEntity party;
+
     @ElementCollection
     @Column(name = "VALUE")
     @CollectionTable(name = "SUPPLIERPARTY_ADDITIONALACCOUNTID", joinColumns = { @JoinColumn(name = "SUPPLIERPARTY_ID") })

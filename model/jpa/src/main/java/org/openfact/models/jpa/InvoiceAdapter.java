@@ -16,6 +16,7 @@
  *******************************************************************************/
 package org.openfact.models.jpa;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -111,69 +112,83 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
-    public SupplierPartyModel getAccountingSupplierParty() {
-        if (invoice.getAccountingCustomerParty() == null) {
-            return null;
-        }
-        return new SupplierPartyAdapter(session, em, invoice.getAccountingSupplierParty());
+    public String getCustomerRegistrationName() {
+        return invoice.getCustomerRegistrationName();
     }
 
     @Override
-    public SupplierPartyModel getAccountingSupplierPartyAsNotNull() {
-        if (invoice.getAccountingCustomerParty() == null) {
-            SupplierPartyEntity entity = new SupplierPartyEntity();
-            invoice.setAccountingSupplierParty(entity);
-        }
-        return new SupplierPartyAdapter(session, em, invoice.getAccountingSupplierParty());
+    public void setCustomerRegistrationName(String value) {
+        invoice.setCustomerRegistrationName(value);
     }
 
     @Override
-    public CustomerPartyModel getAccountingCustomerParty() {
-        if (invoice.getAccountingCustomerParty() == null) {
-            return null;
-        }
-        return new CustomerPartyAdapter(session, em, invoice.getAccountingCustomerParty());
+    public String getCustomerAssignedAccountId() {
+        return invoice.getCustomerAssignedAccountId();
     }
 
     @Override
-    public CustomerPartyModel getAccountingCustomerPartyAsNotNull() {
-        if (invoice.getAccountingCustomerParty() == null) {
-            CustomerPartyEntity entity = new CustomerPartyEntity();
-            invoice.setAccountingCustomerParty(entity);
-        }
-        return new CustomerPartyAdapter(session, em, invoice.getAccountingCustomerParty());
+    public void setCustomerAssignedAccountId(String value) {
+        invoice.setCustomerAssignedAccountId(value);
     }
 
     @Override
-    public MonetaryTotalModel getLegalMonetaryTotal() {
-        if (invoice.getLegalMonetaryTotal() == null) {
-            return null;
-        }
-        return new MonetaryTotalAdapter(session, em, invoice.getLegalMonetaryTotal());
+    public String getCustomerElectronicMail() {
+        return invoice.getCustomerElectronicMail();
     }
 
     @Override
-    public MonetaryTotalModel getLegalMonetaryTotalAsNotNull() {
-        if (invoice.getLegalMonetaryTotal() == null) {
-            MonetaryTotalEntity entity = new MonetaryTotalEntity();
-            invoice.setLegalMonetaryTotal(entity);
-        }
-        return new MonetaryTotalAdapter(session, em, invoice.getLegalMonetaryTotal());
+    public void setCustomerElectronicMail(String value) {
+        invoice.setCustomerElectronicMail(value);
     }
 
     @Override
-    public List<TaxTotalModel> getTaxTotal() {
-        return invoice.getTaxTotal().stream().map(f -> new TaxTotalAdapter(session, em, f))
-                .collect(Collectors.toList());
+    public String getSupplierPartyRegistrationName() {
+        return invoice.getSupplierPartyRegistrationName();
     }
 
     @Override
-    public TaxTotalModel addTaxTotal() {
-        List<TaxTotalEntity> entities = invoice.getTaxTotal();
+    public void setSupplierPartyRegistrationName(String value) {
+        invoice.setSupplierPartyRegistrationName(value);
+    }
 
-        TaxTotalEntity entity = new TaxTotalEntity();
-        entities.add(entity);
-        return new TaxTotalAdapter(session, em, entity);
+    @Override
+    public String getSupplierPartyAssignedAccountId() {
+        return invoice.getSupplierPartyAssignedAccountId();
+    }
+
+    @Override
+    public void setSupplierPartyAssignedAccountId(String value) {
+        invoice.setSupplierPartyAssignedAccountId(value);
+    }
+
+    @Override
+    public BigDecimal getAllowanceTotalAmount() {
+        return invoice.getAllowanceTotalAmount();
+    }
+
+    @Override
+    public void setAllowanceTotalAmount(BigDecimal value) {
+        invoice.setAllowanceTotalAmount(value);
+    }
+
+    @Override
+    public BigDecimal getChargeTotalAmount() {
+        return invoice.getChargeTotalAmount();
+    }
+
+    @Override
+    public void setChargeTotalAmount(BigDecimal value) {
+        invoice.setChargeTotalAmount(value);
+    }
+
+    @Override
+    public BigDecimal getPayableAmount() {
+        return invoice.getPayableAmount();
+    }
+
+    @Override
+    public void setPayableAmount(BigDecimal value) {
+        invoice.setPayableAmount(value);
     }
 
     @Override

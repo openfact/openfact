@@ -46,6 +46,10 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     private static final String DOCUMENT_ID = "documentId";
     private static final String INVOICE_TYPE_CODE = "invoiceTypeCode";
     private static final String ISSUE_DATETIME = "issueDateTime";
+    private static final String DOCUMENT_CURRENCY_CODE = "documentCurrencyCode";
+    private static final String CUSTOMER_REGISTRATION_NAME = "customerRegistrationName";
+    private static final String CUSTOMER_ASSIGNED_ACCOUNT_ID = "customerAssignedAccountId";
+    private static final String PAYABLE_AMOUNT = "payableAmount";
 
     private final OpenfactSession session;
     protected EntityManager em;
@@ -220,7 +224,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     public SearchResultsModel<InvoiceModel> searchForInvoice(OrganizationModel organization, SearchCriteriaModel criteria, String filterText) {
         criteria.addFilter("organizationId", organization.getId(), SearchCriteriaFilterOperator.eq);
 
-        SearchResultsModel<InvoiceEntity> entityResult = findFullText(criteria, InvoiceEntity.class, filterText, INVOICE_TYPE_CODE, DOCUMENT_ID);
+        SearchResultsModel<InvoiceEntity> entityResult = findFullText(criteria, InvoiceEntity.class, filterText, DOCUMENT_ID, CUSTOMER_REGISTRATION_NAME);
         List<InvoiceEntity> entities = entityResult.getModels();
 
         SearchResultsModel<InvoiceModel> searchResult = new SearchResultsModel<>();

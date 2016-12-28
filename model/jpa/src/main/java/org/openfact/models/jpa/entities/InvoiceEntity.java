@@ -23,6 +23,7 @@
 
 package org.openfact.models.jpa.entities;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -105,21 +106,29 @@ public class InvoiceEntity {
     @Column(name = "DOCUMENT_CURRENCY_CODE")
     private String documentCurrencyCode;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = SupplierPartyEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ACCOUNTINGSUPPLIERPARTY_INVOICE")
-    private SupplierPartyEntity accountingSupplierParty;
+    @Column(name = "CUSTOMER_REGISTRATIONNAME")
+    private String customerRegistrationName;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = CustomerPartyEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ACCOUNTINGCUSTOMERPARTY_INVOICE")
-    private CustomerPartyEntity accountingCustomerParty;
+    @Column(name = "CUSTOMER_ASSIGNEDACCOUNTID")
+    private String customerAssignedAccountId;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = MonetaryTotalEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LEGALMONETARYTOTAL_INVOICE")
-    private MonetaryTotalEntity legalMonetaryTotal;
+    @Column(name = "CUSTOMER_ELECTRONICMAIL")
+    private String customerElectronicMail;
 
-    @OneToMany(fetch = FetchType.LAZY, targetEntity = TaxTotalEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TAXTOTAL_INVOICE_ID")
-    private List<TaxTotalEntity> taxTotal = new ArrayList<>();
+    @Column(name = "SUPPLIERPARTY_REGISTRATIONNAME")
+    private String supplierPartyRegistrationName;
+
+    @Column(name = "SUPPLIERPARTY_ASSIGNEDACCOUNTID")
+    private String supplierPartyAssignedAccountId;
+
+    @Column(name = "ALLOWANCE_TOTAL_AMOUNT")
+    private BigDecimal allowanceTotalAmount;
+
+    @Column(name = "CHARGE_TOTAL_AMOUNT")
+    private BigDecimal chargeTotalAmount;
+
+    @Column(name = "PAYABLE_AMOUNT")
+    private BigDecimal payableAmount;
 
     @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy="invoice")
     private Collection<InvoiceAttributeEntity> attributes = new ArrayList<>();
@@ -129,6 +138,31 @@ public class InvoiceEntity {
 
     @OneToMany(cascade = { CascadeType.REMOVE }, orphanRemoval = true, mappedBy = "invoice", fetch = FetchType.LAZY)
     private Collection<InvoiceSendEventEntity> sendEvents = new ArrayList<>();
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        InvoiceEntity other = (InvoiceEntity) obj;
+        if (getId() == null) {
+            if (other.getId() != null)
+                return false;
+        } else if (!getId().equals(other.getId()))
+            return false;
+        return true;
+    }
 
     public String getId() {
         return id;
@@ -194,36 +228,68 @@ public class InvoiceEntity {
         this.documentCurrencyCode = documentCurrencyCode;
     }
 
-    public SupplierPartyEntity getAccountingSupplierParty() {
-        return accountingSupplierParty;
+    public String getCustomerRegistrationName() {
+        return customerRegistrationName;
     }
 
-    public void setAccountingSupplierParty(SupplierPartyEntity accountingSupplierParty) {
-        this.accountingSupplierParty = accountingSupplierParty;
+    public void setCustomerRegistrationName(String customerRegistrationName) {
+        this.customerRegistrationName = customerRegistrationName;
     }
 
-    public CustomerPartyEntity getAccountingCustomerParty() {
-        return accountingCustomerParty;
+    public String getCustomerAssignedAccountId() {
+        return customerAssignedAccountId;
     }
 
-    public void setAccountingCustomerParty(CustomerPartyEntity accountingCustomerParty) {
-        this.accountingCustomerParty = accountingCustomerParty;
+    public void setCustomerAssignedAccountId(String customerAssignedAccountId) {
+        this.customerAssignedAccountId = customerAssignedAccountId;
     }
 
-    public MonetaryTotalEntity getLegalMonetaryTotal() {
-        return legalMonetaryTotal;
+    public String getCustomerElectronicMail() {
+        return customerElectronicMail;
     }
 
-    public void setLegalMonetaryTotal(MonetaryTotalEntity legalMonetaryTotal) {
-        this.legalMonetaryTotal = legalMonetaryTotal;
+    public void setCustomerElectronicMail(String customerElectronicMail) {
+        this.customerElectronicMail = customerElectronicMail;
     }
 
-    public List<TaxTotalEntity> getTaxTotal() {
-        return taxTotal;
+    public String getSupplierPartyRegistrationName() {
+        return supplierPartyRegistrationName;
     }
 
-    public void setTaxTotal(List<TaxTotalEntity> taxTotal) {
-        this.taxTotal = taxTotal;
+    public void setSupplierPartyRegistrationName(String supplierPartyRegistrationName) {
+        this.supplierPartyRegistrationName = supplierPartyRegistrationName;
+    }
+
+    public String getSupplierPartyAssignedAccountId() {
+        return supplierPartyAssignedAccountId;
+    }
+
+    public void setSupplierPartyAssignedAccountId(String supplierPartyAssignedAccountId) {
+        this.supplierPartyAssignedAccountId = supplierPartyAssignedAccountId;
+    }
+
+    public BigDecimal getAllowanceTotalAmount() {
+        return allowanceTotalAmount;
+    }
+
+    public void setAllowanceTotalAmount(BigDecimal allowanceTotalAmount) {
+        this.allowanceTotalAmount = allowanceTotalAmount;
+    }
+
+    public BigDecimal getChargeTotalAmount() {
+        return chargeTotalAmount;
+    }
+
+    public void setChargeTotalAmount(BigDecimal chargeTotalAmount) {
+        this.chargeTotalAmount = chargeTotalAmount;
+    }
+
+    public BigDecimal getPayableAmount() {
+        return payableAmount;
+    }
+
+    public void setPayableAmount(BigDecimal payableAmount) {
+        this.payableAmount = payableAmount;
     }
 
     public Collection<InvoiceAttributeEntity> getAttributes() {
@@ -249,30 +315,4 @@ public class InvoiceEntity {
     public void setSendEvents(Collection<InvoiceSendEventEntity> sendEvents) {
         this.sendEvents = sendEvents;
     }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        InvoiceEntity other = (InvoiceEntity) obj;
-        if (getId() == null) {
-            if (other.getId() != null)
-                return false;
-        } else if (!getId().equals(other.getId()))
-            return false;
-        return true;
-    }
-
 }

@@ -16,10 +16,12 @@
  *******************************************************************************/
 package org.openfact.models.utils;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import javax.persistence.Column;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.*;
@@ -45,13 +47,57 @@ public class TypeToModel {
         return date.toGregorianCalendar().toZonedDateTime().toLocalDateTime();
     }
 
-    public static InvoiceModel importInvoice(OpenfactSession session, OrganizationModel organization,
-            InvoiceModel model, InvoiceType type) {
+    public static InvoiceModel importInvoice(OpenfactSession session, OrganizationModel organization, InvoiceModel model, InvoiceType type) {
         if (type.getInvoiceTypeCode() != null) {
             model.setInvoiceTypeCode(type.getInvoiceTypeCodeValue());
         }
         if (type.getDocumentCurrencyCode() != null) {
             model.setDocumentCurrencyCode(type.getDocumentCurrencyCodeValue());
+        }
+        if (type.getAccountingCustomerParty() != null) {
+            CustomerPartyType customerPartyType = type.getAccountingCustomerParty();
+            if (customerPartyType.getCustomerAssignedAccountIDValue() != null) {
+                model.setCustomerAssignedAccountId(customerPartyType.getCustomerAssignedAccountIDValue());
+            }
+            if (customerPartyType.getParty() != null) {
+                PartyType partyType = customerPartyType.getParty();
+                if (partyType.getPartyLegalEntity() != null) {
+                    String registrationName = partyType.getPartyLegalEntity().stream().map(f -> f.getRegistrationNameValue()).reduce("", String::concat);
+                    model.setCustomerRegistrationName(!registrationName.isEmpty() ? registrationName : null);
+                }
+                if (partyType.getContact() != null) {
+                    ContactType contactType = partyType.getContact();
+                    if(contactType.getElectronicMail() != null) {
+                        model.setCustomerElectronicMail(contactType.getElectronicMailValue());
+                    }
+                }
+            }
+        }
+        if (type.getAccountingSupplierParty() != null) {
+            SupplierPartyType supplierPartyType = type.getAccountingSupplierParty();
+            if (supplierPartyType.getCustomerAssignedAccountIDValue() != null) {
+                model.setCustomerAssignedAccountId(supplierPartyType.getCustomerAssignedAccountIDValue());
+            }
+            if (supplierPartyType.getParty() != null) {
+                PartyType partyType = supplierPartyType.getParty();
+                if (partyType.getPartyLegalEntity() != null) {
+                    String registrationName = partyType.getPartyLegalEntity().stream().map(f -> f.getRegistrationNameValue()).reduce("", String::concat);
+                    model.setSupplierPartyRegistrationName(!registrationName.isEmpty() ? registrationName : null);
+                }
+            }
+        }
+
+        if (type.getLegalMonetaryTotal() != null) {
+            MonetaryTotalType monetaryTotalType = type.getLegalMonetaryTotal();
+            if(monetaryTotalType.getAllowanceTotalAmount() != null) {
+                model.setAllowanceTotalAmount(monetaryTotalType.getAllowanceTotalAmountValue());
+            }
+            if(monetaryTotalType.getChargeTotalAmount() != null) {
+                model.setChargeTotalAmount(monetaryTotalType.getChargeTotalAmountValue());
+            }
+            if(monetaryTotalType.getPayableAmount() != null) {
+                model.setPayableAmount(monetaryTotalType.getPayableAmountValue());
+            }
         }
 
         LocalDateTime issueDateTime = null;
@@ -63,21 +109,6 @@ public class TypeToModel {
             }
         }
         model.setIssueDateTime(issueDateTime);
-
-        if (type.getAccountingSupplierParty() != null) {
-            updateModel(model.getAccountingSupplierPartyAsNotNull(), type.getAccountingSupplierParty());
-        }
-        if (type.getAccountingCustomerParty() != null) {
-            updateModel(model.getAccountingCustomerPartyAsNotNull(), type.getAccountingCustomerParty());
-        }
-        if (type.getTaxTotal() != null) {
-            for (TaxTotalType item : type.getTaxTotal()) {
-                updateModel(model.addTaxTotal(), item);
-            }
-        }
-        if (type.getLegalMonetaryTotal() != null) {
-            updateModel(model.getLegalMonetaryTotalAsNotNull(), type.getLegalMonetaryTotal());
-        }
 
         return model;
     }
