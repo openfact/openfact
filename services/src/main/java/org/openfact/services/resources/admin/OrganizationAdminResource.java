@@ -186,8 +186,6 @@ public class OrganizationAdminResource {
     public void deleteOrganization(@Context final UriInfo uriInfo) {
         auth.requireManage();
 
-        AuthzManager.deleteProtectedResource(organization, uriInfo.getPath());
-
         if (!new OrganizationManager(session).removeOrganization(organization)) {
             throw new NotFoundException("Organization doesn't exist");
         }
