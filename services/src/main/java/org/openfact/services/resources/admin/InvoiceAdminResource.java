@@ -31,6 +31,7 @@ import org.openfact.events.admin.OperationType;
 import org.openfact.models.*;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.OpenfactModelUtils;
+import org.openfact.report.ExportFormat;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.representations.idm.SendEventRepresentation;
 import org.openfact.services.ErrorResponse;
@@ -182,7 +183,7 @@ public class InvoiceAdminResource {
     @GET
     @Path("representation/pdf")
     @Produces("application/pdf")
-    public Response getPdf(@QueryParam("theme") String theme) throws Exception {
+    public Response getPdf(@QueryParam("theme") String theme, @QueryParam("format") @DefaultValue("pdf") String format) throws Exception {
         auth.requireView();
 
         if (invoice == null) {
@@ -190,7 +191,7 @@ public class InvoiceAdminResource {
         }
 
         UBLReportProvider reportProvider = session.getProvider(UBLReportProvider.class);
-        byte[] bytes = reportProvider.invoice().setOrganization(organization).setThemeName(theme).getReportAsPdf(invoice);
+        byte[] bytes = reportProvider.invoice().setOrganization(organization).setThemeName(theme).getReport(invoice, ExportFormat.valueOf(format.toUpperCase()));
 
         ResponseBuilder response = Response.ok(bytes);
         response.type("application/pdf");

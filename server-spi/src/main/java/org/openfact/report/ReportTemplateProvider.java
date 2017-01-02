@@ -33,4 +33,8 @@ public interface ReportTemplateProvider<T> extends Provider {
 
     byte[] getReportAsPdf(List<T> t) throws ReportException;
 
+    byte[] getReport(T t, ExportFormat exportFormat) throws ReportException;
+
+    byte[] getReport(List<T> t, ExportFormat exportFormat) throws ReportException;
+
 }

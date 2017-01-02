@@ -47,10 +47,6 @@ public class JasperUBLReportProvider implements UBLReportProvider {
         this.jasperReport = jasperReport;
     }
 
-    public enum JasperExportFormat {
-        HTML, CSV, XML, XLSX, PDF
-    }
-
     private List<UBLReportDataProvider> getDataProviders() {
         List<UBLReportDataProvider> providers = new LinkedList<>();
 
@@ -68,7 +64,7 @@ public class JasperUBLReportProvider implements UBLReportProvider {
         return providers;
     }
 
-    public byte[] export(final JasperPrint print, JasperExportFormat format) throws JRException {
+    public byte[] export(final JasperPrint print, ExportFormat format) throws JRException {
         final Exporter exporter;
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         boolean html = false;
@@ -142,7 +138,7 @@ public class JasperUBLReportProvider implements UBLReportProvider {
                         }
                     });
 
-                    return export(jp, JasperExportFormat.PDF);
+                    return export(jp, ExportFormat.PDF);
                 } catch (Exception e) {
                     throw new ReportException("Failed to template report", e);
                 }
@@ -161,6 +157,48 @@ public class JasperUBLReportProvider implements UBLReportProvider {
                     throw new ReportException("Failed to template report", e);
                 }
             }
+
+            @Override
+            public byte[] getReport(InvoiceModel invoice, ExportFormat exportFormat) throws ReportException {
+                ReportThemeProvider themeProvider = session.getProvider(ReportThemeProvider.class, "extending");
+                try {
+                    ReportTheme theme = themeProvider.getTheme(themeName, ReportTheme.Type.INVOICE);
+                    Locale locale = organization.getDefaultLocale() != null ? new Locale(organization.getDefaultLocale()) : Locale.ENGLISH;
+                    attributes.put(JRParameter.REPORT_LOCALE, locale);
+
+                    // Data providers
+                    List<UBLReportDataProvider> dataProviders = getDataProviders();
+
+                    // Put parameters
+                    for (UBLReportDataProvider provider : dataProviders) {
+                        attributes.putAll(provider.invoice().getParameters(organization, invoice));
+                    }
+
+                    // Put datasource
+                    JasperPrint jp = jasperReport.processReport(theme, Templates.getTemplate(ReportTheme.Type.INVOICE), attributes, new BasicJRDataSource<InvoiceModel>(Arrays.asList(invoice)) {
+                        @Override
+                        public Object getFieldValue(JRField jrField) throws JRException {
+                            InvoiceModel current = super.dataSource.get(super.current.get() - 1);
+
+                            Object fieldValue = null;
+                            for (UBLReportDataProvider provider : dataProviders) {
+                                fieldValue = provider.invoice().getFieldValue(invoice, jrField.getName());
+                                if(fieldValue != null) break;
+                            }
+                            return fieldValue;
+                        }
+                    });
+
+                    return export(jp, exportFormat);
+                } catch (Exception e) {
+                    throw new ReportException("Failed to template report", e);
+                }
+            }
+
+            @Override
+            public byte[] getReport(List<InvoiceModel> t, ExportFormat exportFormat) throws ReportException {
+                return new byte[0];
+            }
         };
     }
 
@@ -176,6 +214,16 @@ public class JasperUBLReportProvider implements UBLReportProvider {
             public byte[] getReportAsPdf(List<CreditNoteModel> t) throws ReportException {
                 return new byte[0];
             }
+
+            @Override
+            public byte[] getReport(CreditNoteModel creditNoteModel, ExportFormat exportFormat) throws ReportException {
+                return new byte[0];
+            }
+
+            @Override
+            public byte[] getReport(List<CreditNoteModel> t, ExportFormat exportFormat) throws ReportException {
+                return new byte[0];
+            }
         };
     }
 
@@ -189,6 +237,16 @@ public class JasperUBLReportProvider implements UBLReportProvider {
 
             @Override
             public byte[] getReportAsPdf(List<DebitNoteModel> t) throws ReportException {
+                return new byte[0];
+            }
+
+            @Override
+            public byte[] getReport(DebitNoteModel debitNoteModel, ExportFormat exportFormat) throws ReportException {
+                return new byte[0];
+            }
+
+            @Override
+            public byte[] getReport(List<DebitNoteModel> t, ExportFormat exportFormat) throws ReportException {
                 return new byte[0];
             }
         };
