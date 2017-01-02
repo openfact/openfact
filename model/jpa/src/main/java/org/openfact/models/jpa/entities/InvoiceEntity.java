@@ -83,10 +83,8 @@ public class InvoiceEntity {
     @Column(name = "DOCUMENT_ID")
     private String documentId;
 
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
-    @Column(name = "XML_DOCUMENT")
-    private byte[] xmlDocument;
+    @Column(name = "XML_FILE_ID")
+    private String xmlFileId;
 
     @NotNull
     @Column(name = "ORGANIZATION_ID")
@@ -178,14 +176,6 @@ public class InvoiceEntity {
 
     public void setDocumentId(String documentId) {
         this.documentId = documentId;
-    }
-
-    public byte[] getXmlDocument() {
-        return xmlDocument;
-    }
-
-    public void setXmlDocument(byte[] xmlDocument) {
-        this.xmlDocument = xmlDocument;
     }
 
     public String getOrganizationId() {
@@ -314,5 +304,13 @@ public class InvoiceEntity {
 
     public void setSendEvents(Collection<InvoiceSendEventEntity> sendEvents) {
         this.sendEvents = sendEvents;
+    }
+
+    public String getXmlFileId() {
+        return xmlFileId;
+    }
+
+    public void setXmlFileId(String xmlFileId) {
+        this.xmlFileId = xmlFileId;
     }
 }

@@ -26,6 +26,8 @@ import javax.persistence.Query;
 
 import org.jboss.logging.Logger;
 import org.openfact.common.util.MultivaluedHashMap;
+import org.openfact.file.*;
+import org.openfact.file.FileModel;
 import org.openfact.models.*;
 import org.openfact.models.jpa.entities.*;
 import org.openfact.models.utils.OpenfactModelUtils;
@@ -40,6 +42,8 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     protected InvoiceEntity invoice;
     protected EntityManager em;
     protected OpenfactSession session;
+
+    protected FileModel xmlFile;
 
     public InvoiceAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em,
             InvoiceEntity invoice) {
@@ -193,12 +197,37 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 
     @Override
     public byte[] getXmlDocument() {
-        return invoice.getXmlDocument();
+        FileModel file = getXmlFile();
+        if(file != null) {
+            return file.getFile();
+        } else {
+            return null;
+        }
     }
 
     @Override
     public void setXmlDocument(byte[] value) {
-        invoice.setXmlDocument(value);
+        setXmlFileContent(value);
+    }
+
+    @Override
+    public FileModel getXmlFile() {
+        if(xmlFile == null && invoice.getXmlFileId() != null) {
+            FileProvider provider = session.getProvider(FileProvider.class);
+            xmlFile = provider.getFileById(organization, invoice.getXmlFileId());
+        }
+        return xmlFile;
+    }
+
+    @Override
+    public void setXmlFileContent(byte[] value) {
+        FileModel file = getXmlFile();
+        FileProvider provider = session.getProvider(FileProvider.class);
+        if(file != null) {
+            provider.removeFile(organization, file);
+        }
+        xmlFile = provider.createFile(organization, OpenfactModelUtils.generateId() + ".xml", value);
+        invoice.setXmlFileId(xmlFile.getId());
     }
 
     /**

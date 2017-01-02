@@ -14,11 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package org.openfact.models.dropbox;
+package org.openfact.file.dropbox;
 
 import com.dropbox.core.DbxRequestConfig;
 import com.dropbox.core.v2.DbxClientV2;
 import org.openfact.Config;
+import org.openfact.file.FileProvider;
+import org.openfact.file.FileProviderFactory;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.StorageFileProvider;
@@ -26,14 +28,19 @@ import org.openfact.models.StorageFileProviderFactory;
 
 import java.util.Locale;
 
-public class DropboxStorageFileProviderFactory implements StorageFileProviderFactory {
+public class DropboxFileProviderFactory implements FileProviderFactory {
 
     protected DbxClientV2 dbxClient;
 
     @Override
+    public FileProvider create(OpenfactSession session) {
+        return new DropboxFileProvider(session, dbxClient);
+    }
+
+    @Override
     public void init(Config.Scope config) {
-        DbxRequestConfig dbxConfig = DbxRequestConfig.newBuilder("dropbox/openfact").withUserLocaleFrom(Locale.ENGLISH).build();
-        dbxClient = new DbxClientV2(dbxConfig, config.get("access_token"));
+        DbxRequestConfig dbxConfig = DbxRequestConfig.newBuilder("openfact").build();
+        dbxClient = new DbxClientV2(dbxConfig, config.get("accessToken"));
     }
 
     @Override
@@ -41,18 +48,13 @@ public class DropboxStorageFileProviderFactory implements StorageFileProviderFac
     }
 
     @Override
-    public String getId() {
-        return "dropbox";
-    }
-
-    @Override
-    public StorageFileProvider create(OpenfactSession session) {
-        return new DropboxStorageFileProvider(session, dbxClient);
-    }
-
-    @Override
     public void close() {
         dbxClient = null;
+    }
+
+    @Override
+    public String getId() {
+        return "dropbox";
     }
 
 }

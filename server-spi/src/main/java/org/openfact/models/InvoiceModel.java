@@ -23,11 +23,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.openfact.file.*;
 import org.openfact.provider.ProviderEvent;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.ubl.SendEventModel;
-
-import javax.persistence.Column;
 
 public interface InvoiceModel {
 
@@ -99,9 +98,15 @@ public interface InvoiceModel {
     /**
      * Xml
      */
+    @Deprecated
     byte[] getXmlDocument();
 
+    @Deprecated
     void setXmlDocument(byte[] value);
+
+    org.openfact.file.FileModel getXmlFile();
+
+    void setXmlFileContent(byte[] value);
 
     /**
      * attributes

@@ -33,4 +33,5 @@ org.openfact.ubl.UBLReportProviderSpi
 org.openfact.models.OrganizationScheduleTaskSpi
 org.openfact.timer.TimerSpi
 org.openfact.models.StorageFileSpi
+org.openfact.file.FileSpi
 org.openfact.models.JobReportSpi

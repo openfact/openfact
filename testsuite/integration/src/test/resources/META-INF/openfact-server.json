@@ -38,6 +38,14 @@
     "provider": "${openfact.storageFile.provider:jpa}"
   },
 
+  "file": {
+    "provider": "${openfact.storageFile.provider:jpa}",
+    "jpa": {},
+    "dropbox": {
+      "accessToken": "hhPoLjoclSAAAAAAAAAFaeE8cU53NgEmV3Sw0zKWZbPIEmvETOdai2gggvHkZqi6"
+    }
+  },
+
   "timer": {
     "provider": "basic"
   },
