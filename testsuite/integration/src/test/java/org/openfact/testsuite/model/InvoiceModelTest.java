@@ -26,12 +26,8 @@ import org.openfact.models.enums.RequiredAction;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.temporal.TemporalField;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -55,7 +51,7 @@ public class InvoiceModelTest extends AbstractModelTest {
 		invoice.addRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
 
 		OrganizationModel searchOrganization = organizationManager.getOrganization(organization.getId());
-		InvoiceModel persisted = session.invoices().getInvoiceByID(searchOrganization, "invoice");
+		InvoiceModel persisted = session.invoices().getInvoiceByDocumentId(searchOrganization, "invoice");
 
 		assertEquals(invoice, persisted);
 

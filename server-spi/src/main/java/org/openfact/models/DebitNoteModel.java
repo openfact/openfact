@@ -16,6 +16,7 @@
  *******************************************************************************/
 package org.openfact.models;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -50,33 +51,45 @@ public interface DebitNoteModel {
 
     void setDocumentCurrencyCode(String value);
 
-    SupplierPartyModel getAccountingSupplierParty();
+    String getCustomerRegistrationName();
 
-    SupplierPartyModel getAccountingSupplierPartyAsNotNull();
+    void setCustomerRegistrationName(String value);
 
-    CustomerPartyModel getAccountingCustomerParty();
+    String getCustomerAssignedAccountId();
 
-    CustomerPartyModel getAccountingCustomerPartyAsNotNull();
+    void setCustomerAssignedAccountId(String value);
 
-    MonetaryTotalModel getRequestedMonetaryTotal();
+    String getCustomerElectronicMail();
 
-    MonetaryTotalModel getRequestedMonetaryTotalAsNotNull();
+    void setCustomerElectronicMail(String value);
 
-    List<TaxTotalModel> getTaxTotal();
+    BigDecimal getAllowanceTotalAmount();
 
-    TaxTotalModel addTaxTotal();
+    void setAllowanceTotalAmount(BigDecimal value);
 
-    List<AllowanceChargeModel> getAllowanceCharge();
+    BigDecimal getChargeTotalAmount();
 
-    AllowanceChargeModel addAllowanceCharge();
+    void setChargeTotalAmount(BigDecimal value);
+
+    BigDecimal getPayableAmount();
+
+    void setPayableAmount(BigDecimal value);
+
+    InvoiceModel getInvoice();
 
     /**
      * Xml
      */
 
+    @Deprecated
     byte[] getXmlDocument();
 
+    @Deprecated
     void setXmlDocument(byte[] value);
+
+    org.openfact.file.FileModel getXmlFile();
+
+    void setXmlFileContent(byte[] value);
 
     /**
      * attributes

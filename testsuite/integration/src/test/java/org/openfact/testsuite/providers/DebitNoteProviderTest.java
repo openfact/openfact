@@ -97,7 +97,7 @@ public class DebitNoteProviderTest extends AbstractProviderTest {
         DebitNoteModel debitNote1 = provider.addDebitNote(organization, "D001-0001");
         commit();
 
-        DebitNoteModel debitNote2 = session.debitNotes().getDebitNoteByID(organization, "D001-0001");
+        DebitNoteModel debitNote2 = session.debitNotes().getDebitNoteByDocumentId(organization, "D001-0001");
         assertThat(debitNote2, is(notNullValue()));
         assertThat(debitNote2.getId(), is(notNullValue()));
         assertThat(debitNote2.getId(), is(equalTo(debitNote1.getId())));
@@ -112,10 +112,10 @@ public class DebitNoteProviderTest extends AbstractProviderTest {
         provider.addDebitNote(organization, "D001-0001");
         commit();
 
-        DebitNoteModel debitNote = session.debitNotes().getDebitNoteByID(organization, "D001-0001");
+        DebitNoteModel debitNote = session.debitNotes().getDebitNoteByDocumentId(organization, "D001-0001");
         assertThat(session.debitNotes().removeDebitNote(organization, debitNote), is(true));
         assertThat(session.debitNotes().removeDebitNote(organization, debitNote), is(false));
-        assertThat(session.debitNotes().getDebitNoteByID(organization, "D001-0001"), is(nullValue()));
+        assertThat(session.debitNotes().getDebitNoteByDocumentId(organization, "D001-0001"), is(nullValue()));
     }  
 
     /**

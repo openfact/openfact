@@ -31,27 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.MapKeyColumn;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -113,12 +93,6 @@ public class InvoiceEntity {
     @Column(name = "CUSTOMER_ELECTRONICMAIL")
     private String customerElectronicMail;
 
-    @Column(name = "SUPPLIERPARTY_REGISTRATIONNAME")
-    private String supplierPartyRegistrationName;
-
-    @Column(name = "SUPPLIERPARTY_ASSIGNEDACCOUNTID")
-    private String supplierPartyAssignedAccountId;
-
     @Column(name = "ALLOWANCE_TOTAL_AMOUNT")
     private BigDecimal allowanceTotalAmount;
 
@@ -127,6 +101,9 @@ public class InvoiceEntity {
 
     @Column(name = "PAYABLE_AMOUNT")
     private BigDecimal payableAmount;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "invoices")
+    private List<CreditNoteEntity> creditNotes = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy="invoice")
     private Collection<InvoiceAttributeEntity> attributes = new ArrayList<>();
@@ -242,22 +219,6 @@ public class InvoiceEntity {
         this.customerElectronicMail = customerElectronicMail;
     }
 
-    public String getSupplierPartyRegistrationName() {
-        return supplierPartyRegistrationName;
-    }
-
-    public void setSupplierPartyRegistrationName(String supplierPartyRegistrationName) {
-        this.supplierPartyRegistrationName = supplierPartyRegistrationName;
-    }
-
-    public String getSupplierPartyAssignedAccountId() {
-        return supplierPartyAssignedAccountId;
-    }
-
-    public void setSupplierPartyAssignedAccountId(String supplierPartyAssignedAccountId) {
-        this.supplierPartyAssignedAccountId = supplierPartyAssignedAccountId;
-    }
-
     public BigDecimal getAllowanceTotalAmount() {
         return allowanceTotalAmount;
     }
@@ -312,5 +273,13 @@ public class InvoiceEntity {
 
     public void setXmlFileId(String xmlFileId) {
         this.xmlFileId = xmlFileId;
+    }
+
+    public List<CreditNoteEntity> getCreditNotes() {
+        return creditNotes;
+    }
+
+    public void setCreditNotes(List<CreditNoteEntity> creditNotes) {
+        this.creditNotes = creditNotes;
     }
 }

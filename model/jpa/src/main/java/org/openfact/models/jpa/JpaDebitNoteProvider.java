@@ -31,9 +31,6 @@ import org.jboss.logging.Logger;
 import org.openfact.models.*;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.jpa.entities.DebitNoteEntity;
-import org.openfact.models.jpa.entities.DebitNoteEntity;
-import org.openfact.models.jpa.entities.DebitNoteEntity;
-import org.openfact.models.jpa.entities.DebitNoteEntity;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
@@ -68,7 +65,7 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
             throw new ModelException("Invalid documentId, Null value");
         }
 
-        if (session.debitNotes().getDebitNoteByID(organization, documentId) != null) {
+        if (session.debitNotes().getDebitNoteByDocumentId(organization, documentId) != null) {
             throw new ModelDuplicateException("Debit note documentId existed");
         }
 
@@ -102,7 +99,7 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
     }
 
     @Override
-    public DebitNoteModel getDebitNoteByID(OrganizationModel organization, String ID) {
+    public DebitNoteModel getDebitNoteByDocumentId(OrganizationModel organization, String ID) {
         TypedQuery<DebitNoteEntity> query = em.createNamedQuery("getOrganizationDebitNoteByDocumentId", DebitNoteEntity.class);
         query.setParameter("documentId", ID);
         query.setParameter("organizationId", organization.getId());

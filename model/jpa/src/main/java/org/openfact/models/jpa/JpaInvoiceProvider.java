@@ -24,16 +24,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
 import org.jboss.logging.Logger;
 import org.openfact.models.*;
 import org.openfact.models.enums.RequiredAction;
-import org.openfact.models.jpa.entities.InvoiceEntity;
-import org.openfact.models.jpa.entities.InvoiceEntity;
-import org.openfact.models.jpa.entities.InvoiceEntity;
 import org.openfact.models.jpa.entities.InvoiceEntity;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchCriteriaModel;
@@ -74,7 +67,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
             throw new ModelException("Invalid documentId, Null value");
         }
 
-        if (session.invoices().getInvoiceByID(organization, documentId) != null) {
+        if (session.invoices().getInvoiceByDocumentId(organization, documentId) != null) {
             throw new ModelDuplicateException("Invoice documentId existed");
         }
 
@@ -108,7 +101,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     }
 
     @Override
-    public InvoiceModel getInvoiceByID(OrganizationModel organization, String ID) {
+    public InvoiceModel getInvoiceByDocumentId(OrganizationModel organization, String ID) {
         TypedQuery<InvoiceEntity> query = em.createNamedQuery("getOrganizationInvoiceByDocumentId", InvoiceEntity.class);
         query.setParameter("documentId", ID);
         query.setParameter("organizationId", organization.getId());

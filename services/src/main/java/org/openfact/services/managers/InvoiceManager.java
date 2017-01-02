@@ -53,7 +53,7 @@ public class InvoiceManager {
     }
 
     public InvoiceModel getInvoiceByID(OrganizationModel organization, String ID) {
-        return model.getInvoiceByID(organization, ID);
+        return model.getInvoiceByDocumentId(organization, ID);
     }
 
     public InvoiceModel addInvoice(OrganizationModel organization, InvoiceType type, Map<String, String> attributes) {

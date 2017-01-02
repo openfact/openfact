@@ -31,8 +31,6 @@ public class InvoiceRepresentation {
     private String customerRegistrationName;
     private String customerAssignedAccountId;
     private String customerElectronicMail;
-    private String supplierPartyRegistrationName;
-    private String supplierPartyAssignedAccountId;
     private BigDecimal allowanceTotalAmount;
     private BigDecimal chargeTotalAmount;
     private BigDecimal payableAmount;
@@ -102,22 +100,6 @@ public class InvoiceRepresentation {
 
     public void setCustomerElectronicMail(String customerElectronicMail) {
         this.customerElectronicMail = customerElectronicMail;
-    }
-
-    public String getSupplierPartyRegistrationName() {
-        return supplierPartyRegistrationName;
-    }
-
-    public void setSupplierPartyRegistrationName(String supplierPartyRegistrationName) {
-        this.supplierPartyRegistrationName = supplierPartyRegistrationName;
-    }
-
-    public String getSupplierPartyAssignedAccountId() {
-        return supplierPartyAssignedAccountId;
-    }
-
-    public void setSupplierPartyAssignedAccountId(String supplierPartyAssignedAccountId) {
-        this.supplierPartyAssignedAccountId = supplierPartyAssignedAccountId;
     }
 
     public BigDecimal getAllowanceTotalAmount() {

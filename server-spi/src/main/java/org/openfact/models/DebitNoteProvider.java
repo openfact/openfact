@@ -26,11 +26,11 @@ import java.util.Map;
 
 public interface DebitNoteProvider extends Provider {
 
-    DebitNoteModel addDebitNote(OrganizationModel organization, String ID);
+    DebitNoteModel addDebitNote(OrganizationModel organization, String documentId);
 
     DebitNoteModel getDebitNoteById(OrganizationModel organization, String id);
 
-    DebitNoteModel getDebitNoteByID(OrganizationModel organization, String ID);
+    DebitNoteModel getDebitNoteByDocumentId(OrganizationModel organization, String documentId);
 
     void preRemove(OrganizationModel organization);
 

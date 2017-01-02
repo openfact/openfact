@@ -23,6 +23,7 @@
 
 package org.openfact.models.jpa.entities;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,28 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.MapKeyColumn;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -59,7 +39,7 @@ import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "CREDIT_NOTE", uniqueConstraints = {
-        @UniqueConstraint(columnNames = { "ORGANIZATION_ID", "DOCUMENT_ID"})
+        @UniqueConstraint(columnNames = {"ORGANIZATION_ID", "DOCUMENT_ID"})
 })
 @NamedQueries({
         @NamedQuery(name = "getAllCreditNotesByOrganization", query = "select c from CreditNoteEntity c where c.organizationId = :organizationId order by c.createdTimestamp"),
@@ -70,7 +50,7 @@ import org.hibernate.annotations.Type;
         @NamedQuery(name = "getOrganizationCreditNoteByDocumentId", query = "select c from CreditNoteEntity c where c.documentId = :documentId and c.organizationId = :organizationId"),
         @NamedQuery(name = "searchForCreditNote", query = "select c from CreditNoteEntity c where c.organizationId = :organizationId and lower(c.documentId) like :search order by c.issueDateTime"),
         @NamedQuery(name = "getOrganizationCreditNoteCount", query = "select count(c) from CreditNoteEntity c where c.organizationId = :organizationId"),
-        @NamedQuery(name="deleteCreditNotesByOrganization", query="delete from CreditNoteEntity u where u.organizationId = :organizationId") })
+        @NamedQuery(name = "deleteCreditNotesByOrganization", query = "delete from CreditNoteEntity u where u.organizationId = :organizationId")})
 public class CreditNoteEntity {
 
     @Id
@@ -83,10 +63,8 @@ public class CreditNoteEntity {
     @Column(name = "DOCUMENT_ID")
     private String documentId;
 
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
-    @Column(name = "XML_DOCUMENT")
-    private byte[] xmlDocument;
+    @Column(name = "XML_FILE_ID")
+    private String xmlFileId;
 
     @NotNull
     @Column(name = "ORGANIZATION_ID")
@@ -95,180 +73,44 @@ public class CreditNoteEntity {
     @Type(type = "org.hibernate.type.LocalDateTimeType")
     @Column(name = "CREATED_TIMESTAMP")
     private LocalDateTime createdTimestamp;
-   
+
     @Column(name = "DOCUMENT_CURRENCY_CODE")
     private String documentCurrencyCode;
-    
+
     @Column(name = "ISSUE_DATE_TIME")
     @Type(type = "org.hibernate.type.LocalDateTimeType")
     private LocalDateTime issueDateTime;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = MonetaryTotalEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "LEGALMONETARYTOTAL_CREDITNOTE")
-    private MonetaryTotalEntity legalMonetaryTotal;
+    @Column(name = "CUSTOMER_REGISTRATIONNAME")
+    private String customerRegistrationName;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = SupplierPartyEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ACCOUNTINGSUPPLIERPARTY_CREDITNOTE")
-    private SupplierPartyEntity accountingSupplierParty;
+    @Column(name = "CUSTOMER_ASSIGNEDACCOUNTID")
+    private String customerAssignedAccountId;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = CustomerPartyEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ACCOUNTINGCUSTOMERPARTY_CREDITNOTE")
-    private CustomerPartyEntity accountingCustomerParty;
+    @Column(name = "CUSTOMER_ELECTRONICMAIL")
+    private String customerElectronicMail;
 
-    @OneToMany(fetch = FetchType.LAZY, targetEntity = ResponseEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "DISCREPANCYRESPONSE_CREDITNOTE")
-    private List<ResponseEntity> discrepancyResponse = new ArrayList<>();
+    @Column(name = "ALLOWANCE_TOTAL_AMOUNT")
+    private BigDecimal allowanceTotalAmount;
 
-    @OneToMany(fetch = FetchType.LAZY, targetEntity = AllowanceChargeEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ALLOWANCECHARGE_CREDITNOTE")
-    private List<AllowanceChargeEntity> allowanceCharge = new ArrayList<>();
+    @Column(name = "CHARGE_TOTAL_AMOUNT")
+    private BigDecimal chargeTotalAmount;
 
-    @OneToMany(fetch = FetchType.LAZY, targetEntity = TaxTotalEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TAXTOTAL_CREDITNOTE_ID")
-    private List<TaxTotalEntity> taxTotal = new ArrayList<>();
+    @Column(name = "PAYABLE_AMOUNT")
+    private BigDecimal payableAmount;
 
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy="creditNote")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "CREDITNOTE_INVOICE", joinColumns = @JoinColumn(name = "CREDIT_NOTE_ID"), inverseJoinColumns = @JoinColumn(name = "INVOICE_ID"))
+    private List<InvoiceEntity> invoices = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "creditNote")
     private Collection<CreditNoteAttributeEntity> attributes = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy="creditNote")
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "creditNote")
     private Collection<CreditNoteRequiredActionEntity> requiredActions = new ArrayList<>();
 
-    @OneToMany(cascade = { CascadeType.REMOVE }, orphanRemoval = true, mappedBy = "creditNote", fetch = FetchType.LAZY)
+    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "creditNote", fetch = FetchType.LAZY)
     private Collection<CreditNoteSendEventEntity> sendEvents = new ArrayList<>();
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getDocumentId() {
-        return documentId;
-    }
-
-    public void setDocumentId(String documentId) {
-        this.documentId = documentId;
-    }
-
-    public byte[] getXmlDocument() {
-        return xmlDocument;
-    }
-
-    public void setXmlDocument(byte[] xmlDocument) {
-        this.xmlDocument = xmlDocument;
-    }
-
-    public String getOrganizationId() {
-        return organizationId;
-    }
-
-    public void setOrganizationId(String organizationId) {
-        this.organizationId = organizationId;
-    }
-
-    public LocalDateTime getCreatedTimestamp() {
-        return createdTimestamp;
-    }
-
-    public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
-        this.createdTimestamp = createdTimestamp;
-    }
-
-    /**
-     * UBL
-     */
-    public String getDocumentCurrencyCode() {
-        return documentCurrencyCode;
-    }
-
-    public void setDocumentCurrencyCode(String documentCurrencyCode) {
-        this.documentCurrencyCode = documentCurrencyCode;
-    }
-
-    public LocalDateTime getIssueDateTime() {
-        return issueDateTime;
-    }
-
-    public void setIssueDateTime(LocalDateTime issueDateTime) {
-        this.issueDateTime = issueDateTime;
-    }
-
-    public MonetaryTotalEntity getLegalMonetaryTotal() {
-        return legalMonetaryTotal;
-    }
-
-    public void setLegalMonetaryTotal(MonetaryTotalEntity legalMonetaryTotal) {
-        this.legalMonetaryTotal = legalMonetaryTotal;
-    }
-
-    public SupplierPartyEntity getAccountingSupplierParty() {
-        return accountingSupplierParty;
-    }
-
-    public void setAccountingSupplierParty(SupplierPartyEntity accountingSupplierParty) {
-        this.accountingSupplierParty = accountingSupplierParty;
-    }
-
-    public CustomerPartyEntity getAccountingCustomerParty() {
-        return accountingCustomerParty;
-    }
-
-    public void setAccountingCustomerParty(CustomerPartyEntity accountingCustomerParty) {
-        this.accountingCustomerParty = accountingCustomerParty;
-    }
-
-    public List<ResponseEntity> getDiscrepancyResponse() {
-        return discrepancyResponse;
-    }
-
-    public void setDiscrepancyResponse(List<ResponseEntity> discrepancyResponse) {
-        this.discrepancyResponse = discrepancyResponse;
-    }
-
-    public List<AllowanceChargeEntity> getAllowanceCharge() {
-        return allowanceCharge;
-    }
-
-    public void setAllowanceCharge(List<AllowanceChargeEntity> allowanceCharge) {
-        this.allowanceCharge = allowanceCharge;
-    }
-
-    public List<TaxTotalEntity> getTaxTotal() {
-        return taxTotal;
-    }
-
-    public void setTaxTotal(List<TaxTotalEntity> taxTotal) {
-        this.taxTotal = taxTotal;
-    }
-
-    /**
-     * Openfact
-     */
-    public Collection<CreditNoteAttributeEntity> getAttributes() {
-        return attributes;
-    }
-
-    public void setAttributes(Collection<CreditNoteAttributeEntity> attributes) {
-        this.attributes = attributes;
-    }
-
-    public Collection<CreditNoteRequiredActionEntity> getRequiredActions() {
-        return requiredActions;
-    }
-
-    public void setRequiredActions(Collection<CreditNoteRequiredActionEntity> requiredActions) {
-        this.requiredActions = requiredActions;
-    }
-
-    public Collection<CreditNoteSendEventEntity> getSendEvents() {
-        return sendEvents;
-    }
-
-    public void setSendEvents(Collection<CreditNoteSendEventEntity> sendEvents) {
-        this.sendEvents = sendEvents;
-    }
 
     @Override
     public int hashCode() {
@@ -293,5 +135,141 @@ public class CreditNoteEntity {
         } else if (!getId().equals(other.getId()))
             return false;
         return true;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
+    }
+
+    public String getXmlFileId() {
+        return xmlFileId;
+    }
+
+    public void setXmlFileId(String xmlFileId) {
+        this.xmlFileId = xmlFileId;
+    }
+
+    public String getOrganizationId() {
+        return organizationId;
+    }
+
+    public void setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
+    }
+
+    public LocalDateTime getCreatedTimestamp() {
+        return createdTimestamp;
+    }
+
+    public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
+    }
+
+    public String getDocumentCurrencyCode() {
+        return documentCurrencyCode;
+    }
+
+    public void setDocumentCurrencyCode(String documentCurrencyCode) {
+        this.documentCurrencyCode = documentCurrencyCode;
+    }
+
+    public LocalDateTime getIssueDateTime() {
+        return issueDateTime;
+    }
+
+    public void setIssueDateTime(LocalDateTime issueDateTime) {
+        this.issueDateTime = issueDateTime;
+    }
+
+    public String getCustomerRegistrationName() {
+        return customerRegistrationName;
+    }
+
+    public void setCustomerRegistrationName(String customerRegistrationName) {
+        this.customerRegistrationName = customerRegistrationName;
+    }
+
+    public String getCustomerAssignedAccountId() {
+        return customerAssignedAccountId;
+    }
+
+    public void setCustomerAssignedAccountId(String customerAssignedAccountId) {
+        this.customerAssignedAccountId = customerAssignedAccountId;
+    }
+
+    public BigDecimal getAllowanceTotalAmount() {
+        return allowanceTotalAmount;
+    }
+
+    public void setAllowanceTotalAmount(BigDecimal allowanceTotalAmount) {
+        this.allowanceTotalAmount = allowanceTotalAmount;
+    }
+
+    public BigDecimal getChargeTotalAmount() {
+        return chargeTotalAmount;
+    }
+
+    public void setChargeTotalAmount(BigDecimal chargeTotalAmount) {
+        this.chargeTotalAmount = chargeTotalAmount;
+    }
+
+    public BigDecimal getPayableAmount() {
+        return payableAmount;
+    }
+
+    public void setPayableAmount(BigDecimal payableAmount) {
+        this.payableAmount = payableAmount;
+    }
+
+    public Collection<CreditNoteAttributeEntity> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Collection<CreditNoteAttributeEntity> attributes) {
+        this.attributes = attributes;
+    }
+
+    public Collection<CreditNoteRequiredActionEntity> getRequiredActions() {
+        return requiredActions;
+    }
+
+    public void setRequiredActions(Collection<CreditNoteRequiredActionEntity> requiredActions) {
+        this.requiredActions = requiredActions;
+    }
+
+    public Collection<CreditNoteSendEventEntity> getSendEvents() {
+        return sendEvents;
+    }
+
+    public void setSendEvents(Collection<CreditNoteSendEventEntity> sendEvents) {
+        this.sendEvents = sendEvents;
+    }
+
+    public String getCustomerElectronicMail() {
+        return customerElectronicMail;
+    }
+
+    public void setCustomerElectronicMail(String customerElectronicMail) {
+        this.customerElectronicMail = customerElectronicMail;
+    }
+
+    public List<InvoiceEntity> getInvoices() {
+        return invoices;
+    }
+
+    public void setInvoices(List<InvoiceEntity> invoices) {
+        this.invoices = invoices;
     }
 }

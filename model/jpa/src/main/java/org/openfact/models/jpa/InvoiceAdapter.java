@@ -45,8 +45,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 
     protected FileModel xmlFile;
 
-    public InvoiceAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em,
-            InvoiceEntity invoice) {
+    public InvoiceAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em, InvoiceEntity invoice) {
         this.organization = organization;
         this.session = session;
         this.em = em;
@@ -143,26 +142,6 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     @Override
     public void setCustomerElectronicMail(String value) {
         invoice.setCustomerElectronicMail(value);
-    }
-
-    @Override
-    public String getSupplierPartyRegistrationName() {
-        return invoice.getSupplierPartyRegistrationName();
-    }
-
-    @Override
-    public void setSupplierPartyRegistrationName(String value) {
-        invoice.setSupplierPartyRegistrationName(value);
-    }
-
-    @Override
-    public String getSupplierPartyAssignedAccountId() {
-        return invoice.getSupplierPartyAssignedAccountId();
-    }
-
-    @Override
-    public void setSupplierPartyAssignedAccountId(String value) {
-        invoice.setSupplierPartyAssignedAccountId(value);
     }
 
     @Override

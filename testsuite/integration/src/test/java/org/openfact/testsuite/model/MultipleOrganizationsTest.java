@@ -21,7 +21,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openfact.models.InvoiceModel;
-import org.openfact.models.InvoiceProvider;
 import org.openfact.models.OrganizationModel;
 
 /**
@@ -45,8 +44,8 @@ public class MultipleOrganizationsTest extends AbstractModelTest {
 
     @Test
     public void testInvoices() {
-        InvoiceModel r1invoice1 = session.invoices().getInvoiceByID(organization1, "F01-001");
-        InvoiceModel r2invoice1 = session.invoices().getInvoiceByID(organization2, "F01-001");
+        InvoiceModel r1invoice1 = session.invoices().getInvoiceByDocumentId(organization1, "F01-001");
+        InvoiceModel r2invoice1 = session.invoices().getInvoiceByDocumentId(organization2, "F01-001");
         Assert.assertEquals(r1invoice1.getDocumentId(), r2invoice1.getDocumentId());
         Assert.assertNotEquals(r1invoice1.getId(), r2invoice1.getId());
 
@@ -58,7 +57,7 @@ public class MultipleOrganizationsTest extends AbstractModelTest {
         organization2 = model.getOrganization("id2");
 
         session.invoices().removeInvoice(organization1, r1invoice1);
-        InvoiceModel invoice2 = session.invoices().getInvoiceByID(organization1, "F01-002");
+        InvoiceModel invoice2 = session.invoices().getInvoiceByDocumentId(organization1, "F01-002");
         session.invoices().removeInvoice(organization1, invoice2);
         Assert.assertEquals(0, session.invoices().searchForInvoice(organization1, "F01").size());
         Assert.assertEquals(2, session.invoices().searchForInvoice(organization2, "F01").size());

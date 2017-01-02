@@ -53,7 +53,7 @@ public class DebitNoteManager {
     }
 
     public DebitNoteModel getDebitNoteByID(OrganizationModel organization, String ID) {
-        return model.getDebitNoteByID(organization, ID);
+        return model.getDebitNoteByDocumentId(organization, ID);
     }
 
     public DebitNoteModel addDebitNote(OrganizationModel organization, DebitNoteType type, Map<String, String> attributes) {

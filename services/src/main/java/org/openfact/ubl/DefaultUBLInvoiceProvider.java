@@ -31,6 +31,7 @@ import org.openfact.models.UserSenderModel;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.enums.SendResultType;
 import org.openfact.models.utils.OpenfactModelUtils;
+import org.openfact.report.ExportFormat;
 import org.openfact.report.ReportException;
 import org.w3c.dom.Document;
 
@@ -145,13 +146,13 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
                     // Attatchments
                     FileModel xmlFile = new SimpleFileModel();
                     xmlFile.setFileName(invoice.getDocumentId() + ".xml");
-                    xmlFile.setFile(invoice.getXmlDocument());
+                    xmlFile.setFile(invoice.getXmlFile().getFile());
                     xmlFile.setMimeType("application/xml");
 
                     FileModel pdfFile = new SimpleFileModel();
 
                     pdfFile.setFileName(invoice.getDocumentId() + ".pdf");
-                    pdfFile.setFile(session.getProvider(UBLReportProvider.class).invoice().setOrganization(organization).getReportAsPdf(invoice));
+                    pdfFile.setFile(session.getProvider(UBLReportProvider.class).invoice().setOrganization(organization).getReport(invoice, ExportFormat.PDF));
                     pdfFile.setMimeType("application/pdf");
 
                     session.getProvider(EmailTemplateProvider.class)

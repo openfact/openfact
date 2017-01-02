@@ -120,7 +120,7 @@ public class AdapterTest extends AbstractModelTest {
 
         organizationModel = model.getOrganization("SISTCOOP");
         Assert.assertTrue(organizationManager.getSession().invoices().removeInvoice(organizationModel, invoice));
-        assertNull(organizationManager.getSession().invoices().getInvoiceByID(organizationModel, "F01-001"));
+        assertNull(organizationManager.getSession().invoices().getInvoiceByDocumentId(organizationModel, "F01-001"));
     }
     
     @Test
@@ -144,7 +144,7 @@ public class AdapterTest extends AbstractModelTest {
 
         organizationModel = model.getOrganization("SISTCOOP");
         Assert.assertTrue(organizationManager.getSession().debitNotes().removeDebitNote(organizationModel, debitNote));
-        assertNull(organizationManager.getSession().debitNotes().getDebitNoteByID(organizationModel, "D01-001"));
+        assertNull(organizationManager.getSession().debitNotes().getDebitNoteByDocumentId(organizationModel, "D01-001"));
     }
 
     @Test

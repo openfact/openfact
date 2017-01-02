@@ -30,7 +30,7 @@ public interface InvoiceProvider extends Provider {
 
     InvoiceModel getInvoiceById(OrganizationModel organization, String id);
 
-    InvoiceModel getInvoiceByID(OrganizationModel organization, String ID);
+    InvoiceModel getInvoiceByDocumentId(OrganizationModel organization, String documentId);
 
     void preRemove(OrganizationModel organization);
 

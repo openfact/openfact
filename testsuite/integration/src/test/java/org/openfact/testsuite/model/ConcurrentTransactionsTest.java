@@ -23,7 +23,6 @@ import org.junit.Test;
 import org.openfact.models.*;
 import org.openfact.models.utils.OpenfactModelUtils;
 
-import java.util.Arrays;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -67,7 +66,7 @@ public class ConcurrentTransactionsTest extends AbstractModelTest {
 
                             // Read client
                             OrganizationModel organization = session.organizations().getOrganizationByName("original");
-                            InvoiceModel invoice = session.invoices().getInvoiceByID(organization, "F01-123");
+                            InvoiceModel invoice = session.invoices().getInvoiceByDocumentId(organization, "F01-123");
                             logger.info("transaction1: Read invoice finished");
                             readLatch.countDown();
 
@@ -75,7 +74,7 @@ public class ConcurrentTransactionsTest extends AbstractModelTest {
                             updateLatch.await();
                             logger.info("transaction1: Going to read invoice again");
 
-                            invoice = session.invoices().getInvoiceByID(organization, "F01-123");
+                            invoice = session.invoices().getInvoiceByDocumentId(organization, "F01-123");
                             logger.info("transaction1: document currency code: " + invoice.getDocumentCurrencyCode());
                         } catch (Exception e) {
                             throw new RuntimeException(e);
@@ -106,7 +105,7 @@ public class ConcurrentTransactionsTest extends AbstractModelTest {
                             logger.info("transaction2: Going to update document currency code");
 
                             OrganizationModel organization = session.organizations().getOrganizationByName("original");
-                            InvoiceModel invoice = session.invoices().getInvoiceByID(organization, "F01-123");
+                            InvoiceModel invoice = session.invoices().getInvoiceByDocumentId(organization, "F01-123");
                             invoice.setDocumentCurrencyCode("new");
                         } catch (Exception e) {
                             throw new RuntimeException(e);
@@ -176,10 +175,10 @@ public class ConcurrentTransactionsTest extends AbstractModelTest {
                             try {
                                 // Read user attribute
                                 OrganizationModel organization = session.organizations().getOrganizationByName("original");
-                                InvoiceModel invoice1 = session.invoices().getInvoiceByID(organization, "F01-12");
+                                InvoiceModel invoice1 = session.invoices().getInvoiceByDocumentId(organization, "F01-12");
                                 String attrVal = invoice1.getFirstAttribute("foo");
 
-                                InvoiceModel invoice2 = session.invoices().getInvoiceByID(organization, "F01-123");
+                                InvoiceModel invoice2 = session.invoices().getInvoiceByDocumentId(organization, "F01-123");
                                 String attrVal2 = invoice2.getFirstAttribute("foo");
 
                                 // Wait until it's read in both threads

@@ -26,11 +26,11 @@ import java.util.Map;
 
 public interface CreditNoteProvider extends Provider {
 
-    CreditNoteModel addCreditNote(OrganizationModel organization, String ID);
+    CreditNoteModel addCreditNote(OrganizationModel organization, String documentId);
 
     CreditNoteModel getCreditNoteById(OrganizationModel organization, String id);
 
-    CreditNoteModel getCreditNoteByDocumentId(OrganizationModel organizationModel, String ID);
+    CreditNoteModel getCreditNoteByDocumentId(OrganizationModel organizationModel, String documentId);
 
     void preRemove(OrganizationModel organization);
 

@@ -16,23 +16,16 @@
  *******************************************************************************/
 package org.openfact.ubl;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.openfact.email.EmailException;
 import org.openfact.email.EmailTemplateProvider;
-import org.openfact.models.CustomerPartyModel;
-import org.openfact.models.FileModel;
-import org.openfact.models.CreditNoteModel;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.PartyLegalEntityModel;
-import org.openfact.models.SimpleFileModel;
-import org.openfact.models.UserSenderModel;
+import org.openfact.models.*;
+import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.enums.SendResultType;
 import org.openfact.models.utils.OpenfactModelUtils;
+import org.openfact.report.ExportFormat;
+import org.openfact.report.ReportException;
 import org.w3c.dom.Document;
 
 import com.helger.ubl21.UBL21Reader;
@@ -114,51 +107,87 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
             }
 
             @Override
-            public SendEventModel sendToCustomer(OrganizationModel organization, CreditNoteModel creditNote) throws SendException {                               
-                CustomerPartyModel customerParty = creditNote.getAccountingCustomerParty();                
-                if(customerParty == null || customerParty.getParty() == null || customerParty.getParty().getContact() == null || customerParty.getParty().getContact().getElectronicMail() == null) {
-                    return null;
+            public SendEventModel sendToCustomer(OrganizationModel organization, CreditNoteModel creditNote) throws SendException {
+                if (creditNote.getCustomerElectronicMail() == null) {
+                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, creditNote);
+                    sendEvent.setType("EMAIL");
+                    sendEvent.setDescription("Could not find a valid email for the customer.");
+                    return sendEvent;
                 }
-                
+
+                if (organization.getSmtpConfig().size() == 0) {
+                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, creditNote);
+                    sendEvent.setType("EMAIL");
+                    sendEvent.setDescription("Could not find a valid smtp configuration on organization.");
+                    return sendEvent;
+                }
+
                 // User where the email will be send
-                UserSenderModel user = new UserSenderModel() {                                                         
+                UserSenderModel user = new UserSenderModel() {
                     @Override
                     public String getFullName() {
-                        List<PartyLegalEntityModel> partyLegalEntities = customerParty.getParty().getPartyLegalEntity();
-                        return partyLegalEntities.stream().map(f -> f.getRegistrationName()).reduce((t,u) -> t + "," +u).get();
-                    }                                                           
+                        return creditNote.getCustomerRegistrationName();
+                    }
+
                     @Override
                     public String getEmail() {
-                        return customerParty.getParty().getContact().getElectronicMail();
+                        return creditNote.getCustomerElectronicMail();
                     }
-                }; 
-                
-                // Attatchments
-                FileModel file = new SimpleFileModel();
-                file.setFileName(creditNote.getDocumentId() + ".xml");
-                file.setFile(creditNote.getXmlDocument());
-                file.setMimeType("application/xml");
-                
+                };
+
                 try {
+                    // Attatchments
+                    FileModel xmlFile = new SimpleFileModel();
+                    xmlFile.setFileName(creditNote.getDocumentId() + ".xml");
+                    xmlFile.setFile(creditNote.getXmlFile().getFile());
+                    xmlFile.setMimeType("application/xml");
+
+                    FileModel pdfFile = new SimpleFileModel();
+
+                    pdfFile.setFileName(creditNote.getDocumentId() + ".pdf");
+                    pdfFile.setFile(session.getProvider(UBLReportProvider.class).invoice().setOrganization(organization).getReport(creditNote, ExportFormat.PDF));
+                    pdfFile.setMimeType("application/pdf");
+
                     session.getProvider(EmailTemplateProvider.class)
-                            .setOrganization(organization)
-                            .setUser(user).setAttachments(new ArrayList<>(Arrays.asList(file)))
+                            .setOrganization(organization).setUser(user)
+                            .setAttachments(Arrays.asList(xmlFile, pdfFile))
                             .sendCreditNote(creditNote);
-                    
+
                     // Write event to the database
-                    SendEventModel sendEvent = session.getProvider(SendEventProvider.class)
-                            .addSendEvent(organization, SendResultType.SUCCESS, creditNote);
-                    sendEvent.setDescription("CreditNote Sended by Email");
-                    
+                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.SUCCESS, creditNote);
+                    sendEvent.setType("EMAIL");
+
+                    sendEvent.setDescription("Credit note successfully sended");
+                    sendEvent.addFileAttatchments(xmlFile);
+                    sendEvent.addFileAttatchments(pdfFile);
+                    sendEvent.setResult(true);
+
+                    Map<String, String> destiny = new HashMap<>();
+                    destiny.put("email", user.getEmail());
+                    sendEvent.setDestiny(destiny);
+
+                    // Remove required action
+                    creditNote.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
+
                     return sendEvent;
+                } catch (ReportException e) {
+                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, creditNote);
+                    sendEvent.setType("EMAIL");
+                    sendEvent.setDescription(e.getMessage());
+                    throw new SendException("Could not generate pdf report", e);
                 } catch (EmailException e) {
-                    throw new SendException(e);
+                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, creditNote);
+                    sendEvent.setType("EMAIL");
+                    sendEvent.setDescription(e.getMessage());
+                    throw new SendException("Could not send email", e);
                 }
             }
 
             @Override
-            public SendEventModel sendToThridParty(OrganizationModel organization, CreditNoteModel t) throws SendException {
-                return null;
+            public SendEventModel sendToThridParty(OrganizationModel organization, CreditNoteModel creditNote) throws SendException {
+                SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, creditNote);
+                sendEvent.setDescription("Could not send the credit note because there is no a valid Third Party. This feature should be implemented by your own code");
+                return sendEvent;
             }
             
         };

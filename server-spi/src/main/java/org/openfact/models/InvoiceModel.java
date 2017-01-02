@@ -75,14 +75,6 @@ public interface InvoiceModel {
 
     void setCustomerElectronicMail(String value);
 
-    String getSupplierPartyRegistrationName();
-
-    void setSupplierPartyRegistrationName(String value);
-
-    String getSupplierPartyAssignedAccountId();
-
-    void setSupplierPartyAssignedAccountId(String value);
-
     BigDecimal getAllowanceTotalAmount();
 
     void setAllowanceTotalAmount(BigDecimal value);

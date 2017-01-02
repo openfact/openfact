@@ -16,89 +16,111 @@
  *******************************************************************************/
 package org.openfact.representations.idm;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
 
 public class DebitNoteRepresentation {
 
-    protected String id;
-    protected String documentId;
-    protected LocalDateTime issueDateTime;
-    protected String documentCurrencyCode;
-    protected SupplierPartyRepresentation accountingSupplierParty;
-    protected CustomerPartyRepresentation accountingCustomerParty;
-    protected MonetaryTotalRepresentation requestedMonetaryTotal;
-    protected List<TaxTotalRepresentation> taxTotal;
-    protected List<AllowanceChargeRepresentation> allowanceCharge;
+    private String id;
+    private String documentId;
+    private LocalDateTime issueDateTime;
+    private String documentCurrencyCode;
 
-    protected Map<String, String> attributes;
-    protected Set<String> requiredActions;
-    
+    private String customerRegistrationName;
+    private String customerAssignedAccountId;
+    private BigDecimal allowanceTotalAmount;
+    private BigDecimal chargeTotalAmount;
+    private BigDecimal payableAmount;
+
+    private Map<String, String> attributes;
+    private Set<String> requiredActions;
+
     public String getId() {
         return id;
     }
+
     public void setId(String id) {
         this.id = id;
     }
+
     public String getDocumentId() {
         return documentId;
     }
+
     public void setDocumentId(String documentId) {
         this.documentId = documentId;
     }
+
     public LocalDateTime getIssueDateTime() {
         return issueDateTime;
     }
+
     public void setIssueDateTime(LocalDateTime issueDateTime) {
         this.issueDateTime = issueDateTime;
     }
+
     public String getDocumentCurrencyCode() {
         return documentCurrencyCode;
     }
+
     public void setDocumentCurrencyCode(String documentCurrencyCode) {
         this.documentCurrencyCode = documentCurrencyCode;
     }
-    public SupplierPartyRepresentation getAccountingSupplierParty() {
-        return accountingSupplierParty;
+
+    public String getCustomerRegistrationName() {
+        return customerRegistrationName;
     }
-    public void setAccountingSupplierParty(SupplierPartyRepresentation accountingSupplierParty) {
-        this.accountingSupplierParty = accountingSupplierParty;
+
+    public void setCustomerRegistrationName(String customerRegistrationName) {
+        this.customerRegistrationName = customerRegistrationName;
     }
-    public CustomerPartyRepresentation getAccountingCustomerParty() {
-        return accountingCustomerParty;
+
+    public String getCustomerAssignedAccountId() {
+        return customerAssignedAccountId;
     }
-    public void setAccountingCustomerParty(CustomerPartyRepresentation accountingCustomerParty) {
-        this.accountingCustomerParty = accountingCustomerParty;
+
+    public void setCustomerAssignedAccountId(String customerAssignedAccountId) {
+        this.customerAssignedAccountId = customerAssignedAccountId;
     }
-    public MonetaryTotalRepresentation getRequestedMonetaryTotal() {
-        return requestedMonetaryTotal;
+
+    public BigDecimal getAllowanceTotalAmount() {
+        return allowanceTotalAmount;
     }
-    public void setRequestedMonetaryTotal(MonetaryTotalRepresentation requestedMonetaryTotal) {
-        this.requestedMonetaryTotal = requestedMonetaryTotal;
+
+    public void setAllowanceTotalAmount(BigDecimal allowanceTotalAmount) {
+        this.allowanceTotalAmount = allowanceTotalAmount;
     }
-    public List<TaxTotalRepresentation> getTaxTotal() {
-        return taxTotal;
+
+    public BigDecimal getChargeTotalAmount() {
+        return chargeTotalAmount;
     }
-    public void setTaxTotal(List<TaxTotalRepresentation> taxTotal) {
-        this.taxTotal = taxTotal;
+
+    public void setChargeTotalAmount(BigDecimal chargeTotalAmount) {
+        this.chargeTotalAmount = chargeTotalAmount;
     }
-    public List<AllowanceChargeRepresentation> getAllowanceCharge() {
-        return allowanceCharge;
+
+    public BigDecimal getPayableAmount() {
+        return payableAmount;
     }
-    public void setAllowanceCharge(List<AllowanceChargeRepresentation> allowanceCharge) {
-        this.allowanceCharge = allowanceCharge;
+
+    public void setPayableAmount(BigDecimal payableAmount) {
+        this.payableAmount = payableAmount;
     }
+
     public Map<String, String> getAttributes() {
         return attributes;
     }
+
     public void setAttributes(Map<String, String> attributes) {
         this.attributes = attributes;
     }
+
     public Set<String> getRequiredActions() {
         return requiredActions;
     }
+
     public void setRequiredActions(Set<String> requiredActions) {
         this.requiredActions = requiredActions;
     }
-
 }

@@ -23,6 +23,7 @@
 
 package org.openfact.models.jpa.entities;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -82,10 +83,8 @@ public class DebitNoteEntity {
     @Column(name = "DOCUMENT_ID")
     private String documentId;
 
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
-    @Column(name = "XML_DOCUMENT")
-    private byte[] xmlDocument;
+    @Column(name = "XML_FILE_ID")
+    private String xmlFileId;
 
     @NotNull
     @Column(name = "ORGANIZATION_ID")
@@ -102,25 +101,28 @@ public class DebitNoteEntity {
     @Type(type = "org.hibernate.type.LocalDateTimeType")
     private LocalDateTime issueDateTime;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = SupplierPartyEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ACCOUNTINGSUPPLIERPARTY_DEBITNOTE")
-    private SupplierPartyEntity accountingSupplierParty;
+    @Column(name = "CUSTOMER_REGISTRATIONNAME")
+    private String customerRegistrationName;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = CustomerPartyEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ACCOUNTINGCUSTOMERPARTY_DEBITNOTE")
-    private CustomerPartyEntity accountingCustomerParty;
+    @Column(name = "CUSTOMER_ASSIGNEDACCOUNTID")
+    private String customerAssignedAccountId;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = MonetaryTotalEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "REQUESTEDMONETARYTOTAL_DEBITNOTE")
-    private MonetaryTotalEntity requestedMonetaryTotal;
-    
-    @OneToMany(fetch = FetchType.LAZY, targetEntity = TaxTotalEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "TAXTOTAL_DEBITNOTE_ID")
-    private List<TaxTotalEntity> taxTotal = new ArrayList<>();
+    @Column(name = "CUSTOMER_ELECTRONICMAIL")
+    private String customerElectronicMail;
 
-    @OneToMany(fetch = FetchType.LAZY, targetEntity = AllowanceChargeEntity.class, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "ALLOWANCECHARGE_DEBITNOTE")
-    private List<AllowanceChargeEntity> allowanceCharge = new ArrayList<>();
+    @Column(name = "ALLOWANCE_TOTAL_AMOUNT")
+    private BigDecimal allowanceTotalAmount;
+
+    @Column(name = "CHARGE_TOTAL_AMOUNT")
+    private BigDecimal chargeTotalAmount;
+
+    @Column(name = "PAYABLE_AMOUNT")
+    private BigDecimal payableAmount;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(foreignKey = @ForeignKey, name = "INVOICE_ID")
+    private InvoiceEntity invoice;
 
     @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy="debitNote")
     private Collection<DebitNoteAttributeEntity> attributes = new ArrayList<>();
@@ -130,132 +132,6 @@ public class DebitNoteEntity {
 
     @OneToMany(cascade = { CascadeType.REMOVE }, orphanRemoval = true, mappedBy = "debitNote", fetch = FetchType.LAZY)
     private Collection<DebitNoteSendEventEntity> sendEvents = new ArrayList<>();
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getDocumentId() {
-        return documentId;
-    }
-
-    public void setDocumentId(String documentId) {
-        this.documentId = documentId;
-    }
-
-    public byte[] getXmlDocument() {
-        return xmlDocument;
-    }
-
-    public void setXmlDocument(byte[] xmlDocument) {
-        this.xmlDocument = xmlDocument;
-    }
-
-    public String getOrganizationId() {
-        return organizationId;
-    }
-
-    public void setOrganizationId(String organizationId) {
-        this.organizationId = organizationId;
-    }
-
-    public LocalDateTime getCreatedTimestamp() {
-        return createdTimestamp;
-    }
-
-    public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
-        this.createdTimestamp = createdTimestamp;
-    }
-
-    /**
-     * UBL
-     */
-    public String getDocumentCurrencyCode() {
-        return documentCurrencyCode;
-    }
-
-    public void setDocumentCurrencyCode(String documentCurrencyCode) {
-        this.documentCurrencyCode = documentCurrencyCode;
-    }
-
-    public LocalDateTime getIssueDateTime() {
-        return issueDateTime;
-    }
-
-    public void setIssueDateTime(LocalDateTime issueDateTime) {
-        this.issueDateTime = issueDateTime;
-    }
-
-    public SupplierPartyEntity getAccountingSupplierParty() {
-        return accountingSupplierParty;
-    }
-
-    public void setAccountingSupplierParty(SupplierPartyEntity accountingSupplierParty) {
-        this.accountingSupplierParty = accountingSupplierParty;
-    }
-
-    public CustomerPartyEntity getAccountingCustomerParty() {
-        return accountingCustomerParty;
-    }
-
-    public void setAccountingCustomerParty(CustomerPartyEntity accountingCustomerParty) {
-        this.accountingCustomerParty = accountingCustomerParty;
-    }
-
-    public MonetaryTotalEntity getRequestedMonetaryTotal() {
-        return requestedMonetaryTotal;
-    }
-
-    public void setRequestedMonetaryTotal(MonetaryTotalEntity requestedMonetaryTotal) {
-        this.requestedMonetaryTotal = requestedMonetaryTotal;
-    }
-
-    public List<TaxTotalEntity> getTaxTotal() {
-        return taxTotal;
-    }
-
-    public void setTaxTotal(List<TaxTotalEntity> taxTotal) {
-        this.taxTotal = taxTotal;
-    }
-
-    public List<AllowanceChargeEntity> getAllowanceCharge() {
-        return allowanceCharge;
-    }
-
-    public void setAllowanceCharge(List<AllowanceChargeEntity> allowanceCharge) {
-        this.allowanceCharge = allowanceCharge;
-    }
-
-    /**
-     * Openfact
-     */
-    public Collection<DebitNoteAttributeEntity> getAttributes() {
-        return attributes;
-    }
-
-    public void setAttributes(Collection<DebitNoteAttributeEntity> attributes) {
-        this.attributes = attributes;
-    }
-
-    public Collection<DebitNoteRequiredActionEntity> getRequiredActions() {
-        return requiredActions;
-    }
-
-    public void setRequiredActions(Collection<DebitNoteRequiredActionEntity> requiredActions) {
-        this.requiredActions = requiredActions;
-    }
-
-    public Collection<DebitNoteSendEventEntity> getSendEvents() {
-        return sendEvents;
-    }
-
-    public void setSendEvents(Collection<DebitNoteSendEventEntity> sendEvents) {
-        this.sendEvents = sendEvents;
-    }
 
     @Override
     public int hashCode() {
@@ -280,5 +156,141 @@ public class DebitNoteEntity {
         } else if (!getId().equals(other.getId()))
             return false;
         return true;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
+    }
+
+    public String getXmlFileId() {
+        return xmlFileId;
+    }
+
+    public void setXmlFileId(String xmlFileId) {
+        this.xmlFileId = xmlFileId;
+    }
+
+    public String getOrganizationId() {
+        return organizationId;
+    }
+
+    public void setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
+    }
+
+    public LocalDateTime getCreatedTimestamp() {
+        return createdTimestamp;
+    }
+
+    public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
+    }
+
+    public String getDocumentCurrencyCode() {
+        return documentCurrencyCode;
+    }
+
+    public void setDocumentCurrencyCode(String documentCurrencyCode) {
+        this.documentCurrencyCode = documentCurrencyCode;
+    }
+
+    public LocalDateTime getIssueDateTime() {
+        return issueDateTime;
+    }
+
+    public void setIssueDateTime(LocalDateTime issueDateTime) {
+        this.issueDateTime = issueDateTime;
+    }
+
+    public String getCustomerRegistrationName() {
+        return customerRegistrationName;
+    }
+
+    public void setCustomerRegistrationName(String customerRegistrationName) {
+        this.customerRegistrationName = customerRegistrationName;
+    }
+
+    public String getCustomerAssignedAccountId() {
+        return customerAssignedAccountId;
+    }
+
+    public void setCustomerAssignedAccountId(String customerAssignedAccountId) {
+        this.customerAssignedAccountId = customerAssignedAccountId;
+    }
+
+    public BigDecimal getAllowanceTotalAmount() {
+        return allowanceTotalAmount;
+    }
+
+    public void setAllowanceTotalAmount(BigDecimal allowanceTotalAmount) {
+        this.allowanceTotalAmount = allowanceTotalAmount;
+    }
+
+    public BigDecimal getChargeTotalAmount() {
+        return chargeTotalAmount;
+    }
+
+    public void setChargeTotalAmount(BigDecimal chargeTotalAmount) {
+        this.chargeTotalAmount = chargeTotalAmount;
+    }
+
+    public BigDecimal getPayableAmount() {
+        return payableAmount;
+    }
+
+    public void setPayableAmount(BigDecimal payableAmount) {
+        this.payableAmount = payableAmount;
+    }
+
+    public InvoiceEntity getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(InvoiceEntity invoice) {
+        this.invoice = invoice;
+    }
+
+    public Collection<DebitNoteAttributeEntity> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Collection<DebitNoteAttributeEntity> attributes) {
+        this.attributes = attributes;
+    }
+
+    public Collection<DebitNoteRequiredActionEntity> getRequiredActions() {
+        return requiredActions;
+    }
+
+    public void setRequiredActions(Collection<DebitNoteRequiredActionEntity> requiredActions) {
+        this.requiredActions = requiredActions;
+    }
+
+    public Collection<DebitNoteSendEventEntity> getSendEvents() {
+        return sendEvents;
+    }
+
+    public void setSendEvents(Collection<DebitNoteSendEventEntity> sendEvents) {
+        this.sendEvents = sendEvents;
+    }
+
+    public String getCustomerElectronicMail() {
+        return customerElectronicMail;
+    }
+
+    public void setCustomerElectronicMail(String customerElectronicMail) {
+        this.customerElectronicMail = customerElectronicMail;
     }
 }

@@ -16,6 +16,7 @@
  *******************************************************************************/
 package org.openfact.models.jpa;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -25,6 +26,8 @@ import javax.persistence.Query;
 
 import org.jboss.logging.Logger;
 import org.openfact.common.util.MultivaluedHashMap;
+import org.openfact.file.*;
+import org.openfact.file.FileModel;
 import org.openfact.models.*;
 import org.openfact.models.jpa.entities.*;
 import org.openfact.models.utils.OpenfactModelUtils;
@@ -40,8 +43,9 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
     protected EntityManager em;
     protected OpenfactSession session;
 
-    public CreditNoteAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em,
-            CreditNoteEntity creditNote) {
+    protected FileModel xmlFile;
+
+    public CreditNoteAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em, CreditNoteEntity creditNote) {
         this.organization = organization;
         this.session = session;
         this.em = em;
@@ -96,106 +100,110 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
     }
 
     @Override
-    public SupplierPartyModel getAccountingSupplierParty() {
-        if (creditNote.getAccountingCustomerParty() == null) {
-            return null;
-        }
-        return new SupplierPartyAdapter(session, em, creditNote.getAccountingSupplierParty());
+    public String getCustomerRegistrationName() {
+        return creditNote.getCustomerRegistrationName();
     }
 
     @Override
-    public SupplierPartyModel getAccountingSupplierPartyAsNotNull() {
-        if (creditNote.getAccountingCustomerParty() == null) {
-            SupplierPartyEntity entity = new SupplierPartyEntity();
-            creditNote.setAccountingSupplierParty(entity);
-        }
-        return new SupplierPartyAdapter(session, em, creditNote.getAccountingSupplierParty());
+    public void setCustomerRegistrationName(String value) {
+        creditNote.setCustomerRegistrationName(value);
     }
 
     @Override
-    public CustomerPartyModel getAccountingCustomerParty() {
-        if (creditNote.getAccountingCustomerParty() == null) {
-            return null;
-        }
-        return new CustomerPartyAdapter(session, em, creditNote.getAccountingCustomerParty());
+    public String getCustomerAssignedAccountId() {
+        return creditNote.getCustomerAssignedAccountId();
     }
 
     @Override
-    public CustomerPartyModel getAccountingCustomerPartyAsNotNull() {
-        if (creditNote.getAccountingCustomerParty() == null) {
-            CustomerPartyEntity entity = new CustomerPartyEntity();
-            creditNote.setAccountingCustomerParty(entity);
-        }
-        return new CustomerPartyAdapter(session, em, creditNote.getAccountingCustomerParty());
+    public String getCustomerElectronicMail() {
+        return creditNote.getCustomerElectronicMail();
     }
 
     @Override
-    public List<AllowanceChargeModel> getAllowanceCharge() {
-        return creditNote.getAllowanceCharge().stream().map(f -> new AllowanceChargeAdapter(session, em, f)).collect(Collectors.toList());
+    public void setCustomerElectronicMail(String value) {
+        creditNote.setCustomerElectronicMail(value);
     }
 
     @Override
-    public AllowanceChargeModel addAllowanceCharge() {
-        List<AllowanceChargeEntity> entities = creditNote.getAllowanceCharge();
-
-        AllowanceChargeEntity entity = new AllowanceChargeEntity();
-        entities.add(entity);
-        return new AllowanceChargeAdapter(session, em, entity);
+    public void setCustomerAssignedAccountId(String value) {
+        creditNote.setCustomerAssignedAccountId(value);
     }
 
     @Override
-    public List<TaxTotalModel> getTaxTotal() {
-        return creditNote.getTaxTotal().stream().map(f -> new TaxTotalAdapter(session, em, f)).collect(Collectors.toList());
+    public BigDecimal getAllowanceTotalAmount() {
+        return creditNote.getAllowanceTotalAmount();
     }
 
     @Override
-    public TaxTotalModel addTaxTotal() {
-        List<TaxTotalEntity> entities = creditNote.getTaxTotal();
-
-        TaxTotalEntity entity = new TaxTotalEntity();
-        entities.add(entity);
-        return new TaxTotalAdapter(session, em, entity);
+    public void setAllowanceTotalAmount(BigDecimal value) {
+        creditNote.setAllowanceTotalAmount(value);
     }
 
     @Override
-    public MonetaryTotalModel getLegalMonetaryTotal() {
-        if (creditNote.getLegalMonetaryTotal() == null) {
-            return null;
-        }
-        return new MonetaryTotalAdapter(session, em, creditNote.getLegalMonetaryTotal());
+    public BigDecimal getChargeTotalAmount() {
+        return creditNote.getChargeTotalAmount();
     }
 
     @Override
-    public MonetaryTotalModel getLegalMonetaryTotalAsNotNull() {
-        if (creditNote.getLegalMonetaryTotal() == null) {
-            MonetaryTotalEntity entity = new MonetaryTotalEntity();
-            creditNote.setLegalMonetaryTotal(entity);
-        }
-        return new MonetaryTotalAdapter(session, em, creditNote.getLegalMonetaryTotal());
+    public void setChargeTotalAmount(BigDecimal value) {
+        creditNote.setChargeTotalAmount(value);
     }
 
     @Override
-    public List<ResponseModel> getDiscrepancyResponse() {
-        return creditNote.getDiscrepancyResponse().stream().map(f -> new ResponseAdapter(session, em, f)).collect(Collectors.toList());
+    public BigDecimal getPayableAmount() {
+        return creditNote.getPayableAmount();
     }
 
     @Override
-    public ResponseModel addDiscrepancyResponse() {
-        List<ResponseEntity> entities = creditNote.getDiscrepancyResponse();
+    public void setPayableAmount(BigDecimal value) {
+        creditNote.setPayableAmount(value);
+    }
 
-        ResponseEntity entity = new ResponseEntity();
-        entities.add(entity);
-        return new ResponseAdapter(session, em, entity);
+    @Override
+    public List<InvoiceModel> getInvoices() {
+        return creditNote.getInvoices().stream().map(f -> new InvoiceAdapter(session, organization, em, f)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void assignInvoice(InvoiceModel invoice) {
+        InvoiceEntity entity = InvoiceAdapter.toEntity(invoice, em);
+
+        creditNote.getInvoices().add(entity);
     }
 
     @Override
     public byte[] getXmlDocument() {
-        return creditNote.getXmlDocument();
+        FileModel file = getXmlFile();
+        if(file != null) {
+            return file.getFile();
+        } else {
+            return null;
+        }
     }
 
     @Override
     public void setXmlDocument(byte[] value) {
-        creditNote.setXmlDocument(value);
+        setXmlFileContent(value);
+    }
+
+    @Override
+    public FileModel getXmlFile() {
+        if(xmlFile == null && creditNote.getXmlFileId() != null) {
+            FileProvider provider = session.getProvider(FileProvider.class);
+            xmlFile = provider.getFileById(organization, creditNote.getXmlFileId());
+        }
+        return xmlFile;
+    }
+
+    @Override
+    public void setXmlFileContent(byte[] value) {
+        FileModel file = getXmlFile();
+        FileProvider provider = session.getProvider(FileProvider.class);
+        if(file != null) {
+            provider.removeFile(organization, file);
+        }
+        xmlFile = provider.createFile(organization, OpenfactModelUtils.generateId() + ".xml", value);
+        creditNote.setXmlFileId(xmlFile.getId());
     }
 
     /**

@@ -16,6 +16,7 @@
  *******************************************************************************/
 package org.openfact.models.jpa;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -25,17 +26,12 @@ import javax.persistence.Query;
 
 import org.jboss.logging.Logger;
 import org.openfact.common.util.MultivaluedHashMap;
-import org.openfact.models.AllowanceChargeModel;
-import org.openfact.models.CustomerPartyModel;
-import org.openfact.models.DebitNoteModel;
-import org.openfact.models.MonetaryTotalModel;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
+import org.openfact.file.FileModel;
+import org.openfact.file.FileProvider;
+import org.openfact.models.*;
 import org.openfact.models.jpa.entities.*;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.ubl.SendEventModel;
-import org.openfact.models.SupplierPartyModel;
-import org.openfact.models.TaxTotalModel;
 import org.openfact.models.enums.RequiredAction;
 
 public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntity> {
@@ -46,6 +42,8 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
     protected DebitNoteEntity debitNote;
     protected EntityManager em;
     protected OpenfactSession session;
+
+    protected FileModel xmlFile;
 
     public DebitNoteAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em,
             DebitNoteEntity debitNote) {
@@ -103,93 +101,105 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
     }
 
     @Override
-    public SupplierPartyModel getAccountingSupplierParty() {
-        if (debitNote.getAccountingCustomerParty() == null) {
-            return null;
-        }
-        return new SupplierPartyAdapter(session, em, debitNote.getAccountingSupplierParty());
+    public String getCustomerRegistrationName() {
+        return debitNote.getCustomerRegistrationName();
     }
 
     @Override
-    public SupplierPartyModel getAccountingSupplierPartyAsNotNull() {
-        if (debitNote.getAccountingCustomerParty() == null) {
-            SupplierPartyEntity entity = new SupplierPartyEntity();
-            debitNote.setAccountingSupplierParty(entity);
-        }
-        return new SupplierPartyAdapter(session, em, debitNote.getAccountingSupplierParty());
+    public void setCustomerRegistrationName(String value) {
+        debitNote.setCustomerRegistrationName(value);
     }
 
     @Override
-    public CustomerPartyModel getAccountingCustomerParty() {
-        if (debitNote.getAccountingCustomerParty() == null) {
-            return null;
-        }
-        return new CustomerPartyAdapter(session, em, debitNote.getAccountingCustomerParty());
+    public String getCustomerAssignedAccountId() {
+        return debitNote.getCustomerAssignedAccountId();
     }
 
     @Override
-    public CustomerPartyModel getAccountingCustomerPartyAsNotNull() {
-        if (debitNote.getAccountingCustomerParty() == null) {
-            CustomerPartyEntity entity = new CustomerPartyEntity();
-            debitNote.setAccountingCustomerParty(entity);
-        }
-        return new CustomerPartyAdapter(session, em, debitNote.getAccountingCustomerParty());
+    public void setCustomerAssignedAccountId(String value) {
+        debitNote.setCustomerAssignedAccountId(value);
     }
 
     @Override
-    public MonetaryTotalModel getRequestedMonetaryTotal() {
-        if (debitNote.getRequestedMonetaryTotal() == null) {
-            return null;
-        }
-        return new MonetaryTotalAdapter(session, em, debitNote.getRequestedMonetaryTotal());
+    public String getCustomerElectronicMail() {
+        return debitNote.getCustomerElectronicMail();
     }
 
     @Override
-    public MonetaryTotalModel getRequestedMonetaryTotalAsNotNull() {
-        if (debitNote.getRequestedMonetaryTotal() == null) {
-            MonetaryTotalEntity entity = new MonetaryTotalEntity();
-            debitNote.setRequestedMonetaryTotal(entity);
-        }
-        return new MonetaryTotalAdapter(session, em, debitNote.getRequestedMonetaryTotal());
+    public void setCustomerElectronicMail(String value) {
+        debitNote.setCustomerElectronicMail(value);
     }
 
     @Override
-    public List<TaxTotalModel> getTaxTotal() {
-        return debitNote.getTaxTotal().stream().map(f -> new TaxTotalAdapter(session, em, f)).collect(Collectors.toList());
+    public BigDecimal getAllowanceTotalAmount() {
+        return debitNote.getAllowanceTotalAmount();
     }
 
     @Override
-    public TaxTotalModel addTaxTotal() {
-        List<TaxTotalEntity> entities = debitNote.getTaxTotal();
-
-        TaxTotalEntity entity = new TaxTotalEntity();
-        entities.add(entity);
-        return new TaxTotalAdapter(session, em, entity);
+    public void setAllowanceTotalAmount(BigDecimal value) {
+        debitNote.setAllowanceTotalAmount(value);
     }
 
     @Override
-    public List<AllowanceChargeModel> getAllowanceCharge() {
-        return debitNote.getAllowanceCharge().stream().map(f -> new AllowanceChargeAdapter(session, em, f)).collect(Collectors.toList());
+    public BigDecimal getChargeTotalAmount() {
+        return debitNote.getChargeTotalAmount();
     }
 
     @Override
-    public AllowanceChargeModel addAllowanceCharge() {
-        List<AllowanceChargeEntity> entities = debitNote.getAllowanceCharge();
+    public void setChargeTotalAmount(BigDecimal value) {
+        debitNote.setChargeTotalAmount(value);
+    }
 
-        AllowanceChargeEntity entity = new AllowanceChargeEntity();
-        entities.add(entity);
-        return new AllowanceChargeAdapter(session, em, entity);
+    @Override
+    public BigDecimal getPayableAmount() {
+        return debitNote.getPayableAmount();
+    }
+
+    @Override
+    public void setPayableAmount(BigDecimal value) {
+        debitNote.setPayableAmount(value);
+    }
+
+    @Override
+    public InvoiceModel getInvoice() {
+        return new InvoiceAdapter(session, organization, em, debitNote.getInvoice());
     }
 
     @Override
     public byte[] getXmlDocument() {
-        return debitNote.getXmlDocument();
+        FileModel file = getXmlFile();
+        if(file != null) {
+            return file.getFile();
+        } else {
+            return null;
+        }
     }
 
     @Override
     public void setXmlDocument(byte[] value) {
-        debitNote.setXmlDocument(value);
+        setXmlFileContent(value);
     }
+
+    @Override
+    public FileModel getXmlFile() {
+        if(xmlFile == null && debitNote.getXmlFileId() != null) {
+            FileProvider provider = session.getProvider(FileProvider.class);
+            xmlFile = provider.getFileById(organization, debitNote.getXmlFileId());
+        }
+        return xmlFile;
+    }
+
+    @Override
+    public void setXmlFileContent(byte[] value) {
+        FileModel file = getXmlFile();
+        FileProvider provider = session.getProvider(FileProvider.class);
+        if(file != null) {
+            provider.removeFile(organization, file);
+        }
+        xmlFile = provider.createFile(organization, OpenfactModelUtils.generateId() + ".xml", value);
+        debitNote.setXmlFileId(xmlFile.getId());
+    }
+
 
     /**
      * Attributes*/

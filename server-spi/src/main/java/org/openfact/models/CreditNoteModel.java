@@ -16,6 +16,7 @@
  *******************************************************************************/
 package org.openfact.models;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -50,36 +51,46 @@ public interface CreditNoteModel {
 
     void setDocumentCurrencyCode(String value);
 
-    SupplierPartyModel getAccountingSupplierParty();
+    String getCustomerRegistrationName();
 
-    SupplierPartyModel getAccountingSupplierPartyAsNotNull();
+    void setCustomerRegistrationName(String value);
 
-    CustomerPartyModel getAccountingCustomerParty();
+    String getCustomerAssignedAccountId();
 
-    CustomerPartyModel getAccountingCustomerPartyAsNotNull();
+    String getCustomerElectronicMail();
 
-    List<AllowanceChargeModel> getAllowanceCharge();
+    void setCustomerElectronicMail(String value);
 
-    AllowanceChargeModel addAllowanceCharge();
+    void setCustomerAssignedAccountId(String value);
 
-    List<TaxTotalModel> getTaxTotal();
+    BigDecimal getAllowanceTotalAmount();
 
-    TaxTotalModel addTaxTotal();
+    void setAllowanceTotalAmount(BigDecimal value);
 
-    MonetaryTotalModel getLegalMonetaryTotal();
+    BigDecimal getChargeTotalAmount();
 
-    MonetaryTotalModel getLegalMonetaryTotalAsNotNull();
+    void setChargeTotalAmount(BigDecimal value);
 
-    List<ResponseModel> getDiscrepancyResponse();
+    BigDecimal getPayableAmount();
 
-    ResponseModel addDiscrepancyResponse();
+    void setPayableAmount(BigDecimal value);
+
+    List<InvoiceModel> getInvoices();
+
+    void assignInvoice(InvoiceModel invoice);
 
     /**
      * Xml
      */
+    @Deprecated
     byte[] getXmlDocument();
 
+    @Deprecated
     void setXmlDocument(byte[] value);
+
+    org.openfact.file.FileModel getXmlFile();
+
+    void setXmlFileContent(byte[] value);
 
     /**
      * attributes

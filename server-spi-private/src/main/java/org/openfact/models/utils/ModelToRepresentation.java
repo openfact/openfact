@@ -150,8 +150,6 @@ public class ModelToRepresentation {
         rep.setCustomerRegistrationName(model.getCustomerRegistrationName());
         rep.setCustomerAssignedAccountId(model.getCustomerAssignedAccountId());
         rep.setCustomerElectronicMail(model.getCustomerElectronicMail());
-        rep.setSupplierPartyRegistrationName(model.getSupplierPartyRegistrationName());
-        rep.setSupplierPartyAssignedAccountId(model.getSupplierPartyAssignedAccountId());
         rep.setAllowanceTotalAmount(model.getAllowanceTotalAmount());
         rep.setChargeTotalAmount(model.getChargeTotalAmount());
         rep.setPayableAmount(model.getPayableAmount());
@@ -167,74 +165,44 @@ public class ModelToRepresentation {
     public static CreditNoteRepresentation toRepresentation(CreditNoteModel model) {
         CreditNoteRepresentation rep = new CreditNoteRepresentation();
 
+        rep.setId(model.getId());
+        rep.setDocumentId(model.getDocumentId());
+        rep.setIssueDateTime(model.getIssueDateTime());
+        rep.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
+
+        rep.setCustomerRegistrationName(model.getCustomerRegistrationName());
+        rep.setCustomerAssignedAccountId(model.getCustomerAssignedAccountId());
+        rep.setAllowanceTotalAmount(model.getAllowanceTotalAmount());
+        rep.setChargeTotalAmount(model.getChargeTotalAmount());
+        rep.setPayableAmount(model.getPayableAmount());
+
         if(model.getRequiredActions() != null) {
             rep.setRequiredActions(new HashSet<String>());
             rep.getRequiredActions().addAll(model.getRequiredActions());
         }
 
-        rep.setId(model.getId());
-        rep.setDocumentId(model.getDocumentId());
-        rep.setIssueDateTime(model.getIssueDateTime());
-        if (model.getAccountingSupplierParty() != null) {
-            rep.setAccountingSupplierParty(toRepresentation(model.getAccountingSupplierParty()));
-        }
-        if (model.getDiscrepancyResponse() != null) {
-            for (ResponseModel item : model.getDiscrepancyResponse()) {
-                if (rep.getDiscrepancyResponse() == null) {
-                    rep.setDiscrepancyResponse(new ArrayList<>());
-                }
-                rep.getDiscrepancyResponse().add(toRepresentation(item));
-            }
-        }
-        if (model.getAccountingCustomerParty() != null) {
-            rep.setAccountingCustomerParty(toRepresentation(model.getAccountingCustomerParty()));
-        }
-
-        if (model.getTaxTotal() != null) {
-            for (TaxTotalModel item : model.getTaxTotal()) {
-                if(rep.getTaxTotal() == null) {
-                    rep.setTaxTotal(new ArrayList<>());
-                }
-                rep.getTaxTotal().add(toRepresentation(item));
-            }
-        }
-        if (model.getLegalMonetaryTotal() != null) {
-            rep.setLegalMonetaryTotal(toRepresentation(model.getLegalMonetaryTotal()));
-        }
-        rep.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
         return rep;
     }
 
     public static DebitNoteRepresentation toRepresentation(DebitNoteModel model) {
         DebitNoteRepresentation rep = new DebitNoteRepresentation();
 
+        rep.setId(model.getId());
+        rep.setDocumentId(model.getDocumentId());
+        rep.setIssueDateTime(model.getIssueDateTime());
+        rep.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
+
+        rep.setCustomerRegistrationName(model.getCustomerRegistrationName());
+        rep.setCustomerAssignedAccountId(model.getCustomerAssignedAccountId());
+        rep.setAllowanceTotalAmount(model.getAllowanceTotalAmount());
+        rep.setChargeTotalAmount(model.getChargeTotalAmount());
+        rep.setPayableAmount(model.getPayableAmount());
+
         if(model.getRequiredActions() != null) {
             rep.setRequiredActions(new HashSet<String>());
             rep.getRequiredActions().addAll(model.getRequiredActions());
         }
 
-        rep.setId(model.getId());
-        rep.setDocumentId(model.getDocumentId());
-        rep.setIssueDateTime(model.getIssueDateTime());
-        if (model.getAccountingSupplierParty() != null) {
-            rep.setAccountingSupplierParty(toRepresentation(model.getAccountingSupplierParty()));
-        }
-
-        if (model.getAccountingCustomerParty() != null) {
-            rep.setAccountingCustomerParty(toRepresentation(model.getAccountingCustomerParty()));
-        }
-        if (model.getTaxTotal() != null) {
-            for (TaxTotalModel item : model.getTaxTotal()) {
-                if(rep.getTaxTotal() == null) {
-                    rep.setTaxTotal(new ArrayList<>());
-                }
-                rep.getTaxTotal().add(toRepresentation(item));
-            }
-        }
-        if (model.getRequestedMonetaryTotal() != null) {
-            rep.setRequestedMonetaryTotal(toRepresentation(model.getRequestedMonetaryTotal()));
-        }
-        rep.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
         return rep;
     }
 

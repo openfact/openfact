@@ -97,7 +97,7 @@ public class InvoiceProviderTest extends AbstractProviderTest {
         InvoiceModel invoice1 = provider.addInvoice(organization, "F001-0001");
         commit();
 
-        InvoiceModel invoice2 = session.invoices().getInvoiceByID(organization, "F001-0001");
+        InvoiceModel invoice2 = session.invoices().getInvoiceByDocumentId(organization, "F001-0001");
         assertThat(invoice2, is(notNullValue()));
         assertThat(invoice2.getId(), is(notNullValue()));
         assertThat(invoice2.getId(), is(equalTo(invoice1.getId())));
@@ -112,10 +112,10 @@ public class InvoiceProviderTest extends AbstractProviderTest {
         provider.addInvoice(organization, "F001-0001");
         commit();
 
-        InvoiceModel invoice = session.invoices().getInvoiceByID(organization, "F001-0001");
+        InvoiceModel invoice = session.invoices().getInvoiceByDocumentId(organization, "F001-0001");
         assertThat(session.invoices().removeInvoice(organization, invoice), is(true));
         assertThat(session.invoices().removeInvoice(organization, invoice), is(false));
-        assertThat(session.invoices().getInvoiceByID(organization, "F001-0001"), is(nullValue()));
+        assertThat(session.invoices().getInvoiceByDocumentId(organization, "F001-0001"), is(nullValue()));
     }
 
     /**
