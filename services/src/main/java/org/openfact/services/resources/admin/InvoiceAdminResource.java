@@ -182,7 +182,6 @@ public class InvoiceAdminResource {
      */
     @GET
     @Path("representation/pdf")
-    @Produces("application/pdf")
     public Response getPdf(@QueryParam("theme") String theme, @QueryParam("format") @DefaultValue("pdf") String format) throws Exception {
         auth.requireView();
 
@@ -190,12 +189,33 @@ public class InvoiceAdminResource {
             throw new NotFoundException("Invoice not found");
         }
 
+        ExportFormat exportFormat = ExportFormat.valueOf(format.toUpperCase());
+
         UBLReportProvider reportProvider = session.getProvider(UBLReportProvider.class);
-        byte[] bytes = reportProvider.invoice().setOrganization(organization).setThemeName(theme).getReport(invoice, ExportFormat.valueOf(format.toUpperCase()));
+        byte[] bytes = reportProvider.invoice().setOrganization(organization).setThemeName(theme).getReport(invoice, exportFormat);
 
         ResponseBuilder response = Response.ok(bytes);
-        response.type("application/pdf");
-        response.header("content-disposition", "attachment; filename=\"" + invoice.getDocumentId() + ".pdf\"");
+
+        switch (exportFormat) {
+            case PDF:
+                response.type("application/pdf");
+                response.header("content-disposition", "attachment; filename=\"" + invoice.getDocumentId() + ".pdf\"");
+                break;
+            case CSV:
+                response.type("application/csv");
+                response.header("content-disposition", "attachment; filename=\"" + invoice.getDocumentId() + ".csv\"");
+                break;
+            case HTML:
+                response.type("application/html");
+                break;
+            case XML:
+                response.type("application/xml");
+                break;
+            case XLSX:
+                response.type("application/xlsx");
+                break;
+        }
+
         return response.build();
     }
 
