@@ -75,8 +75,6 @@ public interface DebitNoteModel {
 
     void setPayableAmount(BigDecimal value);
 
-    InvoiceModel getInvoice();
-
     /**
      * Xml
      */

@@ -75,10 +75,6 @@ public interface CreditNoteModel {
 
     void setPayableAmount(BigDecimal value);
 
-    List<InvoiceModel> getInvoices();
-
-    void assignInvoice(InvoiceModel invoice);
-
     /**
      * Xml
      */

@@ -119,11 +119,6 @@ public class DebitNoteEntity {
     @Column(name = "PAYABLE_AMOUNT")
     private BigDecimal payableAmount;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "INVOICE_ID")
-    private InvoiceEntity invoice;
-
     @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy="debitNote")
     private Collection<DebitNoteAttributeEntity> attributes = new ArrayList<>();
 
@@ -252,14 +247,6 @@ public class DebitNoteEntity {
 
     public void setPayableAmount(BigDecimal payableAmount) {
         this.payableAmount = payableAmount;
-    }
-
-    public InvoiceEntity getInvoice() {
-        return invoice;
-    }
-
-    public void setInvoice(InvoiceEntity invoice) {
-        this.invoice = invoice;
     }
 
     public Collection<DebitNoteAttributeEntity> getAttributes() {

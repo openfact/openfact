@@ -160,18 +160,6 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
     }
 
     @Override
-    public List<InvoiceModel> getInvoices() {
-        return creditNote.getInvoices().stream().map(f -> new InvoiceAdapter(session, organization, em, f)).collect(Collectors.toList());
-    }
-
-    @Override
-    public void assignInvoice(InvoiceModel invoice) {
-        InvoiceEntity entity = InvoiceAdapter.toEntity(invoice, em);
-
-        creditNote.getInvoices().add(entity);
-    }
-
-    @Override
     public byte[] getXmlDocument() {
         FileModel file = getXmlFile();
         if(file != null) {

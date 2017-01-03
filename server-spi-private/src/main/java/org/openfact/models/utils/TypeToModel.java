@@ -141,18 +141,6 @@ public class TypeToModel {
         }
         model.setIssueDateTime(issueDateTime);
 
-        if(type.getBillingReference() != null) {
-            for (BillingReferenceType billingReferenceType: type.getBillingReference()) {
-                if(billingReferenceType.getInvoiceDocumentReference() != null) {
-                    DocumentReferenceType documentReferenceType = billingReferenceType.getInvoiceDocumentReference();
-                    String invoiceDocumentId = documentReferenceType.getIDValue();
-
-                    InvoiceModel invoice = session.invoices().getInvoiceByDocumentId(organization, invoiceDocumentId);
-                    model.assignInvoice(invoice);
-                }
-            }
-        }
-
         return model;
     }
 

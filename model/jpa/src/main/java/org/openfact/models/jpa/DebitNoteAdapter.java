@@ -161,11 +161,6 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
     }
 
     @Override
-    public InvoiceModel getInvoice() {
-        return new InvoiceAdapter(session, organization, em, debitNote.getInvoice());
-    }
-
-    @Override
     public byte[] getXmlDocument() {
         FileModel file = getXmlFile();
         if(file != null) {

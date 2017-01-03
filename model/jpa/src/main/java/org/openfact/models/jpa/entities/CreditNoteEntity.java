@@ -99,10 +99,6 @@ public class CreditNoteEntity {
     @Column(name = "PAYABLE_AMOUNT")
     private BigDecimal payableAmount;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "CREDITNOTE_INVOICE", joinColumns = @JoinColumn(name = "CREDIT_NOTE_ID"), inverseJoinColumns = @JoinColumn(name = "INVOICE_ID"))
-    private List<InvoiceEntity> invoices = new ArrayList<>();
-
     @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "creditNote")
     private Collection<CreditNoteAttributeEntity> attributes = new ArrayList<>();
 
@@ -265,11 +261,4 @@ public class CreditNoteEntity {
         this.customerElectronicMail = customerElectronicMail;
     }
 
-    public List<InvoiceEntity> getInvoices() {
-        return invoices;
-    }
-
-    public void setInvoices(List<InvoiceEntity> invoices) {
-        this.invoices = invoices;
-    }
 }

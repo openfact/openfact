@@ -115,7 +115,7 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
 
             @Override
             public SendEventModel sendToCustomer(OrganizationModel organization, DebitNoteModel debitNote) throws SendException {
-                if (debitNote.getInvoice().getCustomerElectronicMail() == null) {
+                if (debitNote.getCustomerElectronicMail() == null) {
                     SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, debitNote);
                     sendEvent.setType("EMAIL");
                     sendEvent.setDescription("Could not find a valid email for the customer.");
@@ -138,7 +138,7 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
 
                     @Override
                     public String getEmail() {
-                        return debitNote.getInvoice().getCustomerElectronicMail();
+                        return debitNote.getCustomerElectronicMail();
                     }
                 };
 

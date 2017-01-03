@@ -102,9 +102,6 @@ public class InvoiceEntity {
     @Column(name = "PAYABLE_AMOUNT")
     private BigDecimal payableAmount;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "invoices")
-    private List<CreditNoteEntity> creditNotes = new ArrayList<>();
-
     @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy="invoice")
     private Collection<InvoiceAttributeEntity> attributes = new ArrayList<>();
 
@@ -275,11 +272,4 @@ public class InvoiceEntity {
         this.xmlFileId = xmlFileId;
     }
 
-    public List<CreditNoteEntity> getCreditNotes() {
-        return creditNotes;
-    }
-
-    public void setCreditNotes(List<CreditNoteEntity> creditNotes) {
-        this.creditNotes = creditNotes;
-    }
 }
