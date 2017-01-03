@@ -24,6 +24,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.openfact.file.*;
+import org.openfact.models.enums.DocumentType;
 import org.openfact.provider.ProviderEvent;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.ubl.SendEventModel;
@@ -122,6 +123,11 @@ public interface InvoiceModel {
     /**
      * Send events*/
     List<SendEventModel> getSendEvents();
+
+    /**
+     * Attatched documents*/
+    List<AttatchedDocumentModel> getAttatchedDocuments();
+    AttatchedDocumentModel addAttatchedDocument(DocumentType documentType, String documentId);
     
     /**
      * Events interfaces

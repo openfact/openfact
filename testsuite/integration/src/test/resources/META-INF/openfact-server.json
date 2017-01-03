@@ -23,15 +23,18 @@
   },
 
   "invoice": {
-    "provider": "${openfact.invoice.provider:jpa}"
+    "provider": "${openfact.invoice.provider:jpa}",
+    "documentTypeCode": "01"
   },
 
   "creditNote": {
-    "provider": "${openfact.creditNote.provider:jpa}"
+    "provider": "${openfact.creditNote.provider:jpa}",
+    "documentTypeCode": "02"
   },
 
   "debitNote": {
-    "provider": "${openfact.debitNote.provider:jpa}"
+    "provider": "${openfact.debitNote.provider:jpa}",
+    "documentTypeCode": "03"
   },
 
   "storageFile": {

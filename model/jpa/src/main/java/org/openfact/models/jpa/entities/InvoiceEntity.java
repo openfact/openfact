@@ -111,6 +111,9 @@ public class InvoiceEntity {
     @OneToMany(cascade = { CascadeType.REMOVE }, orphanRemoval = true, mappedBy = "invoice", fetch = FetchType.LAZY)
     private Collection<InvoiceSendEventEntity> sendEvents = new ArrayList<>();
 
+    @OneToMany(cascade = { CascadeType.REMOVE }, orphanRemoval = true, mappedBy = "invoice", fetch = FetchType.LAZY)
+    private Collection<InvoiceAttatchedDocumentEntity> attatchedDocuments = new ArrayList<>();
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -272,4 +275,11 @@ public class InvoiceEntity {
         this.xmlFileId = xmlFileId;
     }
 
+    public Collection<InvoiceAttatchedDocumentEntity> getAttatchedDocuments() {
+        return attatchedDocuments;
+    }
+
+    public void setAttatchedDocuments(Collection<InvoiceAttatchedDocumentEntity> attatchedDocuments) {
+        this.attatchedDocuments = attatchedDocuments;
+    }
 }

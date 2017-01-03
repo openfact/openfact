@@ -108,6 +108,9 @@ public class CreditNoteEntity {
     @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "creditNote", fetch = FetchType.LAZY)
     private Collection<CreditNoteSendEventEntity> sendEvents = new ArrayList<>();
 
+    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "creditNote", fetch = FetchType.LAZY)
+    private Collection<CreditNoteAttatchedDocumentEntity> attatchedDocuments = new ArrayList<>();
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -261,4 +264,11 @@ public class CreditNoteEntity {
         this.customerElectronicMail = customerElectronicMail;
     }
 
+    public Collection<CreditNoteAttatchedDocumentEntity> getAttatchedDocuments() {
+        return attatchedDocuments;
+    }
+
+    public void setAttatchedDocuments(Collection<CreditNoteAttatchedDocumentEntity> attatchedDocuments) {
+        this.attatchedDocuments = attatchedDocuments;
+    }
 }

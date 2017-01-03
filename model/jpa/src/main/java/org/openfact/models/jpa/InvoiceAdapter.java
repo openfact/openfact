@@ -29,6 +29,7 @@ import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.file.*;
 import org.openfact.file.FileModel;
 import org.openfact.models.*;
+import org.openfact.models.enums.DocumentType;
 import org.openfact.models.jpa.entities.*;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.ubl.SendEventModel;
@@ -364,8 +365,23 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
      * Send events*/
     @Override
     public List<SendEventModel> getSendEvents() {
-        return invoice.getSendEvents().stream().map(f -> new SendEventAdapter(session, organization, em, f))
-                .collect(Collectors.toList());
+        return invoice.getSendEvents().stream().map(f -> new SendEventAdapter(session, organization, em, f)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AttatchedDocumentModel> getAttatchedDocuments() {
+        return invoice.getAttatchedDocuments().stream().map(f -> new AttatchedDocumentAdapter(session, organization, em, f)).collect(Collectors.toList());
+    }
+
+    @Override
+    public AttatchedDocumentModel addAttatchedDocument(DocumentType documentType, String documentId) {
+        InvoiceAttatchedDocumentEntity entity = new InvoiceAttatchedDocumentEntity();
+        entity.setDocumentType(documentType);
+        entity.setDocumentId(documentId);
+        entity.setInvoice(invoice);
+        em.persist(entity);
+        em.flush();
+        return new AttatchedDocumentAdapter(session, organization, em, entity);
     }
 
     @Override

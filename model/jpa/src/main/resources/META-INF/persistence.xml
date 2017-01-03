@@ -64,6 +64,12 @@
 		<class>org.openfact.models.jpa.entities.CreditNoteSendEventEntity</class>
 		<class>org.openfact.models.jpa.entities.DebitNoteSendEventEntity</class>
 
+		<class>org.openfact.models.jpa.entities.AttatchedDocumentEntity</class>
+		<class>org.openfact.models.jpa.entities.AttatchedDocumentAttributeEntity</class>
+		<class>org.openfact.models.jpa.entities.InvoiceAttatchedDocumentEntity</class>
+		<class>org.openfact.models.jpa.entities.CreditNoteAttatchedDocumentEntity</class>
+		<class>org.openfact.models.jpa.entities.DebitNoteAttatchedDocumentEntity</class>
+
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
 		<properties>

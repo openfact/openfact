@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.provider.ProviderEvent;
 import org.openfact.ubl.SendEventModel;
@@ -87,6 +88,8 @@ public interface CreditNoteModel {
     org.openfact.file.FileModel getXmlFile();
 
     void setXmlFileContent(byte[] value);
+
+    CreditNoteType getCreditNoteType();
 
     /**
      * attributes

@@ -24,6 +24,8 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import com.helger.ubl21.UBL21Reader;
+import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
 import org.jboss.logging.Logger;
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.file.*;
@@ -44,6 +46,7 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
     protected OpenfactSession session;
 
     protected FileModel xmlFile;
+    protected CreditNoteType creditNoteType;
 
     public CreditNoteAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em, CreditNoteEntity creditNote) {
         this.organization = organization;
@@ -192,6 +195,14 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
         }
         xmlFile = provider.createFile(organization, OpenfactModelUtils.generateId() + ".xml", value);
         creditNote.setXmlFileId(xmlFile.getId());
+    }
+
+    @Override
+    public CreditNoteType getCreditNoteType() {
+        if(creditNoteType == null) {
+            creditNoteType = UBL21Reader.creditNote().read(getXmlFile().getFile());
+        }
+        return creditNoteType;
     }
 
     /**
