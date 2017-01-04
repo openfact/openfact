@@ -53,39 +53,33 @@ public interface InvoiceModel {
     /**
      * */
     String getInvoiceTypeCode();
-
     void setInvoiceTypeCode(String value);
 
     LocalDateTime getIssueDateTime();
-
     void setIssueDateTime(LocalDateTime value);
 
     String getDocumentCurrencyCode();
-
     void setDocumentCurrencyCode(String value);
 
     String getCustomerRegistrationName();
-
     void setCustomerRegistrationName(String value);
 
-    String getCustomerAssignedAccountId();
+    String getCustomerAdditionalAccountId();
+    void setCustomerAdditionalAccountId(String customerAdditionalAccountId);
 
+    String getCustomerAssignedAccountId();
     void setCustomerAssignedAccountId(String value);
 
     String getCustomerElectronicMail();
-
     void setCustomerElectronicMail(String value);
 
     BigDecimal getAllowanceTotalAmount();
-
     void setAllowanceTotalAmount(BigDecimal value);
 
     BigDecimal getChargeTotalAmount();
-
     void setChargeTotalAmount(BigDecimal value);
 
     BigDecimal getPayableAmount();
-
     void setPayableAmount(BigDecimal value);
 
     /**
@@ -128,7 +122,7 @@ public interface InvoiceModel {
      * Attatched documents*/
     List<AttatchedDocumentModel> getAttatchedDocuments();
     AttatchedDocumentModel addAttatchedDocument(DocumentType documentType, String documentId);
-    
+
     /**
      * Events interfaces
      */

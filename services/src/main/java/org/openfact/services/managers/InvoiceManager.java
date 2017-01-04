@@ -16,6 +16,7 @@
  *******************************************************************************/
 package org.openfact.services.managers;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.transform.TransformerException;
@@ -56,7 +57,7 @@ public class InvoiceManager {
         return model.getInvoiceByDocumentId(organization, ID);
     }
 
-    public InvoiceModel addInvoice(OrganizationModel organization, InvoiceType type, Map<String, String> attributes) {
+    public InvoiceModel addInvoice(OrganizationModel organization, InvoiceType type, Map<String, List<String>> attributes) {
         IDType documentId = type.getID();
         if (documentId == null) {
             String generatedId = ubl.idGenerator().generateID(organization, type);
@@ -65,8 +66,8 @@ public class InvoiceManager {
         }
 
         InvoiceModel invoice = model.addInvoice(organization, documentId.getValue());
-        for (Map.Entry<String, String> entry : attributes.entrySet()) {
-            invoice.setSingleAttribute(entry.getKey(), entry.getValue());
+        for (Map.Entry<String, List<String>> entry : attributes.entrySet()) {
+            invoice.setAttribute(entry.getKey(), entry.getValue());
         }
 
         TypeToModel.importInvoice(session, organization, invoice, type);
@@ -87,7 +88,22 @@ public class InvoiceManager {
             throw new ModelException(e);
         }
 
+        fireInvoicePostCreate(invoice);
         return invoice;
+    }
+
+    private void fireInvoicePostCreate(InvoiceModel invoice) {
+        session.getOpenfactSessionFactory().publish(new InvoiceModel.InvoicePostCreateEvent() {
+            @Override
+            public InvoiceModel getCreatedInvoice() {
+                return invoice;
+            }
+
+            @Override
+            public OpenfactSession getOpenfactSession() {
+                return session;
+            }
+        });
     }
 
     public boolean removeInvoice(OrganizationModel organization, InvoiceModel invoice) {

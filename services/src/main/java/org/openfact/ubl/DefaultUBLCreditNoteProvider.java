@@ -91,8 +91,7 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
             }
 
             @Override
-            public Document write(OrganizationModel organization, CreditNoteType t,
-                    Map<String, String> attributes) {
+            public Document write(OrganizationModel organization, CreditNoteType t, Map<String, List<String>> attributes) {
                 return UBL21Writer.creditNote().getAsDocument(t);
             }
         };

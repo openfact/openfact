@@ -126,6 +126,16 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
+    public String getCustomerAdditionalAccountId() {
+        return invoice.getCustomerAdditionalAccountId();
+    }
+
+    @Override
+    public void setCustomerAdditionalAccountId(String value) {
+        invoice.setCustomerAdditionalAccountId(value);
+    }
+
+    @Override
     public String getCustomerAssignedAccountId() {
         return invoice.getCustomerAssignedAccountId();
     }

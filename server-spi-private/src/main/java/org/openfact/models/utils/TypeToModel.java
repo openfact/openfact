@@ -56,6 +56,15 @@ public class TypeToModel {
         }
         if (type.getAccountingCustomerParty() != null) {
             CustomerPartyType customerPartyType = type.getAccountingCustomerParty();
+            if(customerPartyType.getAdditionalAccountID() != null) {
+                String customerAdditionalAccountId = customerPartyType.getAdditionalAccountID()
+                        .stream()
+                        .map(f -> f.getValue())
+                        .filter(p -> p != null && !p.isEmpty())
+                        .reduce((s, s2) -> s + "," + s2)
+                        .get();
+                model.setCustomerAdditionalAccountId(customerAdditionalAccountId);
+            }
             if (customerPartyType.getCustomerAssignedAccountIDValue() != null) {
                 model.setCustomerAssignedAccountId(customerPartyType.getCustomerAssignedAccountIDValue());
             }

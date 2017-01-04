@@ -33,7 +33,7 @@ public class DebitNoteRepresentation {
     private BigDecimal chargeTotalAmount;
     private BigDecimal payableAmount;
 
-    private Map<String, String> attributes;
+    private Map<String, List<String>> attributes;
     private Set<String> requiredActions;
 
     public String getId() {
@@ -108,19 +108,19 @@ public class DebitNoteRepresentation {
         this.payableAmount = payableAmount;
     }
 
-    public Map<String, String> getAttributes() {
-        return attributes;
-    }
-
-    public void setAttributes(Map<String, String> attributes) {
-        this.attributes = attributes;
-    }
-
     public Set<String> getRequiredActions() {
         return requiredActions;
     }
 
     public void setRequiredActions(Set<String> requiredActions) {
         this.requiredActions = requiredActions;
+    }
+
+    public Map<String, List<String>> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Map<String, List<String>> attributes) {
+        this.attributes = attributes;
     }
 }

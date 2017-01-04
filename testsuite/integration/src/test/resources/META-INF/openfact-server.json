@@ -7,6 +7,14 @@
     "url": "http://localhost:4200"
   },
 
+  "ublConfig": {
+    "ublDocuments": [
+      "{\"denomination\": \"INVOICE\", \"documentTypeCode\": [\"01\"]}",
+      "{\"denomination\": \"CREDIT_NOTE\", \"documentTypeCode\": [\"02\"]}",
+      "{\"denomination\": \"DEBIT_NOTE\", \"documentTypeCode\": [\"03\"]}"
+    ]
+  },
+
   "eventsStore": {
     "provider": "${openfact.eventsStore.provider:jpa}"
   },
@@ -23,18 +31,15 @@
   },
 
   "invoice": {
-    "provider": "${openfact.invoice.provider:jpa}",
-    "documentTypeCode": "01"
+    "provider": "${openfact.invoice.provider:jpa}"
   },
 
   "creditNote": {
-    "provider": "${openfact.creditNote.provider:jpa}",
-    "documentTypeCode": "02"
+    "provider": "${openfact.creditNote.provider:jpa}"
   },
 
   "debitNote": {
-    "provider": "${openfact.debitNote.provider:jpa}",
-    "documentTypeCode": "03"
+    "provider": "${openfact.debitNote.provider:jpa}"
   },
 
   "storageFile": {

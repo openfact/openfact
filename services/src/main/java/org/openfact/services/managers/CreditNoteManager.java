@@ -16,17 +16,14 @@
  *******************************************************************************/
 package org.openfact.services.managers;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.transform.TransformerException;
 
 import org.jboss.logging.Logger;
 import org.openfact.common.converts.DocumentUtils;
-import org.openfact.models.CreditNoteModel;
-import org.openfact.models.CreditNoteProvider;
-import org.openfact.models.ModelException;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
+import org.openfact.models.*;
 import org.openfact.ubl.SendEventModel;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.utils.TypeToModel;
@@ -56,7 +53,7 @@ public class CreditNoteManager {
         return model.getCreditNoteByDocumentId(organization, ID);
     }
 
-    public CreditNoteModel addCreditNote(OrganizationModel organization, CreditNoteType type, Map<String, String> attributes) {
+    public CreditNoteModel addCreditNote(OrganizationModel organization, CreditNoteType type, Map<String, List<String>> attributes) {
         IDType documentId = type.getID();
         if (documentId == null) {
             String generatedId = ubl.idGenerator().generateID(organization, type);
@@ -65,8 +62,8 @@ public class CreditNoteManager {
         }
 
         CreditNoteModel creditNote = model.addCreditNote(organization, documentId.getValue());
-        for (Map.Entry<String, String> entry : attributes.entrySet()) {
-            creditNote.setSingleAttribute(entry.getKey(), entry.getValue());
+        for (Map.Entry<String, List<String>> entry : attributes.entrySet()) {
+            creditNote.setAttribute(entry.getKey(), entry.getValue());
         }
 
         TypeToModel.importCreditNote(session, organization, creditNote, type);
@@ -87,7 +84,22 @@ public class CreditNoteManager {
             throw new ModelException(e);
         }
 
+        fireCreditNotePostCreate(creditNote);
         return creditNote;
+    }
+
+    private void fireCreditNotePostCreate(CreditNoteModel creditNote) {
+        session.getOpenfactSessionFactory().publish(new CreditNoteModel.CreditNotePostCreateEvent() {
+            @Override
+            public CreditNoteModel getCreatedCreditNote() {
+                return creditNote;
+            }
+
+            @Override
+            public OpenfactSession getOpenfactSession() {
+                return session;
+            }
+        });
     }
 
     public boolean removeCreditNote(OrganizationModel organization, CreditNoteModel creditNote) {

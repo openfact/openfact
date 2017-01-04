@@ -98,8 +98,7 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
             }
 
             @Override
-            public Document write(OrganizationModel organization, InvoiceType t,
-                    Map<String, String> attributes) {
+            public Document write(OrganizationModel organization, InvoiceType t, Map<String, List<String>> attributes) {
                 return UBL21Writer.invoice().getAsDocument(t);
             }
         };

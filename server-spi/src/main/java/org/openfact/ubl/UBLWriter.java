@@ -16,6 +16,7 @@
  *******************************************************************************/
 package org.openfact.ubl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.openfact.models.OrganizationModel;
@@ -26,6 +27,6 @@ public interface UBLWriter<T> extends Provider {
 
     Document write(OrganizationModel organization, T t);
 
-    Document write(OrganizationModel organization, T t, Map<String, String> attributes);
+    Document write(OrganizationModel organization, T t, Map<String, List<String>> attributes);
 
 }

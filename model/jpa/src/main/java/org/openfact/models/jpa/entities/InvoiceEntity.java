@@ -87,6 +87,9 @@ public class InvoiceEntity {
     @Column(name = "CUSTOMER_REGISTRATIONNAME")
     private String customerRegistrationName;
 
+    @Column(name = "CUSTOMER_ADDITIONAL_ACCOUNT_ID")
+    private String customerAdditionalAccountId;
+
     @Column(name = "CUSTOMER_ASSIGNEDACCOUNTID")
     private String customerAssignedAccountId;
 
@@ -281,5 +284,13 @@ public class InvoiceEntity {
 
     public void setAttatchedDocuments(Collection<InvoiceAttatchedDocumentEntity> attatchedDocuments) {
         this.attatchedDocuments = attatchedDocuments;
+    }
+
+    public String getCustomerAdditionalAccountId() {
+        return customerAdditionalAccountId;
+    }
+
+    public void setCustomerAdditionalAccountId(String customerAdditionalAccountId) {
+        this.customerAdditionalAccountId = customerAdditionalAccountId;
     }
 }

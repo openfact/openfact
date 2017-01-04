@@ -98,8 +98,7 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
             }
 
             @Override
-            public Document write(OrganizationModel organization, DebitNoteType t,
-                    Map<String, String> attributes) {
+            public Document write(OrganizationModel organization, DebitNoteType t, Map<String, List<String>> attributes) {
                 return UBL21Writer.debitNote().getAsDocument(t);
             }
         };

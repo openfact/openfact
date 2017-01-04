@@ -29,14 +29,17 @@ public class InvoiceRepresentation {
     private LocalDateTime issueDateTime;
     private String documentCurrencyCode;
     private String customerRegistrationName;
+    private String customerAdditionalAccountId;
     private String customerAssignedAccountId;
     private String customerElectronicMail;
     private BigDecimal allowanceTotalAmount;
     private BigDecimal chargeTotalAmount;
     private BigDecimal payableAmount;
 
-    private Map<String, String> attributes;
+    private Map<String, List<String>> attributes;
     private Set<String> requiredActions;
+
+    private List<AttatchedDocumentRepresentation> attatchedDocuments;
 
     public String getId() {
         return id;
@@ -126,19 +129,35 @@ public class InvoiceRepresentation {
         this.payableAmount = payableAmount;
     }
 
-    public Map<String, String> getAttributes() {
-        return attributes;
-    }
-
-    public void setAttributes(Map<String, String> attributes) {
-        this.attributes = attributes;
-    }
-
     public Set<String> getRequiredActions() {
         return requiredActions;
     }
 
     public void setRequiredActions(Set<String> requiredActions) {
         this.requiredActions = requiredActions;
+    }
+
+    public List<AttatchedDocumentRepresentation> getAttatchedDocuments() {
+        return attatchedDocuments;
+    }
+
+    public void setAttatchedDocuments(List<AttatchedDocumentRepresentation> attatchedDocuments) {
+        this.attatchedDocuments = attatchedDocuments;
+    }
+
+    public Map<String, List<String>> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Map<String, List<String>> attributes) {
+        this.attributes = attributes;
+    }
+
+    public void setCustomerAdditionalAccountId(String customerAdditionalAccountId) {
+        this.customerAdditionalAccountId = customerAdditionalAccountId;
+    }
+
+    public String getCustomerAdditionalAccountId() {
+        return customerAdditionalAccountId;
     }
 }

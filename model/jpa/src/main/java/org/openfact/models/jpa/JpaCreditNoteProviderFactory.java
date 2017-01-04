@@ -44,52 +44,6 @@ public class JpaCreditNoteProviderFactory implements CreditNoteProviderFactory {
     }
 
     @Override
-    public void postInit(OpenfactSessionFactory factory) {
-        String documentTypeCode = config.get("documentTypeCode");
-        if(documentTypeCode != null) {
-
-            factory.register(new ProviderEventListener() {
-                @Override
-                public void onEvent(ProviderEvent event) {
-                    if(event instanceof CreditNoteModel.CreditNotePostCreateEvent) {
-                        CreditNoteModel.CreditNotePostCreateEvent creditNotePostCreatedEvent = (CreditNoteModel.CreditNotePostCreateEvent) event;
-
-                        CreditNoteModel creditNote = creditNotePostCreatedEvent.getCreatedCreditNote();
-                        CreditNoteType creditNoteType = creditNote.getCreditNoteType();
-
-                        if (creditNoteType.getBillingReference() != null) {
-                            for (BillingReferenceType billingReferenceType : creditNoteType.getBillingReference()) {
-                                if(billingReferenceType.getInvoiceDocumentReference() != null) {
-                                    DocumentReferenceType documentReferenceType = billingReferenceType.getInvoiceDocumentReference();
-
-                                    String xmlDocumentID = null;
-                                    String xmlDocumentTypeCode = null;
-                                    if(documentReferenceType.getID() != null) {
-                                        xmlDocumentID = documentReferenceType.getIDValue();
-                                    }
-                                    if(documentReferenceType.getDocumentTypeCode() != null) {
-                                        xmlDocumentTypeCode = documentReferenceType.getDocumentTypeCodeValue();
-                                    }
-
-                                    if(xmlDocumentID != null && documentReferenceType != null && documentTypeCode.equals(xmlDocumentTypeCode)) {
-                                        InvoiceModel invoice = creditNotePostCreatedEvent.getOpenfactSession().invoices().getInvoiceByDocumentId(creditNote.getOrganization(), xmlDocumentID);
-                                        AttatchedDocumentModel attatchedDocument = invoice.addAttatchedDocument(DocumentType.CREDIT_NOTE, creditNote.getId());
-                                        attatchedDocument.setSingleAttribute("documentId", creditNote.getDocumentId());
-                                        attatchedDocument.setSingleAttribute("issueDate", creditNote.getIssueDateTime().toString());
-                                        attatchedDocument.setSingleAttribute("payableAmount", creditNote.getPayableAmount().toString());
-                                    }
-                                }
-                            }
-                        }
-
-                    }
-                }
-            });
-
-        }
-    }
-
-    @Override
     public String getId() {
         return "jpa";
     }
@@ -98,4 +52,8 @@ public class JpaCreditNoteProviderFactory implements CreditNoteProviderFactory {
     public void close() {
     }
 
+    @Override
+    public Config.Scope getConfig() {
+        return this.config;
+    }
 }

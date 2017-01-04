@@ -30,6 +30,7 @@ import org.openfact.models.CreditNoteModel;
 import org.openfact.models.CustomerPartyModel;
 import org.openfact.models.DebitNoteModel;
 import org.openfact.models.InvoiceModel;
+import org.openfact.models.AttatchedDocumentModel;
 import org.openfact.models.MonetaryTotalModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
@@ -41,8 +42,6 @@ import org.openfact.models.TaxTotalModel;
 import org.openfact.provider.ProviderConfigProperty;
 import org.openfact.representations.idm.*;
 import org.openfact.ubl.SendEventModel;
-
-import javax.persistence.Column;
 
 public class ModelToRepresentation {
 
@@ -149,14 +148,29 @@ public class ModelToRepresentation {
         rep.setInvoiceTypeCode(model.getInvoiceTypeCode());
         rep.setCustomerRegistrationName(model.getCustomerRegistrationName());
         rep.setCustomerAssignedAccountId(model.getCustomerAssignedAccountId());
+        rep.setCustomerAdditionalAccountId(model.getCustomerAdditionalAccountId());
         rep.setCustomerElectronicMail(model.getCustomerElectronicMail());
         rep.setAllowanceTotalAmount(model.getAllowanceTotalAmount());
         rep.setChargeTotalAmount(model.getChargeTotalAmount());
         rep.setPayableAmount(model.getPayableAmount());
 
+        if (model.getAttributes() != null && !model.getAttributes().isEmpty()) {
+            Map<String, List<String>> attrs = new HashMap<>();
+            attrs.putAll(model.getAttributes());
+            rep.setAttributes(attrs);
+        }
+
         if(model.getRequiredActions() != null) {
             rep.setRequiredActions(new HashSet<String>());
             rep.getRequiredActions().addAll(model.getRequiredActions());
+        }
+
+        if(model.getAttatchedDocuments() != null) {
+            List<AttatchedDocumentRepresentation> attatchedDocuments = new ArrayList<>();
+            for (AttatchedDocumentModel attatchedDocument: model.getAttatchedDocuments()) {
+                attatchedDocuments.add(toRepresentation(attatchedDocument));
+            }
+            rep.setAttatchedDocuments(attatchedDocuments);
         }
 
         return rep;
@@ -175,6 +189,12 @@ public class ModelToRepresentation {
         rep.setAllowanceTotalAmount(model.getAllowanceTotalAmount());
         rep.setChargeTotalAmount(model.getChargeTotalAmount());
         rep.setPayableAmount(model.getPayableAmount());
+
+        if (model.getAttributes() != null && !model.getAttributes().isEmpty()) {
+            Map<String, List<String>> attrs = new HashMap<>();
+            attrs.putAll(model.getAttributes());
+            rep.setAttributes(attrs);
+        }
 
         if(model.getRequiredActions() != null) {
             rep.setRequiredActions(new HashSet<String>());
@@ -198,11 +218,31 @@ public class ModelToRepresentation {
         rep.setChargeTotalAmount(model.getChargeTotalAmount());
         rep.setPayableAmount(model.getPayableAmount());
 
+        if (model.getAttributes() != null && !model.getAttributes().isEmpty()) {
+            Map<String, List<String>> attrs = new HashMap<>();
+            attrs.putAll(model.getAttributes());
+            rep.setAttributes(attrs);
+        }
+
         if(model.getRequiredActions() != null) {
             rep.setRequiredActions(new HashSet<String>());
             rep.getRequiredActions().addAll(model.getRequiredActions());
         }
 
+        return rep;
+    }
+
+    public static AttatchedDocumentRepresentation toRepresentation(AttatchedDocumentModel model) {
+        AttatchedDocumentRepresentation rep = new AttatchedDocumentRepresentation();
+        rep.setId(model.getId());
+        rep.setDocumentId(model.getDocumentId());
+        rep.setDocumentType(model.getDocumentType().toString());
+
+        if (model.getAttributes() != null && !model.getAttributes().isEmpty()) {
+            Map<String, List<String>> attrs = new HashMap<>();
+            attrs.putAll(model.getAttributes());
+            rep.setAttributes(attrs);
+        }
         return rep;
     }
 

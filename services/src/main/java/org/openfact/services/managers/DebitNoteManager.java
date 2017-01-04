@@ -16,17 +16,14 @@
  *******************************************************************************/
 package org.openfact.services.managers;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.transform.TransformerException;
 
 import org.jboss.logging.Logger;
 import org.openfact.common.converts.DocumentUtils;
-import org.openfact.models.DebitNoteModel;
-import org.openfact.models.DebitNoteProvider;
-import org.openfact.models.ModelException;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
+import org.openfact.models.*;
 import org.openfact.ubl.SendEventModel;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.utils.TypeToModel;
@@ -56,7 +53,7 @@ public class DebitNoteManager {
         return model.getDebitNoteByDocumentId(organization, ID);
     }
 
-    public DebitNoteModel addDebitNote(OrganizationModel organization, DebitNoteType type, Map<String, String> attributes) {
+    public DebitNoteModel addDebitNote(OrganizationModel organization, DebitNoteType type, Map<String, List<String>> attributes) {
         IDType documentId = type.getID();
         if (documentId == null) {
             String generatedId = ubl.idGenerator().generateID(organization, type);
@@ -65,8 +62,8 @@ public class DebitNoteManager {
         }
 
         DebitNoteModel debitNote = model.addDebitNote(organization, documentId.getValue());
-        for (Map.Entry<String, String> entry : attributes.entrySet()) {
-            debitNote.setSingleAttribute(entry.getKey(), entry.getValue());
+        for (Map.Entry<String, List<String>> entry : attributes.entrySet()) {
+            debitNote.setAttribute(entry.getKey(), entry.getValue());
         }
 
         TypeToModel.importDebitNote(session, organization, debitNote, type);
@@ -87,7 +84,22 @@ public class DebitNoteManager {
             throw new ModelException(e);
         }
 
+        fireDebitNotePostCreate(debitNote);
         return debitNote;
+    }
+
+    private void fireDebitNotePostCreate(DebitNoteModel debitNote) {
+        session.getOpenfactSessionFactory().publish(new DebitNoteModel.DebitNotePostCreateEvent() {
+            @Override
+            public DebitNoteModel getCreatedDebitNote() {
+                return debitNote;
+            }
+
+            @Override
+            public OpenfactSession getOpenfactSession() {
+                return session;
+            }
+        });
     }
 
     public boolean removeDebitNote(OrganizationModel organization, DebitNoteModel debitNote) {
