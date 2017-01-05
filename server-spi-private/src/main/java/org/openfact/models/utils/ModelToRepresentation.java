@@ -78,6 +78,7 @@ public class ModelToRepresentation {
          * Themes
          */
         rep.setEmailTheme(organization.getEmailTheme());
+        rep.setReportTheme(organization.getReportTheme());
 
         /**
          * Internationalization

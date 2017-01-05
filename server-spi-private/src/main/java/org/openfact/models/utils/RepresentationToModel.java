@@ -152,6 +152,9 @@ public class RepresentationToModel {
         if (rep.getEmailTheme() != null) {
             newOrganization.setEmailTheme(rep.getEmailTheme());
         }
+        if (rep.getReportTheme() != null) {
+            newOrganization.setReportTheme(rep.getReportTheme());
+        }
 
         /**
          * Internationalization
@@ -319,6 +322,9 @@ public class RepresentationToModel {
          */
         if (rep.getEmailTheme() != null) {
             organization.setEmailTheme(rep.getEmailTheme());
+        }
+        if (rep.getReportTheme() != null) {
+            organization.setReportTheme(rep.getReportTheme());
         }
 
         /**

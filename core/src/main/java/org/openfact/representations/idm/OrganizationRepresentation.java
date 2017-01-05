@@ -42,6 +42,7 @@ public class OrganizationRepresentation {
 
     protected String adminTheme;
     protected String emailTheme;
+    protected String reportTheme;
     protected Set<String> supportedLocales;
     protected String defaultLocale;
     protected Boolean internationalizationEnabled;    
@@ -383,4 +384,11 @@ public class OrganizationRepresentation {
         this.components = components;
     }
 
+    public String getReportTheme() {
+        return reportTheme;
+    }
+
+    public void setReportTheme(String reportTheme) {
+        this.reportTheme = reportTheme;
+    }
 }
