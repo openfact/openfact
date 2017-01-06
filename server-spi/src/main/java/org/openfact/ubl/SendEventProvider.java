@@ -24,13 +24,18 @@ import org.openfact.provider.Provider;
 
 import java.util.List;
 
+/**
+ * Provide Send Events
+ *
+ * @author carlosthe19916@sistcoop.com
+ * */
 public interface SendEventProvider extends Provider {
 
-    SendEventModel addSendEvent(OrganizationModel organization, SendResultType type, InvoiceModel invoice);
+    SendEventModel addSendEvent(OrganizationModel organization, SendResultType eventType, InvoiceModel invoice);
 
-    SendEventModel addSendEvent(OrganizationModel organization, SendResultType type, CreditNoteModel creditNote);
+    SendEventModel addSendEvent(OrganizationModel organization, SendResultType eventType, CreditNoteModel creditNote);
 
-    SendEventModel addSendEvent(OrganizationModel organization, SendResultType type, DebitNoteModel debitNote);
+    SendEventModel addSendEvent(OrganizationModel organization, SendResultType eventType, DebitNoteModel debitNote);
 
     SendEventModel getSendEventById(OrganizationModel organization, String id);
 

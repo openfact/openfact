@@ -18,6 +18,8 @@ package org.openfact.ubl;
 
 import org.openfact.provider.ProviderFactory;
 
+/**
+ * @author carlosthe19916@sistcoop.com
+ * */
 public interface SendEventProviderFactory extends ProviderFactory<SendEventProvider> {
-
 }

@@ -20,6 +20,9 @@ import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
 import org.openfact.provider.Spi;
 
+/**
+ * @author carlosthe19916@sistcoop.com
+ * */
 public class SendEventSpi implements Spi {
 
     @Override
