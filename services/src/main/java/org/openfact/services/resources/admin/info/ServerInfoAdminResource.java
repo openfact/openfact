@@ -22,6 +22,8 @@ import org.openfact.events.admin.ResourceType;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.provider.*;
+import org.openfact.report.ReportTheme;
+import org.openfact.report.ReportThemeProvider;
 import org.openfact.representations.idm.ComponentTypeRepresentation;
 import org.openfact.representations.info.*;
 import org.openfact.theme.Theme;
@@ -66,12 +68,12 @@ public class ServerInfoAdminResource {
     @Produces(MediaType.APPLICATION_JSON)
     public ServerInfoRepresentation getInfo() {
         ServerInfoRepresentation info = new ServerInfoRepresentation();
-        info.setSystemInfo(SystemInfoRepresentation
-                .create(session.getOpenfactSessionFactory().getServerStartupTimestamp()));
+        info.setSystemInfo(SystemInfoRepresentation.create(session.getOpenfactSessionFactory().getServerStartupTimestamp()));
         info.setMemoryInfo(MemoryInfoRepresentation.create());
         info.setProfileInfo(ProfileInfoRepresentation.create());
 
         setThemes(info);
+        setReports(info);
         setProviders(info);
         info.setEnums(ENUMS);
         return info;
@@ -159,6 +161,36 @@ public class ServerInfoAdminResource {
                     themes.add(ti);
                 } catch (IOException e) {
                     throw new WebApplicationException("Failed to load themes", e);
+                }
+            }
+        }
+    }
+
+    private void setReports(ServerInfoRepresentation info) {
+        ReportThemeProvider reportThemeProvider = session.getProvider(ReportThemeProvider.class, "extending");
+        info.setReports(new HashMap<String, List<ReportInfoRepresentation>>());
+
+        for (ReportTheme.Type type : ReportTheme.Type.values()) {
+            List<String> reportThemeNames = new LinkedList<>(reportThemeProvider.nameSet(type));
+            Collections.sort(reportThemeNames);
+
+            List<ReportInfoRepresentation> themes = new LinkedList<>();
+            info.getReports().put(type.toString().toLowerCase(), themes);
+
+            for (String name : reportThemeNames) {
+                try {
+                    ReportTheme theme = reportThemeProvider.getTheme(name, type);
+                    ReportInfoRepresentation ti = new ReportInfoRepresentation();
+                    ti.setName(name);
+
+                    String locales = theme.getProperties().getProperty("locales");
+                    if (locales != null) {
+                        ti.setLocales(locales.replaceAll(" ", "").split(","));
+                    }
+
+                    themes.add(ti);
+                } catch (IOException e) {
+                    throw new WebApplicationException("Failed to load report themes", e);
                 }
             }
         }

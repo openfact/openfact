@@ -27,6 +27,7 @@ import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleHtmlExporterOutput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import org.openfact.models.*;
+import org.openfact.models.enums.DocumentType;
 import org.openfact.report.*;
 
 import java.io.ByteArrayOutputStream;
@@ -111,7 +112,7 @@ public class JasperUBLReportProvider implements UBLReportProvider {
             public byte[] getReportAsPdf(InvoiceModel invoice) throws ReportException {
                 ReportThemeProvider themeProvider = session.getProvider(ReportThemeProvider.class, "extending");
                 try {
-                    ReportTheme theme = themeProvider.getTheme(themeName, ReportTheme.Type.INVOICE);
+                    ReportTheme theme = themeProvider.getTheme(themeName, ReportTheme.Type.ADMIN);
                     Locale locale = organization.getDefaultLocale() != null ? new Locale(organization.getDefaultLocale()) : Locale.ENGLISH;
                     attributes.put(JRParameter.REPORT_LOCALE, locale);
 
@@ -124,7 +125,7 @@ public class JasperUBLReportProvider implements UBLReportProvider {
                     }
 
                     // Put datasource
-                    JasperPrint jp = jasperReport.processReport(theme, Templates.getTemplate(ReportTheme.Type.INVOICE), attributes, new BasicJRDataSource<InvoiceModel>(Arrays.asList(invoice)) {
+                    JasperPrint jp = jasperReport.processReport(theme, Templates.getTemplate(ReportTheme.Type.ADMIN, DocumentType.INVOICE), attributes, new BasicJRDataSource<InvoiceModel>(Arrays.asList(invoice)) {
                         @Override
                         public Object getFieldValue(JRField jrField) throws JRException {
                             InvoiceModel current = super.dataSource.get(super.current.get() - 1);
@@ -148,10 +149,10 @@ public class JasperUBLReportProvider implements UBLReportProvider {
             public byte[] getReportAsPdf(List<InvoiceModel> t) throws ReportException {
                 ReportThemeProvider themeProvider = session.getProvider(ReportThemeProvider.class, "extending");
                 try {
-                    ReportTheme theme = themeProvider.getTheme(themeName, ReportTheme.Type.INVOICE);
+                    ReportTheme theme = themeProvider.getTheme(themeName, ReportTheme.Type.ADMIN);
                     attributes.put(JRParameter.REPORT_LOCALE, new Locale(organization.getDefaultLocale()));
 
-                    JasperPrint jp = jasperReport.processReport(theme, Templates.getTemplate(ReportTheme.Type.INVOICE), attributes, new JREmptyDataSource());
+                    JasperPrint jp = jasperReport.processReport(theme, Templates.getTemplate(ReportTheme.Type.ADMIN, DocumentType.INVOICE), attributes, new JREmptyDataSource());
                     return JasperExportManager.exportReportToPdf(jp);
                 } catch (Exception e) {
                     throw new ReportException("Failed to template report", e);
@@ -162,7 +163,7 @@ public class JasperUBLReportProvider implements UBLReportProvider {
             public byte[] getReport(InvoiceModel invoice, ExportFormat exportFormat) throws ReportException {
                 ReportThemeProvider themeProvider = session.getProvider(ReportThemeProvider.class, "extending");
                 try {
-                    ReportTheme theme = themeProvider.getTheme(themeName, ReportTheme.Type.INVOICE);
+                    ReportTheme theme = themeProvider.getTheme(themeName, ReportTheme.Type.ADMIN);
                     Locale locale = organization.getDefaultLocale() != null ? new Locale(organization.getDefaultLocale()) : Locale.ENGLISH;
                     attributes.put(JRParameter.REPORT_LOCALE, locale);
 
@@ -175,7 +176,7 @@ public class JasperUBLReportProvider implements UBLReportProvider {
                     }
 
                     // Put datasource
-                    JasperPrint jp = jasperReport.processReport(theme, Templates.getTemplate(ReportTheme.Type.INVOICE), attributes, new BasicJRDataSource<InvoiceModel>(Arrays.asList(invoice)) {
+                    JasperPrint jp = jasperReport.processReport(theme, Templates.getTemplate(ReportTheme.Type.ADMIN, DocumentType.INVOICE), attributes, new BasicJRDataSource<InvoiceModel>(Arrays.asList(invoice)) {
                         @Override
                         public Object getFieldValue(JRField jrField) throws JRException {
                             InvoiceModel current = super.dataSource.get(super.current.get() - 1);
@@ -293,20 +294,14 @@ public class JasperUBLReportProvider implements UBLReportProvider {
     }
 
     static class Templates {
-        public static String getTemplate(ReportTheme.Type type) {
-            switch (type) {
+        public static String getTemplate(ReportTheme.Type type, DocumentType documentType) {
+            switch (documentType) {
                 case INVOICE:
                     return "invoice.jrxml";
-                case INVOICES:
-                    return "invoices.jrxml";
                 case CREDIT_NOTE:
                     return "credit_note.jrxml";
-                case CREDIT_NOTES:
-                    return "credit_notes.jrxml";
                 case DEBIT_NOTE:
                     return "debit_note.jrxml";
-                case DEBIT_NOTES:
-                    return "debit_notes.jrxml";
                 default:
                     throw new IllegalArgumentException();
             }

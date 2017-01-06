@@ -32,6 +32,7 @@ public class ServerInfoRepresentation {
     private ProfileInfoRepresentation profileInfo;
 
     private Map<String, List<ThemeInfoRepresentation>> themes;
+    private Map<String, List<ReportInfoRepresentation>> reports;
 
     private List<Map<String, String>> socialProviders;
     private List<Map<String, String>> identityProviders;
@@ -121,5 +122,13 @@ public class ServerInfoRepresentation {
 
     public void setComponentTypes(Map<String, List<ComponentTypeRepresentation>> componentTypes) {
         this.componentTypes = componentTypes;
+    }
+
+    public Map<String, List<ReportInfoRepresentation>> getReports() {
+        return reports;
+    }
+
+    public void setReports(Map<String, List<ReportInfoRepresentation>> reports) {
+        this.reports = reports;
     }
 }

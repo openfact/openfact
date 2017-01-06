@@ -2,7 +2,7 @@
 	"themes": [
 		{
 			"name": "openfact",
-			"types": [ "invoice", "invoices", "credit_note", "credit_notes", "debit_note", "debit_notes"]
+			"types": [ "admin"]
 		}
 	]
 }

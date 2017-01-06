@@ -15,34 +15,32 @@
  * limitations under the License.
  *******************************************************************************/
 
-package org.openfact.report;
+/*
+ */
 
-import org.openfact.provider.Provider;
-import org.openfact.provider.ProviderFactory;
-import org.openfact.provider.Spi;
+package org.openfact.representations.info;
 
 /**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
+ * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
-public class ReportThemeSpi implements Spi {
+public class ReportInfoRepresentation {
 
-    @Override
-    public boolean isInternal() {
-        return true;
-    }
+    private String name;
+    private String[] locales;
 
-    @Override
     public String getName() {
-        return "report";
+        return name;
     }
 
-    @Override
-    public Class<? extends Provider> getProviderClass() {
-        return ReportThemeProvider.class;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @Override
-    public Class<? extends ProviderFactory> getProviderFactoryClass() {
-        return ReportThemeProviderFactory.class;
+    public String[] getLocales() {
+        return locales;
+    }
+
+    public void setLocales(String[] locales) {
+        this.locales = locales;
     }
 }

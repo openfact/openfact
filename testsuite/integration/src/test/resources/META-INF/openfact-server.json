@@ -67,6 +67,12 @@
     }
   },
 
+  "report": {
+    "folder": {
+      "dir": "${openfact.report.dir}"
+    }
+  },
+
   "scheduled": {
     "interval": 900
   },

@@ -28,7 +28,7 @@ import java.util.Properties;
  */
 public interface ReportTheme {
 
-    enum Type { INVOICE, INVOICES, CREDIT_NOTE, CREDIT_NOTES, DEBIT_NOTE, DEBIT_NOTES};
+    enum Type { ADMIN };
 
     String getName();
 
