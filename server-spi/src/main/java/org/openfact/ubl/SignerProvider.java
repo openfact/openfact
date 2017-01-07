@@ -24,4 +24,6 @@ public interface SignerProvider extends Provider {
 
     Document sign(Document document, OrganizationModel organization);
 
+    Document sign(OrganizationModel organization);
+
 }
