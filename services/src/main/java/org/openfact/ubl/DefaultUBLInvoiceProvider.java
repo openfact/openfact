@@ -20,14 +20,11 @@ import java.util.*;
 
 import org.openfact.email.EmailException;
 import org.openfact.email.EmailTemplateProvider;
-import org.openfact.models.CustomerPartyModel;
-import org.openfact.models.FileModel;
-import org.openfact.models.InvoiceModel;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.PartyLegalEntityModel;
-import org.openfact.models.SimpleFileModel;
-import org.openfact.models.UserSenderModel;
+import org.openfact.file.FileModel;
+import org.openfact.file.FileMymeTypeModel;
+import org.openfact.file.FileProvider;
+import org.openfact.models.*;
+import org.openfact.models.enums.DestinyType;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.enums.SendResultType;
 import org.openfact.models.utils.OpenfactModelUtils;
@@ -114,59 +111,60 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
 
 			@Override
 			public SendEventModel sendToCustomer(OrganizationModel organization, InvoiceModel invoice) throws SendException {
+                SendEventModel sendEvent = invoice.addSendEvent(DestinyType.CUSTOMER);
+                return sendToCustomer(organization, invoice, sendEvent);
+			}
+
+            @Override
+            public SendEventModel sendToCustomer(OrganizationModel organization, InvoiceModel invoice, SendEventModel sendEvent) throws SendException {
+                sendEvent.setType("EMAIL");
+
                 if (invoice.getCustomerElectronicMail() == null) {
-                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, invoice);
-                    sendEvent.setType("EMAIL");
+                    sendEvent.setResult(SendResultType.ERROR);
                     sendEvent.setDescription("Could not find a valid email for the customer.");
                     return sendEvent;
-				}
+                }
 
                 if (organization.getSmtpConfig().size() == 0) {
-                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, invoice);
-                    sendEvent.setType("EMAIL");
+                    sendEvent.setResult(SendResultType.ERROR);
                     sendEvent.setDescription("Could not find a valid smtp configuration on organization.");
                     return sendEvent;
                 }
 
-				// User where the email will be send
-				UserSenderModel user = new UserSenderModel() {
-					@Override
-					public String getFullName() {
-						return invoice.getCustomerRegistrationName();
-					}
+                // User where the email will be send
+                UserSenderModel user = new UserSenderModel() {
+                    @Override
+                    public String getFullName() {
+                        return invoice.getCustomerRegistrationName();
+                    }
 
-					@Override
-					public String getEmail() {
-						return invoice.getCustomerElectronicMail();
-					}
-				};
+                    @Override
+                    public String getEmail() {
+                        return invoice.getCustomerElectronicMail();
+                    }
+                };
 
                 try {
+                    FileProvider fileProvider = session.getProvider(FileProvider.class);
+
                     // Attatchments
-                    FileModel xmlFile = new SimpleFileModel();
-                    xmlFile.setFileName(invoice.getDocumentId() + ".xml");
-                    xmlFile.setFile(invoice.getXmlFile().getFile());
-                    xmlFile.setMimeType("application/xml");
+                    FileModel xmlFile = fileProvider.createFile(organization, invoice.getDocumentId() + ".xml", invoice.getXmlFile().getFile());
+                    FileMymeTypeModel xmlFileMymeType = new FileMymeTypeModel(xmlFile, "application/xml");
 
-                    FileModel pdfFile = new SimpleFileModel();
-
-                    pdfFile.setFileName(invoice.getDocumentId() + ".pdf");
-                    pdfFile.setFile(session.getProvider(UBLReportProvider.class).invoice().setOrganization(organization).getReport(invoice, ExportFormat.PDF));
-                    pdfFile.setMimeType("application/pdf");
+                    byte[] pdfFileBytes = session.getProvider(UBLReportProvider.class).invoice().setOrganization(organization).getReport(invoice, ExportFormat.PDF);
+                    FileModel pdfFile = fileProvider.createFile(organization, invoice.getDocumentId() + ".pdf", pdfFileBytes);
+                    FileMymeTypeModel pdfFileMymeType = new FileMymeTypeModel(pdfFile, "application/pdf");
 
                     session.getProvider(EmailTemplateProvider.class)
                             .setOrganization(organization).setUser(user)
-                            .setAttachments(Arrays.asList(xmlFile, pdfFile))
+                            .setAttachments(Arrays.asList(xmlFileMymeType, pdfFileMymeType))
                             .sendInvoice(invoice);
 
                     // Write event to the database
-                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.SUCCESS, invoice);
-                    sendEvent.setType("EMAIL");
-
                     sendEvent.setDescription("Ivoice successfully sended");
                     sendEvent.addFileAttatchments(xmlFile);
                     sendEvent.addFileAttatchments(pdfFile);
-                    sendEvent.setResult(true);
+                    sendEvent.setResult(SendResultType.SUCCESS);
 
                     Map<String, String> destiny = new HashMap<>();
                     destiny.put("email", user.getEmail());
@@ -177,25 +175,29 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
 
                     return sendEvent;
                 } catch (ReportException e) {
-                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, invoice);
-                    sendEvent.setType("EMAIL");
+                    sendEvent.setResult(SendResultType.ERROR);
                     sendEvent.setDescription(e.getMessage());
                     throw new SendException("Could not generate pdf report", e);
                 } catch (EmailException e) {
-                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, invoice);
-                    sendEvent.setType("EMAIL");
+                    sendEvent.setResult(SendResultType.ERROR);
                     sendEvent.setDescription(e.getMessage());
                     throw new SendException("Could not send email", e);
                 }
-			}
+            }
 
             @Override
             public SendEventModel sendToThridParty(OrganizationModel organization, InvoiceModel invoice) throws SendException {
-                SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, invoice);
+                SendEventModel sendEvent =  invoice.addSendEvent(DestinyType.THIRD_PARTY);
+                return sendToThridParty(organization, invoice, sendEvent);
+            }
+
+            @Override
+            public SendEventModel sendToThridParty(OrganizationModel organization, InvoiceModel invoiceModel, SendEventModel sendEvent) throws SendException {
+                sendEvent.setResult(SendResultType.ERROR);
                 sendEvent.setDescription("Could not send the invoice because there is no a valid Third Party. This feature should be implemented by your own code");
                 return sendEvent;
             }
-            
+
         };
     }
 

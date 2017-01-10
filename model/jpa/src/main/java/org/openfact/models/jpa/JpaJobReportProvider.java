@@ -18,9 +18,7 @@ package org.openfact.models.jpa;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.*;
-import org.openfact.models.jpa.entities.InvoiceEntity;
 import org.openfact.models.jpa.entities.JobReportEntity;
-import org.openfact.models.jpa.entities.StorageFileEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;

@@ -32,7 +32,7 @@
 		<class>org.openfact.events.jpa.EventEntity</class>
 		<class>org.openfact.events.jpa.AdminEventEntity</class>
 
-		<!-- ubl -->
+		<!-- ublProvider -->
 		<class>org.openfact.models.jpa.entities.InvoiceEntity</class>
 		<class>org.openfact.models.jpa.entities.CreditNoteEntity</class>
 		<class>org.openfact.models.jpa.entities.DebitNoteEntity</class>

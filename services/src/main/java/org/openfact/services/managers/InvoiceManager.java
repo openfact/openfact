@@ -16,6 +16,7 @@
  *******************************************************************************/
 package org.openfact.services.managers;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -23,15 +24,17 @@ import javax.xml.transform.TransformerException;
 
 import org.jboss.logging.Logger;
 import org.openfact.common.converts.DocumentUtils;
+import org.openfact.file.FileModel;
+import org.openfact.file.FileProvider;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.InvoiceProvider;
 import org.openfact.models.ModelException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.ubl.SendEventModel;
+import org.openfact.models.SendEventModel;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.utils.TypeToModel;
-import org.openfact.ubl.SendException;
+import org.openfact.models.SendException;
 import org.openfact.ubl.SignerProvider;
 import org.openfact.ubl.UBLInvoiceProvider;
 import org.w3c.dom.Document;
@@ -45,51 +48,55 @@ public class InvoiceManager {
 
     protected OpenfactSession session;
     protected InvoiceProvider model;
-    protected UBLInvoiceProvider ubl;
+    protected UBLInvoiceProvider ublProvider;
 
     public InvoiceManager(OpenfactSession session) {
         this.session = session;
         this.model = session.invoices();
-        this.ubl = session.getProvider(UBLInvoiceProvider.class);
+        this.ublProvider = session.getProvider(UBLInvoiceProvider.class);
     }
 
-    public InvoiceModel getInvoiceByID(OrganizationModel organization, String ID) {
-        return model.getInvoiceByDocumentId(organization, ID);
+    public InvoiceModel getInvoiceByDocumentId(OrganizationModel organization, String documentId) {
+        return model.getInvoiceByDocumentId(organization, documentId);
     }
 
-    public InvoiceModel addInvoice(OrganizationModel organization, InvoiceType type, Map<String, List<String>> attributes) {
-        IDType documentId = type.getID();
+    public InvoiceModel addInvoice(OrganizationModel organization, InvoiceType invoiceType, Map<String, List<String>> attributes) {
+        // Model persist
+        IDType documentId = invoiceType.getID();
         if (documentId == null) {
-            String generatedId = ubl.idGenerator().generateID(organization, type);
-            documentId = new IDType(generatedId);
-            type.setID(documentId);
+            String newDocumentId = ublProvider.idGenerator().generateID(organization, invoiceType);
+            documentId = new IDType(newDocumentId);
+            invoiceType.setID(documentId);
         }
+        InvoiceModel invoiceModel = model.addInvoice(organization, documentId.getValue());
 
-        InvoiceModel invoice = model.addInvoice(organization, documentId.getValue());
+        // Attributes
         for (Map.Entry<String, List<String>> entry : attributes.entrySet()) {
-            invoice.setAttribute(entry.getKey(), entry.getValue());
+            invoiceModel.setAttribute(entry.getKey(), entry.getValue());
         }
 
-        TypeToModel.importInvoice(session, organization, invoice, type);
-        RequiredAction.getDefaults().stream().forEach(c -> invoice.addRequiredAction(c));
+        // Type to Model
+        TypeToModel.importInvoice(session, organization, invoiceModel, invoiceType);
+
+        // Required actions
+        Arrays.stream(RequiredAction.values()).forEach(c -> invoiceModel.addRequiredAction(c));
 
         try {
             // Generate Document
-            Document baseDocument = ubl.writer().write(organization, type, attributes);
+            Document baseDocument = ublProvider.writer().write(organization, invoiceType, attributes);
+            Document signedDocument = session.getProvider(SignerProvider.class).sign(baseDocument, organization);
+            byte[] signedDocumentBytes = DocumentUtils.getBytesFromDocument(signedDocument);
 
-            // Sign Document
-            SignerProvider signerProvider = session.getProvider(SignerProvider.class);
-            Document signedDocument = signerProvider.sign(baseDocument, organization);
-
-            byte[] bytes = DocumentUtils.getBytesFromDocument(signedDocument);
-            invoice.setXmlDocument(bytes);
+            // File
+            FileModel xmlFile = session.getProvider(FileProvider.class).createFile(organization, invoiceModel.getDocumentId() + ".xml", signedDocumentBytes);
+            invoiceModel.attachXmlFile(xmlFile);
         } catch (TransformerException e) {
-            logger.error("Error parsing to byte XML", e);
+            logger.error("Error parsing XML to byte", e);
             throw new ModelException(e);
         }
 
-        fireInvoicePostCreate(invoice);
-        return invoice;
+        fireInvoicePostCreate(invoiceModel);
+        return invoiceModel;
     }
 
     private void fireInvoicePostCreate(InvoiceModel invoice) {
@@ -114,11 +121,27 @@ public class InvoiceManager {
     }
 
     public SendEventModel sendToCustomerParty(OrganizationModel organization, InvoiceModel invoice) throws SendException {
-        return ubl.sender().sendToCustomer(organization, invoice);
+        return sendToCustomerParty(organization, invoice, null);
+    }
+
+    public SendEventModel sendToCustomerParty(OrganizationModel organization, InvoiceModel invoice, SendEventModel sendEvent) throws SendException {
+        if(sendEvent == null) {
+            return ublProvider.sender().sendToCustomer(organization, invoice);
+        } else {
+            return ublProvider.sender().sendToCustomer(organization, invoice, sendEvent);
+        }
     }
 
     public SendEventModel sendToTrirdParty(OrganizationModel organization, InvoiceModel invoice) throws SendException {
-        return ubl.sender().sendToThridParty(organization, invoice);
+        return sendToTrirdParty(organization, invoice, null);
+    }
+
+    public SendEventModel sendToTrirdParty(OrganizationModel organization, InvoiceModel invoice, SendEventModel sendEvent) throws SendException {
+        if(sendEvent == null) {
+            return ublProvider.sender().sendToThridParty(organization, invoice);
+        } else {
+            return ublProvider.sender().sendToThridParty(organization, invoice, sendEvent);
+        }
     }
 
 }

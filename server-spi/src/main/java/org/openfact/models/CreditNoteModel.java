@@ -23,9 +23,10 @@ import java.util.Map;
 import java.util.Set;
 
 import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
+import org.openfact.file.FileModel;
+import org.openfact.models.enums.DestinyType;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.provider.ProviderEvent;
-import org.openfact.ubl.SendEventModel;
 
 public interface CreditNoteModel {
 
@@ -33,7 +34,6 @@ public interface CreditNoteModel {
     String ISSUE_DATETIME = "issueDateTime";
 
     String getId();
-
     String getDocumentId();
 
     /**
@@ -45,36 +45,30 @@ public interface CreditNoteModel {
      * */
 
     LocalDateTime getIssueDateTime();
-
     void setIssueDateTime(LocalDateTime value);
 
     String getDocumentCurrencyCode();
-
     void setDocumentCurrencyCode(String value);
 
     String getCustomerRegistrationName();
-
     void setCustomerRegistrationName(String value);
 
     String getCustomerAssignedAccountId();
-
     String getCustomerElectronicMail();
 
     void setCustomerElectronicMail(String value);
-
     void setCustomerAssignedAccountId(String value);
 
     BigDecimal getAllowanceTotalAmount();
-
     void setAllowanceTotalAmount(BigDecimal value);
 
     BigDecimal getChargeTotalAmount();
-
     void setChargeTotalAmount(BigDecimal value);
 
     BigDecimal getPayableAmount();
-
     void setPayableAmount(BigDecimal value);
+
+    CreditNoteType getCreditNoteType();
 
     /**
      * Xml
@@ -85,11 +79,8 @@ public interface CreditNoteModel {
     @Deprecated
     void setXmlDocument(byte[] value);
 
-    org.openfact.file.FileModel getXmlFile();
-
-    void setXmlFileContent(byte[] value);
-
-    CreditNoteType getCreditNoteType();
+    FileModel getXmlFile();
+    void attachXmlFile(FileModel file);
 
     /**
      * attributes
@@ -112,7 +103,12 @@ public interface CreditNoteModel {
     
     /**
      * Send events*/
+    SendEventModel addSendEvent(DestinyType destinyType);
+    SendEventModel getSendEventById(String id);
+    boolean removeSendEvent(OrganizationModel organization, String id);
+    boolean removeSendEvent(OrganizationModel organization, SendEventModel sendEvent);
     List<SendEventModel> getSendEvents();
+    List<SendEventModel> getSendEvents(Integer firstResult, Integer maxResults);
 
     /**
      * Events interfaces

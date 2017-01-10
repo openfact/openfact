@@ -63,9 +63,6 @@ import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 @Consumes(MediaType.APPLICATION_JSON)
 public class InvoicesAdminResource {
 
-    public static final String SCOPE_INVOICE_VIEW = "urn:openfact.com:scopes:organization:invoice:view";
-    public static final String SCOPE_INVOICE_MANAGE = "urn:openfact.com:scopes:organization:invoice:manage";
-
     private static final ServicesLogger logger = ServicesLogger.LOGGER;
 
     @Context
@@ -81,20 +78,19 @@ public class InvoicesAdminResource {
     protected HttpHeaders headers;
 
     protected OrganizationModel organization;
-    private OrganizationAuth auth;
-    private AdminEventBuilder adminEvent;
+    protected OrganizationAuth auth;
+    protected AdminEventBuilder adminEvent;
 
-    public InvoicesAdminResource(OrganizationModel organization, OrganizationAuth auth,
-            AdminEventBuilder adminEvent) {
+    public InvoicesAdminResource(OrganizationModel organization, OrganizationAuth auth, AdminEventBuilder adminEvent) {
         this.auth = auth;
         this.organization = organization;
         this.adminEvent = adminEvent;
+
         auth.init(OrganizationAuth.Resource.INVOICE);
     }
 
     /**
-     * @param invoiceId
-     *            The invoiceId of the invoice
+     * @param invoiceId The invoiceId of the invoice
      */
     @Path("{invoiceId}")
     public InvoiceAdminResource getInvoiceAdmin(@PathParam("invoiceId") final String invoiceId) {
@@ -103,8 +99,7 @@ public class InvoicesAdminResource {
             throw new NotFoundException("Invoice not found");
         }
 
-        InvoiceAdminResource invoiceResource = new InvoiceAdminResource(organization, auth, adminEvent,
-                invoice);
+        InvoiceAdminResource invoiceResource = new InvoiceAdminResource(organization, auth, adminEvent, invoice);
         ResteasyProviderFactory.getInstance().injectProperties(invoiceResource);
         return invoiceResource;
     }
@@ -117,6 +112,7 @@ public class InvoicesAdminResource {
             @QueryParam("documentId") String documentId,
             @QueryParam("first") Integer firstResult,
             @QueryParam("max") Integer maxResults) {
+
         auth.requireView();
 
         firstResult = firstResult != null ? firstResult : -1;
@@ -127,14 +123,17 @@ public class InvoicesAdminResource {
             invoiceModels = session.invoices().searchForInvoice(organization, filterText.trim(), firstResult, maxResults);
         } else if (documentId != null) {
             Map<String, String> attributes = new HashMap<>();
-            if(documentId != null) {
+            if (documentId != null) {
                 attributes.put(InvoiceModel.DOCUMENT_ID, documentId);
             }
             invoiceModels = session.invoices().searchForInvoice(attributes, organization, firstResult, maxResults);
         } else {
             invoiceModels = session.invoices().getInvoices(organization, firstResult, maxResults);
         }
-        return invoiceModels.stream().map(f -> ModelToRepresentation.toRepresentation(f)).collect(Collectors.toList());
+
+        return invoiceModels.stream()
+                .map(f -> ModelToRepresentation.toRepresentation(f))
+                .collect(Collectors.toList());
     }
 
     @POST
@@ -159,26 +158,25 @@ public class InvoicesAdminResource {
 
                 InvoiceManager invoiceManager = new InvoiceManager(session);
 
-                // Double-check duplicated ID
-                if (invoiceType.getIDValue() != null && invoiceManager.getInvoiceByID(organization, invoiceType.getIDValue()) != null) {
-                    return ErrorResponse.exists("Invoice exists with same ID");
+                // Double-check duplicated documentId
+                if (invoiceType.getIDValue() != null && invoiceManager.getInvoiceByDocumentId(organization, invoiceType.getIDValue()) != null) {
+                    throw new ModelDuplicateException("Invoice exists with same documentId[" + invoiceType.getIDValue() + "]");
                 }
 
                 InvoiceModel invoice = invoiceManager.addInvoice(organization, invoiceType, Collections.emptyMap());
                 adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, invoice.getId()).representation(invoiceType).success();
-
-                if (session.getTransactionManager().isActive()) {
-                    session.getTransactionManager().commit();
-                }
             } catch (IOException e) {
+                if (session.getTransactionManager().isActive()) {
+                    session.getTransactionManager().setRollbackOnly();
+                }
                 logger.error("Error reading input data", e);
                 return ErrorResponse.error("Error Reading data", Response.Status.BAD_REQUEST);
             } catch (ModelDuplicateException e) {
                 if (session.getTransactionManager().isActive()) {
                     session.getTransactionManager().setRollbackOnly();
                 }
-                return ErrorResponse.exists("Invoice exists with same id or ID");
-            } catch (ModelException me) {
+                return ErrorResponse.exists("Invoice exists with same id or documentId");
+            } catch (ModelException e) {
                 if (session.getTransactionManager().isActive()) {
                     session.getTransactionManager().setRollbackOnly();
                 }
@@ -192,8 +190,7 @@ public class InvoicesAdminResource {
     @POST
     @Path("search")
     @Produces(MediaType.APPLICATION_JSON)
-    public SearchResultsRepresentation<InvoiceRepresentation> search(
-            final SearchCriteriaRepresentation criteria) {
+    public SearchResultsRepresentation<InvoiceRepresentation> search(final SearchCriteriaRepresentation criteria) {
         auth.requireView();
 
         SearchCriteriaModel criteriaModel = RepresentationToModel.toModel(criteria);

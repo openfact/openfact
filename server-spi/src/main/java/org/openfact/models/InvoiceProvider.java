@@ -93,4 +93,6 @@ public interface InvoiceProvider extends Provider {
      */
     List<InvoiceModel> searchForInvoice(Map<String, String> params, OrganizationModel organization, int firstResult, int maxResults);
 
+    // Searching by InvoiceModel.attribute (not property)
+    List<InvoiceModel> searchForInvoiceByInvoiceAttribute(String attrName, String attrValue, OrganizationModel organization);
 }

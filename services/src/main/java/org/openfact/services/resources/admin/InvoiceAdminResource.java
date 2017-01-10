@@ -28,20 +28,20 @@ import org.jboss.resteasy.annotations.cache.NoCache;
 import org.openfact.common.ClientConnection;
 import org.openfact.common.converts.DocumentUtils;
 import org.openfact.events.admin.OperationType;
+import org.openfact.file.FileModel;
 import org.openfact.models.*;
+import org.openfact.models.enums.DestinyType;
 import org.openfact.models.utils.ModelToRepresentation;
-import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.report.ExportFormat;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.representations.idm.SendEventRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.InvoiceManager;
-import org.openfact.services.resources.OpenfactApplication;
 import org.openfact.services.scheduled.ScheduledTaskRunner;
 import org.openfact.timer.ScheduledTask;
-import org.openfact.ubl.SendEventModel;
-import org.openfact.ubl.SendException;
+import org.openfact.models.SendEventModel;
+import org.openfact.models.SendException;
 import org.openfact.ubl.UBLInvoiceProvider;
 import org.openfact.ubl.UBLReportProvider;
 import org.w3c.dom.Document;
@@ -75,12 +75,12 @@ public class InvoiceAdminResource {
     private OrganizationAuth auth;
     private AdminEventBuilder adminEvent;
 
-    public InvoiceAdminResource(OrganizationModel organization, OrganizationAuth auth,
-                                AdminEventBuilder adminEvent, InvoiceModel invoice) {
+    public InvoiceAdminResource(OrganizationModel organization, OrganizationAuth auth, AdminEventBuilder adminEvent, InvoiceModel invoice) {
         this.auth = auth;
         this.organization = organization;
         this.adminEvent = adminEvent;
         this.invoice = invoice;
+
         auth.init(OrganizationAuth.Resource.INVOICE);
     }
 
@@ -115,9 +115,11 @@ public class InvoiceAdminResource {
             throw new NotFoundException("Invoice not found");
         }
 
+        FileModel xmlFile = invoice.getXmlFile();
+
         Document document;
         try {
-            document = DocumentUtils.byteToDocument(invoice.getXmlDocument());
+            document = DocumentUtils.byteToDocument(xmlFile.getFile());
         } catch (Exception e) {
             return ErrorResponse.exists("Invalid xml");
         }
@@ -139,9 +141,11 @@ public class InvoiceAdminResource {
             throw new NotFoundException("Invoice not found");
         }
 
+        FileModel xmlFile = invoice.getXmlFile();
+
         String result = null;
         try {
-            Document document = DocumentUtils.byteToDocument(invoice.getXmlDocument());
+            Document document = DocumentUtils.byteToDocument(xmlFile.getFile());
             result = DocumentUtils.getDocumentToString(document);
         } catch (Exception e) {
             return ErrorResponse.exists("Invalid xml");
@@ -162,9 +166,11 @@ public class InvoiceAdminResource {
             throw new NotFoundException("Invoice not found");
         }
 
+        FileModel xmlFile = invoice.getXmlFile();
+
         Document result = null;
         try {
-            result = DocumentUtils.byteToDocument(invoice.getXmlDocument());
+            result = DocumentUtils.byteToDocument(xmlFile.getFile());
         } catch (Exception e) {
             return ErrorResponse.exists("Invalid xml parser");
         }
@@ -182,7 +188,10 @@ public class InvoiceAdminResource {
      */
     @GET
     @Path("representation/pdf")
-    public Response getPdf(@QueryParam("theme") String theme, @QueryParam("format") @DefaultValue("pdf") String format) throws Exception {
+    public Response getPdf(
+            @QueryParam("theme") String theme,
+            @QueryParam("format") @DefaultValue("pdf") String format) throws Exception {
+
         auth.requireView();
 
         if (invoice == null) {
@@ -192,9 +201,12 @@ public class InvoiceAdminResource {
         ExportFormat exportFormat = ExportFormat.valueOf(format.toUpperCase());
 
         UBLReportProvider reportProvider = session.getProvider(UBLReportProvider.class);
-        byte[] bytes = reportProvider.invoice().setOrganization(organization).setThemeName(theme).getReport(invoice, exportFormat);
+        byte[] reportBytes = reportProvider.invoice()
+                .setOrganization(organization)
+                .setThemeName(theme)
+                .getReport(invoice, exportFormat);
 
-        ResponseBuilder response = Response.ok(bytes);
+        ResponseBuilder response = Response.ok(reportBytes);
 
         switch (exportFormat) {
             case PDF:
@@ -215,7 +227,6 @@ public class InvoiceAdminResource {
                 response.type("application/xlsx");
                 break;
         }
-
         return response.build();
     }
 
@@ -252,6 +263,9 @@ public class InvoiceAdminResource {
             throw new NotFoundException("Invoice not found");
         }
 
+        SendEventModel sendEvent = invoice.addSendEvent(DestinyType.CUSTOMER);
+
+        // Thread
         ExecutorService executorService = null;
         try {
             executorService = Executors.newCachedThreadPool();
@@ -263,7 +277,9 @@ public class InvoiceAdminResource {
                     try {
                         OrganizationModel organizationThread = session.organizations().getOrganization(organization.getId());
                         InvoiceModel invoiceThread = session.invoices().getInvoiceById(organizationThread, invoice.getId());
-                        invoiceManager.sendToCustomerParty(organizationThread, invoiceThread);
+                        SendEventModel sendEventThread = invoiceThread.getSendEventById(sendEvent.getId());
+
+                        invoiceManager.sendToCustomerParty(organizationThread, invoiceThread, sendEventThread);
                     } catch (SendException e) {
                         throw new InternalServerErrorException(e);
                     }
@@ -271,7 +287,7 @@ public class InvoiceAdminResource {
             });
             executorService.execute(scheduledTaskRunner);
         } finally {
-            if(executorService != null) {
+            if (executorService != null) {
                 executorService.shutdown();
             }
         }
@@ -288,6 +304,9 @@ public class InvoiceAdminResource {
             throw new NotFoundException("Invoice not found");
         }
 
+        SendEventModel sendEvent = invoice.addSendEvent(DestinyType.CUSTOMER);
+
+        // Thread
         ExecutorService executorService = null;
         try {
             executorService = Executors.newCachedThreadPool();
@@ -299,7 +318,9 @@ public class InvoiceAdminResource {
                     try {
                         OrganizationModel organizationThread = session.organizations().getOrganization(organization.getId());
                         InvoiceModel invoiceThread = session.invoices().getInvoiceById(organizationThread, invoice.getId());
-                        invoiceManager.sendToTrirdParty(organizationThread, invoiceThread);
+                        SendEventModel sendEventThread = invoiceThread.getSendEventById(sendEvent.getId());
+
+                        invoiceManager.sendToTrirdParty(organizationThread, invoiceThread, sendEventThread);
                     } catch (SendException e) {
                         throw new InternalServerErrorException(e);
                     }
@@ -307,7 +328,7 @@ public class InvoiceAdminResource {
             });
             executorService.execute(scheduledTaskRunner);
         } finally {
-            if(executorService != null) {
+            if (executorService != null) {
                 executorService.shutdown();
             }
         }
@@ -323,8 +344,9 @@ public class InvoiceAdminResource {
             throw new NotFoundException("Invoice not found");
         }
 
-        List<SendEventModel> sendEvents = invoice.getSendEvents();
-        return sendEvents.stream().map(f -> ModelToRepresentation.toRepresentation(f)).collect(Collectors.toList());
+        return invoice.getSendEvents().stream()
+                .map(f -> ModelToRepresentation.toRepresentation(f))
+                .collect(Collectors.toList());
     }
 
 }

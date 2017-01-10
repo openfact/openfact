@@ -23,15 +23,18 @@ import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.jboss.logging.Logger;
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.file.FileModel;
 import org.openfact.file.FileProvider;
 import org.openfact.models.*;
+import org.openfact.models.enums.DestinyType;
+import org.openfact.models.enums.SendResultType;
 import org.openfact.models.jpa.entities.*;
 import org.openfact.models.utils.OpenfactModelUtils;
-import org.openfact.ubl.SendEventModel;
+import org.openfact.models.SendEventModel;
 import org.openfact.models.enums.RequiredAction;
 
 public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntity> {
@@ -335,6 +338,76 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
         removeRequiredAction(actionName);
     }
 
+    /**
+     * Send events*/
+    @Override
+    public SendEventModel addSendEvent(DestinyType destinyType) {
+        DebitNoteSendEventEntity entity = new DebitNoteSendEventEntity();
+        entity.setCreatedTimestamp(LocalDateTime.now());
+        entity.setResult(SendResultType.ON_PROCESS);
+        entity.setDestityType(destinyType);
+        entity.setDebitNote(debitNote);
+        em.persist(entity);
+        em.flush();
+
+        return new SendEventAdapter(session, em, organization, entity);
+    }
+
+    @Override
+    public SendEventModel getSendEventById(String id) {
+        SendEventEntity entity = em.find(SendEventEntity.class, id);
+        if(entity != null) {
+            return new SendEventAdapter(session, em, organization, entity);
+        }
+        return null;
+    }
+
+    @Override
+    public boolean removeSendEvent(OrganizationModel organization, String id) {
+        SendEventEntity entity = em.find(SendEventEntity.class, id);
+        if (entity == null)
+            return false;
+
+        em.remove(entity);
+        em.flush();
+        return true;
+    }
+
+    @Override
+    public boolean removeSendEvent(OrganizationModel organization, SendEventModel sendEvent) {
+        SendEventEntity entity = em.find(SendEventEntity.class, sendEvent.getId());
+        if (entity == null)
+            return false;
+
+        em.remove(entity);
+        em.flush();
+        return true;
+    }
+
+    @Override
+    public List<SendEventModel> getSendEvents() {
+        return getSendEvents(-1, -1);
+    }
+
+    @Override
+    public List<SendEventModel> getSendEvents(Integer firstResult, Integer maxResults) {
+        String queryName = "getAllSendEventByDebitNoteId";
+
+        TypedQuery<SendEventEntity> query = em.createNamedQuery(queryName, SendEventEntity.class);
+        query.setParameter("debitNoteId", debitNote.getId());
+        if (firstResult != -1) {
+            query.setFirstResult(firstResult);
+        }
+        if (maxResults != -1) {
+            query.setMaxResults(maxResults);
+        }
+        List<SendEventEntity> results = query.getResultList();
+        List<SendEventModel> sendEvents = results.stream().map(f -> new SendEventAdapter(session, em, organization, f)).collect(Collectors.toList());
+        return sendEvents;
+    }
+
+    /**
+     * Required actions*/
     @Override
     public void removeRequiredAction(String actionName) {
         Iterator<DebitNoteRequiredActionEntity> it = debitNote.getRequiredActions().iterator();
@@ -345,13 +418,6 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
                 em.remove(attr);
             }
         }
-    }
-
-    /**
-     * Send events*/
-    @Override
-    public List<SendEventModel> getSendEvents() {
-        return debitNote.getSendEvents().stream().map(f -> new SendEventAdapter(session, organization, em, f)).collect(Collectors.toList());
     }
 
     @Override

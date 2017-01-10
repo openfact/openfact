@@ -70,6 +70,12 @@ public class FileAdapter implements FileModel, JpaModel<FileEntity> {
     }
 
     @Override
+    public String getExtension() {
+        String fileName = file.getFileName();
+        return fileName.substring(fileName.lastIndexOf("."), fileName.length());
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || !(o instanceof FileModel)) return false;

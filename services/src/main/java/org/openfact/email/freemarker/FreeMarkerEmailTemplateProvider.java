@@ -33,9 +33,10 @@ import org.openfact.email.freemarker.beans.EventBean;
 import org.openfact.email.freemarker.beans.ProfileBean;
 import org.openfact.events.Event;
 import org.openfact.events.EventType;
+import org.openfact.file.FileModel;
+import org.openfact.file.FileMymeTypeModel;
 import org.openfact.models.CreditNoteModel;
 import org.openfact.models.DebitNoteModel;
-import org.openfact.models.FileModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
@@ -57,7 +58,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
     private OrganizationModel organization;
     private UserSenderModel user;
     
-    private List<FileModel> attachments;
+    private List<FileMymeTypeModel> attachments;
 
     public FreeMarkerEmailTemplateProvider(OpenfactSession session, FreeMarkerUtil freeMarker) {
         this.session = session;
@@ -83,7 +84,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
     }
     
     @Override
-    public EmailTemplateProvider setAttachments(List<FileModel> attachments) {
+    public EmailTemplateProvider setAttachments(List<FileMymeTypeModel> attachments) {
         this.attachments = attachments;
         return this;
     }

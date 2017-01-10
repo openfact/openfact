@@ -20,14 +20,11 @@ import java.util.*;
 
 import org.openfact.email.EmailException;
 import org.openfact.email.EmailTemplateProvider;
-import org.openfact.models.CustomerPartyModel;
-import org.openfact.models.FileModel;
-import org.openfact.models.DebitNoteModel;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.PartyLegalEntityModel;
-import org.openfact.models.SimpleFileModel;
-import org.openfact.models.UserSenderModel;
+import org.openfact.file.FileModel;
+import org.openfact.file.FileMymeTypeModel;
+import org.openfact.file.FileProvider;
+import org.openfact.models.*;
+import org.openfact.models.enums.DestinyType;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.enums.SendResultType;
 import org.openfact.models.utils.OpenfactModelUtils;
@@ -114,16 +111,22 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
 
             @Override
             public SendEventModel sendToCustomer(OrganizationModel organization, DebitNoteModel debitNote) throws SendException {
+                SendEventModel sendEvent = debitNote.addSendEvent(DestinyType.CUSTOMER);
+                return sendToCustomer(organization, debitNote, sendEvent);
+            }
+
+            @Override
+            public SendEventModel sendToCustomer(OrganizationModel organization, DebitNoteModel debitNote, SendEventModel sendEvent) throws SendException {
+                sendEvent.setType("EMAIL");
+
                 if (debitNote.getCustomerElectronicMail() == null) {
-                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, debitNote);
-                    sendEvent.setType("EMAIL");
+                    sendEvent.setResult(SendResultType.ERROR);
                     sendEvent.setDescription("Could not find a valid email for the customer.");
                     return sendEvent;
                 }
 
                 if (organization.getSmtpConfig().size() == 0) {
-                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, debitNote);
-                    sendEvent.setType("EMAIL");
+                    sendEvent.setResult(SendResultType.ERROR);
                     sendEvent.setDescription("Could not find a valid smtp configuration on organization.");
                     return sendEvent;
                 }
@@ -142,31 +145,26 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
                 };
 
                 try {
+                    FileProvider fileProvider = session.getProvider(FileProvider.class);
+
                     // Attatchments
-                    FileModel xmlFile = new SimpleFileModel();
-                    xmlFile.setFileName(debitNote.getDocumentId() + ".xml");
-                    xmlFile.setFile(debitNote.getXmlFile().getFile());
-                    xmlFile.setMimeType("application/xml");
+                    FileModel xmlFile = fileProvider.createFile(organization, debitNote.getDocumentId() + ".xml", debitNote.getXmlFile().getFile());
+                    FileMymeTypeModel xmlFileMymeType = new FileMymeTypeModel(xmlFile, "application/xml");
 
-                    FileModel pdfFile = new SimpleFileModel();
-
-                    pdfFile.setFileName(debitNote.getDocumentId() + ".pdf");
-                    pdfFile.setFile(session.getProvider(UBLReportProvider.class).invoice().setOrganization(organization).getReport(debitNote, ExportFormat.PDF));
-                    pdfFile.setMimeType("application/pdf");
+                    byte[] pdfFileBytes = session.getProvider(UBLReportProvider.class).debitNote().setOrganization(organization).getReport(debitNote, ExportFormat.PDF);
+                    FileModel pdfFile = fileProvider.createFile(organization, debitNote.getDocumentId() + ".pdf", pdfFileBytes);
+                    FileMymeTypeModel pdfFileMymeType = new FileMymeTypeModel(pdfFile, "application/pdf");
 
                     session.getProvider(EmailTemplateProvider.class)
                             .setOrganization(organization).setUser(user)
-                            .setAttachments(Arrays.asList(xmlFile, pdfFile))
+                            .setAttachments(Arrays.asList(xmlFileMymeType, pdfFileMymeType))
                             .sendDebitNote(debitNote);
 
                     // Write event to the database
-                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.SUCCESS, debitNote);
-                    sendEvent.setType("EMAIL");
-
-                    sendEvent.setDescription("Debit note successfully sended");
+                    sendEvent.setDescription("Debit Note successfully sended");
                     sendEvent.addFileAttatchments(xmlFile);
                     sendEvent.addFileAttatchments(pdfFile);
-                    sendEvent.setResult(true);
+                    sendEvent.setResult(SendResultType.SUCCESS);
 
                     Map<String, String> destiny = new HashMap<>();
                     destiny.put("email", user.getEmail());
@@ -177,13 +175,11 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
 
                     return sendEvent;
                 } catch (ReportException e) {
-                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, debitNote);
-                    sendEvent.setType("EMAIL");
+                    sendEvent.setResult(SendResultType.ERROR);
                     sendEvent.setDescription(e.getMessage());
                     throw new SendException("Could not generate pdf report", e);
                 } catch (EmailException e) {
-                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, debitNote);
-                    sendEvent.setType("EMAIL");
+                    sendEvent.setResult(SendResultType.ERROR);
                     sendEvent.setDescription(e.getMessage());
                     throw new SendException("Could not send email", e);
                 }
@@ -191,11 +187,17 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
 
             @Override
             public SendEventModel sendToThridParty(OrganizationModel organization, DebitNoteModel debitNote) throws SendException {
-                SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, debitNote);
+                SendEventModel sendEvent =  debitNote.addSendEvent(DestinyType.THIRD_PARTY);
+                return sendToThridParty(organization, debitNote, sendEvent);
+            }
+
+            @Override
+            public SendEventModel sendToThridParty(OrganizationModel organization, DebitNoteModel debitNoteModel, SendEventModel sendEvent) throws SendException {
+                sendEvent.setResult(SendResultType.ERROR);
                 sendEvent.setDescription("Could not send the debit note because there is no a valid Third Party. This feature should be implemented by your own code");
                 return sendEvent;
             }
-            
+
         };
     }
 

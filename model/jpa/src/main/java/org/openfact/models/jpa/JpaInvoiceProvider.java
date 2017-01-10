@@ -27,6 +27,7 @@ import javax.persistence.TypedQuery;
 import org.jboss.logging.Logger;
 import org.openfact.models.*;
 import org.openfact.models.enums.RequiredAction;
+import org.openfact.models.jpa.entities.InvoiceAttributeEntity;
 import org.openfact.models.jpa.entities.InvoiceEntity;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchCriteriaModel;
@@ -340,6 +341,21 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
         }
         List<InvoiceEntity> results = query.getResultList();
         List<InvoiceModel> invoices = results.stream().map(f -> new InvoiceAdapter(session, organization, em, f)).collect(Collectors.toList());
+        return invoices;
+    }
+
+    @Override
+    public List<InvoiceModel> searchForInvoiceByInvoiceAttribute(String attrName, String attrValue, OrganizationModel organization) {
+        TypedQuery<InvoiceAttributeEntity> query = em.createNamedQuery("getInvoiceAttributesByNameAndValue", InvoiceAttributeEntity.class);
+        query.setParameter("name", attrName);
+        query.setParameter("value", attrValue);
+        List<InvoiceAttributeEntity> results = query.getResultList();
+
+        List<InvoiceModel> invoices = new ArrayList<>();
+        for (InvoiceAttributeEntity attr : results) {
+            InvoiceEntity invoice = attr.getInvoice();
+            invoices.add(new InvoiceAdapter(session, organization, em, invoice));
+        }
         return invoices;
     }
 }

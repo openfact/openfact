@@ -16,6 +16,7 @@
  *******************************************************************************/
 package org.openfact.services.managers;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -23,11 +24,13 @@ import javax.xml.transform.TransformerException;
 
 import org.jboss.logging.Logger;
 import org.openfact.common.converts.DocumentUtils;
+import org.openfact.file.FileModel;
+import org.openfact.file.FileProvider;
 import org.openfact.models.*;
-import org.openfact.ubl.SendEventModel;
+import org.openfact.models.SendEventModel;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.utils.TypeToModel;
-import org.openfact.ubl.SendException;
+import org.openfact.models.SendException;
 import org.openfact.ubl.SignerProvider;
 import org.openfact.ubl.UBLDebitNoteProvider;
 import org.w3c.dom.Document;
@@ -41,51 +44,55 @@ public class DebitNoteManager {
 
     protected OpenfactSession session;
     protected DebitNoteProvider model;
-    protected UBLDebitNoteProvider ubl;
+    protected UBLDebitNoteProvider ublProvider;
 
     public DebitNoteManager(OpenfactSession session) {
         this.session = session;
         this.model = session.debitNotes();
-        this.ubl = session.getProvider(UBLDebitNoteProvider.class);
+        this.ublProvider = session.getProvider(UBLDebitNoteProvider.class);
     }
 
-    public DebitNoteModel getDebitNoteByID(OrganizationModel organization, String ID) {
+    public DebitNoteModel getDebitNoteByDocumentId(OrganizationModel organization, String ID) {
         return model.getDebitNoteByDocumentId(organization, ID);
     }
 
-    public DebitNoteModel addDebitNote(OrganizationModel organization, DebitNoteType type, Map<String, List<String>> attributes) {
-        IDType documentId = type.getID();
+    public DebitNoteModel addDebitNote(OrganizationModel organization, DebitNoteType debitNoteType, Map<String, List<String>> attributes) {
+        // Model persist
+        IDType documentId = debitNoteType.getID();
         if (documentId == null) {
-            String generatedId = ubl.idGenerator().generateID(organization, type);
-            documentId = new IDType(generatedId);
-            type.setID(documentId);
+            String newDocumentId = ublProvider.idGenerator().generateID(organization, debitNoteType);
+            documentId = new IDType(newDocumentId);
+            debitNoteType.setID(documentId);
         }
+        DebitNoteModel debitNoteModel = model.addDebitNote(organization, documentId.getValue());
 
-        DebitNoteModel debitNote = model.addDebitNote(organization, documentId.getValue());
+        // Attributes
         for (Map.Entry<String, List<String>> entry : attributes.entrySet()) {
-            debitNote.setAttribute(entry.getKey(), entry.getValue());
+            debitNoteModel.setAttribute(entry.getKey(), entry.getValue());
         }
 
-        TypeToModel.importDebitNote(session, organization, debitNote, type);
-        RequiredAction.getDefaults().stream().forEach(c -> debitNote.addRequiredAction(c));
+        // Type to Model
+        TypeToModel.importDebitNote(session, organization, debitNoteModel, debitNoteType);
+
+        // Required actions
+        Arrays.stream(RequiredAction.values()).forEach(c -> debitNoteModel.addRequiredAction(c));
 
         try {
             // Generate Document
-            Document baseDocument = ubl.writer().write(organization, type, attributes);
+            Document baseDocument = ublProvider.writer().write(organization, debitNoteType, attributes);
+            Document signedDocument = session.getProvider(SignerProvider.class).sign(baseDocument, organization);
+            byte[] signedDocumentBytes = DocumentUtils.getBytesFromDocument(signedDocument);
 
-            // Sign Document
-            SignerProvider signerProvider = session.getProvider(SignerProvider.class);
-            Document signedDocument = signerProvider.sign(baseDocument, organization);
-
-            byte[] bytes = DocumentUtils.getBytesFromDocument(signedDocument);
-            debitNote.setXmlDocument(bytes);
+            // File
+            FileModel xmlFile = session.getProvider(FileProvider.class).createFile(organization, debitNoteModel.getDocumentId() + ".xml", signedDocumentBytes);
+            debitNoteModel.attachXmlFile(xmlFile);
         } catch (TransformerException e) {
-            logger.error("Error parsing to byte XML", e);
+            logger.error("Error parsing XML to byte", e);
             throw new ModelException(e);
         }
 
-        fireDebitNotePostCreate(debitNote);
-        return debitNote;
+        fireDebitNotePostCreate(debitNoteModel);
+        return debitNoteModel;
     }
 
     private void fireDebitNotePostCreate(DebitNoteModel debitNote) {
@@ -110,11 +117,11 @@ public class DebitNoteManager {
     }
 
     public SendEventModel sendToCustomerParty(OrganizationModel organization, DebitNoteModel debitNote) throws SendException {
-        return ubl.sender().sendToCustomer(organization, debitNote);
+        return ublProvider.sender().sendToCustomer(organization, debitNote);
     }
 
     public SendEventModel sendToTrirdParty(OrganizationModel organization, DebitNoteModel debitNote) throws SendException {
-        return ubl.sender().sendToThridParty(organization, debitNote);
+        return ublProvider.sender().sendToThridParty(organization, debitNote);
     }
 
 }

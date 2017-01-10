@@ -23,10 +23,6 @@ import org.openfact.file.FileProvider;
 import org.openfact.file.FileProviderFactory;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
-import org.openfact.models.StorageFileProvider;
-import org.openfact.models.StorageFileProviderFactory;
-
-import java.util.Locale;
 
 public class DropboxFileProviderFactory implements FileProviderFactory {
 

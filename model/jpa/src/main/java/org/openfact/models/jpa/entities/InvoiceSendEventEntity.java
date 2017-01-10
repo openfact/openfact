@@ -16,16 +16,14 @@
  *******************************************************************************/
 package org.openfact.models.jpa.entities;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @DiscriminatorValue(value = "INVOICE")
+@NamedQueries(value = {
+        @NamedQuery(name = "getAllSendEventByInvoiceId", query = "select s from InvoiceSendEventEntity s where invoice.id=:invoiceId")
+})
 public class InvoiceSendEventEntity extends SendEventEntity {
 
     @NotNull

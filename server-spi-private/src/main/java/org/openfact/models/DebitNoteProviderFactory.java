@@ -16,7 +16,33 @@
  *******************************************************************************/
 package org.openfact.models;
 
+import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
+import org.openfact.models.enums.DocumentType;
 import org.openfact.provider.ProviderFactory;
 
 public interface DebitNoteProviderFactory extends ProviderFactory<DebitNoteProvider> {
+
+    @Override
+    default void postInit(OpenfactSessionFactory factory) {
+        factory.register(event -> {
+            if (event instanceof DebitNoteModel.DebitNotePostCreateEvent) {
+                DebitNoteModel.DebitNotePostCreateEvent debitNotePostCreatedEvent = (DebitNoteModel.DebitNotePostCreateEvent) event;
+                DebitNoteModel debitNoteModel = debitNotePostCreatedEvent.getCreatedDebitNote();
+                DebitNoteType debitNoteType = debitNoteModel.getDebitNoteType();
+
+                if (debitNoteType.getBillingReference() != null) {
+                    debitNoteType.getBillingReference().stream()
+                            .filter(p -> p.getInvoiceDocumentReference() != null)
+                            .map(f -> f.getInvoiceDocumentReference())
+                            .filter(p -> p.getID() != null && p.getIDValue() != null)
+                            .forEach(c -> {
+                                InvoiceModel invoice = debitNotePostCreatedEvent.getOpenfactSession().invoices().getInvoiceByDocumentId(debitNoteModel.getOrganization(), c.getIDValue());
+                                AttatchedDocumentModel attatchedDocument = invoice.addAttatchedDocument(DocumentType.DEBIT_NOTE, debitNoteModel.getId());
+                                attatchedDocument.setSingleAttribute("documentId", debitNoteModel.getDocumentId());
+                            });
+                }
+            }
+        });
+    }
+
 }

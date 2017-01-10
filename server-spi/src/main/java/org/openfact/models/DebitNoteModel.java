@@ -22,9 +22,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
+import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
+import org.openfact.file.FileModel;
+import org.openfact.models.enums.DestinyType;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.provider.ProviderEvent;
-import org.openfact.ubl.SendEventModel;
 
 public interface DebitNoteModel {
 
@@ -32,7 +35,6 @@ public interface DebitNoteModel {
     String ISSUE_DATETIME = "issueDateTime";
 
     String getId();
-
     String getDocumentId();
 
     /**
@@ -44,36 +46,30 @@ public interface DebitNoteModel {
      * */
 
     LocalDateTime getIssueDateTime();
-
     void setIssueDateTime(LocalDateTime value);
 
     String getDocumentCurrencyCode();
-
     void setDocumentCurrencyCode(String value);
 
     String getCustomerRegistrationName();
-
     void setCustomerRegistrationName(String value);
 
     String getCustomerAssignedAccountId();
-
     void setCustomerAssignedAccountId(String value);
 
     String getCustomerElectronicMail();
-
     void setCustomerElectronicMail(String value);
 
     BigDecimal getAllowanceTotalAmount();
-
     void setAllowanceTotalAmount(BigDecimal value);
 
     BigDecimal getChargeTotalAmount();
-
     void setChargeTotalAmount(BigDecimal value);
 
     BigDecimal getPayableAmount();
-
     void setPayableAmount(BigDecimal value);
+
+    DebitNoteType getDebitNoteType();
 
     /**
      * Xml
@@ -85,9 +81,8 @@ public interface DebitNoteModel {
     @Deprecated
     void setXmlDocument(byte[] value);
 
-    org.openfact.file.FileModel getXmlFile();
-
-    void setXmlFileContent(byte[] value);
+    FileModel getXmlFile();
+    void attachXmlFile(FileModel file);
 
     /**
      * attributes
@@ -110,7 +105,12 @@ public interface DebitNoteModel {
 
     /**
      * Send events*/
+    SendEventModel addSendEvent(DestinyType destinyType);
+    SendEventModel getSendEventById(String id);
+    boolean removeSendEvent(OrganizationModel organization, String id);
+    boolean removeSendEvent(OrganizationModel organization, SendEventModel sendEvent);
     List<SendEventModel> getSendEvents();
+    List<SendEventModel> getSendEvents(Integer firstResult, Integer maxResults);
     
     /**
      * Events interfaces

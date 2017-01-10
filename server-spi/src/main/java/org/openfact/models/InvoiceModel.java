@@ -18,16 +18,15 @@ package org.openfact.models;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.openfact.file.*;
+import org.openfact.file.FileModel;
+import org.openfact.models.enums.DestinyType;
 import org.openfact.models.enums.DocumentType;
 import org.openfact.provider.ProviderEvent;
 import org.openfact.models.enums.RequiredAction;
-import org.openfact.ubl.SendEventModel;
 
 public interface InvoiceModel {
 
@@ -40,9 +39,7 @@ public interface InvoiceModel {
     String PAYABLE_AMOUNT = "payableAmount";
 
     String getId();
-
     String getDocumentId();
-
     LocalDateTime getCreatedTimestamp();
 
     /**
@@ -51,7 +48,7 @@ public interface InvoiceModel {
     OrganizationModel getOrganization();
 
     /**
-     * */
+     * Document information*/
     String getInvoiceTypeCode();
     void setInvoiceTypeCode(String value);
 
@@ -91,9 +88,8 @@ public interface InvoiceModel {
     @Deprecated
     void setXmlDocument(byte[] value);
 
-    org.openfact.file.FileModel getXmlFile();
-
-    void setXmlFileContent(byte[] value);
+    FileModel getXmlFile();
+    void attachXmlFile(FileModel file);
 
     /**
      * attributes
@@ -116,7 +112,12 @@ public interface InvoiceModel {
 
     /**
      * Send events*/
+    SendEventModel addSendEvent(DestinyType destinyType);
+    SendEventModel getSendEventById(String id);
+    boolean removeSendEvent(OrganizationModel organization, String id);
+    boolean removeSendEvent(OrganizationModel organization, SendEventModel sendEvent);
     List<SendEventModel> getSendEvents();
+    List<SendEventModel> getSendEvents(Integer firstResult, Integer maxResults);
 
     /**
      * Attatched documents*/

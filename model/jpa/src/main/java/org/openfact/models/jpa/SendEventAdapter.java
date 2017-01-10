@@ -19,9 +19,12 @@ package org.openfact.models.jpa;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
+import org.openfact.file.FileModel;
+import org.openfact.file.FileProvider;
 import org.openfact.models.*;
-import org.openfact.models.jpa.entities.StorageFileEntity;
-import org.openfact.ubl.SendEventModel;
+import org.openfact.models.enums.DestinyType;
+import org.openfact.models.enums.SendResultType;
+import org.openfact.models.SendEventModel;
 import org.openfact.models.jpa.entities.SendEventEntity;
 
 import java.time.LocalDateTime;
@@ -37,7 +40,7 @@ public class SendEventAdapter implements SendEventModel, JpaModel<SendEventEntit
 	protected EntityManager em;
 	protected OpenfactSession session;
 
-	public SendEventAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em, SendEventEntity sendEvent) {
+	public SendEventAdapter(OpenfactSession session, EntityManager em, OrganizationModel organization, SendEventEntity sendEvent) {
 		this.session = session;
 		this.em = em;
 		this.organization = organization;
@@ -62,12 +65,12 @@ public class SendEventAdapter implements SendEventModel, JpaModel<SendEventEntit
 	}
 
 	@Override
-	public boolean getResult() {
-		return sendEvent.isResult();
+	public SendResultType getResult() {
+		return sendEvent.getResult();
 	}
 
 	@Override
-	public void setResult(boolean result) {
+	public void setResult(SendResultType result) {
 		sendEvent.setResult(result);
 	}
 
@@ -82,30 +85,18 @@ public class SendEventAdapter implements SendEventModel, JpaModel<SendEventEntit
 	}
 
 	@Override
-	public OrganizationModel getOrganization() {
-		return organization;
-	}
-
-	@Override
-	public List<StorageFileModel> getFileAttatchments() {
-		List<StorageFileModel> files = new ArrayList<>();
-		for (Map.Entry<String, StorageFileEntity> entry : sendEvent.getFileAttatchments().entrySet()) {
-			files.add(new StorageFileAdapter(session, em, entry.getValue()));
+	public List<FileModel> getFileAttatchments() {
+		FileProvider fileProvider = session.getProvider(FileProvider.class);
+		List<FileModel> files = new ArrayList<>();
+		for (String fileId : sendEvent.getFileAttatchmentIds()) {
+			files.add(fileProvider.getFileById(organization, fileId));
 		}
 		return files;
 	}
 
 	@Override
-	public StorageFileModel addFileAttatchments(FileModel file) {
-		StorageFileEntity entity = new StorageFileEntity();
-		entity.setFileName(file.getFileName());
-		entity.setMimeType(file.getMimeType());
-		entity.setFile(file.getFile());
-		em.persist(entity);
-		em.flush();
-
-		sendEvent.getFileAttatchments().put(entity.getId(), entity);
-		return new StorageFileAdapter(session, em, entity);
+	public void addFileAttatchments(FileModel file) {
+		sendEvent.getFileAttatchmentIds().add(file.getId());
 	}
 
 	@Override
@@ -134,25 +125,23 @@ public class SendEventAdapter implements SendEventModel, JpaModel<SendEventEntit
 	}
 
 	@Override
-	public List<StorageFileModel> getFileResponseAttatchments() {
-		List<StorageFileModel> files = new ArrayList<>();
-		for (Map.Entry<String, StorageFileEntity> entry : sendEvent.getFileResponseAttatchments().entrySet()) {
-			files.add(new StorageFileAdapter(session, em, entry.getValue()));
+	public DestinyType getDestityType() {
+		return sendEvent.getDestityType();
+	}
+
+	@Override
+	public List<FileModel> getFileResponseAttatchments() {
+		FileProvider fileProvider = session.getProvider(FileProvider.class);
+		List<FileModel> files = new ArrayList<>();
+		for (String fileId : sendEvent.getFileResponseAttatchmentIds()) {
+			files.add(fileProvider.getFileById(organization, fileId));
 		}
 		return files;
 	}
 
 	@Override
-	public StorageFileModel addFileResponseAttatchments(FileModel file) {
-		StorageFileEntity entity = new StorageFileEntity();
-		entity.setFileName(file.getFileName());
-		entity.setMimeType(file.getMimeType());
-		entity.setFile(file.getFile());
-		em.persist(entity);
-		em.flush();
-
-		sendEvent.getFileResponseAttatchments().put(entity.getId(), entity);
-		return new StorageFileAdapter(session, em, entity);
+	public void addFileResponseAttatchments(FileModel file) {
+		sendEvent.getFileResponseAttatchmentIds().add(file.getId());
 	}
 
 	@Override

@@ -16,30 +16,16 @@
  *******************************************************************************/
 package org.openfact.services.scheduled;
 
-import org.easybatch.core.filter.HeaderRecordFilter;
-import org.easybatch.core.job.*;
-import org.easybatch.core.listener.BatchListener;
-import org.easybatch.core.processor.RecordProcessor;
-import org.easybatch.core.reader.IterableRecordReader;
-import org.easybatch.core.reader.RecordReader;
-import org.easybatch.core.reader.RetryableRecordReader;
-import org.easybatch.core.record.GenericRecord;
-import org.easybatch.core.record.Header;
-import org.easybatch.core.record.Record;
-import org.easybatch.core.retry.RetryPolicy;
-import org.easybatch.tools.reporting.HtmlJobReportFormatter;
 import org.openfact.models.*;
 import org.openfact.models.enums.RequiredAction;
+import org.openfact.models.enums.SendResultType;
 import org.openfact.services.managers.CreditNoteManager;
 import org.openfact.services.managers.DebitNoteManager;
 import org.openfact.services.managers.InvoiceManager;
-import org.openfact.ubl.SendEventModel;
-import org.openfact.ubl.SendException;
+import org.openfact.models.SendEventModel;
+import org.openfact.models.SendException;
 
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 public class SendToCustomerOrganizationScheduleTaskProvider implements OrganizationScheduleTaskProvider {
 
@@ -101,7 +87,7 @@ public class SendToCustomerOrganizationScheduleTaskProvider implements Organizat
                         InvoiceManager manager = new InvoiceManager(session);
                         try {
                             SendEventModel sendEvent = manager.sendToCustomerParty(organization, c);
-                            if (sendEvent.getResult()) {
+                            if (sendEvent.getResult().equals(SendResultType.SUCCESS)) {
                                 c.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
                             }
                         } catch (SendException e) {
@@ -131,7 +117,7 @@ public class SendToCustomerOrganizationScheduleTaskProvider implements Organizat
                         CreditNoteManager manager = new CreditNoteManager(session);
                         try {
                             SendEventModel sendEvent = manager.sendToCustomerParty(organization, c);
-                            if (sendEvent.getResult()) {
+                            if (sendEvent.getResult().equals(SendResultType.SUCCESS)) {
                                 c.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
                             }
                         } catch (SendException e) {
@@ -161,7 +147,7 @@ public class SendToCustomerOrganizationScheduleTaskProvider implements Organizat
                         DebitNoteManager manager = new DebitNoteManager(session);
                         try {
                             SendEventModel sendEvent = manager.sendToCustomerParty(organization, c);
-                            if (sendEvent.getResult()) {
+                            if (sendEvent.getResult().equals(SendResultType.SUCCESS)) {
                                 c.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
                             }
                         } catch (SendException e) {

@@ -16,6 +16,7 @@
  *******************************************************************************/
 package org.openfact.services.managers;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -23,11 +24,13 @@ import javax.xml.transform.TransformerException;
 
 import org.jboss.logging.Logger;
 import org.openfact.common.converts.DocumentUtils;
+import org.openfact.file.FileModel;
+import org.openfact.file.FileProvider;
 import org.openfact.models.*;
-import org.openfact.ubl.SendEventModel;
+import org.openfact.models.SendEventModel;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.utils.TypeToModel;
-import org.openfact.ubl.SendException;
+import org.openfact.models.SendException;
 import org.openfact.ubl.SignerProvider;
 import org.openfact.ubl.UBLCreditNoteProvider;
 import org.w3c.dom.Document;
@@ -41,51 +44,55 @@ public class CreditNoteManager {
 
     protected OpenfactSession session;
     protected CreditNoteProvider model;
-    protected UBLCreditNoteProvider ubl;
+    protected UBLCreditNoteProvider ublProvider;
 
     public CreditNoteManager(OpenfactSession session) {
         this.session = session;
         this.model = session.creditNotes();
-        this.ubl = session.getProvider(UBLCreditNoteProvider.class);
+        this.ublProvider = session.getProvider(UBLCreditNoteProvider.class);
     }
 
-    public CreditNoteModel getCreditNoteByID(OrganizationModel organization, String ID) {
+    public CreditNoteModel getCreditNoteByDocumentId(OrganizationModel organization, String ID) {
         return model.getCreditNoteByDocumentId(organization, ID);
     }
 
-    public CreditNoteModel addCreditNote(OrganizationModel organization, CreditNoteType type, Map<String, List<String>> attributes) {
-        IDType documentId = type.getID();
+    public CreditNoteModel addCreditNote(OrganizationModel organization, CreditNoteType creditNoteType, Map<String, List<String>> attributes) {
+        // Model persist
+        IDType documentId = creditNoteType.getID();
         if (documentId == null) {
-            String generatedId = ubl.idGenerator().generateID(organization, type);
+            String generatedId = ublProvider.idGenerator().generateID(organization, creditNoteType);
             documentId = new IDType(generatedId);
-            type.setID(documentId);
+            creditNoteType.setID(documentId);
         }
+        CreditNoteModel creditNoteModel = model.addCreditNote(organization, documentId.getValue());
 
-        CreditNoteModel creditNote = model.addCreditNote(organization, documentId.getValue());
+        // Attributes
         for (Map.Entry<String, List<String>> entry : attributes.entrySet()) {
-            creditNote.setAttribute(entry.getKey(), entry.getValue());
+            creditNoteModel.setAttribute(entry.getKey(), entry.getValue());
         }
 
-        TypeToModel.importCreditNote(session, organization, creditNote, type);
-        RequiredAction.getDefaults().stream().forEach(c -> creditNote.addRequiredAction(c));
+        // Type to Model
+        TypeToModel.importCreditNote(session, organization, creditNoteModel, creditNoteType);
+
+        // Required actions
+        Arrays.stream(RequiredAction.values()).forEach(c -> creditNoteModel.addRequiredAction(c));
 
         try {
             // Generate Document
-            Document baseDocument = ubl.writer().write(organization, type, attributes);
+            Document baseDocument = ublProvider.writer().write(organization, creditNoteType, attributes);
+            Document signedDocument = session.getProvider(SignerProvider.class).sign(baseDocument, organization);
+            byte[] signedDocumentBytes = DocumentUtils.getBytesFromDocument(signedDocument);
 
-            // Sign Document
-            SignerProvider signerProvider = session.getProvider(SignerProvider.class);
-            Document signedDocument = signerProvider.sign(baseDocument, organization);
-
-            byte[] bytes = DocumentUtils.getBytesFromDocument(signedDocument);
-            creditNote.setXmlDocument(bytes);
+            // File
+            FileModel xmlFile = session.getProvider(FileProvider.class).createFile(organization, creditNoteModel.getDocumentId() + ".xml", signedDocumentBytes);
+            creditNoteModel.attachXmlFile(xmlFile);
         } catch (TransformerException e) {
-            logger.error("Error parsing to byte XML", e);
+            logger.error("Error parsing XML to byte", e);
             throw new ModelException(e);
         }
 
-        fireCreditNotePostCreate(creditNote);
-        return creditNote;
+        fireCreditNotePostCreate(creditNoteModel);
+        return creditNoteModel;
     }
 
     private void fireCreditNotePostCreate(CreditNoteModel creditNote) {
@@ -110,11 +117,11 @@ public class CreditNoteManager {
     }
 
     public SendEventModel sendToCustomerParty(OrganizationModel organization, CreditNoteModel creditNote) throws SendException {
-        return ubl.sender().sendToCustomer(organization, creditNote);
+        return ublProvider.sender().sendToCustomer(organization, creditNote);
     }
 
     public SendEventModel sendToTrirdParty(OrganizationModel organization, CreditNoteModel creditNote) throws SendException {
-        return ubl.sender().sendToThridParty(organization, creditNote);
+        return ublProvider.sender().sendToThridParty(organization, creditNote);
     }
 
 }

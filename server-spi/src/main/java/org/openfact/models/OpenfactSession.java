@@ -98,8 +98,6 @@ public interface OpenfactSession {
 
     DebitNoteProvider debitNotes();
 
-    StorageFileProvider storageFiles();
-
     JobReportProvider jobReports();
 
     void close();

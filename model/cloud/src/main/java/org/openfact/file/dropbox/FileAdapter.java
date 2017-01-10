@@ -72,4 +72,10 @@ public class FileAdapter implements FileModel {
         return os.toByteArray();
     }
 
+    @Override
+    public String getExtension() {
+        String fileName = file.getName();
+        return fileName.substring(fileName.lastIndexOf("."), fileName.length());
+    }
+
 }

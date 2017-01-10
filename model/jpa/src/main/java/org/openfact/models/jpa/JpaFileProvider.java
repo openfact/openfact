@@ -21,15 +21,11 @@ import org.openfact.file.FileModel;
 import org.openfact.file.FileProvider;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.StorageFileModel;
-import org.openfact.models.StorageFileProvider;
 import org.openfact.models.jpa.entities.FileEntity;
-import org.openfact.models.jpa.entities.StorageFileEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class JpaFileProvider implements FileProvider {
 

@@ -18,11 +18,12 @@ package org.openfact.services.scheduled;
 
 import org.openfact.models.*;
 import org.openfact.models.enums.RequiredAction;
+import org.openfact.models.enums.SendResultType;
 import org.openfact.services.managers.CreditNoteManager;
 import org.openfact.services.managers.DebitNoteManager;
 import org.openfact.services.managers.InvoiceManager;
-import org.openfact.ubl.SendEventModel;
-import org.openfact.ubl.SendException;
+import org.openfact.models.SendEventModel;
+import org.openfact.models.SendException;
 
 import java.util.Iterator;
 import java.util.List;
@@ -87,7 +88,7 @@ public class SendToThridPartyOrganizationScheduleTaskProvider implements Organiz
                         InvoiceManager manager = new InvoiceManager(session);
                         try {
                             SendEventModel sendEvent = manager.sendToTrirdParty(organization, c);
-                            if (sendEvent.getResult()) {
+                            if (sendEvent.getResult().equals(SendResultType.SUCCESS)) {
                                 c.removeRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
                             }
                         } catch (SendException e) {
@@ -117,7 +118,7 @@ public class SendToThridPartyOrganizationScheduleTaskProvider implements Organiz
                         CreditNoteManager manager = new CreditNoteManager(session);
                         try {
                             SendEventModel sendEvent = manager.sendToTrirdParty(organization, c);
-                            if (sendEvent.getResult()) {
+                            if (sendEvent.getResult().equals(SendResultType.SUCCESS)) {
                                 c.removeRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
                             }
                         } catch (SendException e) {
@@ -147,7 +148,7 @@ public class SendToThridPartyOrganizationScheduleTaskProvider implements Organiz
                         DebitNoteManager manager = new DebitNoteManager(session);
                         try {
                             SendEventModel sendEvent = manager.sendToTrirdParty(organization, c);
-                            if (sendEvent.getResult()) {
+                            if (sendEvent.getResult().equals(SendResultType.SUCCESS)) {
                                 c.removeRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
                             }
                         } catch (SendException e) {

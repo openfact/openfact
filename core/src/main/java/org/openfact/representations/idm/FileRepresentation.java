@@ -7,7 +7,6 @@ public class FileRepresentation {
 
     private String id;
     private String fileName;
-    private String mimeType;
 
     public String getId() {
         return id;
@@ -23,14 +22,6 @@ public class FileRepresentation {
 
     public void setFileName(String fileName) {
         this.fileName = fileName;
-    }
-
-    public String getMimeType() {
-        return mimeType;
-    }
-
-    public void setMimeType(String mimeType) {
-        this.mimeType = mimeType;
     }
 
 }

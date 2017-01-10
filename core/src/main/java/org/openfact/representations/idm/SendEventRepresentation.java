@@ -24,7 +24,7 @@ public class SendEventRepresentation {
 
     private String id;
     private String description;
-    private boolean result;
+    private String result;
 
     private String type;
     private Map<String, String> destiny;
@@ -50,11 +50,11 @@ public class SendEventRepresentation {
         this.description = description;
     }
 
-    public boolean isResult() {
+    public String isResult() {
         return result;
     }
 
-    public void setResult(boolean result) {
+    public void setResult(String result) {
         this.result = result;
     }
 

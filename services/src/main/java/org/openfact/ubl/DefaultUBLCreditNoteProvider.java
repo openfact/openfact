@@ -20,7 +20,11 @@ import java.util.*;
 
 import org.openfact.email.EmailException;
 import org.openfact.email.EmailTemplateProvider;
+import org.openfact.file.FileModel;
+import org.openfact.file.FileMymeTypeModel;
+import org.openfact.file.FileProvider;
 import org.openfact.models.*;
+import org.openfact.models.enums.DestinyType;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.enums.SendResultType;
 import org.openfact.models.utils.OpenfactModelUtils;
@@ -107,15 +111,22 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
 
             @Override
             public SendEventModel sendToCustomer(OrganizationModel organization, CreditNoteModel creditNote) throws SendException {
+                SendEventModel sendEvent = creditNote.addSendEvent(DestinyType.CUSTOMER);
+                return sendToCustomer(organization, creditNote, sendEvent);
+            }
+
+            @Override
+            public SendEventModel sendToCustomer(OrganizationModel organization, CreditNoteModel creditNote, SendEventModel sendEvent) throws SendException {
+                sendEvent.setType("EMAIL");
+
                 if (creditNote.getCustomerElectronicMail() == null) {
-                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, creditNote);
-                    sendEvent.setType("EMAIL");
+                    sendEvent.setResult(SendResultType.ERROR);
                     sendEvent.setDescription("Could not find a valid email for the customer.");
                     return sendEvent;
                 }
 
                 if (organization.getSmtpConfig().size() == 0) {
-                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, creditNote);
+                    sendEvent.setResult(SendResultType.ERROR);
                     sendEvent.setType("EMAIL");
                     sendEvent.setDescription("Could not find a valid smtp configuration on organization.");
                     return sendEvent;
@@ -135,31 +146,26 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
                 };
 
                 try {
+                    FileProvider fileProvider = session.getProvider(FileProvider.class);
+
                     // Attatchments
-                    FileModel xmlFile = new SimpleFileModel();
-                    xmlFile.setFileName(creditNote.getDocumentId() + ".xml");
-                    xmlFile.setFile(creditNote.getXmlFile().getFile());
-                    xmlFile.setMimeType("application/xml");
+                    FileModel xmlFile = fileProvider.createFile(organization, creditNote.getDocumentId() + ".xml", creditNote.getXmlFile().getFile());
+                    FileMymeTypeModel xmlFileMymeType = new FileMymeTypeModel(xmlFile, "application/xml");
 
-                    FileModel pdfFile = new SimpleFileModel();
-
-                    pdfFile.setFileName(creditNote.getDocumentId() + ".pdf");
-                    pdfFile.setFile(session.getProvider(UBLReportProvider.class).invoice().setOrganization(organization).getReport(creditNote, ExportFormat.PDF));
-                    pdfFile.setMimeType("application/pdf");
+                    byte[] pdfFileBytes = session.getProvider(UBLReportProvider.class).creditNote().setOrganization(organization).getReport(creditNote, ExportFormat.PDF);
+                    FileModel pdfFile = fileProvider.createFile(organization, creditNote.getDocumentId() + ".pdf", pdfFileBytes);
+                    FileMymeTypeModel pdfFileMymeType = new FileMymeTypeModel(pdfFile, "application/pdf");
 
                     session.getProvider(EmailTemplateProvider.class)
                             .setOrganization(organization).setUser(user)
-                            .setAttachments(Arrays.asList(xmlFile, pdfFile))
+                            .setAttachments(Arrays.asList(xmlFileMymeType, pdfFileMymeType))
                             .sendCreditNote(creditNote);
 
                     // Write event to the database
-                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.SUCCESS, creditNote);
-                    sendEvent.setType("EMAIL");
-
-                    sendEvent.setDescription("Credit note successfully sended");
+                    sendEvent.setDescription("Credit Note successfully sended");
                     sendEvent.addFileAttatchments(xmlFile);
                     sendEvent.addFileAttatchments(pdfFile);
-                    sendEvent.setResult(true);
+                    sendEvent.setResult(SendResultType.SUCCESS);
 
                     Map<String, String> destiny = new HashMap<>();
                     destiny.put("email", user.getEmail());
@@ -170,13 +176,11 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
 
                     return sendEvent;
                 } catch (ReportException e) {
-                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, creditNote);
-                    sendEvent.setType("EMAIL");
+                    sendEvent.setResult(SendResultType.ERROR);
                     sendEvent.setDescription(e.getMessage());
                     throw new SendException("Could not generate pdf report", e);
                 } catch (EmailException e) {
-                    SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, creditNote);
-                    sendEvent.setType("EMAIL");
+                    sendEvent.setResult(SendResultType.ERROR);
                     sendEvent.setDescription(e.getMessage());
                     throw new SendException("Could not send email", e);
                 }
@@ -184,11 +188,17 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
 
             @Override
             public SendEventModel sendToThridParty(OrganizationModel organization, CreditNoteModel creditNote) throws SendException {
-                SendEventModel sendEvent =  session.getProvider(SendEventProvider.class).addSendEvent(organization, SendResultType.ERROR, creditNote);
+                SendEventModel sendEvent =  creditNote.addSendEvent(DestinyType.THIRD_PARTY);
+                return sendToThridParty(organization, creditNote, sendEvent);
+            }
+
+            @Override
+            public SendEventModel sendToThridParty(OrganizationModel organization, CreditNoteModel creditNoteModel, SendEventModel sendEvent) throws SendException {
+                sendEvent.setResult(SendResultType.ERROR);
                 sendEvent.setDescription("Could not send the credit note because there is no a valid Third Party. This feature should be implemented by your own code");
                 return sendEvent;
             }
-            
+
         };
     }
 

@@ -21,9 +21,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.openfact.events.Event;
+import org.openfact.file.FileModel;
+import org.openfact.file.FileMymeTypeModel;
 import org.openfact.models.CreditNoteModel;
 import org.openfact.models.DebitNoteModel;
-import org.openfact.models.FileModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.UserSenderModel;
@@ -42,7 +43,7 @@ public interface EmailTemplateProvider extends Provider {
 
 	public EmailTemplateProvider setAttribute(String name, Object value);
 	
-	public EmailTemplateProvider setAttachments(List<FileModel> files);
+	public EmailTemplateProvider setAttachments(List<FileMymeTypeModel> files);
 
 	public void sendEvent(Event event) throws EmailException;
 	

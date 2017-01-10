@@ -24,7 +24,6 @@ org.openfact.keys.KeySpi
 org.openfact.models.InvoiceSpi
 org.openfact.models.CreditNoteSpi
 org.openfact.models.DebitNoteSpi
-org.openfact.ubl.SendEventSpi
 org.openfact.ubl.UBLInvoiceSpi
 org.openfact.ubl.UBLCreditNoteSpi
 org.openfact.ubl.UBLDebitNoteSpi
@@ -32,6 +31,5 @@ org.openfact.ubl.SignerSpi
 org.openfact.ubl.UBLReportProviderSpi
 org.openfact.models.OrganizationScheduleTaskSpi
 org.openfact.timer.TimerSpi
-org.openfact.models.StorageFileSpi
 org.openfact.file.FileSpi
 org.openfact.models.JobReportSpi

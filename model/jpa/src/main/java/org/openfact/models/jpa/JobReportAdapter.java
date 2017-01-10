@@ -19,10 +19,8 @@ package org.openfact.models.jpa;
 import org.jboss.logging.Logger;
 import org.openfact.models.*;
 import org.openfact.models.jpa.entities.JobReportEntity;
-import org.openfact.models.jpa.entities.StorageFileEntity;
 
 import javax.persistence.EntityManager;
-import java.util.Map;
 
 public class JobReportAdapter implements JobReportModel, JpaModel<JobReportEntity> {
 

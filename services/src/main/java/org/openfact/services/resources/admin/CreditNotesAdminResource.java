@@ -63,25 +63,25 @@ import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
 @Consumes(MediaType.APPLICATION_JSON)
 public class CreditNotesAdminResource {
 
-    public static final String SCOPE_CREDIT_NOTE_VIEW = "urn:openfact.com:scopes:organization:creditnote:view";
-    public static final String SCOPE_CREDIT_NOTE_MANAGE = "urn:openfact.com:scopes:organization:creditnote:manage";
-
     private static final ServicesLogger logger = ServicesLogger.LOGGER;
 
-    protected OrganizationModel organization;
     @Context
     protected UriInfo uriInfo;
+
     @Context
     protected OpenfactSession session;
+
     @Context
     protected ClientConnection clientConnection;
+
     @Context
     protected HttpHeaders headers;
-    private OrganizationAuth auth;
-    private AdminEventBuilder adminEvent;
 
-    public CreditNotesAdminResource(OrganizationModel organization, OrganizationAuth auth,
-            AdminEventBuilder adminEvent) {
+    protected OrganizationModel organization;
+    protected OrganizationAuth auth;
+    protected AdminEventBuilder adminEvent;
+
+    public CreditNotesAdminResource(OrganizationModel organization, OrganizationAuth auth, AdminEventBuilder adminEvent) {
         this.auth = auth;
         this.organization = organization;
         this.adminEvent = adminEvent;
@@ -90,18 +90,16 @@ public class CreditNotesAdminResource {
     }
 
     /**
-     * @param creditNoteId
-     *            The creditNoteId of the creditNote
+     * @param creditNoteId The creditNoteId of the creditNote
      */
     @Path("{creditNoteId}")
     public CreditNoteAdminResource getCreditNoteAdmin(@PathParam("creditNoteId") final String creditNoteId) {
         CreditNoteModel creditNote = session.creditNotes().getCreditNoteById(organization, creditNoteId);
         if (creditNote == null) {
-            throw new NotFoundException("CreditNote not found");
+            throw new NotFoundException("Credit Note not found");
         }
 
-        CreditNoteAdminResource creditNoteResource = new CreditNoteAdminResource(organization, auth,
-                adminEvent, creditNote);
+        CreditNoteAdminResource creditNoteResource = new CreditNoteAdminResource(organization, auth, adminEvent, creditNote);
         ResteasyProviderFactory.getInstance().injectProperties(creditNoteResource);
         return creditNoteResource;
     }
@@ -124,14 +122,17 @@ public class CreditNotesAdminResource {
             creditNoteModels = session.creditNotes().searchForCreditNote(organization, filterText.trim(), firstResult, maxResults);
         } else if (documentId != null) {
             Map<String, String> attributes = new HashMap<>();
-            if(documentId != null) {
+            if (documentId != null) {
                 attributes.put(InvoiceModel.DOCUMENT_ID, documentId);
             }
             creditNoteModels = session.creditNotes().searchForCreditNote(attributes, organization, firstResult, maxResults);
         } else {
             creditNoteModels = session.creditNotes().getCreditNotes(organization, firstResult, maxResults);
         }
-        return creditNoteModels.stream().map(f -> ModelToRepresentation.toRepresentation(f)).collect(Collectors.toList());
+
+        return creditNoteModels.stream()
+                .map(f -> ModelToRepresentation.toRepresentation(f))
+                .collect(Collectors.toList());
     }
 
     @POST
@@ -149,41 +150,36 @@ public class CreditNotesAdminResource {
                 InputStream inputStream = inputPart.getBody(InputStream.class, null);
                 byte[] bytes = IOUtils.toByteArray(inputStream);
 
-                CreditNoteType creditNoteType = session.getProvider(UBLCreditNoteProvider.class).reader()
-                        .read(bytes);
+                CreditNoteType creditNoteType = session.getProvider(UBLCreditNoteProvider.class).reader().read(bytes);
                 if (creditNoteType == null) {
-                    throw new ModelException("Invalid creditNote Xml");
+                    throw new ModelException("Invalid Credit Note Xml");
                 }
 
                 CreditNoteManager creditNoteManager = new CreditNoteManager(session);
 
-                // Double-check duplicated ID
-                if (creditNoteType.getIDValue() != null && creditNoteManager.getCreditNoteByID(organization,
-                        creditNoteType.getIDValue()) != null) {
-                    return ErrorResponse.exists("CreditNote exists with same ID");
+                // Double-check duplicated documentId
+                if (creditNoteType.getIDValue() != null && creditNoteManager.getCreditNoteByDocumentId(organization, creditNoteType.getIDValue()) != null) {
+                    throw new ModelDuplicateException("Credit Note exists with same documentId[" + creditNoteType.getIDValue() + "]");
                 }
 
-                CreditNoteModel creditNote = creditNoteManager.addCreditNote(organization, creditNoteType,
-                        Collections.emptyMap());
-                adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, creditNote.getId())
-                        .representation(creditNoteType).success();
-
-                if (session.getTransactionManager().isActive()) {
-                    session.getTransactionManager().commit();
-                }
+                CreditNoteModel creditNote = creditNoteManager.addCreditNote(organization, creditNoteType, Collections.emptyMap());
+                adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, creditNote.getId()).representation(creditNoteType).success();
             } catch (IOException e) {
+                if (session.getTransactionManager().isActive()) {
+                    session.getTransactionManager().setRollbackOnly();
+                }
                 logger.error("Error reading input data", e);
                 return ErrorResponse.error("Error Reading data", Response.Status.BAD_REQUEST);
             } catch (ModelDuplicateException e) {
                 if (session.getTransactionManager().isActive()) {
                     session.getTransactionManager().setRollbackOnly();
                 }
-                return ErrorResponse.exists("CreditNote exists with same id or ID");
+                return ErrorResponse.exists("Credit Note exists with same id or documentId");
             } catch (ModelException me) {
                 if (session.getTransactionManager().isActive()) {
                     session.getTransactionManager().setRollbackOnly();
                 }
-                return ErrorResponse.exists("Could not create creditNote");
+                return ErrorResponse.exists("Could not create Credit Note");
             }
         }
 
@@ -193,8 +189,7 @@ public class CreditNotesAdminResource {
     @POST
     @Path("search")
     @Produces(MediaType.APPLICATION_JSON)
-    public SearchResultsRepresentation<CreditNoteRepresentation> search(
-            final SearchCriteriaRepresentation criteria) {
+    public SearchResultsRepresentation<CreditNoteRepresentation> search(final SearchCriteriaRepresentation criteria) {
         auth.requireView();
 
         SearchCriteriaModel criteriaModel = RepresentationToModel.toModel(criteria);

@@ -23,9 +23,7 @@ import javax.persistence.EntityManager;
 import org.jboss.logging.Logger;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.PartyModel;
-import org.openfact.models.StorageFileModel;
 import org.openfact.models.SupplierPartyModel;
-import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.entities.PartyEntity;
 import org.openfact.models.jpa.entities.SupplierPartyEntity;
 

@@ -18,19 +18,20 @@ package org.openfact.models.jpa.entities;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import org.openfact.models.enums.DestinyType;
+import org.openfact.models.enums.SendResultType;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 @Entity
 @Table(name = "SEND_EVENT")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "type")
-@NamedQueries({
-        @NamedQuery(name = "getAllSendEventsByOrganization", query = "select i from SendEventEntity i where i.organization.id = :organizationId order by i.createdTimestamp") })
+@DiscriminatorColumn(name = "TYPE")
 public class SendEventEntity {
 
     @Id
@@ -40,9 +41,13 @@ public class SendEventEntity {
     @Access(AccessType.PROPERTY)
     private String id;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "DESTITY_TYPE")
+    private DestinyType destityType;
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "RESULT")
-    @Type(type = "org.hibernate.type.NumericBooleanType")
-    private boolean result;
+    private SendResultType result;
 
     @Column(name = "DESCRIPTION", length = 400)
     private String description;
@@ -59,29 +64,40 @@ public class SendEventEntity {
     @Column(name = "VALUE")
     @CollectionTable(name = "SEND_EVENT_DESTINY", joinColumns = {@JoinColumn(name = "SEND_EVENT_ID")})
     private Map<String, String> destiny = new HashMap<String, String>();
-    
+
     @ElementCollection
     @MapKeyColumn(name = "NAME")
     @Column(name = "VALUE")
     @CollectionTable(name = "SEND_EVENT_REPONSE", joinColumns = {@JoinColumn(name = "SEND_EVENT_ID")})
     private Map<String, String> response = new HashMap<String, String>();
-    
-    @OneToMany(fetch = FetchType.LAZY)
-    @ElementCollection
-    @CollectionTable(name = "SEND_EVENT_FILES", joinColumns = @JoinColumn(name = "SEND_EVENT_ID"))
-    @MapKeyColumn(name = "FILE_TYPE")
-    private Map<String, StorageFileEntity> fileAttatchments = new HashMap<>();
-    
-    @OneToMany(fetch = FetchType.LAZY)
-    @ElementCollection
-    @CollectionTable(name = "RESPONSE_EVENT_FILES", joinColumns = @JoinColumn(name = "SEND_EVENT_ID"))
-    @MapKeyColumn(name = "FILE_TYPE")
-    private Map<String, StorageFileEntity> fileResponseAttatchments = new HashMap<>();
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
-    private OrganizationEntity organization;
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "SEND_EVENT_FILE_ATTATCHMENT", joinColumns = { @JoinColumn(name = "SEND_EVENT_ID") })
+    private Collection<String> fileAttatchmentIds = new ArrayList<>();
+
+    @ElementCollection
+    @Column(name = "VALUE")
+    @CollectionTable(name = "SEND_EVENT_FILE_RESPONSE_ATTATCHMENT", joinColumns = { @JoinColumn(name = "SEND_EVENT_ID") })
+    private Collection<String> fileResponseAttatchmentIds = new ArrayList<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        if (!(o instanceof SendEventEntity)) return false;
+
+        SendEventEntity that = (SendEventEntity) o;
+
+        if (!getId().equals(that.getId())) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
+    }
 
     public String getId() {
         return id;
@@ -91,11 +107,11 @@ public class SendEventEntity {
         this.id = id;
     }
 
-    public boolean isResult() {
+    public SendResultType getResult() {
         return result;
     }
 
-    public void setResult(boolean result) {
+    public void setResult(SendResultType result) {
         this.result = result;
     }
 
@@ -123,14 +139,6 @@ public class SendEventEntity {
         this.createdTimestamp = createdTimestamp;
     }
 
-    public OrganizationEntity getOrganization() {
-        return organization;
-    }
-
-    public void setOrganization(OrganizationEntity organization) {
-        this.organization = organization;
-    }
-
     public Map<String, String> getDestiny() {
         return destiny;
     }
@@ -139,45 +147,35 @@ public class SendEventEntity {
         this.destiny = destiny;
     }
 
-    public Map<String, StorageFileEntity> getFileAttatchments() {
-        return fileAttatchments;
+    public Map<String, String> getResponse() {
+        return response;
     }
 
-    public void setFileAttatchments(Map<String, StorageFileEntity> fileAttatchments) {
-        this.fileAttatchments = fileAttatchments;
+    public void setResponse(Map<String, String> response) {
+        this.response = response;
     }
 
-	public Map<String, String> getResponse() {
-		return response;
-	}
-
-	public void setResponse(Map<String, String> response) {
-		this.response = response;
-	}
-
-	public Map<String, StorageFileEntity> getFileResponseAttatchments() {
-		return fileResponseAttatchments;
-	}
-
-	public void setFileResponseAttatchments(Map<String, StorageFileEntity> fileResponseAttatchments) {
-		this.fileResponseAttatchments = fileResponseAttatchments;
-	}
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null) return false;
-        if (!(o instanceof SendEventEntity)) return false;
-
-        SendEventEntity that = (SendEventEntity) o;
-
-        if (!id.equals(that.getId())) return false;
-
-        return true;
+    public Collection<String> getFileAttatchmentIds() {
+        return fileAttatchmentIds;
     }
 
-    @Override
-    public int hashCode() {
-        return id.hashCode();
+    public void setFileAttatchmentIds(Collection<String> fileAttatchmentIds) {
+        this.fileAttatchmentIds = fileAttatchmentIds;
+    }
+
+    public Collection<String> getFileResponseAttatchmentIds() {
+        return fileResponseAttatchmentIds;
+    }
+
+    public void setFileResponseAttatchmentIds(Collection<String> fileResponseAttatchmentIds) {
+        this.fileResponseAttatchmentIds = fileResponseAttatchmentIds;
+    }
+
+    public DestinyType getDestityType() {
+        return destityType;
+    }
+
+    public void setDestityType(DestinyType destityType) {
+        this.destityType = destityType;
     }
 }

@@ -59,25 +59,25 @@ import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
 
 public class DebitNotesAdminResource {
 
-    public static final String SCOPE_DEBIT_NOTE_VIEW = "urn:openfact.com:scopes:organization:debitnote:view";
-    public static final String SCOPE_DEBIT_NOTE_MANAGE = "urn:openfact.com:scopes:organization:debitnote:manage";
-
     private static final ServicesLogger logger = ServicesLogger.LOGGER;
 
-    protected OrganizationModel organization;
     @Context
     protected UriInfo uriInfo;
+
     @Context
     protected OpenfactSession session;
+
     @Context
     protected ClientConnection clientConnection;
+
     @Context
     protected HttpHeaders headers;
-    private OrganizationAuth auth;
-    private AdminEventBuilder adminEvent;
 
-    public DebitNotesAdminResource(OrganizationModel organization, OrganizationAuth auth,
-            AdminEventBuilder adminEvent) {
+    protected OrganizationModel organization;
+    protected OrganizationAuth auth;
+    protected AdminEventBuilder adminEvent;
+
+    public DebitNotesAdminResource(OrganizationModel organization, OrganizationAuth auth, AdminEventBuilder adminEvent) {
         this.auth = auth;
         this.organization = organization;
         this.adminEvent = adminEvent;
@@ -86,18 +86,16 @@ public class DebitNotesAdminResource {
     }
 
     /**
-     * @param debitNoteId
-     *            The debitNoteId of the debitNote
+     * @param debitNoteId The debitNoteId of the debitNote
      */
     @Path("{debitNoteId}")
     public DebitNoteAdminResource getDebitNoteAdmin(@PathParam("debitNoteId") final String debitNoteId) {
         DebitNoteModel debitNote = session.debitNotes().getDebitNoteById(organization, debitNoteId);
         if (debitNote == null) {
-            throw new NotFoundException("DebitNote not found");
+            throw new NotFoundException("Debit Note not found");
         }
 
-        DebitNoteAdminResource debitNoteResource = new DebitNoteAdminResource(organization, auth, adminEvent,
-                debitNote);
+        DebitNoteAdminResource debitNoteResource = new DebitNoteAdminResource(organization, auth, adminEvent, debitNote);
         ResteasyProviderFactory.getInstance().injectProperties(debitNoteResource);
         return debitNoteResource;
     }
@@ -120,14 +118,17 @@ public class DebitNotesAdminResource {
             debitNoteModels = session.debitNotes().searchForDebitNote(organization, filterText.trim(), firstResult, maxResults);
         } else if (documentId != null) {
             Map<String, String> attributes = new HashMap<>();
-            if(documentId != null) {
+            if (documentId != null) {
                 attributes.put(InvoiceModel.DOCUMENT_ID, documentId);
             }
             debitNoteModels = session.debitNotes().searchForDebitNote(attributes, organization, firstResult, maxResults);
         } else {
             debitNoteModels = session.debitNotes().getDebitNotes(organization, firstResult, maxResults);
         }
-        return debitNoteModels.stream().map(f -> ModelToRepresentation.toRepresentation(f)).collect(Collectors.toList());
+
+        return debitNoteModels.stream()
+                .map(f -> ModelToRepresentation.toRepresentation(f))
+                .collect(Collectors.toList());
     }
 
     @POST
@@ -145,41 +146,36 @@ public class DebitNotesAdminResource {
                 InputStream inputStream = inputPart.getBody(InputStream.class, null);
                 byte[] bytes = IOUtils.toByteArray(inputStream);
 
-                DebitNoteType debitNoteType = session.getProvider(UBLDebitNoteProvider.class).reader()
-                        .read(bytes);
+                DebitNoteType debitNoteType = session.getProvider(UBLDebitNoteProvider.class).reader().read(bytes);
                 if (debitNoteType == null) {
-                    throw new ModelException("Invalid debitNote Xml");
+                    throw new ModelException("Invalid Debit Note Xml");
                 }
 
                 DebitNoteManager debitNoteManager = new DebitNoteManager(session);
 
-                // Double-check duplicated ID
-                if (debitNoteType.getIDValue() != null && debitNoteManager.getDebitNoteByID(organization,
-                        debitNoteType.getIDValue()) != null) {
-                    return ErrorResponse.exists("DebitNote exists with same ID");
+                // Double-check duplicated documentId
+                if (debitNoteType.getIDValue() != null && debitNoteManager.getDebitNoteByDocumentId(organization, debitNoteType.getIDValue()) != null) {
+                    throw new ModelDuplicateException("Debit Note exists with same documentId[" + debitNoteType.getIDValue() + "]");
                 }
 
-                DebitNoteModel debitNote = debitNoteManager.addDebitNote(organization, debitNoteType,
-                        Collections.emptyMap());
-                adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, debitNote.getId())
-                        .representation(debitNoteType).success();
-
-                if (session.getTransactionManager().isActive()) {
-                    session.getTransactionManager().commit();
-                }
+                DebitNoteModel debitNote = debitNoteManager.addDebitNote(organization, debitNoteType, Collections.emptyMap());
+                adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, debitNote.getId()).representation(debitNoteType).success();
             } catch (IOException e) {
+                if (session.getTransactionManager().isActive()) {
+                    session.getTransactionManager().setRollbackOnly();
+                }
                 logger.error("Error reading input data", e);
                 return ErrorResponse.error("Error Reading data", Response.Status.BAD_REQUEST);
             } catch (ModelDuplicateException e) {
                 if (session.getTransactionManager().isActive()) {
                     session.getTransactionManager().setRollbackOnly();
                 }
-                return ErrorResponse.exists("DebitNote exists with same id or ID");
+                return ErrorResponse.exists("Debit Note exists with same id or documentId");
             } catch (ModelException me) {
                 if (session.getTransactionManager().isActive()) {
                     session.getTransactionManager().setRollbackOnly();
                 }
-                return ErrorResponse.exists("Could not create debitNote");
+                return ErrorResponse.exists("Could not create Debit Note");
             }
         }
 
@@ -189,8 +185,7 @@ public class DebitNotesAdminResource {
     @POST
     @Path("search")
     @Produces(MediaType.APPLICATION_JSON)
-    public SearchResultsRepresentation<DebitNoteRepresentation> search(
-            final SearchCriteriaRepresentation criteria) {
+    public SearchResultsRepresentation<DebitNoteRepresentation> search(final SearchCriteriaRepresentation criteria) {
         auth.requireView();
 
         SearchCriteriaModel criteriaModel = RepresentationToModel.toModel(criteria);

@@ -67,9 +67,8 @@ import org.openfact.representations.idm.EventRepresentation;
 import org.openfact.representations.idm.OrganizationEventsConfigRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.ErrorResponse;
-import org.openfact.services.managers.AuthzManager;
 import org.openfact.services.managers.OrganizationManager;
-import org.openfact.services.resources.admin.storage.StorageFilesAdminResource;
+import org.openfact.services.resources.admin.storage.FilesAdminResource;
 
 public class OrganizationAdminResource {
 
@@ -223,8 +222,8 @@ public class OrganizationAdminResource {
     }
 
     @Path("storage-files")
-    public StorageFilesAdminResource getStorageFilesAdmin() {
-        StorageFilesAdminResource storageFiles = new StorageFilesAdminResource(organization, auth, adminEvent);
+    public FilesAdminResource getStorageFilesAdmin() {
+        FilesAdminResource storageFiles = new FilesAdminResource(organization, auth, adminEvent);
         ResteasyProviderFactory.getInstance().injectProperties(storageFiles);
         return storageFiles;
     }

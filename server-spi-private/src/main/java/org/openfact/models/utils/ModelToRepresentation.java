@@ -16,7 +16,6 @@
  *******************************************************************************/
 package org.openfact.models.utils;
 
-import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -41,7 +40,7 @@ import org.openfact.models.SupplierPartyModel;
 import org.openfact.models.TaxTotalModel;
 import org.openfact.provider.ProviderConfigProperty;
 import org.openfact.representations.idm.*;
-import org.openfact.ubl.SendEventModel;
+import org.openfact.models.SendEventModel;
 
 public class ModelToRepresentation {
 
@@ -446,7 +445,7 @@ public class ModelToRepresentation {
     public static SendEventRepresentation toRepresentation(SendEventModel model) {
         SendEventRepresentation rep = new SendEventRepresentation();
         rep.setId(model.getId());
-        rep.setResult(model.getResult());
+        rep.setResult(model.getResult().toString());
         rep.setDescription(model.getDescription());
         rep.setType(model.getType());
         rep.setDestiny(new HashMap<>(model.getDestity()));
@@ -458,7 +457,6 @@ public class ModelToRepresentation {
                 FileRepresentation fileRep = new FileRepresentation();
                 fileRep.setId(f.getId());
                 fileRep.setFileName(f.getFileName());
-                fileRep.setMimeType(f.getMimeType());
                 return fileRep;
             }).collect(Collectors.toList());
             rep.getFilesAttatchment().addAll(filesRep);
@@ -469,7 +467,6 @@ public class ModelToRepresentation {
                 FileRepresentation fileRep = new FileRepresentation();
                 fileRep.setId(f.getId());
                 fileRep.setFileName(f.getFileName());
-                fileRep.setMimeType(f.getMimeType());
                 return fileRep;
             }).collect(Collectors.toList());
             rep.getResponseFilesAttatchment().addAll(filesRep);
