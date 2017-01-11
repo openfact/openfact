@@ -18,6 +18,7 @@
 package org.openfact.models;
 
 import org.openfact.component.ComponentModel;
+import org.openfact.file.FileProvider;
 import org.openfact.provider.Provider;
 
 import java.util.Set;
@@ -99,6 +100,8 @@ public interface OpenfactSession {
     DebitNoteProvider debitNotes();
 
     JobReportProvider jobReports();
+
+    FileProvider files();
 
     void close();
 

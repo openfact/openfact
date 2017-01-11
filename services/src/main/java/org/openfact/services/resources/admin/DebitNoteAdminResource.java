@@ -108,7 +108,7 @@ public class DebitNoteAdminResource {
 
         JSONObject result = null;
         try {
-            Document document = DocumentUtils.byteToDocument(debitNote.getXmlDocument());
+            Document document = DocumentUtils.byteToDocument(debitNote.getXmlFile().getFile());
             String text = DocumentUtils.getDocumentToString(document);
             result = XML.toJSONObject(text);
         } catch (Exception e) {
@@ -132,7 +132,7 @@ public class DebitNoteAdminResource {
 
         String result = null;
         try {
-            Document document = DocumentUtils.byteToDocument(debitNote.getXmlDocument());
+            Document document = DocumentUtils.byteToDocument(debitNote.getXmlFile().getFile());
             result = DocumentUtils.getDocumentToString(document);
         } catch (Exception e) {
             return ErrorResponse.exists("Invalid xml");
@@ -155,7 +155,7 @@ public class DebitNoteAdminResource {
 
         Document result = null;
         try {
-            result = DocumentUtils.byteToDocument(debitNote.getXmlDocument());
+            result = DocumentUtils.byteToDocument(debitNote.getXmlFile().getFile());
         } catch (Exception e) {
             return ErrorResponse.exists("Invalid xml parser");
         }

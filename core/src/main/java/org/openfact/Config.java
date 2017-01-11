@@ -36,10 +36,6 @@ public class Config {
         return configProvider.scope("adminConsole").get("url", "adminConsole");
     }
 
-    public static Scope getUblConfig() {
-        return configProvider.scope("ublConfig");
-    }
-
     public static String getProvider(String spi) {
         String provider = configProvider.getProvider(spi);
         if (provider == null || provider.trim().equals("")) {

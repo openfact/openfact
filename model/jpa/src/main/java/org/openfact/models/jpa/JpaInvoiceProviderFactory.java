@@ -33,7 +33,6 @@ public class JpaInvoiceProviderFactory implements InvoiceProviderFactory {
 
     @Override
     public void postInit(OpenfactSessionFactory factory) {
-
     }
 
     @Override

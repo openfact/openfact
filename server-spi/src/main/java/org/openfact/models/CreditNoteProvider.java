@@ -93,4 +93,6 @@ public interface CreditNoteProvider extends Provider {
      */
     List<CreditNoteModel> searchForCreditNote(Map<String, String> params, OrganizationModel organization, int firstResult, int maxResults);
 
+    // Searching by InvoiceModel.attribute (not property)
+    List<CreditNoteModel> searchForCreditNoteByAttribute(String attrName, String attrValue, OrganizationModel organization);
 }

@@ -7,14 +7,6 @@
     "url": "http://localhost:4200"
   },
 
-  "ublConfig": {
-    "ublDocuments": [
-      "{\"denomination\": \"INVOICE\", \"documentTypeCode\": [\"01\"]}",
-      "{\"denomination\": \"CREDIT_NOTE\", \"documentTypeCode\": [\"02\"]}",
-      "{\"denomination\": \"DEBIT_NOTE\", \"documentTypeCode\": [\"03\"]}"
-    ]
-  },
-
   "eventsStore": {
     "provider": "${openfact.eventsStore.provider:jpa}"
   },

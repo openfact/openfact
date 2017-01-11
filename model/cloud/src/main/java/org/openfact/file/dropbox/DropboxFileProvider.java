@@ -19,8 +19,8 @@ package org.openfact.file.dropbox;
 import com.dropbox.core.DbxDownloader;
 import com.dropbox.core.DbxException;
 import com.dropbox.core.v2.DbxClientV2;
-import com.dropbox.core.v2.files.FileMetadata;
-import com.dropbox.core.v2.files.Metadata;
+import com.dropbox.core.v2.files.*;
+import com.lowagie.text.Meta;
 import org.jboss.logging.Logger;
 import org.openfact.file.*;
 import org.openfact.file.FileModel;
@@ -32,6 +32,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class DropboxFileProvider implements FileProvider {
 
@@ -61,18 +62,23 @@ public class DropboxFileProvider implements FileProvider {
 
     @Override
     public FileModel createFile(OrganizationModel organization, String fileName, byte[] bytes) {
+        if(getFileByFileName(organization, fileName) != null) {
+            throw new ModelDuplicateException("File with the same name[" + fileName + "] exists on organization[" + organization.getName() + "]");
+        }
+
         InputStream is = new ByteArrayInputStream(bytes);
         FileMetadata fileMetadata;
         try {
             String pathName = buildFileName(organization, fileName);
             fileMetadata = client.files().uploadBuilder(pathName).uploadAndFinish(is);
+            client.files().upload(fileMetadata.getPathLower());
             tx.put(fileMetadata);
         } catch (DbxException e) {
             throw new ModelException("Could not upload file", e);
         } catch (IOException e) {
             throw new ModelException("Could not create file", e);
         }
-        return new FileAdapter(session, client, fileMetadata);
+        return new FileAdapter(session, this, client, fileMetadata);
     }
 
     @Override
@@ -84,18 +90,43 @@ public class DropboxFileProvider implements FileProvider {
     public FileModel getFileByFileName(OrganizationModel organization, String fileName) {
         FileMetadata fileMetadata;
         try {
-            DbxDownloader<FileMetadata> dbxDownloader = client.files().download(buildFileName(organization, fileName));
-            fileMetadata = dbxDownloader.getResult();
+            SearchResult folderSearchResult = client.files().search("", organization.getId());
+            Optional<FolderMetadata> rop = folderSearchResult.getMatches().parallelStream()
+                    .map(f -> f.getMetadata())
+                    .filter(p -> p instanceof FolderMetadata)
+                    .map(f -> (FolderMetadata) f)
+                    .filter(p -> p.getPathLower().equals("/" + organization.getId())).findAny();
+
+            if (rop.isPresent()) {
+                SearchResult searchResult = client.files()
+                        .searchBuilder("/" + organization.getId(), fileName)
+                        .withMode(SearchMode.FILENAME)
+                        .start();
+
+                Optional<FileMetadata> op = searchResult.getMatches().parallelStream()
+                        .map(f -> f.getMetadata())
+                        .filter(p -> p instanceof FileMetadata)
+                        .map(f -> (FileMetadata) f)
+                        .filter(p -> p.getName().equals(fileName)).findAny();
+
+                if (op.isPresent()) {
+                    fileMetadata = op.get();
+                } else {
+                    return null;
+                }
+            } else {
+                return null;
+            }
         } catch (DbxException e) {
             throw new ModelException("Could not read file from dropbox", e);
         }
-        return new FileAdapter(session, client, fileMetadata);
+        return new FileAdapter(session, this, client, fileMetadata);
     }
 
     @Override
     public boolean removeFile(OrganizationModel organization, FileModel file) {
         try {
-            FileMetadata fileMetadata = (FileMetadata) client.files().delete(buildFileName(organization, file.getFileName()));
+            FileMetadata fileMetadata = (FileMetadata) client.files().delete(file.getId());
             tx.remove(fileMetadata);
         } catch (DbxException e) {
             throw new ModelException("Could not delete file", e);
@@ -103,7 +134,36 @@ public class DropboxFileProvider implements FileProvider {
         return true;
     }
 
-    class DropboxOpenfactTransaction implements OpenfactTransaction {
+    @Override
+    public void preRemove(OrganizationModel organization) {
+        try {
+            SearchResult searchResult = client.files().search("", organization.getId());
+            Optional<FolderMetadata> op = searchResult.getMatches().parallelStream()
+                    .map(f -> f.getMetadata())
+                    .filter(p -> p instanceof FolderMetadata)
+                    .map(f -> (FolderMetadata) f)
+                    .filter(p -> p.getPathLower().equals("/" + organization.getId())).findAny();
+
+            if (op.isPresent()) {
+                client.files().listFolder(op.get().getPathLower()).getEntries().stream()
+                        .forEach(c -> {
+                            if (c instanceof FileMetadata) {
+                                FileMetadata fileMetadata = (FileMetadata) c;
+                                try {
+                                    fileMetadata = (FileMetadata) client.files().delete(fileMetadata.getPathLower());
+                                    tx.remove(fileMetadata);
+                                } catch (DbxException e) {
+                                    throw new ModelException("Could not delete file", e);
+                                }
+                            }
+                        });
+            }
+        } catch (DbxException e) {
+            throw new ModelException("Could not delete file", e);
+        }
+    }
+
+    public class DropboxOpenfactTransaction implements OpenfactTransaction {
 
         private boolean active;
         private boolean rollback;
@@ -123,6 +183,8 @@ public class DropboxFileProvider implements FileProvider {
             for (FileTask task : tasks.values()) {
                 task.execute();
             }
+            //warning
+            tasks.clear();
         }
 
         @Override
@@ -204,6 +266,10 @@ public class DropboxFileProvider implements FileProvider {
 
     public enum FileOperation {
         ADD, REMOVE
+    }
+
+    public DropboxOpenfactTransaction getTx() {
+        return tx;
     }
 
 }

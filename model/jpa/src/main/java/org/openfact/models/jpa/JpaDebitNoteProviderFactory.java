@@ -33,7 +33,6 @@ public class JpaDebitNoteProviderFactory implements DebitNoteProviderFactory {
 
     @Override
     public void postInit(OpenfactSessionFactory factory) {
-
     }
 
     @Override

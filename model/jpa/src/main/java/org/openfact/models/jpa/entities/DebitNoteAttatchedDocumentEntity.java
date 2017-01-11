@@ -21,6 +21,10 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @DiscriminatorValue(value = "DEBIT_NOTE")
+@NamedQueries(value = {
+        @NamedQuery(name = "getAllAttachedDocumentByDebitNoteId", query = "select s from DebitNoteAttatchedDocumentEntity s where debitNote.id=:debitNoteId"),
+        @NamedQuery(name = "deleteDebitNoteAttatchedDocumentByOrganization", query = "delete from DebitNoteAttatchedDocumentEntity doc where doc.debitNote IN (select i from DebitNoteEntity i where i.organizationId=:organizationId)")
+})
 public class DebitNoteAttatchedDocumentEntity extends AttatchedDocumentEntity {
 
     @NotNull

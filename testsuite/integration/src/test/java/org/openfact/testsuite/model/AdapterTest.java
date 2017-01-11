@@ -98,9 +98,7 @@ public class AdapterTest extends AbstractModelTest {
         test1CreateOrganization();
 
         InvoiceModel invoice = organizationManager.getSession().invoices().addInvoice(organizationModel, "F01-01");
-
         CreditNoteModel creditNote = organizationManager.getSession().creditNotes().addCreditNote(organizationModel, "C01-01");
-        
         DebitNoteModel debitNote = organizationManager.getSession().debitNotes().addDebitNote(organizationModel, "D01-01");
         
         commit();

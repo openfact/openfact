@@ -96,4 +96,9 @@ public class JpaFileProvider implements FileProvider {
         }
         return false;
     }
+
+    @Override
+    public void preRemove(OrganizationModel organization) {
+        int num = em.createNamedQuery("deleteFilesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+    }
 }

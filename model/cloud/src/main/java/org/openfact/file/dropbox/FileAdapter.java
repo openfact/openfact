@@ -20,8 +20,10 @@ import com.dropbox.core.DbxDownloader;
 import com.dropbox.core.DbxException;
 import com.dropbox.core.v2.DbxClientV2;
 import com.dropbox.core.v2.files.FileMetadata;
+import com.dropbox.core.v2.files.Metadata;
 import org.jboss.logging.Logger;
 import org.openfact.file.FileModel;
+import org.openfact.models.ModelException;
 import org.openfact.models.ModelReadOnlyException;
 import org.openfact.models.OpenfactSession;
 
@@ -35,16 +37,18 @@ public class FileAdapter implements FileModel {
     protected FileMetadata file;
     protected DbxClientV2 client;
     protected OpenfactSession session;
+    protected DropboxFileProvider provider;
 
-    public FileAdapter(OpenfactSession session, DbxClientV2 client, FileMetadata file) {
+    public FileAdapter(OpenfactSession session, DropboxFileProvider provider, DbxClientV2 client, FileMetadata file) {
         this.session = session;
         this.client = client;
         this.file = file;
+        this.provider = provider;
     }
 
     @Override
     public String getId() {
-        return file.getName();
+        return file.getPathLower();
     }
 
     @Override
@@ -54,7 +58,14 @@ public class FileAdapter implements FileModel {
 
     @Override
     public void setFileName(String fileName) {
-        throw new ModelReadOnlyException("Is not posible to change the name");
+        String newPath = file.getPathLower().substring(0, file.getPathLower().indexOf("/")) + fileName;
+        try {
+            FileMetadata fileMetadata = (FileMetadata) client.files().move(file.getPathLower(), newPath);
+            file = fileMetadata;
+            provider.getTx().remove(fileMetadata);
+        } catch (DbxException e) {
+            throw new ModelException("Could not change name file", e);
+        }
     }
 
     @Override
@@ -65,9 +76,9 @@ public class FileAdapter implements FileModel {
             os = new ByteArrayOutputStream();
             dbxDownloader.download(os);
         } catch (DbxException e) {
-            e.printStackTrace();
+            throw new ModelException("Could read file from dropbox", e);
         } catch (IOException e) {
-
+            throw new ModelException("Could not load file", e);
         }
         return os.toByteArray();
     }
@@ -75,7 +86,11 @@ public class FileAdapter implements FileModel {
     @Override
     public String getExtension() {
         String fileName = file.getName();
-        return fileName.substring(fileName.lastIndexOf("."), fileName.length());
+        if(fileName.lastIndexOf(".") != -1) {
+            return fileName.substring(fileName.lastIndexOf("."), fileName.length());
+        } else {
+            return "";
+        }
     }
 
 }

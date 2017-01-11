@@ -25,6 +25,7 @@ import java.util.Set;
 
 import org.openfact.component.ComponentFactory;
 import org.openfact.component.ComponentModel;
+import org.openfact.file.FileProvider;
 import org.openfact.keys.DefaultKeyManager;
 import org.openfact.models.*;
 import org.openfact.provider.Provider;
@@ -49,6 +50,8 @@ public class DefaultOpenfactSession implements OpenfactSession {
 	private DebitNoteProvider debitNotes;
 
 	private JobReportProvider jobReports;
+
+	private FileProvider files;
 
 	public DefaultOpenfactSession(DefaultOpenfactSessionFactory factory) {
 		this.factory = factory;
@@ -103,6 +106,15 @@ public class DefaultOpenfactSession implements OpenfactSession {
 			return cache;
 		} else {
 			return getProvider(JobReportProvider.class);
+		}
+	}
+
+	private FileProvider getFileProvider() {
+		FileProvider cache = getProvider(FileProvider.class);
+		if (cache != null) {
+			return cache;
+		} else {
+			return getProvider(FileProvider.class);
 		}
 	}
 
@@ -241,6 +253,14 @@ public class DefaultOpenfactSession implements OpenfactSession {
 			jobReports = getJobReportProvider();
 		}
 		return jobReports;
+	}
+
+	@Override
+	public FileProvider files() {
+		if (files == null) {
+			files = getFileProvider();
+		}
+		return files;
 	}
 
 	@Override

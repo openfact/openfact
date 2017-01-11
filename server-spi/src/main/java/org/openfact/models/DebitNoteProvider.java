@@ -93,4 +93,6 @@ public interface DebitNoteProvider extends Provider {
      */
     List<DebitNoteModel> searchForDebitNote(Map<String, String> params, OrganizationModel organization, int firstResult, int maxResults);
 
+    // Searching by InvoiceModel.attribute (not property)
+    List<DebitNoteModel> searchForDebitNoteByAttribute(String attrName, String attrValue, OrganizationModel organization);
 }

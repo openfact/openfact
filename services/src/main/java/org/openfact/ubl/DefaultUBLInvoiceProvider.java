@@ -162,13 +162,11 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
 
                     // Write event to the database
                     sendEvent.setDescription("Ivoice successfully sended");
-                    sendEvent.addFileAttatchments(xmlFile);
-                    sendEvent.addFileAttatchments(pdfFile);
+                    sendEvent.attachFile(xmlFile);
+                    sendEvent.attachFile(pdfFile);
                     sendEvent.setResult(SendResultType.SUCCESS);
 
-                    Map<String, String> destiny = new HashMap<>();
-                    destiny.put("email", user.getEmail());
-                    sendEvent.setDestiny(destiny);
+                    sendEvent.setSingleDestinyAttribute("email", user.getEmail());
 
                     // Remove required action
                     invoice.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
@@ -186,13 +184,13 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
             }
 
             @Override
-            public SendEventModel sendToThridParty(OrganizationModel organization, InvoiceModel invoice) throws SendException {
+            public SendEventModel sendToThirdParty(OrganizationModel organization, InvoiceModel invoice) throws SendException {
                 SendEventModel sendEvent =  invoice.addSendEvent(DestinyType.THIRD_PARTY);
-                return sendToThridParty(organization, invoice, sendEvent);
+                return sendToThirdParty(organization, invoice, sendEvent);
             }
 
             @Override
-            public SendEventModel sendToThridParty(OrganizationModel organization, InvoiceModel invoiceModel, SendEventModel sendEvent) throws SendException {
+            public SendEventModel sendToThirdParty(OrganizationModel organization, InvoiceModel invoiceModel, SendEventModel sendEvent) throws SendException {
                 sendEvent.setResult(SendResultType.ERROR);
                 sendEvent.setDescription("Could not send the invoice because there is no a valid Third Party. This feature should be implemented by your own code");
                 return sendEvent;

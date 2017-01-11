@@ -37,7 +37,6 @@ public class SignerSpi implements Spi {
         return SignerProvider.class;
     }
 
-    @SuppressWarnings("rawtypes")
     @Override
     public Class<? extends ProviderFactory> getProviderFactoryClass() {
         return SignerProviderFactory.class;

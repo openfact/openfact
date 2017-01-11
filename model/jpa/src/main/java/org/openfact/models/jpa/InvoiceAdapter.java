@@ -25,6 +25,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import com.helger.ubl21.UBL21Reader;
+import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 import org.jboss.logging.Logger;
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.file.*;
@@ -48,6 +50,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     protected OpenfactSession session;
 
     protected FileModel xmlFile;
+    protected InvoiceType invoiceType;
 
     public InvoiceAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em, InvoiceEntity invoice) {
         this.organization = organization;
@@ -189,18 +192,11 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
-    public byte[] getXmlDocument() {
-        FileModel file = getXmlFile();
-        if(file != null) {
-            return file.getFile();
-        } else {
-            return null;
+    public InvoiceType getInvoiceType() {
+        if(invoiceType == null) {
+            invoiceType = UBL21Reader.invoice().read(getXmlFile().getFile());
         }
-    }
-
-    @Override
-    public void setXmlDocument(byte[] value) {
-        setXmlFileContent(value);
+        return invoiceType;
     }
 
     @Override
@@ -213,13 +209,8 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
-    public void setXmlFileContent(byte[] value) {
-        FileModel file = getXmlFile();
-        FileProvider provider = session.getProvider(FileProvider.class);
-        if(file != null) {
-            provider.removeFile(organization, file);
-        }
-        xmlFile = provider.createFile(organization, OpenfactModelUtils.generateId() + ".xml", value);
+    public void attachXmlFile(FileModel file) {
+        xmlFile = file;
         invoice.setXmlFileId(xmlFile.getId());
     }
 
@@ -399,7 +390,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
-    public boolean removeSendEvent(OrganizationModel organization, String id) {
+    public boolean removeSendEvent(String id) {
         SendEventEntity entity = em.find(SendEventEntity.class, id);
         if (entity == null)
             return false;
@@ -410,7 +401,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
-    public boolean removeSendEvent(OrganizationModel organization, SendEventModel sendEvent) {
+    public boolean removeSendEvent(SendEventModel sendEvent) {
         SendEventEntity entity = em.find(SendEventEntity.class, sendEvent.getId());
         if (entity == null)
             return false;
@@ -450,6 +441,13 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
+    public AttatchedDocumentModel getAttatchedDocumentById(String id) {
+        InvoiceAttatchedDocumentEntity entity = em.find(InvoiceAttatchedDocumentEntity.class, id);
+        if(entity == null) return null;
+        return new AttatchedDocumentAdapter(session, organization, em, entity);
+    }
+
+    @Override
     public AttatchedDocumentModel addAttatchedDocument(DocumentType documentType, String documentId) {
         InvoiceAttatchedDocumentEntity entity = new InvoiceAttatchedDocumentEntity();
         entity.setDocumentType(documentType);
@@ -457,7 +455,23 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
         entity.setInvoice(invoice);
         em.persist(entity);
         em.flush();
+        invoice.getAttatchedDocuments().add(entity);
         return new AttatchedDocumentAdapter(session, organization, em, entity);
+    }
+
+    @Override
+    public boolean removeAttatchedDocument(AttatchedDocumentModel attatchedDocument) {
+        boolean result = false;
+        Iterator<InvoiceAttatchedDocumentEntity> it = invoice.getAttatchedDocuments().iterator();
+        while (it.hasNext()) {
+            InvoiceAttatchedDocumentEntity attr = it.next();
+            if (attr.getId().equals(attatchedDocument.getId())) {
+                it.remove();
+                em.remove(attr);
+                result = true;
+            }
+        }
+        return result;
     }
 
     @Override

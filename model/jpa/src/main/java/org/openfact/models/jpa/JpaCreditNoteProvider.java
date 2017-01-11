@@ -30,8 +30,7 @@ import javax.persistence.TypedQuery;
 import org.jboss.logging.Logger;
 import org.openfact.models.*;
 import org.openfact.models.enums.RequiredAction;
-import org.openfact.models.jpa.entities.CreditNoteAttributeEntity;
-import org.openfact.models.jpa.entities.CreditNoteEntity;
+import org.openfact.models.jpa.entities.*;
 import org.openfact.models.jpa.entities.CreditNoteEntity;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchCriteriaModel;
@@ -41,8 +40,12 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
 
     protected static final Logger logger = Logger.getLogger(JpaCreditNoteProvider.class);
 
-    private static final String DOCUMENT_ID = "documentId";
-    private static final String ISSUE_DATETIME = "issueDateTime";
+    protected static final String DOCUMENT_ID = "documentId";
+    protected static final String ISSUE_DATETIME = "issueDateTime";
+    protected static final String DOCUMENT_CURRENCY_CODE = "documentCurrencyCode";
+    protected static final String CUSTOMER_REGISTRATION_NAME = "customerRegistrationName";
+    protected static final String CUSTOMER_ASSIGNED_ACCOUNT_ID = "customerAssignedAccountId";
+    protected static final String PAYABLE_AMOUNT = "payableAmount";
 
     private final OpenfactSession session;
     protected EntityManager em;
@@ -63,12 +66,8 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
 
     @Override
     public CreditNoteModel addCreditNote(OrganizationModel organization, String documentId) {
-        if (documentId == null) {
-            throw new ModelException("Invalid documentId, Null value");
-        }
-
         if (session.creditNotes().getCreditNoteByDocumentId(organization, documentId) != null) {
-            throw new ModelDuplicateException("Credit note documentId existed");
+            throw new ModelDuplicateException("Invoice documentId[" + documentId + "] exists");
         }
 
         CreditNoteEntity creditNote = new CreditNoteEntity();
@@ -94,8 +93,7 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
         query.setParameter("id", id);
         query.setParameter("organizationId", organization.getId());
         List<CreditNoteEntity> entities = query.getResultList();
-        if (entities.size() == 0)
-            return null;
+        if (entities.size() == 0) return null;
         return new CreditNoteAdapter(session, organization, em, entities.get(0));
     }
 
@@ -105,8 +103,7 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
         query.setParameter("documentId", documentId);
         query.setParameter("organizationId", organization.getId());
         List<CreditNoteEntity> entities = query.getResultList();
-        if (entities.size() == 0)
-            return null;
+        if (entities.size() == 0) return null;
         return new CreditNoteAdapter(session, organization, em, entities.get(0));
     }
 
@@ -150,6 +147,14 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
     @Override
     public void preRemove(OrganizationModel organization) {
         int num = em.createNamedQuery("deleteCreditNoteRequiredActionsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+
+        num = em.createNamedQuery("deleteCreditNoteAttatchedDocumentAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        num = em.createNamedQuery("deleteCreditNoteAttatchedDocumentByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+
+        num = em.createNamedQuery("deleteCreditNoteSendEventDestinyAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        num = em.createNamedQuery("deleteCreditNoteSendEventResponseAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        num = em.createNamedQuery("deleteCreditNoteSendEventByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+
         num = em.createNamedQuery("deleteCreditNoteAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
         num = em.createNamedQuery("deleteCreditNotesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
     }
@@ -172,8 +177,7 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
             query.setMaxResults(maxResults);
         }
         List<CreditNoteEntity> results = query.getResultList();
-        List<CreditNoteModel> creditNotes = results.stream().map(f -> new CreditNoteAdapter(session, organization, em, f)).collect(Collectors.toList());
-        return creditNotes;
+        return results.stream().map(f -> new CreditNoteAdapter(session, organization, em, f)).collect(Collectors.toList());
     }
 
     @Override
@@ -193,8 +197,7 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
             query.setMaxResults(maxResults);
         }
         List<CreditNoteEntity> results = query.getResultList();
-        List<CreditNoteModel> creditNotes = results.stream().map(f -> new CreditNoteAdapter(session, organization, em, f)).collect(Collectors.toList());
-        return creditNotes;
+        return results.stream().map(f -> new CreditNoteAdapter(session, organization, em, f)).collect(Collectors.toList());
     }
 
     @Override
@@ -338,6 +341,22 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
         }
         List<CreditNoteEntity> results = query.getResultList();
         List<CreditNoteModel> creditNotes = results.stream().map(f -> new CreditNoteAdapter(session, organization, em, f)).collect(Collectors.toList());
+        return creditNotes;
+    }
+
+
+    @Override
+    public List<CreditNoteModel> searchForCreditNoteByAttribute(String attrName, String attrValue, OrganizationModel organization) {
+        TypedQuery<CreditNoteAttributeEntity> query = em.createNamedQuery("getCreditNoteAttributesByNameAndValue", CreditNoteAttributeEntity.class);
+        query.setParameter("name", attrName);
+        query.setParameter("value", attrValue);
+        List<CreditNoteAttributeEntity> results = query.getResultList();
+
+        List<CreditNoteModel> creditNotes = new ArrayList<>();
+        for (CreditNoteAttributeEntity attr : results) {
+            CreditNoteEntity creditNote = attr.getCreditNote();
+            creditNotes.add(new CreditNoteAdapter(session, organization, em, creditNote));
+        }
         return creditNotes;
     }
 

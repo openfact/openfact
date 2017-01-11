@@ -22,6 +22,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
+import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 import org.openfact.file.FileModel;
 import org.openfact.models.enums.DestinyType;
 import org.openfact.models.enums.DocumentType;
@@ -79,15 +81,11 @@ public interface InvoiceModel {
     BigDecimal getPayableAmount();
     void setPayableAmount(BigDecimal value);
 
+    InvoiceType getInvoiceType();
+
     /**
      * Xml
      */
-    @Deprecated
-    byte[] getXmlDocument();
-
-    @Deprecated
-    void setXmlDocument(byte[] value);
-
     FileModel getXmlFile();
     void attachXmlFile(FileModel file);
 
@@ -114,15 +112,17 @@ public interface InvoiceModel {
      * Send events*/
     SendEventModel addSendEvent(DestinyType destinyType);
     SendEventModel getSendEventById(String id);
-    boolean removeSendEvent(OrganizationModel organization, String id);
-    boolean removeSendEvent(OrganizationModel organization, SendEventModel sendEvent);
+    boolean removeSendEvent(String id);
+    boolean removeSendEvent(SendEventModel sendEvent);
     List<SendEventModel> getSendEvents();
     List<SendEventModel> getSendEvents(Integer firstResult, Integer maxResults);
 
     /**
      * Attatched documents*/
     List<AttatchedDocumentModel> getAttatchedDocuments();
+    AttatchedDocumentModel getAttatchedDocumentById(String id);
     AttatchedDocumentModel addAttatchedDocument(DocumentType documentType, String documentId);
+    boolean removeAttatchedDocument(AttatchedDocumentModel attatchedDocument);
 
     /**
      * Events interfaces

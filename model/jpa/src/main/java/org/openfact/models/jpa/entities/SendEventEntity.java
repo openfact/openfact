@@ -23,10 +23,7 @@ import org.openfact.models.enums.SendResultType;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Entity
 @Table(name = "SEND_EVENT")
@@ -59,27 +56,21 @@ public class SendEventEntity {
     @Column(name = "CREATED_TIMESTAMP")
     private LocalDateTime createdTimestamp;
 
-    @ElementCollection
-    @MapKeyColumn(name = "NAME")
-    @Column(name = "VALUE")
-    @CollectionTable(name = "SEND_EVENT_DESTINY", joinColumns = {@JoinColumn(name = "SEND_EVENT_ID")})
-    private Map<String, String> destiny = new HashMap<String, String>();
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy="sendEvent")
+    private Collection<SendEventDestinyAttributeEntity> destinyAttributes = new ArrayList<>();
 
-    @ElementCollection
-    @MapKeyColumn(name = "NAME")
-    @Column(name = "VALUE")
-    @CollectionTable(name = "SEND_EVENT_REPONSE", joinColumns = {@JoinColumn(name = "SEND_EVENT_ID")})
-    private Map<String, String> response = new HashMap<String, String>();
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy="sendEvent")
+    private Collection<SendEventResponseAttributeEntity> responseAttributes = new ArrayList<>();
 
     @ElementCollection
     @Column(name = "VALUE")
     @CollectionTable(name = "SEND_EVENT_FILE_ATTATCHMENT", joinColumns = { @JoinColumn(name = "SEND_EVENT_ID") })
-    private Collection<String> fileAttatchmentIds = new ArrayList<>();
+    private Set<String> fileAttatchmentIds = new HashSet<>();
 
     @ElementCollection
     @Column(name = "VALUE")
     @CollectionTable(name = "SEND_EVENT_FILE_RESPONSE_ATTATCHMENT", joinColumns = { @JoinColumn(name = "SEND_EVENT_ID") })
-    private Collection<String> fileResponseAttatchmentIds = new ArrayList<>();
+    private Set<String> fileResponseAttatchmentIds = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {
@@ -99,12 +90,21 @@ public class SendEventEntity {
         return getId().hashCode();
     }
 
+
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public DestinyType getDestityType() {
+        return destityType;
+    }
+
+    public void setDestityType(DestinyType destityType) {
+        this.destityType = destityType;
     }
 
     public SendResultType getResult() {
@@ -139,43 +139,35 @@ public class SendEventEntity {
         this.createdTimestamp = createdTimestamp;
     }
 
-    public Map<String, String> getDestiny() {
-        return destiny;
+    public Collection<SendEventDestinyAttributeEntity> getDestinyAttributes() {
+        return destinyAttributes;
     }
 
-    public void setDestiny(Map<String, String> destiny) {
-        this.destiny = destiny;
+    public void setDestinyAttributes(Collection<SendEventDestinyAttributeEntity> destinyAttributes) {
+        this.destinyAttributes = destinyAttributes;
     }
 
-    public Map<String, String> getResponse() {
-        return response;
+    public Collection<SendEventResponseAttributeEntity> getResponseAttributes() {
+        return responseAttributes;
     }
 
-    public void setResponse(Map<String, String> response) {
-        this.response = response;
+    public void setResponseAttributes(Collection<SendEventResponseAttributeEntity> responseAttributes) {
+        this.responseAttributes = responseAttributes;
     }
 
-    public Collection<String> getFileAttatchmentIds() {
+    public Set<String> getFileAttatchmentIds() {
         return fileAttatchmentIds;
     }
 
-    public void setFileAttatchmentIds(Collection<String> fileAttatchmentIds) {
+    public void setFileAttatchmentIds(Set<String> fileAttatchmentIds) {
         this.fileAttatchmentIds = fileAttatchmentIds;
     }
 
-    public Collection<String> getFileResponseAttatchmentIds() {
+    public Set<String> getFileResponseAttatchmentIds() {
         return fileResponseAttatchmentIds;
     }
 
-    public void setFileResponseAttatchmentIds(Collection<String> fileResponseAttatchmentIds) {
+    public void setFileResponseAttatchmentIds(Set<String> fileResponseAttatchmentIds) {
         this.fileResponseAttatchmentIds = fileResponseAttatchmentIds;
-    }
-
-    public DestinyType getDestityType() {
-        return destityType;
-    }
-
-    public void setDestityType(DestinyType destityType) {
-        this.destityType = destityType;
     }
 }

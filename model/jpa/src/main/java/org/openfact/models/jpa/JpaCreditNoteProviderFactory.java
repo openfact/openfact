@@ -30,8 +30,6 @@ import org.openfact.provider.ProviderEventListener;
 
 public class JpaCreditNoteProviderFactory implements CreditNoteProviderFactory {
 
-    private Config.Scope config;
-
     @Override
     public CreditNoteProvider create(OpenfactSession session) {
         EntityManager em = session.getProvider(JpaConnectionProvider.class).getEntityManager();
@@ -40,7 +38,6 @@ public class JpaCreditNoteProviderFactory implements CreditNoteProviderFactory {
 
     @Override
     public void init(Config.Scope config) {
-        this.config = config;
     }
 
     @Override
@@ -50,10 +47,5 @@ public class JpaCreditNoteProviderFactory implements CreditNoteProviderFactory {
 
     @Override
     public void close() {
-    }
-
-    @Override
-    public Config.Scope getConfig() {
-        return this.config;
     }
 }

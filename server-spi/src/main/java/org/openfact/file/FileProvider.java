@@ -13,4 +13,5 @@ public interface FileProvider extends Provider {
 
     boolean removeFile(OrganizationModel organization, FileModel file);
 
+    void preRemove(OrganizationModel organization);
 }

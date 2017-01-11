@@ -33,6 +33,7 @@ import org.openfact.file.*;
 import org.openfact.file.FileModel;
 import org.openfact.models.*;
 import org.openfact.models.enums.DestinyType;
+import org.openfact.models.enums.DocumentType;
 import org.openfact.models.enums.SendResultType;
 import org.openfact.models.jpa.entities.*;
 import org.openfact.models.utils.OpenfactModelUtils;
@@ -78,6 +79,11 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
     @Override
     public String getDocumentId() {
         return creditNote.getDocumentId();
+    }
+
+    @Override
+    public LocalDateTime getCreatedTimestamp() {
+        return creditNote.getCreatedTimestamp();
     }
 
     @Override
@@ -166,21 +172,6 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
     }
 
     @Override
-    public byte[] getXmlDocument() {
-        FileModel file = getXmlFile();
-        if(file != null) {
-            return file.getFile();
-        } else {
-            return null;
-        }
-    }
-
-    @Override
-    public void setXmlDocument(byte[] value) {
-        setXmlFileContent(value);
-    }
-
-    @Override
     public FileModel getXmlFile() {
         if(xmlFile == null && creditNote.getXmlFileId() != null) {
             FileProvider provider = session.getProvider(FileProvider.class);
@@ -190,13 +181,8 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
     }
 
     @Override
-    public void setXmlFileContent(byte[] value) {
-        FileModel file = getXmlFile();
-        FileProvider provider = session.getProvider(FileProvider.class);
-        if(file != null) {
-            provider.removeFile(organization, file);
-        }
-        xmlFile = provider.createFile(organization, OpenfactModelUtils.generateId() + ".xml", value);
+    public void attachXmlFile(FileModel file) {
+        xmlFile = file;
         creditNote.setXmlFileId(xmlFile.getId());
     }
 
@@ -372,7 +358,7 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
     }
 
     @Override
-    public boolean removeSendEvent(OrganizationModel organization, String id) {
+    public boolean removeSendEvent(String id) {
         SendEventEntity entity = em.find(SendEventEntity.class, id);
         if (entity == null)
             return false;
@@ -383,7 +369,7 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
     }
 
     @Override
-    public boolean removeSendEvent(OrganizationModel organization, SendEventModel sendEvent) {
+    public boolean removeSendEvent(SendEventModel sendEvent) {
         SendEventEntity entity = em.find(SendEventEntity.class, sendEvent.getId());
         if (entity == null)
             return false;
@@ -413,6 +399,47 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
         List<SendEventEntity> results = query.getResultList();
         List<SendEventModel> sendEvents = results.stream().map(f -> new SendEventAdapter(session, em, organization, f)).collect(Collectors.toList());
         return sendEvents;
+    }
+
+    /**
+     * Attatched documents*/
+    @Override
+    public List<AttatchedDocumentModel> getAttatchedDocuments() {
+        return creditNote.getAttatchedDocuments().stream().map(f -> new AttatchedDocumentAdapter(session, organization, em, f)).collect(Collectors.toList());
+    }
+
+    @Override
+    public AttatchedDocumentModel getAttatchedDocumentById(String id) {
+        CreditNoteAttatchedDocumentEntity entity = em.find(CreditNoteAttatchedDocumentEntity.class, id);
+        if(entity == null) return null;
+        return new AttatchedDocumentAdapter(session, organization, em, entity);
+    }
+
+    @Override
+    public AttatchedDocumentModel addAttatchedDocument(DocumentType documentType, String documentId) {
+        CreditNoteAttatchedDocumentEntity entity = new CreditNoteAttatchedDocumentEntity();
+        entity.setDocumentType(documentType);
+        entity.setDocumentId(documentId);
+        entity.setCreditNote(creditNote);
+        em.persist(entity);
+        em.flush();
+        creditNote.getAttatchedDocuments().add(entity);
+        return new AttatchedDocumentAdapter(session, organization, em, entity);
+    }
+
+    @Override
+    public boolean removeAttatchedDocument(AttatchedDocumentModel attatchedDocument) {
+        boolean result = false;
+        Iterator<CreditNoteAttatchedDocumentEntity> it = creditNote.getAttatchedDocuments().iterator();
+        while (it.hasNext()) {
+            CreditNoteAttatchedDocumentEntity attr = it.next();
+            if (attr.getId().equals(attatchedDocument.getId())) {
+                it.remove();
+                em.remove(attr);
+                result = true;
+            }
+        }
+        return result;
     }
 
     /**

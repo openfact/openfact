@@ -21,6 +21,7 @@ import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.AttatchedDocumentModel;
+import org.openfact.models.SendEventModel;
 import org.openfact.models.enums.DocumentType;
 import org.openfact.models.jpa.entities.AttatchedDocumentAttributeEntity;
 import org.openfact.models.jpa.entities.AttatchedDocumentEntity;
@@ -172,5 +173,19 @@ public class AttatchedDocumentAdapter implements AttatchedDocumentModel, JpaMode
 			result.add(attr.getName(), attr.getValue());
 		}
 		return result;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || !(o instanceof AttatchedDocumentModel)) return false;
+
+		AttatchedDocumentModel that = (AttatchedDocumentModel) o;
+		return that.getId().equals(getId());
+	}
+
+	@Override
+	public int hashCode() {
+		return getId().hashCode();
 	}
 }

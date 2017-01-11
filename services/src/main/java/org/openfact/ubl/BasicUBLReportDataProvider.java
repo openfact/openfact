@@ -200,7 +200,7 @@ public class BasicUBLReportDataProvider implements UBLReportDataProvider {
 
                 if (jsonNode == null) {
                     try {
-                        jsonNode = new XmlMapper().readTree(invoice.getXmlDocument());
+                        jsonNode = new XmlMapper().readTree(invoice.getXmlFile().getFile());
                     } catch (IOException e) {
                         throw new RuntimeException("Failed to load xml", e);
                     }

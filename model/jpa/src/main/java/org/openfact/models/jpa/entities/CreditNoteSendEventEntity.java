@@ -22,7 +22,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 @DiscriminatorValue(value = "CREDIT_NOTE")
 @NamedQueries(value = {
-        @NamedQuery(name = "getAllSendEventByCreditNoteId", query = "select s from CreditNoteSendEventEntity s where creditNote.id=:creditNoteId")
+        @NamedQuery(name = "getAllSendEventByCreditNoteId", query = "select s from CreditNoteSendEventEntity s where creditNote.id=:creditNoteId"),
+        @NamedQuery(name = "deleteCreditNoteSendEventByOrganization", query = "delete from CreditNoteSendEventEntity event where event.creditNote IN (select i from CreditNoteEntity i where i.organizationId=:organizationId)")
 })
 public class CreditNoteSendEventEntity extends SendEventEntity {
 

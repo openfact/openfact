@@ -56,10 +56,11 @@
 		<class>org.openfact.models.jpa.entities.ContactEntity</class>
 
 		<class>org.openfact.models.jpa.entities.FileEntity</class>
-		<class>org.openfact.models.jpa.entities.StorageFileEntity</class>
 		<class>org.openfact.models.jpa.entities.JobReportEntity</class>
 
 		<class>org.openfact.models.jpa.entities.SendEventEntity</class>
+		<class>org.openfact.models.jpa.entities.SendEventDestinyAttributeEntity</class>
+		<class>org.openfact.models.jpa.entities.SendEventResponseAttributeEntity</class>
 		<class>org.openfact.models.jpa.entities.InvoiceSendEventEntity</class>
 		<class>org.openfact.models.jpa.entities.CreditNoteSendEventEntity</class>
 		<class>org.openfact.models.jpa.entities.DebitNoteSendEventEntity</class>

@@ -448,9 +448,19 @@ public class ModelToRepresentation {
         rep.setResult(model.getResult().toString());
         rep.setDescription(model.getDescription());
         rep.setType(model.getType());
-        rep.setDestiny(new HashMap<>(model.getDestity()));
-        rep.setResponse(new HashMap<>(model.getResponse()));
         rep.setCreatedTimestamp(model.getCreatedTimestamp());
+
+        if (model.getDestinyAttributes() != null && !model.getDestinyAttributes().isEmpty()) {
+            Map<String, List<String>> attrs = new HashMap<>();
+            attrs.putAll(model.getDestinyAttributes());
+            rep.setDestinyAttributes(attrs);
+        }
+        if (model.getResponseAttributes() != null && !model.getResponseAttributes().isEmpty()) {
+            Map<String, List<String>> attrs = new HashMap<>();
+            attrs.putAll(model.getResponseAttributes());
+            rep.setResponseAttributes(attrs);
+        }
+
         if(model.getFileAttatchments() != null) {
             rep.setFilesAttatchment(new ArrayList<>());
             List<FileRepresentation> filesRep = model.getFileAttatchments().stream().map(f -> {
@@ -461,9 +471,9 @@ public class ModelToRepresentation {
             }).collect(Collectors.toList());
             rep.getFilesAttatchment().addAll(filesRep);
         }
-        if(model.getFileResponseAttatchments()!= null) {
+        if(model.getResponseFileAttatchments()!= null) {
             rep.setResponseFilesAttatchment(new ArrayList<>());
-            List<FileRepresentation> filesRep = model.getFileResponseAttatchments().stream().map(f -> {
+            List<FileRepresentation> filesRep = model.getResponseFileAttatchments().stream().map(f -> {
                 FileRepresentation fileRep = new FileRepresentation();
                 fileRep.setId(f.getId());
                 fileRep.setFileName(f.getFileName());

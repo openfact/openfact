@@ -24,6 +24,7 @@ public interface SignerProvider extends Provider {
 
     Document sign(Document document, OrganizationModel organization);
 
+    @Deprecated
     Document sign(OrganizationModel organization);
 
 }

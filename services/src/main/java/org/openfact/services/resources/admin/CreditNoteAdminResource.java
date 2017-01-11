@@ -108,7 +108,7 @@ public class CreditNoteAdminResource {
 
         JSONObject result = null;
         try {
-            Document document = DocumentUtils.byteToDocument(creditNote.getXmlDocument());
+            Document document = DocumentUtils.byteToDocument(creditNote.getXmlFile().getFile());
             String text = DocumentUtils.getDocumentToString(document);
             result = XML.toJSONObject(text);
         } catch (Exception e) {
@@ -132,7 +132,7 @@ public class CreditNoteAdminResource {
 
         String result = null;
         try {
-            Document document = DocumentUtils.byteToDocument(creditNote.getXmlDocument());
+            Document document = DocumentUtils.byteToDocument(creditNote.getXmlFile().getFile());
             result = DocumentUtils.getDocumentToString(document);
         } catch (Exception e) {
             return ErrorResponse.exists("Invalid xml");
@@ -155,7 +155,7 @@ public class CreditNoteAdminResource {
 
         Document result = null;
         try {
-            result = DocumentUtils.byteToDocument(creditNote.getXmlDocument());
+            result = DocumentUtils.byteToDocument(creditNote.getXmlFile().getFile());
         } catch (Exception e) {
             return ErrorResponse.exists("Invalid xml parser");
         }

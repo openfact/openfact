@@ -25,12 +25,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import com.helger.ubl21.UBL21Reader;
+import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
 import org.jboss.logging.Logger;
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.file.FileModel;
 import org.openfact.file.FileProvider;
 import org.openfact.models.*;
 import org.openfact.models.enums.DestinyType;
+import org.openfact.models.enums.DocumentType;
 import org.openfact.models.enums.SendResultType;
 import org.openfact.models.jpa.entities.*;
 import org.openfact.models.utils.OpenfactModelUtils;
@@ -47,9 +50,9 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
     protected OpenfactSession session;
 
     protected FileModel xmlFile;
+    protected DebitNoteType debitNoteType;
 
-    public DebitNoteAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em,
-            DebitNoteEntity debitNote) {
+    public DebitNoteAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em, DebitNoteEntity debitNote) {
         this.organization = organization;
         this.session = session;
         this.em = em;
@@ -76,6 +79,11 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
     @Override
     public String getDocumentId() {
         return debitNote.getDocumentId();
+    }
+
+    @Override
+    public LocalDateTime getCreatedTimestamp() {
+        return debitNote.getCreatedTimestamp();
     }
 
     @Override
@@ -164,18 +172,11 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
     }
 
     @Override
-    public byte[] getXmlDocument() {
-        FileModel file = getXmlFile();
-        if(file != null) {
-            return file.getFile();
-        } else {
-            return null;
+    public DebitNoteType getDebitNoteType() {
+        if(debitNoteType == null) {
+            debitNoteType = UBL21Reader.debitNote().read(getXmlFile().getFile());
         }
-    }
-
-    @Override
-    public void setXmlDocument(byte[] value) {
-        setXmlFileContent(value);
+        return debitNoteType;
     }
 
     @Override
@@ -188,13 +189,8 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
     }
 
     @Override
-    public void setXmlFileContent(byte[] value) {
-        FileModel file = getXmlFile();
-        FileProvider provider = session.getProvider(FileProvider.class);
-        if(file != null) {
-            provider.removeFile(organization, file);
-        }
-        xmlFile = provider.createFile(organization, OpenfactModelUtils.generateId() + ".xml", value);
+    public void attachXmlFile(FileModel file) {
+        xmlFile = file;
         debitNote.setXmlFileId(xmlFile.getId());
     }
 
@@ -363,7 +359,7 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
     }
 
     @Override
-    public boolean removeSendEvent(OrganizationModel organization, String id) {
+    public boolean removeSendEvent(String id) {
         SendEventEntity entity = em.find(SendEventEntity.class, id);
         if (entity == null)
             return false;
@@ -374,7 +370,7 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
     }
 
     @Override
-    public boolean removeSendEvent(OrganizationModel organization, SendEventModel sendEvent) {
+    public boolean removeSendEvent(SendEventModel sendEvent) {
         SendEventEntity entity = em.find(SendEventEntity.class, sendEvent.getId());
         if (entity == null)
             return false;
@@ -404,6 +400,47 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
         List<SendEventEntity> results = query.getResultList();
         List<SendEventModel> sendEvents = results.stream().map(f -> new SendEventAdapter(session, em, organization, f)).collect(Collectors.toList());
         return sendEvents;
+    }
+
+    /**
+     * Attatched documents*/
+    @Override
+    public List<AttatchedDocumentModel> getAttatchedDocuments() {
+        return debitNote.getAttatchedDocuments().stream().map(f -> new AttatchedDocumentAdapter(session, organization, em, f)).collect(Collectors.toList());
+    }
+
+    @Override
+    public AttatchedDocumentModel getAttatchedDocumentById(String id) {
+        DebitNoteAttatchedDocumentEntity entity = em.find(DebitNoteAttatchedDocumentEntity.class, id);
+        if(entity == null) return null;
+        return new AttatchedDocumentAdapter(session, organization, em, entity);
+    }
+
+    @Override
+    public AttatchedDocumentModel addAttatchedDocument(DocumentType documentType, String documentId) {
+        DebitNoteAttatchedDocumentEntity entity = new DebitNoteAttatchedDocumentEntity();
+        entity.setDocumentType(documentType);
+        entity.setDocumentId(documentId);
+        entity.setDebitNote(debitNote);
+        em.persist(entity);
+        em.flush();
+        debitNote.getAttatchedDocuments().add(entity);
+        return new AttatchedDocumentAdapter(session, organization, em, entity);
+    }
+
+    @Override
+    public boolean removeAttatchedDocument(AttatchedDocumentModel attatchedDocument) {
+        boolean result = false;
+        Iterator<DebitNoteAttatchedDocumentEntity> it = debitNote.getAttatchedDocuments().iterator();
+        while (it.hasNext()) {
+            DebitNoteAttatchedDocumentEntity attr = it.next();
+            if (attr.getId().equals(attatchedDocument.getId())) {
+                it.remove();
+                em.remove(attr);
+                result = true;
+            }
+        }
+        return result;
     }
 
     /**

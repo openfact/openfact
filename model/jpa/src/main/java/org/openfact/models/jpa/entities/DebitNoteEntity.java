@@ -80,6 +80,7 @@ public class DebitNoteEntity {
     @Access(AccessType.PROPERTY)
     private String id;
 
+    @NotNull
     @Column(name = "DOCUMENT_ID")
     private String documentId;
 

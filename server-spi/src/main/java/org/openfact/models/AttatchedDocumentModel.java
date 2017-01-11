@@ -25,9 +25,7 @@ import java.util.Map;
 public interface AttatchedDocumentModel {
 
     String getId();
-
     DocumentType getDocumentType();
-
     String getDocumentId();
 
     /**

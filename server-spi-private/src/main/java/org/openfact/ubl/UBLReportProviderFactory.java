@@ -16,10 +16,7 @@
  *******************************************************************************/
 package org.openfact.ubl;
 
-import org.openfact.models.InvoiceModel;
-import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
-import org.openfact.report.ReportTemplateProvider;
 
 public interface UBLReportProviderFactory extends ProviderFactory<UBLReportProvider> {
 }

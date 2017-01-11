@@ -26,6 +26,7 @@ import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
 import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
 import org.openfact.file.FileModel;
 import org.openfact.models.enums.DestinyType;
+import org.openfact.models.enums.DocumentType;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.provider.ProviderEvent;
 
@@ -36,6 +37,7 @@ public interface DebitNoteModel {
 
     String getId();
     String getDocumentId();
+    LocalDateTime getCreatedTimestamp();
 
     /**
      * Organization
@@ -74,13 +76,6 @@ public interface DebitNoteModel {
     /**
      * Xml
      */
-
-    @Deprecated
-    byte[] getXmlDocument();
-
-    @Deprecated
-    void setXmlDocument(byte[] value);
-
     FileModel getXmlFile();
     void attachXmlFile(FileModel file);
 
@@ -107,11 +102,18 @@ public interface DebitNoteModel {
      * Send events*/
     SendEventModel addSendEvent(DestinyType destinyType);
     SendEventModel getSendEventById(String id);
-    boolean removeSendEvent(OrganizationModel organization, String id);
-    boolean removeSendEvent(OrganizationModel organization, SendEventModel sendEvent);
+    boolean removeSendEvent(String id);
+    boolean removeSendEvent(SendEventModel sendEvent);
     List<SendEventModel> getSendEvents();
     List<SendEventModel> getSendEvents(Integer firstResult, Integer maxResults);
-    
+
+    /**
+     * Attatched documents*/
+    List<AttatchedDocumentModel> getAttatchedDocuments();
+    AttatchedDocumentModel getAttatchedDocumentById(String id);
+    AttatchedDocumentModel addAttatchedDocument(DocumentType documentType, String documentId);
+    boolean removeAttatchedDocument(AttatchedDocumentModel attatchedDocument);
+
     /**
      * Events interfaces
      */

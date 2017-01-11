@@ -27,8 +27,8 @@ public interface UBLSender<T> extends Provider {
 
     SendEventModel sendToCustomer(OrganizationModel organization, T t, SendEventModel sendEvent) throws SendException;
 
-    SendEventModel sendToThridParty(OrganizationModel organization, T t) throws SendException;
+    SendEventModel sendToThirdParty(OrganizationModel organization, T t) throws SendException;
 
-    SendEventModel sendToThridParty(OrganizationModel organization, T t, SendEventModel sendEvent) throws SendException;
+    SendEventModel sendToThirdParty(OrganizationModel organization, T t, SendEventModel sendEvent) throws SendException;
 
 }

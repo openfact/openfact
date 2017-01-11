@@ -162,13 +162,11 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
 
                     // Write event to the database
                     sendEvent.setDescription("Debit Note successfully sended");
-                    sendEvent.addFileAttatchments(xmlFile);
-                    sendEvent.addFileAttatchments(pdfFile);
+                    sendEvent.attachFile(xmlFile);
+                    sendEvent.attachFile(pdfFile);
                     sendEvent.setResult(SendResultType.SUCCESS);
 
-                    Map<String, String> destiny = new HashMap<>();
-                    destiny.put("email", user.getEmail());
-                    sendEvent.setDestiny(destiny);
+                    sendEvent.setSingleDestinyAttribute("email", user.getEmail());
 
                     // Remove required action
                     debitNote.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
@@ -186,13 +184,13 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
             }
 
             @Override
-            public SendEventModel sendToThridParty(OrganizationModel organization, DebitNoteModel debitNote) throws SendException {
+            public SendEventModel sendToThirdParty(OrganizationModel organization, DebitNoteModel debitNote) throws SendException {
                 SendEventModel sendEvent =  debitNote.addSendEvent(DestinyType.THIRD_PARTY);
-                return sendToThridParty(organization, debitNote, sendEvent);
+                return sendToThirdParty(organization, debitNote, sendEvent);
             }
 
             @Override
-            public SendEventModel sendToThridParty(OrganizationModel organization, DebitNoteModel debitNoteModel, SendEventModel sendEvent) throws SendException {
+            public SendEventModel sendToThirdParty(OrganizationModel organization, DebitNoteModel debitNoteModel, SendEventModel sendEvent) throws SendException {
                 sendEvent.setResult(SendResultType.ERROR);
                 sendEvent.setDescription("Could not send the debit note because there is no a valid Third Party. This feature should be implemented by your own code");
                 return sendEvent;

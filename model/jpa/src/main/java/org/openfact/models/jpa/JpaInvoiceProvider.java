@@ -37,15 +37,15 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
     protected static final Logger logger = Logger.getLogger(JpaInvoiceProvider.class);
 
-    private static final String DOCUMENT_ID = "documentId";
-    private static final String INVOICE_TYPE_CODE = "invoiceTypeCode";
-    private static final String ISSUE_DATETIME = "issueDateTime";
-    private static final String DOCUMENT_CURRENCY_CODE = "documentCurrencyCode";
-    private static final String CUSTOMER_REGISTRATION_NAME = "customerRegistrationName";
-    private static final String CUSTOMER_ASSIGNED_ACCOUNT_ID = "customerAssignedAccountId";
-    private static final String PAYABLE_AMOUNT = "payableAmount";
+    protected static final String DOCUMENT_ID = "documentId";
+    protected static final String INVOICE_TYPE_CODE = "invoiceTypeCode";
+    protected static final String ISSUE_DATETIME = "issueDateTime";
+    protected static final String DOCUMENT_CURRENCY_CODE = "documentCurrencyCode";
+    protected static final String CUSTOMER_REGISTRATION_NAME = "customerRegistrationName";
+    protected static final String CUSTOMER_ASSIGNED_ACCOUNT_ID = "customerAssignedAccountId";
+    protected static final String PAYABLE_AMOUNT = "payableAmount";
 
-    private final OpenfactSession session;
+    protected final OpenfactSession session;
     protected EntityManager em;
 
     public JpaInvoiceProvider(OpenfactSession session, EntityManager em) {
@@ -64,12 +64,8 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
     @Override
     public InvoiceModel addInvoice(OrganizationModel organization, String documentId) {
-        if (documentId == null) {
-            throw new ModelException("Invalid documentId, Null value");
-        }
-
         if (session.invoices().getInvoiceByDocumentId(organization, documentId) != null) {
-            throw new ModelDuplicateException("Invoice documentId existed");
+            throw new ModelDuplicateException("Invoice documentId[" + documentId + "] exists");
         }
 
         InvoiceEntity invoice = new InvoiceEntity();
@@ -96,8 +92,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
         query.setParameter("id", id);
         query.setParameter("organizationId", organization.getId());
         List<InvoiceEntity> entities = query.getResultList();
-        if (entities.size() == 0)
-            return null;
+        if (entities.size() == 0) return null;
         return new InvoiceAdapter(session, organization, em, entities.get(0));
     }
 
@@ -107,8 +102,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
         query.setParameter("documentId", ID);
         query.setParameter("organizationId", organization.getId());
         List<InvoiceEntity> entities = query.getResultList();
-        if (entities.size() == 0)
-            return null;
+        if (entities.size() == 0) return null;
         return new InvoiceAdapter(session, organization, em, entities.get(0));
     }
 
@@ -152,6 +146,14 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     @Override
     public void preRemove(OrganizationModel organization) {
         int num = em.createNamedQuery("deleteInvoiceRequiredActionsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+
+        num = em.createNamedQuery("deleteInvoiceAttatchedDocumentAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        num = em.createNamedQuery("deleteInvoiceAttatchedDocumentByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+
+        num = em.createNamedQuery("deleteInvoiceSendEventDestinyAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        num = em.createNamedQuery("deleteInvoiceSendEventResponseAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        num = em.createNamedQuery("deleteInvoiceSendEventByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+
         num = em.createNamedQuery("deleteInvoiceAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
         num = em.createNamedQuery("deleteInvoicesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
     }
@@ -174,8 +176,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
             query.setMaxResults(maxResults);
         }
         List<InvoiceEntity> results = query.getResultList();
-        List<InvoiceModel> invoices = results.stream().map(f -> new InvoiceAdapter(session, organization, em, f)).collect(Collectors.toList());
-        return invoices;
+        return results.stream().map(f -> new InvoiceAdapter(session, organization, em, f)).collect(Collectors.toList());
     }
 
     @Override
@@ -195,8 +196,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
             query.setMaxResults(maxResults);
         }
         List<InvoiceEntity> results = query.getResultList();
-        List<InvoiceModel> invoices = results.stream().map(f -> new InvoiceAdapter(session, organization, em, f)).collect(Collectors.toList());
-        return invoices;
+        return results.stream().map(f -> new InvoiceAdapter(session, organization, em, f)).collect(Collectors.toList());
     }
 
     @Override
@@ -270,7 +270,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
         }
 
         String queryName = null;
-        if(asc) {
+        if (asc) {
             queryName = "getAllInvoicesByOrganization";
         } else {
             queryName = "getAllInvoicesByOrganizationDesc";
@@ -345,7 +345,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     }
 
     @Override
-    public List<InvoiceModel> searchForInvoiceByInvoiceAttribute(String attrName, String attrValue, OrganizationModel organization) {
+    public List<InvoiceModel> searchForInvoiceByAttribute(String attrName, String attrValue, OrganizationModel organization) {
         TypedQuery<InvoiceAttributeEntity> query = em.createNamedQuery("getInvoiceAttributesByNameAndValue", InvoiceAttributeEntity.class);
         query.setParameter("name", attrName);
         query.setParameter("value", attrValue);

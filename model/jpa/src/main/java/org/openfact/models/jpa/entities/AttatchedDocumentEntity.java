@@ -95,13 +95,14 @@ public class AttatchedDocumentEntity {
 
         AttatchedDocumentEntity that = (AttatchedDocumentEntity) o;
 
-        if (!id.equals(that.getId())) return false;
+        if (!getId().equals(that.getId())) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return getId().hashCode();
     }
+
 }

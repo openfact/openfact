@@ -29,6 +29,7 @@ import org.openfact.file.FileProvider;
 import org.openfact.models.*;
 import org.openfact.models.SendEventModel;
 import org.openfact.models.enums.RequiredAction;
+import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.utils.TypeToModel;
 import org.openfact.models.SendException;
 import org.openfact.ubl.SignerProvider;
@@ -84,7 +85,7 @@ public class CreditNoteManager {
             byte[] signedDocumentBytes = DocumentUtils.getBytesFromDocument(signedDocument);
 
             // File
-            FileModel xmlFile = session.getProvider(FileProvider.class).createFile(organization, creditNoteModel.getDocumentId() + ".xml", signedDocumentBytes);
+            FileModel xmlFile = session.getProvider(FileProvider.class).createFile(organization, OpenfactModelUtils.generateId() + ".xml", signedDocumentBytes);
             creditNoteModel.attachXmlFile(xmlFile);
         } catch (TransformerException e) {
             logger.error("Error parsing XML to byte", e);
@@ -116,12 +117,35 @@ public class CreditNoteManager {
         return false;
     }
 
+    public boolean removeDebitNote(OrganizationModel organization, CreditNoteModel creditNote) {
+        if (model.removeCreditNote(organization, creditNote)) {
+            return true;
+        }
+        return false;
+    }
+
     public SendEventModel sendToCustomerParty(OrganizationModel organization, CreditNoteModel creditNote) throws SendException {
-        return ublProvider.sender().sendToCustomer(organization, creditNote);
+        return sendToCustomerParty(organization, creditNote, null);
+    }
+
+    public SendEventModel sendToCustomerParty(OrganizationModel organization, CreditNoteModel creditNote, SendEventModel sendEvent) throws SendException {
+        if(sendEvent == null) {
+            return ublProvider.sender().sendToCustomer(organization, creditNote);
+        } else {
+            return ublProvider.sender().sendToCustomer(organization, creditNote, sendEvent);
+        }
     }
 
     public SendEventModel sendToTrirdParty(OrganizationModel organization, CreditNoteModel creditNote) throws SendException {
-        return ublProvider.sender().sendToThridParty(organization, creditNote);
+        return sendToTrirdParty(organization, creditNote, null);
+    }
+
+    public SendEventModel sendToTrirdParty(OrganizationModel organization, CreditNoteModel creditNote, SendEventModel sendEvent) throws SendException {
+        if(sendEvent == null) {
+            return ublProvider.sender().sendToThirdParty(organization, creditNote);
+        } else {
+            return ublProvider.sender().sendToThirdParty(organization, creditNote, sendEvent);
+        }
     }
 
 }

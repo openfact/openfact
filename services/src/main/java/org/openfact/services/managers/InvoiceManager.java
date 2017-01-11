@@ -33,6 +33,7 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.SendEventModel;
 import org.openfact.models.enums.RequiredAction;
+import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.utils.TypeToModel;
 import org.openfact.models.SendException;
 import org.openfact.ubl.SignerProvider;
@@ -88,7 +89,7 @@ public class InvoiceManager {
             byte[] signedDocumentBytes = DocumentUtils.getBytesFromDocument(signedDocument);
 
             // File
-            FileModel xmlFile = session.getProvider(FileProvider.class).createFile(organization, invoiceModel.getDocumentId() + ".xml", signedDocumentBytes);
+            FileModel xmlFile = session.getProvider(FileProvider.class).createFile(organization, OpenfactModelUtils.generateId() + ".xml", signedDocumentBytes);
             invoiceModel.attachXmlFile(xmlFile);
         } catch (TransformerException e) {
             logger.error("Error parsing XML to byte", e);
@@ -138,9 +139,9 @@ public class InvoiceManager {
 
     public SendEventModel sendToTrirdParty(OrganizationModel organization, InvoiceModel invoice, SendEventModel sendEvent) throws SendException {
         if(sendEvent == null) {
-            return ublProvider.sender().sendToThridParty(organization, invoice);
+            return ublProvider.sender().sendToThirdParty(organization, invoice);
         } else {
-            return ublProvider.sender().sendToThridParty(organization, invoice, sendEvent);
+            return ublProvider.sender().sendToThirdParty(organization, invoice, sendEvent);
         }
     }
 

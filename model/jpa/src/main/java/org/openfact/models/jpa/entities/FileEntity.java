@@ -33,7 +33,8 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({
         @NamedQuery(name = "getAllFiles", query = "select f from FileEntity f"),
         @NamedQuery(name = "getFileById", query = "select f from FileEntity f where f.id = :id and f.organizationId = :organizationId"),
-        @NamedQuery(name = "getFileByFilename", query = "select f from FileEntity f where f.fileName = :filename and f.organizationId = :organizationId")
+        @NamedQuery(name = "getFileByFilename", query = "select f from FileEntity f where f.fileName = :filename and f.organizationId = :organizationId"),
+        @NamedQuery(name = "deleteFilesByOrganization", query = "delete from FileEntity f where f.organizationId=:organizationId")
 })
 public class FileEntity {
 

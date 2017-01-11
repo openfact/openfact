@@ -46,6 +46,6 @@ public class SendToThridPartyOrganizationScheduleTaskProviderFactory implements 
 
     @Override
     public String getId() {
-        return "sendToThridParty";
+        return "sendToThirdParty";
     }
 }

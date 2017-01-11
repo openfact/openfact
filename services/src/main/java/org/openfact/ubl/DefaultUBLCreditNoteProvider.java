@@ -163,13 +163,11 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
 
                     // Write event to the database
                     sendEvent.setDescription("Credit Note successfully sended");
-                    sendEvent.addFileAttatchments(xmlFile);
-                    sendEvent.addFileAttatchments(pdfFile);
+                    sendEvent.attachFile(xmlFile);
+                    sendEvent.attachFile(pdfFile);
                     sendEvent.setResult(SendResultType.SUCCESS);
 
-                    Map<String, String> destiny = new HashMap<>();
-                    destiny.put("email", user.getEmail());
-                    sendEvent.setDestiny(destiny);
+                    sendEvent.setSingleDestinyAttribute("email", user.getEmail());
 
                     // Remove required action
                     creditNote.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
@@ -187,13 +185,13 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
             }
 
             @Override
-            public SendEventModel sendToThridParty(OrganizationModel organization, CreditNoteModel creditNote) throws SendException {
+            public SendEventModel sendToThirdParty(OrganizationModel organization, CreditNoteModel creditNote) throws SendException {
                 SendEventModel sendEvent =  creditNote.addSendEvent(DestinyType.THIRD_PARTY);
-                return sendToThridParty(organization, creditNote, sendEvent);
+                return sendToThirdParty(organization, creditNote, sendEvent);
             }
 
             @Override
-            public SendEventModel sendToThridParty(OrganizationModel organization, CreditNoteModel creditNoteModel, SendEventModel sendEvent) throws SendException {
+            public SendEventModel sendToThirdParty(OrganizationModel organization, CreditNoteModel creditNoteModel, SendEventModel sendEvent) throws SendException {
                 sendEvent.setResult(SendResultType.ERROR);
                 sendEvent.setDescription("Could not send the credit note because there is no a valid Third Party. This feature should be implemented by your own code");
                 return sendEvent;

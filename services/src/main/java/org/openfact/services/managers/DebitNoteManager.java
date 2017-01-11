@@ -29,6 +29,7 @@ import org.openfact.file.FileProvider;
 import org.openfact.models.*;
 import org.openfact.models.SendEventModel;
 import org.openfact.models.enums.RequiredAction;
+import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.utils.TypeToModel;
 import org.openfact.models.SendException;
 import org.openfact.ubl.SignerProvider;
@@ -84,7 +85,7 @@ public class DebitNoteManager {
             byte[] signedDocumentBytes = DocumentUtils.getBytesFromDocument(signedDocument);
 
             // File
-            FileModel xmlFile = session.getProvider(FileProvider.class).createFile(organization, debitNoteModel.getDocumentId() + ".xml", signedDocumentBytes);
+            FileModel xmlFile = session.getProvider(FileProvider.class).createFile(organization, OpenfactModelUtils.generateId() + ".xml", signedDocumentBytes);
             debitNoteModel.attachXmlFile(xmlFile);
         } catch (TransformerException e) {
             logger.error("Error parsing XML to byte", e);
@@ -117,11 +118,27 @@ public class DebitNoteManager {
     }
 
     public SendEventModel sendToCustomerParty(OrganizationModel organization, DebitNoteModel debitNote) throws SendException {
-        return ublProvider.sender().sendToCustomer(organization, debitNote);
+        return sendToCustomerParty(organization, debitNote, null);
+    }
+
+    public SendEventModel sendToCustomerParty(OrganizationModel organization, DebitNoteModel debitNote, SendEventModel sendEvent) throws SendException {
+        if(sendEvent == null) {
+            return ublProvider.sender().sendToCustomer(organization, debitNote);
+        } else {
+            return ublProvider.sender().sendToCustomer(organization, debitNote, sendEvent);
+        }
     }
 
     public SendEventModel sendToTrirdParty(OrganizationModel organization, DebitNoteModel debitNote) throws SendException {
-        return ublProvider.sender().sendToThridParty(organization, debitNote);
+        return sendToTrirdParty(organization, debitNote, null);
+    }
+
+    public SendEventModel sendToTrirdParty(OrganizationModel organization, DebitNoteModel debitNote, SendEventModel sendEvent) throws SendException {
+        if(sendEvent == null) {
+            return ublProvider.sender().sendToThirdParty(organization, debitNote);
+        } else {
+            return ublProvider.sender().sendToThirdParty(organization, debitNote, sendEvent);
+        }
     }
 
 }

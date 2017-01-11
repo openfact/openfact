@@ -56,6 +56,7 @@ public class DefaultSignerProvider implements SignerProvider {
     protected OpenfactSession session;
     private static final String FACTORY = "DOM";
     private static final String PREFIX = "ds";
+
     public DefaultSignerProvider(OpenfactSession session) {
         this.session = session;
     }
@@ -69,7 +70,7 @@ public class DefaultSignerProvider implements SignerProvider {
         XMLSignatureFactory signatureFactory = XMLSignatureFactory.getInstance();
         try {
             Reference reference = signatureFactory.newReference("", signatureFactory.newDigestMethod(DigestMethod.SHA1, null),
-                    Collections.singletonList(signatureFactory.newTransform(Transform.ENVELOPED, (TransformParameterSpec) null)),  null, null);
+                    Collections.singletonList(signatureFactory.newTransform(Transform.ENVELOPED, (TransformParameterSpec) null)), null, null);
 
             SignedInfo signedInfo = signatureFactory.newSignedInfo(
                     signatureFactory.newCanonicalizationMethod(CanonicalizationMethod.INCLUSIVE, (C14NMethodParameterSpec) null),
@@ -108,6 +109,7 @@ public class DefaultSignerProvider implements SignerProvider {
             throw new ModelException(e);
         }
     }
+
     @Override
     public Document sign(OrganizationModel organization) {
         XMLSignatureFactory xmlSigFactory = XMLSignatureFactory.getInstance(FACTORY);
@@ -151,6 +153,7 @@ public class DefaultSignerProvider implements SignerProvider {
             throw new ModelException(e);
         }
     }
+
     private static Document addUBLExtensions(Document document) {
         NodeList nodeList = document.getDocumentElement().getElementsByTagName("cec:UBLExtensions");
         Node extensions = nodeList.item(0);

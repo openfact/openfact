@@ -27,12 +27,13 @@ public class SendEventRepresentation {
     private String result;
 
     private String type;
-    private Map<String, String> destiny;
+    private Map<String, List<String>> destinyAttributes;
     private List<FileRepresentation> filesAttatchment;
-    private Map<String, String> response;
+    private Map<String, List<String>> responseAttributes;
     private List<FileRepresentation> responseFilesAttatchment;
 
     private LocalDateTime createdTimestamp;
+
 
     public String getId() {
         return id;
@@ -50,7 +51,7 @@ public class SendEventRepresentation {
         this.description = description;
     }
 
-    public String isResult() {
+    public String getResult() {
         return result;
     }
 
@@ -66,12 +67,12 @@ public class SendEventRepresentation {
         this.type = type;
     }
 
-    public Map<String, String> getDestiny() {
-        return destiny;
+    public Map<String, List<String>> getDestinyAttributes() {
+        return destinyAttributes;
     }
 
-    public void setDestiny(Map<String, String> destiny) {
-        this.destiny = destiny;
+    public void setDestinyAttributes(Map<String, List<String>> destinyAttributes) {
+        this.destinyAttributes = destinyAttributes;
     }
 
     public List<FileRepresentation> getFilesAttatchment() {
@@ -82,12 +83,12 @@ public class SendEventRepresentation {
         this.filesAttatchment = filesAttatchment;
     }
 
-    public Map<String, String> getResponse() {
-        return response;
+    public Map<String, List<String>> getResponseAttributes() {
+        return responseAttributes;
     }
 
-    public void setResponse(Map<String, String> response) {
-        this.response = response;
+    public void setResponseAttributes(Map<String, List<String>> responseAttributes) {
+        this.responseAttributes = responseAttributes;
     }
 
     public List<FileRepresentation> getResponseFilesAttatchment() {
