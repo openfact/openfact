@@ -49,6 +49,10 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
     protected static final String CUSTOMER_ASSIGNED_ACCOUNT_ID = "customerAssignedAccountId";
     protected static final String PAYABLE_AMOUNT = "payableAmount";
 
+    protected static final String SEND_EVENT_DESTINY_TYPE = "destinyType";
+    protected static final String SEND_EVENT_TYPE = "type";
+    protected static final String SEND_EVENT_RESULT = "result";
+
     protected final OpenfactSession session;
     protected EntityManager em;
 

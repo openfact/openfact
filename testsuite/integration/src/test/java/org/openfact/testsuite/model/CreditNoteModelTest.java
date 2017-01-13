@@ -599,34 +599,34 @@ public class CreditNoteModelTest extends AbstractModelTest {
 		OrganizationModel organization = organizationManager.createOrganization("original");
 		CreditNoteModel creditNote = session.creditNotes().addCreditNote(organization, "creditNote");
 
-		Assert.assertNull(creditNote.getXmlFile());
+		Assert.assertNull(creditNote.getXmlAsFile());
 
 		FileModel file1 = session.getProvider(FileProvider.class).createFile(organization, "file1.xml", new byte[]{0,1,2,3});
 		String file1Id = file1.getId();
 		creditNote.attachXmlFile(file1);
 
-		Assert.assertNotNull(creditNote.getXmlFile());
+		Assert.assertNotNull(creditNote.getXmlAsFile());
 		commit();
 
 		creditNote = session.creditNotes().getCreditNoteByDocumentId(organization, "creditNote");
 
-		Assert.assertNotNull(creditNote.getXmlFile());
-		Assert.assertEquals(creditNote.getXmlFile(), session.getProvider(FileProvider.class).getFileById(organization, file1Id));
+		Assert.assertNotNull(creditNote.getXmlAsFile());
+		Assert.assertEquals(creditNote.getXmlAsFile(), session.getProvider(FileProvider.class).getFileById(organization, file1Id));
 
 		FileModel file2 = session.getProvider(FileProvider.class).createFile(organization, "file2.xml", new byte[]{0,1,2,3,4,5});
 		String file2Id = file2.getId();
 		creditNote.attachXmlFile(file2);
 
-		Assert.assertNotNull(creditNote.getXmlFile());
-		Assert.assertEquals(creditNote.getXmlFile(), session.getProvider(FileProvider.class).getFileById(organization, file2Id));
+		Assert.assertNotNull(creditNote.getXmlAsFile());
+		Assert.assertEquals(creditNote.getXmlAsFile(), session.getProvider(FileProvider.class).getFileById(organization, file2Id));
 
 		commit();
 
 		organization = organizationManager.getOrganizationByName("original");
 		creditNote = session.creditNotes().getCreditNoteByDocumentId(organization, "creditNote");
 
-		Assert.assertNotNull(creditNote.getXmlFile());
-		Assert.assertEquals(creditNote.getXmlFile(), session.getProvider(FileProvider.class).getFileById(organization, file2Id));
+		Assert.assertNotNull(creditNote.getXmlAsFile());
+		Assert.assertEquals(creditNote.getXmlAsFile(), session.getProvider(FileProvider.class).getFileById(organization, file2Id));
 	}
 
 	@Test

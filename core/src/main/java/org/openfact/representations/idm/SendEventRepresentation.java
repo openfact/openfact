@@ -17,23 +17,24 @@
 package org.openfact.representations.idm;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 public class SendEventRepresentation {
 
     private String id;
-    private String description;
-    private String result;
-
+    private String destinyType;
     private String type;
+    private String result;
+    private String description;
+
     private Map<String, List<String>> destinyAttributes;
-    private List<FileRepresentation> filesAttatchment;
+    private List<FileRepresentation> fileAttachments;
     private Map<String, List<String>> responseAttributes;
-    private List<FileRepresentation> responseFilesAttatchment;
+    private List<FileRepresentation> responseFileAttachments;
 
     private LocalDateTime createdTimestamp;
-
 
     public String getId() {
         return id;
@@ -43,20 +44,12 @@ public class SendEventRepresentation {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDestinyType() {
+        return destinyType;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
+    public void setDestinyType(String destinyType) {
+        this.destinyType = destinyType;
     }
 
     public String getType() {
@@ -67,6 +60,22 @@ public class SendEventRepresentation {
         this.type = type;
     }
 
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public Map<String, List<String>> getDestinyAttributes() {
         return destinyAttributes;
     }
@@ -75,12 +84,12 @@ public class SendEventRepresentation {
         this.destinyAttributes = destinyAttributes;
     }
 
-    public List<FileRepresentation> getFilesAttatchment() {
-        return filesAttatchment;
+    public List<FileRepresentation> getFileAttachments() {
+        return fileAttachments;
     }
 
-    public void setFilesAttatchment(List<FileRepresentation> filesAttatchment) {
-        this.filesAttatchment = filesAttatchment;
+    public void setFileAttachments(List<FileRepresentation> fileAttachments) {
+        this.fileAttachments = fileAttachments;
     }
 
     public Map<String, List<String>> getResponseAttributes() {
@@ -91,12 +100,12 @@ public class SendEventRepresentation {
         this.responseAttributes = responseAttributes;
     }
 
-    public List<FileRepresentation> getResponseFilesAttatchment() {
-        return responseFilesAttatchment;
+    public List<FileRepresentation> getResponseFileAttachments() {
+        return responseFileAttachments;
     }
 
-    public void setResponseFilesAttatchment(List<FileRepresentation> responseFilesAttatchment) {
-        this.responseFilesAttatchment = responseFilesAttatchment;
+    public void setResponseFileAttachments(List<FileRepresentation> responseFileAttachments) {
+        this.responseFileAttachments = responseFileAttachments;
     }
 
     public LocalDateTime getCreatedTimestamp() {

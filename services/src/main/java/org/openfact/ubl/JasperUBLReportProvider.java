@@ -75,15 +75,6 @@ public class JasperUBLReportProvider implements UBLReportProvider {
                 exporter.setExporterOutput(new SimpleHtmlExporterOutput(out));
                 html = true;
                 break;
-            case CSV:
-                exporter = new JRCsvExporter();
-                break;
-            case XML:
-                exporter = new JRXmlExporter();
-                break;
-            case XLSX:
-                exporter = new JRXlsxExporter();
-                break;
             case PDF:
                 exporter = new JRPdfExporter();
                 break;

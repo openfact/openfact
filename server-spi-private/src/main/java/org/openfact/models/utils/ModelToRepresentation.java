@@ -445,6 +445,7 @@ public class ModelToRepresentation {
     public static SendEventRepresentation toRepresentation(SendEventModel model) {
         SendEventRepresentation rep = new SendEventRepresentation();
         rep.setId(model.getId());
+        rep.setDestinyType(model.getDestityType().toString());
         rep.setResult(model.getResult().toString());
         rep.setDescription(model.getDescription());
         rep.setType(model.getType());
@@ -461,25 +462,25 @@ public class ModelToRepresentation {
             rep.setResponseAttributes(attrs);
         }
 
-        if(model.getFileAttatchments() != null) {
-            rep.setFilesAttatchment(new ArrayList<>());
+        if(model.getFileAttatchments() != null && !model.getFileAttatchments().isEmpty()) {
+            rep.setFileAttachments(new ArrayList<>());
             List<FileRepresentation> filesRep = model.getFileAttatchments().stream().map(f -> {
                 FileRepresentation fileRep = new FileRepresentation();
                 fileRep.setId(f.getId());
                 fileRep.setFileName(f.getFileName());
                 return fileRep;
             }).collect(Collectors.toList());
-            rep.getFilesAttatchment().addAll(filesRep);
+            rep.getFileAttachments().addAll(filesRep);
         }
-        if(model.getResponseFileAttatchments()!= null) {
-            rep.setResponseFilesAttatchment(new ArrayList<>());
+        if(model.getResponseFileAttatchments()!= null && !model.getResponseFileAttatchments().isEmpty()) {
+            rep.setResponseFileAttachments(new ArrayList<>());
             List<FileRepresentation> filesRep = model.getResponseFileAttatchments().stream().map(f -> {
                 FileRepresentation fileRep = new FileRepresentation();
                 fileRep.setId(f.getId());
                 fileRep.setFileName(f.getFileName());
                 return fileRep;
             }).collect(Collectors.toList());
-            rep.getResponseFilesAttatchment().addAll(filesRep);
+            rep.getResponseFileAttachments().addAll(filesRep);
         }
         return rep;
     }

@@ -24,10 +24,14 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.xml.transform.TransformerException;
 
 import com.helger.ubl21.UBL21Reader;
 import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
 import org.jboss.logging.Logger;
+import org.json.XML;
+import org.openfact.OpenfactJSONObject;
+import org.openfact.common.converts.DocumentUtils;
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.file.*;
 import org.openfact.file.FileModel;
@@ -39,6 +43,7 @@ import org.openfact.models.jpa.entities.*;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.SendEventModel;
 import org.openfact.models.enums.RequiredAction;
+import org.w3c.dom.Document;
 
 public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEntity> {
 
@@ -51,6 +56,8 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
 
     protected FileModel xmlFile;
     protected CreditNoteType creditNoteType;
+    protected Document document;
+    protected OpenfactJSONObject jsonObject;
 
     public CreditNoteAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em, CreditNoteEntity creditNote) {
         this.organization = organization;
@@ -172,8 +179,19 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
     }
 
     @Override
-    public FileModel getXmlFile() {
-        if(xmlFile == null && creditNote.getXmlFileId() != null) {
+    public CreditNoteType getCreditNoteType() {
+        if (creditNoteType == null) {
+            FileModel file = getXmlAsFile();
+            if (file != null) {
+                creditNoteType = UBL21Reader.creditNote().read(file.getFile());
+            }
+        }
+        return creditNoteType;
+    }
+
+    @Override
+    public FileModel getXmlAsFile() {
+        if (xmlFile == null && creditNote.getXmlFileId() != null) {
             FileProvider provider = session.getProvider(FileProvider.class);
             xmlFile = provider.getFileById(organization, creditNote.getXmlFileId());
         }
@@ -187,11 +205,34 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
     }
 
     @Override
-    public CreditNoteType getCreditNoteType() {
-        if(creditNoteType == null) {
-            creditNoteType = UBL21Reader.creditNote().read(getXmlFile().getFile());
+    public Document getXmlAsDocument() {
+        if (document == null) {
+            FileModel file = getXmlAsFile();
+            if (file != null) {
+                try {
+                    document = DocumentUtils.byteToDocument(file.getFile());
+                } catch (Exception e) {
+                    throw new ModelException("Error parsing xml file to Document", e);
+                }
+            }
         }
-        return creditNoteType;
+        return document;
+    }
+
+    @Override
+    public OpenfactJSONObject getXmlAsJSONObject() {
+        if (jsonObject == null) {
+            try {
+                Document document = getXmlAsDocument();
+                if (document != null) {
+                    String documentString = DocumentUtils.getDocumentToString(document);
+                    jsonObject = new OpenfactJSONObject(XML.toJSONObject(documentString), ".*:", "").navigate("Invoice");
+                }
+            } catch (TransformerException e) {
+                throw new ModelException("Error parsing xml file to JSON", e);
+            }
+        }
+        return jsonObject;
     }
 
     /**
@@ -340,7 +381,7 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
         CreditNoteSendEventEntity entity = new CreditNoteSendEventEntity();
         entity.setCreatedTimestamp(LocalDateTime.now());
         entity.setResult(SendResultType.ON_PROCESS);
-        entity.setDestityType(destinyType);
+        entity.setDestinyType(destinyType);
         entity.setCreditNote(creditNote);
         em.persist(entity);
         em.flush();
@@ -399,6 +440,126 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
         List<SendEventEntity> results = query.getResultList();
         List<SendEventModel> sendEvents = results.stream().map(f -> new SendEventAdapter(session, em, organization, f)).collect(Collectors.toList());
         return sendEvents;
+    }
+
+    @Override
+    public List<SendEventModel> searchForSendEvent(Map<String, String> params) {
+        return searchForSendEvent(params, -1, -1);
+    }
+
+    @Override
+    public List<SendEventModel> searchForSendEvent(Map<String, String> attributes, int firstResult, int maxResults) {
+        StringBuilder builder = new StringBuilder("select u from CreditNoteSendEventEntity u where u.creditNote.id = :creditNoteId");
+        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+            String attribute = null;
+            String parameterName = null;
+            String operator = null;
+            if (entry.getKey().equals(CreditNoteModel.SEND_EVENT_DESTINY_TYPE)) {
+                attribute = "u.destinyType";
+                parameterName = JpaCreditNoteProvider.SEND_EVENT_DESTINY_TYPE;
+                operator = " = :";
+            } else if (entry.getKey().equals(CreditNoteModel.SEND_EVENT_TYPE)) {
+                attribute = "lower(u.type)";
+                parameterName = JpaCreditNoteProvider.SEND_EVENT_TYPE;
+                operator = " like :";
+            } else if (entry.getKey().equals(CreditNoteModel.SEND_EVENT_RESULT)) {
+                attribute = "u.result";
+                parameterName = JpaCreditNoteProvider.SEND_EVENT_RESULT;
+                operator = " = :";
+            }
+            if (attribute == null) continue;
+            builder.append(" and ");
+            builder.append(attribute).append(operator).append(parameterName);
+        }
+        builder.append(" order by u.createdTimestamp");
+        String q = builder.toString();
+        TypedQuery<CreditNoteSendEventEntity> query = em.createQuery(q, CreditNoteSendEventEntity.class);
+        query.setParameter("creditNoteId", creditNote.getId());
+        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+            String parameterName = null;
+            Object parameterValue = null;
+            if (entry.getKey().equals(CreditNoteModel.SEND_EVENT_DESTINY_TYPE)) {
+                parameterName = JpaCreditNoteProvider.SEND_EVENT_DESTINY_TYPE;
+                parameterValue = DestinyType.valueOf(entry.getValue().toUpperCase());
+            } else if (entry.getKey().equals(CreditNoteModel.SEND_EVENT_TYPE)) {
+                parameterName = JpaCreditNoteProvider.SEND_EVENT_TYPE;
+                parameterValue = "%" + entry.getValue().toLowerCase() + "%";
+            } else if (entry.getKey().equals(CreditNoteModel.SEND_EVENT_RESULT)) {
+                parameterName = JpaCreditNoteProvider.SEND_EVENT_RESULT;
+                parameterValue = SendResultType.valueOf(entry.getValue().toUpperCase());
+            }
+            if (parameterName == null) continue;
+            query.setParameter(parameterName, parameterValue);
+        }
+        if (firstResult != -1) {
+            query.setFirstResult(firstResult);
+        }
+        if (maxResults != -1) {
+            query.setMaxResults(maxResults);
+        }
+        List<CreditNoteSendEventEntity> results = query.getResultList();
+        return results.stream().map(f -> new SendEventAdapter(session, em, organization, f)).collect(Collectors.toList());
+    }
+
+    @Override
+    public int sendEventCount() {
+        Object count = em.createNamedQuery("getCreditNoteSendEventCountByCreditNote")
+                .setParameter("creditNoteId", creditNote.getId())
+                .getSingleResult();
+        return ((Number)count).intValue();
+    }
+
+    @Override
+    public int sendEventCount(Map<String, String> attributes) {
+        StringBuilder builder = new StringBuilder("select count(u) from CreditNoteSendEventEntity u where u.creditNote.id = :creditNoteId");
+        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+            String attribute = null;
+            String parameterName = null;
+            String operator = null;
+            if (entry.getKey().equals(CreditNoteModel.SEND_EVENT_DESTINY_TYPE)) {
+                attribute = "u.destinyType";
+                parameterName = JpaCreditNoteProvider.SEND_EVENT_DESTINY_TYPE;
+                operator = " = :";
+            }
+            if (entry.getKey().equals(CreditNoteModel.SEND_EVENT_TYPE)) {
+                attribute = "lower(u.type)";
+                parameterName = JpaCreditNoteProvider.SEND_EVENT_TYPE;
+                operator = " like :";
+            }
+            if (entry.getKey().equals(CreditNoteModel.SEND_EVENT_RESULT)) {
+                attribute = "u.result";
+                parameterName = JpaCreditNoteProvider.SEND_EVENT_RESULT;
+                operator = " = :";
+            }
+            if (attribute == null) continue;
+            builder.append(" and ");
+            builder.append(attribute).append(operator).append(parameterName);
+        }
+
+        String q = builder.toString();
+        TypedQuery<CreditNoteSendEventEntity> query = em.createQuery(q, CreditNoteSendEventEntity.class);
+        query.setParameter("creditNoteId", creditNote.getId());
+        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+            String parameterName = null;
+            Object parameterValue = null;
+            if (entry.getKey().equals(CreditNoteModel.SEND_EVENT_DESTINY_TYPE)) {
+                parameterName = JpaCreditNoteProvider.SEND_EVENT_DESTINY_TYPE;
+                parameterValue = DestinyType.valueOf(entry.getValue().toUpperCase());
+            }
+            if (entry.getKey().equals(CreditNoteModel.SEND_EVENT_TYPE)) {
+                parameterName = JpaCreditNoteProvider.SEND_EVENT_TYPE;
+                parameterValue = "%" + entry.getValue().toLowerCase() + "%";
+            }
+            if (entry.getKey().equals(CreditNoteModel.SEND_EVENT_RESULT)) {
+                parameterName = JpaCreditNoteProvider.SEND_EVENT_RESULT;
+                parameterValue = SendResultType.valueOf(entry.getValue().toUpperCase());
+            }
+            if (parameterName == null) continue;
+            query.setParameter(parameterName, parameterValue);
+        }
+
+        Object count = query.getSingleResult();
+        return ((Number)count).intValue();
     }
 
     /**

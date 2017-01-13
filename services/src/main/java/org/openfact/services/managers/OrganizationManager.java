@@ -30,6 +30,7 @@ import org.openfact.models.utils.OrganizationImporter;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.OrganizationEventsConfigRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
+import org.openfact.services.scheduled.ExecuteScheduleTasksSessions;
 import org.openfact.timer.TimerDelayProvider;
 
 public class OrganizationManager implements OrganizationImporter {
@@ -150,7 +151,12 @@ public class OrganizationManager implements OrganizationImporter {
     public void schedulePeriodicTask(OrganizationModel organization) {
         if (organization.isTasksEnabled()) {
             TimerDelayProvider timer = session.getProvider(TimerDelayProvider.class);
-            timer.scheduleTask(new OrganizationScheduledTaskRunner(organization), organization.getTaskFirstTime(), organization.getTaskDelay(), getTaskName(organization));
+            timer.schedule(
+                    new OrganizationScheduledTaskRunner(session.getOpenfactSessionFactory(), organization),
+                    organization.getTaskFirstTime(),
+                    organization.getTaskDelay(),
+                    getTaskName(organization)
+            );
         }
     }
 
@@ -159,7 +165,11 @@ public class OrganizationManager implements OrganizationImporter {
         timer.cancelTask(getTaskName(organization));
 
         if (organization.isTasksEnabled()) {
-            timer.scheduleTask(new OrganizationScheduledTaskRunner(organization), organization.getTaskFirstTime(), organization.getTaskDelay(), getTaskName(organization));
+            timer.schedule(new OrganizationScheduledTaskRunner(session.getOpenfactSessionFactory(), organization),
+                    organization.getTaskFirstTime(),
+                    organization.getTaskDelay(),
+                    getTaskName(organization)
+            );
         }
     }
 

@@ -148,7 +148,7 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
                     FileProvider fileProvider = session.getProvider(FileProvider.class);
 
                     // Attatchments
-                    FileModel xmlFile = fileProvider.createFile(organization, debitNote.getDocumentId() + ".xml", debitNote.getXmlFile().getFile());
+                    FileModel xmlFile = fileProvider.createFile(organization, debitNote.getDocumentId() + ".xml", debitNote.getXmlAsFile().getFile());
                     FileMymeTypeModel xmlFileMymeType = new FileMymeTypeModel(xmlFile, "application/xml");
 
                     byte[] pdfFileBytes = session.getProvider(UBLReportProvider.class).debitNote().setOrganization(organization).getReport(debitNote, ExportFormat.PDF);

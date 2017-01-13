@@ -324,7 +324,7 @@ public class SendEventAdapter implements SendEventModel, JpaModel<SendEventEntit
 
     @Override
     public DestinyType getDestityType() {
-        return sendEvent.getDestityType();
+        return sendEvent.getDestinyType();
     }
 
     @Override

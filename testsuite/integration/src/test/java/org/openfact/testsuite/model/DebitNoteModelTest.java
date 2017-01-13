@@ -598,34 +598,34 @@ public class DebitNoteModelTest extends AbstractModelTest {
 		OrganizationModel organization = organizationManager.createOrganization("original");
 		DebitNoteModel debitNote = session.debitNotes().addDebitNote(organization, "debitNote");
 
-		Assert.assertNull(debitNote.getXmlFile());
+		Assert.assertNull(debitNote.getXmlAsFile());
 
 		FileModel file1 = session.getProvider(FileProvider.class).createFile(organization, "file1.xml", new byte[]{0,1,2,3});
 		String file1Id = file1.getId();
 		debitNote.attachXmlFile(file1);
 
-		Assert.assertNotNull(debitNote.getXmlFile());
+		Assert.assertNotNull(debitNote.getXmlAsFile());
 		commit();
 
 		debitNote = session.debitNotes().getDebitNoteByDocumentId(organization, "debitNote");
 
-		Assert.assertNotNull(debitNote.getXmlFile());
-		Assert.assertEquals(debitNote.getXmlFile(), session.getProvider(FileProvider.class).getFileById(organization, file1Id));
+		Assert.assertNotNull(debitNote.getXmlAsFile());
+		Assert.assertEquals(debitNote.getXmlAsFile(), session.getProvider(FileProvider.class).getFileById(organization, file1Id));
 
 		FileModel file2 = session.getProvider(FileProvider.class).createFile(organization, "file2.xml", new byte[]{0,1,2,3,4,5});
 		String file2Id = file2.getId();
 		debitNote.attachXmlFile(file2);
 
-		Assert.assertNotNull(debitNote.getXmlFile());
-		Assert.assertEquals(debitNote.getXmlFile(), session.getProvider(FileProvider.class).getFileById(organization, file2Id));
+		Assert.assertNotNull(debitNote.getXmlAsFile());
+		Assert.assertEquals(debitNote.getXmlAsFile(), session.getProvider(FileProvider.class).getFileById(organization, file2Id));
 
 		commit();
 
 		organization = organizationManager.getOrganizationByName("original");
 		debitNote = session.debitNotes().getDebitNoteByDocumentId(organization, "debitNote");
 
-		Assert.assertNotNull(debitNote.getXmlFile());
-		Assert.assertEquals(debitNote.getXmlFile(), session.getProvider(FileProvider.class).getFileById(organization, file2Id));
+		Assert.assertNotNull(debitNote.getXmlAsFile());
+		Assert.assertEquals(debitNote.getXmlAsFile(), session.getProvider(FileProvider.class).getFileById(organization, file2Id));
 	}
 
 	@Test

@@ -23,8 +23,12 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.UriInfo;
+import javax.xml.transform.TransformerException;
 
 import org.jboss.resteasy.annotations.cache.NoCache;
+import org.json.JSONObject;
+import org.json.XML;
+import org.openfact.OpenfactJSONObject;
 import org.openfact.common.ClientConnection;
 import org.openfact.common.converts.DocumentUtils;
 import org.openfact.events.admin.OperationType;
@@ -35,6 +39,7 @@ import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.report.ExportFormat;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.representations.idm.SendEventRepresentation;
+import org.openfact.representations.idm.ThirdPartyEmailRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.InvoiceManager;
@@ -48,7 +53,9 @@ import org.w3c.dom.Document;
 
 import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
@@ -65,9 +72,6 @@ public class InvoiceAdminResource {
 
     @Context
     protected ClientConnection clientConnection;
-
-    @Context
-    protected HttpHeaders headers;
 
     protected OrganizationModel organization;
     protected InvoiceModel invoice;
@@ -115,44 +119,12 @@ public class InvoiceAdminResource {
             throw new NotFoundException("Invoice not found");
         }
 
-        FileModel xmlFile = invoice.getXmlFile();
-
-        Document document;
-        try {
-            document = DocumentUtils.byteToDocument(xmlFile.getFile());
-        } catch (Exception e) {
-            return ErrorResponse.exists("Invalid xml");
+        OpenfactJSONObject jsonObject = invoice.getXmlAsJSONObject();
+        if (jsonObject != null) {
+            return Response.ok(jsonObject.getJsonObject().toString()).build();
+        } else {
+            return ErrorResponse.exists("No json attached to current invoice");
         }
-
-        InvoiceType type = session.getProvider(UBLInvoiceProvider.class).reader().read(document);
-
-        Response.ResponseBuilder response = Response.ok(type);
-        return response.build();
-    }
-
-    @GET
-    @Path("representation/text")
-    @NoCache
-    @Produces("application/text")
-    public Response getInvoiceAsText() {
-        auth.requireView();
-
-        if (invoice == null) {
-            throw new NotFoundException("Invoice not found");
-        }
-
-        FileModel xmlFile = invoice.getXmlFile();
-
-        String result = null;
-        try {
-            Document document = DocumentUtils.byteToDocument(xmlFile.getFile());
-            result = DocumentUtils.getDocumentToString(document);
-        } catch (Exception e) {
-            return ErrorResponse.exists("Invalid xml");
-        }
-
-        Response.ResponseBuilder response = Response.ok(result);
-        return response.build();
     }
 
     @GET
@@ -166,17 +138,12 @@ public class InvoiceAdminResource {
             throw new NotFoundException("Invoice not found");
         }
 
-        FileModel xmlFile = invoice.getXmlFile();
-
-        Document result = null;
-        try {
-            result = DocumentUtils.byteToDocument(xmlFile.getFile());
-        } catch (Exception e) {
-            return ErrorResponse.exists("Invalid xml parser");
+        Document document = invoice.getXmlAsDocument();
+        if (document != null) {
+            return Response.ok(document).build();
+        } else {
+            return ErrorResponse.exists("No xml document attached to current invoice");
         }
-
-        Response.ResponseBuilder response = Response.ok((Object) result);
-        return response.build();
     }
 
     /**
@@ -187,7 +154,7 @@ public class InvoiceAdminResource {
      * @summary Get the byte[] with the specified invoiceId
      */
     @GET
-    @Path("representation/pdf")
+    @Path("report")
     public Response getPdf(
             @QueryParam("theme") String theme,
             @QueryParam("format") @DefaultValue("pdf") String format) throws Exception {
@@ -200,31 +167,19 @@ public class InvoiceAdminResource {
 
         ExportFormat exportFormat = ExportFormat.valueOf(format.toUpperCase());
 
-        UBLReportProvider reportProvider = session.getProvider(UBLReportProvider.class);
-        byte[] reportBytes = reportProvider.invoice()
+        byte[] reportBytes = session.getProvider(UBLReportProvider.class).invoice()
                 .setOrganization(organization)
                 .setThemeName(theme)
                 .getReport(invoice, exportFormat);
 
         ResponseBuilder response = Response.ok(reportBytes);
-
         switch (exportFormat) {
             case PDF:
                 response.type("application/pdf");
                 response.header("content-disposition", "attachment; filename=\"" + invoice.getDocumentId() + ".pdf\"");
                 break;
-            case CSV:
-                response.type("application/csv");
-                response.header("content-disposition", "attachment; filename=\"" + invoice.getDocumentId() + ".csv\"");
-                break;
             case HTML:
                 response.type("application/html");
-                break;
-            case XML:
-                response.type("application/xml");
-                break;
-            case XLSX:
-                response.type("application/xlsx");
                 break;
         }
         return response.build();
@@ -297,7 +252,7 @@ public class InvoiceAdminResource {
     @Path("send-to-third-party")
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    public void sendToThridParty() {
+    public void sendToThirdParty() {
         auth.requireManage();
 
         if (invoice == null) {
@@ -334,17 +289,88 @@ public class InvoiceAdminResource {
         }
     }
 
+    @POST
+    @Path("send-to-third-party-by-email")
+    @NoCache
+    @Produces(MediaType.APPLICATION_JSON)
+    public void sendToThirdPartyByEmail(ThirdPartyEmailRepresentation thirdParty) {
+        auth.requireManage();
+
+        if (invoice == null) {
+            throw new NotFoundException("Invoice not found");
+        }
+
+        if (thirdParty == null || thirdParty.getEmail() == null) {
+            throw new BadRequestException("Invalid email sended");
+        }
+
+        SendEventModel sendEvent = invoice.addSendEvent(DestinyType.THIRD_PARTY_BY_EMAIL);
+
+        // Thread
+        ExecutorService executorService = null;
+        try {
+            executorService = Executors.newCachedThreadPool();
+
+            ScheduledTaskRunner scheduledTaskRunner = new ScheduledTaskRunner(session.getOpenfactSessionFactory(), new ScheduledTask() {
+                @Override
+                public void run(OpenfactSession session) {
+                    InvoiceManager invoiceManager = new InvoiceManager(session);
+                    try {
+                        OrganizationModel organizationThread = session.organizations().getOrganization(organization.getId());
+                        InvoiceModel invoiceThread = session.invoices().getInvoiceById(organizationThread, invoice.getId());
+                        SendEventModel sendEventThread = invoiceThread.getSendEventById(sendEvent.getId());
+
+                        invoiceManager.sendToThirdPartyByEmail(organizationThread, invoiceThread, sendEventThread, thirdParty.getEmail());
+                    } catch (SendException e) {
+                        throw new InternalServerErrorException(e);
+                    }
+                }
+            });
+            executorService.execute(scheduledTaskRunner);
+        } finally {
+            if (executorService != null) {
+                executorService.shutdown();
+            }
+        }
+    }
+
     @GET
     @Path("send-events")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<SendEventRepresentation> getSendEvents() {
+    public List<SendEventRepresentation> getSendEvents(
+            @QueryParam("destinyType") String destinyType,
+            @QueryParam("type") String type,
+            @QueryParam("result") String result,
+            @QueryParam("first") Integer firstResult,
+            @QueryParam("max") Integer maxResults) {
+
         auth.requireView();
 
         if (invoice == null) {
             throw new NotFoundException("Invoice not found");
         }
 
-        return invoice.getSendEvents().stream()
+        firstResult = firstResult != null ? firstResult : -1;
+        maxResults = maxResults != null ? maxResults : Constants.DEFAULT_MAX_RESULTS;
+
+        List<SendEventModel> sendEventModels;
+        if (destinyType != null || type != null || result != null) {
+            Map<String, String> attributes = new HashMap<>();
+            if (destinyType != null) {
+                attributes.put(InvoiceModel.SEND_EVENT_DESTINY_TYPE, destinyType);
+            }
+            if (type != null) {
+                attributes.put(InvoiceModel.SEND_EVENT_TYPE, type);
+            }
+            if (result != null) {
+                attributes.put(InvoiceModel.SEND_EVENT_RESULT, result);
+            }
+            sendEventModels = invoice.searchForSendEvent(attributes, firstResult, maxResults);
+        } else {
+            sendEventModels = invoice.getSendEvents(firstResult, maxResults);
+        }
+
+        return sendEventModels.stream()
                 .map(f -> ModelToRepresentation.toRepresentation(f))
                 .collect(Collectors.toList());
     }

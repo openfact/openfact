@@ -16,12 +16,7 @@
  *******************************************************************************/
 package org.openfact.services.resources.admin;
 
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
@@ -32,41 +27,57 @@ import javax.ws.rs.core.UriInfo;
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.json.JSONObject;
 import org.json.XML;
+import org.openfact.OpenfactJSONObject;
 import org.openfact.common.ClientConnection;
 import org.openfact.common.converts.DocumentUtils;
 import org.openfact.events.admin.OperationType;
-import org.openfact.models.DebitNoteModel;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
+import org.openfact.models.*;
+import org.openfact.models.enums.DestinyType;
 import org.openfact.models.utils.ModelToRepresentation;
+import org.openfact.report.ExportFormat;
 import org.openfact.report.ReportTemplateProvider;
 import org.openfact.report.ReportTheme;
 import org.openfact.report.ReportThemeProvider;
 import org.openfact.representations.idm.DebitNoteRepresentation;
+import org.openfact.representations.idm.SendEventRepresentation;
+import org.openfact.representations.idm.ThirdPartyEmailRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.DebitNoteManager;
+import org.openfact.services.managers.DebitNoteManager;
+import org.openfact.services.scheduled.ScheduledTaskRunner;
+import org.openfact.timer.ScheduledTask;
+import org.openfact.ubl.UBLReportProvider;
 import org.w3c.dom.Document;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
 
 public class DebitNoteAdminResource {
 
     private static final ServicesLogger logger = ServicesLogger.LOGGER;
-
-    protected OrganizationModel organization;
-    protected DebitNoteModel debitNote;
+    
     @Context
     protected UriInfo uriInfo;
+    
     @Context
     protected OpenfactSession session;
+    
     @Context
     protected ClientConnection clientConnection;
     @Context
-    protected HttpHeaders headers;
+
+    protected OrganizationModel organization;
+    protected DebitNoteModel debitNote;
+    
     private OrganizationAuth auth;
     private AdminEventBuilder adminEvent;
 
-    public DebitNoteAdminResource(OrganizationModel organization, OrganizationAuth auth,
-            AdminEventBuilder adminEvent, DebitNoteModel debitNote) {
+    public DebitNoteAdminResource(OrganizationModel organization, OrganizationAuth auth, AdminEventBuilder adminEvent, DebitNoteModel debitNote) {
         this.auth = auth;
         this.organization = organization;
         this.adminEvent = adminEvent;
@@ -88,7 +99,7 @@ public class DebitNoteAdminResource {
         auth.requireView();
 
         if (debitNote == null) {
-            throw new NotFoundException("DebitNote not found");
+            throw new NotFoundException("Debit Note not found");
         }
 
         DebitNoteRepresentation rep = ModelToRepresentation.toRepresentation(debitNote);
@@ -106,40 +117,12 @@ public class DebitNoteAdminResource {
             throw new NotFoundException("DebitNote not found");
         }
 
-        JSONObject result = null;
-        try {
-            Document document = DocumentUtils.byteToDocument(debitNote.getXmlFile().getFile());
-            String text = DocumentUtils.getDocumentToString(document);
-            result = XML.toJSONObject(text);
-        } catch (Exception e) {
-            return ErrorResponse.exists("Invalid xml");
+        OpenfactJSONObject jsonObject = debitNote.getXmlAsJSONObject();
+        if (jsonObject != null) {
+            return Response.ok(jsonObject.getJsonObject().toString()).build();
+        } else {
+            return ErrorResponse.exists("No json attached to current debit note");
         }
-
-        Response.ResponseBuilder response = Response.ok(result);
-        return response.build();
-    }
-
-    @GET
-    @Path("representation/text")
-    @NoCache
-    @Produces("application/text")
-    public Response getDebitNoteAsText() {
-        auth.requireView();
-
-        if (debitNote == null) {
-            throw new NotFoundException("DebitNote not found");
-        }
-
-        String result = null;
-        try {
-            Document document = DocumentUtils.byteToDocument(debitNote.getXmlFile().getFile());
-            result = DocumentUtils.getDocumentToString(document);
-        } catch (Exception e) {
-            return ErrorResponse.exists("Invalid xml");
-        }
-
-        Response.ResponseBuilder response = Response.ok(result);
-        return response.build();
     }
 
     @GET
@@ -150,20 +133,56 @@ public class DebitNoteAdminResource {
         auth.requireView();
 
         if (debitNote == null) {
-            throw new NotFoundException("DebitNote not found");
+            throw new NotFoundException("Debit Note not found");
         }
 
-        Document result = null;
-        try {
-            result = DocumentUtils.byteToDocument(debitNote.getXmlFile().getFile());
-        } catch (Exception e) {
-            return ErrorResponse.exists("Invalid xml parser");
+        Document document = debitNote.getXmlAsDocument();
+        if (document != null) {
+            return Response.ok(document).build();
+        } else {
+            return ErrorResponse.exists("No xml document attached to current debit note");
         }
-
-        Response.ResponseBuilder response = Response.ok((Object) result);
-        return response.build();
     }
 
+    /**
+     * Get the debitNote report with the specified debitNoteId.
+     *
+     * @return The byte[] with the specified debitNoteId
+     * @throws Exception
+     * @summary Get the byte[] with the specified debitNoteId
+     */
+    @GET
+    @Path("report")
+    public Response getPdf(
+            @QueryParam("theme") String theme,
+            @QueryParam("format") @DefaultValue("pdf") String format) throws Exception {
+
+        auth.requireView();
+
+        if (debitNote == null) {
+            throw new NotFoundException("Debit Note not found");
+        }
+
+        ExportFormat exportFormat = ExportFormat.valueOf(format.toUpperCase());
+
+        byte[] reportBytes = session.getProvider(UBLReportProvider.class).debitNote()
+                .setOrganization(organization)
+                .setThemeName(theme)
+                .getReport(debitNote, exportFormat);
+
+        ResponseBuilder response = Response.ok(reportBytes);
+        switch (exportFormat) {
+            case PDF:
+                response.type("application/pdf");
+                response.header("content-disposition", "attachment; filename=\"" + debitNote.getDocumentId() + ".pdf\"");
+                break;
+            case HTML:
+                response.type("application/html");
+                break;
+        }
+        return response.build();
+    }
+    
     /**
      * Deletes debitNote with given debitNoteId.
      *
@@ -185,6 +204,174 @@ public class DebitNoteAdminResource {
         } else {
             return ErrorResponse.error("DebitNote couldn't be deleted", Response.Status.BAD_REQUEST);
         }
+    }
+
+    @POST
+    @Path("send-to-customer")
+    @NoCache
+    @Produces(MediaType.APPLICATION_JSON)
+    public void sendToCustomer() {
+        auth.requireManage();
+
+        if (debitNote == null) {
+            throw new NotFoundException("DebitNote not found");
+        }
+
+        SendEventModel sendEvent = debitNote.addSendEvent(DestinyType.CUSTOMER);
+
+        // Thread
+        ExecutorService executorService = null;
+        try {
+            executorService = Executors.newCachedThreadPool();
+
+            ScheduledTaskRunner scheduledTaskRunner = new ScheduledTaskRunner(session.getOpenfactSessionFactory(), new ScheduledTask() {
+                @Override
+                public void run(OpenfactSession session) {
+                    DebitNoteManager debitNoteManager = new DebitNoteManager(session);
+                    try {
+                        OrganizationModel organizationThread = session.organizations().getOrganization(organization.getId());
+                        DebitNoteModel debitNoteThread = session.debitNotes().getDebitNoteById(organizationThread, debitNote.getId());
+                        SendEventModel sendEventThread = debitNoteThread.getSendEventById(sendEvent.getId());
+
+                        debitNoteManager.sendToCustomerParty(organizationThread, debitNoteThread, sendEventThread);
+                    } catch (SendException e) {
+                        throw new InternalServerErrorException(e);
+                    }
+                }
+            });
+            executorService.execute(scheduledTaskRunner);
+        } finally {
+            if (executorService != null) {
+                executorService.shutdown();
+            }
+        }
+    }
+
+    @POST
+    @Path("send-to-third-party")
+    @NoCache
+    @Produces(MediaType.APPLICATION_JSON)
+    public void sendToThirdParty() {
+        auth.requireManage();
+
+        if (debitNote == null) {
+            throw new NotFoundException("DebitNote not found");
+        }
+
+        SendEventModel sendEvent = debitNote.addSendEvent(DestinyType.CUSTOMER);
+
+        // Thread
+        ExecutorService executorService = null;
+        try {
+            executorService = Executors.newCachedThreadPool();
+
+            ScheduledTaskRunner scheduledTaskRunner = new ScheduledTaskRunner(session.getOpenfactSessionFactory(), new ScheduledTask() {
+                @Override
+                public void run(OpenfactSession session) {
+                    DebitNoteManager debitNoteManager = new DebitNoteManager(session);
+                    try {
+                        OrganizationModel organizationThread = session.organizations().getOrganization(organization.getId());
+                        DebitNoteModel debitNoteThread = session.debitNotes().getDebitNoteById(organizationThread, debitNote.getId());
+                        SendEventModel sendEventThread = debitNoteThread.getSendEventById(sendEvent.getId());
+
+                        debitNoteManager.sendToTrirdParty(organizationThread, debitNoteThread, sendEventThread);
+                    } catch (SendException e) {
+                        throw new InternalServerErrorException(e);
+                    }
+                }
+            });
+            executorService.execute(scheduledTaskRunner);
+        } finally {
+            if (executorService != null) {
+                executorService.shutdown();
+            }
+        }
+    }
+
+    @POST
+    @Path("send-to-third-party-by-email")
+    @NoCache
+    @Produces(MediaType.APPLICATION_JSON)
+    public void sendToThirdPartyByEmail(ThirdPartyEmailRepresentation thirdParty) {
+        auth.requireManage();
+
+        if (debitNote == null) {
+            throw new NotFoundException("DebitNote not found");
+        }
+
+        if (thirdParty == null || thirdParty.getEmail() == null) {
+            throw new BadRequestException("Invalid email sended");
+        }
+
+        SendEventModel sendEvent = debitNote.addSendEvent(DestinyType.THIRD_PARTY_BY_EMAIL);
+
+        // Thread
+        ExecutorService executorService = null;
+        try {
+            executorService = Executors.newCachedThreadPool();
+
+            ScheduledTaskRunner scheduledTaskRunner = new ScheduledTaskRunner(session.getOpenfactSessionFactory(), new ScheduledTask() {
+                @Override
+                public void run(OpenfactSession session) {
+                    DebitNoteManager debitNoteManager = new DebitNoteManager(session);
+                    try {
+                        OrganizationModel organizationThread = session.organizations().getOrganization(organization.getId());
+                        DebitNoteModel debitNoteThread = session.debitNotes().getDebitNoteById(organizationThread, debitNote.getId());
+                        SendEventModel sendEventThread = debitNoteThread.getSendEventById(sendEvent.getId());
+
+                        debitNoteManager.sendToThirdPartyByEmail(organizationThread, debitNoteThread, sendEventThread, thirdParty.getEmail());
+                    } catch (SendException e) {
+                        throw new InternalServerErrorException(e);
+                    }
+                }
+            });
+            executorService.execute(scheduledTaskRunner);
+        } finally {
+            if (executorService != null) {
+                executorService.shutdown();
+            }
+        }
+    }
+
+    @GET
+    @Path("send-events")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<SendEventRepresentation> getSendEvents(
+            @QueryParam("destinyType") String destinyType,
+            @QueryParam("type") String type,
+            @QueryParam("result") String result,
+            @QueryParam("first") Integer firstResult,
+            @QueryParam("max") Integer maxResults) {
+
+        auth.requireView();
+
+        if (debitNote == null) {
+            throw new NotFoundException("DebitNote not found");
+        }
+
+        firstResult = firstResult != null ? firstResult : -1;
+        maxResults = maxResults != null ? maxResults : Constants.DEFAULT_MAX_RESULTS;
+
+        List<SendEventModel> sendEventModels;
+        if (destinyType != null || type != null || result != null) {
+            Map<String, String> attributes = new HashMap<>();
+            if (destinyType != null) {
+                attributes.put(DebitNoteModel.SEND_EVENT_DESTINY_TYPE, destinyType);
+            }
+            if (type != null) {
+                attributes.put(DebitNoteModel.SEND_EVENT_TYPE, type);
+            }
+            if (result != null) {
+                attributes.put(DebitNoteModel.SEND_EVENT_RESULT, result);
+            }
+            sendEventModels = debitNote.searchForSendEvent(attributes, firstResult, maxResults);
+        } else {
+            sendEventModels = debitNote.getSendEvents(firstResult, maxResults);
+        }
+
+        return sendEventModels.stream()
+                .map(f -> ModelToRepresentation.toRepresentation(f))
+                .collect(Collectors.toList());
     }
 
 }

@@ -149,7 +149,7 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
                     FileProvider fileProvider = session.getProvider(FileProvider.class);
 
                     // Attatchments
-                    FileModel xmlFile = fileProvider.createFile(organization, creditNote.getDocumentId() + ".xml", creditNote.getXmlFile().getFile());
+                    FileModel xmlFile = fileProvider.createFile(organization, creditNote.getDocumentId() + ".xml", creditNote.getXmlAsFile().getFile());
                     FileMymeTypeModel xmlFileMymeType = new FileMymeTypeModel(xmlFile, "application/xml");
 
                     byte[] pdfFileBytes = session.getProvider(UBLReportProvider.class).creditNote().setOrganization(organization).getReport(creditNote, ExportFormat.PDF);

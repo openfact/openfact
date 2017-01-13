@@ -39,8 +39,8 @@ public class SendEventEntity {
     private String id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "DESTITY_TYPE")
-    private DestinyType destityType;
+    @Column(name = "DESTINY_TYPE")
+    private DestinyType destinyType;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "RESULT")
@@ -99,12 +99,12 @@ public class SendEventEntity {
         this.id = id;
     }
 
-    public DestinyType getDestityType() {
-        return destityType;
+    public DestinyType getDestinyType() {
+        return destinyType;
     }
 
-    public void setDestityType(DestinyType destityType) {
-        this.destityType = destityType;
+    public void setDestinyType(DestinyType destinyType) {
+        this.destinyType = destinyType;
     }
 
     public SendResultType getResult() {

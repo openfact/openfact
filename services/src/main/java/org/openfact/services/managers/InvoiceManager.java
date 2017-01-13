@@ -24,20 +24,23 @@ import javax.xml.transform.TransformerException;
 
 import org.jboss.logging.Logger;
 import org.openfact.common.converts.DocumentUtils;
+import org.openfact.email.EmailException;
+import org.openfact.email.EmailTemplateProvider;
 import org.openfact.file.FileModel;
+import org.openfact.file.FileMymeTypeModel;
 import org.openfact.file.FileProvider;
-import org.openfact.models.InvoiceModel;
-import org.openfact.models.InvoiceProvider;
-import org.openfact.models.ModelException;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.SendEventModel;
+import org.openfact.models.*;
+import org.openfact.models.enums.DestinyType;
 import org.openfact.models.enums.RequiredAction;
+import org.openfact.models.enums.SendResultType;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.utils.TypeToModel;
-import org.openfact.models.SendException;
+import org.openfact.report.ExportFormat;
+import org.openfact.report.ReportException;
+import org.openfact.representations.idm.ThirdPartyEmailRepresentation;
 import org.openfact.ubl.SignerProvider;
 import org.openfact.ubl.UBLInvoiceProvider;
+import org.openfact.ubl.UBLReportProvider;
 import org.w3c.dom.Document;
 
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.IDType;
@@ -145,4 +148,65 @@ public class InvoiceManager {
         }
     }
 
+    public SendEventModel sendToThirdPartyByEmail(OrganizationModel organization, InvoiceModel invoice, String email) throws SendException {
+        return sendToThirdPartyByEmail(organization, invoice, invoice.addSendEvent(DestinyType.CUSTOMER), email);
+    }
+
+    public SendEventModel sendToThirdPartyByEmail(OrganizationModel organization, InvoiceModel invoice, SendEventModel sendEvent, String email) throws SendException {
+        sendEvent.setType("EMAIL");
+
+        if (organization.getSmtpConfig().size() == 0) {
+            sendEvent.setResult(SendResultType.ERROR);
+            sendEvent.setDescription("Could not find a valid smtp configuration on organization.");
+            return sendEvent;
+        }
+
+        // User where the email will be send
+        UserSenderModel user = new UserSenderModel() {
+            @Override
+            public String getFullName() {
+                return "";
+            }
+
+            @Override
+            public String getEmail() {
+                return email;
+            }
+        };
+
+        try {
+            FileProvider fileProvider = session.getProvider(FileProvider.class);
+
+            // Attatchments
+            FileModel xmlFile = fileProvider.createFile(organization, OpenfactModelUtils.generateId() + ".xml", invoice.getXmlAsFile().getFile());
+            FileMymeTypeModel xmlFileMymeType = new FileMymeTypeModel(xmlFile, "application/xml");
+
+            byte[] pdfFileBytes = session.getProvider(UBLReportProvider.class).invoice().setOrganization(organization).getReport(invoice, ExportFormat.PDF);
+            FileModel pdfFile = fileProvider.createFile(organization, OpenfactModelUtils.generateId() + ".pdf", pdfFileBytes);
+            FileMymeTypeModel pdfFileMymeType = new FileMymeTypeModel(pdfFile, "application/pdf");
+
+            session.getProvider(EmailTemplateProvider.class)
+                    .setOrganization(organization).setUser(user)
+                    .setAttachments(Arrays.asList(xmlFileMymeType, pdfFileMymeType))
+                    .sendInvoice(invoice);
+
+            // Write event to the database
+            sendEvent.setDescription("Ivoice successfully sended");
+            sendEvent.attachFile(xmlFile);
+            sendEvent.attachFile(pdfFile);
+            sendEvent.setResult(SendResultType.SUCCESS);
+
+            sendEvent.setSingleDestinyAttribute("email", user.getEmail());
+
+            return sendEvent;
+        } catch (ReportException e) {
+            sendEvent.setResult(SendResultType.ERROR);
+            sendEvent.setDescription("Internal Server Error on generate report");
+            throw new SendException("Could not generate pdf report", e);
+        } catch (EmailException e) {
+            sendEvent.setResult(SendResultType.ERROR);
+            sendEvent.setDescription("Internal Server Error on send email");
+            throw new SendException("Could not send email", e);
+        }
+    }
 }

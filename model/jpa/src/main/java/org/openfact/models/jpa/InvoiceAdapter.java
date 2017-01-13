@@ -16,6 +16,7 @@
  *******************************************************************************/
 package org.openfact.models.jpa;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -24,10 +25,15 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 
 import com.helger.ubl21.UBL21Reader;
 import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 import org.jboss.logging.Logger;
+import org.json.XML;
+import org.openfact.OpenfactJSONObject;
+import org.openfact.common.converts.DocumentUtils;
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.file.*;
 import org.openfact.file.FileModel;
@@ -39,6 +45,7 @@ import org.openfact.models.jpa.entities.*;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.SendEventModel;
 import org.openfact.models.enums.RequiredAction;
+import org.w3c.dom.Document;
 
 public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 
@@ -51,6 +58,8 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 
     protected FileModel xmlFile;
     protected InvoiceType invoiceType;
+    protected Document document;
+    protected OpenfactJSONObject jsonObject;
 
     public InvoiceAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em, InvoiceEntity invoice) {
         this.organization = organization;
@@ -65,7 +74,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
         }
         return em.getReference(InvoiceEntity.class, model.getId());
     }
-    
+
     @Override
     public InvoiceEntity getEntity() {
         return invoice;
@@ -80,7 +89,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     public String getDocumentId() {
         return invoice.getDocumentId();
     }
-    
+
     @Override
     public LocalDateTime getCreatedTimestamp() {
         return invoice.getCreatedTimestamp();
@@ -193,15 +202,18 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 
     @Override
     public InvoiceType getInvoiceType() {
-        if(invoiceType == null) {
-            invoiceType = UBL21Reader.invoice().read(getXmlFile().getFile());
+        if (invoiceType == null) {
+            FileModel file = getXmlAsFile();
+            if (file != null) {
+                invoiceType = UBL21Reader.invoice().read(file.getFile());
+            }
         }
         return invoiceType;
     }
 
     @Override
-    public FileModel getXmlFile() {
-        if(xmlFile == null && invoice.getXmlFileId() != null) {
+    public FileModel getXmlAsFile() {
+        if (xmlFile == null && invoice.getXmlFileId() != null) {
             FileProvider provider = session.getProvider(FileProvider.class);
             xmlFile = provider.getFileById(organization, invoice.getXmlFileId());
         }
@@ -214,8 +226,40 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
         invoice.setXmlFileId(xmlFile.getId());
     }
 
+    @Override
+    public Document getXmlAsDocument() {
+        if (document == null) {
+            FileModel file = getXmlAsFile();
+            if (file != null) {
+                try {
+                    document = DocumentUtils.byteToDocument(file.getFile());
+                } catch (Exception e) {
+                    throw new ModelException("Error parsing xml file to Document", e);
+                }
+            }
+        }
+        return document;
+    }
+
+    @Override
+    public OpenfactJSONObject getXmlAsJSONObject() {
+        if (jsonObject == null) {
+            try {
+                Document document = getXmlAsDocument();
+                if (document != null) {
+                    String documentString = DocumentUtils.getDocumentToString(document);
+                    jsonObject = new OpenfactJSONObject(XML.toJSONObject(documentString), ".*:", "").navigate("Invoice");
+                }
+            } catch (TransformerException e) {
+                throw new ModelException("Error parsing xml file to JSON", e);
+            }
+        }
+        return jsonObject;
+    }
+
     /**
-     * Attributes*/
+     * Attributes
+     */
     @Override
     public void setSingleAttribute(String name, String value) {
         String firstExistingAttrId = null;
@@ -317,7 +361,8 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     /**
-     * Required actions*/
+     * Required actions
+     */
     @Override
     public Set<String> getRequiredActions() {
         Set<String> result = new HashSet<>();
@@ -366,13 +411,14 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     /**
-     * Send events*/
+     * Send events
+     */
     @Override
     public SendEventModel addSendEvent(DestinyType destinyType) {
         InvoiceSendEventEntity entity = new InvoiceSendEventEntity();
         entity.setCreatedTimestamp(LocalDateTime.now());
         entity.setResult(SendResultType.ON_PROCESS);
-        entity.setDestityType(destinyType);
+        entity.setDestinyType(destinyType);
         entity.setInvoice(invoice);
         em.persist(entity);
         em.flush();
@@ -383,7 +429,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     @Override
     public SendEventModel getSendEventById(String id) {
         SendEventEntity entity = em.find(SendEventEntity.class, id);
-        if(entity != null) {
+        if (entity != null) {
             return new SendEventAdapter(session, em, organization, entity);
         }
         return null;
@@ -433,8 +479,129 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
         return sendEvents;
     }
 
+    @Override
+    public List<SendEventModel> searchForSendEvent(Map<String, String> params) {
+        return searchForSendEvent(params, -1, -1);
+    }
+
+    @Override
+    public List<SendEventModel> searchForSendEvent(Map<String, String> attributes, int firstResult, int maxResults) {
+        StringBuilder builder = new StringBuilder("select u from InvoiceSendEventEntity u where u.invoice.id = :invoiceId");
+        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+            String attribute = null;
+            String parameterName = null;
+            String operator = null;
+            if (entry.getKey().equals(InvoiceModel.SEND_EVENT_DESTINY_TYPE)) {
+                attribute = "u.destinyType";
+                parameterName = JpaInvoiceProvider.SEND_EVENT_DESTINY_TYPE;
+                operator = " = :";
+            } else if (entry.getKey().equals(InvoiceModel.SEND_EVENT_TYPE)) {
+                attribute = "lower(u.type)";
+                parameterName = JpaInvoiceProvider.SEND_EVENT_TYPE;
+                operator = " like :";
+            } else if (entry.getKey().equals(InvoiceModel.SEND_EVENT_RESULT)) {
+                attribute = "u.result";
+                parameterName = JpaInvoiceProvider.SEND_EVENT_RESULT;
+                operator = " = :";
+            }
+            if (attribute == null) continue;
+            builder.append(" and ");
+            builder.append(attribute).append(operator).append(parameterName);
+        }
+        builder.append(" order by u.createdTimestamp");
+        String q = builder.toString();
+        TypedQuery<InvoiceSendEventEntity> query = em.createQuery(q, InvoiceSendEventEntity.class);
+        query.setParameter("invoiceId", invoice.getId());
+        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+            String parameterName = null;
+            Object parameterValue = null;
+            if (entry.getKey().equals(InvoiceModel.SEND_EVENT_DESTINY_TYPE)) {
+                parameterName = JpaInvoiceProvider.SEND_EVENT_DESTINY_TYPE;
+                parameterValue = DestinyType.valueOf(entry.getValue().toUpperCase());
+            } else if (entry.getKey().equals(InvoiceModel.SEND_EVENT_TYPE)) {
+                parameterName = JpaInvoiceProvider.SEND_EVENT_TYPE;
+                parameterValue = "%" + entry.getValue().toLowerCase() + "%";
+            } else if (entry.getKey().equals(InvoiceModel.SEND_EVENT_RESULT)) {
+                parameterName = JpaInvoiceProvider.SEND_EVENT_RESULT;
+                parameterValue = SendResultType.valueOf(entry.getValue().toUpperCase());
+            }
+            if (parameterName == null) continue;
+            query.setParameter(parameterName, parameterValue);
+        }
+        if (firstResult != -1) {
+            query.setFirstResult(firstResult);
+        }
+        if (maxResults != -1) {
+            query.setMaxResults(maxResults);
+        }
+        List<InvoiceSendEventEntity> results = query.getResultList();
+        return results.stream().map(f -> new SendEventAdapter(session, em, organization, f)).collect(Collectors.toList());
+    }
+
+    @Override
+    public int sendEventCount() {
+        Object count = em.createNamedQuery("getInvoiceSendEventCountByInvoice")
+                .setParameter("invoiceId", invoice.getId())
+                .getSingleResult();
+        return ((Number)count).intValue();
+    }
+
+    @Override
+    public int sendEventCount(Map<String, String> attributes) {
+        StringBuilder builder = new StringBuilder("select count(u) from InvoiceSendEventEntity u where u.invoice.id = :invoiceId");
+        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+            String attribute = null;
+            String parameterName = null;
+            String operator = null;
+            if (entry.getKey().equals(InvoiceModel.SEND_EVENT_DESTINY_TYPE)) {
+                attribute = "u.destinyType";
+                parameterName = JpaInvoiceProvider.SEND_EVENT_DESTINY_TYPE;
+                operator = " = :";
+            }
+            if (entry.getKey().equals(InvoiceModel.SEND_EVENT_TYPE)) {
+                attribute = "lower(u.type)";
+                parameterName = JpaInvoiceProvider.SEND_EVENT_TYPE;
+                operator = " like :";
+            }
+            if (entry.getKey().equals(InvoiceModel.SEND_EVENT_RESULT)) {
+                attribute = "u.result";
+                parameterName = JpaInvoiceProvider.SEND_EVENT_RESULT;
+                operator = " = :";
+            }
+            if (attribute == null) continue;
+            builder.append(" and ");
+            builder.append(attribute).append(operator).append(parameterName);
+        }
+
+        String q = builder.toString();
+        TypedQuery<InvoiceSendEventEntity> query = em.createQuery(q, InvoiceSendEventEntity.class);
+        query.setParameter("invoiceId", invoice.getId());
+        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+            String parameterName = null;
+            Object parameterValue = null;
+            if (entry.getKey().equals(InvoiceModel.SEND_EVENT_DESTINY_TYPE)) {
+                parameterName = JpaInvoiceProvider.SEND_EVENT_DESTINY_TYPE;
+                parameterValue = DestinyType.valueOf(entry.getValue().toUpperCase());
+            }
+            if (entry.getKey().equals(InvoiceModel.SEND_EVENT_TYPE)) {
+                parameterName = JpaInvoiceProvider.SEND_EVENT_TYPE;
+                parameterValue = "%" + entry.getValue().toLowerCase() + "%";
+            }
+            if (entry.getKey().equals(InvoiceModel.SEND_EVENT_RESULT)) {
+                parameterName = JpaInvoiceProvider.SEND_EVENT_RESULT;
+                parameterValue = SendResultType.valueOf(entry.getValue().toUpperCase());
+            }
+            if (parameterName == null) continue;
+            query.setParameter(parameterName, parameterValue);
+        }
+
+        Object count = query.getSingleResult();
+        return ((Number)count).intValue();
+    }
+
     /**
-     * Attatched documents*/
+     * Attatched documents
+     */
     @Override
     public List<AttatchedDocumentModel> getAttatchedDocuments() {
         return invoice.getAttatchedDocuments().stream().map(f -> new AttatchedDocumentAdapter(session, organization, em, f)).collect(Collectors.toList());
@@ -443,7 +610,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     @Override
     public AttatchedDocumentModel getAttatchedDocumentById(String id) {
         InvoiceAttatchedDocumentEntity entity = em.find(InvoiceAttatchedDocumentEntity.class, id);
-        if(entity == null) return null;
+        if (entity == null) return null;
         return new AttatchedDocumentAdapter(session, organization, em, entity);
     }
 
@@ -487,5 +654,5 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     public int hashCode() {
         return getId().hashCode();
     }
-    
+
 }

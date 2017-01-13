@@ -148,7 +148,7 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
                     FileProvider fileProvider = session.getProvider(FileProvider.class);
 
                     // Attatchments
-                    FileModel xmlFile = fileProvider.createFile(organization, invoice.getDocumentId() + ".xml", invoice.getXmlFile().getFile());
+                    FileModel xmlFile = fileProvider.createFile(organization, invoice.getDocumentId() + ".xml", invoice.getXmlAsFile().getFile());
                     FileMymeTypeModel xmlFileMymeType = new FileMymeTypeModel(xmlFile, "application/xml");
 
                     byte[] pdfFileBytes = session.getProvider(UBLReportProvider.class).invoice().setOrganization(organization).getReport(invoice, ExportFormat.PDF);

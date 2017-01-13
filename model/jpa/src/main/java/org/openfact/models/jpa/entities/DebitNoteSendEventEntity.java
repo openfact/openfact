@@ -23,6 +23,7 @@ import javax.validation.constraints.NotNull;
 @DiscriminatorValue(value = "DEBIT_NOTE")
 @NamedQueries(value = {
         @NamedQuery(name = "getAllSendEventByDebitNoteId", query = "select s from DebitNoteSendEventEntity s where debitNote.id=:debitNoteId"),
+        @NamedQuery(name = "getDebitNoteSendEventCountByDebitNote", query="select count(s) from DebitNoteSendEventEntity s where s.debitNote.id = :debitNoteId"),
         @NamedQuery(name = "deleteDebitNoteSendEventByOrganization", query = "delete from DebitNoteSendEventEntity event where event.debitNote IN (select i from DebitNoteEntity i where i.organizationId=:organizationId)")
 })
 public class DebitNoteSendEventEntity extends SendEventEntity {

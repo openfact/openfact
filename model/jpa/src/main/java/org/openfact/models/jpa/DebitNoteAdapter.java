@@ -24,10 +24,14 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.xml.transform.TransformerException;
 
 import com.helger.ubl21.UBL21Reader;
 import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
 import org.jboss.logging.Logger;
+import org.json.XML;
+import org.openfact.OpenfactJSONObject;
+import org.openfact.common.converts.DocumentUtils;
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.file.FileModel;
 import org.openfact.file.FileProvider;
@@ -39,6 +43,7 @@ import org.openfact.models.jpa.entities.*;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.SendEventModel;
 import org.openfact.models.enums.RequiredAction;
+import org.w3c.dom.Document;
 
 public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntity> {
 
@@ -51,6 +56,8 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
 
     protected FileModel xmlFile;
     protected DebitNoteType debitNoteType;
+    protected Document document;
+    protected OpenfactJSONObject jsonObject;
 
     public DebitNoteAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em, DebitNoteEntity debitNote) {
         this.organization = organization;
@@ -173,15 +180,18 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
 
     @Override
     public DebitNoteType getDebitNoteType() {
-        if(debitNoteType == null) {
-            debitNoteType = UBL21Reader.debitNote().read(getXmlFile().getFile());
+        if (debitNoteType == null) {
+            FileModel file = getXmlAsFile();
+            if (file != null) {
+                debitNoteType = UBL21Reader.debitNote().read(file.getFile());
+            }
         }
         return debitNoteType;
     }
 
     @Override
-    public FileModel getXmlFile() {
-        if(xmlFile == null && debitNote.getXmlFileId() != null) {
+    public FileModel getXmlAsFile() {
+        if (xmlFile == null && debitNote.getXmlFileId() != null) {
             FileProvider provider = session.getProvider(FileProvider.class);
             xmlFile = provider.getFileById(organization, debitNote.getXmlFileId());
         }
@@ -192,6 +202,37 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
     public void attachXmlFile(FileModel file) {
         xmlFile = file;
         debitNote.setXmlFileId(xmlFile.getId());
+    }
+
+    @Override
+    public Document getXmlAsDocument() {
+        if (document == null) {
+            FileModel file = getXmlAsFile();
+            if (file != null) {
+                try {
+                    document = DocumentUtils.byteToDocument(file.getFile());
+                } catch (Exception e) {
+                    throw new ModelException("Error parsing xml file to Document", e);
+                }
+            }
+        }
+        return document;
+    }
+
+    @Override
+    public OpenfactJSONObject getXmlAsJSONObject() {
+        if (jsonObject == null) {
+            try {
+                Document document = getXmlAsDocument();
+                if (document != null) {
+                    String documentString = DocumentUtils.getDocumentToString(document);
+                    jsonObject = new OpenfactJSONObject(XML.toJSONObject(documentString), ".*:", "").navigate("DebitNote");
+                }
+            } catch (TransformerException e) {
+                throw new ModelException("Error parsing xml file to JSON", e);
+            }
+        }
+        return jsonObject;
     }
 
 
@@ -341,7 +382,7 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
         DebitNoteSendEventEntity entity = new DebitNoteSendEventEntity();
         entity.setCreatedTimestamp(LocalDateTime.now());
         entity.setResult(SendResultType.ON_PROCESS);
-        entity.setDestityType(destinyType);
+        entity.setDestinyType(destinyType);
         entity.setDebitNote(debitNote);
         em.persist(entity);
         em.flush();
@@ -400,6 +441,126 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
         List<SendEventEntity> results = query.getResultList();
         List<SendEventModel> sendEvents = results.stream().map(f -> new SendEventAdapter(session, em, organization, f)).collect(Collectors.toList());
         return sendEvents;
+    }
+
+    @Override
+    public List<SendEventModel> searchForSendEvent(Map<String, String> params) {
+        return searchForSendEvent(params, -1, -1);
+    }
+
+    @Override
+    public List<SendEventModel> searchForSendEvent(Map<String, String> attributes, int firstResult, int maxResults) {
+        StringBuilder builder = new StringBuilder("select u from DebitNoteSendEventEntity u where u.debitNote.id = :debitNoteId");
+        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+            String attribute = null;
+            String parameterName = null;
+            String operator = null;
+            if (entry.getKey().equals(DebitNoteModel.SEND_EVENT_DESTINY_TYPE)) {
+                attribute = "u.destinyType";
+                parameterName = JpaDebitNoteProvider.SEND_EVENT_DESTINY_TYPE;
+                operator = " = :";
+            } else if (entry.getKey().equals(DebitNoteModel.SEND_EVENT_TYPE)) {
+                attribute = "lower(u.type)";
+                parameterName = JpaDebitNoteProvider.SEND_EVENT_TYPE;
+                operator = " like :";
+            } else if (entry.getKey().equals(DebitNoteModel.SEND_EVENT_RESULT)) {
+                attribute = "u.result";
+                parameterName = JpaDebitNoteProvider.SEND_EVENT_RESULT;
+                operator = " = :";
+            }
+            if (attribute == null) continue;
+            builder.append(" and ");
+            builder.append(attribute).append(operator).append(parameterName);
+        }
+        builder.append(" order by u.createdTimestamp");
+        String q = builder.toString();
+        TypedQuery<DebitNoteSendEventEntity> query = em.createQuery(q, DebitNoteSendEventEntity.class);
+        query.setParameter("debitNoteId", debitNote.getId());
+        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+            String parameterName = null;
+            Object parameterValue = null;
+            if (entry.getKey().equals(DebitNoteModel.SEND_EVENT_DESTINY_TYPE)) {
+                parameterName = JpaDebitNoteProvider.SEND_EVENT_DESTINY_TYPE;
+                parameterValue = DestinyType.valueOf(entry.getValue().toUpperCase());
+            } else if (entry.getKey().equals(DebitNoteModel.SEND_EVENT_TYPE)) {
+                parameterName = JpaDebitNoteProvider.SEND_EVENT_TYPE;
+                parameterValue = "%" + entry.getValue().toLowerCase() + "%";
+            } else if (entry.getKey().equals(DebitNoteModel.SEND_EVENT_RESULT)) {
+                parameterName = JpaDebitNoteProvider.SEND_EVENT_RESULT;
+                parameterValue = SendResultType.valueOf(entry.getValue().toUpperCase());
+            }
+            if (parameterName == null) continue;
+            query.setParameter(parameterName, parameterValue);
+        }
+        if (firstResult != -1) {
+            query.setFirstResult(firstResult);
+        }
+        if (maxResults != -1) {
+            query.setMaxResults(maxResults);
+        }
+        List<DebitNoteSendEventEntity> results = query.getResultList();
+        return results.stream().map(f -> new SendEventAdapter(session, em, organization, f)).collect(Collectors.toList());
+    }
+
+    @Override
+    public int sendEventCount() {
+        Object count = em.createNamedQuery("getDebitNoteSendEventCountByDebitNote")
+                .setParameter("debitNoteId", debitNote.getId())
+                .getSingleResult();
+        return ((Number)count).intValue();
+    }
+
+    @Override
+    public int sendEventCount(Map<String, String> attributes) {
+        StringBuilder builder = new StringBuilder("select count(u) from DebitNoteSendEventEntity u where u.debitNote.id = :debitNoteId");
+        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+            String attribute = null;
+            String parameterName = null;
+            String operator = null;
+            if (entry.getKey().equals(DebitNoteModel.SEND_EVENT_DESTINY_TYPE)) {
+                attribute = "u.destinyType";
+                parameterName = JpaDebitNoteProvider.SEND_EVENT_DESTINY_TYPE;
+                operator = " = :";
+            }
+            if (entry.getKey().equals(DebitNoteModel.SEND_EVENT_TYPE)) {
+                attribute = "lower(u.type)";
+                parameterName = JpaDebitNoteProvider.SEND_EVENT_TYPE;
+                operator = " like :";
+            }
+            if (entry.getKey().equals(DebitNoteModel.SEND_EVENT_RESULT)) {
+                attribute = "u.result";
+                parameterName = JpaDebitNoteProvider.SEND_EVENT_RESULT;
+                operator = " = :";
+            }
+            if (attribute == null) continue;
+            builder.append(" and ");
+            builder.append(attribute).append(operator).append(parameterName);
+        }
+
+        String q = builder.toString();
+        TypedQuery<DebitNoteSendEventEntity> query = em.createQuery(q, DebitNoteSendEventEntity.class);
+        query.setParameter("debitNoteId", debitNote.getId());
+        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+            String parameterName = null;
+            Object parameterValue = null;
+            if (entry.getKey().equals(DebitNoteModel.SEND_EVENT_DESTINY_TYPE)) {
+                parameterName = JpaDebitNoteProvider.SEND_EVENT_DESTINY_TYPE;
+                parameterValue = DestinyType.valueOf(entry.getValue().toUpperCase());
+            }
+            if (entry.getKey().equals(DebitNoteModel.SEND_EVENT_TYPE)) {
+                parameterName = JpaDebitNoteProvider.SEND_EVENT_TYPE;
+                parameterValue = "%" + entry.getValue().toLowerCase() + "%";
+            }
+            if (entry.getKey().equals(DebitNoteModel.SEND_EVENT_RESULT)) {
+                parameterName = JpaDebitNoteProvider.SEND_EVENT_RESULT;
+                parameterValue = SendResultType.valueOf(entry.getValue().toUpperCase());
+            }
+            if (parameterName == null) continue;
+            query.setParameter(parameterName, parameterValue);
+        }
+
+        Object count = query.getSingleResult();
+        return ((Number)count).intValue();
     }
 
     /**

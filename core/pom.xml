@@ -75,6 +75,11 @@
             <scope>test</scope>
         </dependency>
         <!-- Principal End -->
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <resources>

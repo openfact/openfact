@@ -22,6 +22,7 @@ import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import javax.json.JsonObject;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -32,9 +33,51 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
+import java.util.Collections;
+import java.util.Map;
 
 public class DocumentUtils {
 
+	/*public static byte[] toByte(Document document) throws TransformerException {
+		return toByte(document, Collections.emptyMap());
+	}
+
+	public static byte[] toByte(Document document, Map<String, String> outputProperty) throws TransformerException {
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		TransformerFactory factory = TransformerFactory.newInstance();
+		Transformer transformer = factory.newTransformer();
+		for (Map.Entry<String, String> map: outputProperty.entrySet()) {
+			transformer.setOutputProperty(map.getKey(), map.getValue());
+		}
+		transformer.transform(new DOMSource(document), new StreamResult(out));
+		return out.toByteArray();
+	}
+
+	public static Document toDocument(byte[] bytes) throws ParserConfigurationException, IOException, SAXException {
+		return toDocument(bytes, true);
+	}
+
+	public static Document toDocument(byte[] bytes, boolean namespaceAware) throws ParserConfigurationException, IOException, SAXException {
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		factory.setNamespaceAware(namespaceAware);
+		DocumentBuilder builder = factory.newDocumentBuilder();
+		return builder.parse(new ByteArrayInputStream(bytes));
+	}
+
+	public static String toString(Document document) throws TransformerException {
+		TransformerFactory tf = TransformerFactory.newInstance();
+		Transformer t = tf.newTransformer();
+		StringWriter sw = new StringWriter();
+		t.transform(new DOMSource(document), new StreamResult(sw));
+		return sw.toString();
+	}
+
+	public static JsonObject toJsonObject(Document document) {
+		return null;
+	}*/
+
+	/**
+	 * */
 	public static Document byteToDocument(byte[] document) throws Exception {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		factory.setNamespaceAware(true);

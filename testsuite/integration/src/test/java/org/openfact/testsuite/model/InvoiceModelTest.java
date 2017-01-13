@@ -598,34 +598,34 @@ public class InvoiceModelTest extends AbstractModelTest {
         OrganizationModel organization = organizationManager.createOrganization("original");
         InvoiceModel invoice = session.invoices().addInvoice(organization, "invoice");
 
-        Assert.assertNull(invoice.getXmlFile());
+        Assert.assertNull(invoice.getXmlAsFile());
 
         FileModel file1 = session.getProvider(FileProvider.class).createFile(organization, "file1.xml", new byte[]{0,1,2,3});
         String file1Id = file1.getId();
         invoice.attachXmlFile(file1);
 
-        Assert.assertNotNull(invoice.getXmlFile());
+        Assert.assertNotNull(invoice.getXmlAsFile());
         commit();
 
         invoice = session.invoices().getInvoiceByDocumentId(organization, "invoice");
 
-        Assert.assertNotNull(invoice.getXmlFile());
-        Assert.assertEquals(invoice.getXmlFile(), session.getProvider(FileProvider.class).getFileById(organization, file1Id));
+        Assert.assertNotNull(invoice.getXmlAsFile());
+        Assert.assertEquals(invoice.getXmlAsFile(), session.getProvider(FileProvider.class).getFileById(organization, file1Id));
 
         FileModel file2 = session.getProvider(FileProvider.class).createFile(organization, "file2.xml", new byte[]{0,1,2,3,4,5});
         String file2Id = file2.getId();
         invoice.attachXmlFile(file2);
 
-        Assert.assertNotNull(invoice.getXmlFile());
-        Assert.assertEquals(invoice.getXmlFile(), session.getProvider(FileProvider.class).getFileById(organization, file2Id));
+        Assert.assertNotNull(invoice.getXmlAsFile());
+        Assert.assertEquals(invoice.getXmlAsFile(), session.getProvider(FileProvider.class).getFileById(organization, file2Id));
 
         commit();
 
         organization = organizationManager.getOrganizationByName("original");
         invoice = session.invoices().getInvoiceByDocumentId(organization, "invoice");
 
-        Assert.assertNotNull(invoice.getXmlFile());
-        Assert.assertEquals(invoice.getXmlFile(), session.getProvider(FileProvider.class).getFileById(organization, file2Id));
+        Assert.assertNotNull(invoice.getXmlAsFile());
+        Assert.assertEquals(invoice.getXmlAsFile(), session.getProvider(FileProvider.class).getFileById(organization, file2Id));
     }
 
     @Test

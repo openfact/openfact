@@ -23,11 +23,13 @@ import java.util.Map;
 import java.util.Set;
 
 import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
+import org.openfact.OpenfactJSONObject;
 import org.openfact.file.FileModel;
 import org.openfact.models.enums.DestinyType;
 import org.openfact.models.enums.DocumentType;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.provider.ProviderEvent;
+import org.w3c.dom.Document;
 
 public interface CreditNoteModel {
 
@@ -75,8 +77,11 @@ public interface CreditNoteModel {
     /**
      * Xml
      */
-    FileModel getXmlFile();
+    FileModel getXmlAsFile();
     void attachXmlFile(FileModel file);
+
+    Document getXmlAsDocument();
+    OpenfactJSONObject getXmlAsJSONObject();
 
     /**
      * attributes
@@ -99,12 +104,20 @@ public interface CreditNoteModel {
     
     /**
      * Send events*/
+    String SEND_EVENT_DESTINY_TYPE = "destinyType";
+    String SEND_EVENT_TYPE = "type";
+    String SEND_EVENT_RESULT = "result";
+
     SendEventModel addSendEvent(DestinyType destinyType);
     SendEventModel getSendEventById(String id);
     boolean removeSendEvent(String id);
     boolean removeSendEvent(SendEventModel sendEvent);
     List<SendEventModel> getSendEvents();
     List<SendEventModel> getSendEvents(Integer firstResult, Integer maxResults);
+    List<SendEventModel> searchForSendEvent(Map<String, String> params);
+    List<SendEventModel> searchForSendEvent(Map<String, String> params, int firstResult, int maxResults);
+    int sendEventCount();
+    int sendEventCount(Map<String, String> params);
 
     /**
      * Attatched documents*/
