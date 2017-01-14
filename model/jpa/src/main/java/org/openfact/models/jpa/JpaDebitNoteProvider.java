@@ -226,7 +226,7 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
     public SearchResultsModel<DebitNoteModel> searchForDebitNote(OrganizationModel organization, SearchCriteriaModel criteria, String filterText) {
         criteria.addFilter("organizationId", organization.getId(), SearchCriteriaFilterOperator.eq);
 
-        SearchResultsModel<DebitNoteEntity> entityResult = findFullText(criteria, DebitNoteEntity.class, filterText, DOCUMENT_ID);
+        SearchResultsModel<DebitNoteEntity> entityResult = findFullText(criteria, DebitNoteEntity.class, filterText, DOCUMENT_ID, CUSTOMER_REGISTRATION_NAME);
         List<DebitNoteEntity> entities = entityResult.getModels();
 
         SearchResultsModel<DebitNoteModel> searchResult = new SearchResultsModel<>();

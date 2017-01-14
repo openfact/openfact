@@ -223,7 +223,7 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
     public SearchResultsModel<CreditNoteModel> searchForCreditNote(OrganizationModel organization, SearchCriteriaModel criteria, String filterText) {
         criteria.addFilter("organizationId", organization.getId(), SearchCriteriaFilterOperator.eq);
 
-        SearchResultsModel<CreditNoteEntity> entityResult = findFullText(criteria, CreditNoteEntity.class, filterText, DOCUMENT_ID);
+        SearchResultsModel<CreditNoteEntity> entityResult = findFullText(criteria, CreditNoteEntity.class, filterText, DOCUMENT_ID, CUSTOMER_REGISTRATION_NAME);
         List<CreditNoteEntity> entities = entityResult.getModels();
 
         SearchResultsModel<CreditNoteModel> searchResult = new SearchResultsModel<>();
