@@ -38,8 +38,11 @@ public interface CreditNoteProviderFactory extends ProviderFactory<CreditNotePro
                             .filter(p -> p.getID() != null && p.getIDValue() != null)
                             .forEach(c -> {
                                 InvoiceModel invoice = creditNotePostCreatedEvent.getOpenfactSession().invoices().getInvoiceByDocumentId(creditNoteModel.getOrganization(), c.getIDValue());
-                                AttatchedDocumentModel attatchedDocument = invoice.addAttatchedDocument(DocumentType.CREDIT_NOTE, creditNoteModel.getId());
-                                attatchedDocument.setSingleAttribute("documentId", creditNoteModel.getDocumentId());
+                                if (invoice != null) {
+                                    AttatchedDocumentModel attatchedDocument = invoice.addAttatchedDocument(DocumentType.CREDIT_NOTE, creditNoteModel.getId());
+                                    attatchedDocument.setSingleAttribute("documentId", creditNoteModel.getDocumentId());
+                                    attatchedDocument.setSingleAttribute("totalAmount", creditNoteModel.getPayableAmount().toString());
+                                }
                             });
                 }
             }

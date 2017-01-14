@@ -37,8 +37,11 @@ public interface DebitNoteProviderFactory extends ProviderFactory<DebitNoteProvi
                             .filter(p -> p.getID() != null && p.getIDValue() != null)
                             .forEach(c -> {
                                 InvoiceModel invoice = debitNotePostCreatedEvent.getOpenfactSession().invoices().getInvoiceByDocumentId(debitNoteModel.getOrganization(), c.getIDValue());
-                                AttatchedDocumentModel attatchedDocument = invoice.addAttatchedDocument(DocumentType.DEBIT_NOTE, debitNoteModel.getId());
-                                attatchedDocument.setSingleAttribute("documentId", debitNoteModel.getDocumentId());
+                                if(invoice != null) {
+                                    AttatchedDocumentModel attatchedDocument = invoice.addAttatchedDocument(DocumentType.DEBIT_NOTE, debitNoteModel.getId());
+                                    attatchedDocument.setSingleAttribute("documentId", debitNoteModel.getDocumentId());
+                                    attatchedDocument.setSingleAttribute("totalAmount", debitNoteModel.getPayableAmount().toString());
+                                }
                             });
                 }
             }
