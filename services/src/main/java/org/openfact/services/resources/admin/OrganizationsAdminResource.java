@@ -179,7 +179,6 @@ public class OrganizationsAdminResource {
 
         OrganizationAdminResource adminResource = new OrganizationAdminResource(organizationAuth, organization, adminEvent);
         ResteasyProviderFactory.getInstance().injectProperties(adminResource);
-        // resourceContext.initResource(adminResource);
         return adminResource;
     }
 

@@ -57,6 +57,7 @@ import org.openfact.ubl.UBLDebitNoteProvider;
 
 import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
 
+@Consumes(MediaType.APPLICATION_JSON)
 public class DebitNotesAdminResource {
 
     private static final ServicesLogger logger = ServicesLogger.LOGGER;

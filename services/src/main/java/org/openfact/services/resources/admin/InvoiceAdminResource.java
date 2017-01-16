@@ -35,7 +35,9 @@ import org.openfact.events.admin.OperationType;
 import org.openfact.file.FileModel;
 import org.openfact.models.*;
 import org.openfact.models.enums.DestinyType;
+import org.openfact.models.enums.SendResultType;
 import org.openfact.models.utils.ModelToRepresentation;
+import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.report.ExportFormat;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.representations.idm.SendEventRepresentation;
@@ -211,7 +213,7 @@ public class InvoiceAdminResource {
     @Path("send-to-customer")
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    public void sendToCustomer() {
+    public SendEventRepresentation sendToCustomer() {
         auth.requireManage();
 
         if (invoice == null) {
@@ -220,80 +222,58 @@ public class InvoiceAdminResource {
 
         SendEventModel sendEvent = invoice.addSendEvent(DestinyType.CUSTOMER);
 
-        // Thread
-        ExecutorService executorService = null;
-        try {
-            executorService = Executors.newCachedThreadPool();
+        OpenfactModelUtils.runThreadInTransaction(session.getOpenfactSessionFactory(), sessionThread -> {
+            InvoiceManager manager = new InvoiceManager(sessionThread);
 
-            ScheduledTaskRunner scheduledTaskRunner = new ScheduledTaskRunner(session.getOpenfactSessionFactory(), new ScheduledTask() {
-                @Override
-                public void run(OpenfactSession session) {
-                    InvoiceManager invoiceManager = new InvoiceManager(session);
-                    try {
-                        OrganizationModel organizationThread = session.organizations().getOrganization(organization.getId());
-                        InvoiceModel invoiceThread = session.invoices().getInvoiceById(organizationThread, invoice.getId());
-                        SendEventModel sendEventThread = invoiceThread.getSendEventById(sendEvent.getId());
-
-                        invoiceManager.sendToCustomerParty(organizationThread, invoiceThread, sendEventThread);
-                    } catch (SendException e) {
-                        throw new InternalServerErrorException(e);
-                    }
-                }
-            });
-            executorService.execute(scheduledTaskRunner);
-        } finally {
-            if (executorService != null) {
-                executorService.shutdown();
+            OrganizationModel organizationThread = sessionThread.organizations().getOrganization(organization.getId());
+            InvoiceModel invoiceThread = sessionThread.invoices().getInvoiceById(organizationThread, invoice.getId());
+            SendEventModel sendEventThread = invoiceThread.getSendEventById(sendEvent.getId());
+            try {
+                manager.sendToCustomerParty(organizationThread, invoiceThread, sendEventThread);
+            } catch (SendException e) {
+                sendEvent.setResult(SendResultType.ERROR);
+                sendEvent.setDescription("Internal server error");
             }
-        }
+        });
+
+        return ModelToRepresentation.toRepresentation(sendEvent);
     }
 
     @POST
     @Path("send-to-third-party")
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    public void sendToThirdParty() {
+    public SendEventRepresentation sendToThirdParty() {
         auth.requireManage();
 
         if (invoice == null) {
             throw new NotFoundException("Invoice not found");
         }
 
-        SendEventModel sendEvent = invoice.addSendEvent(DestinyType.CUSTOMER);
+        SendEventModel sendEvent = invoice.addSendEvent(DestinyType.THIRD_PARTY);
 
-        // Thread
-        ExecutorService executorService = null;
-        try {
-            executorService = Executors.newCachedThreadPool();
+        OpenfactModelUtils.runThreadInTransaction(session.getOpenfactSessionFactory(), sessionThread -> {
+            InvoiceManager manager = new InvoiceManager(sessionThread);
 
-            ScheduledTaskRunner scheduledTaskRunner = new ScheduledTaskRunner(session.getOpenfactSessionFactory(), new ScheduledTask() {
-                @Override
-                public void run(OpenfactSession session) {
-                    InvoiceManager invoiceManager = new InvoiceManager(session);
-                    try {
-                        OrganizationModel organizationThread = session.organizations().getOrganization(organization.getId());
-                        InvoiceModel invoiceThread = session.invoices().getInvoiceById(organizationThread, invoice.getId());
-                        SendEventModel sendEventThread = invoiceThread.getSendEventById(sendEvent.getId());
-
-                        invoiceManager.sendToTrirdParty(organizationThread, invoiceThread, sendEventThread);
-                    } catch (SendException e) {
-                        throw new InternalServerErrorException(e);
-                    }
-                }
-            });
-            executorService.execute(scheduledTaskRunner);
-        } finally {
-            if (executorService != null) {
-                executorService.shutdown();
+            OrganizationModel organizationThread = sessionThread.organizations().getOrganization(organization.getId());
+            InvoiceModel invoiceThread = sessionThread.invoices().getInvoiceById(organizationThread, invoice.getId());
+            SendEventModel sendEventThread = invoiceThread.getSendEventById(sendEvent.getId());
+            try {
+                manager.sendToTrirdParty(organizationThread, invoiceThread, sendEventThread);
+            } catch (SendException e) {
+                sendEvent.setResult(SendResultType.ERROR);
+                sendEvent.setDescription("Internal server error");
             }
-        }
+        });
+
+        return ModelToRepresentation.toRepresentation(sendEvent);
     }
 
     @POST
     @Path("send-to-third-party-by-email")
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    public void sendToThirdPartyByEmail(ThirdPartyEmailRepresentation thirdParty) {
+    public SendEventRepresentation sendToThirdPartyByEmail(ThirdPartyEmailRepresentation thirdParty) {
         auth.requireManage();
 
         if (invoice == null) {
@@ -306,32 +286,21 @@ public class InvoiceAdminResource {
 
         SendEventModel sendEvent = invoice.addSendEvent(DestinyType.THIRD_PARTY_BY_EMAIL);
 
-        // Thread
-        ExecutorService executorService = null;
-        try {
-            executorService = Executors.newCachedThreadPool();
+        OpenfactModelUtils.runThreadInTransaction(session.getOpenfactSessionFactory(), sessionThread -> {
+            InvoiceManager manager = new InvoiceManager(sessionThread);
 
-            ScheduledTaskRunner scheduledTaskRunner = new ScheduledTaskRunner(session.getOpenfactSessionFactory(), new ScheduledTask() {
-                @Override
-                public void run(OpenfactSession session) {
-                    InvoiceManager invoiceManager = new InvoiceManager(session);
-                    try {
-                        OrganizationModel organizationThread = session.organizations().getOrganization(organization.getId());
-                        InvoiceModel invoiceThread = session.invoices().getInvoiceById(organizationThread, invoice.getId());
-                        SendEventModel sendEventThread = invoiceThread.getSendEventById(sendEvent.getId());
-
-                        invoiceManager.sendToThirdPartyByEmail(organizationThread, invoiceThread, sendEventThread, thirdParty.getEmail());
-                    } catch (SendException e) {
-                        throw new InternalServerErrorException(e);
-                    }
-                }
-            });
-            executorService.execute(scheduledTaskRunner);
-        } finally {
-            if (executorService != null) {
-                executorService.shutdown();
+            OrganizationModel organizationThread = sessionThread.organizations().getOrganization(organization.getId());
+            InvoiceModel invoiceThread = sessionThread.invoices().getInvoiceById(organizationThread, invoice.getId());
+            SendEventModel sendEventThread = invoiceThread.getSendEventById(sendEvent.getId());
+            try {
+                manager.sendToThirdPartyByEmail(organizationThread, invoiceThread, thirdParty.getEmail());
+            } catch (SendException e) {
+                sendEvent.setResult(SendResultType.ERROR);
+                sendEvent.setDescription("Internal server error");
             }
-        }
+        });
+
+        return ModelToRepresentation.toRepresentation(sendEvent);
     }
 
     @GET

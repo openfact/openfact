@@ -189,7 +189,7 @@ public class CreditNoteManager {
             FileModel xmlFile = fileProvider.createFile(organization, OpenfactModelUtils.generateId() + ".xml", creditNote.getXmlAsFile().getFile());
             FileMymeTypeModel xmlFileMymeType = new FileMymeTypeModel(xmlFile, "application/xml");
 
-            byte[] pdfFileBytes = session.getProvider(UBLReportProvider.class).invoice().setOrganization(organization).getReport(creditNote, ExportFormat.PDF);
+            byte[] pdfFileBytes = session.getProvider(UBLReportProvider.class).creditNote().setOrganization(organization).getReport(creditNote, ExportFormat.PDF);
             FileModel pdfFile = fileProvider.createFile(organization, OpenfactModelUtils.generateId() + ".pdf", pdfFileBytes);
             FileMymeTypeModel pdfFileMymeType = new FileMymeTypeModel(pdfFile, "application/pdf");
 

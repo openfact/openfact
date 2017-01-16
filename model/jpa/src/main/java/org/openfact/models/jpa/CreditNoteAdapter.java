@@ -226,7 +226,7 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
                 Document document = getXmlAsDocument();
                 if (document != null) {
                     String documentString = DocumentUtils.getDocumentToString(document);
-                    jsonObject = new OpenfactJSONObject(XML.toJSONObject(documentString), ".*:", "").navigate("Invoice");
+                    jsonObject = new OpenfactJSONObject(XML.toJSONObject(documentString), ".*:", "").navigate("CreditNote");
                 }
             } catch (TransformerException e) {
                 throw new ModelException("Error parsing xml file to JSON", e);

@@ -201,6 +201,14 @@ public class ModelToRepresentation {
             rep.getRequiredActions().addAll(model.getRequiredActions());
         }
 
+        if(model.getAttatchedDocuments() != null) {
+            List<AttatchedDocumentRepresentation> attatchedDocuments = new ArrayList<>();
+            for (AttatchedDocumentModel attatchedDocument: model.getAttatchedDocuments()) {
+                attatchedDocuments.add(toRepresentation(attatchedDocument));
+            }
+            rep.setAttatchedDocuments(attatchedDocuments);
+        }
+
         return rep;
     }
 
@@ -227,6 +235,14 @@ public class ModelToRepresentation {
         if(model.getRequiredActions() != null) {
             rep.setRequiredActions(new HashSet<String>());
             rep.getRequiredActions().addAll(model.getRequiredActions());
+        }
+
+        if(model.getAttatchedDocuments() != null) {
+            List<AttatchedDocumentRepresentation> attatchedDocuments = new ArrayList<>();
+            for (AttatchedDocumentModel attatchedDocument: model.getAttatchedDocuments()) {
+                attatchedDocuments.add(toRepresentation(attatchedDocument));
+            }
+            rep.setAttatchedDocuments(attatchedDocuments);
         }
 
         return rep;

@@ -31,7 +31,9 @@ import org.openfact.common.ClientConnection;
 import org.openfact.events.admin.OperationType;
 import org.openfact.models.*;
 import org.openfact.models.enums.DestinyType;
+import org.openfact.models.enums.SendResultType;
 import org.openfact.models.utils.ModelToRepresentation;
+import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.report.ExportFormat;
 import org.openfact.representations.idm.CreditNoteRepresentation;
 import org.openfact.representations.idm.SendEventRepresentation;
@@ -39,6 +41,7 @@ import org.openfact.representations.idm.ThirdPartyEmailRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.CreditNoteManager;
+import org.openfact.services.managers.InvoiceManager;
 import org.openfact.services.scheduled.ScheduledTaskRunner;
 import org.openfact.timer.ScheduledTask;
 import org.openfact.ubl.UBLReportProvider;
@@ -203,7 +206,7 @@ public class CreditNoteAdminResource {
     @Path("send-to-customer")
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    public void sendToCustomer() {
+    public SendEventRepresentation sendToCustomer() {
         auth.requireManage();
 
         if (creditNote == null) {
@@ -212,80 +215,58 @@ public class CreditNoteAdminResource {
 
         SendEventModel sendEvent = creditNote.addSendEvent(DestinyType.CUSTOMER);
 
-        // Thread
-        ExecutorService executorService = null;
-        try {
-            executorService = Executors.newCachedThreadPool();
+        OpenfactModelUtils.runThreadInTransaction(session.getOpenfactSessionFactory(), sessionThread -> {
+            CreditNoteManager manager = new CreditNoteManager(sessionThread);
 
-            ScheduledTaskRunner scheduledTaskRunner = new ScheduledTaskRunner(session.getOpenfactSessionFactory(), new ScheduledTask() {
-                @Override
-                public void run(OpenfactSession session) {
-                    CreditNoteManager creditNoteManager = new CreditNoteManager(session);
-                    try {
-                        OrganizationModel organizationThread = session.organizations().getOrganization(organization.getId());
-                        CreditNoteModel creditNoteThread = session.creditNotes().getCreditNoteById(organizationThread, creditNote.getId());
-                        SendEventModel sendEventThread = creditNoteThread.getSendEventById(sendEvent.getId());
-
-                        creditNoteManager.sendToCustomerParty(organizationThread, creditNoteThread, sendEventThread);
-                    } catch (SendException e) {
-                        throw new InternalServerErrorException(e);
-                    }
-                }
-            });
-            executorService.execute(scheduledTaskRunner);
-        } finally {
-            if (executorService != null) {
-                executorService.shutdown();
+            OrganizationModel organizationThread = sessionThread.organizations().getOrganization(organization.getId());
+            CreditNoteModel creditNoteThread = sessionThread.creditNotes().getCreditNoteById(organizationThread, creditNote.getId());
+            SendEventModel sendEventThread = creditNoteThread.getSendEventById(sendEvent.getId());
+            try {
+                manager.sendToCustomerParty(organizationThread, creditNoteThread, sendEventThread);
+            } catch (SendException e) {
+                sendEvent.setResult(SendResultType.ERROR);
+                sendEvent.setDescription("Internal server error");
             }
-        }
+        });
+
+        return ModelToRepresentation.toRepresentation(sendEvent);
     }
 
     @POST
     @Path("send-to-third-party")
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    public void sendToThirdParty() {
+    public SendEventRepresentation sendToThirdParty() {
         auth.requireManage();
 
         if (creditNote == null) {
             throw new NotFoundException("Credit Note not found");
         }
 
-        SendEventModel sendEvent = creditNote.addSendEvent(DestinyType.CUSTOMER);
+        SendEventModel sendEvent = creditNote.addSendEvent(DestinyType.THIRD_PARTY);
 
-        // Thread
-        ExecutorService executorService = null;
-        try {
-            executorService = Executors.newCachedThreadPool();
+        OpenfactModelUtils.runThreadInTransaction(session.getOpenfactSessionFactory(), sessionThread -> {
+            CreditNoteManager manager = new CreditNoteManager(sessionThread);
 
-            ScheduledTaskRunner scheduledTaskRunner = new ScheduledTaskRunner(session.getOpenfactSessionFactory(), new ScheduledTask() {
-                @Override
-                public void run(OpenfactSession session) {
-                    CreditNoteManager creditNoteManager = new CreditNoteManager(session);
-                    try {
-                        OrganizationModel organizationThread = session.organizations().getOrganization(organization.getId());
-                        CreditNoteModel creditNoteThread = session.creditNotes().getCreditNoteById(organizationThread, creditNote.getId());
-                        SendEventModel sendEventThread = creditNoteThread.getSendEventById(sendEvent.getId());
-
-                        creditNoteManager.sendToTrirdParty(organizationThread, creditNoteThread, sendEventThread);
-                    } catch (SendException e) {
-                        throw new InternalServerErrorException(e);
-                    }
-                }
-            });
-            executorService.execute(scheduledTaskRunner);
-        } finally {
-            if (executorService != null) {
-                executorService.shutdown();
+            OrganizationModel organizationThread = sessionThread.organizations().getOrganization(organization.getId());
+            CreditNoteModel creditNoteThread = sessionThread.creditNotes().getCreditNoteById(organizationThread, creditNote.getId());
+            SendEventModel sendEventThread = creditNoteThread.getSendEventById(sendEvent.getId());
+            try {
+                manager.sendToTrirdParty(organizationThread, creditNoteThread, sendEventThread);
+            } catch (SendException e) {
+                sendEvent.setResult(SendResultType.ERROR);
+                sendEvent.setDescription("Internal server error");
             }
-        }
+        });
+
+        return ModelToRepresentation.toRepresentation(sendEvent);
     }
 
     @POST
     @Path("send-to-third-party-by-email")
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    public void sendToThirdPartyByEmail(ThirdPartyEmailRepresentation thirdParty) {
+    public SendEventRepresentation sendToThirdPartyByEmail(ThirdPartyEmailRepresentation thirdParty) {
         auth.requireManage();
 
         if (creditNote == null) {
@@ -298,32 +279,21 @@ public class CreditNoteAdminResource {
 
         SendEventModel sendEvent = creditNote.addSendEvent(DestinyType.THIRD_PARTY_BY_EMAIL);
 
-        // Thread
-        ExecutorService executorService = null;
-        try {
-            executorService = Executors.newCachedThreadPool();
+        OpenfactModelUtils.runThreadInTransaction(session.getOpenfactSessionFactory(), sessionThread -> {
+            CreditNoteManager manager = new CreditNoteManager(sessionThread);
 
-            ScheduledTaskRunner scheduledTaskRunner = new ScheduledTaskRunner(session.getOpenfactSessionFactory(), new ScheduledTask() {
-                @Override
-                public void run(OpenfactSession session) {
-                    CreditNoteManager creditNoteManager = new CreditNoteManager(session);
-                    try {
-                        OrganizationModel organizationThread = session.organizations().getOrganization(organization.getId());
-                        CreditNoteModel creditNoteThread = session.creditNotes().getCreditNoteById(organizationThread, creditNote.getId());
-                        SendEventModel sendEventThread = creditNoteThread.getSendEventById(sendEvent.getId());
-
-                        creditNoteManager.sendToThirdPartyByEmail(organizationThread, creditNoteThread, sendEventThread, thirdParty.getEmail());
-                    } catch (SendException e) {
-                        throw new InternalServerErrorException(e);
-                    }
-                }
-            });
-            executorService.execute(scheduledTaskRunner);
-        } finally {
-            if (executorService != null) {
-                executorService.shutdown();
+            OrganizationModel organizationThread = sessionThread.organizations().getOrganization(organization.getId());
+            CreditNoteModel creditNoteThread = sessionThread.creditNotes().getCreditNoteById(organizationThread, creditNote.getId());
+            SendEventModel sendEventThread = creditNoteThread.getSendEventById(sendEvent.getId());
+            try {
+                manager.sendToThirdPartyByEmail(organizationThread, creditNoteThread, sendEventThread, thirdParty.getEmail());
+            } catch (SendException e) {
+                sendEvent.setResult(SendResultType.ERROR);
+                sendEvent.setDescription("Internal server error");
             }
-        }
+        });
+
+        return ModelToRepresentation.toRepresentation(sendEvent);
     }
 
     @GET

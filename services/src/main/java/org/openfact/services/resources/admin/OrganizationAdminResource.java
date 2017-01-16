@@ -76,18 +76,21 @@ public class OrganizationAdminResource {
 
     protected OrganizationAuth auth;
     protected OrganizationModel organization;
+
     @Context
     protected OpenfactSession session;
+
     @Context
     protected UriInfo uriInfo;
+
     @Context
     protected ClientConnection connection;
+
     @Context
     protected HttpHeaders headers;
     private AdminEventBuilder adminEvent;
 
-    public OrganizationAdminResource(OrganizationAuth auth, OrganizationModel organization,
-                                     AdminEventBuilder adminEvent) {
+    public OrganizationAdminResource(OrganizationAuth auth, OrganizationModel organization, AdminEventBuilder adminEvent) {
         this.auth = auth;
         this.organization = organization;
         this.adminEvent = adminEvent.organization(organization);
@@ -197,7 +200,6 @@ public class OrganizationAdminResource {
     public InvoicesAdminResource invoices() {
         InvoicesAdminResource invoices = new InvoicesAdminResource(organization, auth, adminEvent);
         ResteasyProviderFactory.getInstance().injectProperties(invoices);
-
         return invoices;
     }
 

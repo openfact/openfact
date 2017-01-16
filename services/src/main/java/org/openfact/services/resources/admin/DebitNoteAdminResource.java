@@ -33,7 +33,9 @@ import org.openfact.common.converts.DocumentUtils;
 import org.openfact.events.admin.OperationType;
 import org.openfact.models.*;
 import org.openfact.models.enums.DestinyType;
+import org.openfact.models.enums.SendResultType;
 import org.openfact.models.utils.ModelToRepresentation;
+import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.report.ExportFormat;
 import org.openfact.report.ReportTemplateProvider;
 import org.openfact.report.ReportTheme;
@@ -45,6 +47,7 @@ import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.DebitNoteManager;
 import org.openfact.services.managers.DebitNoteManager;
+import org.openfact.services.managers.InvoiceManager;
 import org.openfact.services.scheduled.ScheduledTaskRunner;
 import org.openfact.timer.ScheduledTask;
 import org.openfact.ubl.UBLReportProvider;
@@ -69,7 +72,6 @@ public class DebitNoteAdminResource {
     
     @Context
     protected ClientConnection clientConnection;
-    @Context
 
     protected OrganizationModel organization;
     protected DebitNoteModel debitNote;
@@ -210,93 +212,71 @@ public class DebitNoteAdminResource {
     @Path("send-to-customer")
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    public void sendToCustomer() {
+    public SendEventRepresentation sendToCustomer() {
         auth.requireManage();
 
         if (debitNote == null) {
-            throw new NotFoundException("DebitNote not found");
+            throw new NotFoundException("Debit Note not found");
         }
 
         SendEventModel sendEvent = debitNote.addSendEvent(DestinyType.CUSTOMER);
 
-        // Thread
-        ExecutorService executorService = null;
-        try {
-            executorService = Executors.newCachedThreadPool();
+        OpenfactModelUtils.runThreadInTransaction(session.getOpenfactSessionFactory(), sessionThread -> {
+            DebitNoteManager manager = new DebitNoteManager(sessionThread);
 
-            ScheduledTaskRunner scheduledTaskRunner = new ScheduledTaskRunner(session.getOpenfactSessionFactory(), new ScheduledTask() {
-                @Override
-                public void run(OpenfactSession session) {
-                    DebitNoteManager debitNoteManager = new DebitNoteManager(session);
-                    try {
-                        OrganizationModel organizationThread = session.organizations().getOrganization(organization.getId());
-                        DebitNoteModel debitNoteThread = session.debitNotes().getDebitNoteById(organizationThread, debitNote.getId());
-                        SendEventModel sendEventThread = debitNoteThread.getSendEventById(sendEvent.getId());
-
-                        debitNoteManager.sendToCustomerParty(organizationThread, debitNoteThread, sendEventThread);
-                    } catch (SendException e) {
-                        throw new InternalServerErrorException(e);
-                    }
-                }
-            });
-            executorService.execute(scheduledTaskRunner);
-        } finally {
-            if (executorService != null) {
-                executorService.shutdown();
+            OrganizationModel organizationThread = sessionThread.organizations().getOrganization(organization.getId());
+            DebitNoteModel debitNoteThread = sessionThread.debitNotes().getDebitNoteById(organizationThread, debitNote.getId());
+            SendEventModel sendEventThread = debitNoteThread.getSendEventById(sendEvent.getId());
+            try {
+                manager.sendToCustomerParty(organizationThread, debitNoteThread, sendEventThread);
+            } catch (SendException e) {
+                sendEvent.setResult(SendResultType.ERROR);
+                sendEvent.setDescription("Internal server error");
             }
-        }
+        });
+
+        return ModelToRepresentation.toRepresentation(sendEvent);
     }
 
     @POST
     @Path("send-to-third-party")
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    public void sendToThirdParty() {
+    public SendEventRepresentation sendToThirdParty() {
         auth.requireManage();
 
         if (debitNote == null) {
-            throw new NotFoundException("DebitNote not found");
+            throw new NotFoundException("Debit Note not found");
         }
 
-        SendEventModel sendEvent = debitNote.addSendEvent(DestinyType.CUSTOMER);
+        SendEventModel sendEvent = debitNote.addSendEvent(DestinyType.THIRD_PARTY);
 
-        // Thread
-        ExecutorService executorService = null;
-        try {
-            executorService = Executors.newCachedThreadPool();
+        OpenfactModelUtils.runThreadInTransaction(session.getOpenfactSessionFactory(), sessionThread -> {
+            DebitNoteManager manager = new DebitNoteManager(sessionThread);
 
-            ScheduledTaskRunner scheduledTaskRunner = new ScheduledTaskRunner(session.getOpenfactSessionFactory(), new ScheduledTask() {
-                @Override
-                public void run(OpenfactSession session) {
-                    DebitNoteManager debitNoteManager = new DebitNoteManager(session);
-                    try {
-                        OrganizationModel organizationThread = session.organizations().getOrganization(organization.getId());
-                        DebitNoteModel debitNoteThread = session.debitNotes().getDebitNoteById(organizationThread, debitNote.getId());
-                        SendEventModel sendEventThread = debitNoteThread.getSendEventById(sendEvent.getId());
-
-                        debitNoteManager.sendToTrirdParty(organizationThread, debitNoteThread, sendEventThread);
-                    } catch (SendException e) {
-                        throw new InternalServerErrorException(e);
-                    }
-                }
-            });
-            executorService.execute(scheduledTaskRunner);
-        } finally {
-            if (executorService != null) {
-                executorService.shutdown();
+            OrganizationModel organizationThread = sessionThread.organizations().getOrganization(organization.getId());
+            DebitNoteModel debitNoteThread = sessionThread.debitNotes().getDebitNoteById(organizationThread, debitNote.getId());
+            SendEventModel sendEventThread = debitNoteThread.getSendEventById(sendEvent.getId());
+            try {
+                manager.sendToTrirdParty(organizationThread, debitNoteThread, sendEventThread);
+            } catch (SendException e) {
+                sendEvent.setResult(SendResultType.ERROR);
+                sendEvent.setDescription("Internal server error");
             }
-        }
+        });
+
+        return ModelToRepresentation.toRepresentation(sendEvent);
     }
 
     @POST
     @Path("send-to-third-party-by-email")
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    public void sendToThirdPartyByEmail(ThirdPartyEmailRepresentation thirdParty) {
+    public SendEventRepresentation sendToThirdPartyByEmail(ThirdPartyEmailRepresentation thirdParty) {
         auth.requireManage();
 
         if (debitNote == null) {
-            throw new NotFoundException("DebitNote not found");
+            throw new NotFoundException("Debit Note not found");
         }
 
         if (thirdParty == null || thirdParty.getEmail() == null) {
@@ -305,32 +285,21 @@ public class DebitNoteAdminResource {
 
         SendEventModel sendEvent = debitNote.addSendEvent(DestinyType.THIRD_PARTY_BY_EMAIL);
 
-        // Thread
-        ExecutorService executorService = null;
-        try {
-            executorService = Executors.newCachedThreadPool();
+        OpenfactModelUtils.runThreadInTransaction(session.getOpenfactSessionFactory(), sessionThread -> {
+            DebitNoteManager manager = new DebitNoteManager(sessionThread);
 
-            ScheduledTaskRunner scheduledTaskRunner = new ScheduledTaskRunner(session.getOpenfactSessionFactory(), new ScheduledTask() {
-                @Override
-                public void run(OpenfactSession session) {
-                    DebitNoteManager debitNoteManager = new DebitNoteManager(session);
-                    try {
-                        OrganizationModel organizationThread = session.organizations().getOrganization(organization.getId());
-                        DebitNoteModel debitNoteThread = session.debitNotes().getDebitNoteById(organizationThread, debitNote.getId());
-                        SendEventModel sendEventThread = debitNoteThread.getSendEventById(sendEvent.getId());
-
-                        debitNoteManager.sendToThirdPartyByEmail(organizationThread, debitNoteThread, sendEventThread, thirdParty.getEmail());
-                    } catch (SendException e) {
-                        throw new InternalServerErrorException(e);
-                    }
-                }
-            });
-            executorService.execute(scheduledTaskRunner);
-        } finally {
-            if (executorService != null) {
-                executorService.shutdown();
+            OrganizationModel organizationThread = sessionThread.organizations().getOrganization(organization.getId());
+            DebitNoteModel debitNoteThread = sessionThread.debitNotes().getDebitNoteById(organizationThread, debitNote.getId());
+            SendEventModel sendEventThread = debitNoteThread.getSendEventById(sendEvent.getId());
+            try {
+                manager.sendToThirdPartyByEmail(organizationThread, debitNoteThread, sendEventThread, thirdParty.getEmail());
+            } catch (SendException e) {
+                sendEvent.setResult(SendResultType.ERROR);
+                sendEvent.setDescription("Internal server error");
             }
-        }
+        });
+
+        return ModelToRepresentation.toRepresentation(sendEvent);
     }
 
     @GET

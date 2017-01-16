@@ -421,7 +421,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
         entity.setDestinyType(destinyType);
         entity.setInvoice(invoice);
         em.persist(entity);
-        em.flush();
+        //em.flush();
 
         return new SendEventAdapter(session, em, organization, entity);
     }

@@ -27,15 +27,19 @@ import org.openfact.models.*;
 import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
 import org.openfact.representations.idm.CertificateRepresentation;
+import org.openfact.timer.ScheduledTask;
 import org.openfact.transaction.JtaTransactionManagerLookup;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.transaction.InvalidTransactionException;
 import javax.transaction.SystemException;
 import javax.transaction.Transaction;
+import javax.ws.rs.InternalServerErrorException;
 import java.security.*;
 import java.security.cert.X509Certificate;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Set of helper methods, which are useful in various model implementations.
@@ -160,6 +164,24 @@ public final class OpenfactModelUtils {
         }
     }
 
+    public static void runThreadInTransaction(OpenfactSessionFactory factory, OpenfactSessionTask... tasks) {
+        ExecutorService executorService = null;
+        try {
+            executorService = Executors.newCachedThreadPool();
+            for (OpenfactSessionTask task : tasks) {
+                executorService.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        runJobInTransaction(factory, task);
+                    }
+                });
+            }
+        } finally {
+            if(executorService != null) {
+                executorService.shutdown();
+            }
+        }
+    }
 
     public static String getMasterOrganizationAdminApplicationClientId(String organizationName) {
         return organizationName + "-organization";

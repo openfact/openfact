@@ -36,6 +36,8 @@ public class DebitNoteRepresentation {
     private Map<String, List<String>> attributes;
     private Set<String> requiredActions;
 
+    private List<AttatchedDocumentRepresentation> attatchedDocuments;
+
     public String getId() {
         return id;
     }
@@ -122,5 +124,13 @@ public class DebitNoteRepresentation {
 
     public void setAttributes(Map<String, List<String>> attributes) {
         this.attributes = attributes;
+    }
+
+    public List<AttatchedDocumentRepresentation> getAttatchedDocuments() {
+        return attatchedDocuments;
+    }
+
+    public void setAttatchedDocuments(List<AttatchedDocumentRepresentation> attatchedDocuments) {
+        this.attatchedDocuments = attatchedDocuments;
     }
 }

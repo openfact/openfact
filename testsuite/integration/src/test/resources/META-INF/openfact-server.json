@@ -94,5 +94,14 @@
     "jboss": {
       "enabled": true
     }
+  },
+
+  "organizationScheduleTask": {
+    "sendToThridParty": {
+      "active": true
+    },
+    "sendToCustomer": {
+      "active": true
+    }
   }
 }

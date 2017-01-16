@@ -52,7 +52,7 @@ public class JpaFileProvider implements FileProvider {
         entity.setFile(file);
         entity.setOrganizationId(organization.getId());
         em.persist(entity);
-        em.flush();
+        //em.flush();
 
         return new FileAdapter(session, em, entity);
     }
