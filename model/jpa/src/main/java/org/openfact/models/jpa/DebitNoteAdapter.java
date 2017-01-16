@@ -538,7 +538,7 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
         }
 
         String q = builder.toString();
-        TypedQuery<DebitNoteSendEventEntity> query = em.createQuery(q, DebitNoteSendEventEntity.class);
+        Query query = em.createQuery(q);
         query.setParameter("debitNoteId", debitNote.getId());
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             String parameterName = null;

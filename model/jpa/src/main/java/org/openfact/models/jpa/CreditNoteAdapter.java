@@ -537,7 +537,7 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
         }
 
         String q = builder.toString();
-        TypedQuery<CreditNoteSendEventEntity> query = em.createQuery(q, CreditNoteSendEventEntity.class);
+        Query query = em.createQuery(q);
         query.setParameter("creditNoteId", creditNote.getId());
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             String parameterName = null;

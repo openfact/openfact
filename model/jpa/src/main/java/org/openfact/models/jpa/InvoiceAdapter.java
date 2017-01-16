@@ -574,7 +574,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
         }
 
         String q = builder.toString();
-        TypedQuery<InvoiceSendEventEntity> query = em.createQuery(q, InvoiceSendEventEntity.class);
+        Query query = em.createQuery(q);
         query.setParameter("invoiceId", invoice.getId());
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             String parameterName = null;
