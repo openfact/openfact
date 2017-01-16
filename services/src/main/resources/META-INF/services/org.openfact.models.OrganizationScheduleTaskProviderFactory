@@ -1,2 +1,2 @@
 org.openfact.services.scheduled.SendToCustomerOrganizationScheduleTaskProviderFactory
-org.openfact.services.scheduled.SendToThridPartyOrganizationScheduleTaskProviderFactory
+org.openfact.services.scheduled.SendToThirdPartyOrganizationScheduleTaskProviderFactory

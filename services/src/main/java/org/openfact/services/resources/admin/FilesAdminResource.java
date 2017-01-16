@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package org.openfact.services.resources.admin.storage;
+package org.openfact.services.resources.admin;
 
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.openfact.common.ClientConnection;

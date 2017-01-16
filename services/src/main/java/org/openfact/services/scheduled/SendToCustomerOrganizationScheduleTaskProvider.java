@@ -17,6 +17,7 @@
 package org.openfact.services.scheduled;
 
 import org.openfact.models.*;
+import org.openfact.models.enums.DestinyType;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.enums.SendResultType;
 import org.openfact.services.managers.CreditNoteManager;
@@ -30,12 +31,13 @@ import java.util.*;
 public class SendToCustomerOrganizationScheduleTaskProvider implements OrganizationScheduleTaskProvider {
 
     public static final String JOB_NAME = "SENT_TO_CUSTOMER";
-    public static final int RETRY = 20;
 
+    protected int retries;
     protected boolean isActive;
 
-    public SendToCustomerOrganizationScheduleTaskProvider(boolean isActive) {
+    public SendToCustomerOrganizationScheduleTaskProvider(boolean isActive, int retries) {
         this.isActive = isActive;
+        this.retries = retries;
     }
 
     @Override
@@ -81,21 +83,23 @@ public class SendToCustomerOrganizationScheduleTaskProvider implements Organizat
             readCount += invoices.size();
 
             invoices.stream()
-                    .filter(p -> p.getRequiredActions().contains(RequiredAction.SEND_TO_CUSTOMER.toString()))
-                    .filter(p -> p.getSendEvents().size() < RETRY)
+                    .filter(p -> p.sendEventCount(new HashMap<String, String>() {{
+                        put(InvoiceModel.SEND_EVENT_DESTINY_TYPE, DestinyType.CUSTOMER.toString());
+                    }}) < retries)
                     .forEach(c -> {
                         InvoiceManager manager = new InvoiceManager(session);
+                        SendEventModel sendEvent = null;
                         try {
-                            SendEventModel sendEvent = manager.sendToCustomerParty(organization, c);
+                            sendEvent = manager.sendToCustomerParty(organization, c);
                             if (sendEvent.getResult().equals(SendResultType.SUCCESS)) {
                                 c.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
                             }
                         } catch (SendException e) {
-                            throw new JobException("error on execute job", e);
+                            sendEvent.setResult(SendResultType.ERROR);
+                            sendEvent.setDescription("Internal Server Error");
                         }
                     });
         }
-
         return readCount;
     }
 
@@ -111,17 +115,20 @@ public class SendToCustomerOrganizationScheduleTaskProvider implements Organizat
             readCount += creditNotes.size();
 
             creditNotes.stream()
-                    .filter(p -> p.getRequiredActions().contains(RequiredAction.SEND_TO_CUSTOMER))
-                    .filter(p -> p.getSendEvents().size() < RETRY)
+                    .filter(p -> p.sendEventCount(new HashMap<String, String>() {{
+                        put(InvoiceModel.SEND_EVENT_DESTINY_TYPE, DestinyType.CUSTOMER.toString());
+                    }}) < retries)
                     .forEach(c -> {
                         CreditNoteManager manager = new CreditNoteManager(session);
+                        SendEventModel sendEvent = null;
                         try {
-                            SendEventModel sendEvent = manager.sendToCustomerParty(organization, c);
+                            sendEvent = manager.sendToCustomerParty(organization, c);
                             if (sendEvent.getResult().equals(SendResultType.SUCCESS)) {
                                 c.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
                             }
                         } catch (SendException e) {
-                            throw new JobException("error on execute job", e);
+                            sendEvent.setResult(SendResultType.ERROR);
+                            sendEvent.setDescription("Internal Server Error");
                         }
                     });
         }
@@ -141,17 +148,20 @@ public class SendToCustomerOrganizationScheduleTaskProvider implements Organizat
             readCount += debitNotes.size();
 
             debitNotes.stream()
-                    .filter(p -> p.getRequiredActions().contains(RequiredAction.SEND_TO_CUSTOMER))
-                    .filter(p -> p.getSendEvents().size() < RETRY)
+                    .filter(p -> p.sendEventCount(new HashMap<String, String>() {{
+                        put(InvoiceModel.SEND_EVENT_DESTINY_TYPE, DestinyType.CUSTOMER.toString());
+                    }}) < retries)
                     .forEach(c -> {
                         DebitNoteManager manager = new DebitNoteManager(session);
+                        SendEventModel sendEvent = null;
                         try {
-                            SendEventModel sendEvent = manager.sendToCustomerParty(organization, c);
+                            sendEvent = manager.sendToCustomerParty(organization, c);
                             if (sendEvent.getResult().equals(SendResultType.SUCCESS)) {
                                 c.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
                             }
                         } catch (SendException e) {
-                            throw new JobException("error on execute job", e);
+                            sendEvent.setResult(SendResultType.ERROR);
+                            sendEvent.setDescription("Internal Server Error");
                         }
                     });
         }

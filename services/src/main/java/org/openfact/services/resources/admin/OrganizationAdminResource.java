@@ -68,7 +68,6 @@ import org.openfact.representations.idm.OrganizationEventsConfigRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.managers.OrganizationManager;
-import org.openfact.services.resources.admin.storage.FilesAdminResource;
 
 public class OrganizationAdminResource {
 
@@ -221,6 +220,13 @@ public class OrganizationAdminResource {
         DebitNotesAdminResource debitNotes = new DebitNotesAdminResource(organization, auth, adminEvent);
         ResteasyProviderFactory.getInstance().injectProperties(debitNotes);
         return debitNotes;
+    }
+
+    @Path("job-reports")
+    public JobReportsAdminResource getJobReportsAdmin() {
+        JobReportsAdminResource jobReports = new JobReportsAdminResource(organization, auth, adminEvent);
+        ResteasyProviderFactory.getInstance().injectProperties(jobReports);
+        return jobReports;
     }
 
     @Path("storage-files")

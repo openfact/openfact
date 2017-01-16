@@ -25,15 +25,17 @@ import org.openfact.models.OrganizationScheduleTaskProviderFactory;
 public class SendToCustomerOrganizationScheduleTaskProviderFactory implements OrganizationScheduleTaskProviderFactory {
 
     protected boolean isActive;
+    protected int retries;
 
     @Override
     public OrganizationScheduleTaskProvider create(OpenfactSession session) {
-        return new SendToCustomerOrganizationScheduleTaskProvider(isActive);
+        return new SendToCustomerOrganizationScheduleTaskProvider(isActive, retries);
     }
 
     @Override
     public void init(Scope config) {
         isActive = config.getBoolean("active", true);
+        retries = config.getInt("retries", 30);
     }
 
     @Override

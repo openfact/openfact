@@ -22,18 +22,20 @@ import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.models.OrganizationScheduleTaskProvider;
 import org.openfact.models.OrganizationScheduleTaskProviderFactory;
 
-public class SendToThridPartyOrganizationScheduleTaskProviderFactory implements OrganizationScheduleTaskProviderFactory {
+public class SendToThirdPartyOrganizationScheduleTaskProviderFactory implements OrganizationScheduleTaskProviderFactory {
 
     protected boolean isActive;
+    protected int retries;
 
     @Override
     public OrganizationScheduleTaskProvider create(OpenfactSession session) {
-        return new SendToThridPartyOrganizationScheduleTaskProvider(isActive);
+        return new SendToThirdPartyOrganizationScheduleTaskProvider(isActive, retries);
     }
 
     @Override
     public void init(Scope config) {
         isActive = config.getBoolean("active", true);
+        retries = config.getInt("retries", 30);
     }
 
     @Override

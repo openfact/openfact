@@ -17,6 +17,7 @@
 package org.openfact.services.scheduled;
 
 import org.openfact.models.*;
+import org.openfact.models.enums.DestinyType;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.enums.SendResultType;
 import org.openfact.services.managers.CreditNoteManager;
@@ -25,18 +26,20 @@ import org.openfact.services.managers.InvoiceManager;
 import org.openfact.models.SendEventModel;
 import org.openfact.models.SendException;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-public class SendToThridPartyOrganizationScheduleTaskProvider implements OrganizationScheduleTaskProvider {
+public class SendToThirdPartyOrganizationScheduleTaskProvider implements OrganizationScheduleTaskProvider {
 
-    public static final String JOB_NAME = "SENT_TO_THRID_PARTY";
-    public static final int RETRY = 20;
+    public static final String JOB_NAME = "SENT_TO_THIRD_PARTY";
 
+    protected int retries;
     protected boolean isActive;
 
-    public SendToThridPartyOrganizationScheduleTaskProvider(boolean isActive) {
+    public SendToThirdPartyOrganizationScheduleTaskProvider(boolean isActive, int retries) {
         this.isActive = isActive;
+        this.retries = retries;
     }
 
     @Override
@@ -82,17 +85,20 @@ public class SendToThridPartyOrganizationScheduleTaskProvider implements Organiz
             readCount += invoices.size();
 
             invoices.stream()
-                    .filter(p -> p.getRequiredActions().contains(RequiredAction.SEND_TO_TRIRD_PARTY.toString()))
-                    .filter(p -> p.getSendEvents().size() < RETRY)
+                    .filter(p -> p.sendEventCount(new HashMap<String, String>() {{
+                        put(InvoiceModel.SEND_EVENT_DESTINY_TYPE, DestinyType.THIRD_PARTY.toString());
+                    }}) < retries)
                     .forEach(c -> {
                         InvoiceManager manager = new InvoiceManager(session);
+                        SendEventModel sendEvent = null;
                         try {
-                            SendEventModel sendEvent = manager.sendToTrirdParty(organization, c);
+                            sendEvent = manager.sendToTrirdParty(organization, c);
                             if (sendEvent.getResult().equals(SendResultType.SUCCESS)) {
                                 c.removeRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
                             }
                         } catch (SendException e) {
-                            throw new JobException("error on execute job", e);
+                            sendEvent.setResult(SendResultType.ERROR);
+                            sendEvent.setDescription("Internal Server Error");
                         }
                     });
         }
@@ -112,17 +118,20 @@ public class SendToThridPartyOrganizationScheduleTaskProvider implements Organiz
             readCount += creditNotes.size();
 
             creditNotes.stream()
-                    .filter(p -> p.getRequiredActions().contains(RequiredAction.SEND_TO_TRIRD_PARTY))
-                    .filter(p -> p.getSendEvents().size() < RETRY)
+                    .filter(p -> p.sendEventCount(new HashMap<String, String>() {{
+                        put(InvoiceModel.SEND_EVENT_DESTINY_TYPE, DestinyType.THIRD_PARTY.toString());
+                    }}) < retries)
                     .forEach(c -> {
                         CreditNoteManager manager = new CreditNoteManager(session);
+                        SendEventModel sendEvent = null;
                         try {
-                            SendEventModel sendEvent = manager.sendToTrirdParty(organization, c);
+                            sendEvent = manager.sendToTrirdParty(organization, c);
                             if (sendEvent.getResult().equals(SendResultType.SUCCESS)) {
                                 c.removeRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
                             }
                         } catch (SendException e) {
-                            throw new JobException("error on execute job", e);
+                            sendEvent.setResult(SendResultType.ERROR);
+                            sendEvent.setDescription("Internal Server Error");
                         }
                     });
         }
@@ -142,17 +151,20 @@ public class SendToThridPartyOrganizationScheduleTaskProvider implements Organiz
             readCount += debitNotes.size();
 
             debitNotes.stream()
-                    .filter(p -> p.getRequiredActions().contains(RequiredAction.SEND_TO_TRIRD_PARTY))
-                    .filter(p -> p.getSendEvents().size() < RETRY)
+                    .filter(p -> p.sendEventCount(new HashMap<String, String>() {{
+                        put(InvoiceModel.SEND_EVENT_DESTINY_TYPE, DestinyType.THIRD_PARTY.toString());
+                    }}) < retries)
                     .forEach(c -> {
                         DebitNoteManager manager = new DebitNoteManager(session);
+                        SendEventModel sendEvent = null;
                         try {
-                            SendEventModel sendEvent = manager.sendToTrirdParty(organization, c);
+                            sendEvent = manager.sendToTrirdParty(organization, c);
                             if (sendEvent.getResult().equals(SendResultType.SUCCESS)) {
                                 c.removeRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
                             }
                         } catch (SendException e) {
-                            throw new JobException("error on execute job", e);
+                            sendEvent.setResult(SendResultType.ERROR);
+                            sendEvent.setDescription("Internal Server Error");
                         }
                     });
         }
