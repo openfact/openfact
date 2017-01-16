@@ -38,7 +38,9 @@ import java.util.Map;
         @NamedQuery(name = "getAllJobsReportByOrganization", query = "select i from JobReportEntity i where i.organization.id = :organizationId"),
         @NamedQuery(name = "getOrganizationJobReportById", query = "select i from JobReportEntity i where i.id = :id and i.organization.id = :organizationId"),
         @NamedQuery(name = "searchForJobReport", query = "select i from JobReportEntity i where i.organization.id = :organizationId and lower(i.jobName) like :search"),
-        @NamedQuery(name = "getOrganizationJobReportCount", query = "select count(i) from JobReportEntity i where i.organization.id = :organizationId") })
+        @NamedQuery(name = "getOrganizationJobReportCount", query = "select count(i) from JobReportEntity i where i.organization.id = :organizationId"),
+        @NamedQuery(name = "deleteJobReportsByOrganization", query = "delete from JobReportEntity f where f.organization.id=:organizationId")
+})
 public class JobReportEntity {
 
     @Id

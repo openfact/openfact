@@ -104,6 +104,11 @@ public class JpaJobReportProvider extends AbstractHibernateStorage implements Jo
     }
 
     @Override
+    public void preRemove(OrganizationModel organization) {
+        int num = em.createNamedQuery("deleteJobReportsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+    }
+
+    @Override
     public void close() {
     }
 }

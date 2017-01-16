@@ -34,4 +34,5 @@ public interface JobReportProvider extends Provider {
 
     boolean removeJobReport(OrganizationModel organization, JobReportModel jobReport);
 
+    void preRemove(OrganizationModel organization);
 }

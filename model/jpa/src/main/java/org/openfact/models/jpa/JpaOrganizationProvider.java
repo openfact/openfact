@@ -130,6 +130,7 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
         session.creditNotes().preRemove(adapter);
         session.debitNotes().preRemove(adapter);
 
+        session.jobReports().preRemove(adapter);
         session.files().preRemove(adapter);
 
         em.flush();
