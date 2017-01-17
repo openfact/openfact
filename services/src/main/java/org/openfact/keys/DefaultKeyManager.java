@@ -53,7 +53,7 @@ public class DefaultKeyManager implements KeyManager {
                 return new ActiveKey(kid, p.getPrivateKey(), p.getPublicKey(kid), p.getCertificate(kid));
             }
         }
-        throw new RuntimeException("Failed to get keys");
+        throw new RuntimeException("Failed to getObject keys");
     }
 
     @Override

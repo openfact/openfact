@@ -33,7 +33,7 @@ public interface Property<V> {
 
     /**
      * Returns the name of the property. If the property is a field, then the field name is returned. Otherwise, if the
-     * property is a method, then the name that is returned is the getter method name without the "get" or "is" prefix,
+     * property is a method, then the name that is returned is the getter method name without the "getObject" or "is" prefix,
      * and a lower case first letter.
      *
      * @return The name of the property

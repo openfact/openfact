@@ -16,7 +16,6 @@
  *******************************************************************************/
 package org.openfact.models.jpa;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -25,14 +24,14 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
 import com.helger.ubl21.UBL21Reader;
 import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 import org.jboss.logging.Logger;
+import org.json.JSONObject;
 import org.json.XML;
-import org.openfact.OpenfactJSONObject;
+import org.openfact.JSONObjectUtils;
 import org.openfact.common.converts.DocumentUtils;
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.file.*;
@@ -59,7 +58,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     protected FileModel xmlFile;
     protected InvoiceType invoiceType;
     protected Document document;
-    protected OpenfactJSONObject jsonObject;
+    protected JSONObject jsonObject;
 
     public InvoiceAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em, InvoiceEntity invoice) {
         this.organization = organization;
@@ -242,13 +241,14 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
-    public OpenfactJSONObject getXmlAsJSONObject() {
+    public JSONObject getXmlAsJSONObject() {
         if (jsonObject == null) {
             try {
                 Document document = getXmlAsDocument();
                 if (document != null) {
                     String documentString = DocumentUtils.getDocumentToString(document);
-                    jsonObject = new OpenfactJSONObject(XML.toJSONObject(documentString), ".*:", "").navigate("Invoice");
+                    jsonObject = JSONObjectUtils.renameKey(XML.toJSONObject(documentString), ".*:", "");
+                    jsonObject = JSONObjectUtils.getJSONObject(jsonObject, "Invoice");
                 }
             } catch (TransformerException e) {
                 throw new ModelException("Error parsing xml file to JSON", e);

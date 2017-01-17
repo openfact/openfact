@@ -25,8 +25,6 @@ import javax.ws.rs.core.UriInfo;
 
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.json.JSONObject;
-import org.json.XML;
-import org.openfact.OpenfactJSONObject;
 import org.openfact.common.ClientConnection;
 import org.openfact.events.admin.OperationType;
 import org.openfact.models.*;
@@ -41,17 +39,12 @@ import org.openfact.representations.idm.ThirdPartyEmailRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.CreditNoteManager;
-import org.openfact.services.managers.InvoiceManager;
-import org.openfact.services.scheduled.ScheduledTaskRunner;
-import org.openfact.timer.ScheduledTask;
 import org.openfact.ubl.UBLReportProvider;
 import org.w3c.dom.Document;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 public class CreditNoteAdminResource {
@@ -113,9 +106,9 @@ public class CreditNoteAdminResource {
             throw new NotFoundException("CreditNote not found");
         }
 
-        OpenfactJSONObject jsonObject = creditNote.getXmlAsJSONObject();
+        JSONObject jsonObject = creditNote.getXmlAsJSONObject();
         if (jsonObject != null) {
-            return Response.ok(jsonObject.getJsonObject().toString()).build();
+            return Response.ok(jsonObject.toString()).build();
         } else {
             return ErrorResponse.exists("No json attached to current creditNote");
         }

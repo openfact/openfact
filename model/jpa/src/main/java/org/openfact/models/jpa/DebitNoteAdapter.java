@@ -29,8 +29,9 @@ import javax.xml.transform.TransformerException;
 import com.helger.ubl21.UBL21Reader;
 import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
 import org.jboss.logging.Logger;
+import org.json.JSONObject;
 import org.json.XML;
-import org.openfact.OpenfactJSONObject;
+import org.openfact.JSONObjectUtils;
 import org.openfact.common.converts.DocumentUtils;
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.file.FileModel;
@@ -57,7 +58,7 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
     protected FileModel xmlFile;
     protected DebitNoteType debitNoteType;
     protected Document document;
-    protected OpenfactJSONObject jsonObject;
+    protected JSONObject jsonObject;
 
     public DebitNoteAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em, DebitNoteEntity debitNote) {
         this.organization = organization;
@@ -220,13 +221,14 @@ public class DebitNoteAdapter implements DebitNoteModel, JpaModel<DebitNoteEntit
     }
 
     @Override
-    public OpenfactJSONObject getXmlAsJSONObject() {
+    public JSONObject getXmlAsJSONObject() {
         if (jsonObject == null) {
             try {
                 Document document = getXmlAsDocument();
                 if (document != null) {
                     String documentString = DocumentUtils.getDocumentToString(document);
-                    jsonObject = new OpenfactJSONObject(XML.toJSONObject(documentString), ".*:", "").navigate("DebitNote");
+                    jsonObject = JSONObjectUtils.renameKey(XML.toJSONObject(documentString), ".*:", "");
+                    jsonObject = JSONObjectUtils.getJSONObject(jsonObject, "DebitNote");
                 }
             } catch (TransformerException e) {
                 throw new ModelException("Error parsing xml file to JSON", e);

@@ -80,7 +80,7 @@ public class ProxyClassLoader extends ClassLoader {
             }
             // Resource == null means not found, so let the next one try.
         }
-        // We could not get the resource from the proxy class loaders, so proceed with 'normal' behavior.
+        // We could not getObject the resource from the proxy class loaders, so proceed with 'normal' behavior.
         return super.getResource(name);
     }
 

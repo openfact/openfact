@@ -48,10 +48,10 @@ class MethodPropertyImpl<V> implements MethodProperty<V> {
         if (method.getName().startsWith(GETTER_METHOD_PREFIX)) {
             if (method.getReturnType() == Void.TYPE) {
                 throw new IllegalArgumentException(
-                        "Invalid accessor method, must have return value if starts with 'get'. Method: " + method);
+                        "Invalid accessor method, must have return value if starts with 'getObject'. Method: " + method);
             } else if (method.getParameterTypes().length > 0) {
                 throw new IllegalArgumentException(
-                        "Invalid accessor method, must have zero arguments if starts with 'get'. Method: " + method);
+                        "Invalid accessor method, must have zero arguments if starts with 'getObject'. Method: " + method);
             }
             propertyNameInAccessorMethod = method.getName().substring(GETTER_METHOD_PREFIX_LENGTH);
             accessorMethodPrefix = GETTER_METHOD_PREFIX;
@@ -75,7 +75,7 @@ class MethodPropertyImpl<V> implements MethodProperty<V> {
             accessorMethodPrefix = BOOLEAN_GETTER_METHOD_PREFIX;
         } else {
             throw new IllegalArgumentException(
-                    "Invalid accessor method, must start with 'get', 'set' or 'is'.  " + "Method: " + method);
+                    "Invalid accessor method, must start with 'getObject', 'set' or 'is'.  " + "Method: " + method);
         }
 
         if (propertyNameInAccessorMethod.length() == 0 ||

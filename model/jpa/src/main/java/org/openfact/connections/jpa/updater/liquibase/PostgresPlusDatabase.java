@@ -66,7 +66,7 @@ public class PostgresPlusDatabase extends PostgresDatabase {
             return currentSchema;
 
         } catch (Exception e) {
-            throw new RuntimeException("Failed to get current schema", e);
+            throw new RuntimeException("Failed to getObject current schema", e);
         }
     }
 

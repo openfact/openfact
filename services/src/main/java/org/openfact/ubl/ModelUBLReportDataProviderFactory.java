@@ -16,17 +16,15 @@
  *******************************************************************************/
 package org.openfact.ubl;
 
-import org.openfact.Config;
 import org.openfact.Config.Scope;
-import org.openfact.models.*;
-import org.openfact.report.JasperReportUtil;
-import org.openfact.report.ReportTemplateProvider;
+import org.openfact.models.OpenfactSession;
+import org.openfact.models.OpenfactSessionFactory;
 
-public class BasicUBLReportDataProviderFactory implements UBLReportDataProviderFactory {
+public class ModelUBLReportDataProviderFactory implements UBLReportDataProviderFactory {
 
     @Override
     public UBLReportDataProvider create(OpenfactSession session) {
-        return new BasicUBLReportDataProvider(session);
+        return new ModelUBLReportDataProvider(session);
     }
 
     @Override
@@ -43,6 +41,6 @@ public class BasicUBLReportDataProviderFactory implements UBLReportDataProviderF
 
     @Override
     public String getId() {
-        return "basic";
+        return "model";
     }
 }

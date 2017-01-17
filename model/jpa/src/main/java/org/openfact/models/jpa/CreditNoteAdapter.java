@@ -29,8 +29,9 @@ import javax.xml.transform.TransformerException;
 import com.helger.ubl21.UBL21Reader;
 import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
 import org.jboss.logging.Logger;
+import org.json.JSONObject;
 import org.json.XML;
-import org.openfact.OpenfactJSONObject;
+import org.openfact.JSONObjectUtils;
 import org.openfact.common.converts.DocumentUtils;
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.file.*;
@@ -57,7 +58,7 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
     protected FileModel xmlFile;
     protected CreditNoteType creditNoteType;
     protected Document document;
-    protected OpenfactJSONObject jsonObject;
+    protected JSONObject jsonObject;
 
     public CreditNoteAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em, CreditNoteEntity creditNote) {
         this.organization = organization;
@@ -220,13 +221,14 @@ public class CreditNoteAdapter implements CreditNoteModel, JpaModel<CreditNoteEn
     }
 
     @Override
-    public OpenfactJSONObject getXmlAsJSONObject() {
+    public JSONObject getXmlAsJSONObject() {
         if (jsonObject == null) {
             try {
                 Document document = getXmlAsDocument();
                 if (document != null) {
                     String documentString = DocumentUtils.getDocumentToString(document);
-                    jsonObject = new OpenfactJSONObject(XML.toJSONObject(documentString), ".*:", "").navigate("CreditNote");
+                    jsonObject = JSONObjectUtils.renameKey(XML.toJSONObject(documentString), ".*:", "");
+                    jsonObject = JSONObjectUtils.getJSONObject(jsonObject, "CreditNote");
                 }
             } catch (TransformerException e) {
                 throw new ModelException("Error parsing xml file to JSON", e);

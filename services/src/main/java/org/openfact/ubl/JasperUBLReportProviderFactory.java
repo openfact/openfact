@@ -20,7 +20,6 @@ import org.openfact.Config.Scope;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 import org.openfact.report.JasperReportUtil;
-import org.openfact.theme.FreeMarkerUtil;
 
 public class JasperUBLReportProviderFactory implements UBLReportProviderFactory {
 

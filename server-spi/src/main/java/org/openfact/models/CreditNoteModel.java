@@ -23,7 +23,7 @@ import java.util.Map;
 import java.util.Set;
 
 import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
-import org.openfact.OpenfactJSONObject;
+import org.json.JSONObject;
 import org.openfact.file.FileModel;
 import org.openfact.models.enums.DestinyType;
 import org.openfact.models.enums.DocumentType;
@@ -81,7 +81,7 @@ public interface CreditNoteModel {
     void attachXmlFile(FileModel file);
 
     Document getXmlAsDocument();
-    OpenfactJSONObject getXmlAsJSONObject();
+    JSONObject getXmlAsJSONObject();
 
     /**
      * attributes

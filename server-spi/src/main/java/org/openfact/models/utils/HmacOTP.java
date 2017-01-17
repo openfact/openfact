@@ -58,7 +58,7 @@ public class HmacOTP {
     public String generateHOTP(String key, int counter) {
         String steps = Integer.toHexString(counter).toUpperCase();
 
-        // Just get a 16 digit string
+        // Just getObject a 16 digit string
         while (steps.length() < 16)
             steps = "0" + steps;
 
@@ -110,7 +110,7 @@ public class HmacOTP {
         // Get the HEX in a Byte[]
         byte[] msg = hexStr2Bytes(counter);
 
-        // Adding one byte to get the right conversion
+        // Adding one byte to getObject the right conversion
         // byte[] k = hexStr2Bytes(key);
         byte[] k = key.getBytes();
 
@@ -168,7 +168,7 @@ public class HmacOTP {
      * @return A byte array
      */
     private byte[] hexStr2Bytes(String hex) {
-        // Adding one byte to get the right conversion
+        // Adding one byte to getObject the right conversion
         // values starting with "0" can be converted
         byte[] bArray = new BigInteger("10" + hex, 16).toByteArray();
 

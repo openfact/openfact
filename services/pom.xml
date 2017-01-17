@@ -111,12 +111,8 @@
 			<artifactId>keycloak-authz-client</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.easybatch</groupId>
-			<artifactId>easybatch-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.easybatch</groupId>
-			<artifactId>easybatch-tools</artifactId>
+			<groupId>net.sf.barcode4j</groupId>
+			<artifactId>barcode4j</artifactId>
 		</dependency>
 		<!-- Secondary End -->
 

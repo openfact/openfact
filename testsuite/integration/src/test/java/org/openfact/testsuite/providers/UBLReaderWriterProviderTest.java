@@ -55,7 +55,7 @@ public class UBLReaderWriterProviderTest /*extends AbstractProviderTest*/ {
     @Test
     public void getInvoiceDocument() throws Exception {
         List<InvoiceModel> invoices = session.invoices().getInvoices(organization);
-        InvoiceModel invoice = invoices.get(0);
+        InvoiceModel invoice = invoices.getObject(0);
 
         Set<InvoiceReaderWriterProvider> providers = session.getAllProviders(InvoiceReaderWriterProvider.class);
         for (InvoiceReaderWriterProvider provider : providers) {
@@ -73,7 +73,7 @@ public class UBLReaderWriterProviderTest /*extends AbstractProviderTest*/ {
     @Test
     public void getCreditNoteDocument() throws Exception {
         List<CreditNoteModel> creditNotes = session.creditNotes().getCreditNotes(organization);
-        CreditNoteModel creditNote = creditNotes.get(0);
+        CreditNoteModel creditNote = creditNotes.getObject(0);
 
         Set<CreditNoteReaderWriterProvider> providers = session.getAllProviders(CreditNoteReaderWriterProvider.class);
         for (CreditNoteReaderWriterProvider provider : providers) {
@@ -91,7 +91,7 @@ public class UBLReaderWriterProviderTest /*extends AbstractProviderTest*/ {
     @Test
     public void getDebitNoteDocument() throws Exception {
         List<DebitNoteModel> debitNotes = session.debitNotes().getDebitNotes(organization);
-        DebitNoteModel debitNote = debitNotes.get(0);
+        DebitNoteModel debitNote = debitNotes.getObject(0);
 
         Set<DebitNoteReaderWriterProvider> providers = session.getAllProviders(DebitNoteReaderWriterProvider.class);
         for (DebitNoteReaderWriterProvider provider : providers) {

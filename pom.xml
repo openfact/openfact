@@ -158,11 +158,9 @@
 		<version.woodstox>4.4.1</version.woodstox>
 		<json.version>20160810</json.version>
 		<version.jasperreports>6.3.1</version.jasperreports>
+		<version.barcode4j>2.1</version.barcode4j>
 		<version.jasperreports.fonts>6.0.0</version.jasperreports.fonts>
 		<version.keycloak>2.4.0.Final</version.keycloak>
-
-		<!-- easybatch -->
-		<version.easybatch>5.0.0</version.easybatch>
 
 		<!-- Dropbox -->
 		<version.dropbox>2.1.1</version.dropbox>
@@ -977,14 +975,9 @@
 				<version>${version.dropbox}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.easybatch</groupId>
-				<artifactId>easybatch-core</artifactId>
-				<version>${version.easybatch}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.easybatch</groupId>
-				<artifactId>easybatch-tools</artifactId>
-				<version>${version.easybatch}</version>
+				<groupId>net.sf.barcode4j</groupId>
+				<artifactId>barcode4j</artifactId>
+				<version>${version.barcode4j}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

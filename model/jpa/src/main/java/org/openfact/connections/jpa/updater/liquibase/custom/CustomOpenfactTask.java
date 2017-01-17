@@ -127,7 +127,7 @@ public abstract class CustomOpenfactTask implements CustomSqlChange {
 
     protected abstract String getTaskId();
 
-    // get Table name for sql selects
+    // getObject Table name for sql selects
     protected String getTableName(String tableName) {
        return LiquibaseJpaUpdaterProvider.getTable(tableName, database.getDefaultSchemaName());
     }

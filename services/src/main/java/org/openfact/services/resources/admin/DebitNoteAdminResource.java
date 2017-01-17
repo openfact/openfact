@@ -18,7 +18,6 @@ package org.openfact.services.resources.admin;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
@@ -26,10 +25,7 @@ import javax.ws.rs.core.UriInfo;
 
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.json.JSONObject;
-import org.json.XML;
-import org.openfact.OpenfactJSONObject;
 import org.openfact.common.ClientConnection;
-import org.openfact.common.converts.DocumentUtils;
 import org.openfact.events.admin.OperationType;
 import org.openfact.models.*;
 import org.openfact.models.enums.DestinyType;
@@ -37,27 +33,18 @@ import org.openfact.models.enums.SendResultType;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.report.ExportFormat;
-import org.openfact.report.ReportTemplateProvider;
-import org.openfact.report.ReportTheme;
-import org.openfact.report.ReportThemeProvider;
 import org.openfact.representations.idm.DebitNoteRepresentation;
 import org.openfact.representations.idm.SendEventRepresentation;
 import org.openfact.representations.idm.ThirdPartyEmailRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 import org.openfact.services.managers.DebitNoteManager;
-import org.openfact.services.managers.DebitNoteManager;
-import org.openfact.services.managers.InvoiceManager;
-import org.openfact.services.scheduled.ScheduledTaskRunner;
-import org.openfact.timer.ScheduledTask;
 import org.openfact.ubl.UBLReportProvider;
 import org.w3c.dom.Document;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 public class DebitNoteAdminResource {
@@ -119,9 +106,9 @@ public class DebitNoteAdminResource {
             throw new NotFoundException("DebitNote not found");
         }
 
-        OpenfactJSONObject jsonObject = debitNote.getXmlAsJSONObject();
+        JSONObject jsonObject = debitNote.getXmlAsJSONObject();
         if (jsonObject != null) {
-            return Response.ok(jsonObject.getJsonObject().toString()).build();
+            return Response.ok(jsonObject.toString()).build();
         } else {
             return ErrorResponse.exists("No json attached to current debit note");
         }

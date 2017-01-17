@@ -36,7 +36,7 @@ public class SpiResourceAddHandler extends AbstractAddStepHandler {
     
     @Override
     protected void populateModel(ModelNode operation, ModelNode model) throws OperationFailedException {
-        // TODO: localize exception. get id number
+        // TODO: localize exception. getObject id number
         if (!operation.get(OP).asString().equals(ADD)) {
             throw new OperationFailedException("Unexpected operation for add SPI. operation=" + operation.toString());
         }

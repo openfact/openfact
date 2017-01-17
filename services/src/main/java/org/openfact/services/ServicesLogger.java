@@ -334,7 +334,7 @@ public interface ServicesLogger extends BasicLogger {
     void actionProviderNull();
 
     @LogMessage(level = WARN)
-    @Message(id = 75, value = "Failed to get theme request")
+    @Message(id = 75, value = "Failed to getObject theme request")
     void failedToGetThemeRequest(@Cause Exception e);
 
     @LogMessage(level = ERROR)

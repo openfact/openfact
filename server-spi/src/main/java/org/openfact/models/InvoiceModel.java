@@ -22,10 +22,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
 import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 import org.json.JSONObject;
-import org.openfact.OpenfactJSONObject;
 import org.openfact.file.FileModel;
 import org.openfact.models.enums.DestinyType;
 import org.openfact.models.enums.DocumentType;
@@ -93,7 +91,7 @@ public interface InvoiceModel {
     void attachXmlFile(FileModel file);
 
     Document getXmlAsDocument();
-    OpenfactJSONObject getXmlAsJSONObject();
+    JSONObject getXmlAsJSONObject();
 
     /**
      * attributes

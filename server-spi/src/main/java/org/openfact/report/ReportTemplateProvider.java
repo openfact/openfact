@@ -27,16 +27,8 @@ public interface ReportTemplateProvider<T> extends Provider {
 
     ReportTemplateProvider setThemeName(String themeName);
 
-    ReportTemplateProvider setAttribute(String name, Object value);
-
-    @Deprecated
-    byte[] getReportAsPdf(T t) throws ReportException;
-
-    @Deprecated
-    byte[] getReportAsPdf(List<T> t) throws ReportException;
+    ReportTemplateProvider setParameter(String name, Object value);
 
     byte[] getReport(T t, ExportFormat exportFormat) throws ReportException;
-
-    byte[] getReport(List<T> t, ExportFormat exportFormat) throws ReportException;
 
 }
