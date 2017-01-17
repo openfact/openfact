@@ -20,13 +20,13 @@ import org.jboss.logging.Logger;
 import org.openfact.models.*;
 import org.openfact.report.*;
 
-public class XMLUBLReportDataProvider implements UBLReportDataProvider {
+public class XmlUBLReportDataProvider implements UBLReportDataProvider {
 
-    private static final Logger logger = Logger.getLogger(XMLUBLReportDataProvider.class);
+    private static final Logger logger = Logger.getLogger(XmlUBLReportDataProvider.class);
 
     protected OpenfactSession session;
 
-    public XMLUBLReportDataProvider(OpenfactSession session) {
+    public XmlUBLReportDataProvider(OpenfactSession session) {
         this.session = session;
     }
 
@@ -41,7 +41,7 @@ public class XMLUBLReportDataProvider implements UBLReportDataProvider {
 
             @Override
             public Object getFieldValue(InvoiceModel invoice, String fieldName) {
-                XMLSupportedAttribute attribute = XMLSupportedAttribute.fromString(fieldName.toUpperCase());
+                XmlSupportedAttribute attribute = XmlSupportedAttribute.fromString(fieldName.toUpperCase());
                 if (attribute != null) {
                     return attribute.asObject(invoice.getXmlAsJSONObject());
                 }
@@ -61,7 +61,7 @@ public class XMLUBLReportDataProvider implements UBLReportDataProvider {
 
             @Override
             public Object getFieldValue(CreditNoteModel creditNote, String fieldName) {
-                XMLSupportedAttribute attribute = XMLSupportedAttribute.fromString(fieldName);
+                XmlSupportedAttribute attribute = XmlSupportedAttribute.fromString(fieldName);
                 if (attribute != null) {
                     return attribute.asObject(creditNote.getXmlAsJSONObject());
                 }
@@ -81,7 +81,7 @@ public class XMLUBLReportDataProvider implements UBLReportDataProvider {
 
             @Override
             public Object getFieldValue(DebitNoteModel debitNote, String fieldName) {
-                XMLSupportedAttribute attribute = XMLSupportedAttribute.fromString(fieldName);
+                XmlSupportedAttribute attribute = XmlSupportedAttribute.fromString(fieldName);
                 if (attribute != null) {
                     return attribute.asObject(debitNote.getXmlAsJSONObject());
                 }

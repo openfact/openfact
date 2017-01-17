@@ -9,7 +9,7 @@ import java.util.Optional;
 
 import static com.google.common.base.Verify.verifyNotNull;
 
-public enum XMLSupportedAttribute {
+public enum XmlSupportedAttribute {
 
     OF_ID(XMLAttributeContainer.simpleKey(value -> value != null ? String.valueOf(value) : null,
             "ID")),
@@ -127,7 +127,7 @@ public enum XMLSupportedAttribute {
 
     private JSONObjectToObjectConverter converter;
 
-    XMLSupportedAttribute(JSONObjectToObjectConverter converter) {
+    XmlSupportedAttribute(JSONObjectToObjectConverter converter) {
         this.converter = converter;
     }
 
@@ -136,8 +136,8 @@ public enum XMLSupportedAttribute {
         return converter.asObject(json);
     }
 
-    public static XMLSupportedAttribute fromString(String text) {
-        Optional<XMLSupportedAttribute> op = Arrays.stream(XMLSupportedAttribute.values())
+    public static XmlSupportedAttribute fromString(String text) {
+        Optional<XmlSupportedAttribute> op = Arrays.stream(XmlSupportedAttribute.values())
                 .filter(p -> p.toString().equals(text))
                 .findFirst();
         if (op.isPresent()) {

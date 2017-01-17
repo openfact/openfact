@@ -19,11 +19,11 @@ package org.openfact.ubl;
 import org.openfact.Config.Scope;
 import org.openfact.models.*;
 
-public class XMLUBLReportDataProviderFactory implements UBLReportDataProviderFactory {
+public class XmlUBLReportDataProviderFactory implements UBLReportDataProviderFactory {
 
     @Override
     public UBLReportDataProvider create(OpenfactSession session) {
-        return new XMLUBLReportDataProvider(session);
+        return new XmlUBLReportDataProvider(session);
     }
 
     @Override
