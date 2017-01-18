@@ -1,14 +1,17 @@
-package org.openfact.ubl;
+package org.openfact.ubl.data.xml.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.util.function.Function;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-public @interface XmlClass {
+@Target(ElementType.FIELD)
+public @interface SimpleKey {
 
-    String element() default "";
+    String[] key();
+
+    Class<? extends Function> mapper();
 
 }

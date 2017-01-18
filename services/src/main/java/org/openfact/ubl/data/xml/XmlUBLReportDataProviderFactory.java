@@ -14,17 +14,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package org.openfact.ubl;
+package org.openfact.ubl.data.xml;
 
 import org.openfact.Config.Scope;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OpenfactSessionFactory;
+import org.openfact.models.*;
+import org.openfact.ubl.UBLReportDataProvider;
+import org.openfact.ubl.UBLReportDataProviderFactory;
 
-public class ModelUBLReportDataProviderFactory implements UBLReportDataProviderFactory {
+public class XmlUBLReportDataProviderFactory implements UBLReportDataProviderFactory {
 
     @Override
     public UBLReportDataProvider create(OpenfactSession session) {
-        return new ModelUBLReportDataProvider(session);
+        return new XmlUBLReportDataProvider(session);
     }
 
     @Override
@@ -41,6 +42,6 @@ public class ModelUBLReportDataProviderFactory implements UBLReportDataProviderF
 
     @Override
     public String getId() {
-        return "model";
+        return "xml";
     }
 }

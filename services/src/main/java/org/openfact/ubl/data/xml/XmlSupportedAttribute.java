@@ -1,7 +1,8 @@
-package org.openfact.ubl;
+package org.openfact.ubl.data.xml;
 
 import org.json.JSONObject;
 import org.openfact.JSONObjectUtils;
+import org.openfact.ubl.data.xml.annotations.JsonWrapper;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -118,16 +119,16 @@ public enum XmlSupportedAttribute {
             value = JSONObjectUtils.getObject((JSONObject) value, "content");
         }
         return value != null ? new BigDecimal(String.valueOf(value)) : null;
-    }, "LegalMonetaryTotal", "AllowanceTotalAmount"));
+    }, "LegalMonetaryTotal", "AllowanceTotalAmount")),
 
     /**
      * Invoice Line
      */
-    //INVOICE_LINE(XMLAttributeContainer.idContainer());
+    INVOICE_LINE(XMLAttributeContainer.objectKey(JsonWrapper.class));
 
-    private JSONObjectToObjectConverter converter;
+    private XmlConverter converter;
 
-    XmlSupportedAttribute(JSONObjectToObjectConverter converter) {
+    XmlSupportedAttribute(XmlConverter converter) {
         this.converter = converter;
     }
 
@@ -140,11 +141,7 @@ public enum XmlSupportedAttribute {
         Optional<XmlSupportedAttribute> op = Arrays.stream(XmlSupportedAttribute.values())
                 .filter(p -> p.toString().equals(text))
                 .findFirst();
-        if (op.isPresent()) {
-            return op.get();
-        } else {
-            return null;
-        }
+        return op.isPresent() ? op.get() : null;
     }
 
 }

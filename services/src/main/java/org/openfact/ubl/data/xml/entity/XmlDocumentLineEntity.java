@@ -1,33 +1,36 @@
-package org.openfact.ubl;
+package org.openfact.ubl.data.xml.entity;
 
-import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.InvoiceLineType;
-import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
+import org.openfact.ubl.data.xml.annotations.ArrayKey;
+import org.openfact.ubl.data.xml.annotations.JsonWrapper;
+import org.openfact.ubl.data.xml.annotations.SimpleKey;
+import org.openfact.ubl.data.xml.mappers.BigdecimalMapper;
+import org.openfact.ubl.data.xml.mappers.StringMapper;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-@XmlClass(element = "InvoiceLine")
-public class XmlUBlDocumentLine {
+@JsonWrapper(key = "InvoiceLine")
+public class XmlDocumentLineEntity {
 
-    @XmlField(key = {"InvoicedQuantity", "content"})
+    @SimpleKey(key = {"InvoicedQuantity", "content"}, mapper = BigdecimalMapper.class)
     private BigDecimal invoiced_quantity;
 
-    @XmlField(key = {"InvoicedQuantity", "unitCode"})
+    @SimpleKey(key = {"InvoicedQuantity", "unitCode"}, mapper = StringMapper.class)
     private String unit_code;
 
-    @XmlField(key = {"LineExtensionAmount", "content"})
+    @SimpleKey(key = {"LineExtensionAmount", "content"}, mapper = BigdecimalMapper.class)
     private BigDecimal line_extension_amount;
 
-    @XmlArrayField(keys = {"TaxTotal"}, key = {"TaxAmount", "content"})
+    @ArrayKey(arrayKey = {"TaxTotal"}, fieldKey = {"TaxAmount", "content"}, mapper = BigdecimalMapper.class)
     private List<BigDecimal> tt_tax_amount;
 
-    @XmlArrayField(keys = {"Item"}, key = {"Description"})
+    @ArrayKey(arrayKey = {"Item"}, fieldKey = {"Description"}, mapper = StringMapper.class)
     private List<String> item_description;
 
-    @XmlArrayField(keys = {"PricingReference", "AlternativeConditionPrice"}, key = {"PriceAmount", "content"})
+    @ArrayKey(arrayKey = {"PricingReference", "AlternativeConditionPrice"}, fieldKey = {"PriceAmount", "content"}, mapper = BigdecimalMapper.class)
     private List<BigDecimal> pricing_reference_acp_price_amount;
 
-    @XmlField(key = {"Price", "PriceAmount", "content"})
+    @SimpleKey(key = {"Price", "PriceAmount", "content"}, mapper = BigdecimalMapper.class)
     private BigDecimal price_price_amount;
 
     public BigDecimal getInvoiced_quantity() {

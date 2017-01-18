@@ -1,9 +1,5 @@
-package org.openfact.ubl;
+package org.openfact.ubl.data.model;
 
-import org.json.JSONObject;
-import org.openfact.JSONObjectUtils;
-
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -17,11 +13,7 @@ public enum ModelSupportedAttribute {
         Optional<ModelSupportedAttribute> op = Arrays.stream(ModelSupportedAttribute.values())
                 .filter(p -> p.toString().equals(text))
                 .findFirst();
-        if (op.isPresent()) {
-            return op.get();
-        } else {
-            return null;
-        }
+        return op.isPresent() ? op.get() : null;
     }
 
 }

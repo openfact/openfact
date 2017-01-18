@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package org.openfact.ubl;
+package org.openfact.ubl.data.model;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.CreditNoteModel;
@@ -22,6 +22,7 @@ import org.openfact.models.DebitNoteModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.report.ReportDataProvider;
+import org.openfact.ubl.UBLReportDataProvider;
 
 public class ModelUBLReportDataProvider implements UBLReportDataProvider {
 

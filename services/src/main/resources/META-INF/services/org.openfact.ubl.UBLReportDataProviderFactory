@@ -1,2 +1,2 @@
-org.openfact.ubl.XmlUBLReportDataProviderFactory
-org.openfact.ubl.ModelUBLReportDataProviderFactory
+org.openfact.ubl.data.xml.XmlUBLReportDataProviderFactory
+org.openfact.ubl.data.model.ModelUBLReportDataProviderFactory
