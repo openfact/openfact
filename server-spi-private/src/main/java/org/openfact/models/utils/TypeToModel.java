@@ -56,7 +56,7 @@ public class TypeToModel {
         }
         if (type.getAccountingCustomerParty() != null) {
             CustomerPartyType customerPartyType = type.getAccountingCustomerParty();
-            if(customerPartyType.getAdditionalAccountID() != null) {
+            if (customerPartyType.getAdditionalAccountID() != null) {
                 String customerAdditionalAccountId = customerPartyType.getAdditionalAccountID()
                         .stream()
                         .map(f -> f.getValue())
@@ -76,7 +76,7 @@ public class TypeToModel {
                 }
                 if (partyType.getContact() != null) {
                     ContactType contactType = partyType.getContact();
-                    if(contactType.getElectronicMail() != null) {
+                    if (contactType.getElectronicMail() != null) {
                         model.setCustomerElectronicMail(contactType.getElectronicMailValue());
                     }
                 }
@@ -85,13 +85,13 @@ public class TypeToModel {
 
         if (type.getLegalMonetaryTotal() != null) {
             MonetaryTotalType monetaryTotalType = type.getLegalMonetaryTotal();
-            if(monetaryTotalType.getAllowanceTotalAmount() != null) {
+            if (monetaryTotalType.getAllowanceTotalAmount() != null) {
                 model.setAllowanceTotalAmount(monetaryTotalType.getAllowanceTotalAmountValue());
             }
-            if(monetaryTotalType.getChargeTotalAmount() != null) {
+            if (monetaryTotalType.getChargeTotalAmount() != null) {
                 model.setChargeTotalAmount(monetaryTotalType.getChargeTotalAmountValue());
             }
-            if(monetaryTotalType.getPayableAmount() != null) {
+            if (monetaryTotalType.getPayableAmount() != null) {
                 model.setPayableAmount(monetaryTotalType.getPayableAmountValue());
             }
         }
@@ -125,17 +125,23 @@ public class TypeToModel {
                     String registrationName = partyType.getPartyLegalEntity().stream().map(f -> f.getRegistrationNameValue()).reduce("", String::concat);
                     model.setCustomerRegistrationName(!registrationName.isEmpty() ? registrationName : null);
                 }
+                if (partyType.getContact() != null) {
+                    ContactType contactType = partyType.getContact();
+                    if (contactType.getElectronicMail() != null) {
+                        model.setCustomerElectronicMail(contactType.getElectronicMailValue());
+                    }
+                }
             }
         }
         if (type.getLegalMonetaryTotal() != null) {
             MonetaryTotalType monetaryTotalType = type.getLegalMonetaryTotal();
-            if(monetaryTotalType.getAllowanceTotalAmount() != null) {
+            if (monetaryTotalType.getAllowanceTotalAmount() != null) {
                 model.setAllowanceTotalAmount(monetaryTotalType.getAllowanceTotalAmountValue());
             }
-            if(monetaryTotalType.getChargeTotalAmount() != null) {
+            if (monetaryTotalType.getChargeTotalAmount() != null) {
                 model.setChargeTotalAmount(monetaryTotalType.getChargeTotalAmountValue());
             }
-            if(monetaryTotalType.getPayableAmount() != null) {
+            if (monetaryTotalType.getPayableAmount() != null) {
                 model.setPayableAmount(monetaryTotalType.getPayableAmountValue());
             }
         }
@@ -169,18 +175,24 @@ public class TypeToModel {
                     String registrationName = partyType.getPartyLegalEntity().stream().map(f -> f.getRegistrationNameValue()).reduce("", String::concat);
                     model.setCustomerRegistrationName(!registrationName.isEmpty() ? registrationName : null);
                 }
+                if (partyType.getContact() != null) {
+                    ContactType contactType = partyType.getContact();
+                    if (contactType.getElectronicMail() != null) {
+                        model.setCustomerElectronicMail(contactType.getElectronicMailValue());
+                    }
+                }
             }
         }
 
         if (type.getRequestedMonetaryTotal() != null) {
             MonetaryTotalType monetaryTotalType = type.getRequestedMonetaryTotal();
-            if(monetaryTotalType.getAllowanceTotalAmount() != null) {
+            if (monetaryTotalType.getAllowanceTotalAmount() != null) {
                 model.setAllowanceTotalAmount(monetaryTotalType.getAllowanceTotalAmountValue());
             }
-            if(monetaryTotalType.getChargeTotalAmount() != null) {
+            if (monetaryTotalType.getChargeTotalAmount() != null) {
                 model.setChargeTotalAmount(monetaryTotalType.getChargeTotalAmountValue());
             }
-            if(monetaryTotalType.getPayableAmount() != null) {
+            if (monetaryTotalType.getPayableAmount() != null) {
                 model.setPayableAmount(monetaryTotalType.getPayableAmountValue());
             }
         }
@@ -196,98 +208,6 @@ public class TypeToModel {
         model.setIssueDateTime(issueDateTime);
 
         return model;
-    }
-
-    public static void updateModel(ResponseModel model, ResponseType type) {
-        if (type.getReferenceIDValue() != null) {
-            model.setReferenceID(type.getReferenceIDValue());
-        }
-        if (type.getResponseCode() != null) {
-            model.setResponseCode(type.getResponseCodeValue());
-        }
-        if (type.getDescription() != null) {
-            for (DescriptionType item : type.getDescription()) {
-                model.getDescription().add(item.getValue());
-            }
-        }
-    }
-
-    public static void updateModel(MonetaryTotalModel model, MonetaryTotalType type) {
-        if (type.getChargeTotalAmountValue() != null) {
-            model.setChargeTotalAmount(type.getChargeTotalAmountValue());
-        }
-        if (type.getPayableAmountValue() != null) {
-            model.setPayableAmount(type.getPayableAmountValue());
-        }
-        if (type.getAllowanceTotalAmountValue() != null) {
-            model.setAllowanceTotalAmount(type.getAllowanceTotalAmountValue());
-        }
-    }
-
-    public static void updateModel(AllowanceChargeModel model, AllowanceChargeType type) {
-        if (type.getAmountValue() != null) {
-            model.setAmount(type.getAmountValue());
-        }
-    }
-
-    public static void updateModel(TaxTotalModel model, TaxTotalType type) {
-        if (type.getTaxAmountValue() != null) {
-            model.setTaxAmount(type.getTaxAmountValue());
-        }
-    }
-
-    public static void updateModel(CustomerPartyModel model, CustomerPartyType type) {
-        if (type.getCustomerAssignedAccountIDValue() != null) {
-            model.setCustomerAssignedAccountID(type.getCustomerAssignedAccountIDValue());
-        }
-        if (type.getAdditionalAccountID() != null) {
-            for (AdditionalAccountIDType item : type.getAdditionalAccountID()) {
-                model.getAdditionalAccountID().add(item.getValue());
-            }
-        }
-        if (type.getParty() != null) {
-            updateModel(model.getPartyAsNotNull(), type.getParty());
-        }
-    }
-
-    public static void updateModel(SupplierPartyModel model, SupplierPartyType type) {
-        if (type.getParty() != null) {
-            updateModel(model.getPartyAsNotNull(), type.getParty());
-        }
-        if (type.getCustomerAssignedAccountIDValue() != null) {
-            model.setCustomerAssignedAccountID(type.getCustomerAssignedAccountIDValue());
-        }
-        if (type.getAdditionalAccountID() != null) {
-            for (AdditionalAccountIDType item : type.getAdditionalAccountID()) {
-                model.getAdditionalAccountID().add(item.getValue());
-            }
-        }
-    }
-
-    public static void updateModel(PartyModel model, PartyType type) {
-        if (type.getPartyLegalEntity() != null) {
-            for (PartyLegalEntityType item : type.getPartyLegalEntity()) {
-                updateModel(model.addPartyLegalEntity(), item);
-            }
-        }
-        if(type.getContact() != null) {
-            updateModel(model.getContactAsNotNull(), type.getContact());
-        }
-    }
-
-    public static void updateModel(PartyLegalEntityModel model, PartyLegalEntityType type) {
-        if (type.getCompanyID() != null) {
-            model.setCompanyID(type.getCompanyIDValue());
-        }
-        if (type.getRegistrationNameValue() != null) {
-            model.setRegistrationName(type.getRegistrationNameValue());
-        }
-    }
-
-    public static void updateModel(ContactModel model, ContactType type) {
-        if (type.getElectronicMail() != null) {
-            model.setElectronicMail(type.getElectronicMailValue());
-        }
     }
 
 }

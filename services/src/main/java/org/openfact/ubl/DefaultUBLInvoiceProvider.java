@@ -103,17 +103,17 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
 
     @Override
     public UBLSender<InvoiceModel> sender() {
-        return new UBLSender<InvoiceModel>() {           
-            
+        return new UBLSender<InvoiceModel>() {
+
             @Override
             public void close() {
             }
 
-			@Override
-			public SendEventModel sendToCustomer(OrganizationModel organization, InvoiceModel invoice) throws SendException {
+            @Override
+            public SendEventModel sendToCustomer(OrganizationModel organization, InvoiceModel invoice) throws SendException {
                 SendEventModel sendEvent = invoice.addSendEvent(DestinyType.CUSTOMER);
                 return sendToCustomer(organization, invoice, sendEvent);
-			}
+            }
 
             @Override
             public SendEventModel sendToCustomer(OrganizationModel organization, InvoiceModel invoice, SendEventModel sendEvent) throws SendException {
@@ -132,17 +132,7 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
                 }
 
                 // User where the email will be send
-                UserSenderModel user = new UserSenderModel() {
-                    @Override
-                    public String getFullName() {
-                        return invoice.getCustomerRegistrationName();
-                    }
-
-                    @Override
-                    public String getEmail() {
-                        return invoice.getCustomerElectronicMail();
-                    }
-                };
+                UserSenderModel user = new UserSenderModel(invoice.getCustomerElectronicMail(), invoice.getCustomerRegistrationName());
 
                 try {
                     FileProvider fileProvider = session.getProvider(FileProvider.class);
@@ -185,7 +175,7 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
 
             @Override
             public SendEventModel sendToThirdParty(OrganizationModel organization, InvoiceModel invoice) throws SendException {
-                SendEventModel sendEvent =  invoice.addSendEvent(DestinyType.THIRD_PARTY);
+                SendEventModel sendEvent = invoice.addSendEvent(DestinyType.THIRD_PARTY);
                 return sendToThirdParty(organization, invoice, sendEvent);
             }
 

@@ -18,41 +18,34 @@ package org.openfact.email.freemarker.beans;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.UserModel;
+import org.openfact.models.UserSenderModel;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
- * @author Vlastimil Elias (velias at redhat dot com)
  */
 public class ProfileBean {
 
     private static final Logger logger = Logger.getLogger(ProfileBean.class);
-    private final Map<String, String> attributes = new HashMap<>();
-    private UserModel user;
 
-    public ProfileBean(UserModel user) {
+    private final Map<String, String> attributes = new HashMap<>();
+    private UserSenderModel user;
+
+    public ProfileBean(UserSenderModel user) {
         this.user = user;
 
         if (user.getAttributes() != null) {
-            for (Map.Entry<String, Object> attr : user.getAttributes().entrySet()) {
-                Object attrValue = attr.getValue();
-                attributes.put(attr.getKey(), String.valueOf(attrValue));
+            for (Map.Entry<String, String> attr : user.getAttributes().entrySet()) {
+                String attrValue = attr.getValue();
+                attributes.put(attr.getKey(), attrValue);
             }
         }
     }
 
-    public String getUsername() {
-        return user.getUsername();
-    }
-
-    public String getFirstName() {
-        return user.getFirstName();
-    }
-
-    public String getLastName() {
-        return user.getLastName();
+    public String getFullName() {
+        return user.getFullName();
     }
 
     public String getEmail() {

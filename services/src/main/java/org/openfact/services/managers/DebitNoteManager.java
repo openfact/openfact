@@ -130,7 +130,7 @@ public class DebitNoteManager {
     }
 
     public SendEventModel sendToCustomerParty(OrganizationModel organization, DebitNoteModel debitNote, SendEventModel sendEvent) throws SendException {
-        if(sendEvent == null) {
+        if (sendEvent == null) {
             return ublProvider.sender().sendToCustomer(organization, debitNote);
         } else {
             return ublProvider.sender().sendToCustomer(organization, debitNote, sendEvent);
@@ -142,7 +142,7 @@ public class DebitNoteManager {
     }
 
     public SendEventModel sendToTrirdParty(OrganizationModel organization, DebitNoteModel debitNote, SendEventModel sendEvent) throws SendException {
-        if(sendEvent == null) {
+        if (sendEvent == null) {
             return ublProvider.sender().sendToThirdParty(organization, debitNote);
         } else {
             return ublProvider.sender().sendToThirdParty(organization, debitNote, sendEvent);
@@ -163,17 +163,7 @@ public class DebitNoteManager {
         }
 
         // User where the email will be send
-        UserSenderModel user = new UserSenderModel() {
-            @Override
-            public String getFullName() {
-                return "";
-            }
-
-            @Override
-            public String getEmail() {
-                return email;
-            }
-        };
+        UserSenderModel user = new UserSenderModel(email);
 
         try {
             FileProvider fileProvider = session.getProvider(FileProvider.class);

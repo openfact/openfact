@@ -57,7 +57,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
     private FreeMarkerUtil freeMarker;
     private OrganizationModel organization;
     private UserSenderModel user;
-    
+
     private List<FileMymeTypeModel> attachments;
 
     public FreeMarkerEmailTemplateProvider(OpenfactSession session, FreeMarkerUtil freeMarker) {
@@ -82,7 +82,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
         attributes.put(name, value);
         return this;
     }
-    
+
     @Override
     public EmailTemplateProvider setAttachments(List<FileMymeTypeModel> attachments) {
         this.attachments = attachments;
@@ -99,12 +99,15 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
     }
 
     private String getOrganizationName() {
-        if (organization.getDisplayName() != null) {
+        if (organization.getDisplayNameHtml() != null) {
+            return organization.getDisplayNameHtml();
+        } else if (organization.getDisplayName() != null) {
             return organization.getDisplayName();
         } else {
             return ObjectUtil.capitalize(organization.getName());
         }
     }
+
     @Override
     public void send(String subjectKey, String template, Map<String, Object> attributes) throws EmailException {
         send(subjectKey, Collections.emptyList(), template, attributes);
@@ -154,7 +157,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
     }
 
     private String toCamelCase(EventType event) {
-        StringBuilder sb = new StringBuilder("event");
+        StringBuilder sb = new StringBuilder();
         for (String s : event.name().toString().toLowerCase().split("_")) {
             sb.append(ObjectUtil.capitalize(s));
         }
@@ -164,28 +167,51 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
     @Override
     public void sendInvoice(InvoiceModel invoice) throws EmailException {
         Map<String, Object> attributes = new HashMap<String, Object>();
-        attributes.put("user", new ProfileBean(user));
+        attributes.put("user", user.getFullName());
         attributes.put("organizationName", getOrganizationName());
 
-        send(organization.getDisplayName() + " " + toCamelCase(EventType.INVOICE) + "-" + invoice.getDocumentId() + "Subject",  "invoice.ftl", attributes);
+        StringBuilder sb = new StringBuilder();
+        if (organization.getDisplayName() != null) {
+            sb.append(organization.getDisplayName());
+        } else {
+            sb.append(organization.getName());
+        }
+        sb.append("/").append(toCamelCase(EventType.INVOICE)).append(" ").append(invoice.getDocumentId());
+        send(sb.toString(), "invoice.ftl", attributes);
     }
 
     @Override
     public void sendCreditNote(CreditNoteModel creditNote) throws EmailException {
         Map<String, Object> attributes = new HashMap<String, Object>();
-        attributes.put("user", new ProfileBean(user));
+        attributes.put("user", user.getFullName());
         attributes.put("organizationName", getOrganizationName());
 
-        send(organization.getDisplayName() + "-" + toCamelCase(EventType.CREDIT_NOTE) + "Subject",  "event-" + EventType.CREDIT_NOTE.toString().toLowerCase() + ".ftl", attributes);
+        StringBuilder sb = new StringBuilder();
+        if (organization.getDisplayName() != null) {
+            sb.append(organization.getDisplayName());
+        } else {
+            sb.append(organization.getName());
+        }
+
+        sb.append("/").append(toCamelCase(EventType.CREDIT_NOTE)).append(" ").append(creditNote.getDocumentId());
+        send(sb.toString(), "credit_note.ftl", attributes);
     }
 
     @Override
     public void sendDebitNote(DebitNoteModel debitNote) throws EmailException {
         Map<String, Object> attributes = new HashMap<String, Object>();
-        attributes.put("user", new ProfileBean(user));
+        attributes.put("user", user.getFullName());
         attributes.put("organizationName", getOrganizationName());
 
-        send(toCamelCase(EventType.DEBIT_NOTE) + "Subject",  "event-" + EventType.CREDIT_NOTE.toString().toLowerCase() + ".ftl", attributes);
-    }      
+        StringBuilder sb = new StringBuilder();
+        if (organization.getDisplayName() != null) {
+            sb.append(organization.getDisplayName());
+        } else {
+            sb.append(organization.getName());
+        }
+
+        sb.append("/").append(toCamelCase(EventType.DEBIT_NOTE)).append(" ").append(debitNote.getDocumentId());
+        send(sb.toString(), "debit_note.ftl", attributes);
+    }
 
 }

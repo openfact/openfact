@@ -162,17 +162,7 @@ public class InvoiceManager {
         }
 
         // User where the email will be send
-        UserSenderModel user = new UserSenderModel() {
-            @Override
-            public String getFullName() {
-                return "";
-            }
-
-            @Override
-            public String getEmail() {
-                return email;
-            }
-        };
+        UserSenderModel user = new UserSenderModel(email);
 
         try {
             FileProvider fileProvider = session.getProvider(FileProvider.class);

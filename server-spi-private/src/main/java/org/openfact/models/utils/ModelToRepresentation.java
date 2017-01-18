@@ -145,11 +145,14 @@ public class ModelToRepresentation {
         rep.setDocumentId(model.getDocumentId());
         rep.setIssueDateTime(model.getIssueDateTime());
         rep.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
+
         rep.setInvoiceTypeCode(model.getInvoiceTypeCode());
+
         rep.setCustomerRegistrationName(model.getCustomerRegistrationName());
         rep.setCustomerAssignedAccountId(model.getCustomerAssignedAccountId());
         rep.setCustomerAdditionalAccountId(model.getCustomerAdditionalAccountId());
         rep.setCustomerElectronicMail(model.getCustomerElectronicMail());
+
         rep.setAllowanceTotalAmount(model.getAllowanceTotalAmount());
         rep.setChargeTotalAmount(model.getChargeTotalAmount());
         rep.setPayableAmount(model.getPayableAmount());
@@ -186,6 +189,8 @@ public class ModelToRepresentation {
 
         rep.setCustomerRegistrationName(model.getCustomerRegistrationName());
         rep.setCustomerAssignedAccountId(model.getCustomerAssignedAccountId());
+        rep.setCustomerElectronicMail(model.getCustomerElectronicMail());
+
         rep.setAllowanceTotalAmount(model.getAllowanceTotalAmount());
         rep.setChargeTotalAmount(model.getChargeTotalAmount());
         rep.setPayableAmount(model.getPayableAmount());
@@ -222,6 +227,8 @@ public class ModelToRepresentation {
 
         rep.setCustomerRegistrationName(model.getCustomerRegistrationName());
         rep.setCustomerAssignedAccountId(model.getCustomerAssignedAccountId());
+        rep.setCustomerElectronicMail(model.getCustomerElectronicMail());
+
         rep.setAllowanceTotalAmount(model.getAllowanceTotalAmount());
         rep.setChargeTotalAmount(model.getChargeTotalAmount());
         rep.setPayableAmount(model.getPayableAmount());

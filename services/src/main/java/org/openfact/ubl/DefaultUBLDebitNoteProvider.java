@@ -103,8 +103,8 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
 
     @Override
     public UBLSender<DebitNoteModel> sender() {
-        return new UBLSender<DebitNoteModel>() {           
-            
+        return new UBLSender<DebitNoteModel>() {
+
             @Override
             public void close() {
             }
@@ -132,17 +132,7 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
                 }
 
                 // User where the email will be send
-                UserSenderModel user = new UserSenderModel() {
-                    @Override
-                    public String getFullName() {
-                        return debitNote.getCustomerRegistrationName();
-                    }
-
-                    @Override
-                    public String getEmail() {
-                        return debitNote.getCustomerElectronicMail();
-                    }
-                };
+                UserSenderModel user = new UserSenderModel(debitNote.getCustomerElectronicMail(), debitNote.getCustomerRegistrationName());
 
                 try {
                     FileProvider fileProvider = session.getProvider(FileProvider.class);
@@ -185,7 +175,7 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
 
             @Override
             public SendEventModel sendToThirdParty(OrganizationModel organization, DebitNoteModel debitNote) throws SendException {
-                SendEventModel sendEvent =  debitNote.addSendEvent(DestinyType.THIRD_PARTY);
+                SendEventModel sendEvent = debitNote.addSendEvent(DestinyType.THIRD_PARTY);
                 return sendToThirdParty(organization, debitNote, sendEvent);
             }
 

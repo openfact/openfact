@@ -137,7 +137,7 @@ public class CreditNoteManager {
     }
 
     public SendEventModel sendToCustomerParty(OrganizationModel organization, CreditNoteModel creditNote, SendEventModel sendEvent) throws SendException {
-        if(sendEvent == null) {
+        if (sendEvent == null) {
             return ublProvider.sender().sendToCustomer(organization, creditNote);
         } else {
             return ublProvider.sender().sendToCustomer(organization, creditNote, sendEvent);
@@ -149,7 +149,7 @@ public class CreditNoteManager {
     }
 
     public SendEventModel sendToTrirdParty(OrganizationModel organization, CreditNoteModel creditNote, SendEventModel sendEvent) throws SendException {
-        if(sendEvent == null) {
+        if (sendEvent == null) {
             return ublProvider.sender().sendToThirdParty(organization, creditNote);
         } else {
             return ublProvider.sender().sendToThirdParty(organization, creditNote, sendEvent);
@@ -170,17 +170,7 @@ public class CreditNoteManager {
         }
 
         // User where the email will be send
-        UserSenderModel user = new UserSenderModel() {
-            @Override
-            public String getFullName() {
-                return "";
-            }
-
-            @Override
-            public String getEmail() {
-                return email;
-            }
-        };
+        UserSenderModel user = new UserSenderModel(email);
 
         try {
             FileProvider fileProvider = session.getProvider(FileProvider.class);

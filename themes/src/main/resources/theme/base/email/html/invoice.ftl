@@ -1,5 +1,5 @@
 <html>
 <body>
-${msg("emailInvoiceBodyHtml")}
+${msg("emailInvoiceBodyHtml", user, organizationName)}
 </body>
 </html>

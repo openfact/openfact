@@ -16,29 +16,50 @@
  *******************************************************************************/
 package org.openfact.models;
 
-import java.util.Collections;
 import java.util.Map;
 
-public abstract class UserSenderModel implements UserModel {
+public class UserSenderModel {
 
-    public String getUsername() {
-        return null;
+    private String fullName;
+    private String email;
+    private Map<String, String> attributes;
+
+    public UserSenderModel(String email) {
+        this.email = email;
     }
 
-    public String getFirstName() {
-        return null;
+    public UserSenderModel(String email, String fullName) {
+        this.email = email;
+        this.fullName = fullName;
     }
 
-    public String getLastName() {
-        return null;
+    public UserSenderModel(String email, String fullName, Map<String, String> attributes) {
+        this.email = email;
+        this.fullName = fullName;
+        this.attributes = attributes;
     }
 
-    public boolean hasRole(String role) {
-        return false;
-    }
-    
-    public Map<String, Object> getAttributes() {
-        return Collections.emptyMap();
+    public String getFullName() {
+        return fullName;
     }
 
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Map<String, String> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Map<String, String> attributes) {
+        this.attributes = attributes;
+    }
 }

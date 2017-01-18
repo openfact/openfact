@@ -103,8 +103,8 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
 
     @Override
     public UBLSender<CreditNoteModel> sender() {
-        return new UBLSender<CreditNoteModel>() {           
-            
+        return new UBLSender<CreditNoteModel>() {
+
             @Override
             public void close() {
             }
@@ -133,17 +133,7 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
                 }
 
                 // User where the email will be send
-                UserSenderModel user = new UserSenderModel() {
-                    @Override
-                    public String getFullName() {
-                        return creditNote.getCustomerRegistrationName();
-                    }
-
-                    @Override
-                    public String getEmail() {
-                        return creditNote.getCustomerElectronicMail();
-                    }
-                };
+                UserSenderModel user = new UserSenderModel(creditNote.getCustomerElectronicMail(), creditNote.getCustomerRegistrationName());
 
                 try {
                     FileProvider fileProvider = session.getProvider(FileProvider.class);
@@ -186,7 +176,7 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
 
             @Override
             public SendEventModel sendToThirdParty(OrganizationModel organization, CreditNoteModel creditNote) throws SendException {
-                SendEventModel sendEvent =  creditNote.addSendEvent(DestinyType.THIRD_PARTY);
+                SendEventModel sendEvent = creditNote.addSendEvent(DestinyType.THIRD_PARTY);
                 return sendToThirdParty(organization, creditNote, sendEvent);
             }
 

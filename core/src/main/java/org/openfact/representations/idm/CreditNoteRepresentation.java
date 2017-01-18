@@ -29,6 +29,7 @@ public class CreditNoteRepresentation {
 
     private String customerRegistrationName;
     private String customerAssignedAccountId;
+    private String customerElectronicMail;
     private BigDecimal allowanceTotalAmount;
     private BigDecimal chargeTotalAmount;
     private BigDecimal payableAmount;
@@ -132,5 +133,13 @@ public class CreditNoteRepresentation {
 
     public void setAttatchedDocuments(List<AttatchedDocumentRepresentation> attatchedDocuments) {
         this.attatchedDocuments = attatchedDocuments;
+    }
+
+    public String getCustomerElectronicMail() {
+        return customerElectronicMail;
+    }
+
+    public void setCustomerElectronicMail(String customerElectronicMail) {
+        this.customerElectronicMail = customerElectronicMail;
     }
 }
