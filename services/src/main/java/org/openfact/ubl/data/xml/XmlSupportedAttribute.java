@@ -3,6 +3,7 @@ package org.openfact.ubl.data.xml;
 import org.json.JSONObject;
 import org.openfact.JSONObjectUtils;
 import org.openfact.ubl.data.xml.annotations.JsonWrapper;
+import org.openfact.ubl.data.xml.entity.XmlDocumentLineEntity;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -124,7 +125,7 @@ public enum XmlSupportedAttribute {
     /**
      * Invoice Line
      */
-    INVOICE_LINE(XMLAttributeContainer.objectKey(JsonWrapper.class));
+    OF_INVOICE_LINE(XMLAttributeContainer.objectArrayKey(XmlDocumentLineEntity.class));
 
     private XmlConverter converter;
 

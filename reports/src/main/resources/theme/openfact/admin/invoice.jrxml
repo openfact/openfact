@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-01-17T12:21:35 -->
+<!-- 2017-01-18T09:31:24 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Invoice" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="net.sf.jasperreports.awt.ignore.missing.font" value="true"/>
@@ -90,13 +90,13 @@
 		<queryString>
 			<![CDATA[]]>
 		</queryString>
-		<field name="invoiced_quantity" class="java.math.BigDecimal"/>
-		<field name="unit_code" class="java.lang.String"/>
-		<field name="tt_tax_amount" class="java.math.BigDecimal"/>
-		<field name="i_description" class="java.lang.String"/>
-		<field name="pr_acp_price_amount" class="java.math.BigDecimal"/>
-		<field name="p_price_amount" class="java.math.BigDecimal"/>
-		<field name="line_extension_amount" class="java.math.BigDecimal"/>
+		<field name="of_invoiced_quantity" class="java.math.BigDecimal"/>
+		<field name="of_unit_code" class="java.lang.String"/>
+		<field name="of_tt_tax_amount" class="java.util.List"/>
+		<field name="of_item_description" class="java.util.List"/>
+		<field name="of_pricing_reference_acp_price_amount" class="java.util.List"/>
+		<field name="of_price_amount" class="java.math.BigDecimal"/>
+		<field name="of_line_extension_amount" class="java.math.BigDecimal"/>
 	</subDataset>
 	<queryString>
 		<![CDATA[]]>
@@ -294,9 +294,9 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="233">
+		<band height="290">
 			<componentElement>
-				<reportElement x="10" y="16" width="534" height="200" uuid="a79bddcd-bdb2-4373-91d7-00cb837aa1b1">
+				<reportElement x="10" y="16" width="534" height="274" uuid="a79bddcd-bdb2-4373-91d7-00cb837aa1b1">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table 1_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table 1_CH"/>
@@ -320,7 +320,7 @@
 						<jr:detailCell style="Table 1_TD" height="30">
 							<textField>
 								<reportElement x="0" y="0" width="50" height="30" uuid="2fe0cb3c-01bc-4b4f-b59b-3f3c0dea9819"/>
-								<textFieldExpression><![CDATA[$F{unit_code}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{of_unit_code}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -336,7 +336,7 @@
 						<jr:detailCell style="Table 1_TD" height="30">
 							<textField>
 								<reportElement x="0" y="0" width="50" height="30" uuid="1a0ce9b7-032c-44ec-a428-2bd0360d1e68"/>
-								<textFieldExpression><![CDATA[$F{invoiced_quantity}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{of_invoiced_quantity}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -352,7 +352,7 @@
 						<jr:detailCell style="Table 1_TD" height="30">
 							<textField>
 								<reportElement x="0" y="0" width="130" height="30" uuid="4ceb17df-5924-4db1-8e78-d07898f23342"/>
-								<textFieldExpression><![CDATA[$F{i_description}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{of_item_description}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -368,7 +368,7 @@
 						<jr:detailCell style="Table 1_TD" height="30">
 							<textField>
 								<reportElement x="0" y="0" width="70" height="30" uuid="d208f6df-1351-4538-93c1-2aae93454c6b"/>
-								<textFieldExpression><![CDATA[$F{pr_acp_price_amount}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{of_pricing_reference_acp_price_amount}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -384,7 +384,7 @@
 						<jr:detailCell style="Table 1_TD" height="30">
 							<textField>
 								<reportElement x="0" y="0" width="90" height="30" uuid="46e63b8d-faf0-4fd5-ac32-3fd232304953"/>
-								<textFieldExpression><![CDATA[$F{p_price_amount}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{of_price_amount}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -400,7 +400,7 @@
 						<jr:detailCell style="Table 1_TD" height="30">
 							<textField>
 								<reportElement x="0" y="0" width="80" height="30" uuid="5c0f10ff-1db0-4542-b344-483a756e11e5"/>
-								<textFieldExpression><![CDATA[$F{tt_tax_amount}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{of_tt_tax_amount}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -416,7 +416,7 @@
 						<jr:detailCell style="Table 1_TD" height="30">
 							<textField>
 								<reportElement x="0" y="0" width="64" height="30" uuid="74d2c2c9-f427-4564-b2c7-ebc2585083c7"/>
-								<textFieldExpression><![CDATA[$F{line_extension_amount}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{of_line_extension_amount}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
