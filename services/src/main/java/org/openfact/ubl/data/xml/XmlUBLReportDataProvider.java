@@ -62,7 +62,7 @@ public class XmlUBLReportDataProvider implements UBLReportDataProvider {
 
             @Override
             public Object getFieldValue(CreditNoteModel creditNote, String fieldName) {
-                XmlSupportedAttribute attribute = XmlSupportedAttribute.fromString(fieldName);
+                XmlSupportedAttribute attribute = XmlSupportedAttribute.fromString(fieldName.toUpperCase());
                 if (attribute != null) {
                     return attribute.asObject(creditNote.getXmlAsJSONObject());
                 }
@@ -82,7 +82,7 @@ public class XmlUBLReportDataProvider implements UBLReportDataProvider {
 
             @Override
             public Object getFieldValue(DebitNoteModel debitNote, String fieldName) {
-                XmlSupportedAttribute attribute = XmlSupportedAttribute.fromString(fieldName);
+                XmlSupportedAttribute attribute = XmlSupportedAttribute.fromString(fieldName.toUpperCase());
                 if (attribute != null) {
                     return attribute.asObject(debitNote.getXmlAsJSONObject());
                 }

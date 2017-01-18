@@ -2,8 +2,9 @@ package org.openfact.ubl.data.xml;
 
 import org.json.JSONObject;
 import org.openfact.JSONObjectUtils;
-import org.openfact.ubl.data.xml.annotations.JsonWrapper;
-import org.openfact.ubl.data.xml.entity.XmlDocumentLineEntity;
+import org.openfact.ubl.data.xml.entity.XmlInvoiceDocumentLineEntity;
+import org.openfact.ubl.data.xml.entity.XmlCreditNoteDocumentLineEntity;
+import org.openfact.ubl.data.xml.entity.XmlDebitNoteDocumentLineEntity;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -123,9 +124,40 @@ public enum XmlSupportedAttribute {
     }, "LegalMonetaryTotal", "AllowanceTotalAmount")),
 
     /**
+     * Requested Monetary Total
+     */
+    OF_RMT_PAYABLE_AMOUNT(XMLAttributeContainer.simpleKey(value -> {
+        if (value instanceof JSONObject) {
+            value = JSONObjectUtils.getObject((JSONObject) value, "content");
+        }
+        return value != null ? new BigDecimal(String.valueOf(value)) : null;
+    }, "RequestedMonetaryTotal", "PayableAmount")),
+
+    OF_RMT_CHARGE_TOTAL_AMOUNT(XMLAttributeContainer.simpleKey(value -> {
+        if (value instanceof JSONObject) {
+            value = JSONObjectUtils.getObject((JSONObject) value, "content");
+        }
+        return value != null ? new BigDecimal(String.valueOf(value)) : null;
+    }, "RequestedMonetaryTotal", "ChargeTotalAmount")),
+
+    OF_RMT_ALLOWANCE_TOTAL_AMOUNT(XMLAttributeContainer.simpleKey(value -> {
+        if (value instanceof JSONObject) {
+            value = JSONObjectUtils.getObject((JSONObject) value, "content");
+        }
+        return value != null ? new BigDecimal(String.valueOf(value)) : null;
+    }, "RequestedMonetaryTotal", "AllowanceTotalAmount")),
+
+    /**
+     * Billing reference*/
+    OF_BR_INVOICE_DOCUMENT_REFERENCE_ID(XMLAttributeContainer.arrayKey(value -> value != null ? String.valueOf(value) : null,
+            0, "BillingReference", "InvoiceDocumentReference", "ID")),
+
+    /**
      * Invoice Line
      */
-    OF_INVOICE_LINE(XMLAttributeContainer.objectArrayKey(XmlDocumentLineEntity.class));
+    OF_INVOICE_LINE(XMLAttributeContainer.objectArrayKey(XmlInvoiceDocumentLineEntity.class, "InvoiceLine")),
+    OF_CREDIT_NOTE_LINE(XMLAttributeContainer.objectArrayKey(XmlCreditNoteDocumentLineEntity.class, "CreditNoteLine")),
+    OF_DEBIT_NOTE_LINE(XMLAttributeContainer.objectArrayKey(XmlDebitNoteDocumentLineEntity.class, "DebitNoteLine"));
 
     private XmlConverter converter;
 

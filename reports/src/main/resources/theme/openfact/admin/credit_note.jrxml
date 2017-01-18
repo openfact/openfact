@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-01-18T11:01:27 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="invoice" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
+<!-- 2017-01-18T11:03:08 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="credit_note" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="net.sf.jasperreports.awt.ignore.missing.font" value="true"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
@@ -90,7 +90,7 @@
 		<queryString>
 			<![CDATA[]]>
 		</queryString>
-		<field name="of_invoiced_quantity" class="java.math.BigDecimal"/>
+		<field name="of_credited_quantity" class="java.math.BigDecimal"/>
 		<field name="of_unit_code" class="java.lang.String"/>
 		<field name="of_tt_tax_amount" class="java.util.List"/>
 		<field name="of_item_description" class="java.util.List"/>
@@ -117,8 +117,9 @@
 	</field>
 	<field name="of_tt_tax_amount" class="java.util.List"/>
 	<field name="of_document_currency_code" class="java.lang.String"/>
-	<field name="of_invoice_line" class="java.util.List"/>
+	<field name="of_credit_note_line" class="java.util.List"/>
 	<field name="of_document_id" class="java.lang.String"/>
+	<field name="of_br_invoice_document_reference_id" class="java.util.List"/>
 	<group name="Gruppo1">
 		<groupExpression><![CDATA[(int)($V{REPORT_COUNT}/15)]]></groupExpression>
 		<groupHeader>
@@ -159,7 +160,7 @@
 				<reportElement x="382" y="30" width="70" height="20" uuid="0b3f9342-da78-4cfa-9fc5-2301c4749678"/>
 				<box rightPadding="4"/>
 				<textElement textAlignment="Right"/>
-				<text><![CDATA[Invoice ID:]]></text>
+				<text><![CDATA[C.Note ID:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="452" y="30" width="104" height="20" uuid="d18d8343-7522-4ee5-8d76-f3d68f237ab1"/>
@@ -190,19 +191,19 @@
 				<text><![CDATA[AccountID:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="false">
-				<reportElement x="0" y="115" width="380" height="15" uuid="fa5c83dc-49f8-47d7-858c-e825f986c2f7"/>
+				<reportElement x="0" y="115" width="280" height="15" uuid="fa5c83dc-49f8-47d7-858c-e825f986c2f7"/>
 				<textFieldExpression><![CDATA[$F{of_cp_legal_entity_registration_name}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="0" y="130" width="381" height="15" uuid="7a4f8fdc-85c2-429c-be0c-ead18f605866"/>
+				<reportElement x="0" y="130" width="280" height="15" uuid="7a4f8fdc-85c2-429c-be0c-ead18f605866"/>
 				<textFieldExpression><![CDATA[$F{of_cp_assigned_account_id}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="0" y="145" width="380" height="15" uuid="71c208ea-5b73-459c-bf5c-d7c5ae875ed3"/>
+				<reportElement x="0" y="145" width="280" height="15" uuid="71c208ea-5b73-459c-bf5c-d7c5ae875ed3"/>
 				<textFieldExpression><![CDATA[$F{of_cp_postal_address_street_name}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="0" y="160" width="380" height="15" uuid="760d3c65-b38f-4713-8988-9815ed5ccafe"/>
+				<reportElement x="0" y="160" width="280" height="15" uuid="760d3c65-b38f-4713-8988-9815ed5ccafe"/>
 				<textFieldExpression><![CDATA[$F{of_cp_postal_address_city_name}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -218,6 +219,20 @@
 			<textField>
 				<reportElement x="452" y="50" width="104" height="20" uuid="e906b91b-610a-4bfa-92e9-95dcade479dd"/>
 				<textFieldExpression><![CDATA[$F{of_document_currency_code}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="300" y="90" width="179" height="25" uuid="4ba38daa-1f36-4450-b818-e297d45b0da5">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Billing Reference:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="300" y="115" width="256" height="30" uuid="431d1343-9891-4ca1-a371-480add50e78f"/>
+				<textFieldExpression><![CDATA[$F{of_br_invoice_document_reference_id}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -305,7 +320,7 @@
 				</reportElement>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="lines" uuid="9ea09879-8b31-4628-8126-f0745becfdbd">
-						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{of_invoice_line}, false)]]></dataSourceExpression>
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{of_credit_note_line}, false)]]></dataSourceExpression>
 					</datasetRun>
 					<jr:column width="50" uuid="c12bec93-7be4-4b33-8e3b-5a5569d66a9f">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
@@ -334,7 +349,7 @@
 						<jr:detailCell style="Table 1_TD" height="30">
 							<textField>
 								<reportElement x="0" y="0" width="50" height="30" uuid="1a0ce9b7-032c-44ec-a428-2bd0360d1e68"/>
-								<textFieldExpression><![CDATA[$F{of_invoiced_quantity}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{of_credited_quantity}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>

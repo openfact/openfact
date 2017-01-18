@@ -9,8 +9,8 @@ import org.openfact.ubl.data.xml.mappers.StringMapper;
 import java.math.BigDecimal;
 import java.util.List;
 
-@JsonWrapper(key = "InvoiceLine")
-public class XmlDocumentLineEntity {
+@JsonWrapper
+public class XmlInvoiceDocumentLineEntity {
 
     @SimpleKey(key = {"InvoicedQuantity", "content"}, mapper = BigdecimalMapper.class)
     private BigDecimal of_invoiced_quantity;

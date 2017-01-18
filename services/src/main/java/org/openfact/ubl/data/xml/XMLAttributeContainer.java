@@ -58,29 +58,30 @@ public class XMLAttributeContainer {
     public static <T> XmlConverter objectArrayKey(Class<T> clazz, String... keys) {
         return json -> {
 
-            List<JSONObject> jsonObjects = new ArrayList<>();
-            json = JSONObjectUtils.getJSONObject(json, keys);
+            List<JSONObject> result = new ArrayList<>();
 
-            Annotation clazzAnnotation = clazz.getAnnotation(JsonWrapper.class);
-            if (clazzAnnotation instanceof JsonWrapper) {
-                JsonWrapper jsonWrapper = (JsonWrapper) clazzAnnotation;
-                if (JSONObjectUtils.isJSONArray(json, jsonWrapper.key())) {
-                    JSONArray array = JSONObjectUtils.getJSONArray(json, jsonWrapper.key());
-                    Iterator it = array.iterator();
-                    while (it.hasNext()) {
-                        jsonObjects.add((JSONObject) it.next());
-                    }
-                } else {
-                    jsonObjects.add(JSONObjectUtils.getJSONObject(json, jsonWrapper.key()));
+            if (JSONObjectUtils.isJSONArray(json, keys)) {
+                JSONArray jsonArray = JSONObjectUtils.getJSONArray(json, keys);
+                Iterator<Object> arrayIterator = jsonArray.iterator();
+                while (arrayIterator.hasNext()) {
+                    result.add((JSONObject) arrayIterator.next());
                 }
+            } else {
+                result.add(JSONObjectUtils.getJSONObject(json, keys));
             }
 
-            return jsonObjects.stream()
+            Annotation clazzAnnotation = clazz.getAnnotation(JsonWrapper.class);
+            final JsonWrapper jsonWrapper = clazzAnnotation instanceof JsonWrapper ? (JsonWrapper) clazzAnnotation : null;
+
+            return result.stream()
+                    .map(jsonObject -> JSONObjectUtils.getJSONObject(jsonObject, jsonWrapper.key()))
+                    .collect(Collectors.toList())
+
+                    .stream()
                     .map(jsonObject -> ObjectMapper.mapObjectKey(clazz, jsonObject))
                     .collect(Collectors.toList());
         };
     }
-
 
 
 }
