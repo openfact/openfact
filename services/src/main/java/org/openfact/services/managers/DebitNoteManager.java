@@ -119,7 +119,29 @@ public class DebitNoteManager {
     }
 
     public boolean removeDebitNote(OrganizationModel organization, DebitNoteModel debitNote) {
+        return removeDebitNote(organization, debitNote, session.debitNotes());
+    }
+
+    public boolean removeDebitNote(OrganizationModel organization, DebitNoteModel debitNote, DebitNoteProvider debitNoteProvider) {
         if (model.removeDebitNote(organization, debitNote)) {
+            session.getOpenfactSessionFactory().publish(new DebitNoteModel.DebitNoteRemovedEvent() {
+
+                @Override
+                public OrganizationModel getOrganization() {
+                    return organization;
+                }
+
+                @Override
+                public DebitNoteModel getDebitNote() {
+                    return debitNote;
+                }
+
+                @Override
+                public OpenfactSession getOpenfactSession() {
+                    return session;
+                }
+
+            });
             return true;
         }
         return false;

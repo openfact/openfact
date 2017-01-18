@@ -103,6 +103,35 @@ public class InvoiceManager {
         return invoiceModel;
     }
 
+    public boolean removeInvoice(OrganizationModel organization, InvoiceModel invoice) {
+        return removeInvoice(organization, invoice, session.invoices());
+    }
+
+    public boolean removeInvoice(OrganizationModel organization, InvoiceModel invoice, InvoiceProvider invoiceProvider) {
+        if (model.removeInvoice(organization, invoice)) {
+            session.getOpenfactSessionFactory().publish(new InvoiceModel.InvoiceRemovedEvent() {
+
+                @Override
+                public OrganizationModel getOrganization() {
+                    return organization;
+                }
+
+                @Override
+                public InvoiceModel getInvoice() {
+                    return invoice;
+                }
+
+                @Override
+                public OpenfactSession getOpenfactSession() {
+                    return session;
+                }
+
+            });
+            return true;
+        }
+        return false;
+    }
+
     private void fireInvoicePostCreate(InvoiceModel invoice) {
         session.getOpenfactSessionFactory().publish(new InvoiceModel.InvoicePostCreateEvent() {
             @Override
@@ -115,13 +144,6 @@ public class InvoiceManager {
                 return session;
             }
         });
-    }
-
-    public boolean removeInvoice(OrganizationModel organization, InvoiceModel invoice) {
-        if (model.removeInvoice(organization, invoice)) {
-            return true;
-        }
-        return false;
     }
 
     public SendEventModel sendToCustomerParty(OrganizationModel organization, InvoiceModel invoice) throws SendException {

@@ -150,6 +150,9 @@ public interface InvoiceModel {
     }
 
     interface InvoiceRemovedEvent extends ProviderEvent {
+
+        OrganizationModel getOrganization();
+
         InvoiceModel getInvoice();
 
         OpenfactSession getOpenfactSession();

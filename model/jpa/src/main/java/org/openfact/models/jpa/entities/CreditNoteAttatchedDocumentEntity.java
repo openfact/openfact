@@ -23,7 +23,8 @@ import javax.validation.constraints.NotNull;
 @DiscriminatorValue(value = "CREDIT_NOTE")
 @NamedQueries(value = {
         @NamedQuery(name = "getAllAttachedDocumentByCreditNoteId", query = "select s from CreditNoteAttatchedDocumentEntity s where creditNote.id=:creditNoteId"),
-        @NamedQuery(name = "deleteCreditNoteAttatchedDocumentByOrganization", query = "delete from CreditNoteAttatchedDocumentEntity doc where doc.creditNote IN (select i from CreditNoteEntity i where i.organizationId=:organizationId)")
+        @NamedQuery(name = "deleteCreditNoteAttatchedDocumentByOrganization", query = "delete from CreditNoteAttatchedDocumentEntity doc where doc.creditNote IN (select i from CreditNoteEntity i where i.organizationId=:organizationId)"),
+        @NamedQuery(name = "deleteCreditNoteAttachedDocumentsByOrganizationTypeAndDocumentId", query = "delete from CreditNoteAttatchedDocumentEntity doc where doc.documentType=:documentType and doc.documentId=:documentId and doc.creditNote IN (select i from CreditNoteEntity i where i.organizationId=:organizationId)")
 })
 public class CreditNoteAttatchedDocumentEntity extends AttatchedDocumentEntity {
 

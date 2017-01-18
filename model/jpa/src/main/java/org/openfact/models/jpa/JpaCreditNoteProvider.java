@@ -121,17 +121,6 @@ public class JpaCreditNoteProvider extends AbstractHibernateStorage implements C
         CreditNoteEntity creditNoteEntity = em.find(CreditNoteEntity.class, creditNote.getId());
         if (creditNoteEntity == null) return false;
         removeCreditNote(creditNoteEntity);
-        session.getOpenfactSessionFactory().publish(new CreditNoteModel.CreditNoteRemovedEvent() {
-            @Override
-            public CreditNoteModel getCreditNote() {
-                return creditNote;
-            }
-
-            @Override
-            public OpenfactSession getOpenfactSession() {
-                return session;
-            }
-        });
         return true;
     }
 

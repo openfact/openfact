@@ -59,21 +59,27 @@ import org.hibernate.annotations.Type;
 @Entity
 @Table(name = "ATTATCHED_DOCUMENT_ATTRIBUTE")
 @NamedQueries({
-        @NamedQuery(name="getAttatchedDocumentAttributesByNameAndValue", query="select attr from AttatchedDocumentAttributeEntity attr where attr.name = :name and attr.value = :value"),
-        @NamedQuery(name="deleteAttatchedDocumentAttributesByNameAndAttatchedDocument", query="delete from  AttatchedDocumentAttributeEntity attr where attr.attatchedDocument.id = :attatchedDocumentId and attr.name = :name"),
-        @NamedQuery(name="deleteAttatchedDocumentAttributesByNameAndAttatchedDocumentOtherThan", query="delete from  AttatchedDocumentAttributeEntity attr where attr.attatchedDocument.id = :attatchedDocumentId and attr.name = :name and attr.id <> :attrId"),
-        @NamedQuery(name="deleteInvoiceAttatchedDocumentAttributesByOrganization", query="delete from AttatchedDocumentAttributeEntity attr where attr.attatchedDocument IN (select s from InvoiceAttatchedDocumentEntity s join s.invoice i where i.organizationId=:organizationId)"),
-        @NamedQuery(name="deleteCreditNoteAttatchedDocumentAttributesByOrganization", query="delete from AttatchedDocumentAttributeEntity attr where attr.attatchedDocument IN (select s from CreditNoteAttatchedDocumentEntity s join s.creditNote i where i.organizationId=:organizationId)"),
-        @NamedQuery(name="deleteDebitNoteAttatchedDocumentAttributesByOrganization", query="delete from AttatchedDocumentAttributeEntity attr where attr.attatchedDocument IN (select s from DebitNoteAttatchedDocumentEntity s join s.debitNote i where i.organizationId=:organizationId)")
+        @NamedQuery(name = "getAttatchedDocumentAttributesByNameAndValue", query = "select attr from AttatchedDocumentAttributeEntity attr where attr.name = :name and attr.value = :value"),
+        @NamedQuery(name = "deleteAttatchedDocumentAttributesByNameAndAttatchedDocument", query = "delete from  AttatchedDocumentAttributeEntity attr where attr.attatchedDocument.id = :attatchedDocumentId and attr.name = :name"),
+        @NamedQuery(name = "deleteAttatchedDocumentAttributesByNameAndAttatchedDocumentOtherThan", query = "delete from  AttatchedDocumentAttributeEntity attr where attr.attatchedDocument.id = :attatchedDocumentId and attr.name = :name and attr.id <> :attrId"),
+
+        @NamedQuery(name = "deleteInvoiceAttatchedDocumentAttributesByOrganization", query = "delete from AttatchedDocumentAttributeEntity attr where attr.attatchedDocument IN (select s from InvoiceAttatchedDocumentEntity s join s.invoice i where i.organizationId=:organizationId)"),
+        @NamedQuery(name = "deleteCreditNoteAttatchedDocumentAttributesByOrganization", query = "delete from AttatchedDocumentAttributeEntity attr where attr.attatchedDocument IN (select s from CreditNoteAttatchedDocumentEntity s join s.creditNote i where i.organizationId=:organizationId)"),
+        @NamedQuery(name = "deleteDebitNoteAttatchedDocumentAttributesByOrganization", query = "delete from AttatchedDocumentAttributeEntity attr where attr.attatchedDocument IN (select s from DebitNoteAttatchedDocumentEntity s join s.debitNote i where i.organizationId=:organizationId)"),
+
+        @NamedQuery(name = "deleteInvoiceAttachedDocumentAttributesByOrganizationTypeAndDocumentId", query = "delete from AttatchedDocumentAttributeEntity attr where attr.attatchedDocument IN (select s from InvoiceAttatchedDocumentEntity s join s.invoice i where i.organizationId=:organizationId and s.documentType=:documentType and s.documentId=:documentId)"),
+        @NamedQuery(name = "deleteCreditNoteAttachedDocumentAttributesByOrganizationTypeAndDocumentId", query = "delete from AttatchedDocumentAttributeEntity attr where attr.attatchedDocument IN (select s from CreditNoteAttatchedDocumentEntity s join s.creditNote i where i.organizationId=:organizationId and s.documentType=:documentType and s.documentId=:documentId)"),
+        @NamedQuery(name = "deleteDebitNoteAttachedDocumentAttributesByOrganizationTypeAndDocumentId", query = "delete from AttatchedDocumentAttributeEntity attr where attr.attatchedDocument IN (select s from DebitNoteAttatchedDocumentEntity s join s.debitNote i where i.organizationId=:organizationId and s.documentType=:documentType and s.documentId=:documentId)"),
 })
 public class AttatchedDocumentAttributeEntity {
 
     @Id
-    @Column(name="ID", length = 36)
-    @Access(AccessType.PROPERTY) // we do this because relationships often fetch id, but not entity.  This avoids an extra SQL
+    @Column(name = "ID", length = 36)
+    @Access(AccessType.PROPERTY)
+    // we do this because relationships often fetch id, but not entity.  This avoids an extra SQL
     protected String id;
 
-    @ManyToOne(fetch= FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ATTATCHED_DOCUMENT_ID")
     protected AttatchedDocumentEntity attatchedDocument;
 
@@ -132,5 +138,5 @@ public class AttatchedDocumentAttributeEntity {
     public int hashCode() {
         return id.hashCode();
     }
-    
+
 }

@@ -23,6 +23,7 @@ import org.openfact.component.ComponentModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.RequiredActionProviderModel;
+import org.openfact.models.enums.DocumentType;
 import org.openfact.models.jpa.entities.*;
 import org.openfact.models.utils.ComponentUtil;
 import org.openfact.models.utils.OpenfactModelUtils;
@@ -343,7 +344,8 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     }
 
     /**
-     * Attribute*/
+     * Attribute
+     */
     @Override
     public void setAttribute(String name, String value) {
         for (OrganizationAttributeEntity attr : organization.getAttributes()) {
@@ -427,7 +429,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         }
         return result;
     }
-    
+
     /**
      * */
 
@@ -472,7 +474,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         organization.setReportTheme(name);
         em.flush();
     }
-    
+
     @Override
     public boolean isInternationalizationEnabled() {
         return organization.isInternationalizationEnabled();
@@ -508,7 +510,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     public void setDefaultLocale(String locale) {
         organization.setDefaultLocale(locale);
         em.flush();
-    }    
+    }
 
     @Override
     public long getEventsExpiration() {
@@ -519,14 +521,15 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     public void setEventsExpiration(long expiration) {
         organization.setEventsExpiration(expiration);
         em.flush();
-    }    
+    }
 
     /**
-     * Required actions*/
+     * Required actions
+     */
     @Override
     public RequiredActionProviderModel addRequiredActionProvider(RequiredActionProviderModel model) {
         RequiredActionProviderEntity auth = new RequiredActionProviderEntity();
-        String id = (model.getId() == null) ? OpenfactModelUtils.generateId(): model.getId();
+        String id = (model.getId() == null) ? OpenfactModelUtils.generateId() : model.getId();
         auth.setId(id);
         auth.setAlias(model.getAlias());
         auth.setName(model.getName());
@@ -609,9 +612,46 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         }
         return null;
     }
-    
+
+    @Override
+    public void removeAttachedDocuments(DocumentType documentType, String documentId) {
+        em.createNamedQuery("deleteInvoiceAttachedDocumentAttributesByOrganizationTypeAndDocumentId")
+                .setParameter("organizationId", organization.getId())
+                .setParameter("documentType", documentType)
+                .setParameter("documentId", documentId)
+                .executeUpdate();
+        em.createNamedQuery("deleteInvoiceAttachedDocumentsByOrganizationTypeAndDocumentId")
+                .setParameter("organizationId", organization.getId())
+                .setParameter("documentType", documentType)
+                .setParameter("documentId", documentId)
+                .executeUpdate();
+
+        em.createNamedQuery("deleteCreditNoteAttachedDocumentAttributesByOrganizationTypeAndDocumentId")
+                .setParameter("organizationId", organization.getId())
+                .setParameter("documentType", documentType)
+                .setParameter("documentId", documentId)
+                .executeUpdate();
+        em.createNamedQuery("deleteCreditNoteAttachedDocumentsByOrganizationTypeAndDocumentId")
+                .setParameter("organizationId", organization.getId())
+                .setParameter("documentType", documentType)
+                .setParameter("documentId", documentId)
+                .executeUpdate();
+
+        em.createNamedQuery("deleteDebitNoteAttachedDocumentAttributesByOrganizationTypeAndDocumentId")
+                .setParameter("organizationId", organization.getId())
+                .setParameter("documentType", documentType)
+                .setParameter("documentId", documentId)
+                .executeUpdate();
+        em.createNamedQuery("deleteDebitNoteAttachedDocumentsByOrganizationTypeAndDocumentId")
+                .setParameter("organizationId", organization.getId())
+                .setParameter("documentType", documentType)
+                .setParameter("documentId", documentId)
+                .executeUpdate();
+    }
+
     /**
-     * Components*/
+     * Components
+     */
     @Override
     public ComponentModel addComponentModel(ComponentModel model) {
         model = importComponentModel(model);

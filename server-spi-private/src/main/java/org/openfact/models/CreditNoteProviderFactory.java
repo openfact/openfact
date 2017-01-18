@@ -21,10 +21,14 @@ import org.openfact.Config;
 import org.openfact.models.enums.DocumentType;
 import org.openfact.provider.ProviderFactory;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public interface CreditNoteProviderFactory extends ProviderFactory<CreditNoteProvider> {
 
     @Override
     default void postInit(OpenfactSessionFactory factory) {
+
         factory.register(event -> {
             if (event instanceof CreditNoteModel.CreditNotePostCreateEvent) {
                 CreditNoteModel.CreditNotePostCreateEvent creditNotePostCreatedEvent = (CreditNoteModel.CreditNotePostCreateEvent) event;
@@ -49,6 +53,16 @@ public interface CreditNoteProviderFactory extends ProviderFactory<CreditNotePro
                                 }
                             });
                 }
+            }
+        });
+
+        factory.register(event -> {
+            if (event instanceof CreditNoteModel.CreditNoteRemovedEvent) {
+                CreditNoteModel.CreditNoteRemovedEvent creditNoteRemovedEvent = (CreditNoteModel.CreditNoteRemovedEvent) event;
+                OrganizationModel organization = creditNoteRemovedEvent.getOrganization();
+                CreditNoteModel creditNote = creditNoteRemovedEvent.getCreditNote();
+
+                organization.removeAttachedDocuments(DocumentType.CREDIT_NOTE, creditNote.getId());
             }
         });
     }

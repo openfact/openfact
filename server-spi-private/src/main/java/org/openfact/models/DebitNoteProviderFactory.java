@@ -50,6 +50,16 @@ public interface DebitNoteProviderFactory extends ProviderFactory<DebitNoteProvi
                 }
             }
         });
+
+        factory.register(event -> {
+            if (event instanceof DebitNoteModel.DebitNoteRemovedEvent) {
+                DebitNoteModel.DebitNoteRemovedEvent debitNoteRemovedEvent = (DebitNoteModel.DebitNoteRemovedEvent) event;
+                OrganizationModel organization = debitNoteRemovedEvent.getOrganization();
+                DebitNoteModel debitNote = debitNoteRemovedEvent.getDebitNote();
+
+                organization.removeAttachedDocuments(DocumentType.DEBIT_NOTE, debitNote.getId());
+            }
+        });
     }
 
 }

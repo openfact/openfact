@@ -140,6 +140,8 @@ public interface DebitNoteModel {
     }
 
     interface DebitNoteRemovedEvent extends ProviderEvent {
+        OrganizationModel getOrganization();
+
         DebitNoteModel getDebitNote();
 
         OpenfactSession getOpenfactSession();

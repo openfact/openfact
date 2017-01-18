@@ -120,17 +120,6 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
         InvoiceEntity invoiceEntity = em.find(InvoiceEntity.class, invoice.getId());
         if (invoiceEntity == null) return false;
         removeInvoice(invoiceEntity);
-        session.getOpenfactSessionFactory().publish(new InvoiceModel.InvoiceRemovedEvent() {
-            @Override
-            public InvoiceModel getInvoice() {
-                return invoice;
-            }
-
-            @Override
-            public OpenfactSession getOpenfactSession() {
-                return session;
-            }
-        });
         return true;
     }
 

@@ -119,14 +119,29 @@ public class CreditNoteManager {
     }
 
     public boolean removeCreditNote(OrganizationModel organization, CreditNoteModel creditNote) {
-        if (model.removeCreditNote(organization, creditNote)) {
-            return true;
-        }
-        return false;
+        return removeCreditNote(organization, creditNote, session.creditNotes());
     }
 
-    public boolean removeDebitNote(OrganizationModel organization, CreditNoteModel creditNote) {
+    public boolean removeCreditNote(OrganizationModel organization, CreditNoteModel creditNote, CreditNoteProvider creditNoteProvider) {
         if (model.removeCreditNote(organization, creditNote)) {
+            session.getOpenfactSessionFactory().publish(new CreditNoteModel.CreditNoteRemovedEvent() {
+
+                @Override
+                public OrganizationModel getOrganization() {
+                    return organization;
+                }
+
+                @Override
+                public CreditNoteModel getCreditNote() {
+                    return creditNote;
+                }
+
+                @Override
+                public OpenfactSession getOpenfactSession() {
+                    return session;
+                }
+
+            });
             return true;
         }
         return false;

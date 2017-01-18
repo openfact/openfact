@@ -140,6 +140,8 @@ public interface CreditNoteModel {
     }
 
     interface CreditNoteRemovedEvent extends ProviderEvent {
+        OrganizationModel getOrganization();
+
         CreditNoteModel getCreditNote();
 
         OpenfactSession getOpenfactSession();

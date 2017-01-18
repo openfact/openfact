@@ -26,7 +26,8 @@ import javax.validation.constraints.NotNull;
 @DiscriminatorValue(value = "INVOICE")
 @NamedQueries(value = {
         @NamedQuery(name = "getAllAttachedDocumentByInvoiceId", query = "select s from InvoiceAttatchedDocumentEntity s where invoice.id=:invoiceId"),
-        @NamedQuery(name = "deleteInvoiceAttatchedDocumentByOrganization", query = "delete from InvoiceAttatchedDocumentEntity doc where doc.invoice IN (select i from InvoiceEntity i where i.organizationId=:organizationId)")
+        @NamedQuery(name = "deleteInvoiceAttatchedDocumentByOrganization", query = "delete from InvoiceAttatchedDocumentEntity doc where doc.invoice IN (select i from InvoiceEntity i where i.organizationId=:organizationId)"),
+        @NamedQuery(name = "deleteInvoiceAttachedDocumentsByOrganizationTypeAndDocumentId", query = "delete from InvoiceAttatchedDocumentEntity doc where doc.documentType=:documentType and doc.documentId=:documentId and doc.invoice IN (select i from InvoiceEntity i where i.organizationId=:organizationId)")
 })
 public class InvoiceAttatchedDocumentEntity extends AttatchedDocumentEntity {
 

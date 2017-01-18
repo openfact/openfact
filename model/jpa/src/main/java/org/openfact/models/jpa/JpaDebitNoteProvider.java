@@ -124,17 +124,6 @@ public class JpaDebitNoteProvider extends AbstractHibernateStorage implements De
         DebitNoteEntity debitNoteEntity = em.find(DebitNoteEntity.class, debitNote.getId());
         if (debitNoteEntity == null) return false;
         removeDebitNote(debitNoteEntity);
-        session.getOpenfactSessionFactory().publish(new DebitNoteModel.DebitNoteRemovedEvent() {
-            @Override
-            public DebitNoteModel getDebitNote() {
-                return debitNote;
-            }
-
-            @Override
-            public OpenfactSession getOpenfactSession() {
-                return session;
-            }
-        });
         return true;
     }
 

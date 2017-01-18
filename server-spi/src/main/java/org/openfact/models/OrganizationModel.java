@@ -17,6 +17,7 @@
 package org.openfact.models;
 
 import org.openfact.component.ComponentModel;
+import org.openfact.models.enums.DocumentType;
 import org.openfact.provider.ProviderEvent;
 
 import javax.persistence.Column;
@@ -211,6 +212,10 @@ public interface OrganizationModel {
     void removeRequiredActionProvider(RequiredActionProviderModel model);
     RequiredActionProviderModel getRequiredActionProviderById(String id);
     RequiredActionProviderModel getRequiredActionProviderByAlias(String alias);
+
+    /**
+     * Attatched documents*/
+    void removeAttachedDocuments(DocumentType documentType, String documentId);
 
     /**
      * Adds component model. Will call onCreate() method of ComponentFactory
