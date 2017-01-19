@@ -42,6 +42,7 @@ import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
 import org.openfact.events.admin.OperationType;
+import org.openfact.events.admin.ResourceType;
 import org.openfact.models.*;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
@@ -160,7 +161,7 @@ public class DebitNotesAdminResource {
                 }
 
                 DebitNoteModel debitNote = debitNoteManager.addDebitNote(organization, debitNoteType, Collections.emptyMap());
-                adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, debitNote.getId()).representation(debitNoteType).success();
+                adminEvent.operation(OperationType.CREATE).resource(ResourceType.DEBIT_NOTE).resourcePath(uriInfo, debitNote.getId()).representation(debitNoteType).success();
             } catch (IOException e) {
                 if (session.getTransactionManager().isActive()) {
                     session.getTransactionManager().setRollbackOnly();

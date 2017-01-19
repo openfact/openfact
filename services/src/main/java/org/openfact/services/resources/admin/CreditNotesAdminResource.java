@@ -42,6 +42,7 @@ import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
 import org.openfact.events.admin.OperationType;
+import org.openfact.events.admin.ResourceType;
 import org.openfact.models.*;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
@@ -163,7 +164,7 @@ public class CreditNotesAdminResource {
                 }
 
                 CreditNoteModel creditNote = creditNoteManager.addCreditNote(organization, creditNoteType, Collections.emptyMap());
-                adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, creditNote.getId()).representation(creditNoteType).success();
+                adminEvent.operation(OperationType.CREATE).resource(ResourceType.CREDIT_NOTE).resourcePath(uriInfo, creditNote.getId()).representation(creditNoteType).success();
             } catch (IOException e) {
                 if (session.getTransactionManager().isActive()) {
                     session.getTransactionManager().setRollbackOnly();

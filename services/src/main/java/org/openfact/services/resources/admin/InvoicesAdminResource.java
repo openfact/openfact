@@ -42,6 +42,7 @@ import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
 import org.openfact.events.admin.OperationType;
+import org.openfact.events.admin.ResourceType;
 import org.openfact.models.*;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
@@ -164,7 +165,7 @@ public class InvoicesAdminResource {
                 }
 
                 InvoiceModel invoice = invoiceManager.addInvoice(organization, invoiceType, Collections.emptyMap());
-                adminEvent.operation(OperationType.CREATE).resourcePath(uriInfo, invoice.getId()).representation(invoiceType).success();
+                adminEvent.operation(OperationType.CREATE).resource(ResourceType.INVOICE).resourcePath(uriInfo, invoice.getId()).representation(invoiceType).success();
             } catch (IOException e) {
                 if (session.getTransactionManager().isActive()) {
                     session.getTransactionManager().setRollbackOnly();
