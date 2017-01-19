@@ -30,7 +30,7 @@ import java.util.*;
 
 public class SendToCustomerOrganizationScheduleTaskProvider implements OrganizationScheduleTaskProvider {
 
-    public static final String JOB_NAME = "SENT_TO_CUSTOMER";
+    public static final String JOB_NAME = SendToCustomerOrganizationScheduleTaskProvider.class.getSimpleName();
 
     protected int retries;
     protected boolean isActive;

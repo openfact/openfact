@@ -24,22 +24,18 @@
 package org.openfact.models.jpa.entities;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
 
 @Entity
 @Table(name = "JOB_REPORT")
 @NamedQueries({
-        @NamedQuery(name = "getAllJobsReportByOrganization", query = "select i from JobReportEntity i where i.organization.id = :organizationId"),
-        @NamedQuery(name = "getOrganizationJobReportById", query = "select i from JobReportEntity i where i.id = :id and i.organization.id = :organizationId"),
-        @NamedQuery(name = "searchForJobReport", query = "select i from JobReportEntity i where i.organization.id = :organizationId and lower(i.jobName) like :search"),
-        @NamedQuery(name = "getOrganizationJobReportCount", query = "select count(i) from JobReportEntity i where i.organization.id = :organizationId"),
-        @NamedQuery(name = "deleteJobReportsByOrganization", query = "delete from JobReportEntity f where f.organization.id=:organizationId")
+        @NamedQuery(name = "getAllJobsReportByOrganization", query = "select i from JobReportEntity i where i.organizationId = :organizationId"),
+        @NamedQuery(name = "getOrganizationJobReportById", query = "select i from JobReportEntity i where i.id = :id and i.organizationId = :organizationId"),
+        @NamedQuery(name = "searchForJobReport", query = "select i from JobReportEntity i where i.organizationId = :organizationId and lower(i.jobName) like :search"),
+        @NamedQuery(name = "getOrganizationJobReportCount", query = "select count(i) from JobReportEntity i where i.organizationId = :organizationId"),
+        @NamedQuery(name = "deleteJobReportsByOrganization", query = "delete from JobReportEntity f where f.organizationId=:organizationId")
 })
 public class JobReportEntity {
 
@@ -72,9 +68,26 @@ public class JobReportEntity {
     private long writeCount;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
-    private OrganizationEntity organization;
+    @Column(name = "ORGANIZATION_ID")
+    private String organizationId;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        if (!(o instanceof JobReportEntity)) return false;
+
+        JobReportEntity that = (JobReportEntity) o;
+
+        if (!getId().equals(that.getId())) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
+    }
 
     public String getId() {
         return id;
@@ -140,29 +153,11 @@ public class JobReportEntity {
         this.writeCount = writeCount;
     }
 
-    public OrganizationEntity getOrganization() {
-        return organization;
+    public String getOrganizationId() {
+        return organizationId;
     }
 
-    public void setOrganization(OrganizationEntity organization) {
-        this.organization = organization;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null) return false;
-        if (!(o instanceof JobReportEntity)) return false;
-
-        JobReportEntity that = (JobReportEntity) o;
-
-        if (!id.equals(that.getId())) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return id.hashCode();
+    public void setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
     }
 }

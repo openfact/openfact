@@ -17,19 +17,24 @@
 package org.openfact.models.jpa;
 
 import org.jboss.logging.Logger;
+import org.openfact.events.admin.AdminEvent;
+import org.openfact.events.admin.OperationType;
+import org.openfact.events.admin.ResourceType;
+import org.openfact.events.jpa.AdminEventEntity;
+import org.openfact.events.jpa.JpaEventQuery;
 import org.openfact.models.*;
+import org.openfact.models.jpa.entities.JobReportEntity;
 import org.openfact.models.jpa.entities.JobReportEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class JpaJobReportProvider extends AbstractHibernateStorage implements JobReportProvider {
 
     protected static final Logger logger = Logger.getLogger(JpaJobReportProvider.class);
-
-    private static final String FILE_NAME = "fileName";
 
     private final OpenfactSession session;
     protected EntityManager em;
@@ -40,16 +45,40 @@ public class JpaJobReportProvider extends AbstractHibernateStorage implements Jo
     }
 
     @Override
+    public void close() {
+    }
+
+    @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
 
     @Override
+    public JobReportQuery createQuery() {
+        return new JpaJobReportQuery(em);
+    }
+
+    static AdminJobReport convertAdminJobReport(JobReportEntity jobReportEntity) {
+        AdminJobReport adminJobReport = new AdminJobReport();
+
+        adminJobReport.setId(jobReportEntity.getId());
+        adminJobReport.setJobName(jobReportEntity.getJobName());
+        adminJobReport.setDuration(jobReportEntity.getDuration());
+        adminJobReport.setStartTime(jobReportEntity.getStartTime());
+        adminJobReport.setEndTime(jobReportEntity.getEndTime());
+        adminJobReport.setErrorCount(jobReportEntity.getErrorCount());
+        adminJobReport.setReadCount(jobReportEntity.getReadCount());
+        adminJobReport.setWriteCount(jobReportEntity.getWriteCount());
+
+        return adminJobReport;
+    }
+
+    @Override
     public JobReportModel createJobReport(OrganizationModel organization, String jobReportName) {
         JobReportEntity entity = new JobReportEntity();
         entity.setJobName(jobReportName);
-        entity.setOrganization(OrganizationAdapter.toEntity(organization, em));
+        entity.setOrganizationId(organization.getId());
         em.persist(entity);
         em.flush();
         return new JobReportAdapter(session, organization, em, entity);
@@ -107,8 +136,5 @@ public class JpaJobReportProvider extends AbstractHibernateStorage implements Jo
     public void preRemove(OrganizationModel organization) {
         int num = em.createNamedQuery("deleteJobReportsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
     }
-
-    @Override
-    public void close() {
-    }
+    
 }

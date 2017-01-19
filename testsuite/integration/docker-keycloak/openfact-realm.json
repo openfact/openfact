@@ -118,6 +118,7 @@
 							"manage-debit-notes",
 							"manage-events",
 							"manage-files",
+							"manage-reports",
 							"manage-extensions",
 							"view-organization",
 							"view-invoices",
@@ -125,6 +126,7 @@
 							"view-debit-notes",
 							"view-events",
 							"view-files",
+							"view-reports",
 							"view-extensions"
 						]
 					}
@@ -143,6 +145,7 @@
 							"manage-debit-notes",
 							"manage-events",
 							"manage-files",
+							"manage-reports",
 							"manage-extensions",
 							"view-organization",
 							"view-invoices",
@@ -150,6 +153,7 @@
 							"view-debit-notes",
 							"view-events",
 							"view-files",
+							"view-reports",
 							"view-extensions"
 						]
 					}
@@ -173,6 +177,7 @@
 							"view-debit-notes",
 							"view-events",
 							"view-files",
+							"view-reports",
 							"view-extensions"
 						]
 					}
@@ -206,6 +211,10 @@
 					"description": "Manage Files"
 				},
 				{
+					"name": "manage-reports",
+					"description": "Manage Reṕorts"
+				},
+				{
 					"name": "manage-extensions",
 					"description": "Manage Extensions"
 				},
@@ -232,6 +241,10 @@
 				{
 					"name": "view-files",
 					"description": "View Files"
+				},
+				{
+					"name": "view-reports",
+					"description": "View Reṕorts"
 				},
 				{
 					"name": "view-extensions",

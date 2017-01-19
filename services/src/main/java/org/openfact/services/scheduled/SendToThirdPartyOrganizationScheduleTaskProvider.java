@@ -32,7 +32,7 @@ import java.util.List;
 
 public class SendToThirdPartyOrganizationScheduleTaskProvider implements OrganizationScheduleTaskProvider {
 
-    public static final String JOB_NAME = "SENT_TO_THIRD_PARTY";
+    public static final String JOB_NAME = SendToThirdPartyOrganizationScheduleTaskProvider.class.getSimpleName();
 
     protected int retries;
     protected boolean isActive;

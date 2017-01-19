@@ -18,21 +18,20 @@ package org.openfact.services.resources.admin;
 
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.openfact.common.ClientConnection;
-import org.openfact.file.FileModel;
-import org.openfact.file.FileProvider;
-import org.openfact.file.InternetMediaType;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
+import org.openfact.events.EventType;
+import org.openfact.models.*;
+import org.openfact.models.utils.ModelToRepresentation;
+import org.openfact.representations.idm.JobReportRepresentation;
+import org.openfact.representations.idm.OrganizationScheduleTaskRepresentation;
 import org.openfact.services.ServicesLogger;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class JobReportsAdminResource {
 
@@ -63,21 +62,70 @@ public class JobReportsAdminResource {
     }
 
     @GET
-    @Path("{idFile}")
     @NoCache
-    public Response getFile(@PathParam("idFile") String idFile) {
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<JobReportRepresentation> getReports(
+            @QueryParam("jobName") List<String> jobNames,
+            @QueryParam("dateFrom") String dateFrom,
+            @QueryParam("dateTo") String dateTo,
+            @QueryParam("first") Integer firstResult,
+            @QueryParam("max") Integer maxResults) {
+
         auth.requireView();
 
-        FileModel file = session.getProvider(FileProvider.class).getFileById(organization, idFile);
-        if (file == null) {
-            throw new NotFoundException("File not found");
+        firstResult = firstResult != null ? firstResult : -1;
+        maxResults = maxResults != null ? maxResults : Constants.DEFAULT_MAX_RESULTS;
+
+        JobReportQuery query = session.jobReports().createQuery().organization(organization.getId());
+
+        if (jobNames != null & !jobNames.isEmpty()) {
+            jobNames.stream().forEach(c -> query.jobName(c));
         }
 
-        Response.ResponseBuilder response = Response.ok(file.getFile());
-        response.type(InternetMediaType.getMymeTypeFromExtension(file.getExtension()));
-        response.header("content-disposition", "attachment; filename=\"" + file.getFileName() + "\"");
+        if (dateFrom != null) {
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            Date from = null;
+            try {
+                from = df.parse(dateFrom);
+            } catch (ParseException e) {
+                throw new BadRequestException("Invalid value for 'Date(From)', expected format is yyyy-MM-dd");
+            }
+            query.fromDate(from);
+        }
 
-        return response.build();
+        if (dateTo != null) {
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            Date to = null;
+            try {
+                to = df.parse(dateTo);
+            } catch (ParseException e) {
+                throw new BadRequestException("Invalid value for 'Date(To)', expected format is yyyy-MM-dd");
+            }
+            query.toDate(to);
+        }
+
+        if (firstResult != null) {
+            query.firstResult(firstResult);
+        }
+        if (maxResults != null) {
+            query.maxResults(maxResults);
+        }
+
+        return query.getResultList().stream()
+                .map(f -> ModelToRepresentation.toRepresentation(f))
+                .collect(Collectors.toList());
+    }
+
+    @GET
+    @Path("providers")
+    @NoCache
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<String> getFile() {
+        auth.requireView();
+
+        return session.getAllProviders(OrganizationScheduleTaskProvider.class).stream()
+                .filter(p -> p.isActive()).map(f -> f.getClass().getSimpleName())
+                .collect(Collectors.toList());
     }
 
 }

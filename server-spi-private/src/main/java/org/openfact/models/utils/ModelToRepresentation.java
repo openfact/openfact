@@ -24,23 +24,9 @@ import org.openfact.component.ComponentModel;
 import org.openfact.events.Event;
 import org.openfact.events.admin.AdminEvent;
 import org.openfact.events.admin.AuthDetails;
-import org.openfact.models.AllowanceChargeModel;
-import org.openfact.models.CreditNoteModel;
-import org.openfact.models.CustomerPartyModel;
-import org.openfact.models.DebitNoteModel;
-import org.openfact.models.InvoiceModel;
-import org.openfact.models.AttatchedDocumentModel;
-import org.openfact.models.MonetaryTotalModel;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.PartyLegalEntityModel;
-import org.openfact.models.PartyModel;
-import org.openfact.models.ResponseModel;
-import org.openfact.models.SupplierPartyModel;
-import org.openfact.models.TaxTotalModel;
+import org.openfact.models.*;
 import org.openfact.provider.ProviderConfigProperty;
 import org.openfact.representations.idm.*;
-import org.openfact.models.SendEventModel;
 
 public class ModelToRepresentation {
 
@@ -505,6 +491,19 @@ public class ModelToRepresentation {
             }).collect(Collectors.toList());
             rep.getResponseFileAttachments().addAll(filesRep);
         }
+        return rep;
+    }
+
+    public static JobReportRepresentation toRepresentation(AdminJobReport model) {
+        JobReportRepresentation rep = new JobReportRepresentation();
+        rep.setId(model.getId());
+        rep.setJobName(model.getJobName());
+        rep.setDuration(model.getDuration());
+        rep.setStartTime(model.getStartTime());
+        rep.setEndTime(model.getEndTime());
+        rep.setErrorCount(model.getErrorCount());
+        rep.setReadCount(model.getReadCount());
+        rep.setWriteCount(model.getWriteCount());
         return rep;
     }
 }
