@@ -23,7 +23,19 @@ import java.util.stream.Stream;
 
 public enum RequiredAction {
 
-    SEND_TO_TRIRD_PARTY,
-    SEND_TO_CUSTOMER;
+    SEND_TO_TRIRD_PARTY(true),
+    SEND_TO_CUSTOMER(true);
+
+    private boolean isDefault;
+
+    RequiredAction(boolean isDefault) {
+        this.isDefault = isDefault;
+    }
+
+    public static List<RequiredAction> getDefaults() {
+        return Arrays.asList(RequiredAction.values()).stream()
+                .filter(p -> p.isDefault)
+                .collect(Collectors.toList());
+    }
 
 }
