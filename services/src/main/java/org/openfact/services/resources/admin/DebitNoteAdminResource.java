@@ -250,11 +250,11 @@ public class DebitNoteAdminResource {
             try {
                 manager.sendToTrirdParty(organizationThread, debitNoteThread, sendEventThread);
             } catch (ModelInsuficientData e) {
-                sendEvent.setResult(SendResultType.ERROR);
-                sendEvent.setDescription(e.getMessage());
+                sendEventThread.setResult(SendResultType.ERROR);
+                sendEventThread.setDescription(e.getMessage());
             } catch (SendException e) {
-                sendEvent.setResult(SendResultType.ERROR);
-                sendEvent.setDescription("Internal server error");
+                sendEventThread.setResult(SendResultType.ERROR);
+                sendEventThread.setDescription("Internal server error");
                 logger.error("Internal Server Error sending to customer", e);
             }
         });
@@ -288,11 +288,11 @@ public class DebitNoteAdminResource {
             try {
                 manager.sendToThirdPartyByEmail(organizationThread, debitNoteThread, sendEventThread, thirdParty.getEmail());
             } catch (ModelInsuficientData e) {
-                sendEvent.setResult(SendResultType.ERROR);
-                sendEvent.setDescription(e.getMessage());
+                sendEventThread.setResult(SendResultType.ERROR);
+                sendEventThread.setDescription(e.getMessage());
             } catch (SendException e) {
-                sendEvent.setResult(SendResultType.ERROR);
-                sendEvent.setDescription("Internal server error");
+                sendEventThread.setResult(SendResultType.ERROR);
+                sendEventThread.setDescription("Internal server error");
                 logger.error("Internal Server Error sending to customer", e);
             }
         });

@@ -218,11 +218,11 @@ public class InvoiceAdminResource {
             try {
                 manager.sendToCustomerParty(organizationThread, invoiceThread, sendEventThread);
             } catch (ModelInsuficientData e) {
-                sendEvent.setResult(SendResultType.ERROR);
-                sendEvent.setDescription(e.getMessage());
+                sendEventThread.setResult(SendResultType.ERROR);
+                sendEventThread.setDescription(e.getMessage());
             } catch (SendException e) {
-                sendEvent.setResult(SendResultType.ERROR);
-                sendEvent.setDescription("Internal server error");
+                sendEventThread.setResult(SendResultType.ERROR);
+                sendEventThread.setDescription("Internal server error");
                 logger.error("Internal Server Error sending to customer", e);
             }
         });
@@ -252,11 +252,11 @@ public class InvoiceAdminResource {
             try {
                 manager.sendToTrirdParty(organizationThread, invoiceThread, sendEventThread);
             } catch (ModelInsuficientData e) {
-                sendEvent.setResult(SendResultType.ERROR);
-                sendEvent.setDescription(e.getMessage());
+                sendEventThread.setResult(SendResultType.ERROR);
+                sendEventThread.setDescription(e.getMessage());
             } catch (SendException e) {
-                sendEvent.setResult(SendResultType.ERROR);
-                sendEvent.setDescription("Internal server error");
+                sendEventThread.setResult(SendResultType.ERROR);
+                sendEventThread.setDescription("Internal server error");
                 logger.error("Internal Server Error sending to third party", e);
             }
         });
@@ -290,11 +290,11 @@ public class InvoiceAdminResource {
             try {
                 manager.sendToThirdPartyByEmail(organizationThread, invoiceThread, thirdParty.getEmail());
             } catch (ModelInsuficientData e) {
-                sendEvent.setResult(SendResultType.ERROR);
-                sendEvent.setDescription(e.getMessage());
+                sendEventThread.setResult(SendResultType.ERROR);
+                sendEventThread.setDescription(e.getMessage());
             } catch (SendException e) {
-                sendEvent.setResult(SendResultType.ERROR);
-                sendEvent.setDescription("Internal server error");
+                sendEventThread.setResult(SendResultType.ERROR);
+                sendEventThread.setDescription("Internal server error");
                 logger.error("Internal Server Error sending to customer", e);
             }
         });
