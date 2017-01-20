@@ -16,6 +16,7 @@
  *******************************************************************************/
 package org.openfact.services.scheduled;
 
+import org.jboss.logging.Logger;
 import org.openfact.models.*;
 import org.openfact.models.enums.DestinyType;
 import org.openfact.models.enums.RequiredAction;
@@ -31,6 +32,8 @@ import java.util.Iterator;
 import java.util.List;
 
 public class SendToThirdPartyOrganizationScheduleTaskProvider implements OrganizationScheduleTaskProvider {
+
+    private static final Logger logger = Logger.getLogger(SendToThirdPartyOrganizationScheduleTaskProvider.class);
 
     public static final String JOB_NAME = SendToThirdPartyOrganizationScheduleTaskProvider.class.getSimpleName();
 
@@ -96,9 +99,13 @@ public class SendToThirdPartyOrganizationScheduleTaskProvider implements Organiz
                             if (sendEvent.getResult().equals(SendResultType.SUCCESS)) {
                                 c.removeRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
                             }
+                        } catch (ModelInsuficientData e) {
+                            sendEvent.setResult(SendResultType.ERROR);
+                            sendEvent.setDescription(e.getMessage());
                         } catch (SendException e) {
                             sendEvent.setResult(SendResultType.ERROR);
                             sendEvent.setDescription("Internal Server Error");
+                            logger.error("Internal server error", e);
                         }
                     });
         }
@@ -129,9 +136,13 @@ public class SendToThirdPartyOrganizationScheduleTaskProvider implements Organiz
                             if (sendEvent.getResult().equals(SendResultType.SUCCESS)) {
                                 c.removeRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
                             }
+                        } catch (ModelInsuficientData e) {
+                            sendEvent.setResult(SendResultType.ERROR);
+                            sendEvent.setDescription(e.getMessage());
                         } catch (SendException e) {
                             sendEvent.setResult(SendResultType.ERROR);
                             sendEvent.setDescription("Internal Server Error");
+                            logger.error("Internal server error", e);
                         }
                     });
         }
@@ -162,9 +173,13 @@ public class SendToThirdPartyOrganizationScheduleTaskProvider implements Organiz
                             if (sendEvent.getResult().equals(SendResultType.SUCCESS)) {
                                 c.removeRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
                             }
+                        } catch (ModelInsuficientData e) {
+                            sendEvent.setResult(SendResultType.ERROR);
+                            sendEvent.setDescription(e.getMessage());
                         } catch (SendException e) {
                             sendEvent.setResult(SendResultType.ERROR);
                             sendEvent.setDescription("Internal Server Error");
+                            logger.error("Internal server error", e);
                         }
                     });
         }

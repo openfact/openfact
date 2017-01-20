@@ -50,19 +50,19 @@ import java.util.stream.Collectors;
 public class DebitNoteAdminResource {
 
     private static final ServicesLogger logger = ServicesLogger.LOGGER;
-    
+
     @Context
     protected UriInfo uriInfo;
-    
+
     @Context
     protected OpenfactSession session;
-    
+
     @Context
     protected ClientConnection clientConnection;
 
     protected OrganizationModel organization;
     protected DebitNoteModel debitNote;
-    
+
     private OrganizationAuth auth;
     private AdminEventBuilder adminEvent;
 
@@ -171,12 +171,11 @@ public class DebitNoteAdminResource {
         }
         return response.build();
     }
-    
+
     /**
      * Deletes debitNote with given debitNoteId.
      *
-     * @throws AuthorizationException
-     *             The user is not authorized to delete this debitNote.
+     * @throws AuthorizationException The user is not authorized to delete this debitNote.
      */
     @DELETE
     public Response deleteDebitNote() {
@@ -216,9 +215,13 @@ public class DebitNoteAdminResource {
             SendEventModel sendEventThread = debitNoteThread.getSendEventById(sendEvent.getId());
             try {
                 manager.sendToCustomerParty(organizationThread, debitNoteThread, sendEventThread);
+            } catch (ModelInsuficientData e) {
+                sendEvent.setResult(SendResultType.ERROR);
+                sendEvent.setDescription(e.getMessage());
             } catch (SendException e) {
                 sendEvent.setResult(SendResultType.ERROR);
                 sendEvent.setDescription("Internal server error");
+                logger.error("Internal Server Error sending to customer", e);
             }
         });
 
@@ -246,9 +249,13 @@ public class DebitNoteAdminResource {
             SendEventModel sendEventThread = debitNoteThread.getSendEventById(sendEvent.getId());
             try {
                 manager.sendToTrirdParty(organizationThread, debitNoteThread, sendEventThread);
+            } catch (ModelInsuficientData e) {
+                sendEvent.setResult(SendResultType.ERROR);
+                sendEvent.setDescription(e.getMessage());
             } catch (SendException e) {
                 sendEvent.setResult(SendResultType.ERROR);
                 sendEvent.setDescription("Internal server error");
+                logger.error("Internal Server Error sending to customer", e);
             }
         });
 
@@ -280,9 +287,13 @@ public class DebitNoteAdminResource {
             SendEventModel sendEventThread = debitNoteThread.getSendEventById(sendEvent.getId());
             try {
                 manager.sendToThirdPartyByEmail(organizationThread, debitNoteThread, sendEventThread, thirdParty.getEmail());
+            } catch (ModelInsuficientData e) {
+                sendEvent.setResult(SendResultType.ERROR);
+                sendEvent.setDescription(e.getMessage());
             } catch (SendException e) {
                 sendEvent.setResult(SendResultType.ERROR);
                 sendEvent.setDescription("Internal server error");
+                logger.error("Internal Server Error sending to customer", e);
             }
         });
 

@@ -22,6 +22,7 @@ import java.util.Map;
 
 import javax.xml.transform.TransformerException;
 
+import org.apache.commons.validator.routines.EmailValidator;
 import org.jboss.logging.Logger;
 import org.openfact.common.converts.DocumentUtils;
 import org.openfact.email.EmailException;
@@ -88,7 +89,7 @@ public class DebitNoteManager {
 
         try {
             // Generate Document
-            Document baseDocument = ublProvider.writer().write(organization, debitNoteType, attributes);
+            Document baseDocument = ublProvider.writer().write(organization, debitNoteType);
             Document signedDocument = session.getProvider(SignerProvider.class).sign(baseDocument, organization);
             byte[] signedDocumentBytes = DocumentUtils.getBytesFromDocument(signedDocument);
 
@@ -147,41 +148,34 @@ public class DebitNoteManager {
         return false;
     }
 
-    public SendEventModel sendToCustomerParty(OrganizationModel organization, DebitNoteModel debitNote) throws SendException {
-        return sendToCustomerParty(organization, debitNote, null);
+    public SendEventModel sendToCustomerParty(OrganizationModel organization, DebitNoteModel debitNote) throws ModelInsuficientData, SendException {
+        return sendToCustomerParty(organization, debitNote, debitNote.addSendEvent(DestinyType.CUSTOMER));
     }
 
-    public SendEventModel sendToCustomerParty(OrganizationModel organization, DebitNoteModel debitNote, SendEventModel sendEvent) throws SendException {
-        if (sendEvent == null) {
-            return ublProvider.sender().sendToCustomer(organization, debitNote);
-        } else {
-            return ublProvider.sender().sendToCustomer(organization, debitNote, sendEvent);
-        }
+    public SendEventModel sendToCustomerParty(OrganizationModel organization, DebitNoteModel debitNote, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
+        return ublProvider.sender().sendToCustomer(organization, debitNote, sendEvent);
     }
 
-    public SendEventModel sendToTrirdParty(OrganizationModel organization, DebitNoteModel debitNote) throws SendException {
-        return sendToTrirdParty(organization, debitNote, null);
+    public SendEventModel sendToTrirdParty(OrganizationModel organization, DebitNoteModel debitNote) throws ModelInsuficientData, SendException {
+        return sendToTrirdParty(organization, debitNote, debitNote.addSendEvent(DestinyType.THIRD_PARTY));
     }
 
-    public SendEventModel sendToTrirdParty(OrganizationModel organization, DebitNoteModel debitNote, SendEventModel sendEvent) throws SendException {
-        if (sendEvent == null) {
-            return ublProvider.sender().sendToThirdParty(organization, debitNote);
-        } else {
-            return ublProvider.sender().sendToThirdParty(organization, debitNote, sendEvent);
-        }
+    public SendEventModel sendToTrirdParty(OrganizationModel organization, DebitNoteModel debitNote, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
+        return ublProvider.sender().sendToThirdParty(organization, debitNote, sendEvent);
     }
 
-    public SendEventModel sendToThirdPartyByEmail(OrganizationModel organization, DebitNoteModel debitNote, String email) throws SendException {
+    public SendEventModel sendToThirdPartyByEmail(OrganizationModel organization, DebitNoteModel debitNote, String email) throws ModelInsuficientData, SendException {
         return sendToThirdPartyByEmail(organization, debitNote, debitNote.addSendEvent(DestinyType.CUSTOMER), email);
     }
 
-    public SendEventModel sendToThirdPartyByEmail(OrganizationModel organization, DebitNoteModel debitNote, SendEventModel sendEvent, String email) throws SendException {
+    public SendEventModel sendToThirdPartyByEmail(OrganizationModel organization, DebitNoteModel debitNote, SendEventModel sendEvent, String email) throws ModelInsuficientData, SendException {
         sendEvent.setType("EMAIL");
 
+        if (email == null || !EmailValidator.getInstance().isValid(email)) {
+            throw new ModelInsuficientData("Invalid Email");
+        }
         if (organization.getSmtpConfig().size() == 0) {
-            sendEvent.setResult(SendResultType.ERROR);
-            sendEvent.setDescription("Could not find a valid smtp configuration on organization.");
-            return sendEvent;
+            throw new ModelInsuficientData("Could not find a valid smtp configuration on organization");
         }
 
         // User where the email will be send
@@ -191,11 +185,11 @@ public class DebitNoteManager {
             FileProvider fileProvider = session.getProvider(FileProvider.class);
 
             // Attatchments
-            FileModel xmlFile = fileProvider.createFile(organization, OpenfactModelUtils.generateId() + ".xml", debitNote.getXmlAsFile().getFile());
+            FileModel xmlFile = fileProvider.createFile(organization, debitNote.getDocumentId() + ".xml", debitNote.getXmlAsFile().getFile());
             FileMymeTypeModel xmlFileMymeType = new FileMymeTypeModel(xmlFile, "application/xml");
 
-            byte[] pdfFileBytes = session.getProvider(UBLReportProvider.class).invoice().setOrganization(organization).getReport(debitNote, ExportFormat.PDF);
-            FileModel pdfFile = fileProvider.createFile(organization, OpenfactModelUtils.generateId() + ".pdf", pdfFileBytes);
+            byte[] pdfFileBytes = session.getProvider(UBLReportProvider.class).debitNote().setOrganization(organization).getReport(debitNote, ExportFormat.PDF);
+            FileModel pdfFile = fileProvider.createFile(organization, debitNote.getDocumentId() + ".pdf", pdfFileBytes);
             FileMymeTypeModel pdfFileMymeType = new FileMymeTypeModel(pdfFile, "application/pdf");
 
             session.getProvider(EmailTemplateProvider.class)
@@ -204,7 +198,7 @@ public class DebitNoteManager {
                     .sendDebitNote(debitNote);
 
             // Write event to the database
-            sendEvent.setDescription("Ivoice successfully sended");
+            sendEvent.setDescription("Debit Note successfully sended");
             sendEvent.attachFile(xmlFile);
             sendEvent.attachFile(pdfFile);
             sendEvent.setResult(SendResultType.SUCCESS);
@@ -213,12 +207,8 @@ public class DebitNoteManager {
 
             return sendEvent;
         } catch (ReportException e) {
-            sendEvent.setResult(SendResultType.ERROR);
-            sendEvent.setDescription("Internal Server Error on generate report");
-            throw new SendException("Could not generate pdf report", e);
+            throw new SendException("Could not generate pdf report to attach file", e);
         } catch (EmailException e) {
-            sendEvent.setResult(SendResultType.ERROR);
-            sendEvent.setDescription("Internal Server Error on send email");
             throw new SendException("Could not send email", e);
         }
     }

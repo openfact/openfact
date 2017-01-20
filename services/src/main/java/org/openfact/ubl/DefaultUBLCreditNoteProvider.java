@@ -18,6 +18,7 @@ package org.openfact.ubl;
 
 import java.util.*;
 
+import org.apache.commons.validator.routines.EmailValidator;
 import org.openfact.email.EmailException;
 import org.openfact.email.EmailTemplateProvider;
 import org.openfact.file.FileModel;
@@ -52,6 +53,7 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
     @Override
     public UBLIDGenerator<CreditNoteType> idGenerator() {
         return new UBLIDGenerator<CreditNoteType>() {
+
             @Override
             public void close() {
             }
@@ -60,12 +62,14 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
             public String generateID(OrganizationModel organization, CreditNoteType t) {
                 return OpenfactModelUtils.generateId();
             }
+
         };
     }
 
     @Override
     public UBLReader<CreditNoteType> reader() {
         return new UBLReader<CreditNoteType>() {
+
             @Override
             public void close() {
             }
@@ -79,12 +83,14 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
             public CreditNoteType read(byte[] bytes) {
                 return UBL21Reader.creditNote().read(bytes);
             }
+
         };
     }
 
     @Override
     public UBLWriter<CreditNoteType> writer() {
         return new UBLWriter<CreditNoteType>() {
+
             @Override
             public void close() {
             }
@@ -94,10 +100,6 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
                 return UBL21Writer.creditNote().getAsDocument(t);
             }
 
-            @Override
-            public Document write(OrganizationModel organization, CreditNoteType t, Map<String, List<String>> attributes) {
-                return UBL21Writer.creditNote().getAsDocument(t);
-            }
         };
     }
 
@@ -110,26 +112,22 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
             }
 
             @Override
-            public SendEventModel sendToCustomer(OrganizationModel organization, CreditNoteModel creditNote) throws SendException {
-                SendEventModel sendEvent = creditNote.addSendEvent(DestinyType.CUSTOMER);
-                return sendToCustomer(organization, creditNote, sendEvent);
+            public SendEventModel sendToCustomer(OrganizationModel organization, CreditNoteModel creditNote) throws ModelInsuficientData, SendException {
+                return sendToCustomer(organization, creditNote, creditNote.addSendEvent(DestinyType.CUSTOMER));
             }
 
             @Override
-            public SendEventModel sendToCustomer(OrganizationModel organization, CreditNoteModel creditNote, SendEventModel sendEvent) throws SendException {
+            public SendEventModel sendToCustomer(OrganizationModel organization, CreditNoteModel creditNote, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
                 sendEvent.setType("EMAIL");
 
                 if (creditNote.getCustomerElectronicMail() == null) {
-                    sendEvent.setResult(SendResultType.ERROR);
-                    sendEvent.setDescription("Could not find a valid email for the customer.");
-                    return sendEvent;
+                    throw new ModelInsuficientData("Could not find a valid email for the customer");
                 }
-
+                if (!EmailValidator.getInstance().isValid(creditNote.getCustomerElectronicMail())) {
+                    throw new ModelInsuficientData("Invalid email");
+                }
                 if (organization.getSmtpConfig().size() == 0) {
-                    sendEvent.setResult(SendResultType.ERROR);
-                    sendEvent.setType("EMAIL");
-                    sendEvent.setDescription("Could not find a valid smtp configuration on organization.");
-                    return sendEvent;
+                    throw new ModelInsuficientData("Could not find a valid smtp configuration on organization");
                 }
 
                 // User where the email will be send
@@ -164,20 +162,15 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
 
                     return sendEvent;
                 } catch (ReportException e) {
-                    sendEvent.setResult(SendResultType.ERROR);
-                    sendEvent.setDescription(e.getMessage());
-                    throw new SendException("Could not generate pdf report", e);
+                    throw new SendException("Could not generate pdf report to attach file", e);
                 } catch (EmailException e) {
-                    sendEvent.setResult(SendResultType.ERROR);
-                    sendEvent.setDescription(e.getMessage());
                     throw new SendException("Could not send email", e);
                 }
             }
 
             @Override
             public SendEventModel sendToThirdParty(OrganizationModel organization, CreditNoteModel creditNote) throws SendException {
-                SendEventModel sendEvent = creditNote.addSendEvent(DestinyType.THIRD_PARTY);
-                return sendToThirdParty(organization, creditNote, sendEvent);
+                return sendToThirdParty(organization, creditNote, creditNote.addSendEvent(DestinyType.THIRD_PARTY));
             }
 
             @Override

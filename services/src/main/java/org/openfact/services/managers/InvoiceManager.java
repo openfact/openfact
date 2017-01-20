@@ -20,8 +20,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import javax.enterprise.inject.Model;
 import javax.xml.transform.TransformerException;
 
+import org.apache.commons.validator.routines.EmailValidator;
 import org.jboss.logging.Logger;
 import org.openfact.common.converts.DocumentUtils;
 import org.openfact.email.EmailException;
@@ -87,7 +89,7 @@ public class InvoiceManager {
 
         try {
             // Generate Document
-            Document baseDocument = ublProvider.writer().write(organization, invoiceType, attributes);
+            Document baseDocument = ublProvider.writer().write(organization, invoiceType);
             Document signedDocument = session.getProvider(SignerProvider.class).sign(baseDocument, organization);
             byte[] signedDocumentBytes = DocumentUtils.getBytesFromDocument(signedDocument);
 
@@ -146,41 +148,34 @@ public class InvoiceManager {
         });
     }
 
-    public SendEventModel sendToCustomerParty(OrganizationModel organization, InvoiceModel invoice) throws SendException {
-        return sendToCustomerParty(organization, invoice, null);
+    public SendEventModel sendToCustomerParty(OrganizationModel organization, InvoiceModel invoice) throws ModelInsuficientData, SendException {
+        return sendToCustomerParty(organization, invoice, invoice.addSendEvent(DestinyType.CUSTOMER));
     }
 
-    public SendEventModel sendToCustomerParty(OrganizationModel organization, InvoiceModel invoice, SendEventModel sendEvent) throws SendException {
-        if(sendEvent == null) {
-            return ublProvider.sender().sendToCustomer(organization, invoice);
-        } else {
-            return ublProvider.sender().sendToCustomer(organization, invoice, sendEvent);
-        }
+    public SendEventModel sendToCustomerParty(OrganizationModel organization, InvoiceModel invoice, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
+        return ublProvider.sender().sendToCustomer(organization, invoice, sendEvent);
     }
 
-    public SendEventModel sendToTrirdParty(OrganizationModel organization, InvoiceModel invoice) throws SendException {
-        return sendToTrirdParty(organization, invoice, null);
+    public SendEventModel sendToTrirdParty(OrganizationModel organization, InvoiceModel invoice) throws ModelInsuficientData, SendException {
+        return sendToTrirdParty(organization, invoice, invoice.addSendEvent(DestinyType.THIRD_PARTY));
     }
 
-    public SendEventModel sendToTrirdParty(OrganizationModel organization, InvoiceModel invoice, SendEventModel sendEvent) throws SendException {
-        if(sendEvent == null) {
-            return ublProvider.sender().sendToThirdParty(organization, invoice);
-        } else {
-            return ublProvider.sender().sendToThirdParty(organization, invoice, sendEvent);
-        }
+    public SendEventModel sendToTrirdParty(OrganizationModel organization, InvoiceModel invoice, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
+        return ublProvider.sender().sendToThirdParty(organization, invoice, sendEvent);
     }
 
-    public SendEventModel sendToThirdPartyByEmail(OrganizationModel organization, InvoiceModel invoice, String email) throws SendException {
+    public SendEventModel sendToThirdPartyByEmail(OrganizationModel organization, InvoiceModel invoice, String email) throws ModelInsuficientData, SendException {
         return sendToThirdPartyByEmail(organization, invoice, invoice.addSendEvent(DestinyType.CUSTOMER), email);
     }
 
-    public SendEventModel sendToThirdPartyByEmail(OrganizationModel organization, InvoiceModel invoice, SendEventModel sendEvent, String email) throws SendException {
+    public SendEventModel sendToThirdPartyByEmail(OrganizationModel organization, InvoiceModel invoice, SendEventModel sendEvent, String email) throws ModelInsuficientData, SendException {
         sendEvent.setType("EMAIL");
 
+        if (email == null || !EmailValidator.getInstance().isValid(email)) {
+            throw new ModelInsuficientData("Invalid Email");
+        }
         if (organization.getSmtpConfig().size() == 0) {
-            sendEvent.setResult(SendResultType.ERROR);
-            sendEvent.setDescription("Could not find a valid smtp configuration on organization.");
-            return sendEvent;
+            throw new ModelInsuficientData("Could not find a valid smtp configuration on organization");
         }
 
         // User where the email will be send
@@ -190,11 +185,11 @@ public class InvoiceManager {
             FileProvider fileProvider = session.getProvider(FileProvider.class);
 
             // Attatchments
-            FileModel xmlFile = fileProvider.createFile(organization, OpenfactModelUtils.generateId() + ".xml", invoice.getXmlAsFile().getFile());
+            FileModel xmlFile = fileProvider.createFile(organization, invoice.getDocumentId() + ".xml", invoice.getXmlAsFile().getFile());
             FileMymeTypeModel xmlFileMymeType = new FileMymeTypeModel(xmlFile, "application/xml");
 
             byte[] pdfFileBytes = session.getProvider(UBLReportProvider.class).invoice().setOrganization(organization).getReport(invoice, ExportFormat.PDF);
-            FileModel pdfFile = fileProvider.createFile(organization, OpenfactModelUtils.generateId() + ".pdf", pdfFileBytes);
+            FileModel pdfFile = fileProvider.createFile(organization, invoice.getDocumentId() + ".pdf", pdfFileBytes);
             FileMymeTypeModel pdfFileMymeType = new FileMymeTypeModel(pdfFile, "application/pdf");
 
             session.getProvider(EmailTemplateProvider.class)
@@ -212,12 +207,8 @@ public class InvoiceManager {
 
             return sendEvent;
         } catch (ReportException e) {
-            sendEvent.setResult(SendResultType.ERROR);
-            sendEvent.setDescription("Internal Server Error on generate report");
-            throw new SendException("Could not generate pdf report", e);
+            throw new SendException("Could not generate pdf report to attach file", e);
         } catch (EmailException e) {
-            sendEvent.setResult(SendResultType.ERROR);
-            sendEvent.setDescription("Internal Server Error on send email");
             throw new SendException("Could not send email", e);
         }
     }

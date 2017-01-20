@@ -14,23 +14,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-
 package org.openfact.models;
 
-/**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
- */
-public class SendException extends Exception {
+public class ModelInsuficientData extends Exception {
 
-    public SendException(Throwable cause) {
+    public ModelInsuficientData(Throwable cause) {
         super(cause);
     }
 
-    public SendException(String message) {
+    public ModelInsuficientData(String message) {
         super(message);
     }
 
-    public SendException(String message, Throwable cause) {
+    public ModelInsuficientData(String message, Throwable cause) {
         super(message, cause);
     }
 }

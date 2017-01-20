@@ -50,19 +50,19 @@ import java.util.stream.Collectors;
 public class CreditNoteAdminResource {
 
     private static final ServicesLogger logger = ServicesLogger.LOGGER;
-    
+
     @Context
     protected UriInfo uriInfo;
-    
+
     @Context
     protected OpenfactSession session;
-    
+
     @Context
     protected ClientConnection clientConnection;
 
     protected OrganizationModel organization;
     protected CreditNoteModel creditNote;
-    
+
     private OrganizationAuth auth;
     private AdminEventBuilder adminEvent;
 
@@ -175,8 +175,7 @@ public class CreditNoteAdminResource {
     /**
      * Deletes creditNote with given creditNoteId.
      *
-     * @throws AuthorizationException
-     *             The user is not authorized to delete this creditNote.
+     * @throws AuthorizationException The user is not authorized to delete this creditNote.
      */
     @DELETE
     public Response deleteCreditNote() {
@@ -216,9 +215,13 @@ public class CreditNoteAdminResource {
             SendEventModel sendEventThread = creditNoteThread.getSendEventById(sendEvent.getId());
             try {
                 manager.sendToCustomerParty(organizationThread, creditNoteThread, sendEventThread);
+            } catch (ModelInsuficientData e) {
+                sendEvent.setResult(SendResultType.ERROR);
+                sendEvent.setDescription(e.getMessage());
             } catch (SendException e) {
                 sendEvent.setResult(SendResultType.ERROR);
                 sendEvent.setDescription("Internal server error");
+                logger.error("Internal Server Error sending to customer", e);
             }
         });
 
@@ -246,9 +249,13 @@ public class CreditNoteAdminResource {
             SendEventModel sendEventThread = creditNoteThread.getSendEventById(sendEvent.getId());
             try {
                 manager.sendToTrirdParty(organizationThread, creditNoteThread, sendEventThread);
+            } catch (ModelInsuficientData e) {
+                sendEvent.setResult(SendResultType.ERROR);
+                sendEvent.setDescription(e.getMessage());
             } catch (SendException e) {
                 sendEvent.setResult(SendResultType.ERROR);
                 sendEvent.setDescription("Internal server error");
+                logger.error("Internal Server Error sending to third party", e);
             }
         });
 
@@ -280,9 +287,13 @@ public class CreditNoteAdminResource {
             SendEventModel sendEventThread = creditNoteThread.getSendEventById(sendEvent.getId());
             try {
                 manager.sendToThirdPartyByEmail(organizationThread, creditNoteThread, sendEventThread, thirdParty.getEmail());
+            } catch (ModelInsuficientData e) {
+                sendEvent.setResult(SendResultType.ERROR);
+                sendEvent.setDescription(e.getMessage());
             } catch (SendException e) {
                 sendEvent.setResult(SendResultType.ERROR);
                 sendEvent.setDescription("Internal server error");
+                logger.error("Internal Server Error sending to customer", e);
             }
         });
 

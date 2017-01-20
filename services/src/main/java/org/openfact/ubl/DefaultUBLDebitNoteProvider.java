@@ -18,6 +18,7 @@ package org.openfact.ubl;
 
 import java.util.*;
 
+import org.apache.commons.validator.routines.EmailValidator;
 import org.openfact.email.EmailException;
 import org.openfact.email.EmailTemplateProvider;
 import org.openfact.file.FileModel;
@@ -52,6 +53,7 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
     @Override
     public UBLIDGenerator<DebitNoteType> idGenerator() {
         return new UBLIDGenerator<DebitNoteType>() {
+
             @Override
             public void close() {
             }
@@ -60,12 +62,14 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
             public String generateID(OrganizationModel organization, DebitNoteType t) {
                 return OpenfactModelUtils.generateId();
             }
+
         };
     }
 
     @Override
     public UBLReader<DebitNoteType> reader() {
         return new UBLReader<DebitNoteType>() {
+
             @Override
             public void close() {
             }
@@ -79,12 +83,14 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
             public DebitNoteType read(byte[] bytes) {
                 return UBL21Reader.debitNote().read(bytes);
             }
+
         };
     }
 
     @Override
     public UBLWriter<DebitNoteType> writer() {
         return new UBLWriter<DebitNoteType>() {
+
             @Override
             public void close() {
             }
@@ -94,10 +100,6 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
                 return UBL21Writer.debitNote().getAsDocument(t);
             }
 
-            @Override
-            public Document write(OrganizationModel organization, DebitNoteType t, Map<String, List<String>> attributes) {
-                return UBL21Writer.debitNote().getAsDocument(t);
-            }
         };
     }
 
@@ -110,25 +112,22 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
             }
 
             @Override
-            public SendEventModel sendToCustomer(OrganizationModel organization, DebitNoteModel debitNote) throws SendException {
-                SendEventModel sendEvent = debitNote.addSendEvent(DestinyType.CUSTOMER);
-                return sendToCustomer(organization, debitNote, sendEvent);
+            public SendEventModel sendToCustomer(OrganizationModel organization, DebitNoteModel debitNote) throws ModelInsuficientData, SendException {
+                return sendToCustomer(organization, debitNote, debitNote.addSendEvent(DestinyType.CUSTOMER));
             }
 
             @Override
-            public SendEventModel sendToCustomer(OrganizationModel organization, DebitNoteModel debitNote, SendEventModel sendEvent) throws SendException {
+            public SendEventModel sendToCustomer(OrganizationModel organization, DebitNoteModel debitNote, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
                 sendEvent.setType("EMAIL");
 
                 if (debitNote.getCustomerElectronicMail() == null) {
-                    sendEvent.setResult(SendResultType.ERROR);
-                    sendEvent.setDescription("Could not find a valid email for the customer.");
-                    return sendEvent;
+                    throw new ModelInsuficientData("Could not find a valid email for the customer");
                 }
-
+                if (!EmailValidator.getInstance().isValid(debitNote.getCustomerElectronicMail())) {
+                    throw new ModelInsuficientData("Invalid email");
+                }
                 if (organization.getSmtpConfig().size() == 0) {
-                    sendEvent.setResult(SendResultType.ERROR);
-                    sendEvent.setDescription("Could not find a valid smtp configuration on organization.");
-                    return sendEvent;
+                    throw new ModelInsuficientData("Could not find a valid smtp configuration on organization");
                 }
 
                 // User where the email will be send
@@ -163,20 +162,15 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
 
                     return sendEvent;
                 } catch (ReportException e) {
-                    sendEvent.setResult(SendResultType.ERROR);
-                    sendEvent.setDescription(e.getMessage());
-                    throw new SendException("Could not generate pdf report", e);
+                    throw new SendException("Could not generate pdf report to attach file", e);
                 } catch (EmailException e) {
-                    sendEvent.setResult(SendResultType.ERROR);
-                    sendEvent.setDescription(e.getMessage());
                     throw new SendException("Could not send email", e);
                 }
             }
 
             @Override
             public SendEventModel sendToThirdParty(OrganizationModel organization, DebitNoteModel debitNote) throws SendException {
-                SendEventModel sendEvent = debitNote.addSendEvent(DestinyType.THIRD_PARTY);
-                return sendToThirdParty(organization, debitNote, sendEvent);
+                return sendToThirdParty(organization, debitNote, debitNote.addSendEvent(DestinyType.THIRD_PARTY));
             }
 
             @Override
