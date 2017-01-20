@@ -164,6 +164,8 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
                     throw new SendException("Could not generate pdf report to attach file", e);
                 } catch (EmailException e) {
                     throw new SendException("Could not send email", e);
+                } catch (Throwable e) {
+                    throw new SendException("Internal Server Error", e);
                 }
             }
 
