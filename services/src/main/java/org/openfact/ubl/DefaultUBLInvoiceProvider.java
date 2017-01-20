@@ -31,6 +31,7 @@ import org.openfact.models.enums.SendResultType;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.report.ExportFormat;
 import org.openfact.report.ReportException;
+import org.openfact.services.managers.InvoiceManager;
 import org.w3c.dom.Document;
 
 import com.helger.ubl21.UBL21Reader;
@@ -115,53 +116,8 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
 
             @Override
             public void sendToCustomer(OrganizationModel organization, InvoiceModel invoice, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
-                if (invoice.getCustomerElectronicMail() == null) {
-                    throw new ModelInsuficientData("Could not find a valid email for the customer");
-                }
-                if (!EmailValidator.getInstance().isValid(invoice.getCustomerElectronicMail())) {
-                    throw new ModelInsuficientData("Invalid email");
-                }
-                if (organization.getSmtpConfig().size() == 0) {
-                    throw new ModelInsuficientData("Could not find a valid smtp configuration on organization");
-                }
-
-                // User where the email will be send
-                UserSenderModel user = new UserSenderModel(invoice.getCustomerElectronicMail(), invoice.getCustomerRegistrationName());
-
-                try {
-                    FileProvider fileProvider = session.getProvider(FileProvider.class);
-
-                    // Attatchments
-                    FileModel xmlFile = fileProvider.createFile(organization, invoice.getDocumentId() + ".xml", invoice.getXmlAsFile().getFile());
-                    FileMymeTypeModel xmlFileMymeType = new FileMymeTypeModel(xmlFile, "application/xml");
-
-                    byte[] pdfFileBytes = session.getProvider(UBLReportProvider.class).invoice().setOrganization(organization).getReport(invoice, ExportFormat.PDF);
-                    FileModel pdfFile = fileProvider.createFile(organization, invoice.getDocumentId() + ".pdf", pdfFileBytes);
-                    FileMymeTypeModel pdfFileMymeType = new FileMymeTypeModel(pdfFile, "application/pdf");
-
-                    session.getProvider(EmailTemplateProvider.class)
-                            .setOrganization(organization).setUser(user)
-                            .setAttachments(Arrays.asList(xmlFileMymeType, pdfFileMymeType))
-                            .sendInvoice(invoice);
-
-                    // Write event to the database
-                    sendEvent.setType("EMAIL");
-                    sendEvent.setDescription("Ivoice successfully sended");
-                    sendEvent.attachFile(xmlFile);
-                    sendEvent.attachFile(pdfFile);
-                    sendEvent.setResult(SendResultType.SUCCESS);
-
-                    sendEvent.setSingleDestinyAttribute("email", user.getEmail());
-
-                    // Remove required action
-                    invoice.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
-                } catch (ReportException e) {
-                    throw new SendException("Could not generate pdf report to attach file", e);
-                } catch (EmailException e) {
-                    throw new SendException("Could not send email", e);
-                } catch (Throwable e) {
-                    throw new SendException("Internal Server Error", e);
-                }
+                InvoiceManager manager = new InvoiceManager(session);
+                manager.sendToThirdPartyByEmail(organization, invoice, sendEvent, invoice.getCustomerElectronicMail());
             }
 
             @Override

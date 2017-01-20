@@ -31,6 +31,8 @@ import org.openfact.models.enums.SendResultType;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.report.ExportFormat;
 import org.openfact.report.ReportException;
+import org.openfact.services.managers.CreditNoteManager;
+import org.openfact.services.managers.DebitNoteManager;
 import org.w3c.dom.Document;
 
 import com.helger.ubl21.UBL21Reader;
@@ -120,53 +122,8 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
 
             @Override
             public void sendToCustomer(OrganizationModel organization, CreditNoteModel creditNote, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
-                if (creditNote.getCustomerElectronicMail() == null) {
-                    throw new ModelInsuficientData("Could not find a valid email for the customer");
-                }
-                if (!EmailValidator.getInstance().isValid(creditNote.getCustomerElectronicMail())) {
-                    throw new ModelInsuficientData("Invalid email");
-                }
-                if (organization.getSmtpConfig().size() == 0) {
-                    throw new ModelInsuficientData("Could not find a valid smtp configuration on organization");
-                }
-
-                // User where the email will be send
-                UserSenderModel user = new UserSenderModel(creditNote.getCustomerElectronicMail(), creditNote.getCustomerRegistrationName());
-
-                try {
-                    FileProvider fileProvider = session.getProvider(FileProvider.class);
-
-                    // Attatchments
-                    FileModel xmlFile = fileProvider.createFile(organization, creditNote.getDocumentId() + ".xml", creditNote.getXmlAsFile().getFile());
-                    FileMymeTypeModel xmlFileMymeType = new FileMymeTypeModel(xmlFile, "application/xml");
-
-                    byte[] pdfFileBytes = session.getProvider(UBLReportProvider.class).creditNote().setOrganization(organization).getReport(creditNote, ExportFormat.PDF);
-                    FileModel pdfFile = fileProvider.createFile(organization, creditNote.getDocumentId() + ".pdf", pdfFileBytes);
-                    FileMymeTypeModel pdfFileMymeType = new FileMymeTypeModel(pdfFile, "application/pdf");
-
-                    session.getProvider(EmailTemplateProvider.class)
-                            .setOrganization(organization).setUser(user)
-                            .setAttachments(Arrays.asList(xmlFileMymeType, pdfFileMymeType))
-                            .sendCreditNote(creditNote);
-
-                    // Write event to the database
-                    sendEvent.setType("EMAIL");
-                    sendEvent.setDescription("Credit Note successfully sended");
-                    sendEvent.attachFile(xmlFile);
-                    sendEvent.attachFile(pdfFile);
-                    sendEvent.setResult(SendResultType.SUCCESS);
-
-                    sendEvent.setSingleDestinyAttribute("email", user.getEmail());
-
-                    // Remove required action
-                    creditNote.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
-                } catch (ReportException e) {
-                    throw new SendException("Could not generate pdf report to attach file", e);
-                } catch (EmailException e) {
-                    throw new SendException("Could not send email", e);
-                } catch (Throwable e) {
-                    throw new SendException("Internal Server Error", e);
-                }
+                CreditNoteManager manager = new CreditNoteManager(session);
+                manager.sendToThirdPartyByEmail(organization, creditNote, sendEvent, creditNote.getCustomerElectronicMail());
             }
 
             @Override
