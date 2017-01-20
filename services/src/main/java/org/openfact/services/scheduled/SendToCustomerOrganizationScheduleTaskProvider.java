@@ -91,7 +91,7 @@ public class SendToCustomerOrganizationScheduleTaskProvider implements Organizat
                     }}) < retries)
                     .forEach(c -> {
                         InvoiceManager manager = new InvoiceManager(session);
-                        SendEventModel sendEvent = null;
+                        SendEventModel sendEvent = c.addSendEvent(DestinyType.CUSTOMER);
                         try {
                             sendEvent = manager.sendToCustomerParty(organization, c);
                             if (sendEvent.getResult().equals(SendResultType.SUCCESS)) {
@@ -127,7 +127,7 @@ public class SendToCustomerOrganizationScheduleTaskProvider implements Organizat
                     }}) < retries)
                     .forEach(c -> {
                         CreditNoteManager manager = new CreditNoteManager(session);
-                        SendEventModel sendEvent = null;
+                        SendEventModel sendEvent = c.addSendEvent(DestinyType.CUSTOMER);
                         try {
                             sendEvent = manager.sendToCustomerParty(organization, c);
                             if (sendEvent.getResult().equals(SendResultType.SUCCESS)) {
@@ -164,7 +164,7 @@ public class SendToCustomerOrganizationScheduleTaskProvider implements Organizat
                     }}) < retries)
                     .forEach(c -> {
                         DebitNoteManager manager = new DebitNoteManager(session);
-                        SendEventModel sendEvent = null;
+                        SendEventModel sendEvent = c.addSendEvent(DestinyType.CUSTOMER);
                         try {
                             sendEvent = manager.sendToCustomerParty(organization, c);
                             if (sendEvent.getResult().equals(SendResultType.SUCCESS)) {

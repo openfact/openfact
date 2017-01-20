@@ -93,7 +93,7 @@ public class SendToThirdPartyOrganizationScheduleTaskProvider implements Organiz
                     }}) < retries)
                     .forEach(c -> {
                         InvoiceManager manager = new InvoiceManager(session);
-                        SendEventModel sendEvent = null;
+                        SendEventModel sendEvent = c.addSendEvent(DestinyType.THIRD_PARTY);
                         try {
                             sendEvent = manager.sendToTrirdParty(organization, c);
                             if (sendEvent.getResult().equals(SendResultType.SUCCESS)) {
@@ -130,7 +130,7 @@ public class SendToThirdPartyOrganizationScheduleTaskProvider implements Organiz
                     }}) < retries)
                     .forEach(c -> {
                         CreditNoteManager manager = new CreditNoteManager(session);
-                        SendEventModel sendEvent = null;
+                        SendEventModel sendEvent = c.addSendEvent(DestinyType.THIRD_PARTY);;
                         try {
                             sendEvent = manager.sendToTrirdParty(organization, c);
                             if (sendEvent.getResult().equals(SendResultType.SUCCESS)) {
@@ -167,7 +167,7 @@ public class SendToThirdPartyOrganizationScheduleTaskProvider implements Organiz
                     }}) < retries)
                     .forEach(c -> {
                         DebitNoteManager manager = new DebitNoteManager(session);
-                        SendEventModel sendEvent = null;
+                        SendEventModel sendEvent = c.addSendEvent(DestinyType.THIRD_PARTY);;
                         try {
                             sendEvent = manager.sendToTrirdParty(organization, c);
                             if (sendEvent.getResult().equals(SendResultType.SUCCESS)) {
