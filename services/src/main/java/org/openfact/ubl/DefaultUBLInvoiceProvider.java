@@ -108,13 +108,13 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
 
             @Override
             public SendEventModel sendToCustomer(OrganizationModel organization, InvoiceModel invoice) throws ModelInsuficientData, SendException {
-                return sendToCustomer(organization, invoice, invoice.addSendEvent(DestinyType.CUSTOMER));
+                SendEventModel sendEvent = invoice.addSendEvent(DestinyType.CUSTOMER);
+                sendToCustomer(organization, invoice, sendEvent);
+                return sendEvent;
             }
 
             @Override
-            public SendEventModel sendToCustomer(OrganizationModel organization, InvoiceModel invoice, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
-                sendEvent.setType("EMAIL");
-
+            public void sendToCustomer(OrganizationModel organization, InvoiceModel invoice, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
                 if (invoice.getCustomerElectronicMail() == null) {
                     throw new ModelInsuficientData("Could not find a valid email for the customer");
                 }
@@ -145,6 +145,7 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
                             .sendInvoice(invoice);
 
                     // Write event to the database
+                    sendEvent.setType("EMAIL");
                     sendEvent.setDescription("Ivoice successfully sended");
                     sendEvent.attachFile(xmlFile);
                     sendEvent.attachFile(pdfFile);
@@ -154,8 +155,6 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
 
                     // Remove required action
                     invoice.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
-
-                    return sendEvent;
                 } catch (ReportException e) {
                     throw new SendException("Could not generate pdf report to attach file", e);
                 } catch (EmailException e) {
@@ -165,14 +164,15 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
 
             @Override
             public SendEventModel sendToThirdParty(OrganizationModel organization, InvoiceModel invoice) throws ModelInsuficientData, SendException {
-                return sendToThirdParty(organization, invoice, invoice.addSendEvent(DestinyType.THIRD_PARTY));
+                SendEventModel sendEvent = invoice.addSendEvent(DestinyType.THIRD_PARTY);
+                sendToThirdParty(organization, invoice, sendEvent);
+                return sendEvent;
             }
 
             @Override
-            public SendEventModel sendToThirdParty(OrganizationModel organization, InvoiceModel invoiceModel, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
+            public void sendToThirdParty(OrganizationModel organization, InvoiceModel invoiceModel, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
                 sendEvent.setResult(SendResultType.ERROR);
                 sendEvent.setDescription("Could not send the invoice because there is no a valid Third Party. This feature should be implemented by your own code");
-                return sendEvent;
             }
 
         };

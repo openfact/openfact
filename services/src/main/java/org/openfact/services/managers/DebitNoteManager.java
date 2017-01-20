@@ -149,28 +149,32 @@ public class DebitNoteManager {
     }
 
     public SendEventModel sendToCustomerParty(OrganizationModel organization, DebitNoteModel debitNote) throws ModelInsuficientData, SendException {
-        return sendToCustomerParty(organization, debitNote, debitNote.addSendEvent(DestinyType.CUSTOMER));
+        SendEventModel sendEvent = debitNote.addSendEvent(DestinyType.CUSTOMER);
+        sendToCustomerParty(organization, debitNote, sendEvent);
+        return sendEvent;
     }
 
-    public SendEventModel sendToCustomerParty(OrganizationModel organization, DebitNoteModel debitNote, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
-        return ublProvider.sender().sendToCustomer(organization, debitNote, sendEvent);
+    public void sendToCustomerParty(OrganizationModel organization, DebitNoteModel debitNote, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
+        ublProvider.sender().sendToCustomer(organization, debitNote, sendEvent);
     }
 
     public SendEventModel sendToTrirdParty(OrganizationModel organization, DebitNoteModel debitNote) throws ModelInsuficientData, SendException {
-        return sendToTrirdParty(organization, debitNote, debitNote.addSendEvent(DestinyType.THIRD_PARTY));
+        SendEventModel sendEvent = debitNote.addSendEvent(DestinyType.THIRD_PARTY);
+        sendToTrirdParty(organization, debitNote, sendEvent);
+        return sendEvent;
     }
 
-    public SendEventModel sendToTrirdParty(OrganizationModel organization, DebitNoteModel debitNote, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
-        return ublProvider.sender().sendToThirdParty(organization, debitNote, sendEvent);
+    public void sendToTrirdParty(OrganizationModel organization, DebitNoteModel debitNote, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
+        ublProvider.sender().sendToThirdParty(organization, debitNote, sendEvent);
     }
 
     public SendEventModel sendToThirdPartyByEmail(OrganizationModel organization, DebitNoteModel debitNote, String email) throws ModelInsuficientData, SendException {
-        return sendToThirdPartyByEmail(organization, debitNote, debitNote.addSendEvent(DestinyType.CUSTOMER), email);
+        SendEventModel sendEvent = debitNote.addSendEvent(DestinyType.THIRD_PARTY_BY_EMAIL);
+        sendToThirdPartyByEmail(organization, debitNote, sendEvent, email);
+        return sendEvent;
     }
 
-    public SendEventModel sendToThirdPartyByEmail(OrganizationModel organization, DebitNoteModel debitNote, SendEventModel sendEvent, String email) throws ModelInsuficientData, SendException {
-        sendEvent.setType("EMAIL");
-
+    public void sendToThirdPartyByEmail(OrganizationModel organization, DebitNoteModel debitNote, SendEventModel sendEvent, String email) throws ModelInsuficientData, SendException {
         if (email == null || !EmailValidator.getInstance().isValid(email)) {
             throw new ModelInsuficientData("Invalid Email");
         }
@@ -198,14 +202,13 @@ public class DebitNoteManager {
                     .sendDebitNote(debitNote);
 
             // Write event to the database
+            sendEvent.setType("EMAIL");
             sendEvent.setDescription("Debit Note successfully sended");
             sendEvent.attachFile(xmlFile);
             sendEvent.attachFile(pdfFile);
             sendEvent.setResult(SendResultType.SUCCESS);
 
             sendEvent.setSingleDestinyAttribute("email", user.getEmail());
-
-            return sendEvent;
         } catch (ReportException e) {
             throw new SendException("Could not generate pdf report to attach file", e);
         } catch (EmailException e) {

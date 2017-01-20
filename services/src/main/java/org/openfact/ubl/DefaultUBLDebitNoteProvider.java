@@ -113,13 +113,13 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
 
             @Override
             public SendEventModel sendToCustomer(OrganizationModel organization, DebitNoteModel debitNote) throws ModelInsuficientData, SendException {
-                return sendToCustomer(organization, debitNote, debitNote.addSendEvent(DestinyType.CUSTOMER));
+                SendEventModel sendEvent = debitNote.addSendEvent(DestinyType.CUSTOMER);
+                sendToCustomer(organization, debitNote, sendEvent);
+                return sendEvent;
             }
 
             @Override
-            public SendEventModel sendToCustomer(OrganizationModel organization, DebitNoteModel debitNote, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
-                sendEvent.setType("EMAIL");
-
+            public void sendToCustomer(OrganizationModel organization, DebitNoteModel debitNote, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
                 if (debitNote.getCustomerElectronicMail() == null) {
                     throw new ModelInsuficientData("Could not find a valid email for the customer");
                 }
@@ -150,6 +150,7 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
                             .sendDebitNote(debitNote);
 
                     // Write event to the database
+                    sendEvent.setType("EMAIL");
                     sendEvent.setDescription("Debit Note successfully sended");
                     sendEvent.attachFile(xmlFile);
                     sendEvent.attachFile(pdfFile);
@@ -159,8 +160,6 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
 
                     // Remove required action
                     debitNote.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
-
-                    return sendEvent;
                 } catch (ReportException e) {
                     throw new SendException("Could not generate pdf report to attach file", e);
                 } catch (EmailException e) {
@@ -170,14 +169,15 @@ public class DefaultUBLDebitNoteProvider implements UBLDebitNoteProvider {
 
             @Override
             public SendEventModel sendToThirdParty(OrganizationModel organization, DebitNoteModel debitNote) throws SendException {
-                return sendToThirdParty(organization, debitNote, debitNote.addSendEvent(DestinyType.THIRD_PARTY));
+                SendEventModel sendEvent = debitNote.addSendEvent(DestinyType.THIRD_PARTY);
+                sendToThirdParty(organization, debitNote, sendEvent);
+                return sendEvent;
             }
 
             @Override
-            public SendEventModel sendToThirdParty(OrganizationModel organization, DebitNoteModel debitNoteModel, SendEventModel sendEvent) throws SendException {
+            public void sendToThirdParty(OrganizationModel organization, DebitNoteModel debitNoteModel, SendEventModel sendEvent) throws SendException {
                 sendEvent.setResult(SendResultType.ERROR);
                 sendEvent.setDescription("Could not send the debit note because there is no a valid Third Party. This feature should be implemented by your own code");
-                return sendEvent;
             }
 
         };

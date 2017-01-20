@@ -149,28 +149,32 @@ public class CreditNoteManager {
     }
 
     public SendEventModel sendToCustomerParty(OrganizationModel organization, CreditNoteModel creditNote) throws ModelInsuficientData, SendException {
-        return sendToCustomerParty(organization, creditNote, creditNote.addSendEvent(DestinyType.CUSTOMER));
+        SendEventModel sendEvent = creditNote.addSendEvent(DestinyType.CUSTOMER);
+        sendToCustomerParty(organization, creditNote, sendEvent);
+        return sendEvent;
     }
 
-    public SendEventModel sendToCustomerParty(OrganizationModel organization, CreditNoteModel creditNote, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
-        return ublProvider.sender().sendToCustomer(organization, creditNote, sendEvent);
+    public void sendToCustomerParty(OrganizationModel organization, CreditNoteModel creditNote, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
+        ublProvider.sender().sendToCustomer(organization, creditNote, sendEvent);
     }
 
     public SendEventModel sendToTrirdParty(OrganizationModel organization, CreditNoteModel creditNote) throws ModelInsuficientData, SendException {
-        return sendToTrirdParty(organization, creditNote, creditNote.addSendEvent(DestinyType.THIRD_PARTY));
+        SendEventModel sendEvent = creditNote.addSendEvent(DestinyType.THIRD_PARTY);
+        sendToTrirdParty(organization, creditNote, sendEvent);
+        return sendEvent;
     }
 
-    public SendEventModel sendToTrirdParty(OrganizationModel organization, CreditNoteModel creditNote, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
-        return ublProvider.sender().sendToThirdParty(organization, creditNote, sendEvent);
+    public void sendToTrirdParty(OrganizationModel organization, CreditNoteModel creditNote, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
+        ublProvider.sender().sendToThirdParty(organization, creditNote, sendEvent);
     }
 
     public SendEventModel sendToThirdPartyByEmail(OrganizationModel organization, CreditNoteModel creditNote, String email) throws ModelInsuficientData, SendException {
-        return sendToThirdPartyByEmail(organization, creditNote, creditNote.addSendEvent(DestinyType.CUSTOMER), email);
+        SendEventModel sendEvent = creditNote.addSendEvent(DestinyType.THIRD_PARTY_BY_EMAIL);
+        sendToThirdPartyByEmail(organization, creditNote, sendEvent, email);
+        return sendEvent;
     }
 
-    public SendEventModel sendToThirdPartyByEmail(OrganizationModel organization, CreditNoteModel creditNote, SendEventModel sendEvent, String email) throws ModelInsuficientData, SendException {
-        sendEvent.setType("EMAIL");
-
+    public void sendToThirdPartyByEmail(OrganizationModel organization, CreditNoteModel creditNote, SendEventModel sendEvent, String email) throws ModelInsuficientData, SendException {
         if (email == null || !EmailValidator.getInstance().isValid(email)) {
             throw new ModelInsuficientData("Invalid Email");
         }
@@ -198,14 +202,13 @@ public class CreditNoteManager {
                     .sendCreditNote(creditNote);
 
             // Write event to the database
+            sendEvent.setType("EMAIL");
             sendEvent.setDescription("Credit Note successfully sended");
             sendEvent.attachFile(xmlFile);
             sendEvent.attachFile(pdfFile);
             sendEvent.setResult(SendResultType.SUCCESS);
 
             sendEvent.setSingleDestinyAttribute("email", user.getEmail());
-
-            return sendEvent;
         } catch (ReportException e) {
             throw new SendException("Could not generate pdf report to attach file", e);
         } catch (EmailException e) {

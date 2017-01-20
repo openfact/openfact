@@ -113,13 +113,13 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
 
             @Override
             public SendEventModel sendToCustomer(OrganizationModel organization, CreditNoteModel creditNote) throws ModelInsuficientData, SendException {
-                return sendToCustomer(organization, creditNote, creditNote.addSendEvent(DestinyType.CUSTOMER));
+                SendEventModel sendEvent = creditNote.addSendEvent(DestinyType.CUSTOMER);
+                sendToCustomer(organization, creditNote, sendEvent);
+                return sendEvent;
             }
 
             @Override
-            public SendEventModel sendToCustomer(OrganizationModel organization, CreditNoteModel creditNote, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
-                sendEvent.setType("EMAIL");
-
+            public void sendToCustomer(OrganizationModel organization, CreditNoteModel creditNote, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
                 if (creditNote.getCustomerElectronicMail() == null) {
                     throw new ModelInsuficientData("Could not find a valid email for the customer");
                 }
@@ -150,6 +150,7 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
                             .sendCreditNote(creditNote);
 
                     // Write event to the database
+                    sendEvent.setType("EMAIL");
                     sendEvent.setDescription("Credit Note successfully sended");
                     sendEvent.attachFile(xmlFile);
                     sendEvent.attachFile(pdfFile);
@@ -159,8 +160,6 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
 
                     // Remove required action
                     creditNote.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
-
-                    return sendEvent;
                 } catch (ReportException e) {
                     throw new SendException("Could not generate pdf report to attach file", e);
                 } catch (EmailException e) {
@@ -170,14 +169,15 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
 
             @Override
             public SendEventModel sendToThirdParty(OrganizationModel organization, CreditNoteModel creditNote) throws SendException {
-                return sendToThirdParty(organization, creditNote, creditNote.addSendEvent(DestinyType.THIRD_PARTY));
+                SendEventModel sendEvent = creditNote.addSendEvent(DestinyType.THIRD_PARTY);
+                sendToThirdParty(organization, creditNote, sendEvent);
+                return sendEvent;
             }
 
             @Override
-            public SendEventModel sendToThirdParty(OrganizationModel organization, CreditNoteModel creditNoteModel, SendEventModel sendEvent) throws SendException {
+            public void sendToThirdParty(OrganizationModel organization, CreditNoteModel creditNoteModel, SendEventModel sendEvent) throws SendException {
                 sendEvent.setResult(SendResultType.ERROR);
                 sendEvent.setDescription("Could not send the credit note because there is no a valid Third Party. This feature should be implemented by your own code");
-                return sendEvent;
             }
 
         };

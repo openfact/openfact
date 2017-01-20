@@ -149,28 +149,32 @@ public class InvoiceManager {
     }
 
     public SendEventModel sendToCustomerParty(OrganizationModel organization, InvoiceModel invoice) throws ModelInsuficientData, SendException {
-        return sendToCustomerParty(organization, invoice, invoice.addSendEvent(DestinyType.CUSTOMER));
+        SendEventModel sendEvent = invoice.addSendEvent(DestinyType.CUSTOMER);
+        sendToCustomerParty(organization, invoice, sendEvent);
+        return sendEvent;
     }
 
-    public SendEventModel sendToCustomerParty(OrganizationModel organization, InvoiceModel invoice, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
-        return ublProvider.sender().sendToCustomer(organization, invoice, sendEvent);
+    public void sendToCustomerParty(OrganizationModel organization, InvoiceModel invoice, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
+        ublProvider.sender().sendToCustomer(organization, invoice, sendEvent);
     }
 
     public SendEventModel sendToTrirdParty(OrganizationModel organization, InvoiceModel invoice) throws ModelInsuficientData, SendException {
-        return sendToTrirdParty(organization, invoice, invoice.addSendEvent(DestinyType.THIRD_PARTY));
+        SendEventModel sendEvent = invoice.addSendEvent(DestinyType.THIRD_PARTY);
+        sendToTrirdParty(organization, invoice, sendEvent);
+        return sendEvent;
     }
 
-    public SendEventModel sendToTrirdParty(OrganizationModel organization, InvoiceModel invoice, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
-        return ublProvider.sender().sendToThirdParty(organization, invoice, sendEvent);
+    public void sendToTrirdParty(OrganizationModel organization, InvoiceModel invoice, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
+        ublProvider.sender().sendToThirdParty(organization, invoice, sendEvent);
     }
 
     public SendEventModel sendToThirdPartyByEmail(OrganizationModel organization, InvoiceModel invoice, String email) throws ModelInsuficientData, SendException {
-        return sendToThirdPartyByEmail(organization, invoice, invoice.addSendEvent(DestinyType.CUSTOMER), email);
+        SendEventModel sendEvent = invoice.addSendEvent(DestinyType.THIRD_PARTY_BY_EMAIL);
+        sendToThirdPartyByEmail(organization, invoice, sendEvent, email);
+        return sendEvent;
     }
 
-    public SendEventModel sendToThirdPartyByEmail(OrganizationModel organization, InvoiceModel invoice, SendEventModel sendEvent, String email) throws ModelInsuficientData, SendException {
-        sendEvent.setType("EMAIL");
-
+    public void sendToThirdPartyByEmail(OrganizationModel organization, InvoiceModel invoice, SendEventModel sendEvent, String email) throws ModelInsuficientData, SendException {
         if (email == null || !EmailValidator.getInstance().isValid(email)) {
             throw new ModelInsuficientData("Invalid Email");
         }
@@ -198,14 +202,13 @@ public class InvoiceManager {
                     .sendInvoice(invoice);
 
             // Write event to the database
+            sendEvent.setType("EMAIL");
             sendEvent.setDescription("Ivoice successfully sended");
             sendEvent.attachFile(xmlFile);
             sendEvent.attachFile(pdfFile);
             sendEvent.setResult(SendResultType.SUCCESS);
 
             sendEvent.setSingleDestinyAttribute("email", user.getEmail());
-
-            return sendEvent;
         } catch (ReportException e) {
             throw new SendException("Could not generate pdf report to attach file", e);
         } catch (EmailException e) {

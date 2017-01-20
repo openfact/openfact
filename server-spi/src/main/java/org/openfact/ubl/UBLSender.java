@@ -26,10 +26,10 @@ public interface UBLSender<T> extends Provider {
 
     SendEventModel sendToCustomer(OrganizationModel organization, T t) throws ModelInsuficientData, SendException;
 
-    SendEventModel sendToCustomer(OrganizationModel organization, T t, SendEventModel sendEvent) throws ModelInsuficientData, SendException;
+    void sendToCustomer(OrganizationModel organization, T t, SendEventModel sendEvent) throws ModelInsuficientData, SendException;
 
     SendEventModel sendToThirdParty(OrganizationModel organization, T t) throws ModelInsuficientData, SendException;
 
-    SendEventModel sendToThirdParty(OrganizationModel organization, T t, SendEventModel sendEvent) throws ModelInsuficientData, SendException;
+    void sendToThirdParty(OrganizationModel organization, T t, SendEventModel sendEvent) throws ModelInsuficientData, SendException;
 
 }
