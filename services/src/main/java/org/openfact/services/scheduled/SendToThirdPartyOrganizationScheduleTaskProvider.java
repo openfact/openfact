@@ -95,7 +95,7 @@ public class SendToThirdPartyOrganizationScheduleTaskProvider implements Organiz
                         InvoiceManager manager = new InvoiceManager(session);
                         SendEventModel sendEvent = c.addSendEvent(DestinyType.THIRD_PARTY);
                         try {
-                            sendEvent = manager.sendToTrirdParty(organization, c);
+                            manager.sendToTrirdParty(organization, c, sendEvent);
                             if (sendEvent.getResult().equals(SendResultType.SUCCESS)) {
                                 c.removeRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
                             }
@@ -132,7 +132,7 @@ public class SendToThirdPartyOrganizationScheduleTaskProvider implements Organiz
                         CreditNoteManager manager = new CreditNoteManager(session);
                         SendEventModel sendEvent = c.addSendEvent(DestinyType.THIRD_PARTY);;
                         try {
-                            sendEvent = manager.sendToTrirdParty(organization, c);
+                            manager.sendToTrirdParty(organization, c, sendEvent);
                             if (sendEvent.getResult().equals(SendResultType.SUCCESS)) {
                                 c.removeRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
                             }
@@ -169,7 +169,7 @@ public class SendToThirdPartyOrganizationScheduleTaskProvider implements Organiz
                         DebitNoteManager manager = new DebitNoteManager(session);
                         SendEventModel sendEvent = c.addSendEvent(DestinyType.THIRD_PARTY);;
                         try {
-                            sendEvent = manager.sendToTrirdParty(organization, c);
+                            manager.sendToTrirdParty(organization, c, sendEvent);
                             if (sendEvent.getResult().equals(SendResultType.SUCCESS)) {
                                 c.removeRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
                             }

@@ -220,7 +220,11 @@ public class CreditNoteAdminResource {
                 sendEventThread.setDescription(e.getMessage());
             } catch (SendException e) {
                 sendEventThread.setResult(SendResultType.ERROR);
-                sendEventThread.setDescription("Internal server error");
+                if (e.getMessage() != null) {
+                    sendEventThread.setDescription(e.getMessage().length() < 200 ? e.getMessage() : e.getMessage().substring(0, 197).concat("..."));
+                } else {
+                    sendEventThread.setDescription("Internal Server Error");
+                }
                 logger.error("Internal Server Error sending to customer", e);
             }
         });
@@ -254,7 +258,11 @@ public class CreditNoteAdminResource {
                 sendEventThread.setDescription(e.getMessage());
             } catch (SendException e) {
                 sendEventThread.setResult(SendResultType.ERROR);
-                sendEventThread.setDescription("Internal server error");
+                if (e.getMessage() != null) {
+                    sendEventThread.setDescription(e.getMessage().length() < 200 ? e.getMessage() : e.getMessage().substring(0, 197).concat("..."));
+                } else {
+                    sendEventThread.setDescription("Internal Server Error");
+                }
                 logger.error("Internal Server Error sending to third party", e);
             }
         });
@@ -292,7 +300,11 @@ public class CreditNoteAdminResource {
                 sendEventThread.setDescription(e.getMessage());
             } catch (SendException e) {
                 sendEventThread.setResult(SendResultType.ERROR);
-                sendEventThread.setDescription("Internal server error");
+                if (e.getMessage() != null) {
+                    sendEventThread.setDescription(e.getMessage().length() < 200 ? e.getMessage() : e.getMessage().substring(0, 197).concat("..."));
+                } else {
+                    sendEventThread.setDescription("Internal Server Error");
+                }
                 logger.error("Internal Server Error sending to customer", e);
             }
         });
