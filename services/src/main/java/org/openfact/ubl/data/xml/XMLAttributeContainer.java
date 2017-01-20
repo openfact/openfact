@@ -38,7 +38,7 @@ public class XMLAttributeContainer {
         };
     }
 
-    public static XmlConverter arrayKey(Function<String, Object> caster, int arrayIndex, String... keys) {
+    public static XmlConverter arrayKey(Function<Object, Object> caster, int arrayIndex, String... keys) {
         return json -> {
             List result = new ArrayList();
             if (JSONObjectUtils.isJSONArray(json, Arrays.copyOfRange(keys, 0, arrayIndex + 1))) {
