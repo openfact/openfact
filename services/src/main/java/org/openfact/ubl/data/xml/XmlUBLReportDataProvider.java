@@ -19,6 +19,7 @@ package org.openfact.ubl.data.xml;
 import org.jboss.logging.Logger;
 import org.openfact.models.*;
 import org.openfact.report.*;
+import org.openfact.ubl.UBLModel;
 import org.openfact.ubl.UBLReportDataProvider;
 
 public class XmlUBLReportDataProvider implements UBLReportDataProvider {
@@ -93,6 +94,24 @@ public class XmlUBLReportDataProvider implements UBLReportDataProvider {
             public void close() {
             }
 
+        };
+    }
+
+    @Override
+    public ReportDataProvider<UBLModel> ublModel() {
+        return new ReportDataProvider<UBLModel>() {
+            @Override
+            public Object getFieldValue(UBLModel ublModel, String fieldName) {
+                XmlSupportedAttribute attribute = XmlSupportedAttribute.fromString(fieldName.toUpperCase());
+                if (attribute != null) {
+                    return attribute.asObject(ublModel.getXmlAsJSONObject());
+                }
+                return null;
+            }
+
+            @Override
+            public void close() {
+            }
         };
     }
 

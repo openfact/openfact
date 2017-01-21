@@ -30,4 +30,6 @@ public interface UBLReportProvider extends Provider {
 
     ReportTemplateProvider<DebitNoteModel> debitNote();
 
+    ReportTemplateProvider<UBLModel> ublModel();
+
 }

@@ -24,6 +24,7 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.provider.Provider;
 import org.openfact.report.ReportDataProvider;
 import org.openfact.report.ReportTemplateProvider;
+import org.openfact.report.ReportTheme;
 
 import java.util.List;
 import java.util.Map;
@@ -37,5 +38,7 @@ public interface UBLReportDataProvider<T> extends Provider {
     ReportDataProvider<CreditNoteModel> creditNote();
 
     ReportDataProvider<DebitNoteModel> debitNote();
+
+    ReportDataProvider<UBLModel> ublModel();
 
 }

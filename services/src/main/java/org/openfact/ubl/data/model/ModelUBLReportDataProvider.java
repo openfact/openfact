@@ -22,6 +22,7 @@ import org.openfact.models.DebitNoteModel;
 import org.openfact.models.InvoiceModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.report.ReportDataProvider;
+import org.openfact.ubl.UBLModel;
 import org.openfact.ubl.UBLReportDataProvider;
 
 public class ModelUBLReportDataProvider implements UBLReportDataProvider {
@@ -89,6 +90,28 @@ public class ModelUBLReportDataProvider implements UBLReportDataProvider {
 
             @Override
             public Object getFieldValue(DebitNoteModel model, String fieldName) {
+                ModelSupportedAttribute attribute = ModelSupportedAttribute.fromString(fieldName.toUpperCase());
+                if (attribute != null) {
+                    switch (attribute) {
+                        case OF_DOCUMENT_ID: return model.getDocumentId();
+                    }
+                }
+                return null;
+            }
+
+            @Override
+            public void close() {
+            }
+
+        };
+    }
+
+    @Override
+    public ReportDataProvider<UBLModel> ublModel() {
+        return new ReportDataProvider<UBLModel>() {
+
+            @Override
+            public Object getFieldValue(UBLModel model, String fieldName) {
                 ModelSupportedAttribute attribute = ModelSupportedAttribute.fromString(fieldName.toUpperCase());
                 if (attribute != null) {
                     switch (attribute) {

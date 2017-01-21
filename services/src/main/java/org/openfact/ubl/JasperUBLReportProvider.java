@@ -68,8 +68,6 @@ public class JasperUBLReportProvider implements UBLReportProvider {
 
             @Override
             public byte[] getReport(InvoiceModel invoice, ExportFormat exportFormat) throws ReportException {
-                super.setOrganization(invoice.getOrganization());
-
                 ReportThemeProvider themeProvider = session.getProvider(ReportThemeProvider.class, "extending");
                 try {
                     String templateName = Templates.getTemplate(ReportTheme.Type.ADMIN, DocumentType.INVOICE);
@@ -81,7 +79,7 @@ public class JasperUBLReportProvider implements UBLReportProvider {
                             Object fieldValue = null;
                             for (UBLReportDataProvider provider : dataProviders) {
                                 fieldValue = provider.invoice().getFieldValue(row, jrField.getName());
-                                if(fieldValue != null) break;
+                                if (fieldValue != null) break;
                             }
                             return fieldValue;
                         }
@@ -104,8 +102,6 @@ public class JasperUBLReportProvider implements UBLReportProvider {
 
             @Override
             public byte[] getReport(CreditNoteModel creditNote, ExportFormat exportFormat) throws ReportException {
-                super.setOrganization(creditNote.getOrganization());
-
                 ReportThemeProvider themeProvider = session.getProvider(ReportThemeProvider.class, "extending");
                 try {
                     String templateName = Templates.getTemplate(ReportTheme.Type.ADMIN, DocumentType.CREDIT_NOTE);
@@ -117,7 +113,7 @@ public class JasperUBLReportProvider implements UBLReportProvider {
                             Object fieldValue = null;
                             for (UBLReportDataProvider provider : dataProviders) {
                                 fieldValue = provider.creditNote().getFieldValue(row, jrField.getName());
-                                if(fieldValue != null) break;
+                                if (fieldValue != null) break;
                             }
                             return fieldValue;
                         }
@@ -137,11 +133,8 @@ public class JasperUBLReportProvider implements UBLReportProvider {
     @Override
     public ReportTemplateProvider<DebitNoteModel> debitNote() {
         return new JasperReportTemplateProvider<DebitNoteModel>() {
-
             @Override
             public byte[] getReport(DebitNoteModel debitNote, ExportFormat exportFormat) throws ReportException {
-                super.setOrganization(debitNote.getOrganization());
-
                 ReportThemeProvider themeProvider = session.getProvider(ReportThemeProvider.class, "extending");
                 try {
                     String templateName = Templates.getTemplate(ReportTheme.Type.ADMIN, DocumentType.DEBIT_NOTE);
@@ -153,7 +146,7 @@ public class JasperUBLReportProvider implements UBLReportProvider {
                             Object fieldValue = null;
                             for (UBLReportDataProvider provider : dataProviders) {
                                 fieldValue = provider.debitNote().getFieldValue(row, jrField.getName());
-                                if(fieldValue != null) break;
+                                if (fieldValue != null) break;
                             }
                             return fieldValue;
                         }
@@ -166,7 +159,38 @@ public class JasperUBLReportProvider implements UBLReportProvider {
                     throw new ReportException("Failed to template report", e);
                 }
             }
+        };
+    }
 
+    @Override
+    public ReportTemplateProvider<UBLModel> ublModel() {
+        return new JasperReportTemplateProvider<UBLModel>() {
+            @Override
+            public byte[] getReport(UBLModel ublModel, ExportFormat exportFormat) throws ReportException {
+                ReportThemeProvider themeProvider = session.getProvider(ReportThemeProvider.class, "extending");
+                try {
+                    String templateName = ublModel.getTemplateName();
+                    BasicJRDataSource dataSource = new BasicJRDataSource<UBLModel>(ublModel) {
+                        @Override
+                        public Object getFieldValue(JRField jrField) throws JRException {
+                            UBLModel row = super.dataSource.get(super.current.get() - 1);
+
+                            Object fieldValue = null;
+                            for (UBLReportDataProvider provider : dataProviders) {
+                                fieldValue = provider.ublModel().getFieldValue(row, jrField.getName());
+                                if (fieldValue != null) break;
+                            }
+                            return fieldValue;
+                        }
+                    };
+
+                    ReportTheme theme = themeProvider.getTheme(themeName, ReportTheme.Type.ADMIN);
+                    JasperPrint jasperPrint = jasperReport.processReport(theme, templateName, parameters, dataSource);
+                    return export(jasperPrint, exportFormat);
+                } catch (Exception e) {
+                    throw new ReportException("Failed to template report", e);
+                }
+            }
         };
     }
 
