@@ -71,7 +71,7 @@ public interface AdminEventQuery {
      * @param resourceTypes
      * @return <code>this</code> for method chaining
      */
-    AdminEventQuery resourceType(ResourceType... resourceTypes);
+    AdminEventQuery resourceType(String... resourceTypes);
 
     /**
      * Search by resource path. Supports wildcards <code>*</code> and <code>**</code>. For example:

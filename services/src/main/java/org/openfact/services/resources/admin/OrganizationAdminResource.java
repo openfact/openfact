@@ -122,8 +122,7 @@ public class OrganizationAdminResource {
     /**
      * Update organization information.
      *
-     * @param rep
-     *            The representation of the organization to be changed
+     * @param rep The representation of the organization to be changed
      * @return Generic Response object
      * @summary Update organization information
      */
@@ -180,8 +179,7 @@ public class OrganizationAdminResource {
     /**
      * Deletes organization with given name.
      *
-     * @throws AuthorizationException
-     *             The user is not authorized to delete this organization.
+     * @throws AuthorizationException The user is not authorized to delete this organization.
      */
     @DELETE
     public void deleteOrganization(@Context final UriInfo uriInfo) {
@@ -238,7 +236,7 @@ public class OrganizationAdminResource {
 
     /**
      * Get the events provider configuration
-     *
+     * <p>
      * Returns JSON object with events provider configuration
      *
      * @return
@@ -250,8 +248,7 @@ public class OrganizationAdminResource {
     public OrganizationEventsConfigRepresentation getOrganizationEventsConfig() {
         auth.init(OrganizationAuth.Resource.EVENTS).requireView();
 
-        OrganizationEventsConfigRepresentation config = ModelToRepresentation
-                .toEventsConfigReprensetation(organization);
+        OrganizationEventsConfigRepresentation config = ModelToRepresentation.toEventsConfigReprensetation(organization);
         if (config.getEnabledEventTypes() == null || config.getEnabledEventTypes().isEmpty()) {
             config.setEnabledEventTypes(new LinkedList<String>());
             for (EventType e : EventType.values()) {
@@ -265,7 +262,7 @@ public class OrganizationAdminResource {
 
     /**
      * Update the events provider
-     *
+     * <p>
      * Change the events provider and/or its configuration
      *
      * @param rep
@@ -282,24 +279,17 @@ public class OrganizationAdminResource {
 
     /**
      * Get events
-     *
+     * <p>
      * Returns all events, or filters them based on URL query parameters listed
      * here
      *
-     * @param types
-     *            The types of events to return
-     * @param user
-     *            User id
-     * @param ipAddress
-     *            IP address
-     * @param dateTo
-     *            To date
-     * @param dateFrom
-     *            From date
-     * @param firstResult
-     *            Paging offset
-     * @param maxResults
-     *            Paging size
+     * @param types       The types of events to return
+     * @param user        User id
+     * @param ipAddress   IP address
+     * @param dateTo      To date
+     * @param dateFrom    From date
+     * @param firstResult Paging offset
+     * @param maxResults  Paging size
      * @return
      */
     @Path("events")
@@ -373,14 +363,13 @@ public class OrganizationAdminResource {
 
     /**
      * Get admin events
-     *
+     * <p>
      * Returns all admin events, or filters events based on URL query parameters
      * listed here
      *
      * @param operationTypes
      * @param authOrganization
-     * @param authUser
-     *            user id
+     * @param authUser         user id
      * @param authIpAddress
      * @param resourcePath
      * @param dateTo
@@ -394,11 +383,15 @@ public class OrganizationAdminResource {
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
     public List<AdminEventRepresentation> getEvents(@QueryParam("operationTypes") List<String> operationTypes,
-                                                    @QueryParam("authOrganization") String authOrganization, @QueryParam("authUser") String authUser,
+                                                    @QueryParam("authOrganization") String authOrganization,
+                                                    @QueryParam("authUser") String authUser,
                                                     @QueryParam("authIpAddress") String authIpAddress,
-                                                    @QueryParam("resourcePath") String resourcePath, @QueryParam("dateFrom") String dateFrom,
-                                                    @QueryParam("dateTo") String dateTo, @QueryParam("first") Integer firstResult,
-                                                    @QueryParam("max") Integer maxResults, @QueryParam("resourceTypes") List<String> resourceTypes) {
+                                                    @QueryParam("resourcePath") String resourcePath,
+                                                    @QueryParam("dateFrom") String dateFrom,
+                                                    @QueryParam("dateTo") String dateTo,
+                                                    @QueryParam("first") Integer firstResult,
+                                                    @QueryParam("max") Integer maxResults,
+                                                    @QueryParam("resourceTypes") List<String> resourceTypes) {
         auth.init(OrganizationAuth.Resource.EVENTS).requireView();
 
         EventStoreProvider eventStore = session.getProvider(EventStoreProvider.class);
@@ -429,9 +422,9 @@ public class OrganizationAdminResource {
         }
 
         if (resourceTypes != null && !resourceTypes.isEmpty()) {
-            ResourceType[] t = new ResourceType[resourceTypes.size()];
+            String[] t = new String[resourceTypes.size()];
             for (int i = 0; i < t.length; i++) {
-                t[i] = ResourceType.valueOf(resourceTypes.get(i));
+                t[i] = resourceTypes.get(i);
             }
             query.resourceType(t);
         }
@@ -480,7 +473,6 @@ public class OrganizationAdminResource {
 
     /**
      * Delete all events
-     *
      */
     @Path("events")
     @DELETE
@@ -493,7 +485,6 @@ public class OrganizationAdminResource {
 
     /**
      * Delete all admin events
-     *
      */
     @Path("admin-events")
     @DELETE

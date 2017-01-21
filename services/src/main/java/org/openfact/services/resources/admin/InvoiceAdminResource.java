@@ -33,6 +33,7 @@ import org.openfact.models.enums.SendResultType;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.report.ExportFormat;
+import org.openfact.report.ReportException;
 import org.openfact.representations.idm.InvoiceRepresentation;
 import org.openfact.representations.idm.SendEventRepresentation;
 import org.openfact.representations.idm.ThirdPartyEmailRepresentation;
@@ -146,7 +147,7 @@ public class InvoiceAdminResource {
     @Path("report")
     public Response getPdf(
             @QueryParam("theme") String theme,
-            @QueryParam("format") @DefaultValue("pdf") String format) throws Exception {
+            @QueryParam("format") @DefaultValue("pdf") String format) {
 
         auth.requireView();
 
@@ -156,22 +157,27 @@ public class InvoiceAdminResource {
 
         ExportFormat exportFormat = ExportFormat.valueOf(format.toUpperCase());
 
-        byte[] reportBytes = session.getProvider(UBLReportProvider.class).invoice()
-                .setOrganization(organization)
-                .setThemeName(theme)
-                .getReport(invoice, exportFormat);
+        try {
+            byte[] reportBytes = session.getProvider(UBLReportProvider.class).invoice()
+                    .setOrganization(organization)
+                    .setThemeName(theme)
+                    .getReport(invoice, exportFormat);
 
-        ResponseBuilder response = Response.ok(reportBytes);
-        switch (exportFormat) {
-            case PDF:
-                response.type("application/pdf");
-                response.header("content-disposition", "attachment; filename=\"" + invoice.getDocumentId() + ".pdf\"");
-                break;
-            case HTML:
-                response.type("application/html");
-                break;
+            ResponseBuilder response = Response.ok(reportBytes);
+            switch (exportFormat) {
+                case PDF:
+                    response.type("application/pdf");
+                    response.header("content-disposition", "attachment; filename=\"" + invoice.getDocumentId() + ".pdf\"");
+                    break;
+                case HTML:
+                    response.type("application/html");
+                    break;
+            }
+
+            return response.build();
+        } catch (ReportException e) {
+            return ErrorResponse.error("Error generating report", Response.Status.INTERNAL_SERVER_ERROR);
         }
-        return response.build();
     }
 
     /**

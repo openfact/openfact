@@ -69,10 +69,10 @@ public class JpaAdminEventQuery implements AdminEventQuery {
     }
 
     @Override
-    public AdminEventQuery resourceType(ResourceType... resourceTypes) {
+    public AdminEventQuery resourceType(String... resourceTypes) {
 
         List<String> resourceTypeStrings = new LinkedList<String>();
-        for (ResourceType e : resourceTypes) {
+        for (String e : resourceTypes) {
             resourceTypeStrings.add(e.toString());
         }
         predicates.add(root.get("resourceType").in(resourceTypeStrings));

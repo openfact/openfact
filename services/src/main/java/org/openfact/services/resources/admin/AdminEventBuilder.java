@@ -97,6 +97,11 @@ public class AdminEventBuilder {
         return this;
     }
 
+    public AdminEventBuilder resource(String resourceType) {
+        adminEvent.setResourceType(resourceType);
+        return this;
+    }
+
     public AdminEventBuilder authOrganization(OrganizationModel organization) {
         AuthDetails authDetails = adminEvent.getAuthDetails();
         if (authDetails == null) {
