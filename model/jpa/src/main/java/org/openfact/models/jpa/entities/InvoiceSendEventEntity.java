@@ -22,8 +22,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 @DiscriminatorValue(value = "INVOICE")
 @NamedQueries(value = {
-        @NamedQuery(name = "getAllSendEventByInvoiceId", query = "select s from InvoiceSendEventEntity s where invoice.id=:invoiceId"),
-        @NamedQuery(name = "getInvoiceSendEventCountByInvoice", query="select count(s) from InvoiceSendEventEntity s where s.invoice.id = :invoiceId"),
+        @NamedQuery(name = "getAllSendEventByInvoiceId", query = "select s from InvoiceSendEventEntity s where s.invoice.id=:invoiceId"),
+        @NamedQuery(name = "getInvoiceSendEventCountByInvoice", query = "select count(s) from InvoiceSendEventEntity s where s.invoice.id = :invoiceId"),
         @NamedQuery(name = "deleteInvoiceSendEventByOrganization", query = "delete from InvoiceSendEventEntity event where event.invoice IN (select i from InvoiceEntity i where i.organizationId=:organizationId)")
 })
 public class InvoiceSendEventEntity extends SendEventEntity {
