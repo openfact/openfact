@@ -16,9 +16,6 @@
  *******************************************************************************/
 package org.openfact.models.jpa.entities;
 
-import org.openfact.models.jpa.entities.CreditNoteEntity;
-import org.openfact.models.jpa.entities.SendEventEntity;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -26,21 +23,21 @@ import javax.validation.constraints.NotNull;
 @DiscriminatorValue(value = "INVOICE")
 @NamedQueries(value = {
         @NamedQuery(name = "getAllAttachedDocumentByInvoiceId", query = "select s from InvoiceAttatchedDocumentEntity s where invoice.id=:invoiceId"),
-        @NamedQuery(name = "deleteInvoiceAttatchedDocumentByOrganization", query = "delete from InvoiceAttatchedDocumentEntity doc where doc.invoice IN (select i from InvoiceEntity i where i.organizationId=:organizationId)"),
-        @NamedQuery(name = "deleteInvoiceAttachedDocumentsByOrganizationTypeAndDocumentId", query = "delete from InvoiceAttatchedDocumentEntity doc where doc.documentType=:documentType and doc.documentId=:documentId and doc.invoice IN (select i from InvoiceEntity i where i.organizationId=:organizationId)")
+        @NamedQuery(name = "deleteInvoiceAttatchedDocumentByOrganization", query = "delete from InvoiceAttatchedDocumentEntity doc where doc.invoice IN (select i from UblDocumentEntity i where i.organizationId=:organizationId)"),
+        @NamedQuery(name = "deleteInvoiceAttachedDocumentsByOrganizationTypeAndDocumentId", query = "delete from InvoiceAttatchedDocumentEntity doc where doc.documentType=:documentType and doc.documentId=:documentId and doc.invoice IN (select i from UblDocumentEntity i where i.organizationId=:organizationId)")
 })
 public class InvoiceAttatchedDocumentEntity extends AttatchedDocumentEntity {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey, name = "INVOICE_ID")
-    private InvoiceEntity invoice;
+    private UblDocumentEntity invoice;
 
-    public InvoiceEntity getInvoice() {
+    public UblDocumentEntity getInvoice() {
         return invoice;
     }
 
-    public void setInvoice(InvoiceEntity invoice) {
+    public void setInvoice(UblDocumentEntity invoice) {
         this.invoice = invoice;
     }
 }

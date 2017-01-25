@@ -19,8 +19,10 @@ import java.util.Map;
 @Table(name="REQUIRED_ACTION_PROVIDER")
 @Entity
 @NamedQueries({
-        @NamedQuery(name="deleteRequiredActionProviderByOrganization", query="delete from RequiredActionProviderEntity action where action.organization = :organization"),})
+        @NamedQuery(name="deleteRequiredActionProviderByOrganization", query="delete from RequiredActionProviderEntity action where action.organization = :organization")
+})
 public class RequiredActionProviderEntity {
+
     @Id
     @Column(name="ID", length = 36)
     @Access(AccessType.PROPERTY) // we do this because relationships often fetch id, but not entity.  This avoids an extra SQL

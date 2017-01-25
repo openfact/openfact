@@ -46,12 +46,12 @@ import org.openfact.models.SendEventModel;
 import org.openfact.models.enums.RequiredAction;
 import org.w3c.dom.Document;
 
-public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
+public class InvoiceAdapter implements InvoiceModel, JpaModel<UblDocumentEntity> {
 
     protected static final Logger logger = Logger.getLogger(InvoiceAdapter.class);
 
     protected OrganizationModel organization;
-    protected InvoiceEntity invoice;
+    protected UblDocumentEntity invoice;
     protected EntityManager em;
     protected OpenfactSession session;
 
@@ -60,22 +60,22 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     protected Document document;
     protected JSONObject jsonObject;
 
-    public InvoiceAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em, InvoiceEntity invoice) {
+    public InvoiceAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em, UblDocumentEntity invoice) {
         this.organization = organization;
         this.session = session;
         this.em = em;
         this.invoice = invoice;
     }
 
-    public static InvoiceEntity toEntity(InvoiceModel model, EntityManager em) {
+    public static UblDocumentEntity toEntity(InvoiceModel model, EntityManager em) {
         if (model instanceof InvoiceAdapter) {
             return ((InvoiceAdapter) model).getEntity();
         }
-        return em.getReference(InvoiceEntity.class, model.getId());
+        return em.getReference(UblDocumentEntity.class, model.getId());
     }
 
     @Override
-    public InvoiceEntity getEntity() {
+    public UblDocumentEntity getEntity() {
         return invoice;
     }
 
@@ -263,8 +263,8 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     @Override
     public void setSingleAttribute(String name, String value) {
         String firstExistingAttrId = null;
-        List<InvoiceAttributeEntity> toRemove = new ArrayList<>();
-        for (InvoiceAttributeEntity attr : invoice.getAttributes()) {
+        List<UblDocumentAttributeEntity> toRemove = new ArrayList<>();
+        for (UblDocumentAttributeEntity attr : invoice.getAttributes()) {
             if (attr.getName().equals(name)) {
                 if (firstExistingAttrId == null) {
                     attr.setValue(value);
@@ -303,7 +303,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     private void persistAttributeValue(String name, String value) {
-        InvoiceAttributeEntity attr = new InvoiceAttributeEntity();
+        UblDocumentAttributeEntity attr = new UblDocumentAttributeEntity();
         attr.setId(OpenfactModelUtils.generateId());
         attr.setName(name);
         attr.setValue(value);
@@ -321,8 +321,8 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
         int numUpdated = query.executeUpdate();
 
         // Also remove attributes from local user entity
-        List<InvoiceAttributeEntity> toRemove = new ArrayList<>();
-        for (InvoiceAttributeEntity attr : invoice.getAttributes()) {
+        List<UblDocumentAttributeEntity> toRemove = new ArrayList<>();
+        for (UblDocumentAttributeEntity attr : invoice.getAttributes()) {
             if (attr.getName().equals(name)) {
                 toRemove.add(attr);
             }
@@ -332,7 +332,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
 
     @Override
     public String getFirstAttribute(String name) {
-        for (InvoiceAttributeEntity attr : invoice.getAttributes()) {
+        for (UblDocumentAttributeEntity attr : invoice.getAttributes()) {
             if (attr.getName().equals(name)) {
                 return attr.getValue();
             }
@@ -343,7 +343,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     @Override
     public List<String> getAttribute(String name) {
         List<String> result = new ArrayList<>();
-        for (InvoiceAttributeEntity attr : invoice.getAttributes()) {
+        for (UblDocumentAttributeEntity attr : invoice.getAttributes()) {
             if (attr.getName().equals(name)) {
                 result.add(attr.getValue());
             }
@@ -354,7 +354,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     @Override
     public Map<String, List<String>> getAttributes() {
         MultivaluedHashMap<String, String> result = new MultivaluedHashMap<>();
-        for (InvoiceAttributeEntity attr : invoice.getAttributes()) {
+        for (UblDocumentAttributeEntity attr : invoice.getAttributes()) {
             result.add(attr.getName(), attr.getValue());
         }
         return result;

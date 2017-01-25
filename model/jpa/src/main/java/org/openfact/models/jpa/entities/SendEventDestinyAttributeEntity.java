@@ -31,9 +31,7 @@ import javax.persistence.*;
         @NamedQuery(name="getSendEventDestinyAttributesByNameAndValue", query="select attr from SendEventDestinyAttributeEntity attr where attr.name = :name and attr.value = :value"),
         @NamedQuery(name="deleteSendEventDestinyAttributesByNameAndSendEvent", query="delete from  SendEventDestinyAttributeEntity attr where attr.sendEvent.id = :sendEventId and attr.name = :name"),
         @NamedQuery(name="deleteSendEventDestinyAttributesByNameAndSendEventOtherThan", query="delete from  SendEventDestinyAttributeEntity attr where attr.sendEvent.id = :sendEventId and attr.name = :name and attr.id <> :attrId"),
-        @NamedQuery(name="deleteInvoiceSendEventDestinyAttributesByOrganization", query="delete from SendEventDestinyAttributeEntity attr where attr.sendEvent IN (select s from InvoiceSendEventEntity s join s.invoice i where i.organizationId=:organizationId)"),
-        @NamedQuery(name="deleteCreditNoteSendEventDestinyAttributesByOrganization", query="delete from SendEventDestinyAttributeEntity attr where attr.sendEvent IN (select s from CreditNoteSendEventEntity s join s.creditNote i where i.organizationId=:organizationId)"),
-        @NamedQuery(name="deleteDebitNoteSendEventDestinyAttributesByOrganization", query="delete from SendEventDestinyAttributeEntity attr where attr.sendEvent IN (select s from DebitNoteSendEventEntity s join s.debitNote i where i.organizationId=:organizationId)")
+        @NamedQuery(name="deleteInvoiceSendEventDestinyAttributesByOrganization", query="delete from SendEventDestinyAttributeEntity attr where attr.sendEvent IN (select s from InvoiceSendEventEntity s join s.invoice i where i.organizationId=:organizationId)")
 })
 public class SendEventDestinyAttributeEntity {
 

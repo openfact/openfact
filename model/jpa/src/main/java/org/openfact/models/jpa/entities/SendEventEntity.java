@@ -22,13 +22,12 @@ import org.openfact.models.enums.DestinyType;
 import org.openfact.models.enums.SendResultType;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.*;
 
 @Entity
 @Table(name = "SEND_EVENT")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "TYPE")
 public class SendEventEntity {
 
     @Id
@@ -56,20 +55,25 @@ public class SendEventEntity {
     @Column(name = "CREATED_TIMESTAMP")
     private LocalDateTime createdTimestamp;
 
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy="sendEvent")
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(foreignKey = @ForeignKey, name = "INVOICE_ID")
+    private UblDocumentEntity invoice;
+
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "sendEvent")
     private Collection<SendEventDestinyAttributeEntity> destinyAttributes = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy="sendEvent")
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "sendEvent")
     private Collection<SendEventResponseAttributeEntity> responseAttributes = new ArrayList<>();
 
     @ElementCollection
     @Column(name = "VALUE")
-    @CollectionTable(name = "SEND_EVENT_FILE_ATTATCHMENT", joinColumns = { @JoinColumn(name = "SEND_EVENT_ID") })
+    @CollectionTable(name = "SEND_EVENT_FILE_ATTATCHMENT", joinColumns = {@JoinColumn(name = "SEND_EVENT_ID")})
     private Set<String> fileAttatchmentIds = new HashSet<>();
 
     @ElementCollection
     @Column(name = "VALUE")
-    @CollectionTable(name = "SEND_EVENT_FILE_RESPONSE_ATTATCHMENT", joinColumns = { @JoinColumn(name = "SEND_EVENT_ID") })
+    @CollectionTable(name = "SEND_EVENT_FILE_RESPONSE_ATTATCHMENT", joinColumns = {@JoinColumn(name = "SEND_EVENT_ID")})
     private Set<String> fileResponseAttatchmentIds = new HashSet<>();
 
     @Override
@@ -89,7 +93,6 @@ public class SendEventEntity {
     public int hashCode() {
         return getId().hashCode();
     }
-
 
     public String getId() {
         return id;
@@ -169,5 +172,13 @@ public class SendEventEntity {
 
     public void setFileResponseAttatchmentIds(Set<String> fileResponseAttatchmentIds) {
         this.fileResponseAttatchmentIds = fileResponseAttatchmentIds;
+    }
+
+    public UblDocumentEntity getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(UblDocumentEntity invoice) {
+        this.invoice = invoice;
     }
 }

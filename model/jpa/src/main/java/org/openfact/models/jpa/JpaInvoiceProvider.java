@@ -27,8 +27,8 @@ import javax.persistence.TypedQuery;
 import org.jboss.logging.Logger;
 import org.openfact.models.*;
 import org.openfact.models.enums.RequiredAction;
-import org.openfact.models.jpa.entities.InvoiceAttributeEntity;
-import org.openfact.models.jpa.entities.InvoiceEntity;
+import org.openfact.models.jpa.entities.UblDocumentAttributeEntity;
+import org.openfact.models.jpa.entities.UblDocumentEntity;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
@@ -72,7 +72,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
             throw new ModelDuplicateException("Invoice documentId[" + documentId + "] exists");
         }
 
-        InvoiceEntity invoice = new InvoiceEntity();
+        UblDocumentEntity invoice = new UblDocumentEntity();
         invoice.setDocumentId(documentId);
         invoice.setCreatedTimestamp(LocalDateTime.now());
         invoice.setOrganizationId(organization.getId());
@@ -92,20 +92,20 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
     @Override
     public InvoiceModel getInvoiceById(OrganizationModel organization, String id) {
-        TypedQuery<InvoiceEntity> query = em.createNamedQuery("getOrganizationInvoiceById", InvoiceEntity.class);
+        TypedQuery<UblDocumentEntity> query = em.createNamedQuery("getOrganizationInvoiceById", UblDocumentEntity.class);
         query.setParameter("id", id);
         query.setParameter("organizationId", organization.getId());
-        List<InvoiceEntity> entities = query.getResultList();
+        List<UblDocumentEntity> entities = query.getResultList();
         if (entities.size() == 0) return null;
         return new InvoiceAdapter(session, organization, em, entities.get(0));
     }
 
     @Override
     public InvoiceModel getInvoiceByDocumentId(OrganizationModel organization, String ID) {
-        TypedQuery<InvoiceEntity> query = em.createNamedQuery("getOrganizationInvoiceByDocumentId", InvoiceEntity.class);
+        TypedQuery<UblDocumentEntity> query = em.createNamedQuery("getOrganizationInvoiceByDocumentId", UblDocumentEntity.class);
         query.setParameter("documentId", ID);
         query.setParameter("organizationId", organization.getId());
-        List<InvoiceEntity> entities = query.getResultList();
+        List<UblDocumentEntity> entities = query.getResultList();
         if (entities.size() == 0) return null;
         return new InvoiceAdapter(session, organization, em, entities.get(0));
     }
@@ -117,18 +117,18 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
     @Override
     public boolean removeInvoice(OrganizationModel organization, InvoiceModel invoice) {
-        InvoiceEntity invoiceEntity = em.find(InvoiceEntity.class, invoice.getId());
+        UblDocumentEntity invoiceEntity = em.find(UblDocumentEntity.class, invoice.getId());
         if (invoiceEntity == null) return false;
         removeInvoice(invoiceEntity);
         return true;
     }
 
-    private void removeInvoice(InvoiceEntity invoice) {
+    private void removeInvoice(UblDocumentEntity invoice) {
         String id = invoice.getId();
         em.flush();
         em.clear();
 
-        invoice = em.find(InvoiceEntity.class, id);
+        invoice = em.find(UblDocumentEntity.class, id);
         if (invoice != null) {
             em.remove(invoice);
         }
@@ -160,7 +160,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     public List<InvoiceModel> getInvoices(OrganizationModel organization, Integer firstResult, Integer maxResults) {
         String queryName = "getAllInvoicesByOrganization";
 
-        TypedQuery<InvoiceEntity> query = em.createNamedQuery(queryName, InvoiceEntity.class);
+        TypedQuery<UblDocumentEntity> query = em.createNamedQuery(queryName, UblDocumentEntity.class);
         query.setParameter("organizationId", organization.getId());
         if (firstResult != -1) {
             query.setFirstResult(firstResult);
@@ -168,7 +168,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
         if (maxResults != -1) {
             query.setMaxResults(maxResults);
         }
-        List<InvoiceEntity> results = query.getResultList();
+        List<UblDocumentEntity> results = query.getResultList();
         return results.stream().map(f -> new InvoiceAdapter(session, organization, em, f)).collect(Collectors.toList());
     }
 
@@ -179,7 +179,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
 
     @Override
     public List<InvoiceModel> searchForInvoice(OrganizationModel organization, String filterText, Integer firstResult, Integer maxResults) {
-        TypedQuery<InvoiceEntity> query = em.createNamedQuery("searchForInvoice", InvoiceEntity.class);
+        TypedQuery<UblDocumentEntity> query = em.createNamedQuery("searchForInvoice", UblDocumentEntity.class);
         query.setParameter("organizationId", organization.getId());
         query.setParameter("search", "%" + filterText.toLowerCase() + "%");
         if (firstResult != -1) {
@@ -188,7 +188,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
         if (maxResults != -1) {
             query.setMaxResults(maxResults);
         }
-        List<InvoiceEntity> results = query.getResultList();
+        List<UblDocumentEntity> results = query.getResultList();
         return results.stream().map(f -> new InvoiceAdapter(session, organization, em, f)).collect(Collectors.toList());
     }
 
@@ -196,8 +196,8 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     public SearchResultsModel<InvoiceModel> searchForInvoice(OrganizationModel organization, SearchCriteriaModel criteria) {
         criteria.addFilter("organizationId", organization.getId(), SearchCriteriaFilterOperator.eq);
 
-        SearchResultsModel<InvoiceEntity> entityResult = find(criteria, InvoiceEntity.class);
-        List<InvoiceEntity> entities = entityResult.getModels();
+        SearchResultsModel<UblDocumentEntity> entityResult = find(criteria, UblDocumentEntity.class);
+        List<UblDocumentEntity> entities = entityResult.getModels();
 
         SearchResultsModel<InvoiceModel> searchResult = new SearchResultsModel<>();
         List<InvoiceModel> models = searchResult.getModels();
@@ -211,8 +211,8 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     public SearchResultsModel<InvoiceModel> searchForInvoice(OrganizationModel organization, SearchCriteriaModel criteria, String filterText) {
         criteria.addFilter("organizationId", organization.getId(), SearchCriteriaFilterOperator.eq);
 
-        SearchResultsModel<InvoiceEntity> entityResult = findFullText(criteria, InvoiceEntity.class, filterText, DOCUMENT_ID, CUSTOMER_REGISTRATION_NAME);
-        List<InvoiceEntity> entities = entityResult.getModels();
+        SearchResultsModel<UblDocumentEntity> entityResult = findFullText(criteria, UblDocumentEntity.class, filterText, DOCUMENT_ID, CUSTOMER_REGISTRATION_NAME);
+        List<UblDocumentEntity> entities = entityResult.getModels();
 
         SearchResultsModel<InvoiceModel> searchResult = new SearchResultsModel<>();
         List<InvoiceModel> models = searchResult.getModels();
@@ -233,15 +233,15 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
     public List<InvoiceModel> getInvoices(OrganizationModel organization, List<RequiredAction> requeridAction, boolean intoRequeridAction) {
         String queryName = "";
         if (intoRequeridAction) {
-            queryName = "select i from InvoiceEntity i where i.organizationId = :organizationId and :requeridAction in elements(i.requeridAction) order by i.invoiceTypeCode ";
+            queryName = "select i from UblDocumentEntity i where i.organizationId = :organizationId and :requeridAction in elements(i.requeridAction) order by i.invoiceTypeCode ";
         } else {
-            queryName = "select i from InvoiceEntity i where i.organizationId = :organizationId and :requeridAction not in elements(i.requeridAction) order by i.invoiceTypeCode ";
+            queryName = "select i from UblDocumentEntity i where i.organizationId = :organizationId and :requeridAction not in elements(i.requeridAction) order by i.invoiceTypeCode ";
 
         }
-        TypedQuery<InvoiceEntity> query = em.createQuery(queryName, InvoiceEntity.class);
+        TypedQuery<UblDocumentEntity> query = em.createQuery(queryName, UblDocumentEntity.class);
         query.setParameter("organizationId", organization.getId());
         query.setParameter("requeridAction", requeridAction);
-        List<InvoiceEntity> results = query.getResultList();
+        List<UblDocumentEntity> results = query.getResultList();
         List<InvoiceModel> invoices = results.stream().map(f -> new InvoiceAdapter(session, organization, em, f)).collect(Collectors.toList());
         return invoices;
     }
@@ -269,10 +269,10 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
             queryName = "getAllInvoicesByOrganizationDesc";
         }
 
-        TypedQuery<InvoiceEntity> query = em.createNamedQuery(queryName, InvoiceEntity.class);
+        TypedQuery<UblDocumentEntity> query = em.createNamedQuery(queryName, UblDocumentEntity.class);
         query.setParameter("organizationId", organization.getId());
 
-        ScrollAdapter<InvoiceModel, InvoiceEntity> result = new ScrollAdapter<>(InvoiceEntity.class, query, f -> {
+        ScrollAdapter<InvoiceModel, UblDocumentEntity> result = new ScrollAdapter<>(UblDocumentEntity.class, query, f -> {
             return new InvoiceAdapter(session, organization, em, f);
         });
 
@@ -285,11 +285,11 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
             scrollSize = 10;
         }
 
-        TypedQuery<InvoiceEntity> query = em.createNamedQuery("getAllInvoicesByRequiredActionAndOrganization", InvoiceEntity.class);
+        TypedQuery<UblDocumentEntity> query = em.createNamedQuery("getAllInvoicesByRequiredActionAndOrganization", UblDocumentEntity.class);
         query.setParameter("organizationId", organization.getId());
         query.setParameter("requiredAction", new ArrayList<>(Arrays.asList(requiredAction)));
 
-        ScrollModel<List<InvoiceModel>> result = new ScrollPagingAdapter<>(InvoiceEntity.class, query, f -> {
+        ScrollModel<List<InvoiceModel>> result = new ScrollPagingAdapter<>(UblDocumentEntity.class, query, f -> {
             return f.stream().map(m -> new InvoiceAdapter(session, organization, em, m)).collect(Collectors.toList());
         });
         return result;
@@ -316,7 +316,7 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
         }
         builder.append(" order by u.createdTimestamp");
         String q = builder.toString();
-        TypedQuery<InvoiceEntity> query = em.createQuery(q, InvoiceEntity.class);
+        TypedQuery<UblDocumentEntity> query = em.createQuery(q, UblDocumentEntity.class);
         query.setParameter("organizationId", organization.getId());
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             String parameterName = null;
@@ -332,21 +332,21 @@ public class JpaInvoiceProvider extends AbstractHibernateStorage implements Invo
         if (maxResults != -1) {
             query.setMaxResults(maxResults);
         }
-        List<InvoiceEntity> results = query.getResultList();
+        List<UblDocumentEntity> results = query.getResultList();
         List<InvoiceModel> invoices = results.stream().map(f -> new InvoiceAdapter(session, organization, em, f)).collect(Collectors.toList());
         return invoices;
     }
 
     @Override
     public List<InvoiceModel> searchForInvoiceByAttribute(String attrName, String attrValue, OrganizationModel organization) {
-        TypedQuery<InvoiceAttributeEntity> query = em.createNamedQuery("getInvoiceAttributesByNameAndValue", InvoiceAttributeEntity.class);
+        TypedQuery<UblDocumentAttributeEntity> query = em.createNamedQuery("getInvoiceAttributesByNameAndValue", UblDocumentAttributeEntity.class);
         query.setParameter("name", attrName);
         query.setParameter("value", attrValue);
-        List<InvoiceAttributeEntity> results = query.getResultList();
+        List<UblDocumentAttributeEntity> results = query.getResultList();
 
         List<InvoiceModel> invoices = new ArrayList<>();
-        for (InvoiceAttributeEntity attr : results) {
-            InvoiceEntity invoice = attr.getInvoice();
+        for (UblDocumentAttributeEntity attr : results) {
+            UblDocumentEntity invoice = attr.getInvoice();
             invoices.add(new InvoiceAdapter(session, organization, em, invoice));
         }
         return invoices;

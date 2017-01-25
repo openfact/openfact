@@ -24,7 +24,7 @@ import java.io.Serializable;
  * @version $Revision: 1 $
  */
 @NamedQueries({
-        @NamedQuery(name = "deleteInvoiceRequiredActionsByOrganization", query = "delete from InvoiceRequiredActionEntity action where action.invoice IN (select u from InvoiceEntity u where u.organizationId=:organizationId)")
+        @NamedQuery(name = "deleteInvoiceRequiredActionsByOrganization", query = "delete from InvoiceRequiredActionEntity action where action.invoice IN (select u from UblDocumentEntity u where u.organizationId=:organizationId)")
 })
 @Entity
 @Table(name = "INVOICE_REQUIRED_ACTION")
@@ -34,7 +34,7 @@ public class InvoiceRequiredActionEntity {
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "INVOICE_ID")
-    protected InvoiceEntity invoice;
+    protected UblDocumentEntity invoice;
 
     @Id
     @Column(name = "REQUIRED_ACTION")
@@ -48,29 +48,29 @@ public class InvoiceRequiredActionEntity {
         this.action = action;
     }
 
-    public InvoiceEntity getInvoice() {
+    public UblDocumentEntity getInvoice() {
         return invoice;
     }
 
-    public void setInvoice(InvoiceEntity invoice) {
+    public void setInvoice(UblDocumentEntity invoice) {
         this.invoice = invoice;
     }
 
     public static class Key implements Serializable {
 
-        protected InvoiceEntity invoice;
+        protected UblDocumentEntity invoice;
 
         protected String action;
 
         public Key() {
         }
 
-        public Key(InvoiceEntity invoice, String action) {
+        public Key(UblDocumentEntity invoice, String action) {
             this.invoice = invoice;
             this.action = action;
         }
 
-        public InvoiceEntity getInvoice() {
+        public UblDocumentEntity getInvoice() {
             return invoice;
         }
 

@@ -23,13 +23,9 @@
 
 package org.openfact.models.jpa.entities;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -39,19 +35,19 @@ import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "INVOICE", uniqueConstraints = {
-        @UniqueConstraint(columnNames = { "ORGANIZATION_ID", "DOCUMENT_ID" })
+        @UniqueConstraint(columnNames = {"ORGANIZATION_ID", "DOCUMENT_ID"})
 })
 @NamedQueries({
-        @NamedQuery(name = "getAllInvoicesByOrganization", query = "select c from InvoiceEntity c where c.organizationId = :organizationId order by c.createdTimestamp"),
-        @NamedQuery(name = "getAllInvoicesByOrganizationDesc", query = "select c from InvoiceEntity c where c.organizationId = :organizationId order by c.createdTimestamp desc"),
-        @NamedQuery(name = "getAllInvoiceIdsByOrganization", query = "select c.id from InvoiceEntity c where c.organizationId = :organizationId order by c.issueDateTime"),
-        @NamedQuery(name = "getAllInvoicesByRequiredActionAndOrganization", query = "select c from InvoiceEntity c inner join c.requiredActions r where c.organizationId = :organizationId and r.action in :requiredAction order by c.issueDateTime"),
-        @NamedQuery(name = "getOrganizationInvoiceById", query = "select i from InvoiceEntity i where i.id = :id and i.organizationId = :organizationId"),
-        @NamedQuery(name = "getOrganizationInvoiceByDocumentId", query = "select i from InvoiceEntity i where i.documentId = :documentId and i.organizationId = :organizationId"),
-        @NamedQuery(name = "searchForInvoice", query = "select i from InvoiceEntity i where i.organizationId = :organizationId and lower(i.documentId) like :search order by i.issueDateTime"),
-        @NamedQuery(name = "getOrganizationInvoiceCount", query = "select count(i) from InvoiceEntity i where i.organizationId = :organizationId"),
-        @NamedQuery(name="deleteInvoicesByOrganization", query="delete from InvoiceEntity u where u.organizationId = :organizationId") })
-public class InvoiceEntity {
+        @NamedQuery(name = "getAllInvoicesByOrganization", query = "select c from UblDocumentEntity c where c.organizationId = :organizationId order by c.createdTimestamp"),
+        @NamedQuery(name = "getAllInvoicesByOrganizationDesc", query = "select c from UblDocumentEntity c where c.organizationId = :organizationId order by c.createdTimestamp desc"),
+        @NamedQuery(name = "getAllInvoiceIdsByOrganization", query = "select c.id from UblDocumentEntity c where c.organizationId = :organizationId order by c.createdTimestamp"),
+        @NamedQuery(name = "getAllInvoicesByRequiredActionAndOrganization", query = "select c from UblDocumentEntity c inner join c.requiredActions r where c.organizationId = :organizationId and r.action in :requiredAction order by c.issueDateTime"),
+        @NamedQuery(name = "getOrganizationInvoiceById", query = "select i from UblDocumentEntity i where i.id = :id and i.organizationId = :organizationId"),
+        @NamedQuery(name = "getOrganizationInvoiceByDocumentId", query = "select i from UblDocumentEntity i where i.documentId = :documentId and i.organizationId = :organizationId"),
+        @NamedQuery(name = "searchForInvoice", query = "select i from UblDocumentEntity i where i.organizationId = :organizationId and lower(i.documentId) like :search order by i.createdTimestamp"),
+        @NamedQuery(name = "getOrganizationInvoiceCount", query = "select count(i) from UblDocumentEntity i where i.organizationId = :organizationId"),
+        @NamedQuery(name = "deleteInvoicesByOrganization", query = "delete from UblDocumentEntity u where u.organizationId = :organizationId")})
+public class UblDocumentEntity {
 
     @Id
     @Column(name = "ID")
@@ -70,52 +66,34 @@ public class InvoiceEntity {
     @NotNull
     @Column(name = "ORGANIZATION_ID")
     private String organizationId;
-    
+
     @Type(type = "org.hibernate.type.LocalDateTimeType")
     @Column(name = "CREATED_TIMESTAMP")
     private LocalDateTime createdTimestamp;
 
-    @Column(name = "ISSUE_DATE")
-    @Type(type = "org.hibernate.type.LocalDateTimeType")
-    private LocalDateTime issueDateTime;
-
-    @Column(name = "INVOICE_TYPE_CODE")
-    private String invoiceTypeCode;
-
-    @Column(name = "DOCUMENT_CURRENCY_CODE")
-    private String documentCurrencyCode;
-
-    @Column(name = "CUSTOMER_REGISTRATIONNAME")
+    @Column(name = "CUSTOMER_REGISTRATION_NAME")
     private String customerRegistrationName;
 
-    @Column(name = "CUSTOMER_ADDITIONAL_ACCOUNT_ID")
-    private String customerAdditionalAccountId;
-
-    @Column(name = "CUSTOMER_ASSIGNEDACCOUNTID")
+    @Column(name = "CUSTOMER_ASSIGNED_ACCOUNT_ID")
     private String customerAssignedAccountId;
 
-    @Column(name = "CUSTOMER_ELECTRONICMAIL")
+    @Column(name = "CUSTOMER_ELECTRONIC_MAIL")
     private String customerElectronicMail;
 
-    @Column(name = "ALLOWANCE_TOTAL_AMOUNT")
-    private BigDecimal allowanceTotalAmount;
+    @Column(name = "ENABLED")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    private boolean enabled;
 
-    @Column(name = "CHARGE_TOTAL_AMOUNT")
-    private BigDecimal chargeTotalAmount;
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "invoice")
+    private Collection<UblDocumentAttributeEntity> attributes = new ArrayList<>();
 
-    @Column(name = "PAYABLE_AMOUNT")
-    private BigDecimal payableAmount;
-
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy="invoice")
-    private Collection<InvoiceAttributeEntity> attributes = new ArrayList<>();
-
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy="invoice")
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "invoice")
     private Collection<InvoiceRequiredActionEntity> requiredActions = new ArrayList<>();
 
-    @OneToMany(cascade = { CascadeType.REMOVE }, orphanRemoval = true, mappedBy = "invoice", fetch = FetchType.LAZY)
-    private Collection<InvoiceSendEventEntity> sendEvents = new ArrayList<>();
+    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "invoice", fetch = FetchType.LAZY)
+    private Collection<SendEventEntity> sendEvents = new ArrayList<>();
 
-    @OneToMany(cascade = { CascadeType.REMOVE }, orphanRemoval = true, mappedBy = "invoice", fetch = FetchType.LAZY)
+    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "invoice", fetch = FetchType.LAZY)
     private Collection<InvoiceAttatchedDocumentEntity> attatchedDocuments = new ArrayList<>();
 
     @Override
@@ -134,7 +112,7 @@ public class InvoiceEntity {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        InvoiceEntity other = (InvoiceEntity) obj;
+        UblDocumentEntity other = (UblDocumentEntity) obj;
         if (getId() == null) {
             if (other.getId() != null)
                 return false;
@@ -142,6 +120,7 @@ public class InvoiceEntity {
             return false;
         return true;
     }
+
 
     public String getId() {
         return id;
@@ -159,6 +138,14 @@ public class InvoiceEntity {
         this.documentId = documentId;
     }
 
+    public String getXmlFileId() {
+        return xmlFileId;
+    }
+
+    public void setXmlFileId(String xmlFileId) {
+        this.xmlFileId = xmlFileId;
+    }
+
     public String getOrganizationId() {
         return organizationId;
     }
@@ -173,30 +160,6 @@ public class InvoiceEntity {
 
     public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
         this.createdTimestamp = createdTimestamp;
-    }
-
-    public LocalDateTime getIssueDateTime() {
-        return issueDateTime;
-    }
-
-    public void setIssueDateTime(LocalDateTime issueDateTime) {
-        this.issueDateTime = issueDateTime;
-    }
-
-    public String getInvoiceTypeCode() {
-        return invoiceTypeCode;
-    }
-
-    public void setInvoiceTypeCode(String invoiceTypeCode) {
-        this.invoiceTypeCode = invoiceTypeCode;
-    }
-
-    public String getDocumentCurrencyCode() {
-        return documentCurrencyCode;
-    }
-
-    public void setDocumentCurrencyCode(String documentCurrencyCode) {
-        this.documentCurrencyCode = documentCurrencyCode;
     }
 
     public String getCustomerRegistrationName() {
@@ -223,35 +186,19 @@ public class InvoiceEntity {
         this.customerElectronicMail = customerElectronicMail;
     }
 
-    public BigDecimal getAllowanceTotalAmount() {
-        return allowanceTotalAmount;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setAllowanceTotalAmount(BigDecimal allowanceTotalAmount) {
-        this.allowanceTotalAmount = allowanceTotalAmount;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
-    public BigDecimal getChargeTotalAmount() {
-        return chargeTotalAmount;
-    }
-
-    public void setChargeTotalAmount(BigDecimal chargeTotalAmount) {
-        this.chargeTotalAmount = chargeTotalAmount;
-    }
-
-    public BigDecimal getPayableAmount() {
-        return payableAmount;
-    }
-
-    public void setPayableAmount(BigDecimal payableAmount) {
-        this.payableAmount = payableAmount;
-    }
-
-    public Collection<InvoiceAttributeEntity> getAttributes() {
+    public Collection<UblDocumentAttributeEntity> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(Collection<InvoiceAttributeEntity> attributes) {
+    public void setAttributes(Collection<UblDocumentAttributeEntity> attributes) {
         this.attributes = attributes;
     }
 
@@ -263,20 +210,12 @@ public class InvoiceEntity {
         this.requiredActions = requiredActions;
     }
 
-    public Collection<InvoiceSendEventEntity> getSendEvents() {
+    public Collection<SendEventEntity> getSendEvents() {
         return sendEvents;
     }
 
-    public void setSendEvents(Collection<InvoiceSendEventEntity> sendEvents) {
+    public void setSendEvents(Collection<SendEventEntity> sendEvents) {
         this.sendEvents = sendEvents;
-    }
-
-    public String getXmlFileId() {
-        return xmlFileId;
-    }
-
-    public void setXmlFileId(String xmlFileId) {
-        this.xmlFileId = xmlFileId;
     }
 
     public Collection<InvoiceAttatchedDocumentEntity> getAttatchedDocuments() {
@@ -285,13 +224,5 @@ public class InvoiceEntity {
 
     public void setAttatchedDocuments(Collection<InvoiceAttatchedDocumentEntity> attatchedDocuments) {
         this.attatchedDocuments = attatchedDocuments;
-    }
-
-    public String getCustomerAdditionalAccountId() {
-        return customerAdditionalAccountId;
-    }
-
-    public void setCustomerAdditionalAccountId(String customerAdditionalAccountId) {
-        this.customerAdditionalAccountId = customerAdditionalAccountId;
     }
 }
