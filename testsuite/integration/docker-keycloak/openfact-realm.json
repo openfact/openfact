@@ -113,17 +113,13 @@
 					"client": {
 						"openfact-restful-api": [
 							"manage-organization",
-							"manage-invoices",
-							"manage-credit-notes",
-							"manage-debit-notes",
+							"manage-documents",
 							"manage-events",
 							"manage-files",
 							"manage-reports",
 							"manage-extensions",
 							"view-organization",
-							"view-invoices",
-							"view-credit-notes",
-							"view-debit-notes",
+							"view-documents",
 							"view-events",
 							"view-files",
 							"view-reports",
@@ -140,17 +136,13 @@
 					"client": {
 						"openfact-restful-api": [
 							"manage-organization",
-							"manage-invoices",
-							"manage-credit-notes",
-							"manage-debit-notes",
+							"manage-documents",
 							"manage-events",
 							"manage-files",
 							"manage-reports",
 							"manage-extensions",
 							"view-organization",
-							"view-invoices",
-							"view-credit-notes",
-							"view-debit-notes",
+							"view-documents",
 							"view-events",
 							"view-files",
 							"view-reports",
@@ -166,15 +158,11 @@
 				"composites": {
 					"client": {
 						"openfact-restful-api": [
-							"manage-invoices",
-							"manage-credit-notes",
-							"manage-debit-notes",
+							"manage-documents",
 							"manage-events",
 							"manage-extensions",
 							"view-organization",
-							"view-invoices",
-							"view-credit-notes",
-							"view-debit-notes",
+							"view-documents",
 							"view-events",
 							"view-files",
 							"view-reports",
@@ -191,16 +179,8 @@
 					"description": "Admin Only One Organization"
 				},
 				{
-					"name": "manage-invoices",
-					"description": "Manage Invoices"
-				},
-				{
-					"name": "manage-credit-notes",
-					"description": "Manage Credit Notes"
-				},
-				{
-					"name": "manage-debit-notes",
-					"description": "Manage Debit Notes"
+					"name": "manage-documents",
+					"description": "Manage Documents"
 				},
 				{
 					"name": "manage-events",
@@ -223,16 +203,8 @@
 					"description": "View Organization"
 				},
 				{
-					"name": "view-invoices",
-					"description": "View Invoices"
-				},
-				{
-					"name": "view-credit-notes",
-					"description": "View Credit Notes"
-				},
-				{
-					"name": "view-debit-notes",
-					"description": "View Debit Notes"
+					"name": "view-documents",
+					"description": "View Documents"
 				},
 				{
 					"name": "view-events",
