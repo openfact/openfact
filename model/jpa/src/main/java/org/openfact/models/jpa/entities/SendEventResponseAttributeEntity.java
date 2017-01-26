@@ -31,7 +31,7 @@ import javax.persistence.*;
         @NamedQuery(name = "getSendEventResponseAttributesByNameAndValue", query = "select attr from SendEventResponseAttributeEntity attr where attr.name = :name and attr.value = :value"),
         @NamedQuery(name = "deleteSendEventResponseAttributesByNameAndSendEvent", query = "delete from  SendEventResponseAttributeEntity attr where attr.sendEvent.id = :sendEventId and attr.name = :name"),
         @NamedQuery(name = "deleteSendEventResponseAttributesByNameAndSendEventOtherThan", query = "delete from  SendEventResponseAttributeEntity attr where attr.sendEvent.id = :sendEventId and attr.name = :name and attr.id <> :attrId"),
-        @NamedQuery(name = "deleteUblDocumentSendEventResponseAttributesByOrganization", query = "delete from SendEventResponseAttributeEntity attr where attr.sendEvent IN (select s from SendEventEntity s join s.document i where i.organizationId=:organizationId)")
+        @NamedQuery(name = "deleteDocumentSendEventResponseAttributesByOrganization", query = "delete from SendEventResponseAttributeEntity attr where attr.sendEvent IN (select s from SendEventEntity s join s.document i where i.organizationId=:organizationId)")
 })
 public class SendEventResponseAttributeEntity {
 

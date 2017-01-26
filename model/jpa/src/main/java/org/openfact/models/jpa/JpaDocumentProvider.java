@@ -102,7 +102,7 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
     @Override
     public DocumentModel getDocumentByDocumentTypeAndId(String documentType, String documentId, OrganizationModel organization) {
         TypedQuery<DocumentEntity> query = em.createNamedQuery("getOrganizationDocumentByDocumentTypeAndId", DocumentEntity.class);
-        query.setParameter("documentType", documentId);
+        query.setParameter("documentType", documentType);
         query.setParameter("documentId", documentId);
         query.setParameter("organizationId", organization.getId());
         List<DocumentEntity> entities = query.getResultList();
@@ -138,6 +138,8 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
         num = em.createNamedQuery("deleteAttatchedDocumentAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
         num = em.createNamedQuery("deleteAttatchedDocumentByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
 
+        num = em.createNamedQuery("deleteDocumentSendEventDestinyAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        num = em.createNamedQuery("deleteDocumentSendEventResponseAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
         num = em.createNamedQuery("deleteDocumentSendEventByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
 
         num = em.createNamedQuery("deleteDocumentAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();

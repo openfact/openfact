@@ -370,9 +370,7 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
 
     @Override
     public List<SendEventModel> getSendEvents(Integer firstResult, Integer maxResults) {
-        String queryName = "getAllSendEventByDocumentId";
-
-        TypedQuery<SendEventEntity> query = em.createNamedQuery(queryName, SendEventEntity.class);
+        TypedQuery<SendEventEntity> query = em.createNamedQuery("getAllSendEventByDocumentId", SendEventEntity.class);
         query.setParameter("documentId", documentEntity.getId());
         if (firstResult != -1) {
             query.setFirstResult(firstResult);

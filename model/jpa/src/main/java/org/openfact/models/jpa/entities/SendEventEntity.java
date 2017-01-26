@@ -28,6 +28,10 @@ import java.util.*;
 
 @Entity
 @Table(name = "SEND_EVENT")
+@NamedQueries(value = {
+        @NamedQuery(name = "getAllSendEventByDocumentId", query = "select s from SendEventEntity s where s.document.id=:documentId"),
+        @NamedQuery(name = "deleteDocumentSendEventByOrganization", query = "delete from SendEventEntity event where event.document IN (select i from DocumentEntity i where i.organizationId=:organizationId)")
+})
 public class SendEventEntity {
 
     @Id

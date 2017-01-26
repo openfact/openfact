@@ -35,7 +35,7 @@ import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "DOCUMENT", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"ORGANIZATION_ID", "DOCUMENT_ID"})
+        @UniqueConstraint(columnNames = {"ORGANIZATION_ID", "DOCUMENT_TYPE", "DOCUMENT_ID"})
 })
 @NamedQueries({
         @NamedQuery(name = "getAllDocumentsByOrganization", query = "select c from DocumentEntity c where c.organizationId = :organizationId order by c.createdTimestamp"),

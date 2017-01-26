@@ -32,6 +32,9 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "ATTATCHED_DOCUMENT")
+@NamedQueries(value = {
+        @NamedQuery(name = "deleteAttatchedDocumentByOrganization", query = "delete from AttatchedDocumentEntity doc where doc.document IN (select i from DocumentEntity i where i.organizationId=:organizationId)")
+})
 public class AttatchedDocumentEntity {
 
     @Id

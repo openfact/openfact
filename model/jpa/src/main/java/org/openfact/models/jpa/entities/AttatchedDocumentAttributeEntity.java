@@ -30,7 +30,8 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(name = "getAttatchedDocumentAttributesByNameAndValue", query = "select attr from AttatchedDocumentAttributeEntity attr where attr.name = :name and attr.value = :value"),
         @NamedQuery(name = "deleteAttatchedDocumentAttributesByNameAndAttatchedDocument", query = "delete from  AttatchedDocumentAttributeEntity attr where attr.attatchedDocument.id = :attatchedDocumentId and attr.name = :name"),
-        @NamedQuery(name = "deleteAttatchedDocumentAttributesByNameAndAttatchedDocumentOtherThan", query = "delete from  AttatchedDocumentAttributeEntity attr where attr.attatchedDocument.id = :attatchedDocumentId and attr.name = :name and attr.id <> :attrId")
+        @NamedQuery(name = "deleteAttatchedDocumentAttributesByNameAndAttatchedDocumentOtherThan", query = "delete from  AttatchedDocumentAttributeEntity attr where attr.attatchedDocument.id = :attatchedDocumentId and attr.name = :name and attr.id <> :attrId"),
+        @NamedQuery(name = "deleteAttatchedDocumentAttributesByOrganization", query = "delete from AttatchedDocumentAttributeEntity attr where attr.attatchedDocument IN (select s from AttatchedDocumentEntity s join s.document i where i.organizationId=:organizationId)"),
 })
 public class AttatchedDocumentAttributeEntity {
 

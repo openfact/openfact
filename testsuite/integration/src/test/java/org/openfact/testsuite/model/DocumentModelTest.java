@@ -642,12 +642,12 @@ public class DocumentModelTest extends AbstractModelTest {
 
         Assert.assertEquals(1, document.getAttatchedDocuments().size());
         Assert.assertTrue(document.getAttatchedDocuments().contains(attatchedDocument1));
-        Assert.assertEquals(attatchedDocument1.getRelatedDocumentType(), DocumentType.CREDIT_NOTE);
+        Assert.assertEquals(attatchedDocument1.getRelatedDocumentType(), DocumentType.CREDIT_NOTE.toString());
         Assert.assertEquals(attatchedDocument1.getRelatedDocumentId(), "credit-note");
 
         AttatchedDocumentModel attatchedDocument2 = document.addAttatchedDocument(DocumentType.DEBIT_NOTE.toString(), "debit-note");
         document = session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "documentEntity", organization);
-        Assert.assertEquals(attatchedDocument2.getRelatedDocumentType(), DocumentType.DEBIT_NOTE);
+        Assert.assertEquals(attatchedDocument2.getRelatedDocumentType(), DocumentType.DEBIT_NOTE.toString());
         Assert.assertEquals(attatchedDocument2.getRelatedDocumentId(), "debit-note");
 
         Assert.assertEquals(2, document.getAttatchedDocuments().size());

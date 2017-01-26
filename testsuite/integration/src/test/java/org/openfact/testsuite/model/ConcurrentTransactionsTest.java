@@ -214,7 +214,7 @@ public class ConcurrentTransactionsTest extends AbstractModelTest {
         thread1.join();
         thread2.join();
 
-        logger.info("removeInvoiceAttribute: after thread join");
+        logger.info("removeDocumentAttribute: after thread join");
 
         commit();
 
