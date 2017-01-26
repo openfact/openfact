@@ -87,7 +87,7 @@ public class JpaJobReportProvider extends AbstractHibernateStorage implements Jo
     @Override
     public JobReportModel getJobReportById(OrganizationModel organization, String id) {
         JobReportEntity entity = em.find(JobReportEntity.class, id);
-        if(entity != null) {
+        if (entity != null) {
             return new JobReportAdapter(session, organization, em, entity);
         }
         return null;
@@ -111,14 +111,13 @@ public class JpaJobReportProvider extends AbstractHibernateStorage implements Jo
             query.setMaxResults(maxResults);
         }
         List<JobReportEntity> results = query.getResultList();
-        List<JobReportModel> invoices = results.stream().map(f -> new JobReportAdapter(session, organization, em, f)).collect(Collectors.toList());
-        return invoices;
+        return results.stream().map(f -> new JobReportAdapter(session, organization, em, f)).collect(Collectors.toList());
     }
 
     @Override
     public boolean removeJobReport(OrganizationModel organization, String id) {
         JobReportEntity entity = em.find(JobReportEntity.class, id);
-        if(entity != null) {
+        if (entity != null) {
             em.remove(entity);
             em.flush();
             return true;
@@ -136,5 +135,5 @@ public class JpaJobReportProvider extends AbstractHibernateStorage implements Jo
     public void preRemove(OrganizationModel organization) {
         int num = em.createNamedQuery("deleteJobReportsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
     }
-    
+
 }

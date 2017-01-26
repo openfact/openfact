@@ -29,11 +29,10 @@ import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-import org.openfact.models.CreditNoteModel;
-import org.openfact.models.DebitNoteModel;
-import org.openfact.models.InvoiceModel;
+import org.openfact.models.DocumentModel;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.enums.DocumentType;
 
 /**
  * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
@@ -41,7 +40,7 @@ import org.openfact.models.OrganizationModel;
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AdapterTest extends AbstractModelTest {
-    
+
     private OrganizationModel organizationModel;
 
     @Test
@@ -50,7 +49,7 @@ public class AdapterTest extends AbstractModelTest {
         organizationModel.setName("SISTCOOP");
         organizationModel.setDescription("SISTCOOP IS A SOFTWARE COMPANY");
         organizationModel.setEnabled(true);
-        
+
         organizationModel.setAssignedIdentificationId("012345678910");
         organizationModel.setSupplierName("SISTCOOP SAC");
         organizationModel.setRegistrationName("SISTCOOP SOFTWARE");
@@ -71,7 +70,7 @@ public class AdapterTest extends AbstractModelTest {
         assertNotNull(organizationModel);
         Assert.assertEquals(organizationModel.getName(), "SISTCOOP");
         Assert.assertEquals(organizationModel.getDescription(), "SISTCOOP IS A SOFTWARE COMPANY");
-        Assert.assertEquals(organizationModel.isEnabled(), true);  
+        Assert.assertEquals(organizationModel.isEnabled(), true);
 
         Assert.assertEquals(organizationModel.getAssignedIdentificationId(), "012345678910");
         Assert.assertEquals(organizationModel.getSupplierName(), "SISTCOOP SAC");
@@ -97,10 +96,8 @@ public class AdapterTest extends AbstractModelTest {
     public void testRemoveOrganization() throws Exception {
         test1CreateOrganization();
 
-        InvoiceModel invoice = organizationManager.getSession().invoices().addInvoice(organizationModel, "F01-01");
-        CreditNoteModel creditNote = organizationManager.getSession().creditNotes().addCreditNote(organizationModel, "C01-01");
-        DebitNoteModel debitNote = organizationManager.getSession().debitNotes().addDebitNote(organizationModel, "D01-01");
-        
+        DocumentModel document = organizationManager.getSession().documents().addDocument(DocumentType.INVOICE.toString(), "F01-01", organizationModel);
+
         commit();
         organizationModel = model.getOrganization("SISTCOOP");
 
@@ -110,39 +107,15 @@ public class AdapterTest extends AbstractModelTest {
     }
 
     @Test
-    public void testDeleteInvoice() throws Exception {
+    public void testDeleteDocument() throws Exception {
         test1CreateOrganization();
 
-        InvoiceModel invoice = organizationManager.getSession().invoices().addInvoice(organizationModel, "F01-001");
+        DocumentModel document = organizationManager.getSession().documents().addDocument(DocumentType.INVOICE.toString(), "F01-001", organizationModel);
         commit();
 
         organizationModel = model.getOrganization("SISTCOOP");
-        Assert.assertTrue(organizationManager.getSession().invoices().removeInvoice(organizationModel, invoice));
-        assertNull(organizationManager.getSession().invoices().getInvoiceByDocumentId(organizationModel, "F01-001"));
-    }
-    
-    @Test
-    public void testDeleteCreditNote() throws Exception {
-        test1CreateOrganization();
-
-        CreditNoteModel creditNote = organizationManager.getSession().creditNotes().addCreditNote(organizationModel, "C01-001");
-        commit();
-
-        organizationModel = model.getOrganization("SISTCOOP");
-        Assert.assertTrue(organizationManager.getSession().creditNotes().removeCreditNote(organizationModel, creditNote));
-        assertNull(organizationManager.getSession().creditNotes().getCreditNoteByDocumentId(organizationModel, "C01-001"));
-    }
-    
-    @Test
-    public void testDeleteDebitNote() throws Exception {
-        test1CreateOrganization();
-
-        DebitNoteModel debitNote = organizationManager.getSession().debitNotes().addDebitNote(organizationModel, "D01-001");
-        commit();
-
-        organizationModel = model.getOrganization("SISTCOOP");
-        Assert.assertTrue(organizationManager.getSession().debitNotes().removeDebitNote(organizationModel, debitNote));
-        assertNull(organizationManager.getSession().debitNotes().getDebitNoteByDocumentId(organizationModel, "D01-001"));
+        Assert.assertTrue(organizationManager.getSession().documents().removeDocument(document.getId(), organizationModel));
+        assertNull(organizationManager.getSession().documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F01-001", organizationModel));
     }
 
     @Test
@@ -175,51 +148,25 @@ public class AdapterTest extends AbstractModelTest {
 
     @Test
     public void testSeriesNumberCollisions() throws Exception {
-        OrganizationModel sistcoop1 = organizationManager.createOrganization("SISTCOOP1");        
-        OrganizationModel sistcoop2 = organizationManager.createOrganization("SISTCOOP2");        
+        OrganizationModel sistcoop1 = organizationManager.createOrganization("SISTCOOP1");
+        OrganizationModel sistcoop2 = organizationManager.createOrganization("SISTCOOP2");
         commit();
 
-        organizationManager.getSession().invoices().addInvoice(sistcoop1, "F01-001");
-        organizationManager.getSession().invoices().addInvoice(sistcoop2, "F01-001");
-        
-        organizationManager.getSession().creditNotes().addCreditNote(sistcoop1, "C01-001");
-        organizationManager.getSession().creditNotes().addCreditNote(sistcoop2, "C01-001");
-        
-        organizationManager.getSession().debitNotes().addDebitNote(sistcoop1, "D01-001");
-        organizationManager.getSession().debitNotes().addDebitNote(sistcoop2, "D01-001");
+        organizationManager.getSession().documents().addDocument(DocumentType.INVOICE.toString(), "F01-001", sistcoop1);
+        organizationManager.getSession().documents().addDocument(DocumentType.INVOICE.toString(), "F01-001", sistcoop2);
         commit();
 
-        
-        // Try to create invoice with duplicate series and number
+
+        // Try to create documentEntity with duplicate series and number
         try {
             sistcoop1 = organizationManager.getOrganizationByName("SISTCOOP1");
-            organizationManager.getSession().invoices().addInvoice(sistcoop1, "F01-001");
+            organizationManager.getSession().documents().addDocument(DocumentType.INVOICE.toString(), "F01-001", sistcoop1);
             commit();
             Assert.fail("Expected exception");
         } catch (ModelDuplicateException e) {
         }
         commit(true);
-        
-        // Try to create creditNote with duplicate series and number
-        try {
-            sistcoop1 = organizationManager.getOrganizationByName("SISTCOOP1");
-            organizationManager.getSession().creditNotes().addCreditNote(sistcoop1, "C01-001");
-            commit();
-            Assert.fail("Expected exception");
-        } catch (ModelDuplicateException e) {
-        }
-        commit(true);
-        
-        // Try to create debitNote with duplicate series and number
-        try {
-            sistcoop1 = organizationManager.getOrganizationByName("SISTCOOP1");
-            organizationManager.getSession().debitNotes().addDebitNote(sistcoop1, "D01-001");
-            commit();
-            Assert.fail("Expected exception");
-        } catch (ModelDuplicateException e) {
-        }
-        commit(true);
-        
+
         resetSession();
     }
 

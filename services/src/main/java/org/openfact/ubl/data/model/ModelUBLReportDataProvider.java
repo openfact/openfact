@@ -17,9 +17,7 @@
 package org.openfact.ubl.data.model;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.CreditNoteModel;
-import org.openfact.models.DebitNoteModel;
-import org.openfact.models.InvoiceModel;
+import org.openfact.models.DocumentModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.report.ReportDataProvider;
 import org.openfact.ubl.UBLModel;
@@ -41,81 +39,16 @@ public class ModelUBLReportDataProvider implements UBLReportDataProvider {
     }
 
     @Override
-    public ReportDataProvider<InvoiceModel> invoice() {
-        return new ReportDataProvider<InvoiceModel>() {
+    public ReportDataProvider<DocumentModel> document() {
+        return new ReportDataProvider<DocumentModel>() {
 
             @Override
-            public Object getFieldValue(InvoiceModel model, String fieldName) {
+            public Object getFieldValue(DocumentModel model, String fieldName) {
                 ModelSupportedAttribute attribute = ModelSupportedAttribute.fromString(fieldName.toUpperCase());
                 if (attribute != null) {
                     switch (attribute) {
-                        case OF_DOCUMENT_ID: return model.getDocumentId();
-                    }
-                }
-                return null;
-            }
-
-            @Override
-            public void close() {
-            }
-
-        };
-    }
-
-    @Override
-    public ReportDataProvider<CreditNoteModel> creditNote() {
-        return new ReportDataProvider<CreditNoteModel>() {
-
-            @Override
-            public Object getFieldValue(CreditNoteModel model, String fieldName) {
-                ModelSupportedAttribute attribute = ModelSupportedAttribute.fromString(fieldName.toUpperCase());
-                if (attribute != null) {
-                    switch (attribute) {
-                        case OF_DOCUMENT_ID: return model.getDocumentId();
-                    }
-                }
-                return null;
-            }
-
-            @Override
-            public void close() {
-            }
-
-        };
-    }
-
-    @Override
-    public ReportDataProvider<DebitNoteModel> debitNote() {
-        return new ReportDataProvider<DebitNoteModel>() {
-
-            @Override
-            public Object getFieldValue(DebitNoteModel model, String fieldName) {
-                ModelSupportedAttribute attribute = ModelSupportedAttribute.fromString(fieldName.toUpperCase());
-                if (attribute != null) {
-                    switch (attribute) {
-                        case OF_DOCUMENT_ID: return model.getDocumentId();
-                    }
-                }
-                return null;
-            }
-
-            @Override
-            public void close() {
-            }
-
-        };
-    }
-
-    @Override
-    public ReportDataProvider<UBLModel> ublModel() {
-        return new ReportDataProvider<UBLModel>() {
-
-            @Override
-            public Object getFieldValue(UBLModel model, String fieldName) {
-                ModelSupportedAttribute attribute = ModelSupportedAttribute.fromString(fieldName.toUpperCase());
-                if (attribute != null) {
-                    switch (attribute) {
-                        case OF_DOCUMENT_ID: return model.getDocumentId();
+                        case OF_DOCUMENT_ID:
+                            return model.getDocumentId();
                     }
                 }
                 return null;

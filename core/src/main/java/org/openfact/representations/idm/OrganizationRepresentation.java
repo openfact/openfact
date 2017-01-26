@@ -56,9 +56,6 @@ public class OrganizationRepresentation {
     protected Boolean adminEventsDetailsEnabled;
     protected Set<String> requiredActions;
     protected Map<String, String> attributes;
-    protected List<InvoiceRepresentation> invoices;
-    protected List<CreditNoteRepresentation> creditNotes;
-    protected List<DebitNoteRepresentation> debitNotes;
     protected String openfactVersion;
 
     private String description;
@@ -266,30 +263,6 @@ public class OrganizationRepresentation {
 
     public void setAttributes(Map<String, String> attributes) {
         this.attributes = attributes;
-    }
-
-    public List<InvoiceRepresentation> getInvoices() {
-        return invoices;
-    }
-
-    public void setInvoices(List<InvoiceRepresentation> invoices) {
-        this.invoices = invoices;
-    }
-
-    public List<CreditNoteRepresentation> getCreditNotes() {
-        return creditNotes;
-    }
-
-    public void setCreditNotes(List<CreditNoteRepresentation> creditNotes) {
-        this.creditNotes = creditNotes;
-    }
-
-    public List<DebitNoteRepresentation> getDebitNotes() {
-        return debitNotes;
-    }
-
-    public void setDebitNotes(List<DebitNoteRepresentation> debitNotes) {
-        this.debitNotes = debitNotes;
     }
 
     public String getOpenfactVersion() {

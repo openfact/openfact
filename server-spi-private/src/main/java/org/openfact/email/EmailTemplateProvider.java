@@ -21,11 +21,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.openfact.events.Event;
-import org.openfact.file.FileModel;
 import org.openfact.file.FileMymeTypeModel;
-import org.openfact.models.CreditNoteModel;
-import org.openfact.models.DebitNoteModel;
-import org.openfact.models.InvoiceModel;
+import org.openfact.models.DocumentModel;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.UserSenderModel;
 import org.openfact.provider.Provider;
@@ -37,22 +34,18 @@ public interface EmailTemplateProvider extends Provider {
 
 	String IDENTITY_PROVIDER_BROKER_CONTEXT = "identityProviderBrokerCtx";
 
-	public EmailTemplateProvider setOrganization(OrganizationModel organization);
+	EmailTemplateProvider setOrganization(OrganizationModel organization);
 
-	public EmailTemplateProvider setUser(UserSenderModel user);
+	EmailTemplateProvider setUser(UserSenderModel user);
 
-	public EmailTemplateProvider setAttribute(String name, Object value);
+	EmailTemplateProvider setAttribute(String name, Object value);
 	
-	public EmailTemplateProvider setAttachments(List<FileMymeTypeModel> files);
+	EmailTemplateProvider setAttachments(List<FileMymeTypeModel> files);
 
-	public void sendEvent(Event event) throws EmailException;
+	void sendEvent(Event event) throws EmailException;
 	
 	void send(String subjectKey, String template, Map<String, Object> attributes) throws EmailException;
 
-	public void sendInvoice(InvoiceModel invoice) throws EmailException ;
-
-	public void sendCreditNote(CreditNoteModel creditNote) throws EmailException ;
-
-	public void sendDebitNote(DebitNoteModel debitNote) throws EmailException ;
+	void sendDocument(DocumentModel invoice) throws EmailException ;
 
 }

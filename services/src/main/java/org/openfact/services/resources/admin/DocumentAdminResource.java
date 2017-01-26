@@ -34,12 +34,14 @@ import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.report.ExportFormat;
 import org.openfact.report.ReportException;
-import org.openfact.representations.idm.CreditNoteRepresentation;
+import org.openfact.representations.idm.DocumentRepresentation;
 import org.openfact.representations.idm.SendEventRepresentation;
 import org.openfact.representations.idm.ThirdPartyEmailRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
-import org.openfact.services.managers.CreditNoteManager;
+import org.openfact.services.managers.DocumentManager;
+import org.openfact.models.SendEventModel;
+import org.openfact.models.SendException;
 import org.openfact.ubl.UBLReportProvider;
 import org.w3c.dom.Document;
 
@@ -48,7 +50,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class CreditNoteAdminResource {
+public class DocumentAdminResource {
 
     private static final ServicesLogger logger = ServicesLogger.LOGGER;
 
@@ -62,37 +64,37 @@ public class CreditNoteAdminResource {
     protected ClientConnection clientConnection;
 
     protected OrganizationModel organization;
-    protected CreditNoteModel creditNote;
+    protected DocumentModel document;
 
     private OrganizationAuth auth;
     private AdminEventBuilder adminEvent;
 
-    public CreditNoteAdminResource(OrganizationModel organization, OrganizationAuth auth, AdminEventBuilder adminEvent, CreditNoteModel creditNote) {
+    public DocumentAdminResource(OrganizationModel organization, OrganizationAuth auth, AdminEventBuilder adminEvent, DocumentModel document) {
         this.auth = auth;
         this.organization = organization;
         this.adminEvent = adminEvent;
-        this.creditNote = creditNote;
+        this.document = document;
 
-        auth.init(OrganizationAuth.Resource.CREDIT_NOTE);
+        auth.init(OrganizationAuth.Resource.DOCUMENT);
     }
 
     /**
-     * Get the creditNote with the specified creditNoteId.
+     * Get the document with the specified documentId.
      *
-     * @return The creditNote with the specified creditNoteId
-     * @summary Get the creditNote with the specified creditNoteId
+     * @return The document with the specified documentId
+     * @summary Get the document with the specified documentId
      */
     @GET
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    public CreditNoteRepresentation getCreditNote() {
+    public DocumentRepresentation getDocument() {
         auth.requireView();
 
-        if (creditNote == null) {
-            throw new NotFoundException("Credit Note not found");
+        if (document == null) {
+            throw new NotFoundException("Document not found");
         }
 
-        CreditNoteRepresentation rep = ModelToRepresentation.toRepresentation(creditNote);
+        DocumentRepresentation rep = ModelToRepresentation.toRepresentation(document);
         return rep;
     }
 
@@ -100,18 +102,18 @@ public class CreditNoteAdminResource {
     @Path("representation/json")
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getCreditNoteAsJson() {
+    public Response getDocumentAsJson() {
         auth.requireView();
 
-        if (creditNote == null) {
-            throw new NotFoundException("CreditNote not found");
+        if (document == null) {
+            throw new NotFoundException("Document not found");
         }
 
-        JSONObject jsonObject = creditNote.getXmlAsJSONObject();
+        JSONObject jsonObject = document.getXmlAsJSONObject();
         if (jsonObject != null) {
             return Response.ok(jsonObject.toString()).build();
         } else {
-            return ErrorResponse.exists("No json attached to current creditNote");
+            return ErrorResponse.exists("No json attached to current document");
         }
     }
 
@@ -122,24 +124,24 @@ public class CreditNoteAdminResource {
     public Response getDebitNoteAsXml() {
         auth.requireView();
 
-        if (creditNote == null) {
-            throw new NotFoundException("Credit Note not found");
+        if (document == null) {
+            throw new NotFoundException("Document not found");
         }
 
-        Document document = creditNote.getXmlAsDocument();
+        Document document = this.document.getXmlAsDocument();
         if (document != null) {
             return Response.ok(document).build();
         } else {
-            return ErrorResponse.exists("No xml document attached to current credit note");
+            return ErrorResponse.exists("No xml document attached to current document");
         }
     }
 
     /**
-     * Get the creditNote report with the specified creditNoteId.
+     * Get the document report with the specified documentId.
      *
-     * @return The byte[] with the specified creditNoteId
+     * @return The byte[] with the specified documentId
      * @throws Exception
-     * @summary Get the byte[] with the specified creditNoteId
+     * @summary Get the byte[] with the specified documentId
      */
     @GET
     @Path("report")
@@ -149,23 +151,24 @@ public class CreditNoteAdminResource {
 
         auth.requireView();
 
-        if (creditNote == null) {
-            throw new NotFoundException("Credit Note not found");
+        if (document == null) {
+            throw new NotFoundException("Document not found");
         }
 
         ExportFormat exportFormat = ExportFormat.valueOf(format.toUpperCase());
 
         try {
-            byte[] reportBytes = session.getProvider(UBLReportProvider.class).creditNote()
+            byte[] reportBytes = session.getProvider(UBLReportProvider.class)
+                    .document()
                     .setOrganization(organization)
                     .setThemeName(theme)
-                    .getReport(creditNote, exportFormat);
+                    .getReport(document, exportFormat);
 
             ResponseBuilder response = Response.ok(reportBytes);
             switch (exportFormat) {
                 case PDF:
                     response.type("application/pdf");
-                    response.header("content-disposition", "attachment; filename=\"" + creditNote.getDocumentId() + ".pdf\"");
+                    response.header("content-disposition", "attachment; filename=\"" + document.getDocumentId() + ".pdf\"");
                     break;
                 case HTML:
                     response.type("application/html");
@@ -179,24 +182,24 @@ public class CreditNoteAdminResource {
     }
 
     /**
-     * Deletes creditNote with given creditNoteId.
+     * Deletes document with given documentId.
      *
-     * @throws AuthorizationException The user is not authorized to delete this creditNote.
+     * @throws AuthorizationException The user is not authorized to delete this document.
      */
     @DELETE
-    public Response deleteCreditNote() {
+    public Response deleteDocument() {
         auth.requireManage();
 
-        if (creditNote == null) {
-            throw new NotFoundException("Credit Note not found");
+        if (document == null) {
+            throw new NotFoundException("Document not found");
         }
 
-        boolean removed = new CreditNoteManager(session).removeCreditNote(organization, creditNote);
+        boolean removed = new DocumentManager(session).removeDocument(organization, document);
         if (removed) {
             adminEvent.operation(OperationType.DELETE).resourcePath(uriInfo).success();
             return Response.noContent().build();
         } else {
-            return ErrorResponse.error("Credit Note couldn't be deleted", Response.Status.BAD_REQUEST);
+            return ErrorResponse.error("Document couldn't be deleted", Response.Status.BAD_REQUEST);
         }
     }
 
@@ -207,20 +210,20 @@ public class CreditNoteAdminResource {
     public SendEventRepresentation sendToCustomer() {
         auth.requireManage();
 
-        if (creditNote == null) {
-            throw new NotFoundException("Credit Note not found");
+        if (document == null) {
+            throw new NotFoundException("Document not found");
         }
 
-        SendEventModel sendEvent = creditNote.addSendEvent(DestinyType.CUSTOMER);
+        SendEventModel sendEvent = document.addSendEvent(DestinyType.CUSTOMER);
 
         OpenfactModelUtils.runThreadInTransaction(session.getOpenfactSessionFactory(), sessionThread -> {
-            CreditNoteManager manager = new CreditNoteManager(sessionThread);
+            DocumentManager manager = new DocumentManager(sessionThread);
 
             OrganizationModel organizationThread = sessionThread.organizations().getOrganization(organization.getId());
-            CreditNoteModel creditNoteThread = sessionThread.creditNotes().getCreditNoteById(organizationThread, creditNote.getId());
-            SendEventModel sendEventThread = creditNoteThread.getSendEventById(sendEvent.getId());
+            DocumentModel documentThread = sessionThread.documents().getDocumentById(document.getId(), organizationThread);
+            SendEventModel sendEventThread = documentThread.getSendEventById(sendEvent.getId());
             try {
-                manager.sendToCustomerParty(organizationThread, creditNoteThread, sendEventThread);
+                manager.sendToCustomerParty(organizationThread, documentThread, sendEventThread);
             } catch (ModelInsuficientData e) {
                 sendEventThread.setResult(SendResultType.ERROR);
                 sendEventThread.setDescription(e.getMessage());
@@ -245,20 +248,20 @@ public class CreditNoteAdminResource {
     public SendEventRepresentation sendToThirdParty() {
         auth.requireManage();
 
-        if (creditNote == null) {
-            throw new NotFoundException("Credit Note not found");
+        if (document == null) {
+            throw new NotFoundException("Document not found");
         }
 
-        SendEventModel sendEvent = creditNote.addSendEvent(DestinyType.THIRD_PARTY);
+        SendEventModel sendEvent = document.addSendEvent(DestinyType.THIRD_PARTY);
 
         OpenfactModelUtils.runThreadInTransaction(session.getOpenfactSessionFactory(), sessionThread -> {
-            CreditNoteManager manager = new CreditNoteManager(sessionThread);
+            DocumentManager manager = new DocumentManager(sessionThread);
 
             OrganizationModel organizationThread = sessionThread.organizations().getOrganization(organization.getId());
-            CreditNoteModel creditNoteThread = sessionThread.creditNotes().getCreditNoteById(organizationThread, creditNote.getId());
-            SendEventModel sendEventThread = creditNoteThread.getSendEventById(sendEvent.getId());
+            DocumentModel documentThread = sessionThread.documents().getDocumentById(document.getId(), organizationThread);
+            SendEventModel sendEventThread = documentThread.getSendEventById(sendEvent.getId());
             try {
-                manager.sendToTrirdParty(organizationThread, creditNoteThread, sendEventThread);
+                manager.sendToThirdParty(organizationThread, documentThread, sendEventThread);
             } catch (ModelInsuficientData e) {
                 sendEventThread.setResult(SendResultType.ERROR);
                 sendEventThread.setDescription(e.getMessage());
@@ -283,24 +286,24 @@ public class CreditNoteAdminResource {
     public SendEventRepresentation sendToThirdPartyByEmail(ThirdPartyEmailRepresentation thirdParty) {
         auth.requireManage();
 
-        if (creditNote == null) {
-            throw new NotFoundException("Credit Note not found");
+        if (document == null) {
+            throw new NotFoundException("Document not found");
         }
 
         if (thirdParty == null || thirdParty.getEmail() == null) {
             throw new BadRequestException("Invalid email sended");
         }
 
-        SendEventModel sendEvent = creditNote.addSendEvent(DestinyType.THIRD_PARTY_BY_EMAIL);
+        SendEventModel sendEvent = document.addSendEvent(DestinyType.THIRD_PARTY_BY_EMAIL);
 
         OpenfactModelUtils.runThreadInTransaction(session.getOpenfactSessionFactory(), sessionThread -> {
-            CreditNoteManager manager = new CreditNoteManager(sessionThread);
+            DocumentManager manager = new DocumentManager(sessionThread);
 
             OrganizationModel organizationThread = sessionThread.organizations().getOrganization(organization.getId());
-            CreditNoteModel creditNoteThread = sessionThread.creditNotes().getCreditNoteById(organizationThread, creditNote.getId());
-            SendEventModel sendEventThread = creditNoteThread.getSendEventById(sendEvent.getId());
+            DocumentModel documentThread = sessionThread.documents().getDocumentById(document.getId(), organizationThread);
+            SendEventModel sendEventThread = documentThread.getSendEventById(sendEvent.getId());
             try {
-                manager.sendToThirdPartyByEmail(organizationThread, creditNoteThread, sendEventThread, thirdParty.getEmail());
+                manager.sendToThirdPartyByEmail(organizationThread, documentThread, thirdParty.getEmail());
             } catch (ModelInsuficientData e) {
                 sendEventThread.setResult(SendResultType.ERROR);
                 sendEventThread.setDescription(e.getMessage());
@@ -330,8 +333,8 @@ public class CreditNoteAdminResource {
 
         auth.requireView();
 
-        if (creditNote == null) {
-            throw new NotFoundException("CreditNote not found");
+        if (document == null) {
+            throw new NotFoundException("Document not found");
         }
 
         firstResult = firstResult != null ? firstResult : -1;
@@ -341,17 +344,17 @@ public class CreditNoteAdminResource {
         if (destinyType != null || type != null || result != null) {
             Map<String, String> attributes = new HashMap<>();
             if (destinyType != null) {
-                attributes.put(CreditNoteModel.SEND_EVENT_DESTINY_TYPE, destinyType);
+                attributes.put(DocumentModel.SEND_EVENT_DESTINY_TYPE, destinyType);
             }
             if (type != null) {
-                attributes.put(CreditNoteModel.SEND_EVENT_TYPE, type);
+                attributes.put(DocumentModel.SEND_EVENT_TYPE, type);
             }
             if (result != null) {
-                attributes.put(CreditNoteModel.SEND_EVENT_RESULT, result);
+                attributes.put(DocumentModel.SEND_EVENT_RESULT, result);
             }
-            sendEventModels = creditNote.searchForSendEvent(attributes, firstResult, maxResults);
+            sendEventModels = document.searchForSendEvent(attributes, firstResult, maxResults);
         } else {
-            sendEventModels = creditNote.getSendEvents(firstResult, maxResults);
+            sendEventModels = document.getSendEvents(firstResult, maxResults);
         }
 
         return sendEventModels.stream()

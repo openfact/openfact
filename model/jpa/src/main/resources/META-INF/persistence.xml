@@ -33,27 +33,9 @@
 		<class>org.openfact.events.jpa.AdminEventEntity</class>
 
 		<!-- ublProvider -->
-		<class>org.openfact.models.jpa.entities.UblDocumentEntity</class>
-		<class>org.openfact.models.jpa.entities.CreditNoteEntity</class>
-		<class>org.openfact.models.jpa.entities.DebitNoteEntity</class>
-
-		<class>org.openfact.models.jpa.entities.UblDocumentAttributeEntity</class>
-		<class>org.openfact.models.jpa.entities.CreditNoteAttributeEntity</class>
-		<class>org.openfact.models.jpa.entities.DebitNoteAttributeEntity</class>
-
-		<class>org.openfact.models.jpa.entities.InvoiceRequiredActionEntity</class>
-		<class>org.openfact.models.jpa.entities.CreditNoteRequiredActionEntity</class>
-		<class>org.openfact.models.jpa.entities.DebitNoteRequiredActionEntity</class>
-
-		<class>org.openfact.models.jpa.entities.AllowanceChargeEntity</class>
-		<class>org.openfact.models.jpa.entities.CustomerPartyEntity</class>
-		<class>org.openfact.models.jpa.entities.MonetaryTotalEntity</class>
-		<class>org.openfact.models.jpa.entities.PartyEntity</class>
-		<class>org.openfact.models.jpa.entities.PartyLegalEntity</class>
-		<class>org.openfact.models.jpa.entities.ResponseEntity</class>
-		<class>org.openfact.models.jpa.entities.SupplierPartyEntity</class>
-		<class>org.openfact.models.jpa.entities.TaxTotalEntity</class>
-		<class>org.openfact.models.jpa.entities.ContactEntity</class>
+		<class>org.openfact.models.jpa.entities.DocumentEntity</class>
+		<class>org.openfact.models.jpa.entities.DocumentAttributeEntity</class>
+		<class>org.openfact.models.jpa.entities.DocumentRequiredActionEntity</class>
 
 		<class>org.openfact.models.jpa.entities.FileEntity</class>
 		<class>org.openfact.models.jpa.entities.JobReportEntity</class>
@@ -61,15 +43,9 @@
 		<class>org.openfact.models.jpa.entities.SendEventEntity</class>
 		<class>org.openfact.models.jpa.entities.SendEventDestinyAttributeEntity</class>
 		<class>org.openfact.models.jpa.entities.SendEventResponseAttributeEntity</class>
-		<class>org.openfact.models.jpa.entities.InvoiceSendEventEntity</class>
-		<class>org.openfact.models.jpa.entities.CreditNoteSendEventEntity</class>
-		<class>org.openfact.models.jpa.entities.DebitNoteSendEventEntity</class>
 
 		<class>org.openfact.models.jpa.entities.AttatchedDocumentEntity</class>
 		<class>org.openfact.models.jpa.entities.AttatchedDocumentAttributeEntity</class>
-		<class>org.openfact.models.jpa.entities.InvoiceAttatchedDocumentEntity</class>
-		<class>org.openfact.models.jpa.entities.CreditNoteAttatchedDocumentEntity</class>
-		<class>org.openfact.models.jpa.entities.DebitNoteAttatchedDocumentEntity</class>
 
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 

@@ -16,20 +16,12 @@
  *******************************************************************************/
 package org.openfact.ubl;
 
-import org.openfact.models.CreditNoteModel;
-import org.openfact.models.DebitNoteModel;
-import org.openfact.models.InvoiceModel;
+import org.openfact.models.DocumentModel;
 import org.openfact.provider.Provider;
 import org.openfact.report.ReportTemplateProvider;
 
 public interface UBLReportProvider extends Provider {
 
-    ReportTemplateProvider<InvoiceModel> invoice();
-
-    ReportTemplateProvider<CreditNoteModel> creditNote();
-
-    ReportTemplateProvider<DebitNoteModel> debitNote();
-
-    ReportTemplateProvider<UBLModel> ublModel();
+    ReportTemplateProvider<DocumentModel> document();
 
 }

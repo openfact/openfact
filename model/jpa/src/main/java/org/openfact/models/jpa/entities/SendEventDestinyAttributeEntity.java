@@ -28,19 +28,19 @@ import javax.persistence.*;
 @Entity
 @Table(name = "SEND_EVENT_DESTINY_ATTRIBUTE")
 @NamedQueries({
-        @NamedQuery(name="getSendEventDestinyAttributesByNameAndValue", query="select attr from SendEventDestinyAttributeEntity attr where attr.name = :name and attr.value = :value"),
-        @NamedQuery(name="deleteSendEventDestinyAttributesByNameAndSendEvent", query="delete from  SendEventDestinyAttributeEntity attr where attr.sendEvent.id = :sendEventId and attr.name = :name"),
-        @NamedQuery(name="deleteSendEventDestinyAttributesByNameAndSendEventOtherThan", query="delete from  SendEventDestinyAttributeEntity attr where attr.sendEvent.id = :sendEventId and attr.name = :name and attr.id <> :attrId"),
-        @NamedQuery(name="deleteInvoiceSendEventDestinyAttributesByOrganization", query="delete from SendEventDestinyAttributeEntity attr where attr.sendEvent IN (select s from InvoiceSendEventEntity s join s.invoice i where i.organizationId=:organizationId)")
+        @NamedQuery(name = "getSendEventDestinyAttributesByNameAndValue", query = "select attr from SendEventDestinyAttributeEntity attr where attr.name = :name and attr.value = :value"),
+        @NamedQuery(name = "deleteSendEventDestinyAttributesByNameAndSendEvent", query = "delete from  SendEventDestinyAttributeEntity attr where attr.sendEvent.id = :sendEventId and attr.name = :name"),
+        @NamedQuery(name = "deleteSendEventDestinyAttributesByNameAndSendEventOtherThan", query = "delete from  SendEventDestinyAttributeEntity attr where attr.sendEvent.id = :sendEventId and attr.name = :name and attr.id <> :attrId"),
+        @NamedQuery(name = "deleteUblDocumentSendEventDestinyAttributesByOrganization", query = "delete from SendEventDestinyAttributeEntity attr where attr.sendEvent IN (select s from SendEventEntity s join s.document i where i.organizationId=:organizationId)")
 })
 public class SendEventDestinyAttributeEntity {
 
     @Id
-    @Column(name="ID", length = 36)
-    @Access(AccessType.PROPERTY) // we do this because relationships often fetch id, but not entity.  This avoids an extra SQL
+    @Column(name = "ID", length = 36)
+    @Access(AccessType.PROPERTY)
     protected String id;
 
-    @ManyToOne(fetch= FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SEND_EVENT_ID")
     protected SendEventEntity sendEvent;
 
@@ -99,5 +99,5 @@ public class SendEventDestinyAttributeEntity {
     public int hashCode() {
         return id.hashCode();
     }
-    
+
 }

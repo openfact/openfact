@@ -27,18 +27,18 @@ import javax.persistence.Table;
 /**
  * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  */
-@Table(name="MIGRATION_MODEL")
+@Table(name = "MIGRATION_MODEL")
 @Entity
 public class MigrationModelEntity {
 
     public static final String SINGLETON_ID = "SINGLETON";
 
     @Id
-    @Column(name="ID", length = 36)
-    @Access(AccessType.PROPERTY) // we do this because relationships often fetch id, but not entity.  This avoids an extra SQL
+    @Column(name = "ID", length = 36)
+    @Access(AccessType.PROPERTY)
     private String id;
 
-    @Column(name="VERSION", length = 36)
+    @Column(name = "VERSION", length = 36)
     protected String version;
 
     public String getId() {

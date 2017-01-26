@@ -20,21 +20,21 @@ import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
 import org.openfact.provider.Spi;
 
-public class CreditNoteSpi implements Spi {
+public class DocumentSpi implements Spi {
 
     @Override
     public String getName() {
-        return "creditNote";
+        return "document";
     }
 
     @Override
     public Class<? extends Provider> getProviderClass() {
-        return CreditNoteProvider.class;
+        return DocumentProvider.class;
     }
 
     @Override
     public Class<? extends ProviderFactory> getProviderFactoryClass() {
-        return CreditNoteProviderFactory.class;
+        return DocumentProviderFactory.class;
     }
 
     @Override

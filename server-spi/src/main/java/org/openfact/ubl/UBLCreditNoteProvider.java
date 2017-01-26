@@ -16,19 +16,8 @@
  *******************************************************************************/
 package org.openfact.ubl;
 
-import org.openfact.models.CreditNoteModel;
+import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
 import org.openfact.provider.Provider;
 
-import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
-
-public interface UBLCreditNoteProvider extends Provider {
-
-    UBLIDGenerator<CreditNoteType> idGenerator();
-
-    UBLReader<CreditNoteType> reader();
-
-    UBLWriter<CreditNoteType> writer();
-
-    UBLSender<CreditNoteModel> sender();
-
+public interface UBLCreditNoteProvider extends UBLProvider<CreditNoteType>, Provider {
 }

@@ -20,23 +20,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
-import java.util.List;
-import java.util.Set;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.openfact.models.CreditNoteModel;
-import org.openfact.models.DebitNoteModel;
-import org.openfact.models.InvoiceModel;
 import org.openfact.models.OrganizationModel;
-import org.openfact.representations.idm.OrganizationRepresentation;
-import org.openfact.services.managers.OrganizationManager;
-import org.openfact.testsuite.providers.AbstractProviderTest;
-import org.w3c.dom.Document;
-
-import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
-import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
-import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 
 public class UBLReaderWriterProviderTest /*extends AbstractProviderTest*/ {
 
@@ -54,17 +38,17 @@ public class UBLReaderWriterProviderTest /*extends AbstractProviderTest*/ {
 
     @Test
     public void getInvoiceDocument() throws Exception {
-        List<InvoiceModel> invoices = session.invoices().getInvoices(organization);
-        InvoiceModel invoice = invoices.getObject(0);
+        List<InvoiceModel> documents = session.documents().getDocuments(organization);
+        InvoiceModel documentEntity = documents.getObject(0);
 
         Set<InvoiceReaderWriterProvider> providers = session.getAllProviders(InvoiceReaderWriterProvider.class);
         for (InvoiceReaderWriterProvider provider : providers) {
-            byte[] bytes = invoice.getXmlDocument();
+            byte[] bytes = documentEntity.getXmlDocument();
             InvoiceType invoiceType = provider.read(bytes);
 
             assertThat(invoiceType, is(notNullValue()));
 
-            Document xml = provider.writeAsDocument(organization, invoiceType, invoice.getAttributes());
+            Document xml = provider.writeAsDocument(organization, invoiceType, documentEntity.getAttributes());
 
             assertThat(xml, is(notNullValue()));
         }

@@ -24,17 +24,17 @@ import java.io.Serializable;
  * @version $Revision: 1 $
  */
 @NamedQueries({
-        @NamedQuery(name = "deleteInvoiceRequiredActionsByOrganization", query = "delete from InvoiceRequiredActionEntity action where action.invoice IN (select u from UblDocumentEntity u where u.organizationId=:organizationId)")
+        @NamedQuery(name = "deleteDocumentRequiredActionsByOrganization", query = "delete from DocumentRequiredActionEntity action where action.document IN (select u from DocumentEntity u where u.organizationId=:organizationId)")
 })
 @Entity
-@Table(name = "INVOICE_REQUIRED_ACTION")
-@IdClass(InvoiceRequiredActionEntity.Key.class)
-public class InvoiceRequiredActionEntity {
+@Table(name = "UBL_DOCUMENT_REQUIRED_ACTION")
+@IdClass(DocumentRequiredActionEntity.Key.class)
+public class DocumentRequiredActionEntity {
 
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "INVOICE_ID")
-    protected UblDocumentEntity invoice;
+    @JoinColumn(name = "DOCUMENT_ID")
+    protected DocumentEntity document;
 
     @Id
     @Column(name = "REQUIRED_ACTION")
@@ -48,30 +48,30 @@ public class InvoiceRequiredActionEntity {
         this.action = action;
     }
 
-    public UblDocumentEntity getInvoice() {
-        return invoice;
+    public DocumentEntity getDocument() {
+        return document;
     }
 
-    public void setInvoice(UblDocumentEntity invoice) {
-        this.invoice = invoice;
+    public void setDocument(DocumentEntity invoice) {
+        this.document = invoice;
     }
 
     public static class Key implements Serializable {
 
-        protected UblDocumentEntity invoice;
+        protected DocumentEntity document;
 
         protected String action;
 
         public Key() {
         }
 
-        public Key(UblDocumentEntity invoice, String action) {
-            this.invoice = invoice;
+        public Key(DocumentEntity invoice, String action) {
+            this.document = invoice;
             this.action = action;
         }
 
-        public UblDocumentEntity getInvoice() {
-            return invoice;
+        public DocumentEntity getDocument() {
+            return document;
         }
 
         public String getAction() {
@@ -86,7 +86,7 @@ public class InvoiceRequiredActionEntity {
             Key key = (Key) o;
 
             if (action != key.action) return false;
-            if (invoice != null ? !invoice.getId().equals(key.invoice != null ? key.invoice.getId() : null) : key.invoice != null)
+            if (document != null ? !document.getId().equals(key.document != null ? key.document.getId() : null) : key.document != null)
                 return false;
 
             return true;
@@ -94,7 +94,7 @@ public class InvoiceRequiredActionEntity {
 
         @Override
         public int hashCode() {
-            int result = invoice != null ? invoice.getId().hashCode() : 0;
+            int result = document != null ? document.getId().hashCode() : 0;
             result = 31 * result + (action != null ? action.hashCode() : 0);
             return result;
         }
@@ -104,12 +104,12 @@ public class InvoiceRequiredActionEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null) return false;
-        if (!(o instanceof InvoiceRequiredActionEntity)) return false;
+        if (!(o instanceof DocumentRequiredActionEntity)) return false;
 
-        InvoiceRequiredActionEntity key = (InvoiceRequiredActionEntity) o;
+        DocumentRequiredActionEntity key = (DocumentRequiredActionEntity) o;
 
         if (action != key.action) return false;
-        if (invoice != null ? !invoice.getId().equals(key.invoice != null ? key.invoice.getId() : null) : key.invoice != null)
+        if (document != null ? !document.getId().equals(key.document != null ? key.document.getId() : null) : key.document != null)
             return false;
 
         return true;
@@ -117,7 +117,7 @@ public class InvoiceRequiredActionEntity {
 
     @Override
     public int hashCode() {
-        int result = invoice != null ? invoice.getId().hashCode() : 0;
+        int result = document != null ? document.getId().hashCode() : 0;
         result = 31 * result + (action != null ? action.hashCode() : 0);
         return result;
     }

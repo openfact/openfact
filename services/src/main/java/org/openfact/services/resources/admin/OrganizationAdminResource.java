@@ -191,6 +191,16 @@ public class OrganizationAdminResource {
     }
 
     /**
+     * Get the documents sub resource for the current organization
+     */
+    @Path("documents")
+    public DocumentsAdminResource documents() {
+        DocumentsAdminResource documents = new DocumentsAdminResource(organization, auth, adminEvent);
+        ResteasyProviderFactory.getInstance().injectProperties(documents);
+        return documents;
+    }
+
+    /**
      * Get the invoices sub resource for the current organization
      */
     @Path("invoices")

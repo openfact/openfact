@@ -57,8 +57,8 @@ public class SendEventEntity {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "INVOICE_ID")
-    private UblDocumentEntity invoice;
+    @JoinColumn(foreignKey = @ForeignKey, name = "DOCUMENT_ID")
+    private DocumentEntity document;
 
     @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "sendEvent")
     private Collection<SendEventDestinyAttributeEntity> destinyAttributes = new ArrayList<>();
@@ -174,11 +174,11 @@ public class SendEventEntity {
         this.fileResponseAttatchmentIds = fileResponseAttatchmentIds;
     }
 
-    public UblDocumentEntity getInvoice() {
-        return invoice;
+    public DocumentEntity getDocument() {
+        return document;
     }
 
-    public void setInvoice(UblDocumentEntity invoice) {
-        this.invoice = invoice;
+    public void setDocument(DocumentEntity document) {
+        this.document = document;
     }
 }

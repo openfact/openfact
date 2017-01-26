@@ -38,73 +38,13 @@ public class XmlUBLReportDataProvider implements UBLReportDataProvider {
     }
 
     @Override
-    public ReportDataProvider<InvoiceModel> invoice() {
-        return new ReportDataProvider<InvoiceModel>() {
-
+    public ReportDataProvider<DocumentModel> document() {
+        return new ReportDataProvider<DocumentModel>() {
             @Override
-            public Object getFieldValue(InvoiceModel invoice, String fieldName) {
+            public Object getFieldValue(DocumentModel invoice, String fieldName) {
                 XmlSupportedAttribute attribute = XmlSupportedAttribute.fromString(fieldName.toUpperCase());
                 if (attribute != null) {
                     return attribute.asObject(invoice.getXmlAsJSONObject());
-                }
-                return null;
-            }
-
-            @Override
-            public void close() {
-            }
-
-        };
-    }
-
-    @Override
-    public ReportDataProvider<CreditNoteModel> creditNote() {
-        return new ReportDataProvider<CreditNoteModel>() {
-
-            @Override
-            public Object getFieldValue(CreditNoteModel creditNote, String fieldName) {
-                XmlSupportedAttribute attribute = XmlSupportedAttribute.fromString(fieldName.toUpperCase());
-                if (attribute != null) {
-                    return attribute.asObject(creditNote.getXmlAsJSONObject());
-                }
-                return null;
-            }
-
-            @Override
-            public void close() {
-            }
-
-        };
-    }
-
-    @Override
-    public ReportDataProvider<DebitNoteModel> debitNote() {
-        return new ReportDataProvider<DebitNoteModel>() {
-
-            @Override
-            public Object getFieldValue(DebitNoteModel debitNote, String fieldName) {
-                XmlSupportedAttribute attribute = XmlSupportedAttribute.fromString(fieldName.toUpperCase());
-                if (attribute != null) {
-                    return attribute.asObject(debitNote.getXmlAsJSONObject());
-                }
-                return null;
-            }
-
-            @Override
-            public void close() {
-            }
-
-        };
-    }
-
-    @Override
-    public ReportDataProvider<UBLModel> ublModel() {
-        return new ReportDataProvider<UBLModel>() {
-            @Override
-            public Object getFieldValue(UBLModel ublModel, String fieldName) {
-                XmlSupportedAttribute attribute = XmlSupportedAttribute.fromString(fieldName.toUpperCase());
-                if (attribute != null) {
-                    return attribute.asObject(ublModel.getXmlAsJSONObject());
                 }
                 return null;
             }

@@ -16,82 +16,80 @@
  *******************************************************************************/
 package org.openfact.models.jpa;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.*;
-import java.util.stream.Collectors;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-import javax.xml.transform.TransformerException;
-
-import com.helger.ubl21.UBL21Reader;
-import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 import org.jboss.logging.Logger;
 import org.json.JSONObject;
 import org.json.XML;
 import org.openfact.JSONObjectUtils;
 import org.openfact.common.converts.DocumentUtils;
 import org.openfact.common.util.MultivaluedHashMap;
-import org.openfact.file.*;
 import org.openfact.file.FileModel;
+import org.openfact.file.FileProvider;
 import org.openfact.models.*;
 import org.openfact.models.enums.DestinyType;
-import org.openfact.models.enums.DocumentType;
+import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.enums.SendResultType;
 import org.openfact.models.jpa.entities.*;
 import org.openfact.models.utils.OpenfactModelUtils;
-import org.openfact.models.SendEventModel;
-import org.openfact.models.enums.RequiredAction;
 import org.w3c.dom.Document;
 
-public class InvoiceAdapter implements InvoiceModel, JpaModel<UblDocumentEntity> {
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.xml.transform.TransformerException;
+import java.time.LocalDateTime;
+import java.util.*;
+import java.util.stream.Collectors;
 
-    protected static final Logger logger = Logger.getLogger(InvoiceAdapter.class);
+public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> {
+
+    protected static final Logger logger = Logger.getLogger(DocumentAdapter.class);
 
     protected OrganizationModel organization;
-    protected UblDocumentEntity invoice;
+    protected DocumentEntity documentEntity;
     protected EntityManager em;
     protected OpenfactSession session;
 
     protected FileModel xmlFile;
-    protected InvoiceType invoiceType;
     protected Document document;
     protected JSONObject jsonObject;
 
-    public InvoiceAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em, UblDocumentEntity invoice) {
+    public DocumentAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em, DocumentEntity documentEntity) {
         this.organization = organization;
         this.session = session;
         this.em = em;
-        this.invoice = invoice;
+        this.documentEntity = documentEntity;
     }
 
-    public static UblDocumentEntity toEntity(InvoiceModel model, EntityManager em) {
-        if (model instanceof InvoiceAdapter) {
-            return ((InvoiceAdapter) model).getEntity();
+    public static DocumentEntity toEntity(DocumentModel model, EntityManager em) {
+        if (model instanceof DocumentAdapter) {
+            return ((DocumentAdapter) model).getEntity();
         }
-        return em.getReference(UblDocumentEntity.class, model.getId());
+        return em.getReference(DocumentEntity.class, model.getId());
     }
 
     @Override
-    public UblDocumentEntity getEntity() {
-        return invoice;
+    public DocumentEntity getEntity() {
+        return documentEntity;
     }
 
     @Override
     public String getId() {
-        return invoice.getId();
+        return documentEntity.getId();
     }
 
     @Override
     public String getDocumentId() {
-        return invoice.getDocumentId();
+        return documentEntity.getDocumentId();
+    }
+
+    @Override
+    public String getDocumentType() {
+        return documentEntity.getDocumentType();
     }
 
     @Override
     public LocalDateTime getCreatedTimestamp() {
-        return invoice.getCreatedTimestamp();
+        return documentEntity.getCreatedTimestamp();
     }
 
     @Override
@@ -100,121 +98,40 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<UblDocumentEntity>
     }
 
     @Override
-    public String getInvoiceTypeCode() {
-        return invoice.getInvoiceTypeCode();
-    }
-
-    @Override
-    public void setInvoiceTypeCode(String value) {
-        invoice.setInvoiceTypeCode(value);
-    }
-
-    @Override
-    public LocalDateTime getIssueDateTime() {
-        return invoice.getIssueDateTime();
-    }
-
-    @Override
-    public void setIssueDateTime(LocalDateTime value) {
-        invoice.setIssueDateTime(value);
-    }
-
-    @Override
-    public String getDocumentCurrencyCode() {
-        return invoice.getDocumentCurrencyCode();
-    }
-
-    @Override
-    public void setDocumentCurrencyCode(String value) {
-        invoice.setDocumentCurrencyCode(value);
-    }
-
-    @Override
     public String getCustomerRegistrationName() {
-        return invoice.getCustomerRegistrationName();
+        return documentEntity.getCustomerRegistrationName();
     }
 
     @Override
     public void setCustomerRegistrationName(String value) {
-        invoice.setCustomerRegistrationName(value);
-    }
-
-    @Override
-    public String getCustomerAdditionalAccountId() {
-        return invoice.getCustomerAdditionalAccountId();
-    }
-
-    @Override
-    public void setCustomerAdditionalAccountId(String value) {
-        invoice.setCustomerAdditionalAccountId(value);
+        documentEntity.setCustomerRegistrationName(value);
     }
 
     @Override
     public String getCustomerAssignedAccountId() {
-        return invoice.getCustomerAssignedAccountId();
+        return documentEntity.getCustomerAssignedAccountId();
     }
 
     @Override
     public void setCustomerAssignedAccountId(String value) {
-        invoice.setCustomerAssignedAccountId(value);
+        documentEntity.setCustomerAssignedAccountId(value);
     }
 
     @Override
     public String getCustomerElectronicMail() {
-        return invoice.getCustomerElectronicMail();
+        return documentEntity.getCustomerElectronicMail();
     }
 
     @Override
     public void setCustomerElectronicMail(String value) {
-        invoice.setCustomerElectronicMail(value);
-    }
-
-    @Override
-    public BigDecimal getAllowanceTotalAmount() {
-        return invoice.getAllowanceTotalAmount();
-    }
-
-    @Override
-    public void setAllowanceTotalAmount(BigDecimal value) {
-        invoice.setAllowanceTotalAmount(value);
-    }
-
-    @Override
-    public BigDecimal getChargeTotalAmount() {
-        return invoice.getChargeTotalAmount();
-    }
-
-    @Override
-    public void setChargeTotalAmount(BigDecimal value) {
-        invoice.setChargeTotalAmount(value);
-    }
-
-    @Override
-    public BigDecimal getPayableAmount() {
-        return invoice.getPayableAmount();
-    }
-
-    @Override
-    public void setPayableAmount(BigDecimal value) {
-        invoice.setPayableAmount(value);
-    }
-
-    @Override
-    public InvoiceType getInvoiceType() {
-        if (invoiceType == null) {
-            FileModel file = getXmlAsFile();
-            if (file != null) {
-                invoiceType = UBL21Reader.invoice().read(file.getFile());
-            }
-        }
-        return invoiceType;
+        documentEntity.setCustomerElectronicMail(value);
     }
 
     @Override
     public FileModel getXmlAsFile() {
-        if (xmlFile == null && invoice.getXmlFileId() != null) {
+        if (xmlFile == null && documentEntity.getXmlFileId() != null) {
             FileProvider provider = session.getProvider(FileProvider.class);
-            xmlFile = provider.getFileById(organization, invoice.getXmlFileId());
+            xmlFile = provider.getFileById(organization, documentEntity.getXmlFileId());
         }
         return xmlFile;
     }
@@ -222,7 +139,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<UblDocumentEntity>
     @Override
     public void attachXmlFile(FileModel file) {
         xmlFile = file;
-        invoice.setXmlFileId(xmlFile.getId());
+        documentEntity.setXmlFileId(xmlFile.getId());
     }
 
     @Override
@@ -263,8 +180,8 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<UblDocumentEntity>
     @Override
     public void setSingleAttribute(String name, String value) {
         String firstExistingAttrId = null;
-        List<UblDocumentAttributeEntity> toRemove = new ArrayList<>();
-        for (UblDocumentAttributeEntity attr : invoice.getAttributes()) {
+        List<DocumentAttributeEntity> toRemove = new ArrayList<>();
+        for (DocumentAttributeEntity attr : documentEntity.getAttributes()) {
             if (attr.getName().equals(name)) {
                 if (firstExistingAttrId == null) {
                     attr.setValue(value);
@@ -277,14 +194,14 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<UblDocumentEntity>
 
         if (firstExistingAttrId != null) {
             // Remove attributes through HQL to avoid StaleUpdateException
-            Query query = em.createNamedQuery("deleteInvoiceAttributesByNameAndInvoiceOtherThan");
+            Query query = em.createNamedQuery("deleteDocumentAttributesByNameAndDocumentOtherThan");
             query.setParameter("name", name);
-            query.setParameter("invoiceId", invoice.getId());
+            query.setParameter("documentId", documentEntity.getId());
             query.setParameter("attrId", firstExistingAttrId);
             int numUpdated = query.executeUpdate();
 
             // Remove attribute from local entity
-            invoice.getAttributes().removeAll(toRemove);
+            documentEntity.getAttributes().removeAll(toRemove);
         } else {
 
             persistAttributeValue(name, value);
@@ -303,36 +220,36 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<UblDocumentEntity>
     }
 
     private void persistAttributeValue(String name, String value) {
-        UblDocumentAttributeEntity attr = new UblDocumentAttributeEntity();
+        DocumentAttributeEntity attr = new DocumentAttributeEntity();
         attr.setId(OpenfactModelUtils.generateId());
         attr.setName(name);
         attr.setValue(value);
-        attr.setInvoice(invoice);
+        attr.setDocument(documentEntity);
         em.persist(attr);
-        invoice.getAttributes().add(attr);
+        documentEntity.getAttributes().add(attr);
     }
 
     @Override
     public void removeAttribute(String name) {
         // Remove attribute through HQL to avoid StaleUpdateException
-        Query query = em.createNamedQuery("deleteInvoiceAttributesByNameAndInvoice");
+        Query query = em.createNamedQuery("deleteDocumentAttributesByNameAndDocument");
         query.setParameter("name", name);
-        query.setParameter("invoiceId", invoice.getId());
+        query.setParameter("documentId", documentEntity.getId());
         int numUpdated = query.executeUpdate();
 
         // Also remove attributes from local user entity
-        List<UblDocumentAttributeEntity> toRemove = new ArrayList<>();
-        for (UblDocumentAttributeEntity attr : invoice.getAttributes()) {
+        List<DocumentAttributeEntity> toRemove = new ArrayList<>();
+        for (DocumentAttributeEntity attr : documentEntity.getAttributes()) {
             if (attr.getName().equals(name)) {
                 toRemove.add(attr);
             }
         }
-        invoice.getAttributes().removeAll(toRemove);
+        documentEntity.getAttributes().removeAll(toRemove);
     }
 
     @Override
     public String getFirstAttribute(String name) {
-        for (UblDocumentAttributeEntity attr : invoice.getAttributes()) {
+        for (DocumentAttributeEntity attr : documentEntity.getAttributes()) {
             if (attr.getName().equals(name)) {
                 return attr.getValue();
             }
@@ -343,7 +260,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<UblDocumentEntity>
     @Override
     public List<String> getAttribute(String name) {
         List<String> result = new ArrayList<>();
-        for (UblDocumentAttributeEntity attr : invoice.getAttributes()) {
+        for (DocumentAttributeEntity attr : documentEntity.getAttributes()) {
             if (attr.getName().equals(name)) {
                 result.add(attr.getValue());
             }
@@ -354,7 +271,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<UblDocumentEntity>
     @Override
     public Map<String, List<String>> getAttributes() {
         MultivaluedHashMap<String, String> result = new MultivaluedHashMap<>();
-        for (UblDocumentAttributeEntity attr : invoice.getAttributes()) {
+        for (DocumentAttributeEntity attr : documentEntity.getAttributes()) {
             result.add(attr.getName(), attr.getValue());
         }
         return result;
@@ -366,7 +283,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<UblDocumentEntity>
     @Override
     public Set<String> getRequiredActions() {
         Set<String> result = new HashSet<>();
-        for (InvoiceRequiredActionEntity attr : invoice.getRequiredActions()) {
+        for (DocumentRequiredActionEntity attr : documentEntity.getRequiredActions()) {
             result.add(attr.getAction());
         }
         return result;
@@ -380,16 +297,16 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<UblDocumentEntity>
 
     @Override
     public void addRequiredAction(String actionName) {
-        for (InvoiceRequiredActionEntity attr : invoice.getRequiredActions()) {
+        for (DocumentRequiredActionEntity attr : documentEntity.getRequiredActions()) {
             if (attr.getAction().equals(actionName)) {
                 return;
             }
         }
-        InvoiceRequiredActionEntity attr = new InvoiceRequiredActionEntity();
+        DocumentRequiredActionEntity attr = new DocumentRequiredActionEntity();
         attr.setAction(actionName);
-        attr.setInvoice(invoice);
+        attr.setDocument(documentEntity);
         em.persist(attr);
-        invoice.getRequiredActions().add(attr);
+        documentEntity.getRequiredActions().add(attr);
     }
 
     @Override
@@ -400,9 +317,9 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<UblDocumentEntity>
 
     @Override
     public void removeRequiredAction(String actionName) {
-        Iterator<InvoiceRequiredActionEntity> it = invoice.getRequiredActions().iterator();
+        Iterator<DocumentRequiredActionEntity> it = documentEntity.getRequiredActions().iterator();
         while (it.hasNext()) {
-            InvoiceRequiredActionEntity attr = it.next();
+            DocumentRequiredActionEntity attr = it.next();
             if (attr.getAction().equals(actionName)) {
                 it.remove();
                 em.remove(attr);
@@ -415,11 +332,11 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<UblDocumentEntity>
      */
     @Override
     public SendEventModel addSendEvent(DestinyType destinyType) {
-        InvoiceSendEventEntity entity = new InvoiceSendEventEntity();
+        SendEventEntity entity = new SendEventEntity();
         entity.setCreatedTimestamp(LocalDateTime.now());
         entity.setResult(SendResultType.ON_PROCESS);
         entity.setDestinyType(destinyType);
-        entity.setInvoice(invoice);
+        entity.setDocument(documentEntity);
         em.persist(entity);
         //em.flush();
 
@@ -433,17 +350,6 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<UblDocumentEntity>
             return new SendEventAdapter(session, em, organization, entity);
         }
         return null;
-    }
-
-    @Override
-    public boolean removeSendEvent(String id) {
-        SendEventEntity entity = em.find(SendEventEntity.class, id);
-        if (entity == null)
-            return false;
-
-        em.remove(entity);
-        em.flush();
-        return true;
     }
 
     @Override
@@ -464,10 +370,10 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<UblDocumentEntity>
 
     @Override
     public List<SendEventModel> getSendEvents(Integer firstResult, Integer maxResults) {
-        String queryName = "getAllSendEventByInvoiceId";
+        String queryName = "getAllSendEventByDocumentId";
 
         TypedQuery<SendEventEntity> query = em.createNamedQuery(queryName, SendEventEntity.class);
-        query.setParameter("invoiceId", invoice.getId());
+        query.setParameter("documentId", documentEntity.getId());
         if (firstResult != -1) {
             query.setFirstResult(firstResult);
         }
@@ -475,8 +381,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<UblDocumentEntity>
             query.setMaxResults(maxResults);
         }
         List<SendEventEntity> results = query.getResultList();
-        List<SendEventModel> sendEvents = results.stream().map(f -> new SendEventAdapter(session, em, organization, f)).collect(Collectors.toList());
-        return sendEvents;
+        return results.stream().map(f -> new SendEventAdapter(session, em, organization, f)).collect(Collectors.toList());
     }
 
     @Override
@@ -486,22 +391,22 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<UblDocumentEntity>
 
     @Override
     public List<SendEventModel> searchForSendEvent(Map<String, String> attributes, int firstResult, int maxResults) {
-        StringBuilder builder = new StringBuilder("select u from InvoiceSendEventEntity u where u.invoice.id = :invoiceId");
+        StringBuilder builder = new StringBuilder("select u from SendEventEntity u where u.document.id = :documentId");
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             String attribute = null;
             String parameterName = null;
             String operator = null;
-            if (entry.getKey().equals(InvoiceModel.SEND_EVENT_DESTINY_TYPE)) {
+            if (entry.getKey().equals(DocumentModel.SEND_EVENT_DESTINY_TYPE)) {
                 attribute = "u.destinyType";
-                parameterName = JpaInvoiceProvider.SEND_EVENT_DESTINY_TYPE;
+                parameterName = JpaDocumentProvider.SEND_EVENT_DESTINY_TYPE;
                 operator = " = :";
-            } else if (entry.getKey().equals(InvoiceModel.SEND_EVENT_TYPE)) {
+            } else if (entry.getKey().equals(DocumentModel.SEND_EVENT_TYPE)) {
                 attribute = "lower(u.type)";
-                parameterName = JpaInvoiceProvider.SEND_EVENT_TYPE;
+                parameterName = JpaDocumentProvider.SEND_EVENT_TYPE;
                 operator = " like :";
-            } else if (entry.getKey().equals(InvoiceModel.SEND_EVENT_RESULT)) {
+            } else if (entry.getKey().equals(DocumentModel.SEND_EVENT_RESULT)) {
                 attribute = "u.result";
-                parameterName = JpaInvoiceProvider.SEND_EVENT_RESULT;
+                parameterName = JpaDocumentProvider.SEND_EVENT_RESULT;
                 operator = " = :";
             }
             if (attribute == null) continue;
@@ -510,19 +415,19 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<UblDocumentEntity>
         }
         builder.append(" order by u.createdTimestamp");
         String q = builder.toString();
-        TypedQuery<InvoiceSendEventEntity> query = em.createQuery(q, InvoiceSendEventEntity.class);
-        query.setParameter("invoiceId", invoice.getId());
+        TypedQuery<SendEventEntity> query = em.createQuery(q, SendEventEntity.class);
+        query.setParameter("documentId", documentEntity.getId());
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             String parameterName = null;
             Object parameterValue = null;
-            if (entry.getKey().equals(InvoiceModel.SEND_EVENT_DESTINY_TYPE)) {
-                parameterName = JpaInvoiceProvider.SEND_EVENT_DESTINY_TYPE;
+            if (entry.getKey().equals(DocumentModel.SEND_EVENT_DESTINY_TYPE)) {
+                parameterName = JpaDocumentProvider.SEND_EVENT_DESTINY_TYPE;
                 parameterValue = DestinyType.valueOf(entry.getValue().toUpperCase());
-            } else if (entry.getKey().equals(InvoiceModel.SEND_EVENT_TYPE)) {
-                parameterName = JpaInvoiceProvider.SEND_EVENT_TYPE;
+            } else if (entry.getKey().equals(DocumentModel.SEND_EVENT_TYPE)) {
+                parameterName = JpaDocumentProvider.SEND_EVENT_TYPE;
                 parameterValue = "%" + entry.getValue().toLowerCase() + "%";
-            } else if (entry.getKey().equals(InvoiceModel.SEND_EVENT_RESULT)) {
-                parameterName = JpaInvoiceProvider.SEND_EVENT_RESULT;
+            } else if (entry.getKey().equals(DocumentModel.SEND_EVENT_RESULT)) {
+                parameterName = JpaDocumentProvider.SEND_EVENT_RESULT;
                 parameterValue = SendResultType.valueOf(entry.getValue().toUpperCase());
             }
             if (parameterName == null) continue;
@@ -534,38 +439,38 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<UblDocumentEntity>
         if (maxResults != -1) {
             query.setMaxResults(maxResults);
         }
-        List<InvoiceSendEventEntity> results = query.getResultList();
+        List<SendEventEntity> results = query.getResultList();
         return results.stream().map(f -> new SendEventAdapter(session, em, organization, f)).collect(Collectors.toList());
     }
 
     @Override
     public int sendEventCount() {
-        Object count = em.createNamedQuery("getInvoiceSendEventCountByInvoice")
-                .setParameter("invoiceId", invoice.getId())
+        Object count = em.createNamedQuery("getDocumentSendEventCountByDocument")
+                .setParameter("documentId", documentEntity.getId())
                 .getSingleResult();
-        return ((Number)count).intValue();
+        return ((Number) count).intValue();
     }
 
     @Override
     public int sendEventCount(Map<String, String> attributes) {
-        StringBuilder builder = new StringBuilder("select count(u) from InvoiceSendEventEntity u where u.invoice.id = :invoiceId");
+        StringBuilder builder = new StringBuilder("select count(u) from SendEventEntity u where u.document.id = :documentId");
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             String attribute = null;
             String parameterName = null;
             String operator = null;
-            if (entry.getKey().equals(InvoiceModel.SEND_EVENT_DESTINY_TYPE)) {
+            if (entry.getKey().equals(DocumentModel.SEND_EVENT_DESTINY_TYPE)) {
                 attribute = "u.destinyType";
-                parameterName = JpaInvoiceProvider.SEND_EVENT_DESTINY_TYPE;
+                parameterName = JpaDocumentProvider.SEND_EVENT_DESTINY_TYPE;
                 operator = " = :";
             }
-            if (entry.getKey().equals(InvoiceModel.SEND_EVENT_TYPE)) {
+            if (entry.getKey().equals(DocumentModel.SEND_EVENT_TYPE)) {
                 attribute = "lower(u.type)";
-                parameterName = JpaInvoiceProvider.SEND_EVENT_TYPE;
+                parameterName = JpaDocumentProvider.SEND_EVENT_TYPE;
                 operator = " like :";
             }
-            if (entry.getKey().equals(InvoiceModel.SEND_EVENT_RESULT)) {
+            if (entry.getKey().equals(DocumentModel.SEND_EVENT_RESULT)) {
                 attribute = "u.result";
-                parameterName = JpaInvoiceProvider.SEND_EVENT_RESULT;
+                parameterName = JpaDocumentProvider.SEND_EVENT_RESULT;
                 operator = " = :";
             }
             if (attribute == null) continue;
@@ -575,20 +480,20 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<UblDocumentEntity>
 
         String q = builder.toString();
         Query query = em.createQuery(q);
-        query.setParameter("invoiceId", invoice.getId());
+        query.setParameter("documentId", documentEntity.getId());
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             String parameterName = null;
             Object parameterValue = null;
-            if (entry.getKey().equals(InvoiceModel.SEND_EVENT_DESTINY_TYPE)) {
-                parameterName = JpaInvoiceProvider.SEND_EVENT_DESTINY_TYPE;
+            if (entry.getKey().equals(DocumentModel.SEND_EVENT_DESTINY_TYPE)) {
+                parameterName = JpaDocumentProvider.SEND_EVENT_DESTINY_TYPE;
                 parameterValue = DestinyType.valueOf(entry.getValue().toUpperCase());
             }
-            if (entry.getKey().equals(InvoiceModel.SEND_EVENT_TYPE)) {
-                parameterName = JpaInvoiceProvider.SEND_EVENT_TYPE;
+            if (entry.getKey().equals(DocumentModel.SEND_EVENT_TYPE)) {
+                parameterName = JpaDocumentProvider.SEND_EVENT_TYPE;
                 parameterValue = "%" + entry.getValue().toLowerCase() + "%";
             }
-            if (entry.getKey().equals(InvoiceModel.SEND_EVENT_RESULT)) {
-                parameterName = JpaInvoiceProvider.SEND_EVENT_RESULT;
+            if (entry.getKey().equals(DocumentModel.SEND_EVENT_RESULT)) {
+                parameterName = JpaDocumentProvider.SEND_EVENT_RESULT;
                 parameterValue = SendResultType.valueOf(entry.getValue().toUpperCase());
             }
             if (parameterName == null) continue;
@@ -596,7 +501,7 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<UblDocumentEntity>
         }
 
         Object count = query.getSingleResult();
-        return ((Number)count).intValue();
+        return ((Number) count).intValue();
     }
 
     /**
@@ -604,34 +509,34 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<UblDocumentEntity>
      */
     @Override
     public List<AttatchedDocumentModel> getAttatchedDocuments() {
-        return invoice.getAttatchedDocuments().stream().map(f -> new AttatchedDocumentAdapter(session, organization, em, f)).collect(Collectors.toList());
+        return documentEntity.getAttatchedDocuments().stream().map(f -> new AttatchedDocumentAdapter(session, organization, em, f)).collect(Collectors.toList());
     }
 
     @Override
     public AttatchedDocumentModel getAttatchedDocumentById(String id) {
-        InvoiceAttatchedDocumentEntity entity = em.find(InvoiceAttatchedDocumentEntity.class, id);
+        AttatchedDocumentEntity entity = em.find(AttatchedDocumentEntity.class, id);
         if (entity == null) return null;
         return new AttatchedDocumentAdapter(session, organization, em, entity);
     }
 
     @Override
-    public AttatchedDocumentModel addAttatchedDocument(DocumentType documentType, String documentId) {
-        InvoiceAttatchedDocumentEntity entity = new InvoiceAttatchedDocumentEntity();
-        entity.setDocumentType(documentType);
-        entity.setDocumentId(documentId);
-        entity.setInvoice(invoice);
+    public AttatchedDocumentModel addAttatchedDocument(String documentType, String documentId) {
+        AttatchedDocumentEntity entity = new AttatchedDocumentEntity();
+        entity.setRelatedDocumentType(documentType);
+        entity.setRelatedDocumentId(documentId);
+        entity.setDocument(documentEntity);
         em.persist(entity);
         em.flush();
-        invoice.getAttatchedDocuments().add(entity);
+        documentEntity.getAttatchedDocuments().add(entity);
         return new AttatchedDocumentAdapter(session, organization, em, entity);
     }
 
     @Override
     public boolean removeAttatchedDocument(AttatchedDocumentModel attatchedDocument) {
         boolean result = false;
-        Iterator<InvoiceAttatchedDocumentEntity> it = invoice.getAttatchedDocuments().iterator();
+        Iterator<AttatchedDocumentEntity> it = documentEntity.getAttatchedDocuments().iterator();
         while (it.hasNext()) {
-            InvoiceAttatchedDocumentEntity attr = it.next();
+            AttatchedDocumentEntity attr = it.next();
             if (attr.getId().equals(attatchedDocument.getId())) {
                 it.remove();
                 em.remove(attr);
@@ -644,9 +549,9 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<UblDocumentEntity>
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || !(o instanceof InvoiceModel)) return false;
+        if (o == null || !(o instanceof DocumentModel)) return false;
 
-        InvoiceModel that = (InvoiceModel) o;
+        DocumentModel that = (DocumentModel) o;
         return that.getId().equals(getId());
     }
 

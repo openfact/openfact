@@ -93,11 +93,7 @@ public interface OpenfactSession {
      */
     OrganizationProvider organizations();
 
-    InvoiceProvider invoices();
-
-    CreditNoteProvider creditNotes();
-
-    DebitNoteProvider debitNotes();
+    DocumentProvider documents();
 
     JobReportProvider jobReports();
 

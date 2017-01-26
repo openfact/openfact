@@ -21,7 +21,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
 
-public class InvoiceRepresentation {
+public class DocumentRepresentation {
 
     private String id;
     private String documentId;

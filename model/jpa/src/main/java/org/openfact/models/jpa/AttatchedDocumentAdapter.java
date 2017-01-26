@@ -35,157 +35,157 @@ import java.util.Map;
 
 public class AttatchedDocumentAdapter implements AttatchedDocumentModel, JpaModel<AttatchedDocumentEntity> {
 
-	protected static final Logger logger = Logger.getLogger(AttatchedDocumentAdapter.class);
-	protected OrganizationModel organization;
-	protected AttatchedDocumentEntity attatchedDocument;
-	protected EntityManager em;
-	protected OpenfactSession session;
+    protected static final Logger logger = Logger.getLogger(AttatchedDocumentAdapter.class);
+    protected OrganizationModel organization;
+    protected AttatchedDocumentEntity attatchedDocument;
+    protected EntityManager em;
+    protected OpenfactSession session;
 
-	public AttatchedDocumentAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em, AttatchedDocumentEntity attatchedDocument) {
-		this.session = session;
-		this.em = em;
-		this.organization = organization;
-		this.attatchedDocument = attatchedDocument;
-	}
+    public AttatchedDocumentAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em, AttatchedDocumentEntity attatchedDocument) {
+        this.session = session;
+        this.em = em;
+        this.organization = organization;
+        this.attatchedDocument = attatchedDocument;
+    }
 
-	public static AttatchedDocumentEntity toEntity(AttatchedDocumentModel model, EntityManager em) {
-		if (model instanceof AttatchedDocumentAdapter) {
-			return ((AttatchedDocumentAdapter) model).getEntity();
-		}
-		return em.getReference(AttatchedDocumentEntity.class, model.getId());
-	}
+    public static AttatchedDocumentEntity toEntity(AttatchedDocumentModel model, EntityManager em) {
+        if (model instanceof AttatchedDocumentAdapter) {
+            return ((AttatchedDocumentAdapter) model).getEntity();
+        }
+        return em.getReference(AttatchedDocumentEntity.class, model.getId());
+    }
 
-	@Override
-	public AttatchedDocumentEntity getEntity() {
-		return attatchedDocument;
-	}
+    @Override
+    public AttatchedDocumentEntity getEntity() {
+        return attatchedDocument;
+    }
 
-	@Override
-	public String getId() {
-		return attatchedDocument.getId();
-	}
+    @Override
+    public String getId() {
+        return attatchedDocument.getId();
+    }
 
-	@Override
-	public DocumentType getDocumentType() {
-		return attatchedDocument.getDocumentType();
-	}
+    @Override
+    public String getRelatedDocumentType() {
+        return attatchedDocument.getRelatedDocumentType();
+    }
 
-	@Override
-	public String getDocumentId() {
-		return attatchedDocument.getDocumentId();
-	}
+    @Override
+    public String getRelatedDocumentId() {
+        return attatchedDocument.getRelatedDocumentId();
+    }
 
-	@Override
-	public void setSingleAttribute(String name, String value) {
-		String firstExistingAttrId = null;
-		List<AttatchedDocumentAttributeEntity> toRemove = new ArrayList<>();
-		for (AttatchedDocumentAttributeEntity attr : attatchedDocument.getAttributes()) {
-			if (attr.getName().equals(name)) {
-				if (firstExistingAttrId == null) {
-					attr.setValue(value);
-					firstExistingAttrId = attr.getId();
-				} else {
-					toRemove.add(attr);
-				}
-			}
-		}
+    @Override
+    public void setSingleAttribute(String name, String value) {
+        String firstExistingAttrId = null;
+        List<AttatchedDocumentAttributeEntity> toRemove = new ArrayList<>();
+        for (AttatchedDocumentAttributeEntity attr : attatchedDocument.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                if (firstExistingAttrId == null) {
+                    attr.setValue(value);
+                    firstExistingAttrId = attr.getId();
+                } else {
+                    toRemove.add(attr);
+                }
+            }
+        }
 
-		if (firstExistingAttrId != null) {
-			// Remove attributes through HQL to avoid StaleUpdateException
-			Query query = em.createNamedQuery("deleteAttatchedDocumentAttributesByNameAndAttatchedDocumentOtherThan");
-			query.setParameter("name", name);
-			query.setParameter("attatchedDocumentId", attatchedDocument.getId());
-			query.setParameter("attrId", firstExistingAttrId);
-			int numUpdated = query.executeUpdate();
+        if (firstExistingAttrId != null) {
+            // Remove attributes through HQL to avoid StaleUpdateException
+            Query query = em.createNamedQuery("deleteAttatchedDocumentAttributesByNameAndAttatchedDocumentOtherThan");
+            query.setParameter("name", name);
+            query.setParameter("attatchedDocumentId", attatchedDocument.getId());
+            query.setParameter("attrId", firstExistingAttrId);
+            int numUpdated = query.executeUpdate();
 
-			// Remove attribute from local entity
-			attatchedDocument.getAttributes().removeAll(toRemove);
-		} else {
+            // Remove attribute from local entity
+            attatchedDocument.getAttributes().removeAll(toRemove);
+        } else {
 
-			persistAttributeValue(name, value);
-		}
-	}
+            persistAttributeValue(name, value);
+        }
+    }
 
-	@Override
-	public void setAttribute(String name, List<String> values) {
-		// Remove all existing
-		removeAttribute(name);
+    @Override
+    public void setAttribute(String name, List<String> values) {
+        // Remove all existing
+        removeAttribute(name);
 
-		// Put all new
-		for (String value : values) {
-			persistAttributeValue(name, value);
-		}
-	}
+        // Put all new
+        for (String value : values) {
+            persistAttributeValue(name, value);
+        }
+    }
 
-	private void persistAttributeValue(String name, String value) {
-		AttatchedDocumentAttributeEntity attr = new AttatchedDocumentAttributeEntity();
-		attr.setId(OpenfactModelUtils.generateId());
-		attr.setName(name);
-		attr.setValue(value);
-		attr.setAttatchedDocument(attatchedDocument);
-		em.persist(attr);
-		attatchedDocument.getAttributes().add(attr);
-	}
+    private void persistAttributeValue(String name, String value) {
+        AttatchedDocumentAttributeEntity attr = new AttatchedDocumentAttributeEntity();
+        attr.setId(OpenfactModelUtils.generateId());
+        attr.setName(name);
+        attr.setValue(value);
+        attr.setAttatchedDocument(attatchedDocument);
+        em.persist(attr);
+        attatchedDocument.getAttributes().add(attr);
+    }
 
-	@Override
-	public void removeAttribute(String name) {
-		// Remove attribute through HQL to avoid StaleUpdateException
-		Query query = em.createNamedQuery("deleteAttatchedDocumentAttributesByNameAndAttatchedDocument");
-		query.setParameter("name", name);
-		query.setParameter("attatchedDocumentId", attatchedDocument.getId());
-		int numUpdated = query.executeUpdate();
+    @Override
+    public void removeAttribute(String name) {
+        // Remove attribute through HQL to avoid StaleUpdateException
+        Query query = em.createNamedQuery("deleteAttatchedDocumentAttributesByNameAndAttatchedDocument");
+        query.setParameter("name", name);
+        query.setParameter("attatchedDocumentId", attatchedDocument.getId());
+        int numUpdated = query.executeUpdate();
 
-		// Also remove attributes from local user entity
-		List<AttatchedDocumentAttributeEntity> toRemove = new ArrayList<>();
-		for (AttatchedDocumentAttributeEntity attr : attatchedDocument.getAttributes()) {
-			if (attr.getName().equals(name)) {
-				toRemove.add(attr);
-			}
-		}
-		attatchedDocument.getAttributes().removeAll(toRemove);
-	}
+        // Also remove attributes from local user entity
+        List<AttatchedDocumentAttributeEntity> toRemove = new ArrayList<>();
+        for (AttatchedDocumentAttributeEntity attr : attatchedDocument.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                toRemove.add(attr);
+            }
+        }
+        attatchedDocument.getAttributes().removeAll(toRemove);
+    }
 
-	@Override
-	public String getFirstAttribute(String name) {
-		for (AttatchedDocumentAttributeEntity attr : attatchedDocument.getAttributes()) {
-			if (attr.getName().equals(name)) {
-				return attr.getValue();
-			}
-		}
-		return null;
-	}
+    @Override
+    public String getFirstAttribute(String name) {
+        for (AttatchedDocumentAttributeEntity attr : attatchedDocument.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                return attr.getValue();
+            }
+        }
+        return null;
+    }
 
-	@Override
-	public List<String> getAttribute(String name) {
-		List<String> result = new ArrayList<>();
-		for (AttatchedDocumentAttributeEntity attr : attatchedDocument.getAttributes()) {
-			if (attr.getName().equals(name)) {
-				result.add(attr.getValue());
-			}
-		}
-		return result;
-	}
+    @Override
+    public List<String> getAttribute(String name) {
+        List<String> result = new ArrayList<>();
+        for (AttatchedDocumentAttributeEntity attr : attatchedDocument.getAttributes()) {
+            if (attr.getName().equals(name)) {
+                result.add(attr.getValue());
+            }
+        }
+        return result;
+    }
 
-	@Override
-	public Map<String, List<String>> getAttributes() {
-		MultivaluedHashMap<String, String> result = new MultivaluedHashMap<>();
-		for (AttatchedDocumentAttributeEntity attr : attatchedDocument.getAttributes()) {
-			result.add(attr.getName(), attr.getValue());
-		}
-		return result;
-	}
+    @Override
+    public Map<String, List<String>> getAttributes() {
+        MultivaluedHashMap<String, String> result = new MultivaluedHashMap<>();
+        for (AttatchedDocumentAttributeEntity attr : attatchedDocument.getAttributes()) {
+            result.add(attr.getName(), attr.getValue());
+        }
+        return result;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || !(o instanceof AttatchedDocumentModel)) return false;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !(o instanceof AttatchedDocumentModel)) return false;
 
-		AttatchedDocumentModel that = (AttatchedDocumentModel) o;
-		return that.getId().equals(getId());
-	}
+        AttatchedDocumentModel that = (AttatchedDocumentModel) o;
+        return that.getId().equals(getId());
+    }
 
-	@Override
-	public int hashCode() {
-		return getId().hashCode();
-	}
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
+    }
 }

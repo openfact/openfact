@@ -45,12 +45,8 @@ public class DefaultOpenfactSession implements OpenfactSession {
 	private OpenfactContext context;
 	private KeyManager keyManager;
 
-	private InvoiceProvider invoices;
-	private CreditNoteProvider creditNotes;
-	private DebitNoteProvider debitNotes;
-
+	private DocumentProvider documents;
 	private JobReportProvider jobReports;
-
 	private FileProvider files;
 
 	public DefaultOpenfactSession(DefaultOpenfactSessionFactory factory) {
@@ -73,30 +69,12 @@ public class DefaultOpenfactSession implements OpenfactSession {
 		}
 	}
 
-	private InvoiceProvider getInvoiceProvider() {
-		InvoiceProvider cache = getProvider(InvoiceProvider.class);
+	private DocumentProvider getInvoiceProvider() {
+		DocumentProvider cache = getProvider(DocumentProvider.class);
 		if (cache != null) {
 			return cache;
 		} else {
-			return getProvider(InvoiceProvider.class);
-		}
-	}
-
-	private CreditNoteProvider getCreditNoteProvider() {
-		CreditNoteProvider cache = getProvider(CreditNoteProvider.class);
-		if (cache != null) {
-			return cache;
-		} else {
-			return getProvider(CreditNoteProvider.class);
-		}
-	}
-
-	private DebitNoteProvider getDebitNoteProvider() {
-		DebitNoteProvider cache = getProvider(DebitNoteProvider.class);
-		if (cache != null) {
-			return cache;
-		} else {
-			return getProvider(DebitNoteProvider.class);
+			return getProvider(DocumentProvider.class);
 		}
 	}
 
@@ -224,27 +202,11 @@ public class DefaultOpenfactSession implements OpenfactSession {
 	}
 
 	@Override
-	public InvoiceProvider invoices() {
-		if (invoices == null) {
-			invoices = getInvoiceProvider();
+	public DocumentProvider documents() {
+		if (documents == null) {
+			documents = getInvoiceProvider();
 		}
-		return invoices;
-	}
-
-	@Override
-	public CreditNoteProvider creditNotes() {
-		if (creditNotes == null) {
-			creditNotes = getCreditNoteProvider();
-		}
-		return creditNotes;
-	}
-
-	@Override
-	public DebitNoteProvider debitNotes() {
-		if (debitNotes == null) {
-			debitNotes = getDebitNoteProvider();
-		}
-		return debitNotes;
+		return documents;
 	}
 
 	@Override

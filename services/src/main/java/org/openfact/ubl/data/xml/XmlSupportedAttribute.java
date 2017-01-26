@@ -148,7 +148,8 @@ public enum XmlSupportedAttribute {
     }, "RequestedMonetaryTotal", "AllowanceTotalAmount")),
 
     /**
-     * Billing reference*/
+     * Billing reference
+     */
     OF_BR_INVOICE_DOCUMENT_REFERENCE_ID(XMLAttributeContainer.arrayKey(value -> value != null ? String.valueOf(value) : null,
             0, "BillingReference", "InvoiceDocumentReference", "ID")),
 

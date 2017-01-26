@@ -20,15 +20,19 @@ import javax.persistence.EntityManager;
 
 import org.openfact.Config;
 import org.openfact.connections.jpa.JpaConnectionProvider;
-import org.openfact.models.DebitNoteProvider;
-import org.openfact.models.DebitNoteProviderFactory;
+import org.openfact.models.DocumentProvider;
+import org.openfact.models.DocumentProviderFactory;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactSessionFactory;
 
-public class JpaDebitNoteProviderFactory implements DebitNoteProviderFactory {
+public class JpaDocumentProviderFactory implements DocumentProviderFactory {
 
     @Override
     public void init(Config.Scope config) {
+    }
+
+    @Override
+    public void postInit(OpenfactSessionFactory factory) {
     }
 
     @Override
@@ -37,9 +41,9 @@ public class JpaDebitNoteProviderFactory implements DebitNoteProviderFactory {
     }
 
     @Override
-    public DebitNoteProvider create(OpenfactSession session) {
+    public DocumentProvider create(OpenfactSession session) {
         EntityManager em = session.getProvider(JpaConnectionProvider.class).getEntityManager();
-        return new JpaDebitNoteProvider(session, em);
+        return new JpaDocumentProvider(session, em);
     }
 
     @Override

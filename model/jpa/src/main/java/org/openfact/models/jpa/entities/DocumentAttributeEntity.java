@@ -36,23 +36,23 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "INVOICE_ATTRIBUTE")
+@Table(name = "DOCUMENT_ATTRIBUTE")
 @NamedQueries({
-        @NamedQuery(name="getInvoiceAttributesByNameAndValue", query="select attr from UblDocumentAttributeEntity attr where attr.name = :name and attr.value = :value"),
-        @NamedQuery(name="deleteInvoiceAttributesByOrganization", query="delete from  UblDocumentAttributeEntity attr where attr.invoice IN (select u from UblDocumentEntity u where u.organizationId=:organizationId)"),
-        @NamedQuery(name="deleteInvoiceAttributesByNameAndInvoice", query="delete from  UblDocumentAttributeEntity attr where attr.invoice.id = :invoiceId and attr.name = :name"),
-        @NamedQuery(name="deleteInvoiceAttributesByNameAndInvoiceOtherThan", query="delete from  UblDocumentAttributeEntity attr where attr.invoice.id = :invoiceId and attr.name = :name and attr.id <> :attrId")
+        @NamedQuery(name = "getDocumentAttributesByNameAndValue", query = "select attr from DocumentAttributeEntity attr where attr.name = :name and attr.value = :value"),
+        @NamedQuery(name = "deleteDocumentAttributesByOrganization", query = "delete from  DocumentAttributeEntity attr where attr.document IN (select u from DocumentEntity u where u.organizationId=:organizationId)"),
+        @NamedQuery(name = "deleteDocumentAttributesByNameAndDocument", query = "delete from  DocumentAttributeEntity attr where attr.document.id = :ublDocumentId and attr.name = :name"),
+        @NamedQuery(name = "deleteDocumentAttributesByNameAndDocumentOtherThan", query = "delete from  DocumentAttributeEntity attr where attr.document.id = :ublDocumentId and attr.name = :name and attr.id <> :attrId")
 })
-public class UblDocumentAttributeEntity {
+public class DocumentAttributeEntity {
 
     @Id
-    @Column(name="ID", length = 36)
-    @Access(AccessType.PROPERTY) // we do this because relationships often fetch id, but not entity.  This avoids an extra SQL
+    @Column(name = "ID", length = 36)
+    @Access(AccessType.PROPERTY)
     protected String id;
 
-    @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name = "INVOICE_ID")
-    protected UblDocumentEntity invoice;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "DOCUMENT_ID")
+    protected DocumentEntity document;
 
     @Column(name = "NAME")
     protected String name;
@@ -84,21 +84,21 @@ public class UblDocumentAttributeEntity {
         this.value = value;
     }
 
-    public UblDocumentEntity getInvoice() {
-        return invoice;
+    public DocumentEntity getDocument() {
+        return document;
     }
 
-    public void setInvoice(UblDocumentEntity invoice) {
-        this.invoice = invoice;
+    public void setDocument(DocumentEntity document) {
+        this.document = document;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null) return false;
-        if (!(o instanceof UblDocumentAttributeEntity)) return false;
+        if (!(o instanceof DocumentAttributeEntity)) return false;
 
-        UblDocumentAttributeEntity that = (UblDocumentAttributeEntity) o;
+        DocumentAttributeEntity that = (DocumentAttributeEntity) o;
 
         if (!id.equals(that.getId())) return false;
 
@@ -109,5 +109,5 @@ public class UblDocumentAttributeEntity {
     public int hashCode() {
         return id.hashCode();
     }
-    
+
 }

@@ -102,7 +102,7 @@ public class JsonConfigConverterTestCase {
             + "        \"provider\": \"jpa\"\n"
             + "    },\n"
             + "\n"
-                      + "    \"invoice\": {\n"
+                      + "    \"document\": {\n"
                       + "        \"provider\": \"jpa\"\n"
                       + "    },\n"
                       + "\n"
@@ -275,7 +275,7 @@ public class JsonConfigConverterTestCase {
             "    \"operation\" => \"add\",\n" +
             "    \"address\" => [\n" +
             "        (\"subsystem\" => \"openfact-server\"),\n" +
-            "        (\"spi\" => \"invoice\")\n" +
+            "        (\"spi\" => \"document\")\n" +
             "    ],\n" +
             "    \"default-provider\" => \"jpa\"\n" +
             "}"

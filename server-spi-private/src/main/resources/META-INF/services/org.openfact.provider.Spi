@@ -21,9 +21,7 @@ org.openfact.connections.httpclient.HttpClientSpi
 org.openfact.transaction.TransactionManagerLookupSpi
 org.openfact.keys.PublicKeyStorageSpi
 org.openfact.keys.KeySpi
-org.openfact.models.InvoiceSpi
-org.openfact.models.CreditNoteSpi
-org.openfact.models.DebitNoteSpi
+org.openfact.models.DocumentSpi
 org.openfact.ubl.UBLInvoiceSpi
 org.openfact.ubl.UBLCreditNoteSpi
 org.openfact.ubl.UBLDebitNoteSpi

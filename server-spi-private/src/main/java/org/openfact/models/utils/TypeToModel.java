@@ -16,198 +16,178 @@
  *******************************************************************************/
 package org.openfact.models.utils;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
-import javax.persistence.Column;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.*;
 import org.openfact.models.*;
 
-import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.AdditionalAccountIDType;
-import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.DescriptionType;
 import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
 import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
 import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 
 public class TypeToModel {
 
-    public static LocalDate toDate(XMLGregorianCalendar date) {
-        return date.toGregorianCalendar().toZonedDateTime().toLocalDate();
-    }
+    public static final String ISSUE_DATE = "issueDate";
 
-    public static LocalTime toTime(XMLGregorianCalendar date) {
-        return date.toGregorianCalendar().toZonedDateTime().toLocalTime();
-    }
+    public static final String INVOICE_TYPE_CODE = "invoiceTypeCode";
+    public static final String CREDIT_NOTE_TYPE_CODE = "creditNoteTypeCode";
 
-    public static LocalDateTime toDateTime(XMLGregorianCalendar date) {
-        return date.toGregorianCalendar().toZonedDateTime().toLocalDateTime();
-    }
+    public static final String DOCUMENT_CURRENCY_CODE = "documentCurrencyCode";
+    public static final String SUPPLIER_ASSIGNED_ACCOUNT_ID = "supplierAssignedAccountID";
+    public static final String SUPPLIER_PARTY_ASSIGNED_ACCOUNT_ID = "supplierPartyAssignedAccountID";
+    public static final String SUPPLIER_PARTY_REGISTRATION_NAME = "supplierPartyRegistrationName";
+    public static final String CUSTOMER_ASSIGNED_ACCOUNT_ID = "customerAssignedAccountID";
+    public static final String CUSTOMER_PARTY_ASSIGNED_ACCOUNT_ID = "customerPartyAssignedAccountID";
+    public static final String CUSTOMER_PARTY_REGISTRATION_NAME = "customerPartyRegistrationName";
+    public static final String TAX_TOTAL_AMOUNT = "taxTotalAmount";
 
-    public static InvoiceModel importInvoice(OpenfactSession session, OrganizationModel organization, InvoiceModel model, InvoiceType type) {
+    public static final String LEGAL_MONETARY_TOTAL_PAYABLE_AMOUNT = "legalMonetaryTotalPayableAmount";
+    public static final String LEGAL_MONETARY_TOTAL_CHARGE_TOTAL_AMOUNT = "legalMonetaryTotalChargeTotalAmount";
+    public static final String LEGAL_MONETARY_TOTAL_ALLOWANCE_TOTAL = "legalMonetaryTotalAllowanceTotal";
+
+    public static final String REQUESTED_MONETARY_TOTAL_PAYABLE_AMOUNT = "requestedMonetaryTotalPayableAmount";
+    public static final String REQUESTED_MONETARY_TOTAL_CHARGE_TOTAL_AMOUNT = "requestedMonetaryTotalChargeTotalAmount";
+    public static final String REQUESTED_MONETARY_TOTAL_ALLOWANCE_TOTAL = "requestedMonetaryTotalAllowanceTotal";
+
+    public static void importInvoice(OpenfactSession session, OrganizationModel organization, DocumentModel model, InvoiceType type) {
+        if (type.getIssueDate() != null) {
+            model.setSingleAttribute(ISSUE_DATE, type.getIssueDateValue().toString());
+        }
         if (type.getInvoiceTypeCode() != null) {
-            model.setInvoiceTypeCode(type.getInvoiceTypeCodeValue());
+            model.setSingleAttribute(INVOICE_TYPE_CODE, type.getInvoiceTypeCodeValue());
         }
         if (type.getDocumentCurrencyCode() != null) {
-            model.setDocumentCurrencyCode(type.getDocumentCurrencyCodeValue());
+            model.setSingleAttribute(DOCUMENT_CURRENCY_CODE, type.getDocumentCurrencyCodeValue());
+        }
+
+        if (type.getAccountingSupplierParty() != null) {
+            addAccountingSupplierAttributes(type.getAccountingSupplierParty(), model);
         }
         if (type.getAccountingCustomerParty() != null) {
-            CustomerPartyType customerPartyType = type.getAccountingCustomerParty();
-            if (customerPartyType.getAdditionalAccountID() != null) {
-                String customerAdditionalAccountId = customerPartyType.getAdditionalAccountID()
-                        .stream()
-                        .map(f -> f.getValue())
-                        .filter(p -> p != null && !p.isEmpty())
-                        .reduce((s, s2) -> s + "," + s2)
-                        .get();
-                model.setCustomerAdditionalAccountId(customerAdditionalAccountId);
-            }
-            if (customerPartyType.getCustomerAssignedAccountIDValue() != null) {
-                model.setCustomerAssignedAccountId(customerPartyType.getCustomerAssignedAccountIDValue());
-            }
-            if (customerPartyType.getParty() != null) {
-                PartyType partyType = customerPartyType.getParty();
-                if (partyType.getPartyLegalEntity() != null) {
-                    String registrationName = partyType.getPartyLegalEntity().stream().map(f -> f.getRegistrationNameValue()).reduce("", String::concat);
-                    model.setCustomerRegistrationName(!registrationName.isEmpty() ? registrationName : null);
-                }
-                if (partyType.getContact() != null) {
-                    ContactType contactType = partyType.getContact();
-                    if (contactType.getElectronicMail() != null) {
-                        model.setCustomerElectronicMail(contactType.getElectronicMailValue());
-                    }
-                }
-            }
+            addAccountingCustomerAttributes(type.getAccountingCustomerParty(), model);
         }
-
-        if (type.getLegalMonetaryTotal() != null) {
-            MonetaryTotalType monetaryTotalType = type.getLegalMonetaryTotal();
-            if (monetaryTotalType.getAllowanceTotalAmount() != null) {
-                model.setAllowanceTotalAmount(monetaryTotalType.getAllowanceTotalAmountValue());
-            }
-            if (monetaryTotalType.getChargeTotalAmount() != null) {
-                model.setChargeTotalAmount(monetaryTotalType.getChargeTotalAmountValue());
-            }
-            if (monetaryTotalType.getPayableAmount() != null) {
-                model.setPayableAmount(monetaryTotalType.getPayableAmountValue());
-            }
-        }
-
-        LocalDateTime issueDateTime = null;
-        if (type.getIssueDate() != null) {
-            issueDateTime = toDateTime(type.getIssueDateValue());
-            if (type.getIssueTime() != null) {
-                LocalDateTime issueTime = toDateTime(type.getIssueTimeValue());
-                issueDateTime = LocalDateTime.of(issueDateTime.toLocalDate(), issueTime.toLocalTime());
-            }
-        }
-        model.setIssueDateTime(issueDateTime);
-
-        return model;
-    }
-
-    public static CreditNoteModel importCreditNote(OpenfactSession session, OrganizationModel organization, CreditNoteModel model, CreditNoteType type) {
-        if (type.getDocumentCurrencyCode() != null) {
-            model.setDocumentCurrencyCode(type.getDocumentCurrencyCodeValue());
-        }
-
-        if (type.getAccountingCustomerParty() != null) {
-            CustomerPartyType customerPartyType = type.getAccountingCustomerParty();
-            if (customerPartyType.getCustomerAssignedAccountIDValue() != null) {
-                model.setCustomerAssignedAccountId(customerPartyType.getCustomerAssignedAccountIDValue());
-            }
-            if (customerPartyType.getParty() != null) {
-                PartyType partyType = customerPartyType.getParty();
-                if (partyType.getPartyLegalEntity() != null) {
-                    String registrationName = partyType.getPartyLegalEntity().stream().map(f -> f.getRegistrationNameValue()).reduce("", String::concat);
-                    model.setCustomerRegistrationName(!registrationName.isEmpty() ? registrationName : null);
-                }
-                if (partyType.getContact() != null) {
-                    ContactType contactType = partyType.getContact();
-                    if (contactType.getElectronicMail() != null) {
-                        model.setCustomerElectronicMail(contactType.getElectronicMailValue());
-                    }
-                }
-            }
+        if (type.getTaxTotal() != null && !type.getTaxTotal().isEmpty()) {
+            addTaxTotalAttributes(type.getTaxTotal(), model);
         }
         if (type.getLegalMonetaryTotal() != null) {
-            MonetaryTotalType monetaryTotalType = type.getLegalMonetaryTotal();
-            if (monetaryTotalType.getAllowanceTotalAmount() != null) {
-                model.setAllowanceTotalAmount(monetaryTotalType.getAllowanceTotalAmountValue());
-            }
-            if (monetaryTotalType.getChargeTotalAmount() != null) {
-                model.setChargeTotalAmount(monetaryTotalType.getChargeTotalAmountValue());
-            }
-            if (monetaryTotalType.getPayableAmount() != null) {
-                model.setPayableAmount(monetaryTotalType.getPayableAmountValue());
-            }
+            addLegalMonetaryTotalAttributes(type.getLegalMonetaryTotal(), model);
         }
-
-        LocalDateTime issueDateTime = null;
-        if (type.getIssueDate() != null) {
-            issueDateTime = toDateTime(type.getIssueDateValue());
-            if (type.getIssueTime() != null) {
-                LocalDateTime issueTime = toDateTime(type.getIssueTimeValue());
-                issueDateTime = LocalDateTime.of(issueDateTime.toLocalDate(), issueTime.toLocalTime());
-            }
-        }
-        model.setIssueDateTime(issueDateTime);
-
-        return model;
     }
 
-    public static DebitNoteModel importDebitNote(OpenfactSession session, OrganizationModel organization, DebitNoteModel model, DebitNoteType type) {
+    public static void importCreditNote(OpenfactSession session, OrganizationModel organization, DocumentModel model, CreditNoteType type) {
+        if (type.getIssueDate() != null) {
+            model.setSingleAttribute(ISSUE_DATE, type.getIssueDateValue().toString());
+        }
+        if (type.getCreditNoteTypeCode() != null) {
+            model.setSingleAttribute(CREDIT_NOTE_TYPE_CODE, type.getCreditNoteTypeCodeValue());
+        }
         if (type.getDocumentCurrencyCode() != null) {
-            model.setDocumentCurrencyCode(type.getDocumentCurrencyCodeValue());
+            model.setSingleAttribute(DOCUMENT_CURRENCY_CODE, type.getDocumentCurrencyCodeValue());
         }
 
+        if (type.getAccountingSupplierParty() != null) {
+            addAccountingSupplierAttributes(type.getAccountingSupplierParty(), model);
+        }
         if (type.getAccountingCustomerParty() != null) {
-            CustomerPartyType customerPartyType = type.getAccountingCustomerParty();
-            if (customerPartyType.getCustomerAssignedAccountIDValue() != null) {
-                model.setCustomerAssignedAccountId(customerPartyType.getCustomerAssignedAccountIDValue());
-            }
-            if (customerPartyType.getParty() != null) {
-                PartyType partyType = customerPartyType.getParty();
-                if (partyType.getPartyLegalEntity() != null) {
-                    String registrationName = partyType.getPartyLegalEntity().stream().map(f -> f.getRegistrationNameValue()).reduce("", String::concat);
-                    model.setCustomerRegistrationName(!registrationName.isEmpty() ? registrationName : null);
-                }
-                if (partyType.getContact() != null) {
-                    ContactType contactType = partyType.getContact();
-                    if (contactType.getElectronicMail() != null) {
-                        model.setCustomerElectronicMail(contactType.getElectronicMailValue());
-                    }
-                }
-            }
+            addAccountingCustomerAttributes(type.getAccountingCustomerParty(), model);
+        }
+        if (type.getTaxTotal() != null && !type.getTaxTotal().isEmpty()) {
+            addTaxTotalAttributes(type.getTaxTotal(), model);
+        }
+        if (type.getLegalMonetaryTotal() != null) {
+            addLegalMonetaryTotalAttributes(type.getLegalMonetaryTotal(), model);
+        }
+    }
+
+    public static void importDebitNote(OpenfactSession session, OrganizationModel organization, DocumentModel model, DebitNoteType type) {
+        if (type.getIssueDate() != null) {
+            model.setSingleAttribute(ISSUE_DATE, type.getIssueDateValue().toString());
+        }
+        if (type.getDocumentCurrencyCode() != null) {
+            model.setSingleAttribute(DOCUMENT_CURRENCY_CODE, type.getDocumentCurrencyCodeValue());
         }
 
+        if (type.getAccountingSupplierParty() != null) {
+            addAccountingSupplierAttributes(type.getAccountingSupplierParty(), model);
+        }
+        if (type.getAccountingCustomerParty() != null) {
+            addAccountingCustomerAttributes(type.getAccountingCustomerParty(), model);
+        }
+        if (type.getTaxTotal() != null && !type.getTaxTotal().isEmpty()) {
+            addTaxTotalAttributes(type.getTaxTotal(), model);
+        }
         if (type.getRequestedMonetaryTotal() != null) {
-            MonetaryTotalType monetaryTotalType = type.getRequestedMonetaryTotal();
-            if (monetaryTotalType.getAllowanceTotalAmount() != null) {
-                model.setAllowanceTotalAmount(monetaryTotalType.getAllowanceTotalAmountValue());
-            }
-            if (monetaryTotalType.getChargeTotalAmount() != null) {
-                model.setChargeTotalAmount(monetaryTotalType.getChargeTotalAmountValue());
-            }
-            if (monetaryTotalType.getPayableAmount() != null) {
-                model.setPayableAmount(monetaryTotalType.getPayableAmountValue());
+            addRequestedMonetaryTotalAttributes(type.getRequestedMonetaryTotal(), model);
+        }
+    }
+
+    public static void addAccountingSupplierAttributes(SupplierPartyType supplierPartyType, DocumentModel documentModel) {
+        if (supplierPartyType.getCustomerAssignedAccountID() != null) {
+            documentModel.setSingleAttribute(SUPPLIER_ASSIGNED_ACCOUNT_ID, supplierPartyType.getCustomerAssignedAccountIDValue());
+        }
+        if (supplierPartyType.getAdditionalAccountID() != null && !supplierPartyType.getAdditionalAccountID().isEmpty()) {
+            List<String> supplierAdditionalAccountID = supplierPartyType.getAdditionalAccountID().stream().map(f -> f.getValue()).collect(Collectors.toList());
+            documentModel.setAttribute(SUPPLIER_PARTY_ASSIGNED_ACCOUNT_ID, supplierAdditionalAccountID);
+        }
+        if (supplierPartyType.getParty() != null) {
+            PartyType partyType = supplierPartyType.getParty();
+            if (partyType.getPartyLegalEntity() != null && !partyType.getPartyLegalEntity().isEmpty()) {
+                List<String> supplierAdditionalAccountID = partyType.getPartyLegalEntity().stream().map(f -> f.getRegistrationNameValue()).collect(Collectors.toList());
+                documentModel.setAttribute(SUPPLIER_PARTY_REGISTRATION_NAME, supplierAdditionalAccountID);
             }
         }
+    }
 
-        LocalDateTime issueDateTime = null;
-        if (type.getIssueDate() != null) {
-            issueDateTime = toDateTime(type.getIssueDateValue());
-            if (type.getIssueTime() != null) {
-                LocalDateTime issueTime = toDateTime(type.getIssueTimeValue());
-                issueDateTime = LocalDateTime.of(issueDateTime.toLocalDate(), issueTime.toLocalTime());
+    public static void addAccountingCustomerAttributes(CustomerPartyType customerPartyType, DocumentModel documentModel) {
+        if (customerPartyType.getCustomerAssignedAccountID() != null) {
+            documentModel.setSingleAttribute(CUSTOMER_ASSIGNED_ACCOUNT_ID, customerPartyType.getCustomerAssignedAccountIDValue());
+        }
+        if (customerPartyType.getAdditionalAccountID() != null && !customerPartyType.getAdditionalAccountID().isEmpty()) {
+            List<String> supplierAdditionalAccountID = customerPartyType.getAdditionalAccountID().stream().map(f -> f.getValue()).collect(Collectors.toList());
+            documentModel.setAttribute(CUSTOMER_PARTY_ASSIGNED_ACCOUNT_ID, supplierAdditionalAccountID);
+        }
+        if (customerPartyType.getParty() != null) {
+            PartyType partyType = customerPartyType.getParty();
+            if (partyType.getPartyLegalEntity() != null && !partyType.getPartyLegalEntity().isEmpty()) {
+                List<String> supplierAdditionalAccountID = partyType.getPartyLegalEntity().stream().map(f -> f.getRegistrationNameValue()).collect(Collectors.toList());
+                documentModel.setAttribute(CUSTOMER_PARTY_REGISTRATION_NAME, supplierAdditionalAccountID);
             }
         }
-        model.setIssueDateTime(issueDateTime);
+    }
 
-        return model;
+    public static void addTaxTotalAttributes(List<TaxTotalType> taxTotalType, DocumentModel documentModel) {
+        List<String> taxTotal = taxTotalType.stream().map(f -> f.getTaxAmountValue().toString()).collect(Collectors.toList());
+        documentModel.setAttribute(TAX_TOTAL_AMOUNT, taxTotal);
+    }
+
+    public static void addLegalMonetaryTotalAttributes(MonetaryTotalType monetaryTotalType, DocumentModel documentModel) {
+        if (monetaryTotalType.getPayableAmount() != null) {
+            documentModel.setSingleAttribute(LEGAL_MONETARY_TOTAL_PAYABLE_AMOUNT, monetaryTotalType.getPayableAmountValue().toString());
+        }
+        if (monetaryTotalType.getChargeTotalAmount() != null) {
+            documentModel.setSingleAttribute(LEGAL_MONETARY_TOTAL_CHARGE_TOTAL_AMOUNT, monetaryTotalType.getChargeTotalAmountValue().toString());
+        }
+        if (monetaryTotalType.getAllowanceTotalAmount() != null) {
+            documentModel.setSingleAttribute(LEGAL_MONETARY_TOTAL_ALLOWANCE_TOTAL, monetaryTotalType.getAllowanceTotalAmountValue().toString());
+        }
+    }
+
+    public static void addRequestedMonetaryTotalAttributes(MonetaryTotalType monetaryTotalType, DocumentModel documentModel) {
+        if (monetaryTotalType.getPayableAmount() != null) {
+            documentModel.setSingleAttribute(REQUESTED_MONETARY_TOTAL_PAYABLE_AMOUNT, monetaryTotalType.getPayableAmountValue().toString());
+        }
+        if (monetaryTotalType.getChargeTotalAmount() != null) {
+            documentModel.setSingleAttribute(REQUESTED_MONETARY_TOTAL_CHARGE_TOTAL_AMOUNT, monetaryTotalType.getChargeTotalAmountValue().toString());
+        }
+        if (monetaryTotalType.getAllowanceTotalAmount() != null) {
+            documentModel.setSingleAttribute(REQUESTED_MONETARY_TOTAL_ALLOWANCE_TOTAL, monetaryTotalType.getAllowanceTotalAmountValue().toString());
+        }
     }
 
 }

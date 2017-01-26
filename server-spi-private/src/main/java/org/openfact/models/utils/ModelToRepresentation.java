@@ -31,7 +31,7 @@ import org.openfact.representations.idm.*;
 public class ModelToRepresentation {
 
     public static OrganizationRepresentation toRepresentation(OrganizationModel organization,
-            boolean internal) {
+                                                              boolean internal) {
         /**
          * General information
          */
@@ -124,24 +124,15 @@ public class ModelToRepresentation {
         return rep;
     }
 
-    public static InvoiceRepresentation toRepresentation(InvoiceModel model) {
-        InvoiceRepresentation rep = new InvoiceRepresentation();
+    public static DocumentRepresentation toRepresentation(DocumentModel model) {
+        DocumentRepresentation rep = new DocumentRepresentation();
 
         rep.setId(model.getId());
         rep.setDocumentId(model.getDocumentId());
-        rep.setIssueDateTime(model.getIssueDateTime());
-        rep.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
-
-        rep.setInvoiceTypeCode(model.getInvoiceTypeCode());
 
         rep.setCustomerRegistrationName(model.getCustomerRegistrationName());
         rep.setCustomerAssignedAccountId(model.getCustomerAssignedAccountId());
-        rep.setCustomerAdditionalAccountId(model.getCustomerAdditionalAccountId());
         rep.setCustomerElectronicMail(model.getCustomerElectronicMail());
-
-        rep.setAllowanceTotalAmount(model.getAllowanceTotalAmount());
-        rep.setChargeTotalAmount(model.getChargeTotalAmount());
-        rep.setPayableAmount(model.getPayableAmount());
 
         if (model.getAttributes() != null && !model.getAttributes().isEmpty()) {
             Map<String, List<String>> attrs = new HashMap<>();
@@ -149,90 +140,14 @@ public class ModelToRepresentation {
             rep.setAttributes(attrs);
         }
 
-        if(model.getRequiredActions() != null) {
+        if (model.getRequiredActions() != null) {
             rep.setRequiredActions(new HashSet<String>());
             rep.getRequiredActions().addAll(model.getRequiredActions());
         }
 
-        if(model.getAttatchedDocuments() != null) {
+        if (model.getAttatchedDocuments() != null) {
             List<AttatchedDocumentRepresentation> attatchedDocuments = new ArrayList<>();
-            for (AttatchedDocumentModel attatchedDocument: model.getAttatchedDocuments()) {
-                attatchedDocuments.add(toRepresentation(attatchedDocument));
-            }
-            rep.setAttatchedDocuments(attatchedDocuments);
-        }
-
-        return rep;
-    }
-
-    public static CreditNoteRepresentation toRepresentation(CreditNoteModel model) {
-        CreditNoteRepresentation rep = new CreditNoteRepresentation();
-
-        rep.setId(model.getId());
-        rep.setDocumentId(model.getDocumentId());
-        rep.setIssueDateTime(model.getIssueDateTime());
-        rep.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
-
-        rep.setCustomerRegistrationName(model.getCustomerRegistrationName());
-        rep.setCustomerAssignedAccountId(model.getCustomerAssignedAccountId());
-        rep.setCustomerElectronicMail(model.getCustomerElectronicMail());
-
-        rep.setAllowanceTotalAmount(model.getAllowanceTotalAmount());
-        rep.setChargeTotalAmount(model.getChargeTotalAmount());
-        rep.setPayableAmount(model.getPayableAmount());
-
-        if (model.getAttributes() != null && !model.getAttributes().isEmpty()) {
-            Map<String, List<String>> attrs = new HashMap<>();
-            attrs.putAll(model.getAttributes());
-            rep.setAttributes(attrs);
-        }
-
-        if(model.getRequiredActions() != null) {
-            rep.setRequiredActions(new HashSet<String>());
-            rep.getRequiredActions().addAll(model.getRequiredActions());
-        }
-
-        if(model.getAttatchedDocuments() != null) {
-            List<AttatchedDocumentRepresentation> attatchedDocuments = new ArrayList<>();
-            for (AttatchedDocumentModel attatchedDocument: model.getAttatchedDocuments()) {
-                attatchedDocuments.add(toRepresentation(attatchedDocument));
-            }
-            rep.setAttatchedDocuments(attatchedDocuments);
-        }
-
-        return rep;
-    }
-
-    public static DebitNoteRepresentation toRepresentation(DebitNoteModel model) {
-        DebitNoteRepresentation rep = new DebitNoteRepresentation();
-
-        rep.setId(model.getId());
-        rep.setDocumentId(model.getDocumentId());
-        rep.setIssueDateTime(model.getIssueDateTime());
-        rep.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
-
-        rep.setCustomerRegistrationName(model.getCustomerRegistrationName());
-        rep.setCustomerAssignedAccountId(model.getCustomerAssignedAccountId());
-        rep.setCustomerElectronicMail(model.getCustomerElectronicMail());
-
-        rep.setAllowanceTotalAmount(model.getAllowanceTotalAmount());
-        rep.setChargeTotalAmount(model.getChargeTotalAmount());
-        rep.setPayableAmount(model.getPayableAmount());
-
-        if (model.getAttributes() != null && !model.getAttributes().isEmpty()) {
-            Map<String, List<String>> attrs = new HashMap<>();
-            attrs.putAll(model.getAttributes());
-            rep.setAttributes(attrs);
-        }
-
-        if(model.getRequiredActions() != null) {
-            rep.setRequiredActions(new HashSet<String>());
-            rep.getRequiredActions().addAll(model.getRequiredActions());
-        }
-
-        if(model.getAttatchedDocuments() != null) {
-            List<AttatchedDocumentRepresentation> attatchedDocuments = new ArrayList<>();
-            for (AttatchedDocumentModel attatchedDocument: model.getAttatchedDocuments()) {
+            for (AttatchedDocumentModel attatchedDocument : model.getAttatchedDocuments()) {
                 attatchedDocuments.add(toRepresentation(attatchedDocument));
             }
             rep.setAttatchedDocuments(attatchedDocuments);
@@ -244,8 +159,8 @@ public class ModelToRepresentation {
     public static AttatchedDocumentRepresentation toRepresentation(AttatchedDocumentModel model) {
         AttatchedDocumentRepresentation rep = new AttatchedDocumentRepresentation();
         rep.setId(model.getId());
-        rep.setDocumentId(model.getDocumentId());
-        rep.setDocumentType(model.getDocumentType().toString());
+        rep.setDocumentId(model.getRelatedDocumentId());
+        rep.setDocumentType(model.getRelatedDocumentType().toString());
 
         if (model.getAttributes() != null && !model.getAttributes().isEmpty()) {
             Map<String, List<String>> attrs = new HashMap<>();
@@ -337,7 +252,7 @@ public class ModelToRepresentation {
     }
 
     public static ComponentRepresentation toRepresentation(OpenfactSession session, ComponentModel component,
-            boolean internal) {
+                                                           boolean internal) {
         ComponentRepresentation rep = new ComponentRepresentation();
         rep.setId(component.getId());
         rep.setName(component.getName());
@@ -388,7 +303,7 @@ public class ModelToRepresentation {
             rep.setResponseAttributes(attrs);
         }
 
-        if(model.getFileAttatchments() != null && !model.getFileAttatchments().isEmpty()) {
+        if (model.getFileAttatchments() != null && !model.getFileAttatchments().isEmpty()) {
             rep.setFileAttachments(new ArrayList<>());
             List<FileRepresentation> filesRep = model.getFileAttatchments().stream().map(f -> {
                 FileRepresentation fileRep = new FileRepresentation();
@@ -398,7 +313,7 @@ public class ModelToRepresentation {
             }).collect(Collectors.toList());
             rep.getFileAttachments().addAll(filesRep);
         }
-        if(model.getResponseFileAttatchments()!= null && !model.getResponseFileAttatchments().isEmpty()) {
+        if (model.getResponseFileAttatchments() != null && !model.getResponseFileAttatchments().isEmpty()) {
             rep.setResponseFileAttachments(new ArrayList<>());
             List<FileRepresentation> filesRep = model.getResponseFileAttatchments().stream().map(f -> {
                 FileRepresentation fileRep = new FileRepresentation();

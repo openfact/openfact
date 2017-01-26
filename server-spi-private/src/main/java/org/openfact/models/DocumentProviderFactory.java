@@ -16,30 +16,7 @@
  *******************************************************************************/
 package org.openfact.models;
 
-import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderFactory;
-import org.openfact.provider.Spi;
 
-public class DebitNoteSpi implements Spi {
-
-    @Override
-    public String getName() {
-        return "debitNote";
-    }
-
-    @Override
-    public Class<? extends Provider> getProviderClass() {
-        return DebitNoteProvider.class;
-    }
-
-    @Override
-    public Class<? extends ProviderFactory> getProviderFactoryClass() {
-        return DebitNoteProviderFactory.class;
-    }
-
-    @Override
-    public boolean isInternal() {
-        return false;
-    }
-
+public interface DocumentProviderFactory extends ProviderFactory<DocumentProvider> {
 }

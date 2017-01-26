@@ -16,19 +16,8 @@
  *******************************************************************************/
 package org.openfact.ubl;
 
-import org.openfact.models.DebitNoteModel;
+import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
 import org.openfact.provider.Provider;
 
-import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
-
-public interface UBLDebitNoteProvider extends Provider {
-
-    UBLIDGenerator<DebitNoteType> idGenerator();
-
-    UBLReader<DebitNoteType> reader();
-
-    UBLWriter<DebitNoteType> writer();
-    
-    UBLSender<DebitNoteModel> sender();
-
+public interface UBLDebitNoteProvider extends UBLProvider<DebitNoteType>, Provider {
 }

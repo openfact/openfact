@@ -28,21 +28,19 @@ import javax.persistence.*;
 @Entity
 @Table(name = "SEND_EVENT_RESPONSE_ATTRIBUTE")
 @NamedQueries({
-        @NamedQuery(name="getSendEventResponseAttributesByNameAndValue", query="select attr from SendEventResponseAttributeEntity attr where attr.name = :name and attr.value = :value"),
-        @NamedQuery(name="deleteSendEventResponseAttributesByNameAndSendEvent", query="delete from  SendEventResponseAttributeEntity attr where attr.sendEvent.id = :sendEventId and attr.name = :name"),
-        @NamedQuery(name="deleteSendEventResponseAttributesByNameAndSendEventOtherThan", query="delete from  SendEventResponseAttributeEntity attr where attr.sendEvent.id = :sendEventId and attr.name = :name and attr.id <> :attrId"),
-        @NamedQuery(name="deleteInvoiceSendEventResponseAttributesByOrganization", query="delete from SendEventResponseAttributeEntity attr where attr.sendEvent IN (select s from InvoiceSendEventEntity s join s.invoice i where i.organizationId=:organizationId)"),
-        @NamedQuery(name="deleteCreditNoteSendEventResponseAttributesByOrganization", query="delete from SendEventResponseAttributeEntity attr where attr.sendEvent IN (select s from CreditNoteSendEventEntity s join s.creditNote i where i.organizationId=:organizationId)"),
-        @NamedQuery(name="deleteDebitNoteSendEventResponseAttributesByOrganization", query="delete from SendEventResponseAttributeEntity attr where attr.sendEvent IN (select s from DebitNoteSendEventEntity s join s.debitNote i where i.organizationId=:organizationId)")
+        @NamedQuery(name = "getSendEventResponseAttributesByNameAndValue", query = "select attr from SendEventResponseAttributeEntity attr where attr.name = :name and attr.value = :value"),
+        @NamedQuery(name = "deleteSendEventResponseAttributesByNameAndSendEvent", query = "delete from  SendEventResponseAttributeEntity attr where attr.sendEvent.id = :sendEventId and attr.name = :name"),
+        @NamedQuery(name = "deleteSendEventResponseAttributesByNameAndSendEventOtherThan", query = "delete from  SendEventResponseAttributeEntity attr where attr.sendEvent.id = :sendEventId and attr.name = :name and attr.id <> :attrId"),
+        @NamedQuery(name = "deleteUblDocumentSendEventResponseAttributesByOrganization", query = "delete from SendEventResponseAttributeEntity attr where attr.sendEvent IN (select s from SendEventEntity s join s.document i where i.organizationId=:organizationId)")
 })
 public class SendEventResponseAttributeEntity {
 
     @Id
-    @Column(name="ID", length = 36)
-    @Access(AccessType.PROPERTY) // we do this because relationships often fetch id, but not entity.  This avoids an extra SQL
+    @Column(name = "ID", length = 36)
+    @Access(AccessType.PROPERTY)
     protected String id;
 
-    @ManyToOne(fetch= FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SEND_EVENT_ID")
     protected SendEventEntity sendEvent;
 
@@ -101,5 +99,5 @@ public class SendEventResponseAttributeEntity {
     public int hashCode() {
         return id.hashCode();
     }
-    
+
 }

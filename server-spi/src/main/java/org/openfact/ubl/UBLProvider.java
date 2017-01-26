@@ -14,32 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package org.openfact.models;
+package org.openfact.ubl;
 
+import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
+import org.openfact.models.DocumentModel;
 import org.openfact.provider.Provider;
-import org.openfact.provider.ProviderFactory;
-import org.openfact.provider.Spi;
 
-public class InvoiceSpi implements Spi {
+public interface UBLProvider<T> extends Provider {
 
-    @Override
-    public String getName() {
-        return "invoice";
-    }
+    UBLIDGenerator<T> idGenerator();
 
-    @Override
-    public Class<? extends Provider> getProviderClass() {
-        return InvoiceProvider.class;
-    }
+    UBLReader<T> reader();
 
-    @Override
-    public Class<? extends ProviderFactory> getProviderFactoryClass() {
-        return InvoiceProviderFactory.class;
-    }
+    UBLWriter<T> writer();
 
-    @Override
-    public boolean isInternal() {
-        return false;
-    }
+    UBLSender<DocumentModel> sender();
 
 }

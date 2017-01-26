@@ -22,22 +22,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
+import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 import org.json.JSONObject;
 import org.openfact.file.FileModel;
 import org.openfact.models.enums.DestinyType;
 import org.openfact.models.enums.DocumentType;
-import org.openfact.models.enums.RequiredAction;
 import org.openfact.provider.ProviderEvent;
+import org.openfact.models.enums.RequiredAction;
 import org.w3c.dom.Document;
 
-public interface DebitNoteModel {
+public interface DocumentModel {
 
     String DOCUMENT_ID = "documentId";
-    String ISSUE_DATETIME = "issueDateTime";
+    String CUSTOMER_REGISTRATION_NAME = "customerRegistrationName";
+    String CUSTOMER_ASSIGNED_ACCOUNT_ID = "customerAssignedAccountId";
+    String CREATED_TIMESTAMP = "createdTimestamp";
 
     String getId();
     String getDocumentId();
+    String getDocumentType();
     LocalDateTime getCreatedTimestamp();
 
     /**
@@ -46,14 +49,7 @@ public interface DebitNoteModel {
     OrganizationModel getOrganization();
 
     /**
-     * */
-
-    LocalDateTime getIssueDateTime();
-    void setIssueDateTime(LocalDateTime value);
-
-    String getDocumentCurrencyCode();
-    void setDocumentCurrencyCode(String value);
-
+     * Document information*/
     String getCustomerRegistrationName();
     void setCustomerRegistrationName(String value);
 
@@ -62,17 +58,6 @@ public interface DebitNoteModel {
 
     String getCustomerElectronicMail();
     void setCustomerElectronicMail(String value);
-
-    BigDecimal getAllowanceTotalAmount();
-    void setAllowanceTotalAmount(BigDecimal value);
-
-    BigDecimal getChargeTotalAmount();
-    void setChargeTotalAmount(BigDecimal value);
-
-    BigDecimal getPayableAmount();
-    void setPayableAmount(BigDecimal value);
-
-    DebitNoteType getDebitNoteType();
 
     /**
      * Xml
@@ -110,7 +95,6 @@ public interface DebitNoteModel {
 
     SendEventModel addSendEvent(DestinyType destinyType);
     SendEventModel getSendEventById(String id);
-    boolean removeSendEvent(String id);
     boolean removeSendEvent(SendEventModel sendEvent);
     List<SendEventModel> getSendEvents();
     List<SendEventModel> getSendEvents(Integer firstResult, Integer maxResults);
@@ -123,26 +107,27 @@ public interface DebitNoteModel {
      * Attatched documents*/
     List<AttatchedDocumentModel> getAttatchedDocuments();
     AttatchedDocumentModel getAttatchedDocumentById(String id);
-    AttatchedDocumentModel addAttatchedDocument(DocumentType documentType, String documentId);
+    AttatchedDocumentModel addAttatchedDocument(String documentType, String documentId);
     boolean removeAttatchedDocument(AttatchedDocumentModel attatchedDocument);
 
     /**
      * Events interfaces
      */
-    interface DebitNoteCreationEvent extends ProviderEvent {
-        DebitNoteModel getCreatedDebitNote();
+    interface DocumentCreationEvent extends ProviderEvent {
+        DocumentModel getCreatedDocument();
     }
 
-    interface DebitNotePostCreateEvent extends ProviderEvent {
-        DebitNoteModel getCreatedDebitNote();
+    interface DocumentPostCreateEvent extends ProviderEvent {
+        DocumentModel getCreatedDocument();
 
         OpenfactSession getOpenfactSession();
     }
 
-    interface DebitNoteRemovedEvent extends ProviderEvent {
+    interface DocumentRemovedEvent extends ProviderEvent {
+
         OrganizationModel getOrganization();
 
-        DebitNoteModel getDebitNote();
+        DocumentModel getDocument();
 
         OpenfactSession getOpenfactSession();
     }

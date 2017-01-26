@@ -34,20 +34,21 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 @Entity
-@Table(name = "INVOICE", uniqueConstraints = {
+@Table(name = "DOCUMENT", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"ORGANIZATION_ID", "DOCUMENT_ID"})
 })
 @NamedQueries({
-        @NamedQuery(name = "getAllInvoicesByOrganization", query = "select c from UblDocumentEntity c where c.organizationId = :organizationId order by c.createdTimestamp"),
-        @NamedQuery(name = "getAllInvoicesByOrganizationDesc", query = "select c from UblDocumentEntity c where c.organizationId = :organizationId order by c.createdTimestamp desc"),
-        @NamedQuery(name = "getAllInvoiceIdsByOrganization", query = "select c.id from UblDocumentEntity c where c.organizationId = :organizationId order by c.createdTimestamp"),
-        @NamedQuery(name = "getAllInvoicesByRequiredActionAndOrganization", query = "select c from UblDocumentEntity c inner join c.requiredActions r where c.organizationId = :organizationId and r.action in :requiredAction order by c.issueDateTime"),
-        @NamedQuery(name = "getOrganizationInvoiceById", query = "select i from UblDocumentEntity i where i.id = :id and i.organizationId = :organizationId"),
-        @NamedQuery(name = "getOrganizationInvoiceByDocumentId", query = "select i from UblDocumentEntity i where i.documentId = :documentId and i.organizationId = :organizationId"),
-        @NamedQuery(name = "searchForInvoice", query = "select i from UblDocumentEntity i where i.organizationId = :organizationId and lower(i.documentId) like :search order by i.createdTimestamp"),
-        @NamedQuery(name = "getOrganizationInvoiceCount", query = "select count(i) from UblDocumentEntity i where i.organizationId = :organizationId"),
-        @NamedQuery(name = "deleteInvoicesByOrganization", query = "delete from UblDocumentEntity u where u.organizationId = :organizationId")})
-public class UblDocumentEntity {
+        @NamedQuery(name = "getAllDocumentsByOrganization", query = "select c from DocumentEntity c where c.organizationId = :organizationId order by c.createdTimestamp"),
+        @NamedQuery(name = "getAllDocumentsByOrganizationDesc", query = "select c from DocumentEntity c where c.organizationId = :organizationId order by c.createdTimestamp desc"),
+        @NamedQuery(name = "getAllDocumentIdsByOrganization", query = "select c.id from DocumentEntity c where c.organizationId = :organizationId order by c.createdTimestamp"),
+        @NamedQuery(name = "getAllDocumentsByRequiredActionAndOrganization", query = "select c from DocumentEntity c inner join c.requiredActions r where c.organizationId = :organizationId and r.action in :requiredAction order by c.createdTimestamp"),
+        @NamedQuery(name = "getOrganizationDocumentById", query = "select i from DocumentEntity i where i.id = :id and i.organizationId = :organizationId"),
+        @NamedQuery(name = "getOrganizationDocumentByDocumentTypeAndId", query = "select i from DocumentEntity i where i.documentType=:documentType and i.documentId=:documentId and i.organizationId = :organizationId"),
+        @NamedQuery(name = "searchForDocument", query = "select i from DocumentEntity i where i.organizationId = :organizationId and lower(i.documentId) like :search order by i.createdTimestamp"),
+        @NamedQuery(name = "getOrganizationDocumentCount", query = "select count(i) from DocumentEntity i where i.organizationId = :organizationId"),
+        @NamedQuery(name = "deleteDocumentsByOrganization", query = "delete from DocumentEntity u where u.organizationId = :organizationId")
+})
+public class DocumentEntity {
 
     @Id
     @Column(name = "ID")
@@ -59,6 +60,10 @@ public class UblDocumentEntity {
     @NotNull
     @Column(name = "DOCUMENT_ID")
     private String documentId;
+
+    @NotNull
+    @Column(name = "DOCUMENT_TYPE")
+    private String documentType;
 
     @Column(name = "XML_FILE_ID")
     private String xmlFileId;
@@ -84,17 +89,17 @@ public class UblDocumentEntity {
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean enabled;
 
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "invoice")
-    private Collection<UblDocumentAttributeEntity> attributes = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "document")
+    private Collection<DocumentAttributeEntity> attributes = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "invoice")
-    private Collection<InvoiceRequiredActionEntity> requiredActions = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "document")
+    private Collection<DocumentRequiredActionEntity> requiredActions = new ArrayList<>();
 
-    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "invoice", fetch = FetchType.LAZY)
+    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "document", fetch = FetchType.LAZY)
     private Collection<SendEventEntity> sendEvents = new ArrayList<>();
 
-    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "invoice", fetch = FetchType.LAZY)
-    private Collection<InvoiceAttatchedDocumentEntity> attatchedDocuments = new ArrayList<>();
+    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "document", fetch = FetchType.LAZY)
+    private Collection<AttatchedDocumentEntity> attatchedDocuments = new ArrayList<>();
 
     @Override
     public int hashCode() {
@@ -112,7 +117,7 @@ public class UblDocumentEntity {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        UblDocumentEntity other = (UblDocumentEntity) obj;
+        DocumentEntity other = (DocumentEntity) obj;
         if (getId() == null) {
             if (other.getId() != null)
                 return false;
@@ -194,19 +199,19 @@ public class UblDocumentEntity {
         this.enabled = enabled;
     }
 
-    public Collection<UblDocumentAttributeEntity> getAttributes() {
+    public Collection<DocumentAttributeEntity> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(Collection<UblDocumentAttributeEntity> attributes) {
+    public void setAttributes(Collection<DocumentAttributeEntity> attributes) {
         this.attributes = attributes;
     }
 
-    public Collection<InvoiceRequiredActionEntity> getRequiredActions() {
+    public Collection<DocumentRequiredActionEntity> getRequiredActions() {
         return requiredActions;
     }
 
-    public void setRequiredActions(Collection<InvoiceRequiredActionEntity> requiredActions) {
+    public void setRequiredActions(Collection<DocumentRequiredActionEntity> requiredActions) {
         this.requiredActions = requiredActions;
     }
 
@@ -218,11 +223,19 @@ public class UblDocumentEntity {
         this.sendEvents = sendEvents;
     }
 
-    public Collection<InvoiceAttatchedDocumentEntity> getAttatchedDocuments() {
+    public Collection<AttatchedDocumentEntity> getAttatchedDocuments() {
         return attatchedDocuments;
     }
 
-    public void setAttatchedDocuments(Collection<InvoiceAttatchedDocumentEntity> attatchedDocuments) {
+    public void setAttatchedDocuments(Collection<AttatchedDocumentEntity> attatchedDocuments) {
         this.attatchedDocuments = attatchedDocuments;
+    }
+
+    public String getDocumentType() {
+        return documentType;
+    }
+
+    public void setDocumentType(String documentType) {
+        this.documentType = documentType;
     }
 }

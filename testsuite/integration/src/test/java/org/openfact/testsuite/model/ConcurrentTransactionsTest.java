@@ -21,6 +21,7 @@ import org.jboss.logging.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openfact.models.*;
+import org.openfact.models.enums.DocumentType;
 import org.openfact.models.utils.OpenfactModelUtils;
 
 import java.util.concurrent.CountDownLatch;
@@ -38,10 +39,10 @@ public class ConcurrentTransactionsTest extends AbstractModelTest {
         OrganizationModel organization = organizationManager.createOrganization("original");
         OpenfactSession session = organizationManager.getSession();
 
-        InvoiceModel invoice = session.invoices().addInvoice(organization, "F01-123");
-        invoice.setDocumentCurrencyCode("PEN");
+        DocumentModel document = session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-123", organization);
+        document.setCustomerElectronicMail("carlosthe19916@sistcoop.com");
 
-        String invoiceDBId = invoice.getId();
+        String documentDBId = document.getId();
 
         final OpenfactSessionFactory sessionFactory = session.getOpenfactSessionFactory();
         commit();
@@ -66,16 +67,16 @@ public class ConcurrentTransactionsTest extends AbstractModelTest {
 
                             // Read client
                             OrganizationModel organization = session.organizations().getOrganizationByName("original");
-                            InvoiceModel invoice = session.invoices().getInvoiceByDocumentId(organization, "F01-123");
-                            logger.info("transaction1: Read invoice finished");
+                            DocumentModel document = session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F01-123", organization);
+                            logger.info("transaction1: Read documentEntity finished");
                             readLatch.countDown();
 
                             // Wait until thread2 updates client and commits
                             updateLatch.await();
-                            logger.info("transaction1: Going to read invoice again");
+                            logger.info("transaction1: Going to read documentEntity again");
 
-                            invoice = session.invoices().getInvoiceByDocumentId(organization, "F01-123");
-                            logger.info("transaction1: document currency code: " + invoice.getDocumentCurrencyCode());
+                            document = session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F01-123", organization);
+                            logger.info("transaction1: document email: " + document.getCustomerElectronicMail());
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }
@@ -105,8 +106,8 @@ public class ConcurrentTransactionsTest extends AbstractModelTest {
                             logger.info("transaction2: Going to update document currency code");
 
                             OrganizationModel organization = session.organizations().getOrganizationByName("original");
-                            InvoiceModel invoice = session.invoices().getInvoiceByDocumentId(organization, "F01-123");
-                            invoice.setDocumentCurrencyCode("new");
+                            DocumentModel document = session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F01-123", organization);
+                            document.setCustomerElectronicMail("new");
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }
@@ -133,28 +134,26 @@ public class ConcurrentTransactionsTest extends AbstractModelTest {
         session = organizationManager.getSession();
 
         organization = session.organizations().getOrganizationByName("original");
-        InvoiceModel invoiceFromCache = session.invoices().getInvoiceById(organization, invoiceDBId);
-        InvoiceModel invoiceFromDB = session.getProvider(InvoiceProvider.class).getInvoiceById(organization, invoiceDBId);
+        DocumentModel documentFromCache = session.documents().getDocumentById(documentDBId, organization);
+        DocumentModel documentFromDB = session.getProvider(DocumentProvider.class).getDocumentById(documentDBId, organization);
 
-        logger.info("SECRET FROM DB : " + invoiceFromDB.getDocumentCurrencyCode());
-        logger.info("SECRET FROM CACHE : " + invoiceFromCache.getDocumentCurrencyCode());
+        logger.info("SECRET FROM DB : " + documentFromDB.getCustomerElectronicMail());
+        logger.info("SECRET FROM CACHE : " + documentFromCache.getCustomerElectronicMail());
 
-        Assert.assertEquals("new", invoiceFromDB.getDocumentCurrencyCode());
-        Assert.assertEquals("new", invoiceFromCache.getDocumentCurrencyCode());
+        Assert.assertEquals("new", documentFromDB.getCustomerElectronicMail());
+        Assert.assertEquals("new", documentFromCache.getCustomerElectronicMail());
     }
 
-
-    // KEYCLOAK-3296 , KEYCLOAK-3494
     @Test
     public void removeOrganizationAttribute() throws Exception {
         OrganizationModel organization = organizationManager.createOrganization("original");
         OpenfactSession session = organizationManager.getSession();
 
-        InvoiceModel invoice1 = session.invoices().addInvoice(organization, "F01-12");
-        invoice1.setSingleAttribute("foo", "val1");
+        DocumentModel document1 = session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-12", organization);
+        document1.setSingleAttribute("foo", "val1");
 
-        InvoiceModel invoice2 = session.invoices().addInvoice(organization, "F01-123");
-        invoice2.setSingleAttribute("foo", "val2");
+        DocumentModel document2 = session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-123", organization);
+        document2.setSingleAttribute("foo", "val2");
 
         final OpenfactSessionFactory sessionFactory = session.getOpenfactSessionFactory();
         commit();
@@ -175,21 +174,21 @@ public class ConcurrentTransactionsTest extends AbstractModelTest {
                             try {
                                 // Read user attribute
                                 OrganizationModel organization = session.organizations().getOrganizationByName("original");
-                                InvoiceModel invoice1 = session.invoices().getInvoiceByDocumentId(organization, "F01-12");
-                                String attrVal = invoice1.getFirstAttribute("foo");
+                                DocumentModel document1 = session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F01-12", organization);
+                                String attrVal = document1.getFirstAttribute("foo");
 
-                                InvoiceModel invoice2 = session.invoices().getInvoiceByDocumentId(organization, "F01-123");
-                                String attrVal2 = invoice2.getFirstAttribute("foo");
+                                DocumentModel document2 = session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F01-123", organization);
+                                String attrVal2 = document2.getFirstAttribute("foo");
 
                                 // Wait until it's read in both threads
                                 readAttrLatch.countDown();
                                 readAttrLatch.await();
 
                                 // KEYCLOAK-3296 : Remove user attribute in both threads
-                                invoice1.removeAttribute("foo");
+                                document1.removeAttribute("foo");
 
                                 // KEYCLOAK-3494 : Set single attribute in both threads
-                                invoice2.setSingleAttribute("foo", "bar");
+                                document2.setSingleAttribute("foo", "bar");
                             } catch (Exception e) {
                                 throw new RuntimeException(e);
                             }
