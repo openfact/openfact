@@ -40,13 +40,18 @@ import org.hibernate.annotations.Type;
 @NamedQueries({
         @NamedQuery(name = "getAllDocumentsByOrganization", query = "select c from DocumentEntity c where c.organizationId = :organizationId order by c.createdTimestamp"),
         @NamedQuery(name = "getAllDocumentsByOrganizationDesc", query = "select c from DocumentEntity c where c.organizationId = :organizationId order by c.createdTimestamp desc"),
+        @NamedQuery(name = "getAllDocumentsByOrganizationAndDocumentType", query = "select c from DocumentEntity c where c.organizationId = :organizationId and c.documentType=:documentType order by c.createdTimestamp"),
+        @NamedQuery(name = "getAllDocumentsByOrganizationAndDocumentTypeDesc", query = "select c from DocumentEntity c where c.organizationId = :organizationId and c.documentType=:documentType order by c.createdTimestamp desc"),
         @NamedQuery(name = "getAllDocumentIdsByOrganization", query = "select c.id from DocumentEntity c where c.organizationId = :organizationId order by c.createdTimestamp"),
         @NamedQuery(name = "getAllDocumentsByRequiredActionAndOrganization", query = "select c from DocumentEntity c inner join c.requiredActions r where c.organizationId = :organizationId and r.action in :requiredAction order by c.createdTimestamp"),
+        @NamedQuery(name = "getAllDocumentsByRequiredActionAndOrganizationAndDocumentType", query = "select c from DocumentEntity c inner join c.requiredActions r where c.organizationId = :organizationId and c.documentType=:documentType and r.action in :requiredAction order by c.createdTimestamp"),
         @NamedQuery(name = "getOrganizationDocumentById", query = "select i from DocumentEntity i where i.id = :id and i.organizationId = :organizationId"),
         @NamedQuery(name = "getOrganizationDocumentByDocumentTypeAndId", query = "select i from DocumentEntity i where i.documentType=:documentType and i.documentId=:documentId and i.organizationId = :organizationId"),
         @NamedQuery(name = "searchForDocument", query = "select i from DocumentEntity i where i.organizationId = :organizationId and lower(i.documentId) like :search order by i.createdTimestamp"),
         @NamedQuery(name = "getOrganizationDocumentCount", query = "select count(i) from DocumentEntity i where i.organizationId = :organizationId"),
         @NamedQuery(name = "deleteDocumentsByOrganization", query = "delete from DocumentEntity u where u.organizationId = :organizationId")
+
+
 })
 public class DocumentEntity {
 

@@ -39,6 +39,7 @@ import javax.persistence.Table;
 @Table(name = "DOCUMENT_ATTRIBUTE")
 @NamedQueries({
         @NamedQuery(name = "getDocumentAttributesByNameAndValue", query = "select attr from DocumentAttributeEntity attr where attr.name = :name and attr.value = :value"),
+        @NamedQuery(name = "getDocumentAttributesByNameAndValueAndDocumentType", query = "select attr from DocumentAttributeEntity attr join attr.document doc where attr.name = :name and attr.value = :value and doc.documentType=:documentType"),
         @NamedQuery(name = "deleteDocumentAttributesByOrganization", query = "delete from  DocumentAttributeEntity attr where attr.document IN (select u from DocumentEntity u where u.organizationId=:organizationId)"),
         @NamedQuery(name = "deleteDocumentAttributesByNameAndDocument", query = "delete from  DocumentAttributeEntity attr where attr.document.id = :documentId and attr.name = :name"),
         @NamedQuery(name = "deleteDocumentAttributesByNameAndDocumentOtherThan", query = "delete from  DocumentAttributeEntity attr where attr.document.id = :documentId and attr.name = :name and attr.id <> :attrId")

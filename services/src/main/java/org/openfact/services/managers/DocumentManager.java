@@ -107,7 +107,7 @@ public class DocumentManager {
             throw new ModelException(e);
         }
 
-        fireInvoicePostCreate(documentModel);
+        fireDocumentPostCreate(documentModel);
         return documentModel;
     }
 
@@ -148,7 +148,7 @@ public class DocumentManager {
             throw new ModelException(e);
         }
 
-        fireInvoicePostCreate(documentModel);
+        fireDocumentPostCreate(documentModel);
         return documentModel;
     }
 
@@ -189,7 +189,7 @@ public class DocumentManager {
             throw new ModelException(e);
         }
 
-        fireInvoicePostCreate(documentModel);
+        fireDocumentPostCreate(documentModel);
         return documentModel;
     }
 
@@ -222,7 +222,7 @@ public class DocumentManager {
         return false;
     }
 
-    private void fireInvoicePostCreate(DocumentModel document) {
+    protected void fireDocumentPostCreate(DocumentModel document) {
         session.getOpenfactSessionFactory().publish(new DocumentModel.DocumentPostCreateEvent() {
             @Override
             public DocumentModel getCreatedDocument() {

@@ -153,7 +153,7 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
     }
 
     @Override
-    public List<DocumentModel> getDocuments(OrganizationModel organization, Integer firstResult, Integer maxResults) {
+    public List<DocumentModel> getDocuments(OrganizationModel organization, int firstResult, int maxResults) {
         TypedQuery<DocumentEntity> query = em.createNamedQuery("getAllDocumentsByOrganization", DocumentEntity.class);
         query.setParameter("organizationId", organization.getId());
         if (firstResult != -1) {
@@ -167,12 +167,49 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
     }
 
     @Override
+    public List<DocumentModel> getDocuments(OrganizationModel organization, String documentType) {
+        return getDocuments(organization, documentType, -1, -1);
+    }
+
+    @Override
+    public List<DocumentModel> getDocuments(OrganizationModel organization, String documentType, int firstResult, int maxResults) {
+        TypedQuery<DocumentEntity> query = em.createNamedQuery("getAllDocumentsByOrganizationAndDocumentType", DocumentEntity.class);
+        query.setParameter("organizationId", organization.getId());
+        query.setParameter("documentType", documentType);
+        if (firstResult != -1) {
+            query.setFirstResult(firstResult);
+        }
+        if (maxResults != -1) {
+            query.setMaxResults(maxResults);
+        }
+        List<DocumentEntity> results = query.getResultList();
+        return results.stream().map(f -> new DocumentAdapter(session, organization, em, f)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<DocumentModel> getDocuments(OrganizationModel organization, String documentType, List<RequiredAction> requeridAction) {
+        return getDocuments(organization, documentType, requeridAction, -1, -1);
+    }
+
+    @Override
+    public List<DocumentModel> getDocuments(OrganizationModel organization, String documentType, List<RequiredAction> requeridAction, int firstResult, int maxResults) {
+        String queryJql = "select i from DocumentEntity i where i.organizationId=:organizationId and i.documentType=:documentType and :requiredAction in elements(i.requeridAction) order by i.createdTimestamp ";
+
+        TypedQuery<DocumentEntity> query = em.createQuery(queryJql, DocumentEntity.class);
+        query.setParameter("organizationId", organization.getId());
+        query.setParameter("documentType", documentType);
+        query.setParameter("requiredAction", requeridAction);
+        List<DocumentEntity> results = query.getResultList();
+        return results.stream().map(f -> new DocumentAdapter(session, organization, em, f)).collect(Collectors.toList());
+    }
+
+    @Override
     public List<DocumentModel> searchForDocument(String filterText, OrganizationModel organization) {
         return searchForDocument(filterText, organization, -1, -1);
     }
 
     @Override
-    public List<DocumentModel> searchForDocument(String filterText, OrganizationModel organization, Integer firstResult, Integer maxResults) {
+    public List<DocumentModel> searchForDocument(String filterText, OrganizationModel organization, int firstResult, int maxResults) {
         TypedQuery<DocumentEntity> query = em.createNamedQuery("searchForDocument", DocumentEntity.class);
         query.setParameter("organizationId", organization.getId());
         query.setParameter("search", "%" + filterText.toLowerCase() + "%");
@@ -224,35 +261,19 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
     }
 
     @Override
-    public List<DocumentModel> getDocuments(OrganizationModel organization, List<RequiredAction> requeridAction, boolean intoRequeridAction) {
-        String queryName = "";
-        if (intoRequeridAction) {
-            queryName = "select i from DocumentEntity i where i.organizationId = :organizationId and :requeridAction in elements(i.requeridAction) order by i.createdTimestamp ";
-        } else {
-            queryName = "select i from DocumentEntity i where i.organizationId = :organizationId and :requeridAction not in elements(i.requeridAction) order by i.createdTimestamp ";
-
-        }
-        TypedQuery<DocumentEntity> query = em.createQuery(queryName, DocumentEntity.class);
-        query.setParameter("organizationId", organization.getId());
-        query.setParameter("requeridAction", requeridAction);
-        List<DocumentEntity> results = query.getResultList();
-        return results.stream().map(f -> new DocumentAdapter(session, organization, em, f)).collect(Collectors.toList());
-    }
-
-    @Override
     public ScrollModel<DocumentModel> getDocumentScroll(OrganizationModel organization) {
         return getDocumentScroll(organization, true);
     }
 
     @Override
     public ScrollModel<DocumentModel> getDocumentScroll(OrganizationModel organization, boolean asc) {
-        return getDocumentScroll(organization, asc, -1);
+        return getDocumentScroll(organization, -1, asc);
     }
 
     @Override
-    public ScrollModel<DocumentModel> getDocumentScroll(OrganizationModel organization, boolean asc, int scrollSize) {
+    public ScrollModel<DocumentModel> getDocumentScroll(OrganizationModel organization, int scrollSize, boolean asc) {
         if (scrollSize == -1) {
-            scrollSize = 10;
+            scrollSize = 100;
         }
 
         String queryName = null;
@@ -265,11 +286,37 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
         TypedQuery<DocumentEntity> query = em.createNamedQuery(queryName, DocumentEntity.class);
         query.setParameter("organizationId", organization.getId());
 
-        ScrollAdapter<DocumentModel, DocumentEntity> result = new ScrollAdapter<>(DocumentEntity.class, query, f -> {
-            return new DocumentAdapter(session, organization, em, f);
-        });
+        return new ScrollAdapter<>(DocumentEntity.class, query, f -> new DocumentAdapter(session, organization, em, f), scrollSize);
+    }
 
-        return result;
+    @Override
+    public ScrollModel<DocumentModel> getDocumentScroll(OrganizationModel organization, String documentType) {
+        return getDocumentScroll(organization, documentType, true);
+    }
+
+    @Override
+    public ScrollModel<DocumentModel> getDocumentScroll(OrganizationModel organization, String documentType, boolean asc) {
+        return getDocumentScroll(organization, documentType, -1, asc);
+    }
+
+    @Override
+    public ScrollModel<DocumentModel> getDocumentScroll(OrganizationModel organization, String documentType, int scrollSize, boolean asc) {
+        if (scrollSize == -1) {
+            scrollSize = 100;
+        }
+
+        String queryName = null;
+        if (asc) {
+            queryName = "getAllDocumentsByOrganizationAndDocumentType";
+        } else {
+            queryName = "getAllDocumentsByOrganizationAndDocumentTypeDesc";
+        }
+
+        TypedQuery<DocumentEntity> query = em.createNamedQuery(queryName, DocumentEntity.class);
+        query.setParameter("organizationId", organization.getId());
+        query.setParameter("documentType", organization.getId());
+
+        return new ScrollAdapter<>(DocumentEntity.class, query, f -> new DocumentAdapter(session, organization, em, f), scrollSize);
     }
 
     @Override
@@ -282,10 +329,21 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
         query.setParameter("organizationId", organization.getId());
         query.setParameter("requiredAction", new ArrayList<>(Arrays.asList(requiredAction)));
 
-        ScrollModel<List<DocumentModel>> result = new ScrollPagingAdapter<>(DocumentEntity.class, query, f -> {
-            return f.stream().map(m -> new DocumentAdapter(session, organization, em, m)).collect(Collectors.toList());
-        });
-        return result;
+        return new ScrollPagingAdapter<>(DocumentEntity.class, query, f -> f.stream().map(m -> new DocumentAdapter(session, organization, em, m)).collect(Collectors.toList()), scrollSize);
+    }
+
+    @Override
+    public ScrollModel<List<DocumentModel>> getDocumentScroll(OrganizationModel organization, String documentType, int scrollSize, String... requiredAction) {
+        if (scrollSize == -1) {
+            scrollSize = 10;
+        }
+
+        TypedQuery<DocumentEntity> query = em.createNamedQuery("getAllDocumentsByRequiredActionAndOrganizationAndDocumentType", DocumentEntity.class);
+        query.setParameter("organizationId", organization.getId());
+        query.setParameter("requiredAction", new ArrayList<>(Arrays.asList(requiredAction)));
+        query.setParameter("documentType", documentType);
+
+        return new ScrollPagingAdapter<>(DocumentEntity.class, query, f -> f.stream().map(m -> new DocumentAdapter(session, organization, em, m)).collect(Collectors.toList()), scrollSize);
     }
 
     @Override
@@ -331,9 +389,47 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
 
     @Override
     public List<DocumentModel> searchForDocumentByAttribute(String attrName, String attrValue, OrganizationModel organization) {
+        return searchForDocumentByAttribute(attrName, attrValue, organization, -1, -1);
+    }
+
+    @Override
+    public List<DocumentModel> searchForDocumentByAttribute(String attrName, String attrValue, OrganizationModel organization, int firstResult, int maxResults) {
         TypedQuery<DocumentAttributeEntity> query = em.createNamedQuery("getDocumentAttributesByNameAndValue", DocumentAttributeEntity.class);
         query.setParameter("name", attrName);
         query.setParameter("value", attrValue);
+        if (firstResult != -1) {
+            query.setFirstResult(firstResult);
+        }
+        if (maxResults != -1) {
+            query.setMaxResults(maxResults);
+        }
+        List<DocumentAttributeEntity> results = query.getResultList();
+
+        List<DocumentModel> documents = new ArrayList<>();
+        for (DocumentAttributeEntity attr : results) {
+            DocumentEntity entity = attr.getDocument();
+            documents.add(new DocumentAdapter(session, organization, em, entity));
+        }
+        return documents;
+    }
+
+    @Override
+    public List<DocumentModel> searchForDocumentByAttribute(String documentType, String attrName, String attrValue, OrganizationModel organization) {
+        return searchForDocumentByAttribute(documentType, attrName, attrValue, organization, -1, -1);
+    }
+
+    @Override
+    public List<DocumentModel> searchForDocumentByAttribute(String documentType, String attrName, String attrValue, OrganizationModel organization, int firstResult, int maxResults) {
+        TypedQuery<DocumentAttributeEntity> query = em.createNamedQuery("getDocumentAttributesByNameAndValueAndDocumentType", DocumentAttributeEntity.class);
+        query.setParameter("name", attrName);
+        query.setParameter("value", attrValue);
+        query.setParameter("documentType", documentType);
+        if (firstResult != -1) {
+            query.setFirstResult(firstResult);
+        }
+        if (maxResults != -1) {
+            query.setMaxResults(maxResults);
+        }
         List<DocumentAttributeEntity> results = query.getResultList();
 
         List<DocumentModel> documents = new ArrayList<>();

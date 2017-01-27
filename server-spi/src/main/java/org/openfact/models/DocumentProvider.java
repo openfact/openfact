@@ -28,37 +28,61 @@ public interface DocumentProvider extends Provider {
 
     DocumentModel addDocument(String documentType, String documentId, OrganizationModel organization);
 
+    /**
+     * @param id
+     * @param organization
+     * @return
+     */
     DocumentModel getDocumentById(String id, OrganizationModel organization);
 
+    /**
+     * @param documentType
+     * @param documentId
+     * @param organization
+     * @return
+     */
     DocumentModel getDocumentByDocumentTypeAndId(String documentType, String documentId, OrganizationModel organization);
 
+    /**
+     * @param organization
+     */
     void preRemove(OrganizationModel organization);
 
     boolean removeDocument(String id, OrganizationModel organization);
 
+    /**
+     * @param organization
+     */
     int getDocumentsCount(OrganizationModel organization);
 
+    /**
+     * @param organization
+     */
     List<DocumentModel> getDocuments(OrganizationModel organization);
+    List<DocumentModel> getDocuments(OrganizationModel organization, int firstResult, int maxResults);
 
-    List<DocumentModel> getDocuments(OrganizationModel organization, List<RequiredAction> requeridAction, boolean intoRequeridAction);
+    List<DocumentModel> getDocuments(OrganizationModel organization, String documentType);
+    List<DocumentModel> getDocuments(OrganizationModel organization, String documentType, int firstResult, int maxResults);
 
-    List<DocumentModel> getDocuments(OrganizationModel organization, Integer firstResult, Integer maxResults);
+    List<DocumentModel> getDocuments(OrganizationModel organization, String documentType, List<RequiredAction> requeridAction);
+    List<DocumentModel> getDocuments(OrganizationModel organization, String documentType, List<RequiredAction> requeridAction, int firstResult, int maxResults);
 
     List<DocumentModel> searchForDocument(String filterText, OrganizationModel organization);
-
-    List<DocumentModel> searchForDocument(String filterText, OrganizationModel organization, Integer firstResult, Integer maxResults);
+    List<DocumentModel> searchForDocument(String filterText, OrganizationModel organization, int firstResult, int maxResults);
 
     SearchResultsModel<DocumentModel> searchForDocument(SearchCriteriaModel criteria, OrganizationModel organization);
-
     SearchResultsModel<DocumentModel> searchForDocument(String filterText, SearchCriteriaModel criteria, OrganizationModel organization);
 
     ScrollModel<DocumentModel> getDocumentScroll(OrganizationModel organization);
-
     ScrollModel<DocumentModel> getDocumentScroll(OrganizationModel organization, boolean asc);
-
-    ScrollModel<DocumentModel> getDocumentScroll(OrganizationModel organization, boolean asc, int scrollSize);
+    ScrollModel<DocumentModel> getDocumentScroll(OrganizationModel organization, int scrollSize, boolean asc);
+    
+    ScrollModel<DocumentModel> getDocumentScroll(OrganizationModel organization, String documentType);
+    ScrollModel<DocumentModel> getDocumentScroll(OrganizationModel organization, String documentType, boolean asc);
+    ScrollModel<DocumentModel> getDocumentScroll(OrganizationModel organization, String documentType, int scrollSize, boolean asc);
 
     ScrollModel<List<DocumentModel>> getDocumentScroll(OrganizationModel organization, int scrollSize, String... requiredAction);
+    ScrollModel<List<DocumentModel>> getDocumentScroll(OrganizationModel organization, String documentType, int scrollSize, String... requiredAction);
 
     /**
      * Search for invoice by parameter.  Valid parameters are:
@@ -91,4 +115,8 @@ public interface DocumentProvider extends Provider {
 
     // Searching by InvoiceModel.attribute (not property)
     List<DocumentModel> searchForDocumentByAttribute(String attrName, String attrValue, OrganizationModel organization);
+    List<DocumentModel> searchForDocumentByAttribute(String attrName, String attrValue, OrganizationModel organization, int firstResult, int maxResults);
+
+    List<DocumentModel> searchForDocumentByAttribute(String documentType, String attrName, String attrValue, OrganizationModel organization);
+    List<DocumentModel> searchForDocumentByAttribute(String documentType, String attrName, String attrValue, OrganizationModel organization, int firstResult, int maxResults);
 }
