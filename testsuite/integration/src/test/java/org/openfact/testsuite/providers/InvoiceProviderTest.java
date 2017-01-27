@@ -26,11 +26,12 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.openfact.models.InvoiceModel;
-import org.openfact.models.InvoiceProvider;
+import org.openfact.models.DocumentModel;
+import org.openfact.models.DocumentProvider;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
+import org.openfact.models.enums.DocumentType;
 
 public class InvoiceProviderTest extends AbstractProviderTest {
 
@@ -44,15 +45,15 @@ public class InvoiceProviderTest extends AbstractProviderTest {
 
     @Test
     public void createWithSeriesAndNumber() throws Exception {
-        createOrganization();        
-        
-        InvoiceModel invoice = session.invoices().addInvoice(organization, "F002-0003");
+        createOrganization();
+
+        DocumentModel document = session.documents().addDocument(DocumentType.INVOICE.toString(), "F002-0003", organization);
         commit();
 
-        assertThat(invoice, is(notNullValue()));
-        assertThat(invoice.getId(), is(notNullValue()));
-        assertThat(invoice.getDocumentId(), is("F002-0003"));
-    }    
+        assertThat(document, is(notNullValue()));
+        assertThat(document.getId(), is(notNullValue()));
+        assertThat(document.getDocumentId(), is("F002-0003"));
+    }
 
     @Test
     public void SeriesAndNumberCollision() {
@@ -60,19 +61,19 @@ public class InvoiceProviderTest extends AbstractProviderTest {
         OrganizationModel sistcoop2 = session.organizations().createOrganization("SISTCOOP2");
         commit();
 
-        session.invoices().addInvoice(sistcoop1, "F01-001");
-        session.invoices().addInvoice(sistcoop2, "F01-001");
+        session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-001", sistcoop1);
+        session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-001", sistcoop2);
         commit();
 
-        // Try to create invoice with duplicate series and number
+        // Try to create documentEntity with duplicate series and number
         try {
             sistcoop1 = session.organizations().getOrganizationByName("SISTCOOP1");
-            session.invoices().addInvoice(sistcoop1,"F01-001");
+            session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-001", sistcoop1);
             commit();
             Assert.fail("Expected exception");
         } catch (ModelDuplicateException e) {
         }
-        commit(true);       
+        commit(true);
 
         resetSession();
     }
@@ -80,46 +81,46 @@ public class InvoiceProviderTest extends AbstractProviderTest {
     @Test
     public void findById() throws Exception {
         createOrganization();
-        InvoiceModel invoice1 = session.invoices().addInvoice(organization, "F01-001");
+        DocumentModel document1 = session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-001", organization);
         commit();
 
-        InvoiceModel invoice2 = session.invoices().getInvoiceById(organization, invoice1.getId());
-        assertThat(invoice2, is(notNullValue()));
-        assertThat(invoice2.getId(), is(notNullValue()));
-        assertThat(invoice2.getId(), is(equalTo(invoice1.getId())));
-        assertThat(invoice2.getDocumentId(), is(equalTo(invoice1.getDocumentId())));
+        DocumentModel document2 = session.documents().getDocumentById(document1.getId(), organization);
+        assertThat(document2, is(notNullValue()));
+        assertThat(document2.getId(), is(notNullValue()));
+        assertThat(document2.getId(), is(equalTo(document1.getId())));
+        assertThat(document2.getDocumentId(), is(equalTo(document1.getDocumentId())));
     }
 
     @Test
     public void findBySeriesAndNumber() throws Exception {
         createOrganization();
-        InvoiceProvider provider = session.invoices();
-        InvoiceModel invoice1 = provider.addInvoice(organization, "F001-0001");
+        DocumentProvider provider = session.documents();
+        DocumentModel document1 = provider.addDocument(DocumentType.INVOICE.toString(), "F001-0001", organization);
         commit();
 
-        InvoiceModel invoice2 = session.invoices().getInvoiceByDocumentId(organization, "F001-0001");
-        assertThat(invoice2, is(notNullValue()));
-        assertThat(invoice2.getId(), is(notNullValue()));
-        assertThat(invoice2.getId(), is(equalTo(invoice1.getId())));
-        assertThat(invoice2.getDocumentId(), is(equalTo(invoice1.getDocumentId())));
+        DocumentModel document2 = session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F001-0001", organization);
+        assertThat(document2, is(notNullValue()));
+        assertThat(document2.getId(), is(notNullValue()));
+        assertThat(document2.getId(), is(equalTo(document1.getId())));
+        assertThat(document2.getDocumentId(), is(equalTo(document1.getDocumentId())));
     }
 
     @Test
     public void remove() throws Exception {
         createOrganization();
 
-        InvoiceProvider provider = session.invoices();
-        provider.addInvoice(organization, "F001-0001");
+        DocumentProvider provider = session.documents();
+        provider.addDocument(DocumentType.INVOICE.toString(), "F001-0001", organization);
         commit();
 
-        InvoiceModel invoice = session.invoices().getInvoiceByDocumentId(organization, "F001-0001");
-        assertThat(session.invoices().removeInvoice(organization, invoice), is(true));
-        assertThat(session.invoices().removeInvoice(organization, invoice), is(false));
-        assertThat(session.invoices().getInvoiceByDocumentId(organization, "F001-0001"), is(nullValue()));
+        DocumentModel document = session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F001-0001", organization);
+        assertThat(session.documents().removeDocument(document.getId(), organization), is(true));
+        assertThat(session.documents().removeDocument(document.getId(), organization), is(false));
+        assertThat(session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F001-0001", organization), is(nullValue()));
     }
 
     /**
-     * Get invoices
+     * Get documents
      */
     @Test
     public void getInvoicesByOrganization() throws Exception {
@@ -127,22 +128,23 @@ public class InvoiceProviderTest extends AbstractProviderTest {
         OrganizationModel sistcoop2 = session.organizations().createOrganization("SISTCOOP2");
         commit();
 
-        session.invoices().addInvoice(sistcoop1, "F01-001");
-        session.invoices().addInvoice(sistcoop1, "F01-002");
-        session.invoices().addInvoice(sistcoop1, "F01-003");
-        session.invoices().addInvoice(sistcoop2, "F01-004");
-        session.invoices().addInvoice(sistcoop2, "F01-005");
-        session.invoices().addInvoice(sistcoop2, "F01-006");
+        session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-001", sistcoop1);
+        session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-002", sistcoop1);
+        session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-003", sistcoop1);
+
+        session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-004", sistcoop2);
+        session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-005", sistcoop2);
+        session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-006", sistcoop2);
         commit();
 
-        List<InvoiceModel> invoices1 = session.invoices().getInvoices(sistcoop1);
-        List<InvoiceModel> invoices2 = session.invoices().getInvoices(sistcoop2);
+        List<DocumentModel> documents1 = session.documents().getDocuments(sistcoop1);
+        List<DocumentModel> documents2 = session.documents().getDocuments(sistcoop2);
 
-        List<InvoiceModel> invoices3 = session.invoices().getInvoices(sistcoop1, 0, 1);
+        List<DocumentModel> documents3 = session.documents().getDocuments(sistcoop1, 0, 1);
 
-        assertThat(invoices1.size(), is(3));
-        assertThat(invoices2.size(), is(3));
-        assertThat(invoices3.size(), is(1));
+        assertThat(documents1.size(), is(3));
+        assertThat(documents2.size(), is(3));
+        assertThat(documents3.size(), is(1));
     }
 
 }

@@ -23,19 +23,18 @@
 
 package org.openfact.models.jpa.entities;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Map;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-
-import org.hibernate.annotations.GenericGenerator;
-import org.openfact.models.enums.DocumentType;
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Table(name = "ATTATCHED_DOCUMENT")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "owner")
+@NamedQueries(value = {
+        @NamedQuery(name = "deleteAttatchedDocumentByOrganization", query = "delete from AttatchedDocumentEntity doc where doc.document IN (select i from DocumentEntity i where i.organizationId=:organizationId)")
+})
 public class AttatchedDocumentEntity {
 
     @Id
@@ -45,47 +44,19 @@ public class AttatchedDocumentEntity {
     @Access(AccessType.PROPERTY)
     private String id;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "DOCUMENT_TYPE")
-    private DocumentType documentType;
+    @Column(name = "RELATED_DOCUMENT_TYPE")
+    private String relatedDocumentType;
 
-    @Column(name = "DOCUMENT_ID")
-    private String documentId;
+    @Column(name = "RELATED_DOCUMENT_ID")
+    private String relatedDocumentId;
 
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy="attatchedDocument")
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(foreignKey = @ForeignKey, name = "DOCUMENT_ID")
+    private DocumentEntity document;
+
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "attatchedDocument")
     private Collection<AttatchedDocumentAttributeEntity> attributes = new ArrayList<>();
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public DocumentType getDocumentType() {
-        return documentType;
-    }
-
-    public void setDocumentType(DocumentType documentType) {
-        this.documentType = documentType;
-    }
-
-    public String getDocumentId() {
-        return documentId;
-    }
-
-    public void setDocumentId(String documentId) {
-        this.documentId = documentId;
-    }
-
-    public Collection<AttatchedDocumentAttributeEntity> getAttributes() {
-        return attributes;
-    }
-
-    public void setAttributes(Collection<AttatchedDocumentAttributeEntity> attributes) {
-        this.attributes = attributes;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -105,4 +76,43 @@ public class AttatchedDocumentEntity {
         return getId().hashCode();
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getRelatedDocumentType() {
+        return relatedDocumentType;
+    }
+
+    public void setRelatedDocumentType(String relatedDocumentType) {
+        this.relatedDocumentType = relatedDocumentType;
+    }
+
+    public String getRelatedDocumentId() {
+        return relatedDocumentId;
+    }
+
+    public void setRelatedDocumentId(String relatedDocumentId) {
+        this.relatedDocumentId = relatedDocumentId;
+    }
+
+    public DocumentEntity getDocument() {
+        return document;
+    }
+
+    public void setDocument(DocumentEntity document) {
+        this.document = document;
+    }
+
+    public Collection<AttatchedDocumentAttributeEntity> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Collection<AttatchedDocumentAttributeEntity> attributes) {
+        this.attributes = attributes;
+    }
 }

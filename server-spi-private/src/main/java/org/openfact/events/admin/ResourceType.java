@@ -31,17 +31,7 @@ public enum ResourceType {
     /**
      *
      */
-    , INVOICE
-
-    /**
-     *
-     */
-    , CREDIT_NOTE
-
-    /**
-     *
-     */
-    , DEBIT_NOTE
+    , DOCUMENT
 
     /**
      *

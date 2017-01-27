@@ -23,6 +23,7 @@ public class OrganizationAuth {
 
     private Resource resource;
     private AdminAuth auth;
+
     public OrganizationAuth(AdminAuth auth) {
         this.auth = auth;
     }
@@ -66,12 +67,8 @@ public class OrganizationAuth {
         switch (resource) {
             case ORGANIZATION:
                 return AdminRoles.VIEW_ORGANIZATION;
-            case INVOICE:
-                return AdminRoles.VIEW_INVOICES;
-            case CREDIT_NOTE:
-                return AdminRoles.VIEW_CREDIT_NOTES;
-            case DEBIT_NOTE:
-                return AdminRoles.VIEW_DEBIT_NOTES;
+            case DOCUMENT:
+                return AdminRoles.VIEW_DOCUMENTS;
             case EVENTS:
                 return AdminRoles.VIEW_EVENTS;
             case FILES:
@@ -87,12 +84,8 @@ public class OrganizationAuth {
         switch (resource) {
             case ORGANIZATION:
                 return AdminRoles.MANAGE_ORGANIZATION;
-            case INVOICE:
-                return AdminRoles.MANAGE_INVOICES;
-            case CREDIT_NOTE:
-                return AdminRoles.MANAGE_CREDIT_NOTES;
-            case DEBIT_NOTE:
-                return AdminRoles.MANAGE_DEBIT_NOTES;
+            case DOCUMENT:
+                return AdminRoles.MANAGE_DOCUMENTS;
             case EVENTS:
                 return AdminRoles.MANAGE_EVENTS;
             case FILES:
@@ -105,7 +98,7 @@ public class OrganizationAuth {
     }
 
     public enum Resource {
-        ORGANIZATION, INVOICE, CREDIT_NOTE, DEBIT_NOTE, EVENTS, FILES, REPORTS
+        ORGANIZATION, DOCUMENT, EVENTS, FILES, REPORTS
     }
 
 }

@@ -16,29 +16,14 @@
  *******************************************************************************/
 package org.openfact.ubl;
 
-import org.omg.CORBA.Object;
-import org.openfact.models.CreditNoteModel;
-import org.openfact.models.DebitNoteModel;
-import org.openfact.models.InvoiceModel;
-import org.openfact.models.OrganizationModel;
+import org.openfact.models.DocumentModel;
 import org.openfact.provider.Provider;
 import org.openfact.report.ReportDataProvider;
-import org.openfact.report.ReportTemplateProvider;
-import org.openfact.report.ReportTheme;
-
-import java.util.List;
-import java.util.Map;
 
 public interface UBLReportDataProvider<T> extends Provider {
 
     int getProviderPriority();
 
-    ReportDataProvider<InvoiceModel> invoice();
-
-    ReportDataProvider<CreditNoteModel> creditNote();
-
-    ReportDataProvider<DebitNoteModel> debitNote();
-
-    ReportDataProvider<UBLModel> ublModel();
+    ReportDataProvider<DocumentModel> document();
 
 }

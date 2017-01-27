@@ -16,19 +16,8 @@
  *******************************************************************************/
 package org.openfact.ubl;
 
-import org.openfact.models.InvoiceModel;
+import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 import org.openfact.provider.Provider;
 
-import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
-
-public interface UBLInvoiceProvider extends Provider {
-
-    UBLIDGenerator<InvoiceType> idGenerator();
-
-    UBLReader<InvoiceType> reader();
-
-    UBLWriter<InvoiceType> writer();
-
-    UBLSender<InvoiceModel> sender();
-
+public interface UBLInvoiceProvider extends UBLProvider<InvoiceType>, Provider {
 }

@@ -16,23 +16,11 @@
  *******************************************************************************/
 package org.openfact.ubl;
 
-import java.util.*;
-
-import org.apache.commons.validator.routines.EmailValidator;
-import org.openfact.email.EmailException;
-import org.openfact.email.EmailTemplateProvider;
-import org.openfact.file.FileModel;
-import org.openfact.file.FileMymeTypeModel;
-import org.openfact.file.FileProvider;
 import org.openfact.models.*;
 import org.openfact.models.enums.DestinyType;
-import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.enums.SendResultType;
 import org.openfact.models.utils.OpenfactModelUtils;
-import org.openfact.report.ExportFormat;
-import org.openfact.report.ReportException;
-import org.openfact.services.managers.CreditNoteManager;
-import org.openfact.services.managers.DebitNoteManager;
+import org.openfact.services.managers.DocumentManager;
 import org.w3c.dom.Document;
 
 import com.helger.ubl21.UBL21Reader;
@@ -55,7 +43,6 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
     @Override
     public UBLIDGenerator<CreditNoteType> idGenerator() {
         return new UBLIDGenerator<CreditNoteType>() {
-
             @Override
             public void close() {
             }
@@ -64,14 +51,12 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
             public String generateID(OrganizationModel organization, CreditNoteType t) {
                 return OpenfactModelUtils.generateId();
             }
-
         };
     }
 
     @Override
     public UBLReader<CreditNoteType> reader() {
         return new UBLReader<CreditNoteType>() {
-
             @Override
             public void close() {
             }
@@ -85,14 +70,12 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
             public CreditNoteType read(byte[] bytes) {
                 return UBL21Reader.creditNote().read(bytes);
             }
-
         };
     }
 
     @Override
     public UBLWriter<CreditNoteType> writer() {
         return new UBLWriter<CreditNoteType>() {
-
             @Override
             public void close() {
             }
@@ -101,45 +84,12 @@ public class DefaultUBLCreditNoteProvider implements UBLCreditNoteProvider {
             public Document write(OrganizationModel organization, CreditNoteType t) {
                 return UBL21Writer.creditNote().getAsDocument(t);
             }
-
         };
     }
 
     @Override
-    public UBLSender<CreditNoteModel> sender() {
-        return new UBLSender<CreditNoteModel>() {
-
-            @Override
-            public void close() {
-            }
-
-            @Override
-            public SendEventModel sendToCustomer(OrganizationModel organization, CreditNoteModel creditNote) throws ModelInsuficientData, SendException {
-                SendEventModel sendEvent = creditNote.addSendEvent(DestinyType.CUSTOMER);
-                sendToCustomer(organization, creditNote, sendEvent);
-                return sendEvent;
-            }
-
-            @Override
-            public void sendToCustomer(OrganizationModel organization, CreditNoteModel creditNote, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
-                CreditNoteManager manager = new CreditNoteManager(session);
-                manager.sendToThirdPartyByEmail(organization, creditNote, sendEvent, creditNote.getCustomerElectronicMail());
-            }
-
-            @Override
-            public SendEventModel sendToThirdParty(OrganizationModel organization, CreditNoteModel creditNote) throws SendException {
-                SendEventModel sendEvent = creditNote.addSendEvent(DestinyType.THIRD_PARTY);
-                sendToThirdParty(organization, creditNote, sendEvent);
-                return sendEvent;
-            }
-
-            @Override
-            public void sendToThirdParty(OrganizationModel organization, CreditNoteModel creditNoteModel, SendEventModel sendEvent) throws SendException {
-                sendEvent.setResult(SendResultType.ERROR);
-                sendEvent.setDescription("Could not send the credit note because there is no a valid Third Party. This feature should be implemented by your own code");
-            }
-
-        };
+    public UBLSender<DocumentModel> sender() {
+        return new DefaultUBLSenderProvider(session);
     }
 
 }

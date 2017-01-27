@@ -66,23 +66,23 @@ public interface ServicesLogger extends BasicLogger {
     void importingInvoicesFrom(Object from);
 
     @LogMessage(level = ERROR)
-    @Message(id = 7, value = "Failed to load 'openfact-add-invoice.json'")
+    @Message(id = 7, value = "Failed to load 'openfact-add-document.json'")
     void failedToLoadInvoices(@Cause Throwable t);
 
     @LogMessage(level = ERROR)
-    @Message(id = 8, value = "Failed to add invoice %s to organization %s: organization not found")
+    @Message(id = 8, value = "Failed to add document %s to organization %s: organization not found")
     void addInvoiceFailedOrganizationNotFound(String invoice, String organization);
 
     @LogMessage(level = INFO)
-    @Message(id = 9, value = "Added invoice '%s' to organization '%s'")
+    @Message(id = 9, value = "Added document '%s' to organization '%s'")
     void addInvoiceSuccess(String invoice, String organization);
 
     @LogMessage(level = ERROR)
-    @Message(id = 10, value = "Failed to add invoice '%s' to organization '%s': invoice with invoicename exists")
+    @Message(id = 10, value = "Failed to add document '%s' to organization '%s': document with invoicename exists")
     void addInvoiceFailedInvoiceExists(String invoice, String organization);
 
     @LogMessage(level = ERROR)
-    @Message(id = 11, value = "Failed to add invoice '%s' to organization '%s'")
+    @Message(id = 11, value = "Failed to add document '%s' to organization '%s'")
     void addInvoiceFailed(@Cause Throwable t, String invoice, String organization);
 
     @LogMessage(level = ERROR)
@@ -246,7 +246,7 @@ public interface ServicesLogger extends BasicLogger {
     void failedProcessingType(@Cause Exception e);
 
     @LogMessage(level = WARN)
-    @Message(id = 53, value = "login failure for invoice %s from ip %s")
+    @Message(id = 53, value = "login failure for document %s from ip %s")
     void loginFailure(String invoice, String ip);
 
     @LogMessage(level = ERROR)
@@ -338,15 +338,15 @@ public interface ServicesLogger extends BasicLogger {
     void failedToGetThemeRequest(@Cause Exception e);
 
     @LogMessage(level = ERROR)
-    @Message(id = 76, value = "Rejected non-local attempt to create initial invoice from %s")
+    @Message(id = 76, value = "Rejected non-local attempt to create initial document from %s")
     void rejectedNonLocalAttemptToCreateInitialInvoice(String remoteAddr);
 
     @LogMessage(level = INFO)
-    @Message(id = 77, value = "Created initial admin invoice with invoicename %s")
+    @Message(id = 77, value = "Created initial admin document with invoicename %s")
     void createdInitialAdminInvoice(String invoiceName);
 
     @LogMessage(level = WARN)
-    @Message(id = 78, value = "Rejected attempt to create initial invoice as invoice is already created")
+    @Message(id = 78, value = "Rejected attempt to create initial document as document is already created")
     void initialInvoiceAlreadyCreated();
 
     @LogMessage(level = WARN)

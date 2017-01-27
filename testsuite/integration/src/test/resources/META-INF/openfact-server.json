@@ -22,6 +22,10 @@
     "provider": "${openfact.organization.provider:jpa}"
   },
 
+  "document": {
+    "provider": "${openfact.invoice.provider:jpa}"
+  },
+
   "invoice": {
     "provider": "${openfact.invoice.provider:jpa}"
   },

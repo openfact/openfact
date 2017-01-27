@@ -1,0 +1,351 @@
+/*******************************************************************************
+ * Copyright 2016 Sistcoop, Inc. and/or its affiliates
+ * and other contributors as indicated by the @author tags.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *******************************************************************************/
+package org.openfact.services.managers;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
+import javax.xml.transform.TransformerException;
+
+import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
+import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
+import org.apache.commons.validator.routines.EmailValidator;
+import org.jboss.logging.Logger;
+import org.openfact.common.converts.DocumentUtils;
+import org.openfact.email.EmailException;
+import org.openfact.email.EmailTemplateProvider;
+import org.openfact.file.FileModel;
+import org.openfact.file.FileMymeTypeModel;
+import org.openfact.file.FileProvider;
+import org.openfact.models.*;
+import org.openfact.models.enums.DestinyType;
+import org.openfact.models.enums.DocumentType;
+import org.openfact.models.enums.RequiredAction;
+import org.openfact.models.enums.SendResultType;
+import org.openfact.models.utils.TypeToModel;
+import org.openfact.report.ExportFormat;
+import org.openfact.report.ReportException;
+import org.openfact.ubl.*;
+import org.w3c.dom.Document;
+
+import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.IDType;
+import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
+
+public class DocumentManager {
+
+    protected static final Logger logger = Logger.getLogger(DocumentManager.class);
+
+    protected OpenfactSession session;
+    protected DocumentProvider model;
+
+    public DocumentManager(OpenfactSession session) {
+        this.session = session;
+        this.model = session.documents();
+    }
+
+    public DocumentModel getDocumentById(String id, OrganizationModel organization) {
+        return model.getDocumentById(id, organization);
+    }
+
+    public DocumentModel getDocumentByTypeAndDocumentId(String type, String documentId, OrganizationModel organization) {
+        return model.getDocumentByDocumentTypeAndId(type, documentId, organization);
+    }
+
+    public DocumentModel getDocumentByTypeAndDocumentId(DocumentType type, String documentId, OrganizationModel organization) {
+        return model.getDocumentByDocumentTypeAndId(type.toString(), documentId, organization);
+    }
+
+    public DocumentModel addInvoice(InvoiceType invoiceType, Map<String, List<String>> attributes, OrganizationModel organization) {
+        UBLInvoiceProvider ublProvider = session.getProvider(UBLInvoiceProvider.class);
+
+        // Model persist
+        IDType documentId = invoiceType.getID();
+        if (documentId == null) {
+            String newDocumentId = ublProvider.idGenerator().generateID(organization, invoiceType);
+            documentId = new IDType(newDocumentId);
+            invoiceType.setID(documentId);
+        }
+        DocumentModel documentModel = model.addDocument(String.valueOf(DocumentType.INVOICE), documentId.getValue(), organization);
+
+        // Attributes
+        for (Map.Entry<String, List<String>> entry : attributes.entrySet()) {
+            documentModel.setAttribute(entry.getKey(), entry.getValue());
+        }
+
+        // Type to Model
+        TypeToModel.importInvoice(session, organization, documentModel, invoiceType);
+
+        // Required actions
+        Arrays.stream(RequiredAction.values()).forEach(c -> documentModel.addRequiredAction(c));
+
+        try {
+            // Generate Document
+            Document baseDocument = ublProvider.writer().write(organization, invoiceType);
+            Document signedDocument = session.getProvider(SignerProvider.class).sign(baseDocument, organization);
+            byte[] signedDocumentBytes = DocumentUtils.getBytesFromDocument(signedDocument);
+
+            // File
+            FileModel xmlFile = session.getProvider(FileProvider.class).createFile(organization, documentModel.getDocumentId() + ".xml", signedDocumentBytes);
+            documentModel.attachXmlFile(xmlFile);
+        } catch (TransformerException e) {
+            logger.error("Error parsing XML to byte", e);
+            throw new ModelException(e);
+        }
+
+        fireInvoicePostCreate(documentModel);
+        return documentModel;
+    }
+
+    public DocumentModel addCreditNote(CreditNoteType creditNoteType, Map<String, List<String>> attributes, OrganizationModel organization) {
+        UBLCreditNoteProvider ublProvider = session.getProvider(UBLCreditNoteProvider.class);
+
+        // Model persist
+        IDType documentId = creditNoteType.getID();
+        if (documentId == null) {
+            String newDocumentId = ublProvider.idGenerator().generateID(organization, creditNoteType);
+            documentId = new IDType(newDocumentId);
+            creditNoteType.setID(documentId);
+        }
+        DocumentModel documentModel = model.addDocument(String.valueOf(DocumentType.CREDIT_NOTE), documentId.getValue(), organization);
+
+        // Attributes
+        for (Map.Entry<String, List<String>> entry : attributes.entrySet()) {
+            documentModel.setAttribute(entry.getKey(), entry.getValue());
+        }
+
+        // Type to Model
+        TypeToModel.importCreditNote(session, organization, documentModel, creditNoteType);
+
+        // Required actions
+        Arrays.stream(RequiredAction.values()).forEach(c -> documentModel.addRequiredAction(c));
+
+        try {
+            // Generate Document
+            Document baseDocument = ublProvider.writer().write(organization, creditNoteType);
+            Document signedDocument = session.getProvider(SignerProvider.class).sign(baseDocument, organization);
+            byte[] signedDocumentBytes = DocumentUtils.getBytesFromDocument(signedDocument);
+
+            // File
+            FileModel xmlFile = session.getProvider(FileProvider.class).createFile(organization, documentModel.getDocumentId() + ".xml", signedDocumentBytes);
+            documentModel.attachXmlFile(xmlFile);
+        } catch (TransformerException e) {
+            logger.error("Error parsing XML to byte", e);
+            throw new ModelException(e);
+        }
+
+        fireInvoicePostCreate(documentModel);
+        return documentModel;
+    }
+
+    public DocumentModel addDebitNote(DebitNoteType debitNoteType, Map<String, List<String>> attributes, OrganizationModel organization) {
+        UBLDebitNoteProvider ublProvider = session.getProvider(UBLDebitNoteProvider.class);
+
+        // Model persist
+        IDType documentId = debitNoteType.getID();
+        if (documentId == null) {
+            String newDocumentId = ublProvider.idGenerator().generateID(organization, debitNoteType);
+            documentId = new IDType(newDocumentId);
+            debitNoteType.setID(documentId);
+        }
+        DocumentModel documentModel = model.addDocument(String.valueOf(DocumentType.DEBIT_NOTE), documentId.getValue(), organization);
+
+        // Attributes
+        for (Map.Entry<String, List<String>> entry : attributes.entrySet()) {
+            documentModel.setAttribute(entry.getKey(), entry.getValue());
+        }
+
+        // Type to Model
+        TypeToModel.importDebitNote(session, organization, documentModel, debitNoteType);
+
+        // Required actions
+        Arrays.stream(RequiredAction.values()).forEach(c -> documentModel.addRequiredAction(c));
+
+        try {
+            // Generate Document
+            Document baseDocument = ublProvider.writer().write(organization, debitNoteType);
+            Document signedDocument = session.getProvider(SignerProvider.class).sign(baseDocument, organization);
+            byte[] signedDocumentBytes = DocumentUtils.getBytesFromDocument(signedDocument);
+
+            // File
+            FileModel xmlFile = session.getProvider(FileProvider.class).createFile(organization, documentModel.getDocumentId() + ".xml", signedDocumentBytes);
+            documentModel.attachXmlFile(xmlFile);
+        } catch (TransformerException e) {
+            logger.error("Error parsing XML to byte", e);
+            throw new ModelException(e);
+        }
+
+        fireInvoicePostCreate(documentModel);
+        return documentModel;
+    }
+
+    public boolean removeDocument(OrganizationModel organization, DocumentModel document) {
+        return removeDocument(organization, document, session.documents());
+    }
+
+    public boolean removeDocument(OrganizationModel organization, DocumentModel document, DocumentProvider documentProvider) {
+        if (documentProvider.removeDocument(document.getId(), organization)) {
+            session.getOpenfactSessionFactory().publish(new DocumentModel.DocumentRemovedEvent() {
+
+                @Override
+                public OrganizationModel getOrganization() {
+                    return organization;
+                }
+
+                @Override
+                public DocumentModel getDocument() {
+                    return document;
+                }
+
+                @Override
+                public OpenfactSession getOpenfactSession() {
+                    return session;
+                }
+
+            });
+            return true;
+        }
+        return false;
+    }
+
+    private void fireInvoicePostCreate(DocumentModel document) {
+        session.getOpenfactSessionFactory().publish(new DocumentModel.DocumentPostCreateEvent() {
+            @Override
+            public DocumentModel getCreatedDocument() {
+                return document;
+            }
+
+            @Override
+            public OpenfactSession getOpenfactSession() {
+                return session;
+            }
+        });
+    }
+
+    public SendEventModel sendToCustomerParty(OrganizationModel organization, DocumentModel document) throws ModelInsuficientData, SendException {
+        SendEventModel sendEvent = document.addSendEvent(DestinyType.CUSTOMER);
+        sendToCustomerParty(organization, document, sendEvent);
+        return sendEvent;
+    }
+
+    public void sendToCustomerParty(OrganizationModel organization, DocumentModel document, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
+        DocumentType documentType = DocumentType.getFromString(document.getDocumentType());
+        UBLProvider ublProvider = null;
+        if (documentType != null) {
+            switch (documentType) {
+                case INVOICE:
+                    ublProvider = session.getProvider(UBLInvoiceProvider.class);
+                    break;
+                case CREDIT_NOTE:
+                    ublProvider = session.getProvider(UBLInvoiceProvider.class);
+                    break;
+                case DEBIT_NOTE:
+                    ublProvider = session.getProvider(UBLInvoiceProvider.class);
+                    break;
+            }
+        }
+        if (ublProvider != null) {
+            ublProvider.sender().sendToCustomer(organization, document, sendEvent);
+        } else {
+            sendToThirdPartyByEmail(organization, document, sendEvent, document.getCustomerElectronicMail());
+        }
+    }
+
+    public SendEventModel sendToThirdParty(OrganizationModel organization, DocumentModel document) throws ModelInsuficientData, SendException {
+        SendEventModel sendEvent = document.addSendEvent(DestinyType.THIRD_PARTY);
+        sendToThirdParty(organization, document, sendEvent);
+        return sendEvent;
+    }
+
+    public void sendToThirdParty(OrganizationModel organization, DocumentModel document, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
+        DocumentType documentType = DocumentType.getFromString(document.getDocumentType());
+        UBLProvider ublProvider = null;
+        if (documentType != null) {
+            switch (documentType) {
+                case INVOICE:
+                    ublProvider = session.getProvider(UBLInvoiceProvider.class);
+                    break;
+                case CREDIT_NOTE:
+                    ublProvider = session.getProvider(UBLCreditNoteProvider.class);
+                    break;
+                case DEBIT_NOTE:
+                    ublProvider = session.getProvider(UBLDebitNoteProvider.class);
+                    break;
+            }
+        }
+        if (ublProvider != null) {
+            ublProvider.sender().sendToThirdParty(organization, document, sendEvent);
+        } else {
+            logger.warn("UBL Provider not found to send to Third Party");
+        }
+    }
+
+    public SendEventModel sendToThirdPartyByEmail(OrganizationModel organization, DocumentModel document, String email) throws ModelInsuficientData, SendException {
+        SendEventModel sendEvent = document.addSendEvent(DestinyType.THIRD_PARTY_BY_EMAIL);
+        sendToThirdPartyByEmail(organization, document, sendEvent, email);
+        return sendEvent;
+    }
+
+    public void sendToThirdPartyByEmail(OrganizationModel organization, DocumentModel document, SendEventModel sendEvent, String email) throws ModelInsuficientData, SendException {
+        if (email == null || !EmailValidator.getInstance().isValid(email)) {
+            throw new ModelInsuficientData("Invalid Email");
+        }
+        if (organization.getSmtpConfig().size() == 0) {
+            throw new ModelInsuficientData("Could not find a valid smtp configuration on organization");
+        }
+
+        // User where the email will be send
+        UserSenderModel user = new UserSenderModel(email);
+
+        try {
+            FileProvider fileProvider = session.getProvider(FileProvider.class);
+
+            // Attatchments
+            FileModel xmlFile = fileProvider.createFile(organization, document.getDocumentId() + ".xml", document.getXmlAsFile().getFile());
+            FileMymeTypeModel xmlFileMymeType = new FileMymeTypeModel(xmlFile, "application/xml");
+
+            byte[] pdfFileBytes = session.getProvider(UBLReportProvider.class)
+                    .document()
+                    .setOrganization(organization)
+                    .getReport(document, ExportFormat.PDF);
+
+            FileModel pdfFile = fileProvider.createFile(organization, document.getDocumentId() + ".pdf", pdfFileBytes);
+            FileMymeTypeModel pdfFileMymeType = new FileMymeTypeModel(pdfFile, "application/pdf");
+
+            session.getProvider(EmailTemplateProvider.class)
+                    .setOrganization(organization).setUser(user)
+                    .setAttachments(Arrays.asList(xmlFileMymeType, pdfFileMymeType))
+                    .sendDocument(document);
+
+            // Write event to the database
+            sendEvent.setType("EMAIL");
+            sendEvent.setDescription("Document successfully sended");
+            sendEvent.attachFile(xmlFile);
+            sendEvent.attachFile(pdfFile);
+            sendEvent.setResult(SendResultType.SUCCESS);
+
+            sendEvent.setSingleDestinyAttribute("email", user.getEmail());
+        } catch (ReportException e) {
+            throw new SendException("Could not generate pdf report to attach file", e);
+        } catch (EmailException e) {
+            throw new SendException("Could not send email", e);
+        } catch (Throwable e) {
+            throw new SendException("Internal Server Error", e);
+        }
+    }
+
+}

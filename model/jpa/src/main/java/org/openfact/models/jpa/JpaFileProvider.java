@@ -68,7 +68,7 @@ public class JpaFileProvider implements FileProvider {
         if (entities.size() > 1)
             throw new IllegalStateException("Should not be more than one file with same name");
 
-        FileEntity entity= query.getResultList().get(0);
+        FileEntity entity = query.getResultList().get(0);
         return new FileAdapter(session, em, entity);
     }
 
@@ -83,14 +83,14 @@ public class JpaFileProvider implements FileProvider {
         if (entities.size() > 1)
             throw new IllegalStateException("Should not be more than one file with same name");
 
-        FileEntity entity= query.getResultList().get(0);
+        FileEntity entity = query.getResultList().get(0);
         return new FileAdapter(session, em, entity);
     }
 
     @Override
     public boolean removeFile(OrganizationModel organization, FileModel file) {
         FileEntity entity = em.find(FileEntity.class, file.getId());
-        if(entity.getOrganizationId().equals(organization.getId())) {
+        if (entity.getOrganizationId().equals(organization.getId())) {
             em.remove(entity);
             return true;
         }

@@ -33,11 +33,8 @@ import org.openfact.email.freemarker.beans.EventBean;
 import org.openfact.email.freemarker.beans.ProfileBean;
 import org.openfact.events.Event;
 import org.openfact.events.EventType;
-import org.openfact.file.FileModel;
 import org.openfact.file.FileMymeTypeModel;
-import org.openfact.models.CreditNoteModel;
-import org.openfact.models.DebitNoteModel;
-import org.openfact.models.InvoiceModel;
+import org.openfact.models.DocumentModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.UserSenderModel;
@@ -164,54 +161,28 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
         return sb.toString();
     }
 
-    @Override
-    public void sendInvoice(InvoiceModel invoice) throws EmailException {
-        Map<String, Object> attributes = new HashMap<String, Object>();
-        attributes.put("user", user.getFullName());
-        attributes.put("organizationName", getOrganizationName());
-
+    private String toCamelCase(String event) {
         StringBuilder sb = new StringBuilder();
-        if (organization.getDisplayName() != null) {
-            sb.append(organization.getDisplayName());
-        } else {
-            sb.append(organization.getName());
+        for (String s : event.toLowerCase().split("_")) {
+            sb.append(ObjectUtil.capitalize(s));
         }
-        sb.append("/").append(toCamelCase(EventType.INVOICE)).append(" ").append(invoice.getDocumentId());
-        send(sb.toString(), "invoice.ftl", attributes);
+        return sb.toString();
     }
 
     @Override
-    public void sendCreditNote(CreditNoteModel creditNote) throws EmailException {
+    public void sendDocument(DocumentModel invoice) throws EmailException {
         Map<String, Object> attributes = new HashMap<String, Object>();
         attributes.put("user", user.getFullName());
         attributes.put("organizationName", getOrganizationName());
 
-        StringBuilder sb = new StringBuilder();
+        StringBuilder subject = new StringBuilder();
         if (organization.getDisplayName() != null) {
-            sb.append(organization.getDisplayName());
+            subject.append(organization.getDisplayName());
         } else {
-            sb.append(organization.getName());
+            subject.append(organization.getName());
         }
-
-        sb.append("/").append(toCamelCase(EventType.CREDIT_NOTE)).append(" ").append(creditNote.getDocumentId());
-        send(sb.toString(), "credit_note.ftl", attributes);
-    }
-
-    @Override
-    public void sendDebitNote(DebitNoteModel debitNote) throws EmailException {
-        Map<String, Object> attributes = new HashMap<String, Object>();
-        attributes.put("user", user.getFullName());
-        attributes.put("organizationName", getOrganizationName());
-
-        StringBuilder sb = new StringBuilder();
-        if (organization.getDisplayName() != null) {
-            sb.append(organization.getDisplayName());
-        } else {
-            sb.append(organization.getName());
-        }
-
-        sb.append("/").append(toCamelCase(EventType.DEBIT_NOTE)).append(" ").append(debitNote.getDocumentId());
-        send(sb.toString(), "debit_note.ftl", attributes);
+        subject.append("/").append(toCamelCase(invoice.getDocumentType())).append(" ").append(invoice.getDocumentId());
+        send(subject.toString(), "document.ftl", attributes);
     }
 
 }

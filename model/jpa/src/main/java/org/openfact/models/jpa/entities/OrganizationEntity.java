@@ -49,7 +49,8 @@ import org.hibernate.annotations.Type;
         @NamedQuery(name = "getAllOrganizationIds", query = "select organization.id from OrganizationEntity organization"),
         @NamedQuery(name = "getOrganizationIdByName", query = "select organization.id from OrganizationEntity organization where organization.name = :name"),
         @NamedQuery(name = "getOrganizationsCount", query = "select count(organization.id) from OrganizationEntity organization"),
-        @NamedQuery(name = "searchForOrganization", query = "select organization from OrganizationEntity organization where lower(organization.name) like :filterText or lower(organization.supplierName) like :filterText or lower(organization.registrationName) like :filterText") })
+        @NamedQuery(name = "searchForOrganization", query = "select organization from OrganizationEntity organization where lower(organization.name) like :filterText or lower(organization.supplierName) like :filterText or lower(organization.registrationName) like :filterText")
+})
 public class OrganizationEntity {
 
     @Id
@@ -79,10 +80,6 @@ public class OrganizationEntity {
 
     @Column(name = "REGISTRATION_NAME")
     private String registrationName;
-
-    @Type(type = "org.hibernate.type.LocalDateTimeType")
-    @Column(name = "CREATED_TIMESTAMP")
-    private LocalDateTime createdTimestamp;
 
     @Column(name = "POSTAL_ADRESS_ID")
     private String postalAddressId;
@@ -114,12 +111,12 @@ public class OrganizationEntity {
 
     @ElementCollection
     @Column(name = "VALUE")
-    @CollectionTable(name = "ORGANIZATION_EVENTS_LISTENERS", joinColumns = { @JoinColumn(name = "ORGANIZATION_ID") })
+    @CollectionTable(name = "ORGANIZATION_EVENTS_LISTENERS", joinColumns = {@JoinColumn(name = "ORGANIZATION_ID")})
     private Set<String> eventsListeners = new HashSet<String>();
 
     @ElementCollection
     @Column(name = "VALUE")
-    @CollectionTable(name = "ORGANIZATION_ENABLED_EVENT_TYPES", joinColumns = { @JoinColumn(name = "ORGANIZATION_ID") })
+    @CollectionTable(name = "ORGANIZATION_ENABLED_EVENT_TYPES", joinColumns = {@JoinColumn(name = "ORGANIZATION_ID")})
     private Set<String> enabledEventTypes = new HashSet<String>();
 
     @Column(name = "ADMIN_EVENTS_ENABLED")
@@ -141,7 +138,7 @@ public class OrganizationEntity {
 
     @Column(name = "EMAIL_THEME")
     private String emailTheme;
-    
+
     @Column(name = "REPORT_THEME")
     private String reportTheme;
 
@@ -151,8 +148,8 @@ public class OrganizationEntity {
 
     @ElementCollection
     @Column(name = "VALUE")
-    @CollectionTable(name = "ORGANIZATION_SUPPORTED_LOCALES", joinColumns = { @JoinColumn(name = "ORGANIZATION_ID") })
-    private Set<String> supportedLocales = new HashSet<String>();
+    @CollectionTable(name = "ORGANIZATION_SUPPORTED_LOCALES", joinColumns = {@JoinColumn(name = "ORGANIZATION_ID")})
+    private Set<String> supportedLocales = new HashSet<>();
 
     @Column(name = "DEFAULT_LOCALE")
     private String defaultLocale;
@@ -170,22 +167,26 @@ public class OrganizationEntity {
     @ElementCollection
     @MapKeyColumn(name = "NAME")
     @Column(name = "VALUE")
-    @CollectionTable(name = "ORGANIZATION_SMTP_CONFIG", joinColumns = {@JoinColumn(name = "ORGANIZATION_ID") })
+    @CollectionTable(name = "ORGANIZATION_SMTP_CONFIG", joinColumns = {@JoinColumn(name = "ORGANIZATION_ID")})
     private Map<String, String> smtpConfig = new HashMap<String, String>();
 
-    @OneToMany(cascade ={CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "organization")
+    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "organization")
     private Collection<OrganizationAttributeEntity> attributes = new ArrayList<>();
 
-    @OneToMany(cascade ={CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "organization")
+    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "organization")
     private Collection<RequiredActionProviderEntity> requiredActionProviders = new ArrayList<>();
 
     @ElementCollection
     @Column(name = "VALUE")
-    @CollectionTable(name = "ORGANIZATION_SUPPORTED_CURRENCIES", joinColumns = { @JoinColumn(name = "ORGANIZATION_ID") })
-    private Set<String> supportedCurrencies = new HashSet<String>();
+    @CollectionTable(name = "ORGANIZATION_SUPPORTED_CURRENCIES", joinColumns = {@JoinColumn(name = "ORGANIZATION_ID")})
+    private Set<String> supportedCurrencies = new HashSet<>();
 
     @Column(name = "DEFAULT_CURRENCY")
     private String defaultCurrency;
+
+    @Type(type = "org.hibernate.type.LocalDateTimeType")
+    @Column(name = "CREATED_TIMESTAMP")
+    private LocalDateTime createdTimestamp;
 
     public String getId() {
         return id;

@@ -33,7 +33,6 @@ public class JpaFileProviderFactory implements FileProviderFactory {
 
     @Override
     public void postInit(OpenfactSessionFactory factory) {
-
     }
 
     @Override

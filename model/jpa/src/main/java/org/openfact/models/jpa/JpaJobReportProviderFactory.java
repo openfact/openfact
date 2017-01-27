@@ -30,7 +30,6 @@ public class JpaJobReportProviderFactory implements JobReportProviderFactory {
 
     @Override
     public void postInit(OpenfactSessionFactory factory) {
-
     }
 
     @Override

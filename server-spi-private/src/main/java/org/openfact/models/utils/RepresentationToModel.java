@@ -55,24 +55,24 @@ public class RepresentationToModel {
         };
 
         BiFunction<Object, FilterValueType, Object> valueFunction = (value, type) -> {
-            if(type == null) return value;
+            if (type == null) return value;
             Object result = null;
             switch (type) {
-            case LONG:
-                result = (long) value;
-                break;
-            case STRING:
-                result = (String) value;
-                break;
-            case DATE:
-                result = LocalDateTime.parse((String) value, DateTimeFormatter.ISO_DATE);
-                break;
-            case DATETIME:
-                result = LocalDateTime.parse((String) value, DateTimeFormatter.ISO_DATE_TIME);
-                break;
-            default:
-                result = value;
-                break;
+                case LONG:
+                    result = (long) value;
+                    break;
+                case STRING:
+                    result = (String) value;
+                    break;
+                case DATE:
+                    result = LocalDateTime.parse((String) value, DateTimeFormatter.ISO_DATE);
+                    break;
+                case DATETIME:
+                    result = LocalDateTime.parse((String) value, DateTimeFormatter.ISO_DATE_TIME);
+                    break;
+                default:
+                    result = value;
+                    break;
             }
             return result;
         };
@@ -86,15 +86,17 @@ public class RepresentationToModel {
         rep.getOrders().forEach(f -> model.addOrder(f.getName(), f.isAscending()));
 
         // paging
-        PagingRepresentation paging = rep.getPaging();
-        model.setPageSize(paging.getPageSize());
-        model.setPage(paging.getPage());
+        if (rep.getPaging() != null) {
+            PagingRepresentation paging = rep.getPaging();
+            model.setPageSize(paging.getPageSize());
+            model.setPage(paging.getPage());
+        }
 
         return model;
     }
 
     public static void importOrganization(OpenfactSession session, OrganizationRepresentation rep,
-            OrganizationModel newOrganization) {
+                                          OrganizationModel newOrganization) {
 
         newOrganization.setName(rep.getOrganization());
 
@@ -249,7 +251,7 @@ public class RepresentationToModel {
     }
 
     public static void updateOrganization(OrganizationRepresentation rep, OrganizationModel organization,
-            OpenfactSession session) {
+                                          OpenfactSession session) {
         if (rep.getOrganization() != null) {
             renameOrganization(organization, rep.getOrganization());
         }
@@ -437,7 +439,7 @@ public class RepresentationToModel {
     }
 
     public static void updateComponent(OpenfactSession session, ComponentRepresentation rep,
-            ComponentModel component, boolean internal) {
+                                       ComponentModel component, boolean internal) {
         if (rep.getParentId() != null) {
             component.setParentId(rep.getParentId());
         }

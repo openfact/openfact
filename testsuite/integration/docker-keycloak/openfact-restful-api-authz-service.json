@@ -157,24 +157,24 @@
 
     {
       "name": "Only View Documents Client Role Policy",
-      "description": "Defines that only view-invoices, view-credit-notes, view-debit-notes client role can do something",
+      "description": "Defines that only view-documents client role can do something",
       "type": "role",
       "logic": "POSITIVE",
       "decisionStrategy": "UNANIMOUS",
       "config": {
         "applyPolicies": "[]",
-        "roles": "[{\"id\":\"view-invoices\"},{\"id\":\"view-credit-notes\"},{\"id\":\"view-debit-notes\"}]"
+        "roles": "[{\"id\":\"view-documents\"}]"
       }
     },
     {
       "name": "Only Manage Documents Client Role Policy",
-      "description": "Defines that only manage-invoices, manage-credit-notes, manage-debit-notes client role can do something",
+      "description": "Defines that only manage-documents client role can do something",
       "type": "role",
       "logic": "POSITIVE",
       "decisionStrategy": "UNANIMOUS",
       "config": {
         "applyPolicies": "[]",
-        "roles": "[{\"id\":\"manage-invoices\"},{\"id\":\"manage-credit-notes\"},{\"id\":\"manage-debit-notes\"}]"
+        "roles": "[{\"id\":\"manage-documents\"}]"
       }
     },
     {

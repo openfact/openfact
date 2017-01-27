@@ -16,22 +16,11 @@
  *******************************************************************************/
 package org.openfact.ubl;
 
-import java.util.*;
-
-import org.apache.commons.validator.routines.EmailValidator;
-import org.openfact.email.EmailException;
-import org.openfact.email.EmailTemplateProvider;
-import org.openfact.file.FileModel;
-import org.openfact.file.FileMymeTypeModel;
-import org.openfact.file.FileProvider;
 import org.openfact.models.*;
 import org.openfact.models.enums.DestinyType;
-import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.enums.SendResultType;
 import org.openfact.models.utils.OpenfactModelUtils;
-import org.openfact.report.ExportFormat;
-import org.openfact.report.ReportException;
-import org.openfact.services.managers.InvoiceManager;
+import org.openfact.services.managers.DocumentManager;
 import org.w3c.dom.Document;
 
 import com.helger.ubl21.UBL21Reader;
@@ -95,45 +84,12 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
             public Document write(OrganizationModel organization, InvoiceType t) {
                 return UBL21Writer.invoice().getAsDocument(t);
             }
-
         };
     }
 
     @Override
-    public UBLSender<InvoiceModel> sender() {
-        return new UBLSender<InvoiceModel>() {
-
-            @Override
-            public void close() {
-            }
-
-            @Override
-            public SendEventModel sendToCustomer(OrganizationModel organization, InvoiceModel invoice) throws ModelInsuficientData, SendException {
-                SendEventModel sendEvent = invoice.addSendEvent(DestinyType.CUSTOMER);
-                sendToCustomer(organization, invoice, sendEvent);
-                return sendEvent;
-            }
-
-            @Override
-            public void sendToCustomer(OrganizationModel organization, InvoiceModel invoice, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
-                InvoiceManager manager = new InvoiceManager(session);
-                manager.sendToThirdPartyByEmail(organization, invoice, sendEvent, invoice.getCustomerElectronicMail());
-            }
-
-            @Override
-            public SendEventModel sendToThirdParty(OrganizationModel organization, InvoiceModel invoice) throws ModelInsuficientData, SendException {
-                SendEventModel sendEvent = invoice.addSendEvent(DestinyType.THIRD_PARTY);
-                sendToThirdParty(organization, invoice, sendEvent);
-                return sendEvent;
-            }
-
-            @Override
-            public void sendToThirdParty(OrganizationModel organization, InvoiceModel invoiceModel, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
-                sendEvent.setResult(SendResultType.ERROR);
-                sendEvent.setDescription("Could not send the invoice because there is no a valid Third Party. This feature should be implemented by your own code");
-            }
-
-        };
+    public UBLSender<DocumentModel> sender() {
+        return new DefaultUBLSenderProvider(session);
     }
 
 }

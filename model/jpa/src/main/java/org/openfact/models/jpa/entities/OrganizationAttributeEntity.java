@@ -13,15 +13,15 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @NamedQueries({
-        @NamedQuery(name="deleteOrganizationAttributesByOrganization", query="delete from OrganizationAttributeEntity attr where attr.organization = :organization")
+        @NamedQuery(name = "deleteOrganizationAttributesByOrganization", query = "delete from OrganizationAttributeEntity attr where attr.organization = :organization")
 })
-@Table(name="ORGANIZATION_ATTRIBUTE")
+@Table(name = "ORGANIZATION_ATTRIBUTE")
 @Entity
 @IdClass(OrganizationAttributeEntity.Key.class)
 public class OrganizationAttributeEntity {
 
     @Id
-    @ManyToOne(fetch= FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ORGANIZATION_ID")
     protected OrganizationEntity organization;
 
@@ -86,7 +86,8 @@ public class OrganizationAttributeEntity {
             Key key = (Key) o;
 
             if (name != null ? !name.equals(key.name) : key.name != null) return false;
-            if (organization != null ? !organization.getId().equals(key.organization != null ? key.organization.getId() : null) : key.organization != null) return false;
+            if (organization != null ? !organization.getId().equals(key.organization != null ? key.organization.getId() : null) : key.organization != null)
+                return false;
 
             return true;
         }
@@ -108,7 +109,8 @@ public class OrganizationAttributeEntity {
         OrganizationAttributeEntity key = (OrganizationAttributeEntity) o;
 
         if (name != null ? !name.equals(key.name) : key.name != null) return false;
-        if (organization != null ? !organization.getId().equals(key.organization != null ? key.organization.getId() : null) : key.organization != null) return false;
+        if (organization != null ? !organization.getId().equals(key.organization != null ? key.organization.getId() : null) : key.organization != null)
+            return false;
 
         return true;
     }

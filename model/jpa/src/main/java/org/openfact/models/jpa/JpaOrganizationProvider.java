@@ -126,9 +126,7 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
         }
         em.refresh(organization);
         final OrganizationAdapter adapter = new OrganizationAdapter(session, em, organization);
-        session.invoices().preRemove(adapter);
-        session.creditNotes().preRemove(adapter);
-        session.debitNotes().preRemove(adapter);
+        session.documents().preRemove(adapter);
 
         session.jobReports().preRemove(adapter);
         session.files().preRemove(adapter);

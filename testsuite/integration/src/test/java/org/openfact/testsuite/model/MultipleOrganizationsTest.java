@@ -22,10 +22,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openfact.file.FileModel;
 import org.openfact.file.FileProvider;
-import org.openfact.models.CreditNoteModel;
-import org.openfact.models.DebitNoteModel;
-import org.openfact.models.InvoiceModel;
+import org.openfact.models.DocumentModel;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.enums.DocumentType;
 
 /**
  * @author <a href="mailto:mposolda@sistcoop.com">Marek Posolda</a>
@@ -47,66 +46,24 @@ public class MultipleOrganizationsTest extends AbstractModelTest {
     }
 
     @Test
-    public void testInvoices() {
-        InvoiceModel r1invoice1 = session.invoices().getInvoiceByDocumentId(organization1, "F01-001");
-        InvoiceModel r2invoice1 = session.invoices().getInvoiceByDocumentId(organization2, "F01-001");
+    public void testDocuments() {
+        DocumentModel r1invoice1 = session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F01-001", organization1);
+        DocumentModel r2invoice1 = session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F01-001", organization2);
         Assert.assertEquals(r1invoice1.getDocumentId(), r2invoice1.getDocumentId());
         Assert.assertNotEquals(r1invoice1.getId(), r2invoice1.getId());
 
         // Test searching
-        Assert.assertEquals(2, session.invoices().searchForInvoice(organization1, "F01").size());
+        Assert.assertEquals(2, session.documents().searchForDocument("F01", organization1).size());
 
         commit();
         organization1 = model.getOrganization("id1");
         organization2 = model.getOrganization("id2");
 
-        session.invoices().removeInvoice(organization1, r1invoice1);
-        InvoiceModel invoice2 = session.invoices().getInvoiceByDocumentId(organization1, "F01-002");
-        session.invoices().removeInvoice(organization1, invoice2);
-        Assert.assertEquals(0, session.invoices().searchForInvoice(organization1, "F01").size());
-        Assert.assertEquals(2, session.invoices().searchForInvoice(organization2, "F01").size());
-    }
-
-    @Test
-    public void testCreditNotes() {
-        CreditNoteModel r1creditNote1 = session.creditNotes().getCreditNoteByDocumentId(organization1, "C01-001");
-        CreditNoteModel r2creditNote1 = session.creditNotes().getCreditNoteByDocumentId(organization2, "C01-001");
-        Assert.assertEquals(r1creditNote1.getDocumentId(), r2creditNote1.getDocumentId());
-        Assert.assertNotEquals(r1creditNote1.getId(), r2creditNote1.getId());
-
-        // Test searching
-        Assert.assertEquals(2, session.creditNotes().searchForCreditNote(organization1, "C01").size());
-
-        commit();
-        organization1 = model.getOrganization("id1");
-        organization2 = model.getOrganization("id2");
-
-        session.creditNotes().removeCreditNote(organization1, r1creditNote1);
-        CreditNoteModel creditNote2 = session.creditNotes().getCreditNoteByDocumentId(organization1, "C01-002");
-        session.creditNotes().removeCreditNote(organization1, creditNote2);
-        Assert.assertEquals(0, session.creditNotes().searchForCreditNote(organization1, "C01").size());
-        Assert.assertEquals(2, session.creditNotes().searchForCreditNote(organization2, "C01").size());
-    }
-
-    @Test
-    public void testDebitNotes() {
-        DebitNoteModel r1debitNote1 = session.debitNotes().getDebitNoteByDocumentId(organization1, "D01-001");
-        DebitNoteModel r2debitNote1 = session.debitNotes().getDebitNoteByDocumentId(organization2, "D01-001");
-        Assert.assertEquals(r1debitNote1.getDocumentId(), r2debitNote1.getDocumentId());
-        Assert.assertNotEquals(r1debitNote1.getId(), r2debitNote1.getId());
-
-        // Test searching
-        Assert.assertEquals(2, session.debitNotes().searchForDebitNote(organization1, "D01").size());
-
-        commit();
-        organization1 = model.getOrganization("id1");
-        organization2 = model.getOrganization("id2");
-
-        session.debitNotes().removeDebitNote(organization1, r1debitNote1);
-        DebitNoteModel creditNote2 = session.debitNotes().getDebitNoteByDocumentId(organization1, "D01-002");
-        session.debitNotes().removeDebitNote(organization1, creditNote2);
-        Assert.assertEquals(0, session.debitNotes().searchForDebitNote(organization1, "D01").size());
-        Assert.assertEquals(2, session.debitNotes().searchForDebitNote(organization2, "D01").size());
+        session.documents().removeDocument(r1invoice1.getId(), organization1);
+        DocumentModel invoice2 = session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F01-002", organization1);
+        session.documents().removeDocument(invoice2.getId(), organization1);
+        Assert.assertEquals(0, session.documents().searchForDocument("F01", organization1).size());
+        Assert.assertEquals(2, session.documents().searchForDocument("F01", organization2).size());
     }
 
     @Test
@@ -133,17 +90,11 @@ public class MultipleOrganizationsTest extends AbstractModelTest {
     }
 
     private void createObjects(OrganizationModel organization) {
-        organizationManager.getSession().invoices().addInvoice(organization, "F01-001");
-        organizationManager.getSession().invoices().addInvoice(organization, "F01-002");
+        organizationManager.getSession().documents().addDocument(DocumentType.INVOICE.toString(), "F01-001", organization);
+        organizationManager.getSession().documents().addDocument(DocumentType.INVOICE.toString(), "F01-002", organization);
 
-        organizationManager.getSession().creditNotes().addCreditNote(organization, "C01-001");
-        organizationManager.getSession().creditNotes().addCreditNote(organization, "C01-002");
-
-        organizationManager.getSession().debitNotes().addDebitNote(organization, "D01-001");
-        organizationManager.getSession().debitNotes().addDebitNote(organization, "D01-002");
-
-        organizationManager.getSession().getProvider(FileProvider.class).createFile(organization, "file1", new byte[]{1,2,3});
-        organizationManager.getSession().getProvider(FileProvider.class).createFile(organization, "file2", new byte[]{1,2,3});
+        organizationManager.getSession().getProvider(FileProvider.class).createFile(organization, "file1", new byte[]{1, 2, 3});
+        organizationManager.getSession().getProvider(FileProvider.class).createFile(organization, "file2", new byte[]{1, 2, 3});
     }
 
 }
