@@ -129,6 +129,8 @@ public class ModelToRepresentation {
 
         rep.setId(model.getId());
         rep.setDocumentId(model.getDocumentId());
+        rep.setCreatedTimestamp(model.getCreatedTimestamp());
+        rep.setEnabled(model.isEnabled());
 
         rep.setCustomerRegistrationName(model.getCustomerRegistrationName());
         rep.setCustomerAssignedAccountId(model.getCustomerAssignedAccountId());

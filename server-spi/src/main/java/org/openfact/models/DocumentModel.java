@@ -42,6 +42,7 @@ public interface DocumentModel {
     String getDocumentId();
     String getDocumentType();
     LocalDateTime getCreatedTimestamp();
+    boolean isEnabled();
 
     /**
      * Organization

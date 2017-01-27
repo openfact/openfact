@@ -93,6 +93,11 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
     }
 
     @Override
+    public boolean isEnabled() {
+        return documentEntity.isEnabled();
+    }
+
+    @Override
     public OrganizationModel getOrganization() {
         return organization;
     }

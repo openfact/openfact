@@ -75,6 +75,7 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
         entity.setDocumentId(documentId);
         entity.setCreatedTimestamp(LocalDateTime.now());
         entity.setOrganizationId(organization.getId());
+        entity.setEnabled(true);
         em.persist(entity);
         em.flush();
 

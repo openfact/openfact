@@ -16,30 +16,28 @@
  *******************************************************************************/
 package org.openfact.representations.idm;
 
-import javax.persistence.Column;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class DocumentRepresentation {
 
     private String id;
     private String documentId;
-    private String invoiceTypeCode;
-    private LocalDateTime issueDateTime;
-    private String documentCurrencyCode;
+    private LocalDateTime createdTimestamp;
+
     private String customerRegistrationName;
-    private String customerAdditionalAccountId;
     private String customerAssignedAccountId;
     private String customerElectronicMail;
-    private BigDecimal allowanceTotalAmount;
-    private BigDecimal chargeTotalAmount;
-    private BigDecimal payableAmount;
+
+    private boolean enabled;
 
     private Map<String, List<String>> attributes;
     private Set<String> requiredActions;
 
     private List<AttatchedDocumentRepresentation> attatchedDocuments;
+
 
     public String getId() {
         return id;
@@ -57,28 +55,12 @@ public class DocumentRepresentation {
         this.documentId = documentId;
     }
 
-    public String getInvoiceTypeCode() {
-        return invoiceTypeCode;
+    public LocalDateTime getCreatedTimestamp() {
+        return createdTimestamp;
     }
 
-    public void setInvoiceTypeCode(String invoiceTypeCode) {
-        this.invoiceTypeCode = invoiceTypeCode;
-    }
-
-    public LocalDateTime getIssueDateTime() {
-        return issueDateTime;
-    }
-
-    public void setIssueDateTime(LocalDateTime issueDateTime) {
-        this.issueDateTime = issueDateTime;
-    }
-
-    public String getDocumentCurrencyCode() {
-        return documentCurrencyCode;
-    }
-
-    public void setDocumentCurrencyCode(String documentCurrencyCode) {
-        this.documentCurrencyCode = documentCurrencyCode;
+    public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
     }
 
     public String getCustomerRegistrationName() {
@@ -105,28 +87,20 @@ public class DocumentRepresentation {
         this.customerElectronicMail = customerElectronicMail;
     }
 
-    public BigDecimal getAllowanceTotalAmount() {
-        return allowanceTotalAmount;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setAllowanceTotalAmount(BigDecimal allowanceTotalAmount) {
-        this.allowanceTotalAmount = allowanceTotalAmount;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
-    public BigDecimal getChargeTotalAmount() {
-        return chargeTotalAmount;
+    public Map<String, List<String>> getAttributes() {
+        return attributes;
     }
 
-    public void setChargeTotalAmount(BigDecimal chargeTotalAmount) {
-        this.chargeTotalAmount = chargeTotalAmount;
-    }
-
-    public BigDecimal getPayableAmount() {
-        return payableAmount;
-    }
-
-    public void setPayableAmount(BigDecimal payableAmount) {
-        this.payableAmount = payableAmount;
+    public void setAttributes(Map<String, List<String>> attributes) {
+        this.attributes = attributes;
     }
 
     public Set<String> getRequiredActions() {
@@ -143,21 +117,5 @@ public class DocumentRepresentation {
 
     public void setAttatchedDocuments(List<AttatchedDocumentRepresentation> attatchedDocuments) {
         this.attatchedDocuments = attatchedDocuments;
-    }
-
-    public Map<String, List<String>> getAttributes() {
-        return attributes;
-    }
-
-    public void setAttributes(Map<String, List<String>> attributes) {
-        this.attributes = attributes;
-    }
-
-    public void setCustomerAdditionalAccountId(String customerAdditionalAccountId) {
-        this.customerAdditionalAccountId = customerAdditionalAccountId;
-    }
-
-    public String getCustomerAdditionalAccountId() {
-        return customerAdditionalAccountId;
     }
 }
