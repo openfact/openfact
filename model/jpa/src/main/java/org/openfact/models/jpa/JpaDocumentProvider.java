@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.xml.registry.infomodel.Organization;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.*;
@@ -187,18 +188,18 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
     }
 
     @Override
-    public List<DocumentModel> getDocuments(OrganizationModel organization, String documentType, List<RequiredAction> requeridAction) {
-        return getDocuments(organization, documentType, requeridAction, -1, -1);
+    public List<DocumentModel> getDocuments(OrganizationModel organization, String documentType, List<RequiredAction> requiredAction) {
+        return getDocuments(organization, documentType, requiredAction, -1, -1);
     }
 
     @Override
-    public List<DocumentModel> getDocuments(OrganizationModel organization, String documentType, List<RequiredAction> requeridAction, int firstResult, int maxResults) {
-        String queryJql = "select i from DocumentEntity i where i.organizationId=:organizationId and i.documentType=:documentType and :requiredAction in elements(i.requeridAction) order by i.createdTimestamp ";
+    public List<DocumentModel> getDocuments(OrganizationModel organization, String documentType, List<RequiredAction> requiredAction, int firstResult, int maxResults) {
+        String queryJql = "select i from DocumentEntity i where i.organizationId=:organizationId and i.documentType=:documentType and :requiredAction in elements(i.requiredAction) order by i.createdTimestamp";
 
         TypedQuery<DocumentEntity> query = em.createQuery(queryJql, DocumentEntity.class);
         query.setParameter("organizationId", organization.getId());
         query.setParameter("documentType", documentType);
-        query.setParameter("requiredAction", requeridAction);
+        query.setParameter("requiredAction", requiredAction);
         List<DocumentEntity> results = query.getResultList();
         return results.stream().map(f -> new DocumentAdapter(session, organization, em, f)).collect(Collectors.toList());
     }
@@ -439,4 +440,10 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
         }
         return documents;
     }
+
+    @Override
+    public DocumentQuery createQuery(OrganizationModel organization) {
+        return new JpaDocumentQuery(session, organization, em);
+    }
+
 }

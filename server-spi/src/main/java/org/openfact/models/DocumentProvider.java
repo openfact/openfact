@@ -64,8 +64,8 @@ public interface DocumentProvider extends Provider {
     List<DocumentModel> getDocuments(OrganizationModel organization, String documentType);
     List<DocumentModel> getDocuments(OrganizationModel organization, String documentType, int firstResult, int maxResults);
 
-    List<DocumentModel> getDocuments(OrganizationModel organization, String documentType, List<RequiredAction> requeridAction);
-    List<DocumentModel> getDocuments(OrganizationModel organization, String documentType, List<RequiredAction> requeridAction, int firstResult, int maxResults);
+    List<DocumentModel> getDocuments(OrganizationModel organization, String documentType, List<RequiredAction> requiredAction);
+    List<DocumentModel> getDocuments(OrganizationModel organization, String documentType, List<RequiredAction> requiredAction, int firstResult, int maxResults);
 
     List<DocumentModel> searchForDocument(String filterText, OrganizationModel organization);
     List<DocumentModel> searchForDocument(String filterText, OrganizationModel organization, int firstResult, int maxResults);
@@ -119,4 +119,7 @@ public interface DocumentProvider extends Provider {
 
     List<DocumentModel> searchForDocumentByAttribute(String documentType, String attrName, String attrValue, OrganizationModel organization);
     List<DocumentModel> searchForDocumentByAttribute(String documentType, String attrName, String attrValue, OrganizationModel organization, int firstResult, int maxResults);
+
+    DocumentQuery createQuery(OrganizationModel organization);
+
 }
