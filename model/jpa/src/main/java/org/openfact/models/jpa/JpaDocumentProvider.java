@@ -315,7 +315,7 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
 
         TypedQuery<DocumentEntity> query = em.createNamedQuery(queryName, DocumentEntity.class);
         query.setParameter("organizationId", organization.getId());
-        query.setParameter("documentType", organization.getId());
+        query.setParameter("documentType", documentType);
 
         return new ScrollAdapter<>(DocumentEntity.class, query, f -> new DocumentAdapter(session, organization, em, f), scrollSize);
     }
