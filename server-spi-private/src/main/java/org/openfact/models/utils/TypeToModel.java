@@ -45,6 +45,7 @@ public class TypeToModel {
     public static final String CUSTOMER_ASSIGNED_ACCOUNT_ID = "customerAssignedAccountID";
     public static final String CUSTOMER_PARTY_ASSIGNED_ACCOUNT_ID = "customerPartyAssignedAccountID";
     public static final String CUSTOMER_PARTY_REGISTRATION_NAME = "customerPartyRegistrationName";
+    public static final String CUSTOMER_PARTY_CONTACT_ELECTRONIC_MAIL = "customerPartyContactMail";
     public static final String TAX_TOTAL_AMOUNT = "taxTotalAmount";
 
     public static final String LEGAL_MONETARY_TOTAL_PAYABLE_AMOUNT = "legalMonetaryTotalPayableAmount";
@@ -149,14 +150,23 @@ public class TypeToModel {
             documentModel.setSingleAttribute(CUSTOMER_ASSIGNED_ACCOUNT_ID, customerPartyType.getCustomerAssignedAccountIDValue());
         }
         if (customerPartyType.getAdditionalAccountID() != null && !customerPartyType.getAdditionalAccountID().isEmpty()) {
-            List<String> supplierAdditionalAccountID = customerPartyType.getAdditionalAccountID().stream().map(f -> f.getValue()).collect(Collectors.toList());
-            documentModel.setAttribute(CUSTOMER_PARTY_ASSIGNED_ACCOUNT_ID, supplierAdditionalAccountID);
+            List<String> customerAdditionalAccountID = customerPartyType.getAdditionalAccountID().stream().map(f -> f.getValue()).collect(Collectors.toList());
+            documentModel.setAttribute(CUSTOMER_PARTY_ASSIGNED_ACCOUNT_ID, customerAdditionalAccountID);
+            documentModel.setCustomerAssignedAccountId(customerAdditionalAccountID.stream().reduce(",", String::concat));
         }
         if (customerPartyType.getParty() != null) {
             PartyType partyType = customerPartyType.getParty();
             if (partyType.getPartyLegalEntity() != null && !partyType.getPartyLegalEntity().isEmpty()) {
                 List<String> supplierAdditionalAccountID = partyType.getPartyLegalEntity().stream().map(f -> f.getRegistrationNameValue()).collect(Collectors.toList());
                 documentModel.setAttribute(CUSTOMER_PARTY_REGISTRATION_NAME, supplierAdditionalAccountID);
+                documentModel.setCustomerRegistrationName(supplierAdditionalAccountID.stream().reduce(",", String::concat));
+            }
+            if (partyType.getContact() != null) {
+                ContactType contactType = partyType.getContact();
+                if (contactType.getElectronicMail() != null) {
+                    documentModel.setSingleAttribute(CUSTOMER_PARTY_CONTACT_ELECTRONIC_MAIL, contactType.getElectronicMailValue());
+                    documentModel.setCustomerElectronicMail(contactType.getElectronicMailValue());
+                }
             }
         }
     }

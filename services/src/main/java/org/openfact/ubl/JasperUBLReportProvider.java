@@ -52,7 +52,7 @@ public class JasperUBLReportProvider implements UBLReportProvider {
         public static String getTemplate(ReportTheme.Type type, DocumentModel document) {
             StringBuilder sb = new StringBuilder();
             for (String s : document.getDocumentType().toString().toLowerCase().split("_")) {
-                sb.append(ObjectUtil.capitalize(s));
+                sb.append(s);
             }
             return sb.append(".jrxml").toString();
         }
