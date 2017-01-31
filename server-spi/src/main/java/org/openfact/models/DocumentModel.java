@@ -38,6 +38,8 @@ public interface DocumentModel {
     String CUSTOMER_ASSIGNED_ACCOUNT_ID = "customerAssignedAccountId";
     String CREATED_TIMESTAMP = "createdTimestamp";
 
+    String REQUIRED_ACTIONS = "requiredActions";
+
     String getId();
     String getDocumentId();
     String getDocumentType();

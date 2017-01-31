@@ -25,11 +25,13 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.xml.registry.infomodel.Organization;
 
+import com.sun.jndi.toolkit.dir.SearchFilter;
 import org.jboss.logging.Logger;
 import org.openfact.models.*;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.jpa.entities.DocumentAttributeEntity;
 import org.openfact.models.jpa.entities.DocumentEntity;
+import org.openfact.models.search.SearchCriteriaFilterModel;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
@@ -226,31 +228,73 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
 
     @Override
     public SearchResultsModel<DocumentModel> searchForDocument(SearchCriteriaModel criteria, OrganizationModel organization) {
-        criteria.addFilter("organizationId", organization.getId(), SearchCriteriaFilterOperator.eq);
-
-        SearchResultsModel<DocumentEntity> entityResult = find(criteria, DocumentEntity.class);
-        List<DocumentEntity> entities = entityResult.getModels();
-
-        SearchResultsModel<DocumentModel> searchResult = new SearchResultsModel<>();
-        List<DocumentModel> models = searchResult.getModels();
-
-        entities.forEach(f -> models.add(new DocumentAdapter(session, organization, em, f)));
-        searchResult.setTotalSize(entityResult.getTotalSize());
-        return searchResult;
+        return searchForDocument(null, criteria, organization);
     }
 
     @Override
     public SearchResultsModel<DocumentModel> searchForDocument(String filterText, SearchCriteriaModel criteria, OrganizationModel organization) {
-        criteria.addFilter("organizationId", organization.getId(), SearchCriteriaFilterOperator.eq);
+        DocumentQuery query = session.documents().createQuery(organization);
 
-        SearchResultsModel<DocumentEntity> entityResult = findFullText(criteria, DocumentEntity.class, filterText, DOCUMENT_ID, CUSTOMER_REGISTRATION_NAME, CUSTOMER_ASSIGNED_ACCOUNT_ID, CUSTOMER_ELECTRONIC_MAIL);
-        List<DocumentEntity> entities = entityResult.getModels();
+        // Filtertext
+        if (filterText != null && !filterText.trim().isEmpty()) {
+            query.filterTextOnDocumentId(filterText);
+            query.filterText(filterText, CUSTOMER_REGISTRATION_NAME);
+            query.filterText(filterText, CUSTOMER_ASSIGNED_ACCOUNT_ID);
+            query.filterText(filterText, CUSTOMER_ELECTRONIC_MAIL);
+        }
+
+        // Filters
+        if (criteria.getFilters() != null && !criteria.getFilters().isEmpty()) {
+            for (SearchCriteriaFilterModel filter : criteria.getFilters()) {
+                if (filter.getName().equalsIgnoreCase(DocumentModel.REQUIRED_ACTIONS)) {
+                    List<String> requiredActions = new ArrayList<>();
+                    if (filter.getValue() instanceof String) {
+                        requiredActions.add((String) filter.getValue());
+                    } else if (filter.getValue() instanceof Collection) {
+                        requiredActions.addAll((Collection) filter.getValue());
+                    } else {
+                        requiredActions.add(String.valueOf(filter.getValue()));
+                    }
+
+                    RequiredAction[] array = requiredActions
+                            .stream()
+                            .map(f -> RequiredAction.valueOf(f.toUpperCase()))
+                            .toArray(size -> new RequiredAction[requiredActions.size()]);
+
+                    query.requiredAction(array);
+                } else {
+                    query.addFilter(filter);
+                }
+            }
+        }
+
+        // Orders
+        if (criteria.getOrders() != null && !criteria.getOrders().isEmpty()) {
+            criteria.getOrders().stream().forEach(c -> {
+                if (c.isAscending()) {
+                    query.orderByAsc(c.getName());
+                } else {
+                    query.orderByDesc(c.getName());
+                }
+            });
+        }
+
+        // Paging
+        if (criteria.getPaging() != null) {
+            int page = criteria.getPaging().getPage();
+            int pageSize = criteria.getPaging().getPageSize();
+            int start = (page - 1) * pageSize;
+
+            query.firstResult(start);
+            query.maxResults(pageSize);
+        } else {
+            query.firstResult(0);
+            query.maxResults(Constants.DEFAULT_MAX_RESULTS);
+        }
 
         SearchResultsModel<DocumentModel> searchResult = new SearchResultsModel<>();
-        List<DocumentModel> models = searchResult.getModels();
-
-        entities.forEach(f -> models.add(new DocumentAdapter(session, organization, em, f)));
-        searchResult.setTotalSize(entityResult.getTotalSize());
+        searchResult.setModels(query.getResultList());
+        searchResult.setTotalSize(query.getTotalCount());
         return searchResult;
     }
 

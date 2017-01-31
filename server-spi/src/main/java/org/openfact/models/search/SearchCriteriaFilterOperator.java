@@ -24,6 +24,6 @@ package org.openfact.models.search;
  */
 public enum SearchCriteriaFilterOperator {
 
-    bool_eq, eq, neq, gt, gte, lt, lte, like;
+    bool_eq, eq, neq, gt, gte, lt, lte, like, in, ni;
 
 }
