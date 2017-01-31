@@ -160,7 +160,7 @@
         <version.jasperreports>6.3.1</version.jasperreports>
         <version.barcode4j>2.1</version.barcode4j>
         <version.jasperreports.fonts>6.0.0</version.jasperreports.fonts>
-        <version.keycloak>2.5.1.Final</version.keycloak>
+        <version.keycloak>2.4.0.Final</version.keycloak>
         <version.commons.validator>1.5.1</version.commons.validator>
 
         <!-- Dropbox -->
