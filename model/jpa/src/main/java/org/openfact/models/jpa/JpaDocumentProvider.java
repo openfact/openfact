@@ -16,16 +16,6 @@
  *******************************************************************************/
 package org.openfact.models.jpa;
 
-import java.time.LocalDateTime;
-import java.util.*;
-import java.util.stream.Collectors;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-import javax.xml.registry.infomodel.Organization;
-
-import com.sun.jndi.toolkit.dir.SearchFilter;
 import org.jboss.logging.Logger;
 import org.openfact.models.*;
 import org.openfact.models.enums.RequiredAction;
@@ -36,11 +26,19 @@ import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import java.time.LocalDateTime;
+import java.util.*;
+import java.util.stream.Collectors;
+
 public class JpaDocumentProvider extends AbstractHibernateStorage implements DocumentProvider {
 
     protected static final Logger logger = Logger.getLogger(JpaDocumentProvider.class);
 
     protected static final String DOCUMENT_ID = "documentId";
+    protected static final String DOCUMENT_TYPE = "documentType";
     protected static final String CREATED_TIMESTAMP = "createdTimestamp";
     protected static final String CUSTOMER_REGISTRATION_NAME = "customerRegistrationName";
     protected static final String CUSTOMER_ASSIGNED_ACCOUNT_ID = "customerAssignedAccountId";
@@ -411,7 +409,10 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             String attribute = null;
             String parameterName = null;
-            if (entry.getKey().equals(DocumentModel.DOCUMENT_ID)) {
+            if (entry.getKey().equals(DocumentModel.DOCUMENT_TYPE)) {
+                attribute = "lower(u.documentType)";
+                parameterName = JpaDocumentProvider.DOCUMENT_TYPE;
+            } else if (entry.getKey().equals(DocumentModel.DOCUMENT_ID)) {
                 attribute = "lower(u.documentId)";
                 parameterName = JpaDocumentProvider.DOCUMENT_ID;
             }
@@ -425,7 +426,9 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
         query.setParameter("organizationId", organization.getId());
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             String parameterName = null;
-            if (entry.getKey().equals(DocumentModel.DOCUMENT_ID)) {
+            if (entry.getKey().equals(DocumentModel.DOCUMENT_TYPE)) {
+                parameterName = JpaDocumentProvider.DOCUMENT_TYPE;
+            } else if (entry.getKey().equals(DocumentModel.DOCUMENT_ID)) {
                 parameterName = JpaDocumentProvider.DOCUMENT_ID;
             }
             if (parameterName == null) continue;

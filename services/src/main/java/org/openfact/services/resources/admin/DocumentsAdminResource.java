@@ -87,6 +87,7 @@ public class DocumentsAdminResource {
     @Produces(MediaType.APPLICATION_JSON)
     public List<DocumentRepresentation> getInvoices(
             @QueryParam("filterText") String filterText,
+            @QueryParam("documentType") String documentType,
             @QueryParam("documentId") String documentId,
             @QueryParam("first") Integer firstResult,
             @QueryParam("max") Integer maxResults) {
@@ -99,8 +100,11 @@ public class DocumentsAdminResource {
         List<DocumentModel> documentModels;
         if (filterText != null) {
             documentModels = session.documents().searchForDocument(filterText.trim(), organization, firstResult, maxResults);
-        } else if (documentId != null) {
+        } else if (documentId != null ||documentType != null) {
             Map<String, String> attributes = new HashMap<>();
+            if (documentType != null) {
+                attributes.put(DocumentModel.DOCUMENT_TYPE, documentType);
+            }
             if (documentId != null) {
                 attributes.put(DocumentModel.DOCUMENT_ID, documentId);
             }

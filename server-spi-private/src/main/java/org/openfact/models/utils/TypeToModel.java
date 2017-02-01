@@ -39,13 +39,18 @@ public class TypeToModel {
     public static final String CREDIT_NOTE_TYPE_CODE = "creditNoteTypeCode";
 
     public static final String DOCUMENT_CURRENCY_CODE = "documentCurrencyCode";
+
     public static final String SUPPLIER_ASSIGNED_ACCOUNT_ID = "supplierAssignedAccountID";
     public static final String SUPPLIER_PARTY_ASSIGNED_ACCOUNT_ID = "supplierPartyAssignedAccountID";
+    public static final String SUPPLIER_PARTY_ADDITIONAL_ACCOUNT_ID = "supplierPartyAdditionalAccountID";
     public static final String SUPPLIER_PARTY_REGISTRATION_NAME = "supplierPartyRegistrationName";
+
     public static final String CUSTOMER_ASSIGNED_ACCOUNT_ID = "customerAssignedAccountID";
     public static final String CUSTOMER_PARTY_ASSIGNED_ACCOUNT_ID = "customerPartyAssignedAccountID";
+    public static final String CUSTOMER_PARTY_ADDITIONAL_ACCOUNT_ID = "customerPartyAdditionalAccountID";
     public static final String CUSTOMER_PARTY_REGISTRATION_NAME = "customerPartyRegistrationName";
     public static final String CUSTOMER_PARTY_CONTACT_ELECTRONIC_MAIL = "customerPartyContactMail";
+
     public static final String TAX_TOTAL_AMOUNT = "taxTotalAmount";
 
     public static final String LEGAL_MONETARY_TOTAL_PAYABLE_AMOUNT = "legalMonetaryTotalPayableAmount";
@@ -132,9 +137,12 @@ public class TypeToModel {
         if (supplierPartyType.getCustomerAssignedAccountID() != null) {
             documentModel.setSingleAttribute(SUPPLIER_ASSIGNED_ACCOUNT_ID, supplierPartyType.getCustomerAssignedAccountIDValue());
         }
+        if (supplierPartyType.getCustomerAssignedAccountID() != null) {
+            documentModel.setSingleAttribute(SUPPLIER_PARTY_ASSIGNED_ACCOUNT_ID, supplierPartyType.getCustomerAssignedAccountIDValue());
+        }
         if (supplierPartyType.getAdditionalAccountID() != null && !supplierPartyType.getAdditionalAccountID().isEmpty()) {
             List<String> supplierAdditionalAccountID = supplierPartyType.getAdditionalAccountID().stream().map(f -> f.getValue()).collect(Collectors.toList());
-            documentModel.setAttribute(SUPPLIER_PARTY_ASSIGNED_ACCOUNT_ID, supplierAdditionalAccountID);
+            documentModel.setAttribute(SUPPLIER_PARTY_ADDITIONAL_ACCOUNT_ID, supplierAdditionalAccountID);
         }
         if (supplierPartyType.getParty() != null) {
             PartyType partyType = supplierPartyType.getParty();
@@ -149,10 +157,13 @@ public class TypeToModel {
         if (customerPartyType.getCustomerAssignedAccountID() != null) {
             documentModel.setSingleAttribute(CUSTOMER_ASSIGNED_ACCOUNT_ID, customerPartyType.getCustomerAssignedAccountIDValue());
         }
+        if (customerPartyType.getCustomerAssignedAccountID() != null) {
+            documentModel.setSingleAttribute(CUSTOMER_PARTY_ASSIGNED_ACCOUNT_ID, customerPartyType.getCustomerAssignedAccountIDValue());
+            documentModel.setCustomerAssignedAccountId(customerPartyType.getCustomerAssignedAccountIDValue());
+        }
         if (customerPartyType.getAdditionalAccountID() != null && !customerPartyType.getAdditionalAccountID().isEmpty()) {
             List<String> customerAdditionalAccountID = customerPartyType.getAdditionalAccountID().stream().map(f -> f.getValue()).collect(Collectors.toList());
-            documentModel.setAttribute(CUSTOMER_PARTY_ASSIGNED_ACCOUNT_ID, customerAdditionalAccountID);
-            documentModel.setCustomerAssignedAccountId(customerAdditionalAccountID.stream().reduce(",", String::concat));
+            documentModel.setAttribute(CUSTOMER_PARTY_ADDITIONAL_ACCOUNT_ID, customerAdditionalAccountID);
         }
         if (customerPartyType.getParty() != null) {
             PartyType partyType = customerPartyType.getParty();
