@@ -15,43 +15,39 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class JpaDocumentQuery implements DocumentQuery {
+public class JpaDocumentCountQuery implements DocumentCountQuery {
 
     private final EntityManager em;
     private final CriteriaBuilder cb;
-    private final CriteriaQuery<DocumentEntity> cq;
+    private final CriteriaQuery<Long> cq;
     private final Root<DocumentEntity> root;
     private final ArrayList<Predicate> predicates;
-    private Integer firstResult;
-    private Integer maxResults;
-    private Map<String, Boolean> orderBy;
 
     private final OrganizationModel organization;
     private final OpenfactSession session;
 
-    public JpaDocumentQuery(OpenfactSession session, OrganizationModel organization, EntityManager em) {
+    public JpaDocumentCountQuery(OpenfactSession session, OrganizationModel organization, EntityManager em) {
         this.em = em;
         this.session = session;
         this.organization = organization;
 
         cb = em.getCriteriaBuilder();
-        cq = cb.createQuery(DocumentEntity.class);
+        cq = cb.createQuery(Long.class);
         root = cq.from(DocumentEntity.class);
         predicates = new ArrayList<>();
-        orderBy = new HashMap<>();
 
         this.predicates.add(cb.equal(root.get("organizationId"), organization.getId()));
     }
 
     @Override
-    public DocumentQuery documentType(String... documentType) {
+    public DocumentCountQuery documentType(String... documentType) {
         List<String> documentTypes = Arrays.asList(documentType);
         predicates.add(root.get("documentType").in(documentTypes));
         return this;
     }
 
     @Override
-    public DocumentQuery filterText(String filterText, String... fieldName) {
+    public DocumentCountQuery filterText(String filterText, String... fieldName) {
         Predicate[] orPredicates = Stream.of(fieldName)
                 .map(f -> cb.like(cb.upper(root.get(f)), "%" + filterText.toUpperCase() + "%"))
                 .toArray(size -> new Predicate[fieldName.length]);
@@ -61,7 +57,7 @@ public class JpaDocumentQuery implements DocumentQuery {
     }
 
     @Override
-    public DocumentQuery addFilter(SearchCriteriaFilterModel filter) {
+    public DocumentCountQuery addFilter(SearchCriteriaFilterModel filter) {
         if (filter.getOperator() == SearchCriteriaFilterOperator.eq) {
             Path<Object> path = root.get(filter.getName());
             Class<?> pathc = path.getJavaType();
@@ -90,7 +86,7 @@ public class JpaDocumentQuery implements DocumentQuery {
     }
 
     @Override
-    public DocumentQuery requiredAction(RequiredAction... requiredAction) {
+    public DocumentCountQuery requiredAction(RequiredAction... requiredAction) {
         List<String> rActions = Stream.of(requiredAction).map(RequiredAction::toString).collect(Collectors.toList());
 
         Join<DocumentEntity, DocumentRequiredActionEntity> requiredActions = root.join("requiredActions");
@@ -100,95 +96,27 @@ public class JpaDocumentQuery implements DocumentQuery {
     }
 
     @Override
-    public DocumentQuery orderByAsc(String... attribute) {
-        for (int i = 0; i < attribute.length; i++) {
-            this.orderBy.put(attribute[i], true);
-        }
-        return this;
-    }
-
-    @Override
-    public DocumentQuery orderByDesc(String... attribute) {
-        for (int i = 0; i < attribute.length; i++) {
-            this.orderBy.put(attribute[i], false);
-        }
-        return this;
-    }
-
-    @Override
-    public DocumentQuery fromDate(LocalDateTime fromDate) {
+    public DocumentCountQuery fromDate(LocalDateTime fromDate) {
         predicates.add(cb.greaterThanOrEqualTo(root.<LocalDateTime>get("createdTimestamp"), fromDate));
         return this;
     }
 
     @Override
-    public DocumentQuery toDate(LocalDateTime toDate) {
+    public DocumentCountQuery toDate(LocalDateTime toDate) {
         predicates.add(cb.lessThanOrEqualTo(root.<LocalDateTime>get("createdTimestamp"), toDate));
         return this;
     }
 
     @Override
-    public DocumentQuery firstResult(int firstResult) {
-        this.firstResult = firstResult;
-        return this;
-    }
+    public int getTotalCount() {
+        cq.select(cb.count(root));
 
-    @Override
-    public DocumentQuery maxResults(int maxResults) {
-        this.maxResults = maxResults;
-        return this;
-    }
-
-    @Override
-    public List<DocumentModel> getResultList() {
-        TypedQuery<DocumentEntity> query = buildTypedQuery();
-        if (firstResult != null) {
-            query.setFirstResult(firstResult);
-        }
-        if (maxResults != null) {
-            query.setMaxResults(maxResults);
-        }
-
-        return query.getResultList()
-                .stream()
-                .map(f -> new DocumentAdapter(session, organization, em, f))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public ScrollModel<DocumentModel> getScrollResult(int scrollSize) {
-        TypedQuery<DocumentEntity> query = buildTypedQuery();
-        return new ScrollAdapter<>(DocumentEntity.class, query, f -> new DocumentAdapter(session, organization, em, f), scrollSize);
-    }
-
-    @Override
-    public ScrollModel<List<DocumentModel>> getScrollResultList(int listSize) {
-        TypedQuery<DocumentEntity> query = buildTypedQuery();
-        return new ScrollPagingAdapter<>(DocumentEntity.class, query, f -> f.stream().map(m -> new DocumentAdapter(session, organization, em, m)).collect(Collectors.toList()), listSize);
-    }
-
-    private TypedQuery<DocumentEntity> buildTypedQuery() {
         if (!predicates.isEmpty()) {
             cq.where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
         }
 
-        if (orderBy.isEmpty()) {
-            orderBy.put("createdTimestamp", true);
-        }
-
-        List<Order> orderList = new ArrayList<>();
-        for (Map.Entry<String, Boolean> order : orderBy.entrySet()) {
-            if (order.getValue()) {
-                orderList.add(cb.asc((root.get(order.getKey()))));
-            } else {
-                orderList.add(cb.desc((root.get(order.getKey()))));
-            }
-        }
-        if (!orderList.isEmpty()) {
-            cq.orderBy(orderList);
-        }
-
-        return em.createQuery(cq);
+        TypedQuery<Long> query = em.createQuery(cq);
+        return query.getSingleResult().intValue();
     }
 
 }

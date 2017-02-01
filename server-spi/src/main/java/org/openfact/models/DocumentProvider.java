@@ -121,5 +121,6 @@ public interface DocumentProvider extends Provider {
     List<DocumentModel> searchForDocumentByAttribute(String documentType, String attrName, String attrValue, OrganizationModel organization, int firstResult, int maxResults);
 
     DocumentQuery createQuery(OrganizationModel organization);
+    DocumentCountQuery createCountQuery(OrganizationModel organization);
 
 }

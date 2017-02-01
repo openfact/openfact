@@ -10,9 +10,7 @@ public interface DocumentQuery {
 
     DocumentQuery documentType(String... documentType);
 
-    DocumentQuery filterText(String filterText, String fieldName);
-
-    DocumentQuery filterTextOnDocumentId(String filterText);
+    DocumentQuery filterText(String filterText, String... fieldName);
 
     DocumentQuery requiredAction(RequiredAction... requiredAction);
 
@@ -35,7 +33,5 @@ public interface DocumentQuery {
     ScrollModel<DocumentModel> getScrollResult(int scrollSize);
 
     ScrollModel<List<DocumentModel>> getScrollResultList(int listSize);
-
-    int getTotalCount();
 
 }

@@ -22,6 +22,7 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.junit.Assert;
@@ -178,7 +179,7 @@ public class DocumentProviderTest extends AbstractProviderTest {
         assertThat(query.getResultList().size(), is(6));
 
         query = session.documents().createQuery(sistcoop1);
-        query.filterTextOnDocumentId("2");
+        query.filterText("2", DocumentModel.DOCUMENT_ID);
         assertThat(query.getResultList().size(), is(2));
 
         query = session.documents().createQuery(sistcoop1);
@@ -189,6 +190,22 @@ public class DocumentProviderTest extends AbstractProviderTest {
         query.documentType(DocumentType.INVOICE.toString());
         query.requiredAction(RequiredAction.SEND_TO_CUSTOMER);
         assertThat(query.getResultList().size(), is(1));
+
+        query = session.documents().createQuery(sistcoop1);
+        query.documentType(DocumentType.INVOICE.toString());
+        query.filterText("F", DocumentModel.DOCUMENT_ID, DocumentModel.CUSTOMER_REGISTRATION_NAME, DocumentModel.CUSTOMER_ASSIGNED_ACCOUNT_ID);
+        assertThat(query.getResultList().size(), is(3));
+
+        query = session.documents().createQuery(sistcoop1);
+        query.documentType(DocumentType.INVOICE.toString());
+        query.fromDate(LocalDateTime.now().minusDays(1));
+        assertThat(query.getResultList().size(), is(3));
+
+        DocumentCountQuery countQuery = session.documents().createCountQuery(sistcoop1);
+        countQuery.documentType(DocumentType.INVOICE.toString());
+        countQuery.requiredAction(RequiredAction.SEND_TO_CUSTOMER);
+        assertThat(countQuery.getTotalCount(), is(1));
+
     }
 
 }

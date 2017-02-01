@@ -234,13 +234,12 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
     @Override
     public SearchResultsModel<DocumentModel> searchForDocument(String filterText, SearchCriteriaModel criteria, OrganizationModel organization) {
         DocumentQuery query = session.documents().createQuery(organization);
+        DocumentCountQuery queryCount = session.documents().createCountQuery(organization);
 
         // Filtertext
         if (filterText != null && !filterText.trim().isEmpty()) {
-            query.filterTextOnDocumentId(filterText);
-            query.filterText(filterText, CUSTOMER_REGISTRATION_NAME);
-            query.filterText(filterText, CUSTOMER_ASSIGNED_ACCOUNT_ID);
-            query.filterText(filterText, CUSTOMER_ELECTRONIC_MAIL);
+            query.filterText(filterText, DOCUMENT_ID, CUSTOMER_REGISTRATION_NAME, CUSTOMER_ASSIGNED_ACCOUNT_ID, CUSTOMER_ELECTRONIC_MAIL);
+            queryCount.filterText(filterText, DOCUMENT_ID, CUSTOMER_REGISTRATION_NAME, CUSTOMER_ASSIGNED_ACCOUNT_ID, CUSTOMER_ELECTRONIC_MAIL);
         }
 
         // Filters
@@ -262,8 +261,18 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
                             .toArray(size -> new RequiredAction[requiredActions.size()]);
 
                     query.requiredAction(array);
+                    queryCount.requiredAction(array);
+                } else if (filter.getName().equalsIgnoreCase(CREATED_TIMESTAMP)) {
+                    if (filter.getOperator().equals(SearchCriteriaFilterOperator.gt) || filter.getOperator().equals(SearchCriteriaFilterOperator.gte)) {
+                        query.fromDate((LocalDateTime) filter.getValue());
+                        queryCount.fromDate((LocalDateTime) filter.getValue());
+                    } else {
+                        query.toDate((LocalDateTime) filter.getValue());
+                        queryCount.toDate((LocalDateTime) filter.getValue());
+                    }
                 } else {
                     query.addFilter(filter);
+                    queryCount.addFilter(filter);
                 }
             }
         }
@@ -294,7 +303,7 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
 
         SearchResultsModel<DocumentModel> searchResult = new SearchResultsModel<>();
         searchResult.setModels(query.getResultList());
-        searchResult.setTotalSize(query.getTotalCount());
+        searchResult.setTotalSize(queryCount.getTotalCount());
         return searchResult;
     }
 
@@ -488,6 +497,11 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
     @Override
     public DocumentQuery createQuery(OrganizationModel organization) {
         return new JpaDocumentQuery(session, organization, em);
+    }
+
+    @Override
+    public DocumentCountQuery createCountQuery(OrganizationModel organization) {
+        return new JpaDocumentCountQuery(session, organization, em);
     }
 
 }
