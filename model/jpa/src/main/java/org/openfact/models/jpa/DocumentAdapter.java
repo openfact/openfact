@@ -26,6 +26,7 @@ import org.openfact.file.FileModel;
 import org.openfact.file.FileProvider;
 import org.openfact.models.*;
 import org.openfact.models.enums.DestinyType;
+import org.openfact.models.enums.DocumentType;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.enums.SendResultType;
 import org.openfact.models.jpa.entities.*;
@@ -170,7 +171,22 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
                 if (document != null) {
                     String documentString = DocumentUtils.getDocumentToString(document);
                     jsonObject = JSONObjectUtils.renameKey(XML.toJSONObject(documentString), ".*:", "");
-                    jsonObject = JSONObjectUtils.getJSONObject(jsonObject, "Invoice");
+                    DocumentType documentType = DocumentType.valueOf(documentEntity.getDocumentType());
+                    switch (documentType) {
+                        case INVOICE:
+                            jsonObject = JSONObjectUtils.getJSONObject(jsonObject, "Invoice");
+                            break;
+                        case CREDIT_NOTE:
+                            jsonObject = JSONObjectUtils.getJSONObject(jsonObject, "CreditNote");
+                            break;
+                        case DEBIT_NOTE:
+                            jsonObject = JSONObjectUtils.getJSONObject(jsonObject, "DebitNote");
+                            break;
+                        default:
+                            jsonObject = JSONObjectUtils.getJSONObject(jsonObject, documentEntity.getDocumentType());
+                            break;
+                    }
+
                 }
             } catch (TransformerException e) {
                 throw new ModelException("Error parsing xml file to JSON", e);
