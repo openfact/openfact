@@ -171,22 +171,25 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
                 if (document != null) {
                     String documentString = DocumentUtils.getDocumentToString(document);
                     jsonObject = JSONObjectUtils.renameKey(XML.toJSONObject(documentString), ".*:", "");
-                    DocumentType documentType = DocumentType.valueOf(documentEntity.getDocumentType());
-                    switch (documentType) {
-                        case INVOICE:
-                            jsonObject = JSONObjectUtils.getJSONObject(jsonObject, "Invoice");
-                            break;
-                        case CREDIT_NOTE:
-                            jsonObject = JSONObjectUtils.getJSONObject(jsonObject, "CreditNote");
-                            break;
-                        case DEBIT_NOTE:
-                            jsonObject = JSONObjectUtils.getJSONObject(jsonObject, "DebitNote");
-                            break;
-                        default:
-                            jsonObject = JSONObjectUtils.getJSONObject(jsonObject, documentEntity.getDocumentType());
-                            break;
+                    DocumentType documentType = DocumentType.getFromString(documentEntity.getDocumentType());
+                    if (documentType != null) {
+                        switch (documentType) {
+                            case INVOICE:
+                                jsonObject = JSONObjectUtils.getJSONObject(jsonObject, "Invoice");
+                                break;
+                            case CREDIT_NOTE:
+                                jsonObject = JSONObjectUtils.getJSONObject(jsonObject, "CreditNote");
+                                break;
+                            case DEBIT_NOTE:
+                                jsonObject = JSONObjectUtils.getJSONObject(jsonObject, "DebitNote");
+                                break;
+                        }
+                    } else {
+                        String jsonName = Arrays.stream(documentEntity.getDocumentType().toLowerCase().split("_"))
+                                .map(c -> c.substring(0, 1).toUpperCase() + c.substring(1))
+                                .reduce("", String::concat);
+                        jsonObject = JSONObjectUtils.getJSONObject(jsonObject, jsonName);
                     }
-
                 }
             } catch (TransformerException e) {
                 throw new ModelException("Error parsing xml file to JSON", e);
