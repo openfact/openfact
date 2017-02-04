@@ -102,7 +102,7 @@
 
   "organizationScheduleTask": {
     "sendToThirdParty": {
-      "active": false
+      "active": true
     },
     "sendToCustomer": {
       "active": true
