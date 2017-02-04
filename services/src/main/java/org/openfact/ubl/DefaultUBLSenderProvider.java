@@ -21,6 +21,7 @@ import com.helger.ubl21.UBL21Writer;
 import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 import org.openfact.models.*;
 import org.openfact.models.enums.DestinyType;
+import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.enums.SendResultType;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.services.managers.DocumentManager;
@@ -49,6 +50,7 @@ public class DefaultUBLSenderProvider implements UBLSender<DocumentModel> {
     public void sendToCustomer(OrganizationModel organization, DocumentModel document, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
         DocumentManager manager = new DocumentManager(session);
         manager.sendToThirdPartyByEmail(organization, document, sendEvent, document.getCustomerElectronicMail());
+        document.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
     }
 
     @Override
