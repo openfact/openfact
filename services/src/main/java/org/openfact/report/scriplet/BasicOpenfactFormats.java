@@ -2,7 +2,6 @@ package org.openfact.report.scriplet;
 
 import net.sf.jasperreports.engine.JRDefaultScriptlet;
 
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
@@ -32,14 +31,14 @@ public class BasicOpenfactFormats extends JRDefaultScriptlet {
     public String stringFormat(Collection<String> collection, String elementSeparator, boolean uppercase) {
         String result = collection.stream()
                 .map(e -> e.toString())
-                .reduce("", (a, b) -> a + elementSeparator + b);
+                .reduce("", (a, b) -> a + elementSeparator + b).replaceFirst(elementSeparator, "");
         return uppercase ? result.toUpperCase() : result;
     }
 
     public String numberFormat(Collection<Number> numbers, String elementSeparator, String currencySymbol, String groupingSeparator, String decimalSeparator, String numberDecimals) {
         return numbers.stream()
                 .map(f -> numberFormat(f, currencySymbol, groupingSeparator, decimalSeparator, numberDecimals))
-                .reduce("", (a, b) -> a + elementSeparator + b);
+                .reduce("", (a, b) -> a + elementSeparator + b).replaceFirst(elementSeparator, "");
     }
 
     public String numberFormat(Number number, String currencySymbol, String groupingSeparator, String decimalSeparator, String numberDecimals) {
