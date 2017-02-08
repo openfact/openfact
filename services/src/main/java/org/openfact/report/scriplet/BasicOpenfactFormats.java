@@ -2,6 +2,7 @@ package org.openfact.report.scriplet;
 
 import net.sf.jasperreports.engine.JRDefaultScriptlet;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
@@ -60,6 +61,11 @@ public class BasicOpenfactFormats extends JRDefaultScriptlet {
         decimalFormat.setDecimalFormatSymbols(decimalFormatSymbols);
 
         return numberFormat.format(number);
+    }
+
+    public String sumElementsAndFormat(BigDecimal a, List<BigDecimal> b, String currencySymbol, String groupingSeparator, String decimalSeparator, String numberDecimals) {
+        BigDecimal result = b.stream().reduce(BigDecimal.ZERO, BigDecimal::add).add(a);
+        return numberFormat(result, currencySymbol, groupingSeparator, decimalSeparator, numberDecimals);
     }
 
 }
