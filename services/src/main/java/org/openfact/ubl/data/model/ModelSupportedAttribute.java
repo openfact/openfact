@@ -7,7 +7,7 @@ import static com.google.common.base.Verify.verifyNotNull;
 
 public enum ModelSupportedAttribute {
 
-    OF_DOCUMENT_ID;
+    OF_MODEL_ID;
 
     public static ModelSupportedAttribute fromString(String text) {
         Optional<ModelSupportedAttribute> op = Arrays.stream(ModelSupportedAttribute.values())

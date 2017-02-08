@@ -159,6 +159,8 @@
         <json.version>20160810</json.version>
         <version.jasperreports>6.3.1</version.jasperreports>
         <version.barcode4j>2.1</version.barcode4j>
+        <version.batik>1.8</version.batik>
+        <version.xmlgraphics-commons>2.1</version.xmlgraphics-commons>
         <version.jasperreports.fonts>6.0.0</version.jasperreports.fonts>
         <version.keycloak>2.4.0.Final</version.keycloak>
         <version.commons.validator>1.5.1</version.commons.validator>
@@ -980,6 +982,28 @@
                 <artifactId>barcode4j</artifactId>
                 <version>${version.barcode4j}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.apache.xmlgraphics</groupId>
+                <artifactId>batik-bridge</artifactId>
+                <version>${version.batik}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.xmlgraphics</groupId>
+                <artifactId>batik-dom</artifactId>
+                <version>${version.batik}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.xmlgraphics</groupId>
+                <artifactId>batik-svg-dom</artifactId>
+                <version>${version.batik}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.xmlgraphics</groupId>
+                <artifactId>xmlgraphics-commons</artifactId>
+                <version>${version.xmlgraphics-commons}</version>
+            </dependency>
+
             <dependency>
                 <groupId>commons-validator</groupId>
                 <artifactId>commons-validator</artifactId>

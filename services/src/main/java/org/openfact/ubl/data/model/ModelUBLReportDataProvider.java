@@ -20,7 +20,6 @@ import org.jboss.logging.Logger;
 import org.openfact.models.DocumentModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.report.ReportDataProvider;
-import org.openfact.ubl.UBLModel;
 import org.openfact.ubl.UBLReportDataProvider;
 
 public class ModelUBLReportDataProvider implements UBLReportDataProvider {
@@ -47,8 +46,8 @@ public class ModelUBLReportDataProvider implements UBLReportDataProvider {
                 ModelSupportedAttribute attribute = ModelSupportedAttribute.fromString(fieldName.toUpperCase());
                 if (attribute != null) {
                     switch (attribute) {
-                        case OF_DOCUMENT_ID:
-                            return model.getDocumentId();
+                        case OF_MODEL_ID:
+                            return model.getId();
                     }
                 }
                 return null;

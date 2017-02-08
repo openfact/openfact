@@ -6,6 +6,8 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class BasicOpenfactFormats extends JRDefaultScriptlet {
 
@@ -25,20 +27,18 @@ public class BasicOpenfactFormats extends JRDefaultScriptlet {
     }
 
     public String stringFormat(Collection<String> collection, String elementSeparator) {
-        return stringFormat(collection, ",", false);
+        return stringFormat(collection, elementSeparator, false);
     }
 
     public String stringFormat(Collection<String> collection, String elementSeparator, boolean uppercase) {
-        String result = collection.stream()
-                .map(e -> e.toString())
-                .reduce("", (a, b) -> a + elementSeparator + b).replaceFirst(elementSeparator, "");
+        String result = String.join(elementSeparator, collection);
         return uppercase ? result.toUpperCase() : result;
     }
 
     public String numberFormat(Collection<Number> numbers, String elementSeparator, String currencySymbol, String groupingSeparator, String decimalSeparator, String numberDecimals) {
         return numbers.stream()
                 .map(f -> numberFormat(f, currencySymbol, groupingSeparator, decimalSeparator, numberDecimals))
-                .reduce("", (a, b) -> a + elementSeparator + b).replaceFirst(elementSeparator, "");
+                .collect(Collectors.joining(elementSeparator));
     }
 
     public String numberFormat(Number number, String currencySymbol, String groupingSeparator, String decimalSeparator, String numberDecimals) {
