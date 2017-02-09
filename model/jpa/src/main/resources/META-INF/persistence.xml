@@ -33,18 +33,18 @@
 		<class>org.openfact.events.jpa.AdminEventEntity</class>
 
 		<!-- ublProvider -->
-		<class>org.openfact.models.jpa.entities.DocumentEntity</class>
-		<class>org.openfact.models.jpa.entities.DocumentAttributeEntity</class>
-		<class>org.openfact.models.jpa.entities.DocumentRequiredActionEntity</class>
+		<class>org.openfact.models.jpa.entities.UBLDocumentEntity</class>
+		<class>org.openfact.models.jpa.entities.UBLDocumentAttributeEntity</class>
+		<class>org.openfact.models.jpa.entities.UBLDocumentRequiredActionEntity</class>
 
 		<class>org.openfact.models.jpa.entities.FileEntity</class>
 		<class>org.openfact.models.jpa.entities.JobReportEntity</class>
 
-		<class>org.openfact.models.jpa.entities.SendEventEntity</class>
+		<class>org.openfact.models.jpa.entities.UBLDocumentSendEventEntity</class>
 		<class>org.openfact.models.jpa.entities.SendEventDestinyAttributeEntity</class>
-		<class>org.openfact.models.jpa.entities.SendEventResponseAttributeEntity</class>
+		<class>org.openfact.models.jpa.entities.UBLDocumentSendEventResponseAttributeEntity</class>
 
-		<class>org.openfact.models.jpa.entities.AttatchedDocumentEntity</class>
+		<class>org.openfact.models.jpa.entities.UBLAttachedDocumentEntity</class>
 		<class>org.openfact.models.jpa.entities.AttatchedDocumentAttributeEntity</class>
 
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>

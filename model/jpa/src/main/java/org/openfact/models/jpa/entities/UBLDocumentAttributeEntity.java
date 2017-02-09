@@ -26,14 +26,15 @@ package org.openfact.models.jpa.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ATTATCHED_DOCUMENT_ATTRIBUTE")
+@Table(name = "UBL_DOCUMENT_ATTRIBUTE")
 @NamedQueries({
-        @NamedQuery(name = "getAttatchedDocumentAttributesByNameAndValue", query = "select attr from AttatchedDocumentAttributeEntity attr where attr.name = :name and attr.value = :value"),
-        @NamedQuery(name = "deleteAttatchedDocumentAttributesByNameAndAttatchedDocument", query = "delete from  AttatchedDocumentAttributeEntity attr where attr.attatchedDocument.id = :attatchedDocumentId and attr.name = :name"),
-        @NamedQuery(name = "deleteAttatchedDocumentAttributesByNameAndAttatchedDocumentOtherThan", query = "delete from  AttatchedDocumentAttributeEntity attr where attr.attatchedDocument.id = :attatchedDocumentId and attr.name = :name and attr.id <> :attrId"),
-        @NamedQuery(name = "deleteAttatchedDocumentAttributesByOrganization", query = "delete from AttatchedDocumentAttributeEntity attr where attr.attatchedDocument IN (select s from AttatchedDocumentEntity s join s.document i where i.organizationId=:organizationId)"),
+        @NamedQuery(name = "getDocumentAttributesByNameAndValue", query = "select attr from UBLDocumentAttributeEntity attr where attr.name = :name and attr.value = :value"),
+        @NamedQuery(name = "getDocumentAttributesByNameAndValueAndDocumentType", query = "select attr from UBLDocumentAttributeEntity attr join attr.ublDocument doc where attr.name = :name and attr.value = :value and doc.documentType=:documentType"),
+        @NamedQuery(name = "deleteDocumentAttributesByOrganization", query = "delete from  UBLDocumentAttributeEntity attr where attr.ublDocument IN (select u from UBLDocumentEntity u where u.organizationId=:organizationId)"),
+        @NamedQuery(name = "deleteDocumentAttributesByNameAndDocument", query = "delete from  UBLDocumentAttributeEntity attr where attr.ublDocument.id = :documentId and attr.name = :name"),
+        @NamedQuery(name = "deleteDocumentAttributesByNameAndDocumentOtherThan", query = "delete from  UBLDocumentAttributeEntity attr where attr.ublDocument.id = :documentId and attr.name = :name and attr.id <> :attrId")
 })
-public class AttatchedDocumentAttributeEntity {
+public class UBLDocumentAttributeEntity {
 
     @Id
     @Column(name = "ID", length = 36)
@@ -41,8 +42,8 @@ public class AttatchedDocumentAttributeEntity {
     protected String id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ATTATCHED_DOCUMENT_ID")
-    protected AttatchedDocumentEntity attatchedDocument;
+    @JoinColumn(foreignKey = @ForeignKey, name = "UBL_DOCUMENT_ID")
+    protected UBLDocumentEntity ublDocument;
 
     @Column(name = "NAME")
     protected String name;
@@ -74,21 +75,21 @@ public class AttatchedDocumentAttributeEntity {
         this.value = value;
     }
 
-    public AttatchedDocumentEntity getAttatchedDocument() {
-        return attatchedDocument;
+    public UBLDocumentEntity getUblDocument() {
+        return ublDocument;
     }
 
-    public void setAttatchedDocument(AttatchedDocumentEntity attatchedDocument) {
-        this.attatchedDocument = attatchedDocument;
+    public void setUblDocument(UBLDocumentEntity document) {
+        this.ublDocument = document;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null) return false;
-        if (!(o instanceof AttatchedDocumentAttributeEntity)) return false;
+        if (!(o instanceof UBLDocumentAttributeEntity)) return false;
 
-        AttatchedDocumentAttributeEntity that = (AttatchedDocumentAttributeEntity) o;
+        UBLDocumentAttributeEntity that = (UBLDocumentAttributeEntity) o;
 
         if (!id.equals(that.getId())) return false;
 

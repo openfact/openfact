@@ -54,6 +54,9 @@ public interface DocumentModel {
 
     /**
      * Document information*/
+    String getDocumentCurrencyCode();
+    void setDocumentCurrencyCode(String currencyCode);
+
     String getCustomerRegistrationName();
     void setCustomerRegistrationName(String value);
 
@@ -93,9 +96,8 @@ public interface DocumentModel {
 
     /**
      * Send events*/
-    String SEND_EVENT_DESTINY_TYPE = "destinyType";
-    String SEND_EVENT_TYPE = "type";
-    String SEND_EVENT_RESULT = "result";
+    String SEND_EVENT_DESTINY = "destiny";
+    String SEND_EVENT_STATUS = "status";
 
     SendEventModel addSendEvent(DestinyType destinyType);
     SendEventModel getSendEventById(String id);
@@ -109,10 +111,9 @@ public interface DocumentModel {
 
     /**
      * Attatched documents*/
-    List<AttatchedDocumentModel> getAttatchedDocuments();
-    AttatchedDocumentModel getAttatchedDocumentById(String id);
-    AttatchedDocumentModel addAttatchedDocument(String documentType, String documentId);
-    boolean removeAttatchedDocument(AttatchedDocumentModel attatchedDocument);
+    List<DocumentModel> getAttatchedDocuments();
+    void addAttatchedDocument(DocumentModel document);
+    boolean removeAttatchedDocument(DocumentModel attatchedDocument);
 
     /**
      * Events interfaces

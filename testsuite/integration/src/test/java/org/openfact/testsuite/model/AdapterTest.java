@@ -157,7 +157,7 @@ public class AdapterTest extends AbstractModelTest {
         commit();
 
 
-        // Try to create documentEntity with duplicate series and number
+        // Try to create ublDocument with duplicate series and number
         try {
             sistcoop1 = organizationManager.getOrganizationByName("SISTCOOP1");
             organizationManager.getSession().documents().addDocument(DocumentType.INVOICE.toString(), "F01-001", sistcoop1);

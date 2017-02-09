@@ -16,6 +16,7 @@
  *******************************************************************************/
 package org.openfact.models;
 
+import org.openfact.models.enums.DocumentType;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
@@ -26,6 +27,7 @@ import java.util.Map;
 
 public interface DocumentProvider extends Provider {
 
+    DocumentModel addDocument(DocumentType documentType, String documentId, OrganizationModel organization);
     DocumentModel addDocument(String documentType, String documentId, OrganizationModel organization);
 
     /**

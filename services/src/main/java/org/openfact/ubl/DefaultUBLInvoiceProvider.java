@@ -17,10 +17,7 @@
 package org.openfact.ubl;
 
 import org.openfact.models.*;
-import org.openfact.models.enums.DestinyType;
-import org.openfact.models.enums.SendResultType;
 import org.openfact.models.utils.OpenfactModelUtils;
-import org.openfact.services.managers.DocumentManager;
 import org.w3c.dom.Document;
 
 import com.helger.ubl21.UBL21Reader;

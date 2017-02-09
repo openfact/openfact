@@ -68,15 +68,15 @@ public class ConcurrentTransactionsTest extends AbstractModelTest {
                             // Read client
                             OrganizationModel organization = session.organizations().getOrganizationByName("original");
                             DocumentModel document = session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F01-123", organization);
-                            logger.info("transaction1: Read documentEntity finished");
+                            logger.info("transaction1: Read ublDocument finished");
                             readLatch.countDown();
 
                             // Wait until thread2 updates client and commits
                             updateLatch.await();
-                            logger.info("transaction1: Going to read documentEntity again");
+                            logger.info("transaction1: Going to read ublDocument again");
 
                             document = session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F01-123", organization);
-                            logger.info("transaction1: document email: " + document.getCustomerElectronicMail());
+                            logger.info("transaction1: ublDocument email: " + document.getCustomerElectronicMail());
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }
@@ -103,7 +103,7 @@ public class ConcurrentTransactionsTest extends AbstractModelTest {
 
 
                             readLatch.await();
-                            logger.info("transaction2: Going to update document currency code");
+                            logger.info("transaction2: Going to update ublDocument currency code");
 
                             OrganizationModel organization = session.organizations().getOrganizationByName("original");
                             DocumentModel document = session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F01-123", organization);

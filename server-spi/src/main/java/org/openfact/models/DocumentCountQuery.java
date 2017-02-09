@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface DocumentCountQuery {
 
+    DocumentCountQuery currencyCode(String... currencyCode);
+
     DocumentCountQuery documentType(String... documentType);
 
     DocumentCountQuery filterText(String filterText, String... fieldName);

@@ -2,11 +2,14 @@ package org.openfact.models;
 
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.search.SearchCriteriaFilterModel;
+import org.w3c.dom.Document;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 public interface DocumentQuery {
+
+    DocumentQuery currencyCode(String... currencyCode);
 
     DocumentQuery documentType(String... documentType);
 

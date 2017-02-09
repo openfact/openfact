@@ -28,7 +28,7 @@ import org.openfact.models.*;
 import org.openfact.models.enums.DestinyType;
 import org.openfact.models.enums.DocumentType;
 import org.openfact.models.enums.RequiredAction;
-import org.openfact.models.enums.SendResultType;
+import org.openfact.models.enums.SendEventStatus;
 import org.openfact.models.jpa.entities.*;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.w3c.dom.Document;
@@ -41,61 +41,61 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> {
+public class UBLDocumentAdapter implements DocumentModel, JpaModel<UBLDocumentEntity> {
 
-    protected static final Logger logger = Logger.getLogger(DocumentAdapter.class);
+    protected static final Logger logger = Logger.getLogger(UBLDocumentAdapter.class);
 
     protected OrganizationModel organization;
-    protected DocumentEntity documentEntity;
+    protected UBLDocumentEntity ublDocument;
     protected EntityManager em;
     protected OpenfactSession session;
 
     protected FileModel xmlFile;
-    protected Document document;
+    protected Document xmlDocument;
     protected JSONObject jsonObject;
 
-    public DocumentAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em, DocumentEntity documentEntity) {
+    public UBLDocumentAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em, UBLDocumentEntity documentEntity) {
         this.organization = organization;
         this.session = session;
         this.em = em;
-        this.documentEntity = documentEntity;
+        this.ublDocument = documentEntity;
     }
 
-    public static DocumentEntity toEntity(DocumentModel model, EntityManager em) {
-        if (model instanceof DocumentAdapter) {
-            return ((DocumentAdapter) model).getEntity();
+    public static UBLDocumentEntity toEntity(DocumentModel model, EntityManager em) {
+        if (model instanceof UBLDocumentAdapter) {
+            return ((UBLDocumentAdapter) model).getEntity();
         }
-        return em.getReference(DocumentEntity.class, model.getId());
+        return em.getReference(UBLDocumentEntity.class, model.getId());
     }
 
     @Override
-    public DocumentEntity getEntity() {
-        return documentEntity;
+    public UBLDocumentEntity getEntity() {
+        return ublDocument;
     }
 
     @Override
     public String getId() {
-        return documentEntity.getId();
+        return ublDocument.getId();
     }
 
     @Override
     public String getDocumentId() {
-        return documentEntity.getDocumentId();
+        return ublDocument.getDocumentId();
     }
 
     @Override
     public String getDocumentType() {
-        return documentEntity.getDocumentType();
+        return ublDocument.getDocumentType();
     }
 
     @Override
     public LocalDateTime getCreatedTimestamp() {
-        return documentEntity.getCreatedTimestamp();
+        return ublDocument.getCreatedTimestamp();
     }
 
     @Override
     public boolean isEnabled() {
-        return documentEntity.isEnabled();
+        return ublDocument.isEnabled();
     }
 
     @Override
@@ -104,40 +104,50 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
     }
 
     @Override
+    public String getDocumentCurrencyCode() {
+        return ublDocument.getDocumentCurrencyCode();
+    }
+
+    @Override
+    public void setDocumentCurrencyCode(String currencyCode) {
+        ublDocument.setDocumentCurrencyCode(currencyCode.toLowerCase());
+    }
+
+    @Override
     public String getCustomerRegistrationName() {
-        return documentEntity.getCustomerRegistrationName();
+        return ublDocument.getCustomerRegistrationName();
     }
 
     @Override
     public void setCustomerRegistrationName(String value) {
-        documentEntity.setCustomerRegistrationName(value);
+        ublDocument.setCustomerRegistrationName(value);
     }
 
     @Override
     public String getCustomerAssignedAccountId() {
-        return documentEntity.getCustomerAssignedAccountId();
+        return ublDocument.getCustomerAssignedAccountId();
     }
 
     @Override
     public void setCustomerAssignedAccountId(String value) {
-        documentEntity.setCustomerAssignedAccountId(value);
+        ublDocument.setCustomerAssignedAccountId(value);
     }
 
     @Override
     public String getCustomerElectronicMail() {
-        return documentEntity.getCustomerElectronicMail();
+        return ublDocument.getCustomerElectronicMail();
     }
 
     @Override
     public void setCustomerElectronicMail(String value) {
-        documentEntity.setCustomerElectronicMail(value);
+        ublDocument.setCustomerElectronicMail(value);
     }
 
     @Override
     public FileModel getXmlAsFile() {
-        if (xmlFile == null && documentEntity.getXmlFileId() != null) {
+        if (xmlFile == null && ublDocument.getXmlFileId() != null) {
             FileProvider provider = session.getProvider(FileProvider.class);
-            xmlFile = provider.getFileById(organization, documentEntity.getXmlFileId());
+            xmlFile = provider.getFileById(organization, ublDocument.getXmlFileId());
         }
         return xmlFile;
     }
@@ -145,22 +155,22 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
     @Override
     public void attachXmlFile(FileModel file) {
         xmlFile = file;
-        documentEntity.setXmlFileId(xmlFile.getId());
+        ublDocument.setXmlFileId(xmlFile.getId());
     }
 
     @Override
     public Document getXmlAsDocument() {
-        if (document == null) {
+        if (xmlDocument == null) {
             FileModel file = getXmlAsFile();
             if (file != null) {
                 try {
-                    document = DocumentUtils.byteToDocument(file.getFile());
+                    xmlDocument = DocumentUtils.byteToDocument(file.getFile());
                 } catch (Exception e) {
                     throw new ModelException("Error parsing xml file to Document", e);
                 }
             }
         }
-        return document;
+        return xmlDocument;
     }
 
     @Override
@@ -171,7 +181,7 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
                 if (document != null) {
                     String documentString = DocumentUtils.getDocumentToString(document);
                     jsonObject = JSONObjectUtils.renameKey(XML.toJSONObject(documentString), ".*:", "");
-                    DocumentType documentType = DocumentType.getFromString(documentEntity.getDocumentType());
+                    DocumentType documentType = DocumentType.getFromString(ublDocument.getDocumentType());
                     if (documentType != null) {
                         switch (documentType) {
                             case INVOICE:
@@ -185,10 +195,16 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
                                 break;
                         }
                     } else {
-                        String jsonName = Arrays.stream(documentEntity.getDocumentType().toLowerCase().split("_"))
+                        String jsonName = Arrays.stream(ublDocument.getDocumentType().toLowerCase().split("_"))
                                 .map(c -> c.substring(0, 1).toUpperCase() + c.substring(1))
                                 .reduce("", String::concat);
-                        jsonObject = JSONObjectUtils.getJSONObject(jsonObject, jsonName);
+
+                        JSONObject subJsonObject = JSONObjectUtils.getJSONObject(jsonObject, jsonName);
+                        if (subJsonObject != null) {
+                            return subJsonObject;
+                        } else {
+                            return jsonObject;
+                        }
                     }
                 }
             } catch (TransformerException e) {
@@ -204,8 +220,8 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
     @Override
     public void setSingleAttribute(String name, String value) {
         String firstExistingAttrId = null;
-        List<DocumentAttributeEntity> toRemove = new ArrayList<>();
-        for (DocumentAttributeEntity attr : documentEntity.getAttributes()) {
+        List<UBLDocumentAttributeEntity> toRemove = new ArrayList<>();
+        for (UBLDocumentAttributeEntity attr : ublDocument.getAttributes()) {
             if (attr.getName().equals(name)) {
                 if (firstExistingAttrId == null) {
                     attr.setValue(value);
@@ -220,12 +236,12 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
             // Remove attributes through HQL to avoid StaleUpdateException
             Query query = em.createNamedQuery("deleteDocumentAttributesByNameAndDocumentOtherThan");
             query.setParameter("name", name);
-            query.setParameter("documentId", documentEntity.getId());
+            query.setParameter("documentId", ublDocument.getId());
             query.setParameter("attrId", firstExistingAttrId);
             int numUpdated = query.executeUpdate();
 
             // Remove attribute from local entity
-            documentEntity.getAttributes().removeAll(toRemove);
+            ublDocument.getAttributes().removeAll(toRemove);
         } else {
 
             persistAttributeValue(name, value);
@@ -244,13 +260,13 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
     }
 
     private void persistAttributeValue(String name, String value) {
-        DocumentAttributeEntity attr = new DocumentAttributeEntity();
+        UBLDocumentAttributeEntity attr = new UBLDocumentAttributeEntity();
         attr.setId(OpenfactModelUtils.generateId());
         attr.setName(name);
         attr.setValue(value);
-        attr.setDocument(documentEntity);
+        attr.setUblDocument(ublDocument);
         em.persist(attr);
-        documentEntity.getAttributes().add(attr);
+        ublDocument.getAttributes().add(attr);
     }
 
     @Override
@@ -258,22 +274,22 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
         // Remove attribute through HQL to avoid StaleUpdateException
         Query query = em.createNamedQuery("deleteDocumentAttributesByNameAndDocument");
         query.setParameter("name", name);
-        query.setParameter("documentId", documentEntity.getId());
+        query.setParameter("documentId", ublDocument.getId());
         int numUpdated = query.executeUpdate();
 
         // Also remove attributes from local user entity
-        List<DocumentAttributeEntity> toRemove = new ArrayList<>();
-        for (DocumentAttributeEntity attr : documentEntity.getAttributes()) {
+        List<UBLDocumentAttributeEntity> toRemove = new ArrayList<>();
+        for (UBLDocumentAttributeEntity attr : ublDocument.getAttributes()) {
             if (attr.getName().equals(name)) {
                 toRemove.add(attr);
             }
         }
-        documentEntity.getAttributes().removeAll(toRemove);
+        ublDocument.getAttributes().removeAll(toRemove);
     }
 
     @Override
     public String getFirstAttribute(String name) {
-        for (DocumentAttributeEntity attr : documentEntity.getAttributes()) {
+        for (UBLDocumentAttributeEntity attr : ublDocument.getAttributes()) {
             if (attr.getName().equals(name)) {
                 return attr.getValue();
             }
@@ -284,7 +300,7 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
     @Override
     public List<String> getAttribute(String name) {
         List<String> result = new ArrayList<>();
-        for (DocumentAttributeEntity attr : documentEntity.getAttributes()) {
+        for (UBLDocumentAttributeEntity attr : ublDocument.getAttributes()) {
             if (attr.getName().equals(name)) {
                 result.add(attr.getValue());
             }
@@ -295,7 +311,7 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
     @Override
     public Map<String, List<String>> getAttributes() {
         MultivaluedHashMap<String, String> result = new MultivaluedHashMap<>();
-        for (DocumentAttributeEntity attr : documentEntity.getAttributes()) {
+        for (UBLDocumentAttributeEntity attr : ublDocument.getAttributes()) {
             result.add(attr.getName(), attr.getValue());
         }
         return result;
@@ -307,7 +323,7 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
     @Override
     public Set<String> getRequiredActions() {
         Set<String> result = new HashSet<>();
-        for (DocumentRequiredActionEntity attr : documentEntity.getRequiredActions()) {
+        for (UBLDocumentRequiredActionEntity attr : ublDocument.getRequiredActions()) {
             result.add(attr.getAction());
         }
         return result;
@@ -321,16 +337,16 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
 
     @Override
     public void addRequiredAction(String actionName) {
-        for (DocumentRequiredActionEntity attr : documentEntity.getRequiredActions()) {
+        for (UBLDocumentRequiredActionEntity attr : ublDocument.getRequiredActions()) {
             if (attr.getAction().equals(actionName)) {
                 return;
             }
         }
-        DocumentRequiredActionEntity attr = new DocumentRequiredActionEntity();
+        UBLDocumentRequiredActionEntity attr = new UBLDocumentRequiredActionEntity();
         attr.setAction(actionName);
-        attr.setDocument(documentEntity);
+        attr.setUblDocument(ublDocument);
         em.persist(attr);
-        documentEntity.getRequiredActions().add(attr);
+        ublDocument.getRequiredActions().add(attr);
     }
 
     @Override
@@ -341,9 +357,9 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
 
     @Override
     public void removeRequiredAction(String actionName) {
-        Iterator<DocumentRequiredActionEntity> it = documentEntity.getRequiredActions().iterator();
+        Iterator<UBLDocumentRequiredActionEntity> it = ublDocument.getRequiredActions().iterator();
         while (it.hasNext()) {
-            DocumentRequiredActionEntity attr = it.next();
+            UBLDocumentRequiredActionEntity attr = it.next();
             if (attr.getAction().equals(actionName)) {
                 it.remove();
                 em.remove(attr);
@@ -356,29 +372,29 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
      */
     @Override
     public SendEventModel addSendEvent(DestinyType destinyType) {
-        SendEventEntity entity = new SendEventEntity();
+        UBLDocumentSendEventEntity entity = new UBLDocumentSendEventEntity();
         entity.setCreatedTimestamp(LocalDateTime.now());
-        entity.setResult(SendResultType.ON_PROCESS);
-        entity.setDestinyType(destinyType);
-        entity.setDocument(documentEntity);
+        entity.setStatus(SendEventStatus.ON_PROCESS);
+        entity.setDestiny(destinyType);
+        entity.setUblDocument(ublDocument);
         em.persist(entity);
         //em.flush();
 
-        return new SendEventAdapter(session, em, organization, entity);
+        return new UBLDocumentSendEventAdapter(session, em, organization, entity);
     }
 
     @Override
     public SendEventModel getSendEventById(String id) {
-        SendEventEntity entity = em.find(SendEventEntity.class, id);
+        UBLDocumentSendEventEntity entity = em.find(UBLDocumentSendEventEntity.class, id);
         if (entity != null) {
-            return new SendEventAdapter(session, em, organization, entity);
+            return new UBLDocumentSendEventAdapter(session, em, organization, entity);
         }
         return null;
     }
 
     @Override
     public boolean removeSendEvent(SendEventModel sendEvent) {
-        SendEventEntity entity = em.find(SendEventEntity.class, sendEvent.getId());
+        UBLDocumentSendEventEntity entity = em.find(UBLDocumentSendEventEntity.class, sendEvent.getId());
         if (entity == null)
             return false;
 
@@ -394,16 +410,16 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
 
     @Override
     public List<SendEventModel> getSendEvents(Integer firstResult, Integer maxResults) {
-        TypedQuery<SendEventEntity> query = em.createNamedQuery("getAllSendEventByDocumentId", SendEventEntity.class);
-        query.setParameter("documentId", documentEntity.getId());
+        TypedQuery<UBLDocumentSendEventEntity> query = em.createNamedQuery("getAllSendEventByDocumentId", UBLDocumentSendEventEntity.class);
+        query.setParameter("documentId", ublDocument.getId());
         if (firstResult != -1) {
             query.setFirstResult(firstResult);
         }
         if (maxResults != -1) {
             query.setMaxResults(maxResults);
         }
-        List<SendEventEntity> results = query.getResultList();
-        return results.stream().map(f -> new SendEventAdapter(session, em, organization, f)).collect(Collectors.toList());
+        List<UBLDocumentSendEventEntity> results = query.getResultList();
+        return results.stream().map(f -> new UBLDocumentSendEventAdapter(session, em, organization, f)).collect(Collectors.toList());
     }
 
     @Override
@@ -413,22 +429,18 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
 
     @Override
     public List<SendEventModel> searchForSendEvent(Map<String, String> attributes, int firstResult, int maxResults) {
-        StringBuilder builder = new StringBuilder("select u from SendEventEntity u where u.document.id = :documentId");
+        StringBuilder builder = new StringBuilder("select u from UBLDocumentSendEventEntity u where u.ublDocument.id = :documentId");
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             String attribute = null;
             String parameterName = null;
             String operator = null;
-            if (entry.getKey().equals(DocumentModel.SEND_EVENT_DESTINY_TYPE)) {
-                attribute = "u.destinyType";
-                parameterName = JpaDocumentProvider.SEND_EVENT_DESTINY_TYPE;
+            if (entry.getKey().equals(DocumentModel.SEND_EVENT_DESTINY)) {
+                attribute = "u." + JpaDocumentProvider.SEND_EVENT_DESTINY;
+                parameterName = JpaDocumentProvider.SEND_EVENT_DESTINY;
                 operator = " = :";
-            } else if (entry.getKey().equals(DocumentModel.SEND_EVENT_TYPE)) {
-                attribute = "lower(u.type)";
-                parameterName = JpaDocumentProvider.SEND_EVENT_TYPE;
-                operator = " like :";
-            } else if (entry.getKey().equals(DocumentModel.SEND_EVENT_RESULT)) {
-                attribute = "u.result";
-                parameterName = JpaDocumentProvider.SEND_EVENT_RESULT;
+            } else if (entry.getKey().equals(DocumentModel.SEND_EVENT_STATUS)) {
+                attribute = "u." + JpaDocumentProvider.SEND_EVENT_STATUS;
+                parameterName = JpaDocumentProvider.SEND_EVENT_STATUS;
                 operator = " = :";
             }
             if (attribute == null) continue;
@@ -437,20 +449,17 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
         }
         builder.append(" order by u.createdTimestamp");
         String q = builder.toString();
-        TypedQuery<SendEventEntity> query = em.createQuery(q, SendEventEntity.class);
-        query.setParameter("documentId", documentEntity.getId());
+        TypedQuery<UBLDocumentSendEventEntity> query = em.createQuery(q, UBLDocumentSendEventEntity.class);
+        query.setParameter("documentId", ublDocument.getId());
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             String parameterName = null;
             Object parameterValue = null;
-            if (entry.getKey().equals(DocumentModel.SEND_EVENT_DESTINY_TYPE)) {
-                parameterName = JpaDocumentProvider.SEND_EVENT_DESTINY_TYPE;
+            if (entry.getKey().equals(DocumentModel.SEND_EVENT_DESTINY)) {
+                parameterName = JpaDocumentProvider.SEND_EVENT_DESTINY;
                 parameterValue = DestinyType.valueOf(entry.getValue().toUpperCase());
-            } else if (entry.getKey().equals(DocumentModel.SEND_EVENT_TYPE)) {
-                parameterName = JpaDocumentProvider.SEND_EVENT_TYPE;
-                parameterValue = "%" + entry.getValue().toLowerCase() + "%";
-            } else if (entry.getKey().equals(DocumentModel.SEND_EVENT_RESULT)) {
-                parameterName = JpaDocumentProvider.SEND_EVENT_RESULT;
-                parameterValue = SendResultType.valueOf(entry.getValue().toUpperCase());
+            } else if (entry.getKey().equals(DocumentModel.SEND_EVENT_STATUS)) {
+                parameterName = JpaDocumentProvider.SEND_EVENT_STATUS;
+                parameterValue = SendEventStatus.valueOf(entry.getValue().toUpperCase());
             }
             if (parameterName == null) continue;
             query.setParameter(parameterName, parameterValue);
@@ -461,38 +470,32 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
         if (maxResults != -1) {
             query.setMaxResults(maxResults);
         }
-        List<SendEventEntity> results = query.getResultList();
-        return results.stream().map(f -> new SendEventAdapter(session, em, organization, f)).collect(Collectors.toList());
+        List<UBLDocumentSendEventEntity> results = query.getResultList();
+        return results.stream().map(f -> new UBLDocumentSendEventAdapter(session, em, organization, f)).collect(Collectors.toList());
     }
 
     @Override
     public int sendEventCount() {
         Object count = em.createNamedQuery("getDocumentSendEventCountByDocument")
-                .setParameter("documentId", documentEntity.getId())
+                .setParameter("documentId", ublDocument.getId())
                 .getSingleResult();
         return ((Number) count).intValue();
     }
 
     @Override
     public int sendEventCount(Map<String, String> attributes) {
-        StringBuilder builder = new StringBuilder("select count(u) from SendEventEntity u where u.document.id = :documentId");
+        StringBuilder builder = new StringBuilder("select count(u) from UBLDocumentSendEventEntity u where u.ublDocument.id = :documentId");
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             String attribute = null;
             String parameterName = null;
             String operator = null;
-            if (entry.getKey().equals(DocumentModel.SEND_EVENT_DESTINY_TYPE)) {
-                attribute = "u.destinyType";
-                parameterName = JpaDocumentProvider.SEND_EVENT_DESTINY_TYPE;
+            if (entry.getKey().equals(DocumentModel.SEND_EVENT_DESTINY)) {
+                attribute = "u." + JpaDocumentProvider.SEND_EVENT_DESTINY;
+                parameterName = JpaDocumentProvider.SEND_EVENT_DESTINY;
                 operator = " = :";
-            }
-            if (entry.getKey().equals(DocumentModel.SEND_EVENT_TYPE)) {
-                attribute = "lower(u.type)";
-                parameterName = JpaDocumentProvider.SEND_EVENT_TYPE;
-                operator = " like :";
-            }
-            if (entry.getKey().equals(DocumentModel.SEND_EVENT_RESULT)) {
-                attribute = "u.result";
-                parameterName = JpaDocumentProvider.SEND_EVENT_RESULT;
+            } else if (entry.getKey().equals(DocumentModel.SEND_EVENT_STATUS)) {
+                attribute = "u." + JpaDocumentProvider.SEND_EVENT_STATUS;
+                parameterName = JpaDocumentProvider.SEND_EVENT_STATUS;
                 operator = " = :";
             }
             if (attribute == null) continue;
@@ -502,21 +505,16 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
 
         String q = builder.toString();
         Query query = em.createQuery(q);
-        query.setParameter("documentId", documentEntity.getId());
+        query.setParameter("documentId", ublDocument.getId());
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             String parameterName = null;
             Object parameterValue = null;
-            if (entry.getKey().equals(DocumentModel.SEND_EVENT_DESTINY_TYPE)) {
-                parameterName = JpaDocumentProvider.SEND_EVENT_DESTINY_TYPE;
+            if (entry.getKey().equals(DocumentModel.SEND_EVENT_DESTINY)) {
+                parameterName = JpaDocumentProvider.SEND_EVENT_DESTINY;
                 parameterValue = DestinyType.valueOf(entry.getValue().toUpperCase());
-            }
-            if (entry.getKey().equals(DocumentModel.SEND_EVENT_TYPE)) {
-                parameterName = JpaDocumentProvider.SEND_EVENT_TYPE;
-                parameterValue = "%" + entry.getValue().toLowerCase() + "%";
-            }
-            if (entry.getKey().equals(DocumentModel.SEND_EVENT_RESULT)) {
-                parameterName = JpaDocumentProvider.SEND_EVENT_RESULT;
-                parameterValue = SendResultType.valueOf(entry.getValue().toUpperCase());
+            } else if (entry.getKey().equals(DocumentModel.SEND_EVENT_STATUS)) {
+                parameterName = JpaDocumentProvider.SEND_EVENT_STATUS;
+                parameterValue = SendEventStatus.valueOf(entry.getValue().toUpperCase());
             }
             if (parameterName == null) continue;
             query.setParameter(parameterName, parameterValue);
@@ -530,38 +528,30 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
      * Attatched documents
      */
     @Override
-    public List<AttatchedDocumentModel> getAttatchedDocuments() {
-        return documentEntity.getAttatchedDocuments().stream().map(f -> new AttatchedDocumentAdapter(session, organization, em, f)).collect(Collectors.toList());
+    public List<DocumentModel> getAttatchedDocuments() {
+        return ublDocument.getAttachedDocuments().stream()
+                .map(f -> new UBLDocumentAdapter(session, organization, em, f.getAttachedUblDocument()))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public AttatchedDocumentModel getAttatchedDocumentById(String id) {
-        AttatchedDocumentEntity entity = em.find(AttatchedDocumentEntity.class, id);
-        if (entity == null) return null;
-        return new AttatchedDocumentAdapter(session, organization, em, entity);
-    }
-
-    @Override
-    public AttatchedDocumentModel addAttatchedDocument(String documentType, String documentId) {
-        AttatchedDocumentEntity entity = new AttatchedDocumentEntity();
-        entity.setRelatedDocumentType(documentType);
-        entity.setRelatedDocumentId(documentId);
-        entity.setDocument(documentEntity);
+    public void addAttatchedDocument(DocumentModel attachedDocument) {
+        UBLAttachedDocumentEntity entity = new UBLAttachedDocumentEntity();
+        entity.setAttachedUblDocument(UBLDocumentAdapter.toEntity(attachedDocument, em));
+        entity.setUblDocument(ublDocument);
         em.persist(entity);
-        em.flush();
-        documentEntity.getAttatchedDocuments().add(entity);
-        return new AttatchedDocumentAdapter(session, organization, em, entity);
+        ublDocument.getAttachedDocuments().add(entity);
     }
 
     @Override
-    public boolean removeAttatchedDocument(AttatchedDocumentModel attatchedDocument) {
+    public boolean removeAttatchedDocument(DocumentModel attachedDocument) {
         boolean result = false;
-        Iterator<AttatchedDocumentEntity> it = documentEntity.getAttatchedDocuments().iterator();
+        Iterator<UBLAttachedDocumentEntity> it = ublDocument.getAttachedDocuments().iterator();
         while (it.hasNext()) {
-            AttatchedDocumentEntity attr = it.next();
-            if (attr.getId().equals(attatchedDocument.getId())) {
+            UBLAttachedDocumentEntity ublAttachedDocumentEntity = it.next();
+            if (ublAttachedDocumentEntity.getAttachedUblDocument().getId().equals(attachedDocument.getId())) {
                 it.remove();
-                em.remove(attr);
+                em.remove(ublAttachedDocumentEntity);
                 result = true;
             }
         }

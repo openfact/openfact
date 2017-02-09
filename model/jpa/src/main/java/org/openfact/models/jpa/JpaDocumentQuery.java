@@ -2,8 +2,8 @@ package org.openfact.models.jpa;
 
 import org.openfact.models.*;
 import org.openfact.models.enums.RequiredAction;
-import org.openfact.models.jpa.entities.DocumentEntity;
-import org.openfact.models.jpa.entities.DocumentRequiredActionEntity;
+import org.openfact.models.jpa.entities.UBLDocumentEntity;
+import org.openfact.models.jpa.entities.UBLDocumentRequiredActionEntity;
 import org.openfact.models.search.SearchCriteriaFilterModel;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 
@@ -19,8 +19,8 @@ public class JpaDocumentQuery implements DocumentQuery {
 
     private final EntityManager em;
     private final CriteriaBuilder cb;
-    private final CriteriaQuery<DocumentEntity> cq;
-    private final Root<DocumentEntity> root;
+    private final CriteriaQuery<UBLDocumentEntity> cq;
+    private final Root<UBLDocumentEntity> root;
     private final ArrayList<Predicate> predicates;
     private Integer firstResult;
     private Integer maxResults;
@@ -35,12 +35,19 @@ public class JpaDocumentQuery implements DocumentQuery {
         this.organization = organization;
 
         cb = em.getCriteriaBuilder();
-        cq = cb.createQuery(DocumentEntity.class);
-        root = cq.from(DocumentEntity.class);
+        cq = cb.createQuery(UBLDocumentEntity.class);
+        root = cq.from(UBLDocumentEntity.class);
         predicates = new ArrayList<>();
         orderBy = new HashMap<>();
 
         this.predicates.add(cb.equal(root.get("organizationId"), organization.getId()));
+    }
+
+    @Override
+    public DocumentQuery currencyCode(String... currencyCode) {
+        List<String> currencyCodes = Arrays.asList(currencyCode);
+        predicates.add(root.get("documentCurrencyCode").in(currencyCodes));
+        return this;
     }
 
     @Override
@@ -93,7 +100,7 @@ public class JpaDocumentQuery implements DocumentQuery {
     public DocumentQuery requiredAction(RequiredAction... requiredAction) {
         List<String> rActions = Stream.of(requiredAction).map(RequiredAction::toString).collect(Collectors.toList());
 
-        Join<DocumentEntity, DocumentRequiredActionEntity> requiredActions = root.join("requiredActions");
+        Join<UBLDocumentEntity, UBLDocumentRequiredActionEntity> requiredActions = root.join("requiredActions");
         predicates.add(requiredActions.get("action").in(rActions));
 
         return this;
@@ -141,7 +148,7 @@ public class JpaDocumentQuery implements DocumentQuery {
 
     @Override
     public List<DocumentModel> getResultList() {
-        TypedQuery<DocumentEntity> query = buildTypedQuery();
+        TypedQuery<UBLDocumentEntity> query = buildTypedQuery();
         if (firstResult != null) {
             query.setFirstResult(firstResult);
         }
@@ -151,23 +158,23 @@ public class JpaDocumentQuery implements DocumentQuery {
 
         return query.getResultList()
                 .stream()
-                .map(f -> new DocumentAdapter(session, organization, em, f))
+                .map(f -> new UBLDocumentAdapter(session, organization, em, f))
                 .collect(Collectors.toList());
     }
 
     @Override
     public ScrollModel<DocumentModel> getScrollResult(int scrollSize) {
-        TypedQuery<DocumentEntity> query = buildTypedQuery();
-        return new ScrollAdapter<>(DocumentEntity.class, query, f -> new DocumentAdapter(session, organization, em, f), scrollSize);
+        TypedQuery<UBLDocumentEntity> query = buildTypedQuery();
+        return new ScrollAdapter<>(UBLDocumentEntity.class, query, f -> new UBLDocumentAdapter(session, organization, em, f), scrollSize);
     }
 
     @Override
     public ScrollModel<List<DocumentModel>> getScrollResultList(int listSize) {
-        TypedQuery<DocumentEntity> query = buildTypedQuery();
-        return new ScrollPagingAdapter<>(DocumentEntity.class, query, f -> f.stream().map(m -> new DocumentAdapter(session, organization, em, m)).collect(Collectors.toList()), listSize);
+        TypedQuery<UBLDocumentEntity> query = buildTypedQuery();
+        return new ScrollPagingAdapter<>(UBLDocumentEntity.class, query, f -> f.stream().map(m -> new UBLDocumentAdapter(session, organization, em, m)).collect(Collectors.toList()), listSize);
     }
 
-    private TypedQuery<DocumentEntity> buildTypedQuery() {
+    private TypedQuery<UBLDocumentEntity> buildTypedQuery() {
         if (!predicates.isEmpty()) {
             cq.where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
         }

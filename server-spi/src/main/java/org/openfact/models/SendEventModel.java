@@ -18,10 +18,9 @@ package org.openfact.models;
 
 import org.openfact.file.FileModel;
 import org.openfact.models.enums.DestinyType;
-import org.openfact.models.enums.SendResultType;
+import org.openfact.models.enums.SendEventStatus;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,21 +30,11 @@ public interface SendEventModel {
     LocalDateTime getCreatedTimestamp();
     DestinyType getDestityType();
 
-    SendResultType getResult();
-    void setResult(SendResultType result);
+    SendEventStatus getResult();
+    void setResult(SendEventStatus result);
 
     String getDescription();
     void setDescription(String description);
-    
-    String getType();
-    void setType(String type);
-
-    void setSingleDestinyAttribute(String name, String value);
-    void setDestinyAttribute(String name, List<String> values);
-    void removeDestinyAttribute(String name);
-    String getFirstDestinyAttribute(String name);
-    List<String> getDestinyAttribute(String name);
-    Map<String, List<String>> getDestinyAttributes();
 
     void setSingleResponseAttribute(String name, String value);
     void setResponseAttribute(String name, List<String> values);
@@ -53,10 +42,6 @@ public interface SendEventModel {
     String getFirstResponseAttribute(String name);
     List<String> getResponseAttribute(String name);
     Map<String, List<String>> getResponseAttributes();
-
-    List<FileModel> getFileAttatchments();
-    void attachFile(FileModel file);
-    void unattachFile(FileModel file);
 
     List<FileModel> getResponseFileAttatchments();
     void attachResponseFile(FileModel file);

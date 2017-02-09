@@ -16,16 +16,11 @@
  *******************************************************************************/
 package org.openfact.ubl;
 
-import com.helger.ubl21.UBL21Reader;
-import com.helger.ubl21.UBL21Writer;
-import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 import org.openfact.models.*;
 import org.openfact.models.enums.DestinyType;
 import org.openfact.models.enums.RequiredAction;
-import org.openfact.models.enums.SendResultType;
-import org.openfact.models.utils.OpenfactModelUtils;
+import org.openfact.models.enums.SendEventStatus;
 import org.openfact.services.managers.DocumentManager;
-import org.w3c.dom.Document;
 
 public class DefaultUBLSenderProvider implements UBLSender<DocumentModel> {
 
@@ -62,7 +57,7 @@ public class DefaultUBLSenderProvider implements UBLSender<DocumentModel> {
 
     @Override
     public void sendToThirdParty(OrganizationModel organization, DocumentModel invoiceModel, SendEventModel sendEvent) throws ModelInsuficientData, SendException {
-        sendEvent.setResult(SendResultType.ERROR);
+        sendEvent.setResult(SendEventStatus.ERROR);
         sendEvent.setDescription("Could not send the document because there is no a valid Third Party. This feature should be implemented by your own code");
     }
 

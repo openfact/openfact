@@ -26,14 +26,14 @@ package org.openfact.models.jpa.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "SEND_EVENT_DESTINY_ATTRIBUTE")
+@Table(name = "SEND_EVENT_RESPONSE_ATTRIBUTE")
 @NamedQueries({
-        @NamedQuery(name = "getSendEventDestinyAttributesByNameAndValue", query = "select attr from SendEventDestinyAttributeEntity attr where attr.name = :name and attr.value = :value"),
-        @NamedQuery(name = "deleteSendEventDestinyAttributesByNameAndSendEvent", query = "delete from  SendEventDestinyAttributeEntity attr where attr.sendEvent.id = :sendEventId and attr.name = :name"),
-        @NamedQuery(name = "deleteSendEventDestinyAttributesByNameAndSendEventOtherThan", query = "delete from  SendEventDestinyAttributeEntity attr where attr.sendEvent.id = :sendEventId and attr.name = :name and attr.id <> :attrId"),
-        @NamedQuery(name = "deleteDocumentSendEventDestinyAttributesByOrganization", query = "delete from SendEventDestinyAttributeEntity attr where attr.sendEvent IN (select s from SendEventEntity s join s.document i where i.organizationId=:organizationId)")
+        @NamedQuery(name = "getSendEventResponseAttributesByNameAndValue", query = "select attr from UBLDocumentSendEventResponseAttributeEntity attr where attr.name = :name and attr.value = :value"),
+        @NamedQuery(name = "deleteSendEventResponseAttributesByNameAndSendEvent", query = "delete from  UBLDocumentSendEventResponseAttributeEntity attr where attr.ublDocumentSendEvent.id = :sendEventId and attr.name = :name"),
+        @NamedQuery(name = "deleteSendEventResponseAttributesByNameAndSendEventOtherThan", query = "delete from  UBLDocumentSendEventResponseAttributeEntity attr where attr.ublDocumentSendEvent.id = :sendEventId and attr.name = :name and attr.id <> :attrId"),
+        @NamedQuery(name = "deleteDocumentSendEventResponseAttributesByOrganization", query = "delete from UBLDocumentSendEventResponseAttributeEntity attr where attr.ublDocumentSendEvent IN (select s from UBLDocumentSendEventEntity s join s.ublDocument i where i.organizationId=:organizationId)")
 })
-public class SendEventDestinyAttributeEntity {
+public class UBLDocumentSendEventResponseAttributeEntity {
 
     @Id
     @Column(name = "ID", length = 36)
@@ -41,8 +41,8 @@ public class SendEventDestinyAttributeEntity {
     protected String id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SEND_EVENT_ID")
-    protected SendEventEntity sendEvent;
+    @JoinColumn(foreignKey = @ForeignKey, name = "UBL_DOCUMENT_SEND_EVENT_ID")
+    protected UBLDocumentSendEventEntity ublDocumentSendEvent;
 
     @Column(name = "NAME")
     protected String name;
@@ -74,21 +74,21 @@ public class SendEventDestinyAttributeEntity {
         this.value = value;
     }
 
-    public SendEventEntity getSendEvent() {
-        return sendEvent;
+    public UBLDocumentSendEventEntity getUblDocumentSendEvent() {
+        return ublDocumentSendEvent;
     }
 
-    public void setSendEvent(SendEventEntity sendEvent) {
-        this.sendEvent = sendEvent;
+    public void setUblDocumentSendEvent(UBLDocumentSendEventEntity sendEvent) {
+        this.ublDocumentSendEvent = sendEvent;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null) return false;
-        if (!(o instanceof SendEventDestinyAttributeEntity)) return false;
+        if (!(o instanceof UBLDocumentSendEventResponseAttributeEntity)) return false;
 
-        SendEventDestinyAttributeEntity that = (SendEventDestinyAttributeEntity) o;
+        UBLDocumentSendEventResponseAttributeEntity that = (UBLDocumentSendEventResponseAttributeEntity) o;
 
         if (!id.equals(that.getId())) return false;
 

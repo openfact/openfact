@@ -148,27 +148,13 @@ public class ModelToRepresentation {
         }
 
         if (model.getAttatchedDocuments() != null) {
-            List<AttatchedDocumentRepresentation> attatchedDocuments = new ArrayList<>();
-            for (AttatchedDocumentModel attatchedDocument : model.getAttatchedDocuments()) {
+            List<DocumentRepresentation> attatchedDocuments = new ArrayList<>();
+            for (DocumentModel attatchedDocument : model.getAttatchedDocuments()) {
                 attatchedDocuments.add(toRepresentation(attatchedDocument));
             }
             rep.setAttatchedDocuments(attatchedDocuments);
         }
 
-        return rep;
-    }
-
-    public static AttatchedDocumentRepresentation toRepresentation(AttatchedDocumentModel model) {
-        AttatchedDocumentRepresentation rep = new AttatchedDocumentRepresentation();
-        rep.setId(model.getId());
-        rep.setDocumentId(model.getRelatedDocumentId());
-        rep.setDocumentType(model.getRelatedDocumentType().toString());
-
-        if (model.getAttributes() != null && !model.getAttributes().isEmpty()) {
-            Map<String, List<String>> attrs = new HashMap<>();
-            attrs.putAll(model.getAttributes());
-            rep.setAttributes(attrs);
-        }
         return rep;
     }
 
@@ -291,30 +277,14 @@ public class ModelToRepresentation {
         rep.setDestinyType(model.getDestityType().toString());
         rep.setResult(model.getResult().toString());
         rep.setDescription(model.getDescription());
-        rep.setType(model.getType());
         rep.setCreatedTimestamp(model.getCreatedTimestamp());
 
-        if (model.getDestinyAttributes() != null && !model.getDestinyAttributes().isEmpty()) {
-            Map<String, List<String>> attrs = new HashMap<>();
-            attrs.putAll(model.getDestinyAttributes());
-            rep.setDestinyAttributes(attrs);
-        }
         if (model.getResponseAttributes() != null && !model.getResponseAttributes().isEmpty()) {
             Map<String, List<String>> attrs = new HashMap<>();
             attrs.putAll(model.getResponseAttributes());
             rep.setResponseAttributes(attrs);
         }
 
-        if (model.getFileAttatchments() != null && !model.getFileAttatchments().isEmpty()) {
-            rep.setFileAttachments(new ArrayList<>());
-            List<FileRepresentation> filesRep = model.getFileAttatchments().stream().map(f -> {
-                FileRepresentation fileRep = new FileRepresentation();
-                fileRep.setId(f.getId());
-                fileRep.setFileName(f.getFileName());
-                return fileRep;
-            }).collect(Collectors.toList());
-            rep.getFileAttachments().addAll(filesRep);
-        }
         if (model.getResponseFileAttatchments() != null && !model.getResponseFileAttatchments().isEmpty()) {
             rep.setResponseFileAttachments(new ArrayList<>());
             List<FileRepresentation> filesRep = model.getResponseFileAttatchments().stream().map(f -> {

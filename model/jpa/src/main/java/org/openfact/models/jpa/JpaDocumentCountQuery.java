@@ -2,8 +2,8 @@ package org.openfact.models.jpa;
 
 import org.openfact.models.*;
 import org.openfact.models.enums.RequiredAction;
-import org.openfact.models.jpa.entities.DocumentEntity;
-import org.openfact.models.jpa.entities.DocumentRequiredActionEntity;
+import org.openfact.models.jpa.entities.UBLDocumentEntity;
+import org.openfact.models.jpa.entities.UBLDocumentRequiredActionEntity;
 import org.openfact.models.search.SearchCriteriaFilterModel;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 
@@ -20,7 +20,7 @@ public class JpaDocumentCountQuery implements DocumentCountQuery {
     private final EntityManager em;
     private final CriteriaBuilder cb;
     private final CriteriaQuery<Long> cq;
-    private final Root<DocumentEntity> root;
+    private final Root<UBLDocumentEntity> root;
     private final ArrayList<Predicate> predicates;
 
     private final OrganizationModel organization;
@@ -33,10 +33,17 @@ public class JpaDocumentCountQuery implements DocumentCountQuery {
 
         cb = em.getCriteriaBuilder();
         cq = cb.createQuery(Long.class);
-        root = cq.from(DocumentEntity.class);
+        root = cq.from(UBLDocumentEntity.class);
         predicates = new ArrayList<>();
 
         this.predicates.add(cb.equal(root.get("organizationId"), organization.getId()));
+    }
+
+    @Override
+    public DocumentCountQuery currencyCode(String... currencyCode) {
+        List<String> currencyCodes = Arrays.asList(currencyCode);
+        predicates.add(root.get("documentCurrencyCode").in(currencyCodes));
+        return this;
     }
 
     @Override
@@ -89,7 +96,7 @@ public class JpaDocumentCountQuery implements DocumentCountQuery {
     public DocumentCountQuery requiredAction(RequiredAction... requiredAction) {
         List<String> rActions = Stream.of(requiredAction).map(RequiredAction::toString).collect(Collectors.toList());
 
-        Join<DocumentEntity, DocumentRequiredActionEntity> requiredActions = root.join("requiredActions");
+        Join<UBLDocumentEntity, UBLDocumentRequiredActionEntity> requiredActions = root.join("requiredActions");
         predicates.add(requiredActions.get("action").in(rActions));
 
         return this;

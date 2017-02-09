@@ -36,7 +36,7 @@ public class DocumentRepresentation {
     private Map<String, List<String>> attributes;
     private Set<String> requiredActions;
 
-    private List<AttatchedDocumentRepresentation> attatchedDocuments;
+    private List<DocumentRepresentation> attatchedDocuments;
 
 
     public String getId() {
@@ -111,11 +111,11 @@ public class DocumentRepresentation {
         this.requiredActions = requiredActions;
     }
 
-    public List<AttatchedDocumentRepresentation> getAttatchedDocuments() {
+    public List<DocumentRepresentation> getAttatchedDocuments() {
         return attatchedDocuments;
     }
 
-    public void setAttatchedDocuments(List<AttatchedDocumentRepresentation> attatchedDocuments) {
+    public void setAttatchedDocuments(List<DocumentRepresentation> attatchedDocuments) {
         this.attatchedDocuments = attatchedDocuments;
     }
 }

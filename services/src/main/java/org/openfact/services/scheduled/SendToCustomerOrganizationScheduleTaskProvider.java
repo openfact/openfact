@@ -20,7 +20,7 @@ import org.jboss.logging.Logger;
 import org.openfact.models.*;
 import org.openfact.models.enums.DestinyType;
 import org.openfact.models.enums.RequiredAction;
-import org.openfact.models.enums.SendResultType;
+import org.openfact.models.enums.SendEventStatus;
 import org.openfact.services.managers.DocumentManager;
 import org.openfact.models.SendEventModel;
 import org.openfact.models.SendException;
@@ -83,21 +83,21 @@ public class SendToCustomerOrganizationScheduleTaskProvider implements Organizat
 
             invoices.stream()
                     .filter(p -> p.sendEventCount(new HashMap<String, String>() {{
-                        put(DocumentModel.SEND_EVENT_DESTINY_TYPE, DestinyType.CUSTOMER.toString());
+                        put(DocumentModel.SEND_EVENT_DESTINY, DestinyType.CUSTOMER.toString());
                     }}) < retries)
                     .forEach(c -> {
                         DocumentManager manager = new DocumentManager(session);
                         SendEventModel sendEvent = c.addSendEvent(DestinyType.CUSTOMER);
                         try {
                             manager.sendToCustomerParty(organization, c, sendEvent);
-                            if (sendEvent.getResult().equals(SendResultType.SUCCESS)) {
+                            if (sendEvent.getResult().equals(SendEventStatus.SUCCESS)) {
                                 c.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
                             }
                         } catch (ModelInsuficientData e) {
-                            sendEvent.setResult(SendResultType.ERROR);
+                            sendEvent.setResult(SendEventStatus.ERROR);
                             sendEvent.setDescription(e.getMessage());
                         } catch (SendException e) {
-                            sendEvent.setResult(SendResultType.ERROR);
+                            sendEvent.setResult(SendEventStatus.ERROR);
                             sendEvent.setDescription("Internal Server Error");
                             logger.error("Internal server error", e);
                         }

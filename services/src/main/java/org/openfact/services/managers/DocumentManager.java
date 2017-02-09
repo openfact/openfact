@@ -36,7 +36,7 @@ import org.openfact.models.*;
 import org.openfact.models.enums.DestinyType;
 import org.openfact.models.enums.DocumentType;
 import org.openfact.models.enums.RequiredAction;
-import org.openfact.models.enums.SendResultType;
+import org.openfact.models.enums.SendEventStatus;
 import org.openfact.models.utils.TypeToModel;
 import org.openfact.report.ExportFormat;
 import org.openfact.report.ReportException;
@@ -332,13 +332,8 @@ public class DocumentManager {
                     .sendDocument(document);
 
             // Write event to the database
-            sendEvent.setType("EMAIL");
             sendEvent.setDescription("Document successfully sended");
-            sendEvent.attachFile(xmlFile);
-            sendEvent.attachFile(pdfFile);
-            sendEvent.setResult(SendResultType.SUCCESS);
-
-            sendEvent.setSingleDestinyAttribute("email", user.getEmail());
+            sendEvent.setResult(SendEventStatus.SUCCESS);
         } catch (ReportException e) {
             throw new SendException("Could not generate pdf report to attach file", e);
         } catch (EmailException e) {

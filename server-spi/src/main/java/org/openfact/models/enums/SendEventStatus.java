@@ -16,7 +16,7 @@
  *******************************************************************************/
 package org.openfact.models.enums;
 
-public enum SendResultType {
+public enum SendEventStatus {
 
     SUCCESS, ERROR, ON_PROCESS;
 

@@ -29,7 +29,7 @@ import org.openfact.common.ClientConnection;
 import org.openfact.events.admin.OperationType;
 import org.openfact.models.*;
 import org.openfact.models.enums.DestinyType;
-import org.openfact.models.enums.SendResultType;
+import org.openfact.models.enums.SendEventStatus;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.report.ExportFormat;
@@ -225,10 +225,10 @@ public class DocumentAdminResource {
             try {
                 manager.sendToCustomerParty(organizationThread, documentThread, sendEventThread);
             } catch (ModelInsuficientData e) {
-                sendEventThread.setResult(SendResultType.ERROR);
+                sendEventThread.setResult(SendEventStatus.ERROR);
                 sendEventThread.setDescription(e.getMessage());
             } catch (SendException e) {
-                sendEventThread.setResult(SendResultType.ERROR);
+                sendEventThread.setResult(SendEventStatus.ERROR);
                 if (e.getMessage() != null) {
                     sendEventThread.setDescription(e.getMessage().length() < 200 ? e.getMessage() : e.getMessage().substring(0, 197).concat("..."));
                 } else {
@@ -263,10 +263,10 @@ public class DocumentAdminResource {
             try {
                 manager.sendToThirdParty(organizationThread, documentThread, sendEventThread);
             } catch (ModelInsuficientData e) {
-                sendEventThread.setResult(SendResultType.ERROR);
+                sendEventThread.setResult(SendEventStatus.ERROR);
                 sendEventThread.setDescription(e.getMessage());
             } catch (SendException e) {
-                sendEventThread.setResult(SendResultType.ERROR);
+                sendEventThread.setResult(SendEventStatus.ERROR);
                 if (e.getMessage() != null) {
                     sendEventThread.setDescription(e.getMessage().length() < 200 ? e.getMessage() : e.getMessage().substring(0, 197).concat("..."));
                 } else {
@@ -305,10 +305,10 @@ public class DocumentAdminResource {
             try {
                 manager.sendToThirdPartyByEmail(organizationThread, documentThread, thirdParty.getEmail());
             } catch (ModelInsuficientData e) {
-                sendEventThread.setResult(SendResultType.ERROR);
+                sendEventThread.setResult(SendEventStatus.ERROR);
                 sendEventThread.setDescription(e.getMessage());
             } catch (SendException e) {
-                sendEventThread.setResult(SendResultType.ERROR);
+                sendEventThread.setResult(SendEventStatus.ERROR);
                 if (e.getMessage() != null) {
                     sendEventThread.setDescription(e.getMessage().length() < 200 ? e.getMessage() : e.getMessage().substring(0, 197).concat("..."));
                 } else {
@@ -326,7 +326,6 @@ public class DocumentAdminResource {
     @Produces(MediaType.APPLICATION_JSON)
     public List<SendEventRepresentation> getSendEvents(
             @QueryParam("destinyType") String destinyType,
-            @QueryParam("type") String type,
             @QueryParam("result") String result,
             @QueryParam("first") Integer firstResult,
             @QueryParam("max") Integer maxResults) {
@@ -341,16 +340,13 @@ public class DocumentAdminResource {
         maxResults = maxResults != null ? maxResults : Constants.DEFAULT_MAX_RESULTS;
 
         List<SendEventModel> sendEventModels;
-        if (destinyType != null || type != null || result != null) {
+        if (destinyType != null || result != null) {
             Map<String, String> attributes = new HashMap<>();
             if (destinyType != null) {
-                attributes.put(DocumentModel.SEND_EVENT_DESTINY_TYPE, destinyType);
-            }
-            if (type != null) {
-                attributes.put(DocumentModel.SEND_EVENT_TYPE, type);
+                attributes.put(DocumentModel.SEND_EVENT_DESTINY, destinyType);
             }
             if (result != null) {
-                attributes.put(DocumentModel.SEND_EVENT_RESULT, result);
+                attributes.put(DocumentModel.SEND_EVENT_STATUS, result);
             }
             sendEventModels = document.searchForSendEvent(attributes, firstResult, maxResults);
         } else {

@@ -63,7 +63,7 @@ public class DocumentProviderTest extends AbstractProviderTest {
         session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-001", sistcoop2);
         commit();
 
-        // Try to create documentEntity with duplicate series and number
+        // Try to create ublDocument with duplicate series and number
         try {
             sistcoop1 = session.organizations().getOrganizationByName("SISTCOOP1");
             session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-001", sistcoop1);
