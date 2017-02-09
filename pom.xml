@@ -31,7 +31,7 @@
     <description>Openfact Software</description>
     <groupId>org.openfact</groupId>
     <artifactId>openfact</artifactId>
-    <version>1.0-beta-3</version>
+    <version>1.0-beta-4-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
