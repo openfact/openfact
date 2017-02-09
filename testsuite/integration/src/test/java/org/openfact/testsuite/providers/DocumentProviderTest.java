@@ -45,7 +45,7 @@ public class DocumentProviderTest extends AbstractProviderTest {
     public void createWithSeriesAndNumber() throws Exception {
         createOrganization();
 
-        DocumentModel document = session.documents().addDocument(DocumentType.INVOICE.toString(), "F002-0003", organization);
+        DocumentModel document = session.documents().addDocument(DocumentType.INVOICE, "F002-0003", organization);
         commit();
 
         assertThat(document, is(notNullValue()));
@@ -59,14 +59,14 @@ public class DocumentProviderTest extends AbstractProviderTest {
         OrganizationModel sistcoop2 = session.organizations().createOrganization("SISTCOOP2");
         commit();
 
-        session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-001", sistcoop1);
-        session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-001", sistcoop2);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-001", sistcoop1);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-001", sistcoop2);
         commit();
 
         // Try to create ublDocument with duplicate series and number
         try {
             sistcoop1 = session.organizations().getOrganizationByName("SISTCOOP1");
-            session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-001", sistcoop1);
+            session.documents().addDocument(DocumentType.INVOICE, "F01-001", sistcoop1);
             commit();
             Assert.fail("Expected exception");
         } catch (ModelDuplicateException e) {
@@ -79,7 +79,7 @@ public class DocumentProviderTest extends AbstractProviderTest {
     @Test
     public void findById() throws Exception {
         createOrganization();
-        DocumentModel document1 = session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-001", organization);
+        DocumentModel document1 = session.documents().addDocument(DocumentType.INVOICE, "F01-001", organization);
         commit();
 
         DocumentModel document2 = session.documents().getDocumentById(document1.getId(), organization);
@@ -93,10 +93,10 @@ public class DocumentProviderTest extends AbstractProviderTest {
     public void findBySeriesAndNumber() throws Exception {
         createOrganization();
         DocumentProvider provider = session.documents();
-        DocumentModel document1 = provider.addDocument(DocumentType.INVOICE.toString(), "F001-0001", organization);
+        DocumentModel document1 = provider.addDocument(DocumentType.INVOICE, "F001-0001", organization);
         commit();
 
-        DocumentModel document2 = session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F001-0001", organization);
+        DocumentModel document2 = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "F001-0001", organization);
         assertThat(document2, is(notNullValue()));
         assertThat(document2.getId(), is(notNullValue()));
         assertThat(document2.getId(), is(equalTo(document1.getId())));
@@ -108,13 +108,13 @@ public class DocumentProviderTest extends AbstractProviderTest {
         createOrganization();
 
         DocumentProvider provider = session.documents();
-        provider.addDocument(DocumentType.INVOICE.toString(), "F001-0001", organization);
+        provider.addDocument(DocumentType.INVOICE, "F001-0001", organization);
         commit();
 
-        DocumentModel document = session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F001-0001", organization);
+        DocumentModel document = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "F001-0001", organization);
         assertThat(session.documents().removeDocument(document.getId(), organization), is(true));
         assertThat(session.documents().removeDocument(document.getId(), organization), is(false));
-        assertThat(session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F001-0001", organization), is(nullValue()));
+        assertThat(session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "F001-0001", organization), is(nullValue()));
     }
 
     /**
@@ -126,13 +126,13 @@ public class DocumentProviderTest extends AbstractProviderTest {
         OrganizationModel sistcoop2 = session.organizations().createOrganization("SISTCOOP2");
         commit();
 
-        session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-001", sistcoop1);
-        session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-002", sistcoop1);
-        session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-003", sistcoop1);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-001", sistcoop1);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-002", sistcoop1);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-003", sistcoop1);
 
-        session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-004", sistcoop2);
-        session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-005", sistcoop2);
-        session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-006", sistcoop2);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-004", sistcoop2);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-005", sistcoop2);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-006", sistcoop2);
         commit();
 
         List<DocumentModel> documents1 = session.documents().getDocuments(sistcoop1);
@@ -151,61 +151,57 @@ public class DocumentProviderTest extends AbstractProviderTest {
         OrganizationModel sistcoop2 = session.organizations().createOrganization("SISTCOOP2");
         commit();
 
-        session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-001", sistcoop1).addRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
-        session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-002", sistcoop1).addRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
-        session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-003", sistcoop1);
-        session.documents().addDocument(DocumentType.CREDIT_NOTE.toString(), "C01-001", sistcoop1).addRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
-        session.documents().addDocument(DocumentType.CREDIT_NOTE.toString(), "C01-002", sistcoop1).addRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
-        session.documents().addDocument(DocumentType.CREDIT_NOTE.toString(), "C01-003", sistcoop1);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-001", sistcoop1).addRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-002", sistcoop1).addRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-003", sistcoop1);
+        session.documents().addDocument(DocumentType.CREDIT_NOTE, "C01-001", sistcoop1).addRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
+        session.documents().addDocument(DocumentType.CREDIT_NOTE, "C01-002", sistcoop1).addRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
+        session.documents().addDocument(DocumentType.CREDIT_NOTE, "C01-003", sistcoop1);
 
-        session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-004", sistcoop2).addRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
-        session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-005", sistcoop2).addRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
-        session.documents().addDocument(DocumentType.INVOICE.toString(), "F01-006", sistcoop2);
-        session.documents().addDocument(DocumentType.CREDIT_NOTE.toString(), "F01-004", sistcoop2).addRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
-        session.documents().addDocument(DocumentType.CREDIT_NOTE.toString(), "F01-005", sistcoop2).addRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
-        session.documents().addDocument(DocumentType.CREDIT_NOTE.toString(), "F01-006", sistcoop2);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-004", sistcoop2).addRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-005", sistcoop2).addRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-006", sistcoop2);
+        session.documents().addDocument(DocumentType.CREDIT_NOTE, "F01-004", sistcoop2).addRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
+        session.documents().addDocument(DocumentType.CREDIT_NOTE, "F01-005", sistcoop2).addRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
+        session.documents().addDocument(DocumentType.CREDIT_NOTE, "F01-006", sistcoop2);
         commit();
 
         DocumentQuery query = session.documents().createQuery(sistcoop1);
-        query.documentType(DocumentType.INVOICE.toString());
-        assertThat(query.getResultList().size(), is(3));
+        query.documentType(DocumentType.INVOICE);
+        assertThat(query.entityQuery().resultList().getResultList().size(), is(3));
 
         query = session.documents().createQuery(sistcoop1);
-        query.documentType(DocumentType.CREDIT_NOTE.toString());
-        assertThat(query.getResultList().size(), is(3));
+        query.documentType(DocumentType.CREDIT_NOTE);
+        assertThat(query.entityQuery().resultList().getResultList().size(), is(3));
 
         query = session.documents().createQuery(sistcoop1);
-        query.documentType(DocumentType.INVOICE.toString(), DocumentType.CREDIT_NOTE.toString());
-        assertThat(query.getResultList().size(), is(6));
+        query.documentType(DocumentType.INVOICE, DocumentType.CREDIT_NOTE);
+        assertThat(query.entityQuery().resultList().getResultList().size(), is(6));
 
         query = session.documents().createQuery(sistcoop1);
         query.filterText("2", DocumentModel.DOCUMENT_ID);
-        assertThat(query.getResultList().size(), is(2));
+        assertThat(query.entityQuery().resultList().getResultList().size(), is(2));
 
         query = session.documents().createQuery(sistcoop1);
         query.requiredAction(RequiredAction.SEND_TO_CUSTOMER);
-        assertThat(query.getResultList().size(), is(2));
+        assertThat(query.entityQuery().resultList().getResultList().size(), is(2));
 
         query = session.documents().createQuery(sistcoop1);
-        query.documentType(DocumentType.INVOICE.toString());
+        query.documentType(DocumentType.INVOICE);
         query.requiredAction(RequiredAction.SEND_TO_CUSTOMER);
-        assertThat(query.getResultList().size(), is(1));
+        assertThat(query.entityQuery().resultList().getResultList().size(), is(1));
 
         query = session.documents().createQuery(sistcoop1);
-        query.documentType(DocumentType.INVOICE.toString());
+        query.documentType(DocumentType.INVOICE);
         query.filterText("F", DocumentModel.DOCUMENT_ID, DocumentModel.CUSTOMER_REGISTRATION_NAME, DocumentModel.CUSTOMER_ASSIGNED_ACCOUNT_ID);
-        assertThat(query.getResultList().size(), is(3));
+        assertThat(query.entityQuery().resultList().getResultList().size(), is(3));
 
         query = session.documents().createQuery(sistcoop1);
-        query.documentType(DocumentType.INVOICE.toString());
+        query.documentType(DocumentType.INVOICE);
         query.fromDate(LocalDateTime.now().minusDays(1));
-        assertThat(query.getResultList().size(), is(3));
+        assertThat(query.entityQuery().resultList().getResultList().size(), is(3));
 
-        DocumentCountQuery countQuery = session.documents().createCountQuery(sistcoop1);
-        countQuery.documentType(DocumentType.INVOICE.toString());
-        countQuery.requiredAction(RequiredAction.SEND_TO_CUSTOMER);
-        assertThat(countQuery.getTotalCount(), is(1));
-
+        assertThat(query.countQuery().getTotalCount(), is(3));
     }
 
 }

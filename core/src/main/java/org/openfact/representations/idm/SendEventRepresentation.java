@@ -31,7 +31,7 @@ public class SendEventRepresentation {
 
     private Map<String, List<String>> destinyAttributes;
     private List<FileRepresentation> fileAttachments;
-    private Map<String, List<String>> responseAttributes;
+    private Map<String, String> responseAttributes;
     private List<FileRepresentation> responseFileAttachments;
 
     private LocalDateTime createdTimestamp;
@@ -92,11 +92,11 @@ public class SendEventRepresentation {
         this.fileAttachments = fileAttachments;
     }
 
-    public Map<String, List<String>> getResponseAttributes() {
+    public Map<String, String> getResponseAttributes() {
         return responseAttributes;
     }
 
-    public void setResponseAttributes(Map<String, List<String>> responseAttributes) {
+    public void setResponseAttributes(Map<String, String> responseAttributes) {
         this.responseAttributes = responseAttributes;
     }
 

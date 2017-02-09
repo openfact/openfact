@@ -110,7 +110,7 @@ public class UBLDocumentAdapter implements DocumentModel, JpaModel<UBLDocumentEn
 
     @Override
     public void setDocumentCurrencyCode(String currencyCode) {
-        ublDocument.setDocumentCurrencyCode(currencyCode.toLowerCase());
+        ublDocument.setDocumentCurrencyCode(currencyCode);
     }
 
     @Override
@@ -372,7 +372,7 @@ public class UBLDocumentAdapter implements DocumentModel, JpaModel<UBLDocumentEn
      */
     @Override
     public SendEventModel addSendEvent(DestinyType destinyType) {
-        UBLDocumentSendEventEntity entity = new UBLDocumentSendEventEntity();
+        SendEventEntity entity = new SendEventEntity();
         entity.setCreatedTimestamp(LocalDateTime.now());
         entity.setStatus(SendEventStatus.ON_PROCESS);
         entity.setDestiny(destinyType);
@@ -385,7 +385,7 @@ public class UBLDocumentAdapter implements DocumentModel, JpaModel<UBLDocumentEn
 
     @Override
     public SendEventModel getSendEventById(String id) {
-        UBLDocumentSendEventEntity entity = em.find(UBLDocumentSendEventEntity.class, id);
+        SendEventEntity entity = em.find(SendEventEntity.class, id);
         if (entity != null) {
             return new UBLDocumentSendEventAdapter(session, em, organization, entity);
         }
@@ -394,7 +394,7 @@ public class UBLDocumentAdapter implements DocumentModel, JpaModel<UBLDocumentEn
 
     @Override
     public boolean removeSendEvent(SendEventModel sendEvent) {
-        UBLDocumentSendEventEntity entity = em.find(UBLDocumentSendEventEntity.class, sendEvent.getId());
+        SendEventEntity entity = em.find(SendEventEntity.class, sendEvent.getId());
         if (entity == null)
             return false;
 
@@ -410,7 +410,7 @@ public class UBLDocumentAdapter implements DocumentModel, JpaModel<UBLDocumentEn
 
     @Override
     public List<SendEventModel> getSendEvents(Integer firstResult, Integer maxResults) {
-        TypedQuery<UBLDocumentSendEventEntity> query = em.createNamedQuery("getAllSendEventByDocumentId", UBLDocumentSendEventEntity.class);
+        TypedQuery<SendEventEntity> query = em.createNamedQuery("getAllSendEventByDocumentId", SendEventEntity.class);
         query.setParameter("documentId", ublDocument.getId());
         if (firstResult != -1) {
             query.setFirstResult(firstResult);
@@ -418,7 +418,7 @@ public class UBLDocumentAdapter implements DocumentModel, JpaModel<UBLDocumentEn
         if (maxResults != -1) {
             query.setMaxResults(maxResults);
         }
-        List<UBLDocumentSendEventEntity> results = query.getResultList();
+        List<SendEventEntity> results = query.getResultList();
         return results.stream().map(f -> new UBLDocumentSendEventAdapter(session, em, organization, f)).collect(Collectors.toList());
     }
 
@@ -429,7 +429,7 @@ public class UBLDocumentAdapter implements DocumentModel, JpaModel<UBLDocumentEn
 
     @Override
     public List<SendEventModel> searchForSendEvent(Map<String, String> attributes, int firstResult, int maxResults) {
-        StringBuilder builder = new StringBuilder("select u from UBLDocumentSendEventEntity u where u.ublDocumentSendEvent.id = :documentId");
+        StringBuilder builder = new StringBuilder("select u from UBLDocumentSendEventEntity u where u.sendEvent.id = :documentId");
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             String attribute = null;
             String parameterName = null;
@@ -449,7 +449,7 @@ public class UBLDocumentAdapter implements DocumentModel, JpaModel<UBLDocumentEn
         }
         builder.append(" order by u.createdTimestamp");
         String q = builder.toString();
-        TypedQuery<UBLDocumentSendEventEntity> query = em.createQuery(q, UBLDocumentSendEventEntity.class);
+        TypedQuery<SendEventEntity> query = em.createQuery(q, SendEventEntity.class);
         query.setParameter("documentId", ublDocument.getId());
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             String parameterName = null;
@@ -470,7 +470,7 @@ public class UBLDocumentAdapter implements DocumentModel, JpaModel<UBLDocumentEn
         if (maxResults != -1) {
             query.setMaxResults(maxResults);
         }
-        List<UBLDocumentSendEventEntity> results = query.getResultList();
+        List<SendEventEntity> results = query.getResultList();
         return results.stream().map(f -> new UBLDocumentSendEventAdapter(session, em, organization, f)).collect(Collectors.toList());
     }
 
@@ -484,7 +484,7 @@ public class UBLDocumentAdapter implements DocumentModel, JpaModel<UBLDocumentEn
 
     @Override
     public int sendEventCount(Map<String, String> attributes) {
-        StringBuilder builder = new StringBuilder("select count(u) from UBLDocumentSendEventEntity u where u.ublDocumentSendEvent.id = :documentId");
+        StringBuilder builder = new StringBuilder("select count(u) from UBLDocumentSendEventEntity u where u.sendEvent.id = :documentId");
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             String attribute = null;
             String parameterName = null;
@@ -536,7 +536,7 @@ public class UBLDocumentAdapter implements DocumentModel, JpaModel<UBLDocumentEn
 
     @Override
     public void addAttatchedDocument(DocumentModel attachedDocument) {
-        UBLAttachedDocumentEntity entity = new UBLAttachedDocumentEntity();
+        AttachedUBLDocumentEntity entity = new AttachedUBLDocumentEntity();
         entity.setAttachedUblDocument(UBLDocumentAdapter.toEntity(attachedDocument, em));
         entity.setUblDocument(ublDocument);
         em.persist(entity);
@@ -546,9 +546,9 @@ public class UBLDocumentAdapter implements DocumentModel, JpaModel<UBLDocumentEn
     @Override
     public boolean removeAttatchedDocument(DocumentModel attachedDocument) {
         boolean result = false;
-        Iterator<UBLAttachedDocumentEntity> it = ublDocument.getAttachedDocuments().iterator();
+        Iterator<AttachedUBLDocumentEntity> it = ublDocument.getAttachedDocuments().iterator();
         while (it.hasNext()) {
-            UBLAttachedDocumentEntity ublAttachedDocumentEntity = it.next();
+            AttachedUBLDocumentEntity ublAttachedDocumentEntity = it.next();
             if (ublAttachedDocumentEntity.getAttachedUblDocument().getId().equals(attachedDocument.getId())) {
                 it.remove();
                 em.remove(ublAttachedDocumentEntity);

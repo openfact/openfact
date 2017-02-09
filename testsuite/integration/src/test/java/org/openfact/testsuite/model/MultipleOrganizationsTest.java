@@ -47,8 +47,8 @@ public class MultipleOrganizationsTest extends AbstractModelTest {
 
     @Test
     public void testDocuments() {
-        DocumentModel r1invoice1 = session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F01-001", organization1);
-        DocumentModel r2invoice1 = session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F01-001", organization2);
+        DocumentModel r1invoice1 = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE.toString(), "F01-001", organization1);
+        DocumentModel r2invoice1 = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE.toString(), "F01-001", organization2);
         Assert.assertEquals(r1invoice1.getDocumentId(), r2invoice1.getDocumentId());
         Assert.assertNotEquals(r1invoice1.getId(), r2invoice1.getId());
 
@@ -60,7 +60,7 @@ public class MultipleOrganizationsTest extends AbstractModelTest {
         organization2 = model.getOrganization("id2");
 
         session.documents().removeDocument(r1invoice1.getId(), organization1);
-        DocumentModel invoice2 = session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F01-002", organization1);
+        DocumentModel invoice2 = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE.toString(), "F01-002", organization1);
         session.documents().removeDocument(invoice2.getId(), organization1);
         Assert.assertEquals(0, session.documents().searchForDocument("F01", organization1).size());
         Assert.assertEquals(2, session.documents().searchForDocument("F01", organization2).size());
@@ -68,33 +68,35 @@ public class MultipleOrganizationsTest extends AbstractModelTest {
 
     @Test
     public void testFiles() {
-        FileModel r1file1 = session.getProvider(FileProvider.class).getFileByFileName(organization1, "file1");
-        FileModel r2file1 = session.getProvider(FileProvider.class).getFileByFileName(organization2, "file1");
+        FileModel r1file1 = session.files().getFileByFileName(organization1, "file1");
+        FileModel r2file1 = session.files().getFileByFileName(organization2, "file1");
 
         Assert.assertEquals(r1file1.getFileName(), r2file1.getFileName());
         Assert.assertNotEquals(r1file1.getId(), r2file1.getId());
 
         // Test searching
-        //Assert.assertEquals(2, session.getProvider(FileProvider.class).searchForFile(organization1, "D01").size());
+        //Assert.assertEquals(2, session.files().searchForFile(organization1, "D01").size());
 
         commit();
         organization1 = model.getOrganization("id1");
         organization2 = model.getOrganization("id2");
 
-        session.getProvider(FileProvider.class).removeFile(organization1, r1file1);
-        FileModel file2 = session.getProvider(FileProvider.class).getFileByFileName(organization1, "file2");
-        session.getProvider(FileProvider.class).removeFile(organization1, file2);
-        Assert.assertNull(session.getProvider(FileProvider.class).getFileByFileName(organization1, "file1"));
-        Assert.assertNotNull(session.getProvider(FileProvider.class).getFileByFileName(organization2, "file1"));
-        Assert.assertNotNull(session.getProvider(FileProvider.class).getFileByFileName(organization2, "file2"));
+        session.files().removeFile(organization1, r1file1);
+        Assert.assertNull(session.files().getFileById(organization1, r1file1.getId()));
+
+        FileModel file2 = session.files().getFileByFileName(organization1, "file2");
+        session.files().removeFile(organization1, file2);
+        Assert.assertNull(session.files().getFileByFileName(organization1, "file1"));
+        Assert.assertNotNull(session.files().getFileByFileName(organization2, "file1"));
+        Assert.assertNotNull(session.files().getFileByFileName(organization2, "file2"));
     }
 
     private void createObjects(OrganizationModel organization) {
         organizationManager.getSession().documents().addDocument(DocumentType.INVOICE.toString(), "F01-001", organization);
         organizationManager.getSession().documents().addDocument(DocumentType.INVOICE.toString(), "F01-002", organization);
 
-        organizationManager.getSession().getProvider(FileProvider.class).createFile(organization, "file1", new byte[]{1, 2, 3});
-        organizationManager.getSession().getProvider(FileProvider.class).createFile(organization, "file2", new byte[]{1, 2, 3});
+        organizationManager.getSession().files().createFile(organization, "file1", new byte[]{1, 2, 3});
+        organizationManager.getSession().files().createFile(organization, "file2", new byte[]{1, 2, 3});
     }
 
 }

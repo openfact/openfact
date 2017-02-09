@@ -29,11 +29,11 @@ import java.util.*;
 @Entity
 @Table(name = "UBL_DOCUMENT_SEND_EVENT")
 @NamedQueries(value = {
-        @NamedQuery(name = "getAllSendEventByDocumentId", query = "select s from UBLDocumentSendEventEntity s where s.ublDocument.id=:documentId"),
-        @NamedQuery(name = "getDocumentSendEventCountByDocument", query = "select count(s) from UBLDocumentSendEventEntity s where s.ublDocument.id=:documentId"),
-        @NamedQuery(name = "deleteDocumentSendEventByOrganization", query = "delete from UBLDocumentSendEventEntity event where event.ublDocument IN (select i from UBLDocumentEntity i where i.organizationId=:organizationId)")
+        @NamedQuery(name = "getAllSendEventByDocumentId", query = "select s from SendEventEntity s where s.ublDocument.id=:documentId"),
+        @NamedQuery(name = "getDocumentSendEventCountByDocument", query = "select count(s) from SendEventEntity s where s.ublDocument.id=:documentId"),
+        @NamedQuery(name = "deleteUblDocumentSendEventByOrganization", query = "delete from SendEventEntity event where event.ublDocument IN (select i from UBLDocumentEntity i where i.organizationId=:organizationId)")
 })
-public class UBLDocumentSendEventEntity {
+public class SendEventEntity {
 
     @Id
     @Column(name = "ID")
@@ -65,13 +65,29 @@ public class UBLDocumentSendEventEntity {
     @JoinColumn(foreignKey = @ForeignKey, name = "UBL_DOCUMENT_ID")
     private UBLDocumentEntity ublDocument;
 
-    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "ublDocumentSendEvent")
-    private Collection<UBLDocumentSendEventResponseAttributeEntity> responseAttributes = new ArrayList<>();
+    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "sendEvent")
+    private Collection<SendEventAttributeEntity> attributes = new ArrayList<>();
 
-    @ElementCollection
-    @Column(name = "VALUE")
-    @CollectionTable(name = "SEND_EVENT_FILE_RESPONSE_ATTACHMENT", joinColumns = {@JoinColumn(name = "SEND_EVENT_ID")})
-    private Set<String> fileResponseAttachmentIds = new HashSet<>();
+    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "sendEvent")
+    private Collection<SendEventAttachedFileEntity> attachedFiles = new ArrayList<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        if (!(o instanceof SendEventEntity)) return false;
+
+        SendEventEntity that = (SendEventEntity) o;
+
+        if (!getId().equals(that.getId())) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
+    }
 
     public String getId() {
         return id;
@@ -85,8 +101,8 @@ public class UBLDocumentSendEventEntity {
         return destiny;
     }
 
-    public void setDestiny(DestinyType destinyType) {
-        this.destiny = destinyType;
+    public void setDestiny(DestinyType destiny) {
+        this.destiny = destiny;
     }
 
     public SendEventStatus getStatus() {
@@ -121,37 +137,19 @@ public class UBLDocumentSendEventEntity {
         this.ublDocument = ublDocument;
     }
 
-    public Collection<UBLDocumentSendEventResponseAttributeEntity> getResponseAttributes() {
-        return responseAttributes;
+    public Collection<SendEventAttributeEntity> getAttributes() {
+        return attributes;
     }
 
-    public void setResponseAttributes(Collection<UBLDocumentSendEventResponseAttributeEntity> responseAttributes) {
-        this.responseAttributes = responseAttributes;
+    public void setAttributes(Collection<SendEventAttributeEntity> attributes) {
+        this.attributes = attributes;
     }
 
-    public Set<String> getFileResponseAttachmentIds() {
-        return fileResponseAttachmentIds;
+    public Collection<SendEventAttachedFileEntity> getAttachedFiles() {
+        return attachedFiles;
     }
 
-    public void setFileResponseAttachmentIds(Set<String> fileResponseAttachmentIds) {
-        this.fileResponseAttachmentIds = fileResponseAttachmentIds;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null) return false;
-        if (!(o instanceof UBLDocumentSendEventEntity)) return false;
-
-        UBLDocumentSendEventEntity that = (UBLDocumentSendEventEntity) o;
-
-        if (!getId().equals(that.getId())) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return getId().hashCode();
+    public void setAttachedFiles(Collection<SendEventAttachedFileEntity> attachedFiles) {
+        this.attachedFiles = attachedFiles;
     }
 }

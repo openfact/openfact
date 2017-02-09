@@ -27,25 +27,22 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "SEND_EVENT_RESPONSE_ATTRIBUTE")
-@IdClass(UBLDocumentSendEventResponseAttributeEntity.Key.class)
+@Table(name = "SEND_EVENT_ATTRIBUTE")
+@IdClass(SendEventAttributeEntity.Key.class)
 @NamedQueries({
-        @NamedQuery(name = "getSendEventResponseAttributesByNameAndValue", query = "select attr from UBLDocumentSendEventResponseAttributeEntity attr where attr.name = :name and attr.value = :value"),
-        @NamedQuery(name = "deleteSendEventResponseAttributesByNameAndSendEvent", query = "delete from  UBLDocumentSendEventResponseAttributeEntity attr where attr.ublDocumentSendEvent.id = :sendEventId and attr.name = :name"),
-        @NamedQuery(name = "deleteSendEventResponseAttributesByNameAndSendEventOtherThan", query = "delete from  UBLDocumentSendEventResponseAttributeEntity attr where attr.ublDocumentSendEvent.id = :sendEventId and attr.name = :name and attr.id <> :attrId"),
-        @NamedQuery(name = "deleteDocumentSendEventResponseAttributesByOrganization", query = "delete from UBLDocumentSendEventResponseAttributeEntity attr where attr.ublDocumentSendEvent IN (select s from UBLDocumentSendEventEntity s join s.ublDocument i where i.organizationId=:organizationId)")
+        @NamedQuery(name = "getSendEventResponseAttributesByNameAndValue", query = "select attr from SendEventAttributeEntity attr where attr.name = :name and attr.value = :value"),
+        @NamedQuery(name = "deleteSendEventResponseAttributesByNameAndSendEvent", query = "delete from  SendEventAttributeEntity attr where attr.sendEvent.id = :sendEventId and attr.name = :name"),
+        @NamedQuery(name = "deleteSendEventResponseAttributesByNameAndSendEventOtherThan", query = "delete from  SendEventAttributeEntity attr where attr.sendEvent.id = :sendEventId and attr.name = :name and attr.id <> :attrId"),
+        @NamedQuery(name = "deleteUblDocumentSendEventAttributesByOrganization", query = "delete from SendEventAttributeEntity attr where attr.sendEvent IN (select s from SendEventEntity s join s.ublDocument i where i.organizationId=:organizationId)")
 })
-public class UBLDocumentSendEventResponseAttributeEntity {
+public class SendEventAttributeEntity {
 
     @Id
-    @Column(name = "ID", length = 36)
-    @Access(AccessType.PROPERTY)
-    protected String id;
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "UBL_DOCUMENT_SEND_EVENT_ID")
-    protected UBLDocumentSendEventEntity ublDocumentSendEvent;
+    @JoinColumn(foreignKey = @ForeignKey, name = "SEND_EVENT_ID")
+    protected SendEventEntity sendEvent;
 
+    @Id
     @Column(name = "NAME")
     protected String name;
 
@@ -68,30 +65,30 @@ public class UBLDocumentSendEventResponseAttributeEntity {
         this.value = value;
     }
 
-    public UBLDocumentSendEventEntity getUblDocumentSendEvent() {
-        return ublDocumentSendEvent;
+    public SendEventEntity getSendEvent() {
+        return sendEvent;
     }
 
-    public void setUblDocumentSendEvent(UBLDocumentSendEventEntity ublDocumentSendEvent) {
-        this.ublDocumentSendEvent = ublDocumentSendEvent;
+    public void setSendEvent(SendEventEntity ublDocumentSendEvent) {
+        this.sendEvent = ublDocumentSendEvent;
     }
 
     public static class Key implements Serializable {
 
-        protected UBLDocumentSendEventEntity ublDocumentSendEvent;
+        protected SendEventEntity sendEvent;
 
         protected String name;
 
         public Key() {
         }
 
-        public Key(UBLDocumentSendEventEntity ublDocumentSendEvent, String name) {
-            this.ublDocumentSendEvent = ublDocumentSendEvent;
+        public Key(SendEventEntity ublDocumentSendEvent, String name) {
+            this.sendEvent = ublDocumentSendEvent;
             this.name = name;
         }
 
-        public UBLDocumentSendEventEntity getUblDocumentSendEvent() {
-            return ublDocumentSendEvent;
+        public SendEventEntity getSendEvent() {
+            return sendEvent;
         }
 
         public String getName() {
@@ -106,7 +103,7 @@ public class UBLDocumentSendEventResponseAttributeEntity {
             OrganizationAttributeEntity.Key key = (OrganizationAttributeEntity.Key) o;
 
             if (name != null ? !name.equals(key.name) : key.name != null) return false;
-            if (ublDocumentSendEvent != null ? !ublDocumentSendEvent.getId().equals(key.organization != null ? key.organization.getId() : null) : key.organization != null)
+            if (sendEvent != null ? !sendEvent.getId().equals(key.organization != null ? key.organization.getId() : null) : key.organization != null)
                 return false;
 
             return true;
@@ -114,7 +111,7 @@ public class UBLDocumentSendEventResponseAttributeEntity {
 
         @Override
         public int hashCode() {
-            int result = ublDocumentSendEvent != null ? ublDocumentSendEvent.getId().hashCode() : 0;
+            int result = sendEvent != null ? sendEvent.getId().hashCode() : 0;
             result = 31 * result + (name != null ? name.hashCode() : 0);
             return result;
         }

@@ -151,6 +151,9 @@ public class OrganizationEntity {
     @Column(name = "TASK_ENABLED")
     private boolean tasksEnabled;
 
+    @Column(name = "LOGO_FILE_ID")
+    private String logoFileId;
+
     @ElementCollection
     @MapKeyColumn(name = "NAME")
     @Column(name = "VALUE")
@@ -493,4 +496,11 @@ public class OrganizationEntity {
         return true;
     }
 
+    public String getLogoFileId() {
+        return logoFileId;
+    }
+
+    public void setLogoFileId(String logoFileId) {
+        this.logoFileId = logoFileId;
+    }
 }

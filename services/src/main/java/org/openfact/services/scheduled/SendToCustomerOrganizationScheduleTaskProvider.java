@@ -73,7 +73,11 @@ public class SendToCustomerOrganizationScheduleTaskProvider implements Organizat
     private long sendDocuments(OpenfactSession session, OrganizationModel organization) {
         long readCount = 0;
 
-        ScrollModel<List<DocumentModel>> scroll = session.documents().getDocumentScroll(organization, 100, RequiredAction.SEND_TO_CUSTOMER.toString());
+        ScrollModel<List<DocumentModel>> scroll = session.documents()
+                .createQuery(organization)
+                .requiredAction(RequiredAction.SEND_TO_CUSTOMER)
+                .entityQuery()
+                .resultScroll().getScrollResultList(100);
         Iterator<List<DocumentModel>> iterator = scroll.iterator();
 
         while (iterator.hasNext()) {

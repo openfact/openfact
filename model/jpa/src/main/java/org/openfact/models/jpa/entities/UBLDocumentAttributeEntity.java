@@ -29,7 +29,7 @@ import javax.persistence.*;
 @Table(name = "UBL_DOCUMENT_ATTRIBUTE")
 @NamedQueries({
         @NamedQuery(name = "getUblDocumentAttributesByNameAndValue", query = "select attr from UBLDocumentAttributeEntity attr where attr.name = :name and attr.value = :value"),
-        @NamedQuery(name = "getDocumentAttributesByNameAndValueAndDocumentType", query = "select attr from UBLDocumentAttributeEntity attr join attr.ublDocument doc where attr.name = :name and attr.value = :value and doc.documentType=:documentType"),
+        @NamedQuery(name = "getUblDocumentAttributesByNameAndValueAndDocumentType", query = "select attr from UBLDocumentAttributeEntity attr join attr.ublDocument doc where attr.name = :name and attr.value = :value and doc.documentType=:documentType"),
         @NamedQuery(name = "deleteUblDocumentAttributesByOrganization", query = "delete from  UBLDocumentAttributeEntity attr where attr.ublDocument IN (select u from UBLDocumentEntity u where u.organizationId=:organizationId)"),
         @NamedQuery(name = "deleteUblDocumentAttributesByNameAndUblDocument", query = "delete from  UBLDocumentAttributeEntity attr where attr.ublDocument.id = :documentId and attr.name = :name"),
         @NamedQuery(name = "deleteUblDocumentAttributesByNameAndUblDocumentOtherThan", query = "delete from  UBLDocumentAttributeEntity attr where attr.ublDocument.id = :documentId and attr.name = :name and attr.id <> :attrId")
@@ -39,17 +39,17 @@ public class UBLDocumentAttributeEntity {
     @Id
     @Column(name = "ID", length = 36)
     @Access(AccessType.PROPERTY)
-    protected String id;
+    private String id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey, name = "UBL_DOCUMENT_ID")
-    protected UBLDocumentEntity ublDocument;
+    private UBLDocumentEntity ublDocument;
 
     @Column(name = "NAME")
-    protected String name;
+    private String name;
 
     @Column(name = "VALUE")
-    protected String value;
+    private String value;
 
     public String getId() {
         return id;

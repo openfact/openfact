@@ -100,7 +100,7 @@ public class DocumentsAdminResource {
         List<DocumentModel> documentModels;
         if (filterText != null) {
             documentModels = session.documents().searchForDocument(filterText.trim(), organization, firstResult, maxResults);
-        } else if (documentId != null ||documentType != null) {
+        } else if (documentId != null || documentType != null) {
             Map<String, String> attributes = new HashMap<>();
             if (documentType != null) {
                 attributes.put(DocumentModel.DOCUMENT_TYPE, documentType);
@@ -108,7 +108,10 @@ public class DocumentsAdminResource {
             if (documentId != null) {
                 attributes.put(DocumentModel.DOCUMENT_ID, documentId);
             }
-            documentModels = session.documents().searchForDocument(attributes, organization, firstResult, maxResults);
+            documentModels = session.documents().createQuery(organization)
+                    .addFilter(attributes)
+                    .entityQuery()
+                    .resultList().firstResult(firstResult).maxResults(maxResults).getResultList();
         } else {
             documentModels = session.documents().getDocuments(organization, firstResult, maxResults);
         }

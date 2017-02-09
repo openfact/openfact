@@ -279,15 +279,15 @@ public class ModelToRepresentation {
         rep.setDescription(model.getDescription());
         rep.setCreatedTimestamp(model.getCreatedTimestamp());
 
-        if (model.getResponseAttributes() != null && !model.getResponseAttributes().isEmpty()) {
-            Map<String, List<String>> attrs = new HashMap<>();
-            attrs.putAll(model.getResponseAttributes());
+        if (model.getAttributes() != null && !model.getAttributes().isEmpty()) {
+            Map<String, String> attrs = new HashMap<>();
+            attrs.putAll(model.getAttributes());
             rep.setResponseAttributes(attrs);
         }
 
-        if (model.getResponseFileAttatchments() != null && !model.getResponseFileAttatchments().isEmpty()) {
+        if (model.getAttachedFiles() != null && !model.getAttachedFiles().isEmpty()) {
             rep.setResponseFileAttachments(new ArrayList<>());
-            List<FileRepresentation> filesRep = model.getResponseFileAttatchments().stream().map(f -> {
+            List<FileRepresentation> filesRep = model.getAttachedFiles().stream().map(f -> {
                 FileRepresentation fileRep = new FileRepresentation();
                 fileRep.setId(f.getId());
                 fileRep.setFileName(f.getFileName());

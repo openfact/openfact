@@ -17,149 +17,122 @@
 package org.openfact.models.jpa;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 import org.jboss.logging.Logger;
-import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.file.FileModel;
 import org.openfact.file.FileProvider;
 import org.openfact.models.*;
 import org.openfact.models.enums.DestinyType;
 import org.openfact.models.enums.SendEventStatus;
 import org.openfact.models.SendEventModel;
-import org.openfact.models.jpa.entities.UBLDocumentSendEventEntity;
-import org.openfact.models.jpa.entities.UBLDocumentSendEventResponseAttributeEntity;
-import org.openfact.models.utils.OpenfactModelUtils;
+import org.openfact.models.jpa.entities.SendEventAttachedFileEntity;
+import org.openfact.models.jpa.entities.SendEventEntity;
+import org.openfact.models.jpa.entities.SendEventAttributeEntity;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-public class UBLDocumentSendEventAdapter implements SendEventModel, JpaModel<UBLDocumentSendEventEntity> {
+public class UBLDocumentSendEventAdapter implements SendEventModel, JpaModel<SendEventEntity> {
 
     protected static final Logger logger = Logger.getLogger(UBLDocumentSendEventAdapter.class);
     protected OrganizationModel organization;
-    protected UBLDocumentSendEventEntity ublDocumentDendEvent;
+    protected SendEventEntity sendEvent;
     protected EntityManager em;
     protected OpenfactSession session;
 
-    public UBLDocumentSendEventAdapter(OpenfactSession session, EntityManager em, OrganizationModel organization, UBLDocumentSendEventEntity ublDocumentDendEvent) {
+    public UBLDocumentSendEventAdapter(OpenfactSession session, EntityManager em, OrganizationModel organization, SendEventEntity ublDocumentDendEvent) {
         this.session = session;
         this.em = em;
         this.organization = organization;
-        this.ublDocumentDendEvent = ublDocumentDendEvent;
+        this.sendEvent = ublDocumentDendEvent;
     }
 
-    public static UBLDocumentSendEventEntity toEntity(SendEventModel model, EntityManager em) {
+    public static SendEventEntity toEntity(SendEventModel model, EntityManager em) {
         if (model instanceof UBLDocumentSendEventAdapter) {
             return ((UBLDocumentSendEventAdapter) model).getEntity();
         }
-        return em.getReference(UBLDocumentSendEventEntity.class, model.getId());
+        return em.getReference(SendEventEntity.class, model.getId());
     }
 
     @Override
-    public UBLDocumentSendEventEntity getEntity() {
-        return ublDocumentDendEvent;
+    public SendEventEntity getEntity() {
+        return sendEvent;
     }
 
     @Override
     public String getId() {
-        return ublDocumentDendEvent.getId();
+        return sendEvent.getId();
     }
 
     @Override
     public SendEventStatus getResult() {
-        return ublDocumentDendEvent.getStatus();
+        return sendEvent.getStatus();
     }
 
     @Override
     public void setResult(SendEventStatus result) {
-        ublDocumentDendEvent.setStatus(result);
+        sendEvent.setStatus(result);
     }
 
     @Override
     public String getDescription() {
-        return ublDocumentDendEvent.getDescription();
+        return sendEvent.getDescription();
     }
 
     @Override
     public void setDescription(String description) {
-        ublDocumentDendEvent.setDescription(description);
+        sendEvent.setDescription(description);
     }
 
+    /**
+     * Attribute
+     */
     @Override
-    public void setSingleResponseAttribute(String name, String value) {
-        String firstExistingAttrId = null;
-        List<UBLDocumentSendEventResponseAttributeEntity> toRemove = new ArrayList<>();
-        for (UBLDocumentSendEventResponseAttributeEntity attr : ublDocumentDendEvent.getResponseAttributes()) {
+    public void setAttribute(String name, String value) {
+        for (SendEventAttributeEntity attr : sendEvent.getAttributes()) {
             if (attr.getName().equals(name)) {
-                if (firstExistingAttrId == null) {
-                    attr.setValue(value);
-                    firstExistingAttrId = attr.getId();
-                } else {
-                    toRemove.add(attr);
-                }
+                attr.setValue(value);
+                return;
             }
         }
-
-        if (firstExistingAttrId != null) {
-            // Remove attributes through HQL to avoid StaleUpdateException
-            Query query = em.createNamedQuery("deleteSendEventResponseAttributesByNameAndSendEventOtherThan");
-            query.setParameter("name", name);
-            query.setParameter("sendEventId", ublDocumentDendEvent.getId());
-            query.setParameter("attrId", firstExistingAttrId);
-            int numUpdated = query.executeUpdate();
-
-            // Remove attribute from local entity
-            ublDocumentDendEvent.getResponseAttributes().removeAll(toRemove);
-        } else {
-            persistResponseAttributeValue(name, value);
-        }
-    }
-
-    @Override
-    public void setResponseAttribute(String name, List<String> values) {
-        // Remove all existing
-        removeResponseAttribute(name);
-
-        // Put all new
-        for (String value : values) {
-            persistResponseAttributeValue(name, value);
-        }
-    }
-
-    private void persistResponseAttributeValue(String name, String value) {
-        UBLDocumentSendEventResponseAttributeEntity attr = new UBLDocumentSendEventResponseAttributeEntity();
-        attr.setId(OpenfactModelUtils.generateId());
+        SendEventAttributeEntity attr = new SendEventAttributeEntity();
         attr.setName(name);
         attr.setValue(value);
-        attr.setUblDocumentSendEvent(ublDocumentDendEvent);
+        attr.setSendEvent(sendEvent);
         em.persist(attr);
-        ublDocumentDendEvent.getResponseAttributes().add(attr);
+        sendEvent.getAttributes().add(attr);
     }
 
     @Override
-    public void removeResponseAttribute(String name) {
-        // Remove attribute through HQL to avoid StaleUpdateException
-        Query query = em.createNamedQuery("deleteSendEventResponseAttributesByNameAndSendEvent");
-        query.setParameter("name", name);
-        query.setParameter("sendEventId", ublDocumentDendEvent.getId());
-        int numUpdated = query.executeUpdate();
+    public void setAttribute(String name, Boolean value) {
+        setAttribute(name, value.toString());
+    }
 
-        // Also remove attributes from local user entity
-        List<UBLDocumentSendEventResponseAttributeEntity> toRemove = new ArrayList<>();
-        for (UBLDocumentSendEventResponseAttributeEntity attr : ublDocumentDendEvent.getResponseAttributes()) {
+    @Override
+    public void setAttribute(String name, Integer value) {
+        setAttribute(name, value.toString());
+    }
+
+    @Override
+    public void setAttribute(String name, Long value) {
+        setAttribute(name, value.toString());
+    }
+
+    @Override
+    public void removeAttribute(String name) {
+        Iterator<SendEventAttributeEntity> it = sendEvent.getAttributes().iterator();
+        while (it.hasNext()) {
+            SendEventAttributeEntity attr = it.next();
             if (attr.getName().equals(name)) {
-                toRemove.add(attr);
+                it.remove();
+                em.remove(attr);
             }
         }
-        ublDocumentDendEvent.getResponseAttributes().removeAll(toRemove);
     }
 
     @Override
-    public String getFirstResponseAttribute(String name) {
-        for (UBLDocumentSendEventResponseAttributeEntity attr : ublDocumentDendEvent.getResponseAttributes()) {
+    public String getAttribute(String name) {
+        for (SendEventAttributeEntity attr : sendEvent.getAttributes()) {
             if (attr.getName().equals(name)) {
                 return attr.getValue();
             }
@@ -168,53 +141,75 @@ public class UBLDocumentSendEventAdapter implements SendEventModel, JpaModel<UBL
     }
 
     @Override
-    public List<String> getResponseAttribute(String name) {
-        List<String> result = new ArrayList<>();
-        for (UBLDocumentSendEventResponseAttributeEntity attr : ublDocumentDendEvent.getResponseAttributes()) {
-            if (attr.getName().equals(name)) {
-                result.add(attr.getValue());
-            }
-        }
-        return result;
+    public Integer getAttribute(String name, Integer defaultValue) {
+        String v = getAttribute(name);
+        return v != null ? Integer.parseInt(v) : defaultValue;
+
     }
 
     @Override
-    public Map<String, List<String>> getResponseAttributes() {
-        MultivaluedHashMap<String, String> result = new MultivaluedHashMap<>();
-        for (UBLDocumentSendEventResponseAttributeEntity attr : ublDocumentDendEvent.getResponseAttributes()) {
-            result.add(attr.getName(), attr.getValue());
+    public Long getAttribute(String name, Long defaultValue) {
+        String v = getAttribute(name);
+        return v != null ? Long.parseLong(v) : defaultValue;
+
+    }
+
+    @Override
+    public Boolean getAttribute(String name, Boolean defaultValue) {
+        String v = getAttribute(name);
+        return v != null ? Boolean.parseBoolean(v) : defaultValue;
+
+    }
+
+    @Override
+    public Map<String, String> getAttributes() {
+        // should always return a copy
+        Map<String, String> result = new HashMap<String, String>();
+        for (SendEventAttributeEntity attr : sendEvent.getAttributes()) {
+            result.put(attr.getName(), attr.getValue());
         }
         return result;
     }
 
     @Override
     public LocalDateTime getCreatedTimestamp() {
-        return ublDocumentDendEvent.getCreatedTimestamp();
+        return sendEvent.getCreatedTimestamp();
     }
 
     @Override
     public DestinyType getDestityType() {
-        return ublDocumentDendEvent.getDestiny();
+        return sendEvent.getDestiny();
     }
 
     @Override
-    public List<FileModel> getResponseFileAttatchments() {
+    public List<FileModel> getAttachedFiles() {
         FileProvider fileProvider = session.getProvider(FileProvider.class);
         List<FileModel> files = new ArrayList<>();
-        for (String fileId : ublDocumentDendEvent.getFileResponseAttachmentIds()) {
-            files.add(fileProvider.getFileById(organization, fileId));
+        for (SendEventAttachedFileEntity attachedDocument : sendEvent.getAttachedFiles()) {
+            files.add(fileProvider.getFileById(organization, attachedDocument.getFileId()));
         }
         return files;
     }
 
     @Override
-    public void attachResponseFile(FileModel file) {
-        ublDocumentDendEvent.getFileResponseAttachmentIds().add(file.getId());
+    public void attachFile(FileModel file) {
+        SendEventAttachedFileEntity entity = new SendEventAttachedFileEntity();
+        entity.setFileId(file.getId());
+        entity.setSendEvent(sendEvent);
+        em.persist(entity);
+        sendEvent.getAttachedFiles().add(entity);
     }
 
     @Override
     public void unattachResponseFile(FileModel file) {
-        ublDocumentDendEvent.getFileResponseAttachmentIds().remove(file.getId());
+        Iterator<SendEventAttachedFileEntity> it = sendEvent.getAttachedFiles().iterator();
+        while (it.hasNext()) {
+            SendEventAttachedFileEntity attachFile = it.next();
+            if (attachFile.getFileId().equals(file.getId())) {
+                it.remove();
+                em.remove(attachFile);
+            }
+        }
     }
 
     @Override

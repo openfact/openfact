@@ -75,7 +75,7 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
 
     @Override
     public DocumentModel addDocument(String documentType, String documentId, OrganizationModel organization) {
-        if (session.documents().getDocumentByDocumentTypeAndId(documentType, documentId, organization) != null) {
+        if (session.documents().getDocumentByTypeAndUblId(documentType, documentId, organization) != null) {
             throw new ModelDuplicateException("Document documentId[" + documentId + "] exists");
         }
 
@@ -110,10 +110,15 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
     }
 
     @Override
-    public DocumentModel getDocumentByDocumentTypeAndId(String documentType, String documentId, OrganizationModel organization) {
-        TypedQuery<UBLDocumentEntity> query = em.createNamedQuery("getOrganizationDocumentByDocumentTypeAndId", UBLDocumentEntity.class);
+    public DocumentModel getDocumentByTypeAndUblId(DocumentType documentType, String ublId, OrganizationModel organization) {
+        return getDocumentByTypeAndUblId(documentType.toString(), ublId, organization);
+    }
+
+    @Override
+    public DocumentModel getDocumentByTypeAndUblId(String documentType, String ublId, OrganizationModel organization) {
+        TypedQuery<UBLDocumentEntity> query = em.createNamedQuery("getOrganizationDocumentByTypeAndUblId", UBLDocumentEntity.class);
         query.setParameter("documentType", documentType.toUpperCase());
-        query.setParameter("documentId", documentId.toUpperCase());
+        query.setParameter("ublId", ublId.toUpperCase());
         query.setParameter("organizationId", organization.getId());
         List<UBLDocumentEntity> entities = query.getResultList();
         if (entities.size() == 0) return null;
@@ -145,13 +150,14 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
     public void preRemove(OrganizationModel organization) {
         int num = em.createNamedQuery("deleteUblDocumentRequiredActionsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
 
-        num = em.createNamedQuery("deleteAttachedDocumentByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        num = em.createNamedQuery("deleteAttachedUblDocumentByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
 
-        num = em.createNamedQuery("deleteDocumentSendEventResponseAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
-        num = em.createNamedQuery("deleteDocumentSendEventByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        num = em.createNamedQuery("deleteSendEventAttachedFilesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        num = em.createNamedQuery("deleteUblDocumentSendEventAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        num = em.createNamedQuery("deleteUblDocumentSendEventByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
 
         num = em.createNamedQuery("deleteUblDocumentAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
-        num = em.createNamedQuery("deleteDocumentsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        num = em.createNamedQuery("deleteUblDocumentsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
     }
 
     @Override
@@ -161,7 +167,7 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
 
     @Override
     public List<DocumentModel> getDocuments(OrganizationModel organization, int firstResult, int maxResults) {
-        TypedQuery<UBLDocumentEntity> query = em.createNamedQuery("getAllDocumentsByOrganization", UBLDocumentEntity.class);
+        TypedQuery<UBLDocumentEntity> query = em.createNamedQuery("getAllUblDocumentsByOrganization", UBLDocumentEntity.class);
         query.setParameter("organizationId", organization.getId());
         if (firstResult != -1) {
             query.setFirstResult(firstResult);
@@ -169,43 +175,6 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
         if (maxResults != -1) {
             query.setMaxResults(maxResults);
         }
-        List<UBLDocumentEntity> results = query.getResultList();
-        return results.stream().map(f -> new UBLDocumentAdapter(session, organization, em, f)).collect(Collectors.toList());
-    }
-
-    @Override
-    public List<DocumentModel> getDocuments(OrganizationModel organization, String documentType) {
-        return getDocuments(organization, documentType, -1, -1);
-    }
-
-    @Override
-    public List<DocumentModel> getDocuments(OrganizationModel organization, String documentType, int firstResult, int maxResults) {
-        TypedQuery<UBLDocumentEntity> query = em.createNamedQuery("getAllDocumentsByOrganizationAndDocumentType", UBLDocumentEntity.class);
-        query.setParameter("organizationId", organization.getId());
-        query.setParameter("documentType", documentType.toUpperCase());
-        if (firstResult != -1) {
-            query.setFirstResult(firstResult);
-        }
-        if (maxResults != -1) {
-            query.setMaxResults(maxResults);
-        }
-        List<UBLDocumentEntity> results = query.getResultList();
-        return results.stream().map(f -> new UBLDocumentAdapter(session, organization, em, f)).collect(Collectors.toList());
-    }
-
-    @Override
-    public List<DocumentModel> getDocuments(OrganizationModel organization, String documentType, List<RequiredAction> requiredAction) {
-        return getDocuments(organization, documentType, requiredAction, -1, -1);
-    }
-
-    @Override
-    public List<DocumentModel> getDocuments(OrganizationModel organization, String documentType, List<RequiredAction> requiredAction, int firstResult, int maxResults) {
-        String queryJql = "select i from UBLDocumentEntity i where i.organizationId=:organizationId and i.documentType=:documentType and :requiredAction in elements(i.requiredAction) order by i.createdTimestamp";
-
-        TypedQuery<UBLDocumentEntity> query = em.createQuery(queryJql, UBLDocumentEntity.class);
-        query.setParameter("organizationId", organization.getId());
-        query.setParameter("documentType", documentType.toUpperCase());
-        query.setParameter("requiredAction", requiredAction);
         List<UBLDocumentEntity> results = query.getResultList();
         return results.stream().map(f -> new UBLDocumentAdapter(session, organization, em, f)).collect(Collectors.toList());
     }
@@ -217,7 +186,7 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
 
     @Override
     public List<DocumentModel> searchForDocument(String filterText, OrganizationModel organization, int firstResult, int maxResults) {
-        TypedQuery<UBLDocumentEntity> query = em.createNamedQuery("searchForDocument", UBLDocumentEntity.class);
+        TypedQuery<UBLDocumentEntity> query = em.createNamedQuery("searchForUblDocument", UBLDocumentEntity.class);
         query.setParameter("organizationId", organization.getId());
         query.setParameter("search", "%" + filterText.toLowerCase() + "%");
         if (firstResult != -1) {
@@ -238,12 +207,10 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
     @Override
     public SearchResultsModel<DocumentModel> searchForDocument(String filterText, SearchCriteriaModel criteria, OrganizationModel organization) {
         DocumentQuery query = session.documents().createQuery(organization);
-        DocumentCountQuery queryCount = session.documents().createCountQuery(organization);
 
         // Filtertext
         if (filterText != null && !filterText.trim().isEmpty()) {
             query.filterText(filterText, DOCUMENT_ID, CUSTOMER_REGISTRATION_NAME, CUSTOMER_ASSIGNED_ACCOUNT_ID, CUSTOMER_ELECTRONIC_MAIL);
-            queryCount.filterText(filterText, DOCUMENT_ID, CUSTOMER_REGISTRATION_NAME, CUSTOMER_ASSIGNED_ACCOUNT_ID, CUSTOMER_ELECTRONIC_MAIL);
         }
 
         // Filters
@@ -265,189 +232,39 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
                             .toArray(size -> new RequiredAction[requiredActions.size()]);
 
                     query.requiredAction(array);
-                    queryCount.requiredAction(array);
                 } else if (filter.getName().equalsIgnoreCase(CREATED_TIMESTAMP)) {
                     if (filter.getOperator().equals(SearchCriteriaFilterOperator.gt) || filter.getOperator().equals(SearchCriteriaFilterOperator.gte)) {
                         query.fromDate((LocalDateTime) filter.getValue());
-                        queryCount.fromDate((LocalDateTime) filter.getValue());
                     } else {
                         query.toDate((LocalDateTime) filter.getValue());
-                        queryCount.toDate((LocalDateTime) filter.getValue());
                     }
                 } else {
-                    query.addFilter(filter);
-                    queryCount.addFilter(filter);
+                    query.addFilter(filter.getName(), filter.getValue(), filter.getOperator());
                 }
             }
         }
+
+        DocumentQuery.EntityQuery entityQuery = query.entityQuery();
 
         // Orders
         if (criteria.getOrders() != null && !criteria.getOrders().isEmpty()) {
             criteria.getOrders().stream().forEach(c -> {
                 if (c.isAscending()) {
-                    query.orderByAsc(c.getName());
+                    entityQuery.orderByAsc(c.getName());
                 } else {
-                    query.orderByDesc(c.getName());
+                    entityQuery.orderByDesc(c.getName());
                 }
             });
         }
 
-        // Paging
-        if (criteria.getPaging() != null) {
-            int page = criteria.getPaging().getPage();
-            int pageSize = criteria.getPaging().getPageSize();
-            int start = (page - 1) * pageSize;
-
-            query.firstResult(start);
-            query.maxResults(pageSize);
-        } else {
-            query.firstResult(0);
-            query.maxResults(Constants.DEFAULT_MAX_RESULTS);
-        }
-
-        SearchResultsModel<DocumentModel> searchResult = new SearchResultsModel<>();
-        searchResult.setModels(query.getResultList());
-        searchResult.setTotalSize(queryCount.getTotalCount());
-        return searchResult;
+        return entityQuery.searchResult().getSearchResult(criteria.getPaging());
     }
 
     @Override
     public int getDocumentsCount(OrganizationModel organization) {
-        Query query = em.createNamedQuery("getOrganizationDocumentCount");
+        Query query = em.createNamedQuery("getOrganizationUblDocumentCount");
         Long result = (Long) query.getSingleResult();
         return result.intValue();
-    }
-
-    @Override
-    public ScrollModel<DocumentModel> getDocumentScroll(OrganizationModel organization) {
-        return getDocumentScroll(organization, true);
-    }
-
-    @Override
-    public ScrollModel<DocumentModel> getDocumentScroll(OrganizationModel organization, boolean asc) {
-        return getDocumentScroll(organization, -1, asc);
-    }
-
-    @Override
-    public ScrollModel<DocumentModel> getDocumentScroll(OrganizationModel organization, int scrollSize, boolean asc) {
-        if (scrollSize == -1) {
-            scrollSize = 100;
-        }
-
-        String queryName = null;
-        if (asc) {
-            queryName = "getAllDocumentsByOrganization";
-        } else {
-            queryName = "getAllDocumentsByOrganizationDesc";
-        }
-
-        TypedQuery<UBLDocumentEntity> query = em.createNamedQuery(queryName, UBLDocumentEntity.class);
-        query.setParameter("organizationId", organization.getId());
-
-        return new ScrollAdapter<>(UBLDocumentEntity.class, query, f -> new UBLDocumentAdapter(session, organization, em, f), scrollSize);
-    }
-
-    @Override
-    public ScrollModel<DocumentModel> getDocumentScroll(OrganizationModel organization, String documentType) {
-        return getDocumentScroll(organization, documentType, true);
-    }
-
-    @Override
-    public ScrollModel<DocumentModel> getDocumentScroll(OrganizationModel organization, String documentType, boolean asc) {
-        return getDocumentScroll(organization, documentType, -1, asc);
-    }
-
-    @Override
-    public ScrollModel<DocumentModel> getDocumentScroll(OrganizationModel organization, String documentType, int scrollSize, boolean asc) {
-        if (scrollSize == -1) {
-            scrollSize = 100;
-        }
-
-        String queryName = null;
-        if (asc) {
-            queryName = "getAllDocumentsByOrganizationAndDocumentType";
-        } else {
-            queryName = "getAllDocumentsByOrganizationAndDocumentTypeDesc";
-        }
-
-        TypedQuery<UBLDocumentEntity> query = em.createNamedQuery(queryName, UBLDocumentEntity.class);
-        query.setParameter("organizationId", organization.getId());
-        query.setParameter("documentType", documentType.toUpperCase());
-
-        return new ScrollAdapter<>(UBLDocumentEntity.class, query, f -> new UBLDocumentAdapter(session, organization, em, f), scrollSize);
-    }
-
-    @Override
-    public ScrollModel<List<DocumentModel>> getDocumentScroll(OrganizationModel organization, int scrollSize, String... requiredAction) {
-        if (scrollSize == -1) {
-            scrollSize = 10;
-        }
-
-        TypedQuery<UBLDocumentEntity> query = em.createNamedQuery("getAllDocumentsByRequiredActionAndOrganization", UBLDocumentEntity.class);
-        query.setParameter("organizationId", organization.getId());
-        query.setParameter("requiredAction", new ArrayList<>(Arrays.asList(requiredAction)));
-
-        return new ScrollPagingAdapter<>(UBLDocumentEntity.class, query, f -> f.stream().map(m -> new UBLDocumentAdapter(session, organization, em, m)).collect(Collectors.toList()), scrollSize);
-    }
-
-    @Override
-    public ScrollModel<List<DocumentModel>> getDocumentScroll(OrganizationModel organization, String documentType, int scrollSize, String... requiredAction) {
-        if (scrollSize == -1) {
-            scrollSize = 10;
-        }
-
-        TypedQuery<UBLDocumentEntity> query = em.createNamedQuery("getAllDocumentsByRequiredActionAndOrganizationAndDocumentType", UBLDocumentEntity.class);
-        query.setParameter("organizationId", organization.getId());
-        query.setParameter("requiredAction", new ArrayList<>(Arrays.asList(requiredAction)));
-        query.setParameter("documentType", documentType.toUpperCase());
-
-        return new ScrollPagingAdapter<>(UBLDocumentEntity.class, query, f -> f.stream().map(m -> new UBLDocumentAdapter(session, organization, em, m)).collect(Collectors.toList()), scrollSize);
-    }
-
-    @Override
-    public List<DocumentModel> searchForDocument(Map<String, String> attributes, OrganizationModel organization) {
-        return searchForDocument(attributes, organization, -1, -1);
-    }
-
-    @Override
-    public List<DocumentModel> searchForDocument(Map<String, String> attributes, OrganizationModel organization, int firstResult, int maxResults) {
-        StringBuilder builder = new StringBuilder("select u from DocumentEntity u where u.organizationId = :organizationId");
-        for (Map.Entry<String, String> entry : attributes.entrySet()) {
-            String attribute = null;
-            String parameterName = null;
-            if (entry.getKey().equals(DocumentModel.DOCUMENT_TYPE)) {
-                attribute = "lower(u.documentType)";
-                parameterName = JpaDocumentProvider.DOCUMENT_TYPE;
-            } else if (entry.getKey().equals(DocumentModel.DOCUMENT_ID)) {
-                attribute = "lower(u.documentId)";
-                parameterName = JpaDocumentProvider.DOCUMENT_ID;
-            }
-            if (attribute == null) continue;
-            builder.append(" and ");
-            builder.append(attribute).append(" like :").append(parameterName);
-        }
-        builder.append(" order by u.createdTimestamp");
-        String q = builder.toString();
-        TypedQuery<UBLDocumentEntity> query = em.createQuery(q, UBLDocumentEntity.class);
-        query.setParameter("organizationId", organization.getId());
-        for (Map.Entry<String, String> entry : attributes.entrySet()) {
-            String parameterName = null;
-            if (entry.getKey().equals(DocumentModel.DOCUMENT_TYPE)) {
-                parameterName = JpaDocumentProvider.DOCUMENT_TYPE;
-            } else if (entry.getKey().equals(DocumentModel.DOCUMENT_ID)) {
-                parameterName = JpaDocumentProvider.DOCUMENT_ID;
-            }
-            if (parameterName == null) continue;
-            query.setParameter(parameterName, "%" + entry.getValue().toLowerCase() + "%");
-        }
-        if (firstResult != -1) {
-            query.setFirstResult(firstResult);
-        }
-        if (maxResults != -1) {
-            query.setMaxResults(maxResults);
-        }
-        List<UBLDocumentEntity> results = query.getResultList();
-        return results.stream().map(f -> new UBLDocumentAdapter(session, organization, em, f)).collect(Collectors.toList());
     }
 
     @Override
@@ -483,7 +300,7 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
 
     @Override
     public List<DocumentModel> searchForDocumentByAttribute(String documentType, String attrName, String attrValue, OrganizationModel organization, int firstResult, int maxResults) {
-        TypedQuery<UBLDocumentAttributeEntity> query = em.createNamedQuery("getDocumentAttributesByNameAndValueAndDocumentType", UBLDocumentAttributeEntity.class);
+        TypedQuery<UBLDocumentAttributeEntity> query = em.createNamedQuery("getUblDocumentAttributesByNameAndValueAndDocumentType", UBLDocumentAttributeEntity.class);
         query.setParameter("name", attrName);
         query.setParameter("value", attrValue);
         query.setParameter("documentType", documentType.toUpperCase());
@@ -506,11 +323,6 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
     @Override
     public DocumentQuery createQuery(OrganizationModel organization) {
         return new JpaDocumentQuery(session, organization, em);
-    }
-
-    @Override
-    public DocumentCountQuery createCountQuery(OrganizationModel organization) {
-        return new JpaDocumentCountQuery(session, organization, em);
     }
 
 }

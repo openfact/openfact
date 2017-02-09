@@ -67,7 +67,7 @@ public class ConcurrentTransactionsTest extends AbstractModelTest {
 
                             // Read client
                             OrganizationModel organization = session.organizations().getOrganizationByName("original");
-                            DocumentModel document = session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F01-123", organization);
+                            DocumentModel document = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE.toString(), "F01-123", organization);
                             logger.info("transaction1: Read ublDocument finished");
                             readLatch.countDown();
 
@@ -75,7 +75,7 @@ public class ConcurrentTransactionsTest extends AbstractModelTest {
                             updateLatch.await();
                             logger.info("transaction1: Going to read ublDocument again");
 
-                            document = session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F01-123", organization);
+                            document = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE.toString(), "F01-123", organization);
                             logger.info("transaction1: ublDocument email: " + document.getCustomerElectronicMail());
                         } catch (Exception e) {
                             throw new RuntimeException(e);
@@ -106,7 +106,7 @@ public class ConcurrentTransactionsTest extends AbstractModelTest {
                             logger.info("transaction2: Going to update ublDocument currency code");
 
                             OrganizationModel organization = session.organizations().getOrganizationByName("original");
-                            DocumentModel document = session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F01-123", organization);
+                            DocumentModel document = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE.toString(), "F01-123", organization);
                             document.setCustomerElectronicMail("new");
                         } catch (Exception e) {
                             throw new RuntimeException(e);
@@ -174,10 +174,10 @@ public class ConcurrentTransactionsTest extends AbstractModelTest {
                             try {
                                 // Read user attribute
                                 OrganizationModel organization = session.organizations().getOrganizationByName("original");
-                                DocumentModel document1 = session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F01-12", organization);
+                                DocumentModel document1 = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE.toString(), "F01-12", organization);
                                 String attrVal = document1.getFirstAttribute("foo");
 
-                                DocumentModel document2 = session.documents().getDocumentByDocumentTypeAndId(DocumentType.INVOICE.toString(), "F01-123", organization);
+                                DocumentModel document2 = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE.toString(), "F01-123", organization);
                                 String attrVal2 = document2.getFirstAttribute("foo");
 
                                 // Wait until it's read in both threads

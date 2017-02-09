@@ -38,7 +38,7 @@ public interface OrganizationProvider extends Provider {
 
     List<OrganizationModel> getOrganizations();
 
-    List<OrganizationModel> getOrganizations(Integer firstResult, Integer maxResults);
+    List<OrganizationModel> getOrganizations(int firstResult, int maxResults);
 
     boolean removeOrganization(String organizationId);
 
@@ -46,14 +46,8 @@ public interface OrganizationProvider extends Provider {
 
     int getOrganizationsCount();
 
-    List<OrganizationModel> searchForOrganization(String filterText, Integer firstResult, Integer maxResults);
+    List<OrganizationModel> searchForOrganization(String filterText, int firstResult, int maxResults);
 
-    List<OrganizationModel> searchForOrganization(Map<String, String> attributes, Integer firstResult, Integer maxResults);
-
-    SearchResultsModel<OrganizationModel> searchForOrganization(SearchCriteriaModel criteria);
-
-    SearchResultsModel<OrganizationModel> searchForOrganization(SearchCriteriaModel criteria, String filterText);
-
-    void close();
+    List<OrganizationModel> searchForOrganization(Map<String, String> attributes, int firstResult, int maxResults);
 
 }

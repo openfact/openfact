@@ -38,7 +38,7 @@ import org.hibernate.annotations.Type;
         @UniqueConstraint(columnNames = {"ORGANIZATION_ID", "DOCUMENT_TYPE", "DOCUMENT_ID"})
 })
 @NamedQueries({
-        @NamedQuery(name = "getAllDocumentsByOrganization", query = "select c from UBLDocumentEntity c where c.organizationId = :organizationId order by c.createdTimestamp"),
+        @NamedQuery(name = "getAllUblDocumentsByOrganization", query = "select c from UBLDocumentEntity c where c.organizationId = :organizationId order by c.createdTimestamp"),
         @NamedQuery(name = "getAllDocumentsByOrganizationDesc", query = "select c from UBLDocumentEntity c where c.organizationId = :organizationId order by c.createdTimestamp desc"),
         @NamedQuery(name = "getAllDocumentsByOrganizationAndDocumentType", query = "select c from UBLDocumentEntity c where c.organizationId = :organizationId and c.documentType=:documentType order by c.createdTimestamp"),
         @NamedQuery(name = "getAllDocumentsByOrganizationAndDocumentTypeDesc", query = "select c from UBLDocumentEntity c where c.organizationId = :organizationId and c.documentType=:documentType order by c.createdTimestamp desc"),
@@ -46,12 +46,10 @@ import org.hibernate.annotations.Type;
         @NamedQuery(name = "getAllDocumentsByRequiredActionAndOrganization", query = "select c from UBLDocumentEntity c inner join c.requiredActions r where c.organizationId = :organizationId and r.action in :requiredAction order by c.createdTimestamp"),
         @NamedQuery(name = "getAllDocumentsByRequiredActionAndOrganizationAndDocumentType", query = "select c from UBLDocumentEntity c inner join c.requiredActions r where c.organizationId = :organizationId and c.documentType=:documentType and r.action in :requiredAction order by c.createdTimestamp"),
         @NamedQuery(name = "getOrganizationDocumentById", query = "select i from UBLDocumentEntity i where i.id = :id and i.organizationId = :organizationId"),
-        @NamedQuery(name = "getOrganizationDocumentByDocumentTypeAndId", query = "select i from UBLDocumentEntity i where i.documentType=:documentType and i.documentId=:documentId and i.organizationId = :organizationId"),
-        @NamedQuery(name = "searchForDocument", query = "select i from UBLDocumentEntity i where i.organizationId = :organizationId and lower(i.documentId) like :search order by i.createdTimestamp"),
-        @NamedQuery(name = "getOrganizationDocumentCount", query = "select count(i) from UBLDocumentEntity i where i.organizationId = :organizationId"),
-        @NamedQuery(name = "deleteDocumentsByOrganization", query = "delete from UBLDocumentEntity u where u.organizationId = :organizationId")
-
-
+        @NamedQuery(name = "getOrganizationDocumentByTypeAndUblId", query = "select i from UBLDocumentEntity i where i.documentType=:documentType and i.documentId=:ublId and i.organizationId = :organizationId"),
+        @NamedQuery(name = "searchForUblDocument", query = "select i from UBLDocumentEntity i where i.organizationId = :organizationId and lower(i.documentId) like :search order by i.createdTimestamp"),
+        @NamedQuery(name = "getOrganizationUblDocumentCount", query = "select count(i) from UBLDocumentEntity i where i.organizationId = :organizationId"),
+        @NamedQuery(name = "deleteUblDocumentsByOrganization", query = "delete from UBLDocumentEntity u where u.organizationId = :organizationId")
 })
 public class UBLDocumentEntity {
 
@@ -104,10 +102,10 @@ public class UBLDocumentEntity {
     private Collection<UBLDocumentRequiredActionEntity> requiredActions = new ArrayList<>();
 
     @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "ublDocument", fetch = FetchType.LAZY)
-    private Collection<UBLDocumentSendEventEntity> sendEvents = new ArrayList<>();
+    private Collection<SendEventEntity> sendEvents = new ArrayList<>();
 
     @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "ublDocument", fetch = FetchType.LAZY)
-    private Collection<UBLAttachedDocumentEntity> attachedDocuments = new ArrayList<>();
+    private Collection<AttachedUBLDocumentEntity> attachedDocuments = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -197,19 +195,19 @@ public class UBLDocumentEntity {
         this.requiredActions = requiredActions;
     }
 
-    public Collection<UBLDocumentSendEventEntity> getSendEvents() {
+    public Collection<SendEventEntity> getSendEvents() {
         return sendEvents;
     }
 
-    public void setSendEvents(Collection<UBLDocumentSendEventEntity> sendEvents) {
+    public void setSendEvents(Collection<SendEventEntity> sendEvents) {
         this.sendEvents = sendEvents;
     }
 
-    public Collection<UBLAttachedDocumentEntity> getAttachedDocuments() {
+    public Collection<AttachedUBLDocumentEntity> getAttachedDocuments() {
         return attachedDocuments;
     }
 
-    public void setAttachedDocuments(Collection<UBLAttachedDocumentEntity> attatchedDocuments) {
+    public void setAttachedDocuments(Collection<AttachedUBLDocumentEntity> attatchedDocuments) {
         this.attachedDocuments = attatchedDocuments;
     }
 

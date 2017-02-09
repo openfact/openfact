@@ -63,11 +63,11 @@ public class DocumentManager {
     }
 
     public DocumentModel getDocumentByTypeAndDocumentId(String type, String documentId, OrganizationModel organization) {
-        return model.getDocumentByDocumentTypeAndId(type, documentId, organization);
+        return model.getDocumentByTypeAndUblId(type, documentId, organization);
     }
 
     public DocumentModel getDocumentByTypeAndDocumentId(DocumentType type, String documentId, OrganizationModel organization) {
-        return model.getDocumentByDocumentTypeAndId(type.toString(), documentId, organization);
+        return model.getDocumentByTypeAndUblId(type.toString(), documentId, organization);
     }
 
     public DocumentModel addInvoice(InvoiceType invoiceType, Map<String, List<String>> attributes, OrganizationModel organization) {

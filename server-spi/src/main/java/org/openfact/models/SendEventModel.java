@@ -36,14 +36,18 @@ public interface SendEventModel {
     String getDescription();
     void setDescription(String description);
 
-    void setSingleResponseAttribute(String name, String value);
-    void setResponseAttribute(String name, List<String> values);
-    void removeResponseAttribute(String name);
-    String getFirstResponseAttribute(String name);
-    List<String> getResponseAttribute(String name);
-    Map<String, List<String>> getResponseAttributes();
+    void setAttribute(String name, String value);
+    void setAttribute(String name, Boolean value);
+    void setAttribute(String name, Integer value);
+    void setAttribute(String name, Long value);
+    void removeAttribute(String name);
+    String getAttribute(String name);
+    Integer getAttribute(String name, Integer defaultValue);
+    Long getAttribute(String name, Long defaultValue);
+    Boolean getAttribute(String name, Boolean defaultValue);
+    Map<String, String> getAttributes();
 
-    List<FileModel> getResponseFileAttatchments();
-    void attachResponseFile(FileModel file);
+    List<FileModel> getAttachedFiles();
+    void attachFile(FileModel file);
     void unattachResponseFile(FileModel file);
 }

@@ -35,6 +35,7 @@ public interface DocumentModel {
 
     String DOCUMENT_TYPE = "documentType";
     String DOCUMENT_ID = "documentId";
+    String DOCUMENT_CURRENCY_CODE = "documentCurrencyCode";
     String CUSTOMER_REGISTRATION_NAME = "customerRegistrationName";
     String CUSTOMER_ASSIGNED_ACCOUNT_ID = "customerAssignedAccountId";
     String CREATED_TIMESTAMP = "createdTimestamp";

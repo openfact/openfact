@@ -112,7 +112,7 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
         if (entities.size() == 0)
             return null;
         if (entities.size() > 1)
-            throw new IllegalStateException("Should not be more than one ublDocumentSendEvent with same name");
+            throw new IllegalStateException("Should not be more than one sendEvent with same name");
         String id = query.getResultList().get(0);
 
         return session.organizations().getOrganization(id);
@@ -167,7 +167,7 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
     }
 
     @Override
-    public List<OrganizationModel> getOrganizations(Integer firstResult, Integer maxResults) {
+    public List<OrganizationModel> getOrganizations(int firstResult, int maxResults) {
         TypedQuery<String> query = em.createNamedQuery("getAllOrganizationIds", String.class);
         if (firstResult != -1) {
             query.setFirstResult(firstResult);
@@ -195,7 +195,7 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
     }
 
     @Override
-    public List<OrganizationModel> searchForOrganization(String filterText, Integer firstResult, Integer maxResults) {
+    public List<OrganizationModel> searchForOrganization(String filterText, int firstResult, int maxResults) {
         TypedQuery<OrganizationEntity> query = em.createNamedQuery("searchForOrganization", OrganizationEntity.class);
         query.setParameter("filterText", "%" + filterText.toLowerCase() + "%");
         if (firstResult != -1) {
@@ -209,7 +209,7 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
     }
 
     @Override
-    public List<OrganizationModel> searchForOrganization(Map<String, String> attributes, Integer firstResult, Integer maxResults) {
+    public List<OrganizationModel> searchForOrganization(Map<String, String> attributes, int firstResult, int maxResults) {
         StringBuilder builder = new StringBuilder("select u from OrganizationEntity u");
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             String attribute = null;
@@ -223,6 +223,9 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
             } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.REGISTRATION_NAME)) {
                 attribute = "lower(u.registrationName)";
                 parameterName = JpaOrganizationProvider.REGISTRATION_NAME;
+            } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.ASSIGNED_IDENTIFICATION_ID)) {
+                attribute = "lower(u.assignedIdentificationId)";
+                parameterName = JpaOrganizationProvider.ASSIGNED_IDENTIFICATION_ID;
             } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.DESCRIPTION)) {
                 attribute = "lower(u.description)";
                 parameterName = JpaOrganizationProvider.DESCRIPTION;
@@ -243,6 +246,8 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
                 parameterName = JpaOrganizationProvider.SUPPLIER_NAME;
             } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.REGISTRATION_NAME)) {
                 parameterName = JpaOrganizationProvider.REGISTRATION_NAME;
+            } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.ASSIGNED_IDENTIFICATION_ID)) {
+                parameterName = JpaOrganizationProvider.ASSIGNED_IDENTIFICATION_ID;
             } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.DESCRIPTION)) {
                 parameterName = JpaOrganizationProvider.DESCRIPTION;
             }
@@ -258,32 +263,6 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
         }
         List<OrganizationEntity> results = query.getResultList();
         return results.stream().map(f -> new OrganizationAdapter(session, em, f)).collect(Collectors.toList());
-    }
-
-    @Override
-    public SearchResultsModel<OrganizationModel> searchForOrganization(SearchCriteriaModel criteria) {
-        SearchResultsModel<OrganizationEntity> entityResult = find(criteria, OrganizationEntity.class);
-        List<OrganizationEntity> entities = entityResult.getModels();
-
-        SearchResultsModel<OrganizationModel> searchResult = new SearchResultsModel<>();
-        List<OrganizationModel> models = searchResult.getModels();
-
-        entities.forEach(f -> models.add(new OrganizationAdapter(session, em, f)));
-        searchResult.setTotalSize(entityResult.getTotalSize());
-        return searchResult;
-    }
-
-    @Override
-    public SearchResultsModel<OrganizationModel> searchForOrganization(SearchCriteriaModel criteria, String filterText) {
-        SearchResultsModel<OrganizationEntity> entityResult = findFullText(criteria, OrganizationEntity.class, filterText, NAME, SUPPLIER_NAME, REGISTRATION_NAME);
-        List<OrganizationEntity> entities = entityResult.getModels();
-
-        SearchResultsModel<OrganizationModel> searchResult = new SearchResultsModel<>();
-        List<OrganizationModel> models = searchResult.getModels();
-
-        entities.forEach(f -> models.add(new OrganizationAdapter(session, em, f)));
-        searchResult.setTotalSize(entityResult.getTotalSize());
-        return searchResult;
     }
 
 }

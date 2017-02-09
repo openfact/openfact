@@ -15,43 +15,39 @@
     limitations under the License.
  -->
 <persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/persistence"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
-	version="1.0">
+             xmlns="http://java.sun.com/xml/ns/persistence"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+             version="1.0">
 
-	<persistence-unit name="openfact-default"
-		transaction-type="RESOURCE_LOCAL">
-		<class>org.openfact.models.jpa.entities.MigrationModelEntity</class>
-		<class>org.openfact.models.jpa.entities.OrganizationEntity</class>
-		<class>org.openfact.models.jpa.entities.OrganizationAttributeEntity</class>
-		<class>org.openfact.models.jpa.entities.ComponentEntity</class>
-		<class>org.openfact.models.jpa.entities.ComponentConfigEntity</class>
-		<class>org.openfact.models.jpa.entities.RequiredActionProviderEntity</class>
+    <persistence-unit name="openfact-default"
+                      transaction-type="RESOURCE_LOCAL">
+        <class>org.openfact.models.jpa.entities.MigrationModelEntity</class>
+        <class>org.openfact.models.jpa.entities.OrganizationEntity</class>
+        <class>org.openfact.models.jpa.entities.OrganizationAttributeEntity</class>
+        <class>org.openfact.models.jpa.entities.ComponentEntity</class>
+        <class>org.openfact.models.jpa.entities.ComponentConfigEntity</class>
 
-		<!-- JpaAuditProviders -->
-		<class>org.openfact.events.jpa.EventEntity</class>
-		<class>org.openfact.events.jpa.AdminEventEntity</class>
+        <!-- JpaAuditProviders -->
+        <class>org.openfact.events.jpa.EventEntity</class>
+        <class>org.openfact.events.jpa.AdminEventEntity</class>
 
-		<!-- ublProvider -->
-		<class>org.openfact.models.jpa.entities.UBLDocumentEntity</class>
-		<class>org.openfact.models.jpa.entities.UBLDocumentAttributeEntity</class>
-		<class>org.openfact.models.jpa.entities.UBLDocumentRequiredActionEntity</class>
+        <!-- ublProvider -->
+        <class>org.openfact.models.jpa.entities.UBLDocumentEntity</class>
+        <class>org.openfact.models.jpa.entities.AttachedUBLDocumentEntity</class>
+        <class>org.openfact.models.jpa.entities.UBLDocumentAttributeEntity</class>
+        <class>org.openfact.models.jpa.entities.UBLDocumentRequiredActionEntity</class>
+        <class>org.openfact.models.jpa.entities.SendEventEntity</class>
+        <class>org.openfact.models.jpa.entities.SendEventAttributeEntity</class>
+        <class>org.openfact.models.jpa.entities.SendEventAttachedFileEntity</class>
 
-		<class>org.openfact.models.jpa.entities.FileEntity</class>
-		<class>org.openfact.models.jpa.entities.JobReportEntity</class>
+        <class>org.openfact.models.jpa.entities.FileEntity</class>
+        <class>org.openfact.models.jpa.entities.JobReportEntity</class>
 
-		<class>org.openfact.models.jpa.entities.UBLDocumentSendEventEntity</class>
-		<class>org.openfact.models.jpa.entities.SendEventDestinyAttributeEntity</class>
-		<class>org.openfact.models.jpa.entities.UBLDocumentSendEventResponseAttributeEntity</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
-		<class>org.openfact.models.jpa.entities.UBLAttachedDocumentEntity</class>
-		<class>org.openfact.models.jpa.entities.AttatchedDocumentAttributeEntity</class>
-
-		<exclude-unlisted-classes>true</exclude-unlisted-classes>
-
-		<properties>
-			<property name="jboss.as.jpa.managed" value="false" />
-		</properties>
-	</persistence-unit>
+        <properties>
+            <property name="jboss.as.jpa.managed" value="false"/>
+        </properties>
+    </persistence-unit>
 
 </persistence>

@@ -1,40 +1,78 @@
 package org.openfact.models;
 
+import org.openfact.models.enums.DocumentType;
 import org.openfact.models.enums.RequiredAction;
+import org.openfact.models.search.PagingModel;
 import org.openfact.models.search.SearchCriteriaFilterModel;
-import org.w3c.dom.Document;
+import org.openfact.models.search.SearchCriteriaFilterOperator;
+import org.openfact.models.search.SearchResultsModel;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 public interface DocumentQuery {
 
     DocumentQuery currencyCode(String... currencyCode);
 
-    DocumentQuery documentType(String... documentType);
+    DocumentQuery documentType(DocumentType... documentType);
 
-    DocumentQuery filterText(String filterText, String... fieldName);
+    DocumentQuery documentType(String... documentType);
 
     DocumentQuery requiredAction(RequiredAction... requiredAction);
 
-    DocumentQuery addFilter(SearchCriteriaFilterModel filter);
+    DocumentQuery filterText(String filterText, String... fieldName);
 
-    DocumentQuery orderByAsc(String... attribute);
+    /**
+     * Just equals filters
+     */
+    DocumentQuery addFilter(String key, String value);
+    DocumentQuery addFilter(Map<String, String> filters);
 
-    DocumentQuery orderByDesc(String... attribute);
+    DocumentQuery addFilter(String key, Object value, SearchCriteriaFilterOperator operator);
 
     DocumentQuery fromDate(LocalDateTime fromDate);
 
     DocumentQuery toDate(LocalDateTime toDate);
 
-    DocumentQuery firstResult(int result);
+    EntityQuery entityQuery();
 
-    DocumentQuery maxResults(int results);
+    CountQuery countQuery();
 
-    List<DocumentModel> getResultList();
+    interface EntityQuery {
+        EntityQuery orderByAsc(String... attribute);
 
-    ScrollModel<DocumentModel> getScrollResult(int scrollSize);
+        EntityQuery orderByDesc(String... attribute);
 
-    ScrollModel<List<DocumentModel>> getScrollResultList(int listSize);
+        ListEntityQuery resultList();
+
+        SearchResultEntityQuery searchResult();
+
+        ScrollEntityQuery resultScroll();
+    }
+
+    interface ListEntityQuery {
+        List<DocumentModel> getResultList();
+
+        ListEntityQuery firstResult(int result);
+
+        ListEntityQuery maxResults(int results);
+    }
+
+    interface ScrollEntityQuery {
+        ScrollModel<DocumentModel> getScrollResult(int scrollSize);
+
+        ScrollModel<List<DocumentModel>> getScrollResultList(int listSize);
+    }
+
+    interface SearchResultEntityQuery {
+        SearchResultsModel<DocumentModel> getSearchResult();
+
+        SearchResultsModel<DocumentModel> getSearchResult(PagingModel pagingModel);
+    }
+
+    interface CountQuery {
+        int getTotalCount();
+    }
 
 }

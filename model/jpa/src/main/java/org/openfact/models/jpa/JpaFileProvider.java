@@ -50,33 +50,25 @@ public class JpaFileProvider implements FileProvider {
         FileEntity entity = new FileEntity();
         entity.setFileName(fileName);
         entity.setFile(file);
-        entity.setOrganizationId(organization.getId());
+        entity.setOrganization(OrganizationAdapter.toEntity(organization, em));
         em.persist(entity);
-        //em.flush();
-
         return new FileAdapter(session, em, entity);
     }
 
     @Override
     public FileModel getFileById(OrganizationModel organization, String id) {
-        TypedQuery<FileEntity> query = em.createNamedQuery("getFileById", FileEntity.class);
-        query.setParameter("organizationId", organization.getId());
-        query.setParameter("id", id);
-        List<FileEntity> entities = query.getResultList();
-        if (entities.size() == 0)
-            return null;
-        if (entities.size() > 1)
-            throw new IllegalStateException("Should not be more than one file with same name");
-
-        FileEntity entity = query.getResultList().get(0);
-        return new FileAdapter(session, em, entity);
+        FileEntity entity = em.find(FileEntity.class, id);
+        if (entity != null) {
+            return new FileAdapter(session, em, entity);
+        }
+        return null;
     }
 
     @Override
     public FileModel getFileByFileName(OrganizationModel organization, String fileName) {
         TypedQuery<FileEntity> query = em.createNamedQuery("getOrganizationFileByFilename", FileEntity.class);
         query.setParameter("organizationId", organization.getId());
-        query.setParameter("filename", fileName);
+        query.setParameter("fileName", fileName);
         List<FileEntity> entities = query.getResultList();
         if (entities.size() == 0)
             return null;
@@ -90,8 +82,9 @@ public class JpaFileProvider implements FileProvider {
     @Override
     public boolean removeFile(OrganizationModel organization, FileModel file) {
         FileEntity entity = em.find(FileEntity.class, file.getId());
-        if (entity.getOrganizationId().equals(organization.getId())) {
+        if (entity != null && entity.getOrganization().getId().equals(organization.getId())) {
             em.remove(entity);
+            em.flush();
             return true;
         }
         return false;

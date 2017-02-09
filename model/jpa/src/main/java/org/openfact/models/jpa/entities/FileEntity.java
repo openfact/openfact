@@ -31,9 +31,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "ORGANIZATION_FILE")
 @NamedQueries({
-        @NamedQuery(name = "getAllFiles", query = "select f from FileEntity f"),
-        @NamedQuery(name = "getOrganizationFileById", query = "select f from FileEntity f where f.id = :id and f.organization.id = :organizationId"),
-        @NamedQuery(name = "getOrganizationFileByFilename", query = "select f from FileEntity f where f.fileName=:filename and f.organization.id=:organizationId"),
+        @NamedQuery(name = "getOrganizationFileByFilename", query = "select f from FileEntity f where f.fileName=:fileName and f.organization.id=:organizationId"),
         @NamedQuery(name = "deleteFilesByOrganization", query = "delete from FileEntity f where f.organization.id=:organizationId")
 })
 public class FileEntity {
@@ -114,4 +112,5 @@ public class FileEntity {
             return false;
         return true;
     }
+
 }

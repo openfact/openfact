@@ -3,7 +3,7 @@
 				   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
 				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
-	<changeSet author="admin (generated)" id="1486598218493-1">
+	<changeSet author="admin (generated)" id="1486661365377-1">
 		<createTable tableName="ADMIN_EVENT_ENTITY">
 			<column name="ID" type="VARCHAR(36)">
 				<constraints nullable="false"/>
@@ -20,16 +20,17 @@
 			<column name="ADMIN_EVENT_TIME" type="BIGINT"/>
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-2">
-		<createTable tableName="ATTACHED_DOCUMENT">
-			<column name="ID" type="VARCHAR(255)">
+	<changeSet author="admin (generated)" id="1486661365377-2">
+		<createTable tableName="ATTACHED_UBL_DOCUMENT">
+			<column name="UBL_DOCUMENT_ID" type="VARCHAR(255)">
 				<constraints nullable="false"/>
 			</column>
-			<column name="ATTACHED_UBL_DOCUMENT_ID" type="VARCHAR(255)"/>
-			<column name="UBL_DOCUMENT_ID" type="VARCHAR(255)"/>
+			<column name="ATTACHED_UBL_DOCUMENT_ID" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-3">
+	<changeSet author="admin (generated)" id="1486661365377-3">
 		<createTable tableName="COMPONENT">
 			<column name="ID" type="VARCHAR(36)">
 				<constraints nullable="false"/>
@@ -42,7 +43,7 @@
 			<column name="ORGANIZATION_ID" type="VARCHAR(36)"/>
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-4">
+	<changeSet author="admin (generated)" id="1486661365377-4">
 		<createTable tableName="COMPONENT_CONFIG">
 			<column name="ID" type="VARCHAR(36)">
 				<constraints nullable="false"/>
@@ -52,7 +53,7 @@
 			<column name="COMPONENT_ID" type="VARCHAR(36)"/>
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-5">
+	<changeSet author="admin (generated)" id="1486661365377-5">
 		<createTable tableName="EVENT_ENTITY">
 			<column name="ID" type="VARCHAR(36)">
 				<constraints nullable="false"/>
@@ -66,7 +67,7 @@
 			<column name="USER_ID" type="VARCHAR(255)"/>
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-6">
+	<changeSet author="admin (generated)" id="1486661365377-6">
 		<createTable tableName="JOB_REPORT">
 			<column name="ID" type="VARCHAR(255)">
 				<constraints nullable="false"/>
@@ -75,23 +76,13 @@
 			<column name="END_TIME" type="BIGINT"/>
 			<column name="ERROR_COUNT" type="BIGINT"/>
 			<column name="JOB_NAME" type="VARCHAR(255)"/>
-			<column name="ORGANIZATION_ID" type="VARCHAR(255)"/>
 			<column name="READ_COUNT" type="BIGINT"/>
 			<column name="START_TIME" type="BIGINT"/>
 			<column name="WRITE_COUNT" type="BIGINT"/>
+			<column name="ORGANIZATION_ID" type="VARCHAR(36)"/>
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-7">
-		<createTable tableName="JPA_FILE">
-			<column name="ID" type="VARCHAR(255)">
-				<constraints nullable="false"/>
-			</column>
-			<column name="FILE" type="BLOB"/>
-			<column name="FILE_NAME" type="VARCHAR(255)"/>
-			<column name="ORGANIZATION_ID" type="VARCHAR(255)"/>
-		</createTable>
-	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-8">
+	<changeSet author="admin (generated)" id="1486661365377-7">
 		<createTable tableName="MIGRATION_MODEL">
 			<column name="ID" type="VARCHAR(36)">
 				<constraints nullable="false"/>
@@ -99,16 +90,14 @@
 			<column name="VERSION" type="VARCHAR(36)"/>
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-9">
+	<changeSet author="admin (generated)" id="1486661365377-8">
 		<createTable tableName="ORGANIZATION">
 			<column name="ID" type="VARCHAR(36)">
 				<constraints nullable="false"/>
 			</column>
-			<column name="ACCOUNT_THEME" type="VARCHAR(255)"/>
 			<column name="ADDITIONAL_ACCOUNT_ID" type="VARCHAR(255)"/>
 			<column name="ADMIN_EVENTS_DETAILS_ENABLED" type="INT"/>
 			<column name="ADMIN_EVENTS_ENABLED" type="INT"/>
-			<column name="ADMIN_THEME" type="VARCHAR(255)"/>
 			<column name="ASSIGNED_IDENTIFICATION_ID" type="VARCHAR(255)"/>
 			<column name="CITY_NAME" type="VARCHAR(255)"/>
 			<column name="CITY_SUBDIVISION_NAME" type="VARCHAR(255)"/>
@@ -124,7 +113,7 @@
 			<column name="EVENTS_ENABLED" type="INT"/>
 			<column name="EVENTS_EXPIRATION" type="BIGINT"/>
 			<column name="INTERNATIONALIZATION_ENABLED" type="INT"/>
-			<column name="LOGIN_THEME" type="VARCHAR(255)"/>
+			<column name="LOGO_FILE_ID" type="VARCHAR(255)"/>
 			<column name="NAME" type="VARCHAR(255)"/>
 			<column name="POSTAL_ADRESS_ID" type="VARCHAR(255)"/>
 			<column name="REGISTRATION_NAME" type="VARCHAR(255)"/>
@@ -136,7 +125,7 @@
 			<column name="TASK_ENABLED" type="BOOLEAN"/>
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-10">
+	<changeSet author="admin (generated)" id="1486661365377-9">
 		<createTable tableName="ORGANIZATION_ATTRIBUTE">
 			<column name="NAME" type="VARCHAR(255)">
 				<constraints nullable="false"/>
@@ -147,7 +136,7 @@
 			</column>
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-11">
+	<changeSet author="admin (generated)" id="1486661365377-10">
 		<createTable tableName="ORGANIZATION_ENABLED_EVENT_TYPES">
 			<column name="ORGANIZATION_ID" type="VARCHAR(36)">
 				<constraints nullable="false"/>
@@ -155,7 +144,7 @@
 			<column name="VALUE" type="VARCHAR(255)"/>
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-12">
+	<changeSet author="admin (generated)" id="1486661365377-11">
 		<createTable tableName="ORGANIZATION_EVENTS_LISTENERS">
 			<column name="ORGANIZATION_ID" type="VARCHAR(36)">
 				<constraints nullable="false"/>
@@ -163,7 +152,17 @@
 			<column name="VALUE" type="VARCHAR(255)"/>
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-13">
+	<changeSet author="admin (generated)" id="1486661365377-12">
+		<createTable tableName="ORGANIZATION_FILE">
+			<column name="ID" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="FILE" type="BLOB"/>
+			<column name="FILE_NAME" type="VARCHAR(255)"/>
+			<column name="ORGANIZATION_ID" type="VARCHAR(36)"/>
+		</createTable>
+	</changeSet>
+	<changeSet author="admin (generated)" id="1486661365377-13">
 		<createTable tableName="ORGANIZATION_SMTP_CONFIG">
 			<column name="ORGANIZATION_ID" type="VARCHAR(36)">
 				<constraints nullable="false"/>
@@ -174,7 +173,7 @@
 			</column>
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-14">
+	<changeSet author="admin (generated)" id="1486661365377-14">
 		<createTable tableName="ORGANIZATION_SUPPORTED_CURRENCIES">
 			<column name="ORGANIZATION_ID" type="VARCHAR(36)">
 				<constraints nullable="false"/>
@@ -182,7 +181,7 @@
 			<column name="VALUE" type="VARCHAR(255)"/>
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-15">
+	<changeSet author="admin (generated)" id="1486661365377-15">
 		<createTable tableName="ORGANIZATION_SUPPORTED_LOCALES">
 			<column name="ORGANIZATION_ID" type="VARCHAR(36)">
 				<constraints nullable="false"/>
@@ -190,49 +189,28 @@
 			<column name="VALUE" type="VARCHAR(255)"/>
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-16">
-		<createTable tableName="REQUIRED_ACTION_CONFIG">
-			<column name="REQUIRED_ACTION_ID" type="VARCHAR(36)">
+	<changeSet author="admin (generated)" id="1486661365377-16">
+		<createTable tableName="SEND_EVENT_ATTACH_FILE">
+			<column name="FILE_ID" type="VARCHAR(255)">
 				<constraints nullable="false"/>
 			</column>
-			<column name="VALUE" type="VARCHAR(255)"/>
-			<column name="NAME" type="VARCHAR(255)">
-				<constraints nullable="false"/>
-			</column>
-		</createTable>
-	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-17">
-		<createTable tableName="REQUIRED_ACTION_PROVIDER">
-			<column name="ID" type="VARCHAR(36)">
-				<constraints nullable="false"/>
-			</column>
-			<column name="ALIAS" type="VARCHAR(255)"/>
-			<column name="DEFAULT_ACTION" type="BOOLEAN"/>
-			<column name="ENABLED" type="BOOLEAN"/>
-			<column name="NAME" type="VARCHAR(255)"/>
-			<column name="PROVIDER_ID" type="VARCHAR(255)"/>
-			<column name="ORGANIZATION_ID" type="VARCHAR(36)"/>
-		</createTable>
-	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-18">
-		<createTable tableName="SEND_EVENT_FILE_RESPONSE_ATTACHMENT">
 			<column name="SEND_EVENT_ID" type="VARCHAR(255)">
 				<constraints nullable="false"/>
 			</column>
-			<column name="VALUE" type="VARCHAR(255)"/>
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-19">
-		<createTable tableName="SEND_EVENT_RESPONSE_ATTRIBUTE">
-			<column name="ID" type="VARCHAR(36)">
+	<changeSet author="admin (generated)" id="1486661365377-17">
+		<createTable tableName="SEND_EVENT_ATTRIBUTE">
+			<column name="NAME" type="VARCHAR(255)">
 				<constraints nullable="false"/>
 			</column>
-			<column name="NAME" type="VARCHAR(255)"/>
 			<column name="VALUE" type="VARCHAR(255)"/>
-			<column name="UBL_DOCUMENT_SEND_EVENT_ID" type="VARCHAR(255)"/>
+			<column name="SEND_EVENT_ID" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-20">
+	<changeSet author="admin (generated)" id="1486661365377-18">
 		<createTable tableName="UBL_DOCUMENT">
 			<column name="ID" type="VARCHAR(255)">
 				<constraints nullable="false"/>
@@ -249,7 +227,7 @@
 			<column name="XML_FILE_ID" type="VARCHAR(255)"/>
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-21">
+	<changeSet author="admin (generated)" id="1486661365377-19">
 		<createTable tableName="UBL_DOCUMENT_ATTRIBUTE">
 			<column name="ID" type="VARCHAR(36)">
 				<constraints nullable="false"/>
@@ -259,7 +237,7 @@
 			<column name="UBL_DOCUMENT_ID" type="VARCHAR(255)"/>
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-22">
+	<changeSet author="admin (generated)" id="1486661365377-20">
 		<createTable tableName="UBL_DOCUMENT_REQUIRED_ACTION">
 			<column name="REQUIRED_ACTION" type="VARCHAR(255)">
 				<constraints nullable="false"/>
@@ -269,7 +247,7 @@
 			</column>
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-23">
+	<changeSet author="admin (generated)" id="1486661365377-21">
 		<createTable tableName="UBL_DOCUMENT_SEND_EVENT">
 			<column name="ID" type="VARCHAR(255)">
 				<constraints nullable="false"/>
@@ -281,169 +259,166 @@
 			<column name="UBL_DOCUMENT_ID" type="VARCHAR(255)"/>
 		</createTable>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-24">
+	<changeSet author="admin (generated)" id="1486661365377-22">
 		<addPrimaryKey columnNames="ORGANIZATION_ID, NAME" tableName="ORGANIZATION_SMTP_CONFIG"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-25">
-		<addPrimaryKey columnNames="REQUIRED_ACTION_ID, NAME" tableName="REQUIRED_ACTION_CONFIG"/>
-	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-26">
+	<changeSet author="admin (generated)" id="1486661365377-23">
 		<addPrimaryKey columnNames="ID" constraintName="ADMIN_EVENT_ENTITYPK" tableName="ADMIN_EVENT_ENTITY"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-27">
-		<addPrimaryKey columnNames="ID" constraintName="ATTACHED_DOCUMENTPK" tableName="ATTACHED_DOCUMENT"/>
+	<changeSet author="admin (generated)" id="1486661365377-24">
+		<addPrimaryKey columnNames="ATTACHED_UBL_DOCUMENT_ID, UBL_DOCUMENT_ID" constraintName="ATTACHED_UBL_DOCUMENTPK"
+					   tableName="ATTACHED_UBL_DOCUMENT"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-28">
+	<changeSet author="admin (generated)" id="1486661365377-25">
 		<addPrimaryKey columnNames="ID" constraintName="COMPONENTPK" tableName="COMPONENT"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-29">
+	<changeSet author="admin (generated)" id="1486661365377-26">
 		<addPrimaryKey columnNames="ID" constraintName="COMPONENT_CONFIGPK" tableName="COMPONENT_CONFIG"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-30">
+	<changeSet author="admin (generated)" id="1486661365377-27">
 		<addPrimaryKey columnNames="ID" constraintName="EVENT_ENTITYPK" tableName="EVENT_ENTITY"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-31">
+	<changeSet author="admin (generated)" id="1486661365377-28">
 		<addPrimaryKey columnNames="ID" constraintName="JOB_REPORTPK" tableName="JOB_REPORT"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-32">
-		<addPrimaryKey columnNames="ID" constraintName="JPA_FILEPK" tableName="JPA_FILE"/>
-	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-33">
+	<changeSet author="admin (generated)" id="1486661365377-29">
 		<addPrimaryKey columnNames="ID" constraintName="MIGRATION_MODELPK" tableName="MIGRATION_MODEL"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-34">
+	<changeSet author="admin (generated)" id="1486661365377-30">
 		<addPrimaryKey columnNames="ID" constraintName="ORGANIZATIONPK" tableName="ORGANIZATION"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-35">
+	<changeSet author="admin (generated)" id="1486661365377-31">
 		<addPrimaryKey columnNames="NAME, ORGANIZATION_ID" constraintName="ORGANIZATION_ATTRIBUTEPK"
 					   tableName="ORGANIZATION_ATTRIBUTE"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-36">
-		<addPrimaryKey columnNames="ID" constraintName="REQUIRED_ACTION_PROVIDERPK"
-					   tableName="REQUIRED_ACTION_PROVIDER"/>
+	<changeSet author="admin (generated)" id="1486661365377-32">
+		<addPrimaryKey columnNames="ID" constraintName="ORGANIZATION_FILEPK" tableName="ORGANIZATION_FILE"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-37">
-		<addPrimaryKey columnNames="ID" constraintName="SEND_EVENT_RESPONSE_ATTRIBUTEPK"
-					   tableName="SEND_EVENT_RESPONSE_ATTRIBUTE"/>
+	<changeSet author="admin (generated)" id="1486661365377-33">
+		<addPrimaryKey columnNames="FILE_ID, SEND_EVENT_ID" constraintName="SEND_EVENT_ATTACH_FILEPK"
+					   tableName="SEND_EVENT_ATTACH_FILE"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-38">
+	<changeSet author="admin (generated)" id="1486661365377-34">
+		<addPrimaryKey columnNames="NAME, SEND_EVENT_ID" constraintName="SEND_EVENT_ATTRIBUTEPK"
+					   tableName="SEND_EVENT_ATTRIBUTE"/>
+	</changeSet>
+	<changeSet author="admin (generated)" id="1486661365377-35">
 		<addPrimaryKey columnNames="ID" constraintName="UBL_DOCUMENTPK" tableName="UBL_DOCUMENT"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-39">
+	<changeSet author="admin (generated)" id="1486661365377-36">
 		<addPrimaryKey columnNames="ID" constraintName="UBL_DOCUMENT_ATTRIBUTEPK" tableName="UBL_DOCUMENT_ATTRIBUTE"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-40">
+	<changeSet author="admin (generated)" id="1486661365377-37">
 		<addPrimaryKey columnNames="REQUIRED_ACTION, UBL_DOCUMENT_ID" constraintName="UBL_DOCUMENT_REQUIRED_ACTIONPK"
 					   tableName="UBL_DOCUMENT_REQUIRED_ACTION"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-41">
+	<changeSet author="admin (generated)" id="1486661365377-38">
 		<addPrimaryKey columnNames="ID" constraintName="UBL_DOCUMENT_SEND_EVENTPK" tableName="UBL_DOCUMENT_SEND_EVENT"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-42">
+	<changeSet author="admin (generated)" id="1486661365377-39">
 		<addUniqueConstraint columnNames="NAME" tableName="ORGANIZATION"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-43">
+	<changeSet author="admin (generated)" id="1486661365377-40">
 		<addUniqueConstraint columnNames="ORGANIZATION_ID, DOCUMENT_TYPE, DOCUMENT_ID" tableName="UBL_DOCUMENT"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-44">
+	<changeSet author="admin (generated)" id="1486661365377-41">
 		<addForeignKeyConstraint baseColumnNames="ORGANIZATION_ID" baseTableName="ORGANIZATION_SUPPORTED_LOCALES"
 								 constraintName="FK_1qo6exk81cr0pm5lhoi3orsxh" deferrable="false"
 								 initiallyDeferred="false" referencedColumnNames="ID"
 								 referencedTableName="ORGANIZATION"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-45">
+	<changeSet author="admin (generated)" id="1486661365377-42">
 		<addForeignKeyConstraint baseColumnNames="UBL_DOCUMENT_ID" baseTableName="UBL_DOCUMENT_REQUIRED_ACTION"
 								 constraintName="FK_237kkj1euexmsnmdq1sfjteaw" deferrable="false"
 								 initiallyDeferred="false" referencedColumnNames="ID"
 								 referencedTableName="UBL_DOCUMENT"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-46">
-		<addForeignKeyConstraint baseColumnNames="UBL_DOCUMENT_SEND_EVENT_ID"
-								 baseTableName="SEND_EVENT_RESPONSE_ATTRIBUTE"
-								 constraintName="FK_2rvg5u1cedj45r1bmkxjnllhe" deferrable="false"
-								 initiallyDeferred="false" referencedColumnNames="ID"
-								 referencedTableName="UBL_DOCUMENT_SEND_EVENT"/>
-	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-47">
-		<addForeignKeyConstraint baseColumnNames="REQUIRED_ACTION_ID" baseTableName="REQUIRED_ACTION_CONFIG"
-								 constraintName="FK_3fnwhu64dnqtx83b2mtymdpje" deferrable="false"
-								 initiallyDeferred="false" referencedColumnNames="ID"
-								 referencedTableName="REQUIRED_ACTION_PROVIDER"/>
-	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-48">
-		<addForeignKeyConstraint baseColumnNames="SEND_EVENT_ID" baseTableName="SEND_EVENT_FILE_RESPONSE_ATTACHMENT"
-								 constraintName="FK_3r4u9ohnq07xnydbwr8l8np8t" deferrable="false"
-								 initiallyDeferred="false" referencedColumnNames="ID"
-								 referencedTableName="UBL_DOCUMENT_SEND_EVENT"/>
-	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-49">
+	<changeSet author="admin (generated)" id="1486661365377-43">
 		<addForeignKeyConstraint baseColumnNames="ORGANIZATION_ID" baseTableName="ORGANIZATION_ATTRIBUTE"
 								 constraintName="FK_519erdjtqivq189pm1ouanaix" deferrable="false"
 								 initiallyDeferred="false" referencedColumnNames="ID"
 								 referencedTableName="ORGANIZATION"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-50">
-		<addForeignKeyConstraint baseColumnNames="ORGANIZATION_ID" baseTableName="REQUIRED_ACTION_PROVIDER"
-								 constraintName="FK_65l5po508cnkbi9v7n3itn9lc" deferrable="false"
-								 initiallyDeferred="false" referencedColumnNames="ID"
-								 referencedTableName="ORGANIZATION"/>
-	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-51">
+	<changeSet author="admin (generated)" id="1486661365377-44">
 		<addForeignKeyConstraint baseColumnNames="UBL_DOCUMENT_ID" baseTableName="UBL_DOCUMENT_ATTRIBUTE"
 								 constraintName="FK_88vm6qhqupkse82te7syyc9f9" deferrable="false"
 								 initiallyDeferred="false" referencedColumnNames="ID"
 								 referencedTableName="UBL_DOCUMENT"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-52">
+	<changeSet author="admin (generated)" id="1486661365377-45">
+		<addForeignKeyConstraint baseColumnNames="SEND_EVENT_ID" baseTableName="SEND_EVENT_ATTACH_FILE"
+								 constraintName="FK_8ik9khfatc7fw8308p7yr9u2r" deferrable="false"
+								 initiallyDeferred="false" referencedColumnNames="ID"
+								 referencedTableName="UBL_DOCUMENT_SEND_EVENT"/>
+	</changeSet>
+	<changeSet author="admin (generated)" id="1486661365377-46">
 		<addForeignKeyConstraint baseColumnNames="COMPONENT_ID" baseTableName="COMPONENT_CONFIG"
 								 constraintName="FK_bol1wtkpc3ssx56q7hhhm2p2o" deferrable="false"
 								 initiallyDeferred="false" referencedColumnNames="ID" referencedTableName="COMPONENT"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-53">
+	<changeSet author="admin (generated)" id="1486661365377-47">
 		<addForeignKeyConstraint baseColumnNames="ORGANIZATION_ID" baseTableName="ORGANIZATION_SMTP_CONFIG"
 								 constraintName="FK_dn2ibury7345dyopspmw1rid8" deferrable="false"
 								 initiallyDeferred="false" referencedColumnNames="ID"
 								 referencedTableName="ORGANIZATION"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-54">
+	<changeSet author="admin (generated)" id="1486661365377-48">
 		<addForeignKeyConstraint baseColumnNames="ORGANIZATION_ID" baseTableName="ORGANIZATION_EVENTS_LISTENERS"
 								 constraintName="FK_duvurkr1qtb4hr47woloe2p4p" deferrable="false"
 								 initiallyDeferred="false" referencedColumnNames="ID"
 								 referencedTableName="ORGANIZATION"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-55">
+	<changeSet author="admin (generated)" id="1486661365377-49">
 		<addForeignKeyConstraint baseColumnNames="ORGANIZATION_ID" baseTableName="ORGANIZATION_ENABLED_EVENT_TYPES"
 								 constraintName="FK_f3fu6rasfl9f6cytpbf6ulfpb" deferrable="false"
 								 initiallyDeferred="false" referencedColumnNames="ID"
 								 referencedTableName="ORGANIZATION"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-56">
+	<changeSet author="admin (generated)" id="1486661365377-50">
+		<addForeignKeyConstraint baseColumnNames="SEND_EVENT_ID" baseTableName="SEND_EVENT_ATTRIBUTE"
+								 constraintName="FK_f8wk6u2vwb8rdnk7g9u7qxqg6" deferrable="false"
+								 initiallyDeferred="false" referencedColumnNames="ID"
+								 referencedTableName="UBL_DOCUMENT_SEND_EVENT"/>
+	</changeSet>
+	<changeSet author="admin (generated)" id="1486661365377-51">
 		<addForeignKeyConstraint baseColumnNames="UBL_DOCUMENT_ID" baseTableName="UBL_DOCUMENT_SEND_EVENT"
 								 constraintName="FK_fsv1qt3hf79hgt951pcdxppls" deferrable="false"
 								 initiallyDeferred="false" referencedColumnNames="ID"
 								 referencedTableName="UBL_DOCUMENT"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-57">
-		<addForeignKeyConstraint baseColumnNames="ATTACHED_UBL_DOCUMENT_ID" baseTableName="ATTACHED_DOCUMENT"
-								 constraintName="FK_htj97dhst8vlgwt7i6oev88ao" deferrable="false"
+	<changeSet author="admin (generated)" id="1486661365377-52">
+		<addForeignKeyConstraint baseColumnNames="ATTACHED_UBL_DOCUMENT_ID" baseTableName="ATTACHED_UBL_DOCUMENT"
+								 constraintName="FK_gscmuvbpfuai10ljo9sdpyf73" deferrable="false"
 								 initiallyDeferred="false" referencedColumnNames="ID"
 								 referencedTableName="UBL_DOCUMENT"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-58">
+	<changeSet author="admin (generated)" id="1486661365377-53">
+		<addForeignKeyConstraint baseColumnNames="ORGANIZATION_ID" baseTableName="JOB_REPORT"
+								 constraintName="FK_ixvsb18qcj3cnand43wt40vk0" deferrable="false"
+								 initiallyDeferred="false" referencedColumnNames="ID"
+								 referencedTableName="ORGANIZATION"/>
+	</changeSet>
+	<changeSet author="admin (generated)" id="1486661365377-54">
+		<addForeignKeyConstraint baseColumnNames="ORGANIZATION_ID" baseTableName="ORGANIZATION_FILE"
+								 constraintName="FK_j51qwmjvalclh1pdqlfxeipae" deferrable="false"
+								 initiallyDeferred="false" referencedColumnNames="ID"
+								 referencedTableName="ORGANIZATION"/>
+	</changeSet>
+	<changeSet author="admin (generated)" id="1486661365377-55">
 		<addForeignKeyConstraint baseColumnNames="ORGANIZATION_ID" baseTableName="ORGANIZATION_SUPPORTED_CURRENCIES"
 								 constraintName="FK_luafukpnuxu3ww53l5uy47d3f" deferrable="false"
 								 initiallyDeferred="false" referencedColumnNames="ID"
 								 referencedTableName="ORGANIZATION"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-59">
+	<changeSet author="admin (generated)" id="1486661365377-56">
 		<addForeignKeyConstraint baseColumnNames="ORGANIZATION_ID" baseTableName="COMPONENT"
 								 constraintName="FK_mn8p186ks2lsd1kxfws5mldet" deferrable="false"
 								 initiallyDeferred="false" referencedColumnNames="ID"
 								 referencedTableName="ORGANIZATION"/>
 	</changeSet>
-	<changeSet author="admin (generated)" id="1486598218493-60">
-		<addForeignKeyConstraint baseColumnNames="UBL_DOCUMENT_ID" baseTableName="ATTACHED_DOCUMENT"
-								 constraintName="FK_st19tioeosmxift2c12n58nyh" deferrable="false"
+	<changeSet author="admin (generated)" id="1486661365377-57">
+		<addForeignKeyConstraint baseColumnNames="UBL_DOCUMENT_ID" baseTableName="ATTACHED_UBL_DOCUMENT"
+								 constraintName="FK_slunipdkgcarc22t8ib41hpy3" deferrable="false"
 								 initiallyDeferred="false" referencedColumnNames="ID"
 								 referencedTableName="UBL_DOCUMENT"/>
 	</changeSet>
