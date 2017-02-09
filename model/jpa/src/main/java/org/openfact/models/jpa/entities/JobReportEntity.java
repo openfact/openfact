@@ -31,8 +31,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "JOB_REPORT")
 @NamedQueries({
-        @NamedQuery(name = "getAllJobsReportByOrganization", query = "select i from JobReportEntity i where i.organization.id=:organizationId"),
-        @NamedQuery(name = "deleteJobReportsByOrganization", query = "delete from JobReportEntity f where f.organization.id=:organizationId")
+        @NamedQuery(name = "getAllJobsReportByOrganization", query = "select i from JobReportEntity i where i.organizationId=:organizationId"),
+        @NamedQuery(name = "deleteJobReportsByOrganization", query = "delete from JobReportEntity f where f.organizationId=:organizationId")
 })
 public class JobReportEntity {
 
@@ -65,9 +65,8 @@ public class JobReportEntity {
     private long writeCount;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
-    private OrganizationEntity organization;
+    @Column(name = "ORGANIZATION_ID")
+    private String organizationId;
 
     public String getId() {
         return id;
@@ -133,12 +132,12 @@ public class JobReportEntity {
         this.writeCount = writeCount;
     }
 
-    public OrganizationEntity getOrganization() {
-        return organization;
+    public String getOrganizationId() {
+        return organizationId;
     }
 
-    public void setOrganization(OrganizationEntity organization) {
-        this.organization = organization;
+    public void setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
     }
 
     @Override

@@ -429,7 +429,7 @@ public class UBLDocumentAdapter implements DocumentModel, JpaModel<UBLDocumentEn
 
     @Override
     public List<SendEventModel> searchForSendEvent(Map<String, String> attributes, int firstResult, int maxResults) {
-        StringBuilder builder = new StringBuilder("select u from UBLDocumentSendEventEntity u where u.sendEvent.id = :documentId");
+        StringBuilder builder = new StringBuilder("select u from SendEventEntity u where u.sendEvent.id = :documentId");
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             String attribute = null;
             String parameterName = null;
@@ -484,7 +484,7 @@ public class UBLDocumentAdapter implements DocumentModel, JpaModel<UBLDocumentEn
 
     @Override
     public int sendEventCount(Map<String, String> attributes) {
-        StringBuilder builder = new StringBuilder("select count(u) from UBLDocumentSendEventEntity u where u.sendEvent.id = :documentId");
+        StringBuilder builder = new StringBuilder("select count(u) from SendEventEntity u where u.sendEvent.id = :documentId");
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             String attribute = null;
             String parameterName = null;
