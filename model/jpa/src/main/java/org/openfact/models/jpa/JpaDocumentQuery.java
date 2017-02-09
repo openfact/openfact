@@ -174,13 +174,17 @@ public class JpaDocumentQuery implements DocumentQuery {
 
         @Override
         public ListEntityQuery firstResult(int firstResult) {
-            this.firstResult = firstResult;
+            if (firstResult != -1) {
+                this.firstResult = firstResult;
+            }
             return this;
         }
 
         @Override
         public ListEntityQuery maxResults(int maxResults) {
-            this.maxResults = maxResults;
+            if (maxResults != -1) {
+                this.maxResults = maxResults;
+            }
             return this;
         }
     }
