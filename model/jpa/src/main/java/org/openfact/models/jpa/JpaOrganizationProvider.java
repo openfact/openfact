@@ -112,7 +112,7 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
         if (entities.size() == 0)
             return null;
         if (entities.size() > 1)
-            throw new IllegalStateException("Should not be more than one organization with same name");
+            throw new IllegalStateException("Should not be more than one ublDocumentSendEvent with same name");
         String id = query.getResultList().get(0);
 
         return session.organizations().getOrganization(id);

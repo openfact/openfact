@@ -29,32 +29,28 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-/**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
- * @version $Revision: 1 $
- */
 @NamedQueries({
-        @NamedQuery(name="getComponentConfig", query="select attr from ComponentConfigEntity attr where attr.component = :component"),
-        @NamedQuery(name="deleteComponentConfigByComponent", query="delete from  ComponentConfigEntity attr where attr.component = :component"),
-        @NamedQuery(name="deleteComponentConfigByOrganization", query="delete from  ComponentConfigEntity attr where attr.component IN (select u from ComponentEntity u where u.organization=:organization)"),
-        @NamedQuery(name="deleteComponentConfigByParent", query="delete from  ComponentConfigEntity attr where attr.component IN (select u from ComponentEntity u where u.parentId=:parentId)"),
+        @NamedQuery(name = "getComponentConfig", query = "select attr from ComponentConfigEntity attr where attr.component = :component"),
+        @NamedQuery(name = "deleteComponentConfigByComponent", query = "delete from  ComponentConfigEntity attr where attr.component = :component"),
+        @NamedQuery(name = "deleteComponentConfigByOrganization", query = "delete from  ComponentConfigEntity attr where attr.component IN (select u from ComponentEntity u where u.organization=:organization)"),
+        @NamedQuery(name = "deleteComponentConfigByParent", query = "delete from  ComponentConfigEntity attr where attr.component IN (select u from ComponentEntity u where u.parentId=:parentId)"),
 })
-@Table(name="COMPONENT_CONFIG")
+@Table(name = "COMPONENT_CONFIG")
 @Entity
 public class ComponentConfigEntity {
 
     @Id
-    @Column(name="ID", length = 36)
-    @Access(AccessType.PROPERTY) // we do this because relationships often fetch id, but not entity.  This avoids an extra SQL
+    @Column(name = "ID", length = 36)
+    @Access(AccessType.PROPERTY)
     protected String id;
 
-    @ManyToOne(fetch= FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "COMPONENT_ID")
     protected ComponentEntity component;
 
     @Column(name = "NAME")
     protected String name;
-    
+
     @Column(name = "VALUE", length = 4000)
     protected String value;
 

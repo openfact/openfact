@@ -21,12 +21,8 @@ import java.io.Serializable;
 /**
  * Represents a single filter or search criteria. This is used when searching
  * for beans.
- *
- * @author eric.wittmann@sistcoop.com
  */
 public class SearchCriteriaFilterModel implements Serializable {
-
-    private static final long serialVersionUID = -1199180207971619165L;
 
     private String name;
     private Object value;

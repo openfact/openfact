@@ -29,12 +29,12 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "JPA_FILE")
+@Table(name = "ORGANIZATION_FILE")
 @NamedQueries({
         @NamedQuery(name = "getAllFiles", query = "select f from FileEntity f"),
-        @NamedQuery(name = "getFileById", query = "select f from FileEntity f where f.id = :id and f.organizationId = :organizationId"),
-        @NamedQuery(name = "getFileByFilename", query = "select f from FileEntity f where f.fileName = :filename and f.organizationId = :organizationId"),
-        @NamedQuery(name = "deleteFilesByOrganization", query = "delete from FileEntity f where f.organizationId=:organizationId")
+        @NamedQuery(name = "getOrganizationFileById", query = "select f from FileEntity f where f.id = :id and f.organization.id = :organizationId"),
+        @NamedQuery(name = "getOrganizationFileByFilename", query = "select f from FileEntity f where f.fileName=:filename and f.organization.id=:organizationId"),
+        @NamedQuery(name = "deleteFilesByOrganization", query = "delete from FileEntity f where f.organization.id=:organizationId")
 })
 public class FileEntity {
 
@@ -54,34 +54,9 @@ public class FileEntity {
     private byte[] file;
 
     @NotNull
-    @Column(name = "ORGANIZATION_ID")
-    private String organizationId;
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        FileEntity other = (FileEntity) obj;
-        if (getId() == null) {
-            if (other.getId() != null)
-                return false;
-        } else if (!getId().equals(other.getId()))
-            return false;
-        return true;
-    }
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
+    private OrganizationEntity organization;
 
     public String getId() {
         return id;
@@ -107,11 +82,36 @@ public class FileEntity {
         this.file = file;
     }
 
-    public String getOrganizationId() {
-        return organizationId;
+    public OrganizationEntity getOrganization() {
+        return organization;
     }
 
-    public void setOrganizationId(String organizationId) {
-        this.organizationId = organizationId;
+    public void setOrganization(OrganizationEntity organization) {
+        this.organization = organization;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        FileEntity other = (FileEntity) obj;
+        if (getId() == null) {
+            if (other.getId() != null)
+                return false;
+        } else if (!getId().equals(other.getId()))
+            return false;
+        return true;
     }
 }

@@ -28,11 +28,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "UBL_DOCUMENT_ATTRIBUTE")
 @NamedQueries({
-        @NamedQuery(name = "getDocumentAttributesByNameAndValue", query = "select attr from UBLDocumentAttributeEntity attr where attr.name = :name and attr.value = :value"),
+        @NamedQuery(name = "getUblDocumentAttributesByNameAndValue", query = "select attr from UBLDocumentAttributeEntity attr where attr.name = :name and attr.value = :value"),
         @NamedQuery(name = "getDocumentAttributesByNameAndValueAndDocumentType", query = "select attr from UBLDocumentAttributeEntity attr join attr.ublDocument doc where attr.name = :name and attr.value = :value and doc.documentType=:documentType"),
-        @NamedQuery(name = "deleteDocumentAttributesByOrganization", query = "delete from  UBLDocumentAttributeEntity attr where attr.ublDocument IN (select u from UBLDocumentEntity u where u.organizationId=:organizationId)"),
-        @NamedQuery(name = "deleteDocumentAttributesByNameAndDocument", query = "delete from  UBLDocumentAttributeEntity attr where attr.ublDocument.id = :documentId and attr.name = :name"),
-        @NamedQuery(name = "deleteDocumentAttributesByNameAndDocumentOtherThan", query = "delete from  UBLDocumentAttributeEntity attr where attr.ublDocument.id = :documentId and attr.name = :name and attr.id <> :attrId")
+        @NamedQuery(name = "deleteUblDocumentAttributesByOrganization", query = "delete from  UBLDocumentAttributeEntity attr where attr.ublDocument IN (select u from UBLDocumentEntity u where u.organizationId=:organizationId)"),
+        @NamedQuery(name = "deleteUblDocumentAttributesByNameAndUblDocument", query = "delete from  UBLDocumentAttributeEntity attr where attr.ublDocument.id = :documentId and attr.name = :name"),
+        @NamedQuery(name = "deleteUblDocumentAttributesByNameAndUblDocumentOtherThan", query = "delete from  UBLDocumentAttributeEntity attr where attr.ublDocument.id = :documentId and attr.name = :name and attr.id <> :attrId")
 })
 public class UBLDocumentAttributeEntity {
 

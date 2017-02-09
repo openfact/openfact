@@ -72,9 +72,9 @@ public class FileAdapter implements FileModel, JpaModel<FileEntity> {
     @Override
     public String getExtension() {
         String fileName = file.getFileName();
-        if(fileName.lastIndexOf(".") != -1) {
+        if (fileName.lastIndexOf(".") != -1) {
             return fileName.substring(fileName.lastIndexOf("."), fileName.length());
-        } else  {
+        } else {
             return "";
         }
     }

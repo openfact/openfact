@@ -24,9 +24,11 @@
 package org.openfact.models.jpa.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "SEND_EVENT_RESPONSE_ATTRIBUTE")
+@IdClass(UBLDocumentSendEventResponseAttributeEntity.Key.class)
 @NamedQueries({
         @NamedQuery(name = "getSendEventResponseAttributesByNameAndValue", query = "select attr from UBLDocumentSendEventResponseAttributeEntity attr where attr.name = :name and attr.value = :value"),
         @NamedQuery(name = "deleteSendEventResponseAttributesByNameAndSendEvent", query = "delete from  UBLDocumentSendEventResponseAttributeEntity attr where attr.ublDocumentSendEvent.id = :sendEventId and attr.name = :name"),
@@ -50,14 +52,6 @@ public class UBLDocumentSendEventResponseAttributeEntity {
     @Column(name = "VALUE")
     protected String value;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
@@ -78,26 +72,51 @@ public class UBLDocumentSendEventResponseAttributeEntity {
         return ublDocumentSendEvent;
     }
 
-    public void setUblDocumentSendEvent(UBLDocumentSendEventEntity sendEvent) {
-        this.ublDocumentSendEvent = sendEvent;
+    public void setUblDocumentSendEvent(UBLDocumentSendEventEntity ublDocumentSendEvent) {
+        this.ublDocumentSendEvent = ublDocumentSendEvent;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null) return false;
-        if (!(o instanceof UBLDocumentSendEventResponseAttributeEntity)) return false;
+    public static class Key implements Serializable {
 
-        UBLDocumentSendEventResponseAttributeEntity that = (UBLDocumentSendEventResponseAttributeEntity) o;
+        protected UBLDocumentSendEventEntity ublDocumentSendEvent;
 
-        if (!id.equals(that.getId())) return false;
+        protected String name;
 
-        return true;
+        public Key() {
+        }
+
+        public Key(UBLDocumentSendEventEntity ublDocumentSendEvent, String name) {
+            this.ublDocumentSendEvent = ublDocumentSendEvent;
+            this.name = name;
+        }
+
+        public UBLDocumentSendEventEntity getUblDocumentSendEvent() {
+            return ublDocumentSendEvent;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            OrganizationAttributeEntity.Key key = (OrganizationAttributeEntity.Key) o;
+
+            if (name != null ? !name.equals(key.name) : key.name != null) return false;
+            if (ublDocumentSendEvent != null ? !ublDocumentSendEvent.getId().equals(key.organization != null ? key.organization.getId() : null) : key.organization != null)
+                return false;
+
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = ublDocumentSendEvent != null ? ublDocumentSendEvent.getId().hashCode() : 0;
+            result = 31 * result + (name != null ? name.hashCode() : 0);
+            return result;
+        }
     }
-
-    @Override
-    public int hashCode() {
-        return id.hashCode();
-    }
-
 }

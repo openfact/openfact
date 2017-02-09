@@ -1,6 +1,7 @@
 package org.openfact.models.jpa;
 
-import org.openfact.models.*;
+import org.openfact.models.OpenfactSession;
+import org.openfact.models.OrganizationModel;
 import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.jpa.entities.UBLDocumentEntity;
 import org.openfact.models.jpa.entities.UBLDocumentRequiredActionEntity;
@@ -8,51 +9,52 @@ import org.openfact.models.search.SearchCriteriaFilterModel;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class JpaDocumentCountQuery implements DocumentCountQuery {
+public abstract class DocumentCriteria<R, Q> {
 
     private final EntityManager em;
     private final CriteriaBuilder cb;
-    private final CriteriaQuery<Long> cq;
-    private final Root<UBLDocumentEntity> root;
+    private final CriteriaQuery<Q> cq;
+    private final Root<R> root;
     private final ArrayList<Predicate> predicates;
 
+    private final OrganizationModel organization;
     private final OpenfactSession session;
 
-    public JpaDocumentCountQuery(OpenfactSession session, OrganizationModel organization, EntityManager em) {
+    public DocumentCriteria(OpenfactSession session, OrganizationModel organization, EntityManager em, Class<R> rClass, Class<Q> qClass) {
         this.em = em;
+
+        this.organization = organization;
         this.session = session;
 
         cb = em.getCriteriaBuilder();
-        cq = cb.createQuery(Long.class);
-        root = cq.from(UBLDocumentEntity.class);
+        cq = cb.createQuery(qClass);
+        root = cq.from(rClass);
         predicates = new ArrayList<>();
 
         this.predicates.add(cb.equal(root.get(JpaDocumentProvider.ORGANIZATION_ID), organization.getId()));
     }
 
-    @Override
-    public DocumentCountQuery currencyCode(String... currencyCode) {
+    public DocumentCriteria currencyCode(String... currencyCode) {
         List<String> currencyCodes = Arrays.asList(currencyCode).stream().map(String::toUpperCase).collect(Collectors.toList());
         predicates.add(cb.upper(root.get(JpaDocumentProvider.DOCUMENT_CURRENCY_CODE)).in(currencyCodes));
         return this;
     }
 
-    @Override
-    public DocumentCountQuery documentType(String... documentType) {
+    public DocumentCriteria documentType(String... documentType) {
         List<String> documentTypes = Arrays.asList(documentType).stream().map(String::toUpperCase).collect(Collectors.toList());
         predicates.add(cb.upper(root.get(JpaDocumentProvider.DOCUMENT_TYPE)).in(documentTypes));
         return this;
     }
 
-    @Override
-    public DocumentCountQuery filterText(String filterText, String... fieldName) {
+    public DocumentCriteria filterText(String filterText, String... fieldName) {
         Predicate[] orPredicates = Stream.of(fieldName)
                 .map(f -> cb.like(cb.upper(root.get(f)), "%" + filterText.toUpperCase() + "%"))
                 .toArray(size -> new Predicate[fieldName.length]);
@@ -60,8 +62,7 @@ public class JpaDocumentCountQuery implements DocumentCountQuery {
         return this;
     }
 
-    @Override
-    public DocumentCountQuery addFilter(SearchCriteriaFilterModel filter) {
+    public DocumentCriteria addFilter(SearchCriteriaFilterModel filter) {
         if (filter.getOperator() == SearchCriteriaFilterOperator.eq) {
             Path<Object> path = root.get(filter.getName());
             Class<?> pathc = path.getJavaType();
@@ -89,8 +90,7 @@ public class JpaDocumentCountQuery implements DocumentCountQuery {
         return this;
     }
 
-    @Override
-    public DocumentCountQuery requiredAction(RequiredAction... requiredAction) {
+    public DocumentCriteria requiredAction(RequiredAction... requiredAction) {
         List<String> rActions = Stream.of(requiredAction).map(RequiredAction::toString).collect(Collectors.toList());
 
         Join<UBLDocumentEntity, UBLDocumentRequiredActionEntity> requiredActions = root.join(JpaDocumentProvider.REQUIRED_ACTIONS);
@@ -99,28 +99,14 @@ public class JpaDocumentCountQuery implements DocumentCountQuery {
         return this;
     }
 
-    @Override
-    public DocumentCountQuery fromDate(LocalDateTime fromDate) {
+    public DocumentCriteria fromDate(LocalDateTime fromDate) {
         predicates.add(cb.greaterThanOrEqualTo(root.<LocalDateTime>get(JpaDocumentProvider.CREATED_TIMESTAMP), fromDate));
         return this;
     }
 
-    @Override
-    public DocumentCountQuery toDate(LocalDateTime toDate) {
+    public DocumentCriteria toDate(LocalDateTime toDate) {
         predicates.add(cb.lessThanOrEqualTo(root.<LocalDateTime>get(JpaDocumentProvider.CREATED_TIMESTAMP), toDate));
         return this;
-    }
-
-    @Override
-    public int getTotalCount() {
-        cq.select(cb.count(root));
-
-        if (!predicates.isEmpty()) {
-            cq.where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
-        }
-
-        TypedQuery<Long> query = em.createQuery(cq);
-        return query.getSingleResult().intValue();
     }
 
 }

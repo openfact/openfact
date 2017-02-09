@@ -74,7 +74,7 @@ public class JpaFileProvider implements FileProvider {
 
     @Override
     public FileModel getFileByFileName(OrganizationModel organization, String fileName) {
-        TypedQuery<FileEntity> query = em.createNamedQuery("getFileByFilename", FileEntity.class);
+        TypedQuery<FileEntity> query = em.createNamedQuery("getOrganizationFileByFilename", FileEntity.class);
         query.setParameter("organizationId", organization.getId());
         query.setParameter("filename", fileName);
         List<FileEntity> entities = query.getResultList();

@@ -20,24 +20,21 @@ package org.openfact.models.jpa.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-/**
- * @author <a href="mailto:bburke@sistcoop.com">Carlos Feria</a>
- */
 @NamedQueries({
-        @NamedQuery(name="getComponents", query="select attr from ComponentEntity attr where attr.organization = :organization"),
-        @NamedQuery(name="getComponentsByParentAndType", query="select attr from ComponentEntity attr where attr.organization = :organization and attr.providerType = :providerType and attr.parentId = :parentId"),
-        @NamedQuery(name="getComponentByParent", query="select attr from ComponentEntity attr where attr.organization = :organization and attr.parentId = :parentId"),
-        @NamedQuery(name="getComponentIdsByParent", query="select attr.id from ComponentEntity attr where attr.organization = :organization and attr.parentId = :parentId"),
-        @NamedQuery(name="deleteComponentByOrganization", query="delete from  ComponentEntity c where c.organization = :organization"),
-        @NamedQuery(name="deleteComponentByParent", query="delete from  ComponentEntity c where c.parentId = :parentId")
+        @NamedQuery(name = "getComponents", query = "select attr from ComponentEntity attr where attr.organization = :organization"),
+        @NamedQuery(name = "getComponentsByParentAndType", query = "select attr from ComponentEntity attr where attr.organization = :organization and attr.providerType = :providerType and attr.parentId = :parentId"),
+        @NamedQuery(name = "getComponentByParent", query = "select attr from ComponentEntity attr where attr.organization = :organization and attr.parentId = :parentId"),
+        @NamedQuery(name = "getComponentIdsByParent", query = "select attr.id from ComponentEntity attr where attr.organization = :organization and attr.parentId = :parentId"),
+        @NamedQuery(name = "deleteComponentByOrganization", query = "delete from  ComponentEntity c where c.organization = :organization"),
+        @NamedQuery(name = "deleteComponentByParent", query = "delete from  ComponentEntity c where c.parentId = :parentId")
 })
 @Entity
-@Table(name="COMPONENT")
+@Table(name = "COMPONENT")
 public class ComponentEntity {
 
     @Id
-    @Column(name="ID", length = 36)
-    @Access(AccessType.PROPERTY) // we do this because relationships often fetch id, but not entity.  This avoids an extra SQL
+    @Column(name = "ID", length = 36)
+    @Access(AccessType.PROPERTY)
     protected String id;
 
     @NotNull
@@ -45,19 +42,19 @@ public class ComponentEntity {
     @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
     protected OrganizationEntity organization;
 
-    @Column(name="NAME")
+    @Column(name = "NAME")
     protected String name;
 
-    @Column(name="PROVIDER_TYPE")
+    @Column(name = "PROVIDER_TYPE")
     protected String providerType;
 
-    @Column(name="PROVIDER_ID")
+    @Column(name = "PROVIDER_ID")
     protected String providerId;
 
-    @Column(name="PARENT_ID")
+    @Column(name = "PARENT_ID")
     protected String parentId;
 
-    @Column(name="SUB_TYPE")
+    @Column(name = "SUB_TYPE")
     protected String subType;
 
     public String getId() {

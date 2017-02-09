@@ -38,12 +38,15 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
 
     protected static final Logger logger = Logger.getLogger(JpaDocumentProvider.class);
 
+    protected static final String ORGANIZATION_ID = "organizationId";
     protected static final String DOCUMENT_ID = "documentId";
     protected static final String DOCUMENT_TYPE = "documentType";
     protected static final String CREATED_TIMESTAMP = "createdTimestamp";
+    protected static final String DOCUMENT_CURRENCY_CODE = "documentCurrencyCode";
     protected static final String CUSTOMER_REGISTRATION_NAME = "customerRegistrationName";
     protected static final String CUSTOMER_ASSIGNED_ACCOUNT_ID = "customerAssignedAccountId";
     protected static final String CUSTOMER_ELECTRONIC_MAIL = "customerElectronicMail";
+    protected static final String REQUIRED_ACTIONS = "requiredActions";
 
     protected static final String SEND_EVENT_DESTINY = "destiny";
     protected static final String SEND_EVENT_STATUS = "status";
@@ -140,14 +143,14 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
 
     @Override
     public void preRemove(OrganizationModel organization) {
-        int num = em.createNamedQuery("deleteDocumentRequiredActionsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        int num = em.createNamedQuery("deleteUblDocumentRequiredActionsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
 
         num = em.createNamedQuery("deleteAttachedDocumentByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
 
         num = em.createNamedQuery("deleteDocumentSendEventResponseAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
         num = em.createNamedQuery("deleteDocumentSendEventByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
 
-        num = em.createNamedQuery("deleteDocumentAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        num = em.createNamedQuery("deleteUblDocumentAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
         num = em.createNamedQuery("deleteDocumentsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
     }
 
@@ -454,7 +457,7 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
 
     @Override
     public List<DocumentModel> searchForDocumentByAttribute(String attrName, String attrValue, OrganizationModel organization, int firstResult, int maxResults) {
-        TypedQuery<UBLDocumentAttributeEntity> query = em.createNamedQuery("getDocumentAttributesByNameAndValue", UBLDocumentAttributeEntity.class);
+        TypedQuery<UBLDocumentAttributeEntity> query = em.createNamedQuery("getUblDocumentAttributesByNameAndValue", UBLDocumentAttributeEntity.class);
         query.setParameter("name", attrName);
         query.setParameter("value", attrValue);
         if (firstResult != -1) {

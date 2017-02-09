@@ -205,15 +205,6 @@ public interface OrganizationModel {
     void setDisplayNameHtml(String displayNameHtml);
 
     /**
-     * Required actions providers*/
-    List<RequiredActionProviderModel> getRequiredActionProviders();
-    RequiredActionProviderModel addRequiredActionProvider(RequiredActionProviderModel model);
-    void updateRequiredActionProvider(RequiredActionProviderModel model);
-    void removeRequiredActionProvider(RequiredActionProviderModel model);
-    RequiredActionProviderModel getRequiredActionProviderById(String id);
-    RequiredActionProviderModel getRequiredActionProviderByAlias(String alias);
-
-    /**
      * Attatched documents*/
     void removeAttachedDocuments(DocumentType documentType, String documentId);
 

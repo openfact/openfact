@@ -24,9 +24,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
- */
 @Table(name = "MIGRATION_MODEL")
 @Entity
 public class MigrationModelEntity {

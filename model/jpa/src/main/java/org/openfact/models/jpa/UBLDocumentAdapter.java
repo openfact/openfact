@@ -234,7 +234,7 @@ public class UBLDocumentAdapter implements DocumentModel, JpaModel<UBLDocumentEn
 
         if (firstExistingAttrId != null) {
             // Remove attributes through HQL to avoid StaleUpdateException
-            Query query = em.createNamedQuery("deleteDocumentAttributesByNameAndDocumentOtherThan");
+            Query query = em.createNamedQuery("deleteUblDocumentAttributesByNameAndUblDocumentOtherThan");
             query.setParameter("name", name);
             query.setParameter("documentId", ublDocument.getId());
             query.setParameter("attrId", firstExistingAttrId);
@@ -272,7 +272,7 @@ public class UBLDocumentAdapter implements DocumentModel, JpaModel<UBLDocumentEn
     @Override
     public void removeAttribute(String name) {
         // Remove attribute through HQL to avoid StaleUpdateException
-        Query query = em.createNamedQuery("deleteDocumentAttributesByNameAndDocument");
+        Query query = em.createNamedQuery("deleteUblDocumentAttributesByNameAndUblDocument");
         query.setParameter("name", name);
         query.setParameter("documentId", ublDocument.getId());
         int numUpdated = query.executeUpdate();
@@ -429,7 +429,7 @@ public class UBLDocumentAdapter implements DocumentModel, JpaModel<UBLDocumentEn
 
     @Override
     public List<SendEventModel> searchForSendEvent(Map<String, String> attributes, int firstResult, int maxResults) {
-        StringBuilder builder = new StringBuilder("select u from UBLDocumentSendEventEntity u where u.ublDocument.id = :documentId");
+        StringBuilder builder = new StringBuilder("select u from UBLDocumentSendEventEntity u where u.ublDocumentSendEvent.id = :documentId");
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             String attribute = null;
             String parameterName = null;
@@ -484,7 +484,7 @@ public class UBLDocumentAdapter implements DocumentModel, JpaModel<UBLDocumentEn
 
     @Override
     public int sendEventCount(Map<String, String> attributes) {
-        StringBuilder builder = new StringBuilder("select count(u) from UBLDocumentSendEventEntity u where u.ublDocument.id = :documentId");
+        StringBuilder builder = new StringBuilder("select count(u) from UBLDocumentSendEventEntity u where u.ublDocumentSendEvent.id = :documentId");
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             String attribute = null;
             String parameterName = null;

@@ -39,10 +39,6 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.Type;
 
-/**
- * @author carlosthe19916@sistcoop.com
- */
-
 @Entity
 @Table(name = "ORGANIZATION")
 @NamedQueries({
@@ -112,12 +108,12 @@ public class OrganizationEntity {
     @ElementCollection
     @Column(name = "VALUE")
     @CollectionTable(name = "ORGANIZATION_EVENTS_LISTENERS", joinColumns = {@JoinColumn(name = "ORGANIZATION_ID")})
-    private Set<String> eventsListeners = new HashSet<String>();
+    private Set<String> eventsListeners = new HashSet<>();
 
     @ElementCollection
     @Column(name = "VALUE")
     @CollectionTable(name = "ORGANIZATION_ENABLED_EVENT_TYPES", joinColumns = {@JoinColumn(name = "ORGANIZATION_ID")})
-    private Set<String> enabledEventTypes = new HashSet<String>();
+    private Set<String> enabledEventTypes = new HashSet<>();
 
     @Column(name = "ADMIN_EVENTS_ENABLED")
     @Type(type = "org.hibernate.type.NumericBooleanType")
@@ -126,15 +122,6 @@ public class OrganizationEntity {
     @Column(name = "ADMIN_EVENTS_DETAILS_ENABLED")
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean adminEventsDetailsEnabled;
-
-    @Column(name = "LOGIN_THEME")
-    private String loginTheme;
-
-    @Column(name = "ACCOUNT_THEME")
-    private String accountTheme;
-
-    @Column(name = "ADMIN_THEME")
-    private String adminTheme;
 
     @Column(name = "EMAIL_THEME")
     private String emailTheme;
@@ -168,13 +155,10 @@ public class OrganizationEntity {
     @MapKeyColumn(name = "NAME")
     @Column(name = "VALUE")
     @CollectionTable(name = "ORGANIZATION_SMTP_CONFIG", joinColumns = {@JoinColumn(name = "ORGANIZATION_ID")})
-    private Map<String, String> smtpConfig = new HashMap<String, String>();
+    private Map<String, String> smtpConfig = new HashMap<>();
 
     @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "organization")
     private Collection<OrganizationAttributeEntity> attributes = new ArrayList<>();
-
-    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "organization")
-    private Collection<RequiredActionProviderEntity> requiredActionProviders = new ArrayList<>();
 
     @ElementCollection
     @Column(name = "VALUE")
@@ -373,30 +357,6 @@ public class OrganizationEntity {
     /**
      * Themes
      */
-    public String getLoginTheme() {
-        return loginTheme;
-    }
-
-    public void setLoginTheme(String loginTheme) {
-        this.loginTheme = loginTheme;
-    }
-
-    public String getAccountTheme() {
-        return accountTheme;
-    }
-
-    public void setAccountTheme(String accountTheme) {
-        this.accountTheme = accountTheme;
-    }
-
-    public String getAdminTheme() {
-        return adminTheme;
-    }
-
-    public void setAdminTheme(String adminTheme) {
-        this.adminTheme = adminTheme;
-    }
-
     public String getEmailTheme() {
         return emailTheme;
     }
@@ -487,14 +447,6 @@ public class OrganizationEntity {
 
     public void setAttributes(Collection<OrganizationAttributeEntity> attributes) {
         this.attributes = attributes;
-    }
-
-    public Collection<RequiredActionProviderEntity> getRequiredActionProviders() {
-        return requiredActionProviders;
-    }
-
-    public void setRequiredActionProviders(Collection<RequiredActionProviderEntity> requiredActionProviders) {
-        this.requiredActionProviders = requiredActionProviders;
     }
 
     /**

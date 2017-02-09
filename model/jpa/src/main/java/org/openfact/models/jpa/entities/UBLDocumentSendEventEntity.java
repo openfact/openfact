@@ -65,14 +65,13 @@ public class UBLDocumentSendEventEntity {
     @JoinColumn(foreignKey = @ForeignKey, name = "UBL_DOCUMENT_ID")
     private UBLDocumentEntity ublDocument;
 
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "ublDocumentSendEvent", fetch = FetchType.LAZY)
+    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "ublDocumentSendEvent")
     private Collection<UBLDocumentSendEventResponseAttributeEntity> responseAttributes = new ArrayList<>();
 
     @ElementCollection
     @Column(name = "VALUE")
     @CollectionTable(name = "SEND_EVENT_FILE_RESPONSE_ATTACHMENT", joinColumns = {@JoinColumn(name = "SEND_EVENT_ID")})
     private Set<String> fileResponseAttachmentIds = new HashSet<>();
-
 
     public String getId() {
         return id;
