@@ -19,5 +19,5 @@
 <databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
-    <include file="META-INF/jpa-changelog-1.0.0.Final.xml"/>
+    <include file="META-INF/jpa-changelog-1.0-beta-3.xml"/>
 </databaseChangeLog>

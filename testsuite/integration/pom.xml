@@ -21,7 +21,7 @@
     <parent>
         <artifactId>openfact-testsuite</artifactId>
         <groupId>org.openfact</groupId>
-        <version>1.0.0.Final</version>
+        <version>1.0-beta-3</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -64,10 +64,6 @@
         <dependency>
             <groupId>org.openfact</groupId>
             <artifactId>openfact-model-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.openfact</groupId>
-            <artifactId>openfact-model-cloud</artifactId>
         </dependency>
 
         <dependency>

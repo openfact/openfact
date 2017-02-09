@@ -23,7 +23,7 @@
     <parent>
         <groupId>org.openfact</groupId>
         <artifactId>openfact-wildfly</artifactId>
-        <version>1.0.0.Final</version>
+        <version>1.0-beta-3</version>
     </parent>
 
     <artifactId>openfact-keycloak-adapter-subsystem</artifactId>
