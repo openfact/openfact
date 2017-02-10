@@ -26,6 +26,7 @@ import org.openfact.report.*;
 import org.openfact.ubl.jasper.BasicJRDataSource;
 import org.openfact.ubl.jasper.JasperReportTemplateProvider;
 
+import java.net.URL;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -85,11 +86,19 @@ public class JasperUBLReportProvider implements UBLReportProvider {
                         }
                     };
 
-                    if (themeName == null) {
-                        themeName = organization.getReportTheme();
+                    ReportTheme theme = null;
+                    if (themeName == null && organization.getReportTheme() != null) {
+                        theme = themeProvider.getTheme(organization.getReportTheme(), ReportTheme.Type.ADMIN);
+                        URL url = theme.getTemplate(templateName);
+                        if (url == null) {
+                            theme = null;
+                        }
                     }
 
-                    ReportTheme theme = themeProvider.getTheme(themeName, ReportTheme.Type.ADMIN);
+                    if (theme == null) {
+                        theme = themeProvider.getTheme(themeName, ReportTheme.Type.ADMIN);
+                    }
+
                     JasperPrint jasperPrint = jasperReport.processReport(theme, templateName, parameters, dataSource);
                     return export(jasperPrint, exportFormat);
                 } catch (Exception e) {
