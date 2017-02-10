@@ -23,6 +23,8 @@ public interface DocumentQuery {
 
     DocumentQuery filterText(String filterText, String... fieldName);
 
+    DocumentQuery enabled(boolean isEnabled);
+
     /**
      * Just equals filters
      */

@@ -39,6 +39,7 @@ public interface DocumentModel {
     String CUSTOMER_REGISTRATION_NAME = "customerRegistrationName";
     String CUSTOMER_ASSIGNED_ACCOUNT_ID = "customerAssignedAccountId";
     String CREATED_TIMESTAMP = "createdTimestamp";
+    String ENABLED = "enabled";
 
     String REQUIRED_ACTIONS = "requiredActions";
 

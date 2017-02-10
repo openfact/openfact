@@ -62,6 +62,13 @@ public class JpaDocumentQuery implements DocumentQuery {
     }
 
     @Override
+    public DocumentQuery enabled(boolean isEnabled) {
+        query.enabled(isEnabled);
+        queryCount.enabled(isEnabled);
+        return this;
+    }
+
+    @Override
     public DocumentQuery addFilter(String key, String value) {
         query.addFilter(key, value);
         queryCount.addFilter(key, value);

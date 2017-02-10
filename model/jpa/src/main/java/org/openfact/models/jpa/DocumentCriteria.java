@@ -36,33 +36,37 @@ public class DocumentCriteria<R, Q> {
         this.session = session;
 
         cb = em.getCriteriaBuilder();
-        cq = getCriteriaBuilder().createQuery(qClass);
+        cq = cb.createQuery(qClass);
         root = getCriteriaQuery().from(rClass);
         predicates = new ArrayList<>();
 
         orderBy = new HashMap<>();
 
-        this.predicates.add(getCriteriaBuilder().equal(getRoot().get(JpaDocumentProvider.ORGANIZATION_ID), organization.getId()));
+        this.predicates.add(cb.equal(root.get(JpaDocumentProvider.ORGANIZATION_ID), organization.getId()));
     }
 
     public DocumentCriteria currencyCode(String... currencyCode) {
         List<String> currencyCodes = Arrays.asList(currencyCode).stream().map(String::toUpperCase).collect(Collectors.toList());
-        predicates.add(getCriteriaBuilder().upper(getRoot().get(JpaDocumentProvider.DOCUMENT_CURRENCY_CODE)).in(currencyCodes));
+        predicates.add(cb.upper(root.get(JpaDocumentProvider.DOCUMENT_CURRENCY_CODE)).in(currencyCodes));
         return this;
     }
 
     public DocumentCriteria documentType(String... documentType) {
         List<String> documentTypes = Arrays.asList(documentType).stream().map(String::toUpperCase).collect(Collectors.toList());
-        predicates.add(getCriteriaBuilder().upper(getRoot().get(JpaDocumentProvider.DOCUMENT_TYPE)).in(documentTypes));
+        predicates.add(cb.upper(root.get(JpaDocumentProvider.DOCUMENT_TYPE)).in(documentTypes));
         return this;
     }
 
     public DocumentCriteria filterText(String filterText, String... fieldName) {
         Predicate[] orPredicates = Stream.of(fieldName)
-                .map(f -> getCriteriaBuilder().like(getCriteriaBuilder().upper(getRoot().get(f)), "%" + filterText.toUpperCase() + "%"))
+                .map(f -> cb.like(cb.upper(root.get(f)), "%" + filterText.toUpperCase() + "%"))
                 .toArray(size -> new Predicate[fieldName.length]);
-        predicates.add(getCriteriaBuilder().or(orPredicates));
+        predicates.add(cb.or(orPredicates));
         return this;
+    }
+
+    public void enabled(boolean isEnabled) {
+        this.predicates.add(cb.equal(root.get(JpaDocumentProvider.ENABLED), isEnabled));
     }
 
     public DocumentCriteria addFilter(String key, String value) {
@@ -93,27 +97,27 @@ public class DocumentCriteria<R, Q> {
 
     public DocumentCriteria addFilter(String key, Object value, SearchCriteriaFilterOperator operator) {
         if (operator == SearchCriteriaFilterOperator.eq) {
-            Path<Object> path = getRoot().get(key);
+            Path<Object> path = root.get(key);
             Class<?> pathc = path.getJavaType();
             if (pathc.isAssignableFrom(String.class)) {
-                predicates.add(getCriteriaBuilder().equal(path, value));
+                predicates.add(cb.equal(path, value));
             } else if (pathc.isEnum()) {
-                predicates.add(getCriteriaBuilder().equal(path, Enum.valueOf((Class) pathc, (String) value)));
+                predicates.add(cb.equal(path, Enum.valueOf((Class) pathc, (String) value)));
             }
         } else if (operator == SearchCriteriaFilterOperator.bool_eq) {
-            predicates.add(getCriteriaBuilder().equal(getRoot().<Boolean>get(key), Boolean.valueOf((Boolean) value)));
+            predicates.add(cb.equal(root.<Boolean>get(key), Boolean.valueOf((Boolean) value)));
         } else if (operator == SearchCriteriaFilterOperator.gt) {
-            predicates.add(getCriteriaBuilder().greaterThan(getRoot().<Long>get(key), new Long((String) value)));
+            predicates.add(cb.greaterThan(root.<Long>get(key), new Long((String) value)));
         } else if (operator == SearchCriteriaFilterOperator.gte) {
-            predicates.add(getCriteriaBuilder().greaterThanOrEqualTo(getRoot().<Long>get(key), new Long((String) value)));
+            predicates.add(cb.greaterThanOrEqualTo(root.<Long>get(key), new Long((String) value)));
         } else if (operator == SearchCriteriaFilterOperator.lt) {
-            predicates.add(getCriteriaBuilder().lessThan(getRoot().<Long>get(key), new Long((String) value)));
+            predicates.add(cb.lessThan(root.<Long>get(key), new Long((String) value)));
         } else if (operator == SearchCriteriaFilterOperator.lte) {
-            predicates.add(getCriteriaBuilder().lessThanOrEqualTo(getRoot().<Long>get(key), new Long((String) value)));
+            predicates.add(cb.lessThanOrEqualTo(root.<Long>get(key), new Long((String) value)));
         } else if (operator == SearchCriteriaFilterOperator.neq) {
-            predicates.add(getCriteriaBuilder().notEqual(getRoot().get(key), value));
+            predicates.add(cb.notEqual(root.get(key), value));
         } else if (operator == SearchCriteriaFilterOperator.like) {
-            predicates.add(getCriteriaBuilder().like(getCriteriaBuilder().upper(getRoot().<String>get(key)), ((String) value).toUpperCase().replace('*', '%')));
+            predicates.add(cb.like(cb.upper(root.<String>get(key)), ((String) value).toUpperCase().replace('*', '%')));
         }
 
         return this;
@@ -123,19 +127,19 @@ public class DocumentCriteria<R, Q> {
     public DocumentCriteria requiredAction(RequiredAction... requiredAction) {
         List<String> rActions = Stream.of(requiredAction).map(RequiredAction::toString).collect(Collectors.toList());
 
-        Join<UBLDocumentEntity, UBLDocumentRequiredActionEntity> requiredActions = getRoot().join(JpaDocumentProvider.REQUIRED_ACTIONS);
+        Join<UBLDocumentEntity, UBLDocumentRequiredActionEntity> requiredActions = root.join(JpaDocumentProvider.REQUIRED_ACTIONS);
         predicates.add(requiredActions.get("action").in(rActions));
 
         return this;
     }
 
     public DocumentCriteria fromDate(LocalDateTime fromDate) {
-        predicates.add(getCriteriaBuilder().greaterThanOrEqualTo(getRoot().<LocalDateTime>get(JpaDocumentProvider.CREATED_TIMESTAMP), fromDate));
+        predicates.add(cb.greaterThanOrEqualTo(root.<LocalDateTime>get(JpaDocumentProvider.CREATED_TIMESTAMP), fromDate));
         return this;
     }
 
     public DocumentCriteria toDate(LocalDateTime toDate) {
-        predicates.add(getCriteriaBuilder().lessThanOrEqualTo(getRoot().<LocalDateTime>get(JpaDocumentProvider.CREATED_TIMESTAMP), toDate));
+        predicates.add(cb.lessThanOrEqualTo(root.<LocalDateTime>get(JpaDocumentProvider.CREATED_TIMESTAMP), toDate));
         return this;
     }
 
@@ -178,5 +182,5 @@ public class DocumentCriteria<R, Q> {
     public Root<R> getRoot() {
         return root;
     }
-
+    
 }
