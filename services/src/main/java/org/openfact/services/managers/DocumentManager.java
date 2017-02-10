@@ -148,6 +148,19 @@ public class DocumentManager {
             throw new ModelException(e);
         }
 
+        // attach file
+        if (creditNoteType.getBillingReference() != null && !creditNoteType.getBillingReference().isEmpty()) {
+            creditNoteType.getBillingReference().stream()
+                    .filter(p -> p.getInvoiceDocumentReference() != null)
+                    .forEach(c -> {
+                        String invoiceDocumentId = c.getInvoiceDocumentReference().getIDValue();
+                        DocumentModel attachedDocument = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, invoiceDocumentId, organization);
+                        if (attachedDocument != null) {
+                            documentModel.addAttatchedDocument(attachedDocument);
+                        }
+                    });
+        }
+
         fireDocumentPostCreate(documentModel);
         return documentModel;
     }
@@ -187,6 +200,19 @@ public class DocumentManager {
         } catch (TransformerException e) {
             logger.error("Error parsing XML to byte", e);
             throw new ModelException(e);
+        }
+
+        // attach file
+        if (debitNoteType.getBillingReference() != null && !debitNoteType.getBillingReference().isEmpty()) {
+            debitNoteType.getBillingReference().stream()
+                    .filter(p -> p.getInvoiceDocumentReference() != null)
+                    .forEach(c -> {
+                        String invoiceDocumentId = c.getInvoiceDocumentReference().getIDValue();
+                        DocumentModel attachedDocument = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, invoiceDocumentId, organization);
+                        if (attachedDocument != null) {
+                            documentModel.addAttatchedDocument(attachedDocument);
+                        }
+                    });
         }
 
         fireDocumentPostCreate(documentModel);
