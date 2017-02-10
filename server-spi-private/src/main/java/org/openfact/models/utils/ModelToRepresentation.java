@@ -129,9 +129,11 @@ public class ModelToRepresentation {
 
         rep.setId(model.getId());
         rep.setDocumentId(model.getDocumentId());
+        rep.setDocumentType(model.getDocumentType());
         rep.setCreatedTimestamp(model.getCreatedTimestamp());
         rep.setEnabled(model.isEnabled());
 
+        rep.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
         rep.setCustomerRegistrationName(model.getCustomerRegistrationName());
         rep.setCustomerAssignedAccountId(model.getCustomerAssignedAccountId());
         rep.setCustomerElectronicMail(model.getCustomerElectronicMail());

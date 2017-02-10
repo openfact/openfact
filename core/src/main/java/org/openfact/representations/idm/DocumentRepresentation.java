@@ -25,8 +25,10 @@ public class DocumentRepresentation {
 
     private String id;
     private String documentId;
+    private String documentType;
     private LocalDateTime createdTimestamp;
 
+    private String documentCurrencyCode;
     private String customerRegistrationName;
     private String customerAssignedAccountId;
     private String customerElectronicMail;
@@ -117,5 +119,21 @@ public class DocumentRepresentation {
 
     public void setAttatchedDocuments(List<DocumentRepresentation> attatchedDocuments) {
         this.attatchedDocuments = attatchedDocuments;
+    }
+
+    public String getDocumentCurrencyCode() {
+        return documentCurrencyCode;
+    }
+
+    public void setDocumentCurrencyCode(String documentCurrencyCode) {
+        this.documentCurrencyCode = documentCurrencyCode;
+    }
+
+    public String getDocumentType() {
+        return documentType;
+    }
+
+    public void setDocumentType(String documentType) {
+        this.documentType = documentType;
     }
 }
