@@ -201,11 +201,11 @@ public class UBLDocumentAdapter implements DocumentModel, JpaModel<UBLDocumentEn
 
                         JSONObject subJsonObject = JSONObjectUtils.getJSONObject(jsonObject, jsonName);
                         if (subJsonObject != null) {
-                            return subJsonObject;
-                        } else {
-                            return jsonObject;
+                            jsonObject = subJsonObject;
                         }
                     }
+
+                    return jsonObject;
                 }
             } catch (TransformerException e) {
                 throw new ModelException("Error parsing xml file to JSON", e);
