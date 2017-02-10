@@ -97,6 +97,14 @@ public class JasperUBLReportProvider implements UBLReportProvider {
 
                     if (theme == null) {
                         theme = themeProvider.getTheme(themeName, ReportTheme.Type.ADMIN);
+                        URL url = theme.getTemplate(templateName);
+                        if (url == null) {
+                            theme = null;
+                        }
+                    }
+
+                    if (theme == null) {
+                        theme = themeProvider.getTheme(null, ReportTheme.Type.ADMIN);
                     }
 
                     JasperPrint jasperPrint = jasperReport.processReport(theme, templateName, parameters, dataSource);
