@@ -62,6 +62,8 @@ public class TypeToModel {
     public static final String REQUESTED_MONETARY_TOTAL_ALLOWANCE_TOTAL = "requestedMonetaryTotalAllowanceTotal";
 
     public static void importInvoice(OpenfactSession session, OrganizationModel organization, DocumentModel model, InvoiceType type) {
+        model.setDocumentCurrencyCode(type.getDocumentCurrencyCodeValue());
+
         if (type.getIssueDate() != null) {
             model.setSingleAttribute(ISSUE_DATE, type.getIssueDateValue().toString());
         }
@@ -87,6 +89,8 @@ public class TypeToModel {
     }
 
     public static void importCreditNote(OpenfactSession session, OrganizationModel organization, DocumentModel model, CreditNoteType type) {
+        model.setDocumentCurrencyCode(type.getDocumentCurrencyCodeValue());
+
         if (type.getIssueDate() != null) {
             model.setSingleAttribute(ISSUE_DATE, type.getIssueDateValue().toString());
         }
@@ -112,6 +116,8 @@ public class TypeToModel {
     }
 
     public static void importDebitNote(OpenfactSession session, OrganizationModel organization, DocumentModel model, DebitNoteType type) {
+        model.setDocumentCurrencyCode(type.getDocumentCurrencyCodeValue());
+
         if (type.getIssueDate() != null) {
             model.setSingleAttribute(ISSUE_DATE, type.getIssueDateValue().toString());
         }
@@ -134,6 +140,7 @@ public class TypeToModel {
     }
 
     public static void addAccountingSupplierAttributes(SupplierPartyType supplierPartyType, DocumentModel documentModel) {
+
         if (supplierPartyType.getCustomerAssignedAccountID() != null) {
             documentModel.setSingleAttribute(SUPPLIER_ASSIGNED_ACCOUNT_ID, supplierPartyType.getCustomerAssignedAccountIDValue());
         }
