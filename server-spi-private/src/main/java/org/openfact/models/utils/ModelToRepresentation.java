@@ -17,6 +17,7 @@
 package org.openfact.models.utils;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.openfact.common.util.MultivaluedHashMap;
@@ -149,20 +150,25 @@ public class ModelToRepresentation {
             rep.getRequiredActions().addAll(model.getRequiredActions());
         }
 
-        if (model.getAttatchedDocuments() != null) {
-            List<DocumentRepresentation> attatchedDocuments = new ArrayList<>();
-            for (DocumentModel attatchedDocument : model.getAttatchedDocuments()) {
-                attatchedDocuments.add(toRepresentation(attatchedDocument));
-            }
-            rep.setAttatchedDocuments(attatchedDocuments);
+        Function<DocumentModel, DocumentRepresentation> attachedDocumentRepFunction = (documentModel) -> {
+            DocumentRepresentation documentRepresentation = new DocumentRepresentation();
+            documentRepresentation.setId(documentModel.getId());
+            documentRepresentation.setDocumentId(documentModel.getDocumentId());
+            documentRepresentation.setDocumentType(documentModel.getDocumentType());
+            return documentRepresentation;
+        };
+
+        if (model.getAttachedDocumentsAsOrigin() != null && !model.getAttachedDocumentsAsOrigin().isEmpty()) {
+            rep.setAttachedDocumentsAsOrigin(model.getAttachedDocumentsAsOrigin().stream().map(attachedDocumentRepFunction).collect(Collectors.toList()));
+        }
+        if (model.getAttachedDocumentsAsDestiny() != null && !model.getAttachedDocumentsAsDestiny().isEmpty()) {
+            rep.setAttachedDocumentsAsDestiny(model.getAttachedDocumentsAsDestiny().stream().map(attachedDocumentRepFunction).collect(Collectors.toList()));
         }
 
         return rep;
     }
 
-    public static OrganizationEventsConfigRepresentation toEventsConfigReprensetation(
-            OrganizationModel organization) {
-
+    public static OrganizationEventsConfigRepresentation toEventsConfigReprensetation(OrganizationModel organization) {
         OrganizationEventsConfigRepresentation rep = new OrganizationEventsConfigRepresentation();
         rep.setEventsEnabled(organization.isEventsEnabled());
 

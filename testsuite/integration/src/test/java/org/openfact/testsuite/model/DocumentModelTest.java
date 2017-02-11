@@ -441,33 +441,69 @@ public class DocumentModelTest extends AbstractModelTest {
         DocumentModel invoice = session.documents().addDocument(DocumentType.INVOICE, "invoiceEntity", organization);
         DocumentModel creditNote = session.documents().addDocument(DocumentType.CREDIT_NOTE.toString(), "creditNoteEntity", organization);
 
-        Assert.assertTrue(invoice.getSendEvents().isEmpty());
+        Assert.assertTrue(invoice.getAttachedDocumentsAsOrigin().isEmpty());
+        Assert.assertTrue(invoice.getAttachedDocumentsAsDestiny().isEmpty());
 
-        invoice.addAttatchedDocument(creditNote);
-        String id = organization.getId();
+        invoice.addAttachedDocument(creditNote);
+        String organizationId = organization.getId();
+
+        Assert.assertEquals(1, invoice.getAttachedDocumentsAsOrigin().size());
+        Assert.assertEquals(0, invoice.getAttachedDocumentsAsDestiny().size());
+        Assert.assertTrue(invoice.getAttachedDocumentsAsOrigin().contains(creditNote));
+
+        Assert.assertEquals(0, creditNote.getAttachedDocumentsAsOrigin().size());
+        Assert.assertEquals(1, creditNote.getAttachedDocumentsAsDestiny().size());
+        Assert.assertTrue(creditNote.getAttachedDocumentsAsDestiny().contains(invoice));
+
         commit();
-        organization = organizationManager.getOrganization(id);
+
+        organization = organizationManager.getOrganization(organizationId);
         invoice = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "invoiceEntity", organization);
+        creditNote = session.documents().getDocumentByTypeAndUblId(DocumentType.CREDIT_NOTE, "creditNoteEntity", organization);
 
-        Assert.assertEquals(1, invoice.getAttatchedDocuments().size());
-        Assert.assertTrue(invoice.getAttatchedDocuments().contains(creditNote));
+        Assert.assertEquals(1, invoice.getAttachedDocumentsAsOrigin().size());
+        Assert.assertEquals(0, invoice.getAttachedDocumentsAsDestiny().size());
+        Assert.assertEquals(0, creditNote.getAttachedDocumentsAsOrigin().size());
+        Assert.assertEquals(1, creditNote.getAttachedDocumentsAsDestiny().size());
 
-        DocumentModel debitNote = session.documents().addDocument(DocumentType.DEBIT_NOTE.toString(), "debitNoteEntity", organization);
-        invoice.addAttatchedDocument(debitNote);
+        Assert.assertTrue(invoice.getAttachedDocumentsAsOrigin().contains(creditNote));
+
+
+        DocumentModel debitNote = session.documents().addDocument(DocumentType.DEBIT_NOTE, "debitNoteEntity", organization);
+        invoice.addAttachedDocument(debitNote);
+
+        Assert.assertEquals(2, invoice.getAttachedDocumentsAsOrigin().size());
+        Assert.assertEquals(0, invoice.getAttachedDocumentsAsDestiny().size());
+        Assert.assertTrue(invoice.getAttachedDocumentsAsOrigin().contains(debitNote));
+
+        Assert.assertEquals(0, debitNote.getAttachedDocumentsAsOrigin().size());
+        Assert.assertEquals(1, debitNote.getAttachedDocumentsAsDestiny().size());
+        Assert.assertTrue(debitNote.getAttachedDocumentsAsDestiny().contains(invoice));
+
+        commit();
+
+        organization = organizationManager.getOrganization(organizationId);
         invoice = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "invoiceEntity", organization);
-        Assert.assertEquals(2, invoice.getAttatchedDocuments().size());
-        Assert.assertTrue(invoice.getAttatchedDocuments().contains(debitNote));
+        creditNote = session.documents().getDocumentByTypeAndUblId(DocumentType.CREDIT_NOTE, "creditNoteEntity", organization);
+        debitNote = session.documents().getDocumentByTypeAndUblId(DocumentType.DEBIT_NOTE, "debitNoteEntity", organization);
 
-        invoice.removeAttatchedDocument(creditNote);
-        invoice = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "invoiceEntity", organization);
+        Assert.assertEquals(2, invoice.getAttachedDocumentsAsOrigin().size());
+        Assert.assertEquals(0, invoice.getAttachedDocumentsAsDestiny().size());
+        Assert.assertTrue(invoice.getAttachedDocumentsAsOrigin().contains(debitNote));
 
-        Assert.assertEquals(1, invoice.getAttatchedDocuments().size());
-        Assert.assertTrue(invoice.getAttatchedDocuments().contains(debitNote));
+        Assert.assertEquals(0, debitNote.getAttachedDocumentsAsOrigin().size());
+        Assert.assertEquals(1, debitNote.getAttachedDocumentsAsDestiny().size());
+        Assert.assertTrue(debitNote.getAttachedDocumentsAsDestiny().contains(invoice));
 
-        invoice.removeAttatchedDocument(debitNote);
-        invoice = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "invoiceEntity", organization);
+        invoice.removeAttachedDocument(creditNote);
 
-        Assert.assertTrue(invoice.getAttatchedDocuments().isEmpty());
+        Assert.assertEquals(1, invoice.getAttachedDocumentsAsOrigin().size());
+        Assert.assertEquals(0, invoice.getAttachedDocumentsAsDestiny().size());
+        Assert.assertFalse(invoice.getAttachedDocumentsAsOrigin().contains(creditNote));
+
+        Assert.assertEquals(0, creditNote.getAttachedDocumentsAsOrigin().size());
+        Assert.assertEquals(0, creditNote.getAttachedDocumentsAsDestiny().size());
+        Assert.assertFalse(creditNote.getAttachedDocumentsAsDestiny().contains(invoice));
     }
 
     public static void assertEquals(DocumentModel expected, DocumentModel actual) {

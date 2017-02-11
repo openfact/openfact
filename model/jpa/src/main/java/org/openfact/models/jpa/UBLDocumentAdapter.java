@@ -528,28 +528,35 @@ public class UBLDocumentAdapter implements DocumentModel, JpaModel<UBLDocumentEn
      * Attatched documents
      */
     @Override
-    public List<DocumentModel> getAttatchedDocuments() {
-        return ublDocument.getAttachedDocuments().stream()
-                .map(f -> new UBLDocumentAdapter(session, organization, em, f.getAttachedUblDocument()))
-                .collect(Collectors.toList());
+    public List<DocumentModel> getAttachedDocumentsAsOrigin() {
+        TypedQuery<UBLDocumentEntity> query = em.createNamedQuery("getAttachedUBLDocumentDestinyByOrigin", UBLDocumentEntity.class);
+        query.setParameter("ublDocumentOriginId", ublDocument.getId());
+        return query.getResultList().stream().map(f -> new UBLDocumentAdapter(session, organization, em, f)).collect(Collectors.toList());
     }
 
     @Override
-    public void addAttatchedDocument(DocumentModel attachedDocument) {
+    public List<DocumentModel> getAttachedDocumentsAsDestiny() {
+        TypedQuery<UBLDocumentEntity> query = em.createNamedQuery("getAttachedUBLDocumentOriginByDestiny", UBLDocumentEntity.class);
+        query.setParameter("ublDocumentDestinyId", ublDocument.getId());
+        return query.getResultList().stream().map(f -> new UBLDocumentAdapter(session, organization, em, f)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void addAttachedDocument(DocumentModel attachedDocument) {
         AttachedUBLDocumentEntity entity = new AttachedUBLDocumentEntity();
-        entity.setAttachedUblDocument(UBLDocumentAdapter.toEntity(attachedDocument, em));
-        entity.setUblDocument(ublDocument);
+        entity.setUblDocumentOrigin(ublDocument);
+        entity.setUblDocumentDestiny(UBLDocumentAdapter.toEntity(attachedDocument, em));
         em.persist(entity);
-        ublDocument.getAttachedDocuments().add(entity);
+        ublDocument.getAttachedDocumentsAsOrigin().add(entity);
     }
 
     @Override
-    public boolean removeAttatchedDocument(DocumentModel attachedDocument) {
+    public boolean removeAttachedDocument(DocumentModel attachedDocument) {
         boolean result = false;
-        Iterator<AttachedUBLDocumentEntity> it = ublDocument.getAttachedDocuments().iterator();
+        Iterator<AttachedUBLDocumentEntity> it = ublDocument.getAttachedDocumentsAsOrigin().iterator();
         while (it.hasNext()) {
             AttachedUBLDocumentEntity ublAttachedDocumentEntity = it.next();
-            if (ublAttachedDocumentEntity.getAttachedUblDocument().getId().equals(attachedDocument.getId())) {
+            if (ublAttachedDocumentEntity.getUblDocumentDestiny().getId().equals(attachedDocument.getId())) {
                 it.remove();
                 em.remove(ublAttachedDocumentEntity);
                 result = true;

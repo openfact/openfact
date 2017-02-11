@@ -104,8 +104,31 @@ public class UBLDocumentEntity {
     @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "ublDocument", fetch = FetchType.LAZY)
     private Collection<SendEventEntity> sendEvents = new ArrayList<>();
 
-    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "ublDocument", fetch = FetchType.LAZY)
-    private Collection<AttachedUBLDocumentEntity> attachedDocuments = new ArrayList<>();
+    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "ublDocumentOrigin", fetch = FetchType.LAZY)
+    private Collection<AttachedUBLDocumentEntity> attachedDocumentsAsOrigin = new ArrayList<>();
+
+    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "ublDocumentDestiny", fetch = FetchType.LAZY)
+    private Collection<AttachedUBLDocumentEntity> attachedDocumentsAsDestiny = new ArrayList<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UBLDocumentEntity that = (UBLDocumentEntity) o;
+
+        if (!getDocumentId().equals(that.getDocumentId())) return false;
+        if (!getDocumentType().equals(that.getDocumentType())) return false;
+        return getOrganizationId().equals(that.getOrganizationId());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getDocumentId().hashCode();
+        result = 31 * result + getDocumentType().hashCode();
+        result = 31 * result + getOrganizationId().hashCode();
+        return result;
+    }
 
     public String getId() {
         return id;
@@ -121,6 +144,14 @@ public class UBLDocumentEntity {
 
     public void setDocumentId(String documentId) {
         this.documentId = documentId;
+    }
+
+    public String getDocumentType() {
+        return documentType;
+    }
+
+    public void setDocumentType(String documentType) {
+        this.documentType = documentType;
     }
 
     public String getXmlFileId() {
@@ -145,6 +176,14 @@ public class UBLDocumentEntity {
 
     public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
         this.createdTimestamp = createdTimestamp;
+    }
+
+    public String getDocumentCurrencyCode() {
+        return documentCurrencyCode;
+    }
+
+    public void setDocumentCurrencyCode(String documentCurrencyCode) {
+        this.documentCurrencyCode = documentCurrencyCode;
     }
 
     public String getCustomerRegistrationName() {
@@ -203,48 +242,19 @@ public class UBLDocumentEntity {
         this.sendEvents = sendEvents;
     }
 
-    public Collection<AttachedUBLDocumentEntity> getAttachedDocuments() {
-        return attachedDocuments;
+    public Collection<AttachedUBLDocumentEntity> getAttachedDocumentsAsOrigin() {
+        return attachedDocumentsAsOrigin;
     }
 
-    public void setAttachedDocuments(Collection<AttachedUBLDocumentEntity> attatchedDocuments) {
-        this.attachedDocuments = attatchedDocuments;
+    public void setAttachedDocumentsAsOrigin(Collection<AttachedUBLDocumentEntity> attachedDocumentsAsOrigin) {
+        this.attachedDocumentsAsOrigin = attachedDocumentsAsOrigin;
     }
 
-    public String getDocumentType() {
-        return documentType;
+    public Collection<AttachedUBLDocumentEntity> getAttachedDocumentsAsDestiny() {
+        return attachedDocumentsAsDestiny;
     }
 
-    public void setDocumentType(String documentType) {
-        this.documentType = documentType;
+    public void setAttachedDocumentsAsDestiny(Collection<AttachedUBLDocumentEntity> attachedDocumentsAsDestiny) {
+        this.attachedDocumentsAsDestiny = attachedDocumentsAsDestiny;
     }
-
-    public String getDocumentCurrencyCode() {
-        return documentCurrencyCode;
-    }
-
-    public void setDocumentCurrencyCode(String documentCurrencyCode) {
-        this.documentCurrencyCode = documentCurrencyCode;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        UBLDocumentEntity that = (UBLDocumentEntity) o;
-
-        if (!documentId.equals(that.documentId)) return false;
-        if (!documentType.equals(that.documentType)) return false;
-        return organizationId.equals(that.organizationId);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = documentId.hashCode();
-        result = 31 * result + documentType.hashCode();
-        result = 31 * result + organizationId.hashCode();
-        return result;
-    }
-
 }

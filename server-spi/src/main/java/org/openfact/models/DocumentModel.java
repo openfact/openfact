@@ -113,9 +113,10 @@ public interface DocumentModel {
 
     /**
      * Attatched documents*/
-    List<DocumentModel> getAttatchedDocuments();
-    void addAttatchedDocument(DocumentModel document);
-    boolean removeAttatchedDocument(DocumentModel attatchedDocument);
+    List<DocumentModel> getAttachedDocumentsAsOrigin();
+    List<DocumentModel> getAttachedDocumentsAsDestiny();
+    void addAttachedDocument(DocumentModel document);
+    boolean removeAttachedDocument(DocumentModel attatchedDocument);
 
     /**
      * Events interfaces

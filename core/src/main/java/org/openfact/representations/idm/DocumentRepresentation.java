@@ -38,8 +38,8 @@ public class DocumentRepresentation {
     private Map<String, List<String>> attributes;
     private Set<String> requiredActions;
 
-    private List<DocumentRepresentation> attatchedDocuments;
-
+    private List<DocumentRepresentation> attachedDocumentsAsOrigin;
+    private List<DocumentRepresentation> attachedDocumentsAsDestiny;
 
     public String getId() {
         return id;
@@ -113,12 +113,12 @@ public class DocumentRepresentation {
         this.requiredActions = requiredActions;
     }
 
-    public List<DocumentRepresentation> getAttatchedDocuments() {
-        return attatchedDocuments;
+    public List<DocumentRepresentation> getAttachedDocumentsAsOrigin() {
+        return attachedDocumentsAsOrigin;
     }
 
-    public void setAttatchedDocuments(List<DocumentRepresentation> attatchedDocuments) {
-        this.attatchedDocuments = attatchedDocuments;
+    public void setAttachedDocumentsAsOrigin(List<DocumentRepresentation> attachedDocumentsAsOrigin) {
+        this.attachedDocumentsAsOrigin = attachedDocumentsAsOrigin;
     }
 
     public String getDocumentCurrencyCode() {
@@ -135,5 +135,13 @@ public class DocumentRepresentation {
 
     public void setDocumentType(String documentType) {
         this.documentType = documentType;
+    }
+
+    public List<DocumentRepresentation> getAttachedDocumentsAsDestiny() {
+        return attachedDocumentsAsDestiny;
+    }
+
+    public void setAttachedDocumentsAsDestiny(List<DocumentRepresentation> attachedDocumentsAsDestiny) {
+        this.attachedDocumentsAsDestiny = attachedDocumentsAsDestiny;
     }
 }

@@ -156,7 +156,7 @@ public class DocumentManager {
                         String invoiceDocumentId = c.getInvoiceDocumentReference().getIDValue();
                         DocumentModel attachedDocument = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, invoiceDocumentId, organization);
                         if (attachedDocument != null) {
-                            documentModel.addAttatchedDocument(attachedDocument);
+                            documentModel.addAttachedDocument(attachedDocument);
                         }
                     });
         }
@@ -210,7 +210,7 @@ public class DocumentManager {
                         String invoiceDocumentId = c.getInvoiceDocumentReference().getIDValue();
                         DocumentModel attachedDocument = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, invoiceDocumentId, organization);
                         if (attachedDocument != null) {
-                            documentModel.addAttatchedDocument(attachedDocument);
+                            documentModel.addAttachedDocument(attachedDocument);
                         }
                     });
         }

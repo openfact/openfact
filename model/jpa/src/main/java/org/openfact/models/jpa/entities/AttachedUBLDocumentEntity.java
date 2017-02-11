@@ -31,58 +31,60 @@ import java.io.Serializable;
 @Table(name = "ATTACHED_UBL_DOCUMENT")
 @IdClass(AttachedUBLDocumentEntity.Key.class)
 @NamedQueries(value = {
-        @NamedQuery(name = "deleteAttachedUblDocumentByOrganization", query = "delete from AttachedUBLDocumentEntity at where at.ublDocument IN (select doc from UBLDocumentEntity doc where doc.organizationId=:organizationId)")
+        @NamedQuery(name = "getAttachedUBLDocumentDestinyByOrigin", query = "select a.ublDocumentDestiny from AttachedUBLDocumentEntity a where a.ublDocumentOrigin.id=:ublDocumentOriginId"),
+        @NamedQuery(name = "getAttachedUBLDocumentOriginByDestiny", query = "select a.ublDocumentOrigin from AttachedUBLDocumentEntity a where a.ublDocumentDestiny.id=:ublDocumentDestinyId"),
+        @NamedQuery(name = "deleteAttachedUblDocumentByOrganization", query = "delete from AttachedUBLDocumentEntity at where at.ublDocumentOrigin IN (select doc from UBLDocumentEntity doc where doc.organizationId=:organizationId)")
 })
 public class AttachedUBLDocumentEntity {
 
     @Id
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "UBL_DOCUMENT_ID")
-    protected UBLDocumentEntity ublDocument;
+    @JoinColumn(foreignKey = @ForeignKey, name = "UBL_DOCUMENT_ORIGIN_ID")
+    protected UBLDocumentEntity ublDocumentOrigin;
 
     @Id
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "ATTACHED_UBL_DOCUMENT_ID")
-    protected UBLDocumentEntity attachedUblDocument;
+    @JoinColumn(foreignKey = @ForeignKey, name = "UBL_DOCUMENT_DESTINY_ID")
+    protected UBLDocumentEntity ublDocumentDestiny;
 
-    public UBLDocumentEntity getUblDocument() {
-        return ublDocument;
+    public UBLDocumentEntity getUblDocumentOrigin() {
+        return ublDocumentOrigin;
     }
 
-    public void setUblDocument(UBLDocumentEntity ublDocument) {
-        this.ublDocument = ublDocument;
+    public void setUblDocumentOrigin(UBLDocumentEntity ublDocument) {
+        this.ublDocumentOrigin = ublDocument;
     }
 
-    public UBLDocumentEntity getAttachedUblDocument() {
-        return attachedUblDocument;
+    public UBLDocumentEntity getUblDocumentDestiny() {
+        return ublDocumentDestiny;
     }
 
-    public void setAttachedUblDocument(UBLDocumentEntity attachedUblDocument) {
-        this.attachedUblDocument = attachedUblDocument;
+    public void setUblDocumentDestiny(UBLDocumentEntity attachedUblDocument) {
+        this.ublDocumentDestiny = attachedUblDocument;
     }
 
     public static class Key implements Serializable {
 
-        protected UBLDocumentEntity ublDocument;
+        protected UBLDocumentEntity ublDocumentOrigin;
 
-        protected UBLDocumentEntity attachedUblDocument;
+        protected UBLDocumentEntity ublDocumentDestiny;
 
         public Key() {
         }
 
         public Key(UBLDocumentEntity ublDocument, UBLDocumentEntity attachedUblDocument) {
-            this.ublDocument = ublDocument;
-            this.attachedUblDocument = attachedUblDocument;
+            this.ublDocumentOrigin = ublDocument;
+            this.ublDocumentDestiny = attachedUblDocument;
         }
 
-        public UBLDocumentEntity getUblDocument() {
-            return ublDocument;
+        public UBLDocumentEntity getUblDocumentOrigin() {
+            return ublDocumentOrigin;
         }
 
-        public UBLDocumentEntity getAttachedUblDocument() {
-            return attachedUblDocument;
+        public UBLDocumentEntity getUblDocumentDestiny() {
+            return ublDocumentDestiny;
         }
 
         @Override
@@ -92,9 +94,9 @@ public class AttachedUBLDocumentEntity {
 
             AttachedUBLDocumentEntity.Key key = (AttachedUBLDocumentEntity.Key) o;
 
-            if (ublDocument != null ? !ublDocument.getId().equals(key.ublDocument != null ? key.ublDocument.getId() : null) : key.ublDocument != null)
+            if (ublDocumentOrigin != null ? !ublDocumentOrigin.getId().equals(key.ublDocumentOrigin != null ? key.ublDocumentOrigin.getId() : null) : key.ublDocumentOrigin != null)
                 return false;
-            if (attachedUblDocument != null ? !attachedUblDocument.getId().equals(key.attachedUblDocument != null ? key.attachedUblDocument.getId() : null) : key.attachedUblDocument != null)
+            if (ublDocumentDestiny != null ? !ublDocumentDestiny.getId().equals(key.ublDocumentDestiny != null ? key.ublDocumentDestiny.getId() : null) : key.ublDocumentDestiny != null)
                 return false;
 
             return true;
@@ -102,8 +104,8 @@ public class AttachedUBLDocumentEntity {
 
         @Override
         public int hashCode() {
-            int result = ublDocument != null ? ublDocument.getId().hashCode() : 0;
-            result = 31 * result + (attachedUblDocument != null ? attachedUblDocument.hashCode() : 0);
+            int result = ublDocumentOrigin != null ? ublDocumentOrigin.getId().hashCode() : 0;
+            result = 31 * result + (ublDocumentDestiny != null ? ublDocumentDestiny.hashCode() : 0);
             return result;
         }
     }
@@ -116,17 +118,17 @@ public class AttachedUBLDocumentEntity {
 
         AttachedUBLDocumentEntity key = (AttachedUBLDocumentEntity) o;
 
-        if (ublDocument != null ? !ublDocument.getId().equals(key.ublDocument != null ? key.ublDocument.getId() : null) : key.ublDocument != null)
+        if (ublDocumentOrigin != null ? !ublDocumentOrigin.getId().equals(key.ublDocumentOrigin != null ? key.ublDocumentOrigin.getId() : null) : key.ublDocumentOrigin != null)
             return false;
-        if (attachedUblDocument != null ? !attachedUblDocument.getId().equals(key.attachedUblDocument != null ? key.attachedUblDocument.getId() : null) : key.attachedUblDocument != null)
+        if (ublDocumentDestiny != null ? !ublDocumentDestiny.getId().equals(key.ublDocumentDestiny != null ? key.ublDocumentDestiny.getId() : null) : key.ublDocumentDestiny != null)
             return false;
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = ublDocument != null ? ublDocument.getId().hashCode() : 0;
-        result = 31 * result + (attachedUblDocument != null ? attachedUblDocument.hashCode() : 0);
+        int result = ublDocumentOrigin != null ? ublDocumentOrigin.getId().hashCode() : 0;
+        result = 31 * result + (ublDocumentDestiny != null ? ublDocumentDestiny.hashCode() : 0);
         return result;
     }
 
