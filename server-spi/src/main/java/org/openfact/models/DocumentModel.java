@@ -101,6 +101,12 @@ public interface DocumentModel {
     String SEND_EVENT_DESTINY = "destiny";
     String SEND_EVENT_STATUS = "status";
 
+    int getCustomerSendEventFailures();
+    void incrementCustomerSendEventFailures();
+
+    int getThirdPartySendEventFailures();
+    void incrementThirdPartySendEventFailures();
+
     SendEventModel addSendEvent(DestinyType destinyType);
     SendEventModel getSendEventById(String id);
     boolean removeSendEvent(SendEventModel sendEvent);

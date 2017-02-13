@@ -356,6 +356,26 @@ public class UBLDocumentAdapter implements DocumentModel, JpaModel<UBLDocumentEn
     }
 
     @Override
+    public int getCustomerSendEventFailures() {
+        return ublDocument.getCustomerSendEventFailures();
+    }
+
+    @Override
+    public void incrementCustomerSendEventFailures() {
+        ublDocument.setCustomerSendEventFailures(ublDocument.getCustomerSendEventFailures() + 1);
+    }
+
+    @Override
+    public int getThirdPartySendEventFailures() {
+        return ublDocument.getThirdPartySendEventFailures();
+    }
+
+    @Override
+    public void incrementThirdPartySendEventFailures() {
+        ublDocument.setThirdPartySendEventFailures(ublDocument.getThirdPartySendEventFailures() + 1);
+    }
+
+    @Override
     public void removeRequiredAction(String actionName) {
         Iterator<UBLDocumentRequiredActionEntity> it = ublDocument.getRequiredActions().iterator();
         while (it.hasNext()) {

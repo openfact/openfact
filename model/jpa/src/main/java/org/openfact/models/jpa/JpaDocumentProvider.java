@@ -51,6 +51,8 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
 
     public static final String SEND_EVENT_DESTINY = "destiny";
     public static final String SEND_EVENT_STATUS = "status";
+    public static final String CUSTOMER_SEND_EVENT_FAILURES = "customerSendEventFailures";
+    public static final String THIRD_PARTY_SEND_EVENT_FAILURES = "thirdPartySendEventFailures";
 
     protected final OpenfactSession session;
     protected EntityManager em;

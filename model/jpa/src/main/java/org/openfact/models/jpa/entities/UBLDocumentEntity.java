@@ -101,6 +101,12 @@ public class UBLDocumentEntity {
     @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "ublDocument")
     private Collection<UBLDocumentRequiredActionEntity> requiredActions = new ArrayList<>();
 
+    @Column(name = "CUSTOMER_SEND_EVENT_FAILURES")
+    private int customerSendEventFailures;
+
+    @Column(name = "THIRD_PARTY_SEND_EVENT_FAILURES")
+    private int thirdPartySendEventFailures;
+
     @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "ublDocument", fetch = FetchType.LAZY)
     private Collection<SendEventEntity> sendEvents = new ArrayList<>();
 
@@ -256,5 +262,21 @@ public class UBLDocumentEntity {
 
     public void setAttachedDocumentsAsDestiny(Collection<AttachedUBLDocumentEntity> attachedDocumentsAsDestiny) {
         this.attachedDocumentsAsDestiny = attachedDocumentsAsDestiny;
+    }
+
+    public int getCustomerSendEventFailures() {
+        return customerSendEventFailures;
+    }
+
+    public void setCustomerSendEventFailures(int customerSendEventFailures) {
+        this.customerSendEventFailures = customerSendEventFailures;
+    }
+
+    public int getThirdPartySendEventFailures() {
+        return thirdPartySendEventFailures;
+    }
+
+    public void setThirdPartySendEventFailures(int thirdPartySendEventFailures) {
+        this.thirdPartySendEventFailures = thirdPartySendEventFailures;
     }
 }

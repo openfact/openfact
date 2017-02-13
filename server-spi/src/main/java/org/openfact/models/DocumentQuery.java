@@ -23,6 +23,12 @@ public interface DocumentQuery {
 
     DocumentQuery filterText(String filterText, String... fieldName);
 
+    DocumentQuery filterTextReplaceAsterisk(String filterText, String... fieldName);
+
+    DocumentQuery customerSendEventFailures(int numberFailures, boolean greatherThan);
+
+    DocumentQuery thirdPartySendEventFailures(int numberFailures, boolean greatherThan);
+
     DocumentQuery enabled(boolean isEnabled);
 
     /**

@@ -62,6 +62,27 @@ public class JpaDocumentQuery implements DocumentQuery {
     }
 
     @Override
+    public DocumentQuery filterTextReplaceAsterisk(String filterText, String... fieldName) {
+        query.filterTextReplaceAsterisk(filterText, fieldName);
+        queryCount.filterTextReplaceAsterisk(filterText, fieldName);
+        return this;
+    }
+
+    @Override
+    public DocumentQuery customerSendEventFailures(int numberFailures, boolean greatherThan) {
+        query.customerSendEventFailures(numberFailures, greatherThan);
+        queryCount.customerSendEventFailures(numberFailures, greatherThan);
+        return this;
+    }
+
+    @Override
+    public DocumentQuery thirdPartySendEventFailures(int numberFailures, boolean greatherThan) {
+        query.thirdPartySendEventFailures(numberFailures, greatherThan);
+        queryCount.thirdPartySendEventFailures(numberFailures, greatherThan);
+        return this;
+    }
+
+    @Override
     public DocumentQuery enabled(boolean isEnabled) {
         query.enabled(isEnabled);
         queryCount.enabled(isEnabled);

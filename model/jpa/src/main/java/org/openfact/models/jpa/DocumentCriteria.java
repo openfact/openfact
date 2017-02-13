@@ -65,6 +65,30 @@ public class DocumentCriteria<R, Q> {
         return this;
     }
 
+    public DocumentCriteria filterTextReplaceAsterisk(String filterText, String... fieldName) {
+        Predicate[] orPredicates = Stream.of(fieldName)
+                .map(f -> cb.like(cb.upper(root.get(f)), filterText.toUpperCase().replace('*', '%')))
+                .toArray(size -> new Predicate[fieldName.length]);
+        predicates.add(cb.or(orPredicates));
+        return this;
+    }
+
+    public void customerSendEventFailures(int numberFailures, boolean greatherThan) {
+        if (greatherThan) {
+            predicates.add(cb.greaterThan(root.get(JpaDocumentProvider.CUSTOMER_SEND_EVENT_FAILURES), numberFailures));
+        } else {
+            predicates.add(cb.lessThan(root.get(JpaDocumentProvider.CUSTOMER_SEND_EVENT_FAILURES), numberFailures));
+        }
+    }
+
+    public void thirdPartySendEventFailures(int numberFailures, boolean greatherThan) {
+        if (greatherThan) {
+            predicates.add(cb.greaterThan(root.get(JpaDocumentProvider.THIRD_PARTY_SEND_EVENT_FAILURES), numberFailures));
+        } else {
+            predicates.add(cb.lessThan(root.get(JpaDocumentProvider.THIRD_PARTY_SEND_EVENT_FAILURES), numberFailures));
+        }
+    }
+
     public void enabled(boolean isEnabled) {
         this.predicates.add(cb.equal(root.get(JpaDocumentProvider.ENABLED), isEnabled));
     }
@@ -182,5 +206,5 @@ public class DocumentCriteria<R, Q> {
     public Root<R> getRoot() {
         return root;
     }
-    
+
 }
