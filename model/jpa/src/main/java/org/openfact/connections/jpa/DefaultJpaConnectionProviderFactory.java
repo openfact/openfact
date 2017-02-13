@@ -1,24 +1,6 @@
-/*******************************************************************************
- * Copyright 2016 Sistcoop, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
-
 package org.openfact.connections.jpa;
 
 import org.hibernate.engine.transaction.jta.platform.internal.AbstractJtaPlatform;
-import org.hibernate.jpa.AvailableSettings;
 import org.jboss.logging.Logger;
 import org.openfact.Config;
 import org.openfact.ServerStartupError;
@@ -50,17 +32,23 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
- */
 public class DefaultJpaConnectionProviderFactory implements JpaConnectionProviderFactory, ServerInfoAwareProviderFactory {
 
     private static final Logger logger = Logger.getLogger(DefaultJpaConnectionProviderFactory.class);
+
+    enum MigrationStrategy {
+        UPDATE, VALIDATE, MANUAL
+    }
+
     private volatile EntityManagerFactory emf;
-    private Config.Scope config;
+
+    private org.openfact.Config.Scope config;
+
     private Map<String, String> operationalInfo;
+
     private boolean jtaEnabled;
     private JtaTransactionManagerLookup jtaLookup;
+
     private OpenfactSessionFactory factory;
 
     @Override
@@ -128,21 +116,21 @@ public class DefaultJpaConnectionProviderFactory implements JpaConnectionProvide
                         String dataSource = config.get("dataSource");
                         if (dataSource != null) {
                             if (config.getBoolean("jta", jtaEnabled)) {
-                                properties.put(AvailableSettings.JTA_DATASOURCE, dataSource);
+                                properties.put(org.hibernate.ejb.AvailableSettings.JTA_DATASOURCE, dataSource);
                             } else {
-                                properties.put(AvailableSettings.NON_JTA_DATASOURCE, dataSource);
+                                properties.put(org.hibernate.ejb.AvailableSettings.NON_JTA_DATASOURCE, dataSource);
                             }
                         } else {
-                            properties.put(AvailableSettings.JDBC_URL, config.get("url"));
-                            properties.put(AvailableSettings.JDBC_DRIVER, config.get("driver"));
+                            properties.put(org.hibernate.ejb.AvailableSettings.JDBC_URL, config.get("url"));
+                            properties.put(org.hibernate.ejb.AvailableSettings.JDBC_DRIVER, config.get("driver"));
 
                             String user = config.get("user");
                             if (user != null) {
-                                properties.put(AvailableSettings.JDBC_USER, user);
+                                properties.put(org.hibernate.ejb.AvailableSettings.JDBC_USER, user);
                             }
                             String password = config.get("password");
                             if (password != null) {
-                                properties.put(AvailableSettings.JDBC_PASSWORD, password);
+                                properties.put(org.hibernate.ejb.AvailableSettings.JDBC_PASSWORD, password);
                             }
                         }
 
@@ -230,6 +218,7 @@ public class DefaultJpaConnectionProviderFactory implements JpaConnectionProvide
             logger.warn("Unable to prepare operational info due database exception: " + e.getMessage());
         }
     }
+
 
     protected String detectDialect(Connection connection) {
         String driverDialect = config.get("driverDialect");
@@ -386,10 +375,6 @@ public class DefaultJpaConnectionProviderFactory implements JpaConnectionProvide
         } else {
             return MigrationStrategy.UPDATE;
         }
-    }
-
-    enum MigrationStrategy {
-        UPDATE, VALIDATE, MANUAL
     }
 
 }

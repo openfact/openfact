@@ -28,8 +28,6 @@ import org.jboss.logging.Logger;
 
 /**
  * We use "SELECT FOR UPDATE" pessimistic locking (Same algorithm like Hibernate LockMode.PESSIMISTIC_WRITE )
- *
- * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
  */
 public class CustomLockDatabaseChangeLogGenerator extends LockDatabaseChangeLogGenerator {
 

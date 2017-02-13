@@ -1,3 +1,4 @@
+org.openfact.provider.ExceptionConverterSpi
 org.openfact.models.OrganizationSpi
 org.openfact.models.dblock.DBLockSpi
 org.openfact.migration.MigrationSpi

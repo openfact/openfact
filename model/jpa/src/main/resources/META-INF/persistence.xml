@@ -30,7 +30,7 @@
         <class>org.openfact.events.jpa.EventEntity</class>
         <class>org.openfact.events.jpa.AdminEventEntity</class>
 
-        <!-- ublProvider -->
+        <!-- Universal Business Language UBL -->
         <class>org.openfact.models.jpa.entities.UBLDocumentEntity</class>
         <class>org.openfact.models.jpa.entities.AttachedUBLDocumentEntity</class>
         <class>org.openfact.models.jpa.entities.UBLDocumentAttributeEntity</class>

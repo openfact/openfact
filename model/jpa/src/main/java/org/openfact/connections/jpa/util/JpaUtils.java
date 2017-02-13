@@ -1,20 +1,3 @@
-/*******************************************************************************
- * Copyright 2016 Sistcoop, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
-
 package org.openfact.connections.jpa.util;
 
 import org.hibernate.boot.registry.classloading.internal.ClassLoaderServiceImpl;
@@ -33,16 +16,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * @author <a href="mailto:mposolda@sistcoop.com">Marek Posolda</a>
- */
 public class JpaUtils {
 
     public static final String HIBERNATE_DEFAULT_SCHEMA = "hibernate.default_schema";
 
     public static String getTableNameForNativeQuery(String tableName, EntityManager em) {
         String schema = (String) em.getEntityManagerFactory().getProperties().get(HIBERNATE_DEFAULT_SCHEMA);
-        return (schema==null) ? tableName : schema + "." + tableName;
+        return (schema == null) ? tableName : schema + "." + tableName;
     }
 
     public static EntityManagerFactory createEntityManagerFactory(OpenfactSession session, String unitName, Map<String, Object> properties, ClassLoader classLoader, boolean jta) {
@@ -68,7 +48,7 @@ public class JpaUtils {
 
     /**
      * Get a list of all provided entities by looping over all configured entity providers.
-     * 
+     *
      * @param session the openfact session
      * @return a list of all provided entities (can be an empty list)
      */
@@ -85,6 +65,7 @@ public class JpaUtils {
 
     /**
      * Get the name of custom table for liquibase updates for give ID of JpaEntityProvider
+     *
      * @param jpaEntityProviderFactoryId
      * @return table name
      */

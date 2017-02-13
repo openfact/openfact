@@ -36,17 +36,6 @@
     </properties>
 
     <dependencies>
-        <!-- Secondary Start -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-java8</artifactId>
-        </dependency>
-        <!-- Secondary End -->
-
         <!-- Principal Start -->
         <dependency>
             <groupId>org.bouncycastle</groupId>
@@ -124,6 +113,17 @@
             <scope>test</scope>
         </dependency>
         <!-- Principal End -->
+
+        <!-- Secondary Start -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-java8</artifactId>
+        </dependency>
+        <!-- Secondary End -->
     </dependencies>
     <build>
         <plugins>

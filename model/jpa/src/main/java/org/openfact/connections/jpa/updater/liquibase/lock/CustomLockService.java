@@ -1,20 +1,3 @@
-/*******************************************************************************
- * Copyright 2016 Sistcoop, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
-
 package org.openfact.connections.jpa.updater.liquibase.lock;
 
 import liquibase.database.core.DerbyDatabase;
@@ -31,8 +14,6 @@ import java.lang.reflect.Field;
 
 /**
  * Liquibase lock service, which has some bugfixes and assumes timeouts to be configured in milliseconds
- *
- * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
  */
 public class CustomLockService extends StandardLockService {
 
@@ -118,7 +99,7 @@ public class CustomLockService extends StandardLockService {
         while (nextAttempt) {
             locked = acquireLock();
             if (!locked) {
-                int remainingTime = ((int)(timeToGiveUp / 1000)) - Time.currentTime();
+                int remainingTime = ((int) (timeToGiveUp / 1000)) - Time.currentTime();
                 if (remainingTime > 0) {
                     log.debugf("Will try to acquire log another time. Remaining time: %d seconds", remainingTime);
                 } else {
@@ -130,7 +111,7 @@ public class CustomLockService extends StandardLockService {
         }
 
         if (!locked) {
-            int timeout = ((int)(getChangeLogLockWaitTime() / 1000));
+            int timeout = ((int) (getChangeLogLockWaitTime() / 1000));
             throw new IllegalStateException("Could not acquire change log lock within specified timeout " + timeout + " seconds.  Currently locked by other transaction");
         }
     }

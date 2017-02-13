@@ -20,9 +20,6 @@ package org.openfact.connections.jpa.util;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * @author <a href="mailto:mposolda@sistcoop.com">Marek Posolda</a>
- */
 public class JpaUtilsTest {
 
     @Test

@@ -1,19 +1,3 @@
-/*******************************************************************************
- * Copyright 2016 Sistcoop, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
 package org.openfact.models.jpa;
 
 import org.jboss.logging.Logger;
@@ -22,8 +6,6 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
 import org.openfact.models.jpa.entities.OrganizationEntity;
-import org.openfact.models.search.SearchCriteriaModel;
-import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.utils.OpenfactModelUtils;
 
 import javax.persistence.EntityManager;
@@ -37,13 +19,15 @@ import java.util.stream.Collectors;
 
 public class JpaOrganizationProvider extends AbstractHibernateStorage implements OrganizationProvider {
 
-    protected static final Logger logger = Logger.getLogger(JpaOrganizationProvider.class);
+    private static final Logger logger = Logger.getLogger(JpaOrganizationProvider.class);
+
     private static final String NAME = "name";
     private static final String DESCRIPTION = "description";
     private static final String ASSIGNED_IDENTIFICATION_ID = "assignedIdentificationId";
     private static final String SUPPLIER_NAME = "supplierName";
     private static final String REGISTRATION_NAME = "registrationName";
-    private final OpenfactSession session;
+
+    protected final OpenfactSession session;
     protected EntityManager em;
 
     public JpaOrganizationProvider(OpenfactSession session, EntityManager em) {
@@ -194,75 +178,75 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
         return result.intValue();
     }
 
-    @Override
-    public List<OrganizationModel> searchForOrganization(String filterText, int firstResult, int maxResults) {
-        TypedQuery<OrganizationEntity> query = em.createNamedQuery("searchForOrganization", OrganizationEntity.class);
-        query.setParameter("filterText", "%" + filterText.toLowerCase() + "%");
-        if (firstResult != -1) {
-            query.setFirstResult(firstResult);
-        }
-        if (maxResults != -1) {
-            query.setMaxResults(maxResults);
-        }
-        List<OrganizationEntity> results = query.getResultList();
-        return results.stream().map(f -> new OrganizationAdapter(session, em, f)).collect(Collectors.toList());
-    }
+//    @Override
+//    public List<OrganizationModel> searchForOrganization(String filterText, int firstResult, int maxResults) {
+//        TypedQuery<OrganizationEntity> query = em.createNamedQuery("searchForOrganization", OrganizationEntity.class);
+//        query.setParameter("filterText", "%" + filterText.toLowerCase() + "%");
+//        if (firstResult != -1) {
+//            query.setFirstResult(firstResult);
+//        }
+//        if (maxResults != -1) {
+//            query.setMaxResults(maxResults);
+//        }
+//        List<OrganizationEntity> results = query.getResultList();
+//        return results.stream().map(f -> new OrganizationAdapter(session, em, f)).collect(Collectors.toList());
+//    }
 
-    @Override
-    public List<OrganizationModel> searchForOrganization(Map<String, String> attributes, int firstResult, int maxResults) {
-        StringBuilder builder = new StringBuilder("select u from OrganizationEntity u");
-        for (Map.Entry<String, String> entry : attributes.entrySet()) {
-            String attribute = null;
-            String parameterName = null;
-            if (entry.getKey().equals(OrganizationModel.NAME)) {
-                attribute = "lower(u.name)";
-                parameterName = JpaOrganizationProvider.NAME;
-            } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.SUPPLIER_NAME)) {
-                attribute = "lower(u.supplierName)";
-                parameterName = JpaOrganizationProvider.SUPPLIER_NAME;
-            } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.REGISTRATION_NAME)) {
-                attribute = "lower(u.registrationName)";
-                parameterName = JpaOrganizationProvider.REGISTRATION_NAME;
-            } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.ASSIGNED_IDENTIFICATION_ID)) {
-                attribute = "lower(u.assignedIdentificationId)";
-                parameterName = JpaOrganizationProvider.ASSIGNED_IDENTIFICATION_ID;
-            } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.DESCRIPTION)) {
-                attribute = "lower(u.description)";
-                parameterName = JpaOrganizationProvider.DESCRIPTION;
-            }
-            if (attribute == null)
-                continue;
-            builder.append(" and ");
-            builder.append(attribute).append(" like :").append(parameterName);
-        }
-        builder.append(" order by u.id");
-        String q = builder.toString();
-        TypedQuery<OrganizationEntity> query = em.createQuery(q, OrganizationEntity.class);
-        for (Map.Entry<String, String> entry : attributes.entrySet()) {
-            String parameterName = null;
-            if (entry.getKey().equals(OrganizationModel.NAME)) {
-                parameterName = JpaOrganizationProvider.NAME;
-            } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.SUPPLIER_NAME)) {
-                parameterName = JpaOrganizationProvider.SUPPLIER_NAME;
-            } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.REGISTRATION_NAME)) {
-                parameterName = JpaOrganizationProvider.REGISTRATION_NAME;
-            } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.ASSIGNED_IDENTIFICATION_ID)) {
-                parameterName = JpaOrganizationProvider.ASSIGNED_IDENTIFICATION_ID;
-            } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.DESCRIPTION)) {
-                parameterName = JpaOrganizationProvider.DESCRIPTION;
-            }
-            if (parameterName == null)
-                continue;
-            query.setParameter(parameterName, "%" + entry.getValue().toLowerCase() + "%");
-        }
-        if (firstResult != -1) {
-            query.setFirstResult(firstResult);
-        }
-        if (maxResults != -1) {
-            query.setMaxResults(maxResults);
-        }
-        List<OrganizationEntity> results = query.getResultList();
-        return results.stream().map(f -> new OrganizationAdapter(session, em, f)).collect(Collectors.toList());
-    }
+//    @Override
+//    public List<OrganizationModel> searchForOrganization(Map<String, String> attributes, int firstResult, int maxResults) {
+//        StringBuilder builder = new StringBuilder("select u from OrganizationEntity u");
+//        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+//            String attribute = null;
+//            String parameterName = null;
+//            if (entry.getKey().equals(OrganizationModel.NAME)) {
+//                attribute = "lower(u.name)";
+//                parameterName = JpaOrganizationProvider.NAME;
+//            } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.SUPPLIER_NAME)) {
+//                attribute = "lower(u.supplierName)";
+//                parameterName = JpaOrganizationProvider.SUPPLIER_NAME;
+//            } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.REGISTRATION_NAME)) {
+//                attribute = "lower(u.registrationName)";
+//                parameterName = JpaOrganizationProvider.REGISTRATION_NAME;
+//            } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.ASSIGNED_IDENTIFICATION_ID)) {
+//                attribute = "lower(u.assignedIdentificationId)";
+//                parameterName = JpaOrganizationProvider.ASSIGNED_IDENTIFICATION_ID;
+//            } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.DESCRIPTION)) {
+//                attribute = "lower(u.description)";
+//                parameterName = JpaOrganizationProvider.DESCRIPTION;
+//            }
+//            if (attribute == null)
+//                continue;
+//            builder.append(" and ");
+//            builder.append(attribute).append(" like :").append(parameterName);
+//        }
+//        builder.append(" order by u.id");
+//        String q = builder.toString();
+//        TypedQuery<OrganizationEntity> query = em.createQuery(q, OrganizationEntity.class);
+//        for (Map.Entry<String, String> entry : attributes.entrySet()) {
+//            String parameterName = null;
+//            if (entry.getKey().equals(OrganizationModel.NAME)) {
+//                parameterName = JpaOrganizationProvider.NAME;
+//            } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.SUPPLIER_NAME)) {
+//                parameterName = JpaOrganizationProvider.SUPPLIER_NAME;
+//            } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.REGISTRATION_NAME)) {
+//                parameterName = JpaOrganizationProvider.REGISTRATION_NAME;
+//            } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.ASSIGNED_IDENTIFICATION_ID)) {
+//                parameterName = JpaOrganizationProvider.ASSIGNED_IDENTIFICATION_ID;
+//            } else if (entry.getKey().equalsIgnoreCase(OrganizationModel.DESCRIPTION)) {
+//                parameterName = JpaOrganizationProvider.DESCRIPTION;
+//            }
+//            if (parameterName == null)
+//                continue;
+//            query.setParameter(parameterName, "%" + entry.getValue().toLowerCase() + "%");
+//        }
+//        if (firstResult != -1) {
+//            query.setFirstResult(firstResult);
+//        }
+//        if (maxResults != -1) {
+//            query.setMaxResults(maxResults);
+//        }
+//        List<OrganizationEntity> results = query.getResultList();
+//        return results.stream().map(f -> new OrganizationAdapter(session, em, f)).collect(Collectors.toList());
+//    }
 
 }
