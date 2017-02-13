@@ -99,6 +99,11 @@ public class UBLDocumentAdapter implements DocumentModel, JpaModel<UBLDocumentEn
     }
 
     @Override
+    public void disable() {
+        ublDocument.setEnabled(false);
+    }
+
+    @Override
     public OrganizationModel getOrganization() {
         return organization;
     }
