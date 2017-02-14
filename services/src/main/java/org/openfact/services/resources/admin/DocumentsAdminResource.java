@@ -90,7 +90,7 @@ public class DocumentsAdminResource {
     @GET
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    public List<DocumentRepresentation> getInvoices(
+    public List<DocumentRepresentation> getDocuments(
             @QueryParam("filterText") String filterText,
             @QueryParam("documentType") String documentType,
             @QueryParam("documentId") String documentId,
