@@ -1,36 +1,18 @@
-/*******************************************************************************
- * Copyright 2016 Sistcoop, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
-
 package org.openfact.keys;
 
 import org.jboss.logging.Logger;
 import org.openfact.component.ComponentModel;
+import org.openfact.jose.jws.AlgorithmType;
 import org.openfact.models.KeyManager;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.provider.ProviderFactory;
 
+import javax.crypto.SecretKey;
 import java.security.PublicKey;
 import java.security.cert.Certificate;
 import java.util.*;
 
-/**
- * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
- */
 public class DefaultKeyManager implements KeyManager {
 
     private static final Logger logger = Logger.getLogger(DefaultKeyManager.class);
@@ -43,84 +25,156 @@ public class DefaultKeyManager implements KeyManager {
     }
 
     @Override
-    public ActiveKey getActiveKey(OrganizationModel organization) {
-        for (KeyProvider p : getProviders(organization)) {
-            if (p.getKid() != null && p.getPrivateKey() != null) {
-                if (logger.isTraceEnabled()) {
-                    logger.tracev("Active key organization={0} kid={1}", organization.getName(), p.getKid());
+    public ActiveRsaKey getActiveRsaKey(OrganizationModel realm) {
+        for (KeyProvider p : getProviders(realm)) {
+            if (p.getType().equals(AlgorithmType.RSA)) {
+                RsaKeyProvider r = (RsaKeyProvider) p;
+                if (r.getKid() != null && r.getPrivateKey() != null) {
+                    if (logger.isTraceEnabled()) {
+                        logger.tracev("Active key realm={0} kid={1}", realm.getName(), p.getKid());
+                    }
+                    String kid = p.getKid();
+                    return new ActiveRsaKey(kid, r.getPrivateKey(), r.getPublicKey(kid), r.getCertificate(kid));
                 }
-                String kid = p.getKid();
-                return new ActiveKey(kid, p.getPrivateKey(), p.getPublicKey(kid), p.getCertificate(kid));
             }
         }
-        throw new RuntimeException("Failed to getObject keys");
+        throw new RuntimeException("Failed to get RSA keys");
     }
 
     @Override
-    public PublicKey getPublicKey(OrganizationModel organization, String kid) {
+    public ActiveHmacKey getActiveHmacKey(OrganizationModel realm) {
+        for (KeyProvider p : getProviders(realm)) {
+            if (p.getType().equals(AlgorithmType.HMAC)) {
+                HmacKeyProvider h = (HmacKeyProvider) p;
+                if (h.getKid() != null && h.getSecretKey() != null) {
+                    if (logger.isTraceEnabled()) {
+                        logger.tracev("Active secret realm={0} kid={1}", realm.getName(), p.getKid());
+                    }
+                    String kid = p.getKid();
+                    return new ActiveHmacKey(kid, h.getSecretKey());
+                }
+            }
+        }
+        throw new RuntimeException("Failed to get keys");
+    }
+
+    @Override
+    public PublicKey getRsaPublicKey(OrganizationModel realm, String kid) {
         if (kid == null) {
-            logger.warnv("KID is null, can't find public key", organization.getName(), kid);
+            logger.warnv("KID is null, can't find public key", realm.getName(), kid);
             return null;
         }
 
-        for (KeyProvider p : getProviders(organization)) {
-            PublicKey publicKey = p.getPublicKey(kid);
-            if (publicKey != null) {
-                if (logger.isTraceEnabled()) {
-                    logger.tracev("Found public key organization={0} kid={1}", organization.getName(), kid);
+        for (KeyProvider p : getProviders(realm)) {
+            if (p.getType().equals(AlgorithmType.RSA)) {
+                RsaKeyProvider r = (RsaKeyProvider) p;
+                PublicKey publicKey = r.getPublicKey(kid);
+                if (publicKey != null) {
+                    if (logger.isTraceEnabled()) {
+                        logger.tracev("Found public key realm={0} kid={1}", realm.getName(), kid);
+                    }
+                    return publicKey;
                 }
-                return publicKey;
             }
         }
         if (logger.isTraceEnabled()) {
-            logger.tracev("Failed to find public key organization={0} kid={1}", organization.getName(), kid);
+            logger.tracev("Failed to find public key realm={0} kid={1}", realm.getName(), kid);
         }
         return null;
     }
 
     @Override
-    public Certificate getCertificate(OrganizationModel organization, String kid) {
+    public Certificate getRsaCertificate(OrganizationModel realm, String kid) {
         if (kid == null) {
-            logger.warnv("KID is null, can't find public key", organization.getName(), kid);
+            logger.warnv("KID is null, can't find public key", realm.getName(), kid);
             return null;
         }
 
-        for (KeyProvider p : getProviders(organization)) {
-            Certificate certificate = p.getCertificate(kid);
-            if (certificate != null) {
-                if (logger.isTraceEnabled()) {
-                    logger.tracev("Found certificate organization={0} kid={1}", organization.getName(), kid);
+        for (KeyProvider p : getProviders(realm)) {
+            if (p.getType().equals(AlgorithmType.RSA)) {
+                RsaKeyProvider r = (RsaKeyProvider) p;
+                Certificate certificate = r.getCertificate(kid);
+                if (certificate != null) {
+                    if (logger.isTraceEnabled()) {
+                        logger.tracev("Found certificate realm={0} kid={1}", realm.getName(), kid);
+                    }
+                    return certificate;
                 }
-                return certificate;
             }
         }
         if (logger.isTraceEnabled()) {
-            logger.tracev("Failed to find certificate organization={0} kid={1}", organization.getName(), kid);
+            logger.tracev("Failed to find certificate realm={0} kid={1}", realm.getName(), kid);
         }
         return null;
     }
 
     @Override
-    public List<KeyMetadata> getKeys(OrganizationModel organization, boolean includeDisabled) {
-        List<KeyMetadata> keys = new LinkedList<>();
-        for (KeyProvider p : getProviders(organization)) {
-            if (includeDisabled) {
-                keys.addAll(p.getKeyMetadata());
-            } else {
-                p.getKeyMetadata().stream().filter(k -> k.getStatus() != KeyMetadata.Status.DISABLED).forEach(k -> keys.add(k));
+    public SecretKey getHmacSecretKey(OrganizationModel realm, String kid) {
+        if (kid == null) {
+            logger.warnv("KID is null, can't find public key", realm.getName(), kid);
+            return null;
+        }
+
+        for (KeyProvider p : getProviders(realm)) {
+            if (p.getType().equals(AlgorithmType.HMAC)) {
+                HmacKeyProvider h = (HmacKeyProvider) p;
+                SecretKey s = h.getSecretKey(kid);
+                if (s != null) {
+                    if (logger.isTraceEnabled()) {
+                        logger.tracev("Found secret key realm={0} kid={1}", realm.getName(), kid);
+                    }
+                    return s;
+                }
+            }
+        }
+        if (logger.isTraceEnabled()) {
+            logger.tracev("Failed to find secret key realm={0} kid={1}", realm.getName(), kid);
+        }
+        return null;
+    }
+
+    @Override
+    public List<RsaKeyMetadata> getRsaKeys(OrganizationModel realm, boolean includeDisabled) {
+        List<RsaKeyMetadata> keys = new LinkedList<>();
+        for (KeyProvider p : getProviders(realm)) {
+            if (p instanceof RsaKeyProvider) {
+                if (includeDisabled) {
+                    keys.addAll(p.getKeyMetadata());
+                } else {
+                    List<RsaKeyMetadata> metadata = p.getKeyMetadata();
+                    metadata.stream().filter(k -> k.getStatus() != KeyMetadata.Status.DISABLED).forEach(k -> keys.add(k));
+                }
             }
         }
         return keys;
     }
 
-    private List<KeyProvider> getProviders(OrganizationModel organization) {
-        boolean active = false;
-        List<KeyProvider> providers = providersMap.get(organization.getId());
+    @Override
+    public List<HmacKeyMetadata> getHmacKeys(OrganizationModel realm, boolean includeDisabled) {
+        List<HmacKeyMetadata> keys = new LinkedList<>();
+        for (KeyProvider p : getProviders(realm)) {
+            if (p instanceof HmacKeyProvider) {
+                if (includeDisabled) {
+                    keys.addAll(p.getKeyMetadata());
+                } else {
+                    List<HmacKeyMetadata> metadata = p.getKeyMetadata();
+                    metadata.stream().filter(k -> k.getStatus() != KeyMetadata.Status.DISABLED).forEach(k -> keys.add(k));
+                }
+            }
+        }
+        return keys;
+    }
+
+    private List<KeyProvider> getProviders(OrganizationModel realm) {
+        List<KeyProvider> providers = providersMap.get(realm.getId());
         if (providers == null) {
             providers = new LinkedList<>();
 
-            List<ComponentModel> components = new LinkedList<>(organization.getComponents(organization.getId(), KeyProvider.class.getName()));
+            List<ComponentModel> components = new LinkedList<>(realm.getComponents(realm.getId(), KeyProvider.class.getName()));
             components.sort(new ProviderComparator());
+
+            boolean activeRsa = false;
+            boolean activeHmac = false;
 
             for (ComponentModel c : components) {
                 try {
@@ -129,19 +183,31 @@ public class DefaultKeyManager implements KeyManager {
                     KeyProvider provider = factory.create(session, c);
                     session.enlistForClose(provider);
                     providers.add(provider);
-                    if (!active && provider.getKid() != null && provider.getPrivateKey() != null) {
-                        active = true;
+                    if (provider.getType().equals(AlgorithmType.RSA)) {
+                        RsaKeyProvider r = (RsaKeyProvider) provider;
+                        if (r.getKid() != null && r.getPrivateKey() != null) {
+                            activeRsa = true;
+                        }
+                    } else if (provider.getType().equals(AlgorithmType.HMAC)) {
+                        HmacKeyProvider r = (HmacKeyProvider) provider;
+                        if (r.getKid() != null && r.getSecretKey() != null) {
+                            activeHmac = true;
+                        }
                     }
                 } catch (Throwable t) {
                     logger.errorv(t, "Failed to load provider {0}", c.getId());
                 }
             }
 
-            if (!active) {
+            if (!activeRsa) {
                 providers.add(new FailsafeRsaKeyProvider());
             }
 
-            providersMap.put(organization.getId(), providers);
+            if (!activeHmac) {
+                providers.add(new FailsafeHmacKeyProvider());
+            }
+
+            providersMap.put(realm.getId(), providers);
         }
         return providers;
     }

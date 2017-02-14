@@ -21,8 +21,6 @@ import java.util.Map;
 
 /**
  * Marker interface for {@link ProviderFactory} of Provider which wants to show some info on "Server Info" page in Admin console.
- * 
- * @author Vlastimil Elias (velias at redhat dot com)
  */
 public interface ServerInfoAwareProviderFactory {
 

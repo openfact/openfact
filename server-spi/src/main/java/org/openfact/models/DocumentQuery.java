@@ -16,17 +16,14 @@ public interface DocumentQuery {
     DocumentQuery currencyCode(String... currencyCode);
 
     DocumentQuery documentType(DocumentType... documentType);
-
     DocumentQuery documentType(String... documentType);
 
     DocumentQuery requiredAction(RequiredAction... requiredAction);
 
     DocumentQuery filterText(String filterText, String... fieldName);
-
     DocumentQuery filterTextReplaceAsterisk(String filterText, String... fieldName);
 
     DocumentQuery customerSendEventFailures(int numberFailures, boolean greatherThan);
-
     DocumentQuery thirdPartySendEventFailures(int numberFailures, boolean greatherThan);
 
     DocumentQuery enabled(boolean isEnabled);
@@ -36,15 +33,12 @@ public interface DocumentQuery {
      */
     DocumentQuery addFilter(String key, String value);
     DocumentQuery addFilter(Map<String, String> filters);
-
     DocumentQuery addFilter(String key, Object value, SearchCriteriaFilterOperator operator);
 
     DocumentQuery fromDate(LocalDateTime fromDate);
-
     DocumentQuery toDate(LocalDateTime toDate);
 
     EntityQuery entityQuery();
-
     CountQuery countQuery();
 
     interface EntityQuery {

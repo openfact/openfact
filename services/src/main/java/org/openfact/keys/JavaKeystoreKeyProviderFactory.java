@@ -1,20 +1,3 @@
-/*******************************************************************************
- * Copyright 2016 Sistcoop, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
-
 package org.openfact.keys;
 
 import org.jboss.logging.Logger;
@@ -31,9 +14,6 @@ import java.util.List;
 
 import static org.openfact.provider.ProviderConfigProperty.STRING_TYPE;
 
-/**
- * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
- */
 public class JavaKeystoreKeyProviderFactory extends AbstractRsaKeyProviderFactory {
     private static final Logger logger = Logger.getLogger(JavaKeystoreKeyProviderFactory.class);
 
@@ -66,8 +46,8 @@ public class JavaKeystoreKeyProviderFactory extends AbstractRsaKeyProviderFactor
     }
 
     @Override
-    public void validateConfiguration(OpenfactSession session, OrganizationModel organization, ComponentModel model) throws ComponentValidationException {
-        super.validateConfiguration(session, organization, model);
+    public void validateConfiguration(OpenfactSession session, OrganizationModel realm, ComponentModel model) throws ComponentValidationException {
+        super.validateConfiguration(session, realm, model);
 
         ConfigurationValidationHelper.check(model)
                 .checkSingle(KEYSTORE_PROPERTY, true)

@@ -96,7 +96,7 @@ public class DocumentProviderTest extends AbstractProviderTest {
         DocumentModel document1 = provider.addDocument(DocumentType.INVOICE, "F001-0001", organization);
         commit();
 
-        DocumentModel document2 = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "F001-0001", organization);
+        DocumentModel document2 = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "F001-0001", organization);
         assertThat(document2, is(notNullValue()));
         assertThat(document2.getId(), is(notNullValue()));
         assertThat(document2.getId(), is(equalTo(document1.getId())));
@@ -111,10 +111,10 @@ public class DocumentProviderTest extends AbstractProviderTest {
         provider.addDocument(DocumentType.INVOICE, "F001-0001", organization);
         commit();
 
-        DocumentModel document = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "F001-0001", organization);
+        DocumentModel document = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "F001-0001", organization);
         assertThat(session.documents().removeDocument(document.getId(), organization), is(true));
         assertThat(session.documents().removeDocument(document.getId(), organization), is(false));
-        assertThat(session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "F001-0001", organization), is(nullValue()));
+        assertThat(session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "F001-0001", organization), is(nullValue()));
     }
 
     /**
@@ -152,17 +152,17 @@ public class DocumentProviderTest extends AbstractProviderTest {
         commit();
 
         session.documents().addDocument(DocumentType.INVOICE, "F01-001", sistcoop1).addRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
-        session.documents().addDocument(DocumentType.INVOICE, "F01-002", sistcoop1).addRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-002", sistcoop1).addRequiredAction(RequiredAction.SEND_TO_THIRD_PARTY);
         session.documents().addDocument(DocumentType.INVOICE, "F01-003", sistcoop1);
         session.documents().addDocument(DocumentType.CREDIT_NOTE, "C01-001", sistcoop1).addRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
-        session.documents().addDocument(DocumentType.CREDIT_NOTE, "C01-002", sistcoop1).addRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
+        session.documents().addDocument(DocumentType.CREDIT_NOTE, "C01-002", sistcoop1).addRequiredAction(RequiredAction.SEND_TO_THIRD_PARTY);
         session.documents().addDocument(DocumentType.CREDIT_NOTE, "C01-003", sistcoop1);
 
         session.documents().addDocument(DocumentType.INVOICE, "F01-004", sistcoop2).addRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
-        session.documents().addDocument(DocumentType.INVOICE, "F01-005", sistcoop2).addRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-005", sistcoop2).addRequiredAction(RequiredAction.SEND_TO_THIRD_PARTY);
         session.documents().addDocument(DocumentType.INVOICE, "F01-006", sistcoop2);
         session.documents().addDocument(DocumentType.CREDIT_NOTE, "F01-004", sistcoop2).addRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
-        session.documents().addDocument(DocumentType.CREDIT_NOTE, "F01-005", sistcoop2).addRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
+        session.documents().addDocument(DocumentType.CREDIT_NOTE, "F01-005", sistcoop2).addRequiredAction(RequiredAction.SEND_TO_THIRD_PARTY);
         session.documents().addDocument(DocumentType.CREDIT_NOTE, "F01-006", sistcoop2);
         commit();
 

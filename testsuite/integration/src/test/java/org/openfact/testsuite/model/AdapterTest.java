@@ -115,7 +115,7 @@ public class AdapterTest extends AbstractModelTest {
 
         organizationModel = model.getOrganization("SISTCOOP");
         Assert.assertTrue(organizationManager.getSession().documents().removeDocument(document.getId(), organizationModel));
-        assertNull(organizationManager.getSession().documents().getDocumentByTypeAndUblId(DocumentType.INVOICE.toString(), "F01-001", organizationModel));
+        assertNull(organizationManager.getSession().documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE.toString(), "F01-001", organizationModel));
     }
 
     @Test

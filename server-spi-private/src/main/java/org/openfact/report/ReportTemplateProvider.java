@@ -19,11 +19,14 @@ package org.openfact.report;
 import org.openfact.models.OrganizationModel;
 import org.openfact.provider.Provider;
 
-import java.util.List;
-import java.util.Map;
+public interface ReportTemplateProvider<T> extends Provider {
 
-public interface ReportDataProvider<T> extends Provider {
+    ReportTemplateProvider setOrganization(OrganizationModel organization);
 
-    Object getFieldValue(T t, String fieldName);
+    ReportTemplateProvider setThemeName(String themeName);
+
+    ReportTemplateProvider setParameter(String name, Object value);
+
+    byte[] getReport(T t, ExportFormat exportFormat) throws ReportException;
 
 }

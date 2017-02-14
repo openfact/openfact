@@ -63,11 +63,11 @@ public class DocumentManager {
     }
 
     public DocumentModel getDocumentByTypeAndDocumentId(String type, String documentId, OrganizationModel organization) {
-        return model.getDocumentByTypeAndUblId(type, documentId, organization);
+        return model.getDocumentByTypeAndDocumentId(type, documentId, organization);
     }
 
     public DocumentModel getDocumentByTypeAndDocumentId(DocumentType type, String documentId, OrganizationModel organization) {
-        return model.getDocumentByTypeAndUblId(type.toString(), documentId, organization);
+        return model.getDocumentByTypeAndDocumentId(type.toString(), documentId, organization);
     }
 
     public DocumentModel addInvoice(InvoiceType invoiceType, Map<String, List<String>> attributes, OrganizationModel organization) {
@@ -154,7 +154,7 @@ public class DocumentManager {
                     .filter(p -> p.getInvoiceDocumentReference() != null)
                     .forEach(c -> {
                         String invoiceDocumentId = c.getInvoiceDocumentReference().getIDValue();
-                        DocumentModel attachedDocument = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, invoiceDocumentId, organization);
+                        DocumentModel attachedDocument = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, invoiceDocumentId, organization);
                         if (attachedDocument != null) {
                             documentModel.addAttachedDocument(attachedDocument);
                         }
@@ -208,7 +208,7 @@ public class DocumentManager {
                     .filter(p -> p.getInvoiceDocumentReference() != null)
                     .forEach(c -> {
                         String invoiceDocumentId = c.getInvoiceDocumentReference().getIDValue();
-                        DocumentModel attachedDocument = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, invoiceDocumentId, organization);
+                        DocumentModel attachedDocument = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, invoiceDocumentId, organization);
                         if (attachedDocument != null) {
                             documentModel.addAttachedDocument(attachedDocument);
                         }
@@ -321,7 +321,7 @@ public class DocumentManager {
     }
 
     public SendEventModel sendToThirdPartyByEmail(OrganizationModel organization, DocumentModel document, String email) throws ModelInsuficientData, SendException {
-        SendEventModel sendEvent = document.addSendEvent(DestinyType.THIRD_PARTY_BY_EMAIL);
+        SendEventModel sendEvent = document.addSendEvent(DestinyType.CUSTOM_EMAIL);
         sendToThirdPartyByEmail(organization, document, sendEvent, email);
         return sendEvent;
     }

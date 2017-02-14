@@ -20,8 +20,6 @@ package org.openfact.provider;
 /**
  * Providers that are only supported in some environments can implement this interface to be able to determine if they
  * should be available or not.
- *
- * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
 public interface EnvironmentDependentProviderFactory {
 

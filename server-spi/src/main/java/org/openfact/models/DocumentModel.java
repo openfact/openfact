@@ -1,35 +1,16 @@
-/*******************************************************************************
- * Copyright 2016 Sistcoop, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
 package org.openfact.models;
 
-import java.math.BigDecimal;
+import org.json.JSONObject;
+import org.openfact.file.FileModel;
+import org.openfact.models.enums.DestinyType;
+import org.openfact.models.enums.RequiredAction;
+import org.openfact.provider.ProviderEvent;
+import org.w3c.dom.Document;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
-import org.json.JSONObject;
-import org.openfact.file.FileModel;
-import org.openfact.models.enums.DestinyType;
-import org.openfact.models.enums.DocumentType;
-import org.openfact.provider.ProviderEvent;
-import org.openfact.models.enums.RequiredAction;
-import org.w3c.dom.Document;
 
 public interface DocumentModel {
 
@@ -61,13 +42,13 @@ public interface DocumentModel {
     void setDocumentCurrencyCode(String currencyCode);
 
     String getCustomerRegistrationName();
-    void setCustomerRegistrationName(String value);
+    void setCustomerRegistrationName(String customerRegistrationName);
 
     String getCustomerAssignedAccountId();
-    void setCustomerAssignedAccountId(String value);
+    void setCustomerAssignedAccountId(String customerAssignedAccountId);
 
     String getCustomerElectronicMail();
-    void setCustomerElectronicMail(String value);
+    void setCustomerElectronicMail(String customerElectronicMail);
 
     /**
      * Xml

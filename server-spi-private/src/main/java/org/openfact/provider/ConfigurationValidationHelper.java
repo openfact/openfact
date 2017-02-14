@@ -1,20 +1,3 @@
-/*******************************************************************************
- * Copyright 2016 Sistcoop, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
-
 package org.openfact.provider;
 
 import org.openfact.component.ComponentModel;
@@ -22,9 +5,6 @@ import org.openfact.component.ComponentValidationException;
 
 import java.util.List;
 
-/**
- * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
- */
 public class ConfigurationValidationHelper {
 
     private ComponentModel model;
@@ -39,6 +19,28 @@ public class ConfigurationValidationHelper {
 
     public ConfigurationValidationHelper checkInt(ProviderConfigProperty property, boolean required) throws ComponentValidationException {
         return checkInt(property.getName(), property.getLabel(), required);
+    }
+
+    public ConfigurationValidationHelper checkList(ProviderConfigProperty property, boolean required) throws ComponentValidationException {
+        checkSingle(property.getName(), property.getLabel(), required);
+
+        String value = model.getConfig().getFirst(property.getName());
+        if (value != null && !property.getOptions().contains(value)) {
+            StringBuilder options = new StringBuilder();
+            int i = 1;
+            for (String o : property.getOptions()) {
+                if (i == property.getOptions().size()) {
+                    options.append(" or ");
+                } else if (i > 1) {
+                    options.append(", ");
+                }
+                options.append(o);
+                i++;
+            }
+            throw new ComponentValidationException("''{0}'' should be {1}", property.getLabel(), options.toString());
+        }
+
+        return this;
     }
 
     public ConfigurationValidationHelper checkInt(String key, String label, boolean required) throws ComponentValidationException {
@@ -118,4 +120,5 @@ public class ConfigurationValidationHelper {
 
         return this;
     }
+
 }

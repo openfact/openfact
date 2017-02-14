@@ -23,8 +23,8 @@ import java.util.stream.Stream;
 
 public enum RequiredAction {
 
-    SEND_TO_TRIRD_PARTY(true),
-    SEND_TO_CUSTOMER(true);
+    SEND_TO_CUSTOMER(true),
+    SEND_TO_THIRD_PARTY(true);
 
     private boolean isDefault;
 

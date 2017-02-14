@@ -43,8 +43,8 @@ public interface DocumentProvider extends Provider {
      * @param organization
      * @return
      */
-    DocumentModel getDocumentByTypeAndUblId(String documentType, String ublId, OrganizationModel organization);
-    DocumentModel getDocumentByTypeAndUblId(DocumentType documentType, String ublId, OrganizationModel organization);
+    DocumentModel getDocumentByTypeAndDocumentId(String documentType, String documentId, OrganizationModel organization);
+    DocumentModel getDocumentByTypeAndDocumentId(DocumentType documentType, String documentId, OrganizationModel organization);
 
     /**
      * @param organization

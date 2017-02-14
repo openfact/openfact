@@ -16,21 +16,22 @@
  *******************************************************************************/
 package org.openfact.services.resources.admin;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-
 import org.jboss.resteasy.annotations.cache.NoCache;
-import org.openfact.common.util.PemUtils;
-import org.openfact.keys.KeyMetadata;
+import org.openfact.jose.jws.AlgorithmType;
+import org.openfact.keys.HmacKeyMetadata;
+import org.openfact.keys.RsaKeyMetadata;
 import org.openfact.models.KeyManager;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.representations.idm.KeysMetadataRepresentation;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 public class KeyResource {
 
@@ -53,18 +54,31 @@ public class KeyResource {
         KeyManager keystore = session.keys();
 
         KeysMetadataRepresentation keys = new KeysMetadataRepresentation();
-        keys.setActive(Collections.singletonMap(KeyMetadata.Type.RSA.name(), keystore.getActiveKey(organization).getKid()));
+
+        Map<String, String> active = new HashMap<>();
+        active.put(AlgorithmType.RSA.name(), keystore.getActiveRsaKey(organization).getKid());
+        active.put(AlgorithmType.HMAC.name(), keystore.getActiveHmacKey(organization).getKid());
+        keys.setActive(active);
 
         List<KeysMetadataRepresentation.KeyMetadataRepresentation> l = new LinkedList<>();
-        for (KeyMetadata m : session.keys().getKeys(organization, true)) {
+        for (RsaKeyMetadata m : session.keys().getRsaKeys(organization, true)) {
             KeysMetadataRepresentation.KeyMetadataRepresentation r = new KeysMetadataRepresentation.KeyMetadataRepresentation();
             r.setProviderId(m.getProviderId());
             r.setProviderPriority(m.getProviderPriority());
             r.setKid(m.getKid());
             r.setStatus(m.getStatus() != null ? m.getStatus().name() : null);
-            r.setType(m.getType() != null ? m.getType().name() : null);
-            r.setPublicKey(PemUtils.encodeKey(m.getPublicKey()));
-            r.setCertificate(PemUtils.encodeCertificate(m.getCertificate()));
+            r.setType(AlgorithmType.RSA.name());
+            r.setPublicKey(org.keycloak.common.util.PemUtils.encodeKey(m.getPublicKey()));
+            r.setCertificate(org.keycloak.common.util.PemUtils.encodeCertificate(m.getCertificate()));
+            l.add(r);
+        }
+        for (HmacKeyMetadata m : session.keys().getHmacKeys(organization, true)) {
+            KeysMetadataRepresentation.KeyMetadataRepresentation r = new KeysMetadataRepresentation.KeyMetadataRepresentation();
+            r.setProviderId(m.getProviderId());
+            r.setProviderPriority(m.getProviderPriority());
+            r.setKid(m.getKid());
+            r.setStatus(m.getStatus() != null ? m.getStatus().name() : null);
+            r.setType(AlgorithmType.HMAC.name());
             l.add(r);
         }
 

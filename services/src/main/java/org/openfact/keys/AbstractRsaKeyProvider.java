@@ -1,20 +1,3 @@
-/*******************************************************************************
- * Copyright 2016 Sistcoop, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
-
 package org.openfact.keys;
 
 import org.openfact.component.ComponentModel;
@@ -27,10 +10,7 @@ import java.security.cert.X509Certificate;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
- */
-public abstract class AbstractRsaKeyProvider implements KeyProvider {
+public abstract class AbstractRsaKeyProvider implements RsaKeyProvider {
 
     private final boolean enabled;
 
@@ -77,11 +57,11 @@ public abstract class AbstractRsaKeyProvider implements KeyProvider {
     }
 
     @Override
-    public final List<KeyMetadata> getKeyMetadata() {
+    public final List<RsaKeyMetadata> getKeyMetadata() {
         String kid = keys.getKid();
         PublicKey publicKey = keys.getKeyPair().getPublic();
         if (kid != null && publicKey != null) {
-            KeyMetadata k = new KeyMetadata();
+            RsaKeyMetadata k = new RsaKeyMetadata();
             k.setProviderId(model.getId());
             k.setProviderPriority(model.get(Attributes.PRIORITY_KEY, 0l));
             k.setKid(kid);
@@ -92,7 +72,6 @@ public abstract class AbstractRsaKeyProvider implements KeyProvider {
             } else {
                 k.setStatus(KeyMetadata.Status.DISABLED);
             }
-            k.setType(KeyMetadata.Type.RSA);
             k.setPublicKey(publicKey);
             k.setCertificate(keys.getCertificate());
             return Collections.singletonList(k);

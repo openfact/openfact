@@ -54,8 +54,6 @@ import org.w3c.dom.NodeList;
 public class DefaultSignerProvider implements SignerProvider {
 
     protected OpenfactSession session;
-    private static final String FACTORY = "DOM";
-    private static final String PREFIX = "ds";
 
     public DefaultSignerProvider(OpenfactSession session) {
         this.session = session;
@@ -82,11 +80,11 @@ public class DefaultSignerProvider implements SignerProvider {
             // Certificate
             KeyManager keystore = session.keys();
 
-            x509Content.add(keystore.getActiveKey(organizacion).getCertificate());
+            x509Content.add(keystore.getActiveRsaKey(organizacion).getCertificate());
             X509Data xdata = keyInfoFactory.newX509Data(x509Content);
             KeyInfo keyInfo = keyInfoFactory.newKeyInfo(Collections.singletonList(xdata));
 
-            DOMSignContext signContext = new DOMSignContext(keystore.getActiveKey(organizacion).getPrivateKey(), newdocument.getDocumentElement());
+            DOMSignContext signContext = new DOMSignContext(keystore.getActiveRsaKey(organizacion).getPrivateKey(), newdocument.getDocumentElement());
             XMLSignature signature = signatureFactory.newXMLSignature(signedInfo, keyInfo);
             if (parentNode != null) {
                 signContext.setParent(parentNode);
@@ -106,50 +104,6 @@ public class DefaultSignerProvider implements SignerProvider {
         } catch (MarshalException e) {
             throw new ModelException(e);
         } catch (XMLSignatureException e) {
-            throw new ModelException(e);
-        }
-    }
-
-    @Override
-    public Document sign(OrganizationModel organization) {
-        XMLSignatureFactory xmlSigFactory = XMLSignatureFactory.getInstance(FACTORY);
-        // Certificate
-        KeyManager keystore = session.keys();
-        try {
-            Document document = DocumentUtils.getEmptyDocument();
-            DOMSignContext domSignCtx = new DOMSignContext(keystore.getActiveKey(organization).getPrivateKey(),
-                    document);
-
-            domSignCtx.setDefaultNamespacePrefix(PREFIX);
-            Reference ref = xmlSigFactory.newReference("", xmlSigFactory.newDigestMethod(DigestMethod.SHA1, null),
-                    Collections.singletonList(
-                            xmlSigFactory.newTransform(Transform.ENVELOPED, (TransformParameterSpec) null)),
-                    null, null);
-            SignedInfo signedInfo = xmlSigFactory.newSignedInfo(
-                    xmlSigFactory.newCanonicalizationMethod(CanonicalizationMethod.INCLUSIVE,
-                            (C14NMethodParameterSpec) null),
-                    xmlSigFactory.newSignatureMethod(SignatureMethod.RSA_SHA1, null), Collections.singletonList(ref));
-
-            KeyInfoFactory keyInfoFactory = xmlSigFactory.getKeyInfoFactory();
-            List<X509Certificate> x509Content = new ArrayList<>();
-            x509Content.add(keystore.getActiveKey(organization).getCertificate());
-            X509Data xdata = keyInfoFactory.newX509Data(x509Content);
-            KeyInfo keyInfo = keyInfoFactory.newKeyInfo(Collections.singletonList(xdata));
-
-            // Create a new XML Signature
-            XMLSignature xmlSignature = xmlSigFactory.newXMLSignature(signedInfo, keyInfo, null,
-                    "Signature" + organization.getName(), null);
-            xmlSignature.sign(domSignCtx);
-            return document;
-        } catch (NoSuchAlgorithmException e) {
-            throw new ModelException(e);
-        } catch (InvalidAlgorithmParameterException e) {
-            throw new ModelException(e);
-        } catch (MarshalException e) {
-            throw new ModelException(e);
-        } catch (XMLSignatureException e) {
-            throw new ModelException(e);
-        } catch (ParserConfigurationException e) {
             throw new ModelException(e);
         }
     }

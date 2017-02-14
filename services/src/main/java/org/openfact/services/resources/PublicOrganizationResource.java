@@ -60,15 +60,6 @@ public class PublicOrganizationResource {
         this.organization = organization;
     }
 
-    public static PublishedOrganizationRepresentation organizationRep(OpenfactSession session,
-                                                                      OrganizationModel organization, UriInfo uriInfo) {
-        PublishedOrganizationRepresentation rep = new PublishedOrganizationRepresentation();
-        rep.setOrganization(organization.getName());
-        rep.setAdminApiUrl(uriInfo.getBaseUriBuilder().path(AdminRoot.class).build().toString());
-        rep.setPublicKeyPem(PemUtils.encodeKey(session.keys().getActiveKey(organization).getPublicKey()));
-        return rep;
-    }
-
     @Path("/")
     @OPTIONS
     public Response accountPreflight() {
@@ -81,6 +72,14 @@ public class PublicOrganizationResource {
     public PublishedOrganizationRepresentation getOrganization() {
         Cors.add(request).allowedOrigins(Cors.ACCESS_CONTROL_ALLOW_ORIGIN_WILDCARD).auth().build(response);
         return organizationRep(session, organization, uriInfo);
+    }
+
+    public static PublishedOrganizationRepresentation organizationRep(OpenfactSession session, OrganizationModel organization, UriInfo uriInfo) {
+        PublishedOrganizationRepresentation rep = new PublishedOrganizationRepresentation();
+        rep.setOrganization(organization.getName());
+        rep.setAdminApiUrl(uriInfo.getBaseUriBuilder().path(AdminRoot.class).build().toString());
+        rep.setPublicKeyPem(PemUtils.encodeKey(session.keys().getActiveRsaKey(organization).getPublicKey()));
+        return rep;
     }
 
 }

@@ -16,8 +16,12 @@
  *******************************************************************************/
 package org.openfact.ubl;
 
-import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
+import org.openfact.models.OrganizationModel;
 import org.openfact.provider.Provider;
+import org.w3c.dom.Document;
 
-public interface UBLInvoiceProvider extends UBLProvider<InvoiceType>, Provider {
+public interface SignerProvider extends Provider {
+
+    Document sign(Document document, OrganizationModel organization);
+
 }

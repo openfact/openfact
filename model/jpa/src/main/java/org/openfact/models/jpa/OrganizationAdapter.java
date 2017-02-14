@@ -22,7 +22,6 @@ import org.openfact.component.ComponentFactory;
 import org.openfact.component.ComponentModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.RequiredActionProviderModel;
 import org.openfact.models.enums.DocumentType;
 import org.openfact.models.jpa.entities.*;
 import org.openfact.models.utils.ComponentUtil;

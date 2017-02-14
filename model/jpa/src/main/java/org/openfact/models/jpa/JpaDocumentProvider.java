@@ -78,7 +78,7 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
 
     @Override
     public DocumentModel addDocument(String documentType, String documentId, OrganizationModel organization) {
-        if (session.documents().getDocumentByTypeAndUblId(documentType, documentId, organization) != null) {
+        if (session.documents().getDocumentByTypeAndDocumentId(documentType, documentId, organization) != null) {
             throw new ModelDuplicateException("Document documentId[" + documentId + "] exists");
         }
 
@@ -113,12 +113,12 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
     }
 
     @Override
-    public DocumentModel getDocumentByTypeAndUblId(DocumentType documentType, String ublId, OrganizationModel organization) {
-        return getDocumentByTypeAndUblId(documentType.toString(), ublId, organization);
+    public DocumentModel getDocumentByTypeAndDocumentId(DocumentType documentType, String ublId, OrganizationModel organization) {
+        return getDocumentByTypeAndDocumentId(documentType.toString(), ublId, organization);
     }
 
     @Override
-    public DocumentModel getDocumentByTypeAndUblId(String documentType, String ublId, OrganizationModel organization) {
+    public DocumentModel getDocumentByTypeAndDocumentId(String documentType, String ublId, OrganizationModel organization) {
         TypedQuery<UBLDocumentEntity> query = em.createNamedQuery("getOrganizationDocumentByTypeAndUblId", UBLDocumentEntity.class);
         query.setParameter("documentType", documentType.toUpperCase());
         query.setParameter("ublId", ublId.toUpperCase());

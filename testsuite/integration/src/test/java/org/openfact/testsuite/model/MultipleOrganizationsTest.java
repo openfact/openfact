@@ -21,7 +21,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openfact.file.FileModel;
-import org.openfact.file.FileProvider;
 import org.openfact.models.DocumentModel;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.enums.DocumentType;
@@ -47,8 +46,8 @@ public class MultipleOrganizationsTest extends AbstractModelTest {
 
     @Test
     public void testDocuments() {
-        DocumentModel r1invoice1 = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE.toString(), "F01-001", organization1);
-        DocumentModel r2invoice1 = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE.toString(), "F01-001", organization2);
+        DocumentModel r1invoice1 = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE.toString(), "F01-001", organization1);
+        DocumentModel r2invoice1 = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE.toString(), "F01-001", organization2);
         Assert.assertEquals(r1invoice1.getDocumentId(), r2invoice1.getDocumentId());
         Assert.assertNotEquals(r1invoice1.getId(), r2invoice1.getId());
 
@@ -60,7 +59,7 @@ public class MultipleOrganizationsTest extends AbstractModelTest {
         organization2 = model.getOrganization("id2");
 
         session.documents().removeDocument(r1invoice1.getId(), organization1);
-        DocumentModel invoice2 = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE.toString(), "F01-002", organization1);
+        DocumentModel invoice2 = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE.toString(), "F01-002", organization1);
         session.documents().removeDocument(invoice2.getId(), organization1);
         Assert.assertEquals(0, session.documents().searchForDocument("F01", organization1).size());
         Assert.assertEquals(2, session.documents().searchForDocument("F01", organization2).size());

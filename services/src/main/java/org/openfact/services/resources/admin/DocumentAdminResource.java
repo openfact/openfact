@@ -294,7 +294,7 @@ public class DocumentAdminResource {
             throw new BadRequestException("Invalid email sended");
         }
 
-        SendEventModel sendEvent = document.addSendEvent(DestinyType.THIRD_PARTY_BY_EMAIL);
+        SendEventModel sendEvent = document.addSendEvent(DestinyType.CUSTOM_EMAIL);
 
         OpenfactModelUtils.runThreadInTransaction(session.getOpenfactSessionFactory(), sessionThread -> {
             DocumentManager manager = new DocumentManager(sessionThread);

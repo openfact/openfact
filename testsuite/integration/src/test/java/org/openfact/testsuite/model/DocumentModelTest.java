@@ -49,10 +49,10 @@ public class DocumentModelTest extends AbstractModelTest {
         Assert.assertTrue((System.currentTimeMillis() - Date.from(document.getCreatedTimestamp().atZone(ZoneId.systemDefault()).toInstant()).getTime()) < 10000);
 
         document.addRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
-        document.addRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY);
+        document.addRequiredAction(RequiredAction.SEND_TO_THIRD_PARTY);
 
         OrganizationModel searchOrganization = organizationManager.getOrganization(organization.getId());
-        DocumentModel persisted = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "document", searchOrganization);
+        DocumentModel persisted = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "document", searchOrganization);
 
         assertEquals(document, persisted);
 
@@ -72,32 +72,32 @@ public class DocumentModelTest extends AbstractModelTest {
         String id = organization.getId();
         commit();
         organization = organizationManager.getOrganization(id);
-        document = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "document", organization);
+        document = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "document", organization);
 
         Assert.assertEquals(1, document.getRequiredActions().size());
         Assert.assertTrue(document.getRequiredActions().contains(RequiredAction.SEND_TO_CUSTOMER.name()));
 
         document.addRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
-        document = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "document", organization);
+        document = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "document", organization);
 
         Assert.assertEquals(1, document.getRequiredActions().size());
         Assert.assertTrue(document.getRequiredActions().contains(RequiredAction.SEND_TO_CUSTOMER.name()));
 
-        document.addRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY.name());
-        document = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "document", organization);
+        document.addRequiredAction(RequiredAction.SEND_TO_THIRD_PARTY.name());
+        document = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "document", organization);
 
         Assert.assertEquals(2, document.getRequiredActions().size());
         Assert.assertTrue(document.getRequiredActions().contains(RequiredAction.SEND_TO_CUSTOMER.name()));
-        Assert.assertTrue(document.getRequiredActions().contains(RequiredAction.SEND_TO_TRIRD_PARTY.name()));
+        Assert.assertTrue(document.getRequiredActions().contains(RequiredAction.SEND_TO_THIRD_PARTY.name()));
 
         document.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER.name());
-        document = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "document", organization);
+        document = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "document", organization);
 
         Assert.assertEquals(1, document.getRequiredActions().size());
-        Assert.assertTrue(document.getRequiredActions().contains(RequiredAction.SEND_TO_TRIRD_PARTY.name()));
+        Assert.assertTrue(document.getRequiredActions().contains(RequiredAction.SEND_TO_THIRD_PARTY.name()));
 
-        document.removeRequiredAction(RequiredAction.SEND_TO_TRIRD_PARTY.name());
-        document = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "document", organization);
+        document.removeRequiredAction(RequiredAction.SEND_TO_THIRD_PARTY.name());
+        document = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "document", organization);
 
         Assert.assertTrue(document.getRequiredActions().isEmpty());
     }
@@ -116,7 +116,7 @@ public class DocumentModelTest extends AbstractModelTest {
 
         // Test read attributes
         organization = organizationManager.getOrganizationByName("original");
-        document = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "document", organization);
+        document = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "document", organization);
 
         attrVals = document.getAttribute("key1");
         Assert.assertEquals(1, attrVals.size());
@@ -144,7 +144,7 @@ public class DocumentModelTest extends AbstractModelTest {
         commit();
 
         organization = organizationManager.getOrganizationByName("original");
-        document = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "document", organization);
+        document = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "document", organization);
         Assert.assertNull(document.getFirstAttribute("key1"));
         attrVals = document.getAttribute("key2");
         Assert.assertEquals(1, attrVals.size());
@@ -161,7 +161,7 @@ public class DocumentModelTest extends AbstractModelTest {
         commit();
 
         organization = organizationManager.getOrganizationByName("original");
-        document = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "document", organization);
+        document = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "document", organization);
 
         // Update attribute
         List<String> attrVals = new ArrayList<>(Arrays.asList("val2"));
@@ -195,7 +195,7 @@ public class DocumentModelTest extends AbstractModelTest {
         commit();
 
         organization = session.organizations().getOrganizationByName("original");
-        Assert.assertEquals(expected, session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "document", organization).getAttributes());
+        Assert.assertEquals(expected, session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "document", organization).getAttributes());
     }
 
     @Test
@@ -256,27 +256,27 @@ public class DocumentModelTest extends AbstractModelTest {
         String id = organization.getId();
         commit();
         organization = organizationManager.getOrganization(id);
-        document = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "document", organization);
+        document = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "document", organization);
 
         Assert.assertEquals(1, document.getSendEvents().size());
         Assert.assertTrue(document.getSendEvents().contains(sendEvent1));
         Assert.assertTrue(sendEvent1.getDestityType().equals(DestinyType.CUSTOMER));
 
         SendEventModel sendEvent2 = document.addSendEvent(DestinyType.THIRD_PARTY);
-        document = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "document", organization);
+        document = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "document", organization);
         Assert.assertTrue(sendEvent2.getDestityType().equals(DestinyType.THIRD_PARTY));
 
         Assert.assertEquals(2, document.getSendEvents().size());
         Assert.assertTrue(document.getSendEvents().contains(sendEvent2));
 
         document.removeSendEvent(sendEvent1);
-        document = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "document", organization);
+        document = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "document", organization);
 
         Assert.assertEquals(1, document.getSendEvents().size());
         Assert.assertTrue(document.getSendEvents().contains(sendEvent2));
 
         document.removeSendEvent(sendEvent2);
-        document = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "document", organization);
+        document = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "document", organization);
 
         Assert.assertTrue(document.getSendEvents().isEmpty());
     }
@@ -295,7 +295,7 @@ public class DocumentModelTest extends AbstractModelTest {
 
         // Test read attributes
         organization = organizationManager.getOrganizationByName("original");
-        document = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "document", organization);
+        document = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "document", organization);
         sendEvent = document.getSendEventById(sendEventId);
 
         Assert.assertEquals(sendEvent.getAttribute("key1"), "value1");
@@ -310,7 +310,7 @@ public class DocumentModelTest extends AbstractModelTest {
         commit();
 
         organization = organizationManager.getOrganizationByName("original");
-        document = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "document", organization);
+        document = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "document", organization);
         sendEvent = document.getSendEventById(sendEventId);
 
         Assert.assertNull(sendEvent.getAttribute("key1"));
@@ -334,7 +334,7 @@ public class DocumentModelTest extends AbstractModelTest {
         Assert.assertEquals(1, sendEvent.getAttachedFiles().size());
         commit();
 
-        document = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "document", organization);
+        document = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "document", organization);
         sendEvent = document.getSendEventById(sendEventId);
 
         Assert.assertEquals(1, sendEvent.getAttachedFiles().size());
@@ -369,7 +369,7 @@ public class DocumentModelTest extends AbstractModelTest {
         Assert.assertEquals(1, sendEvent.getAttachedFiles().size());
         commit();
 
-        document = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "document", organization);
+        document = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "document", organization);
         sendEvent = document.getSendEventById(sendEventId);
 
         Assert.assertEquals(1, sendEvent.getAttachedFiles().size());
@@ -395,7 +395,7 @@ public class DocumentModelTest extends AbstractModelTest {
         commit();
 
         organization = organizationManager.getOrganizationByName("original");
-        document = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "document", organization);
+        document = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "document", organization);
         sendEvent = document.getSendEventById(sendEventId);
         Assert.assertTrue(sendEvent.getAttachedFiles().isEmpty());
     }
@@ -414,7 +414,7 @@ public class DocumentModelTest extends AbstractModelTest {
         Assert.assertNotNull(document.getXmlAsFile());
         commit();
 
-        document = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "document", organization);
+        document = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "document", organization);
 
         Assert.assertNotNull(document.getXmlAsFile());
         Assert.assertEquals(document.getXmlAsFile(), session.getProvider(FileProvider.class).getFileById(organization, file1Id));
@@ -429,7 +429,7 @@ public class DocumentModelTest extends AbstractModelTest {
         commit();
 
         organization = organizationManager.getOrganizationByName("original");
-        document = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "document", organization);
+        document = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "document", organization);
 
         Assert.assertNotNull(document.getXmlAsFile());
         Assert.assertEquals(document.getXmlAsFile(), session.getProvider(FileProvider.class).getFileById(organization, file2Id));
@@ -458,8 +458,8 @@ public class DocumentModelTest extends AbstractModelTest {
         commit();
 
         organization = organizationManager.getOrganization(organizationId);
-        invoice = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "invoiceEntity", organization);
-        creditNote = session.documents().getDocumentByTypeAndUblId(DocumentType.CREDIT_NOTE, "creditNoteEntity", organization);
+        invoice = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "invoiceEntity", organization);
+        creditNote = session.documents().getDocumentByTypeAndDocumentId(DocumentType.CREDIT_NOTE, "creditNoteEntity", organization);
 
         Assert.assertEquals(1, invoice.getAttachedDocumentsAsOrigin().size());
         Assert.assertEquals(0, invoice.getAttachedDocumentsAsDestiny().size());
@@ -483,9 +483,9 @@ public class DocumentModelTest extends AbstractModelTest {
         commit();
 
         organization = organizationManager.getOrganization(organizationId);
-        invoice = session.documents().getDocumentByTypeAndUblId(DocumentType.INVOICE, "invoiceEntity", organization);
-        creditNote = session.documents().getDocumentByTypeAndUblId(DocumentType.CREDIT_NOTE, "creditNoteEntity", organization);
-        debitNote = session.documents().getDocumentByTypeAndUblId(DocumentType.DEBIT_NOTE, "debitNoteEntity", organization);
+        invoice = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "invoiceEntity", organization);
+        creditNote = session.documents().getDocumentByTypeAndDocumentId(DocumentType.CREDIT_NOTE, "creditNoteEntity", organization);
+        debitNote = session.documents().getDocumentByTypeAndDocumentId(DocumentType.DEBIT_NOTE, "debitNoteEntity", organization);
 
         Assert.assertEquals(2, invoice.getAttachedDocumentsAsOrigin().size());
         Assert.assertEquals(0, invoice.getAttachedDocumentsAsDestiny().size());

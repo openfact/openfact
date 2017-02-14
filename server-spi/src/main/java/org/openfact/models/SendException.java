@@ -17,9 +17,6 @@
 
 package org.openfact.models;
 
-/**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
- */
 public class SendException extends Exception {
 
     public SendException(Throwable cause) {
