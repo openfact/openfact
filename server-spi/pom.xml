@@ -36,13 +36,6 @@
     </properties>
 
     <dependencies>
-        <!-- Secondary Start -->
-        <dependency>
-            <groupId>com.helger</groupId>
-            <artifactId>ph-ubl21</artifactId>
-        </dependency>
-        <!-- Secondary End -->
-
         <!-- Principal Start -->
         <dependency>
             <groupId>org.jboss.spec.javax.transaction</groupId>
@@ -85,6 +78,13 @@
             <scope>test</scope>
         </dependency>
         <!-- Principal End -->
+
+        <!-- Secondary Start -->
+        <dependency>
+            <groupId>com.helger</groupId>
+            <artifactId>ph-ubl21</artifactId>
+        </dependency>
+        <!-- Secondary End -->
     </dependencies>
     <build>
         <plugins>
