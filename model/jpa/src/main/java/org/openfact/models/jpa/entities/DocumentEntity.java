@@ -34,24 +34,19 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 @Entity
-@Table(name = "UBL_DOCUMENT", uniqueConstraints = {
+@Table(name = "DOCUMENT", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"ORGANIZATION_ID", "DOCUMENT_TYPE", "DOCUMENT_ID"})
 })
 @NamedQueries({
-        @NamedQuery(name = "getAllUblDocumentsByOrganization", query = "select c from UBLDocumentEntity c where c.organizationId = :organizationId order by c.createdTimestamp"),
-        @NamedQuery(name = "getAllDocumentsByOrganizationDesc", query = "select c from UBLDocumentEntity c where c.organizationId = :organizationId order by c.createdTimestamp desc"),
-        @NamedQuery(name = "getAllDocumentsByOrganizationAndDocumentType", query = "select c from UBLDocumentEntity c where c.organizationId = :organizationId and c.documentType=:documentType order by c.createdTimestamp"),
-        @NamedQuery(name = "getAllDocumentsByOrganizationAndDocumentTypeDesc", query = "select c from UBLDocumentEntity c where c.organizationId = :organizationId and c.documentType=:documentType order by c.createdTimestamp desc"),
-        @NamedQuery(name = "getAllDocumentIdsByOrganization", query = "select c.id from UBLDocumentEntity c where c.organizationId = :organizationId order by c.createdTimestamp"),
-        @NamedQuery(name = "getAllDocumentsByRequiredActionAndOrganization", query = "select c from UBLDocumentEntity c inner join c.requiredActions r where c.organizationId = :organizationId and r.action in :requiredAction order by c.createdTimestamp"),
-        @NamedQuery(name = "getAllDocumentsByRequiredActionAndOrganizationAndDocumentType", query = "select c from UBLDocumentEntity c inner join c.requiredActions r where c.organizationId = :organizationId and c.documentType=:documentType and r.action in :requiredAction order by c.createdTimestamp"),
-        @NamedQuery(name = "getOrganizationDocumentById", query = "select i from UBLDocumentEntity i where i.id = :id and i.organizationId = :organizationId"),
-        @NamedQuery(name = "getOrganizationDocumentByTypeAndUblId", query = "select i from UBLDocumentEntity i where i.documentType=:documentType and i.documentId=:ublId and i.organizationId = :organizationId"),
-        @NamedQuery(name = "searchForUblDocument", query = "select i from UBLDocumentEntity i where i.organizationId = :organizationId and lower(i.documentId) like :search order by i.createdTimestamp"),
-        @NamedQuery(name = "getOrganizationUblDocumentCount", query = "select count(i) from UBLDocumentEntity i where i.organizationId = :organizationId"),
-        @NamedQuery(name = "deleteUblDocumentsByOrganization", query = "delete from UBLDocumentEntity u where u.organizationId = :organizationId")
+        @NamedQuery(name = "getAllDocumentsByOrganization", query = "select c from DocumentEntity c where c.organizationId = :organizationId order by c.createdTimestamp"),
+        @NamedQuery(name = "getAllDocumentIdsByOrganization", query = "select c.id from DocumentEntity c where c.organizationId = :organizationId order by c.createdTimestamp"),
+        @NamedQuery(name = "getOrganizationDocumentByDocumentPkId", query = "select i from DocumentEntity i where i.id = :documentPkId and i.organizationId = :organizationId"),
+        @NamedQuery(name = "getOrganizationDocumentByDocumentTypeAndDocumentId", query = "select i from DocumentEntity i where i.documentType=:documentType and i.documentId=:documentId and i.organizationId = :organizationId"),
+        @NamedQuery(name = "searchForDocument", query = "select i from DocumentEntity i where i.organizationId = :organizationId and lower(i.documentId) like :search order by i.createdTimestamp"),
+        @NamedQuery(name = "getOrganizationDocumentCount", query = "select count(i) from DocumentEntity i where i.organizationId = :organizationId"),
+        @NamedQuery(name = "deleteDocumentsByOrganization", query = "delete from DocumentEntity u where u.organizationId = :organizationId")
 })
-public class UBLDocumentEntity {
+public class DocumentEntity {
 
     @Id
     @Column(name = "ID")
@@ -95,11 +90,11 @@ public class UBLDocumentEntity {
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean enabled;
 
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "ublDocument")
-    private Collection<UBLDocumentAttributeEntity> attributes = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "document")
+    private Collection<DocumentAttributeEntity> attributes = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "ublDocument")
-    private Collection<UBLDocumentRequiredActionEntity> requiredActions = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "document")
+    private Collection<DocumentRequiredActionEntity> requiredActions = new ArrayList<>();
 
     @Column(name = "CUSTOMER_SEND_EVENT_FAILURES")
     private int customerSendEventFailures;
@@ -107,21 +102,24 @@ public class UBLDocumentEntity {
     @Column(name = "THIRD_PARTY_SEND_EVENT_FAILURES")
     private int thirdPartySendEventFailures;
 
-    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "ublDocument", fetch = FetchType.LAZY)
+    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "document", fetch = FetchType.LAZY)
+    private Collection<DocumentLineEntity> lines = new ArrayList<>();
+
+    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "document", fetch = FetchType.LAZY)
     private Collection<SendEventEntity> sendEvents = new ArrayList<>();
 
-    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "ublDocumentOrigin", fetch = FetchType.LAZY)
-    private Collection<AttachedUBLDocumentEntity> attachedDocumentsAsOrigin = new ArrayList<>();
+    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "documentOrigin", fetch = FetchType.LAZY)
+    private Collection<AttachedDocumentEntity> attachedDocumentsAsOrigin = new ArrayList<>();
 
-    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "ublDocumentDestiny", fetch = FetchType.LAZY)
-    private Collection<AttachedUBLDocumentEntity> attachedDocumentsAsDestiny = new ArrayList<>();
+    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "documentDestiny", fetch = FetchType.LAZY)
+    private Collection<AttachedDocumentEntity> attachedDocumentsAsDestiny = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UBLDocumentEntity that = (UBLDocumentEntity) o;
+        DocumentEntity that = (DocumentEntity) o;
 
         if (!getDocumentId().equals(that.getDocumentId())) return false;
         if (!getDocumentType().equals(that.getDocumentType())) return false;
@@ -224,19 +222,19 @@ public class UBLDocumentEntity {
         this.enabled = enabled;
     }
 
-    public Collection<UBLDocumentAttributeEntity> getAttributes() {
+    public Collection<DocumentAttributeEntity> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(Collection<UBLDocumentAttributeEntity> attributes) {
+    public void setAttributes(Collection<DocumentAttributeEntity> attributes) {
         this.attributes = attributes;
     }
 
-    public Collection<UBLDocumentRequiredActionEntity> getRequiredActions() {
+    public Collection<DocumentRequiredActionEntity> getRequiredActions() {
         return requiredActions;
     }
 
-    public void setRequiredActions(Collection<UBLDocumentRequiredActionEntity> requiredActions) {
+    public void setRequiredActions(Collection<DocumentRequiredActionEntity> requiredActions) {
         this.requiredActions = requiredActions;
     }
 
@@ -248,19 +246,19 @@ public class UBLDocumentEntity {
         this.sendEvents = sendEvents;
     }
 
-    public Collection<AttachedUBLDocumentEntity> getAttachedDocumentsAsOrigin() {
+    public Collection<AttachedDocumentEntity> getAttachedDocumentsAsOrigin() {
         return attachedDocumentsAsOrigin;
     }
 
-    public void setAttachedDocumentsAsOrigin(Collection<AttachedUBLDocumentEntity> attachedDocumentsAsOrigin) {
+    public void setAttachedDocumentsAsOrigin(Collection<AttachedDocumentEntity> attachedDocumentsAsOrigin) {
         this.attachedDocumentsAsOrigin = attachedDocumentsAsOrigin;
     }
 
-    public Collection<AttachedUBLDocumentEntity> getAttachedDocumentsAsDestiny() {
+    public Collection<AttachedDocumentEntity> getAttachedDocumentsAsDestiny() {
         return attachedDocumentsAsDestiny;
     }
 
-    public void setAttachedDocumentsAsDestiny(Collection<AttachedUBLDocumentEntity> attachedDocumentsAsDestiny) {
+    public void setAttachedDocumentsAsDestiny(Collection<AttachedDocumentEntity> attachedDocumentsAsDestiny) {
         this.attachedDocumentsAsDestiny = attachedDocumentsAsDestiny;
     }
 
@@ -278,5 +276,13 @@ public class UBLDocumentEntity {
 
     public void setThirdPartySendEventFailures(int thirdPartySendEventFailures) {
         this.thirdPartySendEventFailures = thirdPartySendEventFailures;
+    }
+
+    public Collection<DocumentLineEntity> getLines() {
+        return lines;
+    }
+
+    public void setLines(Collection<DocumentLineEntity> lines) {
+        this.lines = lines;
     }
 }

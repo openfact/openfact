@@ -73,39 +73,33 @@ public class SendToCustomerOrganizationScheduleTaskProvider implements Organizat
     private long sendDocuments(OpenfactSession session, OrganizationModel organization) {
         long readCount = 0;
 
-        ScrollModel<List<DocumentModel>> scroll = session.documents()
-                .createQuery(organization)
-                .requiredAction(RequiredAction.SEND_TO_CUSTOMER)
-                .entityQuery()
-                .resultScroll().getScrollResultList(100);
+        ScrollModel<List<DocumentModel>> scroll = session.documents().createQuery(organization)
+                .requiredAction(RequiredAction.SEND_TO_CUSTOMER).enabled(true).customerSendEventFailures(retries, false)
+                .entityQuery().resultScroll().getScrollResultList(100);
+
         Iterator<List<DocumentModel>> iterator = scroll.iterator();
-
         while (iterator.hasNext()) {
-            List<DocumentModel> invoices = iterator.next();
+            List<DocumentModel> document = iterator.next();
 
-            readCount += invoices.size();
+            readCount += document.size();
 
-            invoices.stream()
-                    .filter(p -> p.sendEventCount(new HashMap<String, String>() {{
-                        put(DocumentModel.SEND_EVENT_DESTINY, DestinyType.CUSTOMER.toString());
-                    }}) < retries)
-                    .forEach(c -> {
-                        DocumentManager manager = new DocumentManager(session);
-                        SendEventModel sendEvent = c.addSendEvent(DestinyType.CUSTOMER);
-                        try {
-                            manager.sendToCustomerParty(organization, c, sendEvent);
-                            if (sendEvent.getResult().equals(SendEventStatus.SUCCESS)) {
-                                c.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
-                            }
-                        } catch (ModelInsuficientData e) {
-                            sendEvent.setResult(SendEventStatus.ERROR);
-                            sendEvent.setDescription(e.getMessage());
-                        } catch (SendException e) {
-                            sendEvent.setResult(SendEventStatus.ERROR);
-                            sendEvent.setDescription("Internal Server Error");
-                            logger.error("Internal server error", e);
-                        }
-                    });
+            document.stream().forEach(c -> {
+                DocumentManager manager = new DocumentManager(session);
+                SendEventModel sendEvent = c.addSendEvent(DestinyType.CUSTOMER);
+                try {
+                    manager.sendToCustomerParty(organization, c, sendEvent);
+                    if (sendEvent.getResult().equals(SendEventStatus.SUCCESS)) {
+                        c.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
+                    }
+                } catch (ModelInsuficientData e) {
+                    sendEvent.setResult(SendEventStatus.ERROR);
+                    sendEvent.setDescription(e.getMessage());
+                } catch (SendException e) {
+                    sendEvent.setResult(SendEventStatus.ERROR);
+                    sendEvent.setDescription("Internal Server Error");
+                    logger.error("Internal server error", e);
+                }
+            });
         }
         return readCount;
     }

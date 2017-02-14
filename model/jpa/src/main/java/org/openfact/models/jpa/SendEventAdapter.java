@@ -32,15 +32,15 @@ import org.openfact.models.jpa.entities.SendEventAttributeEntity;
 import java.time.LocalDateTime;
 import java.util.*;
 
-public class UBLDocumentSendEventAdapter implements SendEventModel, JpaModel<SendEventEntity> {
+public class SendEventAdapter implements SendEventModel, JpaModel<SendEventEntity> {
 
-    protected static final Logger logger = Logger.getLogger(UBLDocumentSendEventAdapter.class);
+    protected static final Logger logger = Logger.getLogger(SendEventAdapter.class);
     protected OrganizationModel organization;
     protected SendEventEntity sendEvent;
     protected EntityManager em;
     protected OpenfactSession session;
 
-    public UBLDocumentSendEventAdapter(OpenfactSession session, EntityManager em, OrganizationModel organization, SendEventEntity ublDocumentDendEvent) {
+    public SendEventAdapter(OpenfactSession session, EntityManager em, OrganizationModel organization, SendEventEntity ublDocumentDendEvent) {
         this.session = session;
         this.em = em;
         this.organization = organization;
@@ -48,8 +48,8 @@ public class UBLDocumentSendEventAdapter implements SendEventModel, JpaModel<Sen
     }
 
     public static SendEventEntity toEntity(SendEventModel model, EntityManager em) {
-        if (model instanceof UBLDocumentSendEventAdapter) {
-            return ((UBLDocumentSendEventAdapter) model).getEntity();
+        if (model instanceof SendEventAdapter) {
+            return ((SendEventAdapter) model).getEntity();
         }
         return em.getReference(SendEventEntity.class, model.getId());
     }

@@ -17,15 +17,13 @@
 package org.openfact.models;
 
 import org.openfact.models.enums.DocumentType;
-import org.openfact.models.enums.RequiredAction;
-import org.openfact.models.search.SearchCriteriaModel;
-import org.openfact.models.search.SearchResultsModel;
 import org.openfact.provider.Provider;
 
 import java.util.List;
-import java.util.Map;
 
 public interface DocumentProvider extends Provider {
+
+    DocumentQuery createQuery(OrganizationModel organization);
 
     DocumentModel addDocument(String documentType, String documentId, OrganizationModel organization);
     DocumentModel addDocument(DocumentType documentType, String documentId, OrganizationModel organization);
@@ -65,17 +63,5 @@ public interface DocumentProvider extends Provider {
 
     List<DocumentModel> searchForDocument(String filterText, OrganizationModel organization);
     List<DocumentModel> searchForDocument(String filterText, OrganizationModel organization, int firstResult, int maxResults);
-
-    SearchResultsModel<DocumentModel> searchForDocument(SearchCriteriaModel criteria, OrganizationModel organization);
-    SearchResultsModel<DocumentModel> searchForDocument(String filterText, SearchCriteriaModel criteria, OrganizationModel organization);
-
-    // Searching by InvoiceModel.attribute (not property)
-    List<DocumentModel> searchForDocumentByAttribute(String attrName, String attrValue, OrganizationModel organization);
-    List<DocumentModel> searchForDocumentByAttribute(String attrName, String attrValue, OrganizationModel organization, int firstResult, int maxResults);
-
-    List<DocumentModel> searchForDocumentByAttribute(String documentType, String attrName, String attrValue, OrganizationModel organization);
-    List<DocumentModel> searchForDocumentByAttribute(String documentType, String attrName, String attrValue, OrganizationModel organization, int firstResult, int maxResults);
-
-    DocumentQuery createQuery(OrganizationModel organization);
 
 }

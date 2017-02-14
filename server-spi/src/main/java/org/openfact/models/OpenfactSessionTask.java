@@ -5,6 +5,6 @@ package org.openfact.models;
  */
 public interface OpenfactSessionTask {
 
-    public void run(OpenfactSession session);
+    void run(OpenfactSession session);
 
 }

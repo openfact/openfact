@@ -46,9 +46,6 @@ import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.services.managers.OrganizationManager;
 import org.openfact.testsuite.rule.OpenfactRule;
 
-/**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
- */
 public class AssertEvents implements TestRule, EventListenerProviderFactory {
 
     public static String DEFAULT_CLIENT_ID = "test-app";

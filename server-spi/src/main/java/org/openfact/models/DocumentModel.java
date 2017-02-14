@@ -19,10 +19,10 @@ public interface DocumentModel {
     String DOCUMENT_CURRENCY_CODE = "documentCurrencyCode";
     String CUSTOMER_REGISTRATION_NAME = "customerRegistrationName";
     String CUSTOMER_ASSIGNED_ACCOUNT_ID = "customerAssignedAccountId";
+    String CUSTOMER_ELECTRONIC_MAIL = "customerElectronicMail";
+
     String CREATED_TIMESTAMP = "createdTimestamp";
     String ENABLED = "enabled";
-
-    String REQUIRED_ACTIONS = "requiredActions";
 
     String getId();
     String getDocumentId();
@@ -30,6 +30,12 @@ public interface DocumentModel {
     LocalDateTime getCreatedTimestamp();
     boolean isEnabled();
     void disable();
+
+    /**
+     * Document Line*/
+    List<DocumentLineModel> getDocumentLines();
+    DocumentLineModel addDocumentLine();
+    boolean removeDocumentLine(DocumentLineModel documentLine);
 
     /**
      * Organization
@@ -72,6 +78,8 @@ public interface DocumentModel {
     /**
      * Required Actions
      */
+    String REQUIRED_ACTIONS = "requiredActions";
+
     Set<String> getRequiredActions();
     void addRequiredAction(String action);
     void removeRequiredAction(String action);
@@ -96,15 +104,13 @@ public interface DocumentModel {
     List<SendEventModel> getSendEvents(Integer firstResult, Integer maxResults);
     List<SendEventModel> searchForSendEvent(Map<String, String> params);
     List<SendEventModel> searchForSendEvent(Map<String, String> params, int firstResult, int maxResults);
-    int sendEventCount();
-    int sendEventCount(Map<String, String> params);
 
     /**
      * Attatched documents*/
     List<DocumentModel> getAttachedDocumentsAsOrigin();
     List<DocumentModel> getAttachedDocumentsAsDestiny();
     void addAttachedDocument(DocumentModel document);
-    boolean removeAttachedDocument(DocumentModel attatchedDocument);
+    boolean removeAttachedDocument(DocumentModel document);
 
     /**
      * Events interfaces

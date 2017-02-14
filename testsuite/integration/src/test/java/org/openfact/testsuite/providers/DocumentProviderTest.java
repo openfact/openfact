@@ -23,6 +23,7 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 import java.time.LocalDateTime;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Assert;
@@ -63,7 +64,7 @@ public class DocumentProviderTest extends AbstractProviderTest {
         session.documents().addDocument(DocumentType.INVOICE, "F01-001", sistcoop2);
         commit();
 
-        // Try to create ublDocument with duplicate series and number
+        // Try to create document with duplicate series and number
         try {
             sistcoop1 = session.organizations().getOrganizationByName("SISTCOOP1");
             session.documents().addDocument(DocumentType.INVOICE, "F01-001", sistcoop1);
@@ -149,21 +150,9 @@ public class DocumentProviderTest extends AbstractProviderTest {
     public void searchQuery() {
         OrganizationModel sistcoop1 = session.organizations().createOrganization("SISTCOOP1");
         OrganizationModel sistcoop2 = session.organizations().createOrganization("SISTCOOP2");
-        commit();
 
-        session.documents().addDocument(DocumentType.INVOICE, "F01-001", sistcoop1).addRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
-        session.documents().addDocument(DocumentType.INVOICE, "F01-002", sistcoop1).addRequiredAction(RequiredAction.SEND_TO_THIRD_PARTY);
-        session.documents().addDocument(DocumentType.INVOICE, "F01-003", sistcoop1);
-        session.documents().addDocument(DocumentType.CREDIT_NOTE, "C01-001", sistcoop1).addRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
-        session.documents().addDocument(DocumentType.CREDIT_NOTE, "C01-002", sistcoop1).addRequiredAction(RequiredAction.SEND_TO_THIRD_PARTY);
-        session.documents().addDocument(DocumentType.CREDIT_NOTE, "C01-003", sistcoop1);
-
-        session.documents().addDocument(DocumentType.INVOICE, "F01-004", sistcoop2).addRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
-        session.documents().addDocument(DocumentType.INVOICE, "F01-005", sistcoop2).addRequiredAction(RequiredAction.SEND_TO_THIRD_PARTY);
-        session.documents().addDocument(DocumentType.INVOICE, "F01-006", sistcoop2);
-        session.documents().addDocument(DocumentType.CREDIT_NOTE, "F01-004", sistcoop2).addRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
-        session.documents().addDocument(DocumentType.CREDIT_NOTE, "F01-005", sistcoop2).addRequiredAction(RequiredAction.SEND_TO_THIRD_PARTY);
-        session.documents().addDocument(DocumentType.CREDIT_NOTE, "F01-006", sistcoop2);
+        addDocuments(sistcoop1);
+        addDocuments(sistcoop2);
         commit();
 
         DocumentQuery query = session.documents().createQuery(sistcoop1);
@@ -198,10 +187,51 @@ public class DocumentProviderTest extends AbstractProviderTest {
 
         query = session.documents().createQuery(sistcoop1);
         query.documentType(DocumentType.INVOICE);
-        query.fromDate(LocalDateTime.now().minusDays(1));
+        query.fromDate(LocalDateTime.now().minusDays(1), true);
         assertThat(query.entityQuery().resultList().getResultList().size(), is(3));
 
         assertThat(query.countQuery().getTotalCount(), is(3));
+    }
+
+    @Test
+    public void testScroll() {
+        OrganizationModel sistcoop1 = session.organizations().createOrganization("SISTCOOP1");
+        OrganizationModel sistcoop2 = session.organizations().createOrganization("SISTCOOP2");
+
+        session.documents().addDocument(DocumentType.INVOICE, "F01-001", sistcoop1);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-002", sistcoop1);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-003", sistcoop1);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-004", sistcoop1);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-005", sistcoop1);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-006", sistcoop1);
+
+        session.documents().addDocument(DocumentType.INVOICE, "F01-001", sistcoop2);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-002", sistcoop2);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-003", sistcoop2);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-004", sistcoop2);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-005", sistcoop2);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-006", sistcoop2);
+
+        commit();
+
+        DocumentQuery query = session.documents().createQuery(sistcoop1);
+        ScrollModel<DocumentModel> scrollResult = query.entityQuery().orderByAsc(DocumentModel.CREATED_TIMESTAMP).resultScroll().getScrollResult(2);
+
+        int i = 0;
+        Iterator<DocumentModel> iterator = scrollResult.iterator();
+        while (iterator.hasNext()) {
+            DocumentModel document = iterator.next();
+            Assert.assertTrue(document.getDocumentId().endsWith(String.valueOf(++i)));
+        }
+    }
+
+    public void addDocuments(OrganizationModel organization) {
+        session.documents().addDocument(DocumentType.INVOICE, "F01-001", organization).addRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-002", organization).addRequiredAction(RequiredAction.SEND_TO_THIRD_PARTY);
+        session.documents().addDocument(DocumentType.INVOICE, "F01-003", organization);
+        session.documents().addDocument(DocumentType.CREDIT_NOTE, "C01-001", organization).addRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
+        session.documents().addDocument(DocumentType.CREDIT_NOTE, "C01-002", organization).addRequiredAction(RequiredAction.SEND_TO_THIRD_PARTY);
+        session.documents().addDocument(DocumentType.CREDIT_NOTE, "C01-003", organization);
     }
 
 }

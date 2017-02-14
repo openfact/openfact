@@ -35,8 +35,8 @@ public interface DocumentQuery {
     DocumentQuery addFilter(Map<String, String> filters);
     DocumentQuery addFilter(String key, Object value, SearchCriteriaFilterOperator operator);
 
-    DocumentQuery fromDate(LocalDateTime fromDate);
-    DocumentQuery toDate(LocalDateTime toDate);
+    DocumentQuery fromDate(LocalDateTime fromDate, boolean include);
+    DocumentQuery toDate(LocalDateTime toDate, boolean include);
 
     EntityQuery entityQuery();
     CountQuery countQuery();

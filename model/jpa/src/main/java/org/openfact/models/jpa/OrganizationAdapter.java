@@ -402,21 +402,18 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     public Integer getAttribute(String name, Integer defaultValue) {
         String v = getAttribute(name);
         return v != null ? Integer.parseInt(v) : defaultValue;
-
     }
 
     @Override
     public Long getAttribute(String name, Long defaultValue) {
         String v = getAttribute(name);
         return v != null ? Long.parseLong(v) : defaultValue;
-
     }
 
     @Override
     public Boolean getAttribute(String name, Boolean defaultValue) {
         String v = getAttribute(name);
         return v != null ? Boolean.parseBoolean(v) : defaultValue;
-
     }
 
     @Override
@@ -522,45 +519,11 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         em.flush();
     }
 
-    @Override
-    public void removeAttachedDocuments(DocumentType documentType, String documentId) {
-        em.createNamedQuery("deleteInvoiceAttachedDocumentAttributesByOrganizationTypeAndDocumentId")
-                .setParameter("organizationId", organization.getId())
-                .setParameter("documentType", documentType)
-                .setParameter("documentId", documentId)
-                .executeUpdate();
-        em.createNamedQuery("deleteInvoiceAttachedDocumentsByOrganizationTypeAndDocumentId")
-                .setParameter("organizationId", organization.getId())
-                .setParameter("documentType", documentType)
-                .setParameter("documentId", documentId)
-                .executeUpdate();
-
-        em.createNamedQuery("deleteCreditNoteAttachedDocumentAttributesByOrganizationTypeAndDocumentId")
-                .setParameter("organizationId", organization.getId())
-                .setParameter("documentType", documentType)
-                .setParameter("documentId", documentId)
-                .executeUpdate();
-        em.createNamedQuery("deleteCreditNoteAttachedDocumentsByOrganizationTypeAndDocumentId")
-                .setParameter("organizationId", organization.getId())
-                .setParameter("documentType", documentType)
-                .setParameter("documentId", documentId)
-                .executeUpdate();
-
-        em.createNamedQuery("deleteDebitNoteAttachedDocumentAttributesByOrganizationTypeAndDocumentId")
-                .setParameter("organizationId", organization.getId())
-                .setParameter("documentType", documentType)
-                .setParameter("documentId", documentId)
-                .executeUpdate();
-        em.createNamedQuery("deleteDebitNoteAttachedDocumentsByOrganizationTypeAndDocumentId")
-                .setParameter("organizationId", organization.getId())
-                .setParameter("documentType", documentType)
-                .setParameter("documentId", documentId)
-                .executeUpdate();
-    }
-
     /**
      * Components
      */
+    public static final String COMPONENT_PROVIDER_EXISTS_DISABLED = "component.provider.exists.disabled";
+
     @Override
     public ComponentModel addComponentModel(ComponentModel model) {
         model = importComponentModel(model);
@@ -571,12 +534,20 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
 
     @Override
     public ComponentModel importComponentModel(ComponentModel model) {
-        ComponentFactory componentFactory = ComponentUtil.getComponentFactory(session, model);
-        if (componentFactory == null) {
-            throw new IllegalArgumentException("Invalid component type");
+        ComponentFactory componentFactory = null;
+        try {
+            componentFactory = ComponentUtil.getComponentFactory(session, model);
+            if (componentFactory == null && System.getProperty(COMPONENT_PROVIDER_EXISTS_DISABLED) == null) {
+                throw new IllegalArgumentException("Invalid component type");
+            }
+            componentFactory.validateConfiguration(session, this, model);
+        } catch (Exception e) {
+            if (System.getProperty(COMPONENT_PROVIDER_EXISTS_DISABLED) == null) {
+                throw e;
+            }
+
         }
 
-        componentFactory.validateConfiguration(session, this, model);
 
         ComponentEntity c = new ComponentEntity();
         if (model.getId() == null) {
@@ -631,8 +602,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         em.createNamedQuery("deleteComponentConfigByComponent").setParameter("component", c).executeUpdate();
         em.flush();
         setConfig(component, c);
-
-
+        ComponentUtil.notifyUpdated(session, this, component);
     }
 
     @Override
@@ -652,12 +622,11 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
                 .setParameter("parentId", parentId);
         List<String> results = query.getResultList();
         if (results.isEmpty()) return;
-        for (String id : results) {
-            //session.users().preRemove(this, getComponent(id));
-        }
+//        for (String id : results) {
+//            session.users().preRemove(this, getComponent(id));
+//        }
         em.createNamedQuery("deleteComponentConfigByParent").setParameter("parentId", parentId).executeUpdate();
         em.createNamedQuery("deleteComponentByParent").setParameter("parentId", parentId).executeUpdate();
-
     }
 
     @Override
@@ -679,7 +648,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
 
     @Override
     public List<ComponentModel> getComponents(String parentId) {
-        TypedQuery<ComponentEntity> query = em.createNamedQuery("getComponentsByParent", ComponentEntity.class)
+        TypedQuery<ComponentEntity> query = em.createNamedQuery("getComponentByParent", ComponentEntity.class)
                 .setParameter("organization", organization)
                 .setParameter("parentId", parentId);
         List<ComponentEntity> results = query.getResultList();

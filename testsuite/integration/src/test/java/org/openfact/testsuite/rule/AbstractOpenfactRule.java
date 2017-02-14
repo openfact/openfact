@@ -17,32 +17,22 @@
 
 package org.openfact.testsuite.rule;
 
-import io.undertow.servlet.api.DeploymentInfo;
-import io.undertow.servlet.api.ErrorPage;
-import io.undertow.servlet.api.FilterInfo;
-import io.undertow.servlet.api.LoginConfig;
-import io.undertow.servlet.api.SecurityConstraint;
-import io.undertow.servlet.api.SecurityInfo;
-import io.undertow.servlet.api.ServletInfo;
-import io.undertow.servlet.api.WebResourceCollection;
+import io.undertow.servlet.api.*;
 import org.jboss.resteasy.spi.ResteasyDeployment;
 import org.junit.rules.ExternalResource;
 import org.junit.rules.TemporaryFolder;
 import org.openfact.Config;
 import org.openfact.adapters.OpenfactConfigResolver;
+import org.openfact.common.util.Time;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OpenfactTransaction;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.UserModel;
-import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.managers.OrganizationManager;
-import org.openfact.testsuite.Retry;
 import org.openfact.testsuite.OpenfactServer;
+import org.openfact.testsuite.Retry;
 import org.openfact.util.JsonSerialization;
-import org.openfact.common.util.Time;
 
-import javax.servlet.DispatcherType;
 import javax.servlet.Servlet;
 import javax.ws.rs.core.Application;
 import java.io.ByteArrayOutputStream;

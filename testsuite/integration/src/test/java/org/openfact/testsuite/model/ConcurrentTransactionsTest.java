@@ -1,20 +1,3 @@
-/*******************************************************************************
- * Copyright 2016 Sistcoop, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
-
 package org.openfact.testsuite.model;
 
 import org.jboss.logging.Logger;
@@ -27,9 +10,6 @@ import org.openfact.models.utils.OpenfactModelUtils;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicReference;
 
-/**
- * @author <a href="mailto:mposolda@redhat.com">Marek Posolda</a>
- */
 public class ConcurrentTransactionsTest extends AbstractModelTest {
 
     private static final Logger logger = Logger.getLogger(ConcurrentTransactionsTest.class);
@@ -68,15 +48,15 @@ public class ConcurrentTransactionsTest extends AbstractModelTest {
                             // Read client
                             OrganizationModel organization = session.organizations().getOrganizationByName("original");
                             DocumentModel document = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE.toString(), "F01-123", organization);
-                            logger.info("transaction1: Read ublDocument finished");
+                            logger.info("transaction1: Read document finished");
                             readLatch.countDown();
 
                             // Wait until thread2 updates client and commits
                             updateLatch.await();
-                            logger.info("transaction1: Going to read ublDocument again");
+                            logger.info("transaction1: Going to read document again");
 
                             document = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE.toString(), "F01-123", organization);
-                            logger.info("transaction1: ublDocument email: " + document.getCustomerElectronicMail());
+                            logger.info("transaction1: document email: " + document.getCustomerElectronicMail());
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }
@@ -103,7 +83,7 @@ public class ConcurrentTransactionsTest extends AbstractModelTest {
 
 
                             readLatch.await();
-                            logger.info("transaction2: Going to update ublDocument currency code");
+                            logger.info("transaction2: Going to update document currency code");
 
                             OrganizationModel organization = session.organizations().getOrganizationByName("original");
                             DocumentModel document = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE.toString(), "F01-123", organization);

@@ -30,7 +30,4 @@ public interface OrganizationProvider extends Provider {
 
     int getOrganizationsCount();
 
-    //List<OrganizationModel> searchForOrganization(String filterText, int firstResult, int maxResults);
-    //List<OrganizationModel> searchForOrganization(Map<String, String> attributes, int firstResult, int maxResults);
-
 }

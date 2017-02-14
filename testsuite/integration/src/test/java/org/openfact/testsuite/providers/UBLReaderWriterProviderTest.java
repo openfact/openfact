@@ -39,16 +39,16 @@ public class UBLReaderWriterProviderTest /*extends AbstractProviderTest*/ {
     @Test
     public void getInvoiceDocument() throws Exception {
         List<InvoiceModel> documents = session.documents().getDocuments(organization);
-        InvoiceModel ublDocument = documents.getObject(0);
+        InvoiceModel document = documents.getObject(0);
 
         Set<InvoiceReaderWriterProvider> providers = session.getAllProviders(InvoiceReaderWriterProvider.class);
         for (InvoiceReaderWriterProvider provider : providers) {
-            byte[] bytes = ublDocument.getXmlDocument();
+            byte[] bytes = document.getXmlDocument();
             InvoiceType invoiceType = provider.read(bytes);
 
             assertThat(invoiceType, is(notNullValue()));
 
-            Document xml = provider.writeAsDocument(organization, invoiceType, ublDocument.getAttributes());
+            Document xml = provider.writeAsDocument(organization, invoiceType, document.getAttributes());
 
             assertThat(xml, is(notNullValue()));
         }

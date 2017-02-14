@@ -2,7 +2,17 @@ package org.openfact.models.enums;
 
 public enum DocumentType {
 
-    INVOICE, CREDIT_NOTE, DEBIT_NOTE;
+    INVOICE("Invoice"), CREDIT_NOTE("CreditNote"), DEBIT_NOTE("DebitNote");
+
+    private String xmlWrapper;
+
+    DocumentType(String xmlWrapper) {
+        this.xmlWrapper = xmlWrapper;
+    }
+
+    public String getXmlWrapper() {
+        return this.xmlWrapper;
+    }
 
     public static DocumentType getFromString(String value) {
         DocumentType[] elements = DocumentType.values();

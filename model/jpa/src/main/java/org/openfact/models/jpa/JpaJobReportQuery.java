@@ -1,11 +1,6 @@
 package org.openfact.models.jpa;
 
-import org.openfact.events.EventType;
-import org.openfact.events.admin.AdminEvent;
-import org.openfact.events.jpa.AdminEventEntity;
-import org.openfact.events.jpa.JpaEventStoreProvider;
 import org.openfact.models.AdminJobReport;
-import org.openfact.models.JobReportModel;
 import org.openfact.models.JobReportQuery;
 import org.openfact.models.jpa.entities.JobReportEntity;
 
@@ -34,7 +29,7 @@ public class JpaJobReportQuery implements JobReportQuery {
         cb = em.getCriteriaBuilder();
         cq = cb.createQuery(JobReportEntity.class);
         root = cq.from(JobReportEntity.class);
-        predicates = new ArrayList<Predicate>();
+        predicates = new ArrayList<>();
     }
 
 

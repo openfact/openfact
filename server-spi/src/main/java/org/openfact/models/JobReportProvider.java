@@ -3,7 +3,6 @@ package org.openfact.models;
 import org.openfact.provider.Provider;
 
 import java.util.List;
-import java.util.Map;
 
 public interface JobReportProvider extends Provider {
 

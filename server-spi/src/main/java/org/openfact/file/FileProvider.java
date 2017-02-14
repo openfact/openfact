@@ -9,8 +9,6 @@ public interface FileProvider extends Provider {
 
     FileModel getFileById(OrganizationModel organization, String id);
 
-    FileModel getFileByFileName(OrganizationModel organization, String fileName);
-
     boolean removeFile(OrganizationModel organization, FileModel file);
 
     void preRemove(OrganizationModel organization);

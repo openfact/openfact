@@ -27,31 +27,42 @@ import org.openfact.models.OrganizationModel;
 
 import static org.junit.Assert.assertNotNull;
 
-/**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
- */
 public class JobReporModelTest extends AbstractModelTest {
 
     @Test
     public void persistJobFile() {
         OrganizationModel organization = organizationManager.createOrganization("original");
         OpenfactSession session = organizationManager.getSession();
-        JobReportModel report = session.jobReports().createJobReport(organization, "report1");
-        String reportId = report.getId();
+        JobReportModel report1 = session.jobReports().createJobReport(organization, "JobTaskReport");
+        String report1Id = report1.getId();
 
-        Assert.assertNotNull(report);
+        Assert.assertNotNull(report1);
+        Assert.assertEquals(1, session.jobReports().getJobReports(organization).size());
+        commit();
+
+
+        session = organizationManager.getSession();
+        JobReportModel report2 = session.jobReports().createJobReport(organization, "JobTaskReport");
+        String report2Id = report2.getId();
+
+        Assert.assertNotNull(report2);
+        Assert.assertEquals(2, session.jobReports().getJobReports(organization).size());
+
+        report1 = session.jobReports().getJobReportById(organization, report1Id);
+
+        Assert.assertEquals(report1.getJobName(), "JobTaskReport");
+        Assert.assertEquals(report2.getJobName(), "JobTaskReport");
+        Assert.assertNotEquals(report1, report2);
+
         commit();
 
         session = organizationManager.getSession();
-        report = session.jobReports().getJobReportById(organization, reportId);
-
-        Assert.assertEquals(report.getJobName(), "report1");
-
         OrganizationModel searchOrganization = organizationManager.getOrganization(organization.getId());
-        JobReportModel persisted = session.jobReports().getJobReportById(searchOrganization, reportId);
+        report1 = session.jobReports().getJobReportById(searchOrganization, report1Id);
+        report2 = session.jobReports().getJobReportById(searchOrganization, report2Id);
 
-        Assert.assertNotNull(persisted);
-        assertEquals(report, persisted);
+        Assert.assertTrue(session.jobReports().removeJobReport(organization, report1));
+        Assert.assertEquals(1, session.jobReports().getJobReports(organization).size());
     }
 
     public static void assertEquals(JobReportModel expected, JobReportModel actual) {

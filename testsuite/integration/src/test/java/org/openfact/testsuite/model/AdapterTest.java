@@ -1,20 +1,3 @@
-/*******************************************************************************
- * Copyright 2016 Sistcoop, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
-
 package org.openfact.testsuite.model;
 
 import static org.junit.Assert.assertNotNull;
@@ -34,10 +17,6 @@ import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.enums.DocumentType;
 
-/**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
- * @version $Revision: 1 $
- */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AdapterTest extends AbstractModelTest {
 
@@ -157,7 +136,7 @@ public class AdapterTest extends AbstractModelTest {
         commit();
 
 
-        // Try to create ublDocument with duplicate series and number
+        // Try to create document with duplicate series and number
         try {
             sistcoop1 = organizationManager.getOrganizationByName("SISTCOOP1");
             organizationManager.getSession().documents().addDocument(DocumentType.INVOICE.toString(), "F01-001", sistcoop1);

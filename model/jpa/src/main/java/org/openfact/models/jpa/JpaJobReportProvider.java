@@ -17,19 +17,12 @@
 package org.openfact.models.jpa;
 
 import org.jboss.logging.Logger;
-import org.openfact.events.admin.AdminEvent;
-import org.openfact.events.admin.OperationType;
-import org.openfact.events.admin.ResourceType;
-import org.openfact.events.jpa.AdminEventEntity;
-import org.openfact.events.jpa.JpaEventQuery;
 import org.openfact.models.*;
-import org.openfact.models.jpa.entities.JobReportEntity;
 import org.openfact.models.jpa.entities.JobReportEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class JpaJobReportProvider extends AbstractHibernateStorage implements JobReportProvider {
@@ -100,9 +93,7 @@ public class JpaJobReportProvider extends AbstractHibernateStorage implements Jo
 
     @Override
     public List<JobReportModel> getJobReports(OrganizationModel organization, Integer firstResult, Integer maxResults) {
-        String queryName = "getAllJobsReportByOrganization";
-
-        TypedQuery<JobReportEntity> query = em.createNamedQuery(queryName, JobReportEntity.class);
+        TypedQuery<JobReportEntity> query = em.createNamedQuery("getAllJobReportsByOrganization", JobReportEntity.class);
         query.setParameter("organizationId", organization.getId());
         if (firstResult != -1) {
             query.setFirstResult(firstResult);

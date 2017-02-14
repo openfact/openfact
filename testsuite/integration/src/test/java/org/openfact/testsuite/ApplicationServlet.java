@@ -27,9 +27,6 @@ import javax.ws.rs.core.UriBuilder;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-/**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
- */
 public class ApplicationServlet extends HttpServlet {
 
     private static final String LINK = "<a href=\"%s\" id=\"%s\">%s</a>";

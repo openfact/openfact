@@ -17,14 +17,6 @@
 
 package org.openfact.testsuite.model;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.openfact.migration.ModelVersion;
-
-/**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
- * @version $Revision: 1 $
- */
 public class MigrationVersionTest {
 
     /*@Test

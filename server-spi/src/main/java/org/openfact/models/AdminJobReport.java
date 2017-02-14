@@ -1,6 +1,5 @@
 package org.openfact.models;
 
-
 public class AdminJobReport {
 
     private String id;

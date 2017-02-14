@@ -4,9 +4,8 @@ import org.openfact.models.DocumentModel;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.enums.RequiredAction;
-import org.openfact.models.jpa.entities.UBLDocumentEntity;
-import org.openfact.models.jpa.entities.UBLDocumentRequiredActionEntity;
-import org.openfact.models.search.SearchCriteriaFilterModel;
+import org.openfact.models.jpa.entities.DocumentEntity;
+import org.openfact.models.jpa.entities.DocumentRequiredActionEntity;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 
 import javax.persistence.EntityManager;
@@ -151,19 +150,27 @@ public class DocumentCriteria<R, Q> {
     public DocumentCriteria requiredAction(RequiredAction... requiredAction) {
         List<String> rActions = Stream.of(requiredAction).map(RequiredAction::toString).collect(Collectors.toList());
 
-        Join<UBLDocumentEntity, UBLDocumentRequiredActionEntity> requiredActions = root.join(JpaDocumentProvider.REQUIRED_ACTIONS);
+        Join<DocumentEntity, DocumentRequiredActionEntity> requiredActions = root.join(JpaDocumentProvider.REQUIRED_ACTIONS);
         predicates.add(requiredActions.get("action").in(rActions));
 
         return this;
     }
 
-    public DocumentCriteria fromDate(LocalDateTime fromDate) {
-        predicates.add(cb.greaterThanOrEqualTo(root.<LocalDateTime>get(JpaDocumentProvider.CREATED_TIMESTAMP), fromDate));
+    public DocumentCriteria fromDate(LocalDateTime fromDate, boolean include) {
+        if (include) {
+            predicates.add(cb.greaterThanOrEqualTo(root.<LocalDateTime>get(JpaDocumentProvider.CREATED_TIMESTAMP), fromDate));
+        } else {
+            predicates.add(cb.greaterThan(root.<LocalDateTime>get(JpaDocumentProvider.CREATED_TIMESTAMP), fromDate));
+        }
         return this;
     }
 
-    public DocumentCriteria toDate(LocalDateTime toDate) {
-        predicates.add(cb.lessThanOrEqualTo(root.<LocalDateTime>get(JpaDocumentProvider.CREATED_TIMESTAMP), toDate));
+    public DocumentCriteria toDate(LocalDateTime toDate, boolean include) {
+        if (include) {
+            predicates.add(cb.lessThanOrEqualTo(root.<LocalDateTime>get(JpaDocumentProvider.CREATED_TIMESTAMP), toDate));
+        } else {
+            predicates.add(cb.lessThan(root.<LocalDateTime>get(JpaDocumentProvider.CREATED_TIMESTAMP), toDate));
+        }
         return this;
     }
 

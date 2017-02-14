@@ -21,6 +21,9 @@ import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
 import org.openfact.events.admin.ResourceType;
 import org.openfact.models.*;
+import org.openfact.models.enums.RequiredAction;
+import org.openfact.models.search.SearchCriteriaFilterModel;
+import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchCriteriaModel;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.utils.ModelToRepresentation;
@@ -28,10 +31,12 @@ import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.DocumentRepresentation;
 import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
 import org.openfact.representations.idm.search.SearchResultsRepresentation;
+import org.openfact.services.ErrorResponse;
 import org.openfact.services.ServicesLogger;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -128,14 +133,68 @@ public class DocumentsAdminResource {
         auth.requireView();
 
         SearchCriteriaModel criteriaModel = RepresentationToModel.toModel(criteria);
-
         String filterText = criteria.getFilterText();
-        SearchResultsModel<DocumentModel> results = null;
-        if (filterText != null) {
-            results = session.documents().searchForDocument(filterText, criteriaModel, organization);
-        } else {
-            results = session.documents().searchForDocument(criteriaModel, organization);
+
+        DocumentQuery query = session.documents().createQuery(organization);
+
+        // Filtertext
+        if (filterText != null && !filterText.trim().isEmpty()) {
+            query.filterText(filterText, DocumentModel.DOCUMENT_ID, DocumentModel.CUSTOMER_REGISTRATION_NAME, DocumentModel.CUSTOMER_ASSIGNED_ACCOUNT_ID, DocumentModel.CUSTOMER_ELECTRONIC_MAIL);
         }
+
+        // Filters
+        if (criteriaModel.getFilters() != null && !criteriaModel.getFilters().isEmpty()) {
+            for (SearchCriteriaFilterModel filter : criteriaModel.getFilters()) {
+                if (filter.getName().equalsIgnoreCase(DocumentModel.REQUIRED_ACTIONS)) {
+                    List<String> requiredActions = new ArrayList<>();
+                    if (filter.getValue() instanceof String) {
+                        requiredActions.add((String) filter.getValue());
+                    } else if (filter.getValue() instanceof Collection) {
+                        requiredActions.addAll((Collection) filter.getValue());
+                    } else {
+                        requiredActions.add(String.valueOf(filter.getValue()));
+                    }
+
+                    RequiredAction[] array = requiredActions
+                            .stream()
+                            .map(f -> RequiredAction.valueOf(f.toUpperCase()))
+                            .toArray(size -> new RequiredAction[requiredActions.size()]);
+
+                    query.requiredAction(array);
+                } else if (filter.getName().equalsIgnoreCase(DocumentModel.CREATED_TIMESTAMP)) {
+                    if (filter.getOperator().equals(SearchCriteriaFilterOperator.gt)) {
+                        query.fromDate((LocalDateTime) filter.getValue(), false);
+                    } else if (filter.getOperator().equals(SearchCriteriaFilterOperator.gte)) {
+                        query.fromDate((LocalDateTime) filter.getValue(), true);
+                    } else if (filter.getOperator().equals(SearchCriteriaFilterOperator.lt)) {
+                        query.toDate((LocalDateTime) filter.getValue(), false);
+                    } else if (filter.getOperator().equals(SearchCriteriaFilterOperator.lte)) {
+                        query.toDate((LocalDateTime) filter.getValue(), true);
+                    } else if (filter.getOperator().equals(SearchCriteriaFilterOperator.eq)) {
+                        query.fromDate((LocalDateTime) filter.getValue(), true);
+                        query.toDate((LocalDateTime) filter.getValue(), true);
+                    } else {
+                        throw new BadRequestException("Bad operator on criteria");
+                    }
+                } else {
+                    query.addFilter(filter.getName(), filter.getValue(), filter.getOperator());
+                }
+            }
+        }
+
+        DocumentQuery.EntityQuery entityQuery = query.entityQuery();
+        if (criteriaModel.getOrders() != null && !criteriaModel.getOrders().isEmpty()) {
+            criteriaModel.getOrders().stream().forEach(c -> {
+                if (c.isAscending()) {
+                    entityQuery.orderByAsc(c.getName());
+                } else {
+                    entityQuery.orderByDesc(c.getName());
+                }
+            });
+        }
+
+        SearchResultsModel<DocumentModel> results = entityQuery.searchResult().getSearchResult(criteriaModel.getPaging());
+
         SearchResultsRepresentation<DocumentRepresentation> rep = new SearchResultsRepresentation<>();
         List<DocumentRepresentation> items = new ArrayList<>();
         results.getModels().forEach(f -> items.add(ModelToRepresentation.toRepresentation(f)));

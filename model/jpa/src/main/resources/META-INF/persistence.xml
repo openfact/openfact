@@ -31,10 +31,12 @@
         <class>org.openfact.events.jpa.AdminEventEntity</class>
 
         <!-- Universal Business Language UBL -->
-        <class>org.openfact.models.jpa.entities.UBLDocumentEntity</class>
-        <class>org.openfact.models.jpa.entities.AttachedUBLDocumentEntity</class>
-        <class>org.openfact.models.jpa.entities.UBLDocumentAttributeEntity</class>
-        <class>org.openfact.models.jpa.entities.UBLDocumentRequiredActionEntity</class>
+        <class>org.openfact.models.jpa.entities.DocumentEntity</class>
+        <class>org.openfact.models.jpa.entities.DocumentLineEntity</class>
+        <class>org.openfact.models.jpa.entities.DocumentLineAttributeEntity</class>
+        <class>org.openfact.models.jpa.entities.AttachedDocumentEntity</class>
+        <class>org.openfact.models.jpa.entities.DocumentAttributeEntity</class>
+        <class>org.openfact.models.jpa.entities.DocumentRequiredActionEntity</class>
         <class>org.openfact.models.jpa.entities.SendEventEntity</class>
         <class>org.openfact.models.jpa.entities.SendEventAttributeEntity</class>
         <class>org.openfact.models.jpa.entities.SendEventAttachedFileEntity</class>

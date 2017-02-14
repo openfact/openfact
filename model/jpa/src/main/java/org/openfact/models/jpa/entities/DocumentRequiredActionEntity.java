@@ -20,17 +20,17 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @NamedQueries({
-        @NamedQuery(name = "deleteUblDocumentRequiredActionsByOrganization", query = "delete from UBLDocumentRequiredActionEntity action where action.ublDocument IN (select u from UBLDocumentEntity u where u.organizationId=:organizationId)")
+        @NamedQuery(name = "deleteDocumentRequiredActionsByOrganization", query = "delete from DocumentRequiredActionEntity action where action.document IN (select u from DocumentEntity u where u.organizationId=:organizationId)")
 })
 @Entity
-@Table(name = "UBL_DOCUMENT_REQUIRED_ACTION")
-@IdClass(UBLDocumentRequiredActionEntity.Key.class)
-public class UBLDocumentRequiredActionEntity {
+@Table(name = "DOCUMENT_REQUIRED_ACTION")
+@IdClass(DocumentRequiredActionEntity.Key.class)
+public class DocumentRequiredActionEntity {
 
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "UBL_DOCUMENT_ID")
-    protected UBLDocumentEntity ublDocument;
+    @JoinColumn(foreignKey = @ForeignKey, name = "DOCUMENT_ID")
+    protected DocumentEntity document;
 
     @Id
     @Column(name = "REQUIRED_ACTION")
@@ -44,30 +44,30 @@ public class UBLDocumentRequiredActionEntity {
         this.action = action;
     }
 
-    public UBLDocumentEntity getUblDocument() {
-        return ublDocument;
+    public DocumentEntity getDocument() {
+        return document;
     }
 
-    public void setUblDocument(UBLDocumentEntity invoice) {
-        this.ublDocument = invoice;
+    public void setDocument(DocumentEntity invoice) {
+        this.document = invoice;
     }
 
     public static class Key implements Serializable {
 
-        protected UBLDocumentEntity ublDocument;
+        protected DocumentEntity document;
 
         protected String action;
 
         public Key() {
         }
 
-        public Key(UBLDocumentEntity invoice, String action) {
-            this.ublDocument = invoice;
+        public Key(DocumentEntity invoice, String action) {
+            this.document = invoice;
             this.action = action;
         }
 
-        public UBLDocumentEntity getUblDocument() {
-            return ublDocument;
+        public DocumentEntity getDocument() {
+            return document;
         }
 
         public String getAction() {
@@ -82,7 +82,7 @@ public class UBLDocumentRequiredActionEntity {
             Key key = (Key) o;
 
             if (action != key.action) return false;
-            if (ublDocument != null ? !ublDocument.getId().equals(key.ublDocument != null ? key.ublDocument.getId() : null) : key.ublDocument != null)
+            if (document != null ? !document.getId().equals(key.document != null ? key.document.getId() : null) : key.document != null)
                 return false;
 
             return true;
@@ -90,7 +90,7 @@ public class UBLDocumentRequiredActionEntity {
 
         @Override
         public int hashCode() {
-            int result = ublDocument != null ? ublDocument.getId().hashCode() : 0;
+            int result = document != null ? document.getId().hashCode() : 0;
             result = 31 * result + (action != null ? action.hashCode() : 0);
             return result;
         }
@@ -100,12 +100,12 @@ public class UBLDocumentRequiredActionEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null) return false;
-        if (!(o instanceof UBLDocumentRequiredActionEntity)) return false;
+        if (!(o instanceof DocumentRequiredActionEntity)) return false;
 
-        UBLDocumentRequiredActionEntity key = (UBLDocumentRequiredActionEntity) o;
+        DocumentRequiredActionEntity key = (DocumentRequiredActionEntity) o;
 
         if (action != key.action) return false;
-        if (ublDocument != null ? !ublDocument.getId().equals(key.ublDocument != null ? key.ublDocument.getId() : null) : key.ublDocument != null)
+        if (document != null ? !document.getId().equals(key.document != null ? key.document.getId() : null) : key.document != null)
             return false;
 
         return true;
@@ -113,7 +113,7 @@ public class UBLDocumentRequiredActionEntity {
 
     @Override
     public int hashCode() {
-        int result = ublDocument != null ? ublDocument.getId().hashCode() : 0;
+        int result = document != null ? document.getId().hashCode() : 0;
         result = 31 * result + (action != null ? action.hashCode() : 0);
         return result;
     }

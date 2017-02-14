@@ -19,9 +19,11 @@ package org.openfact.models.jpa;
 import org.jboss.logging.Logger;
 import org.openfact.file.FileModel;
 import org.openfact.file.FileProvider;
+import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.entities.FileEntity;
+import org.openfact.models.utils.OpenfactModelUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -30,8 +32,6 @@ import java.util.List;
 public class JpaFileProvider implements FileProvider {
 
     protected static final Logger logger = Logger.getLogger(JpaFileProvider.class);
-
-    private static final String FILE_NAME = "fileName";
 
     private final OpenfactSession session;
     protected EntityManager em;
@@ -62,21 +62,6 @@ public class JpaFileProvider implements FileProvider {
             return new FileAdapter(session, em, entity);
         }
         return null;
-    }
-
-    @Override
-    public FileModel getFileByFileName(OrganizationModel organization, String fileName) {
-        TypedQuery<FileEntity> query = em.createNamedQuery("getOrganizationFileByFilename", FileEntity.class);
-        query.setParameter("organizationId", organization.getId());
-        query.setParameter("fileName", fileName);
-        List<FileEntity> entities = query.getResultList();
-        if (entities.size() == 0)
-            return null;
-        if (entities.size() > 1)
-            throw new IllegalStateException("Should not be more than one file with same name");
-
-        FileEntity entity = query.getResultList().get(0);
-        return new FileAdapter(session, em, entity);
     }
 
     @Override

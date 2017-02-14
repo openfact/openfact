@@ -31,8 +31,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "JOB_REPORT")
 @NamedQueries({
-        @NamedQuery(name = "getAllJobsReportByOrganization", query = "select i from JobReportEntity i where i.organizationId=:organizationId"),
-        @NamedQuery(name = "deleteJobReportsByOrganization", query = "delete from JobReportEntity f where f.organizationId=:organizationId")
+        @NamedQuery(name = "getAllJobReportsByOrganization", query = "select j from JobReportEntity j where j.organizationId=:organizationId"),
+        @NamedQuery(name = "deleteJobReportsByOrganization", query = "delete from JobReportEntity j where j.organizationId=:organizationId")
 })
 public class JobReportEntity {
 

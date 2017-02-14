@@ -1,20 +1,3 @@
-/*******************************************************************************
- * Copyright 2016 Sistcoop, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
-
 package org.openfact.testsuite.model;
 
 import com.google.common.collect.ImmutableMap;
@@ -31,10 +14,8 @@ import java.time.ZoneId;
 import java.util.*;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
-/**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
- */
 public class DocumentModelTest extends AbstractModelTest {
 
     @Test
@@ -59,6 +40,35 @@ public class DocumentModelTest extends AbstractModelTest {
         searchOrganization = organizationManager.getOrganization(organization.getId());
         DocumentModel persisted2 = session.documents().getDocumentById(document.getId(), searchOrganization);
         assertEquals(document, persisted2);
+    }
+
+    @Test
+    public void testDocumentLines() {
+        OrganizationModel organization = organizationManager.createOrganization("original");
+        OpenfactSession session = organizationManager.getSession();
+        DocumentModel document = session.documents().addDocument(DocumentType.INVOICE, "document", organization);
+        DocumentLineModel documentLine = document.addDocumentLine();
+        assertNotNull(documentLine);
+
+        documentLine.setAttribute("key1", "value1");
+        documentLine.setAttribute("key2", "value2");
+
+        Assert.assertEquals(2, documentLine.getAttributes().size());
+        commit();
+
+        session = organizationManager.getSession();
+        organization = organizationManager.getOrganization(organization.getId());
+        document = session.documents().getDocumentByTypeAndDocumentId(DocumentType.INVOICE, "document", organization);
+        Assert.assertEquals(1, document.getDocumentLines().size());
+
+        documentLine = document.getDocumentLines().get(0);
+        documentLine.removeAttribute("key1");
+
+        Assert.assertEquals(1, documentLine.getAttributes().size());
+
+        document.removeDocumentLine(documentLine);
+
+        Assert.assertTrue(document.getDocumentLines().isEmpty());
     }
 
     @Test
@@ -209,41 +219,41 @@ public class DocumentModelTest extends AbstractModelTest {
         Assert.assertTrue(documents.contains(document1));
     }
 
-    @Test
-    public void testSearchByDocumentAttribute() throws Exception {
-        OrganizationModel organization = organizationManager.createOrganization("original");
-        DocumentModel document1 = session.documents().addDocument(DocumentType.INVOICE, "document1", organization);
-        DocumentModel document2 = session.documents().addDocument(DocumentType.INVOICE, "document2", organization);
-        DocumentModel document3 = session.documents().addDocument(DocumentType.INVOICE, "document3", organization);
-
-        document1.setSingleAttribute("key1", "value1");
-        document1.setSingleAttribute("key2", "value21");
-
-        document2.setSingleAttribute("key1", "value1");
-        document2.setSingleAttribute("key2", "value22");
-
-        document3.setSingleAttribute("key2", "value21");
-
-        commit();
-        organization = session.organizations().getOrganizationByName("original");
-
-        List<DocumentModel> documents = session.documents().searchForDocumentByAttribute("key1", "value1", organization);
-        Assert.assertEquals(2, documents.size());
-        Assert.assertTrue(documents.contains(document1));
-        Assert.assertTrue(documents.contains(document2));
-
-        documents = session.documents().searchForDocumentByAttribute("key2", "value21", organization);
-        Assert.assertEquals(2, documents.size());
-        Assert.assertTrue(documents.contains(document1));
-        Assert.assertTrue(documents.contains(document3));
-
-        documents = session.documents().searchForDocumentByAttribute("key2", "value22", organization);
-        Assert.assertEquals(1, documents.size());
-        Assert.assertTrue(documents.contains(document2));
-
-        documents = session.documents().searchForDocumentByAttribute("key3", "value3", organization);
-        Assert.assertEquals(0, documents.size());
-    }
+//    @Test
+//    public void testSearchByDocumentAttribute() throws Exception {
+//        OrganizationModel organization = organizationManager.createOrganization("original");
+//        DocumentModel document1 = session.documents().addDocument(DocumentType.INVOICE, "document1", organization);
+//        DocumentModel document2 = session.documents().addDocument(DocumentType.INVOICE, "document2", organization);
+//        DocumentModel document3 = session.documents().addDocument(DocumentType.INVOICE, "document3", organization);
+//
+//        document1.setSingleAttribute("key1", "value1");
+//        document1.setSingleAttribute("key2", "value21");
+//
+//        document2.setSingleAttribute("key1", "value1");
+//        document2.setSingleAttribute("key2", "value22");
+//
+//        document3.setSingleAttribute("key2", "value21");
+//
+//        commit();
+//        organization = session.organizations().getOrganizationByName("original");
+//
+//        List<DocumentModel> documents = session.documents().searchForDocumentByAttribute("key1", "value1", organization);
+//        Assert.assertEquals(2, documents.size());
+//        Assert.assertTrue(documents.contains(document1));
+//        Assert.assertTrue(documents.contains(document2));
+//
+//        documents = session.documents().searchForDocumentByAttribute("key2", "value21", organization);
+//        Assert.assertEquals(2, documents.size());
+//        Assert.assertTrue(documents.contains(document1));
+//        Assert.assertTrue(documents.contains(document3));
+//
+//        documents = session.documents().searchForDocumentByAttribute("key2", "value22", organization);
+//        Assert.assertEquals(1, documents.size());
+//        Assert.assertTrue(documents.contains(document2));
+//
+//        documents = session.documents().searchForDocumentByAttribute("key3", "value3", organization);
+//        Assert.assertEquals(0, documents.size());
+//    }
 
     @Test
     public void testDocumentSendEvent() {

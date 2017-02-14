@@ -26,15 +26,14 @@ package org.openfact.models.jpa.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "UBL_DOCUMENT_ATTRIBUTE")
+@Table(name = "DOCUMENT_ATTRIBUTE")
 @NamedQueries({
-        @NamedQuery(name = "getUblDocumentAttributesByNameAndValue", query = "select attr from UBLDocumentAttributeEntity attr where attr.name = :name and attr.value = :value"),
-        @NamedQuery(name = "getUblDocumentAttributesByNameAndValueAndDocumentType", query = "select attr from UBLDocumentAttributeEntity attr join attr.ublDocument doc where attr.name = :name and attr.value = :value and doc.documentType=:documentType"),
-        @NamedQuery(name = "deleteUblDocumentAttributesByOrganization", query = "delete from  UBLDocumentAttributeEntity attr where attr.ublDocument IN (select u from UBLDocumentEntity u where u.organizationId=:organizationId)"),
-        @NamedQuery(name = "deleteUblDocumentAttributesByNameAndUblDocument", query = "delete from  UBLDocumentAttributeEntity attr where attr.ublDocument.id = :documentId and attr.name = :name"),
-        @NamedQuery(name = "deleteUblDocumentAttributesByNameAndUblDocumentOtherThan", query = "delete from  UBLDocumentAttributeEntity attr where attr.ublDocument.id = :documentId and attr.name = :name and attr.id <> :attrId")
+        @NamedQuery(name = "getDocumentAttributesByNameAndValue", query = "select attr from DocumentAttributeEntity attr where attr.name = :name and attr.value = :value"),
+        @NamedQuery(name = "deleteDocumentAttributesByOrganization", query = "delete from  DocumentAttributeEntity attr where attr.document IN (select u from DocumentEntity u where u.organizationId=:organizationId)"),
+        @NamedQuery(name = "deleteDocumentAttributesByNameAndDocumentPkId", query = "delete from  DocumentAttributeEntity attr where attr.document.id = :documentPkId and attr.name = :name"),
+        @NamedQuery(name = "deleteDocumentAttributesByNameAndDocumentPkIdOtherThan", query = "delete from  DocumentAttributeEntity attr where attr.document.id = :documentPkId and attr.name = :name and attr.id <> :attrId")
 })
-public class UBLDocumentAttributeEntity {
+public class DocumentAttributeEntity {
 
     @Id
     @Column(name = "ID", length = 36)
@@ -42,8 +41,8 @@ public class UBLDocumentAttributeEntity {
     private String id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "UBL_DOCUMENT_ID")
-    private UBLDocumentEntity ublDocument;
+    @JoinColumn(foreignKey = @ForeignKey, name = "DOCUMENT_ID")
+    private DocumentEntity document;
 
     @Column(name = "NAME")
     private String name;
@@ -75,21 +74,21 @@ public class UBLDocumentAttributeEntity {
         this.value = value;
     }
 
-    public UBLDocumentEntity getUblDocument() {
-        return ublDocument;
+    public DocumentEntity getDocument() {
+        return document;
     }
 
-    public void setUblDocument(UBLDocumentEntity document) {
-        this.ublDocument = document;
+    public void setDocument(DocumentEntity document) {
+        this.document = document;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null) return false;
-        if (!(o instanceof UBLDocumentAttributeEntity)) return false;
+        if (!(o instanceof DocumentAttributeEntity)) return false;
 
-        UBLDocumentAttributeEntity that = (UBLDocumentAttributeEntity) o;
+        DocumentAttributeEntity that = (DocumentAttributeEntity) o;
 
         if (!id.equals(that.getId())) return false;
 

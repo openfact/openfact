@@ -30,6 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 /**
  * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
@@ -88,6 +89,14 @@ public class ComponentUtil {
     public static void notifyCreated(OpenfactSession session, OrganizationModel organization, ComponentModel model) {
         ComponentFactory factory = getComponentFactory(session, model);
         factory.onCreate(session, organization, model);
+//        if (factory instanceof UserStorageProviderFactory) {
+//            ((OnCreateComponent) session.userStorageManager()).onCreate(session, organization, model);
+//        }
+    }
+
+    public static void notifyUpdated(OpenfactSession session, OrganizationModel organization, ComponentModel model) {
+        ComponentFactory factory = getComponentFactory(session, model);
+        factory.onUpdate(session, organization, model);
     }
 
 }

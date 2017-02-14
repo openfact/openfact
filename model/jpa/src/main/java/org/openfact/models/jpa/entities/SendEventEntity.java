@@ -27,11 +27,11 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 @Entity
-@Table(name = "UBL_DOCUMENT_SEND_EVENT")
+@Table(name = "SEND_EVENT")
 @NamedQueries(value = {
-        @NamedQuery(name = "getAllSendEventByDocumentId", query = "select s from SendEventEntity s where s.ublDocument.id=:documentId"),
-        @NamedQuery(name = "getDocumentSendEventCountByDocument", query = "select count(s) from SendEventEntity s where s.ublDocument.id=:documentId"),
-        @NamedQuery(name = "deleteUblDocumentSendEventByOrganization", query = "delete from SendEventEntity event where event.ublDocument IN (select i from UBLDocumentEntity i where i.organizationId=:organizationId)")
+        @NamedQuery(name = "getAllSendEventsByDocumentPkId", query = "select s from SendEventEntity s where s.document.id=:documentPkId"),
+        @NamedQuery(name = "getDocumentSendEventCountByDocument", query = "select count(s) from SendEventEntity s where s.document.id=:documentId"),
+        @NamedQuery(name = "deleteSendEventsByOrganization", query = "delete from SendEventEntity event where event.document IN (select i from DocumentEntity i where i.organizationId=:organizationId)")
 })
 public class SendEventEntity {
 
@@ -62,8 +62,8 @@ public class SendEventEntity {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "UBL_DOCUMENT_ID")
-    private UBLDocumentEntity ublDocument;
+    @JoinColumn(foreignKey = @ForeignKey, name = "DOCUMENT_ID")
+    private DocumentEntity document;
 
     @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "sendEvent")
     private Collection<SendEventAttributeEntity> attributes = new ArrayList<>();
@@ -129,12 +129,12 @@ public class SendEventEntity {
         this.createdTimestamp = createdTimestamp;
     }
 
-    public UBLDocumentEntity getUblDocument() {
-        return ublDocument;
+    public DocumentEntity getDocument() {
+        return document;
     }
 
-    public void setUblDocument(UBLDocumentEntity ublDocument) {
-        this.ublDocument = ublDocument;
+    public void setDocument(DocumentEntity ublDocument) {
+        this.document = ublDocument;
     }
 
     public Collection<SendEventAttributeEntity> getAttributes() {

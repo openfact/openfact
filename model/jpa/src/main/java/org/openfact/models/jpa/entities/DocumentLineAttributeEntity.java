@@ -27,20 +27,20 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "SEND_EVENT_ATTRIBUTE")
-@IdClass(SendEventAttributeEntity.Key.class)
+@Table(name = "DOCUMENT_LINE_ATTRIBUTE")
+@IdClass(DocumentLineAttributeEntity.Key.class)
 @NamedQueries({
-        @NamedQuery(name = "getSendEventResponseAttributesByNameAndValue", query = "select attr from SendEventAttributeEntity attr where attr.name = :name and attr.value = :value"),
-        @NamedQuery(name = "deleteSendEventResponseAttributesByNameAndSendEvent", query = "delete from  SendEventAttributeEntity attr where attr.sendEvent.id = :sendEventId and attr.name = :name"),
-        @NamedQuery(name = "deleteSendEventResponseAttributesByNameAndSendEventOtherThan", query = "delete from  SendEventAttributeEntity attr where attr.sendEvent.id = :sendEventId and attr.name = :name and attr.id <> :attrId"),
-        @NamedQuery(name = "deleteSendEventAttributesByOrganization", query = "delete from SendEventAttributeEntity attr where attr.sendEvent IN (select s from SendEventEntity s join s.document i where i.organizationId=:organizationId)")
+        @NamedQuery(name = "getDocumentLineAttributesByNameAndValue", query = "select attr from DocumentLineAttributeEntity attr where attr.name = :name and attr.value = :value"),
+        @NamedQuery(name = "deleteDocumentLineAttributesByNameAndSendEvent", query = "delete from  DocumentLineAttributeEntity attr where attr.documentLine.id = :sendEventId and attr.name = :name"),
+        @NamedQuery(name = "deleteDocumentLineAttributesByNameAndSendEventOtherThan", query = "delete from  DocumentLineAttributeEntity attr where attr.documentLine.id = :sendEventId and attr.name = :name and attr.id <> :attrId"),
+        @NamedQuery(name = "deleteDocumentLineAttributesByOrganization", query = "delete from DocumentLineAttributeEntity attr where attr.documentLine IN (select line from DocumentLineEntity line join line.document doc where doc.organizationId=:organizationId)")
 })
-public class SendEventAttributeEntity {
+public class DocumentLineAttributeEntity {
 
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "SEND_EVENT_ID")
-    protected SendEventEntity sendEvent;
+    @JoinColumn(foreignKey = @ForeignKey, name = "DOCUMENT_LINE_ID")
+    protected DocumentLineEntity documentLine;
 
     @Id
     @Column(name = "NAME")
@@ -65,30 +65,30 @@ public class SendEventAttributeEntity {
         this.value = value;
     }
 
-    public SendEventEntity getSendEvent() {
-        return sendEvent;
+    public DocumentLineEntity getDocumentLine() {
+        return documentLine;
     }
 
-    public void setSendEvent(SendEventEntity ublDocumentSendEvent) {
-        this.sendEvent = ublDocumentSendEvent;
+    public void setDocumentLine(DocumentLineEntity documentLine) {
+        this.documentLine = documentLine;
     }
 
     public static class Key implements Serializable {
 
-        protected SendEventEntity sendEvent;
+        protected DocumentLineEntity documentLine;
 
         protected String name;
 
         public Key() {
         }
 
-        public Key(SendEventEntity ublDocumentSendEvent, String name) {
-            this.sendEvent = ublDocumentSendEvent;
+        public Key(DocumentLineEntity documentLine, String name) {
+            this.documentLine = documentLine;
             this.name = name;
         }
 
-        public SendEventEntity getSendEvent() {
-            return sendEvent;
+        public DocumentLineEntity getDocumentLine() {
+            return documentLine;
         }
 
         public String getName() {
@@ -100,10 +100,10 @@ public class SendEventAttributeEntity {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
 
-            OrganizationAttributeEntity.Key key = (OrganizationAttributeEntity.Key) o;
+            DocumentLineAttributeEntity.Key key = (DocumentLineAttributeEntity.Key) o;
 
             if (name != null ? !name.equals(key.name) : key.name != null) return false;
-            if (sendEvent != null ? !sendEvent.getId().equals(key.organization != null ? key.organization.getId() : null) : key.organization != null)
+            if (documentLine != null ? !documentLine.getId().equals(key.documentLine != null ? key.documentLine.getId() : null) : key.documentLine != null)
                 return false;
 
             return true;
@@ -111,7 +111,7 @@ public class SendEventAttributeEntity {
 
         @Override
         public int hashCode() {
-            int result = sendEvent != null ? sendEvent.getId().hashCode() : 0;
+            int result = documentLine != null ? documentLine.getId().hashCode() : 0;
             result = 31 * result + (name != null ? name.hashCode() : 0);
             return result;
         }

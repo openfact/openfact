@@ -1,8 +1,5 @@
 package org.openfact.keys;
 
-import java.security.PublicKey;
-import java.security.cert.Certificate;
-
 public class KeyMetadata {
 
     public enum Status {

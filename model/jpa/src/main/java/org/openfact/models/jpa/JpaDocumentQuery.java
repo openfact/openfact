@@ -3,9 +3,8 @@ package org.openfact.models.jpa;
 import org.openfact.models.*;
 import org.openfact.models.enums.DocumentType;
 import org.openfact.models.enums.RequiredAction;
-import org.openfact.models.jpa.entities.UBLDocumentEntity;
+import org.openfact.models.jpa.entities.DocumentEntity;
 import org.openfact.models.search.PagingModel;
-import org.openfact.models.search.SearchCriteriaFilterModel;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchResultsModel;
 
@@ -20,8 +19,8 @@ import java.util.stream.Collectors;
 
 public class JpaDocumentQuery implements DocumentQuery {
 
-    private DocumentCriteria<UBLDocumentEntity, UBLDocumentEntity> query;
-    private DocumentCriteria<UBLDocumentEntity, Long> queryCount;
+    private DocumentCriteria<DocumentEntity, DocumentEntity> query;
+    private DocumentCriteria<DocumentEntity, Long> queryCount;
 
     private OpenfactSession session;
     private OrganizationModel organization;
@@ -31,8 +30,12 @@ public class JpaDocumentQuery implements DocumentQuery {
         this.session = session;
         this.organization = organization;
         this.em = em;
-        this.query = new DocumentCriteria<>(session, organization, em, UBLDocumentEntity.class, UBLDocumentEntity.class);
-        this.queryCount = new DocumentCriteria<>(session, organization, em, UBLDocumentEntity.class, Long.class);
+        this.query = new DocumentCriteria<>(session, organization, em, DocumentEntity.class, DocumentEntity.class);
+        this.queryCount = new DocumentCriteria<>(session, organization, em, DocumentEntity.class, Long.class);
+    }
+
+    private DocumentModel toModel(DocumentEntity entity) {
+        return new DocumentAdapter(session, organization, em, entity);
     }
 
     @Override
@@ -111,23 +114,23 @@ public class JpaDocumentQuery implements DocumentQuery {
     }
 
     @Override
+    public DocumentQuery fromDate(LocalDateTime fromDate, boolean include) {
+        query.fromDate(fromDate, include);
+        queryCount.fromDate(fromDate, include);
+        return this;
+    }
+
+    @Override
+    public DocumentQuery toDate(LocalDateTime toDate, boolean include) {
+        query.toDate(toDate, include);
+        queryCount.toDate(toDate, include);
+        return this;
+    }
+
+    @Override
     public DocumentQuery requiredAction(RequiredAction... requiredAction) {
         query.requiredAction(requiredAction);
         queryCount.requiredAction(requiredAction);
-        return this;
-    }
-
-    @Override
-    public DocumentQuery fromDate(LocalDateTime fromDate) {
-        query.fromDate(fromDate);
-        queryCount.fromDate(fromDate);
-        return this;
-    }
-
-    @Override
-    public DocumentQuery toDate(LocalDateTime toDate) {
-        query.toDate(toDate);
-        queryCount.toDate(toDate);
         return this;
     }
 
@@ -187,7 +190,7 @@ public class JpaDocumentQuery implements DocumentQuery {
 
         @Override
         public List<DocumentModel> getResultList() {
-            TypedQuery<UBLDocumentEntity> typedQuery = query.buildQuery(false);
+            TypedQuery<DocumentEntity> typedQuery = query.buildQuery(false);
             if (firstResult != null) {
                 typedQuery.setFirstResult(firstResult);
             }
@@ -196,7 +199,7 @@ public class JpaDocumentQuery implements DocumentQuery {
             }
 
             return typedQuery.getResultList().stream()
-                    .map(f -> new UBLDocumentAdapter(session, organization, em, f))
+                    .map(document -> toModel(document))
                     .collect(Collectors.toList());
         }
 
@@ -232,13 +235,13 @@ public class JpaDocumentQuery implements DocumentQuery {
             int pageSize = paging.getPageSize();
             int start = (page - 1) * pageSize;
 
-            TypedQuery<UBLDocumentEntity> typedQuery = query.buildQuery(false);
+            TypedQuery<DocumentEntity> typedQuery = query.buildQuery(false);
 
             typedQuery.setFirstResult(start);
             typedQuery.setMaxResults(pageSize + 1);
             boolean hasMore = false;
 
-            List<UBLDocumentEntity> resultList = typedQuery.getResultList();
+            List<DocumentEntity> resultList = typedQuery.getResultList();
 
             // Check if we got back more than we actually needed.
             if (resultList.size() > pageSize) {
@@ -256,7 +259,7 @@ public class JpaDocumentQuery implements DocumentQuery {
 
             SearchResultsModel<DocumentModel> results = new SearchResultsModel<>();
             results.setTotalSize(totalSize);
-            results.setModels(resultList.stream().map(f -> new UBLDocumentAdapter(session, organization, em, f)).collect(Collectors.toList()));
+            results.setModels(resultList.stream().map(document -> toModel(document)).collect(Collectors.toList()));
             return results;
         }
     }
@@ -264,14 +267,14 @@ public class JpaDocumentQuery implements DocumentQuery {
     class JpaScrollEntityQuery implements DocumentQuery.ScrollEntityQuery {
         @Override
         public ScrollModel<DocumentModel> getScrollResult(int scrollSize) {
-            TypedQuery<UBLDocumentEntity> typedQuery = query.buildQuery(false);
-            return new ScrollAdapter<>(UBLDocumentEntity.class, typedQuery, f -> new UBLDocumentAdapter(session, organization, em, f), scrollSize);
+            TypedQuery<DocumentEntity> typedQuery = query.buildQuery(false);
+            return new ScrollAdapter<>(DocumentEntity.class, typedQuery, document -> toModel(document), scrollSize);
         }
 
         @Override
         public ScrollModel<List<DocumentModel>> getScrollResultList(int listSize) {
-            TypedQuery<UBLDocumentEntity> typedQuery = query.buildQuery(false);
-            return new ScrollPagingAdapter<>(UBLDocumentEntity.class, typedQuery, f -> f.stream().map(m -> new UBLDocumentAdapter(session, organization, em, m)).collect(Collectors.toList()), listSize);
+            TypedQuery<DocumentEntity> typedQuery = query.buildQuery(false);
+            return new ScrollPagingAdapter<>(DocumentEntity.class, typedQuery, f -> f.stream().map(document -> toModel(document)).collect(Collectors.toList()), listSize);
         }
     }
 
