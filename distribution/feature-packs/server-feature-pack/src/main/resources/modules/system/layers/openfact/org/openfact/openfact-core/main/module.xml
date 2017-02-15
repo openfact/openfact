@@ -29,10 +29,11 @@
         <module name="com.fasterxml.jackson.core.jackson-annotations"/>
         <module name="com.fasterxml.jackson.core.jackson-databind"/>
         <module name="com.fasterxml.jackson.jaxrs.jackson-jaxrs-json-provider"/>
+        <module name="com.fasterxml.jackson.datatype.jackson-datatype-jsr310"/>
         <module name="org.openfact.openfact-common"/>
-        <module name="org.bouncycastle" />
+        <module name="org.bouncycastle"/>
         <module name="javax.api"/>
         <module name="javax.activation.api"/>
-        <module name="sun.jdk" optional="true" />
+        <module name="sun.jdk" optional="true"/>
     </dependencies>
 </module>
