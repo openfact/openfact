@@ -76,10 +76,8 @@
                 </servlet-container>
                 <handlers>
                     <reverse-proxy name="lb-handler">
-                        <host name="host1" outbound-socket-binding="remote-host1" scheme="ajp" path="/"
-                              instance-id="myroute1"/>
-                        <host name="host2" outbound-socket-binding="remote-host2" scheme="ajp" path="/"
-                              instance-id="myroute2"/>
+                        <host name="host1" outbound-socket-binding="remote-host1" scheme="ajp" path="/" instance-id="myroute1"/>
+                        <host name="host2" outbound-socket-binding="remote-host2" scheme="ajp" path="/" instance-id="myroute2"/>
                     </reverse-proxy>
                 </handlers>
                 <filters>

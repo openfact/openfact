@@ -42,17 +42,6 @@
         </openfact.osgi.import>
     </properties>
     <dependencies>
-        <!-- Secondary Start -->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-        </dependency>
-        <!-- Secondary End -->
-
         <!-- Principal Start -->
         <dependency>
             <groupId>org.bouncycastle</groupId>
@@ -68,6 +57,17 @@
             <scope>test</scope>
         </dependency>
         <!-- Principal End -->
+
+        <!-- Secondary Start -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+        </dependency>
+        <!-- Secondary End -->
     </dependencies>
     <build>
         <resources>

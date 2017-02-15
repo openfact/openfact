@@ -42,12 +42,6 @@
         </openfact.osgi.import>
     </properties>
     <dependencies>
-        <!-- Java 8 Time -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jsr310</artifactId>
-        </dependency>
-
         <!-- Principal Start -->
         <dependency>
             <groupId>org.openfact</groupId>
@@ -76,10 +70,18 @@
         </dependency>
         <!-- Principal End -->
 
+        <!--Secondary Start-->
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
         </dependency>
+
+        <!-- Java 8 Time -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+        <!--Secondary End-->
     </dependencies>
     <build>
         <resources>
