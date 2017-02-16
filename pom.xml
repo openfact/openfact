@@ -785,6 +785,12 @@
             </dependency>
             <dependency>
                 <groupId>org.openfact</groupId>
+                <artifactId>openfact-server-keycloak</artifactId>
+                <version>${project.version}</version>
+                <type>zip</type>
+            </dependency>
+            <dependency>
+                <groupId>org.openfact</groupId>
                 <artifactId>openfact-server-overlay</artifactId>
                 <version>${project.version}</version>
                 <type>zip</type>

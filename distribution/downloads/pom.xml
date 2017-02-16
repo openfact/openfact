@@ -68,6 +68,19 @@
 
                                 <artifactItem>
                                     <groupId>org.openfact</groupId>
+                                    <artifactId>openfact-server-keycloak</artifactId>
+                                    <type>zip</type>
+                                    <destFileName>openfact-server-keycloak-${project.version}.zip</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.openfact</groupId>
+                                    <artifactId>openfact-server-keycloak</artifactId>
+                                    <type>tar.gz</type>
+                                    <destFileName>openfact-server-keycloak-${project.version}.tar.gz</destFileName>
+                                </artifactItem>
+
+                                <artifactItem>
+                                    <groupId>org.openfact</groupId>
                                     <artifactId>openfact-server-overlay</artifactId>
                                     <type>zip</type>
                                     <destFileName>openfact-overlay-${project.version}.zip</destFileName>

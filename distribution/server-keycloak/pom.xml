@@ -16,68 +16,68 @@
  -->
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <parent>
-        <groupId>org.openfact</groupId>
-        <artifactId>feature-packs</artifactId>
-        <version>1.0-beta-5-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>openfact-distribution</artifactId>
+        <groupId>org.openfact</groupId>
+        <version>1.0-beta-5-SNAPSHOT</version>
+    </parent>
 
-    <artifactId>openfact-server-feature-pack</artifactId>
-
-    <name>Openfact Feature Pack: Server</name>
+    <artifactId>openfact-server-keycloak</artifactId>
     <packaging>pom</packaging>
+    <name>Openfact Server Keycloak</name>
+    <description/>
 
     <dependencies>
         <dependency>
             <groupId>org.openfact</groupId>
-            <artifactId>openfact-dependencies-server-all</artifactId>
-            <type>pom</type>
-        </dependency>
-        <dependency>
-            <groupId>org.openfact</groupId>
-            <artifactId>openfact-wildfly-extensions</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.openfact</groupId>
-            <artifactId>openfact-wildfly-server-subsystem</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.openfact</groupId>
-            <artifactId>openfact-keycloak-adapter-subsystem</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.wildfly</groupId>
-            <artifactId>wildfly-feature-pack</artifactId>
-            <type>zip</type>
-        </dependency>
-        <dependency>
-            <groupId>org.keycloak</groupId>
-            <artifactId>keycloak-adapter-feature-pack</artifactId>
+            <artifactId>openfact-server-dist</artifactId>
             <type>zip</type>
         </dependency>
     </dependencies>
 
     <build>
+        <finalName>openfact-overlay-${project.version}</finalName>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <executions></executions>
-            </plugin>
-            <plugin>
-                <groupId>org.wildfly.build</groupId>
-                <artifactId>wildfly-feature-pack-build-maven-plugin</artifactId>
+                <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>feature-pack-build</id>
-                        <goals>
-                            <goal>build</goal>
-                        </goals>
+                        <id>unpack</id>
                         <phase>compile</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
                         <configuration>
-                            <config-file>feature-pack-build.xml</config-file>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.openfact</groupId>
+                                    <artifactId>openfact-wildfly-server-subsystem</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>jar</type>
+                                    <includes>cli/*.cli</includes>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>unpack-server-dist</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.openfact</groupId>
+                                    <artifactId>openfact-server-dist</artifactId>
+                                    <type>zip</type>
+                                    <outputDirectory>${project.build.directory}/unpacked</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
                         </configuration>
                     </execution>
                 </executions>
@@ -99,8 +99,8 @@
                             <recompressZippedFiles>true</recompressZippedFiles>
                             <finalName>${project.build.finalName}</finalName>
                             <appendAssemblyId>false</appendAssemblyId>
-                            <outputDirectory>target/</outputDirectory>
-                            <workDirectory>target/assembly/work</workDirectory>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <workDirectory>${project.build.directory}/assembly/work</workDirectory>
                             <tarLongFileMode>gnu</tarLongFileMode>
                         </configuration>
                     </execution>

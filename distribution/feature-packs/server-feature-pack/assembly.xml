@@ -59,5 +59,12 @@
                 <include>**/**</include>
             </includes>
         </fileSet>
+        <fileSet>
+            <directory>../../../reports/src/main/resources/report</directory>
+            <outputDirectory>content/reports</outputDirectory>
+            <includes>
+                <include>**/**</include>
+            </includes>
+        </fileSet>
     </fileSets>
 </assembly>
