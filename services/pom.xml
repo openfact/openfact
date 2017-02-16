@@ -161,38 +161,8 @@
 
         <!-- Secondary Start -->
         <dependency>
-            <groupId>org.codehaus.woodstox</groupId>
-            <artifactId>woodstox-core-asl</artifactId>
-        </dependency>
-        <dependency>
             <groupId>de.odysseus.staxon</groupId>
             <artifactId>staxon-gson</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jvnet.jaxb2_commons</groupId>
-            <artifactId>jaxb2-basics-runtime</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.helger</groupId>
-            <artifactId>ph-ubl21</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jodd</groupId>
-            <artifactId>jodd-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.santuario</groupId>
-            <artifactId>xmlsec</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
         </dependency>
         <dependency>
             <groupId>commons-validator</groupId>
@@ -200,18 +170,10 @@
             <version>${version.commons.validator}</version>
         </dependency>
 
+        <!--Ubl-->
         <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jsr310</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-xml</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
+            <groupId>com.helger</groupId>
+            <artifactId>ph-ubl21</artifactId>
         </dependency>
 
         <!--Keycloak-->
