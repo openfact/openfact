@@ -41,6 +41,8 @@ public class DocumentRepresentation {
     private List<DocumentRepresentation> attachedDocumentsAsOrigin;
     private List<DocumentRepresentation> attachedDocumentsAsDestiny;
 
+    private List<Map<String, String>> documentLines;
+
     public String getId() {
         return id;
     }
@@ -143,5 +145,13 @@ public class DocumentRepresentation {
 
     public void setAttachedDocumentsAsDestiny(List<DocumentRepresentation> attachedDocumentsAsDestiny) {
         this.attachedDocumentsAsDestiny = attachedDocumentsAsDestiny;
+    }
+
+    public List<Map<String, String>> getDocumentLines() {
+        return documentLines;
+    }
+
+    public void setDocumentLines(List<Map<String, String>> documentLines) {
+        this.documentLines = documentLines;
     }
 }

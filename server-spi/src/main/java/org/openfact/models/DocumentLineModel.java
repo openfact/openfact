@@ -1,5 +1,6 @@
 package org.openfact.models;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 public interface DocumentLineModel {
@@ -13,6 +14,8 @@ public interface DocumentLineModel {
     void setAttribute(String name, Integer value);
 
     void setAttribute(String name, Long value);
+
+    void setAttribute(String name, BigDecimal value);
 
     void removeAttribute(String name);
 

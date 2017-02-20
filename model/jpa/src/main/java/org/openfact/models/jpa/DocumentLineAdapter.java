@@ -24,6 +24,7 @@ import org.openfact.models.jpa.entities.DocumentLineAttributeEntity;
 import org.openfact.models.jpa.entities.DocumentLineEntity;
 
 import javax.persistence.EntityManager;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -82,6 +83,11 @@ public class DocumentLineAdapter implements DocumentLineModel, JpaModel<Document
 
     @Override
     public void setAttribute(String name, Long value) {
+        setAttribute(name, value.toString());
+    }
+
+    @Override
+    public void setAttribute(String name, BigDecimal value) {
         setAttribute(name, value.toString());
     }
 
