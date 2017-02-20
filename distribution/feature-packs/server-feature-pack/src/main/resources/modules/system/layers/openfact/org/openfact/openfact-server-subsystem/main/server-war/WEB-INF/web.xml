@@ -61,7 +61,7 @@
 
     <filter-mapping>
         <filter-name>Openfact Security Context</filter-name>
-        <url-pattern>/admin/*</url-pattern>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
 
     <servlet-mapping>
@@ -69,10 +69,28 @@
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
 
+
+    <context-param>
+        <param-name>keycloak.config.resolver</param-name>
+        <param-value>org.openfact.security.keycloak.config.JbossHomeKeycloakConfigResolver</param-value>
+    </context-param>
+
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Admin Rest</web-resource-name>
             <url-pattern>/admin/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+            <role-name>admin-organization</role-name>
+            <role-name>organization-user</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Organizations Rest</web-resource-name>
+            <url-pattern>/organizations/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>admin</role-name>

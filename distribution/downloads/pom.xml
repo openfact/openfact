@@ -92,6 +92,7 @@
                                     <destFileName>openfact-overlay-${project.version}.tar.gz</destFileName>
                                 </artifactItem>
                             </artifactItems>
+
                             <outputDirectory>target/${project.version}</outputDirectory>
                         </configuration>
                     </execution>

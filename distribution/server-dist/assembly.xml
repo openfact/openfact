@@ -72,6 +72,13 @@
             </includes>
         </fileSet>
         <fileSet>
+            <directory>src/main/standalone/configuration</directory>
+            <outputDirectory>standalone/configuration</outputDirectory>
+            <includes>
+                <include>keycloak.json</include>
+            </includes>
+        </fileSet>
+        <fileSet>
             <directory>src/main/modules</directory>
             <outputDirectory>modules</outputDirectory>
             <includes>

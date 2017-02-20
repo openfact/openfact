@@ -162,7 +162,7 @@
         <version.batik>1.8</version.batik>
         <version.xmlgraphics-commons>2.1</version.xmlgraphics-commons>
         <version.jasperreports.fonts>6.0.0</version.jasperreports.fonts>
-        <version.keycloak>2.4.0.Final</version.keycloak>
+        <version.keycloak>2.5.1.Final</version.keycloak>
         <version.commons.validator>1.5.1</version.commons.validator>
 
         <!-- Dropbox -->
@@ -965,6 +965,16 @@
             <dependency>
                 <groupId>org.keycloak</groupId>
                 <artifactId>keycloak-authz-client</artifactId>
+                <version>${version.keycloak}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.keycloak</groupId>
+                <artifactId>keycloak-adapter-core</artifactId>
+                <version>${version.keycloak}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.keycloak</groupId>
+                <artifactId>keycloak-adapter-spi</artifactId>
                 <version>${version.keycloak}</version>
             </dependency>
             <dependency>

@@ -332,7 +332,7 @@ public class OpenfactServer {
 
     public static class OpenfactServerConfig {
         private String host = "localhost";
-        private int port = 8081;
+        private int port = 8080;
         private int workerThreads = Math.max(Runtime.getRuntime().availableProcessors(), 2) * 8;
         private String resourcesHome;
 

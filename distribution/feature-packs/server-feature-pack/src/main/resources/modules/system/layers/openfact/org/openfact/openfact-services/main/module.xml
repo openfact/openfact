@@ -34,6 +34,9 @@
         <module name="org.openfact.openfact-wildfly-extensions" services="import"/>
 
         <module name="org.keycloak.keycloak-core"/>
+        <module name="org.keycloak.keycloak-adapter-core"/>
+        <module name="org.keycloak.keycloak-adapter-spi"/>
+        <module name="org.keycloak.keycloak-authz-client"/>
 
         <module name="org.freemarker"/>
         <module name="javax.ws.rs.api"/>
