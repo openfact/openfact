@@ -335,13 +335,101 @@
 			"enabled": true,
 			"baseUrl": "/openfact",
 			"authorizationServicesEnabled": true,
+			"directAccessGrantsEnabled": true,
 			"redirectUris": [
 				"http://localhost:4200/*",
+				"http://localhost:8080/*",
 				"/openfact-restful-api/*"
 			],
 			"webOrigins": [
 				"http://localhost:4200",
 				"*"
+			],
+			"protocolMappers": [
+				{
+					"name": "email",
+					"protocol": "openid-connect",
+					"protocolMapper": "oidc-usermodel-property-mapper",
+					"consentRequired": true,
+					"consentText": "${email}",
+					"config": {
+						"claim.name": "email",
+						"user.attribute": "email",
+						"jsonType.label": "String",
+						"access.token.claim": true,
+						"id.token.claim": true,
+						"userinfo.token.claim": true
+					}
+				},
+				{
+					"name": "username",
+					"protocol": "openid-connect",
+					"protocolMapper": "oidc-usermodel-property-mapper",
+					"consentRequired": true,
+					"consentText": "${username}",
+					"config": {
+						"claim.name": "username",
+						"user.attribute": "username",
+						"jsonType.label": "String",
+						"access.token.claim": true,
+						"id.token.claim": true,
+						"userinfo.token.claim": true
+					}
+				},
+				{
+					"name": "full name",
+					"protocol": "openid-connect",
+					"protocolMapper": "oidc-full-name-mapper",
+					"consentRequired": true,
+					"consentText": "${fullName}",
+					"config": {
+						"access.token.claim": true,
+						"id.token.claim": true
+					}
+				},
+				{
+					"name": "family name",
+					"protocol": "openid-connect",
+					"protocolMapper": "oidc-usermodel-property-mapper",
+					"consentRequired": true,
+					"consentText": "${familyName}",
+					"config": {
+						"claim.name": "family_name",
+						"user.attribute": "lastName",
+						"jsonType.label": "String",
+						"access.token.claim": true,
+						"id.token.claim": true,
+						"userinfo.token.claim": true
+					}
+				},
+				{
+					"name": "given name",
+					"protocol": "openid-connect",
+					"protocolMapper": "oidc-usermodel-property-mapper",
+					"consentRequired": true,
+					"consentText": "${username}",
+					"config": {
+						"claim.name": "given_name",
+						"user.attribute": "firstName",
+						"jsonType.label": "String",
+						"access.token.claim": true,
+						"id.token.claim": true,
+						"userinfo.token.claim": true
+					}
+				},
+				{
+					"name": "organization",
+					"protocol": "openid-connect",
+					"protocolMapper": "oidc-usermodel-attribute-mapper",
+					"consentRequired": false,
+					"config": {
+						"claim.name": "organization",
+						"user.attribute": "organization",
+						"jsonType.label": "String",
+						"access.token.claim": true,
+						"id.token.claim": true
+					}
+				}
 			]
 		}
 	]

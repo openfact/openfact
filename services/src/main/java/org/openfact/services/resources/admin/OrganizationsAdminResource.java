@@ -18,9 +18,7 @@ package org.openfact.services.resources.admin;
 
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
@@ -31,7 +29,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.CacheControl;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
@@ -50,7 +47,6 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.ErrorResponse;
-import org.openfact.services.managers.AuthzManager;
 import org.openfact.services.managers.OrganizationManager;
 import org.openfact.services.resources.OpenfactApplication;
 
