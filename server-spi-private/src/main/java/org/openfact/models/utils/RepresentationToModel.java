@@ -128,6 +128,9 @@ public class RepresentationToModel {
          */
         if (rep.getPostalAddress() != null) {
             PostalAddressRepresentation postalAddressRep = rep.getPostalAddress();
+            if (postalAddressRep.getPostalAddressId() != null) {
+                newOrganization.setPostalAddressId(postalAddressRep.getPostalAddressId());
+            }
             if (postalAddressRep.getCountryIdentificationCode() != null) {
                 newOrganization.setCountryIdentificationCode(postalAddressRep.getCountryIdentificationCode());
             }
@@ -299,6 +302,9 @@ public class RepresentationToModel {
          */
         if (rep.getPostalAddress() != null) {
             PostalAddressRepresentation postalAddressRep = rep.getPostalAddress();
+            if (postalAddressRep.getPostalAddressId() != null) {
+                organization.setPostalAddressId(postalAddressRep.getPostalAddressId());
+            }
             if (postalAddressRep.getCountryIdentificationCode() != null) {
                 organization.setCountryIdentificationCode(postalAddressRep.getCountryIdentificationCode());
             }

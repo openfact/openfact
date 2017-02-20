@@ -52,6 +52,7 @@ public class ModelToRepresentation {
          * Postal address
          */
         PostalAddressRepresentation postalAddressRep = new PostalAddressRepresentation();
+        postalAddressRep.setPostalAddressId(organization.getPostalAddressId());
         postalAddressRep.setStreetName(organization.getStreetName());
         postalAddressRep.setCitySubdivisionName(organization.getCitySubdivisionName());
         postalAddressRep.setCityName(organization.getCityName());

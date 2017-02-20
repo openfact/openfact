@@ -19,6 +19,8 @@ package org.openfact.representations.idm;
 public class PostalAddressRepresentation {
 
     private String id;
+
+    private String postalAddressId;
     private String streetName;
     private String citySubdivisionName;
     private String cityName;
@@ -82,4 +84,11 @@ public class PostalAddressRepresentation {
         this.countryIdentificationCode = countryIdentificationCode;
     }
 
+    public String getPostalAddressId() {
+        return postalAddressId;
+    }
+
+    public void setPostalAddressId(String postalAddressId) {
+        this.postalAddressId = postalAddressId;
+    }
 }
