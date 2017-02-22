@@ -45,9 +45,7 @@ import org.openfact.models.SendException;
 import org.openfact.ubl.UBLReportProvider;
 import org.w3c.dom.Document;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class DocumentAdminResource {
@@ -178,6 +176,57 @@ public class DocumentAdminResource {
             return response.build();
         } catch (ReportException e) {
             return ErrorResponse.error("Error generating report", Response.Status.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PUT
+    @NoCache
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateDocument(DocumentRepresentation rep) {
+        auth.requireManage();
+
+        try {
+            if (document == null) {
+                return Response.status(Response.Status.NOT_FOUND).build();
+            }
+
+            Set<String> actionsToRemove;
+            if (rep.getRequiredActions() != null) {
+                actionsToRemove = new HashSet<>(document.getRequiredActions());
+                actionsToRemove.removeAll(rep.getRequiredActions());
+            } else {
+                actionsToRemove = Collections.emptySet();
+            }
+
+            updateDocumentFromRep(document, rep, actionsToRemove);
+            adminEvent.operation(OperationType.UPDATE).resourcePath(uriInfo).representation(rep).success();
+
+            if (session.getTransactionManager().isActive()) {
+                session.getTransactionManager().commit();
+            }
+            return Response.noContent().build();
+        } catch (ModelDuplicateException e) {
+            return ErrorResponse.exists("Document exists with same documentId or id");
+        } catch (ModelException me) {
+            logger.warn("Could not update document!", me);
+            return ErrorResponse.exists("Could not update user!");
+        } catch (Exception me) { // JPA
+            logger.warn("Could not update document!", me);// may be committed by JTA which can't
+            return ErrorResponse.exists("Could not update document!");
+        }
+    }
+
+    public static void updateDocumentFromRep(DocumentModel document, DocumentRepresentation rep, Set<String> actionsToRemove) {
+        for (String action : actionsToRemove) {
+            document.removeRequiredAction(action);
+        }
+
+        if (rep.getRequiredActions() != null) {
+            Set<String> newActions = rep.getRequiredActions();
+            newActions.removeAll(document.getRequiredActions());
+            for (String action : newActions) {
+                document.addRequiredAction(action);
+            }
         }
     }
 
