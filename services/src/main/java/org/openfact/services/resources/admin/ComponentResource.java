@@ -143,7 +143,7 @@ public class ComponentResource {
         try {
             ComponentModel model = organization.getComponent(id);
             if (model == null) {
-                throw new org.jboss.resteasy.spi.NotFoundException("Could not find component");
+                throw new NotFoundException("Could not find component");
             }
             RepresentationToModel.updateComponent(session, rep, model, false);
             adminEvent.operation(OperationType.UPDATE).resourcePath(uriInfo, model.getId()).representation(StripSecretsUtils.strip(session, rep)).success();
@@ -155,6 +155,7 @@ public class ComponentResource {
             throw new BadRequestException();
         }
     }
+
     @DELETE
     @Path("{id}")
     public void removeComponent(@PathParam("id") String id) {

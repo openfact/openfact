@@ -444,8 +444,7 @@ public class RepresentationToModel {
         return model;
     }
 
-    public static void updateComponent(OpenfactSession session, ComponentRepresentation rep,
-                                       ComponentModel component, boolean internal) {
+    public static void updateComponent(OpenfactSession session, ComponentRepresentation rep, ComponentModel component, boolean internal) {
         if (rep.getParentId() != null) {
             component.setParentId(rep.getParentId());
         }
@@ -475,15 +474,13 @@ public class RepresentationToModel {
                 }
 
                 List<String> values = rep.getConfig().get(k);
-                if (values == null || values.isEmpty() || values.get(0) == null
-                        || values.get(0).trim().isEmpty()) {
+                if (values == null || values.isEmpty() || values.get(0) == null || values.get(0).trim().isEmpty()) {
                     component.getConfig().remove(k);
                 } else {
                     ListIterator<String> itr = values.listIterator();
                     while (itr.hasNext()) {
                         String v = itr.next();
-                        if (v == null || v.trim().isEmpty()
-                                || v.equals(ComponentRepresentation.SECRET_VALUE)) {
+                        if (v == null || v.trim().isEmpty() || v.equals(ComponentRepresentation.SECRET_VALUE)) {
                             itr.remove();
                         }
                     }
