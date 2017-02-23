@@ -256,83 +256,35 @@ public class DocumentAdminResource {
     @Path("send-to-customer")
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    public SendEventRepresentation sendToCustomer() {
+    public Response sendToCustomer() {
         auth.requireManage();
 
         if (document == null) {
             throw new NotFoundException("Document not found");
         }
 
-        SendEventModel sendEvent = document.addSendEvent(DestinyType.CUSTOMER);
-
-        OpenfactModelUtils.runThreadInTransaction(session.getOpenfactSessionFactory(), sessionThread -> {
-            DocumentManager manager = new DocumentManager(sessionThread);
-
-            OrganizationModel organizationThread = sessionThread.organizations().getOrganization(organization.getId());
-            DocumentModel documentThread = sessionThread.documents().getDocumentById(document.getId(), organizationThread);
-            SendEventModel sendEventThread = documentThread.getSendEventById(sendEvent.getId());
-            try {
-                manager.sendToCustomerParty(organizationThread, documentThread, sendEventThread);
-            } catch (ModelInsuficientData e) {
-                sendEventThread.setResult(SendEventStatus.ERROR);
-                sendEventThread.setDescription(e.getMessage());
-            } catch (SendException e) {
-                sendEventThread.setResult(SendEventStatus.ERROR);
-                if (e.getMessage() != null) {
-                    sendEventThread.setDescription(e.getMessage().length() < 200 ? e.getMessage() : e.getMessage().substring(0, 197).concat("..."));
-                } else {
-                    sendEventThread.setDescription("Internal Server Error");
-                }
-                logger.error("Internal Server Error sending to customer", e);
-            }
-        });
-
-        return ModelToRepresentation.toRepresentation(sendEvent);
+        return sendDocument(session, organization, document, DestinyType.CUSTOMER, null);
     }
 
     @POST
     @Path("send-to-third-party")
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    public SendEventRepresentation sendToThirdParty() {
+    public Response sendToThirdParty() {
         auth.requireManage();
 
         if (document == null) {
             throw new NotFoundException("Document not found");
         }
 
-        SendEventModel sendEvent = document.addSendEvent(DestinyType.THIRD_PARTY);
-
-        OpenfactModelUtils.runThreadInTransaction(session.getOpenfactSessionFactory(), sessionThread -> {
-            DocumentManager manager = new DocumentManager(sessionThread);
-
-            OrganizationModel organizationThread = sessionThread.organizations().getOrganization(organization.getId());
-            DocumentModel documentThread = sessionThread.documents().getDocumentById(document.getId(), organizationThread);
-            SendEventModel sendEventThread = documentThread.getSendEventById(sendEvent.getId());
-            try {
-                manager.sendToThirdParty(organizationThread, documentThread, sendEventThread);
-            } catch (ModelInsuficientData e) {
-                sendEventThread.setResult(SendEventStatus.ERROR);
-                sendEventThread.setDescription(e.getMessage());
-            } catch (SendException e) {
-                sendEventThread.setResult(SendEventStatus.ERROR);
-                if (e.getMessage() != null) {
-                    sendEventThread.setDescription(e.getMessage().length() < 200 ? e.getMessage() : e.getMessage().substring(0, 197).concat("..."));
-                } else {
-                    sendEventThread.setDescription("Internal Server Error");
-                }
-                logger.error("Internal Server Error sending to third party", e);
-            }
-        });
-
-        return ModelToRepresentation.toRepresentation(sendEvent);
+        return sendDocument(session, organization, document, DestinyType.THIRD_PARTY, null);
     }
 
     @POST
     @Path("send-to-third-party-by-email")
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    public SendEventRepresentation sendToThirdPartyByEmail(ThirdPartyEmailRepresentation thirdParty) {
+    public Response sendToThirdPartyByEmail(ThirdPartyEmailRepresentation thirdParty) {
         auth.requireManage();
 
         if (document == null) {
@@ -343,31 +295,46 @@ public class DocumentAdminResource {
             throw new BadRequestException("Invalid email sended");
         }
 
-        SendEventModel sendEvent = document.addSendEvent(DestinyType.CUSTOM_EMAIL);
+        return sendDocument(session, organization, document, DestinyType.CUSTOM_EMAIL, thirdParty.getEmail());
+    }
 
-        OpenfactModelUtils.runThreadInTransaction(session.getOpenfactSessionFactory(), sessionThread -> {
-            DocumentManager manager = new DocumentManager(sessionThread);
-
-            OrganizationModel organizationThread = sessionThread.organizations().getOrganization(organization.getId());
-            DocumentModel documentThread = sessionThread.documents().getDocumentById(document.getId(), organizationThread);
-            SendEventModel sendEventThread = documentThread.getSendEventById(sendEvent.getId());
-            try {
-                manager.sendToThirdPartyByEmail(organizationThread, documentThread, thirdParty.getEmail());
-            } catch (ModelInsuficientData e) {
-                sendEventThread.setResult(SendEventStatus.ERROR);
-                sendEventThread.setDescription(e.getMessage());
-            } catch (SendException e) {
-                sendEventThread.setResult(SendEventStatus.ERROR);
-                if (e.getMessage() != null) {
-                    sendEventThread.setDescription(e.getMessage().length() < 200 ? e.getMessage() : e.getMessage().substring(0, 197).concat("..."));
-                } else {
-                    sendEventThread.setDescription("Internal Server Error");
-                }
-                logger.error("Internal Server Error sending to customer", e);
+    private Response sendDocument(OpenfactSession session, OrganizationModel organization, DocumentModel document, DestinyType destiny, String customEmail) {
+        DocumentManager manager = new DocumentManager(session);
+        SendEventModel sendEvent = null;
+        try {
+            switch (destiny) {
+                case CUSTOMER:
+                    sendEvent = manager.sendToCustomerParty(organization, document);
+                    break;
+                case THIRD_PARTY:
+                    sendEvent = manager.sendToThirdParty(organization, document);
+                    break;
+                case CUSTOM_EMAIL:
+                    sendEvent = manager.sendToThirdPartyByEmail(organization, document, customEmail);
+                    break;
+                default:
+                    throw new IllegalStateException("Invalid " + destiny + " type");
             }
-        });
+        } catch (ModelInsuficientData e) {
+            if (sendEvent != null) {
+                sendEvent.setResult(SendEventStatus.ERROR);
+                sendEvent.setDescription(e.getMessage());
+            }
+            return ErrorResponse.error(e.getMessage(), Response.Status.BAD_REQUEST);
+        } catch (SendException e) {
+            if (sendEvent != null) {
+                sendEvent.setResult(SendEventStatus.ERROR);
+                if (e.getMessage() != null) {
+                    sendEvent.setDescription(e.getMessage().length() < 200 ? e.getMessage() : e.getMessage().substring(0, 197).concat("..."));
+                } else {
+                    sendEvent.setDescription("Internal Server Error");
+                }
+            }
+            logger.error("Internal Server Error sending to customer", e);
+            return ErrorResponse.error("Internal Server Error", Response.Status.INTERNAL_SERVER_ERROR);
+        }
 
-        return ModelToRepresentation.toRepresentation(sendEvent);
+        return Response.ok(ModelToRepresentation.toRepresentation(sendEvent)).build();
     }
 
     @GET
