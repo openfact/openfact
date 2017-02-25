@@ -3,22 +3,6 @@
   "policyEnforcementMode": "ENFORCING",
   "resources": [
     {
-      "name": "Organizations Resource",
-      "uri": "/organizations/*",
-      "type": "http://openfact.com/organizations/*",
-      "scopes": [
-        {
-          "name": "urn:openfact.com:scopes:organizations:view"
-        },
-        {
-          "name": "urn:openfact.com:scopes:organizations:extension:view"
-        },
-        {
-          "name": "urn:openfact.com:scopes:organizations:extension:manage"
-        }
-      ]
-    },
-    {
       "name": "Admin Organizations Resource",
       "uri": "/admin/organizations/*",
       "type": "http://openfact.com/admin/organizations/*",
@@ -34,34 +18,6 @@
         },
         {
           "name": "urn:openfact.com:scopes:admin:organization:delete"
-        },
-        {
-          "name": "urn:openfact.com:scopes:admin:organization:document:view"
-        },
-        {
-          "name": "urn:openfact.com:scopes:admin:organization:document:manage"
-        },
-        {
-          "name": "urn:openfact.com:scopes:admin:organization:file:view"
-        },
-        {
-          "name": "urn:openfact.com:scopes:admin:organization:file:manage"
-        },
-        {
-          "name": "urn:openfact.com:scopes:admin:organization:event:view"
-        },
-        {
-          "name": "urn:openfact.com:scopes:admin:organization:event:manage"
-        }
-      ]
-    },
-    {
-      "name": "Admin Server Info Resource",
-      "uri": "/admin/serverinfo",
-      "type": "http://openfact.com/admin/serverinfo",
-      "scopes": [
-        {
-          "name": "urn:openfact.com:scopes:admin:serverinfo:view"
         }
       ]
     }
@@ -127,7 +83,7 @@
       "logic": "POSITIVE",
       "decisionStrategy": "AFFIRMATIVE",
       "config": {
-        "applyPolicies": "[\"Only Admin Realm Role Policy\",\"Only Admin Organization Realm Role Policy\"]",
+        "applyPolicies": "[\"Only Admin Organization Realm Role Policy\"]",
         "scopes": "[\"urn:openfact.com:scopes:admin:organization:manage\"]"
       }
     },
@@ -141,208 +97,9 @@
         "applyPolicies": "[\"Only Admin Realm Role Policy\"]",
         "scopes": "[\"urn:openfact.com:scopes:admin:organization:delete\"]"
       }
-    },
-    {
-      "name": "Admin Server Info Permission",
-      "description": "Defines who is allowed to manage Sever Info",
-      "type": "scope",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[\"Only Admin Realm Role Policy\"]",
-        "scopes": "[\"urn:openfact.com:scopes:admin:serverinfo:view\"]"
-      }
-    },
-
-
-    {
-      "name": "Only View Documents Client Role Policy",
-      "description": "Defines that only view-documents client role can do something",
-      "type": "role",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[]",
-        "roles": "[{\"id\":\"view-documents\"}]"
-      }
-    },
-    {
-      "name": "Only Manage Documents Client Role Policy",
-      "description": "Defines that only manage-documents client role can do something",
-      "type": "role",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[]",
-        "roles": "[{\"id\":\"manage-documents\"}]"
-      }
-    },
-    {
-      "name": "Only View Files Client Role Policy",
-      "description": "Defines that only view-files client role can do something",
-      "type": "role",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[]",
-        "roles": "[{\"id\":\"view-files\"}]"
-      }
-    },
-    {
-      "name": "Only Manage Files Client Role Policy",
-      "description": "Defines that only manage-files client role can do something",
-      "type": "role",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[]",
-        "roles": "[{\"id\":\"manage-files\"}]"
-      }
-    },
-    {
-      "name": "Only View Events Client Role Policy",
-      "description": "Defines that only view-events client role can do something",
-      "type": "role",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[]",
-        "roles": "[{\"id\":\"view-events\"}]"
-      }
-    },
-    {
-      "name": "Only Manage Events Client Role Policy",
-      "description": "Defines that only manage-events client role can do something",
-      "type": "role",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[]",
-        "roles": "[{\"id\":\"manage-events\"}]"
-      }
-    },
-    {
-      "name": "Only View Extensions Client Role Policy",
-      "description": "Defines that only view-extensions client role can do something",
-      "type": "role",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[]",
-        "roles": "[{\"id\":\"view-extensions\"}]"
-      }
-    },
-    {
-      "name": "Only Manage Extensions Client Role Policy",
-      "description": "Defines that only manage-extensions client role can do something",
-      "type": "role",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[]",
-        "roles": "[{\"id\":\"manage-extensions\"}]"
-      }
-    },
-
-    {
-      "name": "View Documents Permission",
-      "description": "Defines who is allowed to view documents",
-      "type": "scope",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[\"Only View Documents Client Role Policy\"]",
-        "scopes": "[\"urn:openfact.com:scopes:admin:organization:document:view\"]"
-      }
-    },
-    {
-      "name": "Manage Documents Permission",
-      "description": "Defines who is allowed to manage documents",
-      "type": "scope",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[\"Only Manage Documents Client Role Policy\"]",
-        "scopes": "[\"urn:openfact.com:scopes:admin:organization:document:manage\"]"
-      }
-    },
-    {
-      "name": "View Files Permission",
-      "description": "Defines who is allowed to view files",
-      "type": "scope",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[\"Only View Files Client Role Policy\"]",
-        "scopes": "[\"urn:openfact.com:scopes:admin:organization:file:view\"]"
-      }
-    },
-    {
-      "name": "Manage Files Permission",
-      "description": "Defines who is allowed to manage debit notes",
-      "type": "scope",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[\"Only Manage Files Client Role Policy\"]",
-        "scopes": "[\"urn:openfact.com:scopes:admin:organization:file:manage\"]"
-      }
-    },
-    {
-      "name": "View Events Permission",
-      "description": "Defines who is allowed to view events",
-      "type": "scope",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[\"Only View Events Client Role Policy\"]",
-        "scopes": "[\"urn:openfact.com:scopes:admin:organization:event:view\"]"
-      }
-    },
-    {
-      "name": "Manage Events Permission",
-      "description": "Defines who is allowed to manage events",
-      "type": "scope",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[\"Only Manage Events Client Role Policy\"]",
-        "scopes": "[\"urn:openfact.com:scopes:admin:organization:event:manage\"]"
-      }
-    },
-    {
-      "name": "View Extensions Permission",
-      "description": "Defines who is allowed to view extensions",
-      "type": "scope",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[\"Only View Extensions Client Role Policy\"]",
-        "scopes": "[\"urn:openfact.com:scopes:organizations:extension:view\"]"
-      }
-    },
-    {
-      "name": "Manage Extensions Permission",
-      "description": "Defines who is allowed to manage extensions",
-      "type": "scope",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[\"Only Manage Extensions Client Role Policy\"]",
-        "scopes": "[\"urn:openfact.com:scopes:organizations:extension:manage\"]"
-      }
     }
   ],
   "scopes": [
-    {
-      "name": "urn:openfact.com:scopes:organizations:view"
-    },
-    {
-      "name": "urn:openfact.com:scopes:organizations:extension:view"
-    },
-    {
-      "name": "urn:openfact.com:scopes:organizations:extension:manage"
-    },
     {
       "name": "urn:openfact.com:scopes:admin:organization:view"
     },
@@ -354,24 +111,6 @@
     },
     {
       "name": "urn:openfact.com:scopes:admin:organization:delete"
-    },
-    {
-      "name": "urn:openfact.com:scopes:admin:organization:document:view"
-    },
-    {
-      "name": "urn:openfact.com:scopes:admin:organization:document:manage"
-    },
-    {
-      "name": "urn:openfact.com:scopes:admin:organization:file:view"
-    },
-    {
-      "name": "urn:openfact.com:scopes:admin:organization:file:manage"
-    },
-    {
-      "name": "urn:openfact.com:scopes:admin:organization:event:view"
-    },
-    {
-      "name": "urn:openfact.com:scopes:admin:organization:event:manage"
     }
   ]
 }
