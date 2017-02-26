@@ -45,7 +45,7 @@
         <version.arquillian-bom>1.1.10.Final</version.arquillian-bom>
 
         <!-- Wildfly Swarm -->
-        <version.wildfly.swarm>2017.2.0</version.wildfly.swarm>
+        <version.wildfly-swarm>2017.2.0</version.wildfly-swarm>
 
         <!-- Java ee -->
         <version.javaee-api>7.0</version.javaee-api>
@@ -136,12 +136,12 @@
 
             <!-- Wildfly Swarm -->
             <dependency>
-                <groupId>org.wildfly.swarm</groupId>
-                <artifactId>bom</artifactId>
-                <version>${version.wildfly.swarm}</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
+				<groupId>org.wildfly.swarm</groupId>
+				<artifactId>bom-all</artifactId>
+				<version>${version.wildfly-swarm}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>			
 
             <dependency>
                 <groupId>org.openfact</groupId>
@@ -265,7 +265,7 @@
                 <plugin>
                     <groupId>org.wildfly.swarm</groupId>
                     <artifactId>wildfly-swarm-plugin</artifactId>
-                    <version>${version.wildfly.swarm}</version>
+                    <version>${version.wildfly-swarm}</version>
                     <executions>
                         <execution>
                             <id>package</id>
