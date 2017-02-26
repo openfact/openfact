@@ -17,15 +17,13 @@
 package org.openfact.models;
 
 import org.openfact.models.enums.DocumentType;
-import org.openfact.provider.Provider;
 
 import java.util.List;
 
-public interface DocumentProvider extends Provider {
-
-    DocumentQuery createQuery(OrganizationModel organization);
+public interface DocumentProvider {
 
     DocumentModel addDocument(String documentType, String documentId, OrganizationModel organization);
+
     DocumentModel addDocument(DocumentType documentType, String documentId, OrganizationModel organization);
 
     /**
@@ -42,12 +40,14 @@ public interface DocumentProvider extends Provider {
      * @return
      */
     DocumentModel getDocumentByTypeAndDocumentId(String documentType, String documentId, OrganizationModel organization);
+
     DocumentModel getDocumentByTypeAndDocumentId(DocumentType documentType, String documentId, OrganizationModel organization);
 
     /**
      * @param organization
      */
     void preRemove(OrganizationModel organization);
+
     boolean removeDocument(String id, OrganizationModel organization);
 
     /**
@@ -59,9 +59,11 @@ public interface DocumentProvider extends Provider {
      * @param organization
      */
     List<DocumentModel> getDocuments(OrganizationModel organization);
+
     List<DocumentModel> getDocuments(OrganizationModel organization, int firstResult, int maxResults);
 
     List<DocumentModel> searchForDocument(String filterText, OrganizationModel organization);
+
     List<DocumentModel> searchForDocument(String filterText, OrganizationModel organization, int firstResult, int maxResults);
 
 }

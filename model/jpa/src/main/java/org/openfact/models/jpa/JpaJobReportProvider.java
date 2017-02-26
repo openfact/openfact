@@ -20,36 +20,24 @@ import org.jboss.logging.Logger;
 import org.openfact.models.*;
 import org.openfact.models.jpa.entities.JobReportEntity;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Stateless
 public class JpaJobReportProvider extends AbstractHibernateStorage implements JobReportProvider {
 
     protected static final Logger logger = Logger.getLogger(JpaJobReportProvider.class);
 
-    private final OpenfactSession session;
+    @PersistenceContext
     protected EntityManager em;
-
-    public JpaJobReportProvider(OpenfactSession session, EntityManager em) {
-        this.session = session;
-        this.em = em;
-    }
-
-    @Override
-    public void close() {
-    }
 
     @Override
     protected EntityManager getEntityManager() {
         return em;
-    }
-
-
-    @Override
-    public JobReportQuery createQuery() {
-        return new JpaJobReportQuery(em);
     }
 
     static AdminJobReport convertAdminJobReport(JobReportEntity jobReportEntity) {
@@ -74,14 +62,14 @@ public class JpaJobReportProvider extends AbstractHibernateStorage implements Jo
         entity.setOrganizationId(organization.getId());
         em.persist(entity);
         em.flush();
-        return new JobReportAdapter(session, organization, em, entity);
+        return new JobReportAdapter(organization, em, entity);
     }
 
     @Override
     public JobReportModel getJobReportById(OrganizationModel organization, String id) {
         JobReportEntity entity = em.find(JobReportEntity.class, id);
         if (entity != null) {
-            return new JobReportAdapter(session, organization, em, entity);
+            return new JobReportAdapter(organization, em, entity);
         }
         return null;
     }
@@ -102,7 +90,7 @@ public class JpaJobReportProvider extends AbstractHibernateStorage implements Jo
             query.setMaxResults(maxResults);
         }
         List<JobReportEntity> results = query.getResultList();
-        return results.stream().map(f -> new JobReportAdapter(session, organization, em, f)).collect(Collectors.toList());
+        return results.stream().map(f -> new JobReportAdapter(organization, em, f)).collect(Collectors.toList());
     }
 
     @Override
@@ -124,7 +112,7 @@ public class JpaJobReportProvider extends AbstractHibernateStorage implements Jo
 
     @Override
     public void preRemove(OrganizationModel organization) {
-        int num = em.createNamedQuery("deleteJobReportsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        em.createNamedQuery("deleteJobReportsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
     }
 
 }

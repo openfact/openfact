@@ -1,38 +1,18 @@
-/*******************************************************************************
- * Copyright 2016 Sistcoop, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
 package org.openfact.models.utils;
+
+import org.openfact.models.AdminJobReport;
+import org.openfact.models.DocumentModel;
+import org.openfact.models.OrganizationModel;
+import org.openfact.models.SendEventModel;
+import org.openfact.representations.idm.*;
 
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.openfact.common.util.MultivaluedHashMap;
-import org.openfact.component.ComponentModel;
-import org.openfact.events.Event;
-import org.openfact.events.admin.AdminEvent;
-import org.openfact.events.admin.AuthDetails;
-import org.openfact.models.*;
-import org.openfact.provider.ProviderConfigProperty;
-import org.openfact.representations.idm.*;
-
 public class ModelToRepresentation {
 
-    public static OrganizationRepresentation toRepresentation(OrganizationModel organization,
-                                                              boolean internal) {
+    public static OrganizationRepresentation toRepresentation(OrganizationModel organization, boolean internal) {
         /**
          * General information
          */
@@ -193,97 +173,97 @@ public class ModelToRepresentation {
         return rep;
     }
 
-    public static EventRepresentation toRepresentation(Event event) {
-        EventRepresentation rep = new EventRepresentation();
-        rep.setTime(event.getTime());
-        rep.setType(event.getType().toString());
-        rep.setOrganizationId(event.getOrganizationId());
-        rep.setUserId(event.getUserId());
-        rep.setIpAddress(event.getIpAddress());
-        rep.setError(event.getError());
-        rep.setDetails(event.getDetails());
-        return rep;
-    }
-
-    public static AdminEventRepresentation toRepresentation(AdminEvent adminEvent) {
-        AdminEventRepresentation rep = new AdminEventRepresentation();
-        rep.setTime(adminEvent.getTime());
-        rep.setOrganizationId(adminEvent.getOrganizationId());
-        if (adminEvent.getAuthDetails() != null) {
-            rep.setAuthDetails(toRepresentation(adminEvent.getAuthDetails()));
-        }
-        rep.setOperationType(adminEvent.getOperationType().toString());
-        if (adminEvent.getResourceType() != null) {
-            rep.setResourceType(adminEvent.getResourceType().toString());
-        }
-        rep.setResourcePath(adminEvent.getResourcePath());
-        rep.setRepresentation(adminEvent.getRepresentation());
-        rep.setError(adminEvent.getError());
-
-        return rep;
-    }
-
-    public static AuthDetailsRepresentation toRepresentation(AuthDetails authDetails) {
-        AuthDetailsRepresentation rep = new AuthDetailsRepresentation();
-        rep.setOrganizationId(authDetails.getOrganizationId());
-        rep.setUserId(authDetails.getUserId());
-        rep.setIpAddress(authDetails.getIpAddress());
-        return rep;
-    }
-
-    public static List<ConfigPropertyRepresentation> toRepresentation(
-            List<ProviderConfigProperty> configProperties) {
-        List<ConfigPropertyRepresentation> propertiesRep = new LinkedList<>();
-        for (ProviderConfigProperty prop : configProperties) {
-            ConfigPropertyRepresentation propRep = toRepresentation(prop);
-            propertiesRep.add(propRep);
-        }
-        return propertiesRep;
-    }
-
-    public static ConfigPropertyRepresentation toRepresentation(ProviderConfigProperty prop) {
-        ConfigPropertyRepresentation propRep = new ConfigPropertyRepresentation();
-        propRep.setName(prop.getName());
-        propRep.setLabel(prop.getLabel());
-        propRep.setType(prop.getType());
-        propRep.setDefaultValue(prop.getDefaultValue());
-        propRep.setOptions(prop.getOptions());
-        propRep.setHelpText(prop.getHelpText());
-        propRep.setSecret(prop.isSecret());
-        return propRep;
-    }
-
-    public static ComponentRepresentation toRepresentation(OpenfactSession session, ComponentModel component,
-                                                           boolean internal) {
-        ComponentRepresentation rep = new ComponentRepresentation();
-        rep.setId(component.getId());
-        rep.setName(component.getName());
-        rep.setProviderId(component.getProviderId());
-        rep.setProviderType(component.getProviderType());
-        rep.setSubType(component.getSubType());
-        rep.setParentId(component.getParentId());
-        if (internal) {
-            rep.setConfig(component.getConfig());
-        } else {
-            Map<String, ProviderConfigProperty> configProperties = ComponentUtil
-                    .getComponentConfigProperties(session, component);
-            MultivaluedHashMap<String, String> config = new MultivaluedHashMap<>();
-
-            for (Map.Entry<String, List<String>> e : component.getConfig().entrySet()) {
-                ProviderConfigProperty configProperty = configProperties.get(e.getKey());
-                if (configProperty != null) {
-                    if (configProperty.isSecret()) {
-                        config.putSingle(e.getKey(), ComponentRepresentation.SECRET_VALUE);
-                    } else {
-                        config.put(e.getKey(), e.getValue());
-                    }
-                }
-            }
-
-            rep.setConfig(config);
-        }
-        return rep;
-    }
+//    public static EventRepresentation toRepresentation(Event event) {
+//        EventRepresentation rep = new EventRepresentation();
+//        rep.setTime(event.getTime());
+//        rep.setType(event.getType().toString());
+//        rep.setOrganizationId(event.getOrganizationId());
+//        rep.setUserId(event.getUserId());
+//        rep.setIpAddress(event.getIpAddress());
+//        rep.setError(event.getError());
+//        rep.setDetails(event.getDetails());
+//        return rep;
+//    }
+//
+//    public static AdminEventRepresentation toRepresentation(AdminEvent adminEvent) {
+//        AdminEventRepresentation rep = new AdminEventRepresentation();
+//        rep.setTime(adminEvent.getTime());
+//        rep.setOrganizationId(adminEvent.getOrganizationId());
+//        if (adminEvent.getAuthDetails() != null) {
+//            rep.setAuthDetails(toRepresentation(adminEvent.getAuthDetails()));
+//        }
+//        rep.setOperationType(adminEvent.getOperationType().toString());
+//        if (adminEvent.getResourceType() != null) {
+//            rep.setResourceType(adminEvent.getResourceType().toString());
+//        }
+//        rep.setResourcePath(adminEvent.getResourcePath());
+//        rep.setRepresentation(adminEvent.getRepresentation());
+//        rep.setError(adminEvent.getError());
+//
+//        return rep;
+//    }
+//
+//    public static AuthDetailsRepresentation toRepresentation(AuthDetails authDetails) {
+//        AuthDetailsRepresentation rep = new AuthDetailsRepresentation();
+//        rep.setOrganizationId(authDetails.getOrganizationId());
+//        rep.setUserId(authDetails.getUserId());
+//        rep.setIpAddress(authDetails.getIpAddress());
+//        return rep;
+//    }
+//
+//    public static List<ConfigPropertyRepresentation> toRepresentation(
+//            List<ProviderConfigProperty> configProperties) {
+//        List<ConfigPropertyRepresentation> propertiesRep = new LinkedList<>();
+//        for (ProviderConfigProperty prop : configProperties) {
+//            ConfigPropertyRepresentation propRep = toRepresentation(prop);
+//            propertiesRep.add(propRep);
+//        }
+//        return propertiesRep;
+//    }
+//
+//    public static ConfigPropertyRepresentation toRepresentation(ProviderConfigProperty prop) {
+//        ConfigPropertyRepresentation propRep = new ConfigPropertyRepresentation();
+//        propRep.setName(prop.getName());
+//        propRep.setLabel(prop.getLabel());
+//        propRep.setType(prop.getType());
+//        propRep.setDefaultValue(prop.getDefaultValue());
+//        propRep.setOptions(prop.getOptions());
+//        propRep.setHelpText(prop.getHelpText());
+//        propRep.setSecret(prop.isSecret());
+//        return propRep;
+//    }
+//
+//    public static ComponentRepresentation toRepresentation(OpenfactSession session, ComponentModel component,
+//                                                           boolean internal) {
+//        ComponentRepresentation rep = new ComponentRepresentation();
+//        rep.setId(component.getId());
+//        rep.setName(component.getName());
+//        rep.setProviderId(component.getProviderId());
+//        rep.setProviderType(component.getProviderType());
+//        rep.setSubType(component.getSubType());
+//        rep.setParentId(component.getParentId());
+//        if (internal) {
+//            rep.setConfig(component.getConfig());
+//        } else {
+//            Map<String, ProviderConfigProperty> configProperties = ComponentUtil
+//                    .getComponentConfigProperties(session, component);
+//            MultivaluedHashMap<String, String> config = new MultivaluedHashMap<>();
+//
+//            for (Map.Entry<String, List<String>> e : component.getConfig().entrySet()) {
+//                ProviderConfigProperty configProperty = configProperties.get(e.getKey());
+//                if (configProperty != null) {
+//                    if (configProperty.isSecret()) {
+//                        config.putSingle(e.getKey(), ComponentRepresentation.SECRET_VALUE);
+//                    } else {
+//                        config.put(e.getKey(), e.getValue());
+//                    }
+//                }
+//            }
+//
+//            rep.setConfig(config);
+//        }
+//        return rep;
+//    }
 
     public static SendEventRepresentation toRepresentation(SendEventModel model) {
         SendEventRepresentation rep = new SendEventRepresentation();
@@ -299,7 +279,7 @@ public class ModelToRepresentation {
             rep.setResponseAttributes(attrs);
         }
 
-        if (model.getAttachedFiles() != null && !model.getAttachedFiles().isEmpty()) {
+        /*if (model.getAttachedFiles() != null && !model.getAttachedFiles().isEmpty()) {
             rep.setResponseFileAttachments(new ArrayList<>());
             List<FileRepresentation> filesRep = model.getAttachedFiles().stream().map(f -> {
                 FileRepresentation fileRep = new FileRepresentation();
@@ -308,7 +288,7 @@ public class ModelToRepresentation {
                 return fileRep;
             }).collect(Collectors.toList());
             rep.getResponseFileAttachments().addAll(filesRep);
-        }
+        }*/
         return rep;
     }
 

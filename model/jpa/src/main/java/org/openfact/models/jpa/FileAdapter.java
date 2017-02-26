@@ -17,8 +17,7 @@
 package org.openfact.models.jpa;
 
 import org.jboss.logging.Logger;
-import org.openfact.file.FileModel;
-import org.openfact.models.OpenfactSession;
+import org.openfact.files.FileModel;
 import org.openfact.models.jpa.entities.FileEntity;
 
 import javax.persistence.EntityManager;
@@ -29,10 +28,8 @@ public class FileAdapter implements FileModel, JpaModel<FileEntity> {
 
     protected FileEntity file;
     protected EntityManager em;
-    protected OpenfactSession session;
 
-    public FileAdapter(OpenfactSession session, EntityManager em, FileEntity file) {
-        this.session = session;
+    public FileAdapter( EntityManager em, FileEntity file) {
         this.em = em;
         this.file = file;
     }

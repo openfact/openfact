@@ -2,7 +2,9 @@ package org.openfact.models;
 
 public class JobException extends RuntimeException {
 
-    private Object[] parameters;
+	private static final long serialVersionUID = 1L;
+	
+	private Object[] parameters;
 
     public JobException() {
     }

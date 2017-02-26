@@ -16,33 +16,35 @@
  *******************************************************************************/
 package org.openfact.models.jpa;
 
-import org.jboss.logging.Logger;
-import org.openfact.common.util.MultivaluedHashMap;
-import org.openfact.component.ComponentFactory;
-import org.openfact.component.ComponentModel;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.enums.DocumentType;
-import org.openfact.models.jpa.entities.*;
-import org.openfact.models.utils.ComponentUtil;
-import org.openfact.models.utils.OpenfactModelUtils;
-
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+
+import org.jboss.logging.Logger;
+import org.openfact.models.OrganizationModel;
+import org.openfact.models.jpa.entities.OrganizationAttributeEntity;
+import org.openfact.models.jpa.entities.OrganizationAttributes;
+import org.openfact.models.jpa.entities.OrganizationEntity;
+
+@Stateless
 public class OrganizationAdapter implements OrganizationModel, JpaModel<OrganizationEntity> {
 
-    protected static final Logger logger = Logger.getLogger(OrganizationAdapter.class);
+    private static final Logger logger = Logger.getLogger(OrganizationAdapter.class);
 
     private static final String BROWSER_HEADER_PREFIX = "_browser_header.";
-    protected OrganizationEntity organization;
-    protected EntityManager em;
-    protected OpenfactSession session;
 
-    public OrganizationAdapter(OpenfactSession session, EntityManager em, OrganizationEntity organization) {
-        this.session = session;
+    private final OrganizationEntity organization;
+    private final EntityManager em;
+
+    public OrganizationAdapter(EntityManager em, OrganizationEntity organization) {
         this.em = em;
         this.organization = organization;
     }
@@ -524,10 +526,10 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
      */
     public static final String COMPONENT_PROVIDER_EXISTS_DISABLED = "component.provider.exists.disabled";
 
-    @Override
+    /*@Override
     public ComponentModel addComponentModel(ComponentModel model) {
         model = importComponentModel(model);
-        ComponentUtil.notifyCreated(session, this, model);
+        ComponentUtil.notifyCreated(this, model);
 
         return model;
     }
@@ -536,18 +538,17 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     public ComponentModel importComponentModel(ComponentModel model) {
         ComponentFactory componentFactory = null;
         try {
-            componentFactory = ComponentUtil.getComponentFactory(session, model);
+            componentFactory = ComponentUtil.getComponentFactory(model);
             if (componentFactory == null && System.getProperty(COMPONENT_PROVIDER_EXISTS_DISABLED) == null) {
                 throw new IllegalArgumentException("Invalid component type");
             }
-            componentFactory.validateConfiguration(session, this, model);
+            componentFactory.validateConfiguration(this, model);
         } catch (Exception e) {
             if (System.getProperty(COMPONENT_PROVIDER_EXISTS_DISABLED) == null) {
                 throw e;
             }
 
         }
-
 
         ComponentEntity c = new ComponentEntity();
         if (model.getId() == null) {
@@ -590,7 +591,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
 
     @Override
     public void updateComponent(ComponentModel component) {
-        ComponentUtil.getComponentFactory(session, component).validateConfiguration(session, this, component);
+        ComponentUtil.getComponentFactory(component).validateConfiguration(this, component);
 
         ComponentEntity c = em.find(ComponentEntity.class, component.getId());
         if (c == null) return;
@@ -602,7 +603,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         em.createNamedQuery("deleteComponentConfigByComponent").setParameter("component", c).executeUpdate();
         em.flush();
         setConfig(component, c);
-        ComponentUtil.notifyUpdated(session, this, component);
+        ComponentUtil.notifyUpdated(this, component);
     }
 
     @Override
@@ -689,7 +690,6 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         for (ComponentEntity c : results) {
             ComponentModel model = entityToModel(c);
             rtn.add(model);
-
         }
         return rtn;
     }
@@ -699,13 +699,14 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         ComponentEntity c = em.find(ComponentEntity.class, id);
         if (c == null) return null;
         return entityToModel(c);
-    }
+    }*/
 
     @Override
     public Map<String, String> getBrowserSecurityHeaders() {
         Map<String, String> attributes = getAttributes();
-        if (attributes.isEmpty())
+        if (attributes.isEmpty()) {
             return Collections.EMPTY_MAP;
+        }
         Map<String, String> headers = new HashMap<String, String>();
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             if (entry.getKey().startsWith(BROWSER_HEADER_PREFIX)) {

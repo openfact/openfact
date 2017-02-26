@@ -54,7 +54,9 @@ public class DocumentRequiredActionEntity {
 
     public static class Key implements Serializable {
 
-        protected DocumentEntity document;
+		private static final long serialVersionUID = 1L;
+
+		protected DocumentEntity document;
 
         protected String action;
 

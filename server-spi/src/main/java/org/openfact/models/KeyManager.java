@@ -1,6 +1,5 @@
 package org.openfact.models;
 
-import org.openfact.keys.HmacKeyMetadata;
 import org.openfact.keys.RsaKeyMetadata;
 
 import javax.crypto.SecretKey;
@@ -23,8 +22,6 @@ public interface KeyManager {
     ActiveHmacKey getActiveHmacKey(OrganizationModel organization);
 
     SecretKey getHmacSecretKey(OrganizationModel organization, String kid);
-
-    List<HmacKeyMetadata> getHmacKeys(OrganizationModel organization, boolean includeDisabled);
 
     class ActiveRsaKey {
         private final String kid;

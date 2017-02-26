@@ -33,7 +33,6 @@ import java.util.List;
  *
  * @author carlosthe19916@openfact.com
  */
-
 public abstract class AbstractHibernateStorage {
 
     /**

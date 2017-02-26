@@ -1,15 +1,6 @@
 package org.openfact.models.jpa.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @NamedQueries({
@@ -58,7 +49,9 @@ public class OrganizationAttributeEntity {
 
     public static class Key implements Serializable {
 
-        protected OrganizationEntity organization;
+		private static final long serialVersionUID = 1L;
+
+		protected OrganizationEntity organization;
 
         protected String name;
 

@@ -17,10 +17,9 @@
 package org.openfact.ubl;
 
 import org.openfact.models.DocumentModel;
-import org.openfact.provider.Provider;
 import org.openfact.report.ReportTemplateProvider;
 
-public interface UBLReportProvider extends Provider {
+public interface UBLReportProvider {
 
     ReportTemplateProvider<DocumentModel> document();
 

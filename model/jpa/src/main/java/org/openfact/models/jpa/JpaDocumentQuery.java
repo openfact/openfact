@@ -2,13 +2,15 @@ package org.openfact.models.jpa;
 
 import org.openfact.models.*;
 import org.openfact.models.enums.DocumentType;
-import org.openfact.models.enums.RequiredAction;
+import org.openfact.models.enums.DocumentRequiredAction;
 import org.openfact.models.jpa.entities.DocumentEntity;
 import org.openfact.models.search.PagingModel;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchResultsModel;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -17,25 +19,29 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Stateless
 public class JpaDocumentQuery implements DocumentQuery {
 
     private DocumentCriteria<DocumentEntity, DocumentEntity> query;
     private DocumentCriteria<DocumentEntity, Long> queryCount;
 
-    private OpenfactSession session;
     private OrganizationModel organization;
+    
+    @PersistenceContext
     private EntityManager em;
 
-    public JpaDocumentQuery(OpenfactSession session, OrganizationModel organization, EntityManager em) {
-        this.session = session;
-        this.organization = organization;
-        this.em = em;
-        this.query = new DocumentCriteria<>(session, organization, em, DocumentEntity.class, DocumentEntity.class);
-        this.queryCount = new DocumentCriteria<>(session, organization, em, DocumentEntity.class, Long.class);
+    public JpaDocumentQuery() {
+        this.query = new DocumentCriteria<>(organization, em, DocumentEntity.class, DocumentEntity.class);
+        this.queryCount = new DocumentCriteria<>(organization, em, DocumentEntity.class, Long.class);
+    }
+    
+    public DocumentQuery organization(OrganizationModel organization) {
+    	this.organization = organization;
+    	return this;
     }
 
     private DocumentModel toModel(DocumentEntity entity) {
-        return new DocumentAdapter(session, organization, em, entity);
+        return new DocumentAdapter(organization, em, entity);
     }
 
     @Override
@@ -128,7 +134,7 @@ public class JpaDocumentQuery implements DocumentQuery {
     }
 
     @Override
-    public DocumentQuery requiredAction(RequiredAction... requiredAction) {
+    public DocumentQuery requiredAction(DocumentRequiredAction... requiredAction) {
         query.requiredAction(requiredAction);
         queryCount.requiredAction(requiredAction);
         return this;

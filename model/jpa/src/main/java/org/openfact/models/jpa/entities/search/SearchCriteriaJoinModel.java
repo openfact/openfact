@@ -16,16 +16,14 @@
  *******************************************************************************/
 package org.openfact.models.jpa.entities.search;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.openfact.models.search.SearchCriteriaFilterModel;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A base class that JPA storage impls can extend.
- *
- * @author carlosthe19916@openfact.com
  */
 public class SearchCriteriaJoinModel {
 

@@ -17,10 +17,9 @@
 package org.openfact.ubl;
 
 import org.openfact.models.DocumentModel;
-import org.openfact.provider.Provider;
 import org.openfact.report.ReportDataProvider;
 
-public interface UBLReportDataProvider<T> extends Provider {
+public interface UBLReportDataProvider<T> {
 
     int getProviderPriority();
 

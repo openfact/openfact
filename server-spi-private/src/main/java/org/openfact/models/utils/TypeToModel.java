@@ -16,20 +16,15 @@
  *******************************************************************************/
 package org.openfact.models.utils;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.xml.datatype.XMLGregorianCalendar;
-
 import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.*;
-import org.openfact.models.*;
-
 import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
 import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
 import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
+import org.openfact.models.DocumentModel;
+import org.openfact.models.OrganizationModel;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class TypeToModel {
 
@@ -61,7 +56,7 @@ public class TypeToModel {
     public static final String REQUESTED_MONETARY_TOTAL_CHARGE_TOTAL_AMOUNT = "requestedMonetaryTotalChargeTotalAmount";
     public static final String REQUESTED_MONETARY_TOTAL_ALLOWANCE_TOTAL = "requestedMonetaryTotalAllowanceTotal";
 
-    public static void importInvoice(OpenfactSession session, OrganizationModel organization, DocumentModel model, InvoiceType type) {
+    public static void importInvoice(OrganizationModel organization, DocumentModel model, InvoiceType type) {
         model.setDocumentCurrencyCode(type.getDocumentCurrencyCodeValue());
 
         if (type.getIssueDate() != null) {
@@ -88,7 +83,7 @@ public class TypeToModel {
         }
     }
 
-    public static void importCreditNote(OpenfactSession session, OrganizationModel organization, DocumentModel model, CreditNoteType type) {
+    public static void importCreditNote(OrganizationModel organization, DocumentModel model, CreditNoteType type) {
         model.setDocumentCurrencyCode(type.getDocumentCurrencyCodeValue());
 
         if (type.getIssueDate() != null) {
@@ -115,7 +110,7 @@ public class TypeToModel {
         }
     }
 
-    public static void importDebitNote(OpenfactSession session, OrganizationModel organization, DocumentModel model, DebitNoteType type) {
+    public static void importDebitNote(OrganizationModel organization, DocumentModel model, DebitNoteType type) {
         model.setDocumentCurrencyCode(type.getDocumentCurrencyCodeValue());
 
         if (type.getIssueDate() != null) {

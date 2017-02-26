@@ -1,9 +1,8 @@
 package org.openfact.ubl;
 
 import org.openfact.models.DocumentModel;
-import org.openfact.provider.Provider;
 
-public interface UBLProvider<T> extends Provider {
+public interface UBLProvider<T> {
 
     UBLIDGenerator<T> idGenerator();
 

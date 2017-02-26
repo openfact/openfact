@@ -1,9 +1,8 @@
 package org.openfact.ubl;
 
-import org.openfact.provider.Provider;
 import org.w3c.dom.Document;
 
-public interface UBLReader<T> extends Provider {
+public interface UBLReader<T> {
 
     T read(byte[] bytes);
 

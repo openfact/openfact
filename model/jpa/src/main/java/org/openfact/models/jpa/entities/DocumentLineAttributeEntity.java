@@ -75,7 +75,9 @@ public class DocumentLineAttributeEntity {
 
     public static class Key implements Serializable {
 
-        protected DocumentLineEntity documentLine;
+		private static final long serialVersionUID = 1L;
+
+		protected DocumentLineEntity documentLine;
 
         protected String name;
 

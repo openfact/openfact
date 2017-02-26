@@ -51,7 +51,6 @@
     </build>
     <modules>
         <module>integration</module>
-        <module>integration-arquillian</module>
     </modules>
 
 </project>

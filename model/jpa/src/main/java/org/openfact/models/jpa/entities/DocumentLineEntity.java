@@ -2,7 +2,6 @@ package org.openfact.models.jpa.entities;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.inject.Named;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;

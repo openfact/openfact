@@ -1,12 +1,8 @@
 package org.openfact.models;
 
-import org.openfact.provider.Provider;
-
 import java.util.List;
 
-public interface JobReportProvider extends Provider {
-
-    JobReportQuery createQuery();
+public interface JobReportProvider {
 
     JobReportModel createJobReport(OrganizationModel organization, String jobReportName);
 
@@ -16,9 +12,10 @@ public interface JobReportProvider extends Provider {
 
     List<JobReportModel> getJobReports(OrganizationModel organization, Integer firstResult, Integer maxResults);
 
+    void preRemove(OrganizationModel organization);
+
     boolean removeJobReport(OrganizationModel organization, String id);
 
     boolean removeJobReport(OrganizationModel organization, JobReportModel jobReport);
 
-    void preRemove(OrganizationModel organization);
 }

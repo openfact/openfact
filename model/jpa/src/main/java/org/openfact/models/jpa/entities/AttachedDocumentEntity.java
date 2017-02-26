@@ -67,7 +67,9 @@ public class AttachedDocumentEntity {
 
     public static class Key implements Serializable {
 
-        protected DocumentEntity documentOrigin;
+		private static final long serialVersionUID = 1L;
+
+		protected DocumentEntity documentOrigin;
 
         protected DocumentEntity documentDestiny;
 

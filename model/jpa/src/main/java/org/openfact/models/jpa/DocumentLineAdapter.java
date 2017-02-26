@@ -19,7 +19,6 @@ package org.openfact.models.jpa;
 import org.jboss.logging.Logger;
 import org.openfact.models.DocumentLineModel;
 import org.openfact.models.DocumentModel;
-import org.openfact.models.OpenfactSession;
 import org.openfact.models.jpa.entities.DocumentLineAttributeEntity;
 import org.openfact.models.jpa.entities.DocumentLineEntity;
 
@@ -36,11 +35,9 @@ public class DocumentLineAdapter implements DocumentLineModel, JpaModel<Document
     protected DocumentModel document;
     protected DocumentLineEntity line;
     protected EntityManager em;
-    protected OpenfactSession session;
 
-    public DocumentLineAdapter(OpenfactSession session, DocumentModel document, EntityManager em, DocumentLineEntity line) {
+    public DocumentLineAdapter(DocumentModel document, EntityManager em, DocumentLineEntity line) {
         this.document = document;
-        this.session = session;
         this.em = em;
         this.line = line;
     }

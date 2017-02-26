@@ -1,52 +1,63 @@
 package org.openfact.models.jpa;
 
 import org.jboss.logging.Logger;
-import org.openfact.migration.MigrationModel;
-import org.openfact.models.OpenfactSession;
+import org.openfact.files.FileProvider;
+import org.openfact.models.DocumentProvider;
+import org.openfact.models.JobReportProvider;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
 import org.openfact.models.jpa.entities.OrganizationEntity;
 import org.openfact.models.utils.OpenfactModelUtils;
+import org.openfact.provider.ProviderEvent;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.ejb.Stateless;
+import javax.enterprise.event.Event;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
-public class JpaOrganizationProvider extends AbstractHibernateStorage implements OrganizationProvider {
+@Stateless
+public class JpaOrganizationProvider implements OrganizationProvider, HibernateWrapper {
 
     private static final Logger logger = Logger.getLogger(JpaOrganizationProvider.class);
 
-    private static final String NAME = "name";
-    private static final String DESCRIPTION = "description";
-    private static final String ASSIGNED_IDENTIFICATION_ID = "assignedIdentificationId";
-    private static final String SUPPLIER_NAME = "supplierName";
-    private static final String REGISTRATION_NAME = "registrationName";
+    @Inject
+    private DocumentProvider documents;
 
-    protected final OpenfactSession session;
-    protected EntityManager em;
+    @Inject
+    private JobReportProvider jobreports;
 
-    public JpaOrganizationProvider(OpenfactSession session, EntityManager em) {
-        this.session = session;
-        this.em = em;
+    @Inject
+    private FileProvider files;
+
+    @Inject
+    private Event<ProviderEvent> event;
+
+    @PersistenceContext
+    private EntityManager em;
+
+    @PostConstruct
+    public void init() {
     }
 
-    @Override
+    @PreDestroy
     public void close() {
     }
 
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
+    private OrganizationAdapter toAdapter(OrganizationEntity entity) {
+        return new OrganizationAdapter(em, entity);
     }
 
     @Override
-    public MigrationModel getMigrationModel() {
-        return new MigrationModelAdapter(em);
+    public EntityManager getEntityManager() {
+        return em;
     }
 
     @Override
@@ -64,79 +75,61 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
         organization.setId(id);
         organization.setCreatedTimestamp(LocalDateTime.now());
         organization.setEnabled(true);
-        em.persist(organization);
-        em.flush();
+        getSession().persist(organization);
+        getSession().flush();
 
-        final OrganizationModel adapter = new OrganizationAdapter(session, em, organization);
-        session.getOpenfactSessionFactory().publish(new OrganizationModel.OrganizationCreationEvent() {
-            @Override
-            public OrganizationModel getCreatedOrganization() {
-                return adapter;
-            }
-        });
+        final OrganizationModel adapter = toAdapter(organization);
 
+        event.fire((OrganizationModel.OrganizationCreationEvent) () -> adapter);
+
+        logger.debug("Organization " + name + " created");
         return adapter;
     }
 
     @Override
-    public OrganizationModel getOrganization(String id) {
-        OrganizationEntity organization = em.find(OrganizationEntity.class, id);
-        if (organization == null) {
+    public OrganizationModel getOrganization(String organizationId) {
+        OrganizationEntity entity = getSession().find(OrganizationEntity.class, organizationId);
+        if (entity == null) {
             return null;
         }
-        OrganizationAdapter adapter = new OrganizationAdapter(session, em, organization);
-        return adapter;
+        return toAdapter(entity);
     }
 
     @Override
     public OrganizationModel getOrganizationByName(String name) {
-        TypedQuery<String> query = em.createNamedQuery("getOrganizationIdByName", String.class);
-        query.setParameter("name", name);
-        List<String> entities = query.getResultList();
-        if (entities.size() == 0)
+        OrganizationEntity organization = getSession().bySimpleNaturalId(OrganizationEntity.class).load(name);
+        if (organization == null) {
             return null;
-        if (entities.size() > 1)
-            throw new IllegalStateException("Should not be more than one documentLine with same name");
-        String id = query.getResultList().get(0);
-
-        return session.organizations().getOrganization(id);
+        }
+        return toAdapter(organization);
     }
 
     @Override
     public boolean removeOrganization(String organizationId) {
-        OrganizationEntity organization = em.find(OrganizationEntity.class, organizationId);
+        OrganizationEntity organization = getSession().find(OrganizationEntity.class, organizationId);
         if (organization == null) {
             return false;
         }
-        em.refresh(organization);
-        final OrganizationAdapter adapter = new OrganizationAdapter(session, em, organization);
-        session.documents().preRemove(adapter);
+        getSession().refresh(organization);
+        final OrganizationAdapter adapter = toAdapter(organization);
 
-        session.jobReports().preRemove(adapter);
-        session.files().preRemove(adapter);
+        documents.preRemove(adapter);
+        jobreports.preRemove(adapter);
+        files.preRemove(adapter);
 
-        em.flush();
+        getSession().flush();
 
-        int num = em.createNamedQuery("deleteComponentConfigByOrganization").setParameter("organization", organization).executeUpdate();
-        num = em.createNamedQuery("deleteComponentByOrganization").setParameter("organization", organization).executeUpdate();
+        getSession().createNamedQuery("deleteComponentConfigByOrganization").setParameter("organization", organization).executeUpdate();
+        getSession().createNamedQuery("deleteComponentByOrganization").setParameter("organization", organization).executeUpdate();
 
-        em.remove(organization);
+        getSession().remove(organization);
 
-        em.flush();
-        em.clear();
+        getSession().flush();
+        getSession().clear();
 
-        session.getOpenfactSessionFactory().publish(new OrganizationModel.OrganizationRemovedEvent() {
-            @Override
-            public OrganizationModel getOrganization() {
-                return adapter;
-            }
+        event.fire((OrganizationModel.OrganizationRemovedEvent) () -> adapter);
 
-            @Override
-            public OpenfactSession getOpenfactSession() {
-                return session;
-            }
-        });
-
+        logger.debug("Organization " + organization.getName() + " removed");
         return true;
     }
 
@@ -152,7 +145,7 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
 
     @Override
     public List<OrganizationModel> getOrganizations(int firstResult, int maxResults) {
-        TypedQuery<String> query = em.createNamedQuery("getAllOrganizationIds", String.class);
+        TypedQuery<OrganizationEntity> query = getSession().createNamedQuery("getAllOrganization", OrganizationEntity.class);
         if (firstResult != -1) {
             query.setFirstResult(firstResult);
         }
@@ -160,20 +153,14 @@ public class JpaOrganizationProvider extends AbstractHibernateStorage implements
             query.setMaxResults(maxResults);
         }
 
-        List<String> entities = query.getResultList();
-        List<OrganizationModel> organizations = new ArrayList<>();
-        for (String id : entities) {
-            OrganizationModel organization = session.organizations().getOrganization(id);
-            if (organization != null) {
-                organizations.add(organization);
-            }
-        }
-        return organizations;
+        return query.getResultList().stream()
+                .map(entity -> toAdapter(entity))
+                .collect(Collectors.toList());
     }
 
     @Override
     public int getOrganizationsCount() {
-        Query query = em.createNamedQuery("getOrganizationsCount");
+        Query query = getSession().createNamedQuery("getOrganizationsCount");
         Long result = (Long) query.getSingleResult();
         return result.intValue();
     }

@@ -16,19 +16,27 @@
  *******************************************************************************/
 package org.openfact.models.jpa;
 
-import org.jboss.logging.Logger;
-import org.openfact.models.*;
-import org.openfact.models.enums.DocumentType;
-import org.openfact.models.jpa.entities.DocumentEntity;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
-public class JpaDocumentProvider extends AbstractHibernateStorage implements DocumentProvider {
+import javax.enterprise.event.Event;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+
+import org.jboss.logging.Logger;
+import org.openfact.models.DocumentModel;
+import org.openfact.models.DocumentProvider;
+import org.openfact.models.ModelDuplicateException;
+import org.openfact.models.OrganizationModel;
+import org.openfact.models.enums.DocumentType;
+import org.openfact.models.jpa.entities.DocumentEntity;
+import org.openfact.provider.ProviderEvent;
+
+public class JpaDocumentProvider implements DocumentProvider, HibernateWrapper {
 
     protected static final Logger logger = Logger.getLogger(JpaDocumentProvider.class);
 
@@ -48,21 +56,19 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
     public static final String CUSTOMER_SEND_EVENT_FAILURES = "customerSendEventFailures";
     public static final String THIRD_PARTY_SEND_EVENT_FAILURES = "thirdPartySendEventFailures";
 
-    protected final OpenfactSession session;
-    protected EntityManager em;
+    @Inject
+    private Event<ProviderEvent> event;
 
-    public JpaDocumentProvider(OpenfactSession session, EntityManager em) {
-        this.session = session;
-        this.em = em;
-    }
+    @PersistenceContext
+    private EntityManager em;
 
     @Override
-    public void close() {
-    }
-
-    @Override
-    protected EntityManager getEntityManager() {
+    public EntityManager getEntityManager() {
         return em;
+    }
+
+    private DocumentAdapter toAdapter(OrganizationModel organization, DocumentEntity entity) {
+        return new DocumentAdapter(organization, em, entity);
     }
 
     @Override
@@ -72,7 +78,7 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
 
     @Override
     public DocumentModel addDocument(String documentType, String documentId, OrganizationModel organization) {
-        if (session.documents().getDocumentByTypeAndDocumentId(documentType, documentId, organization) != null) {
+        if (getDocumentByTypeAndDocumentId(documentType, documentId, organization) != null) {
             throw new ModelDuplicateException("Document documentId[" + documentId + "] exists");
         }
 
@@ -82,28 +88,24 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
         entity.setCreatedTimestamp(LocalDateTime.now());
         entity.setOrganizationId(organization.getId());
         entity.setEnabled(true);
-        em.persist(entity);
-        em.flush();
+        getSession().persist(entity);
+        getSession().flush();
 
-        final DocumentModel adapter = new DocumentAdapter(session, organization, em, entity);
-        session.getOpenfactSessionFactory().publish(new DocumentModel.DocumentCreationEvent() {
-            @Override
-            public DocumentModel getCreatedDocument() {
-                return adapter;
-            }
-        });
+        final DocumentModel adapter = toAdapter(organization, entity);
+        event.fire((DocumentModel.DocumentCreationEvent) () -> adapter);
 
+        logger.debug("Document documentId[" + documentId + "] created on organization " + organization.getName());
         return adapter;
     }
 
     @Override
     public DocumentModel getDocumentById(String id, OrganizationModel organization) {
-        TypedQuery<DocumentEntity> query = em.createNamedQuery("getOrganizationDocumentByDocumentPkId", DocumentEntity.class);
+        TypedQuery<DocumentEntity> query = getSession().createNamedQuery("getOrganizationDocumentByDocumentPkId", DocumentEntity.class);
         query.setParameter("documentPkId", id);
         query.setParameter("organizationId", organization.getId());
         List<DocumentEntity> entities = query.getResultList();
         if (entities.size() == 0) return null;
-        return new DocumentAdapter(session, organization, em, entities.get(0));
+        return toAdapter(organization, entities.get(0));
     }
 
     @Override
@@ -113,18 +115,18 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
 
     @Override
     public DocumentModel getDocumentByTypeAndDocumentId(String documentType, String documentId, OrganizationModel organization) {
-        TypedQuery<DocumentEntity> query = em.createNamedQuery("getOrganizationDocumentByDocumentTypeAndDocumentId", DocumentEntity.class);
+        TypedQuery<DocumentEntity> query = getSession().createNamedQuery("getOrganizationDocumentByDocumentTypeAndDocumentId", DocumentEntity.class);
         query.setParameter("documentType", documentType.toUpperCase());
         query.setParameter("documentId", documentId.toUpperCase());
         query.setParameter("organizationId", organization.getId());
         List<DocumentEntity> entities = query.getResultList();
         if (entities.size() == 0) return null;
-        return new DocumentAdapter(session, organization, em, entities.get(0));
+        return toAdapter(organization, entities.get(0));
     }
 
     @Override
     public boolean removeDocument(String id, OrganizationModel organization) {
-        DocumentEntity entity = em.find(DocumentEntity.class, id);
+        DocumentEntity entity = getSession().find(DocumentEntity.class, id);
         if (entity == null) return false;
         removeDocument(entity);
         return true;
@@ -132,33 +134,33 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
 
     private void removeDocument(DocumentEntity document) {
         String id = document.getId();
-        em.flush();
-        em.clear();
+        getSession().flush();
+        getSession().clear();
 
-        document = em.find(DocumentEntity.class, id);
+        document = getSession().find(DocumentEntity.class, id);
         if (document != null) {
-            em.remove(document);
+            getSession().remove(document);
         }
 
-        em.flush();
+        getSession().flush();
     }
 
     @Override
     public void preRemove(OrganizationModel organization) {
-        int num = em.createNamedQuery("deleteDocumentRequiredActionsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        getSession().createNamedQuery("deleteDocumentRequiredActionsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
 
-        num = em.createNamedQuery("deleteAttachedDocumentsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        getSession().createNamedQuery("deleteAttachedDocumentsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
 
-        num = em.createNamedQuery("deleteSendEventAttachedFilesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
-        num = em.createNamedQuery("deleteSendEventAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
-        num = em.createNamedQuery("deleteSendEventsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        getSession().createNamedQuery("deleteSendEventAttachedFilesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        getSession().createNamedQuery("deleteSendEventAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        getSession().createNamedQuery("deleteSendEventsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
 
-        num = em.createNamedQuery("deleteDocumentAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        getSession().createNamedQuery("deleteDocumentAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
 
-        num = em.createNamedQuery("deleteDocumentLineAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
-        num = em.createNamedQuery("deleteDocumentLinesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        getSession().createNamedQuery("deleteDocumentLineAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        getSession().createNamedQuery("deleteDocumentLinesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
 
-        num = em.createNamedQuery("deleteDocumentsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        getSession().createNamedQuery("deleteDocumentsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
     }
 
     @Override
@@ -168,7 +170,7 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
 
     @Override
     public List<DocumentModel> getDocuments(OrganizationModel organization, int firstResult, int maxResults) {
-        TypedQuery<DocumentEntity> query = em.createNamedQuery("getAllDocumentsByOrganization", DocumentEntity.class);
+        TypedQuery<DocumentEntity> query = getSession().createNamedQuery("getAllDocumentsByOrganization", DocumentEntity.class);
         query.setParameter("organizationId", organization.getId());
         if (firstResult != -1) {
             query.setFirstResult(firstResult);
@@ -176,8 +178,9 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
         if (maxResults != -1) {
             query.setMaxResults(maxResults);
         }
-        List<DocumentEntity> results = query.getResultList();
-        return results.stream().map(entity -> new DocumentAdapter(session, organization, em, entity)).collect(Collectors.toList());
+        return query.getResultList().stream()
+                .map(entity -> toAdapter(organization, entity))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -187,7 +190,7 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
 
     @Override
     public List<DocumentModel> searchForDocument(String filterText, OrganizationModel organization, int firstResult, int maxResults) {
-        TypedQuery<DocumentEntity> query = em.createNamedQuery("searchForDocument", DocumentEntity.class);
+        TypedQuery<DocumentEntity> query = getSession().createNamedQuery("searchForDocument", DocumentEntity.class);
         query.setParameter("organizationId", organization.getId());
         query.setParameter("search", "%" + filterText.toLowerCase() + "%");
         if (firstResult != -1) {
@@ -196,20 +199,16 @@ public class JpaDocumentProvider extends AbstractHibernateStorage implements Doc
         if (maxResults != -1) {
             query.setMaxResults(maxResults);
         }
-        List<DocumentEntity> results = query.getResultList();
-        return results.stream().map(f -> new DocumentAdapter(session, organization, em, f)).collect(Collectors.toList());
+        return query.getResultList().stream()
+                .map(entity -> toAdapter(organization, entity))
+                .collect(Collectors.toList());
     }
 
     @Override
     public int getDocumentsCount(OrganizationModel organization) {
-        Query query = em.createNamedQuery("getOrganizationDocumentCount");
+        Query query = getSession().createNamedQuery("getOrganizationDocumentCount");
         Long result = (Long) query.getSingleResult();
         return result.intValue();
-    }
-
-    @Override
-    public DocumentQuery createQuery(OrganizationModel organization) {
-        return new JpaDocumentQuery(session, organization, em);
     }
 
 }

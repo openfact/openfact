@@ -16,9 +16,7 @@
  *******************************************************************************/
 package org.openfact.report;
 
-import org.openfact.provider.Provider;
-
-public interface ReportDataProvider<T> extends Provider {
+public interface ReportDataProvider<T> {
 
     Object getFieldValue(T t, String fieldName);
 

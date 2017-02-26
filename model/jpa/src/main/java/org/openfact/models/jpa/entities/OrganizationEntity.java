@@ -16,32 +16,17 @@
  *******************************************************************************/
 package org.openfact.models.jpa.entities;
 
-import java.time.LocalDateTime;
-import java.util.*;
-
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapKeyColumn;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @Entity
 @Table(name = "ORGANIZATION")
 @NamedQueries({
+        @NamedQuery(name = "getAllOrganization", query = "select organization from OrganizationEntity organization"),
         @NamedQuery(name = "getAllOrganizationIds", query = "select organization.id from OrganizationEntity organization"),
         @NamedQuery(name = "getOrganizationIdByName", query = "select organization.id from OrganizationEntity organization where organization.name = :name"),
         @NamedQuery(name = "getOrganizationsCount", query = "select count(organization.id) from OrganizationEntity organization"),

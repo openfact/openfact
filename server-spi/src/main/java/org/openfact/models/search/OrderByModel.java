@@ -5,8 +5,8 @@ package org.openfact.models.search;
  */
 public class OrderByModel {
 
-    private boolean ascending;
     private String name;
+    private boolean ascending;
 
     /**
      * Constructor.

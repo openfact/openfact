@@ -1,12 +1,10 @@
 package org.openfact.models.search;
 
-import java.io.Serializable;
-
 /**
  * Represents a single filter or search criteria. This is used when searching
  * for beans.
  */
-public class SearchCriteriaFilterModel implements Serializable {
+public class SearchCriteriaFilterModel {
 
     private String name;
     private Object value;

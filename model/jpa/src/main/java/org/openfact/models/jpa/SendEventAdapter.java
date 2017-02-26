@@ -19,10 +19,10 @@ package org.openfact.models.jpa;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
-import org.openfact.file.FileModel;
-import org.openfact.file.FileProvider;
+import org.openfact.files.FileModel;
+import org.openfact.files.FileProvider;
 import org.openfact.models.*;
-import org.openfact.models.enums.DestinyType;
+import org.openfact.models.enums.SendEventDestiny;
 import org.openfact.models.enums.SendEventStatus;
 import org.openfact.models.SendEventModel;
 import org.openfact.models.jpa.entities.SendEventAttachedFileEntity;
@@ -31,6 +31,7 @@ import org.openfact.models.jpa.entities.SendEventAttributeEntity;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class SendEventAdapter implements SendEventModel, JpaModel<SendEventEntity> {
 
@@ -38,10 +39,8 @@ public class SendEventAdapter implements SendEventModel, JpaModel<SendEventEntit
     protected OrganizationModel organization;
     protected SendEventEntity sendEvent;
     protected EntityManager em;
-    protected OpenfactSession session;
 
-    public SendEventAdapter(OpenfactSession session, EntityManager em, OrganizationModel organization, SendEventEntity ublDocumentDendEvent) {
-        this.session = session;
+    public SendEventAdapter(EntityManager em, OrganizationModel organization, SendEventEntity ublDocumentDendEvent) {
         this.em = em;
         this.organization = organization;
         this.sendEvent = ublDocumentDendEvent;
@@ -177,18 +176,15 @@ public class SendEventAdapter implements SendEventModel, JpaModel<SendEventEntit
     }
 
     @Override
-    public DestinyType getDestityType() {
+    public SendEventDestiny getDestityType() {
         return sendEvent.getDestiny();
     }
 
     @Override
-    public List<FileModel> getAttachedFiles() {
-        FileProvider fileProvider = session.getProvider(FileProvider.class);
-        List<FileModel> files = new ArrayList<>();
-        for (SendEventAttachedFileEntity attachedDocument : sendEvent.getAttachedFiles()) {
-            files.add(fileProvider.getFileById(organization, attachedDocument.getFileId()));
-        }
-        return files;
+    public List<String> getAttachedFileIds() {        
+        return sendEvent.getAttachedFiles().stream()
+        		.map(f -> f.getFileId())
+        		.collect(Collectors.toList());
     }
 
     @Override

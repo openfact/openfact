@@ -23,15 +23,14 @@
 
 package org.openfact.models.jpa.entities;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collection;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Table(name = "DOCUMENT", uniqueConstraints = {

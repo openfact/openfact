@@ -1,16 +1,8 @@
 package org.openfact.models;
 
-import org.openfact.migration.MigrationModel;
-import org.openfact.models.search.SearchCriteriaModel;
-import org.openfact.models.search.SearchResultsModel;
-import org.openfact.provider.Provider;
-
 import java.util.List;
-import java.util.Map;
 
-public interface OrganizationProvider extends Provider {
-
-    MigrationModel getMigrationModel();
+public interface OrganizationProvider {
 
     OrganizationModel createOrganization(String name);
 

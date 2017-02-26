@@ -18,13 +18,14 @@ package org.openfact.models.jpa.entities;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import org.openfact.models.enums.DestinyType;
+import org.openfact.models.enums.SendEventDestiny;
 import org.openfact.models.enums.SendEventStatus;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Table(name = "SEND_EVENT")
@@ -45,7 +46,7 @@ public class SendEventEntity {
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "DESTINY")
-    private DestinyType destiny;
+    private SendEventDestiny destiny;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -97,11 +98,11 @@ public class SendEventEntity {
         this.id = id;
     }
 
-    public DestinyType getDestiny() {
+    public SendEventDestiny getDestiny() {
         return destiny;
     }
 
-    public void setDestiny(DestinyType destiny) {
+    public void setDestiny(SendEventDestiny destiny) {
         this.destiny = destiny;
     }
 

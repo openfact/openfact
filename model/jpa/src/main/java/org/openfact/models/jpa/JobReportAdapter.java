@@ -29,11 +29,9 @@ public class JobReportAdapter implements JobReportModel, JpaModel<JobReportEntit
     protected OrganizationModel organization;
     protected JobReportEntity jobReport;
     protected EntityManager em;
-    protected OpenfactSession session;
 
-    public JobReportAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em, JobReportEntity jobReport) {
+    public JobReportAdapter(OrganizationModel organization, EntityManager em, JobReportEntity jobReport) {
         this.organization = organization;
-        this.session = session;
         this.em = em;
         this.jobReport = jobReport;
     }

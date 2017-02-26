@@ -16,8 +16,6 @@
  *******************************************************************************/
 package org.openfact.representations.idm;
 
-import org.openfact.common.util.MultivaluedHashMap;
-
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -70,8 +68,6 @@ public class OrganizationRepresentation {
     private Date taskFirstTime;
     private Long taskDelay;
     private Boolean tasksEnabled;
-
-    private MultivaluedHashMap<String, ComponentExportRepresentation> components;
 
     public String getId() {
         return id;
@@ -347,14 +343,6 @@ public class OrganizationRepresentation {
 
     public void setTasksEnabled(Boolean tasksEnabled) {
         this.tasksEnabled = tasksEnabled;
-    }
-
-    public MultivaluedHashMap<String, ComponentExportRepresentation> getComponents() {
-        return components;
-    }
-
-    public void setComponents(MultivaluedHashMap<String, ComponentExportRepresentation> components) {
-        this.components = components;
     }
 
     public String getReportTheme() {

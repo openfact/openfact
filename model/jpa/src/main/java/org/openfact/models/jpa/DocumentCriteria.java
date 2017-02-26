@@ -1,9 +1,8 @@
 package org.openfact.models.jpa;
 
 import org.openfact.models.DocumentModel;
-import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.enums.RequiredAction;
+import org.openfact.models.enums.DocumentRequiredAction;
 import org.openfact.models.jpa.entities.DocumentEntity;
 import org.openfact.models.jpa.entities.DocumentRequiredActionEntity;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
@@ -26,13 +25,11 @@ public class DocumentCriteria<R, Q> {
     private Map<String, Boolean> orderBy;
 
     private final OrganizationModel organization;
-    private final OpenfactSession session;
 
-    public DocumentCriteria(OpenfactSession session, OrganizationModel organization, EntityManager em, Class<R> rClass, Class<Q> qClass) {
+    public DocumentCriteria(OrganizationModel organization, EntityManager em, Class<R> rClass, Class<Q> qClass) {
         this.em = em;
 
         this.organization = organization;
-        this.session = session;
 
         cb = em.getCriteriaBuilder();
         cq = cb.createQuery(qClass);
@@ -44,19 +41,19 @@ public class DocumentCriteria<R, Q> {
         this.predicates.add(cb.equal(root.get(JpaDocumentProvider.ORGANIZATION_ID), organization.getId()));
     }
 
-    public DocumentCriteria currencyCode(String... currencyCode) {
+    public DocumentCriteria<R, Q> currencyCode(String... currencyCode) {
         List<String> currencyCodes = Arrays.asList(currencyCode).stream().map(String::toUpperCase).collect(Collectors.toList());
         predicates.add(cb.upper(root.get(JpaDocumentProvider.DOCUMENT_CURRENCY_CODE)).in(currencyCodes));
         return this;
     }
 
-    public DocumentCriteria documentType(String... documentType) {
+    public DocumentCriteria<R, Q> documentType(String... documentType) {
         List<String> documentTypes = Arrays.asList(documentType).stream().map(String::toUpperCase).collect(Collectors.toList());
         predicates.add(cb.upper(root.get(JpaDocumentProvider.DOCUMENT_TYPE)).in(documentTypes));
         return this;
     }
 
-    public DocumentCriteria filterText(String filterText, String... fieldName) {
+    public DocumentCriteria<R, Q> filterText(String filterText, String... fieldName) {
         Predicate[] orPredicates = Stream.of(fieldName)
                 .map(f -> cb.like(cb.upper(root.get(f)), "%" + filterText.toUpperCase() + "%"))
                 .toArray(size -> new Predicate[fieldName.length]);
@@ -64,7 +61,7 @@ public class DocumentCriteria<R, Q> {
         return this;
     }
 
-    public DocumentCriteria filterTextReplaceAsterisk(String filterText, String... fieldName) {
+    public DocumentCriteria<R, Q> filterTextReplaceAsterisk(String filterText, String... fieldName) {
         Predicate[] orPredicates = Stream.of(fieldName)
                 .map(f -> cb.like(cb.upper(root.get(f)), filterText.toUpperCase().replace('*', '%')))
                 .toArray(size -> new Predicate[fieldName.length]);
@@ -92,7 +89,7 @@ public class DocumentCriteria<R, Q> {
         this.predicates.add(cb.equal(root.get(JpaDocumentProvider.ENABLED), isEnabled));
     }
 
-    public DocumentCriteria addFilter(String key, String value) {
+    public DocumentCriteria<R, Q> addFilter(String key, String value) {
         if (key.equals(DocumentModel.DOCUMENT_ID)) {
             predicates.add(cb.equal(cb.upper(root.get(JpaDocumentProvider.DOCUMENT_ID)), value.toUpperCase()));
         } else if (key.equals(DocumentModel.DOCUMENT_TYPE)) {
@@ -110,7 +107,7 @@ public class DocumentCriteria<R, Q> {
         return this;
     }
 
-    public DocumentCriteria addFilter(Map<String, String> filters) {
+    public DocumentCriteria<R, Q> addFilter(Map<String, String> filters) {
         for (Map.Entry<String, String> entry : filters.entrySet()) {
             addFilter(entry.getKey(), entry.getValue());
         }
@@ -118,7 +115,7 @@ public class DocumentCriteria<R, Q> {
         return this;
     }
 
-    public DocumentCriteria addFilter(String key, Object value, SearchCriteriaFilterOperator operator) {
+    public DocumentCriteria<R, Q> addFilter(String key, Object value, SearchCriteriaFilterOperator operator) {
         if (operator == SearchCriteriaFilterOperator.eq) {
             Path<Object> path = root.get(key);
             Class<?> pathc = path.getJavaType();
@@ -147,8 +144,8 @@ public class DocumentCriteria<R, Q> {
     }
 
 
-    public DocumentCriteria requiredAction(RequiredAction... requiredAction) {
-        List<String> rActions = Stream.of(requiredAction).map(RequiredAction::toString).collect(Collectors.toList());
+    public DocumentCriteria<R, Q> requiredAction(DocumentRequiredAction... requiredAction) {
+        List<String> rActions = Stream.of(requiredAction).map(DocumentRequiredAction::toString).collect(Collectors.toList());
 
         Join<DocumentEntity, DocumentRequiredActionEntity> requiredActions = root.join(JpaDocumentProvider.REQUIRED_ACTIONS);
         predicates.add(requiredActions.get("action").in(rActions));
@@ -156,7 +153,7 @@ public class DocumentCriteria<R, Q> {
         return this;
     }
 
-    public DocumentCriteria fromDate(LocalDateTime fromDate, boolean include) {
+    public DocumentCriteria<R, Q> fromDate(LocalDateTime fromDate, boolean include) {
         if (include) {
             predicates.add(cb.greaterThanOrEqualTo(root.<LocalDateTime>get(JpaDocumentProvider.CREATED_TIMESTAMP), fromDate));
         } else {
@@ -165,7 +162,7 @@ public class DocumentCriteria<R, Q> {
         return this;
     }
 
-    public DocumentCriteria toDate(LocalDateTime toDate, boolean include) {
+    public DocumentCriteria<R, Q> toDate(LocalDateTime toDate, boolean include) {
         if (include) {
             predicates.add(cb.lessThanOrEqualTo(root.<LocalDateTime>get(JpaDocumentProvider.CREATED_TIMESTAMP), toDate));
         } else {
