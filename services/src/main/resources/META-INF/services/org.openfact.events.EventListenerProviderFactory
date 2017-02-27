@@ -1,2 +1,0 @@
-org.openfact.events.email.EmailEventListenerProviderFactory
-org.openfact.events.log.JBossLoggingEventListenerProviderFactory

@@ -1,1 +1,0 @@
-${msg("emailDocumentBody", user, organizationName)}
