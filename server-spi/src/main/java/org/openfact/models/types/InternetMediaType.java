@@ -1,4 +1,4 @@
-package org.openfact.files;
+package org.openfact.models.types;
 
 import java.util.Arrays;
 import java.util.Optional;

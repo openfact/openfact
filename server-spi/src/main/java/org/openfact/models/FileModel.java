@@ -1,4 +1,4 @@
-package org.openfact.files;
+package org.openfact.models;
 
 public interface FileModel {
 

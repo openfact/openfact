@@ -32,17 +32,12 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.entities.JobReportEntity;
 
 @Stateless
-public class JpaJobReportProvider extends AbstractHibernateStorage implements JobReportProvider {
+public class JpaJobReportProvider implements JobReportProvider {
 
     protected static final Logger logger = Logger.getLogger(JpaJobReportProvider.class);
 
     @PersistenceContext
     protected EntityManager em;
-
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
 
     static AdminJobReport convertAdminJobReport(JobReportEntity jobReportEntity) {
         AdminJobReport adminJobReport = new AdminJobReport();

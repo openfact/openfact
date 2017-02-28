@@ -21,8 +21,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.jboss.logging.Logger;
-import org.openfact.files.FileModel;
-import org.openfact.files.FileProvider;
+import org.openfact.models.FileModel;
+import org.openfact.models.FileProvider;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.entities.FileEntity;
 

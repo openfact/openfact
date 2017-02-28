@@ -86,6 +86,8 @@ public class SendEventAttributeEntity {
 
     public static class Key implements Serializable {
 
+        private static final long serialVersionUID = 1L;
+
         protected SendEventEntity sendEvent;
 
         protected String name;

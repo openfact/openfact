@@ -19,7 +19,7 @@ package org.openfact.models.jpa;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
-import org.openfact.files.FileModel;
+import org.openfact.models.FileModel;
 import org.openfact.models.jpa.entities.FileEntity;
 
 public class FileAdapter implements FileModel, JpaModel<FileEntity> {

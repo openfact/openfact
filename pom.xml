@@ -23,9 +23,12 @@
 		<jboss.as.version>7.2.0.Final</jboss.as.version>
 		<wildfly.version>10.0.0.Final</wildfly.version>
 
-		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- Wildfly Swarm -->
+		<version.wildfly-swarm>2017.2.0</version.wildfly-swarm>
 
 		<!-- Java EE 7 -->
 		<javaee.version>7.0</javaee.version>
@@ -46,12 +49,14 @@
 		<version.commons.lang>2.6</version.commons.lang>
 
 		<!-- Hibernate -->
+		<hibernate.javax.persistence.version>1.0.0.Final</hibernate.javax.persistence.version>
 		<version.hibernate-orm>5.2.8.Final</version.hibernate-orm>
 		<version.hibernate-search>5.7.0.Final</version.hibernate-search>
 		<version.hibernate-validator>5.4.0.Final</version.hibernate-validator>
 
 		<!-- Test -->
 		<junit.version>4.12</junit.version>
+		<h2.version>1.3.173</h2.version>
 
 		<!-- Plugins -->
 		<version.maven-war-plugin>2.6</version.maven-war-plugin>
@@ -67,10 +72,20 @@
 		<module>services</module>
 		<module>web-console</module>
 		<module>distribution</module>
+		<module>testsuite</module>
 	</modules>
 
 	<dependencyManagement>
 		<dependencies>
+			<!-- Wildfly Swarm -->
+			<dependency>
+				<groupId>org.wildfly.swarm</groupId>
+				<artifactId>bom-all</artifactId>
+				<version>${version.wildfly-swarm}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
 			<!-- Openfact -->
 			<dependency>
 				<groupId>org.openfact</groupId>
@@ -165,40 +180,39 @@
 
 			<!--Hibernate -->
 			<dependency>
+				<groupId>org.hibernate.javax.persistence</groupId>
+				<artifactId>hibernate-jpa-2.1-api</artifactId>
+				<version>${hibernate.javax.persistence.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-entitymanager</artifactId>
-				<version>${version.hibernate-orm}</version>
-				<scope>provided</scope>
+				<version>${version.hibernate-orm}</version>				
 			</dependency>
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-envers</artifactId>
 				<version>${version.hibernate-orm}</version>
-				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-infinispan</artifactId>
 				<version>${version.hibernate-orm}</version>
-				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-java8</artifactId>
 				<version>${version.hibernate-orm}</version>
-				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-search-orm</artifactId>
 				<version>${version.hibernate-search}</version>
-				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-validator</artifactId>
 				<version>${version.hibernate-validator}</version>
-				<scope>provided</scope>
 			</dependency>
 
 			<!--Test -->
@@ -208,12 +222,23 @@
 				<version>${junit.version}</version>
 				<scope>test</scope>
 			</dependency>
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>${h2.version}</version>
+				<scope>test</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
 	<build>
 		<pluginManagement>
 			<plugins>
+				<plugin>
+					<groupId>org.wildfly.swarm</groupId>
+					<artifactId>wildfly-swarm-plugin</artifactId>
+					<version>${version.wildfly-swarm}</version>
+				</plugin>
 				<plugin>
 					<artifactId>maven-war-plugin</artifactId>
 					<version>${version.maven-war-plugin}</version>

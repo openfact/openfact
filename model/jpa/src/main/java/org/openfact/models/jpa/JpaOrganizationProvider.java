@@ -4,8 +4,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
@@ -15,28 +13,26 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.jboss.logging.Logger;
-import org.openfact.files.FileProvider;
-import org.openfact.models.DocumentProvider;
-import org.openfact.models.JobReportProvider;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
 import org.openfact.models.jpa.entities.OrganizationEntity;
+import org.openfact.models.provider.ProviderEvent;
 import org.openfact.models.utils.OpenfactModelUtils;
-import org.openfact.provider.ProviderEvent;
 
 @Stateless
-public class JpaOrganizationProvider implements OrganizationProvider, HibernateWrapper {
+public class JpaOrganizationProvider
+        implements OrganizationProvider {
 
     private static final Logger logger = Logger.getLogger(JpaOrganizationProvider.class);
 
-    @Inject
+    /*@Inject
     private DocumentProvider documents;
 
     @Inject
     private JobReportProvider jobreports;
 
     @Inject
-    private FileProvider files;
+    private FileProvider files;*/
 
     @Inject
     private Event<ProviderEvent> event;
@@ -44,19 +40,11 @@ public class JpaOrganizationProvider implements OrganizationProvider, HibernateW
     @PersistenceContext
     private EntityManager em;
 
-    @PostConstruct
-    public void init() {
-    }
-
-    @PreDestroy
-    public void close() {
-    }
-
     private OrganizationAdapter toAdapter(OrganizationEntity entity) {
         return new OrganizationAdapter(em, entity);
     }
 
-    @Override
+    //@Override
     public EntityManager getEntityManager() {
         return em;
     }
@@ -76,8 +64,8 @@ public class JpaOrganizationProvider implements OrganizationProvider, HibernateW
         organization.setId(id);
         organization.setCreatedTimestamp(LocalDateTime.now());
         organization.setEnabled(true);
-        getSession().persist(organization);
-        getSession().flush();
+        em.persist(organization);
+        em.flush();
 
         final OrganizationModel adapter = toAdapter(organization);
 
@@ -89,7 +77,7 @@ public class JpaOrganizationProvider implements OrganizationProvider, HibernateW
 
     @Override
     public OrganizationModel getOrganization(String organizationId) {
-        OrganizationEntity entity = getSession().find(OrganizationEntity.class, organizationId);
+        OrganizationEntity entity = em.find(OrganizationEntity.class, organizationId);
         if (entity == null) {
             return null;
         }
@@ -98,35 +86,40 @@ public class JpaOrganizationProvider implements OrganizationProvider, HibernateW
 
     @Override
     public OrganizationModel getOrganizationByName(String name) {
-        OrganizationEntity organization = getSession().bySimpleNaturalId(OrganizationEntity.class).load(name);
-        if (organization == null) {
+        TypedQuery<OrganizationEntity> query = em.createNamedQuery("getOrganizationByName", OrganizationEntity.class);
+        query.setParameter("name", name);
+        List<OrganizationEntity> entities = query.getResultList();
+        if (entities.size() == 0)
             return null;
-        }
-        return toAdapter(organization);
+        if (entities.size() > 1)
+            throw new IllegalStateException("Should not be more than one documentLine with same name");
+        OrganizationEntity entity = query.getResultList().get(0);
+
+        return toAdapter(entity);
     }
 
     @Override
     public boolean removeOrganization(String organizationId) {
-        OrganizationEntity organization = getSession().find(OrganizationEntity.class, organizationId);
+        OrganizationEntity organization = em.find(OrganizationEntity.class, organizationId);
         if (organization == null) {
             return false;
         }
-        getSession().refresh(organization);
+        em.refresh(organization);
         final OrganizationAdapter adapter = toAdapter(organization);
 
-        documents.preRemove(adapter);
+        /*documents.preRemove(adapter);
         jobreports.preRemove(adapter);
-        files.preRemove(adapter);
+        files.preRemove(adapter);*/
 
-        getSession().flush();
+        em.flush();
 
-        getSession().createNamedQuery("deleteComponentConfigByOrganization").setParameter("organization", organization).executeUpdate();
-        getSession().createNamedQuery("deleteComponentByOrganization").setParameter("organization", organization).executeUpdate();
+        em.createNamedQuery("deleteComponentConfigByOrganization").setParameter("organization", organization).executeUpdate();
+        em.createNamedQuery("deleteComponentByOrganization").setParameter("organization", organization).executeUpdate();
 
-        getSession().remove(organization);
+        em.remove(organization);
 
-        getSession().flush();
-        getSession().clear();
+        em.flush();
+        em.clear();
 
         event.fire((OrganizationModel.OrganizationRemovedEvent) () -> adapter);
 
@@ -146,7 +139,7 @@ public class JpaOrganizationProvider implements OrganizationProvider, HibernateW
 
     @Override
     public List<OrganizationModel> getOrganizations(int firstResult, int maxResults) {
-        TypedQuery<OrganizationEntity> query = getSession().createNamedQuery("getAllOrganization", OrganizationEntity.class);
+        TypedQuery<OrganizationEntity> query = em.createNamedQuery("getAllOrganization", OrganizationEntity.class);
         if (firstResult != -1) {
             query.setFirstResult(firstResult);
         }
@@ -154,14 +147,12 @@ public class JpaOrganizationProvider implements OrganizationProvider, HibernateW
             query.setMaxResults(maxResults);
         }
 
-        return query.getResultList().stream()
-                .map(entity -> toAdapter(entity))
-                .collect(Collectors.toList());
+        return query.getResultList().stream().map(entity -> toAdapter(entity)).collect(Collectors.toList());
     }
 
     @Override
     public int getOrganizationsCount() {
-        Query query = getSession().createNamedQuery("getOrganizationsCount");
+        Query query = em.createNamedQuery("getOrganizationsCount");
         Long result = (Long) query.getSingleResult();
         return result.intValue();
     }

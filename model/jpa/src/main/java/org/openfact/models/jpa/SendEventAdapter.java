@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
-import org.openfact.files.FileModel;
+import org.openfact.models.FileModel;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.SendEventModel;
 import org.openfact.models.jpa.entities.SendEventAttachedFileEntity;

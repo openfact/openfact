@@ -1,6 +1,4 @@
-package org.openfact.files;
-
-import org.openfact.models.OrganizationModel;
+package org.openfact.models;
 
 public interface FileProvider {
 

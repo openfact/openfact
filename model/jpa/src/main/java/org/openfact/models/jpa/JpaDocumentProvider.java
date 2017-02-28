@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 
 import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
-import javax.enterprise.inject.Typed;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -35,12 +34,11 @@ import org.openfact.models.DocumentProvider;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.entities.DocumentEntity;
+import org.openfact.models.provider.ProviderEvent;
 import org.openfact.models.types.DocumentType;
-import org.openfact.provider.ProviderEvent;
 
 @Stateless
-@Typed(DocumentProvider.class)
-public class JpaDocumentProvider implements DocumentProvider, HibernateWrapper {
+public class JpaDocumentProvider implements DocumentProvider {
 
     protected static final Logger logger = Logger.getLogger(JpaDocumentProvider.class);
 
@@ -66,11 +64,6 @@ public class JpaDocumentProvider implements DocumentProvider, HibernateWrapper {
     @PersistenceContext
     private EntityManager em;
 
-    @Override
-    public EntityManager getEntityManager() {
-        return em;
-    }
-
     private DocumentAdapter toAdapter(OrganizationModel organization, DocumentEntity entity) {
         return new DocumentAdapter(organization, em, entity);
     }
@@ -92,8 +85,8 @@ public class JpaDocumentProvider implements DocumentProvider, HibernateWrapper {
         entity.setCreatedTimestamp(LocalDateTime.now());
         entity.setOrganizationId(organization.getId());
         entity.setEnabled(true);
-        getSession().persist(entity);
-        getSession().flush();
+        em.persist(entity);
+        em.flush();
 
         final DocumentModel adapter = toAdapter(organization, entity);
         event.fire((DocumentModel.DocumentCreationEvent) () -> adapter);
@@ -104,7 +97,7 @@ public class JpaDocumentProvider implements DocumentProvider, HibernateWrapper {
 
     @Override
     public DocumentModel getDocumentById(String id, OrganizationModel organization) {
-        TypedQuery<DocumentEntity> query = getSession().createNamedQuery("getOrganizationDocumentByDocumentPkId", DocumentEntity.class);
+        TypedQuery<DocumentEntity> query = em.createNamedQuery("getOrganizationDocumentByDocumentPkId", DocumentEntity.class);
         query.setParameter("documentPkId", id);
         query.setParameter("organizationId", organization.getId());
         List<DocumentEntity> entities = query.getResultList();
@@ -119,7 +112,7 @@ public class JpaDocumentProvider implements DocumentProvider, HibernateWrapper {
 
     @Override
     public DocumentModel getDocumentByTypeAndDocumentId(String documentType, String documentId, OrganizationModel organization) {
-        TypedQuery<DocumentEntity> query = getSession().createNamedQuery("getOrganizationDocumentByDocumentTypeAndDocumentId", DocumentEntity.class);
+        TypedQuery<DocumentEntity> query = em.createNamedQuery("getOrganizationDocumentByDocumentTypeAndDocumentId", DocumentEntity.class);
         query.setParameter("documentType", documentType.toUpperCase());
         query.setParameter("documentId", documentId.toUpperCase());
         query.setParameter("organizationId", organization.getId());
@@ -130,7 +123,7 @@ public class JpaDocumentProvider implements DocumentProvider, HibernateWrapper {
 
     @Override
     public boolean removeDocument(String id, OrganizationModel organization) {
-        DocumentEntity entity = getSession().find(DocumentEntity.class, id);
+        DocumentEntity entity = em.find(DocumentEntity.class, id);
         if (entity == null) return false;
         removeDocument(entity);
         return true;
@@ -138,33 +131,33 @@ public class JpaDocumentProvider implements DocumentProvider, HibernateWrapper {
 
     private void removeDocument(DocumentEntity document) {
         String id = document.getId();
-        getSession().flush();
-        getSession().clear();
+        em.flush();
+        em.clear();
 
-        document = getSession().find(DocumentEntity.class, id);
+        document = em.find(DocumentEntity.class, id);
         if (document != null) {
-            getSession().remove(document);
+            em.remove(document);
         }
 
-        getSession().flush();
+        em.flush();
     }
 
     @Override
     public void preRemove(OrganizationModel organization) {
-        getSession().createNamedQuery("deleteDocumentRequiredActionsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        em.createNamedQuery("deleteDocumentRequiredActionsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
 
-        getSession().createNamedQuery("deleteAttachedDocumentsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        em.createNamedQuery("deleteAttachedDocumentsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
 
-        getSession().createNamedQuery("deleteSendEventAttachedFilesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
-        getSession().createNamedQuery("deleteSendEventAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
-        getSession().createNamedQuery("deleteSendEventsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        em.createNamedQuery("deleteSendEventAttachedFilesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        em.createNamedQuery("deleteSendEventAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        em.createNamedQuery("deleteSendEventsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
 
-        getSession().createNamedQuery("deleteDocumentAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        em.createNamedQuery("deleteDocumentAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
 
-        getSession().createNamedQuery("deleteDocumentLineAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
-        getSession().createNamedQuery("deleteDocumentLinesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        em.createNamedQuery("deleteDocumentLineAttributesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        em.createNamedQuery("deleteDocumentLinesByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
 
-        getSession().createNamedQuery("deleteDocumentsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
+        em.createNamedQuery("deleteDocumentsByOrganization").setParameter("organizationId", organization.getId()).executeUpdate();
     }
 
     @Override
@@ -174,7 +167,7 @@ public class JpaDocumentProvider implements DocumentProvider, HibernateWrapper {
 
     @Override
     public List<DocumentModel> getDocuments(OrganizationModel organization, int firstResult, int maxResults) {
-        TypedQuery<DocumentEntity> query = getSession().createNamedQuery("getAllDocumentsByOrganization", DocumentEntity.class);
+        TypedQuery<DocumentEntity> query = em.createNamedQuery("getAllDocumentsByOrganization", DocumentEntity.class);
         query.setParameter("organizationId", organization.getId());
         if (firstResult != -1) {
             query.setFirstResult(firstResult);
@@ -194,7 +187,7 @@ public class JpaDocumentProvider implements DocumentProvider, HibernateWrapper {
 
     @Override
     public List<DocumentModel> searchForDocument(String filterText, OrganizationModel organization, int firstResult, int maxResults) {
-        TypedQuery<DocumentEntity> query = getSession().createNamedQuery("searchForDocument", DocumentEntity.class);
+        TypedQuery<DocumentEntity> query = em.createNamedQuery("searchForDocument", DocumentEntity.class);
         query.setParameter("organizationId", organization.getId());
         query.setParameter("search", "%" + filterText.toLowerCase() + "%");
         if (firstResult != -1) {
@@ -210,7 +203,7 @@ public class JpaDocumentProvider implements DocumentProvider, HibernateWrapper {
 
     @Override
     public int getDocumentsCount(OrganizationModel organization) {
-        Query query = getSession().createNamedQuery("getOrganizationDocumentCount");
+        Query query = em.createNamedQuery("getOrganizationDocumentCount");
         Long result = (Long) query.getSingleResult();
         return result.intValue();
     }

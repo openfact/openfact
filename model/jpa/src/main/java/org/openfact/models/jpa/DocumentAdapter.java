@@ -30,9 +30,9 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.jboss.logging.Logger;
-import org.openfact.files.FileModel;
 import org.openfact.models.DocumentLineModel;
 import org.openfact.models.DocumentModel;
+import org.openfact.models.FileModel;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.SendEventModel;
 import org.openfact.models.jpa.entities.AttachedDocumentEntity;
@@ -46,7 +46,7 @@ import org.openfact.models.types.DocumentRequiredAction;
 import org.openfact.models.types.SendEventStatus;
 import org.openfact.models.utils.OpenfactModelUtils;
 
-public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity>, HibernateWrapper {
+public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> {
 
     protected static final Logger logger = Logger.getLogger(DocumentAdapter.class);
 
@@ -69,11 +69,6 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity>,
 
     public DocumentLineModel toDocumentLineModel(DocumentLineEntity documentLine) {
         return new DocumentLineAdapter(this, em, documentLine);
-    }
-
-    @Override
-    public EntityManager getEntityManager() {
-        return em;
     }
 
     @Override
@@ -122,7 +117,7 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity>,
     public DocumentLineModel addDocumentLine() {
         DocumentLineEntity entity = new DocumentLineEntity();
         entity.setDocument(document);
-        getSession().persist(entity);
+        em.persist(entity);
         return toDocumentLineModel(entity);
     }
 
@@ -134,7 +129,7 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity>,
             DocumentLineEntity line = it.next();
             if (line.getId().equals(documentLine.getId())) {
                 it.remove();
-                getSession().remove(line);
+                em.remove(line);
                 result = true;
             }
         }

@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<parent>
-		<artifactId>openfact</artifactId>
-		<groupId>org.openfact</groupId>
-		<version>1.0.0-SNAPSHOT</version>
-		<relativePath>../pom.xml</relativePath>
-	</parent>
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>openfact</artifactId>
+        <groupId>org.openfact</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
 
-	<artifactId>openfact-services</artifactId>
-	<name>Openfact REST Services</name>
+    <artifactId>openfact-services</artifactId>
+    <name>Openfact REST Services</name>
 
-	<dependencies>
-		<!--Openfact -->
-		<dependency>
-			<groupId>org.openfact</groupId>
-			<artifactId>openfact-integration</artifactId>
-		</dependency>
+    <dependencies>
+        <!--Openfact -->
+        <dependency>
+            <groupId>org.openfact</groupId>
+            <artifactId>openfact-integration</artifactId>
+        </dependency>
 
-		<!-- Java EE 7 -->
-		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
+        <!-- Java EE 7 -->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>

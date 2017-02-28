@@ -1,6 +1,5 @@
 package org.openfact.models;
 
-import org.openfact.files.FileModel;
 import org.openfact.models.types.DestinyType;
 import org.openfact.models.types.SendEventStatus;
 

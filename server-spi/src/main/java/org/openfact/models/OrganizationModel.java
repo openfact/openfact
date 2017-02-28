@@ -1,11 +1,11 @@
 package org.openfact.models;
 
-import org.openfact.provider.ProviderEvent;
-
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Map;
 import java.util.Set;
+
+import org.openfact.models.provider.ProviderEvent;
 
 public interface OrganizationModel {
 

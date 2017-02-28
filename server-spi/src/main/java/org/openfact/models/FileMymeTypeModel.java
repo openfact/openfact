@@ -14,8 +14,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package org.openfact.models.jpa.entities.search;
+package org.openfact.models;
 
-public enum SearchCriteriaJoinType {
-    INNER_JOIN, LEFT_OUTER_JOIN, RIGHT_OUTER_JOIN, FULL_JOIN;
+public class FileMymeTypeModel {
+
+    private FileModel file;
+    private String mimeType;
+
+    public FileMymeTypeModel(FileModel file, String mimeType) {
+        this.setFile(file);
+        this.setMimeType(mimeType);
+    }
+
+    public FileModel getFile() {
+        return file;
+    }
+
+    public void setFile(FileModel file) {
+        this.file = file;
+    }
+
+    public String getMimeType() {
+        return mimeType;
+    }
+
+    public void setMimeType(String mimeType) {
+        this.mimeType = mimeType;
+    }
 }
