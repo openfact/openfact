@@ -13,7 +13,7 @@
 	<name>Openfact Model JPA</name>
 
 	<dependencies>
-		<!--Hibernate -->
+		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>

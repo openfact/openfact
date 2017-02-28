@@ -1,19 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <artifactId>openfact</artifactId>
-        <groupId>org.openfact</groupId>
-        <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>openfact</artifactId>
+		<groupId>org.openfact</groupId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
 
-    <artifactId>openfact-distribution-war</artifactId>
-    <name>Openfact War Distribution</name>
-    <packaging>war</packaging>
+	<artifactId>openfact-distribution-war</artifactId>
+	<name>Openfact War Distribution</name>
+	<packaging>war</packaging>
 
-    <build>
-        <finalName>openfact</finalName>
-    </build>
+	<dependencies>
+		<dependency>
+			<groupId>org.openfact</groupId>
+			<artifactId>openfact-web-console</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openfact</groupId>
+			<artifactId>openfact-services</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openfact</groupId>
+			<artifactId>openfact-model-jpa</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>openfact</finalName>
+	</build>
 </project>
