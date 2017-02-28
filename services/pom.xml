@@ -13,27 +13,17 @@
 	<name>Openfact REST Services</name>
 
 	<dependencies>
+		<!--Openfact -->
 		<dependency>
 			<groupId>org.openfact</groupId>
 			<artifactId>openfact-integration</artifactId>
 		</dependency>
 
-		<dependencies>
-			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>javax.servlet-api</artifactId>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>javax.ws.rs</groupId>
-				<artifactId>javax.ws.rs-api</artifactId>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>javax.ejb</groupId>
-				<artifactId>javax.ejb-api</artifactId>
-				<scope>provided</scope>
-			</dependency>
-		</dependencies>
+		<!-- Java EE 7 -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 </project>

@@ -1,22 +1,71 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.openfact</groupId>
 	<artifactId>openfact</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
+	<name>Openfact</name>
+	<description>UBL 2.1 Xml Server</description>
+
 	<properties>
+		<product.name>Openfact</product.name>
+		<product.name-html>\u003Cdiv
+			class="of-logo-text"\u003E\u003Cspan\u003EOpenfact\u003C\u002Fspan\u003E\u003C\u002Fdiv\u003E
+		</product.name-html>
+		<product.version>${project.version}</product.version>
+		<!--<product.build-time>${timestamp}</product.build-time> -->
+		<product.default-profile>community</product.default-profile>
+
+		<!-- WildFly -->
+		<eap.version>7.0.0.Beta</eap.version>
+		<jboss.as.version>7.2.0.Final</jboss.as.version>
+		<wildfly.version>10.0.0.Final</wildfly.version>
+
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- Java EE 7 -->
+		<javaee.version>7.0</javaee.version>
+
+		<!-- Bouncycastle -->
+		<bouncycastle.version>1.52</bouncycastle.version>
+
+		<!-- UBL -->
+		<version.ph-ubl>5.1.0</version.ph-ubl>
+
+		<!-- JSON -->
+		<json.version>20160810</json.version>
+
+		<!-- Google Guava -->
+		<version.google-guava>19.0</version.google-guava>
+
+		<!-- Apache commons -->
+		<version.commons.lang>2.6</version.commons.lang>
+
+		<!-- Hibernate -->
+		<version.hibernate-orm>5.2.8.Final</version.hibernate-orm>
+		<version.hibernate-search>5.7.0.Final</version.hibernate-search>
+		<version.hibernate-validator>5.4.0.Final</version.hibernate-validator>
+
+		<!-- Test -->
+		<junit.version>4.12</junit.version>
+
+		<!-- Plugins -->
+		<version.maven-war-plugin>2.6</version.maven-war-plugin>
 	</properties>
 
 	<modules>
+		<module>common</module>
+		<module>core</module>
 		<module>model</module>
+		<module>server-spi</module>
+		<module>server-spi-private</module>
+		<module>integration</module>
 		<module>services</module>
 		<module>web-console</module>
-		<module>integration</module>
 		<module>distribution</module>
 	</modules>
 
@@ -25,7 +74,22 @@
 			<!-- Openfact -->
 			<dependency>
 				<groupId>org.openfact</groupId>
-				<artifactId>openfact-web-console</artifactId>
+				<artifactId>openfact-common</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openfact</groupId>
+				<artifactId>openfact-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openfact</groupId>
+				<artifactId>openfact-server-spi</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openfact</groupId>
+				<artifactId>openfact-server-spi-private</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -40,81 +104,121 @@
 			</dependency>
 			<dependency>
 				<groupId>org.openfact</groupId>
+				<artifactId>openfact-web-console</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openfact</groupId>
 				<artifactId>openfact-model-jpa</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 
+			<!-- Java EE 7 -->
 			<dependency>
-				<groupId>org.jboss.spec</groupId>
-				<artifactId>jboss-javaee-6.0</artifactId>
-				<version>3.0.3.Final</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>javax.servlet-api</artifactId>
-				<version>3.1.0</version>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>javax.ws.rs</groupId>
-				<artifactId>javax.ws.rs-api</artifactId>
-				<version>2.0</version>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>javax.ejb</groupId>
-				<artifactId>javax.ejb-api</artifactId>
-				<version>3.2</version>
+				<groupId>javax</groupId>
+				<artifactId>javaee-api</artifactId>
+				<version>${javaee.version}</version>
 				<scope>provided</scope>
 			</dependency>
 
-			<!-- JSF -->
+			<!-- Bouncycastle -->
 			<dependency>
-				<groupId>javax.faces</groupId>
-				<artifactId>javax.faces-api</artifactId>
-				<version>2.2</version>
-				<scope>provided</scope>
+				<groupId>org.bouncycastle</groupId>
+				<artifactId>bcprov-jdk15on</artifactId>
+				<version>${bouncycastle.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.bouncycastle</groupId>
+				<artifactId>bcpkix-jdk15on</artifactId>
+				<version>${bouncycastle.version}</version>
+			</dependency>
+
+			<!-- UBL -->
+			<dependency>
+				<groupId>com.helger</groupId>
+				<artifactId>ph-ubl-parent-pom</artifactId>
+				<version>${version.ph-ubl}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- JSON -->
+			<dependency>
+				<groupId>org.json</groupId>
+				<artifactId>json</artifactId>
+				<version>${json.version}</version>
+			</dependency>
+
+			<!-- Google Guava -->
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${version.google-guava}</version>
+			</dependency>
+
+			<!-- Commons lang -->
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>${version.commons.lang}</version>
 			</dependency>
 
 			<!--Hibernate -->
 			<dependency>
-				<groupId>org.hibernate.javax.persistence</groupId>
-				<artifactId>hibernate-jpa-2.1-api</artifactId>
-				<version>1.0.0.Final</version>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>${version.hibernate-orm}</version>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-entitymanager</artifactId>
-				<version>5.2.8.Final</version>
-			</dependency>
-			<dependency>
-				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-envers</artifactId>
-				<version>5.2.8.Final</version>
+				<version>${version.hibernate-orm}</version>
+				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-infinispan</artifactId>
-				<version>5.2.8.Final</version>
+				<version>${version.hibernate-orm}</version>
+				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-java8</artifactId>
-				<version>5.2.8.Final</version>
+				<version>${version.hibernate-orm}</version>
+				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-search-orm</artifactId>
-				<version>5.7.0.Final</version>
+				<version>${version.hibernate-search}</version>
+				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-validator</artifactId>
-				<version>5.4.0.Final</version>
+				<version>${version.hibernate-validator}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<!--Test -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>${version.maven-war-plugin}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 </project>

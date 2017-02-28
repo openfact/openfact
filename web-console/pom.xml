@@ -13,14 +13,16 @@
 	<name>Openfact JSF Web Console</name>
 
 	<dependencies>
+		<!--Openfact -->
 		<dependency>
 			<groupId>org.openfact</groupId>
 			<artifactId>openfact-integration</artifactId>
 		</dependency>
 
+		<!-- Java EE 7 -->
 		<dependency>
-			<groupId>javax.faces</groupId>
-			<artifactId>javax.faces-api</artifactId>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
