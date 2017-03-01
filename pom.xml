@@ -1,322 +1,470 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>org.openfact</groupId>
-    <artifactId>openfact</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.openfact</groupId>
+	<artifactId>openfact</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
-    <name>Openfact</name>
-    <description>UBL 2.1 Xml Server</description>
+	<name>Openfact</name>
+	<description>UBL 2.1 Xml Server</description>
 
-    <properties>
-        <product.name>Openfact</product.name>
-        <product.name-html>\u003Cdiv
-            class="of-logo-text"\u003E\u003Cspan\u003EOpenfact\u003C\u002Fspan\u003E\u003C\u002Fdiv\u003E
-        </product.name-html>
-        <product.version>${project.version}</product.version>
-        <!--<product.build-time>${timestamp}</product.build-time> -->
-        <product.default-profile>community</product.default-profile>
+	<properties>
+		<product.name>Openfact</product.name>
+		<product.name-html>\u003Cdiv
+			class="of-logo-text"\u003E\u003Cspan\u003EOpenfact\u003C\u002Fspan\u003E\u003C\u002Fdiv\u003E
+		</product.name-html>
+		<product.version>${project.version}</product.version>
+		<!--<product.build-time>${timestamp}</product.build-time> -->
+		<product.default-profile>community</product.default-profile>
 
-        <!-- WildFly -->
-        <eap.version>7.0.0.Beta</eap.version>
-        <jboss.as.version>7.2.0.Final</jboss.as.version>
-        <wildfly.version>10.0.0.Final</wildfly.version>
+		<!-- WildFly -->
+		<eap.version>7.0.0.Beta</eap.version>
+		<jboss.as.version>7.2.0.Final</jboss.as.version>
+		<wildfly.version>10.0.0.Final</wildfly.version>
 
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <!-- Wildfly Swarm -->
-        <version.wildfly-swarm>2017.2.0</version.wildfly-swarm>
+		<!-- Wildfly Swarm -->
+		<version.wildfly-swarm>2017.2.0</version.wildfly-swarm>
 
-        <!-- Arquillian -->
-        <version.arquillian>1.1.10.Final</version.arquillian>
+		<!-- Arquillian -->
+		<version.arquillian>1.1.10.Final</version.arquillian>
 
-        <!-- Java EE 7 -->
-        <javaee.version>7.0</javaee.version>
+		<!-- Java EE 7 -->
+		<javaee.version>7.0</javaee.version>
 
-        <!-- Bouncycastle -->
-        <bouncycastle.version>1.52</bouncycastle.version>
+		<!-- Bouncycastle -->
+		<bouncycastle.version>1.52</bouncycastle.version>
 
-        <!-- UBL -->
-        <version.ph-ubl>5.1.0</version.ph-ubl>
+		<!-- UBL -->
+		<version.ph-ubl>5.1.0</version.ph-ubl>
 
-        <!-- JSON -->
-        <json.version>20160810</json.version>
+		<!-- JSON -->
+		<json.version>20160810</json.version>
 
-        <!-- Google Guava -->
-        <version.google-guava>19.0</version.google-guava>
+		<!-- Google Guava -->
+		<version.google-guava>19.0</version.google-guava>
 
-        <!-- Apache commons -->
-        <version.commons.lang>2.6</version.commons.lang>
+		<!-- Apache commons -->
+		<version.commons.lang>2.6</version.commons.lang>
 
-        <!-- Hibernate -->
-        <hibernate.javax.persistence.version>1.0.0.Final</hibernate.javax.persistence.version>
-        <version.hibernate-orm>5.2.8.Final</version.hibernate-orm>
-        <version.hibernate-search>5.7.0.Final</version.hibernate-search>
-        <version.hibernate-validator>5.4.0.Final</version.hibernate-validator>
+		<!-- Hibernate -->
+		<hibernate.javax.persistence.version>1.0.0.Final</hibernate.javax.persistence.version>
+		<version.hibernate-orm>5.2.8.Final</version.hibernate-orm>
+		<version.hibernate-search>5.7.0.Final</version.hibernate-search>
+		<version.hibernate-validator>5.4.0.Final</version.hibernate-validator>
 
-        <!-- Test -->
-        <junit.version>4.12</junit.version>
-        <h2.version>1.3.173</h2.version>
+		<!-- Resteasy -->
+		<version.resteasy>3.1.1.Final</version.resteasy>
 
-        <!-- Plugins -->
-        <version.maven-compiler-plugin>3.6.1</version.maven-compiler-plugin>
-        <version.maven-war-plugin>2.6</version.maven-war-plugin>
-    </properties>
+		<!-- Jackson -->
+		<jackson.version>2.8.3</jackson.version>
 
-    <modules>
-        <module>common</module>
-        <module>core</module>
-        <module>model</module>
-        <module>server-spi</module>
-        <module>server-spi-private</module>
-        <module>integration</module>
-        <module>services</module>
-        <module>web-console</module>
-        <module>distribution</module>
-        <module>testsuite</module>
-    </modules>
+		<!-- Apache components -->
+		<apache.httpcomponents.version>4.5</apache.httpcomponents.version>
 
-    <dependencyManagement>
-        <dependencies>
-            <!-- Wildfly Swarm -->
-            <dependency>
-                <groupId>org.wildfly.swarm</groupId>
-                <artifactId>bom-all</artifactId>
-                <version>${version.wildfly-swarm}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+		<!-- Jasper reports -->
+		<version.jasperreports>6.3.1</version.jasperreports>
+		<version.jasperreports.fonts>6.0.0</version.jasperreports.fonts>
+		<version.barcode4j>2.1</version.barcode4j>
+		<version.batik>1.8</version.batik>
+		<version.xmlgraphics-commons>2.1</version.xmlgraphics-commons>
 
-            <!--Arquillian-->
-            <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>${version.arquillian}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+		<!-- Keycloak -->
+		<version.keycloak>2.4.0.Final</version.keycloak>
 
-            <!-- Openfact -->
-            <dependency>
-                <groupId>org.openfact</groupId>
-                <artifactId>openfact-common</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.openfact</groupId>
-                <artifactId>openfact-core</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.openfact</groupId>
-                <artifactId>openfact-server-spi</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.openfact</groupId>
-                <artifactId>openfact-server-spi-private</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.openfact</groupId>
-                <artifactId>openfact-integration</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.openfact</groupId>
-                <artifactId>openfact-services</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.openfact</groupId>
-                <artifactId>openfact-web-console</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.openfact</groupId>
-                <artifactId>openfact-model-jpa</artifactId>
-                <version>${project.version}</version>
-            </dependency>
+		<!-- Wildfly -->
+		<wildfly.core.version>2.0.10.Final</wildfly.core.version>
+		<jboss.logging.version>3.3.0.Final</jboss.logging.version>
+		<jboss.logging.tools.version>2.0.1.Final</jboss.logging.tools.version>
+		<jboss.logging.tools.wf8.version>1.2.0.Final</jboss.logging.tools.wf8.version>
 
-            <!-- Java EE 7 -->
-            <dependency>
-                <groupId>javax</groupId>
-                <artifactId>javaee-api</artifactId>
-                <version>${javaee.version}</version>
-                <scope>provided</scope>
-            </dependency>
+		<!-- Test -->
+		<junit.version>4.12</junit.version>
+		<h2.version>1.3.173</h2.version>
 
-            <!-- Bouncycastle -->
-            <dependency>
-                <groupId>org.bouncycastle</groupId>
-                <artifactId>bcprov-jdk15on</artifactId>
-                <version>${bouncycastle.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.bouncycastle</groupId>
-                <artifactId>bcpkix-jdk15on</artifactId>
-                <version>${bouncycastle.version}</version>
-            </dependency>
+		<!-- Others -->
+		<freemarker.version>2.3.23</freemarker.version>
 
-            <!-- UBL -->
-            <dependency>
-                <groupId>com.helger</groupId>
-                <artifactId>ph-ubl-parent-pom</artifactId>
-                <version>${version.ph-ubl}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+		<!-- Plugins -->
+		<version.maven-compiler-plugin>3.6.1</version.maven-compiler-plugin>
+		<version.maven-war-plugin>2.6</version.maven-war-plugin>
+	</properties>
 
-            <!-- JSON -->
-            <dependency>
-                <groupId>org.json</groupId>
-                <artifactId>json</artifactId>
-                <version>${json.version}</version>
-            </dependency>
+	<modules>
+		<module>common</module>
+		<module>core</module>
+		<module>model</module>
+		<module>server-spi</module>
+		<module>server-spi-private</module>
+		<module>integration</module>
+		<module>services</module>
+		<module>web-console</module>
+		<module>distribution</module>
+		<module>testsuite</module>
+	</modules>
 
-            <!-- Google Guava -->
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>${version.google-guava}</version>
-            </dependency>
+	<dependencyManagement>
+		<dependencies>
+			<!-- Wildfly Swarm -->
+			<dependency>
+				<groupId>org.wildfly.swarm</groupId>
+				<artifactId>bom-all</artifactId>
+				<version>${version.wildfly-swarm}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 
-            <!-- Commons lang -->
-            <dependency>
-                <groupId>commons-lang</groupId>
-                <artifactId>commons-lang</artifactId>
-                <version>${version.commons.lang}</version>
-            </dependency>
+			<!--Arquillian -->
+			<dependency>
+				<groupId>org.jboss.arquillian</groupId>
+				<artifactId>arquillian-bom</artifactId>
+				<version>${version.arquillian}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 
-            <!--Hibernate -->
-            <dependency>
-                <groupId>org.hibernate.javax.persistence</groupId>
-                <artifactId>hibernate-jpa-2.1-api</artifactId>
-                <version>${hibernate.javax.persistence.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-entitymanager</artifactId>
-                <version>${version.hibernate-orm}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-envers</artifactId>
-                <version>${version.hibernate-orm}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-infinispan</artifactId>
-                <version>${version.hibernate-orm}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-java8</artifactId>
-                <version>${version.hibernate-orm}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-search-orm</artifactId>
-                <version>${version.hibernate-search}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-validator</artifactId>
-                <version>${version.hibernate-validator}</version>
-            </dependency>
+			<!-- Openfact -->
+			<dependency>
+				<groupId>org.openfact</groupId>
+				<artifactId>openfact-common</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openfact</groupId>
+				<artifactId>openfact-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openfact</groupId>
+				<artifactId>openfact-server-spi</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openfact</groupId>
+				<artifactId>openfact-server-spi-private</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openfact</groupId>
+				<artifactId>openfact-integration</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openfact</groupId>
+				<artifactId>openfact-services</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openfact</groupId>
+				<artifactId>openfact-web-console</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openfact</groupId>
+				<artifactId>openfact-model-jpa</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 
-            <!--Test -->
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>${junit.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.h2database</groupId>
-                <artifactId>h2</artifactId>
-                <version>${h2.version}</version>
-                <scope>test</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+			<!-- Java EE 7 -->
+			<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-api</artifactId>
+				<version>${javaee.version}</version>
+				<scope>provided</scope>
+			</dependency>
 
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.wildfly.swarm</groupId>
-                    <artifactId>wildfly-swarm-plugin</artifactId>
-                    <version>${version.wildfly-swarm}</version>
-                    <configuration>
-                        <jvmArguments>
-                            <jvmArgument>-Xmx128m</jvmArgument>
-                        </jvmArguments>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>package</id>
-                            <goals>
-                                <goal>package</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-clean-plugin</artifactId>
-                    <version>3.0.0</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${version.maven-compiler-plugin}</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>2.19.1</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.19.1</version>
-                    <configuration>
-                        <systemPropertyVariables>
-                            <org.apache.maven.user-settings>${session.request.userSettingsFile.path}</org.apache.maven.user-settings>
-                        </systemPropertyVariables>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>${version.maven-war-plugin}</version>
-                    <configuration>
-                        <failOnMissingWebXml>false</failOnMissingWebXml>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-        <plugins>
-            <plugin>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <configuration>
-                    <includes>
-                        <include>**/*IT.java</include>
-                    </includes>
-                    <systemPropertyVariables>
-                        <phantomjs.binary.version>2.1.1</phantomjs.binary.version>
-                        <org.apache.maven.user-settings>${session.request.userSettingsFile.path}</org.apache.maven.user-settings>
-                    </systemPropertyVariables>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+			<!-- Bouncycastle -->
+			<dependency>
+				<groupId>org.bouncycastle</groupId>
+				<artifactId>bcprov-jdk15on</artifactId>
+				<version>${bouncycastle.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.bouncycastle</groupId>
+				<artifactId>bcpkix-jdk15on</artifactId>
+				<version>${bouncycastle.version}</version>
+			</dependency>
+
+			<!-- UBL -->
+			<dependency>
+				<groupId>com.helger</groupId>
+				<artifactId>ph-ubl-parent-pom</artifactId>
+				<version>${version.ph-ubl}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- JSON -->
+			<dependency>
+				<groupId>org.json</groupId>
+				<artifactId>json</artifactId>
+				<version>${json.version}</version>
+			</dependency>
+
+			<!-- Google Guava -->
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${version.google-guava}</version>
+			</dependency>
+
+			<!-- Commons lang -->
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>${version.commons.lang}</version>
+			</dependency>
+
+			<!--Hibernate -->
+			<dependency>
+				<groupId>org.hibernate.javax.persistence</groupId>
+				<artifactId>hibernate-jpa-2.1-api</artifactId>
+				<version>${hibernate.javax.persistence.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>${version.hibernate-orm}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-envers</artifactId>
+				<version>${version.hibernate-orm}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-infinispan</artifactId>
+				<version>${version.hibernate-orm}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-java8</artifactId>
+				<version>${version.hibernate-orm}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-search-orm</artifactId>
+				<version>${version.hibernate-search}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${version.hibernate-validator}</version>
+			</dependency>
+
+			<!-- Resteasy -->
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-jaxrs</artifactId>
+				<version>${version.resteasy}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-jaxb-provider</artifactId>
+				<version>${version.resteasy}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-multipart-provider</artifactId>
+				<version>${version.resteasy}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-cache-core</artifactId>
+				<version>${version.resteasy}</version>
+			</dependency>
+
+			<!-- Jackson -->
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-core</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.datatype</groupId>
+				<artifactId>jackson-datatype-jsr310</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+
+			<!-- Apache Components -->
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>${apache.httpcomponents.version}</version>
+			</dependency>
+
+			<!-- Jasper reports -->
+			<dependency>
+				<groupId>net.sf.jasperreports</groupId>
+				<artifactId>jasperreports</artifactId>
+				<version>${version.jasperreports}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sf.jasperreports</groupId>
+				<artifactId>jasperreports-fonts</artifactId>
+				<version>${version.jasperreports.fonts}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sf.barcode4j</groupId>
+				<artifactId>barcode4j</artifactId>
+				<version>${version.barcode4j}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.xmlgraphics</groupId>
+				<artifactId>batik-bridge</artifactId>
+				<version>${version.batik}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.xmlgraphics</groupId>
+				<artifactId>batik-dom</artifactId>
+				<version>${version.batik}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.xmlgraphics</groupId>
+				<artifactId>batik-svg-dom</artifactId>
+				<version>${version.batik}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.xmlgraphics</groupId>
+				<artifactId>xmlgraphics-commons</artifactId>
+				<version>${version.xmlgraphics-commons}</version>
+			</dependency>
+
+			<!-- Keycloak -->
+			<dependency>
+				<groupId>org.keycloak</groupId>
+				<artifactId>keycloak-core</artifactId>
+				<version>${version.keycloak}</version>
+			</dependency>
+
+			<!-- Wildfly -->
+			<dependency>
+				<groupId>org.jboss.logging</groupId>
+				<artifactId>jboss-logging</artifactId>
+				<version>${jboss.logging.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.logging</groupId>
+				<artifactId>jboss-logging-annotations</artifactId>
+				<version>${jboss.logging.tools.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.logging</groupId>
+				<artifactId>jboss-logging-processor</artifactId>
+				<version>${jboss.logging.tools.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.wildfly.core</groupId>
+				<artifactId>wildfly-controller</artifactId>
+				<version>${wildfly.core.version}</version>
+			</dependency>
+
+			<!-- Others -->
+			<dependency>
+				<groupId>org.freemarker</groupId>
+				<artifactId>freemarker</artifactId>
+				<version>${freemarker.version}</version>
+			</dependency>
+
+			<!--Test -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>${h2.version}</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.wildfly.swarm</groupId>
+					<artifactId>wildfly-swarm-plugin</artifactId>
+					<version>${version.wildfly-swarm}</version>
+					<configuration>
+						<jvmArguments>
+							<jvmArgument>-Xmx128m</jvmArgument>
+						</jvmArguments>
+					</configuration>
+					<executions>
+						<execution>
+							<id>package</id>
+							<goals>
+								<goal>package</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>3.0.0</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${version.maven-compiler-plugin}</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-failsafe-plugin</artifactId>
+					<version>2.19.1</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.19.1</version>
+					<configuration>
+						<systemPropertyVariables>
+							<org.apache.maven.user-settings>${session.request.userSettingsFile.path}</org.apache.maven.user-settings>
+						</systemPropertyVariables>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>${version.maven-war-plugin}</version>
+					<configuration>
+						<failOnMissingWebXml>false</failOnMissingWebXml>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<configuration>
+					<includes>
+						<include>**/*IT.java</include>
+					</includes>
+					<systemPropertyVariables>
+						<phantomjs.binary.version>2.1.1</phantomjs.binary.version>
+						<org.apache.maven.user-settings>${session.request.userSettingsFile.path}</org.apache.maven.user-settings>
+					</systemPropertyVariables>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>

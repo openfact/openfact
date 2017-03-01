@@ -14,31 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package org.openfact.models;
+package org.openfact.theme.beans;
 
-public class FileMymeTypeModel {
+/**
+ * Enum with types of messages.
+ *
+ * @author Vlastimil Elias (velias at redhat dot com)
+ */
+public enum MessageType {
 
-    private FileModel file;
-    private String mimeType;
+    SUCCESS, WARNING, INFO, ERROR
 
-    public FileMymeTypeModel(FileModel file, String mimeType) {
-        this.setFile(file);
-        this.setMimeType(mimeType);
-    }
-
-    public FileModel getFile() {
-        return file;
-    }
-
-    public void setFile(FileModel file) {
-        this.file = file;
-    }
-
-    public String getMimeType() {
-        return mimeType;
-    }
-
-    public void setMimeType(String mimeType) {
-        this.mimeType = mimeType;
-    }
 }
