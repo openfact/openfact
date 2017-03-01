@@ -11,6 +11,7 @@
 
 	<artifactId>openfact-model-jpa</artifactId>
 	<name>Openfact Model JPA</name>
+	<packaging>jar</packaging>
 
 	<properties>
 		<maven.compiler.target>1.8</maven.compiler.target>

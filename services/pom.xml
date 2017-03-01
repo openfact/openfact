@@ -11,6 +11,7 @@
 
     <artifactId>openfact-services</artifactId>
     <name>Openfact REST Services</name>
+    <packaging>jar</packaging>
 
     <dependencies>
         <!--Openfact -->

@@ -11,6 +11,7 @@
 
     <artifactId>openfact-server-spi</artifactId>
     <name>Openfact Server SPI</name>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.target>1.8</maven.compiler.target>

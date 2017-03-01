@@ -11,6 +11,7 @@
 
     <artifactId>openfact-integration</artifactId>
     <name>Openfact Integration</name>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
