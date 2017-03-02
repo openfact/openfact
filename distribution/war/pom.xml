@@ -12,10 +12,6 @@
     <name>Openfact War Distribution</name>
     <packaging>war</packaging>
 
-    <properties>
-        <failOnMissingWebXml>false</failOnMissingWebXml>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.openfact</groupId>
@@ -48,6 +44,14 @@
         <plugins>
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>
