@@ -45,7 +45,7 @@ public class DocumentsAdminResource {
 
     @Context
     protected UriInfo uriInfo;
-  
+
     @Context
     protected HttpHeaders headers;
 

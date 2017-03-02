@@ -8,9 +8,9 @@ import javax.ws.rs.core.Response;
  * To provide a typed exception for Forbidden (This doesn't exist in Resteasy 2.3.7)
  */
 public class ForbiddenException extends LoggableFailure {
-    
+
     private static final long serialVersionUID = 1L;
-    
+
 
     public ForbiddenException() {
         super(403);

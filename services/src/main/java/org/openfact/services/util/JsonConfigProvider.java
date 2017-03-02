@@ -23,9 +23,6 @@ import org.openfact.common.util.StringPropertyReplacer;
 
 import java.util.Properties;
 
-/**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
- */
 public class JsonConfigProvider implements Config.ConfigProvider {
 
     private Properties properties;

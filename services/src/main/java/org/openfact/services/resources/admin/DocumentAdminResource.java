@@ -47,7 +47,7 @@ public class DocumentAdminResource {
 
     @Context
     protected UriInfo uriInfo;
-   
+
     protected OrganizationModel organization;
     protected DocumentModel document;
 
@@ -82,7 +82,6 @@ public class DocumentAdminResource {
 //        DocumentRepresentation rep = ModelToRepresentation.toRepresentation(document);
 //        return rep;
 //    }
-
     @GET
     @Path("representation/json")
     @NoCache

@@ -20,35 +20,30 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.interceptor.Interceptors;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.GET;
-import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.CacheControl;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.core.*;
 
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.annotations.cache.NoCache;
-import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.keycloak.common.ClientConnection;
-import org.openfact.models.AdminRoles;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.ErrorResponse;
+import org.openfact.services.ForbiddenException;
 import org.openfact.services.managers.OrganizationManager;
-import org.openfact.services.resources.OpenfactSession;
 
+@Path("/admin/organizations")
+@Stateless
 public class OrganizationsAdminResource {
 
     public static final CacheControl noCache = new CacheControl();
@@ -59,17 +54,13 @@ public class OrganizationsAdminResource {
         noCache.setNoCache(true);
     }
 
+    @Context
+    protected UriInfo uriInfo;
+
+    @Inject
+    private OrganizationManager organizationManager;
+
     protected AdminAuth auth;
-
-    @Context
-    protected OpenfactSession session;
-
-    @Context
-    protected ClientConnection clientConnection;
-
-    public OrganizationsAdminResource(AdminAuth auth) {
-        this.auth = auth;
-    }
 
     /**
      * Create a new organization.
@@ -82,28 +73,19 @@ public class OrganizationsAdminResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response importOrganization(@Context final UriInfo uriInfo,
                                        @Valid final OrganizationRepresentation rep) {
-        /*OrganizationManager organizationManager = new OrganizationManager(session);
-        organizationManager.setContextPath(openfact.getContextPath());
-        if (!auth.getOrganization().equals(organizationManager.getOpenfactAdminstrationOrganization())) {
-            throw new ForbiddenException();
-        }
-        if (!auth.hasOrganizationRole(AdminRoles.ADMIN)) {
-            throw new ForbiddenException();
-        }
 
         logger.debugv("importOrganization: {0}", rep.getOrganization());
 
         try {
             OrganizationModel organization = organizationManager.importOrganization(rep);
 
-            URI location = AdminRoot.organizationsUrl(uriInfo).path(organization.getName()).build();
+            URI location = uriInfo.getBaseUriBuilder().path(organization.getName()).build();
             logger.debugv("imported organization success, sending back: {0}", location.toString());
 
             return Response.created(location).build();
         } catch (ModelDuplicateException e) {
             return ErrorResponse.exists("Organization with same name exists");
-        }*/
-        return null;
+        }
     }
 
     /**
@@ -116,7 +98,6 @@ public class OrganizationsAdminResource {
     @NoCache
     @Produces(MediaType.APPLICATION_JSON)
     public List<OrganizationRepresentation> getOrganizations() {
-        /*OrganizationManager organizationManager = new OrganizationManager(session);
         List<OrganizationRepresentation> reps = new ArrayList<>();
 
         if (auth.getOrganization().equals(organizationManager.getOpenfactAdminstrationOrganization())) {
@@ -133,19 +114,18 @@ public class OrganizationsAdminResource {
         }
 
         logger.debug(("getOrganizations()"));
-        return reps;*/
-        return null;
+        return reps;
     }
 
-//    protected void addOrganizationRep(List<OrganizationRepresentation> reps, OrganizationModel organization) {
-//        if (auth.hasAppRole(AdminRoles.VIEW_ORGANIZATION)) {
-//            reps.add(ModelToRepresentation.toRepresentation(organization, false));
-//        } else if (auth.hasOneOfAppRole(AdminRoles.ALL_ORGANIZATION_ROLES)) {
-//            OrganizationRepresentation rep = new OrganizationRepresentation();
-//            rep.setOrganization(organization.getName());
-//            reps.add(rep);
-//        }
-//    }
+    protected void addOrganizationRep(List<OrganizationRepresentation> reps, OrganizationModel organization) {
+        if (auth.hasAppRole(AdminRoles.VIEW_ORGANIZATION)) {
+            reps.add(ModelToRepresentation.toRepresentation(organization, false));
+        } else if (auth.hasOneOfAppRole(AdminRoles.ALL_ORGANIZATION_ROLES)) {
+            OrganizationRepresentation rep = new OrganizationRepresentation();
+            rep.setOrganization(organization.getName());
+            reps.add(rep);
+        }
+    }
 
     /**
      * @param organization The organization name

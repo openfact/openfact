@@ -34,7 +34,7 @@ public class AdminEventBuilder {
 
     protected static final Logger logger = Logger.getLogger(AdminEventBuilder.class);
 
-//    private EventStoreProvider store;
+    //    private EventStoreProvider store;
 //    private List<EventListenerProvider> listeners;
     private OrganizationModel organization;
     private AdminEvent adminEvent;

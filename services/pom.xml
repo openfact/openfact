@@ -11,7 +11,6 @@
 
 	<artifactId>openfact-services</artifactId>
 	<name>Openfact REST Services</name>
-	<packaging>war</packaging>
 
 	<dependencies>
 		<!--Openfact -->
@@ -60,7 +59,4 @@
 
 	</dependencies>
 
-	<properties>
-		<failOnMissingWebXml>false</failOnMissingWebXml>
-	</properties>
 </project>

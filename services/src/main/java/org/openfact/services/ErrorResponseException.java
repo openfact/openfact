@@ -9,7 +9,7 @@ import javax.ws.rs.core.Response;
 public class ErrorResponseException extends WebApplicationException {
 
     private static final long serialVersionUID = 1L;
-    
+
     private final String error;
     private final String errorDescription;
     private final Response.Status status;

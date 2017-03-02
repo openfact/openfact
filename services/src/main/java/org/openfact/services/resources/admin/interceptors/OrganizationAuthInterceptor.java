@@ -27,7 +27,7 @@ public class OrganizationAuthInterceptor {
         if (organization == null) {
             throw new NotAuthorizedException("Unknown organization in token");
         }*/
-        
+
         try {
             return ic.proceed();
         } finally {

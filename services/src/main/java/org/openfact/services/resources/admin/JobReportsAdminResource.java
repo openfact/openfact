@@ -16,13 +16,8 @@
  *******************************************************************************/
 package org.openfact.services.resources.admin;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import javax.ws.rs.BadRequestException;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -34,15 +29,11 @@ import javax.ws.rs.core.UriInfo;
 
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.keycloak.common.ClientConnection;
-import org.openfact.models.Constants;
-import org.openfact.models.JobReportQuery;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.representations.idm.JobReportRepresentation;
-import org.openfact.services.resources.OpenfactSession;
 
 public class JobReportsAdminResource {
-    
+
     @Context
     protected UriInfo uriInfo;
 

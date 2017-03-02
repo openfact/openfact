@@ -173,7 +173,7 @@ public class OrganizationAdminResource {
 
         if (!new OrganizationManager(session).removeOrganization(organization)) {
             throw new NotFoundException("Organization doesn't exist");
-        }*/        
+        }*/
     }
 
     /**

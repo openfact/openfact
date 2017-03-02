@@ -27,7 +27,7 @@ public class FilesAdminResource {
 
     @Context
     protected UriInfo uriInfo;
-  
+
     @Context
     protected HttpHeaders headers;
 

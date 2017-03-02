@@ -47,7 +47,7 @@ public class DebitNotesAdminResource {
 
     @Context
     protected UriInfo uriInfo;
-    
+
     @Context
     protected HttpHeaders headers;
 
