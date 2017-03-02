@@ -62,4 +62,10 @@ public class DefaultUBLInvoiceProvider implements UBLInvoiceProvider {
         };
     }
 
+    @Override
+    public UBLSender<DocumentModel> sender() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

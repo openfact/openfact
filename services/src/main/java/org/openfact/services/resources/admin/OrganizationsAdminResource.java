@@ -1,19 +1,3 @@
-/*******************************************************************************
- * Copyright 2016 Sistcoop, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
 package org.openfact.services.resources.admin;
 
 import java.net.URI;
@@ -22,45 +6,55 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.interceptor.Interceptors;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.*;
+import javax.ws.rs.core.CacheControl;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.annotations.cache.NoCache;
-import org.keycloak.common.ClientConnection;
+import org.openfact.models.AdminRoles;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.OrganizationProvider;
+import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ForbiddenException;
 import org.openfact.services.managers.OrganizationManager;
+import org.openfact.services.resource.security.SecurityContextProvider;
+import org.openfact.services.resource.security.UserContextModel;
 
-@Path("/admin/organizations")
 @Stateless
+@Path("/admin/organizations")
 public class OrganizationsAdminResource {
 
     public static final CacheControl noCache = new CacheControl();
-
-    protected static final Logger logger = Logger.getLogger(OrganizationsAdminResource.class);
 
     static {
         noCache.setNoCache(true);
     }
 
+    protected static final Logger logger = Logger.getLogger(OrganizationsAdminResource.class);
+
     @Context
-    protected UriInfo uriInfo;
+    private UriInfo uriInfo;
+
+    @Inject
+    private OrganizationProvider organizationProvider;
 
     @Inject
     private OrganizationManager organizationManager;
 
-    protected AdminAuth auth;
+    @Inject
+    private SecurityContextProvider securityContextProvider;
 
     /**
      * Create a new organization.
@@ -100,13 +94,14 @@ public class OrganizationsAdminResource {
     public List<OrganizationRepresentation> getOrganizations() {
         List<OrganizationRepresentation> reps = new ArrayList<>();
 
-        if (auth.getOrganization().equals(organizationManager.getOpenfactAdminstrationOrganization())) {
-            List<OrganizationModel> organizations = session.organizations().getOrganizations();
+        OrganizationModel contextOrganization = securityContextProvider.getCurrentOrganization();
+        if (contextOrganization != null && contextOrganization.equals(organizationManager.getOpenfactAdminstrationOrganization())) {
+            List<OrganizationModel> organizations = organizationProvider.getOrganizations();
             for (OrganizationModel organization : organizations) {
                 addOrganizationRep(reps, organization);
             }
-        } else {
-            addOrganizationRep(reps, auth.getOrganization());
+        } else if (contextOrganization != null) {
+            addOrganizationRep(reps, contextOrganization);
         }
 
         if (reps.isEmpty()) {
@@ -118,39 +113,14 @@ public class OrganizationsAdminResource {
     }
 
     protected void addOrganizationRep(List<OrganizationRepresentation> reps, OrganizationModel organization) {
-        if (auth.hasAppRole(AdminRoles.VIEW_ORGANIZATION)) {
+        UserContextModel contextUser = securityContextProvider.getCurrentUser();
+        if (contextUser.hasAppRole(AdminRoles.VIEW_ORGANIZATION)) {
             reps.add(ModelToRepresentation.toRepresentation(organization, false));
-        } else if (auth.hasOneOfAppRole(AdminRoles.ALL_ORGANIZATION_ROLES)) {
+        } else if (contextUser.hasOneOfAppRole(AdminRoles.ALL_ORGANIZATION_ROLES)) {
             OrganizationRepresentation rep = new OrganizationRepresentation();
             rep.setOrganization(organization.getName());
             reps.add(rep);
         }
-    }
-
-    /**
-     * @param organization The organization name
-     */
-    @Path("{organization}")
-    public OrganizationAdminResource getOrganizationAdmin(@Context final HttpHeaders headers,
-                                                          @PathParam("organization") final String name) {
-        /*OrganizationManager organizationManager = new OrganizationManager(session);
-        OrganizationModel organization = organizationManager.getOrganizationByName(name);
-        if (organization == null)
-            throw new NotFoundException("Organization not found.");
-
-        if (!auth.getOrganization().equals(organizationManager.getOpenfactAdminstrationOrganization()) && !auth.getOrganization().equals(organization)) {
-            throw new ForbiddenException();
-        }
-
-        OrganizationAuth organizationAuth = new OrganizationAuth(auth);
-
-        AdminEventBuilder adminEvent = new AdminEventBuilder(organization, auth, session, clientConnection);
-        session.getContext().setOrganization(organization);
-
-        OrganizationAdminResource adminResource = new OrganizationAdminResource(organizationAuth, organization, adminEvent);
-        ResteasyProviderFactory.getInstance().injectProperties(adminResource);
-        return adminResource;*/
-        return null;
     }
 
 }

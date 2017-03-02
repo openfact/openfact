@@ -50,6 +50,7 @@
 
 		<!-- Apache commons -->
 		<version.commons.lang>2.6</version.commons.lang>
+		<version.commons.validator>1.5.1</version.commons.validator>
 
 		<!-- Hibernate -->
 		<hibernate.javax.persistence.version>1.0.0.Final</hibernate.javax.persistence.version>
@@ -218,6 +219,11 @@
 				<artifactId>commons-lang</artifactId>
 				<version>${version.commons.lang}</version>
 			</dependency>
+			<dependency>
+                <groupId>commons-validator</groupId>
+                <artifactId>commons-validator</artifactId>
+                <version>${version.commons.validator}</version>
+            </dependency>
 
 			<!--Hibernate -->
 			<dependency>

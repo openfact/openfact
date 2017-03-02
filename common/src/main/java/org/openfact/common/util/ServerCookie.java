@@ -12,6 +12,9 @@ import java.util.TimeZone;
  * Server-side cookie representation.  borrowed from Tomcat.
  */
 public class ServerCookie implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    
     private static final String tspecials = ",; ";
     private static final String tspecials2 = "()<>@,;:\\\"/[]?={} \t";
 

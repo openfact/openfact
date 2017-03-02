@@ -16,50 +16,46 @@
  *******************************************************************************/
 package org.openfact.services.managers;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+
+import org.jboss.logging.Logger;
 import org.openfact.Config;
 import org.openfact.common.Version;
-import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.utils.DefaultKeyProviders;
-import org.openfact.services.ServicesLogger;
 
-/**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
- * @version $Revision: 1 $
- */
+@Stateless
 public class ApplianceBootstrap {
 
-    private final OpenfactSession session;
+    protected static final Logger logger = Logger.getLogger(ApplianceBootstrap.class);
 
-    public ApplianceBootstrap(OpenfactSession session) {
-        this.session = session;
+    @Inject
+    private OrganizationManager manager;
+    
+    public void init() {
+        if (isNewInstall()) {
+            createMasterOrganization();
+        }
     }
-
+    
     public boolean isNewInstall() {
-        if (session.organizations().getOrganizations().size() > 0) {
+        if (manager.getOrganizations().size() > 0) {
             return false;
         } else {
             return true;
         }
     }
 
-    public boolean createMasterOrganization(String contextPath) {
-        if (!isNewInstall()) {
-            throw new IllegalStateException("Can't create default organization as organizations already exists");
-        }
-
-        String adminOrganizationName = Config.getAdminOrganization();
-        ServicesLogger.LOGGER.initializingAdminOrganization(adminOrganizationName);
-
-        OrganizationManager manager = new OrganizationManager(session);
-        manager.setContextPath(contextPath);
+    private boolean createMasterOrganization() {
+        String adminOrganizationName = Config.getAdminOrganization();        
+        logger.info("Initializing Admin Organization " + adminOrganizationName);
+                        
         OrganizationModel organization = manager.createOrganization(adminOrganizationName, adminOrganizationName);
         organization.setDisplayName(Version.NAME);
         organization.setDisplayNameHtml(Version.NAME_HTML);
         organization.setEnabled(true);
-
-        session.getContext().setOrganization(organization);
-        DefaultKeyProviders.createProviders(organization);
+        
+        //DefaultKeyProviders.createProviders(organization);
 
         return true;
     }

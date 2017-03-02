@@ -7,7 +7,7 @@ import org.openfact.report.ReportTheme;
 import org.openfact.report.ReportThemeProvider;
 import org.openfact.report.ReportThemeProviderType;
 import org.openfact.representations.info.*;
-import org.openfact.services.ServerStartup;
+import org.openfact.services.managers.ServerStartup;
 import org.openfact.theme.Theme;
 import org.openfact.theme.ThemeProvider;
 import org.openfact.theme.ThemeProviderType;

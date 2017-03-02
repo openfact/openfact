@@ -48,14 +48,7 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-		</dependency>
-
-		<!-- Wildfly -->
-		<dependency>
-			<groupId>org.wildfly.core</groupId>
-			<artifactId>wildfly-controller</artifactId>
-			<scope>provided</scope>
-		</dependency>
+		</dependency>	
 
 	</dependencies>
 

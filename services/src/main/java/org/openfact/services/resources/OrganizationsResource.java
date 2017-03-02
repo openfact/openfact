@@ -36,8 +36,8 @@ import org.openfact.services.managers.OrganizationManager;
 import org.openfact.services.resource.OrganizationResourceProvider;
 import org.openfact.services.resources.admin.OrganizationAdminResource;
 
-@Path("/organizations")
 @Stateless
+@Path("/organizations")
 public class OrganizationsResource {
 
     @Context
@@ -52,15 +52,6 @@ public class OrganizationsResource {
     @Inject
     @Any
     private Instance<OrganizationResourceProvider> organizationResourceProviders;
-
-    public static UriBuilder organizationBaseUrl(UriInfo uriInfo) {
-        UriBuilder baseUriBuilder = uriInfo.getBaseUriBuilder();
-        return organizationBaseUrl(baseUriBuilder);
-    }
-
-    public static UriBuilder organizationBaseUrl(UriBuilder baseUriBuilder) {
-        return baseUriBuilder.path(OrganizationsResource.class).path(OrganizationsResource.class, "getOrganizationResource");
-    }
 
     private OrganizationModel init(String organizationName) {
         OrganizationModel organization = organizationManager.getOrganizationByName(organizationName);

@@ -20,55 +20,36 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.ejb.Stateless;
+import javax.enterprise.event.Event;
+import javax.inject.Inject;
 import javax.ws.rs.core.UriInfo;
 
 import org.jboss.logging.Logger;
+import org.keycloak.common.util.Time;
+import org.openfact.events.EventListenerProvider;
+import org.openfact.events.EventStoreProvider;
 import org.openfact.events.admin.AdminEvent;
 import org.openfact.events.admin.AuthDetails;
 import org.openfact.events.admin.OperationType;
 import org.openfact.events.admin.ResourceType;
 import org.openfact.models.OrganizationModel;
+import org.openfact.services.resource.security.UserContextModel;
 import org.openfact.util.JsonSerialization;
 
+@Stateless
 public class AdminEventBuilder {
 
     protected static final Logger logger = Logger.getLogger(AdminEventBuilder.class);
 
-    //    private EventStoreProvider store;
-//    private List<EventListenerProvider> listeners;
-    private OrganizationModel organization;
-    private AdminEvent adminEvent;
+    @Inject
+    private EventStoreProvider store;
 
-//    public AdminEventBuilder(OrganizationModel organization, AdminAuth auth, OpenfactSession session,
-//                             ClientConnection clientConnection) {
-//        this.organization = organization;
-//        adminEvent = new AdminEvent();
-//
-//        if (organization.isAdminEventsEnabled()) {
-//            EventStoreProvider store = session.getProvider(EventStoreProvider.class);
-//            if (store != null) {
-//                this.store = store;
-//            } else {
-//                ServicesLogger.LOGGER.noEventStoreProvider();
-//            }
-//        }
-//
-//        if (organization.getEventsListeners() != null && !organization.getEventsListeners().isEmpty()) {
-//            this.listeners = new LinkedList<>();
-//            for (String id : organization.getEventsListeners()) {
-//                EventListenerProvider listener = session.getProvider(EventListenerProvider.class, id);
-//                if (listener != null) {
-//                    listeners.add(listener);
-//                } else {
-//                    ServicesLogger.LOGGER.providerNotFound(id);
-//                }
-//            }
-//        }
-//
-//        authOrganization(auth.getOrganization());
-//        authUser(auth.getUser());
-//        authIpAddress(clientConnection.getRemoteAddr());
-//    }
+    @Inject
+    private Event<AdminEvent> event;
+
+    private OrganizationModel organization;
+    private AdminEvent adminEvent = new AdminEvent();
 
     public AdminEventBuilder organization(OrganizationModel organization) {
         adminEvent.setOrganizationId(organization.getId());
@@ -107,17 +88,17 @@ public class AdminEventBuilder {
         return this;
     }
 
-//    public AdminEventBuilder authUser(UserModel user) {
-//        AuthDetails authDetails = adminEvent.getAuthDetails();
-//        if (authDetails == null) {
-//            authDetails = new AuthDetails();
-//            authDetails.setUserId(user.getEmail());
-//        } else {
-//            authDetails.setUserId(user.getEmail());
-//        }
-//        adminEvent.setAuthDetails(authDetails);
-//        return this;
-//    }
+    public AdminEventBuilder authUser(UserContextModel user) {
+        AuthDetails authDetails = adminEvent.getAuthDetails();
+        if (authDetails == null) {
+            authDetails = new AuthDetails();
+            authDetails.setUserId(user.getUsername());
+        } else {
+            authDetails.setUserId(user.getUsername());
+        }
+        adminEvent.setAuthDetails(authDetails);
+        return this;
+    }
 
     public AdminEventBuilder authIpAddress(String ipAddress) {
         AuthDetails authDetails = adminEvent.getAuthDetails();
@@ -187,34 +168,26 @@ public class AdminEventBuilder {
         return adminEvent;
     }
 
-//    public void success() {
-//        send();
-//    }
+    public void success() {
+        send();
+    }
 
-//    private void send() {
-//        boolean includeRepresentation = false;
-//        if (organization.isAdminEventsDetailsEnabled()) {
-//            includeRepresentation = true;
-//        }
-//        adminEvent.setTime(Time.toMillis(Time.currentTime()));
-//
-//        if (store != null) {
-//            try {
-//                store.onEvent(adminEvent, includeRepresentation);
-//            } catch (Throwable t) {
-//                ServicesLogger.LOGGER.failedToSaveEvent(t);
-//            }
-//        }
-//
-//        if (listeners != null) {
-//            for (EventListenerProvider l : listeners) {
-//                try {
-//                    l.onEvent(adminEvent, includeRepresentation);
-//                } catch (Throwable t) {
-//                    ServicesLogger.LOGGER.failedToSendType(t, l);
-//                }
-//            }
-//        }
-//    }
+    private void send() {
+        boolean includeRepresentation = false;
+        if (organization.isAdminEventsDetailsEnabled()) {
+            includeRepresentation = true;
+        }
+        adminEvent.setTime(Time.toMillis(Time.currentTime()));
+
+        if (store != null) {
+            try {
+                store.onEvent(adminEvent, includeRepresentation);
+            } catch (Throwable t) {
+                logger.error("Failed to save event", t);
+            }
+        }
+
+        event.fire(adminEvent);
+    }
 
 }

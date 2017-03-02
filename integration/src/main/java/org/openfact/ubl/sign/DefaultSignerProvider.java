@@ -44,7 +44,6 @@ import javax.xml.crypto.dsig.spec.TransformParameterSpec;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.openfact.common.converts.DocumentUtils;
-import org.openfact.keys.AbstractRsaKeyProvider.Keys;
 import org.openfact.models.KeyManager;
 import org.openfact.models.ModelException;
 import org.openfact.models.OrganizationModel;

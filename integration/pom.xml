@@ -47,6 +47,10 @@
 			<artifactId>httpclient</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>commons-validator</groupId>
+			<artifactId>commons-validator</artifactId>
+		</dependency>
 
 		<!-- Jasper reports -->
 		<dependency>
@@ -91,7 +95,7 @@
 			<groupId>org.apache.xmlgraphics</groupId>
 			<artifactId>xmlgraphics-commons</artifactId>
 		</dependency>
-		
+
 		<!-- Keycloak -->
 		<dependency>
 			<groupId>org.keycloak</groupId>
@@ -113,6 +117,13 @@
 			<artifactId>jboss-logging-processor</artifactId>
 			<scope>provided</scope>
 			<optional>true</optional>
+		</dependency>
+
+		<!-- Wildfly -->
+		<dependency>
+			<groupId>org.wildfly.core</groupId>
+			<artifactId>wildfly-controller</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 	</dependencies>

@@ -75,10 +75,6 @@ public class FolderReportThemeProvider implements ReportThemeProvider {
         return getThemeDir(name, type).isDirectory();
     }
 
-    @Override
-    public void close() {
-    }
-
     private File getThemeDir(String name, ReportTheme.Type type) {
         return new File(themesDir, name + File.separator + type.name().toLowerCase());
     }

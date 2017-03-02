@@ -93,5 +93,5 @@ public class Event {
         clone.details = details != null ? new HashMap<>(details) : null;
         return clone;
     }
-    
+
 }

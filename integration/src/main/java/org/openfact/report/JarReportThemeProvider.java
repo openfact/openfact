@@ -17,7 +17,6 @@
 
 package org.openfact.report;
 
-import org.openfact.models.OpenfactSession;
 import org.openfact.theme.ClassLoaderTheme;
 import org.openfact.theme.Theme;
 import org.openfact.theme.ThemeProvider;
@@ -60,10 +59,6 @@ public class JarReportThemeProvider implements ReportThemeProvider {
     @Override
     public boolean hasTheme(String name, ReportTheme.Type type) {
         return themes.containsKey(type) && themes.get(type).containsKey(name);
-    }
-
-    @Override
-    public void close() {
     }
 
 }
