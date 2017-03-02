@@ -74,6 +74,9 @@
 		<version.batik>1.8</version.batik>
 		<version.xmlgraphics-commons>2.1</version.xmlgraphics-commons>
 
+		<!-- Primefaces -->
+		<primefaces.version>6.0</primefaces.version>
+		
 		<!-- Keycloak -->
 		<version.keycloak>2.4.0.Final</version.keycloak>
 
@@ -220,10 +223,10 @@
 				<version>${version.commons.lang}</version>
 			</dependency>
 			<dependency>
-                <groupId>commons-validator</groupId>
-                <artifactId>commons-validator</artifactId>
-                <version>${version.commons.validator}</version>
-            </dependency>
+				<groupId>commons-validator</groupId>
+				<artifactId>commons-validator</artifactId>
+				<version>${version.commons.validator}</version>
+			</dependency>
 
 			<!--Hibernate -->
 			<dependency>
@@ -343,6 +346,13 @@
 				<groupId>org.apache.xmlgraphics</groupId>
 				<artifactId>xmlgraphics-commons</artifactId>
 				<version>${version.xmlgraphics-commons}</version>
+			</dependency>
+
+			<!-- Primefaces -->
+			<dependency>
+				<groupId>org.primefaces</groupId>
+				<artifactId>primefaces</artifactId>
+				<version>${primefaces.version}</version>
 			</dependency>
 
 			<!-- Keycloak -->
