@@ -21,6 +21,7 @@ import org.jboss.logging.Logger;
 import org.openfact.Config;
 import org.openfact.common.Version;
 import org.openfact.report.ReportTheme.Type;
+import org.openfact.report.ReportThemeProviderType.ProviderType;
 import org.openfact.theme.Theme;
 import org.openfact.theme.ThemeProvider;
 
@@ -35,6 +36,7 @@ import javax.annotation.PostConstruct;
 /**
  * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
+@ReportThemeProviderType(type = ProviderType.EXTENDING)
 public class ExtendingReportThemeManager implements ReportThemeProvider {
 
     @Override

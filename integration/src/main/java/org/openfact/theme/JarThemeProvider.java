@@ -18,9 +18,6 @@ import javax.ejb.Startup;
 import org.openfact.Config;
 import org.openfact.util.JsonSerialization;
 
-@Singleton
-@Startup
-@ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
 public class JarThemeProvider implements ThemeProvider {
 
     protected static final String OPENFACT_THEMES_JSON = "META-INF/openfact-themes.json";

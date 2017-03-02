@@ -29,9 +29,9 @@ public class JSSETruststoreConfigurator {
     private volatile javax.net.ssl.SSLSocketFactory sslFactory;
     private volatile TrustManager[] tm;
     
-    public JSSETruststoreConfigurator(TruststoreProvider provider) {
-        this.provider = provider;
-    }
+//    public JSSETruststoreConfigurator(TruststoreProvider provider) {
+//        this.provider = provider;
+//    }
 
     public javax.net.ssl.SSLSocketFactory getSSLSocketFactory() {
         if (provider == null) {

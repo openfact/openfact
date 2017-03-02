@@ -32,9 +32,6 @@ import javax.ejb.Startup;
 
 import org.openfact.Config;
 
-@Singleton
-@Startup
-@ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
 public class FolderThemeProvider implements ThemeProvider {
 
     private File themesDir;

@@ -139,7 +139,7 @@ public class JpaOrganizationProvider
 
     @Override
     public List<OrganizationModel> getOrganizations(int firstResult, int maxResults) {
-        TypedQuery<OrganizationEntity> query = em.createNamedQuery("getAllOrganization", OrganizationEntity.class);
+        TypedQuery<OrganizationEntity> query = em.createNamedQuery("getAllOrganizations", OrganizationEntity.class);
         if (firstResult != -1) {
             query.setFirstResult(firstResult);
         }

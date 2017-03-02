@@ -45,10 +45,9 @@ import javax.inject.Inject;
 import org.jboss.logging.Logger;
 import org.openfact.Config;
 import org.openfact.common.Version;
+import org.openfact.theme.ThemeProviderType.ProviderType;
 
-@Singleton
-@Startup
-@ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
+@ThemeProviderType(type = ProviderType.EXTENDING)
 public class ExtendingThemeManager implements ThemeProvider {
 
     private static final Logger log = Logger.getLogger(ExtendingThemeManager.class);

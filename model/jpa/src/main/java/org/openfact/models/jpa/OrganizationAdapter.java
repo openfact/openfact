@@ -1,38 +1,19 @@
-/*******************************************************************************
- * Copyright 2016 Sistcoop, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
 package org.openfact.models.jpa;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import org.jboss.logging.Logger;
+import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.jpa.entities.OrganizationAttributeEntity;
-import org.openfact.models.jpa.entities.OrganizationAttributes;
-import org.openfact.models.jpa.entities.OrganizationEntity;
+import org.openfact.models.component.ComponentFactory;
+import org.openfact.models.component.ComponentModel;
+import org.openfact.models.jpa.entities.*;
+import org.openfact.models.utils.ComponentUtil;
+import org.openfact.models.utils.OpenfactModelUtils;
 
 public class OrganizationAdapter implements OrganizationModel, JpaModel<OrganizationEntity> {
 
@@ -525,7 +506,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
      */
     public static final String COMPONENT_PROVIDER_EXISTS_DISABLED = "component.provider.exists.disabled";
 
-    /*@Override
+    @Override
     public ComponentModel addComponentModel(ComponentModel model) {
         model = importComponentModel(model);
         ComponentUtil.notifyCreated(this, model);
@@ -546,7 +527,6 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
             if (System.getProperty(COMPONENT_PROVIDER_EXISTS_DISABLED) == null) {
                 throw e;
             }
-
         }
 
         ComponentEntity c = new ComponentEntity();
@@ -609,7 +589,6 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     public void removeComponent(ComponentModel component) {
         ComponentEntity c = em.find(ComponentEntity.class, component.getId());
         if (c == null) return;
-        //session.users().preRemove(this, component);
         removeComponents(component.getId());
         em.createNamedQuery("deleteComponentConfigByComponent").setParameter("component", c).executeUpdate();
         em.remove(c);
@@ -622,9 +601,6 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
                 .setParameter("parentId", parentId);
         List<String> results = query.getResultList();
         if (results.isEmpty()) return;
-//        for (String id : results) {
-//            session.users().preRemove(this, getComponent(id));
-//        }
         em.createNamedQuery("deleteComponentConfigByParent").setParameter("parentId", parentId).executeUpdate();
         em.createNamedQuery("deleteComponentByParent").setParameter("parentId", parentId).executeUpdate();
     }
@@ -670,8 +646,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         model.setSubType(c.getSubType());
         model.setParentId(c.getParentId());
         MultivaluedHashMap<String, String> config = new MultivaluedHashMap<>();
-        TypedQuery<ComponentConfigEntity> configQuery = em.createNamedQuery("getComponentConfig", ComponentConfigEntity.class)
-                .setParameter("component", c);
+        TypedQuery<ComponentConfigEntity> configQuery = em.createNamedQuery("getComponentConfig", ComponentConfigEntity.class).setParameter("component", c);
         List<ComponentConfigEntity> configResults = configQuery.getResultList();
         for (ComponentConfigEntity configEntity : configResults) {
             config.add(configEntity.getName(), configEntity.getValue());
@@ -682,8 +657,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
 
     @Override
     public List<ComponentModel> getComponents() {
-        TypedQuery<ComponentEntity> query = em.createNamedQuery("getComponents", ComponentEntity.class)
-                .setParameter("organization", organization);
+        TypedQuery<ComponentEntity> query = em.createNamedQuery("getComponents", ComponentEntity.class).setParameter("organization", organization);
         List<ComponentEntity> results = query.getResultList();
         List<ComponentModel> rtn = new LinkedList<>();
         for (ComponentEntity c : results) {
@@ -698,7 +672,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         ComponentEntity c = em.find(ComponentEntity.class, id);
         if (c == null) return null;
         return entityToModel(c);
-    }*/
+    }
 
     @Override
     public Map<String, String> getBrowserSecurityHeaders() {

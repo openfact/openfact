@@ -32,6 +32,7 @@ import org.hibernate.annotations.Type;
 @Entity
 @Table(name = "ORGANIZATION")
 @NamedQueries({
+        @NamedQuery(name = "getAllOrganizations", query = "select organization from OrganizationEntity organization"),
         @NamedQuery(name = "getAllOrganizationIds", query = "select organization.id from OrganizationEntity organization"),
         @NamedQuery(name = "getOrganizationByName", query = "select organization from OrganizationEntity organization where organization.name = :name"),
         @NamedQuery(name = "getOrganizationIdByName", query = "select organization.id from OrganizationEntity organization where organization.name = :name"),

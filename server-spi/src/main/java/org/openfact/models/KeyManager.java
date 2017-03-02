@@ -19,10 +19,6 @@ public interface KeyManager {
 
     List<RsaKeyMetadata> getRsaKeys(OrganizationModel organization, boolean includeDisabled);
 
-    ActiveHmacKey getActiveHmacKey(OrganizationModel organization);
-
-    SecretKey getHmacSecretKey(OrganizationModel organization, String kid);
-
     class ActiveRsaKey {
         private final String kid;
         private final PrivateKey privateKey;
@@ -50,24 +46,6 @@ public interface KeyManager {
 
         public X509Certificate getCertificate() {
             return certificate;
-        }
-    }
-
-    class ActiveHmacKey {
-        private final String kid;
-        private final SecretKey secretKey;
-
-        public ActiveHmacKey(String kid, SecretKey secretKey) {
-            this.kid = kid;
-            this.secretKey = secretKey;
-        }
-
-        public String getKid() {
-            return kid;
-        }
-
-        public SecretKey getSecretKey() {
-            return secretKey;
         }
     }
 

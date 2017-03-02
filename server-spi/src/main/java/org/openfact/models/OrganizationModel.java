@@ -2,9 +2,11 @@ package org.openfact.models;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.openfact.models.component.ComponentModel;
 import org.openfact.models.provider.ProviderEvent;
 
 public interface OrganizationModel {
@@ -202,7 +204,7 @@ public interface OrganizationModel {
      * @param model
      * @return
      */
-//    ComponentModel addComponentModel(ComponentModel model);
+    ComponentModel addComponentModel(ComponentModel model);
 
     /**
      * Adds component model. Will NOT call onCreate() method of ComponentFactory
@@ -210,21 +212,21 @@ public interface OrganizationModel {
      * @param model
      * @return
      */
-//    ComponentModel importComponentModel(ComponentModel model);
-//
-//    void updateComponent(ComponentModel component);
-//
-//    void removeComponent(ComponentModel component);
-//
-//    void removeComponents(String parentId);
-//
-//    List<ComponentModel> getComponents(String parentId, String providerType);
-//
-//    List<ComponentModel> getComponents(String parentId);
-//
-//    List<ComponentModel> getComponents();
-//
-//    ComponentModel getComponent(String id);
+    ComponentModel importComponentModel(ComponentModel model);
+
+    void updateComponent(ComponentModel component);
+
+    void removeComponent(ComponentModel component);
+
+    void removeComponents(String parentId);
+
+    List<ComponentModel> getComponents(String parentId, String providerType);
+
+    List<ComponentModel> getComponents(String parentId);
+
+    List<ComponentModel> getComponents();
+
+    ComponentModel getComponent(String id);
 
     /**
      * Headers

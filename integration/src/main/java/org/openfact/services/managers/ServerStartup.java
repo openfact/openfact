@@ -6,8 +6,6 @@ import java.net.URL;
 import java.util.Properties;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.ConcurrencyManagement;
-import javax.ejb.ConcurrencyManagementType;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
@@ -23,9 +21,8 @@ import org.openfact.services.util.JsonConfigProvider;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Singleton
 @Startup
-@ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
+@Singleton
 public class ServerStartup {
 
     protected static final Logger logger = Logger.getLogger(ServerStartup.class);
@@ -36,15 +33,16 @@ public class ServerStartup {
     private ServletContext context;
     
     @Inject
-    private ApplianceBootstrap bootstrap;
+    private ApplianceBootstrap applianceBootstrap;
 
     private long serverStartupTimestamp;
 
     @PostConstruct
     private void init() {
+        serverStartupTimestamp = System.currentTimeMillis();
+        
         loadConfig();
-        bootstrap.init();
-        this.serverStartupTimestamp = System.currentTimeMillis();
+        applianceBootstrap.bootstrap();        
     }
 
     public long getServerStartupTimestamp() {
@@ -58,14 +56,14 @@ public class ServerStartup {
             String dmrConfig = loadDmrConfig(context);
             if (dmrConfig != null) {
                 node = new ObjectMapper().readTree(dmrConfig);
-                logger.error("Error loading openfact-server.json config from standalone.xml or domain.xml");
+                logger.info("Loading openfact-server.json config from standalone.xml or domain.xml");
             }
 
             String configDir = System.getProperty("jboss.server.config.dir");
             if (node == null && configDir != null) {
                 File f = new File(configDir + File.separator + "openfact-server.json");
                 if (f.isFile()) {
-                    logger.error("Error loading openfact-server.json config from " + f.getAbsolutePath());
+                    logger.info("Loading openfact-server.json config from " + f.getAbsolutePath());
                     node = new ObjectMapper().readTree(f);
                 }
             }
@@ -73,7 +71,7 @@ public class ServerStartup {
             if (node == null) {
                 URL resource = Thread.currentThread().getContextClassLoader().getResource("META-INF/openfact-server.json");
                 if (resource != null) {
-                    logger.error("Error loading openfact-server.json config from " + resource);
+                    logger.info("Loading openfact-server.json config from " + resource);
                     node = new ObjectMapper().readTree(resource);
                 }
             }
@@ -90,18 +88,19 @@ public class ServerStartup {
     }
 
     private String loadDmrConfig(ServletContext context) {
-        String dmrConfig = context.getInitParameter(OPENFACT_CONFIG_PARAM_NAME);
-        if (dmrConfig == null) {
-            return null;
-        }
-
-        ModelNode dmrConfigNode = ModelNode.fromString(dmrConfig);
-        if (dmrConfigNode.asPropertyList().isEmpty()) {
-            return null;
-        }
-
-        // note that we need to resolve expressions BEFORE we convert to JSON
-        return dmrConfigNode.resolve().toJSONString(true);
+        return null;
+//        String dmrConfig = context.getInitParameter(OPENFACT_CONFIG_PARAM_NAME);
+//        if (dmrConfig == null) {
+//            return null;
+//        }
+//
+//        ModelNode dmrConfigNode = ModelNode.fromString(dmrConfig);
+//        if (dmrConfigNode.asPropertyList().isEmpty()) {
+//            return null;
+//        }
+//
+//        // note that we need to resolve expressions BEFORE we convert to JSON
+//        return dmrConfigNode.resolve().toJSONString(true);
     }
 
 }

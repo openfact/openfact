@@ -32,9 +32,6 @@ import javax.ejb.Startup;
 import org.jboss.logging.Logger;
 import org.openfact.Config;
 
-@Singleton
-@Startup
-@ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
 public class FileTruststoreProvider implements TruststoreProvider {
 
     private static final Logger logger = Logger.getLogger(FileTruststoreProvider.class);

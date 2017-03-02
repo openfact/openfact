@@ -46,18 +46,19 @@ public class SSLSocketFactory extends javax.net.ssl.SSLSocketFactory {
 
     private SSLSocketFactory() {
 
-        TruststoreProvider provider = TruststoreProviderSingleton.get();
-        javax.net.ssl.SSLSocketFactory sf = null;
-        if (provider != null) {
-            sf = new JSSETruststoreConfigurator(provider).getSSLSocketFactory();
-        }
-
-        if (sf == null) {
-            log.info("No truststore provider found - using default SSLSocketFactory");
-            sf = (javax.net.ssl.SSLSocketFactory) javax.net.ssl.SSLSocketFactory.getDefault();
-        }
-
-        sslsf = sf;
+//        TruststoreProvider provider = TruststoreProviderSingleton.get();
+//        javax.net.ssl.SSLSocketFactory sf = null;
+//        if (provider != null) {
+//            sf = new JSSETruststoreConfigurator(provider).getSSLSocketFactory();
+//        }
+//
+//        if (sf == null) {
+//            log.info("No truststore provider found - using default SSLSocketFactory");
+//            sf = (javax.net.ssl.SSLSocketFactory) javax.net.ssl.SSLSocketFactory.getDefault();
+//        }
+//
+//        sslsf = sf;
+        sslsf = null;
     }
 
     public static synchronized SSLSocketFactory getDefault() {
