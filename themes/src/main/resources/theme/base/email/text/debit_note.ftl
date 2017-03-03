@@ -1,0 +1,1 @@
+${msg("emailDebitNoteBody", user, organizationName)}

@@ -35,6 +35,14 @@
             <groupId>org.openfact</groupId>
             <artifactId>openfact-model-jpa</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.openfact</groupId>
+            <artifactId>openfact-reports</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openfact</groupId>
+            <artifactId>openfact-themes</artifactId>
+        </dependency>
 
         <!-- Java EE 7 -->
         <dependency>

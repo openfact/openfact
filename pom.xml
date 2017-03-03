@@ -110,6 +110,8 @@
         <module>integration</module>
         <module>services</module>
         <module>web-console</module>
+        <module>reports</module>
+        <module>themes</module>
         <module>testsuite</module>
     </modules>
 
@@ -172,6 +174,16 @@
             <dependency>
                 <groupId>org.openfact</groupId>
                 <artifactId>openfact-model-jpa</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.openfact</groupId>
+                <artifactId>openfact-reports</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.openfact</groupId>
+                <artifactId>openfact-themes</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

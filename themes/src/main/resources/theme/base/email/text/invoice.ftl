@@ -1,0 +1,1 @@
+${msg("emailInvoiceBody", user, organizationName)}
