@@ -1,37 +1,37 @@
 package org.openfact.models.utils;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.ejb.Stateless;
+
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.component.ComponentFactory;
 import org.openfact.models.component.ComponentModel;
 import org.openfact.models.provider.ProviderConfigProperty;
 import org.openfact.representations.idm.ComponentRepresentation;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+@Stateless
+public interface ComponentUtil {
 
-import javax.enterprise.inject.Instance;
-
-
-public class ComponentUtil {
-
-    public static Map<String, ProviderConfigProperty> getComponentConfigProperties(ComponentRepresentation component) {
+    default Map<String, ProviderConfigProperty> getComponentConfigProperties(ComponentRepresentation component) {
         return getComponentConfigProperties(component.getProviderType(), component.getProviderId());
     }
 
-    public static Map<String, ProviderConfigProperty> getComponentConfigProperties(ComponentModel component) {
+    default Map<String, ProviderConfigProperty> getComponentConfigProperties(ComponentModel component) {
         return getComponentConfigProperties(component.getProviderType(), component.getProviderId());
     }
 
-    public static ComponentFactory getComponentFactory(ComponentRepresentation component) {
+    default ComponentFactory getComponentFactory(ComponentRepresentation component) {
         return getComponentFactory(component.getProviderType(), component.getProviderId());
     }
 
-    public static ComponentFactory getComponentFactory(ComponentModel component) {
+    default ComponentFactory getComponentFactory(ComponentModel component) {
         return getComponentFactory(component.getProviderType(), component.getProviderId());
     }
 
-    private static Map<String, ProviderConfigProperty> getComponentConfigProperties(String providerType, String providerId) {
+    default Map<String, ProviderConfigProperty> getComponentConfigProperties(String providerType, String providerId) {
         try {
             ComponentFactory componentFactory = getComponentFactory(providerType, providerId);
             List<ProviderConfigProperty> l = componentFactory.getConfigProperties();
@@ -50,32 +50,16 @@ public class ComponentUtil {
         }
     }
 
-    private static ComponentFactory getComponentFactory(Instance<ComponentFactory> instances, String providerType, String providerId) {
-        Class<? extends Provider> provider = session.getProviderClass(providerType);
-        if (provider == null) {
-            throw new IllegalArgumentException("Invalid provider type '" + providerType + "'");
-        }
+    ComponentFactory getComponentFactory(String providerType, String providerId);
 
-        ProviderFactory<? extends Provider> f = session.getOpenfactSessionFactory().getProviderFactory(provider, providerId);
-        if (f == null) {
-            throw new IllegalArgumentException("No such provider '" + providerId + "'");
-        }
-
-        ComponentFactory cf = (ComponentFactory) f;
-        return cf;
+    default void notifyCreated(OrganizationModel organization, ComponentModel model) {
+        ComponentFactory factory = getComponentFactory(model);
+        factory.onCreate(organization, model);
     }
 
-    public static void notifyCreated(OrganizationModel organization, ComponentModel model) {
-        ComponentFactory factory = getComponentFactory(session, model);
-        factory.onCreate(session, organization, model);
-//        if (factory instanceof UserStorageProviderFactory) {
-//            ((OnCreateComponent) session.userStorageManager()).onCreate(session, organization, model);
-//        }
-    }
-
-    public static void notifyUpdated(OrganizationModel organization, ComponentModel model) {
-        ComponentFactory factory = getComponentFactory(session, model);
-        factory.onUpdate(session, organization, model);
+    default void notifyUpdated(OrganizationModel organization, ComponentModel model) {
+        ComponentFactory factory = getComponentFactory(model);
+        factory.onUpdate(organization, model);
     }
 
 }

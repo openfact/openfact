@@ -196,37 +196,7 @@ public interface OrganizationModel {
 
     String getDisplayNameHtml();
 
-    void setDisplayNameHtml(String displayNameHtml);
-
-    /**
-     * Adds component model. Will call onCreate() method of ComponentFactory
-     *
-     * @param model
-     * @return
-     */
-    ComponentModel addComponentModel(ComponentModel model);
-
-    /**
-     * Adds component model. Will NOT call onCreate() method of ComponentFactory
-     *
-     * @param model
-     * @return
-     */
-    ComponentModel importComponentModel(ComponentModel model);
-
-    void updateComponent(ComponentModel component);
-
-    void removeComponent(ComponentModel component);
-
-    void removeComponents(String parentId);
-
-    List<ComponentModel> getComponents(String parentId, String providerType);
-
-    List<ComponentModel> getComponents(String parentId);
-
-    List<ComponentModel> getComponents();
-
-    ComponentModel getComponent(String id);
+    void setDisplayNameHtml(String displayNameHtml);    
 
     /**
      * Headers
