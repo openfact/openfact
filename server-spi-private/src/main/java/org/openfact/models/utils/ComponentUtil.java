@@ -4,15 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.ejb.Stateless;
-
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.component.ComponentFactory;
 import org.openfact.models.component.ComponentModel;
 import org.openfact.models.provider.ProviderConfigProperty;
 import org.openfact.representations.idm.ComponentRepresentation;
 
-@Stateless
 public interface ComponentUtil {
 
     default Map<String, ProviderConfigProperty> getComponentConfigProperties(ComponentRepresentation component) {

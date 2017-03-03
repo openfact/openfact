@@ -17,6 +17,9 @@ public class ApplianceBootstrap {
     @Inject
     private OrganizationManager manager;   
     
+    @Inject
+    private DefaultKeyProviders defaultKeyProviders;
+    
     public void bootstrap() {
         if (isNewInstall()) {
             createMasterOrganization();
@@ -40,7 +43,7 @@ public class ApplianceBootstrap {
         organization.setDisplayNameHtml(Version.NAME_HTML);
         organization.setEnabled(true);
         
-        DefaultKeyProviders.createProviders(organization);
+        defaultKeyProviders.createProviders(organization);
 
         return true;
     }

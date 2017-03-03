@@ -1,28 +1,23 @@
 package org.openfact.models.jpa;
 
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-
-import org.openfact.models.Constants;
-import org.openfact.models.DocumentModel;
-import org.openfact.models.DocumentQuery;
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.ScrollModel;
+import org.openfact.models.*;
 import org.openfact.models.jpa.entities.DocumentEntity;
 import org.openfact.models.search.PagingModel;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.types.DocumentRequiredAction;
 import org.openfact.models.types.DocumentType;
+
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Stateless
 public class JpaDocumentQuery implements DocumentQuery {
@@ -31,7 +26,7 @@ public class JpaDocumentQuery implements DocumentQuery {
     private DocumentCriteria<DocumentEntity, Long> queryCount;
 
     private OrganizationModel organization;
-    
+
     @PersistenceContext
     private EntityManager em;
 
@@ -39,10 +34,10 @@ public class JpaDocumentQuery implements DocumentQuery {
         this.query = new DocumentCriteria<>(organization, em, DocumentEntity.class, DocumentEntity.class);
         this.queryCount = new DocumentCriteria<>(organization, em, DocumentEntity.class, Long.class);
     }
-    
+
     public DocumentQuery organization(OrganizationModel organization) {
-    	this.organization = organization;
-    	return this;
+        this.organization = organization;
+        return this;
     }
 
     private DocumentModel toModel(DocumentEntity entity) {

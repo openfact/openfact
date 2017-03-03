@@ -11,7 +11,7 @@ import java.util.Map;
 
 public interface ComponentFactory<CreatedType, ProviderType> extends ProviderFactory<ProviderType>, ConfiguredProvider {
 
-    CreatedType create(ComponentModel model);
+    CreatedType create(OrganizationModel organization, ComponentModel model);
 
     @Override
     default ProviderType create() {

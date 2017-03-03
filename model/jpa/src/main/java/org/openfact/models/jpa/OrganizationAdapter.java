@@ -1,19 +1,14 @@
 package org.openfact.models.jpa;
 
-import java.time.LocalDateTime;
-import java.util.*;
+import org.jboss.logging.Logger;
+import org.openfact.models.OrganizationModel;
+import org.openfact.models.jpa.entities.OrganizationAttributeEntity;
+import org.openfact.models.jpa.entities.OrganizationAttributes;
+import org.openfact.models.jpa.entities.OrganizationEntity;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-
-import org.jboss.logging.Logger;
-import org.openfact.common.util.MultivaluedHashMap;
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.component.ComponentFactory;
-import org.openfact.models.component.ComponentModel;
-import org.openfact.models.jpa.entities.*;
-import org.openfact.models.utils.ComponentUtil;
-import org.openfact.models.utils.OpenfactModelUtils;
+import java.time.LocalDateTime;
+import java.util.*;
 
 public class OrganizationAdapter implements OrganizationModel, JpaModel<OrganizationEntity> {
 
@@ -499,7 +494,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     public void setEventsExpiration(long expiration) {
         organization.setEventsExpiration(expiration);
         em.flush();
-    }    
+    }
 
     @Override
     public Map<String, String> getBrowserSecurityHeaders() {

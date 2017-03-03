@@ -5,7 +5,10 @@ import org.openfact.events.admin.AdminEventQuery;
 import org.openfact.events.admin.OperationType;
 import org.openfact.events.admin.ResourceType;
 
+import javax.annotation.PostConstruct;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
@@ -13,17 +16,21 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+@Stateless
 public class JpaAdminEventQuery implements AdminEventQuery {
 
-    private final EntityManager em;
-    private final CriteriaBuilder cb;
-    private final CriteriaQuery<AdminEventEntity> cq;
-    private final Root<AdminEventEntity> root;
-    private final ArrayList<Predicate> predicates;
+    @PersistenceContext
+    private EntityManager em;
+
+    private CriteriaBuilder cb;
+    private CriteriaQuery<AdminEventEntity> cq;
+    private Root<AdminEventEntity> root;
+    private ArrayList<Predicate> predicates;
     private Integer firstResult;
     private Integer maxResults;
 
-    public JpaAdminEventQuery(EntityManager em) {
+    @PostConstruct
+    private void init() {
         this.em = em;
 
         cb = em.getCriteriaBuilder();

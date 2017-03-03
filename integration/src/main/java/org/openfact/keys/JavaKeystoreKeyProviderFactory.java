@@ -1,21 +1,25 @@
 package org.openfact.keys;
 
+import static org.openfact.models.provider.ProviderConfigProperty.STRING_TYPE;
+
+import java.util.List;
+
+import javax.ejb.Stateless;
+
 import org.jboss.logging.Logger;
-import org.openfact.keys.qualifiers.Key;
-import org.openfact.keys.qualifiers.RsaKey;
+import org.openfact.keys.qualifiers.QComponentProvider;
+import org.openfact.keys.qualifiers.QRsaKeyProvider;
+import org.openfact.keys.qualifiers.RsaKeyType;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.component.ComponentModel;
 import org.openfact.models.component.ComponentValidationException;
 import org.openfact.models.provider.ProviderConfigProperty;
 import org.openfact.provider.ConfigurationValidationHelper;
 
-import java.util.List;
-
-import static org.openfact.models.provider.ProviderConfigProperty.STRING_TYPE;
-
-@Key(type = Key.Type.RSA)
-@RsaKey(type = RsaKey.Type.JAVA_KEYSTORE)
-public class JavaKeystoreKeyProviderFactory extends AbstractRsaKeyProviderFactory {
+@Stateless
+@QComponentProvider(providerType = KeyProvider.class)
+@QRsaKeyProvider(type = RsaKeyType.JAVA_KEYSTORE)
+public class JavaKeystoreKeyProviderFactory extends AbstractRsaKeyProviderFactory implements RsaKeyProviderFactory {
 
     private static final Logger logger = Logger.getLogger(JavaKeystoreKeyProviderFactory.class);
 
@@ -43,9 +47,8 @@ public class JavaKeystoreKeyProviderFactory extends AbstractRsaKeyProviderFactor
             .build();
 
     @Override
-    public KeyProvider create(ComponentModel model) {
-        //return new JavaKeystoreKeyProvider(session.getContext().getRealm(), model);
-        return null;
+    public KeyProvider create(OrganizationModel organization, ComponentModel model) {
+        return new JavaKeystoreKeyProvider(organization, model);
     }
 
     @Override
@@ -59,8 +62,7 @@ public class JavaKeystoreKeyProviderFactory extends AbstractRsaKeyProviderFactor
                 .checkSingle(KEY_PASSWORD_PROPERTY, true);
 
         try {
-            /*new JavaKeystoreKeyProvider(session.getContext().getRealm(), model)
-                    .loadKeys(session.getContext().getRealm(), model);*/
+            new JavaKeystoreKeyProvider(organization, model).loadKeys(organization, model);
         } catch (Throwable t) {
             logger.error("Failed to load keys.", t);
             throw new ComponentValidationException("Failed to load keys. " + t.getMessage(), t);

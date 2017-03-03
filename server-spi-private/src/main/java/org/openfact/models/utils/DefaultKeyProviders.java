@@ -1,13 +1,21 @@
 package org.openfact.models.utils;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.keys.KeyProvider;
+import org.openfact.models.ComponentProvider;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.component.ComponentModel;
 
+@Stateless
 public class DefaultKeyProviders {
 
-    public static void createProviders(OrganizationModel organization) {
+    @Inject
+    private ComponentProvider componentProvider;
+    
+    public void createProviders(OrganizationModel organization) {
         ComponentModel generated = new ComponentModel();
         generated.setName("rsa-generated");
         generated.setParentId(organization.getId());
@@ -17,11 +25,11 @@ public class DefaultKeyProviders {
         MultivaluedHashMap<String, String> config = new MultivaluedHashMap<>();
         config.putSingle("priority", "100");
         generated.setConfig(config);
-
-        organization.addComponentModel(generated);
+        
+        componentProvider.addComponentModel(organization, generated);
     }
 
-    public static void createProviders(OrganizationModel organization, String privateKeyPem, String certificatePem) {
+    public void createProviders(OrganizationModel organization, String privateKeyPem, String certificatePem) {
         ComponentModel rsa = new ComponentModel();
         rsa.setName("rsa");
         rsa.setParentId(organization.getId());
@@ -35,8 +43,8 @@ public class DefaultKeyProviders {
             config.putSingle("certificate", certificatePem);
         }
         rsa.setConfig(config);
-
-        organization.addComponentModel(rsa);
+        
+        componentProvider.addComponentModel(organization, rsa);
     }
 
 }

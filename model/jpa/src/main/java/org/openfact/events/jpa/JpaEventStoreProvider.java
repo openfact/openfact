@@ -10,9 +10,9 @@ import org.openfact.events.EventType;
 import org.openfact.events.admin.*;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import java.io.IOException;
 import java.util.Map;
 import java.util.UUID;
@@ -21,8 +21,15 @@ import java.util.UUID;
 public class JpaEventStoreProvider implements EventStoreProvider {
 
     private static final ObjectMapper mapper = new ObjectMapper();
-    private static final TypeReference<Map<String, String>> mapType = new TypeReference<Map<String, String>>() { };
+    private static final TypeReference<Map<String, String>> mapType = new TypeReference<Map<String, String>>() {
+    };
     private static final Logger logger = Logger.getLogger(JpaEventStoreProvider.class);
+
+    @Inject
+    private EventQuery eventQuery;
+
+    @Inject
+    private AdminEventQuery adminEventQuery;
 
     @PersistenceContext
     private EntityManager em;
@@ -118,7 +125,7 @@ public class JpaEventStoreProvider implements EventStoreProvider {
 
     @Override
     public EventQuery createQuery() {
-        return new JpaEventQuery(em);
+        return eventQuery;
     }
 
     @Override
@@ -143,7 +150,7 @@ public class JpaEventStoreProvider implements EventStoreProvider {
 
     @Override
     public AdminEventQuery createAdminQuery() {
-        return new JpaAdminEventQuery(em);
+        return adminEventQuery;
     }
 
     @Override

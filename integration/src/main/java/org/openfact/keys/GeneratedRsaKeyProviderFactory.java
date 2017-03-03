@@ -4,23 +4,26 @@ import org.jboss.logging.Logger;
 import org.keycloak.common.util.CertificateUtils;
 import org.keycloak.common.util.KeyUtils;
 import org.keycloak.common.util.PemUtils;
-import org.openfact.keys.qualifiers.Key;
-import org.openfact.keys.qualifiers.RsaKey;
+import org.openfact.keys.qualifiers.QComponentProvider;
+import org.openfact.keys.qualifiers.QRsaKeyProvider;
+import org.openfact.keys.qualifiers.RsaKeyType;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.component.ComponentModel;
 import org.openfact.models.component.ComponentValidationException;
 import org.openfact.models.provider.ProviderConfigProperty;
 import org.openfact.provider.ConfigurationValidationHelper;
 
+import javax.ejb.Stateless;
 import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.cert.Certificate;
 import java.security.interfaces.RSAPrivateKey;
 import java.util.List;
 
-@Key(type = Key.Type.RSA)
-@RsaKey(type = RsaKey.Type.GENERATED)
-public class GeneratedRsaKeyProviderFactory extends AbstractRsaKeyProviderFactory {
+@Stateless
+@QComponentProvider(providerType = KeyProvider.class)
+@QRsaKeyProvider(type = RsaKeyType.GENERATED)
+public class GeneratedRsaKeyProviderFactory extends AbstractRsaKeyProviderFactory implements RsaKeyProviderFactory {
 
     private static final Logger logger = Logger.getLogger(GeneratedRsaKeyProviderFactory.class);
 
@@ -33,9 +36,8 @@ public class GeneratedRsaKeyProviderFactory extends AbstractRsaKeyProviderFactor
             .build();
 
     @Override
-    public KeyProvider create(ComponentModel model) {
-        //return new ImportedRsaKeyProvider(organization, model);
-        return null;
+    public KeyProvider create(OrganizationModel organization, ComponentModel model) {
+        return new ImportedRsaKeyProvider(organization, model);
     }
 
     @Override

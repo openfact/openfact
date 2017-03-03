@@ -1,14 +1,5 @@
 package org.openfact.models.jpa;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.models.ComponentProvider;
 import org.openfact.models.OrganizationModel;
@@ -19,20 +10,28 @@ import org.openfact.models.jpa.entities.ComponentEntity;
 import org.openfact.models.utils.ComponentUtil;
 import org.openfact.models.utils.OpenfactModelUtils;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import java.util.LinkedList;
+import java.util.List;
+
 @Stateless
 public class JpaComponentProvider implements ComponentProvider {
 
-	/**
+    /**
      * Components
      */
     public static final String COMPONENT_PROVIDER_EXISTS_DISABLED = "component.provider.exists.disabled";
 
     @PersistenceContext
     private EntityManager em;
-    
+
     @Inject
     private ComponentUtil componentUtil;
-    
+
     @Override
     public ComponentModel addComponentModel(OrganizationModel organization, ComponentModel model) {
         model = importComponentModel(organization, model);
@@ -125,6 +124,7 @@ public class JpaComponentProvider implements ComponentProvider {
         TypedQuery<String> query = em.createNamedQuery("getComponentIdsByParent", String.class)
                 .setParameter("organization", organization)
                 .setParameter("parentId", parentId);
+
         List<String> results = query.getResultList();
         if (results.isEmpty()) return;
         em.createNamedQuery("deleteComponentConfigByParent").setParameter("parentId", parentId).executeUpdate();
@@ -134,10 +134,12 @@ public class JpaComponentProvider implements ComponentProvider {
     @Override
     public List<ComponentModel> getComponents(OrganizationModel organization, String parentId, String providerType) {
         if (parentId == null) parentId = organization.getId();
+
         TypedQuery<ComponentEntity> query = em.createNamedQuery("getComponentsByParentAndType", ComponentEntity.class)
                 .setParameter("organization", organization)
                 .setParameter("parentId", parentId)
                 .setParameter("providerType", providerType);
+
         List<ComponentEntity> results = query.getResultList();
         List<ComponentModel> rtn = new LinkedList<>();
         for (ComponentEntity c : results) {
@@ -153,6 +155,7 @@ public class JpaComponentProvider implements ComponentProvider {
         TypedQuery<ComponentEntity> query = em.createNamedQuery("getComponentByParent", ComponentEntity.class)
                 .setParameter("organization", organization)
                 .setParameter("parentId", parentId);
+
         List<ComponentEntity> results = query.getResultList();
         List<ComponentModel> rtn = new LinkedList<>();
         for (ComponentEntity c : results) {
@@ -172,7 +175,10 @@ public class JpaComponentProvider implements ComponentProvider {
         model.setSubType(c.getSubType());
         model.setParentId(c.getParentId());
         MultivaluedHashMap<String, String> config = new MultivaluedHashMap<>();
-        TypedQuery<ComponentConfigEntity> configQuery = em.createNamedQuery("getComponentConfig", ComponentConfigEntity.class).setParameter("component", c);
+
+        TypedQuery<ComponentConfigEntity> configQuery = em.createNamedQuery("getComponentConfig", ComponentConfigEntity.class)
+                .setParameter("component", c);
+
         List<ComponentConfigEntity> configResults = configQuery.getResultList();
         for (ComponentConfigEntity configEntity : configResults) {
             config.add(configEntity.getName(), configEntity.getValue());
@@ -183,7 +189,9 @@ public class JpaComponentProvider implements ComponentProvider {
 
     @Override
     public List<ComponentModel> getComponents(OrganizationModel organization) {
-        TypedQuery<ComponentEntity> query = em.createNamedQuery("getComponents", ComponentEntity.class).setParameter("organization", organization);
+        TypedQuery<ComponentEntity> query = em.createNamedQuery("getComponents", ComponentEntity.class)
+                .setParameter("organization", organization);
+
         List<ComponentEntity> results = query.getResultList();
         List<ComponentModel> rtn = new LinkedList<>();
         for (ComponentEntity c : results) {
@@ -199,5 +207,5 @@ public class JpaComponentProvider implements ComponentProvider {
         if (c == null) return null;
         return entityToModel(c);
     }
-    
+
 }

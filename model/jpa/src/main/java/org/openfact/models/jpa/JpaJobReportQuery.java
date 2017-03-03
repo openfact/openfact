@@ -1,34 +1,35 @@
 package org.openfact.models.jpa;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import org.openfact.models.AdminJobReport;
+import org.openfact.models.JobReportQuery;
+import org.openfact.models.jpa.entities.JobReportEntity;
 
+import javax.annotation.PostConstruct;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.*;
 
-import org.openfact.models.AdminJobReport;
-import org.openfact.models.JobReportQuery;
-import org.openfact.models.jpa.entities.JobReportEntity;
-
-
+@Stateless
 public class JpaJobReportQuery implements JobReportQuery {
 
-    private final EntityManager em;
-    private final CriteriaBuilder cb;
-    private final CriteriaQuery<JobReportEntity> cq;
-    private final Root<JobReportEntity> root;
-    private final ArrayList<Predicate> predicates;
+    @PersistenceContext
+    private EntityManager em;
+
+    private CriteriaBuilder cb;
+    private CriteriaQuery<JobReportEntity> cq;
+    private Root<JobReportEntity> root;
+    private ArrayList<Predicate> predicates;
     private Integer firstResult;
     private Integer maxResults;
 
-    public JpaJobReportQuery(EntityManager em) {
+    @PostConstruct
+    private void init() {
         this.em = em;
 
         cb = em.getCriteriaBuilder();
@@ -36,7 +37,6 @@ public class JpaJobReportQuery implements JobReportQuery {
         root = cq.from(JobReportEntity.class);
         predicates = new ArrayList<>();
     }
-
 
     @Override
     public JobReportQuery organization(String organizationId) {

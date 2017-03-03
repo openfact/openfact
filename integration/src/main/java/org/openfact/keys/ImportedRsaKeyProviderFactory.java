@@ -3,23 +3,24 @@ package org.openfact.keys;
 import org.keycloak.common.util.CertificateUtils;
 import org.keycloak.common.util.KeyUtils;
 import org.keycloak.common.util.PemUtils;
-import org.openfact.keys.qualifiers.Key;
-import org.openfact.keys.qualifiers.RsaKey;
+import org.openfact.keys.qualifiers.*;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.component.ComponentModel;
 import org.openfact.models.component.ComponentValidationException;
 import org.openfact.models.provider.ProviderConfigProperty;
 import org.openfact.provider.ConfigurationValidationHelper;
 
+import javax.ejb.Stateless;
 import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.cert.Certificate;
 import java.util.List;
 
-@Key(type = Key.Type.RSA)
-@RsaKey(type = RsaKey.Type.IMPORTED)
-public class ImportedRsaKeyProviderFactory extends AbstractRsaKeyProviderFactory {
+@Stateless
+@QComponentProvider(providerType = KeyProvider.class)
+@QRsaKeyProvider(type = RsaKeyType.IMPORTED)
+public class ImportedRsaKeyProviderFactory extends AbstractRsaKeyProviderFactory implements RsaKeyProviderFactory {
 
     public static final String ID = "rsa";
 
@@ -31,9 +32,8 @@ public class ImportedRsaKeyProviderFactory extends AbstractRsaKeyProviderFactory
             .build();
 
     @Override
-    public KeyProvider create(ComponentModel model) {
-        //return new ImportedRsaKeyProvider(session.getContext().getRealm(), model);
-        return null;
+    public KeyProvider create(OrganizationModel organization, ComponentModel model) {
+        return new ImportedRsaKeyProvider(organization, model);
     }
 
     @Override

@@ -1,8 +1,10 @@
 package org.openfact.models.jpa;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
+import org.jboss.logging.Logger;
+import org.openfact.models.*;
+import org.openfact.models.jpa.entities.OrganizationEntity;
+import org.openfact.models.provider.ProviderEvent;
+import org.openfact.models.utils.OpenfactModelUtils;
 
 import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
@@ -11,28 +13,23 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-
-import org.jboss.logging.Logger;
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.OrganizationProvider;
-import org.openfact.models.jpa.entities.OrganizationEntity;
-import org.openfact.models.provider.ProviderEvent;
-import org.openfact.models.utils.OpenfactModelUtils;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Stateless
-public class JpaOrganizationProvider
-        implements OrganizationProvider {
+public class JpaOrganizationProvider implements OrganizationProvider {
 
     private static final Logger logger = Logger.getLogger(JpaOrganizationProvider.class);
 
-    /*@Inject
+    @Inject
     private DocumentProvider documents;
 
     @Inject
     private JobReportProvider jobreports;
 
     @Inject
-    private FileProvider files;*/
+    private FileProvider files;
 
     @Inject
     private Event<ProviderEvent> event;
@@ -42,11 +39,6 @@ public class JpaOrganizationProvider
 
     private OrganizationAdapter toAdapter(OrganizationEntity entity) {
         return new OrganizationAdapter(em, entity);
-    }
-
-    //@Override
-    public EntityManager getEntityManager() {
-        return em;
     }
 
     @Override
@@ -107,9 +99,9 @@ public class JpaOrganizationProvider
         em.refresh(organization);
         final OrganizationAdapter adapter = toAdapter(organization);
 
-        /*documents.preRemove(adapter);
+        documents.preRemove(adapter);
         jobreports.preRemove(adapter);
-        files.preRemove(adapter);*/
+        files.preRemove(adapter);
 
         em.flush();
 

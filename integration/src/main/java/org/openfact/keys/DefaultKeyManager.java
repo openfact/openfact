@@ -2,14 +2,20 @@ package org.openfact.keys;
 
 import org.jboss.logging.Logger;
 import org.openfact.jose.jws.AlgorithmType;
+import org.openfact.keys.qualifiers.RsaKeyType;
+import org.openfact.models.ComponentProvider;
 import org.openfact.models.KeyManager;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.component.ComponentModel;
+import org.openfact.models.utils.ComponentProviderLiteral;
+import org.openfact.models.utils.ComponentUtil;
+import org.openfact.models.utils.RsaKeyProviderLiteral;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
+import java.lang.annotation.Annotation;
 import java.security.PublicKey;
 import java.security.cert.Certificate;
 import java.util.*;
@@ -24,6 +30,16 @@ public class DefaultKeyManager implements KeyManager {
     @Inject
     @Any
     private Instance<KeyProviderFactory> keyProviderFactories;
+
+    @Inject
+    private ComponentProvider componentProvider;
+
+    @Inject
+    private ComponentUtil componentUtil;
+
+    @Inject
+    @Any
+    private Instance<KeyProviderFactory> getKeyProviderFactories;
 
     @Override
     public ActiveRsaKey getActiveRsaKey(OrganizationModel organization) {
@@ -113,17 +129,23 @@ public class DefaultKeyManager implements KeyManager {
         if (providers == null) {
             providers = new LinkedList<>();
 
-            List<ComponentModel> components = new LinkedList<>(organization.getComponents(organization.getId(), KeyProvider.class.getName()));
+            List<ComponentModel> components = new LinkedList<>(componentProvider.getComponents(organization, organization.getId(), KeyProvider.class.getName()));
             components.sort(new ProviderComparator());
 
             boolean activeRsa = false;
 
             for (ComponentModel c : components) {
                 try {
-                    ProviderFactory<KeyProvider> f = session.getKeycloakSessionFactory().getProviderFactory(KeyProvider.class, c.getProviderId());
-                    KeyProviderFactory factory = (KeyProviderFactory) f;
-                    KeyProvider provider = factory.create(session, c);
-                    session.enlistForClose(provider);
+
+                    Optional<RsaKeyType> op = RsaKeyType.findByProviderId(c.getProviderId());
+                    if (!op.isPresent()) {
+                        return null;
+                    }
+                    Annotation componentProviderLiteral = new ComponentProviderLiteral(KeyProvider.class);
+                    Annotation rsaKeyProviderLiteral = new RsaKeyProviderLiteral(op.get());
+
+                    KeyProviderFactory factory = getKeyProviderFactories.select(componentProviderLiteral, rsaKeyProviderLiteral).get();
+                    KeyProvider provider = factory.create(organization, c);
                     providers.add(provider);
                     if (provider.getType().equals(AlgorithmType.RSA)) {
                         RsaKeyProvider r = (RsaKeyProvider) provider;

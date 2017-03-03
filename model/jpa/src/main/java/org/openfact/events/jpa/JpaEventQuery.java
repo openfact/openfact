@@ -4,7 +4,10 @@ import org.openfact.events.Event;
 import org.openfact.events.EventQuery;
 import org.openfact.events.EventType;
 
+import javax.annotation.PostConstruct;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -15,17 +18,21 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+@Stateless
 public class JpaEventQuery implements EventQuery {
 
-    private final EntityManager em;
-    private final CriteriaBuilder cb;
-    private final CriteriaQuery<EventEntity> cq;
-    private final Root<EventEntity> root;
-    private final ArrayList<Predicate> predicates;
+    private CriteriaBuilder cb;
+    private CriteriaQuery<EventEntity> cq;
+    private Root<EventEntity> root;
+    private ArrayList<Predicate> predicates;
     private Integer firstResult;
     private Integer maxResults;
 
-    public JpaEventQuery(EntityManager em) {
+    @PersistenceContext
+    private EntityManager em;
+
+    @PostConstruct
+    private void init() {
         this.em = em;
 
         cb = em.getCriteriaBuilder();
