@@ -39,8 +39,8 @@ public class FileTruststoreProvider implements TruststoreProvider {
     private KeyStore truststore;
     
     @PostConstruct
-    private void init(Config.Scope config) {
-        String storepath = config.get("file");
+    private void init(/*Config.Scope config*/) {
+        /*String storepath = config.get("file");
         String pass = config.get("password");
         String policy = config.get("hostname-verification-policy");
         Boolean disabled = config.getBoolean("disabled", null);
@@ -71,7 +71,7 @@ public class FileTruststoreProvider implements TruststoreProvider {
         }
         
         TruststoreProviderSingleton.set(this);
-        logger.debug("File trustore provider initialized: " + new File(storepath).getAbsolutePath());
+        logger.debug("File trustore provider initialized: " + new File(storepath).getAbsolutePath());*/
     }      
     
     @Override

@@ -37,13 +37,13 @@ public class FolderThemeProvider implements ThemeProvider {
     private File themesDir;
 
     @PostConstruct
-    public void init(Config.Scope config) {
-        String d = config.get("dir");
+    public void init(/*Config.Scope config*/) {
+        /*String d = config.get("dir");
         File rootDir = null;
         if (d != null) {
             rootDir = new File(d);
         }
-        this.themesDir = rootDir;
+        this.themesDir = rootDir;*/
     }
     
     @Override

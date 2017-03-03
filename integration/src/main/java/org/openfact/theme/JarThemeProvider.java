@@ -57,7 +57,7 @@ public class JarThemeProvider implements ThemeProvider {
     }
 
     @PostConstruct
-    public void init(Config.Scope config) {
+    public void init(/*Config.Scope config*/) {
         try {
             ClassLoader classLoader = getClass().getClassLoader();
             Enumeration<URL> resources = classLoader.getResources(OPENFACT_THEMES_JSON);

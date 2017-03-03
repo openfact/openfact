@@ -12,12 +12,17 @@
 
     <artifactId>openfact-common</artifactId>
     <name>Openfact Common</name>
-    <packaging>jar</packaging>
     <description>Common library and dependencies shared with server and all adapters</description>
 
     <properties>
         <timestamp>${maven.build.timestamp}</timestamp>
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+        <openfact.osgi.export>
+            org.openfact.common.*
+        </openfact.osgi.export>
+        <openfact.osgi.import>
+            *;resolution:=optional
+        </openfact.osgi.import>
     </properties>
 
     <dependencies>
@@ -55,6 +60,39 @@
                 <configuration>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+
+            <!-- Adding OSGI metadata to the JAR without changing the packaging type. -->
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <id>bundle-manifest</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>manifest</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <instructions>
+                        <Bundle-ClassPath>.</Bundle-ClassPath>
+                        <Bundle-Name>${project.name}</Bundle-Name>
+                        <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
+                        <Import-Package>${openfact.osgi.import}</Import-Package>
+                        <Export-Package>${openfact.osgi.export}</Export-Package>
+                    </instructions>
                 </configuration>
             </plugin>
         </plugins>

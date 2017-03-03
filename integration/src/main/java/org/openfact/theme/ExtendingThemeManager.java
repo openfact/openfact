@@ -62,7 +62,7 @@ public class ExtendingThemeManager implements ThemeProvider {
     private Instance<ThemeProvider> themeProviders;
 
     @PostConstruct
-    public void init(Config.Scope config) {
+    public void init(/*Config.Scope config*/) {
         this.defaultTheme = Config.scope("theme").get("default", Version.NAME.toLowerCase());
         
         if(Config.scope("theme").getBoolean("cacheThemes", true)) {

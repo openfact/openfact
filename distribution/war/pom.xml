@@ -46,8 +46,8 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
 					<webResources>
-						<resource>							
-							<directory>src/main/resources/My-Web-Project/web</directory>
+						<resource>
+							<directory>${basedir}/src/main/resources</directory>
 						</resource>
 					</webResources>
 				</configuration>
