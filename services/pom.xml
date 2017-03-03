@@ -18,10 +18,6 @@
 			<groupId>org.openfact</groupId>
 			<artifactId>openfact-integration</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.openfact</groupId>
-			<artifactId>openfact-model-jpa</artifactId>
-		</dependency>
 
 		<!-- Java EE 7 -->
 		<dependency>

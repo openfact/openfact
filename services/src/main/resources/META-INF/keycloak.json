@@ -1,9 +1,0 @@
-{
-  "realm": "openfact",
-  "auth-server-url": "http://localhost:8082/auth",
-  "ssl-required": "external",
-  "resource": "openfact-restful-api",
-  "credentials": {
-    "secret": "2da1b923-9284-45ad-aceb-008e8aa7d1fe"
-  }
-}
