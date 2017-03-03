@@ -13,8 +13,4 @@
 	<name>Distribution Parent</name>
 	<packaging>pom</packaging>
 
-	<modules>
-		<module>war</module>
-	</modules>
-
 </project>

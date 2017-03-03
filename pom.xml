@@ -110,7 +110,6 @@
         <module>integration</module>
         <module>services</module>
         <module>web-console</module>
-        <module>distribution</module>
         <module>testsuite</module>
     </modules>
 
