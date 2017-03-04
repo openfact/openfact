@@ -1,27 +1,6 @@
 package org.openfact.services.resources.admin;
 
-import java.security.cert.X509Certificate;
-
-import javax.annotation.PostConstruct;
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.validation.Valid;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
-import javax.ws.rs.core.UriInfo;
-
 import org.jboss.logging.Logger;
-import org.jboss.resteasy.annotations.cache.NoCache;
 import org.keycloak.KeyPairVerifier;
 import org.keycloak.common.VerificationException;
 import org.keycloak.common.util.PemUtils;
@@ -34,10 +13,24 @@ import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.ErrorResponse;
+import org.openfact.services.ForbiddenException;
 import org.openfact.services.managers.OrganizationManager;
 import org.openfact.services.resource.security.OrganizationAuth;
 import org.openfact.services.resource.security.Resource;
 import org.openfact.services.resource.security.SecurityContextProvider;
+
+import javax.annotation.PostConstruct;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.validation.Valid;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.core.UriInfo;
+import java.security.cert.X509Certificate;
+import java.util.List;
 
 @Stateless
 @Path("/admin/organizations/{organization}")
@@ -60,15 +53,26 @@ public class OrganizationAdminResource {
 
     @Inject
     private SecurityContextProvider securityContextProvider;
-    private OrganizationAuth auth;
 
     @Inject
     private AdminEventBuilder adminEvent;
 
     @PostConstruct
     private void init() {
-        auth = securityContextProvider.getClientUser(session).organizationAuth(Resource.ORGANIZATION);
         organization = organizationManager.getOrganizationByName(organizationName);
+    }
+
+    private OrganizationAuth buildOrganizationAuth() {
+        if (organization == null) {
+            throw new NotFoundException("Organization not found.");
+        }
+
+        List<OrganizationModel> permitedOrganizations = securityContextProvider.getPermitedOrganizations(session);
+        if (!permitedOrganizations.contains(organizationManager.getOpenfactAdminstrationOrganization()) && !permitedOrganizations.contains(organization)) {
+            throw new ForbiddenException();
+        }
+
+        return securityContextProvider.getClientUser(session).organizationAuth(Resource.ORGANIZATION);
     }
 
     /**
@@ -78,9 +82,9 @@ public class OrganizationAdminResource {
      * @summary Get the organization with the specified name
      */
     @GET
-    @NoCache
     @Produces(MediaType.APPLICATION_JSON)
     public OrganizationRepresentation getOrganization() {
+        OrganizationAuth auth = buildOrganizationAuth();
         if (auth.hasView()) {
             return ModelToRepresentation.toRepresentation(organization, true);
         } else {
@@ -102,6 +106,7 @@ public class OrganizationAdminResource {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateOrganization(@Valid final OrganizationRepresentation rep) {
+        OrganizationAuth auth = buildOrganizationAuth();
         auth.requireManage();
 
         logger.debug("updating organization: " + organization.getName());
@@ -154,6 +159,7 @@ public class OrganizationAdminResource {
      */
     @DELETE
     public void deleteOrganization(@Context final UriInfo uriInfo) {
+        OrganizationAuth auth = buildOrganizationAuth();
         auth.requireManage();
 
         if (!organizationManager.removeOrganization(organization)) {
