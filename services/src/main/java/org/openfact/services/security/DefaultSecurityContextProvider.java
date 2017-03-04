@@ -6,7 +6,7 @@ import org.openfact.models.OrganizationProvider;
 import org.openfact.services.resource.security.OrganizationAuth;
 import org.openfact.services.resource.security.Resource;
 import org.openfact.services.resource.security.SecurityContextProvider;
-import org.openfact.services.resource.security.UserContextModel;
+import org.openfact.services.resource.security.ClientUser;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Alternative;
@@ -27,8 +27,8 @@ public class DefaultSecurityContextProvider implements SecurityContextProvider {
     }
 
     @Override
-    public UserContextModel getCurrentUser(OpenfactSession session) {
-        return new UserContextModel() {
+    public ClientUser getClientUser(OpenfactSession session) {
+        return new ClientUser() {
 
             @Override
             public String getUsername() {

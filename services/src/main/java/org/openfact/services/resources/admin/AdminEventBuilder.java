@@ -17,8 +17,6 @@
 package org.openfact.services.resources.admin;
 
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
@@ -27,14 +25,13 @@ import javax.ws.rs.core.UriInfo;
 
 import org.jboss.logging.Logger;
 import org.keycloak.common.util.Time;
-import org.openfact.events.EventListenerProvider;
 import org.openfact.events.EventStoreProvider;
 import org.openfact.events.admin.AdminEvent;
 import org.openfact.events.admin.AuthDetails;
 import org.openfact.events.admin.OperationType;
 import org.openfact.events.admin.ResourceType;
 import org.openfact.models.OrganizationModel;
-import org.openfact.services.resource.security.UserContextModel;
+import org.openfact.services.resource.security.ClientUser;
 import org.openfact.util.JsonSerialization;
 
 @Stateless
@@ -88,7 +85,7 @@ public class AdminEventBuilder {
         return this;
     }
 
-    public AdminEventBuilder authUser(UserContextModel user) {
+    public AdminEventBuilder authUser(ClientUser user) {
         AuthDetails authDetails = adminEvent.getAuthDetails();
         if (authDetails == null) {
             authDetails = new AuthDetails();

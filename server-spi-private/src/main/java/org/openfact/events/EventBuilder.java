@@ -6,7 +6,7 @@ import java.util.List;
 import org.jboss.logging.Logger;
 import org.openfact.common.util.Time;
 import org.openfact.models.OrganizationModel;
-import org.openfact.services.resource.security.UserContextModel;
+import org.openfact.services.resource.security.ClientUser;
 
 public class EventBuilder {
 
@@ -34,7 +34,7 @@ public class EventBuilder {
         return this;
     }
 
-    public EventBuilder user(UserContextModel user) {
+    public EventBuilder user(ClientUser user) {
         event.setUserId(user.getUsername());
         return this;
     }

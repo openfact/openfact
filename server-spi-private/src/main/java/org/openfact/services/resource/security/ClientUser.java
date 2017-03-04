@@ -1,6 +1,6 @@
 package org.openfact.services.resource.security;
 
-public interface UserContextModel {
+public interface ClientUser {
 
     String getUsername();
 

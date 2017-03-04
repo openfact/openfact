@@ -15,7 +15,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -29,7 +28,6 @@ import org.keycloak.common.util.PemUtils;
 import org.openfact.Config;
 import org.openfact.events.admin.OperationType;
 import org.openfact.models.ModelDuplicateException;
-import org.openfact.models.OpenfactContext;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.utils.ModelToRepresentation;
@@ -69,7 +67,7 @@ public class OrganizationAdminResource {
 
     @PostConstruct
     private void init() {
-        auth = securityContextProvider.getCurrentUser(session).organizationAuth(Resource.ORGANIZATION);
+        auth = securityContextProvider.getClientUser(session).organizationAuth(Resource.ORGANIZATION);
         organization = organizationManager.getOrganizationByName(organizationName);
     }
 

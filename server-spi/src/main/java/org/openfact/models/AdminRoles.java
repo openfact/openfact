@@ -4,6 +4,8 @@ public class AdminRoles {
 
     public static String ADMIN = "admin";
 
+    public static String CREATE_ORGANIZATION = "create-organization";
+
     public static String VIEW_ORGANIZATION = "view-organization";
     public static String VIEW_DOCUMENTS = "view-documents";
     public static String VIEW_EVENTS = "view-events";

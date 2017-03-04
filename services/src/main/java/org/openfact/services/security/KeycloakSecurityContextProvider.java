@@ -11,7 +11,7 @@ import org.openfact.services.ForbiddenException;
 import org.openfact.services.resource.security.OrganizationAuth;
 import org.openfact.services.resource.security.Resource;
 import org.openfact.services.resource.security.SecurityContextProvider;
-import org.openfact.services.resource.security.UserContextModel;
+import org.openfact.services.resource.security.ClientUser;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -57,9 +57,9 @@ public class KeycloakSecurityContextProvider implements SecurityContextProvider 
     }
 
     @Override
-    public UserContextModel getCurrentUser(OpenfactSession session) {
+    public ClientUser getClientUser(OpenfactSession session) {
         init(session);
-        return new UserContextModel() {
+        return new ClientUser() {
 
             @Override
             public String getUsername() {
@@ -139,19 +139,19 @@ public class KeycloakSecurityContextProvider implements SecurityContextProvider 
 
         @Override
         public void requireAny() {
-            if (!getCurrentUser(session).hasOneOfAppRole(AdminRoles.ALL_ORGANIZATION_ROLES)) {
+            if (!getClientUser(session).hasOneOfAppRole(AdminRoles.ALL_ORGANIZATION_ROLES)) {
                 throw new ForbiddenException();
             }
         }
 
         @Override
         public boolean hasView() {
-            return getCurrentUser(session).hasOneOfAppRole(getViewRole(resource), getManageRole(resource));
+            return getClientUser(session).hasOneOfAppRole(getViewRole(resource), getManageRole(resource));
         }
 
         @Override
         public boolean hasManage() {
-            return getCurrentUser(session).hasOneOfAppRole(getManageRole(resource));
+            return getClientUser(session).hasOneOfAppRole(getManageRole(resource));
         }
 
         @Override

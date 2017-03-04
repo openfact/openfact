@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface SecurityContextProvider {
 
-    UserContextModel getCurrentUser(OpenfactSession session);
+    ClientUser getClientUser(OpenfactSession session);
 
     List<OrganizationModel> getPermitedOrganizations(OpenfactSession session);
 

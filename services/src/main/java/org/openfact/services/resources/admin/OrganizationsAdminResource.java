@@ -11,7 +11,7 @@ import org.openfact.services.ErrorResponse;
 import org.openfact.services.ForbiddenException;
 import org.openfact.services.managers.OrganizationManager;
 import org.openfact.services.resource.security.SecurityContextProvider;
-import org.openfact.services.resource.security.UserContextModel;
+import org.openfact.services.resource.security.ClientUser;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -52,8 +52,13 @@ public class OrganizationsAdminResource {
      */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response importOrganization(@Context final UriInfo uriInfo,
-                                       @Valid final OrganizationRepresentation rep) {
+    public Response importOrganization(@Context final UriInfo uriInfo, @Valid final OrganizationRepresentation rep) {
+        if (!secureContext.getPermitedOrganizations(session).contains(manager.getOpenfactAdminstrationOrganization())) {
+            throw new ForbiddenException();
+        }
+        if (!secureContext.getClientUser(session).hasAppRole((AdminRoles.CREATE_ORGANIZATION))) {
+            throw new ForbiddenException();
+        }
 
         logger.debugv("importOrganization: {0}", rep.getOrganization());
 
@@ -97,7 +102,7 @@ public class OrganizationsAdminResource {
     }
 
     protected void addOrganizationRep(List<OrganizationRepresentation> reps, List<OrganizationModel> organizations) {
-        UserContextModel contextUser = secureContext.getCurrentUser(session);
+        ClientUser contextUser = secureContext.getClientUser(session);
         if (contextUser.hasAppRole(AdminRoles.VIEW_ORGANIZATION)) {
             organizations.stream().forEach(organization -> {
                 reps.add(ModelToRepresentation.toRepresentation(organization, false));
