@@ -73,7 +73,7 @@ public class OrganizationsResource {
     public static PublishedOrganizationRepresentation organizationRep(OrganizationModel organization, UriInfo uriInfo) {
         PublishedOrganizationRepresentation rep = new PublishedOrganizationRepresentation();
         rep.setOrganization(organization.getName());
-        rep.setAdminApiUrl(uriInfo.getBaseUriBuilder().path(OrganizationAdminResource.class).build().toString());
+//        rep.setAdminApiUrl(uriInfo.getBaseUriBuilder().path(OrganizationAdminResource.class).build().toString());
         return rep;
     }
 

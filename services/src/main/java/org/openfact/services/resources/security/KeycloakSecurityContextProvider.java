@@ -74,7 +74,6 @@ public class KeycloakSecurityContextProvider implements SecurityContextProvider 
                     }
                 }
                 return false;
-
             }
 
             @Override
