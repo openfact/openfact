@@ -29,6 +29,8 @@ import org.keycloak.common.util.PemUtils;
 import org.openfact.Config;
 import org.openfact.events.admin.OperationType;
 import org.openfact.models.ModelDuplicateException;
+import org.openfact.models.OpenfactContext;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.RepresentationToModel;
@@ -48,6 +50,9 @@ public class OrganizationAdminResource {
     @Context
     protected UriInfo uriInfo;
 
+    @Context
+    protected OpenfactSession session;
+
     @PathParam("organization")
     private String organizationName;
     private OrganizationModel organization;
@@ -64,7 +69,7 @@ public class OrganizationAdminResource {
 
     @PostConstruct
     private void init() {
-        auth = securityContextProvider.getCurrentUser().organizationAuth(Resource.ORGANIZATION);
+        auth = securityContextProvider.getCurrentUser(session).organizationAuth(Resource.ORGANIZATION);
         organization = organizationManager.getOrganizationByName(organizationName);
     }
 

@@ -1,18 +1,10 @@
-package org.openfact.services.resources.security;
-
-import java.util.Map;
-import java.util.Set;
-
-import javax.annotation.PostConstruct;
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.core.Context;
+package org.openfact.services.security;
 
 import org.keycloak.KeycloakPrincipal;
 import org.keycloak.KeycloakSecurityContext;
 import org.keycloak.representations.AccessToken;
 import org.openfact.models.AdminRoles;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
 import org.openfact.services.ForbiddenException;
@@ -21,41 +13,54 @@ import org.openfact.services.resource.security.Resource;
 import org.openfact.services.resource.security.SecurityContextProvider;
 import org.openfact.services.resource.security.UserContextModel;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
+import java.util.stream.Collectors;
+
 @Stateless
 public class KeycloakSecurityContextProvider implements SecurityContextProvider {
 
     public static final String KEYCLOAK_ORGANIZATION_USER_ATTRIBUTE = "organization";
     public static final String KEYCLOAK_CLIENT = "openfact-restful-api";
 
-    @Context
-    private HttpServletRequest httpRequest;
-
     @Inject
     private OrganizationProvider provider;
 
     private AccessToken accessToken;
-    private OrganizationModel clientOrganization;
+    private List<OrganizationModel> permitedOrganizations;
 
-    @PostConstruct
-    private void init() {
-        KeycloakPrincipal<KeycloakSecurityContext> kcPrincipal = (KeycloakPrincipal<KeycloakSecurityContext>) httpRequest.getUserPrincipal();
-        accessToken = kcPrincipal.getKeycloakSecurityContext().getToken();
+    private void init(OpenfactSession session) {
+        HttpServletRequest httpServletRequest = session.getContext().getContextObject(HttpServletRequest.class);
+        KeycloakPrincipal<KeycloakSecurityContext> kcPrincipal = (KeycloakPrincipal<KeycloakSecurityContext>) httpServletRequest.getUserPrincipal();
+
+        if (kcPrincipal != null) {
+            accessToken = kcPrincipal.getKeycloakSecurityContext().getToken();
+        } else {
+            throw new IllegalStateException("Could not instantiate KeycloakSecurityContext, check if you installed Keycloak adapter");
+        }
     }
 
     @Override
-    public OrganizationModel getCurrentOrganization() {
-        if (clientOrganization == null) {
-            String organizationName = getCurrentOrganizationName();
-            if (organizationName != null) {
-                clientOrganization = provider.getOrganizationByName(organizationName);
+    public List<OrganizationModel> getPermitedOrganizations(OpenfactSession session) {
+        init(session);
+        if (permitedOrganizations == null) {
+            Collection<String> organizationsName = getPermitedOrganizationNames();
+            if (!organizationsName.isEmpty()) {
+                permitedOrganizations = organizationsName.stream()
+                        .map(name -> provider.getOrganizationByName(name))
+                        .collect(Collectors.toList());
             }
         }
-        return clientOrganization;
+        return permitedOrganizations;
     }
 
     @Override
-    public UserContextModel getCurrentUser() {
+    public UserContextModel getCurrentUser(OpenfactSession session) {
+        init(session);
         return new UserContextModel() {
+
             @Override
             public String getUsername() {
                 return accessToken.getPreferredUsername();
@@ -93,18 +98,22 @@ public class KeycloakSecurityContextProvider implements SecurityContextProvider 
 
             @Override
             public OrganizationAuth organizationAuth(Resource resource) {
-                return new KeycloakOrganizationAuth(resource);
+                return new KeycloakOrganizationAuth(session, resource);
             }
         };
     }
 
-    private String getCurrentOrganizationName() {
+    private Collection<String> getPermitedOrganizationNames() {
         Map<String, Object> otherClaims = accessToken.getOtherClaims();
         if (otherClaims.containsKey(KEYCLOAK_ORGANIZATION_USER_ATTRIBUTE)) {
-            return String.valueOf(otherClaims.get(KEYCLOAK_ORGANIZATION_USER_ATTRIBUTE));
-        } else {
-            return null;
+            Object object = otherClaims.get(KEYCLOAK_ORGANIZATION_USER_ATTRIBUTE);
+            if (object instanceof Collection) {
+                return (Collection<String>) object;
+            } else {
+                return Arrays.asList((String) object);
+            }
         }
+        return Collections.EMPTY_LIST;
     }
 
     private boolean hasRole(String role) {
@@ -115,9 +124,11 @@ public class KeycloakSecurityContextProvider implements SecurityContextProvider 
 
     public class KeycloakOrganizationAuth implements OrganizationAuth {
 
+        private OpenfactSession session;
         private Resource resource;
 
-        public KeycloakOrganizationAuth(Resource resource) {
+        public KeycloakOrganizationAuth(OpenfactSession session, Resource resource) {
+            this.session = session;
             this.resource = resource;
         }
 
@@ -128,19 +139,19 @@ public class KeycloakSecurityContextProvider implements SecurityContextProvider 
 
         @Override
         public void requireAny() {
-            if (!getCurrentUser().hasOneOfAppRole(AdminRoles.ALL_ORGANIZATION_ROLES)) {
+            if (!getCurrentUser(session).hasOneOfAppRole(AdminRoles.ALL_ORGANIZATION_ROLES)) {
                 throw new ForbiddenException();
             }
         }
 
         @Override
         public boolean hasView() {
-            return getCurrentUser().hasOneOfAppRole(getViewRole(resource), getManageRole(resource));
+            return getCurrentUser(session).hasOneOfAppRole(getViewRole(resource), getManageRole(resource));
         }
 
         @Override
         public boolean hasManage() {
-            return getCurrentUser().hasOneOfAppRole(getManageRole(resource));
+            return getCurrentUser(session).hasOneOfAppRole(getManageRole(resource));
         }
 
         @Override

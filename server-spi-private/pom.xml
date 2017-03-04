@@ -49,13 +49,6 @@
             <artifactId>jboss-logging</artifactId>
             <scope>provided</scope>
         </dependency>
-
-        <!-- Apache Http -->
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <scope>provided</scope>
-        </dependency>
     </dependencies>
 
     <build>

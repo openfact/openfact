@@ -1,29 +1,10 @@
 package org.openfact.services.resources.admin;
 
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.validation.Valid;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.CacheControl;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
-
 import org.jboss.logging.Logger;
-import org.jboss.resteasy.annotations.cache.NoCache;
 import org.openfact.models.AdminRoles;
 import org.openfact.models.ModelDuplicateException;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.OrganizationProvider;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.ErrorResponse;
@@ -32,29 +13,35 @@ import org.openfact.services.managers.OrganizationManager;
 import org.openfact.services.resource.security.SecurityContextProvider;
 import org.openfact.services.resource.security.UserContextModel;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.validation.Valid;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
+
 @Stateless
 @Path("/admin/organizations")
 public class OrganizationsAdminResource {
-
-    public static final CacheControl noCache = new CacheControl();
-
-    static {
-        noCache.setNoCache(true);
-    }
 
     protected static final Logger logger = Logger.getLogger(OrganizationsAdminResource.class);
 
     @Context
     private UriInfo uriInfo;
 
-    @Inject
-    private OrganizationProvider organizationProvider;
+    @Context
+    private OpenfactSession session;
 
     @Inject
-    private OrganizationManager organizationManager;
+    private OrganizationManager manager;
 
     @Inject
-    private SecurityContextProvider securityContextProvider;
+    private SecurityContextProvider secureContext;
 
     /**
      * Create a new organization.
@@ -71,7 +58,7 @@ public class OrganizationsAdminResource {
         logger.debugv("importOrganization: {0}", rep.getOrganization());
 
         try {
-            OrganizationModel organization = organizationManager.importOrganization(rep);
+            OrganizationModel organization = manager.importOrganization(rep);
 
             URI location = uriInfo.getBaseUriBuilder().path(organization.getName()).build();
             logger.debugv("imported organization success, sending back: {0}", location.toString());
@@ -89,19 +76,16 @@ public class OrganizationsAdminResource {
      * @summary Get all organizations
      */
     @GET
-    @NoCache
     @Produces(MediaType.APPLICATION_JSON)
     public List<OrganizationRepresentation> getOrganizations() {
         List<OrganizationRepresentation> reps = new ArrayList<>();
 
-        OrganizationModel contextOrganization = securityContextProvider.getCurrentOrganization();
-        if (contextOrganization != null && contextOrganization.equals(organizationManager.getOpenfactAdminstrationOrganization())) {
-            List<OrganizationModel> organizations = organizationProvider.getOrganizations();
-            for (OrganizationModel organization : organizations) {
-                addOrganizationRep(reps, organization);
-            }
-        } else if (contextOrganization != null) {
-            addOrganizationRep(reps, contextOrganization);
+        List<OrganizationModel> permitedOrganizations = secureContext.getPermitedOrganizations(session);
+        if (permitedOrganizations != null && !permitedOrganizations.isEmpty() && permitedOrganizations.contains(manager.getOpenfactAdminstrationOrganization())) {
+            List<OrganizationModel> organizations = manager.getOrganizations();
+            addOrganizationRep(reps, organizations);
+        } else if (permitedOrganizations != null && !permitedOrganizations.isEmpty()) {
+            addOrganizationRep(reps, permitedOrganizations);
         }
 
         if (reps.isEmpty()) {
@@ -112,14 +96,18 @@ public class OrganizationsAdminResource {
         return reps;
     }
 
-    protected void addOrganizationRep(List<OrganizationRepresentation> reps, OrganizationModel organization) {
-        UserContextModel contextUser = securityContextProvider.getCurrentUser();
+    protected void addOrganizationRep(List<OrganizationRepresentation> reps, List<OrganizationModel> organizations) {
+        UserContextModel contextUser = secureContext.getCurrentUser(session);
         if (contextUser.hasAppRole(AdminRoles.VIEW_ORGANIZATION)) {
-            reps.add(ModelToRepresentation.toRepresentation(organization, false));
+            organizations.stream().forEach(organization -> {
+                reps.add(ModelToRepresentation.toRepresentation(organization, false));
+            });
         } else if (contextUser.hasOneOfAppRole(AdminRoles.ALL_ORGANIZATION_ROLES)) {
-            OrganizationRepresentation rep = new OrganizationRepresentation();
-            rep.setOrganization(organization.getName());
-            reps.add(rep);
+            organizations.stream().forEach(organization -> {
+                OrganizationRepresentation rep = new OrganizationRepresentation();
+                rep.setOrganization(organization.getName());
+                reps.add(rep);
+            });
         }
     }
 

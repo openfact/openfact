@@ -1,11 +1,14 @@
 package org.openfact.services.resource.security;
 
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
+
+import java.util.List;
 
 public interface SecurityContextProvider {
 
-    OrganizationModel getCurrentOrganization();
+    UserContextModel getCurrentUser(OpenfactSession session);
 
-    UserContextModel getCurrentUser();
-    
+    List<OrganizationModel> getPermitedOrganizations(OpenfactSession session);
+
 }
