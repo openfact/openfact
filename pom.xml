@@ -11,9 +11,7 @@
 
     <properties>
         <product.name>Openfact</product.name>
-        <product.name-html>\u003Cdiv
-            class="of-logo-text"\u003E\u003Cspan\u003EOpenfact\u003C\u002Fspan\u003E\u003C\u002Fdiv\u003E
-        </product.name-html>
+        <product.name-html>\u003Cdiv class="of-logo-text"\u003E\u003Cspan\u003EOpenfact\u003C\u002Fspan\u003E\u003C\u002Fdiv\u003E</product.name-html>
         <product.version>${project.version}</product.version>
         <product.build-time>${timestamp}</product.build-time>
         <product.default-profile>community</product.default-profile>

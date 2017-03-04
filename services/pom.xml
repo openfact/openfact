@@ -16,6 +16,14 @@
 		<!--Openfact -->
 		<dependency>
 			<groupId>org.openfact</groupId>
+			<artifactId>openfact-server-spi</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openfact</groupId>
+			<artifactId>openfact-server-spi-private</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openfact</groupId>
 			<artifactId>openfact-integration</artifactId>
 		</dependency>
 

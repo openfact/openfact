@@ -10,8 +10,8 @@ import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ForbiddenException;
 import org.openfact.services.managers.OrganizationManager;
-import org.openfact.services.resource.security.SecurityContextProvider;
 import org.openfact.services.resource.security.ClientUser;
+import org.openfact.services.resource.security.SecurityContextProvider;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -38,10 +38,10 @@ public class OrganizationsAdminResource {
     private OpenfactSession session;
 
     @Inject
-    private OrganizationManager manager;
+    private OrganizationManager organizationManager;
 
     @Inject
-    private SecurityContextProvider secureContext;
+    private SecurityContextProvider secureContextProvider;
 
     /**
      * Create a new organization.
@@ -53,17 +53,17 @@ public class OrganizationsAdminResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response importOrganization(@Context final UriInfo uriInfo, @Valid final OrganizationRepresentation rep) {
-        if (!secureContext.getPermitedOrganizations(session).contains(manager.getOpenfactAdminstrationOrganization())) {
+        if (!secureContextProvider.getPermitedOrganizations(session).contains(organizationManager.getOpenfactAdminstrationOrganization())) {
             throw new ForbiddenException();
         }
-        if (!secureContext.getClientUser(session).hasAppRole((AdminRoles.CREATE_ORGANIZATION))) {
+        if (!secureContextProvider.getClientUser(session).hasAppRole(AdminRoles.CREATE_ORGANIZATION)) {
             throw new ForbiddenException();
         }
 
         logger.debugv("importOrganization: {0}", rep.getOrganization());
 
         try {
-            OrganizationModel organization = manager.importOrganization(rep);
+            OrganizationModel organization = organizationManager.importOrganization(rep);
 
             URI location = uriInfo.getBaseUriBuilder().path(organization.getName()).build();
             logger.debugv("imported organization success, sending back: {0}", location.toString());
@@ -85,9 +85,9 @@ public class OrganizationsAdminResource {
     public List<OrganizationRepresentation> getOrganizations() {
         List<OrganizationRepresentation> reps = new ArrayList<>();
 
-        List<OrganizationModel> permitedOrganizations = secureContext.getPermitedOrganizations(session);
-        if (permitedOrganizations != null && !permitedOrganizations.isEmpty() && permitedOrganizations.contains(manager.getOpenfactAdminstrationOrganization())) {
-            List<OrganizationModel> organizations = manager.getOrganizations();
+        List<OrganizationModel> permitedOrganizations = secureContextProvider.getPermitedOrganizations(session);
+        if (permitedOrganizations != null && !permitedOrganizations.isEmpty() && permitedOrganizations.contains(organizationManager.getOpenfactAdminstrationOrganization())) {
+            List<OrganizationModel> organizations = organizationManager.getOrganizations();
             addOrganizationRep(reps, organizations);
         } else if (permitedOrganizations != null && !permitedOrganizations.isEmpty()) {
             addOrganizationRep(reps, permitedOrganizations);
@@ -102,7 +102,7 @@ public class OrganizationsAdminResource {
     }
 
     protected void addOrganizationRep(List<OrganizationRepresentation> reps, List<OrganizationModel> organizations) {
-        ClientUser contextUser = secureContext.getClientUser(session);
+        ClientUser contextUser = secureContextProvider.getClientUser(session);
         if (contextUser.hasAppRole(AdminRoles.VIEW_ORGANIZATION)) {
             organizations.stream().forEach(organization -> {
                 reps.add(ModelToRepresentation.toRepresentation(organization, false));
