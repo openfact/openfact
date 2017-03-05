@@ -3,11 +3,11 @@ package org.openfact.events;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Event {
+public class OpenfactEvent {
 
     private long time;
 
-    private EventType type;
+    private OpenfactEventType type;
 
     private String organizationId;
 
@@ -34,11 +34,11 @@ public class Event {
         this.time = time;
     }
 
-    public EventType getType() {
+    public OpenfactEventType getType() {
         return type;
     }
 
-    public void setType(EventType type) {
+    public void setType(OpenfactEventType type) {
         this.type = type;
     }
 
@@ -82,8 +82,8 @@ public class Event {
         this.details = details;
     }
 
-    public Event clone() {
-        Event clone = new Event();
+    public OpenfactEvent clone() {
+        OpenfactEvent clone = new OpenfactEvent();
         clone.time = time;
         clone.type = type;
         clone.organizationId = organizationId;

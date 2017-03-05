@@ -73,7 +73,7 @@ public class RepresentationToModel {
     public static void importOrganization(OrganizationRepresentation rep, OrganizationModel newOrganization) {
         newOrganization.setName(rep.getOrganization());
 
-        updateOrganization(newOrganization, rep);
+        generalUpdateOrganization(newOrganization, rep);
 
         /*
          * Postal address
@@ -149,7 +149,7 @@ public class RepresentationToModel {
             }
         }
 
-        updateOrganization(organization, rep);
+        generalUpdateOrganization(organization, rep);
 
         /*
          * Postal address
@@ -190,7 +190,7 @@ public class RepresentationToModel {
         organization.setName(name);
     }
 
-    public static void updateOrganization(OrganizationModel organization, OrganizationRepresentation rep) {
+    public static void generalUpdateOrganization(OrganizationModel organization, OrganizationRepresentation rep) {
         /*
          * General information
          */

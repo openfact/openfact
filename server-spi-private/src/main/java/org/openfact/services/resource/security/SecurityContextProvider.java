@@ -9,6 +9,6 @@ public interface SecurityContextProvider {
 
     ClientUser getClientUser(OpenfactSession session);
 
-    List<OrganizationModel> getPermitedOrganizations(OpenfactSession session);
+    List<OrganizationModel> getPermittedOrganizations(OpenfactSession session);
 
 }

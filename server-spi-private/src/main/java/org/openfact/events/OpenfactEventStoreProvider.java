@@ -2,9 +2,9 @@ package org.openfact.events;
 
 import org.openfact.events.admin.AdminEventQuery;
 
-public interface EventStoreProvider extends EventListenerProvider {
+public interface OpenfactEventStoreProvider extends OpenfactEventListenerProvider {
 
-    EventQuery createQuery();
+    OpenfactEventQuery createQuery();
 
     AdminEventQuery createAdminQuery();
 

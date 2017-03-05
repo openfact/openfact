@@ -8,53 +8,53 @@ import org.openfact.common.util.Time;
 import org.openfact.models.OrganizationModel;
 import org.openfact.services.resource.security.ClientUser;
 
-public class EventBuilder {
+public class OpenfactEventBuilder {
 
-    private static final Logger log = Logger.getLogger(EventBuilder.class);
+    private static final Logger log = Logger.getLogger(OpenfactEventBuilder.class);
 
-    private EventStoreProvider store;
-    private List<EventListenerProvider> listeners;
+    private OpenfactEventStoreProvider store;
+    private List<OpenfactEventListenerProvider> listeners;
     private OrganizationModel organization;
-    private Event event;
+    private OpenfactEvent event;
 
-    private EventBuilder(EventStoreProvider store, List<EventListenerProvider> listeners, OrganizationModel organization, Event event) {
+    private OpenfactEventBuilder(OpenfactEventStoreProvider store, List<OpenfactEventListenerProvider> listeners, OrganizationModel organization, OpenfactEvent event) {
         this.store = store;
         this.listeners = listeners;
         this.organization = organization;
         this.event = event;
     }
 
-    public EventBuilder organization(OrganizationModel organization) {
+    public OpenfactEventBuilder organization(OrganizationModel organization) {
         event.setOrganizationId(organization.getId());
         return this;
     }
 
-    public EventBuilder organization(String organizationId) {
+    public OpenfactEventBuilder organization(String organizationId) {
         event.setOrganizationId(organizationId);
         return this;
     }
 
-    public EventBuilder user(ClientUser user) {
+    public OpenfactEventBuilder user(ClientUser user) {
         event.setUserId(user.getUsername());
         return this;
     }
 
-    public EventBuilder user(String userId) {
+    public OpenfactEventBuilder user(String userId) {
         event.setUserId(userId);
         return this;
     }
 
-    public EventBuilder ipAddress(String ipAddress) {
+    public OpenfactEventBuilder ipAddress(String ipAddress) {
         event.setIpAddress(ipAddress);
         return this;
     }
 
-    public EventBuilder event(EventType e) {
+    public OpenfactEventBuilder event(OpenfactEventType e) {
         event.setType(e);
         return this;
     }
 
-    public EventBuilder detail(String key, String value) {
+    public OpenfactEventBuilder detail(String key, String value) {
         if (value == null || value.equals("")) {
             return this;
         }
@@ -66,14 +66,14 @@ public class EventBuilder {
         return this;
     }
 
-    public EventBuilder removeDetail(String key) {
+    public OpenfactEventBuilder removeDetail(String key) {
         if (event.getDetails() != null) {
             event.getDetails().remove(key);
         }
         return this;
     }
 
-    public Event getEvent() {
+    public OpenfactEvent getEvent() {
         return event;
     }
 
@@ -83,14 +83,14 @@ public class EventBuilder {
 
     public void error(String error) {
         if (!event.getType().name().endsWith("_ERROR")) {
-            event.setType(EventType.valueOf(event.getType().name() + "_ERROR"));
+            event.setType(OpenfactEventType.valueOf(event.getType().name() + "_ERROR"));
         }
         event.setError(error);
         send();
     }
 
-    public EventBuilder clone() {
-        return new EventBuilder(store, listeners, organization, event.clone());
+    public OpenfactEventBuilder clone() {
+        return new OpenfactEventBuilder(store, listeners, organization, event.clone());
     }
 
     private void send() {
@@ -107,7 +107,7 @@ public class EventBuilder {
         }
 
         if (listeners != null) {
-            for (EventListenerProvider l : listeners) {
+            for (OpenfactEventListenerProvider l : listeners) {
                 try {
                     l.onEvent(event);
                 } catch (Throwable t) {

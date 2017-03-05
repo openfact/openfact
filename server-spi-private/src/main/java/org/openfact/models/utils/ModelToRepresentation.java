@@ -173,7 +173,7 @@ public class ModelToRepresentation {
         return rep;
     }
 
-//    public static EventRepresentation toRepresentation(Event event) {
+//    public static EventRepresentation toRepresentation(OpenfactEvent event) {
 //        EventRepresentation rep = new EventRepresentation();
 //        rep.setTime(event.getTime());
 //        rep.setType(event.getType().toString());

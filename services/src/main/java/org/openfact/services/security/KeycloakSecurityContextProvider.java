@@ -29,7 +29,7 @@ public class KeycloakSecurityContextProvider implements SecurityContextProvider 
     private OrganizationProvider provider;
 
     private AccessToken accessToken;
-    private List<OrganizationModel> permitedOrganizations;
+    private List<OrganizationModel> permittedOrganizations;
 
     private void init(OpenfactSession session) {
         HttpServletRequest httpServletRequest = session.getContext().getContextObject(HttpServletRequest.class);
@@ -43,17 +43,17 @@ public class KeycloakSecurityContextProvider implements SecurityContextProvider 
     }
 
     @Override
-    public List<OrganizationModel> getPermitedOrganizations(OpenfactSession session) {
+    public List<OrganizationModel> getPermittedOrganizations(OpenfactSession session) {
         init(session);
-        if (permitedOrganizations == null) {
-            Collection<String> organizationsName = getPermitedOrganizationNames();
+        if (permittedOrganizations == null) {
+            Collection<String> organizationsName = getPermittedOrganizationNames();
             if (!organizationsName.isEmpty()) {
-                permitedOrganizations = organizationsName.stream()
+                permittedOrganizations = organizationsName.stream()
                         .map(name -> provider.getOrganizationByName(name))
                         .collect(Collectors.toList());
             }
         }
-        return permitedOrganizations;
+        return permittedOrganizations;
     }
 
     @Override
@@ -103,7 +103,7 @@ public class KeycloakSecurityContextProvider implements SecurityContextProvider 
         };
     }
 
-    private Collection<String> getPermitedOrganizationNames() {
+    private Collection<String> getPermittedOrganizationNames() {
         Map<String, Object> otherClaims = accessToken.getOtherClaims();
         if (otherClaims.containsKey(KEYCLOAK_ORGANIZATION_USER_ATTRIBUTE)) {
             Object object = otherClaims.get(KEYCLOAK_ORGANIZATION_USER_ATTRIBUTE);
@@ -146,12 +146,12 @@ public class KeycloakSecurityContextProvider implements SecurityContextProvider 
 
         @Override
         public boolean hasView() {
-            return getClientUser(session).hasOneOfAppRole(getViewRole(resource), getManageRole(resource));
+            return getClientUser(session).hasOneOfAppRole(AdminRoles.getViewRole(resource), AdminRoles.getManageRole(resource));
         }
 
         @Override
         public boolean hasManage() {
-            return getClientUser(session).hasOneOfAppRole(getManageRole(resource));
+            return getClientUser(session).hasOneOfAppRole(AdminRoles.getManageRole(resource));
         }
 
         @Override
@@ -168,39 +168,6 @@ public class KeycloakSecurityContextProvider implements SecurityContextProvider 
             }
         }
 
-        private String getViewRole(Resource resource) {
-            switch (resource) {
-                case ORGANIZATION:
-                    return AdminRoles.VIEW_ORGANIZATION;
-                case DOCUMENT:
-                    return AdminRoles.VIEW_DOCUMENTS;
-                case EVENTS:
-                    return AdminRoles.VIEW_EVENTS;
-                case FILES:
-                    return AdminRoles.VIEW_FILES;
-                case REPORTS:
-                    return AdminRoles.VIEW_REPORTS;
-                default:
-                    throw new IllegalStateException();
-            }
-        }
-
-        private String getManageRole(Resource resource) {
-            switch (resource) {
-                case ORGANIZATION:
-                    return AdminRoles.MANAGE_ORGANIZATION;
-                case DOCUMENT:
-                    return AdminRoles.MANAGE_DOCUMENTS;
-                case EVENTS:
-                    return AdminRoles.MANAGE_EVENTS;
-                case FILES:
-                    return AdminRoles.MANAGE_FILES;
-                case REPORTS:
-                    return AdminRoles.MANAGE_REPORTS;
-                default:
-                    throw new IllegalStateException();
-            }
-        }
     }
 
 }

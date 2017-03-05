@@ -4,11 +4,8 @@
        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
        bean-discovery-mode="all">
 
-    <!--<interceptors>-->
-        <!--<class>org.openfact.services.resources.admin.interceptors.PermitedOrganizationsInterceptor</class>-->
-    <!--</interceptors>-->
     <alternatives>
-        <class>org.openfact.services.security.DefaultSecurityContextProvider</class>
+        <class>org.openfact.services.security.UnrestrictedSecurityContextProvider</class>
     </alternatives>
 
 </beans>

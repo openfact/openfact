@@ -17,19 +17,10 @@
 
 package org.openfact.events.log;
 
-import org.jboss.logging.Logger;
-import org.openfact.events.Event;
-import org.openfact.events.admin.AdminEvent;
-
-import javax.ws.rs.core.Cookie;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.UriInfo;
-import java.util.Map;
-
 /**
  * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
-public class JBossLoggingEventListenerProvider /*implements EventListenerProvider */{
+public class JBossLoggingEventListenerProvider /*implements OpenfactEventListenerProvider */{
 
 //    private final Logger logger;
 //    private final Logger.Level successLevel;
@@ -43,7 +34,7 @@ public class JBossLoggingEventListenerProvider /*implements EventListenerProvide
 //    }
 //
 //    @Override
-//    public void onEvent(Event event) {
+//    public void onEvent(OpenfactEvent event) {
 //        Logger.Level level = event.getError() != null ? errorLevel : successLevel;
 //
 //        if (logger.isEnabled(level)) {

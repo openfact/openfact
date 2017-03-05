@@ -53,7 +53,7 @@ public class OrganizationsAdminResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response importOrganization(@Context final UriInfo uriInfo, @Valid final OrganizationRepresentation rep) {
-        if (!secureContextProvider.getPermitedOrganizations(session).contains(organizationManager.getOpenfactAdminstrationOrganization())) {
+        if (!secureContextProvider.getPermittedOrganizations(session).contains(organizationManager.getOpenfactAdminstrationOrganization())) {
             throw new ForbiddenException();
         }
         if (!secureContextProvider.getClientUser(session).hasAppRole(AdminRoles.CREATE_ORGANIZATION)) {
@@ -85,12 +85,12 @@ public class OrganizationsAdminResource {
     public List<OrganizationRepresentation> getOrganizations() {
         List<OrganizationRepresentation> reps = new ArrayList<>();
 
-        List<OrganizationModel> permitedOrganizations = secureContextProvider.getPermitedOrganizations(session);
-        if (permitedOrganizations != null && !permitedOrganizations.isEmpty() && permitedOrganizations.contains(organizationManager.getOpenfactAdminstrationOrganization())) {
+        List<OrganizationModel> permittedOrganizations = secureContextProvider.getPermittedOrganizations(session);
+        if (permittedOrganizations != null && !permittedOrganizations.isEmpty() && permittedOrganizations.contains(organizationManager.getOpenfactAdminstrationOrganization())) {
             List<OrganizationModel> organizations = organizationManager.getOrganizations();
             addOrganizationRep(reps, organizations);
-        } else if (permitedOrganizations != null && !permitedOrganizations.isEmpty()) {
-            addOrganizationRep(reps, permitedOrganizations);
+        } else if (permittedOrganizations != null && !permittedOrganizations.isEmpty()) {
+            addOrganizationRep(reps, permittedOrganizations);
         }
 
         if (reps.isEmpty()) {

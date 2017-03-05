@@ -17,33 +17,21 @@
 
 package org.openfact.email.freemarker;
 
-import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.Properties;
-
-import javax.annotation.PostConstruct;
 
 import org.keycloak.common.util.ObjectUtil;
 import org.openfact.email.EmailException;
 import org.openfact.email.EmailFileModel;
-import org.openfact.email.EmailSenderProvider;
 import org.openfact.email.EmailTemplateProvider;
 import org.openfact.email.EmailUserModel;
-import org.openfact.email.freemarker.beans.EventBean;
-import org.openfact.email.freemarker.beans.ProfileBean;
-import org.openfact.events.Event;
-import org.openfact.events.EventType;
+import org.openfact.events.OpenfactEvent;
+import org.openfact.events.OpenfactEventType;
 import org.openfact.models.DocumentModel;
 import org.openfact.models.OrganizationModel;
-import org.openfact.theme.FreeMarkerException;
 import org.openfact.theme.FreeMarkerUtil;
-import org.openfact.theme.Theme;
-import org.openfact.theme.ThemeProvider;
-import org.openfact.theme.beans.MessageFormatterMethod;
 
 /**
  * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
@@ -83,7 +71,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
     }
 
     @Override
-    public void sendEvent(Event event) throws EmailException {
+    public void sendEvent(OpenfactEvent event) throws EmailException {
         /*Map<String, Object> attributes = new HashMap<String, Object>();
         attributes.put("user", new ProfileBean(user));
         attributes.put("event", new EventBean(event));
@@ -145,7 +133,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
         }*/
     }
 
-    private String toCamelCase(EventType event) {
+    private String toCamelCase(OpenfactEventType event) {
         StringBuilder sb = new StringBuilder();
         for (String s : event.name().toString().toLowerCase().split("_")) {
             sb.append(ObjectUtil.capitalize(s));

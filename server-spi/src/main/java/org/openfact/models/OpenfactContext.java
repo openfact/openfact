@@ -1,6 +1,6 @@
 package org.openfact.models;
 
-import org.openfact.common.ClientConnection;
+import org.openfact.common.OpenfactClientConnection;
 
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.UriInfo;
@@ -22,8 +22,8 @@ public interface OpenfactContext {
 
     void setOrganization(OrganizationModel organization);
 
-    ClientConnection getConnection();
+    OpenfactClientConnection getConnection();
 
-    void setConnection(ClientConnection connection);
+    void setConnection(OpenfactClientConnection connection);
 
 }

@@ -3,10 +3,10 @@ package org.openfact.services.security;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
+import org.openfact.services.resource.security.ClientUser;
 import org.openfact.services.resource.security.OrganizationAuth;
 import org.openfact.services.resource.security.Resource;
 import org.openfact.services.resource.security.SecurityContextProvider;
-import org.openfact.services.resource.security.ClientUser;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Alternative;
@@ -16,28 +16,28 @@ import java.util.List;
 
 @Stateless
 @Alternative
-public class DefaultSecurityContextProvider implements SecurityContextProvider {
+public class UnrestrictedSecurityContextProvider implements SecurityContextProvider {
 
     @Inject
-    private OrganizationProvider provider;
+    private OrganizationProvider organizationProvider;
 
     @Override
-    public List<OrganizationModel> getPermitedOrganizations(OpenfactSession session) {
-        return provider.getOrganizations();
+    public List<OrganizationModel> getPermittedOrganizations(OpenfactSession session) {
+        return organizationProvider.getOrganizations();
     }
 
     @Override
     public ClientUser getClientUser(OpenfactSession session) {
         return new ClientUser() {
-
             @Override
             public String getUsername() {
                 HttpServletRequest httpServletRequest = session.getContext().getContextObject(HttpServletRequest.class);
-                return httpServletRequest.getUserPrincipal().getName();
+                return httpServletRequest.getUserPrincipal() != null ? httpServletRequest.getUserPrincipal().getName() : null;
             }
 
             @Override
             public boolean hasOrganizationRole(String role) {
+                HttpServletRequest httpServletRequest = session.getContext().getContextObject(HttpServletRequest.class);
                 return true;
             }
 

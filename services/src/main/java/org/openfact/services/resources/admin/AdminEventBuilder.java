@@ -1,19 +1,3 @@
-/*******************************************************************************
- * Copyright 2016 Sistcoop, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
 package org.openfact.services.resources.admin;
 
 import java.io.IOException;
@@ -25,7 +9,8 @@ import javax.ws.rs.core.UriInfo;
 
 import org.jboss.logging.Logger;
 import org.keycloak.common.util.Time;
-import org.openfact.events.EventStoreProvider;
+import org.openfact.common.OpenfactClientConnection;
+import org.openfact.events.OpenfactEventStoreProvider;
 import org.openfact.events.admin.AdminEvent;
 import org.openfact.events.admin.AuthDetails;
 import org.openfact.events.admin.OperationType;
@@ -40,7 +25,7 @@ public class AdminEventBuilder {
     protected static final Logger logger = Logger.getLogger(AdminEventBuilder.class);
 
     @Inject
-    private EventStoreProvider store;
+    private OpenfactEventStoreProvider eventStoreProvider;
 
     @Inject
     private Event<AdminEvent> event;
@@ -49,12 +34,25 @@ public class AdminEventBuilder {
     private AdminEvent adminEvent = new AdminEvent();
 
     public AdminEventBuilder organization(OrganizationModel organization) {
+        this.organization = organization;
         adminEvent.setOrganizationId(organization.getId());
         return this;
     }
 
-    public AdminEventBuilder organization(String organizationId) {
-        adminEvent.setOrganizationId(organizationId);
+    public AdminEventBuilder clientConnection(OpenfactClientConnection clientConnection) {
+        authIpAddress(clientConnection.getRemoteAddr());
+        return this;
+    }
+
+    public AdminEventBuilder clientUser(ClientUser user) {
+        AuthDetails authDetails = adminEvent.getAuthDetails();
+        if (authDetails == null) {
+            authDetails = new AuthDetails();
+            authDetails.setUserId(user.getUsername());
+        } else {
+            authDetails.setUserId(user.getUsername());
+        }
+        adminEvent.setAuthDetails(authDetails);
         return this;
     }
 
@@ -70,30 +68,6 @@ public class AdminEventBuilder {
 
     public AdminEventBuilder resource(String resourceType) {
         adminEvent.setResourceType(resourceType);
-        return this;
-    }
-
-    public AdminEventBuilder authOrganization(OrganizationModel organization) {
-        AuthDetails authDetails = adminEvent.getAuthDetails();
-        if (authDetails == null) {
-            authDetails = new AuthDetails();
-            authDetails.setOrganizationId(organization.getId());
-        } else {
-            authDetails.setOrganizationId(organization.getId());
-        }
-        adminEvent.setAuthDetails(authDetails);
-        return this;
-    }
-
-    public AdminEventBuilder authUser(ClientUser user) {
-        AuthDetails authDetails = adminEvent.getAuthDetails();
-        if (authDetails == null) {
-            authDetails = new AuthDetails();
-            authDetails.setUserId(user.getUsername());
-        } else {
-            authDetails.setUserId(user.getUsername());
-        }
-        adminEvent.setAuthDetails(authDetails);
         return this;
     }
 
@@ -166,7 +140,9 @@ public class AdminEventBuilder {
     }
 
     public void success() {
-        send();
+        if (organization.isAdminEventsEnabled()) {
+            send();
+        }
     }
 
     private void send() {
@@ -176,9 +152,9 @@ public class AdminEventBuilder {
         }
         adminEvent.setTime(Time.toMillis(Time.currentTime()));
 
-        if (store != null) {
+        if (eventStoreProvider != null) {
             try {
-                store.onEvent(adminEvent, includeRepresentation);
+                eventStoreProvider.onEvent(adminEvent, includeRepresentation);
             } catch (Throwable t) {
                 logger.error("Failed to save event", t);
             }

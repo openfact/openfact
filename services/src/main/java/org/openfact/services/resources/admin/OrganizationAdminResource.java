@@ -5,10 +5,9 @@ import org.keycloak.KeyPairVerifier;
 import org.keycloak.common.VerificationException;
 import org.keycloak.common.util.PemUtils;
 import org.openfact.Config;
+import org.openfact.common.OpenfactClientConnection;
 import org.openfact.events.admin.OperationType;
-import org.openfact.models.ModelDuplicateException;
-import org.openfact.models.OpenfactSession;
-import org.openfact.models.OrganizationModel;
+import org.openfact.models.*;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.OrganizationRepresentation;
@@ -19,7 +18,6 @@ import org.openfact.services.resource.security.OrganizationAuth;
 import org.openfact.services.resource.security.Resource;
 import org.openfact.services.resource.security.SecurityContextProvider;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -39,10 +37,13 @@ public class OrganizationAdminResource {
     protected static final Logger logger = Logger.getLogger(OrganizationAdminResource.class);
 
     @Context
-    protected UriInfo uriInfo;
+    private UriInfo uriInfo;
 
     @Context
-    protected OpenfactSession session;
+    private OpenfactSession session;
+
+    @Context
+    private OpenfactClientConnection clientConnection;
 
     @PathParam("organization")
     private String organizationName;
@@ -57,22 +58,33 @@ public class OrganizationAdminResource {
     @Inject
     private AdminEventBuilder adminEvent;
 
-    @PostConstruct
     private void init() {
         organization = organizationManager.getOrganizationByName(organizationName);
-    }
-
-    private OrganizationAuth buildOrganizationAuth() {
         if (organization == null) {
             throw new NotFoundException("Organization not found.");
         }
 
-        List<OrganizationModel> permitedOrganizations = securityContextProvider.getPermitedOrganizations(session);
-        if (!permitedOrganizations.contains(organizationManager.getOpenfactAdminstrationOrganization()) && !permitedOrganizations.contains(organization)) {
+        adminEvent = new AdminEventBuilder().organization(organization);
+    }
+
+    private OrganizationAuth buildOrganizationAuth() {
+        init();
+
+        List<OrganizationModel> permittedOrganizations = securityContextProvider.getPermittedOrganizations(session);
+        if (!permittedOrganizations.contains(organizationManager.getOpenfactAdminstrationOrganization()) && !permittedOrganizations.contains(organization)) {
             throw new ForbiddenException();
         }
 
         return securityContextProvider.getClientUser(session).organizationAuth(Resource.ORGANIZATION);
+    }
+
+    private void requireDelete() {
+        init();
+
+        List<OrganizationModel> permittedOrganizations = securityContextProvider.getPermittedOrganizations(session);
+        if (!permittedOrganizations.contains(organizationManager.getOpenfactAdminstrationOrganization()) && !securityContextProvider.getClientUser(session).hasAppRole(AdminRoles.ADMIN)) {
+            throw new ForbiddenException();
+        }
     }
 
     /**
@@ -112,14 +124,12 @@ public class OrganizationAdminResource {
         logger.debug("updating organization: " + organization.getName());
 
         if (Config.getAdminOrganization().equals(organization.getName())
-                && (rep.getOrganization() != null
-                && !rep.getOrganization().equals(Config.getAdminOrganization()))) {
+                && (rep.getOrganization() != null && !rep.getOrganization().equals(Config.getAdminOrganization()))) {
             return ErrorResponse.error("Can't rename master organization", Status.BAD_REQUEST);
         }
 
         try {
-            if (!"GENERATE".equals(rep.getPublicKey())
-                    && (rep.getPrivateKey() != null && rep.getPublicKey() != null)) {
+            if (!Constants.GENERATE.equals(rep.getPublicKey()) && (rep.getPrivateKey() != null && rep.getPublicKey() != null)) {
                 try {
                     KeyPairVerifier.verify(rep.getPrivateKey(), rep.getPublicKey());
                 } catch (VerificationException e) {
@@ -127,7 +137,7 @@ public class OrganizationAdminResource {
                 }
             }
 
-            if (!"GENERATE".equals(rep.getPublicKey()) && (rep.getCertificate() != null)) {
+            if (!Constants.GENERATE.equals(rep.getPublicKey()) && (rep.getCertificate() != null)) {
                 try {
                     X509Certificate cert = PemUtils.decodeCertificate(rep.getCertificate());
                     if (cert == null) {
@@ -141,16 +151,16 @@ public class OrganizationAdminResource {
             RepresentationToModel.updateOrganization(rep, organization);
 
             // Refresh periodic tasks for send documents
-            //organizationManager.reschedulePeriodicTask(organization);
+            organizationManager.reschedulePeriodicTask(organization);
 
             adminEvent.operation(OperationType.UPDATE).representation(rep).success();
+
             return Response.noContent().build();
         } catch (ModelDuplicateException e) {
             return ErrorResponse.exists("Organization with same name exists");
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return ErrorResponse.error("Failed to update organization",
-                    Response.Status.INTERNAL_SERVER_ERROR);
+            return ErrorResponse.error("Failed to update organization", Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -158,9 +168,8 @@ public class OrganizationAdminResource {
      * Deletes organization with given name.
      */
     @DELETE
-    public void deleteOrganization(@Context final UriInfo uriInfo) {
-        OrganizationAuth auth = buildOrganizationAuth();
-        auth.requireManage();
+    public void deleteOrganization() {
+        requireDelete();
 
         if (!organizationManager.removeOrganization(organization)) {
             throw new NotFoundException("Organization doesn't exist");

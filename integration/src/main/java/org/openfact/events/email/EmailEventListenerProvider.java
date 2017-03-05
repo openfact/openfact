@@ -17,30 +17,19 @@
 
 package org.openfact.events.email;
 
-import org.jboss.logging.Logger;
-import org.openfact.email.EmailException;
-import org.openfact.email.EmailTemplateProvider;
-import org.openfact.events.Event;
-import org.openfact.events.EventType;
-import org.openfact.events.admin.AdminEvent;
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.OrganizationProvider;
-
-import java.util.Set;
-
 /**
  * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
  */
-public class EmailEventListenerProvider /*implements EventListenerProvider*/ {
+public class EmailEventListenerProvider /*implements OpenfactEventListenerProvider*/ {
 
 //    private static final Logger log = Logger.getLogger(EmailEventListenerProvider.class);
 //
 //    private OpenfactSession session;
 //    private OrganizationProvider model;
 //    private EmailTemplateProvider emailTemplateProvider;
-//    private Set<EventType> includedEvents;
+//    private Set<OpenfactEventType> includedEvents;
 //
-//    public EmailEventListenerProvider(OpenfactSession session, EmailTemplateProvider emailTemplateProvider, Set<EventType> includedEvents) {
+//    public EmailEventListenerProvider(OpenfactSession session, EmailTemplateProvider emailTemplateProvider, Set<OpenfactEventType> includedEvents) {
 //        this.session = session;
 //        this.model = session.organizations();
 //        this.emailTemplateProvider = emailTemplateProvider;
@@ -48,7 +37,7 @@ public class EmailEventListenerProvider /*implements EventListenerProvider*/ {
 //    }
 //
 //    @Override
-//    public void onEvent(Event event) {
+//    public void onEvent(OpenfactEvent event) {
 //        /*if (includedEvents.contains(event.getType())) {
 //            if (event.getOrganizationId() != null && event.getUserId() != null) {
 //                OrganizationModel organization = model.getOrganization(event.getOrganizationId());
