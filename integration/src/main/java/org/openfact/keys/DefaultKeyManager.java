@@ -25,7 +25,7 @@ public class DefaultKeyManager implements KeyManager {
 
     private static final Logger logger = Logger.getLogger(DefaultKeyManager.class);
 
-    private final Map<String, List<KeyProvider>> providersMap = new HashMap<>();
+    //private final Map<String, List<KeyProvider>> providersMap = new HashMap<>();
 
     @Inject
     @Any
@@ -48,7 +48,7 @@ public class DefaultKeyManager implements KeyManager {
                 RsaKeyProvider r = (RsaKeyProvider) p;
                 if (r.getKid() != null && r.getPrivateKey() != null) {
                     if (logger.isTraceEnabled()) {
-                        logger.tracev("Active key realm={0} kid={1}", organization.getName(), p.getKid());
+                        logger.tracev("Active key organization={0} kid={1}", organization.getName(), p.getKid());
                     }
                     String kid = p.getKid();
                     return new ActiveRsaKey(kid, r.getPrivateKey(), r.getPublicKey(kid), r.getCertificate(kid));
@@ -125,9 +125,9 @@ public class DefaultKeyManager implements KeyManager {
     }
 
     private List<KeyProvider> getProviders(OrganizationModel organization) {
-        List<KeyProvider> providers = providersMap.get(organization.getId());
-        if (providers == null) {
-            providers = new LinkedList<>();
+        //List<KeyProvider> providers = providersMap.get(organization.getId());
+        //if (providers == null) {
+        List<KeyProvider> providers = new LinkedList<>();
 
             List<ComponentModel> components = new LinkedList<>(componentProvider.getComponents(organization, organization.getId(), KeyProvider.class.getName()));
             components.sort(new ProviderComparator());
@@ -162,8 +162,8 @@ public class DefaultKeyManager implements KeyManager {
                 providers.add(new FailsafeRsaKeyProvider());
             }
 
-            providersMap.put(organization.getId(), providers);
-        }
+            //providersMap.put(organization.getId(), providers);
+       //}
         return providers;
     }
 
