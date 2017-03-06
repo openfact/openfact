@@ -1,10 +1,7 @@
 package org.openfact.models.jpa;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.DocumentModel;
-import org.openfact.models.DocumentProvider;
-import org.openfact.models.ModelDuplicateException;
-import org.openfact.models.OrganizationModel;
+import org.openfact.models.*;
 import org.openfact.models.jpa.entities.DocumentEntity;
 import org.openfact.models.provider.ProviderEvent;
 import org.openfact.models.types.DocumentType;
@@ -44,11 +41,14 @@ public class JpaDocumentProvider implements DocumentProvider {
     @Inject
     private Event<ProviderEvent> event;
 
+    @Inject
+    private FileProvider fileProvider;
+
     @PersistenceContext
     private EntityManager em;
 
     private DocumentAdapter toAdapter(OrganizationModel organization, DocumentEntity entity) {
-        return new DocumentAdapter(organization, em, entity);
+        return new DocumentAdapter(organization, em, entity, fileProvider);
     }
 
     @Override

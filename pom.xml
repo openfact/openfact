@@ -42,6 +42,7 @@
 
         <!-- JSON -->
         <json.version>20160810</json.version>
+        <version.odysseus-staxon>1.3</version.odysseus-staxon>
 
         <!-- Google Guava -->
         <version.google-guava>19.0</version.google-guava>
@@ -219,6 +220,11 @@
                 <groupId>org.json</groupId>
                 <artifactId>json</artifactId>
                 <version>${json.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.odysseus.staxon</groupId>
+                <artifactId>staxon-gson</artifactId>
+                <version>${version.odysseus-staxon}</version>
             </dependency>
 
             <!-- Google Guava -->

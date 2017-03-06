@@ -1,33 +1,46 @@
 package org.openfact.models.jpa;
 
 import org.jboss.logging.Logger;
+import org.json.JSONObject;
+import org.json.XML;
+import org.openfact.JSONObjectUtils;
+import org.openfact.common.converts.DocumentUtils;
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.models.*;
 import org.openfact.models.jpa.entities.*;
 import org.openfact.models.types.DestinyType;
 import org.openfact.models.types.DocumentRequiredAction;
+import org.openfact.models.types.DocumentType;
 import org.openfact.models.types.SendEventStatus;
 import org.openfact.models.utils.OpenfactModelUtils;
+import org.w3c.dom.Document;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.xml.transform.TransformerException;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> {
 
-    protected static final Logger logger = Logger.getLogger(DocumentAdapter.class);
+    private static final Logger logger = Logger.getLogger(DocumentAdapter.class);
 
-    protected OrganizationModel organization;
-    protected DocumentEntity document;
-    protected EntityManager em;
+    private OrganizationModel organization;
+    private DocumentEntity document;
+    private FileProvider fileProvider;
+    private EntityManager em;
 
-    public DocumentAdapter(OrganizationModel organization, EntityManager em, DocumentEntity document) {
+    protected FileModel xmlFile;
+    protected Document xmlDocument;
+    protected JSONObject jsonObject;
+
+    public DocumentAdapter(OrganizationModel organization, EntityManager em, DocumentEntity document, FileProvider fileProvider) {
         this.organization = organization;
         this.em = em;
         this.document = document;
+        this.fileProvider = fileProvider;
     }
 
     public static DocumentEntity toEntity(DocumentModel model, EntityManager em) {
@@ -151,14 +164,76 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
         document.setCustomerElectronicMail(value);
     }
 
+    /*
+     * Document*/
     @Override
-    public String getXmlFileId() {
-        return document.getXmlFileId();
+    public FileModel getXmlAsFile() {
+        if (xmlFile == null && document.getXmlFileId() != null) {
+            xmlFile = fileProvider.getFileById(organization, document.getXmlFileId());
+        }
+        return xmlFile;
     }
 
     @Override
     public void attachXmlFile(FileModel file) {
-        document.setXmlFileId(file.getId());
+        xmlFile = file;
+        document.setXmlFileId(xmlFile.getId());
+    }
+
+    @Override
+    public Document getXmlAsDocument() {
+        if (xmlDocument == null) {
+            FileModel file = getXmlAsFile();
+            if (file != null) {
+                try {
+                    xmlDocument = DocumentUtils.byteToDocument(file.getFile());
+                } catch (Exception e) {
+                    throw new ModelException("Error parsing xml file to Document", e);
+                }
+            }
+        }
+        return xmlDocument;
+    }
+
+    @Override
+    public JSONObject getXmlAsJSONObject() {
+        if (jsonObject == null) {
+            try {
+                Document document = getXmlAsDocument();
+                if (document != null) {
+                    String documentString = DocumentUtils.getDocumentToString(document);
+                    jsonObject = JSONObjectUtils.renameKey(XML.toJSONObject(documentString), ".*:", "");
+                    DocumentType documentType = DocumentType.getFromString(this.document.getDocumentType());
+                    if (documentType != null) {
+                        switch (documentType) {
+                            case INVOICE:
+                                jsonObject = JSONObjectUtils.getJSONObject(jsonObject, DocumentType.INVOICE.getXmlWrapper());
+                                break;
+                            case CREDIT_NOTE:
+                                jsonObject = JSONObjectUtils.getJSONObject(jsonObject, DocumentType.CREDIT_NOTE.getXmlWrapper());
+                                break;
+                            case DEBIT_NOTE:
+                                jsonObject = JSONObjectUtils.getJSONObject(jsonObject, DocumentType.DEBIT_NOTE.getXmlWrapper());
+                                break;
+                        }
+                    } else {
+                        String jsonName = Arrays.stream(this.document.getDocumentType().toLowerCase().split("_"))
+                                .map(c -> c.substring(0, 1).toUpperCase() + c.substring(1))
+                                .reduce("", String::concat);
+
+                        JSONObject subJsonObject = JSONObjectUtils.getJSONObject(jsonObject, jsonName);
+                        if (subJsonObject != null) {
+                            jsonObject = subJsonObject;
+                        }
+                    }
+
+                    return jsonObject;
+                }
+            } catch (TransformerException e) {
+                throw new ModelException("Error parsing xml file to JSON", e);
+            }
+        }
+        return jsonObject;
     }
 
     /**
@@ -447,14 +522,14 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
     public List<DocumentModel> getAttachedDocumentsAsOrigin() {
         TypedQuery<DocumentEntity> query = em.createNamedQuery("getAttachedDocumentsDestinyByOrigin", DocumentEntity.class);
         query.setParameter("documentOriginId", document.getId());
-        return query.getResultList().stream().map(f -> new DocumentAdapter(organization, em, f)).collect(Collectors.toList());
+        return query.getResultList().stream().map(f -> new DocumentAdapter(organization, em, f, fileProvider)).collect(Collectors.toList());
     }
 
     @Override
     public List<DocumentModel> getAttachedDocumentsAsDestiny() {
         TypedQuery<DocumentEntity> query = em.createNamedQuery("getAttachedDocumentsOriginByDestiny", DocumentEntity.class);
         query.setParameter("documentDestinyId", document.getId());
-        return query.getResultList().stream().map(f -> new DocumentAdapter(organization, em, f)).collect(Collectors.toList());
+        return query.getResultList().stream().map(f -> new DocumentAdapter(organization, em, f, fileProvider)).collect(Collectors.toList());
     }
 
     @Override

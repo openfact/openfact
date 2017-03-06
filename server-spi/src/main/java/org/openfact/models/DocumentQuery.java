@@ -12,6 +12,8 @@ import java.util.Map;
 
 public interface DocumentQuery {
 
+    DocumentQuery organization(OrganizationModel organization);
+
     DocumentQuery currencyCode(String... currencyCode);
 
     DocumentQuery documentType(DocumentType... documentType);

@@ -1,6 +1,8 @@
 package org.openfact.services.resources.admin;
 
 import org.openfact.common.OpenfactClientConnection;
+import org.openfact.models.DocumentModel;
+import org.openfact.models.DocumentProvider;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.services.ForbiddenException;
@@ -21,6 +23,14 @@ public class AdminUtil {
             throw new NotFoundException("Organization " + organizationName + " not found.");
         }
         return organization;
+    }
+
+    public static DocumentModel initDocument(String documentIdPk, OrganizationModel organization, DocumentProvider provider) {
+        DocumentModel document = provider.getDocumentById(documentIdPk, organization);
+        if (document == null) {
+            throw new NotFoundException("Document not found.");
+        }
+        return document;
     }
 
     public static AdminEventBuilder initAdminEvent(AdminEventBuilder adminEvent, OrganizationModel organization, ClientUser clientUser, OpenfactClientConnection clientConnection) {

@@ -42,6 +42,11 @@
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
         </dependency>
+        <dependency>
+            <groupId>de.odysseus.staxon</groupId>
+            <artifactId>staxon-gson</artifactId>
+            <version>${version.odysseus-staxon}</version>
+        </dependency>
 
         <!-- Jboss logging -->
         <dependency>

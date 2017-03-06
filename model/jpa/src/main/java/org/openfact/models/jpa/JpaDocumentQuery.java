@@ -9,6 +9,7 @@ import org.openfact.models.types.DocumentRequiredAction;
 import org.openfact.models.types.DocumentType;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -27,6 +28,9 @@ public class JpaDocumentQuery implements DocumentQuery {
 
     private OrganizationModel organization;
 
+    @Inject
+    private FileProvider fileProvider;
+
     @PersistenceContext
     private EntityManager em;
 
@@ -41,7 +45,7 @@ public class JpaDocumentQuery implements DocumentQuery {
     }
 
     private DocumentModel toModel(DocumentEntity entity) {
-        return new DocumentAdapter(organization, em, entity);
+        return new DocumentAdapter(organization, em, entity, fileProvider);
     }
 
     @Override
