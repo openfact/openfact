@@ -1,12 +1,5 @@
 package org.openfact.services.resources.admin;
 
-import java.io.IOException;
-
-import javax.ejb.Stateless;
-import javax.enterprise.event.Event;
-import javax.inject.Inject;
-import javax.ws.rs.core.UriInfo;
-
 import org.jboss.logging.Logger;
 import org.keycloak.common.util.Time;
 import org.openfact.common.OpenfactClientConnection;
@@ -18,6 +11,12 @@ import org.openfact.events.admin.ResourceType;
 import org.openfact.models.OrganizationModel;
 import org.openfact.services.resource.security.ClientUser;
 import org.openfact.util.JsonSerialization;
+
+import javax.ejb.Stateless;
+import javax.enterprise.event.Event;
+import javax.inject.Inject;
+import javax.ws.rs.core.UriInfo;
+import java.io.IOException;
 
 @Stateless
 public class AdminEventBuilder {
@@ -39,11 +38,6 @@ public class AdminEventBuilder {
         return this;
     }
 
-    public AdminEventBuilder clientConnection(OpenfactClientConnection clientConnection) {
-        authIpAddress(clientConnection.getRemoteAddr());
-        return this;
-    }
-
     public AdminEventBuilder clientUser(ClientUser user) {
         AuthDetails authDetails = adminEvent.getAuthDetails();
         if (authDetails == null) {
@@ -53,6 +47,11 @@ public class AdminEventBuilder {
             authDetails.setUserId(user.getUsername());
         }
         adminEvent.setAuthDetails(authDetails);
+        return this;
+    }
+
+    public AdminEventBuilder clientConnection(OpenfactClientConnection clientConnection) {
+        authIpAddress(clientConnection.getRemoteAddr());
         return this;
     }
 

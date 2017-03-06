@@ -31,7 +31,7 @@ import java.security.cert.X509Certificate;
 import java.util.List;
 
 @Stateless
-@Path("/admin/organizations/{organization}")
+@Path("/admin/organizations")
 public class OrganizationAdminResource {
 
     protected static final Logger logger = Logger.getLogger(OrganizationAdminResource.class);
@@ -45,44 +45,43 @@ public class OrganizationAdminResource {
     @Context
     private OpenfactClientConnection clientConnection;
 
-    @PathParam("organization")
-    private String organizationName;
-    private OrganizationModel organization;
-
-    @Inject
-    private OrganizationManager organizationManager;
-
-    @Inject
-    private SecurityContextProvider securityContextProvider;
-
     @Inject
     private AdminEventBuilder adminEvent;
 
-    private void init() {
-        organization = organizationManager.getOrganizationByName(organizationName);
-        if (organization == null) {
-            throw new NotFoundException("Organization not found.");
-        }
+    @Inject
+    private SecurityContextProvider securityContext;
+    
+    @Inject
+    private OrganizationManager organizationManager;
 
-        adminEvent = new AdminEventBuilder().organization(organization);
+    private OrganizationModel initOrganization(String organizationName) {
+        OrganizationModel organization = organizationManager.getOrganizationByName(organizationName);
+        if (organization == null) {
+            throw new NotFoundException("Organization " + organizationName + " not found.");
+        }
+        return organization;
     }
 
-    private OrganizationAuth buildOrganizationAuth() {
-        init();
+    private AdminEventBuilder initAdminEvent(OrganizationModel organization) {
+        return adminEvent.organization(organization)
+                .clientConnection(clientConnection)
+                .clientUser(securityContext.getClientUser(session));
+    }
 
-        List<OrganizationModel> permittedOrganizations = securityContextProvider.getPermittedOrganizations(session);
+    private OrganizationAuth initAuth(OrganizationModel organization) {
+        List<OrganizationModel> permittedOrganizations = securityContext.getPermittedOrganizations(session);
         if (!permittedOrganizations.contains(organizationManager.getOpenfactAdminstrationOrganization()) && !permittedOrganizations.contains(organization)) {
             throw new ForbiddenException();
         }
 
-        return securityContextProvider.getClientUser(session).organizationAuth(Resource.ORGANIZATION);
+        return securityContext
+                .getClientUser(session)
+                .organizationAuth(Resource.ORGANIZATION);
     }
 
     private void requireDelete() {
-        init();
-
-        List<OrganizationModel> permittedOrganizations = securityContextProvider.getPermittedOrganizations(session);
-        if (!permittedOrganizations.contains(organizationManager.getOpenfactAdminstrationOrganization()) && !securityContextProvider.getClientUser(session).hasAppRole(AdminRoles.ADMIN)) {
+        List<OrganizationModel> permittedOrganizations = securityContext.getPermittedOrganizations(session);
+        if (!permittedOrganizations.contains(organizationManager.getOpenfactAdminstrationOrganization()) && !securityContext.getClientUser(session).hasAppRole(AdminRoles.ADMIN)) {
             throw new ForbiddenException();
         }
     }
@@ -94,9 +93,12 @@ public class OrganizationAdminResource {
      * @summary Get the organization with the specified name
      */
     @GET
+    @Path("/{organization}")
     @Produces(MediaType.APPLICATION_JSON)
-    public OrganizationRepresentation getOrganization() {
-        OrganizationAuth auth = buildOrganizationAuth();
+    public OrganizationRepresentation getOrganization(@PathParam("organization") String organizationName) {
+        OrganizationModel organization = initOrganization(organizationName);
+        OrganizationAuth auth = initAuth(organization);
+
         if (auth.hasView()) {
             return ModelToRepresentation.toRepresentation(organization, true);
         } else {
@@ -116,9 +118,12 @@ public class OrganizationAdminResource {
      * @summary Update organization information
      */
     @PUT
+    @Path("/{organization}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateOrganization(@Valid final OrganizationRepresentation rep) {
-        OrganizationAuth auth = buildOrganizationAuth();
+    public Response updateOrganization(@PathParam("organization") String organizationName, @Valid final OrganizationRepresentation rep) {
+        OrganizationModel organization = initOrganization(organizationName);
+        OrganizationAuth auth = initAuth(organization);
+
         auth.requireManage();
 
         logger.debug("updating organization: " + organization.getName());
@@ -153,7 +158,7 @@ public class OrganizationAdminResource {
             // Refresh periodic tasks for send documents
             organizationManager.reschedulePeriodicTask(organization);
 
-            adminEvent.operation(OperationType.UPDATE).representation(rep).success();
+            initAdminEvent(organization).operation(OperationType.UPDATE).representation(rep).success();
 
             return Response.noContent().build();
         } catch (ModelDuplicateException e) {
@@ -168,8 +173,15 @@ public class OrganizationAdminResource {
      * Deletes organization with given name.
      */
     @DELETE
-    public void deleteOrganization() {
+    @Path("/{organization}")
+    public void deleteOrganization(@PathParam("organization") String organizationName) {
+        OrganizationModel organization = initOrganization(organizationName);
+
         requireDelete();
+
+        if (Config.getAdminOrganization().equals(organization.getName())) {
+            throw new BadRequestException("Organization " + Config.getAdminOrganization() + " should not be deleted");
+        }
 
         if (!organizationManager.removeOrganization(organization)) {
             throw new NotFoundException("Organization doesn't exist");

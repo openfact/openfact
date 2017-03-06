@@ -53,6 +53,8 @@ public class OrganizationsAdminResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response importOrganization(@Context final UriInfo uriInfo, @Valid final OrganizationRepresentation rep) {
+        Object uno = session.getAttribute("uno");
+
         if (!secureContextProvider.getPermittedOrganizations(session).contains(organizationManager.getOpenfactAdminstrationOrganization())) {
             throw new ForbiddenException();
         }
