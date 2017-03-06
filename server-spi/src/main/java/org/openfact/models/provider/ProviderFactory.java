@@ -10,4 +10,6 @@ public interface ProviderFactory<T> {
 
     T create();
 
+    String getId();
+
 }

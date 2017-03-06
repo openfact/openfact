@@ -88,4 +88,8 @@ public class ImportedRsaKeyProviderFactory extends AbstractRsaKeyProviderFactory
         return CONFIG_PROPERTIES;
     }
 
+    @Override
+    public String getId() {
+        return ID;
+    }
 }

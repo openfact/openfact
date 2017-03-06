@@ -1,4 +1,4 @@
-package org.openfact.theme;
+package org.openfact.report;
 
 import javax.inject.Qualifier;
 import java.lang.annotation.*;
@@ -7,7 +7,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER, ElementType.TYPE})
 @Documented
-public @interface ThemeProviderType {
+public @interface ReportProviderType {
 
     ProviderType type();
 

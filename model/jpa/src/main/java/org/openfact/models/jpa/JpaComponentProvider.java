@@ -122,7 +122,7 @@ public class JpaComponentProvider implements ComponentProvider {
     @Override
     public void removeComponents(OrganizationModel organization, String parentId) {
         TypedQuery<String> query = em.createNamedQuery("getComponentIdsByParent", String.class)
-                .setParameter("organization", organization)
+                .setParameter("organization", OrganizationAdapter.toEntity(organization, em))
                 .setParameter("parentId", parentId);
 
         List<String> results = query.getResultList();
@@ -136,7 +136,7 @@ public class JpaComponentProvider implements ComponentProvider {
         if (parentId == null) parentId = organization.getId();
 
         TypedQuery<ComponentEntity> query = em.createNamedQuery("getComponentsByParentAndType", ComponentEntity.class)
-                .setParameter("organization", organization)
+                .setParameter("organization", OrganizationAdapter.toEntity(organization, em))
                 .setParameter("parentId", parentId)
                 .setParameter("providerType", providerType);
 
@@ -153,7 +153,7 @@ public class JpaComponentProvider implements ComponentProvider {
     @Override
     public List<ComponentModel> getComponents(OrganizationModel organization, String parentId) {
         TypedQuery<ComponentEntity> query = em.createNamedQuery("getComponentByParent", ComponentEntity.class)
-                .setParameter("organization", organization)
+                .setParameter("organization", OrganizationAdapter.toEntity(organization, em))
                 .setParameter("parentId", parentId);
 
         List<ComponentEntity> results = query.getResultList();
@@ -190,7 +190,7 @@ public class JpaComponentProvider implements ComponentProvider {
     @Override
     public List<ComponentModel> getComponents(OrganizationModel organization) {
         TypedQuery<ComponentEntity> query = em.createNamedQuery("getComponents", ComponentEntity.class)
-                .setParameter("organization", organization);
+                .setParameter("organization", OrganizationAdapter.toEntity(organization, em));
 
         List<ComponentEntity> results = query.getResultList();
         List<ComponentModel> rtn = new LinkedList<>();
@@ -202,7 +202,7 @@ public class JpaComponentProvider implements ComponentProvider {
     }
 
     @Override
-    public ComponentModel getComponent(String id) {
+    public ComponentModel getComponent(OrganizationModel organization, String id) {
         ComponentEntity c = em.find(ComponentEntity.class, id);
         if (c == null) return null;
         return entityToModel(c);

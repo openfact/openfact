@@ -15,7 +15,6 @@ import org.openfact.services.ErrorResponse;
 import org.openfact.services.ForbiddenException;
 import org.openfact.services.managers.OrganizationManager;
 import org.openfact.services.resource.security.OrganizationAuth;
-import org.openfact.services.resource.security.Resource;
 import org.openfact.services.resource.security.SecurityContextProvider;
 
 import javax.ejb.Stateless;
@@ -50,34 +49,9 @@ public class OrganizationAdminResource {
 
     @Inject
     private SecurityContextProvider securityContext;
-    
+
     @Inject
     private OrganizationManager organizationManager;
-
-    private OrganizationModel initOrganization(String organizationName) {
-        OrganizationModel organization = organizationManager.getOrganizationByName(organizationName);
-        if (organization == null) {
-            throw new NotFoundException("Organization " + organizationName + " not found.");
-        }
-        return organization;
-    }
-
-    private AdminEventBuilder initAdminEvent(OrganizationModel organization) {
-        return adminEvent.organization(organization)
-                .clientConnection(clientConnection)
-                .clientUser(securityContext.getClientUser(session));
-    }
-
-    private OrganizationAuth initAuth(OrganizationModel organization) {
-        List<OrganizationModel> permittedOrganizations = securityContext.getPermittedOrganizations(session);
-        if (!permittedOrganizations.contains(organizationManager.getOpenfactAdminstrationOrganization()) && !permittedOrganizations.contains(organization)) {
-            throw new ForbiddenException();
-        }
-
-        return securityContext
-                .getClientUser(session)
-                .organizationAuth(Resource.ORGANIZATION);
-    }
 
     private void requireDelete() {
         List<OrganizationModel> permittedOrganizations = securityContext.getPermittedOrganizations(session);
@@ -96,8 +70,8 @@ public class OrganizationAdminResource {
     @Path("/{organization}")
     @Produces(MediaType.APPLICATION_JSON)
     public OrganizationRepresentation getOrganization(@PathParam("organization") String organizationName) {
-        OrganizationModel organization = initOrganization(organizationName);
-        OrganizationAuth auth = initAuth(organization);
+        OrganizationModel organization = AdminUtil.initOrganization(organizationName, organizationManager);
+        OrganizationAuth auth = AdminUtil.initAuth(session, securityContext, organizationManager, organization);
 
         if (auth.hasView()) {
             return ModelToRepresentation.toRepresentation(organization, true);
@@ -121,8 +95,8 @@ public class OrganizationAdminResource {
     @Path("/{organization}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateOrganization(@PathParam("organization") String organizationName, @Valid final OrganizationRepresentation rep) {
-        OrganizationModel organization = initOrganization(organizationName);
-        OrganizationAuth auth = initAuth(organization);
+        OrganizationModel organization = AdminUtil.initOrganization(organizationName, organizationManager);
+        OrganizationAuth auth = AdminUtil.initAuth(session, securityContext, organizationManager, organization);
 
         auth.requireManage();
 
@@ -158,7 +132,10 @@ public class OrganizationAdminResource {
             // Refresh periodic tasks for send documents
             organizationManager.reschedulePeriodicTask(organization);
 
-            initAdminEvent(organization).operation(OperationType.UPDATE).representation(rep).success();
+            AdminUtil.initAdminEvent(adminEvent, organization, securityContext.getClientUser(session), clientConnection)
+                    .operation(OperationType.UPDATE)
+                    .representation(rep)
+                    .success();
 
             return Response.noContent().build();
         } catch (ModelDuplicateException e) {
@@ -175,7 +152,7 @@ public class OrganizationAdminResource {
     @DELETE
     @Path("/{organization}")
     public void deleteOrganization(@PathParam("organization") String organizationName) {
-        OrganizationModel organization = initOrganization(organizationName);
+        OrganizationModel organization = AdminUtil.initOrganization(organizationName, organizationManager);
 
         requireDelete();
 

@@ -1,40 +1,33 @@
-/*******************************************************************************
- * Copyright 2016 Sistcoop, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
-
 package org.openfact.report;
 
-import org.openfact.theme.ClassLoaderTheme;
-import org.openfact.theme.Theme;
-import org.openfact.theme.ThemeProvider;
+import org.openfact.util.JsonSerialization;
 
+import javax.annotation.PostConstruct;
+import javax.ejb.Stateless;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Set;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.*;
 
-/**
- * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
- */
+@Stateless
+@ReportThemeManagerSelector
+@ReportProviderType(type = ReportProviderType.ProviderType.JAR)
 public class JarReportThemeProvider implements ReportThemeProvider {
 
-    private Map<ReportTheme.Type, Map<String, ClassLoaderReportTheme>> themes;
+    protected static final String OPENFACT_REPORT_THEMES_JSON = "META-INF/openfact-reports.json";
+    private Map<ReportTheme.Type, Map<String, ClassLoaderReportTheme>> themes = new HashMap<>();
 
-    public JarReportThemeProvider(Map<ReportTheme.Type, Map<String, ClassLoaderReportTheme>> themes) {
-        this.themes = themes;
+    @PostConstruct
+    public void init() {
+        try {
+            ClassLoader classLoader = getClass().getClassLoader();
+            Enumeration<URL> resources = classLoader.getResources(OPENFACT_REPORT_THEMES_JSON);
+            while (resources.hasMoreElements()) {
+                loadThemes(classLoader, resources.nextElement().openStream());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load report themes", e);
+        }
     }
 
     @Override
@@ -59,6 +52,24 @@ public class JarReportThemeProvider implements ReportThemeProvider {
     @Override
     public boolean hasTheme(String name, ReportTheme.Type type) {
         return themes.containsKey(type) && themes.get(type).containsKey(name);
+    }
+
+    protected void loadThemes(ClassLoader classLoader, InputStream themesInputStream) {
+        try {
+            ThemesRepresentation themesRep = JsonSerialization.readValue(themesInputStream, ThemesRepresentation.class);
+
+            for (ThemeRepresentation themeRep : themesRep.getThemes()) {
+                for (String t : themeRep.getTypes()) {
+                    ReportTheme.Type type = ReportTheme.Type.valueOf(t.toUpperCase());
+                    if (!themes.containsKey(type)) {
+                        themes.put(type, new HashMap<String, ClassLoaderReportTheme>());
+                    }
+                    themes.get(type).put(themeRep.getName(), new ClassLoaderReportTheme(themeRep.getName(), type, classLoader));
+                }
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to load themes", e);
+        }
     }
 
 }

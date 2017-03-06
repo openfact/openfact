@@ -17,10 +17,10 @@
 
 package org.openfact.report;
 
-import org.openfact.theme.FolderTheme;
-import org.openfact.theme.Theme;
-import org.openfact.theme.ThemeProvider;
+import org.openfact.Config;
 
+import javax.annotation.PostConstruct;
+import javax.ejb.Stateless;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
@@ -28,15 +28,21 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
- */
+@Stateless
+@ReportThemeManagerSelector
+@ReportProviderType(type = ReportProviderType.ProviderType.FOLDER)
 public class FolderReportThemeProvider implements ReportThemeProvider {
 
     private File themesDir;
 
-    public FolderReportThemeProvider(File themesDir) {
-        this.themesDir = themesDir;
+    @PostConstruct
+    public void init() {
+        String d = Config.scope("report", "folder").get("dir");
+        File rootDir = null;
+        if (d != null) {
+            rootDir = new File(d);
+        }
+        this.themesDir = rootDir;
     }
 
     @Override
@@ -53,12 +59,7 @@ public class FolderReportThemeProvider implements ReportThemeProvider {
     @Override
     public Set<String> nameSet(ReportTheme.Type type) {
         final String typeName = type.name().toLowerCase();
-        File[] themeDirs = themesDir.listFiles(new FileFilter() {
-            @Override
-            public boolean accept(File pathname) {
-                return pathname.isDirectory() && new File(pathname, typeName).isDirectory();
-            }
-        });
+        File[] themeDirs = themesDir.listFiles(pathname -> pathname.isDirectory() && new File(pathname, typeName).isDirectory());
         if (themeDirs != null) {
             Set<String> names = new HashSet<String>();
             for (File themeDir : themeDirs) {

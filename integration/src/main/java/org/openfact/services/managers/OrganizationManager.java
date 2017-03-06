@@ -1,23 +1,24 @@
 package org.openfact.services.managers;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import javax.annotation.Resource;
-import javax.ejb.*;
-import javax.enterprise.concurrent.ManagedScheduledExecutorService;
-import javax.inject.Inject;
-
 import org.openfact.Config;
+import org.openfact.models.ComponentProvider;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
 import org.openfact.models.provider.ProviderEvent;
+import org.openfact.models.utils.DefaultKeyProviders;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.OrganizationEventsConfigRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
+
+import javax.annotation.Resource;
+import javax.ejb.Stateless;
+import javax.enterprise.concurrent.ManagedScheduledExecutorService;
+import javax.inject.Inject;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Stateless
 public class OrganizationManager {
@@ -27,6 +28,12 @@ public class OrganizationManager {
 
     @Inject
     private OrganizationProvider model;
+
+    @Inject
+    private ComponentProvider componentProvider;
+
+    @Inject
+    private DefaultKeyProviders defaultKeyProviders;
 
     @Inject
     private javax.enterprise.event.Event<ProviderEvent> event;
@@ -79,7 +86,7 @@ public class OrganizationManager {
         // setup defaults
         setupOrganizationDefaults(organization);
 
-        RepresentationToModel.importOrganization(rep, organization);
+        RepresentationToModel.importOrganization(rep, organization, componentProvider, defaultKeyProviders);
 
         // Create periodic tasks for send documents
         schedulePeriodicTask(organization);

@@ -79,4 +79,8 @@ public class JavaKeystoreKeyProviderFactory extends AbstractRsaKeyProviderFactor
         return CONFIG_PROPERTIES;
     }
 
+    @Override
+    public String getId() {
+        return ID;
+    }
 }

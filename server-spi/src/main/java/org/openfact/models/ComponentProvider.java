@@ -34,6 +34,6 @@ public interface ComponentProvider {
 
     List<ComponentModel> getComponents(OrganizationModel organization);
 
-    ComponentModel getComponent(String id);
+    ComponentModel getComponent(OrganizationModel organization, String id);
     
 }

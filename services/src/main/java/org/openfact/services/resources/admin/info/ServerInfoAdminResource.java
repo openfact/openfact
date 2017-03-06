@@ -3,16 +3,28 @@ package org.openfact.services.resources.admin.info;
 import org.openfact.events.OpenfactEventType;
 import org.openfact.events.admin.OperationType;
 import org.openfact.events.admin.ResourceType;
+import org.openfact.keys.KeyProvider;
+import org.openfact.models.component.ComponentFactory;
+import org.openfact.models.provider.ConfiguredProvider;
+import org.openfact.models.provider.ProviderConfigProperty;
+import org.openfact.models.provider.ProviderFactory;
+import org.openfact.models.utils.ComponentUtil;
+import org.openfact.models.utils.ModelToRepresentation;
+import org.openfact.provider.ServerInfoAwareProviderFactory;
 import org.openfact.report.ReportTheme;
 import org.openfact.report.ReportThemeProvider;
-import org.openfact.report.ReportThemeProviderType;
+import org.openfact.report.ReportProviderType;
+import org.openfact.representations.idm.ComponentTypeRepresentation;
 import org.openfact.representations.info.*;
 import org.openfact.services.managers.ServerStartup;
 import org.openfact.theme.Theme;
 import org.openfact.theme.ThemeProvider;
 import org.openfact.theme.ThemeProviderType;
+import sun.security.provider.ConfigFile;
 
 import javax.ejb.Stateless;
+import javax.enterprise.inject.Any;
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -36,8 +48,12 @@ public class ServerInfoAdminResource {
     private ThemeProvider themeProvider;
 
     @Inject
-    @ReportThemeProviderType(type = ReportThemeProviderType.ProviderType.EXTENDING)
+    @ReportProviderType(type = ReportProviderType.ProviderType.EXTENDING)
     private ReportThemeProvider reportThemeProvider;
+
+    @Inject
+    @Any
+    private Instance<ComponentFactory> componentFactories;
 
     private static Map<String, List<String>> createEnumsMap(Class... enums) {
         Map<String, List<String>> m = new HashMap<>();
@@ -70,8 +86,34 @@ public class ServerInfoAdminResource {
 
         setThemes(info);
         setReports(info);
+        setProviders(info);
         info.setEnums(ENUMS);
         return info;
+    }
+
+    private void setProviders(ServerInfoRepresentation info) {
+        info.setComponentTypes(new HashMap<>());
+
+        List<ComponentTypeRepresentation> types = new ArrayList<>();
+
+        Iterator<ComponentFactory> iterator = componentFactories.iterator();
+        while (iterator.hasNext()) {
+            ComponentFactory componentFactory = iterator.next();
+
+            ComponentTypeRepresentation rep = new ComponentTypeRepresentation();
+            rep.setId(componentFactory.getId());
+            ConfiguredProvider configured = componentFactory;
+            rep.setHelpText(configured.getHelpText());
+            List<ProviderConfigProperty> configProperties = configured.getConfigProperties();
+            if (configProperties == null) {
+                configProperties = Collections.EMPTY_LIST;
+            }
+            rep.setProperties(ModelToRepresentation.toRepresentation(configProperties));
+
+            types.add(rep);
+        }
+
+        info.getComponentTypes().put(KeyProvider.class.getName(), types);
     }
 
     private void setThemes(ServerInfoRepresentation info) {

@@ -1,8 +1,15 @@
 package org.openfact.models.utils;
 
+import org.openfact.common.util.MultivaluedHashMap;
+import org.openfact.keys.KeyProvider;
+import org.openfact.models.ComponentProvider;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.component.ComponentModel;
+import org.openfact.models.provider.ProviderConfigProperty;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchCriteriaModel;
+import org.openfact.representations.idm.ComponentExportRepresentation;
+import org.openfact.representations.idm.ComponentRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 import org.openfact.representations.idm.PostalAddressRepresentation;
 import org.openfact.representations.idm.search.PagingRepresentation;
@@ -12,10 +19,7 @@ import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
@@ -70,7 +74,7 @@ public class RepresentationToModel {
         return model;
     }
 
-    public static void importOrganization(OrganizationRepresentation rep, OrganizationModel newOrganization) {
+    public static void importOrganization(OrganizationRepresentation rep, OrganizationModel newOrganization, ComponentProvider componentProvider, DefaultKeyProviders defaultKeyProviders) {
         newOrganization.setName(rep.getOrganization());
 
         generalUpdateOrganization(newOrganization, rep);
@@ -101,23 +105,22 @@ public class RepresentationToModel {
             newOrganization.setAdminEventsDetailsEnabled(rep.getAdminEventsDetailsEnabled());
         }
 
-//        if (rep.getComponents() != null) {
-//            MultivaluedHashMap<String, ComponentExportRepresentation> components = rep.getComponents();
-//            String parentId = newOrganization.getId();
-//            importComponents(newOrganization, components, parentId);
-//        }
+        if (rep.getComponents() != null) {
+            MultivaluedHashMap<String, ComponentExportRepresentation> components = rep.getComponents();
+            String parentId = newOrganization.getId();
+            importComponents(newOrganization, components, parentId, componentProvider);
+        }
 
         /*
          * Certificate
          */
-//        if (newOrganization.getComponents(newOrganization.getId(), KeyProvider.class.getName()).isEmpty()) {
-//            if (rep.getPrivateKey() != null) {
-//                DefaultKeyProviders.createProviders(newOrganization, rep.getPrivateKey(),
-//                        rep.getCertificate());
-//            } else {
-//                DefaultKeyProviders.createProviders(newOrganization);
-//            }
-//        }
+        if (componentProvider.getComponents(newOrganization, newOrganization.getId(), KeyProvider.class.getName()).isEmpty()) {
+            if (rep.getPrivateKey() != null) {
+                defaultKeyProviders.createProviders(newOrganization, rep.getPrivateKey(), rep.getCertificate());
+            } else {
+                defaultKeyProviders.createProviders(newOrganization);
+            }
+        }
 
         /*
          * Attributes
@@ -186,7 +189,7 @@ public class RepresentationToModel {
         if (name.equals(organization.getName())) {
             return;
         }
-        
+
         organization.setName(name);
     }
 
@@ -295,108 +298,107 @@ public class RepresentationToModel {
         }
     }
 
-//    public static ComponentModel toModel(ComponentRepresentation rep) {
-//        ComponentModel model = new ComponentModel();
-//        model.setParentId(rep.getParentId());
-//        model.setProviderType(rep.getProviderType());
-//        model.setProviderId(rep.getProviderId());
-//        model.setConfig(new MultivaluedHashMap<>());
-//        model.setName(rep.getName());
-//        model.setSubType(rep.getSubType());
-//
-//        if (rep.getConfig() != null) {
-//            Set<String> keys = new HashSet<>(rep.getConfig().keySet());
-//            for (String k : keys) {
-//                List<String> values = rep.getConfig().get(k);
-//                if (values != null) {
-//                    ListIterator<String> itr = values.listIterator();
-//                    while (itr.hasNext()) {
-//                        String v = itr.next();
-//                        if (v == null || v.trim().isEmpty()) {
-//                            itr.remove();
-//                        }
-//                    }
-//
-//                    if (!values.isEmpty()) {
-//                        model.getConfig().put(k, values);
-//                    }
-//                }
-//            }
-//        }
-//
-//        return model;
-//    }
-//
-//    public static void updateComponent(ComponentRepresentation rep,
-//                                       ComponentModel component, boolean internal) {
-//        if (rep.getParentId() != null) {
-//            component.setParentId(rep.getParentId());
-//        }
-//
-//        if (rep.getProviderType() != null) {
-//            component.setProviderType(rep.getProviderType());
-//        }
-//
-//        if (rep.getProviderId() != null) {
-//            component.setProviderId(rep.getProviderId());
-//        }
-//
-//        if (rep.getSubType() != null) {
-//            component.setSubType(rep.getSubType());
-//        }
-//
-//        Map<String, ProviderConfigProperty> providerConfiguration = null;
-//        if (!internal) {
-//            providerConfiguration = ComponentUtil.getComponentConfigProperties(session, component);
-//        }
-//
-//        if (rep.getConfig() != null) {
-//            Set<String> keys = new HashSet<>(rep.getConfig().keySet());
-//            for (String k : keys) {
-//                if (!internal && !providerConfiguration.containsKey(k)) {
-//                    break;
-//                }
-//
-//                List<String> values = rep.getConfig().get(k);
-//                if (values == null || values.isEmpty() || values.get(0) == null
-//                        || values.get(0).trim().isEmpty()) {
-//                    component.getConfig().remove(k);
-//                } else {
-//                    ListIterator<String> itr = values.listIterator();
-//                    while (itr.hasNext()) {
-//                        String v = itr.next();
-//                        if (v == null || v.trim().isEmpty()
-//                                || v.equals(ComponentRepresentation.SECRET_VALUE)) {
-//                            itr.remove();
-//                        }
-//                    }
-//
-//                    if (!values.isEmpty()) {
-//                        component.getConfig().put(k, values);
-//                    }
-//                }
-//            }
-//        }
-//    }
-//
-//    protected static void importComponents(OrganizationModel newOrganization, MultivaluedHashMap<String, ComponentExportRepresentation> components, String parentId) {
-//        for (Map.Entry<String, List<ComponentExportRepresentation>> entry : components.entrySet()) {
-//            String providerType = entry.getKey();
-//            for (ComponentExportRepresentation compRep : entry.getValue()) {
-//                ComponentModel component = new ComponentModel();
-//                component.setId(compRep.getId());
-//                component.setName(compRep.getName());
-//                component.setConfig(compRep.getConfig());
-//                component.setProviderType(providerType);
-//                component.setProviderId(compRep.getProviderId());
-//                component.setSubType(compRep.getSubType());
-//                component.setParentId(parentId);
-//                component = newOrganization.addComponentModel(component);
-//                if (compRep.getSubComponents() != null) {
-//                    importComponents(newOrganization, compRep.getSubComponents(), component.getId());
-//                }
-//            }
-//        }
-//    }
+    public static ComponentModel toModel(ComponentRepresentation rep) {
+        ComponentModel model = new ComponentModel();
+        model.setParentId(rep.getParentId());
+        model.setProviderType(rep.getProviderType());
+        model.setProviderId(rep.getProviderId());
+        model.setConfig(new MultivaluedHashMap<>());
+        model.setName(rep.getName());
+        model.setSubType(rep.getSubType());
+
+        if (rep.getConfig() != null) {
+            Set<String> keys = new HashSet<>(rep.getConfig().keySet());
+            for (String k : keys) {
+                List<String> values = rep.getConfig().get(k);
+                if (values != null) {
+                    ListIterator<String> itr = values.listIterator();
+                    while (itr.hasNext()) {
+                        String v = itr.next();
+                        if (v == null || v.trim().isEmpty()) {
+                            itr.remove();
+                        }
+                    }
+
+                    if (!values.isEmpty()) {
+                        model.getConfig().put(k, values);
+                    }
+                }
+            }
+        }
+
+        return model;
+    }
+
+    public static void updateComponent(ComponentRepresentation rep, ComponentModel component, boolean internal, ComponentUtil componentUtil) {
+        if (rep.getParentId() != null) {
+            component.setParentId(rep.getParentId());
+        }
+
+        if (rep.getProviderType() != null) {
+            component.setProviderType(rep.getProviderType());
+        }
+
+        if (rep.getProviderId() != null) {
+            component.setProviderId(rep.getProviderId());
+        }
+
+        if (rep.getSubType() != null) {
+            component.setSubType(rep.getSubType());
+        }
+
+        Map<String, ProviderConfigProperty> providerConfiguration = null;
+        if (!internal) {
+            providerConfiguration = componentUtil.getComponentConfigProperties(component);
+        }
+
+        if (rep.getConfig() != null) {
+            Set<String> keys = new HashSet<>(rep.getConfig().keySet());
+            for (String k : keys) {
+                if (!internal && !providerConfiguration.containsKey(k)) {
+                    break;
+                }
+
+                List<String> values = rep.getConfig().get(k);
+                if (values == null || values.isEmpty() || values.get(0) == null
+                        || values.get(0).trim().isEmpty()) {
+                    component.getConfig().remove(k);
+                } else {
+                    ListIterator<String> itr = values.listIterator();
+                    while (itr.hasNext()) {
+                        String v = itr.next();
+                        if (v == null || v.trim().isEmpty() || v.equals(ComponentRepresentation.SECRET_VALUE)) {
+                            itr.remove();
+                        }
+                    }
+
+                    if (!values.isEmpty()) {
+                        component.getConfig().put(k, values);
+                    }
+                }
+            }
+        }
+    }
+
+    protected static void importComponents(OrganizationModel newOrganization, MultivaluedHashMap<String, ComponentExportRepresentation> components, String parentId, ComponentProvider componentProvider) {
+        for (Map.Entry<String, List<ComponentExportRepresentation>> entry : components.entrySet()) {
+            String providerType = entry.getKey();
+            for (ComponentExportRepresentation compRep : entry.getValue()) {
+                ComponentModel component = new ComponentModel();
+                component.setId(compRep.getId());
+                component.setName(compRep.getName());
+                component.setConfig(compRep.getConfig());
+                component.setProviderType(providerType);
+                component.setProviderId(compRep.getProviderId());
+                component.setSubType(compRep.getSubType());
+                component.setParentId(parentId);
+
+                component = componentProvider.addComponentModel(newOrganization, component);
+                if (compRep.getSubComponents() != null) {
+                    importComponents(newOrganization, compRep.getSubComponents(), component.getId(), componentProvider);
+                }
+            }
+        }
+    }
 
 }

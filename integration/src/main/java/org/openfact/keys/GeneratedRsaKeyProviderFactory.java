@@ -94,4 +94,8 @@ public class GeneratedRsaKeyProviderFactory extends AbstractRsaKeyProviderFactor
         return CONFIG_PROPERTIES;
     }
 
+    @Override
+    public String getId() {
+        return ID;
+    }
 }

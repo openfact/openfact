@@ -35,8 +35,8 @@ import org.openfact.report.ReportException;
 import org.openfact.report.ReportTemplateProvider;
 import org.openfact.report.ReportTheme;
 import org.openfact.report.ReportThemeProvider;
-import org.openfact.report.ReportThemeProviderType;
-import org.openfact.report.ReportThemeProviderType.ProviderType;
+import org.openfact.report.ReportProviderType;
+import org.openfact.report.ReportProviderType.ProviderType;
 import org.openfact.ubl.jasper.BasicJRDataSource;
 import org.openfact.ubl.jasper.JasperReportTemplateProvider;
 
@@ -55,7 +55,7 @@ public class JasperUBLReportProvider implements UBLReportProvider {
     private Instance<UBLReportDataProvider> providers;
 
     @Inject
-    @ReportThemeProviderType(type = ProviderType.EXTENDING)
+    @ReportProviderType(type = ProviderType.EXTENDING)
     private ReportThemeProvider themeProvider;
 
     @PostConstruct

@@ -27,6 +27,14 @@
             <groupId>org.openfact</groupId>
             <artifactId>openfact-server-spi-private</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.openfact</groupId>
+            <artifactId>openfact-themes</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openfact</groupId>
+            <artifactId>openfact-reports</artifactId>
+        </dependency>
 
         <!-- Java EE 7 -->
         <dependency>
