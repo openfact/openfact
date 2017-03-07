@@ -1,7 +1,7 @@
 package org.openfact.services;
 
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
-import org.openfact.common.OpenfactClientConnection;
+import org.openfact.common.ClientConnection;
 import org.openfact.models.OpenfactContext;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
@@ -13,7 +13,7 @@ import java.net.URI;
 public class DefaultOpenfactContext implements OpenfactContext {
 
     private OrganizationModel organization;
-    private OpenfactClientConnection connection;
+    private ClientConnection connection;
     private OpenfactSession session;
 
     public DefaultOpenfactContext(OpenfactSession session) {
@@ -60,12 +60,12 @@ public class DefaultOpenfactContext implements OpenfactContext {
     }
 
     @Override
-    public OpenfactClientConnection getConnection() {
+    public ClientConnection getConnection() {
         return connection;
     }
 
     @Override
-    public void setConnection(OpenfactClientConnection connection) {
+    public void setConnection(ClientConnection connection) {
         this.connection = connection;
     }
 

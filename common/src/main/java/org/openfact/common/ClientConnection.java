@@ -3,7 +3,7 @@ package org.openfact.common;
 /**
  * Information about the client connection
  */
-public interface OpenfactClientConnection {
+public interface ClientConnection {
 
     String getRemoteAddr();
     String getRemoteHost();

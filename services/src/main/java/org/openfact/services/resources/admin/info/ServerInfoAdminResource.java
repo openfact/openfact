@@ -1,26 +1,22 @@
 package org.openfact.services.resources.admin.info;
 
-import org.openfact.events.OpenfactEventType;
+import org.openfact.events.EventType;
 import org.openfact.events.admin.OperationType;
 import org.openfact.events.admin.ResourceType;
 import org.openfact.keys.KeyProvider;
 import org.openfact.models.component.ComponentFactory;
 import org.openfact.models.provider.ConfiguredProvider;
 import org.openfact.models.provider.ProviderConfigProperty;
-import org.openfact.models.provider.ProviderFactory;
-import org.openfact.models.utils.ComponentUtil;
 import org.openfact.models.utils.ModelToRepresentation;
-import org.openfact.provider.ServerInfoAwareProviderFactory;
+import org.openfact.report.ReportProviderType;
 import org.openfact.report.ReportTheme;
 import org.openfact.report.ReportThemeProvider;
-import org.openfact.report.ReportProviderType;
 import org.openfact.representations.idm.ComponentTypeRepresentation;
 import org.openfact.representations.info.*;
 import org.openfact.services.managers.ServerStartup;
 import org.openfact.theme.Theme;
 import org.openfact.theme.ThemeProvider;
 import org.openfact.theme.ThemeProviderType;
-import sun.security.provider.ConfigFile;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Any;
@@ -38,7 +34,7 @@ import java.util.*;
 @Stateless
 public class ServerInfoAdminResource {
 
-    private static final Map<String, List<String>> ENUMS = createEnumsMap(OpenfactEventType.class, OperationType.class, ResourceType.class);
+    private static final Map<String, List<String>> ENUMS = createEnumsMap(EventType.class, OperationType.class, ResourceType.class);
 
     @Inject
     private ServerStartup serverStartup;
@@ -54,6 +50,9 @@ public class ServerInfoAdminResource {
     @Inject
     @Any
     private Instance<ComponentFactory> componentFactories;
+
+    @Inject
+    private ModelToRepresentation modelToRepresentation;
 
     private static Map<String, List<String>> createEnumsMap(Class... enums) {
         Map<String, List<String>> m = new HashMap<>();
@@ -74,6 +73,7 @@ public class ServerInfoAdminResource {
 
     /**
      * General information about the server
+     *
      * @return
      */
     @GET
@@ -108,7 +108,7 @@ public class ServerInfoAdminResource {
             if (configProperties == null) {
                 configProperties = Collections.EMPTY_LIST;
             }
-            rep.setProperties(ModelToRepresentation.toRepresentation(configProperties));
+            rep.setProperties(modelToRepresentation.toRepresentation(configProperties));
 
             types.add(rep);
         }

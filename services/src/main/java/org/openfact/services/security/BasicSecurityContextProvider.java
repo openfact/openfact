@@ -5,10 +5,10 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
 import org.openfact.services.ForbiddenException;
+import org.openfact.services.resource.security.ClientUser;
 import org.openfact.services.resource.security.OrganizationAuth;
 import org.openfact.services.resource.security.Resource;
 import org.openfact.services.resource.security.SecurityContextProvider;
-import org.openfact.services.resource.security.ClientUser;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Alternative;
@@ -81,10 +81,15 @@ public class BasicSecurityContextProvider implements SecurityContextProvider {
     public class DefaultOrganizationAuth implements OrganizationAuth {
 
         private final HttpServletRequest httpServletRequest;
-        private final Resource resource;
+        private Resource resource;
 
         public DefaultOrganizationAuth(HttpServletRequest httpServletRequest, Resource resource) {
             this.httpServletRequest = httpServletRequest;
+            this.resource = resource;
+        }
+
+        @Override
+        public void init(Resource resource) {
             this.resource = resource;
         }
 

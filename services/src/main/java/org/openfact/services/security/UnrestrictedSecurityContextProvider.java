@@ -69,6 +69,10 @@ public class UnrestrictedSecurityContextProvider implements SecurityContextProvi
         }
 
         @Override
+        public void init(Resource resource) {
+        }
+
+        @Override
         public void requireAny() {
         }
 

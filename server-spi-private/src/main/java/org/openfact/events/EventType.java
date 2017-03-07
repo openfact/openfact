@@ -1,6 +1,6 @@
 package org.openfact.events;
 
-public enum OpenfactEventType {
+public enum EventType {
 
     INVOICE(true),
 
@@ -10,7 +10,7 @@ public enum OpenfactEventType {
 
     private boolean saveByDefault;
 
-    OpenfactEventType(boolean saveByDefault) {
+    EventType(boolean saveByDefault) {
         this.saveByDefault = saveByDefault;
     }
 

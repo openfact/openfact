@@ -3,10 +3,10 @@ package org.openfact.events.jpa;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jboss.logging.Logger;
-import org.openfact.events.OpenfactEvent;
-import org.openfact.events.OpenfactEventQuery;
-import org.openfact.events.OpenfactEventStoreProvider;
-import org.openfact.events.OpenfactEventType;
+import org.openfact.events.Event;
+import org.openfact.events.EventQuery;
+import org.openfact.events.EventStoreProvider;
+import org.openfact.events.EventType;
 import org.openfact.events.admin.*;
 
 import javax.ejb.Stateless;
@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Stateless
-public class JpaEventStoreProvider implements OpenfactEventStoreProvider {
+public class JpaEventStoreProvider implements EventStoreProvider {
 
     private static final ObjectMapper mapper = new ObjectMapper();
     private static final TypeReference<Map<String, String>> mapType = new TypeReference<Map<String, String>>() {
@@ -26,7 +26,7 @@ public class JpaEventStoreProvider implements OpenfactEventStoreProvider {
     private static final Logger logger = Logger.getLogger(JpaEventStoreProvider.class);
 
     @Inject
-    private OpenfactEventQuery eventQuery;
+    private EventQuery eventQuery;
 
     @Inject
     private AdminEventQuery adminEventQuery;
@@ -34,7 +34,7 @@ public class JpaEventStoreProvider implements OpenfactEventStoreProvider {
     @PersistenceContext
     private EntityManager em;
 
-    static EventEntity convertEvent(OpenfactEvent event) {
+    static EventEntity convertEvent(Event event) {
         EventEntity eventEntity = new EventEntity();
         eventEntity.setId(UUID.randomUUID().toString());
         eventEntity.setTime(event.getTime());
@@ -51,10 +51,10 @@ public class JpaEventStoreProvider implements OpenfactEventStoreProvider {
         return eventEntity;
     }
 
-    static OpenfactEvent convertEvent(EventEntity eventEntity) {
-        OpenfactEvent event = new OpenfactEvent();
+    static Event convertEvent(EventEntity eventEntity) {
+        Event event = new Event();
         event.setTime(eventEntity.getTime());
-        event.setType(OpenfactEventType.valueOf(eventEntity.getType()));
+        event.setType(EventType.valueOf(eventEntity.getType()));
         event.setOrganizationId(eventEntity.getOrganizationId());
         event.setUserId(eventEntity.getUserId());
         event.setIpAddress(eventEntity.getIpAddress());
@@ -124,7 +124,7 @@ public class JpaEventStoreProvider implements OpenfactEventStoreProvider {
     }
 
     @Override
-    public OpenfactEventQuery createQuery() {
+    public EventQuery createQuery() {
         return eventQuery;
     }
 
@@ -144,7 +144,7 @@ public class JpaEventStoreProvider implements OpenfactEventStoreProvider {
     }
 
     @Override
-    public void onEvent(OpenfactEvent event) {
+    public void onEvent(Event event) {
         em.persist(convertEvent(event));
     }
 

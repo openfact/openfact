@@ -1,6 +1,9 @@
 package org.openfact.models.utils;
 
 import org.openfact.common.util.MultivaluedHashMap;
+import org.openfact.events.Event;
+import org.openfact.events.admin.AdminEvent;
+import org.openfact.events.admin.AuthDetails;
 import org.openfact.models.AdminJobReport;
 import org.openfact.models.DocumentModel;
 import org.openfact.models.OrganizationModel;
@@ -9,13 +12,19 @@ import org.openfact.models.component.ComponentModel;
 import org.openfact.models.provider.ProviderConfigProperty;
 import org.openfact.representations.idm.*;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+@Stateless
 public class ModelToRepresentation {
 
-    public static OrganizationRepresentation toRepresentation(OrganizationModel organization, boolean internal) {
+    @Inject
+    private ComponentUtil componentUtil;
+
+    public OrganizationRepresentation toRepresentation(OrganizationModel organization, boolean internal) {
         /**
          * General information
          */
@@ -109,7 +118,7 @@ public class ModelToRepresentation {
         return rep;
     }
 
-    public static DocumentRepresentation toRepresentation(DocumentModel model) {
+    public DocumentRepresentation toRepresentation(DocumentModel model) {
         DocumentRepresentation rep = new DocumentRepresentation();
 
         rep.setId(model.getId());
@@ -157,7 +166,7 @@ public class ModelToRepresentation {
         return rep;
     }
 
-    public static OrganizationEventsConfigRepresentation toEventsConfigReprensetation(OrganizationModel organization) {
+    public OrganizationEventsConfigRepresentation toEventsConfigReprensetation(OrganizationModel organization) {
         OrganizationEventsConfigRepresentation rep = new OrganizationEventsConfigRepresentation();
         rep.setEventsEnabled(organization.isEventsEnabled());
 
@@ -176,45 +185,45 @@ public class ModelToRepresentation {
         return rep;
     }
 
-//    public static EventRepresentation toRepresentation(OpenfactEvent event) {
-//        EventRepresentation rep = new EventRepresentation();
-//        rep.setTime(event.getTime());
-//        rep.setType(event.getType().toString());
-//        rep.setOrganizationId(event.getOrganizationId());
-//        rep.setUserId(event.getUserId());
-//        rep.setIpAddress(event.getIpAddress());
-//        rep.setError(event.getError());
-//        rep.setDetails(event.getDetails());
-//        return rep;
-//    }
-//
-//    public static AdminEventRepresentation toRepresentation(AdminEvent adminEvent) {
-//        AdminEventRepresentation rep = new AdminEventRepresentation();
-//        rep.setTime(adminEvent.getTime());
-//        rep.setOrganizationId(adminEvent.getOrganizationId());
-//        if (adminEvent.getAuthDetails() != null) {
-//            rep.setAuthDetails(toRepresentation(adminEvent.getAuthDetails()));
-//        }
-//        rep.setOperationType(adminEvent.getOperationType().toString());
-//        if (adminEvent.getResourceType() != null) {
-//            rep.setResourceType(adminEvent.getResourceType().toString());
-//        }
-//        rep.setResourcePath(adminEvent.getResourcePath());
-//        rep.setRepresentation(adminEvent.getRepresentation());
-//        rep.setError(adminEvent.getError());
-//
-//        return rep;
-//    }
-//
-//    public static AuthDetailsRepresentation toRepresentation(AuthDetails authDetails) {
-//        AuthDetailsRepresentation rep = new AuthDetailsRepresentation();
-//        rep.setOrganizationId(authDetails.getOrganizationId());
-//        rep.setUserId(authDetails.getUserId());
-//        rep.setIpAddress(authDetails.getIpAddress());
-//        return rep;
-//    }
+    public EventRepresentation toRepresentation(Event event) {
+        EventRepresentation rep = new EventRepresentation();
+        rep.setTime(event.getTime());
+        rep.setType(event.getType().toString());
+        rep.setOrganizationId(event.getOrganizationId());
+        rep.setUserId(event.getUserId());
+        rep.setIpAddress(event.getIpAddress());
+        rep.setError(event.getError());
+        rep.setDetails(event.getDetails());
+        return rep;
+    }
 
-    public static List<ConfigPropertyRepresentation> toRepresentation(List<ProviderConfigProperty> configProperties) {
+    public AdminEventRepresentation toRepresentation(AdminEvent adminEvent) {
+        AdminEventRepresentation rep = new AdminEventRepresentation();
+        rep.setTime(adminEvent.getTime());
+        rep.setOrganizationId(adminEvent.getOrganizationId());
+        if (adminEvent.getAuthDetails() != null) {
+            rep.setAuthDetails(toRepresentation(adminEvent.getAuthDetails()));
+        }
+        rep.setOperationType(adminEvent.getOperationType().toString());
+        if (adminEvent.getResourceType() != null) {
+            rep.setResourceType(adminEvent.getResourceType().toString());
+        }
+        rep.setResourcePath(adminEvent.getResourcePath());
+        rep.setRepresentation(adminEvent.getRepresentation());
+        rep.setError(adminEvent.getError());
+
+        return rep;
+    }
+
+    public AuthDetailsRepresentation toRepresentation(AuthDetails authDetails) {
+        AuthDetailsRepresentation rep = new AuthDetailsRepresentation();
+        rep.setOrganizationId(authDetails.getOrganizationId());
+        rep.setUserId(authDetails.getUserId());
+        rep.setIpAddress(authDetails.getIpAddress());
+        return rep;
+    }
+
+    public List<ConfigPropertyRepresentation> toRepresentation(List<ProviderConfigProperty> configProperties) {
         List<ConfigPropertyRepresentation> propertiesRep = new LinkedList<>();
         for (ProviderConfigProperty prop : configProperties) {
             ConfigPropertyRepresentation propRep = toRepresentation(prop);
@@ -223,7 +232,7 @@ public class ModelToRepresentation {
         return propertiesRep;
     }
 
-    public static ConfigPropertyRepresentation toRepresentation(ProviderConfigProperty prop) {
+    public ConfigPropertyRepresentation toRepresentation(ProviderConfigProperty prop) {
         ConfigPropertyRepresentation propRep = new ConfigPropertyRepresentation();
         propRep.setName(prop.getName());
         propRep.setLabel(prop.getLabel());
@@ -235,7 +244,7 @@ public class ModelToRepresentation {
         return propRep;
     }
 
-    public static ComponentRepresentation toRepresentation(ComponentModel component, boolean internal, ComponentUtil componentUtil) {
+    public ComponentRepresentation toRepresentation(ComponentModel component, boolean internal) {
         ComponentRepresentation rep = new ComponentRepresentation();
         rep.setId(component.getId());
         rep.setName(component.getName());
@@ -265,7 +274,7 @@ public class ModelToRepresentation {
         return rep;
     }
 
-    public static SendEventRepresentation toRepresentation(SendEventModel model) {
+    public SendEventRepresentation toRepresentation(SendEventModel model) {
         SendEventRepresentation rep = new SendEventRepresentation();
         rep.setId(model.getId());
         rep.setDestinyType(model.getDestityType().toString());
@@ -292,7 +301,7 @@ public class ModelToRepresentation {
         return rep;
     }
 
-    public static JobReportRepresentation toRepresentation(AdminJobReport model) {
+    public JobReportRepresentation toRepresentation(AdminJobReport model) {
         JobReportRepresentation rep = new JobReportRepresentation();
         rep.setId(model.getId());
         rep.setJobName(model.getJobName());

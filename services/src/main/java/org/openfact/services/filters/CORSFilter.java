@@ -1,12 +1,12 @@
 package org.openfact.services.filters;
 
-import javax.ws.rs.ext.Provider;
-import javax.ws.rs.container.ContainerResponseFilter;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
+import javax.ws.rs.container.ContainerResponseFilter;
+import javax.ws.rs.ext.Provider;
 
 @Provider
-public class OpenfactCORSFilter implements ContainerResponseFilter {
+public class CORSFilter implements ContainerResponseFilter {
 
     @Override
     public void filter(ContainerRequestContext request, ContainerResponseContext response) {
@@ -16,5 +16,5 @@ public class OpenfactCORSFilter implements ContainerResponseFilter {
         response.getHeaders().putSingle("Access-Control-Allow-Headers", "Content-Type, User-Agent, X-Requested-With, X-Requested-By, Cache-Control, Authorization");
         response.getHeaders().putSingle("Access-Control-Allow-Credentials", "true");
     }
-    
+
 }

@@ -30,13 +30,10 @@ public class OrganizationManager {
     private OrganizationProvider model;
 
     @Inject
-    private ComponentProvider componentProvider;
-
-    @Inject
-    private DefaultKeyProviders defaultKeyProviders;
-
-    @Inject
     private javax.enterprise.event.Event<ProviderEvent> event;
+
+    @Inject
+    private RepresentationToModel representationToModel;
 
     public OrganizationModel getOpenfactAdminstrationOrganization() {
         return getOrganization(Config.getAdminOrganization());
@@ -86,7 +83,7 @@ public class OrganizationManager {
         // setup defaults
         setupOrganizationDefaults(organization);
 
-        RepresentationToModel.importOrganization(rep, organization, componentProvider, defaultKeyProviders);
+        representationToModel.importOrganization(rep, organization);
 
         // Create periodic tasks for send documents
         schedulePeriodicTask(organization);
@@ -126,9 +123,9 @@ public class OrganizationManager {
     public static long numero = 5L;
 
     public void schedulePeriodicTask(OrganizationModel organization) {
-        managedScheduledExecutorService.scheduleAtFixedRate(() -> {
+        /*managedScheduledExecutorService.scheduleAtFixedRate(() -> {
             System.out.println(organization.getName() + " " + System.currentTimeMillis());
-        }, 0L, numero++, TimeUnit.SECONDS);
+        }, 0L, numero++, TimeUnit.SECONDS);*/
     }
 
     public void reschedulePeriodicTask(OrganizationModel organization) {

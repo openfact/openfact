@@ -1,39 +1,36 @@
 package org.openfact.services.resources.admin;
 
 import org.jboss.logging.Logger;
-import org.keycloak.common.util.Time;
-import org.openfact.common.OpenfactClientConnection;
-import org.openfact.events.OpenfactEventStoreProvider;
+import org.openfact.common.ClientConnection;
 import org.openfact.events.admin.AdminEvent;
 import org.openfact.events.admin.AuthDetails;
 import org.openfact.events.admin.OperationType;
 import org.openfact.events.admin.ResourceType;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.services.resource.security.ClientUser;
 import org.openfact.util.JsonSerialization;
 
-import javax.ejb.Stateless;
-import javax.enterprise.event.Event;
-import javax.inject.Inject;
 import javax.ws.rs.core.UriInfo;
 import java.io.IOException;
 
-@Stateless
 public class AdminEventBuilder {
 
     protected static final Logger logger = Logger.getLogger(AdminEventBuilder.class);
 
-    @Inject
-    private OpenfactEventStoreProvider eventStoreProvider;
+    private AdminEvent adminEvent;
+    private String organizationName;
 
-    @Inject
-    private Event<AdminEvent> event;
+    public AdminEventBuilder(OrganizationModel organization, ClientUser clientUser, OpenfactSession session, ClientConnection clientConnection) {
+        adminEvent = new AdminEvent();
 
-    private OrganizationModel organization;
-    private AdminEvent adminEvent = new AdminEvent();
+        organizationName = organization.getName();
+        organization(organization);
+        clientUser(clientUser);
+        authIpAddress(clientConnection.getRemoteAddr());
+    }
 
     public AdminEventBuilder organization(OrganizationModel organization) {
-        this.organization = organization;
         adminEvent.setOrganizationId(organization.getId());
         return this;
     }
@@ -50,7 +47,7 @@ public class AdminEventBuilder {
         return this;
     }
 
-    public AdminEventBuilder clientConnection(OpenfactClientConnection clientConnection) {
+    public AdminEventBuilder clientConnection(ClientConnection clientConnection) {
         authIpAddress(clientConnection.getRemoteAddr());
         return this;
     }
@@ -115,7 +112,7 @@ public class AdminEventBuilder {
 
         StringBuilder sb = new StringBuilder();
         sb.append("/organizations/");
-        sb.append(organization.getName());
+        sb.append(organizationName);
         sb.append("/");
         String organizationRelative = sb.toString();
 
@@ -136,30 +133,6 @@ public class AdminEventBuilder {
 
     public AdminEvent getEvent() {
         return adminEvent;
-    }
-
-    public void success() {
-        if (organization.isAdminEventsEnabled()) {
-            send();
-        }
-    }
-
-    private void send() {
-        boolean includeRepresentation = false;
-        if (organization.isAdminEventsDetailsEnabled()) {
-            includeRepresentation = true;
-        }
-        adminEvent.setTime(Time.toMillis(Time.currentTime()));
-
-        if (eventStoreProvider != null) {
-            try {
-                eventStoreProvider.onEvent(adminEvent, includeRepresentation);
-            } catch (Throwable t) {
-                logger.error("Failed to save event", t);
-            }
-        }
-
-        event.fire(adminEvent);
     }
 
 }

@@ -12,12 +12,12 @@ public class OpenfactEventBuilder {
 
     private static final Logger log = Logger.getLogger(OpenfactEventBuilder.class);
 
-    private OpenfactEventStoreProvider store;
+    private EventStoreProvider store;
     private List<OpenfactEventListenerProvider> listeners;
     private OrganizationModel organization;
-    private OpenfactEvent event;
+    private Event event;
 
-    private OpenfactEventBuilder(OpenfactEventStoreProvider store, List<OpenfactEventListenerProvider> listeners, OrganizationModel organization, OpenfactEvent event) {
+    private OpenfactEventBuilder(EventStoreProvider store, List<OpenfactEventListenerProvider> listeners, OrganizationModel organization, Event event) {
         this.store = store;
         this.listeners = listeners;
         this.organization = organization;
@@ -49,7 +49,7 @@ public class OpenfactEventBuilder {
         return this;
     }
 
-    public OpenfactEventBuilder event(OpenfactEventType e) {
+    public OpenfactEventBuilder event(EventType e) {
         event.setType(e);
         return this;
     }
@@ -73,7 +73,7 @@ public class OpenfactEventBuilder {
         return this;
     }
 
-    public OpenfactEvent getEvent() {
+    public Event getEvent() {
         return event;
     }
 
@@ -83,7 +83,7 @@ public class OpenfactEventBuilder {
 
     public void error(String error) {
         if (!event.getType().name().endsWith("_ERROR")) {
-            event.setType(OpenfactEventType.valueOf(event.getType().name() + "_ERROR"));
+            event.setType(EventType.valueOf(event.getType().name() + "_ERROR"));
         }
         event.setError(error);
         send();

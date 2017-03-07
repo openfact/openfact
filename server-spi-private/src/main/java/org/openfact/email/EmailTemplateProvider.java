@@ -3,7 +3,7 @@ package org.openfact.email;
 import java.util.List;
 import java.util.Map;
 
-import org.openfact.events.OpenfactEvent;
+import org.openfact.events.Event;
 import org.openfact.models.DocumentModel;
 import org.openfact.models.OrganizationModel;
 
@@ -17,7 +17,7 @@ public interface EmailTemplateProvider {
     
     EmailTemplateProvider setAttachments(List<EmailFileModel> files);
 
-    void sendEvent(OpenfactEvent event) throws EmailException;
+    void sendEvent(Event event) throws EmailException;
     
     void send(String subjectKey, String template, Map<String, Object> attributes) throws EmailException;
 

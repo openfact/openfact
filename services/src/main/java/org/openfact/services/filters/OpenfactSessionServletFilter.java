@@ -2,7 +2,7 @@ package org.openfact.services.filters;
 
 
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
-import org.openfact.common.OpenfactClientConnection;
+import org.openfact.common.ClientConnection;
 import org.openfact.models.OpenfactSession;
 import org.openfact.services.DefaultOpenfactSession;
 
@@ -26,7 +26,7 @@ public class OpenfactSessionServletFilter implements Filter {
 
         OpenfactSession session = new DefaultOpenfactSession();
         ResteasyProviderFactory.pushContext(OpenfactSession.class, session);
-        OpenfactClientConnection clientConnection = new OpenfactClientConnection() {
+        ClientConnection clientConnection = new ClientConnection() {
             @Override
             public String getRemoteAddr() {
                 return httpServletRequest.getRemoteAddr();
@@ -54,7 +54,7 @@ public class OpenfactSessionServletFilter implements Filter {
         };
 
         session.getContext().setConnection(clientConnection);
-        ResteasyProviderFactory.pushContext(OpenfactClientConnection.class, clientConnection);
+        ResteasyProviderFactory.pushContext(ClientConnection.class, clientConnection);
 
         try {
             chain.doFilter(request, response);

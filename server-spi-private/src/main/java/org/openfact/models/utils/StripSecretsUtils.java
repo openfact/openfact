@@ -5,14 +5,20 @@ import org.openfact.representations.idm.ComponentRepresentation;
 import org.openfact.representations.idm.IdentityProviderRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+@Stateless
 public class StripSecretsUtils {
 
-    public static ComponentRepresentation strip(ComponentUtil componentUtil, ComponentRepresentation rep) {
+    @Inject
+    private ComponentUtil componentUtil;
+
+    public ComponentRepresentation strip(ComponentRepresentation rep) {
         Map<String, ProviderConfigProperty> configProperties = componentUtil.getComponentConfigProperties(rep);
         if (rep.getConfig() == null) {
             return rep;
@@ -33,14 +39,14 @@ public class StripSecretsUtils {
         return rep;
     }
 
-    public static OrganizationRepresentation strip(OrganizationRepresentation rep) {
+    public OrganizationRepresentation strip(OrganizationRepresentation rep) {
         if (rep.getSmtpServer() != null && rep.getSmtpServer().containsKey("password")) {
             rep.getSmtpServer().put("password", ComponentRepresentation.SECRET_VALUE);
         }
         return rep;
     }
 
-    public static IdentityProviderRepresentation strip(IdentityProviderRepresentation rep) {
+    public IdentityProviderRepresentation strip(IdentityProviderRepresentation rep) {
         if (rep.getConfig() != null && rep.getConfig().containsKey("clientSecret")) {
             rep.getConfig().put("clientSecret", ComponentRepresentation.SECRET_VALUE);
         }

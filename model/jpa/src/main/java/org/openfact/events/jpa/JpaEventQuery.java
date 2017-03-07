@@ -1,8 +1,8 @@
 package org.openfact.events.jpa;
 
-import org.openfact.events.OpenfactEvent;
-import org.openfact.events.OpenfactEventQuery;
-import org.openfact.events.OpenfactEventType;
+import org.openfact.events.Event;
+import org.openfact.events.EventQuery;
+import org.openfact.events.EventType;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
@@ -19,7 +19,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Stateless
-public class JpaEventQuery implements OpenfactEventQuery {
+public class JpaEventQuery implements EventQuery {
 
     private CriteriaBuilder cb;
     private CriteriaQuery<EventEntity> cq;
@@ -42,9 +42,9 @@ public class JpaEventQuery implements OpenfactEventQuery {
     }
 
     @Override
-    public OpenfactEventQuery type(OpenfactEventType... types) {
+    public EventQuery type(EventType... types) {
         List<String> eventStrings = new LinkedList<String>();
-        for (OpenfactEventType e : types) {
+        for (EventType e : types) {
             eventStrings.add(e.toString());
         }
         predicates.add(root.get("type").in(eventStrings));
@@ -52,49 +52,49 @@ public class JpaEventQuery implements OpenfactEventQuery {
     }
 
     @Override
-    public OpenfactEventQuery organization(String organizationId) {
+    public EventQuery organization(String organizationId) {
         predicates.add(cb.equal(root.get("organizationId"), organizationId));
         return this;
     }
 
     @Override
-    public OpenfactEventQuery user(String userId) {
+    public EventQuery user(String userId) {
         predicates.add(cb.equal(root.get("userId"), userId));
         return this;
     }
 
     @Override
-    public OpenfactEventQuery fromDate(Date fromDate) {
+    public EventQuery fromDate(Date fromDate) {
         predicates.add(cb.greaterThanOrEqualTo(root.<Long>get("time"), fromDate.getTime()));
         return this;
     }
 
     @Override
-    public OpenfactEventQuery toDate(Date toDate) {
+    public EventQuery toDate(Date toDate) {
         predicates.add(cb.lessThanOrEqualTo(root.<Long>get("time"), toDate.getTime()));
         return this;
     }
 
     @Override
-    public OpenfactEventQuery ipAddress(String ipAddress) {
+    public EventQuery ipAddress(String ipAddress) {
         predicates.add(cb.equal(root.get("ipAddress"), ipAddress));
         return this;
     }
 
     @Override
-    public OpenfactEventQuery firstResult(int firstResult) {
+    public EventQuery firstResult(int firstResult) {
         this.firstResult = firstResult;
         return this;
     }
 
     @Override
-    public OpenfactEventQuery maxResults(int maxResults) {
+    public EventQuery maxResults(int maxResults) {
         this.maxResults = maxResults;
         return this;
     }
 
     @Override
-    public List<OpenfactEvent> getResultList() {
+    public List<Event> getResultList() {
         if (!predicates.isEmpty()) {
             cq.where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
         }
@@ -111,7 +111,7 @@ public class JpaEventQuery implements OpenfactEventQuery {
             query.setMaxResults(maxResults);
         }
 
-        List<OpenfactEvent> events = new LinkedList<OpenfactEvent>();
+        List<Event> events = new LinkedList<Event>();
         for (EventEntity e : query.getResultList()) {
             events.add(JpaEventStoreProvider.convertEvent(e));
         }

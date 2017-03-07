@@ -17,7 +17,7 @@
 
 package org.openfact.email.freemarker.beans;
 
-import org.openfact.events.OpenfactEvent;
+import org.openfact.events.Event;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -28,9 +28,9 @@ import java.util.Map;
  * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
  */
 public class EventBean {
-    private OpenfactEvent event;
+    private Event event;
 
-    public EventBean(OpenfactEvent event) {
+    public EventBean(Event event) {
         this.event = event;
     }
 

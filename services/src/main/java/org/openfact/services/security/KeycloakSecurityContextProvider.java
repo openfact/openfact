@@ -8,10 +8,10 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
 import org.openfact.services.ForbiddenException;
+import org.openfact.services.resource.security.ClientUser;
 import org.openfact.services.resource.security.OrganizationAuth;
 import org.openfact.services.resource.security.Resource;
 import org.openfact.services.resource.security.SecurityContextProvider;
-import org.openfact.services.resource.security.ClientUser;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -132,9 +132,9 @@ public class KeycloakSecurityContextProvider implements SecurityContextProvider 
             this.resource = resource;
         }
 
-        public KeycloakOrganizationAuth init(Resource resource) {
+        @Override
+        public void init(Resource resource) {
             this.resource = resource;
-            return this;
         }
 
         @Override

@@ -27,8 +27,8 @@ import org.openfact.email.EmailException;
 import org.openfact.email.EmailFileModel;
 import org.openfact.email.EmailTemplateProvider;
 import org.openfact.email.EmailUserModel;
-import org.openfact.events.OpenfactEvent;
-import org.openfact.events.OpenfactEventType;
+import org.openfact.events.Event;
+import org.openfact.events.EventType;
 import org.openfact.models.DocumentModel;
 import org.openfact.models.OrganizationModel;
 import org.openfact.theme.FreeMarkerUtil;
@@ -71,7 +71,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
     }
 
     @Override
-    public void sendEvent(OpenfactEvent event) throws EmailException {
+    public void sendEvent(Event event) throws EmailException {
         /*Map<String, Object> attributes = new HashMap<String, Object>();
         attributes.put("user", new ProfileBean(user));
         attributes.put("event", new EventBean(event));
@@ -133,7 +133,7 @@ public class FreeMarkerEmailTemplateProvider implements EmailTemplateProvider {
         }*/
     }
 
-    private String toCamelCase(OpenfactEventType event) {
+    private String toCamelCase(EventType event) {
         StringBuilder sb = new StringBuilder();
         for (String s : event.name().toString().toLowerCase().split("_")) {
             sb.append(ObjectUtil.capitalize(s));

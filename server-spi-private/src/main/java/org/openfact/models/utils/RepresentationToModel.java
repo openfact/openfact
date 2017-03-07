@@ -17,15 +17,27 @@ import org.openfact.representations.idm.search.SearchCriteriaFilterOperatorRepre
 import org.openfact.representations.idm.search.SearchCriteriaFilterRepresentation.FilterValueType;
 import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
+@Stateless
 public class RepresentationToModel {
 
-    public static SearchCriteriaModel toModel(SearchCriteriaRepresentation rep) {
+    @Inject
+    private ComponentUtil componentUtil;
+
+    @Inject
+    private ComponentProvider componentProvider;
+
+    @Inject
+    private DefaultKeyProviders defaultKeyProviders;
+
+    public SearchCriteriaModel toModel(SearchCriteriaRepresentation rep) {
         SearchCriteriaModel model = new SearchCriteriaModel();
 
         // filters
@@ -74,7 +86,7 @@ public class RepresentationToModel {
         return model;
     }
 
-    public static void importOrganization(OrganizationRepresentation rep, OrganizationModel newOrganization, ComponentProvider componentProvider, DefaultKeyProviders defaultKeyProviders) {
+    public void importOrganization(OrganizationRepresentation rep, OrganizationModel newOrganization) {
         newOrganization.setName(rep.getOrganization());
 
         generalUpdateOrganization(newOrganization, rep);
@@ -132,7 +144,7 @@ public class RepresentationToModel {
         }
     }
 
-    public static void updateOrganization(OrganizationRepresentation rep, OrganizationModel organization) {
+    public void updateOrganization(OrganizationRepresentation rep, OrganizationModel organization) {
         if (rep.getOrganization() != null) {
             renameOrganization(organization, rep.getOrganization());
         }
@@ -185,7 +197,7 @@ public class RepresentationToModel {
         }
     }
 
-    public static void renameOrganization(OrganizationModel organization, String name) {
+    public void renameOrganization(OrganizationModel organization, String name) {
         if (name.equals(organization.getName())) {
             return;
         }
@@ -193,7 +205,7 @@ public class RepresentationToModel {
         organization.setName(name);
     }
 
-    public static void generalUpdateOrganization(OrganizationModel organization, OrganizationRepresentation rep) {
+    public void generalUpdateOrganization(OrganizationModel organization, OrganizationRepresentation rep) {
         /*
          * General information
          */
@@ -271,7 +283,7 @@ public class RepresentationToModel {
         }
     }
 
-    public static void updatePostalAddress(OrganizationModel organization, OrganizationRepresentation rep) {
+    public void updatePostalAddress(OrganizationModel organization, OrganizationRepresentation rep) {
         if (rep.getPostalAddress() != null) {
             PostalAddressRepresentation postalAddressRep = rep.getPostalAddress();
             if (postalAddressRep.getPostalAddressId() != null) {
@@ -298,7 +310,7 @@ public class RepresentationToModel {
         }
     }
 
-    public static ComponentModel toModel(ComponentRepresentation rep) {
+    public ComponentModel toModel(ComponentRepresentation rep) {
         ComponentModel model = new ComponentModel();
         model.setParentId(rep.getParentId());
         model.setProviderType(rep.getProviderType());
@@ -330,7 +342,7 @@ public class RepresentationToModel {
         return model;
     }
 
-    public static void updateComponent(ComponentRepresentation rep, ComponentModel component, boolean internal, ComponentUtil componentUtil) {
+    public void updateComponent(ComponentRepresentation rep, ComponentModel component, boolean internal) {
         if (rep.getParentId() != null) {
             component.setParentId(rep.getParentId());
         }
@@ -380,7 +392,7 @@ public class RepresentationToModel {
         }
     }
 
-    protected static void importComponents(OrganizationModel newOrganization, MultivaluedHashMap<String, ComponentExportRepresentation> components, String parentId, ComponentProvider componentProvider) {
+    protected void importComponents(OrganizationModel newOrganization, MultivaluedHashMap<String, ComponentExportRepresentation> components, String parentId, ComponentProvider componentProvider) {
         for (Map.Entry<String, List<ComponentExportRepresentation>> entry : components.entrySet()) {
             String providerType = entry.getKey();
             for (ComponentExportRepresentation compRep : entry.getValue()) {

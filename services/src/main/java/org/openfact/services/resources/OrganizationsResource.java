@@ -1,6 +1,11 @@
 package org.openfact.services.resources;
 
-import java.util.Iterator;
+import org.jboss.resteasy.annotations.cache.NoCache;
+import org.jboss.resteasy.spi.HttpRequest;
+import org.openfact.models.OrganizationModel;
+import org.openfact.representations.idm.PublishedOrganizationRepresentation;
+import org.openfact.services.managers.OrganizationManager;
+import org.openfact.services.resource.OrganizationResourceProvider;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Any;
@@ -9,16 +14,8 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
-
-import org.jboss.resteasy.annotations.cache.NoCache;
-import org.jboss.resteasy.spi.HttpRequest;
-import org.openfact.models.OrganizationModel;
-import org.openfact.representations.idm.PublishedOrganizationRepresentation;
-import org.openfact.services.managers.OrganizationManager;
-import org.openfact.services.resource.OrganizationResourceProvider;
-import org.openfact.services.resources.admin.OrganizationAdminResource;
+import java.util.Iterator;
 
 @Stateless
 @Path("/organizations")
