@@ -30,8 +30,8 @@ import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.util.*;
 
-@Path("/admin/serverinfo")
 @Stateless
+@Path("/admin/serverinfo")
 public class ServerInfoAdminResource {
 
     private static final Map<String, List<String>> ENUMS = createEnumsMap(EventType.class, OperationType.class, ResourceType.class);

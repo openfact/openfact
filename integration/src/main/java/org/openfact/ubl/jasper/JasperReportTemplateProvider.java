@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-public abstract class JasperReportTemplateProvider<T> implements ReportTemplateProvider<T> {
+public abstract class JasperReportTemplateProvider implements ReportTemplateProvider {
 
     public final static String OF_ORGANIZATION= "OF_ORGANIZATION";
 

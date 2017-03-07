@@ -27,6 +27,7 @@ import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.models.utils.UBLUtil;
 import org.openfact.report.ExportFormat;
 import org.openfact.report.ReportException;
+import org.openfact.report.ReportTemplateProvider;
 import org.openfact.representations.idm.DocumentRepresentation;
 import org.openfact.representations.idm.SendEventRepresentation;
 import org.openfact.representations.idm.ThirdPartyEmailRepresentation;
@@ -40,11 +41,11 @@ import org.openfact.services.resource.security.OrganizationAuth;
 import org.openfact.services.resource.security.Resource;
 import org.openfact.services.resource.security.SecurityContextProvider;
 import org.openfact.ubl.UBLReader;
-import org.openfact.ubl.UBLReportProvider;
 import org.w3c.dom.Document;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -60,9 +61,8 @@ import java.util.stream.Collectors;
 @Consumes(MediaType.APPLICATION_JSON)
 public class DocumentsAdminResource {
 
-    private static final Logger logger = Logger.getLogger(DocumentsAdminResource.class);
-
     private static final String UPLOAD_FILE_NAME = "file";
+    private static final Logger logger = Logger.getLogger(DocumentsAdminResource.class);
 
     @Context
     protected UriInfo uriInfo;
@@ -77,19 +77,16 @@ public class DocumentsAdminResource {
     private OrganizationManager organizationManager;
 
     @Inject
+    private DocumentManager documentManager;
+
+    @Inject
+    private EventStoreManager eventStoreManager;
+
+    @Inject
     private SecurityContextProvider securityContext;
 
     @Inject
     private DocumentProvider documentProvider;
-
-    @Inject
-    private DocumentManager documentManager;
-
-    @Inject
-    private DocumentQuery documentQuery;
-
-    @Inject
-    private UBLReportProvider ublReportProvider;
 
     @Inject
     private ModelToRepresentation modelToRepresentation;
@@ -98,7 +95,10 @@ public class DocumentsAdminResource {
     private RepresentationToModel representationToModel;
 
     @Inject
-    private EventStoreManager eventStoreManager;
+    private DocumentQuery documentQuery;
+
+    @Inject
+    private ReportTemplateProvider reportTemplate;
 
     @Inject
     private UBLUtil ublUtil;
@@ -455,8 +455,7 @@ public class DocumentsAdminResource {
 
         ExportFormat exportFormat = ExportFormat.valueOf(format.toUpperCase());
         try {
-            byte[] reportBytes = ublReportProvider.document()
-                    .setOrganization(organization)
+            byte[] reportBytes = reportTemplate.setOrganization(organization)
                     .setThemeName(theme)
                     .getReport(document, exportFormat);
 
@@ -482,7 +481,7 @@ public class DocumentsAdminResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateDocument(@PathParam("organization") final String organizationName,
                                    @PathParam("document") final String documentIdPk,
-                                   DocumentRepresentation rep) {
+                                   @Valid final DocumentRepresentation rep) throws ModelRollbackException {
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
 
@@ -508,13 +507,10 @@ public class DocumentsAdminResource {
 
             return Response.noContent().build();
         } catch (ModelDuplicateException e) {
-            return ErrorResponse.exists("Document exists with same documentId or id");
+            throw new ModelRollbackException("Document exists with same documentId or id", Response.Status.CONFLICT);
         } catch (ModelException me) {
             logger.warn("Could not update document!", me);
-            return ErrorResponse.exists("Could not update user!");
-        } catch (Exception me) { // JPA
-            logger.warn("Could not update document!", me);// may be committed by JTA which can't
-            return ErrorResponse.exists("Could not update document!");
+            throw new ModelRollbackException("Could not update document!");
         }
     }
 
@@ -538,7 +534,7 @@ public class DocumentsAdminResource {
     @DELETE
     @Path("/{document}")
     public Response deleteDocument(@PathParam("organization") final String organizationName,
-                                   @PathParam("document") final String documentIdPk) {
+                                   @PathParam("document") final String documentIdPk) throws ModelRollbackException {
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
 
@@ -554,7 +550,7 @@ public class DocumentsAdminResource {
                     .getEvent());
             return Response.noContent().build();
         } else {
-            return ErrorResponse.error("Document couldn't be deleted", Response.Status.BAD_REQUEST);
+            throw new ModelRollbackException("Document couldn't be deleted", Response.Status.BAD_REQUEST);
         }
     }
 
@@ -562,7 +558,7 @@ public class DocumentsAdminResource {
     @Path("/{document}/send-to-customer")
     @Produces(MediaType.APPLICATION_JSON)
     public Response sendToCustomer(@PathParam("organization") final String organizationName,
-                                   @PathParam("document") final String documentIdPk) {
+                                   @PathParam("document") final String documentIdPk) throws ModelRollbackException {
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
 
@@ -570,14 +566,15 @@ public class DocumentsAdminResource {
 
         DocumentModel document = getDocument(documentIdPk, organization);
 
-        return sendDocument(organization, document, DestinyType.CUSTOMER, null);
+        SendEventModel sendEvent = sendDocument(organization, document, DestinyType.CUSTOMER, null);
+        return Response.ok(modelToRepresentation.toRepresentation(sendEvent)).build();
     }
 
     @POST
     @Path("/{document}/send-to-third-party")
     @Produces(MediaType.APPLICATION_JSON)
     public Response sendToThirdParty(@PathParam("organization") final String organizationName,
-                                     @PathParam("document") final String documentIdPk) {
+                                     @PathParam("document") final String documentIdPk) throws ModelRollbackException {
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
 
@@ -585,7 +582,8 @@ public class DocumentsAdminResource {
 
         DocumentModel document = getDocument(documentIdPk, organization);
 
-        return sendDocument(organization, document, DestinyType.THIRD_PARTY, null);
+        SendEventModel sendEvent = sendDocument(organization, document, DestinyType.THIRD_PARTY, null);
+        return Response.ok(modelToRepresentation.toRepresentation(sendEvent)).build();
     }
 
     @POST
@@ -594,57 +592,50 @@ public class DocumentsAdminResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response sendToThirdPartyByEmail(@PathParam("organization") final String organizationName,
                                             @PathParam("document") final String documentIdPk,
-                                            ThirdPartyEmailRepresentation thirdParty) {
+                                            ThirdPartyEmailRepresentation thirdParty) throws ModelRollbackException {
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
 
         auth.requireManage();
 
         DocumentModel document = getDocument(documentIdPk, organization);
-
         if (thirdParty == null || thirdParty.getEmail() == null) {
             throw new BadRequestException("Invalid email sended");
         }
 
-        return sendDocument(organization, document, DestinyType.CUSTOM_EMAIL, thirdParty.getEmail());
+        SendEventModel sendEvent = sendDocument(organization, document, DestinyType.CUSTOM_EMAIL, thirdParty.getEmail());
+        return Response.ok(modelToRepresentation.toRepresentation(sendEvent)).build();
     }
 
-    private Response sendDocument(OrganizationModel organization, DocumentModel document, DestinyType destiny, String customEmail) {
-        SendEventModel sendEvent = null;
+    private SendEventModel sendDocument(OrganizationModel organization, DocumentModel document, DestinyType destiny, String customEmail) throws ModelRollbackException {
+        final SendEventModel sendEvent = document.addSendEvent(destiny);
         try {
             switch (destiny) {
                 case CUSTOMER:
-                    sendEvent = documentManager.sendToCustomerParty(organization, document);
+                    documentManager.sendToCustomerParty(organization, document, sendEvent);
                     break;
                 case THIRD_PARTY:
-                    sendEvent = documentManager.sendToThirdParty(organization, document);
+                    documentManager.sendToThirdParty(organization, document, sendEvent);
                     break;
                 case CUSTOM_EMAIL:
-                    sendEvent = documentManager.sendToThirdPartyByEmail(organization, document, customEmail);
+                    documentManager.sendToThirdPartyByEmail(organization, document, sendEvent, customEmail);
                     break;
                 default:
-                    throw new IllegalStateException("Invalid " + destiny + " type");
+                    throw new IllegalStateException("Invalid destiny[" + destiny + "] type");
             }
         } catch (ModelInsuficientData e) {
-            if (sendEvent != null) {
-                sendEvent.setResult(SendEventStatus.ERROR);
-                sendEvent.setDescription(e.getMessage());
-            }
-            return ErrorResponse.error(e.getMessage(), Response.Status.BAD_REQUEST);
+            sendEvent.setResult(SendEventStatus.ERROR);
+            sendEvent.setDescription(e.getMessage());
+            throw new ModelRollbackException(e.getMessage(), Response.Status.BAD_REQUEST);
         } catch (SendEventException e) {
-            if (sendEvent != null) {
-                sendEvent.setResult(SendEventStatus.ERROR);
-                if (e.getMessage() != null) {
-                    sendEvent.setDescription(e.getMessage().length() < 200 ? e.getMessage() : e.getMessage().substring(0, 197).concat("..."));
-                } else {
-                    sendEvent.setDescription("Internal Server Error");
-                }
+            sendEvent.setResult(SendEventStatus.ERROR);
+            if (e.getMessage() != null) {
+                sendEvent.setDescription(e.getMessage().length() < 200 ? e.getMessage() : e.getMessage().substring(0, 197).concat("..."));
             }
-            logger.error("Internal Server Error sending to customer", e);
-            return ErrorResponse.error("Internal Server Error", Response.Status.INTERNAL_SERVER_ERROR);
+            logger.error(e.getMessage(), e);
+            throw new ModelRollbackException(e.getMessage(), Response.Status.INTERNAL_SERVER_ERROR);
         }
-
-        return Response.ok(modelToRepresentation.toRepresentation(sendEvent)).build();
+        return sendEvent;
     }
 
     @GET

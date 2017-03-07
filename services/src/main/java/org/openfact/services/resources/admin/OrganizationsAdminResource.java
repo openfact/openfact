@@ -145,7 +145,7 @@ public class OrganizationsAdminResource {
      */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response importOrganization(@Valid final OrganizationRepresentation rep) {
+    public Response importOrganization(@Valid final OrganizationRepresentation rep) throws ModelRollbackException {
         if (!securityContext.getPermittedOrganizations(session).contains(organizationManager.getOpenfactAdminstrationOrganization())) {
             throw new ForbiddenException();
         }
@@ -163,7 +163,7 @@ public class OrganizationsAdminResource {
 
             return Response.created(location).build();
         } catch (ModelDuplicateException e) {
-            return ErrorResponse.exists("Organization with same name exists");
+            throw new ModelRollbackException("Organization with same name exists", Response.Status.CONFLICT);
         }
     }
 
@@ -238,7 +238,7 @@ public class OrganizationsAdminResource {
     @PUT
     @Path("/{organization}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateOrganization(@PathParam("organization") final String organizationName, @Valid final OrganizationRepresentation rep) {
+    public Response updateOrganization(@PathParam("organization") final String organizationName, @Valid final OrganizationRepresentation rep) throws ModelRollbackException {
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
 
@@ -246,8 +246,7 @@ public class OrganizationsAdminResource {
 
         logger.debug("updating organization: " + organization.getName());
 
-        if (Config.getAdminOrganization().equals(organization.getName())
-                && (rep.getOrganization() != null && !rep.getOrganization().equals(Config.getAdminOrganization()))) {
+        if (Config.getAdminOrganization().equals(organization.getName()) && (rep.getOrganization() != null && !rep.getOrganization().equals(Config.getAdminOrganization()))) {
             return ErrorResponse.error("Can't rename master organization", Response.Status.BAD_REQUEST);
         }
 
@@ -282,10 +281,10 @@ public class OrganizationsAdminResource {
                     .getEvent());
             return Response.noContent().build();
         } catch (ModelDuplicateException e) {
-            return ErrorResponse.exists("Organization with same name exists");
+            throw new ModelRollbackException("Organization with same name exists", Response.Status.CONFLICT);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return ErrorResponse.error("Failed to update organization", Response.Status.INTERNAL_SERVER_ERROR);
+            throw new ModelRollbackException("Failed to update organization", Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -375,7 +374,7 @@ public class OrganizationsAdminResource {
     @POST
     @Path("/{organization}/components")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response create(@PathParam("organization") final String organizationName, ComponentRepresentation rep) {
+    public Response create(@PathParam("organization") final String organizationName, ComponentRepresentation rep) throws ModelRollbackException {
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
 
@@ -393,9 +392,9 @@ public class OrganizationsAdminResource {
                     .getEvent());
             return Response.created(uriInfo.getAbsolutePathBuilder().path(model.getId()).build()).build();
         } catch (ComponentValidationException e) {
-            return ErrorResponse.error("Component validation exception", Response.Status.BAD_REQUEST);
+            throw new ModelRollbackException("Component validation exception", Response.Status.BAD_REQUEST);
         } catch (IllegalArgumentException e) {
-            throw new BadRequestException(e);
+            throw new ModelRollbackException(e.getMessage(), Response.Status.BAD_REQUEST);
         }
     }
 
@@ -420,7 +419,7 @@ public class OrganizationsAdminResource {
     @Path("/{organization}/components/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateComponent(@PathParam("organization") final String organizationName,
-                                    @PathParam("id") String id, ComponentRepresentation rep) {
+                                    @PathParam("id") String id, ComponentRepresentation rep) throws ModelRollbackException {
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
 
@@ -440,9 +439,9 @@ public class OrganizationsAdminResource {
             componentProvider.updateComponent(organization, model);
             return Response.noContent().build();
         } catch (ComponentValidationException e) {
-            return ErrorResponse.error("Component validation exception", Response.Status.BAD_REQUEST);
+            throw new ModelRollbackException("Component validation exception", Response.Status.BAD_REQUEST);
         } catch (IllegalArgumentException e) {
-            throw new BadRequestException();
+            throw new ModelRollbackException(e.getMessage(), Response.Status.BAD_REQUEST);
         }
     }
 
@@ -826,4 +825,5 @@ public class OrganizationsAdminResource {
     public DocumentsAdminResource documents() {
         return documentsAdminResource;
     }
+
 }

@@ -16,16 +16,17 @@
  *******************************************************************************/
 package org.openfact.report;
 
+import org.openfact.models.DocumentModel;
 import org.openfact.models.OrganizationModel;
 
-public interface ReportTemplateProvider<T> {
+public interface ReportTemplateProvider {
 
-    ReportTemplateProvider<T> setOrganization(OrganizationModel organization);
+    ReportTemplateProvider setOrganization(OrganizationModel organization);
 
-    ReportTemplateProvider<T> setThemeName(String themeName);
+    ReportTemplateProvider setThemeName(String themeName);
 
-    ReportTemplateProvider<T> setParameter(String name, Object value);
+    ReportTemplateProvider setParameter(String name, Object value);
 
-    byte[] getReport(T t, ExportFormat exportFormat) throws ReportException;
+    byte[] getReport(DocumentModel document, ExportFormat exportFormat) throws ReportException;
 
 }
