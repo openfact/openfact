@@ -2,18 +2,15 @@
   "admin": {
     "organization": "master"
   },
-
   "adminConsole": {
     "url": "http://localhost:4200"
   },
-
   "eventsListener": {
     "jboss-logging": {
       "success-level": "debug",
       "error-level": "warn"
     }
   },
-
   "theme": {
     "staticMaxAge": "${openfact.theme.staticMaxAge:2592000}",
     "cacheTemplates": "${openfact.theme.cacheTemplates:true}",
@@ -22,10 +19,19 @@
       "dir": "${openfact.theme.dir}"
     }
   },
-
   "report": {
     "folder": {
       "dir": "${openfact.report.dir}"
     }
+  },
+
+  "invoice": {
+    "provider": "default"
+  },
+  "credit_note": {
+    "provider": "default"
+  },
+  "debit_note": {
+    "provider": "default"
   }
 }

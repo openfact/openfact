@@ -1,20 +1,3 @@
-/*******************************************************************************
- * Copyright 2016 Sistcoop, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
-
 package org.openfact.email;
 
 import org.jboss.logging.Logger;
@@ -49,29 +32,31 @@ public class DefaultEmailSenderProvider implements EmailSenderProvider {
 
     @Inject
     private JSSETruststoreConfigurator configurator;
-    
-    @Override
-    public void send(OrganizationModel organization, EmailUserModel user, String subject, String textBody, String htmlBody) throws EmailException {
-        send(organization, user, subject, textBody, htmlBody, null);
-    }
 
     private void setupTruststore(Properties props) throws NoSuchAlgorithmException, KeyManagementException {
-        /*SSLSocketFactory factory = configurator.getSSLSocketFactory();
+        SSLSocketFactory factory = configurator.getSSLSocketFactory();
         if (factory != null) {
             props.put("mail.smtp.ssl.socketFactory", factory);
             if (configurator.getProvider().getPolicy() == HostnameVerificationPolicy.ANY) {
                 props.setProperty("mail.smtp.ssl.trust", "*");
             }
-        }*/
+        }
+    }
+
+    protected String retrieveEmailAddress(EmailUserModel user) {
+        return user.getEmail();
     }
 
     @Override
-    public void send(OrganizationModel organization, EmailUserModel user, String subject, String textBody,
-                     String htmlBody, List<EmailFileModel> attachments) throws EmailException {
+    public void send(OrganizationModel organization, EmailUserModel user, String subject, String textBody, String htmlBody) throws EmailException {
+        send(organization, user, subject, textBody, htmlBody, null);
+    }
 
+    @Override
+    public void send(OrganizationModel organization, EmailUserModel user, String subject, String textBody, String htmlBody, List<EmailFileModel> attachments) throws EmailException {
         Transport transport = null;
         try {
-            String address = user.getEmail();
+            String address = retrieveEmailAddress(user);
             Map<String, String> config = organization.getSmtpConfig();
 
             Properties props = new Properties();
@@ -149,7 +134,7 @@ public class DefaultEmailSenderProvider implements EmailSenderProvider {
                 transport.connect();
             }
             transport.sendMessage(msg, new InternetAddress[]{new InternetAddress(address)});
-        } catch (Exception e) {            
+        } catch (Exception e) {
             logger.error("Failed to send email", e);
             throw new EmailException(e);
         } finally {
