@@ -38,8 +38,8 @@ public class DefaultUBLSenderProvider implements UBLSender<DocumentModel> {
 
     @Override
     public SendEventModel sendToThirdParty(OrganizationModel organization, DocumentModel invoice) throws ModelInsuficientData, SendEventException {
-//        SendEventModel sendEvent = invoice.addSendEvent(DestinyType.THIRD_PARTY);
-//        sendToThirdParty(organization, invoice, sendEvent);
+//        SendEventModel sendEvent = io.addSendEvent(DestinyType.THIRD_PARTY);
+//        sendToThirdParty(organization, io, sendEvent);
 //        return sendEvent;
         return null;
     }

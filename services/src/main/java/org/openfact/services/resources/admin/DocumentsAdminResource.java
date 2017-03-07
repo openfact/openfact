@@ -7,6 +7,7 @@ import org.jboss.resteasy.annotations.cache.NoCache;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 import org.json.JSONObject;
+import org.openfact.Config;
 import org.openfact.common.ClientConnection;
 import org.openfact.events.admin.OperationType;
 import org.openfact.events.admin.ResourceType;
@@ -21,6 +22,7 @@ import org.openfact.models.types.DocumentType;
 import org.openfact.models.types.SendEventStatus;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.RepresentationToModel;
+import org.openfact.models.utils.UBLUtil;
 import org.openfact.report.ExportFormat;
 import org.openfact.report.ReportException;
 import org.openfact.representations.idm.DocumentRepresentation;
@@ -35,6 +37,7 @@ import org.openfact.services.managers.OrganizationManager;
 import org.openfact.services.resource.security.OrganizationAuth;
 import org.openfact.services.resource.security.Resource;
 import org.openfact.services.resource.security.SecurityContextProvider;
+import org.openfact.ubl.UBLReader;
 import org.openfact.ubl.UBLReportProvider;
 import org.w3c.dom.Document;
 
@@ -93,6 +96,9 @@ public class DocumentsAdminResource {
     @Inject
     private EventStoreManager eventStoreManager;
 
+    @Inject
+    private UBLUtil ublUtil;
+
     private OrganizationModel getOrganizationModel(String organizationName) {
         OrganizationModel organization = organizationManager.getOrganizationByName(organizationName);
         if (organization == null) {
@@ -139,7 +145,8 @@ public class DocumentsAdminResource {
                 InputStream inputStream = inputPart.getBody(InputStream.class, null);
                 byte[] bytes = IOUtils.toByteArray(inputStream);
 
-                InvoiceType invoiceType = session.getProvider(UBLInvoiceProvider.class).reader().read(bytes);
+                UBLReader<InvoiceType> readerWriter = ublUtil.getFactory(Config.scope("io").get("provider"), DocumentType.INVOICE.toString()).reader();
+                InvoiceType invoiceType = readerWriter.read(bytes);
                 if (invoiceType == null) {
                     throw new ModelException("Invalid document Xml");
                 }

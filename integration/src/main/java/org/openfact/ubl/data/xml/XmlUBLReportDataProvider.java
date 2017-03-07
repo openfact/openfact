@@ -41,7 +41,7 @@ public class XmlUBLReportDataProvider implements UBLReportDataProvider {
             public Object getFieldValue(DocumentModel invoice, String fieldName) {
                 XmlSupportedAttribute attribute = XmlSupportedAttribute.fromString(fieldName.toUpperCase());
                 if (attribute != null) {
-                    //return attribute.asObject(invoice.getXmlAsJSONObject());
+                    //return attribute.asObject(io.getXmlAsJSONObject());
                 }
                 return null;
             }
