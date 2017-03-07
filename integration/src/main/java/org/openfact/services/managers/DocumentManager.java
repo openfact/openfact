@@ -1,34 +1,16 @@
 package org.openfact.services.managers;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
+import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
+import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
+import org.jboss.logging.Logger;
+import org.openfact.models.*;
+import org.openfact.models.types.DocumentType;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.json.JsonObject;
-import javax.xml.transform.TransformerException;
-
-import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
-import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
-import org.apache.commons.validator.routines.EmailValidator;
-import org.jboss.logging.Logger;
-import org.json.JSONObject;
-import org.json.XML;
-import org.openfact.JSONObjectUtils;
-import org.openfact.common.converts.DocumentUtils;
-import org.openfact.email.EmailException;
-import org.openfact.email.EmailTemplateProvider;
-import org.openfact.models.*;
-import org.openfact.models.types.DocumentType;
-import org.openfact.models.utils.TypeToModel;
-import org.openfact.report.ExportFormat;
-import org.openfact.report.ReportException;
-import org.openfact.ubl.*;
-import org.w3c.dom.Document;
-
-import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.IDType;
-import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
+import java.util.List;
+import java.util.Map;
 
 @Stateless
 public class DocumentManager {
@@ -51,6 +33,10 @@ public class DocumentManager {
 
     public DocumentModel getDocumentByTypeAndDocumentId(DocumentType type, String documentId, OrganizationModel organization) {
         return model.getDocumentByTypeAndDocumentId(type.toString(), documentId, organization);
+    }
+
+    public DocumentModel addInvoice(InvoiceType invoiceType, OrganizationModel organization) {
+        return null;
     }
 
     public DocumentModel addInvoice(InvoiceType invoiceType, Map<String, List<String>> attributes, OrganizationModel organization) {
@@ -92,6 +78,10 @@ public class DocumentManager {
 //
 //        fireDocumentPostCreate(documentModel);
 //        return documentModel;
+        return null;
+    }
+
+    public DocumentModel addCreditNote(CreditNoteType creditNoteType, OrganizationModel organization) {
         return null;
     }
 
@@ -147,6 +137,10 @@ public class DocumentManager {
 //
 //        fireDocumentPostCreate(documentModel);
 //        return documentModel;
+        return null;
+    }
+
+    public DocumentModel addDebitNote(DebitNoteType debitNoteType, OrganizationModel organization) {
         return null;
     }
 

@@ -12,7 +12,7 @@ public class DefaultOpenfactSession implements OpenfactSession {
     private OpenfactContext context;
 
     public DefaultOpenfactSession() {
-        context = new DefaultOpenfactContext(this);
+        context = new DefaultOpenfactContext();
     }
 
     @Override

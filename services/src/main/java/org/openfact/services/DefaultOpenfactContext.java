@@ -3,7 +3,6 @@ package org.openfact.services;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
 import org.openfact.models.OpenfactContext;
-import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 
 import javax.ws.rs.core.HttpHeaders;
@@ -14,11 +13,6 @@ public class DefaultOpenfactContext implements OpenfactContext {
 
     private OrganizationModel organization;
     private ClientConnection connection;
-    private OpenfactSession session;
-
-    public DefaultOpenfactContext(OpenfactSession session) {
-        this.session = session;
-    }
 
     @Override
     public URI getOpenfactServerUrl() {

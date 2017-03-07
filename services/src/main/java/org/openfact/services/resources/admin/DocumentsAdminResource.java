@@ -1,5 +1,7 @@
 package org.openfact.services.resources.admin;
 
+import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
+import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
 import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 import org.apache.commons.io.IOUtils;
 import org.jboss.logging.Logger;
@@ -59,6 +61,8 @@ import java.util.stream.Collectors;
 public class DocumentsAdminResource {
 
     private static final Logger logger = Logger.getLogger(DocumentsAdminResource.class);
+
+    private static final String UPLOAD_FILE_NAME = "file";
 
     @Context
     protected UriInfo uriInfo;
@@ -127,36 +131,45 @@ public class DocumentsAdminResource {
         return new AdminEventBuilder(organization, securityContext.getClientUser(session), session, clientConnection).resource(ResourceType.DOCUMENT);
     }
 
+    private List<InputPart> getInputs(MultipartFormDataInput multipartFormDataInput) {
+        Map<String, List<InputPart>> uploadForm = multipartFormDataInput.getFormDataMap();
+        return uploadForm.get(UPLOAD_FILE_NAME);
+    }
+
+    private <T> T readFile(InputPart inputPart, DocumentType documentType, Class<T> tClass) throws IOException {
+        InputStream inputStream = inputPart.getBody(InputStream.class, null);
+        byte[] bytes = IOUtils.toByteArray(inputStream);
+
+        String provider = Config.scope(documentType.toString().toLowerCase()).get("provider");
+        UBLReader<T> reader = (UBLReader<T>) ublUtil.getFactory(provider, documentType.toString()).reader();
+        T t = reader.read(bytes);
+        if (t == null) {
+            throw new ModelException("Could not read file");
+        }
+        return t;
+    }
+
     @POST
-    @Path("upload")
+    @Path("/upload/invoices")
     @Consumes("multipart/form-data")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createInvoiceFromXml(@PathParam("organization") final String organizationName, final MultipartFormDataInput input) throws ModelRollbackException {
+    public void uploadInvoice(@PathParam("organization") final String organizationName, final MultipartFormDataInput input) throws ModelRollbackException {
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
 
         auth.requireManage();
 
-        Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
-        List<InputPart> inputParts = uploadForm.get("file");
-
+        List<InputPart> inputParts = getInputs(input);
         for (InputPart inputPart : inputParts) {
             try {
-                InputStream inputStream = inputPart.getBody(InputStream.class, null);
-                byte[] bytes = IOUtils.toByteArray(inputStream);
-
-                UBLReader<InvoiceType> readerWriter = ublUtil.getFactory(Config.scope("io").get("provider"), DocumentType.INVOICE.toString()).reader();
-                InvoiceType invoiceType = readerWriter.read(bytes);
-                if (invoiceType == null) {
-                    throw new ModelException("Invalid document Xml");
-                }
+                InvoiceType invoiceType = readFile(inputPart, DocumentType.INVOICE, InvoiceType.class);
 
                 // Double-check duplicated documentId
                 if (invoiceType.getIDValue() != null && documentManager.getDocumentByTypeAndDocumentId(DocumentType.INVOICE, invoiceType.getIDValue(), organization) != null) {
                     throw new ModelDuplicateException("Invoice exists with same documentId[" + invoiceType.getIDValue() + "]");
                 }
 
-                DocumentModel document = documentManager.addInvoice(invoiceType, Collections.emptyMap(), organization);
+                DocumentModel document = documentManager.addInvoice(invoiceType, organization);
                 eventStoreManager.send(organization, getAdminEvent(organization)
                         .operation(OperationType.CREATE)
                         .resourcePath(uriInfo, document.getId())
@@ -166,13 +179,85 @@ public class DocumentsAdminResource {
                 logger.error("Error reading input data", e);
                 throw new ModelRollbackException("Error Reading data", Response.Status.BAD_REQUEST);
             } catch (ModelDuplicateException e) {
-                throw new ModelRollbackException("Invoice exists with same id or documentId");
+                throw new ModelRollbackException("Invoice exists with same documentId");
             } catch (ModelException e) {
                 throw new ModelRollbackException("Could not create document");
             }
         }
+    }
 
-        return Response.ok().build();
+    @POST
+    @Path("/upload/credit-notes")
+    @Consumes("multipart/form-data")
+    @Produces(MediaType.APPLICATION_JSON)
+    public void uploadCreditNote(@PathParam("organization") final String organizationName, final MultipartFormDataInput input) throws ModelRollbackException {
+        OrganizationModel organization = getOrganizationModel(organizationName);
+        OrganizationAuth auth = getAuth(organization);
+
+        auth.requireManage();
+
+        List<InputPart> inputParts = getInputs(input);
+        for (InputPart inputPart : inputParts) {
+            try {
+                CreditNoteType creditNoteType = readFile(inputPart, DocumentType.CREDIT_NOTE, CreditNoteType.class);
+
+                // Double-check duplicated documentId
+                if (creditNoteType.getIDValue() != null && documentManager.getDocumentByTypeAndDocumentId(DocumentType.CREDIT_NOTE, creditNoteType.getIDValue(), organization) != null) {
+                    throw new ModelDuplicateException("Credit Note exists with same documentId[" + creditNoteType.getIDValue() + "]");
+                }
+
+                DocumentModel document = documentManager.addCreditNote(creditNoteType, organization);
+                eventStoreManager.send(organization, getAdminEvent(organization)
+                        .operation(OperationType.CREATE)
+                        .resourcePath(uriInfo, document.getId())
+                        .representation(creditNoteType)
+                        .getEvent());
+            } catch (IOException e) {
+                logger.error("Error reading input data", e);
+                throw new ModelRollbackException("Error Reading data", Response.Status.BAD_REQUEST);
+            } catch (ModelDuplicateException e) {
+                throw new ModelRollbackException("Credit Note exists with same documentId");
+            } catch (ModelException e) {
+                throw new ModelRollbackException("Could not create document");
+            }
+        }
+    }
+
+    @POST
+    @Path("/upload/debit-notes")
+    @Consumes("multipart/form-data")
+    @Produces(MediaType.APPLICATION_JSON)
+    public void uploadDebitNote(@PathParam("organization") final String organizationName, final MultipartFormDataInput input) throws ModelRollbackException {
+        OrganizationModel organization = getOrganizationModel(organizationName);
+        OrganizationAuth auth = getAuth(organization);
+
+        auth.requireManage();
+
+        List<InputPart> inputParts = getInputs(input);
+        for (InputPart inputPart : inputParts) {
+            try {
+                DebitNoteType debitNoteType = readFile(inputPart, DocumentType.DEBIT_NOTE, DebitNoteType.class);
+
+                // Double-check duplicated documentId
+                if (debitNoteType.getIDValue() != null && documentManager.getDocumentByTypeAndDocumentId(DocumentType.DEBIT_NOTE, debitNoteType.getIDValue(), organization) != null) {
+                    throw new ModelDuplicateException("Debit Note exists with same documentId[" + debitNoteType.getIDValue() + "]");
+                }
+
+                DocumentModel document = documentManager.addDebitNote(debitNoteType, organization);
+                eventStoreManager.send(organization, getAdminEvent(organization)
+                        .operation(OperationType.CREATE)
+                        .resourcePath(uriInfo, document.getId())
+                        .representation(debitNoteType)
+                        .getEvent());
+            } catch (IOException e) {
+                logger.error("Error reading input data", e);
+                throw new ModelRollbackException("Error Reading data", Response.Status.BAD_REQUEST);
+            } catch (ModelDuplicateException e) {
+                throw new ModelRollbackException("Debit Note exists with same documentId");
+            } catch (ModelException e) {
+                throw new ModelRollbackException("Could not create document");
+            }
+        }
     }
 
     @GET
@@ -184,7 +269,6 @@ public class DocumentsAdminResource {
             @QueryParam("documentId") String documentId,
             @QueryParam("first") Integer firstResult,
             @QueryParam("max") Integer maxResults) {
-
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
 
@@ -370,7 +454,6 @@ public class DocumentsAdminResource {
         DocumentModel document = getDocument(documentIdPk, organization);
 
         ExportFormat exportFormat = ExportFormat.valueOf(format.toUpperCase());
-
         try {
             byte[] reportBytes = ublReportProvider.document()
                     .setOrganization(organization)
