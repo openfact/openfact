@@ -6,7 +6,7 @@ import org.openfact.common.Version;
 import org.openfact.theme.ThemeProviderType.ProviderType;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.Stateless;
+import javax.ejb.*;
 import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
@@ -14,7 +14,11 @@ import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-@Stateless
+@Singleton
+@Startup
+@DependsOn(value = {"JarThemeProvider"})
+@ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
+@Lock(LockType.READ)
 @ThemeProviderType(type = ProviderType.EXTENDING)
 public class ExtendingThemeManager implements ThemeProvider {
 
@@ -33,31 +37,28 @@ public class ExtendingThemeManager implements ThemeProvider {
     @PostConstruct
     public void init() {
         this.defaultTheme = Config.scope("theme").get("default", Version.NAME.toLowerCase());
+        loadProviders();
 
         if (Config.scope("theme").getBoolean("cacheThemes", true)) {
             themeCache = new ConcurrentHashMap<>();
         }
     }
 
-    private List<ThemeProvider> getProviders() {
-        if (providers == null) {
-            providers = new LinkedList<>();
+    private void loadProviders() {
+        providers = new LinkedList<>();
 
-            Iterator<ThemeProvider> it = themeProviders.iterator();
+        Iterator<ThemeProvider> it = themeProviders.iterator();
 
-            while (it.hasNext()) {
-                ThemeProvider themeProvider = it.next();
-                if (!(themeProvider instanceof ExtendingThemeManager)) {
-                    if (!themeProvider.getClass().equals(ExtendingThemeManager.class)) {
-                        providers.add(themeProvider);
-                    }
+        while (it.hasNext()) {
+            ThemeProvider themeProvider = it.next();
+            if (!(themeProvider instanceof ExtendingThemeManager)) {
+                if (!themeProvider.getClass().equals(ExtendingThemeManager.class)) {
+                    providers.add(themeProvider);
                 }
             }
-
-            Collections.sort(providers, (o1, o2) -> o2.getProviderPriority() - o1.getProviderPriority());
         }
 
-        return providers;
+        Collections.sort(providers, (o1, o2) -> o2.getProviderPriority() - o1.getProviderPriority());
     }
 
     @Override
@@ -123,8 +124,8 @@ public class ExtendingThemeManager implements ThemeProvider {
 
     @Override
     public Set<String> nameSet(Theme.Type type) {
-        Set<String> themes = new HashSet<String>();
-        for (ThemeProvider p : getProviders()) {
+        Set<String> themes = new HashSet<>();
+        for (ThemeProvider p : providers) {
             themes.addAll(p.nameSet(type));
         }
         return themes;
@@ -132,7 +133,7 @@ public class ExtendingThemeManager implements ThemeProvider {
 
     @Override
     public boolean hasTheme(String name, Theme.Type type) {
-        for (ThemeProvider p : getProviders()) {
+        for (ThemeProvider p : providers) {
             if (p.hasTheme(name, type)) {
                 return true;
             }
@@ -141,7 +142,7 @@ public class ExtendingThemeManager implements ThemeProvider {
     }
 
     private Theme findTheme(String name, Theme.Type type) {
-        for (ThemeProvider p : getProviders()) {
+        for (ThemeProvider p : providers) {
             if (p.hasTheme(name, type)) {
                 try {
                     return p.getTheme(name, type);

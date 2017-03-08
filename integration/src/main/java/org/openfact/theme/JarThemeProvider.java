@@ -3,13 +3,16 @@ package org.openfact.theme;
 import org.openfact.util.JsonSerialization;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.Stateless;
+import javax.ejb.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.*;
 
-@Stateless
+@Startup
+@Singleton(name = "JarThemeProvider")
+@ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
+@Lock(LockType.READ)
 @ThemeManagerSelector
 @ThemeProviderType(type = ThemeProviderType.ProviderType.JAR)
 public class JarThemeProvider implements ThemeProvider {

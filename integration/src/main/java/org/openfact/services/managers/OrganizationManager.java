@@ -1,11 +1,9 @@
 package org.openfact.services.managers;
 
 import org.openfact.Config;
-import org.openfact.models.ComponentProvider;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
 import org.openfact.models.provider.ProviderEvent;
-import org.openfact.models.utils.DefaultKeyProviders;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.OrganizationEventsConfigRepresentation;
@@ -18,7 +16,6 @@ import javax.inject.Inject;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 @Stateless
 public class OrganizationManager {

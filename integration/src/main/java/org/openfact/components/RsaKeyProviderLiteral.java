@@ -1,4 +1,4 @@
-package org.openfact.models.utils;
+package org.openfact.components;
 
 import org.openfact.keys.qualifiers.RsaKeyProviderType;
 import org.openfact.keys.qualifiers.RsaKeyType;

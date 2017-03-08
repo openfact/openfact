@@ -1,4 +1,4 @@
-package org.openfact.models.utils;
+package org.openfact.components;
 
 import org.openfact.keys.qualifiers.RsaKeyType;
 import org.openfact.models.component.ComponentFactory;
@@ -8,7 +8,6 @@ import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import java.lang.annotation.Annotation;
-import java.util.Iterator;
 import java.util.Optional;
 
 @Stateless
