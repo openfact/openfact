@@ -1,9 +1,9 @@
-package org.openfact.models.component;
+package org.openfact.component;
 
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.provider.ConfiguredProvider;
-import org.openfact.models.provider.ProviderConfigProperty;
-import org.openfact.models.provider.ProviderFactory;
+import org.openfact.provider.ConfiguredProvider;
+import org.openfact.provider.ProviderConfigProperty;
+import org.openfact.provider.ProviderFactory;
 
 import java.util.Collections;
 import java.util.List;

@@ -6,7 +6,7 @@ import org.openfact.keys.qualifiers.RsaKeyType;
 import org.openfact.models.ComponentProvider;
 import org.openfact.models.KeyManager;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.component.ComponentModel;
+import org.openfact.component.ComponentModel;
 import org.openfact.components.utils.ComponentProviderLiteral;
 import org.openfact.components.utils.ComponentUtil;
 import org.openfact.components.utils.RsaKeyProviderLiteral;

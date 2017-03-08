@@ -1,4 +1,4 @@
-package org.openfact.models.provider;
+package org.openfact.provider;
 
 import java.util.List;
 

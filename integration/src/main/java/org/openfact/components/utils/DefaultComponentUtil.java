@@ -1,7 +1,7 @@
 package org.openfact.components.utils;
 
 import org.openfact.keys.qualifiers.RsaKeyType;
-import org.openfact.models.component.ComponentFactory;
+import org.openfact.component.ComponentFactory;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Any;

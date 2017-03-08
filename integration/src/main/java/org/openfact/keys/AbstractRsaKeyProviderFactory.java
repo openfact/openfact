@@ -1,9 +1,9 @@
 package org.openfact.keys;
 
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.component.ComponentModel;
-import org.openfact.models.component.ComponentValidationException;
-import org.openfact.models.provider.ProviderConfigurationBuilder;
+import org.openfact.component.ComponentModel;
+import org.openfact.component.ComponentValidationException;
+import org.openfact.provider.ProviderConfigurationBuilder;
 import org.openfact.provider.ConfigurationValidationHelper;
 
 public abstract class AbstractRsaKeyProviderFactory {

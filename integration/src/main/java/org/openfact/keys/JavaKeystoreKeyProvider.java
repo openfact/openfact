@@ -4,7 +4,7 @@ import org.jboss.logging.Logger;
 import org.keycloak.common.util.CertificateUtils;
 import org.keycloak.common.util.KeyUtils;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.component.ComponentModel;
+import org.openfact.component.ComponentModel;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

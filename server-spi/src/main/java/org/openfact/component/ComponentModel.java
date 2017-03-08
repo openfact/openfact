@@ -1,4 +1,4 @@
-package org.openfact.models.component;
+package org.openfact.component;
 
 import org.openfact.common.util.MultivaluedHashMap;
 

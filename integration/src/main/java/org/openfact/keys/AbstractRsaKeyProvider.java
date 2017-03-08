@@ -1,7 +1,7 @@
 package org.openfact.keys;
 
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.component.ComponentModel;
+import org.openfact.component.ComponentModel;
 
 import java.security.KeyPair;
 import java.security.PrivateKey;

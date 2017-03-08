@@ -5,9 +5,9 @@ import org.keycloak.common.util.KeyUtils;
 import org.keycloak.common.util.PemUtils;
 import org.openfact.keys.qualifiers.*;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.component.ComponentModel;
-import org.openfact.models.component.ComponentValidationException;
-import org.openfact.models.provider.ProviderConfigProperty;
+import org.openfact.component.ComponentModel;
+import org.openfact.component.ComponentValidationException;
+import org.openfact.provider.ProviderConfigProperty;
 import org.openfact.provider.ConfigurationValidationHelper;
 
 import javax.ejb.Stateless;

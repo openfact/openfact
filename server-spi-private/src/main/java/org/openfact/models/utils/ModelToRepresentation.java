@@ -8,8 +8,8 @@ import org.openfact.models.AdminJobReport;
 import org.openfact.models.DocumentModel;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.SendEventModel;
-import org.openfact.models.component.ComponentModel;
-import org.openfact.models.provider.ProviderConfigProperty;
+import org.openfact.component.ComponentModel;
+import org.openfact.provider.ProviderConfigProperty;
 import org.openfact.representations.idm.*;
 
 import javax.ejb.Stateless;

@@ -1,6 +1,6 @@
 package org.openfact.keys;
 
-import static org.openfact.models.provider.ProviderConfigProperty.STRING_TYPE;
+import static org.openfact.provider.ProviderConfigProperty.STRING_TYPE;
 
 import java.util.List;
 
@@ -11,9 +11,9 @@ import org.openfact.keys.qualifiers.ComponentProviderType;
 import org.openfact.keys.qualifiers.RsaKeyProviderType;
 import org.openfact.keys.qualifiers.RsaKeyType;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.component.ComponentModel;
-import org.openfact.models.component.ComponentValidationException;
-import org.openfact.models.provider.ProviderConfigProperty;
+import org.openfact.component.ComponentModel;
+import org.openfact.component.ComponentValidationException;
+import org.openfact.provider.ProviderConfigProperty;
 import org.openfact.provider.ConfigurationValidationHelper;
 
 @Stateless

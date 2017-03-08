@@ -7,7 +7,7 @@ import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.keys.KeyProvider;
 import org.openfact.models.ComponentProvider;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.component.ComponentModel;
+import org.openfact.component.ComponentModel;
 
 @Stateless
 public class DefaultKeyProviders {

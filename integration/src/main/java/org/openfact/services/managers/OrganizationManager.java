@@ -3,7 +3,7 @@ package org.openfact.services.managers;
 import org.openfact.Config;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
-import org.openfact.models.provider.ProviderEvent;
+import org.openfact.provider.ProviderEvent;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.OrganizationEventsConfigRepresentation;

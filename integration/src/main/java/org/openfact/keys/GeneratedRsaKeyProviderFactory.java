@@ -8,9 +8,9 @@ import org.openfact.keys.qualifiers.ComponentProviderType;
 import org.openfact.keys.qualifiers.RsaKeyProviderType;
 import org.openfact.keys.qualifiers.RsaKeyType;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.component.ComponentModel;
-import org.openfact.models.component.ComponentValidationException;
-import org.openfact.models.provider.ProviderConfigProperty;
+import org.openfact.component.ComponentModel;
+import org.openfact.component.ComponentValidationException;
+import org.openfact.provider.ProviderConfigProperty;
 import org.openfact.provider.ConfigurationValidationHelper;
 
 import javax.ejb.Stateless;

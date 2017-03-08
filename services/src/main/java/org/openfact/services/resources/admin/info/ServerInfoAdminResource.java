@@ -1,11 +1,9 @@
 package org.openfact.services.resources.admin.info;
 
-import org.openfact.events.admin.OperationType;
-import org.openfact.events.admin.ResourceType;
 import org.openfact.keys.KeyProvider;
-import org.openfact.models.component.ComponentFactory;
-import org.openfact.models.provider.ConfiguredProvider;
-import org.openfact.models.provider.ProviderConfigProperty;
+import org.openfact.component.ComponentFactory;
+import org.openfact.provider.ConfiguredProvider;
+import org.openfact.provider.ProviderConfigProperty;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.report.ReportProviderType;
 import org.openfact.report.ReportTheme;

@@ -3,7 +3,7 @@ package org.openfact.models.jpa;
 import org.jboss.logging.Logger;
 import org.openfact.models.*;
 import org.openfact.models.jpa.entities.OrganizationEntity;
-import org.openfact.models.provider.ProviderEvent;
+import org.openfact.provider.ProviderEvent;
 import org.openfact.models.utils.OpenfactModelUtils;
 
 import javax.ejb.Stateless;

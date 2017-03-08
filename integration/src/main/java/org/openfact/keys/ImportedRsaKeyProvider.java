@@ -3,7 +3,7 @@ package org.openfact.keys;
 import org.keycloak.common.util.KeyUtils;
 import org.keycloak.common.util.PemUtils;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.component.ComponentModel;
+import org.openfact.component.ComponentModel;
 
 import java.security.KeyPair;
 import java.security.PrivateKey;

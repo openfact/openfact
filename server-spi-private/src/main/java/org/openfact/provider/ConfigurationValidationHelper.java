@@ -1,8 +1,7 @@
 package org.openfact.provider;
 
-import org.openfact.models.component.ComponentModel;
-import org.openfact.models.component.ComponentValidationException;
-import org.openfact.models.provider.ProviderConfigProperty;
+import org.openfact.component.ComponentModel;
+import org.openfact.component.ComponentValidationException;
 
 import java.util.List;
 

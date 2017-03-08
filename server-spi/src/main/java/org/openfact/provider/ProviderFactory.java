@@ -1,4 +1,4 @@
-package org.openfact.models.provider;
+package org.openfact.provider;
 
 /**
  * At boot time, openfact discovers all factories.  For each discovered factory, the init() method is called.  After

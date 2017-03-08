@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.component.ComponentFactory;
-import org.openfact.models.component.ComponentModel;
-import org.openfact.models.provider.ProviderConfigProperty;
+import org.openfact.component.ComponentFactory;
+import org.openfact.component.ComponentModel;
+import org.openfact.provider.ProviderConfigProperty;
 import org.openfact.representations.idm.ComponentRepresentation;
 
 public interface ComponentUtil {

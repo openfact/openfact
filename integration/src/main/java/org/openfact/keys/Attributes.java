@@ -1,8 +1,8 @@
 package org.openfact.keys;
 
-import org.openfact.models.provider.ProviderConfigProperty;
+import org.openfact.provider.ProviderConfigProperty;
 
-import static org.openfact.models.provider.ProviderConfigProperty.*;
+import static org.openfact.provider.ProviderConfigProperty.*;
 
 public interface Attributes {
 

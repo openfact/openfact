@@ -2,7 +2,7 @@ package org.openfact.models;
 
 import java.util.List;
 
-import org.openfact.models.component.ComponentModel;
+import org.openfact.component.ComponentModel;
 
 public interface ComponentProvider {
 

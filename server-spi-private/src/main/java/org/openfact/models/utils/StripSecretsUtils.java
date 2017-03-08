@@ -1,7 +1,7 @@
 package org.openfact.models.utils;
 
 import org.openfact.components.utils.ComponentUtil;
-import org.openfact.models.provider.ProviderConfigProperty;
+import org.openfact.provider.ProviderConfigProperty;
 import org.openfact.representations.idm.ComponentRepresentation;
 import org.openfact.representations.idm.IdentityProviderRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;

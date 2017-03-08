@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.json.JSONObject;
-import org.openfact.models.provider.ProviderEvent;
+import org.openfact.provider.ProviderEvent;
 import org.openfact.models.types.DestinyType;
 import org.openfact.models.types.DocumentRequiredAction;
 import org.w3c.dom.Document;

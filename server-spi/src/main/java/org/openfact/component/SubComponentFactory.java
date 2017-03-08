@@ -1,7 +1,7 @@
-package org.openfact.models.component;
+package org.openfact.component;
 
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.provider.ProviderConfigProperty;
+import org.openfact.provider.ProviderConfigProperty;
 
 import java.util.List;
 import java.util.Map;
