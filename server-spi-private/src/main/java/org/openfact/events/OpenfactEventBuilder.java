@@ -13,11 +13,11 @@ public class OpenfactEventBuilder {
     private static final Logger log = Logger.getLogger(OpenfactEventBuilder.class);
 
     private EventStoreProvider store;
-    private List<OpenfactEventListenerProvider> listeners;
+    private List<EventListenerProvider> listeners;
     private OrganizationModel organization;
     private Event event;
 
-    private OpenfactEventBuilder(EventStoreProvider store, List<OpenfactEventListenerProvider> listeners, OrganizationModel organization, Event event) {
+    private OpenfactEventBuilder(EventStoreProvider store, List<EventListenerProvider> listeners, OrganizationModel organization, Event event) {
         this.store = store;
         this.listeners = listeners;
         this.organization = organization;
@@ -107,7 +107,7 @@ public class OpenfactEventBuilder {
         }
 
         if (listeners != null) {
-            for (OpenfactEventListenerProvider l : listeners) {
+            for (EventListenerProvider l : listeners) {
                 try {
                     l.onEvent(event);
                 } catch (Throwable t) {
