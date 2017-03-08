@@ -2,7 +2,9 @@ package org.openfact.email;
 
 import org.jboss.logging.Logger;
 import org.openfact.models.OrganizationModel;
+import org.openfact.truststore.HostnameVerificationPolicy;
 import org.openfact.truststore.JSSETruststoreConfigurator;
+import org.openfact.truststore.TruststoreProvider;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -33,11 +35,14 @@ public class DefaultEmailSenderProvider implements EmailSenderProvider {
     @Inject
     private JSSETruststoreConfigurator configurator;
 
+    @Inject
+    private TruststoreProvider truststore;
+
     private void setupTruststore(Properties props) throws NoSuchAlgorithmException, KeyManagementException {
         SSLSocketFactory factory = configurator.getSSLSocketFactory();
         if (factory != null) {
             props.put("mail.smtp.ssl.socketFactory", factory);
-            if (configurator.getProvider().getPolicy() == HostnameVerificationPolicy.ANY) {
+            if (truststore.getPolicy() == HostnameVerificationPolicy.ANY) {
                 props.setProperty("mail.smtp.ssl.trust", "*");
             }
         }

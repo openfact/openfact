@@ -1,26 +1,13 @@
 package org.openfact.email;
 
-import java.util.List;
-import java.util.Map;
-
-import org.openfact.events.Event;
 import org.openfact.models.DocumentModel;
-import org.openfact.models.OrganizationModel;
+
+import java.util.Map;
 
 public interface EmailTemplateProvider {
 
-    EmailTemplateProvider setOrganization(OrganizationModel organization);
+    void sendDocument(EmailTemplateConfiguration config, DocumentModel invoice) throws EmailException;
 
-    EmailTemplateProvider setUser(EmailUserModel user);
-
-    EmailTemplateProvider setAttribute(String name, Object value);
-    
-    EmailTemplateProvider setAttachments(List<EmailFileModel> files);
-
-    void sendEvent(Event event) throws EmailException;
-    
-    void send(String subjectKey, String template, Map<String, Object> attributes) throws EmailException;
-
-    void sendDocument(DocumentModel invoice) throws EmailException ;
+    void send(EmailTemplateConfiguration config, String subjectKey, String template, Map<String, Object> attributes) throws EmailException;
 
 }

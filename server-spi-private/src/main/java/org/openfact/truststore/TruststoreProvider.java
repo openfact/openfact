@@ -4,6 +4,8 @@ import java.security.KeyStore;
 
 public interface TruststoreProvider {
 
-	KeyStore getTruststore();
-	
+    HostnameVerificationPolicy getPolicy();
+
+    KeyStore getTruststore();
+
 }

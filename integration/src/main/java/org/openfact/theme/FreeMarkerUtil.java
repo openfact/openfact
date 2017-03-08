@@ -5,17 +5,24 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import org.openfact.Config;
 
+import javax.annotation.PostConstruct;
+import javax.ejb.ConcurrencyManagement;
+import javax.ejb.ConcurrencyManagementType;
+import javax.ejb.Singleton;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.net.URL;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Singleton
+@ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
 public class FreeMarkerUtil {
 
     private ConcurrentHashMap<String, Template> cache;
 
-    public FreeMarkerUtil() {
+    @PostConstruct
+    private void init() {
         if (Config.scope("theme").getBoolean("cacheTemplates", true)) {
             cache = new ConcurrentHashMap<>();
         }
