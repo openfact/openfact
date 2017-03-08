@@ -88,19 +88,22 @@ public class ServerStartup {
     }
 
     private String loadDmrConfig(ServletContext context) {
-        return null;
-//        String dmrConfig = context.getInitParameter(OPENFACT_CONFIG_PARAM_NAME);
-//        if (dmrConfig == null) {
-//            return null;
-//        }
-//
-//        ModelNode dmrConfigNode = ModelNode.fromString(dmrConfig);
-//        if (dmrConfigNode.asPropertyList().isEmpty()) {
-//            return null;
-//        }
-//
-//        // note that we need to resolve expressions BEFORE we convert to JSON
-//        return dmrConfigNode.resolve().toJSONString(true);
+        if (context == null) {
+            return null;
+        }
+
+        String dmrConfig = context.getInitParameter(OPENFACT_CONFIG_PARAM_NAME);
+        if (dmrConfig == null) {
+            return null;
+        }
+
+        ModelNode dmrConfigNode = ModelNode.fromString(dmrConfig);
+        if (dmrConfigNode.asPropertyList().isEmpty()) {
+            return null;
+        }
+
+        // note that we need to resolve expressions BEFORE we convert to JSON
+        return dmrConfigNode.resolve().toJSONString(true);
     }
 
 }

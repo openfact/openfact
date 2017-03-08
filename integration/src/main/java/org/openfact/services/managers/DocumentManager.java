@@ -36,49 +36,44 @@ public class DocumentManager {
     }
 
     public DocumentModel addInvoice(InvoiceType invoiceType, OrganizationModel organization) {
-        return null;
-    }
+        UBLInvoiceProvider ublProvider = session.getProvider(UBLInvoiceProvider.class);
 
-    public DocumentModel addInvoice(InvoiceType invoiceType, Map<String, List<String>> attributes, OrganizationModel organization) {
-//        UBLInvoiceProvider ublProvider = session.getProvider(UBLInvoiceProvider.class);
-//
-//        // Model persist
-//        IDType documentId = invoiceType.getID();
-//        if (documentId == null) {
-//            String newDocumentId = ublProvider.idGenerator().generateID(organization, invoiceType);
-//            documentId = new IDType(newDocumentId);
-//            invoiceType.setID(documentId);
-//        }
-//        DocumentModel documentModel = model.addDocument(String.valueOf(DocumentType.INVOICE), documentId.getValue(), organization);
-//
-//        // Attributes
-//        for (Map.Entry<String, List<String>> entry : attributes.entrySet()) {
-//            documentModel.setAttribute(entry.getKey(), entry.getValue());
-//        }
-//
-//        // Type to Model
-//        TypeToModel.importInvoice(session, organization, documentModel, invoiceType);
-//
-//        // Required actions
-//        Arrays.stream(RequiredAction.values()).forEach(c -> documentModel.addRequiredAction(c));
-//
-//        try {
-//            // Generate Document
-//            Document baseDocument = ublProvider.writer().write(organization, invoiceType);
-//            Document signedDocument = session.getProvider(SignerProvider.class).sign(baseDocument, organization);
-//            byte[] signedDocumentBytes = DocumentUtils.getBytesFromDocument(signedDocument);
-//
-//            // File
-//            FileModel xmlFile = session.getProvider(FileProvider.class).createFile(organization, documentModel.getDocumentId() + ".xml", signedDocumentBytes);
-//            documentModel.attachXmlFile(xmlFile);
-//        } catch (TransformerException e) {
-//            logger.error("Error parsing XML to byte", e);
-//            throw new ModelException(e);
-//        }
-//
-//        fireDocumentPostCreate(documentModel);
-//        return documentModel;
-        return null;
+        // Model persist
+        IDType documentId = invoiceType.getID();
+        if (documentId == null) {
+            String newDocumentId = ublProvider.idGenerator().generateID(organization, invoiceType);
+            documentId = new IDType(newDocumentId);
+            invoiceType.setID(documentId);
+        }
+        DocumentModel documentModel = model.addDocument(String.valueOf(DocumentType.INVOICE), documentId.getValue(), organization);
+
+        // Attributes
+        for (Map.Entry<String, List<String>> entry : attributes.entrySet()) {
+            documentModel.setAttribute(entry.getKey(), entry.getValue());
+        }
+
+        // Type to Model
+        TypeToModel.importInvoice(session, organization, documentModel, invoiceType);
+
+        // Required actions
+        Arrays.stream(RequiredAction.values()).forEach(c -> documentModel.addRequiredAction(c));
+
+        try {
+            // Generate Document
+            Document baseDocument = ublProvider.writer().write(organization, invoiceType);
+            Document signedDocument = session.getProvider(SignerProvider.class).sign(baseDocument, organization);
+            byte[] signedDocumentBytes = DocumentUtils.getBytesFromDocument(signedDocument);
+
+            // File
+            FileModel xmlFile = session.getProvider(FileProvider.class).createFile(organization, documentModel.getDocumentId() + ".xml", signedDocumentBytes);
+            documentModel.attachXmlFile(xmlFile);
+        } catch (TransformerException e) {
+            logger.error("Error parsing XML to byte", e);
+            throw new ModelException(e);
+        }
+
+        fireDocumentPostCreate(documentModel);
+        return documentModel;
     }
 
     public DocumentModel addCreditNote(CreditNoteType creditNoteType, OrganizationModel organization) {

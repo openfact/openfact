@@ -53,8 +53,10 @@ public class OrganizationManager {
     }
 
     public OrganizationModel createOrganization(String id, String name) {
-        if (id == null)
+        if (id == null) {
             id = OpenfactModelUtils.generateId();
+        }
+
         OrganizationModel organization = model.createOrganization(id, name);
         organization.setName(name);
 
@@ -85,12 +87,12 @@ public class OrganizationManager {
         // Create periodic tasks for send documents
         schedulePeriodicTask(organization);
 
-        //fireOrganizationPostCreate(organization);
+        event.fire((OrganizationModel.OrganizationPostCreateEvent) () -> organization);
         return organization;
     }
 
     public boolean removeOrganization(OrganizationModel organization) {
-        //cancelPeriodicTask(organization);
+        cancelPeriodicTask(organization);
 
         boolean removed = model.removeOrganization(organization);
         return removed;
@@ -129,10 +131,10 @@ public class OrganizationManager {
 
     }
 
-//    public void cancelPeriodicTask(OrganizationModel organization) {
+    public void cancelPeriodicTask(OrganizationModel organization) {
 //        TimerDelayProvider timer = session.getProvider(TimerDelayProvider.class);
 //        timer.cancelTask(getTaskName(organization));
-//    }
+    }
 
     protected String getTaskName(OrganizationModel organization) {
         return organization.getId();
