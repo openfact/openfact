@@ -1,36 +1,17 @@
-/*******************************************************************************
- * Copyright 2016 Sistcoop, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
-
 package org.openfact.services.filters;
+
 
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 import org.openfact.common.ClientConnection;
 import org.openfact.models.OpenfactSession;
-import org.openfact.models.OpenfactSessionFactory;
-import org.openfact.models.OpenfactTransaction;
+import org.openfact.services.DefaultOpenfactSession;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-/**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
- * @version $Revision: 1 $
- */
+@WebFilter(urlPatterns = "/rest/*")
 public class OpenfactSessionServletFilter implements Filter {
 
     @Override
@@ -38,56 +19,56 @@ public class OpenfactSessionServletFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        servletRequest.setCharacterEncoding("UTF-8");
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        request.setCharacterEncoding("UTF-8");
 
-        final HttpServletRequest request = (HttpServletRequest) servletRequest;
+        final HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 
-        OpenfactSessionFactory sessionFactory = (OpenfactSessionFactory) servletRequest.getServletContext().getAttribute(OpenfactSessionFactory.class.getName());
-        OpenfactSession session = sessionFactory.create();
+        OpenfactSession session = new DefaultOpenfactSession();
         ResteasyProviderFactory.pushContext(OpenfactSession.class, session);
-        ClientConnection connection = new ClientConnection() {
+        ClientConnection clientConnection = new ClientConnection() {
             @Override
             public String getRemoteAddr() {
-                return request.getRemoteAddr();
+                return httpServletRequest.getRemoteAddr();
             }
 
             @Override
             public String getRemoteHost() {
-                return request.getRemoteHost();
+                return httpServletRequest.getRemoteHost();
             }
 
             @Override
             public int getRemotePort() {
-                return request.getRemotePort();
+                return httpServletRequest.getRemotePort();
             }
 
             @Override
             public String getLocalAddr() {
-                return request.getLocalAddr();
+                return httpServletRequest.getLocalAddr();
             }
 
             @Override
             public int getLocalPort() {
-                return request.getLocalPort();
+                return httpServletRequest.getLocalPort();
             }
         };
-        session.getContext().setConnection(connection);
-        ResteasyProviderFactory.pushContext(ClientConnection.class, connection);
 
-        OpenfactTransaction tx = session.getTransactionManager();
-        ResteasyProviderFactory.pushContext(OpenfactTransaction.class, tx);
-        tx.begin();
+        session.getContext().setConnection(clientConnection);
+        ResteasyProviderFactory.pushContext(ClientConnection.class, clientConnection);
 
         try {
-            filterChain.doFilter(servletRequest, servletResponse);
+            chain.doFilter(request, response);
         } finally {
-            if (servletRequest.isAsyncStarted()) {
-                servletRequest.getAsyncContext().addListener(createAsyncLifeCycleListener(session));
+            if (request.isAsyncStarted()) {
+                request.getAsyncContext().addListener(createAsyncLifeCycleListener(session));
             } else {
                 closeSession(session);
             }
         }
+    }
+
+    @Override
+    public void destroy() {
     }
 
     private AsyncListener createAsyncLifeCycleListener(final OpenfactSession session) {
@@ -114,17 +95,7 @@ public class OpenfactSessionServletFilter implements Filter {
     }
 
     private void closeSession(OpenfactSession session) {
-        // OpenfactTransactionCommitter is responsible for committing the transaction, but if an exception is thrown it's not invoked and transaction
-        // should be rolled back
-        if (session.getTransactionManager() != null && session.getTransactionManager().isActive()) {
-            session.getTransactionManager().rollback();
-        }
-
-        session.close();
         ResteasyProviderFactory.clearContextData();
     }
 
-    @Override
-    public void destroy() {
-    }
 }

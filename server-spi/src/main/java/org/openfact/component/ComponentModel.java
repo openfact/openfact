@@ -16,7 +16,8 @@ public class ComponentModel implements Serializable {
     private MultivaluedHashMap<String, String> config = new MultivaluedHashMap<>();
     private transient ConcurrentHashMap<String, Object> notes = new ConcurrentHashMap<>();
 
-    public ComponentModel() {}
+    public ComponentModel() {
+    }
 
     public ComponentModel(ComponentModel copy) {
         this.id = copy.id;

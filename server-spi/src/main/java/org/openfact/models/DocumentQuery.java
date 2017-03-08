@@ -1,11 +1,10 @@
 package org.openfact.models;
 
-import org.openfact.models.enums.DocumentType;
-import org.openfact.models.enums.RequiredAction;
 import org.openfact.models.search.PagingModel;
-import org.openfact.models.search.SearchCriteriaFilterModel;
 import org.openfact.models.search.SearchCriteriaFilterOperator;
 import org.openfact.models.search.SearchResultsModel;
+import org.openfact.models.types.DocumentRequiredAction;
+import org.openfact.models.types.DocumentType;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -13,17 +12,22 @@ import java.util.Map;
 
 public interface DocumentQuery {
 
+    DocumentQuery organization(OrganizationModel organization);
+
     DocumentQuery currencyCode(String... currencyCode);
 
     DocumentQuery documentType(DocumentType... documentType);
+
     DocumentQuery documentType(String... documentType);
 
-    DocumentQuery requiredAction(RequiredAction... requiredAction);
+    DocumentQuery requiredAction(DocumentRequiredAction... requiredAction);
 
     DocumentQuery filterText(String filterText, String... fieldName);
+
     DocumentQuery filterTextReplaceAsterisk(String filterText, String... fieldName);
 
     DocumentQuery customerSendEventFailures(int numberFailures, boolean greatherThan);
+
     DocumentQuery thirdPartySendEventFailures(int numberFailures, boolean greatherThan);
 
     DocumentQuery enabled(boolean isEnabled);
@@ -32,13 +36,17 @@ public interface DocumentQuery {
      * Just equals filters
      */
     DocumentQuery addFilter(String key, String value);
+
     DocumentQuery addFilter(Map<String, String> filters);
+
     DocumentQuery addFilter(String key, Object value, SearchCriteriaFilterOperator operator);
 
     DocumentQuery fromDate(LocalDateTime fromDate, boolean include);
+
     DocumentQuery toDate(LocalDateTime toDate, boolean include);
 
     EntityQuery entityQuery();
+
     CountQuery countQuery();
 
     interface EntityQuery {

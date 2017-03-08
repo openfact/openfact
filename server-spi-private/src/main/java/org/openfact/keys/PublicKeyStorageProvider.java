@@ -1,10 +1,8 @@
 package org.openfact.keys;
 
-import org.openfact.provider.Provider;
-
 import java.security.PublicKey;
 
-public interface PublicKeyStorageProvider extends Provider {
+public interface PublicKeyStorageProvider {
 
 
     /**

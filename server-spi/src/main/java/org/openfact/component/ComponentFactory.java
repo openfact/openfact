@@ -1,9 +1,7 @@
 package org.openfact.component;
 
-import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.provider.ConfiguredProvider;
-import org.openfact.provider.Provider;
 import org.openfact.provider.ProviderConfigProperty;
 import org.openfact.provider.ProviderFactory;
 
@@ -11,26 +9,23 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public interface ComponentFactory<CreatedType, ProviderType extends Provider> extends ProviderFactory<ProviderType>, ConfiguredProvider {
+public interface ComponentFactory<CreatedType, ProviderType> extends ProviderFactory<ProviderType>, ConfiguredProvider {
 
-    CreatedType create(OpenfactSession session, ComponentModel model);
+    CreatedType create(OrganizationModel organization, ComponentModel model);
 
     @Override
-    default ProviderType create(OpenfactSession session) {
+    default ProviderType create() {
         return null;
     }
 
-    default void validateConfiguration(OpenfactSession session, OrganizationModel organization, ComponentModel model) throws ComponentValidationException {
-
+    default void validateConfiguration(OrganizationModel organization, ComponentModel model) throws ComponentValidationException {
     }
 
-    default void onCreate(OpenfactSession session, OrganizationModel organization, ComponentModel model) {
-
+    default void onCreate(OrganizationModel organization, ComponentModel model) {
     }
 
 
-    default void onUpdate(OpenfactSession session, OrganizationModel organization, ComponentModel model) {
-
+    default void onUpdate(OrganizationModel organization, ComponentModel model) {
     }
 
     /**
@@ -50,7 +45,6 @@ public interface ComponentFactory<CreatedType, ProviderType extends Provider> ex
      */
     default Map<String, Object> getTypeMetadata() {
         return Collections.EMPTY_MAP;
-
     }
 
 

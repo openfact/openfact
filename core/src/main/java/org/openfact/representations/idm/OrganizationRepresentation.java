@@ -349,19 +349,19 @@ public class OrganizationRepresentation {
         this.tasksEnabled = tasksEnabled;
     }
 
-    public MultivaluedHashMap<String, ComponentExportRepresentation> getComponents() {
-        return components;
-    }
-
-    public void setComponents(MultivaluedHashMap<String, ComponentExportRepresentation> components) {
-        this.components = components;
-    }
-
     public String getReportTheme() {
         return reportTheme;
     }
 
     public void setReportTheme(String reportTheme) {
         this.reportTheme = reportTheme;
+    }
+
+    public MultivaluedHashMap<String, ComponentExportRepresentation> getComponents() {
+        return components;
+    }
+
+    public void setComponents(MultivaluedHashMap<String, ComponentExportRepresentation> components) {
+        this.components = components;
     }
 }

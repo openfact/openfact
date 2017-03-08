@@ -18,13 +18,14 @@ package org.openfact.models.jpa.entities;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import org.openfact.models.enums.DestinyType;
-import org.openfact.models.enums.SendEventStatus;
+import org.openfact.models.types.DestinyType;
+import org.openfact.models.types.SendEventStatus;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Table(name = "SEND_EVENT")

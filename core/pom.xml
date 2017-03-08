@@ -1,27 +1,10 @@
-<?xml version="1.0"?>
-<!--
-    Copyright 2016 Sistcoop, Inc. and/or its affiliates
-    and other contributors as indicated by the @author tags.
-   
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-   
-    http://www.apache.org/licenses/LICENSE-2.0
-   
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
- -->
-
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <artifactId>openfact</artifactId>
         <groupId>org.openfact</groupId>
-        <version>1.0-beta-5-SNAPSHOT</version>
+        <version>1.0-beta-7-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -29,7 +12,6 @@
     <artifactId>openfact-core</artifactId>
     <name>Openfact Core</name>
     <packaging>jar</packaging>
-    <description/>
 
     <properties>
         <timestamp>${maven.build.timestamp}</timestamp>
@@ -41,12 +23,14 @@
             *;resolution:=optional
         </openfact.osgi.import>
     </properties>
+
     <dependencies>
-        <!-- Principal Start -->
+        <!--Openfact -->
         <dependency>
             <groupId>org.openfact</groupId>
             <artifactId>openfact-common</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-jdk15on</artifactId>
@@ -55,6 +39,8 @@
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcpkix-jdk15on</artifactId>
         </dependency>
+
+        <!-- Jackson -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
@@ -64,25 +50,24 @@
             <artifactId>jackson-databind</artifactId>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
         </dependency>
-        <!-- Principal End -->
 
-        <!--Secondary Start-->
+        <!-- Json -->
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
         </dependency>
 
-        <!-- Java 8 Time -->
+        <!-- Test -->
         <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jsr310</artifactId>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
         </dependency>
-        <!--Secondary End-->
     </dependencies>
+
     <build>
         <resources>
             <resource>
@@ -134,5 +119,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

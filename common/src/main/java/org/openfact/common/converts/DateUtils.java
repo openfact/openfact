@@ -1,28 +1,9 @@
-/*******************************************************************************
- * Copyright 2016 Sistcoop, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
 package org.openfact.common.converts;
 
 import java.time.*;
 import java.util.Date;
 import java.util.TimeZone;
 
-/**
- * Created by Alex Pariona-"alexpariona@openfact.com" on 01/08/2016.
- */
 public class DateUtils {
 
     public static Date asDate(LocalDate localDate) {
@@ -41,7 +22,7 @@ public class DateUtils {
     }
 
     /**
-     * Creates {@link LocalDate} from {@code java.util.Date} or it's subclasses. Null-safe.
+     * Creates {@link LocalDate} from {@code java.utils.Date} or it's subclasses. Null-safe.
      */
     public static LocalDate asLocalDate(java.util.Date date, ZoneId zone) {
         if (date == null)
@@ -61,7 +42,7 @@ public class DateUtils {
     }
 
     /**
-     * Creates {@link LocalDateTime} from {@code java.util.Date} or it's subclasses. Null-safe.
+     * Creates {@link LocalDateTime} from {@code java.utils.Date} or it's subclasses. Null-safe.
      */
     public static LocalDateTime asLocalDateTime(java.util.Date date, ZoneId zone) {
         if (date == null)
@@ -114,11 +95,11 @@ public class DateUtils {
             return java.util.Date.from((Instant) date);
 
         throw new UnsupportedOperationException(
-                "Don't know hot to convert " + date.getClass().getName() + " to java.util.Date");
+                "Don't know hot to convert " + date.getClass().getName() + " to java.utils.Date");
     }
 
     /**
-     * Creates an {@link Instant} from {@code java.util.Date} or it's subclasses. Null-safe.
+     * Creates an {@link Instant} from {@code java.utils.Date} or it's subclasses. Null-safe.
      */
     public static Instant asInstant(Date date) {
         if (date == null)
@@ -135,7 +116,7 @@ public class DateUtils {
     }
 
     /**
-     * Creates {@link ZonedDateTime} from {@code java.util.Date} or it's subclasses. Null-safe.
+     * Creates {@link ZonedDateTime} from {@code java.utils.Date} or it's subclasses. Null-safe.
      */
     public static ZonedDateTime asZonedDateTime(Date date, ZoneId zone) {
         if (date == null)

@@ -1,12 +1,11 @@
 package org.openfact.events;
 
 import org.openfact.events.admin.AdminEvent;
-import org.openfact.provider.Provider;
 
-public interface EventListenerProvider extends Provider {
+public interface EventListenerProvider {
 
-    void onEvent(Event event);
+    String getName();
 
-    void onEvent(AdminEvent event, boolean includeRepresentation);
+    void onEvent(AdminEvent event);
 
 }

@@ -17,15 +17,10 @@
 
 package org.openfact.report;
 
-import org.openfact.provider.Provider;
-
 import java.io.IOException;
 import java.util.Set;
 
-/**
- * @author <a href="mailto:carlosthe19916@sistcoop.com">Carlos Feria</a>
- */
-public interface ReportThemeProvider extends Provider {
+public interface ReportThemeProvider {
 
     int getProviderPriority();
 

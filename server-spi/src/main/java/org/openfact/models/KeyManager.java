@@ -1,6 +1,5 @@
 package org.openfact.models;
 
-import org.openfact.keys.HmacKeyMetadata;
 import org.openfact.keys.RsaKeyMetadata;
 
 import javax.crypto.SecretKey;
@@ -19,12 +18,6 @@ public interface KeyManager {
     Certificate getRsaCertificate(OrganizationModel organization, String kid);
 
     List<RsaKeyMetadata> getRsaKeys(OrganizationModel organization, boolean includeDisabled);
-
-    ActiveHmacKey getActiveHmacKey(OrganizationModel organization);
-
-    SecretKey getHmacSecretKey(OrganizationModel organization, String kid);
-
-    List<HmacKeyMetadata> getHmacKeys(OrganizationModel organization, boolean includeDisabled);
 
     class ActiveRsaKey {
         private final String kid;
@@ -53,24 +46,6 @@ public interface KeyManager {
 
         public X509Certificate getCertificate() {
             return certificate;
-        }
-    }
-
-    class ActiveHmacKey {
-        private final String kid;
-        private final SecretKey secretKey;
-
-        public ActiveHmacKey(String kid, SecretKey secretKey) {
-            this.kid = kid;
-            this.secretKey = secretKey;
-        }
-
-        public String getKid() {
-            return kid;
-        }
-
-        public SecretKey getSecretKey() {
-            return secretKey;
         }
     }
 
