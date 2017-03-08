@@ -3,9 +3,7 @@ package org.openfact.ubl.data.xml;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.openfact.JSONObjectUtils;
-import org.openfact.ubl.data.xml.annotations.ArrayKey;
 import org.openfact.ubl.data.xml.annotations.JsonWrapper;
-import org.openfact.ubl.data.xml.annotations.SimpleKey;
 import org.openfact.ubl.data.xml.mappers.ObjectMapper;
 
 import java.lang.annotation.Annotation;

@@ -8,6 +8,9 @@ import org.openfact.ubl.ubl21.qualifiers.UBLDocumentType;
 import org.openfact.ubl.ubl21.qualifiers.UBLProviderType;
 import org.w3c.dom.Document;
 
+import javax.ejb.Stateless;
+
+@Stateless
 @UBLProviderType("default")
 @UBLDocumentType("DEBIT_NOTE")
 public class DefaultUBLDebitNoteReaderWriter implements UBLDebitNoteReaderWriterProvider {

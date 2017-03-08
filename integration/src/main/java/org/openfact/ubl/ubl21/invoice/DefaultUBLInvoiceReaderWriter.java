@@ -3,11 +3,13 @@ package org.openfact.ubl.ubl21.invoice;
 import com.helger.ubl21.UBL21Reader;
 import com.helger.ubl21.UBL21Writer;
 import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
-import org.openfact.models.OrganizationModel;
 import org.openfact.ubl.ubl21.qualifiers.UBLDocumentType;
 import org.openfact.ubl.ubl21.qualifiers.UBLProviderType;
 import org.w3c.dom.Document;
 
+import javax.ejb.Stateless;
+
+@Stateless
 @UBLProviderType("default")
 @UBLDocumentType("INVOICE")
 public class DefaultUBLInvoiceReaderWriter implements UBLInvoiceReaderWriterProvider {
@@ -29,12 +31,7 @@ public class DefaultUBLInvoiceReaderWriter implements UBLInvoiceReaderWriterProv
 
     @Override
     public UBLWriter<InvoiceType> writer() {
-        return new UBLWriter<InvoiceType>() {
-            @Override
-            public Document write(OrganizationModel organization, InvoiceType t) {
-                return UBL21Writer.invoice().getAsDocument(t);
-            }
-        };
+        return (organization, t) -> UBL21Writer.invoice().getAsDocument(t);
     }
 
 }

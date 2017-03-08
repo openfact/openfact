@@ -9,6 +9,9 @@ public interface UBLReaderWriterProvider<T> {
 
     UBLWriter<T> writer();
 
+    default void validate(OrganizationModel organization, T t) throws UBLValidationException {
+    }
+
     interface UBLReader<T> {
         T read(byte[] bytes);
 

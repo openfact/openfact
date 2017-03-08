@@ -1,5 +1,6 @@
 package org.openfact.services.resources.admin;
 
+import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_21.IDType;
 import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
 import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
 import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
@@ -40,6 +41,7 @@ import org.openfact.services.managers.OrganizationManager;
 import org.openfact.services.resource.security.OrganizationAuth;
 import org.openfact.services.resource.security.Resource;
 import org.openfact.services.resource.security.SecurityContextProvider;
+import org.openfact.ubl.UBLIDGenerator;
 import org.openfact.ubl.UBLReaderWriterProvider;
 import org.openfact.ubl.utils.UBLUtil;
 import org.w3c.dom.Document;
@@ -170,7 +172,15 @@ public class DocumentsAdminResource {
                     throw new ModelDuplicateException("Invoice exists with same documentId[" + invoiceType.getIDValue() + "]");
                 }
 
-                DocumentModel document = documentManager.addInvoice(invoiceType, organization);
+                IDType documentId = invoiceType.getID();
+                if (documentId == null) {
+                    UBLIDGenerator<InvoiceType> ublIDGenerator = ublUtil.getIDGenerator(DocumentType.INVOICE);
+                    String newDocumentId = ublIDGenerator.generateID(organization, invoiceType);
+                    documentId = new IDType(newDocumentId);
+                    invoiceType.setID(documentId);
+                }
+
+                DocumentModel document = documentManager.addDocument(organization, invoiceType.getIDValue(), DocumentType.INVOICE, invoiceType);
                 eventStoreManager.send(organization, getAdminEvent(organization)
                         .operation(OperationType.CREATE)
                         .resourcePath(uriInfo, document.getId())
@@ -207,7 +217,15 @@ public class DocumentsAdminResource {
                     throw new ModelDuplicateException("Credit Note exists with same documentId[" + creditNoteType.getIDValue() + "]");
                 }
 
-                DocumentModel document = documentManager.addCreditNote(creditNoteType, organization);
+                IDType documentId = creditNoteType.getID();
+                if (documentId == null) {
+                    UBLIDGenerator<CreditNoteType> ublIDGenerator = ublUtil.getIDGenerator(DocumentType.CREDIT_NOTE);
+                    String newDocumentId = ublIDGenerator.generateID(organization, creditNoteType);
+                    documentId = new IDType(newDocumentId);
+                    creditNoteType.setID(documentId);
+                }
+
+                DocumentModel document = documentManager.addDocument(organization, creditNoteType.getIDValue(), DocumentType.CREDIT_NOTE, creditNoteType);
                 eventStoreManager.send(organization, getAdminEvent(organization)
                         .operation(OperationType.CREATE)
                         .resourcePath(uriInfo, document.getId())
@@ -244,7 +262,15 @@ public class DocumentsAdminResource {
                     throw new ModelDuplicateException("Debit Note exists with same documentId[" + debitNoteType.getIDValue() + "]");
                 }
 
-                DocumentModel document = documentManager.addDebitNote(debitNoteType, organization);
+                IDType documentId = debitNoteType.getID();
+                if (documentId == null) {
+                    UBLIDGenerator<DebitNoteType> ublIDGenerator = ublUtil.getIDGenerator(DocumentType.DEBIT_NOTE);
+                    String newDocumentId = ublIDGenerator.generateID(organization, debitNoteType);
+                    documentId = new IDType(newDocumentId);
+                    debitNoteType.setID(documentId);
+                }
+
+                DocumentModel document = documentManager.addDocument(organization, debitNoteType.getIDValue(), DocumentType.DEBIT_NOTE, debitNoteType);
                 eventStoreManager.send(organization, getAdminEvent(organization)
                         .operation(OperationType.CREATE)
                         .resourcePath(uriInfo, document.getId())
@@ -608,32 +634,28 @@ public class DocumentsAdminResource {
     }
 
     private SendEventModel sendDocument(OrganizationModel organization, DocumentModel document, DestinyType destiny, String customEmail) throws ModelRollbackException {
-        final SendEventModel sendEvent = document.addSendEvent(destiny);
+        SendEventModel sendEvent;
         try {
             switch (destiny) {
                 case CUSTOMER:
-                    documentManager.sendToCustomerParty(organization, document, sendEvent);
+                    sendEvent = documentManager.sendToCustomerParty(organization, document);
                     break;
                 case THIRD_PARTY:
-                    documentManager.sendToThirdParty(organization, document, sendEvent);
+                    sendEvent = documentManager.sendToThirdParty(organization, document);
                     break;
                 case CUSTOM_EMAIL:
-                    documentManager.sendToThirdPartyByEmail(organization, document, sendEvent, customEmail);
+                    sendEvent = documentManager.sendToCustomEmail(organization, document, customEmail);
                     break;
                 default:
                     throw new IllegalStateException("Invalid destiny[" + destiny + "] type");
             }
-        } catch (ModelInsuficientData e) {
-            sendEvent.setResult(SendEventStatus.ERROR);
-            sendEvent.setDescription(e.getMessage());
-            throw new ModelRollbackException(e.getMessage(), Response.Status.BAD_REQUEST);
-        } catch (SendEventException e) {
+        } catch (ModelInsuficientData | SendEventException e) {
+            sendEvent = document.addSendEvent(destiny);
             sendEvent.setResult(SendEventStatus.ERROR);
             if (e.getMessage() != null) {
                 sendEvent.setDescription(e.getMessage().length() < 200 ? e.getMessage() : e.getMessage().substring(0, 197).concat("..."));
             }
             logger.error(e.getMessage(), e);
-            throw new ModelRollbackException(e.getMessage(), Response.Status.INTERNAL_SERVER_ERROR);
         }
         return sendEvent;
     }

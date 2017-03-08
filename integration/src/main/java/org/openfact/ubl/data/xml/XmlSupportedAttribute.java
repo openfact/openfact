@@ -2,9 +2,9 @@ package org.openfact.ubl.data.xml;
 
 import org.json.JSONObject;
 import org.openfact.JSONObjectUtils;
-import org.openfact.ubl.data.xml.entity.XmlInvoiceDocumentLineEntity;
 import org.openfact.ubl.data.xml.entity.XmlCreditNoteDocumentLineEntity;
 import org.openfact.ubl.data.xml.entity.XmlDebitNoteDocumentLineEntity;
+import org.openfact.ubl.data.xml.entity.XmlInvoiceDocumentLineEntity;
 
 import java.math.BigDecimal;
 import java.util.Arrays;

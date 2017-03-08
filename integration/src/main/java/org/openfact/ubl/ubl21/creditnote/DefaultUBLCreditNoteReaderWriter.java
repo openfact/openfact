@@ -8,8 +8,11 @@ import org.openfact.ubl.ubl21.qualifiers.UBLDocumentType;
 import org.openfact.ubl.ubl21.qualifiers.UBLProviderType;
 import org.w3c.dom.Document;
 
+import javax.ejb.Stateless;
+
 @UBLProviderType("default")
 @UBLDocumentType("CREDIT_NOTE")
+@Stateless
 public class DefaultUBLCreditNoteReaderWriter implements UBLCreditNoteReaderWriterProvider {
 
     @Override
@@ -29,12 +32,7 @@ public class DefaultUBLCreditNoteReaderWriter implements UBLCreditNoteReaderWrit
 
     @Override
     public UBLWriter<CreditNoteType> writer() {
-        return new UBLWriter<CreditNoteType>() {
-            @Override
-            public Document write(OrganizationModel organization, CreditNoteType t) {
-                return UBL21Writer.creditNote().getAsDocument(t);
-            }
-        };
+        return (organization, t) -> UBL21Writer.creditNote().getAsDocument(t);
     }
 
 }

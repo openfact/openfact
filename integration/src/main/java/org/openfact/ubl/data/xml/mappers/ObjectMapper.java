@@ -5,7 +5,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.openfact.JSONObjectUtils;
 import org.openfact.ubl.data.xml.annotations.ArrayKey;
-import org.openfact.ubl.data.xml.annotations.JsonWrapper;
 import org.openfact.ubl.data.xml.annotations.SimpleKey;
 
 import java.lang.annotation.Annotation;
@@ -39,8 +38,8 @@ public class ObjectMapper {
                 }
 
                 Annotation arrayAnnotation = field.getAnnotation(ArrayKey.class);
-                if (arrayAnnotation  instanceof ArrayKey) {
-                    ArrayKey arrayKey = (ArrayKey) arrayAnnotation ;
+                if (arrayAnnotation instanceof ArrayKey) {
+                    ArrayKey arrayKey = (ArrayKey) arrayAnnotation;
 
                     List value = new ArrayList();
                     String[] fullKey = (String[]) ArrayUtils.addAll(arrayKey.arrayKey(), arrayKey.fieldKey());
