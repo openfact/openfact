@@ -13,4 +13,31 @@
     <name>Openfact Reports</name>
     <description/>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jasperreports-maven-plugin</artifactId>
+                <configuration>
+                    <sourceDirectory>src/main/resources/theme/openfact/admin</sourceDirectory>
+                    <outputDirectory>${project.build.outputDirectory}/theme/openfact/admin</outputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile-reports</goal>
+                        </goals>
+                        <phase>compile</phase>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>net.sf.jasperreports</groupId>
+                        <artifactId>jasperreports</artifactId>
+                        <version>${version.jasperreports}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
 </project>

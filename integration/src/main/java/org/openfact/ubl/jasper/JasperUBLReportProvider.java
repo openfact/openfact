@@ -54,7 +54,7 @@ public class JasperUBLReportProvider extends JasperReportTemplateProvider implem
             for (String s : document.getDocumentType().toString().toLowerCase().split("_")) {
                 sb.append(s);
             }
-            return sb.append(".jrxml").toString();
+            return sb.toString();
         }
     }
 

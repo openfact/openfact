@@ -1,19 +1,27 @@
 package org.openfact.report;
 
 import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.util.JRLoader;
 import org.openfact.Config;
 
+import javax.annotation.PostConstruct;
+import javax.ejb.ConcurrencyManagement;
+import javax.ejb.ConcurrencyManagementType;
+import javax.ejb.Singleton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Singleton
+@ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
 public class JasperReportUtil {
 
     private ConcurrentHashMap<String, JasperReport> cache;
 
-    public JasperReportUtil() {
-        if (Config.scope("theme").getBoolean("cacheTemplates", true)) {
+    @PostConstruct
+    private void init() {
+        if (Config.scope("report").getBoolean("cacheTemplates", true)) {
             cache = new ConcurrentHashMap<>();
         }
     }
@@ -42,9 +50,17 @@ public class JasperReportUtil {
     }
 
     private JasperReport getReport(String templateName, ReportTheme theme) throws IOException, JRException {
-        URL url = theme.getTemplate(templateName);
-        JasperReport jr = JasperCompileManager.compileReport(url.openStream());
-        return jr;
+        URL url = theme.getTemplate(templateName + ".jasper");
+        if (url != null) {
+            return (JasperReport) JRLoader.loadObject(url);
+        }
+
+        url = theme.getTemplate(templateName + ".jrxml");
+        if (url != null) {
+            return JasperCompileManager.compileReport(url.openStream());
+        }
+
+        return null;
     }
 
 }

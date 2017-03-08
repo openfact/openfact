@@ -1,7 +1,5 @@
 package org.openfact.report;
 
-import org.openfact.theme.Theme;
-
 public class ThemeKey {
 
     private String name;

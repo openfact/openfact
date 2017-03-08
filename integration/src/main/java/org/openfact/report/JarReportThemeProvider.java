@@ -3,13 +3,16 @@ package org.openfact.report;
 import org.openfact.util.JsonSerialization;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.Stateless;
+import javax.ejb.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.*;
 
-@Stateless
+@Startup
+@Singleton(name = "JarReportThemeProvider")
+@ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
+@Lock(LockType.READ)
 @ReportThemeManagerSelector
 @ReportProviderType(type = ReportProviderType.ProviderType.JAR)
 public class JarReportThemeProvider implements ReportThemeProvider {
@@ -62,7 +65,7 @@ public class JarReportThemeProvider implements ReportThemeProvider {
                 for (String t : themeRep.getTypes()) {
                     ReportTheme.Type type = ReportTheme.Type.valueOf(t.toUpperCase());
                     if (!themes.containsKey(type)) {
-                        themes.put(type, new HashMap<String, ClassLoaderReportTheme>());
+                        themes.put(type, new HashMap<>());
                     }
                     themes.get(type).put(themeRep.getName(), new ClassLoaderReportTheme(themeRep.getName(), type, classLoader));
                 }

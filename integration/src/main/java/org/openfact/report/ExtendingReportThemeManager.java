@@ -6,7 +6,7 @@ import org.openfact.common.Version;
 import org.openfact.report.ReportProviderType.ProviderType;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.Singleton;
+import javax.ejb.*;
 import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
@@ -15,6 +15,10 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Singleton
+@Startup
+@DependsOn(value = {"JarReportThemeProvider"})
+@ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
+@Lock(LockType.READ)
 @ReportProviderType(type = ProviderType.EXTENDING)
 public class ExtendingReportThemeManager implements ReportThemeProvider {
 
@@ -33,30 +37,27 @@ public class ExtendingReportThemeManager implements ReportThemeProvider {
     @PostConstruct
     public void init() {
         this.defaultTheme = Config.scope("report").get("default", Version.NAME.toLowerCase());
+        loadProviders();
+
         if (Config.scope("report").getBoolean("cacheThemes", true)) {
             themeCache = new ConcurrentHashMap<>();
         }
     }
 
-    private List<ReportThemeProvider> getProviders() {
-        if (providers == null) {
-            providers = new LinkedList();
+    private void loadProviders() {
+        providers = new LinkedList();
 
-            Iterator<ReportThemeProvider> it = themeProviders.iterator();
-            while (it.hasNext()) {
-                ReportThemeProvider themeProvider = it.next();
-                if (!(themeProvider instanceof ExtendingReportThemeManager)) {
-                    if (!themeProvider.getClass().equals(ExtendingReportThemeManager.class)) {
-                        providers.add(themeProvider);
-                    }
+        Iterator<ReportThemeProvider> it = themeProviders.iterator();
+        while (it.hasNext()) {
+            ReportThemeProvider themeProvider = it.next();
+            if (!(themeProvider instanceof ExtendingReportThemeManager)) {
+                if (!themeProvider.getClass().equals(ExtendingReportThemeManager.class)) {
+                    providers.add(themeProvider);
                 }
             }
-
-            Collections.sort(providers, (o1, o2) -> o2.getProviderPriority() - o1.getProviderPriority());
-
         }
 
-        return providers;
+        Collections.sort(providers, (o1, o2) -> o2.getProviderPriority() - o1.getProviderPriority());
     }
 
     @Override
@@ -123,7 +124,7 @@ public class ExtendingReportThemeManager implements ReportThemeProvider {
     @Override
     public Set<String> nameSet(ReportTheme.Type type) {
         Set<String> themes = new HashSet<>();
-        for (ReportThemeProvider p : getProviders()) {
+        for (ReportThemeProvider p : providers) {
             themes.addAll(p.nameSet(type));
         }
         return themes;
@@ -131,7 +132,7 @@ public class ExtendingReportThemeManager implements ReportThemeProvider {
 
     @Override
     public boolean hasTheme(String name, ReportTheme.Type type) {
-        for (ReportThemeProvider p : getProviders()) {
+        for (ReportThemeProvider p : providers) {
             if (p.hasTheme(name, type)) {
                 return true;
             }
@@ -140,7 +141,7 @@ public class ExtendingReportThemeManager implements ReportThemeProvider {
     }
 
     private ReportTheme findTheme(String name, ReportTheme.Type type) {
-        for (ReportThemeProvider p : getProviders()) {
+        for (ReportThemeProvider p : providers) {
             if (p.hasTheme(name, type)) {
                 try {
                     return p.getTheme(name, type);
