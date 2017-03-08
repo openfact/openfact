@@ -1,7 +1,6 @@
 package org.openfact.events.email;
 
 import org.jboss.logging.Logger;
-import org.openfact.events.Event;
 import org.openfact.events.EventListenerProvider;
 import org.openfact.events.EventListenerType;
 import org.openfact.events.admin.AdminEvent;
@@ -19,11 +18,6 @@ public class EmailEventListenerProvider implements EventListenerProvider {
     @Override
     public String getName() {
         return NAME;
-    }
-
-    @Override
-    public void onEvent(@Observes @EventListenerType(value = NAME) Event event) {
-        log.info("On event send email not implemented");
     }
 
     @Override

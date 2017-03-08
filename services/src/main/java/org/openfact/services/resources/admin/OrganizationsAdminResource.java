@@ -6,10 +6,7 @@ import org.keycloak.common.VerificationException;
 import org.keycloak.common.util.PemUtils;
 import org.openfact.Config;
 import org.openfact.common.ClientConnection;
-import org.openfact.events.Event;
-import org.openfact.events.EventQuery;
 import org.openfact.events.EventStoreProvider;
-import org.openfact.events.EventType;
 import org.openfact.events.admin.AdminEvent;
 import org.openfact.events.admin.AdminEventQuery;
 import org.openfact.events.admin.OperationType;
@@ -96,9 +93,6 @@ public class OrganizationsAdminResource {
 
     @Inject
     private JobReportQuery jobReportQuery;
-
-    @Inject
-    private EventQuery eventQuery;
 
     @Inject
     private AdminEventQuery adminEventQuery;
@@ -579,14 +573,14 @@ public class OrganizationsAdminResource {
         auth.requireView();
 
         OrganizationEventsConfigRepresentation config = modelToRepresentation.toEventsConfigReprensetation(organization);
-        if (config.getEnabledEventTypes() == null || config.getEnabledEventTypes().isEmpty()) {
-            config.setEnabledEventTypes(new LinkedList<>());
-            for (EventType e : EventType.values()) {
-                if (e.isSaveByDefault()) {
-                    config.getEnabledEventTypes().add(e.name());
-                }
-            }
-        }
+//        if (config.getEnabledEventTypes() == null || config.getEnabledEventTypes().isEmpty()) {
+//            config.setEnabledEventTypes(new LinkedList<>());
+//            for (EventType e : EventType.values()) {
+//                if (e.isSaveByDefault()) {
+//                    config.getEnabledEventTypes().add(e.name());
+//                }
+//            }
+//        }
         return config;
     }
 
@@ -607,89 +601,6 @@ public class OrganizationsAdminResource {
         logger.debug("updating organization events config: " + organization.getName());
 
         organizationManager.updateOrganizationEventsConfig(rep, organization);
-    }
-
-    /**
-     * Get events
-     * <p>
-     * Returns all events, or filters them based on URL query parameters listed
-     * here
-     *
-     * @param types       The types of events to return
-     * @param user        User id
-     * @param ipAddress   IP address
-     * @param dateTo      To date
-     * @param dateFrom    From date
-     * @param firstResult Paging offset
-     * @param maxResults  Paging size
-     */
-    @GET
-    @Path("/{organization}/events")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<EventRepresentation> getEvents(@PathParam("organization") final String organizationName,
-                                               @QueryParam("type") List<String> types,
-                                               @QueryParam("user") String user, @QueryParam("dateFrom") String dateFrom,
-                                               @QueryParam("dateTo") String dateTo, @QueryParam("ipAddress") String ipAddress,
-                                               @QueryParam("first") Integer firstResult, @QueryParam("max") Integer maxResults) {
-        OrganizationModel organization = getOrganizationModel(organizationName);
-        OrganizationAuth auth = getAuth(organization, Resource.EVENTS);
-
-        auth.requireView();
-
-        EventQuery query = eventQuery.organization(organization.getId());
-        if (types != null && !types.isEmpty()) {
-            EventType[] t = new EventType[types.size()];
-            for (int i = 0; i < t.length; i++) {
-                t[i] = EventType.valueOf(types.get(i));
-            }
-            query.type(t);
-        }
-
-        if (user != null) {
-            query.user(user);
-        }
-
-        if (dateFrom != null) {
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-            Date from;
-            try {
-                from = df.parse(dateFrom);
-            } catch (ParseException e) {
-                throw new BadRequestException("Invalid value for 'Date(From)', expected format is yyyy-MM-dd");
-            }
-            query.fromDate(from);
-        }
-
-        if (dateTo != null) {
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-            Date to;
-            try {
-                to = df.parse(dateTo);
-            } catch (ParseException e) {
-                throw new BadRequestException("Invalid value for 'Date(To)', expected format is yyyy-MM-dd");
-            }
-            query.toDate(to);
-        }
-
-        if (ipAddress != null) {
-            query.ipAddress(ipAddress);
-        }
-        if (firstResult != null) {
-            query.firstResult(firstResult);
-        }
-        if (maxResults != null) {
-            query.maxResults(maxResults);
-        }
-
-        return toEventListRep(query.getResultList());
-    }
-
-    private List<EventRepresentation> toEventListRep(List<Event> events) {
-        List<EventRepresentation> reps = new ArrayList<>();
-        for (Event event : events) {
-            reps.add(modelToRepresentation.toRepresentation(event));
-        }
-        return reps;
     }
 
     /**

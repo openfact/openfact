@@ -5,12 +5,7 @@ import org.openfact.events.admin.AdminEventQuery;
 
 public interface EventStoreProvider {
 
-    void onEvent(Event event);
     void onEvent(AdminEvent event, boolean includeRepresentation);
-
-    EventQuery createQuery();
-
-    AdminEventQuery createAdminQuery();
 
     void clear();
 

@@ -2,7 +2,6 @@ package org.openfact.events.log;
 
 import org.jboss.logging.Logger;
 import org.openfact.Config;
-import org.openfact.events.Event;
 import org.openfact.events.EventListenerProvider;
 import org.openfact.events.EventListenerType;
 import org.openfact.events.admin.AdminEvent;
@@ -10,7 +9,6 @@ import org.openfact.events.admin.AdminEvent;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.enterprise.event.Observes;
-import java.util.Map;
 
 @Stateless
 public class JBossLoggingEventListenerProvider implements EventListenerProvider {
@@ -36,46 +34,6 @@ public class JBossLoggingEventListenerProvider implements EventListenerProvider 
     @Override
     public String getName() {
         return NAME;
-    }
-
-    @Override
-    public void onEvent(@Observes @EventListenerType(value = NAME) Event event) {
-        Logger.Level level = event.getError() != null ? errorLevel : successLevel;
-
-        if (logger.isEnabled(level)) {
-            StringBuilder sb = new StringBuilder();
-
-            sb.append("type=");
-            sb.append(event.getType());
-            sb.append(", organizationId=");
-            sb.append(event.getOrganizationId());
-            sb.append(", userId=");
-            sb.append(event.getUserId());
-            sb.append(", ipAddress=");
-            sb.append(event.getIpAddress());
-
-            if (event.getError() != null) {
-                sb.append(", error=");
-                sb.append(event.getError());
-            }
-
-            if (event.getDetails() != null) {
-                for (Map.Entry<String, String> e : event.getDetails().entrySet()) {
-                    sb.append(", ");
-                    sb.append(e.getKey());
-                    if (e.getValue() == null || e.getValue().indexOf(' ') == -1) {
-                        sb.append("=");
-                        sb.append(e.getValue());
-                    } else {
-                        sb.append("='");
-                        sb.append(e.getValue());
-                        sb.append("'");
-                    }
-                }
-            }
-
-            logger.log(logger.isTraceEnabled() ? Logger.Level.TRACE : level, sb.toString());
-        }
     }
 
     @Override

@@ -2,7 +2,6 @@ package org.openfact.models.utils;
 
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.components.utils.ComponentUtil;
-import org.openfact.events.Event;
 import org.openfact.events.admin.AdminEvent;
 import org.openfact.events.admin.AuthDetails;
 import org.openfact.models.AdminJobReport;
@@ -183,18 +182,6 @@ public class ModelToRepresentation {
         rep.setAdminEventsEnabled(organization.isAdminEventsEnabled());
         rep.setAdminEventsDetailsEnabled(organization.isAdminEventsDetailsEnabled());
 
-        return rep;
-    }
-
-    public EventRepresentation toRepresentation(Event event) {
-        EventRepresentation rep = new EventRepresentation();
-        rep.setTime(event.getTime());
-        rep.setType(event.getType().toString());
-        rep.setOrganizationId(event.getOrganizationId());
-        rep.setUserId(event.getUserId());
-        rep.setIpAddress(event.getIpAddress());
-        rep.setError(event.getError());
-        rep.setDetails(event.getDetails());
         return rep;
     }
 

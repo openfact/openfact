@@ -1,6 +1,5 @@
 package org.openfact.services.resources.admin.info;
 
-import org.openfact.events.EventType;
 import org.openfact.events.admin.OperationType;
 import org.openfact.events.admin.ResourceType;
 import org.openfact.keys.KeyProvider;
@@ -33,8 +32,6 @@ import java.util.*;
 @Stateless
 @Path("/admin/serverinfo")
 public class ServerInfoAdminResource {
-
-    private static final Map<String, List<String>> ENUMS = createEnumsMap(EventType.class, OperationType.class, ResourceType.class);
 
     @Inject
     private ServerStartup serverStartup;
@@ -87,7 +84,6 @@ public class ServerInfoAdminResource {
         setThemes(info);
         setReports(info);
         setProviders(info);
-        info.setEnums(ENUMS);
         return info;
     }
 

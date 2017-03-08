@@ -6,8 +6,6 @@ public interface EventListenerProvider {
 
     String getName();
 
-    void onEvent(Event event);
-
     void onEvent(AdminEvent event);
 
 }
