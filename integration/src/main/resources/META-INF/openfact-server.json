@@ -24,14 +24,22 @@
       "dir": "${openfact.report.dir}"
     }
   },
-
   "invoice": {
-    "provider": "default"
+    "readerWriter": "default",
+    "idGenerator": "default",
+    "modelCustomization": "default",
+    "thirdPartySender": "default"
   },
   "credit_note": {
-    "provider": "default"
+    "readerWriter": "default",
+    "idGenerator": "default",
+    "modelCustomization": "default",
+    "thirdPartySender": "default"
   },
   "debit_note": {
-    "provider": "default"
+    "readerWriter": "default",
+    "idGenerator": "default",
+    "modelCustomization": "default",
+    "thirdPartySender": "default"
   }
 }
