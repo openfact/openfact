@@ -7,8 +7,8 @@ import java.util.List;
 import javax.ejb.Stateless;
 
 import org.jboss.logging.Logger;
-import org.openfact.keys.qualifiers.QComponentProvider;
-import org.openfact.keys.qualifiers.QRsaKeyProvider;
+import org.openfact.keys.qualifiers.ComponentProviderType;
+import org.openfact.keys.qualifiers.RsaKeyProviderType;
 import org.openfact.keys.qualifiers.RsaKeyType;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.component.ComponentModel;
@@ -17,8 +17,8 @@ import org.openfact.models.provider.ProviderConfigProperty;
 import org.openfact.provider.ConfigurationValidationHelper;
 
 @Stateless
-@QComponentProvider(providerType = KeyProvider.class)
-@QRsaKeyProvider(type = RsaKeyType.JAVA_KEYSTORE)
+@ComponentProviderType(providerType = KeyProvider.class)
+@RsaKeyProviderType(type = RsaKeyType.JAVA_KEYSTORE)
 public class JavaKeystoreKeyProviderFactory extends AbstractRsaKeyProviderFactory implements RsaKeyProviderFactory {
 
     private static final Logger logger = Logger.getLogger(JavaKeystoreKeyProviderFactory.class);

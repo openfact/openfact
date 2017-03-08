@@ -18,8 +18,8 @@ import java.security.cert.Certificate;
 import java.util.List;
 
 @Stateless
-@QComponentProvider(providerType = KeyProvider.class)
-@QRsaKeyProvider(type = RsaKeyType.IMPORTED)
+@ComponentProviderType(providerType = KeyProvider.class)
+@RsaKeyProviderType(type = RsaKeyType.IMPORTED)
 public class ImportedRsaKeyProviderFactory extends AbstractRsaKeyProviderFactory implements RsaKeyProviderFactory {
 
     public static final String ID = "rsa";

@@ -1,10 +1,10 @@
 package org.openfact.models.utils;
 
-import org.openfact.keys.qualifiers.QComponentProvider;
+import org.openfact.keys.qualifiers.ComponentProviderType;
 
 import javax.enterprise.util.AnnotationLiteral;
 
-public class ComponentProviderLiteral extends AnnotationLiteral<QComponentProvider> implements QComponentProvider {
+public class ComponentProviderLiteral extends AnnotationLiteral<ComponentProviderType> implements ComponentProviderType {
 
     private final Class<?> providerType;
 

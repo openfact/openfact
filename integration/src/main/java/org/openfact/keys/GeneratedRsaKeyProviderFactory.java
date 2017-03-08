@@ -4,8 +4,8 @@ import org.jboss.logging.Logger;
 import org.keycloak.common.util.CertificateUtils;
 import org.keycloak.common.util.KeyUtils;
 import org.keycloak.common.util.PemUtils;
-import org.openfact.keys.qualifiers.QComponentProvider;
-import org.openfact.keys.qualifiers.QRsaKeyProvider;
+import org.openfact.keys.qualifiers.ComponentProviderType;
+import org.openfact.keys.qualifiers.RsaKeyProviderType;
 import org.openfact.keys.qualifiers.RsaKeyType;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.component.ComponentModel;
@@ -21,8 +21,8 @@ import java.security.interfaces.RSAPrivateKey;
 import java.util.List;
 
 @Stateless
-@QComponentProvider(providerType = KeyProvider.class)
-@QRsaKeyProvider(type = RsaKeyType.GENERATED)
+@ComponentProviderType(providerType = KeyProvider.class)
+@RsaKeyProviderType(type = RsaKeyType.GENERATED)
 public class GeneratedRsaKeyProviderFactory extends AbstractRsaKeyProviderFactory implements RsaKeyProviderFactory {
 
     private static final Logger logger = Logger.getLogger(GeneratedRsaKeyProviderFactory.class);

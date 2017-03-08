@@ -1,23 +1,23 @@
 package org.openfact.events.log;
 
-import javax.annotation.PostConstruct;
-import javax.ejb.Stateless;
-import javax.enterprise.event.Observes;
-
 import org.jboss.logging.Logger;
 import org.openfact.Config;
 import org.openfact.events.Event;
 import org.openfact.events.EventListenerProvider;
+import org.openfact.events.EventListenerType;
 import org.openfact.events.admin.AdminEvent;
 
+import javax.annotation.PostConstruct;
+import javax.ejb.Stateless;
+import javax.enterprise.event.Observes;
 import java.util.Map;
 
 @Stateless
 public class JBossLoggingEventListenerProvider implements EventListenerProvider {
 
     private static final Logger logger = Logger.getLogger("org.openfact.events");
+    public static final String NAME = "jboss-logging";
 
-    private boolean enabled;
     private Logger.Level successLevel;
     private Logger.Level errorLevel;
 
@@ -25,21 +25,21 @@ public class JBossLoggingEventListenerProvider implements EventListenerProvider 
     public void init() {
         Config.Scope config = Config.scope("jboss-logging");
         if (config == null) {
-            enabled = false;
-            return;
+            successLevel = Logger.Level.valueOf("DEBUG");
+            errorLevel = Logger.Level.valueOf("WARN");
+        } else {
+            successLevel = Logger.Level.valueOf(config.get("success-level", "debug").toUpperCase());
+            errorLevel = Logger.Level.valueOf(config.get("error-level", "warn").toUpperCase());
         }
-
-        enabled = true;
-        successLevel = Logger.Level.valueOf(config.get("success-level", "debug").toUpperCase());
-        errorLevel = Logger.Level.valueOf(config.get("error-level", "warn").toUpperCase());
     }
 
     @Override
-    public void onEvent(@Observes Event event) {
-        if (!enabled) {
-            return;
-        }
+    public String getName() {
+        return NAME;
+    }
 
+    @Override
+    public void onEvent(@Observes @EventListenerType(value = NAME) Event event) {
         Logger.Level level = event.getError() != null ? errorLevel : successLevel;
 
         if (logger.isEnabled(level)) {
@@ -74,20 +74,12 @@ public class JBossLoggingEventListenerProvider implements EventListenerProvider 
                 }
             }
 
-            if(logger.isTraceEnabled()) {
-                setOpenfactContext(sb);
-            }
-
             logger.log(logger.isTraceEnabled() ? Logger.Level.TRACE : level, sb.toString());
         }
     }
 
     @Override
-    public void onEvent(@Observes AdminEvent adminEvent) {
-        if (!enabled) {
-            return;
-        }
-
+    public void onEvent(@Observes @EventListenerType(value = NAME) AdminEvent adminEvent) {
         Logger.Level level = adminEvent.getError() != null ? errorLevel : successLevel;
 
         if (logger.isEnabled(level)) {
@@ -109,36 +101,8 @@ public class JBossLoggingEventListenerProvider implements EventListenerProvider 
                 sb.append(adminEvent.getError());
             }
 
-            if(logger.isTraceEnabled()) {
-                setOpenfactContext(sb);
-            }
-
             logger.log(logger.isTraceEnabled() ? Logger.Level.TRACE : level, sb.toString());
         }
-    }
-
-    private void setOpenfactContext(StringBuilder sb) {
-//        KeycloakContext context = session.getContext();
-//        UriInfo uriInfo = context.getUri();
-//        HttpHeaders headers = context.getRequestHeaders();
-//        if (uriInfo != null) {
-//            sb.append(", requestUri=");
-//            sb.append(uriInfo.getRequestUri().toString());
-//        }
-//
-//        if (headers != null) {
-//            sb.append(", cookies=[");
-//            boolean f = true;
-//            for (Map.Entry<String, Cookie> e : headers.getCookies().entrySet()) {
-//                if (f) {
-//                    f = false;
-//                } else {
-//                    sb.append(", ");
-//                }
-//                sb.append(e.getValue().toString());
-//            }
-//            sb.append("]");
-//        }
     }
 
 }

@@ -7,7 +7,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER, ElementType.TYPE})
 @Documented
-public @interface QRsaKeyProvider {
+public @interface RsaKeyProviderType {
 
     RsaKeyType type();
 

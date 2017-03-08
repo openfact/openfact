@@ -18,14 +18,15 @@ import javax.inject.Inject;
 import java.lang.annotation.Annotation;
 import java.security.PublicKey;
 import java.security.cert.Certificate;
-import java.util.*;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
 
 @Stateless
 public class DefaultKeyManager implements KeyManager {
 
     private static final Logger logger = Logger.getLogger(DefaultKeyManager.class);
-
-    //private final Map<String, List<KeyProvider>> providersMap = new HashMap<>();
 
     @Inject
     @Any
@@ -125,55 +126,49 @@ public class DefaultKeyManager implements KeyManager {
     }
 
     private List<KeyProvider> getProviders(OrganizationModel organization) {
-        //List<KeyProvider> providers = providersMap.get(organization.getId());
-        //if (providers == null) {
         List<KeyProvider> providers = new LinkedList<>();
 
-            List<ComponentModel> components = new LinkedList<>(componentProvider.getComponents(organization, organization.getId(), KeyProvider.class.getName()));
-            components.sort(new ProviderComparator());
+        List<ComponentModel> components = new LinkedList<>(componentProvider.getComponents(organization, organization.getId(), KeyProvider.class.getName()));
+        components.sort(new ProviderComparator());
 
-            boolean activeRsa = false;
+        boolean activeRsa = false;
 
-            for (ComponentModel c : components) {
-                try {
+        for (ComponentModel c : components) {
+            try {
 
-                    Optional<RsaKeyType> op = RsaKeyType.findByProviderId(c.getProviderId());
-                    if (!op.isPresent()) {
-                        return null;
-                    }
-                    Annotation componentProviderLiteral = new ComponentProviderLiteral(KeyProvider.class);
-                    Annotation rsaKeyProviderLiteral = new RsaKeyProviderLiteral(op.get());
-
-                    KeyProviderFactory factory = getKeyProviderFactories.select(componentProviderLiteral, rsaKeyProviderLiteral).get();
-                    KeyProvider provider = factory.create(organization, c);
-                    providers.add(provider);
-                    if (provider.getType().equals(AlgorithmType.RSA)) {
-                        RsaKeyProvider r = (RsaKeyProvider) provider;
-                        if (r.getKid() != null && r.getPrivateKey() != null) {
-                            activeRsa = true;
-                        }
-                    }
-                } catch (Throwable t) {
-                    logger.errorv(t, "Failed to load provider {0}", c.getId());
+                Optional<RsaKeyType> op = RsaKeyType.findByProviderId(c.getProviderId());
+                if (!op.isPresent()) {
+                    return null;
                 }
-            }
+                Annotation componentProviderLiteral = new ComponentProviderLiteral(KeyProvider.class);
+                Annotation rsaKeyProviderLiteral = new RsaKeyProviderLiteral(op.get());
 
-            if (!activeRsa) {
-                providers.add(new FailsafeRsaKeyProvider());
+                KeyProviderFactory factory = getKeyProviderFactories.select(componentProviderLiteral, rsaKeyProviderLiteral).get();
+                KeyProvider provider = factory.create(organization, c);
+                providers.add(provider);
+                if (provider.getType().equals(AlgorithmType.RSA)) {
+                    RsaKeyProvider r = (RsaKeyProvider) provider;
+                    if (r.getKid() != null && r.getPrivateKey() != null) {
+                        activeRsa = true;
+                    }
+                }
+            } catch (Throwable t) {
+                logger.errorv(t, "Failed to load provider {0}", c.getId());
             }
+        }
 
-            //providersMap.put(organization.getId(), providers);
-       //}
+        if (!activeRsa) {
+            providers.add(new FailsafeRsaKeyProvider());
+        }
+
         return providers;
     }
 
     private class ProviderComparator implements Comparator<ComponentModel> {
-
         @Override
         public int compare(ComponentModel o1, ComponentModel o2) {
             int i = Long.compare(o2.get("priority", 0l), o1.get("priority", 0l));
             return i != 0 ? i : o1.getId().compareTo(o2.getId());
         }
-
     }
 }

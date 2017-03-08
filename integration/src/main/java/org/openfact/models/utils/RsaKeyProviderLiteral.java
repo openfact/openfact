@@ -1,11 +1,11 @@
 package org.openfact.models.utils;
 
-import org.openfact.keys.qualifiers.QRsaKeyProvider;
+import org.openfact.keys.qualifiers.RsaKeyProviderType;
 import org.openfact.keys.qualifiers.RsaKeyType;
 
 import javax.enterprise.util.AnnotationLiteral;
 
-public class RsaKeyProviderLiteral extends AnnotationLiteral<QRsaKeyProvider> implements QRsaKeyProvider {
+public class RsaKeyProviderLiteral extends AnnotationLiteral<RsaKeyProviderType> implements RsaKeyProviderType {
 
     private final RsaKeyType type;
 
