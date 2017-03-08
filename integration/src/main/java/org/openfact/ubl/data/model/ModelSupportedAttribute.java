@@ -3,8 +3,6 @@ package org.openfact.ubl.data.model;
 import java.util.Arrays;
 import java.util.Optional;
 
-import static com.google.common.base.Verify.verifyNotNull;
-
 public enum ModelSupportedAttribute {
 
     OF_MODEL_ID;

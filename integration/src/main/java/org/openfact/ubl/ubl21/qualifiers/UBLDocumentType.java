@@ -1,4 +1,4 @@
-package org.openfact.ubl.qualifiers;
+package org.openfact.ubl.ubl21.qualifiers;
 
 import javax.inject.Qualifier;
 import java.lang.annotation.Retention;
@@ -11,6 +11,6 @@ import java.lang.annotation.Documented;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER, ElementType.TYPE })
 @Documented
-public @interface UBLProviderType {
+public @interface UBLDocumentType {
     String value();
 }

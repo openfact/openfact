@@ -115,10 +115,10 @@ public class DefaultEmailSenderProvider implements EmailSenderProvider {
             if (attachments != null && attachments.size() > 0) {
                 for (EmailFileModel attach : attachments) {
                     if (attach.getFile() != null) {
-                        DataSource dataSource = new ByteArrayDataSource(attach.getFile().getFile(), attach.getMimeType());
+                        DataSource dataSource = new ByteArrayDataSource(attach.getFile(), attach.getMimeType());
                         MimeBodyPart attachPart = new MimeBodyPart();
                         attachPart.setDataHandler(new DataHandler(dataSource));
-                        attachPart.setFileName(attach.getFile().getFileName());
+                        attachPart.setFileName(attach.getFileName());
                         multipart.addBodyPart(attachPart);
                     }
                 }

@@ -1,21 +1,23 @@
-/*******************************************************************************
- * Copyright 2016 Sistcoop, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
-package org.openfact.ubl.sign;
+package org.openfact.ubl;
 
+import org.openfact.models.KeyManager;
+import org.openfact.models.ModelException;
+import org.openfact.models.OrganizationModel;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.xml.crypto.MarshalException;
+import javax.xml.crypto.dsig.*;
+import javax.xml.crypto.dsig.dom.DOMSignContext;
+import javax.xml.crypto.dsig.keyinfo.KeyInfo;
+import javax.xml.crypto.dsig.keyinfo.KeyInfoFactory;
+import javax.xml.crypto.dsig.keyinfo.X509Data;
+import javax.xml.crypto.dsig.spec.C14NMethodParameterSpec;
+import javax.xml.crypto.dsig.spec.TransformParameterSpec;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
@@ -23,44 +25,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.xml.crypto.MarshalException;
-import javax.xml.crypto.dsig.CanonicalizationMethod;
-import javax.xml.crypto.dsig.DigestMethod;
-import javax.xml.crypto.dsig.Reference;
-import javax.xml.crypto.dsig.SignatureMethod;
-import javax.xml.crypto.dsig.SignedInfo;
-import javax.xml.crypto.dsig.Transform;
-import javax.xml.crypto.dsig.XMLSignature;
-import javax.xml.crypto.dsig.XMLSignatureException;
-import javax.xml.crypto.dsig.XMLSignatureFactory;
-import javax.xml.crypto.dsig.dom.DOMSignContext;
-import javax.xml.crypto.dsig.keyinfo.KeyInfo;
-import javax.xml.crypto.dsig.keyinfo.KeyInfoFactory;
-import javax.xml.crypto.dsig.keyinfo.X509Data;
-import javax.xml.crypto.dsig.spec.C14NMethodParameterSpec;
-import javax.xml.crypto.dsig.spec.TransformParameterSpec;
-import javax.xml.parsers.ParserConfigurationException;
+@Stateless
+public class DefaultUBLSignerProvider implements UBLSignerProvider {
 
-import org.openfact.common.converts.DocumentUtils;
-import org.openfact.models.KeyManager;
-import org.openfact.models.ModelException;
-import org.openfact.models.OrganizationModel;
-import org.openfact.ubl.SignerProvider;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+    @Inject
+    private KeyManager keystore;
 
-public class DefaultSignerProvider implements SignerProvider {
-
-    /*@Inject
-    private RsaKeyProvider a;*/
-    
     @Override
     public Document sign(Document document, OrganizationModel organizacion) {
-        /*String idReference = "Sign" + organizacion.getName().toUpperCase();
+        String idReference = "Sign" + organizacion.getName().toUpperCase();
         Document newdocument = addUBLExtensions(document);
         Node parentNode = addExtensionContent(newdocument);
 
@@ -77,8 +50,6 @@ public class DefaultSignerProvider implements SignerProvider {
             List<X509Certificate> x509Content = new ArrayList<>();
 
             // Certificate
-            KeyManager keystore = session.keys();
-
             x509Content.add(keystore.getActiveRsaKey(organizacion).getCertificate());
             X509Data xdata = keyInfoFactory.newX509Data(x509Content);
             KeyInfo keyInfo = keyInfoFactory.newKeyInfo(Collections.singletonList(xdata));
@@ -104,8 +75,7 @@ public class DefaultSignerProvider implements SignerProvider {
             throw new ModelException(e);
         } catch (XMLSignatureException e) {
             throw new ModelException(e);
-        }*/
-        return null;
+        }
     }
 
     private static Document addUBLExtensions(Document document) {

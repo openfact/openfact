@@ -1,12 +1,11 @@
-package org.openfact.ubl;
+package org.openfact.ubl.ubl21.creditnote;
 
 import com.helger.ubl21.UBL21Reader;
 import com.helger.ubl21.UBL21Writer;
 import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
 import org.openfact.models.OrganizationModel;
-import org.openfact.ubl.io.UBLCreditNoteReaderWriterProvider;
-import org.openfact.ubl.qualifiers.UBLDocumentType;
-import org.openfact.ubl.qualifiers.UBLProviderType;
+import org.openfact.ubl.ubl21.qualifiers.UBLDocumentType;
+import org.openfact.ubl.ubl21.qualifiers.UBLProviderType;
 import org.w3c.dom.Document;
 
 @UBLProviderType("default")

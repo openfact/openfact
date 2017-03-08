@@ -1,4 +1,4 @@
-package org.openfact.ubl.jasper;
+package org.openfact.ubl.report.jasper;
 
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;

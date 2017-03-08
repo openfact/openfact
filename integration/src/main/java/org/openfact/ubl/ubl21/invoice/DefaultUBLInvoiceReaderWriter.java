@@ -1,12 +1,11 @@
-package org.openfact.ubl;
+package org.openfact.ubl.ubl21.invoice;
 
 import com.helger.ubl21.UBL21Reader;
 import com.helger.ubl21.UBL21Writer;
 import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 import org.openfact.models.OrganizationModel;
-import org.openfact.ubl.io.UBLInvoiceReaderWriterProvider;
-import org.openfact.ubl.qualifiers.UBLDocumentType;
-import org.openfact.ubl.qualifiers.UBLProviderType;
+import org.openfact.ubl.ubl21.qualifiers.UBLDocumentType;
+import org.openfact.ubl.ubl21.qualifiers.UBLProviderType;
 import org.w3c.dom.Document;
 
 @UBLProviderType("default")

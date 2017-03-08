@@ -1,12 +1,11 @@
-package org.openfact.ubl;
+package org.openfact.ubl.ubl21.debitnote;
 
 import com.helger.ubl21.UBL21Reader;
 import com.helger.ubl21.UBL21Writer;
 import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
 import org.openfact.models.OrganizationModel;
-import org.openfact.ubl.io.UBLDebitNoteReaderWriterProvider;
-import org.openfact.ubl.qualifiers.UBLDocumentType;
-import org.openfact.ubl.qualifiers.UBLProviderType;
+import org.openfact.ubl.ubl21.qualifiers.UBLDocumentType;
+import org.openfact.ubl.ubl21.qualifiers.UBLProviderType;
 import org.w3c.dom.Document;
 
 @UBLProviderType("default")

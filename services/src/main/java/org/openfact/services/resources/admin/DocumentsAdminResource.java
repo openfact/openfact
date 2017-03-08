@@ -24,9 +24,9 @@ import org.openfact.models.types.DocumentType;
 import org.openfact.models.types.SendEventStatus;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.RepresentationToModel;
-import org.openfact.ubl.utils.UBLUtil;
 import org.openfact.report.ExportFormat;
 import org.openfact.report.ReportException;
+import org.openfact.report.ReportTemplateConfiguration;
 import org.openfact.report.ReportTemplateProvider;
 import org.openfact.representations.idm.DocumentRepresentation;
 import org.openfact.representations.idm.SendEventRepresentation;
@@ -40,7 +40,8 @@ import org.openfact.services.managers.OrganizationManager;
 import org.openfact.services.resource.security.OrganizationAuth;
 import org.openfact.services.resource.security.Resource;
 import org.openfact.services.resource.security.SecurityContextProvider;
-import org.openfact.ubl.UBLReader;
+import org.openfact.ubl.UBLReaderWriterProvider;
+import org.openfact.ubl.utils.UBLUtil;
 import org.w3c.dom.Document;
 
 import javax.ejb.Stateless;
@@ -141,8 +142,8 @@ public class DocumentsAdminResource {
         byte[] bytes = IOUtils.toByteArray(inputStream);
 
         String provider = Config.scope(documentType.toString().toLowerCase()).get("provider");
-        UBLReader<T> reader = (UBLReader<T>) ublUtil.getFactory(provider, documentType.toString()).reader();
-        T t = reader.read(bytes);
+        UBLReaderWriterProvider<T> readerWriter = (UBLReaderWriterProvider<T>) ublUtil.getReaderWriter(provider, documentType.toString()).reader();
+        T t = readerWriter.reader().read(bytes);
         if (t == null) {
             throw new ModelException("Could not read file");
         }
@@ -455,9 +456,8 @@ public class DocumentsAdminResource {
 
         ExportFormat exportFormat = ExportFormat.valueOf(format.toUpperCase());
         try {
-            byte[] reportBytes = reportTemplate.setOrganization(organization)
-                    .setThemeName(theme)
-                    .getReport(document, exportFormat);
+            ReportTemplateConfiguration reportConfig = new ReportTemplateConfiguration(organization).themeName(theme);
+            byte[] reportBytes = reportTemplate.getReport(reportConfig, document, exportFormat);
 
             Response.ResponseBuilder response = Response.ok(reportBytes);
             switch (exportFormat) {
