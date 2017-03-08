@@ -19,8 +19,5 @@ jdk:
 before_script:
   - export MAVEN_SKIP_RC=true
 
-install: 
-  - travis_wait 60 mvn package -DskipTests=true -B -V -q
-
-script: mvn clean integration-test
+script: "mvn clean integration-test"
 
