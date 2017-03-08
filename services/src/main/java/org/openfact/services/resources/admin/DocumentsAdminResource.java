@@ -24,7 +24,7 @@ import org.openfact.models.types.DocumentType;
 import org.openfact.models.types.SendEventStatus;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.RepresentationToModel;
-import org.openfact.models.utils.UBLUtil;
+import org.openfact.ubl.utils.UBLUtil;
 import org.openfact.report.ExportFormat;
 import org.openfact.report.ReportException;
 import org.openfact.report.ReportTemplateProvider;

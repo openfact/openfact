@@ -1,7 +1,7 @@
 package org.openfact.models.utils;
 
 import org.openfact.common.util.MultivaluedHashMap;
-import org.openfact.components.ComponentUtil;
+import org.openfact.components.utils.ComponentUtil;
 import org.openfact.events.Event;
 import org.openfact.events.admin.AdminEvent;
 import org.openfact.events.admin.AuthDetails;

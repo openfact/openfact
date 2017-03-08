@@ -7,9 +7,9 @@ import org.openfact.models.ComponentProvider;
 import org.openfact.models.KeyManager;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.component.ComponentModel;
-import org.openfact.components.ComponentProviderLiteral;
-import org.openfact.components.ComponentUtil;
-import org.openfact.components.RsaKeyProviderLiteral;
+import org.openfact.components.utils.ComponentProviderLiteral;
+import org.openfact.components.utils.ComponentUtil;
+import org.openfact.components.utils.RsaKeyProviderLiteral;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Any;

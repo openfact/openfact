@@ -1,8 +1,7 @@
-package org.openfact.models;
+package org.openfact.ubl.utils;
 
 import org.openfact.models.ModelException;
 import org.openfact.models.types.DocumentType;
-import org.openfact.models.utils.UBLUtil;
 import org.openfact.ubl.UBLReaderWriterProvider;
 import org.openfact.ubl.qualifiers.UBLDocumentType;
 import org.openfact.ubl.qualifiers.UBLProviderType;

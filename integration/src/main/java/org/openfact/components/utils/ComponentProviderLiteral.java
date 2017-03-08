@@ -1,4 +1,4 @@
-package org.openfact.components;
+package org.openfact.components.utils;
 
 import org.openfact.keys.qualifiers.ComponentProviderType;
 

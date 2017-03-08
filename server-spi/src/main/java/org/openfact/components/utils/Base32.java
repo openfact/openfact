@@ -15,7 +15,7 @@
  * limitations under the License.
  *******************************************************************************/
 
-package org.openfact.components;
+package org.openfact.components.utils;
 
 
 /* (PD) 2006 The Bitzi Corporation

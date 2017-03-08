@@ -7,7 +7,7 @@ import org.openfact.models.component.ComponentFactory;
 import org.openfact.models.component.ComponentModel;
 import org.openfact.models.jpa.entities.ComponentConfigEntity;
 import org.openfact.models.jpa.entities.ComponentEntity;
-import org.openfact.components.ComponentUtil;
+import org.openfact.components.utils.ComponentUtil;
 import org.openfact.models.utils.OpenfactModelUtils;
 
 import javax.ejb.Stateless;

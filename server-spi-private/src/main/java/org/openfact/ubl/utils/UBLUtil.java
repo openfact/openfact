@@ -1,4 +1,4 @@
-package org.openfact.models.utils;
+package org.openfact.ubl.utils;
 
 import org.openfact.models.types.DocumentType;
 import org.openfact.ubl.UBLReaderWriterProvider;

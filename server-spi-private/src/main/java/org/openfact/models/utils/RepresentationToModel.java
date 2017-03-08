@@ -1,7 +1,7 @@
 package org.openfact.models.utils;
 
 import org.openfact.common.util.MultivaluedHashMap;
-import org.openfact.components.ComponentUtil;
+import org.openfact.components.utils.ComponentUtil;
 import org.openfact.keys.KeyProvider;
 import org.openfact.models.ComponentProvider;
 import org.openfact.models.OrganizationModel;

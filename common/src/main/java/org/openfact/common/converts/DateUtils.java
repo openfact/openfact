@@ -22,7 +22,7 @@ public class DateUtils {
     }
 
     /**
-     * Creates {@link LocalDate} from {@code java.util.Date} or it's subclasses. Null-safe.
+     * Creates {@link LocalDate} from {@code java.utils.Date} or it's subclasses. Null-safe.
      */
     public static LocalDate asLocalDate(java.util.Date date, ZoneId zone) {
         if (date == null)
@@ -42,7 +42,7 @@ public class DateUtils {
     }
 
     /**
-     * Creates {@link LocalDateTime} from {@code java.util.Date} or it's subclasses. Null-safe.
+     * Creates {@link LocalDateTime} from {@code java.utils.Date} or it's subclasses. Null-safe.
      */
     public static LocalDateTime asLocalDateTime(java.util.Date date, ZoneId zone) {
         if (date == null)
@@ -95,11 +95,11 @@ public class DateUtils {
             return java.util.Date.from((Instant) date);
 
         throw new UnsupportedOperationException(
-                "Don't know hot to convert " + date.getClass().getName() + " to java.util.Date");
+                "Don't know hot to convert " + date.getClass().getName() + " to java.utils.Date");
     }
 
     /**
-     * Creates an {@link Instant} from {@code java.util.Date} or it's subclasses. Null-safe.
+     * Creates an {@link Instant} from {@code java.utils.Date} or it's subclasses. Null-safe.
      */
     public static Instant asInstant(Date date) {
         if (date == null)
@@ -116,7 +116,7 @@ public class DateUtils {
     }
 
     /**
-     * Creates {@link ZonedDateTime} from {@code java.util.Date} or it's subclasses. Null-safe.
+     * Creates {@link ZonedDateTime} from {@code java.utils.Date} or it's subclasses. Null-safe.
      */
     public static ZonedDateTime asZonedDateTime(Date date, ZoneId zone) {
         if (date == null)

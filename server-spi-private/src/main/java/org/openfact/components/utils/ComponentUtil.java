@@ -1,4 +1,4 @@
-package org.openfact.components;
+package org.openfact.components.utils;
 
 import java.util.HashMap;
 import java.util.List;
