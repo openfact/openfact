@@ -3,7 +3,6 @@ package org.openfact.models;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,7 +19,7 @@ public class MyProviderIT {
     private MyProvider provider;
 
     @Deployment
-    public static WARArchive createDeployment() {
+    public static WARArchive createDeployment() throws Exception {
         WARArchive warArchive = ShrinkWrap.create(WARArchive.class);
 
         File[] files = Maven.resolver()
@@ -30,7 +29,10 @@ public class MyProviderIT {
                 .withoutTransitivity()
                 .asFile();
 
-        warArchive.addAsLibraries(files);
+        warArchive
+                .addPackages(true, "org.openfact")
+                .addAsLibraries(files)
+                .addAllDependencies();
         //.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
 
         return warArchive;
