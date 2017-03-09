@@ -1,0 +1,23 @@
+language: java
+
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.m2
+
+before_cache:
+  - rm -rf $HOME/.m2/repository/org/openfact
+
+env:
+  global:
+    - MAVEN_SKIP_RC=true
+    - MAVEN_OPTS="-Xms512m -Xmx2048m"
+jdk:
+  - oraclejdk8
+
+before_script:
+  - export MAVEN_SKIP_RC=true
+
+script: "mvn clean integration-test"
+

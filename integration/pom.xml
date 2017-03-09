@@ -1,19 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <artifactId>openfact</artifactId>
         <groupId>org.openfact</groupId>
-        <version>1.0-beta-5-SNAPSHOT</version>
+        <version>1.0-beta-7-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <name>Openfact Integration</name>
-    <description/>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>openfact-integration</artifactId>
-    <packaging>pom</packaging>
+    <name>Openfact Integration</name>
+    <packaging>jar</packaging>
 
-    <modules>
-        <module>admin-client</module>
-    </modules>
+    <dependencies>
+        <!-- Openfact -->
+        <dependency>
+            <groupId>org.openfact</groupId>
+            <artifactId>openfact-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openfact</groupId>
+            <artifactId>openfact-server-spi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openfact</groupId>
+            <artifactId>openfact-server-spi-private</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openfact</groupId>
+            <artifactId>openfact-themes</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openfact</groupId>
+            <artifactId>openfact-reports</artifactId>
+        </dependency>
+
+        <!-- Java EE 7 -->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Freemarker -->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <!--<scope>provided</scope>-->
+        </dependency>
+
+        <!--Apache commons-->
+        <dependency>
+            <groupId>commons-validator</groupId>
+            <artifactId>commons-validator</artifactId>
+        </dependency>
+
+        <!-- Jasper reports -->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>bouncycastle</groupId>
+                    <artifactId>bcmail-jdk14</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>bouncycastle</groupId>
+                    <artifactId>bcprov-jdk14</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>bouncycastle</groupId>
+                    <artifactId>bctsp-jdk14</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports-fonts</artifactId>
+        </dependency>
+
+        <!-- Keycloak -->
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-core</artifactId>
+        </dependency>
+
+        <!-- Jboss logging -->
+        <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging-annotations</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging-processor</artifactId>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Wildfly -->
+        <dependency>
+            <groupId>org.wildfly.core</groupId>
+            <artifactId>wildfly-controller</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
 </project>

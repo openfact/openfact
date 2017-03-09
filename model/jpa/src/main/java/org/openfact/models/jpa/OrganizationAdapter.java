@@ -1,48 +1,25 @@
-/*******************************************************************************
- * Copyright 2016 Sistcoop, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
 package org.openfact.models.jpa;
 
 import org.jboss.logging.Logger;
-import org.openfact.common.util.MultivaluedHashMap;
-import org.openfact.component.ComponentFactory;
-import org.openfact.component.ComponentModel;
-import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
-import org.openfact.models.enums.DocumentType;
-import org.openfact.models.jpa.entities.*;
-import org.openfact.models.utils.ComponentUtil;
-import org.openfact.models.utils.OpenfactModelUtils;
+import org.openfact.models.jpa.entities.OrganizationAttributeEntity;
+import org.openfact.models.jpa.entities.OrganizationAttributes;
+import org.openfact.models.jpa.entities.OrganizationEntity;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import java.time.LocalDateTime;
 import java.util.*;
 
 public class OrganizationAdapter implements OrganizationModel, JpaModel<OrganizationEntity> {
 
-    protected static final Logger logger = Logger.getLogger(OrganizationAdapter.class);
+    private static final Logger logger = Logger.getLogger(OrganizationAdapter.class);
 
     private static final String BROWSER_HEADER_PREFIX = "_browser_header.";
-    protected OrganizationEntity organization;
-    protected EntityManager em;
-    protected OpenfactSession session;
 
-    public OrganizationAdapter(OpenfactSession session, EntityManager em, OrganizationEntity organization) {
-        this.session = session;
+    private final OrganizationEntity organization;
+    private final EntityManager em;
+
+    public OrganizationAdapter(EntityManager em, OrganizationEntity organization) {
         this.em = em;
         this.organization = organization;
     }
@@ -519,193 +496,12 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
         em.flush();
     }
 
-    /**
-     * Components
-     */
-    public static final String COMPONENT_PROVIDER_EXISTS_DISABLED = "component.provider.exists.disabled";
-
-    @Override
-    public ComponentModel addComponentModel(ComponentModel model) {
-        model = importComponentModel(model);
-        ComponentUtil.notifyCreated(session, this, model);
-
-        return model;
-    }
-
-    @Override
-    public ComponentModel importComponentModel(ComponentModel model) {
-        ComponentFactory componentFactory = null;
-        try {
-            componentFactory = ComponentUtil.getComponentFactory(session, model);
-            if (componentFactory == null && System.getProperty(COMPONENT_PROVIDER_EXISTS_DISABLED) == null) {
-                throw new IllegalArgumentException("Invalid component type");
-            }
-            componentFactory.validateConfiguration(session, this, model);
-        } catch (Exception e) {
-            if (System.getProperty(COMPONENT_PROVIDER_EXISTS_DISABLED) == null) {
-                throw e;
-            }
-
-        }
-
-
-        ComponentEntity c = new ComponentEntity();
-        if (model.getId() == null) {
-            c.setId(OpenfactModelUtils.generateId());
-        } else {
-            c.setId(model.getId());
-        }
-        c.setName(model.getName());
-        c.setParentId(model.getParentId());
-        if (model.getParentId() == null) {
-            c.setParentId(this.getId());
-            model.setParentId(this.getId());
-        }
-        c.setProviderType(model.getProviderType());
-        c.setProviderId(model.getProviderId());
-        c.setSubType(model.getSubType());
-        c.setOrganization(organization);
-        em.persist(c);
-        setConfig(model, c);
-        model.setId(c.getId());
-        return model;
-    }
-
-    protected void setConfig(ComponentModel model, ComponentEntity c) {
-        for (String key : model.getConfig().keySet()) {
-            List<String> vals = model.getConfig().get(key);
-            if (vals == null) {
-                continue;
-            }
-            for (String val : vals) {
-                ComponentConfigEntity config = new ComponentConfigEntity();
-                config.setId(OpenfactModelUtils.generateId());
-                config.setName(key);
-                config.setValue(val);
-                config.setComponent(c);
-                em.persist(config);
-            }
-        }
-    }
-
-    @Override
-    public void updateComponent(ComponentModel component) {
-        ComponentUtil.getComponentFactory(session, component).validateConfiguration(session, this, component);
-
-        ComponentEntity c = em.find(ComponentEntity.class, component.getId());
-        if (c == null) return;
-        c.setName(component.getName());
-        c.setProviderId(component.getProviderId());
-        c.setProviderType(component.getProviderType());
-        c.setParentId(component.getParentId());
-        c.setSubType(component.getSubType());
-        em.createNamedQuery("deleteComponentConfigByComponent").setParameter("component", c).executeUpdate();
-        em.flush();
-        setConfig(component, c);
-        ComponentUtil.notifyUpdated(session, this, component);
-    }
-
-    @Override
-    public void removeComponent(ComponentModel component) {
-        ComponentEntity c = em.find(ComponentEntity.class, component.getId());
-        if (c == null) return;
-        //session.users().preRemove(this, component);
-        removeComponents(component.getId());
-        em.createNamedQuery("deleteComponentConfigByComponent").setParameter("component", c).executeUpdate();
-        em.remove(c);
-    }
-
-    @Override
-    public void removeComponents(String parentId) {
-        TypedQuery<String> query = em.createNamedQuery("getComponentIdsByParent", String.class)
-                .setParameter("organization", organization)
-                .setParameter("parentId", parentId);
-        List<String> results = query.getResultList();
-        if (results.isEmpty()) return;
-//        for (String id : results) {
-//            session.users().preRemove(this, getComponent(id));
-//        }
-        em.createNamedQuery("deleteComponentConfigByParent").setParameter("parentId", parentId).executeUpdate();
-        em.createNamedQuery("deleteComponentByParent").setParameter("parentId", parentId).executeUpdate();
-    }
-
-    @Override
-    public List<ComponentModel> getComponents(String parentId, String providerType) {
-        if (parentId == null) parentId = getId();
-        TypedQuery<ComponentEntity> query = em.createNamedQuery("getComponentsByParentAndType", ComponentEntity.class)
-                .setParameter("organization", organization)
-                .setParameter("parentId", parentId)
-                .setParameter("providerType", providerType);
-        List<ComponentEntity> results = query.getResultList();
-        List<ComponentModel> rtn = new LinkedList<>();
-        for (ComponentEntity c : results) {
-            ComponentModel model = entityToModel(c);
-            rtn.add(model);
-
-        }
-        return rtn;
-    }
-
-    @Override
-    public List<ComponentModel> getComponents(String parentId) {
-        TypedQuery<ComponentEntity> query = em.createNamedQuery("getComponentByParent", ComponentEntity.class)
-                .setParameter("organization", organization)
-                .setParameter("parentId", parentId);
-        List<ComponentEntity> results = query.getResultList();
-        List<ComponentModel> rtn = new LinkedList<>();
-        for (ComponentEntity c : results) {
-            ComponentModel model = entityToModel(c);
-            rtn.add(model);
-
-        }
-        return rtn;
-    }
-
-    protected ComponentModel entityToModel(ComponentEntity c) {
-        ComponentModel model = new ComponentModel();
-        model.setId(c.getId());
-        model.setName(c.getName());
-        model.setProviderType(c.getProviderType());
-        model.setProviderId(c.getProviderId());
-        model.setSubType(c.getSubType());
-        model.setParentId(c.getParentId());
-        MultivaluedHashMap<String, String> config = new MultivaluedHashMap<>();
-        TypedQuery<ComponentConfigEntity> configQuery = em.createNamedQuery("getComponentConfig", ComponentConfigEntity.class)
-                .setParameter("component", c);
-        List<ComponentConfigEntity> configResults = configQuery.getResultList();
-        for (ComponentConfigEntity configEntity : configResults) {
-            config.add(configEntity.getName(), configEntity.getValue());
-        }
-        model.setConfig(config);
-        return model;
-    }
-
-    @Override
-    public List<ComponentModel> getComponents() {
-        TypedQuery<ComponentEntity> query = em.createNamedQuery("getComponents", ComponentEntity.class)
-                .setParameter("organization", organization);
-        List<ComponentEntity> results = query.getResultList();
-        List<ComponentModel> rtn = new LinkedList<>();
-        for (ComponentEntity c : results) {
-            ComponentModel model = entityToModel(c);
-            rtn.add(model);
-
-        }
-        return rtn;
-    }
-
-    @Override
-    public ComponentModel getComponent(String id) {
-        ComponentEntity c = em.find(ComponentEntity.class, id);
-        if (c == null) return null;
-        return entityToModel(c);
-    }
-
     @Override
     public Map<String, String> getBrowserSecurityHeaders() {
         Map<String, String> attributes = getAttributes();
-        if (attributes.isEmpty())
+        if (attributes.isEmpty()) {
             return Collections.EMPTY_MAP;
+        }
         Map<String, String> headers = new HashMap<String, String>();
         for (Map.Entry<String, String> entry : attributes.entrySet()) {
             if (entry.getKey().startsWith(BROWSER_HEADER_PREFIX)) {

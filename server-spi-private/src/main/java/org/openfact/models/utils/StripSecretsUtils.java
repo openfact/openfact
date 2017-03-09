@@ -1,40 +1,26 @@
-/*******************************************************************************
- * Copyright 2016 Sistcoop, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
-
 package org.openfact.models.utils;
 
-import org.openfact.models.OpenfactSession;
+import org.openfact.components.utils.ComponentUtil;
 import org.openfact.provider.ProviderConfigProperty;
 import org.openfact.representations.idm.ComponentRepresentation;
 import org.openfact.representations.idm.IdentityProviderRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author <a href="mailto:sthorger@redhat.com">Stian Thorgersen</a>
- */
+@Stateless
 public class StripSecretsUtils {
 
-    public static ComponentRepresentation strip(OpenfactSession session, ComponentRepresentation rep) {
-        Map<String, ProviderConfigProperty> configProperties = ComponentUtil.getComponentConfigProperties(session, rep);
+    @Inject
+    private ComponentUtil componentUtil;
+
+    public ComponentRepresentation strip(ComponentRepresentation rep) {
+        Map<String, ProviderConfigProperty> configProperties = componentUtil.getComponentConfigProperties(rep);
         if (rep.getConfig() == null) {
             return rep;
         }
@@ -54,14 +40,14 @@ public class StripSecretsUtils {
         return rep;
     }
 
-    public static OrganizationRepresentation strip(OrganizationRepresentation rep) {
+    public OrganizationRepresentation strip(OrganizationRepresentation rep) {
         if (rep.getSmtpServer() != null && rep.getSmtpServer().containsKey("password")) {
             rep.getSmtpServer().put("password", ComponentRepresentation.SECRET_VALUE);
         }
         return rep;
     }
 
-    public static IdentityProviderRepresentation strip(IdentityProviderRepresentation rep) {
+    public IdentityProviderRepresentation strip(IdentityProviderRepresentation rep) {
         if (rep.getConfig() != null && rep.getConfig().containsKey("clientSecret")) {
             rep.getConfig().put("clientSecret", ComponentRepresentation.SECRET_VALUE);
         }

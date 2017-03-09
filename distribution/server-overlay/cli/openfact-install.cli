@@ -1,4 +1,0 @@
-embed-server --server-config=standalone.xml
-/subsystem=datasources/data-source=OpenfactDS/:add(connection-url="jdbc:h2:${jboss.server.data.dir}/openfact;AUTO_SERVER=TRUE",jta=false,driver-name=h2,jndi-name=java:jboss/datasources/OpenfactDS,password=sa,user-name=sa,use-java-context=true)
-/extension=org.openfact.openfact-server-subsystem/:add(module=org.openfact.openfact-server-subsystem)
-run-batch --file=default-openfact-subsys-config.cli

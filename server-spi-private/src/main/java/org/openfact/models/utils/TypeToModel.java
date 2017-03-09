@@ -1,36 +1,17 @@
-/*******************************************************************************
- * Copyright 2016 Sistcoop, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
 package org.openfact.models.utils;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.xml.datatype.XMLGregorianCalendar;
-
 import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.*;
-import org.openfact.models.*;
-
 import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
 import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
 import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
+import org.openfact.models.DocumentModel;
+import org.openfact.models.OrganizationModel;
 
+import javax.ejb.Stateless;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Stateless
 public class TypeToModel {
 
     public static final String ISSUE_DATE = "issueDate";
@@ -61,7 +42,7 @@ public class TypeToModel {
     public static final String REQUESTED_MONETARY_TOTAL_CHARGE_TOTAL_AMOUNT = "requestedMonetaryTotalChargeTotalAmount";
     public static final String REQUESTED_MONETARY_TOTAL_ALLOWANCE_TOTAL = "requestedMonetaryTotalAllowanceTotal";
 
-    public static void importInvoice(OpenfactSession session, OrganizationModel organization, DocumentModel model, InvoiceType type) {
+    public void importInvoice(OrganizationModel organization, DocumentModel model, InvoiceType type) {
         model.setDocumentCurrencyCode(type.getDocumentCurrencyCodeValue());
 
         if (type.getIssueDate() != null) {
@@ -88,7 +69,7 @@ public class TypeToModel {
         }
     }
 
-    public static void importCreditNote(OpenfactSession session, OrganizationModel organization, DocumentModel model, CreditNoteType type) {
+    public void importCreditNote(OrganizationModel organization, DocumentModel model, CreditNoteType type) {
         model.setDocumentCurrencyCode(type.getDocumentCurrencyCodeValue());
 
         if (type.getIssueDate() != null) {
@@ -115,7 +96,7 @@ public class TypeToModel {
         }
     }
 
-    public static void importDebitNote(OpenfactSession session, OrganizationModel organization, DocumentModel model, DebitNoteType type) {
+    public void importDebitNote(OrganizationModel organization, DocumentModel model, DebitNoteType type) {
         model.setDocumentCurrencyCode(type.getDocumentCurrencyCodeValue());
 
         if (type.getIssueDate() != null) {
@@ -139,7 +120,7 @@ public class TypeToModel {
         }
     }
 
-    public static void addAccountingSupplierAttributes(SupplierPartyType supplierPartyType, DocumentModel documentModel) {
+    public void addAccountingSupplierAttributes(SupplierPartyType supplierPartyType, DocumentModel documentModel) {
 
         if (supplierPartyType.getCustomerAssignedAccountID() != null) {
             documentModel.setSingleAttribute(SUPPLIER_ASSIGNED_ACCOUNT_ID, supplierPartyType.getCustomerAssignedAccountIDValue());
@@ -160,7 +141,7 @@ public class TypeToModel {
         }
     }
 
-    public static void addAccountingCustomerAttributes(CustomerPartyType customerPartyType, DocumentModel documentModel) {
+    public void addAccountingCustomerAttributes(CustomerPartyType customerPartyType, DocumentModel documentModel) {
         if (customerPartyType.getCustomerAssignedAccountID() != null) {
             documentModel.setSingleAttribute(CUSTOMER_ASSIGNED_ACCOUNT_ID, customerPartyType.getCustomerAssignedAccountIDValue());
         }
@@ -189,12 +170,12 @@ public class TypeToModel {
         }
     }
 
-    public static void addTaxTotalAttributes(List<TaxTotalType> taxTotalType, DocumentModel documentModel) {
+    public void addTaxTotalAttributes(List<TaxTotalType> taxTotalType, DocumentModel documentModel) {
         List<String> taxTotal = taxTotalType.stream().map(f -> f.getTaxAmountValue().toString()).collect(Collectors.toList());
         documentModel.setAttribute(TAX_TOTAL_AMOUNT, taxTotal);
     }
 
-    public static void addLegalMonetaryTotalAttributes(MonetaryTotalType monetaryTotalType, DocumentModel documentModel) {
+    public void addLegalMonetaryTotalAttributes(MonetaryTotalType monetaryTotalType, DocumentModel documentModel) {
         if (monetaryTotalType.getPayableAmount() != null) {
             documentModel.setSingleAttribute(LEGAL_MONETARY_TOTAL_PAYABLE_AMOUNT, monetaryTotalType.getPayableAmountValue().toString());
         }
@@ -206,7 +187,7 @@ public class TypeToModel {
         }
     }
 
-    public static void addRequestedMonetaryTotalAttributes(MonetaryTotalType monetaryTotalType, DocumentModel documentModel) {
+    public void addRequestedMonetaryTotalAttributes(MonetaryTotalType monetaryTotalType, DocumentModel documentModel) {
         if (monetaryTotalType.getPayableAmount() != null) {
             documentModel.setSingleAttribute(REQUESTED_MONETARY_TOTAL_PAYABLE_AMOUNT, monetaryTotalType.getPayableAmountValue().toString());
         }

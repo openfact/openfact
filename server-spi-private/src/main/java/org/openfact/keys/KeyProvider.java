@@ -1,11 +1,10 @@
 package org.openfact.keys;
 
 import org.openfact.jose.jws.AlgorithmType;
-import org.openfact.provider.Provider;
 
 import java.util.List;
 
-public interface KeyProvider<T extends KeyMetadata> extends Provider {
+public interface KeyProvider<T extends KeyMetadata> {
 
     /**
      * Returns the algorithm type the keys can be used for

@@ -1,19 +1,3 @@
-/*******************************************************************************
- * Copyright 2016 Sistcoop, Inc. and/or its affiliates
- * and other contributors as indicated by the @author tags.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
 package org.openfact.models.jpa;
 
 import org.jboss.logging.Logger;
@@ -22,13 +6,12 @@ import org.json.XML;
 import org.openfact.JSONObjectUtils;
 import org.openfact.common.converts.DocumentUtils;
 import org.openfact.common.util.MultivaluedHashMap;
-import org.openfact.file.FileModel;
 import org.openfact.models.*;
-import org.openfact.models.enums.DestinyType;
-import org.openfact.models.enums.DocumentType;
-import org.openfact.models.enums.RequiredAction;
-import org.openfact.models.enums.SendEventStatus;
 import org.openfact.models.jpa.entities.*;
+import org.openfact.models.types.DestinyType;
+import org.openfact.models.types.DocumentRequiredAction;
+import org.openfact.models.types.DocumentType;
+import org.openfact.models.types.SendEventStatus;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.w3c.dom.Document;
 
@@ -42,22 +25,22 @@ import java.util.stream.Collectors;
 
 public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> {
 
-    protected static final Logger logger = Logger.getLogger(DocumentAdapter.class);
+    private static final Logger logger = Logger.getLogger(DocumentAdapter.class);
 
-    protected OrganizationModel organization;
-    protected DocumentEntity document;
-    protected EntityManager em;
-    protected OpenfactSession session;
+    private OrganizationModel organization;
+    private DocumentEntity document;
+    private FileProvider fileProvider;
+    private EntityManager em;
 
     protected FileModel xmlFile;
     protected Document xmlDocument;
     protected JSONObject jsonObject;
 
-    public DocumentAdapter(OpenfactSession session, OrganizationModel organization, EntityManager em, DocumentEntity documentEntity) {
+    public DocumentAdapter(OrganizationModel organization, EntityManager em, DocumentEntity document, FileProvider fileProvider) {
         this.organization = organization;
-        this.session = session;
         this.em = em;
-        this.document = documentEntity;
+        this.document = document;
+        this.fileProvider = fileProvider;
     }
 
     public static DocumentEntity toEntity(DocumentModel model, EntityManager em) {
@@ -67,8 +50,8 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
         return em.getReference(DocumentEntity.class, model.getId());
     }
 
-    public DocumentLineModel toModel(DocumentLineEntity line) {
-        return new DocumentLineAdapter(session, this, em, line);
+    public DocumentLineModel toDocumentLineModel(DocumentLineEntity documentLine) {
+        return new DocumentLineAdapter(this, em, documentLine);
     }
 
     @Override
@@ -108,7 +91,9 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
 
     @Override
     public List<DocumentLineModel> getDocumentLines() {
-        return document.getLines().stream().map(this::toModel).collect(Collectors.toList());
+        return document.getLines().stream()
+                .map(this::toDocumentLineModel)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -116,7 +101,7 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
         DocumentLineEntity entity = new DocumentLineEntity();
         entity.setDocument(document);
         em.persist(entity);
-        return toModel(entity);
+        return toDocumentLineModel(entity);
     }
 
     @Override
@@ -179,10 +164,12 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
         document.setCustomerElectronicMail(value);
     }
 
+    /*
+     * Document*/
     @Override
     public FileModel getXmlAsFile() {
         if (xmlFile == null && document.getXmlFileId() != null) {
-            xmlFile = session.files().getFileById(organization, document.getXmlFileId());
+            xmlFile = fileProvider.getFileById(organization, document.getXmlFileId());
         }
         return xmlFile;
     }
@@ -273,7 +260,7 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
             query.setParameter("name", name);
             query.setParameter("documentPkId", document.getId());
             query.setParameter("attrId", firstExistingAttrId);
-            int numUpdated = query.executeUpdate();
+            query.executeUpdate();
 
             // Remove attribute from local entity
             document.getAttributes().removeAll(toRemove);
@@ -310,7 +297,7 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
         Query query = em.createNamedQuery("deleteDocumentAttributesByNameAndDocumentPkId");
         query.setParameter("name", name);
         query.setParameter("documentPkId", document.getId());
-        int numUpdated = query.executeUpdate();
+        query.executeUpdate();
 
         // Also remove attributes from local user entity
         List<DocumentAttributeEntity> toRemove = new ArrayList<>();
@@ -365,7 +352,7 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
     }
 
     @Override
-    public void addRequiredAction(RequiredAction action) {
+    public void addRequiredAction(DocumentRequiredAction action) {
         String actionName = action.name();
         addRequiredAction(actionName);
     }
@@ -385,7 +372,7 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
     }
 
     @Override
-    public void removeRequiredAction(RequiredAction action) {
+    public void removeRequiredAction(DocumentRequiredAction action) {
         String actionName = action.name();
         removeRequiredAction(actionName);
     }
@@ -434,14 +421,14 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
         entity.setDocument(document);
         em.persist(entity);
 
-        return new SendEventAdapter(session, em, organization, entity);
+        return new SendEventAdapter(em, organization, entity);
     }
 
     @Override
     public SendEventModel getSendEventById(String id) {
         SendEventEntity entity = em.find(SendEventEntity.class, id);
         if (entity != null) {
-            return new SendEventAdapter(session, em, organization, entity);
+            return new SendEventAdapter(em, organization, entity);
         }
         return null;
     }
@@ -473,7 +460,7 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
             query.setMaxResults(maxResults);
         }
         List<SendEventEntity> results = query.getResultList();
-        return results.stream().map(f -> new SendEventAdapter(session, em, organization, f)).collect(Collectors.toList());
+        return results.stream().map(f -> new SendEventAdapter(em, organization, f)).collect(Collectors.toList());
     }
 
     @Override
@@ -525,7 +512,7 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
             query.setMaxResults(maxResults);
         }
         List<SendEventEntity> results = query.getResultList();
-        return results.stream().map(f -> new SendEventAdapter(session, em, organization, f)).collect(Collectors.toList());
+        return results.stream().map(f -> new SendEventAdapter(em, organization, f)).collect(Collectors.toList());
     }
 
     /**
@@ -535,14 +522,14 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
     public List<DocumentModel> getAttachedDocumentsAsOrigin() {
         TypedQuery<DocumentEntity> query = em.createNamedQuery("getAttachedDocumentsDestinyByOrigin", DocumentEntity.class);
         query.setParameter("documentOriginId", document.getId());
-        return query.getResultList().stream().map(f -> new DocumentAdapter(session, organization, em, f)).collect(Collectors.toList());
+        return query.getResultList().stream().map(f -> new DocumentAdapter(organization, em, f, fileProvider)).collect(Collectors.toList());
     }
 
     @Override
     public List<DocumentModel> getAttachedDocumentsAsDestiny() {
         TypedQuery<DocumentEntity> query = em.createNamedQuery("getAttachedDocumentsOriginByDestiny", DocumentEntity.class);
         query.setParameter("documentDestinyId", document.getId());
-        return query.getResultList().stream().map(f -> new DocumentAdapter(session, organization, em, f)).collect(Collectors.toList());
+        return query.getResultList().stream().map(f -> new DocumentAdapter(organization, em, f, fileProvider)).collect(Collectors.toList());
     }
 
     @Override
