@@ -7,7 +7,7 @@ import org.openfact.ubl.UBLCustomizationProvider;
 public interface UBLCreditNoteCustomizationProvider extends UBLCustomizationProvider<CreditNoteType> {
 
     default DocumentRequiredAction[] getRequiredActions() {
-        return new DocumentRequiredAction[]{DocumentRequiredAction.SEND_TO_CUSTOMER, DocumentRequiredAction.SEND_TO_CUSTOMER};
+        return new DocumentRequiredAction[]{DocumentRequiredAction.SEND_TO_CUSTOMER, DocumentRequiredAction.SEND_TO_THIRD_PARTY};
     }
 
 }
