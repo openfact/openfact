@@ -30,7 +30,6 @@ public class MyProviderIT {
                 .asFile();
 
         warArchive
-                .addPackages(true, "org.openfact")
                 .addAsLibraries(files)
                 .addAllDependencies();
         //.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
