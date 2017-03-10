@@ -1,6 +1,5 @@
 package org.openfact.ubl.ubl21.creditnote;
 
-import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.ubl.ubl21.qualifiers.UBLDocumentType;
@@ -14,8 +13,7 @@ import javax.ejb.Stateless;
 public class DefaultUBLCreditNoteIDGenerator implements UBLCreditNoteIDGenerator {
 
     @Override
-    public String generateID(OrganizationModel organization, CreditNoteType creditNoteType) {
+    public String generateID(OrganizationModel organization, Object o) {
         return OpenfactModelUtils.generateId();
     }
-
 }

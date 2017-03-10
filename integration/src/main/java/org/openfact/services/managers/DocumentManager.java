@@ -8,6 +8,7 @@ import org.openfact.models.types.DestinyType;
 import org.openfact.models.types.DocumentRequiredAction;
 import org.openfact.models.types.DocumentType;
 import org.openfact.ubl.*;
+import org.openfact.ubl.utils.DefaultUBLUtil;
 import org.openfact.ubl.utils.UBLUtil;
 import org.w3c.dom.Document;
 
@@ -65,7 +66,7 @@ public class DocumentManager {
     public DocumentModel addDocument(OrganizationModel organization, String documentId, String documentType, Object type) {
         Config.Scope documentConfig = Config.scope(documentType.toLowerCase());
 
-        String readerWriterProviderType = documentConfig.get("reader_writer", "default");
+        String readerWriterProviderType = documentConfig.get(DefaultUBLUtil.READER_WRITER, "default");
         UBLReaderWriterProvider readerWriter = ublUtil.getReaderWriter(readerWriterProviderType, documentType);
 
         readerWriter.validate(organization, type);

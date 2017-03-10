@@ -3,7 +3,6 @@ package org.openfact.ubl.ubl21.debitnote;
 import com.helger.ubl21.UBL21Reader;
 import com.helger.ubl21.UBL21Writer;
 import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
-import org.openfact.models.OrganizationModel;
 import org.openfact.ubl.ubl21.qualifiers.UBLDocumentType;
 import org.openfact.ubl.ubl21.qualifiers.UBLProviderType;
 import org.w3c.dom.Document;
@@ -13,7 +12,7 @@ import javax.ejb.Stateless;
 @Stateless
 @UBLProviderType("default")
 @UBLDocumentType("DEBIT_NOTE")
-public class DefaultUBLDebitNoteReaderWriter implements UBLDebitNoteReaderWriterProvider {
+public class DefaultUBLDebitNoteReaderWriter implements UBLDebitNoteReaderWriter {
 
     @Override
     public UBLReader<DebitNoteType> reader() {
@@ -33,13 +32,7 @@ public class DefaultUBLDebitNoteReaderWriter implements UBLDebitNoteReaderWriter
 
     @Override
     public UBLWriter<DebitNoteType> writer() {
-        return new UBLWriter<DebitNoteType>() {
-            @Override
-            public Document write(OrganizationModel organization, DebitNoteType t) {
-                return UBL21Writer.debitNote().getAsDocument(t);
-            }
-
-        };
+        return (organization, t) -> UBL21Writer.debitNote().getAsDocument(t);
     }
 
 }
