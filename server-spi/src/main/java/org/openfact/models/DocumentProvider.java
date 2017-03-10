@@ -22,6 +22,8 @@ import org.openfact.models.types.DocumentType;
 
 public interface DocumentProvider {
 
+    DocumentQuery createQuery(OrganizationModel organization);
+
     DocumentModel addDocument(String documentType, String documentId, OrganizationModel organization);
 
     DocumentModel addDocument(DocumentType documentType, String documentId, OrganizationModel organization);

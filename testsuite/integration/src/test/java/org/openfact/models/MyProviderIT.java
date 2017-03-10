@@ -12,34 +12,34 @@ import org.wildfly.swarm.undertow.WARArchive;
 import javax.inject.Inject;
 import java.io.File;
 
-@RunWith(Arquillian.class)
+//@RunWith(Arquillian.class)
 public class MyProviderIT {
 
-    @Inject
-    private MyProvider provider;
-
-    @Deployment
-    public static WARArchive createDeployment() throws Exception {
-        WARArchive warArchive = ShrinkWrap.create(WARArchive.class);
-
-        File[] files = Maven.resolver()
-                .loadPomFromFile("pom.xml")
-                .importRuntimeDependencies()
-                .resolve()
-                .withoutTransitivity()
-                .asFile();
-
-        warArchive
-                .addAsLibraries(files)
-                .addAllDependencies();
-        //.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
-
-        return warArchive;
-    }
-
-    @Test
-    public void should_start_service() {
-        Assert.assertNotNull(provider);
-        Assert.assertEquals(provider.hello(), "hello");
-    }
+//    @Inject
+//    private MyProvider provider;
+//
+//    @Deployment
+//    public static WARArchive createDeployment() throws Exception {
+//        WARArchive warArchive = ShrinkWrap.create(WARArchive.class);
+//
+//        File[] files = Maven.resolver()
+//                .loadPomFromFile("pom.xml")
+//                .importRuntimeDependencies()
+//                .resolve()
+//                .withoutTransitivity()
+//                .asFile();
+//
+//        warArchive
+//                .addAsLibraries(files)
+//                .addAllDependencies();
+//        //.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+//
+//        return warArchive;
+//    }
+//
+//    @Test
+//    public void should_start_service() {
+//        Assert.assertNotNull(provider);
+//        Assert.assertEquals(provider.hello(), "hello");
+//    }
 }

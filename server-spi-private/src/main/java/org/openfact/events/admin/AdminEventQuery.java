@@ -99,7 +99,7 @@ public interface AdminEventQuery {
     AdminEventQuery maxResults(int max);
 
     /**
-     * Executes the query and returns the results
+     * Executes the createQuery and returns the results
      *
      * @return
      */

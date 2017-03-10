@@ -1,10 +1,7 @@
 package org.openfact.models.jpa;
 
 import org.jboss.logging.Logger;
-import org.openfact.models.AdminJobReport;
-import org.openfact.models.JobReportModel;
-import org.openfact.models.JobReportProvider;
-import org.openfact.models.OrganizationModel;
+import org.openfact.models.*;
 import org.openfact.models.jpa.entities.JobReportEntity;
 
 import javax.ejb.Stateless;
@@ -35,6 +32,11 @@ public class JpaJobReportProvider implements JobReportProvider {
         adminJobReport.setWriteCount(jobReportEntity.getWriteCount());
 
         return adminJobReport;
+    }
+
+    @Override
+    public JobReportQuery createQuery(OrganizationModel organization) {
+        return new JpaJobReportQuery(em, organization);
     }
 
     @Override

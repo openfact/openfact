@@ -98,9 +98,6 @@ public class DocumentsAdminResource {
     private RepresentationToModel representationToModel;
 
     @Inject
-    private DocumentQuery documentQuery;
-
-    @Inject
     private ReportTemplateProvider reportTemplate;
 
     @Inject
@@ -315,7 +312,7 @@ public class DocumentsAdminResource {
             if (documentId != null) {
                 attributes.put(DocumentModel.DOCUMENT_ID, documentId);
             }
-            documentModels = documentQuery.organization(organization)
+            documentModels = documentProvider.createQuery(organization)
                     .addFilter(attributes)
                     .entityQuery()
                     .resultList().firstResult(firstResult).maxResults(maxResults).getResultList();
@@ -340,9 +337,11 @@ public class DocumentsAdminResource {
         SearchCriteriaModel criteriaModel = representationToModel.toModel(criteria);
         String filterText = criteria.getFilterText();
 
+        DocumentQuery query = documentProvider.createQuery(organization);
+
         // Filtertext
         if (filterText != null && !filterText.trim().isEmpty()) {
-            documentQuery.filterText(filterText, DocumentModel.DOCUMENT_ID, DocumentModel.CUSTOMER_REGISTRATION_NAME, DocumentModel.CUSTOMER_ASSIGNED_ACCOUNT_ID, DocumentModel.CUSTOMER_ELECTRONIC_MAIL);
+            query.filterText(filterText, DocumentModel.DOCUMENT_ID, DocumentModel.CUSTOMER_REGISTRATION_NAME, DocumentModel.CUSTOMER_ASSIGNED_ACCOUNT_ID, DocumentModel.CUSTOMER_ELECTRONIC_MAIL);
         }
 
         // Filters
@@ -363,29 +362,29 @@ public class DocumentsAdminResource {
                             .map(f -> DocumentRequiredAction.valueOf(f.toUpperCase()))
                             .toArray(size -> new DocumentRequiredAction[requiredActions.size()]);
 
-                    documentQuery.requiredAction(array);
+                    query.requiredAction(array);
                 } else if (filter.getName().equalsIgnoreCase(DocumentModel.CREATED_TIMESTAMP)) {
                     if (filter.getOperator().equals(SearchCriteriaFilterOperator.gt)) {
-                        documentQuery.fromDate((LocalDateTime) filter.getValue(), false);
+                        query.fromDate((LocalDateTime) filter.getValue(), false);
                     } else if (filter.getOperator().equals(SearchCriteriaFilterOperator.gte)) {
-                        documentQuery.fromDate((LocalDateTime) filter.getValue(), true);
+                        query.fromDate((LocalDateTime) filter.getValue(), true);
                     } else if (filter.getOperator().equals(SearchCriteriaFilterOperator.lt)) {
-                        documentQuery.toDate((LocalDateTime) filter.getValue(), false);
+                        query.toDate((LocalDateTime) filter.getValue(), false);
                     } else if (filter.getOperator().equals(SearchCriteriaFilterOperator.lte)) {
-                        documentQuery.toDate((LocalDateTime) filter.getValue(), true);
+                        query.toDate((LocalDateTime) filter.getValue(), true);
                     } else if (filter.getOperator().equals(SearchCriteriaFilterOperator.eq)) {
-                        documentQuery.fromDate((LocalDateTime) filter.getValue(), true);
-                        documentQuery.toDate((LocalDateTime) filter.getValue(), true);
+                        query.fromDate((LocalDateTime) filter.getValue(), true);
+                        query.toDate((LocalDateTime) filter.getValue(), true);
                     } else {
                         throw new BadRequestException("Bad operator on criteria");
                     }
                 } else {
-                    documentQuery.addFilter(filter.getName(), filter.getValue(), filter.getOperator());
+                    query.addFilter(filter.getName(), filter.getValue(), filter.getOperator());
                 }
             }
         }
 
-        DocumentQuery.EntityQuery entityQuery = documentQuery.entityQuery();
+        DocumentQuery.EntityQuery entityQuery = query.entityQuery();
         if (criteriaModel.getOrders() != null && !criteriaModel.getOrders().isEmpty()) {
             criteriaModel.getOrders().forEach(c -> {
                 if (c.isAscending()) {

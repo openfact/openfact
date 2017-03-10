@@ -6,6 +6,8 @@ import org.keycloak.common.VerificationException;
 import org.keycloak.common.util.PemUtils;
 import org.openfact.Config;
 import org.openfact.common.ClientConnection;
+import org.openfact.component.ComponentModel;
+import org.openfact.component.ComponentValidationException;
 import org.openfact.events.EventStoreProvider;
 import org.openfact.events.admin.AdminEvent;
 import org.openfact.events.admin.AdminEventQuery;
@@ -14,8 +16,6 @@ import org.openfact.events.admin.ResourceType;
 import org.openfact.jose.jws.AlgorithmType;
 import org.openfact.keys.RsaKeyMetadata;
 import org.openfact.models.*;
-import org.openfact.component.ComponentModel;
-import org.openfact.component.ComponentValidationException;
 import org.openfact.models.types.InternetMediaType;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.RepresentationToModel;
@@ -25,12 +25,14 @@ import org.openfact.services.ErrorResponse;
 import org.openfact.services.ForbiddenException;
 import org.openfact.services.managers.EventStoreManager;
 import org.openfact.services.managers.OrganizationManager;
+import org.openfact.services.resource.OrganizationAdminResourceProvider;
 import org.openfact.services.resource.security.ClientUser;
 import org.openfact.services.resource.security.OrganizationAuth;
 import org.openfact.services.resource.security.Resource;
 import org.openfact.services.resource.security.SecurityContextProvider;
 
 import javax.ejb.Stateless;
+import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -83,6 +85,9 @@ public class OrganizationsAdminResource {
     private ComponentProvider componentProvider;
 
     @Inject
+    private JobReportProvider jobReportProvider;
+
+    @Inject
     private ModelToRepresentation modelToRepresentation;
 
     @Inject
@@ -92,22 +97,21 @@ public class OrganizationsAdminResource {
     private SecurityContextProvider securityContext;
 
     @Inject
-    private JobReportQuery jobReportQuery;
-
-    @Inject
-    private AdminEventQuery adminEventQuery;
-
-    @Inject
     private Instance<OrganizationScheduledTask> organizationScheduledTasks;
 
     @Inject
     private DocumentsAdminResource documentsAdminResource;
+
+    @Inject
+    @Any
+    private Instance<OrganizationAdminResourceProvider> organizationAdminResourceProviders;
 
     private OrganizationModel getOrganizationModel(String organizationName) {
         OrganizationModel organization = organizationManager.getOrganizationByName(organizationName);
         if (organization == null) {
             throw new NotFoundException("Organization " + organizationName + " not found.");
         }
+        session.getContext().setOrganization(organization);
         return organization;
     }
 
@@ -500,7 +504,7 @@ public class OrganizationsAdminResource {
         firstResult = firstResult != null ? firstResult : -1;
         maxResults = maxResults != null ? maxResults : Constants.DEFAULT_MAX_RESULTS;
 
-        JobReportQuery query = jobReportQuery.organization(organization.getId());
+        JobReportQuery query = jobReportProvider.createQuery(organization);
 
         if (jobNames != null && !jobNames.isEmpty()) {
             jobNames.forEach(query::jobName);
@@ -606,7 +610,7 @@ public class OrganizationsAdminResource {
     /**
      * Get admin events
      * <p>
-     * Returns all admin events, or filters events based on URL query parameters
+     * Returns all admin events, or filters events based on URL createQuery parameters
      * listed here
      */
     @GET
@@ -628,7 +632,7 @@ public class OrganizationsAdminResource {
 
         auth.requireView();
 
-        AdminEventQuery query = adminEventQuery.organization(organization.getId());
+        AdminEventQuery query = eventStoreProvider.createQuery().organization(organization.getId());
 
         if (authOrganization != null) {
             query.authOrganization(authOrganization);
@@ -735,6 +739,34 @@ public class OrganizationsAdminResource {
     @Path("{organization}/documents")
     public DocumentsAdminResource documents() {
         return documentsAdminResource;
+    }
+
+    /**
+     * A JAX-RS sub-resource locator that uses the
+     * {@link org.openfact.services.resource.OrganizationAdminResourceProvider} to resolve
+     * sub-resources instances given an <code>unknownPath</code>.
+     *
+     * @param extension a path that could be to a REST extension
+     * @return a JAX-RS sub-resource instance for the REST extension if found.
+     * Otherwise null is returned.
+     */
+    @Path("{organization}/{extension}")
+    public Object resolveOrganizationAdminExtension(@PathParam("organization") String organizationName,
+                                                    @PathParam("extension") String extension) {
+
+        Iterator<OrganizationAdminResourceProvider> iterator = organizationAdminResourceProviders.iterator();
+        while (iterator.hasNext()) {
+            OrganizationAdminResourceProvider provider = iterator.next();
+            if (provider.getPath().equals(extension)) {
+                getOrganizationModel(organizationName);
+                Object resource = provider.getResource();
+                if (resource != null) {
+                    return resource;
+                }
+            }
+        }
+
+        throw new NotFoundException();
     }
 
 }

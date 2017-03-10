@@ -25,8 +25,11 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+        <!--Wildfly-->
+        <version.jboss.bom>8.2.2.Final</version.jboss.bom>
+
         <!-- Wildfly Swarm -->
-        <version.wildfly-swarm>2017.3.2</version.wildfly-swarm>
+        <version.wildfly-swarm>2017.3.3</version.wildfly-swarm>
 
         <!-- Arquillian -->
         <version.arquillian>1.1.10.Final</version.arquillian>
@@ -117,6 +120,22 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--wildfly-->
+            <dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>jboss-javaee-7.0-with-tools</artifactId>
+                <version>${version.jboss.bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>jboss-javaee-7.0-with-hibernate</artifactId>
+                <version>${version.jboss.bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <!-- Wildfly Swarm -->
             <dependency>
                 <groupId>org.wildfly.swarm</groupId>
@@ -340,6 +359,12 @@
                 <groupId>net.sf.jasperreports</groupId>
                 <artifactId>jasperreports-fonts</artifactId>
                 <version>${version.jasperreports.fonts}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.sf.barcode4j</groupId>
+                <artifactId>barcode4j</artifactId>
+                <version>${version.barcode4j}</version>
             </dependency>
 
             <!-- Primefaces -->

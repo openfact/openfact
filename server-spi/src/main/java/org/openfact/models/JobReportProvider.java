@@ -4,6 +4,8 @@ import java.util.List;
 
 public interface JobReportProvider {
 
+    JobReportQuery createQuery(OrganizationModel organization);
+
     JobReportModel createJobReport(OrganizationModel organization, String jobReportName);
 
     JobReportModel getJobReportById(OrganizationModel organization, String id);

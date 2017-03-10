@@ -57,6 +57,11 @@ public class JpaDocumentProvider implements DocumentProvider {
     }
 
     @Override
+    public DocumentQuery createQuery(OrganizationModel organization) {
+        return new JpaDocumentQuery(em, fileProvider, organization);
+    }
+
+    @Override
     public DocumentModel addDocument(String documentType, String documentId, OrganizationModel organization) {
         if (getDocumentByTypeAndDocumentId(documentType, documentId, organization) != null) {
             throw new ModelDuplicateException("Document documentId[" + documentId + "] exists");

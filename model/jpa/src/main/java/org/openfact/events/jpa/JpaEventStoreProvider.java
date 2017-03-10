@@ -2,10 +2,7 @@ package org.openfact.events.jpa;
 
 import org.jboss.logging.Logger;
 import org.openfact.events.EventStoreProvider;
-import org.openfact.events.admin.AdminEvent;
-import org.openfact.events.admin.AuthDetails;
-import org.openfact.events.admin.OperationType;
-import org.openfact.events.admin.ResourceType;
+import org.openfact.events.admin.*;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -103,6 +100,11 @@ public class JpaEventStoreProvider implements EventStoreProvider {
     @Override
     public void clearAdmin(String organizationId, long olderThan) {
         em.createQuery("delete from AdminEventEntity where organizationId = :organizationId and time < :time").setParameter("organizationId", organizationId).setParameter("time", olderThan).executeUpdate();
+    }
+
+    @Override
+    public AdminEventQuery createQuery() {
+        return new JpaAdminEventQuery(em);
     }
 
     @Override

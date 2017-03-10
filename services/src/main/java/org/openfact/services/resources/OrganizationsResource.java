@@ -2,6 +2,7 @@ package org.openfact.services.resources;
 
 import org.jboss.resteasy.annotations.cache.NoCache;
 import org.jboss.resteasy.spi.HttpRequest;
+import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.representations.idm.PublishedOrganizationRepresentation;
 import org.openfact.services.managers.OrganizationManager;
@@ -27,6 +28,9 @@ public class OrganizationsResource {
     @Context
     private UriInfo uriInfo;
 
+    @Context
+    private OpenfactSession session;
+
     @Inject
     private OrganizationManager organizationManager;
 
@@ -39,6 +43,7 @@ public class OrganizationsResource {
         if (organization == null) {
             throw new NotFoundException("Organization does not exist");
         }
+        session.getContext().setOrganization(organization);
         return organization;
     }
 

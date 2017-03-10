@@ -4,6 +4,7 @@ import org.openfact.events.admin.AdminEvent;
 import org.openfact.events.admin.AdminEventQuery;
 import org.openfact.events.admin.OperationType;
 import org.openfact.events.admin.ResourceType;
+import org.openfact.models.OrganizationModel;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
@@ -16,10 +17,8 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-@Stateless
 public class JpaAdminEventQuery implements AdminEventQuery {
 
-    @PersistenceContext
     private EntityManager em;
 
     private CriteriaBuilder cb;
@@ -29,8 +28,7 @@ public class JpaAdminEventQuery implements AdminEventQuery {
     private Integer firstResult;
     private Integer maxResults;
 
-    @PostConstruct
-    private void init() {
+    public JpaAdminEventQuery(EntityManager em) {
         this.em = em;
 
         cb = em.getCriteriaBuilder();
