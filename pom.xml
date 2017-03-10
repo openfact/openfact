@@ -97,8 +97,10 @@
 
         <!-- Maven Plugins -->
         <version.maven-compiler-plugin>3.6.1</version.maven-compiler-plugin>
+        <version.maven-failsafe-plugin>2.19.1</version.maven-failsafe-plugin>
         <version.maven-war-plugin>2.6</version.maven-war-plugin>
         <version.maven-jar-plugin>3.0.2</version.maven-jar-plugin>
+        <version.maven-source-plugin>3.0.1</version.maven-source-plugin>
         <version.maven-deploy-plugin>2.8.2</version.maven-deploy-plugin>
         <osgi.bundle.plugin.version>3.2.0</osgi.bundle.plugin.version>
         <version.jasper-compile-plugin>1.0-beta-2</version.jasper-compile-plugin>
@@ -474,8 +476,9 @@
                     <version>${version.maven-compiler-plugin}</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>2.19.1</version>
+                    <version>${version.maven-failsafe-plugin}</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
@@ -506,6 +509,11 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${version.maven-source-plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-deploy-plugin</artifactId>
                     <version>${version.maven-deploy-plugin}</version>
                 </plugin>
@@ -518,6 +526,20 @@
         </pluginManagement>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <configuration>
                     <includes>

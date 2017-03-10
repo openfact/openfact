@@ -31,7 +31,7 @@ public class DefaultUBLInvoiceReaderWriter implements UBLInvoiceReaderWriter {
 
     @Override
     public UBLWriter<InvoiceType> writer() {
-        return (organization, t) -> UBL21Writer.invoice().getAsDocument(t);
+        return (organization, invoiceType) -> UBL21Writer.invoice().getAsDocument(invoiceType);
     }
 
 }

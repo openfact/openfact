@@ -71,8 +71,12 @@ public class DocumentManager {
 
         readerWriter.validate(organization, type);
         Document documentXml = readerWriter.writer().write(organization, type);
-        documentXml = signerProvider.sign(documentXml, organization);
+        if (documentXml == null) {
+            logger.error("Could not create Xml Document from " + type.getClass().getName() + "Instance");
+            throw new ModelException("Could not create Xml Document from " + type.getClass().getName() + "Instance");
+        }
 
+        documentXml = signerProvider.sign(documentXml, organization);
         DocumentModel documentModel = model.addDocument(documentType, documentId, organization);
 
         String customizationProviderType = documentConfig.get("customization", "default");
