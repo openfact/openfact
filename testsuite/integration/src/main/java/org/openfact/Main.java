@@ -1,6 +1,8 @@
 package org.openfact;
 
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.openfact.models.jpa.entities.OrganizationEntity;
 import org.wildfly.swarm.Swarm;
 import org.wildfly.swarm.datasources.DatasourceArchive;
 import org.wildfly.swarm.datasources.DatasourcesFraction;
@@ -27,11 +29,13 @@ public class Main {
                     ds.password("sa");
                 })
         );
-
         swarm.start();
 
         WARArchive appDeployment = ShrinkWrap.create(WARArchive.class);
-        appDeployment.addAllDependencies();
+        appDeployment
+                .addPackage("org.openfact")
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAllDependencies();
 
         // Deploy your app
         swarm.deploy(appDeployment);
