@@ -15,7 +15,7 @@ import javax.inject.Inject;
 @Stateless
 @UBLProviderType("default")
 @UBLDocumentType("CREDIT_NOTE")
-public class DefaultUBLCreditNoteCustomizationProvider implements UBLCreditNoteCustomizationProvider {
+public class DefaultUBLCreditNoteCustomizator implements UBLCreditNoteCustomizator {
 
     @Inject
     private TypeToModel typeToModel;
@@ -24,7 +24,14 @@ public class DefaultUBLCreditNoteCustomizationProvider implements UBLCreditNoteC
     private DocumentProvider documentProvider;
 
     @Override
-    public void config(OrganizationModel organization, DocumentModel document, CreditNoteType creditNoteType) {
+    public void config(OrganizationModel organization, DocumentModel document, Object o) {
+        CreditNoteType creditNoteType;
+        if (o instanceof CreditNoteType) {
+            creditNoteType = (CreditNoteType) o;
+        } else {
+            throw new IllegalStateException("Object class " + o.getClass().getName() + " should be a children of " + CreditNoteType.class.getName());
+        }
+
         typeToModel.importCreditNote(organization, document, creditNoteType);
 
         // attach file
@@ -39,6 +46,5 @@ public class DefaultUBLCreditNoteCustomizationProvider implements UBLCreditNoteC
                         }
                     });
         }
-
     }
 }

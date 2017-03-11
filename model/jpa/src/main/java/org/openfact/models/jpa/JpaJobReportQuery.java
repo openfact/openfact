@@ -2,6 +2,7 @@ package org.openfact.models.jpa;
 
 import org.openfact.models.AdminJobReport;
 import org.openfact.models.JobReportQuery;
+import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.entities.JobReportEntity;
 
 import javax.annotation.PostConstruct;
@@ -15,10 +16,8 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.*;
 
-@Stateless
 public class JpaJobReportQuery implements JobReportQuery {
 
-    @PersistenceContext
     private EntityManager em;
 
     private CriteriaBuilder cb;
@@ -28,20 +27,15 @@ public class JpaJobReportQuery implements JobReportQuery {
     private Integer firstResult;
     private Integer maxResults;
 
-    @PostConstruct
-    private void init() {
+    public JpaJobReportQuery(EntityManager em, OrganizationModel organization) {
         this.em = em;
 
         cb = em.getCriteriaBuilder();
         cq = cb.createQuery(JobReportEntity.class);
         root = cq.from(JobReportEntity.class);
         predicates = new ArrayList<>();
-    }
 
-    @Override
-    public JobReportQuery organization(String organizationId) {
-        predicates.add(cb.equal(root.get("organizationId"), organizationId));
-        return this;
+        predicates.add(cb.equal(root.get("organizationId"), organization.getId()));
     }
 
     @Override

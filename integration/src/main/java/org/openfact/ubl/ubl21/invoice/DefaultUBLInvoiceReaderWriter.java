@@ -12,7 +12,7 @@ import javax.ejb.Stateless;
 @Stateless
 @UBLProviderType("default")
 @UBLDocumentType("INVOICE")
-public class DefaultUBLInvoiceReaderWriter implements UBLInvoiceReaderWriterProvider {
+public class DefaultUBLInvoiceReaderWriter implements UBLInvoiceReaderWriter {
 
     @Override
     public UBLReader<InvoiceType> reader() {
@@ -31,7 +31,7 @@ public class DefaultUBLInvoiceReaderWriter implements UBLInvoiceReaderWriterProv
 
     @Override
     public UBLWriter<InvoiceType> writer() {
-        return (organization, t) -> UBL21Writer.invoice().getAsDocument(t);
+        return (organization, invoiceType) -> UBL21Writer.invoice().getAsDocument(invoiceType);
     }
 
 }

@@ -13,14 +13,20 @@ import javax.inject.Inject;
 @Stateless
 @UBLProviderType("default")
 @UBLDocumentType("INVOICE")
-public class DefaultUBLInvoiceCustomizationProvider implements UBLInvoiceCustomizationProvider {
+public class DefaultUBLInvoiceCustomizator implements UBLInvoiceCustomizator {
 
     @Inject
     private TypeToModel typeToModel;
 
     @Override
-    public void config(OrganizationModel organization, DocumentModel document, InvoiceType invoiceType) {
+    public void config(OrganizationModel organization, DocumentModel document, Object o) {
+        InvoiceType invoiceType;
+        if (o instanceof InvoiceType) {
+            invoiceType = (InvoiceType) o;
+        } else {
+            throw new IllegalStateException("Object class " + o.getClass().getName() + " should be a children of " + InvoiceType.class.getName());
+        }
+
         typeToModel.importInvoice(organization, document, invoiceType);
     }
-
 }

@@ -3,5 +3,5 @@ package org.openfact.ubl.ubl21.invoice;
 import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 import org.openfact.ubl.UBLReaderWriterProvider;
 
-public interface UBLInvoiceReaderWriterProvider extends UBLReaderWriterProvider<InvoiceType> {
+public interface UBLInvoiceReaderWriterFactory<T extends InvoiceType> extends UBLReaderWriterProvider<T> {
 }

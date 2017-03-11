@@ -8,10 +8,7 @@ import org.openfact.models.search.SearchResultsModel;
 import org.openfact.models.types.DocumentRequiredAction;
 import org.openfact.models.types.DocumentType;
 
-import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -20,28 +17,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@Stateless
 public class JpaDocumentQuery implements DocumentQuery {
 
     private DocumentCriteria<DocumentEntity, DocumentEntity> query;
     private DocumentCriteria<DocumentEntity, Long> queryCount;
 
     private OrganizationModel organization;
-
-    @Inject
-    private FileProvider fileProvider;
-
-    @PersistenceContext
     private EntityManager em;
 
-    public JpaDocumentQuery() {
+    private FileProvider fileProvider;
+
+    public JpaDocumentQuery(EntityManager em, FileProvider fileProvider, OrganizationModel organization) {
+        this.em = em;
+        this.fileProvider = fileProvider;
+        this.organization = organization;
+
         this.query = new DocumentCriteria<>(organization, em, DocumentEntity.class, DocumentEntity.class);
         this.queryCount = new DocumentCriteria<>(organization, em, DocumentEntity.class, Long.class);
-    }
-
-    public DocumentQuery organization(OrganizationModel organization) {
-        this.organization = organization;
-        return this;
     }
 
     private DocumentModel toModel(DocumentEntity entity) {
@@ -209,7 +201,7 @@ public class JpaDocumentQuery implements DocumentQuery {
             }
 
             return typedQuery.getResultList().stream()
-                    .map(document -> toModel(document))
+                    .map(JpaDocumentQuery.this::toModel)
                     .collect(Collectors.toList());
         }
 
@@ -261,7 +253,7 @@ public class JpaDocumentQuery implements DocumentQuery {
 
             // If there are more results than we needed, then we will need to do
             // another
-            // query to determine how many rows there are in total
+            // createQuery to determine how many rows there are in total
             int totalSize = start + resultList.size();
             if (hasMore) {
                 totalSize = countQuery().getTotalCount();
@@ -269,7 +261,7 @@ public class JpaDocumentQuery implements DocumentQuery {
 
             SearchResultsModel<DocumentModel> results = new SearchResultsModel<>();
             results.setTotalSize(totalSize);
-            results.setModels(resultList.stream().map(document -> toModel(document)).collect(Collectors.toList()));
+            results.setModels(resultList.stream().map(JpaDocumentQuery.this::toModel).collect(Collectors.toList()));
             return results;
         }
     }
@@ -278,13 +270,13 @@ public class JpaDocumentQuery implements DocumentQuery {
         @Override
         public ScrollModel<DocumentModel> getScrollResult(int scrollSize) {
             TypedQuery<DocumentEntity> typedQuery = query.buildQuery(false);
-            return new ScrollAdapter<>(DocumentEntity.class, typedQuery, document -> toModel(document), scrollSize);
+            return new ScrollAdapter<>(DocumentEntity.class, typedQuery, JpaDocumentQuery.this::toModel, scrollSize);
         }
 
         @Override
         public ScrollModel<List<DocumentModel>> getScrollResultList(int listSize) {
             TypedQuery<DocumentEntity> typedQuery = query.buildQuery(false);
-            return new ScrollPagingAdapter<>(DocumentEntity.class, typedQuery, f -> f.stream().map(document -> toModel(document)).collect(Collectors.toList()), listSize);
+            return new ScrollPagingAdapter<>(DocumentEntity.class, typedQuery, f -> f.stream().map(JpaDocumentQuery.this::toModel).collect(Collectors.toList()), listSize);
         }
     }
 

@@ -5,8 +5,6 @@ import java.util.List;
 
 public interface JobReportQuery {
 
-    JobReportQuery organization(String organizationId);
-
     JobReportQuery jobName(String... jobName);
 
     JobReportQuery fromDate(Date fromDate);

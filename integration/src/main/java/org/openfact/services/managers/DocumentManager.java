@@ -8,6 +8,7 @@ import org.openfact.models.types.DestinyType;
 import org.openfact.models.types.DocumentRequiredAction;
 import org.openfact.models.types.DocumentType;
 import org.openfact.ubl.*;
+import org.openfact.ubl.utils.DefaultUBLUtil;
 import org.openfact.ubl.utils.UBLUtil;
 import org.w3c.dom.Document;
 
@@ -65,13 +66,17 @@ public class DocumentManager {
     public DocumentModel addDocument(OrganizationModel organization, String documentId, String documentType, Object type) {
         Config.Scope documentConfig = Config.scope(documentType.toLowerCase());
 
-        String readerWriterProviderType = documentConfig.get("reader_writer", "default");
+        String readerWriterProviderType = documentConfig.get(DefaultUBLUtil.READER_WRITER, "default");
         UBLReaderWriterProvider readerWriter = ublUtil.getReaderWriter(readerWriterProviderType, documentType);
 
         readerWriter.validate(organization, type);
         Document documentXml = readerWriter.writer().write(organization, type);
-        documentXml = signerProvider.sign(documentXml, organization);
+        if (documentXml == null) {
+            logger.error("Could not create Xml Document from " + type.getClass().getName() + "Instance");
+            throw new ModelException("Could not create Xml Document from " + type.getClass().getName() + "Instance");
+        }
 
+        documentXml = signerProvider.sign(documentXml, organization);
         DocumentModel documentModel = model.addDocument(documentType, documentId, organization);
 
         String customizationProviderType = documentConfig.get("customization", "default");
