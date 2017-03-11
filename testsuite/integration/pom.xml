@@ -13,6 +13,8 @@
 	<packaging>jar</packaging>
 
 	<properties>
+		<version.h2>1.4.187</version.h2>
+
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
@@ -136,10 +138,17 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
+			<version>${version.h2}</version>
 		</dependency>
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.wildfly.swarm</groupId>
