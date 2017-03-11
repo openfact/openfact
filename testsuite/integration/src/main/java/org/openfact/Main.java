@@ -2,11 +2,8 @@ package org.openfact;
 
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.openfact.models.jpa.entities.OrganizationEntity;
 import org.wildfly.swarm.Swarm;
-import org.wildfly.swarm.datasources.DatasourceArchive;
 import org.wildfly.swarm.datasources.DatasourcesFraction;
-import org.wildfly.swarm.spi.api.JARArchive;
 import org.wildfly.swarm.undertow.WARArchive;
 
 public class Main {
@@ -14,8 +11,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Swarm swarm = new Swarm();
 
-        // Configure the Datasources subsystem with a driver
-        // and a datasource
+        // Configure the Datasources subsystem with a driver and a datasource
         swarm.fraction(new DatasourcesFraction()
                 .jdbcDriver("h2", (d) -> {
                     d.driverClassName("org.h2.Driver");

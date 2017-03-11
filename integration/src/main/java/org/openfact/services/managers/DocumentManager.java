@@ -67,22 +67,28 @@ public class DocumentManager {
         Config.Scope documentConfig = Config.scope(documentType.toLowerCase());
 
         String readerWriterProviderType = documentConfig.get(DefaultUBLUtil.READER_WRITER, "default");
-        UBLReaderWriterProvider readerWriter = ublUtil.getReaderWriter(readerWriterProviderType, documentType);
+        String customizationProviderType = documentConfig.get(DefaultUBLUtil.MODEL_CUSTOMIZATION, "default");
+        UBLReaderWriter readerWriter = ublUtil.getReaderWriter(readerWriterProviderType, documentType);
+        UBLCustomizator customizator = ublUtil.getCustomizationProvider(customizationProviderType, documentType);
+        if (readerWriter == null) {
+            throw new ModelException("Could not find a valid " + UBLReaderWriter.class.getSimpleName() + " for type[" + documentType + "]");
+        }
+        if (customizator == null) {
+            throw new ModelException("Could not find a valid " + UBLCustomizator.class.getSimpleName() + " for type[" + documentType + "]");
+        }
 
         readerWriter.validate(organization, type);
         Document documentXml = readerWriter.writer().write(organization, type);
         if (documentXml == null) {
-            logger.error("Could not create Xml Document from " + type.getClass().getName() + "Instance");
-            throw new ModelException("Could not create Xml Document from " + type.getClass().getName() + "Instance");
+            logger.error("Could not create Xml Document from " + type.getClass().getName() + " Instance");
+            throw new ModelException("Could not create Xml Document from " + type.getClass().getName() + " Instance");
         }
 
         documentXml = signerProvider.sign(documentXml, organization);
         DocumentModel documentModel = model.addDocument(documentType, documentId, organization);
 
-        String customizationProviderType = documentConfig.get("customization", "default");
-        UBLCustomizationProvider customizationProvider = ublUtil.getCustomizationProvider(customizationProviderType, documentType);
-        customizationProvider.config(organization, documentModel, type);
-        Stream.of(customizationProvider.getRequiredActions()).forEach(c -> documentModel.addRequiredAction(c));
+        customizator.config(organization, documentModel, type);
+        Stream.of(customizator.getRequiredActions()).forEach(c -> documentModel.addRequiredAction(c));
 
         try {
             FileModel fileModel = fileProvider.createFile(organization, documentModel.getDocumentId() + ".xml", DocumentUtils.getBytesFromDocument(documentXml));
@@ -120,18 +126,20 @@ public class DocumentManager {
 
     public SendEventModel sendToThirdParty(OrganizationModel organization, DocumentModel document) throws ModelInsuficientData, SendEventException {
         Config.Scope documentConfig = Config.scope(document.getDocumentType().toLowerCase());
-        String providerType = documentConfig.get("third_party_sender", "default");
+        String providerType = documentConfig.get(DefaultUBLUtil.THIRD_PARTY_SENDER, "default");
 
         UBLThirdPartySender thirdPartySender = ublUtil.getThirdPartySender(providerType, document.getDocumentType());
+        if (thirdPartySender == null) {
+            throw new SendEventException("Could not find a valid " + UBLCustomizator.class.getSimpleName() + " for type[" + document.getDocumentType() + "]");
+        }
+
         SendEventModel sendEvent = thirdPartySender.send(organization, document);
         document.removeRequiredAction(DocumentRequiredAction.SEND_TO_THIRD_PARTY);
         return sendEvent;
     }
 
     public SendEventModel sendToCustomEmail(OrganizationModel organization, DocumentModel document, String email) throws ModelInsuficientData, SendEventException {
-        SendEventModel sendEvent = emailSender.send(organization, document, email, DestinyType.CUSTOM_EMAIL);
-        return sendEvent;
+        return emailSender.send(organization, document, email, DestinyType.CUSTOM_EMAIL);
     }
-
 
 }

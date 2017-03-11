@@ -1,11 +1,11 @@
 package org.openfact.ubl.utils;
 
+import org.jboss.logging.Logger;
 import org.openfact.Config;
-import org.openfact.models.ModelException;
 import org.openfact.models.types.DocumentType;
-import org.openfact.ubl.UBLCustomizationProvider;
+import org.openfact.ubl.UBLCustomizator;
 import org.openfact.ubl.UBLIDGenerator;
-import org.openfact.ubl.UBLReaderWriterProvider;
+import org.openfact.ubl.UBLReaderWriter;
 import org.openfact.ubl.UBLThirdPartySender;
 import org.openfact.ubl.ubl21.qualifiers.UBLDocumentType;
 import org.openfact.ubl.ubl21.qualifiers.UBLProviderType;
@@ -20,6 +20,8 @@ import java.lang.annotation.Annotation;
 @Stateless
 public class DefaultUBLUtil implements UBLUtil {
 
+    private static final Logger logger = Logger.getLogger(DefaultUBLUtil.class);
+
     public static final String READER_WRITER = "readerWriter";
     public static final String ID_GENERATOR = "idGenerator";
     public static final String MODEL_CUSTOMIZATION = "modelCustomization";
@@ -27,7 +29,7 @@ public class DefaultUBLUtil implements UBLUtil {
 
     @Inject
     @Any
-    private Instance<UBLReaderWriterProvider> readerWriterProviders;
+    private Instance<UBLReaderWriter> readerWriterProviders;
 
     @Inject
     @Any
@@ -35,7 +37,7 @@ public class DefaultUBLUtil implements UBLUtil {
 
     @Inject
     @Any
-    private Instance<UBLCustomizationProvider> customizationProviders;
+    private Instance<UBLCustomizator> customizationProviders;
 
     @Inject
     @Any
@@ -45,25 +47,27 @@ public class DefaultUBLUtil implements UBLUtil {
      * Writer Reader
      */
     @Override
-    public UBLReaderWriterProvider getReaderWriter(DocumentType documentType) {
+    public UBLReaderWriter getReaderWriter(DocumentType documentType) {
         return getReaderWriter(documentType.toString());
     }
 
     @Override
-    public UBLReaderWriterProvider getReaderWriter(String documentType) {
+    public UBLReaderWriter getReaderWriter(String documentType) {
         return getReaderWriter(Config.scope(documentType.toLowerCase()).get(READER_WRITER, "default"), documentType);
     }
 
     @Override
-    public UBLReaderWriterProvider getReaderWriter(String providerType, String documentType) {
+    public UBLReaderWriter getReaderWriter(String providerType, String documentType) {
         Annotation providerTypeLiteral = new ProviderTypeLiteral(providerType);
         Annotation documentTypeLiteral = new DocumentTypeLiteral(documentType);
 
-        Instance<UBLReaderWriterProvider> instance = readerWriterProviders.select(providerTypeLiteral, documentTypeLiteral);
-        if (instance.isAmbiguous() || instance.isUnsatisfied()) {
-            throw new ModelException("Insufficient information to get an instance of " + UBLReaderWriterProvider.class.getSimpleName());
+        Instance<UBLReaderWriter> instance = readerWriterProviders.select(providerTypeLiteral, documentTypeLiteral);
+        if (!instance.isAmbiguous() && !instance.isUnsatisfied()) {
+            return readerWriterProviders.select(providerTypeLiteral, documentTypeLiteral).get();
         }
-        return readerWriterProviders.select(providerTypeLiteral, documentTypeLiteral).get();
+
+        logger.info("Insufficient information to get an instance of " + UBLReaderWriter.class.getSimpleName());
+        return null;
     }
 
     /**
@@ -85,35 +89,39 @@ public class DefaultUBLUtil implements UBLUtil {
         Annotation documentTypeLiteral = new DocumentTypeLiteral(documentType);
 
         Instance<UBLIDGenerator> instance = idGenerators.select(providerTypeLiteral, documentTypeLiteral);
-        if (instance.isAmbiguous() || instance.isUnsatisfied()) {
-            throw new ModelException("Insufficient information to get an instance of " + UBLIDGenerator.class.getSimpleName());
+        if (!instance.isAmbiguous() && !instance.isUnsatisfied()) {
+            return idGenerators.select(providerTypeLiteral, documentTypeLiteral).get();
         }
-        return idGenerators.select(providerTypeLiteral, documentTypeLiteral).get();
+
+        logger.info("Insufficient information to get an instance of " + UBLIDGenerator.class.getSimpleName());
+        return null;
     }
 
     /**
      * Customization providers
      */
     @Override
-    public UBLCustomizationProvider getCustomizationProvider(DocumentType documentType) {
+    public UBLCustomizator getCustomizationProvider(DocumentType documentType) {
         return getCustomizationProvider(documentType.toString());
     }
 
     @Override
-    public UBLCustomizationProvider getCustomizationProvider(String documentType) {
+    public UBLCustomizator getCustomizationProvider(String documentType) {
         return getCustomizationProvider(Config.scope(documentType.toLowerCase()).get(MODEL_CUSTOMIZATION, "default"), documentType);
     }
 
     @Override
-    public UBLCustomizationProvider getCustomizationProvider(String providerType, String documentType) {
+    public UBLCustomizator getCustomizationProvider(String providerType, String documentType) {
         Annotation providerTypeLiteral = new ProviderTypeLiteral(providerType);
         Annotation documentTypeLiteral = new DocumentTypeLiteral(documentType);
 
-        Instance<UBLCustomizationProvider> instance = customizationProviders.select(providerTypeLiteral, documentTypeLiteral);
-        if (instance.isAmbiguous() || instance.isUnsatisfied()) {
-            throw new ModelException("Insufficient information to get an instance of " + UBLCustomizationProvider.class.getSimpleName());
+        Instance<UBLCustomizator> instance = customizationProviders.select(providerTypeLiteral, documentTypeLiteral);
+        if (!instance.isAmbiguous() && !instance.isUnsatisfied()) {
+            return customizationProviders.select(providerTypeLiteral, documentTypeLiteral).get();
         }
-        return customizationProviders.select(providerTypeLiteral, documentTypeLiteral).get();
+
+        logger.info("Insufficient information to get an instance of " + UBLCustomizator.class.getSimpleName());
+        return null;
     }
 
     /**
@@ -135,10 +143,12 @@ public class DefaultUBLUtil implements UBLUtil {
         Annotation documentTypeLiteral = new DocumentTypeLiteral(documentType);
 
         Instance<UBLThirdPartySender> instance = senderProviders.select(providerTypeLiteral, documentTypeLiteral);
-        if (instance.isAmbiguous() || instance.isUnsatisfied()) {
-            throw new ModelException("Insufficient information to get an instance of " + UBLCustomizationProvider.class.getSimpleName());
+        if (!instance.isAmbiguous() && !instance.isUnsatisfied()) {
+            return senderProviders.select(providerTypeLiteral, documentTypeLiteral).get();
         }
-        return senderProviders.select(providerTypeLiteral, documentTypeLiteral).get();
+
+        logger.info("Insufficient information to get an instance of " + UBLCustomizator.class.getSimpleName());
+        return null;
     }
 
     /**

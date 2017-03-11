@@ -42,7 +42,7 @@ import org.openfact.services.resource.security.OrganizationAuth;
 import org.openfact.services.resource.security.Resource;
 import org.openfact.services.resource.security.SecurityContextProvider;
 import org.openfact.ubl.UBLIDGenerator;
-import org.openfact.ubl.UBLReaderWriterProvider;
+import org.openfact.ubl.UBLReaderWriter;
 import org.openfact.ubl.utils.UBLUtil;
 import org.w3c.dom.Document;
 
@@ -141,11 +141,16 @@ public class DocumentsAdminResource {
         byte[] bytes = IOUtils.toByteArray(inputStream);
 
         String provider = Config.scope(documentType.toString().toLowerCase()).get("provider");
-        UBLReaderWriterProvider<T> readerWriter = (UBLReaderWriterProvider<T>) ublUtil.getReaderWriter(provider, documentType.toString()).reader();
+        UBLReaderWriter<T> readerWriter = (UBLReaderWriter<T>) ublUtil.getReaderWriter(provider, documentType.toString()).reader();
+        if (readerWriter == null) {
+            throw new ModelException("Could not find a valid " + UBLReaderWriter.class.getSimpleName() + " for type[" + documentType.toString() + "]");
+        }
+
         T t = readerWriter.reader().read(bytes);
         if (t == null) {
             throw new ModelException("Could not read file");
         }
+
         return t;
     }
 
@@ -172,6 +177,10 @@ public class DocumentsAdminResource {
                 IDType documentId = invoiceType.getID();
                 if (documentId == null) {
                     UBLIDGenerator<InvoiceType> ublIDGenerator = ublUtil.getIDGenerator(DocumentType.INVOICE);
+                    if (ublIDGenerator == null) {
+                        throw new ModelException("Could not find a valid " + UBLIDGenerator.class.getSimpleName() + " for type[" + DocumentType.INVOICE.toString() + "]");
+                    }
+
                     String newDocumentId = ublIDGenerator.generateID(organization, invoiceType);
                     documentId = new IDType(newDocumentId);
                     invoiceType.setID(documentId);
@@ -217,6 +226,10 @@ public class DocumentsAdminResource {
                 IDType documentId = creditNoteType.getID();
                 if (documentId == null) {
                     UBLIDGenerator<CreditNoteType> ublIDGenerator = ublUtil.getIDGenerator(DocumentType.CREDIT_NOTE);
+                    if (ublIDGenerator == null) {
+                        throw new ModelException("Could not find a valid " + UBLIDGenerator.class.getSimpleName() + " for type[" + DocumentType.CREDIT_NOTE.toString() + "]");
+                    }
+
                     String newDocumentId = ublIDGenerator.generateID(organization, creditNoteType);
                     documentId = new IDType(newDocumentId);
                     creditNoteType.setID(documentId);
@@ -262,6 +275,10 @@ public class DocumentsAdminResource {
                 IDType documentId = debitNoteType.getID();
                 if (documentId == null) {
                     UBLIDGenerator<DebitNoteType> ublIDGenerator = ublUtil.getIDGenerator(DocumentType.DEBIT_NOTE);
+                    if (ublIDGenerator == null) {
+                        throw new ModelException("Could not find a valid " + UBLIDGenerator.class.getSimpleName() + " for type[" + DocumentType.DEBIT_NOTE.toString() + "]");
+                    }
+
                     String newDocumentId = ublIDGenerator.generateID(organization, debitNoteType);
                     documentId = new IDType(newDocumentId);
                     debitNoteType.setID(documentId);

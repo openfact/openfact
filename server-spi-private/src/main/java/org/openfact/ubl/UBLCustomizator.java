@@ -4,7 +4,7 @@ import org.openfact.models.DocumentModel;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.types.DocumentRequiredAction;
 
-public interface UBLCustomizationProvider<T> {
+public interface UBLCustomizator<T> {
 
     void config(OrganizationModel organization, DocumentModel document, T t);
 
