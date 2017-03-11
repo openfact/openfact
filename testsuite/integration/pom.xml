@@ -13,8 +13,6 @@
     <packaging>war</packaging>
 
     <properties>
-        <version.h2>1.4.187</version.h2>
-
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
         <failOnMissingWebXml>false</failOnMissingWebXml>
@@ -119,6 +117,12 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
         <!--Test -->
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
@@ -134,11 +138,6 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>${version.h2}</version>
         </dependency>
     </dependencies>
 
