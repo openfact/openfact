@@ -9,8 +9,7 @@ cache:
 jdk:
 - oraclejdk8
 addons:
-  sonarqube:
-    token: $SONAR_TOKEN
+  sonarqube: true
 script:
 - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -e
 notifications:
