@@ -120,6 +120,12 @@
         <module>testsuite</module>
     </modules>
 
+    <scm>
+        <connection>scm:git:git@github.com:openfact/openfact.git</connection>
+        <developerConnection>scm:git:git@github.com:openfact/openfact.git</developerConnection>
+        <url>https://github.com/openfact/openfact</url>
+    </scm>
+
     <dependencyManagement>
         <dependencies>
             <!--wildfly-->
