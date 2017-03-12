@@ -7,7 +7,7 @@ sudo: false
 addons:
   sonarqube:
     token:
-      secure: SONAR_TOKEN
+      secure: "woxPAA8ZTodwIGtPdZs9nXzgeZrmCwEu7pU+P7aYDibNdfnPzrcIVVTjvkEXAUwgtNj8iLaS/2SMOoHu0Z3ZigGZ2cCaCEoBlCRlQc9tTGDWQDKuwmNoNlLTPgtkuzPLLX9wPmhN5DOcCJWpKIin/AX4hgI87J6546uOJG+ddXNePKbmCssFZjjaLhnsUGSWT1nYQRFYDZz+TgCkXSCiNCHiJ+smd3rP/3/2HBs6xq4RwGZIb6y7lKDmyX5MDxkuWEX2sLiFgKu3wIitqK/3saOuczSwmdHLcHRnW8KqtvfL9kzfdIRZRSDrXzXJzEvZS55E69Nz1KbveVRYBjU902lz0K/yuXadSZ3XyC9xRAgea0WUj8BlH8t6+N3mxEid7eDdd53OI+jcn9pqdSTjRA0jiOGdaLVoGmw8yjNjR+1xkJNa4t9vdgnH0yBjh6QcoSk+YrqLUrso5k7gQJWPWlwpmIJlr9m2kzvRIuxBT5hqARY9+3mddzB4JH40jvdAOWw/xZkydv70KU3ZIEu0g3MpktUhK8wQQ3zugyGFSzkYtY2yNaz9svp3DyapHdXPUNWxjS5GDBvT6MeD4r6HniJ+1wGc9hkWGSxVUww1z+Jlh/7EXvMex6XkVWWzUCzsKsrDoHWDq5Au3JiTumw9yDUtXcdluZRaCfQnCamSH8A="
 
 cache:
   directories:
