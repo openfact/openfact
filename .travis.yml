@@ -1,18 +1,13 @@
 language: java
 
+sudo: false
+
 dist: trusty
 
 addons:
   sonarqube:
     token:
-      secure: ********* # encrypted value of your token
-script:
-  # other script steps might be done before running the actual SonarQube analysis
-  - sonar-scanner
-    # the following command line builds the project, runs the tests with coverage and then execute the SonarQube analysis
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
-
-sudo: false
+      secure: SONAR_TOKEN
 
 cache:
   directories:
@@ -25,11 +20,14 @@ env:
   global:
     - MAVEN_SKIP_RC=true
     - MAVEN_OPTS="-Xms512m -Xmx2048m"
+    
 jdk:
   - oraclejdk8
 
 before_script:
   - export MAVEN_SKIP_RC=true
 
-script: "mvn clean integration-test"
-
+script: 
+  - mvn clean integration-test
+  - sonar-scanner    
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
