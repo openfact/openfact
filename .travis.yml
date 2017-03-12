@@ -1,11 +1,6 @@
 language: java
-sudo: false
-install: true
+sudo: required
 dist: trusty
-cache:
-  directories:
-  - $HOME/.m2/repository
-  - $HOME/.sonar/cache
 jdk:
 - oraclejdk8
 addons:
@@ -14,5 +9,8 @@ addons:
       secure: "DEeA1sEKtdWzAYpBfEwbsAXmraIhNneHDP1jLecWYOWtJdH04sHsd0zuAXQrl/NXLsepBerkWvxRa9Gp1eVhOtgQVHi0x5S/ZsCNtIX3dPMIEgtRtEYow+9Bape+O3CDB/A9am3OtnHhgcMobocPnGjShxYu9cN0MgDHPCeG+A1iT0ASXFkBnSGAzPSO4dgygUEJ8DODvOjoMIsYEnIyxMlGLNWuuYNhiGy7drSzECSQFqmfRYOCEjn19siGjD4RvM/mhdxqS7OkeReI28JX5mNwf+dpku2oPKuv7OJuK9OfrMvNcmIJfRJirERHHUpQblKONntpoGh+Lho47CFNbGEssBChvdPOHWtTnuBB4OVnF185AfM5Bs9R0w6xQ4VEdsOu2yEnhAaRaeWkZuqOwW/rqGycGnL47yg1pVTW/zNk0wPZ0cXklXdhbLLhSr2WLgKEM3mr2ijg54E9W26aKRwizHkQMVJgXevQRBqw6ORG3Tj7fB/S5retCXVlX5tTqPh+FV587xSYaKIg00ZSy9TmjhKTgzzBPNMCdBBNHKrwS6BLAaYoTW4FhHAMAzghqRDZ/Ixo9rkX0067S4WGMaKlbD3YzTnTLGKy6nLunyw/FdWIEjnEd4wcZCelItDMetJrUFf2CxE3teeVbIoLyE3yciUPP0QO7QrevVk+LJc="
 script:
   - sonar-scanner
+  cache:
+    directories:
+      - '$HOME/.sonar/cache'
 notifications:
   email: false
