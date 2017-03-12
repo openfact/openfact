@@ -11,7 +11,8 @@ addons:
 
 cache:
   directories:
-    - $HOME/.m2
+    - $HOME/.m2/repository
+    - $HOME/.sonar/cache
 
 before_cache:
   - rm -rf $HOME/.m2/repository/org/openfact
