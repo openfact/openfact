@@ -52,6 +52,10 @@
             <groupId>org.openfact</groupId>
             <artifactId>openfact-integration</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.openfact</groupId>
+            <artifactId>openfact-services</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.helger</groupId>
@@ -65,7 +69,7 @@
         </dependency>
         <dependency>
             <groupId>org.wildfly.swarm</groupId>
-            <artifactId>jaxrs-jaxb</artifactId>
+            <artifactId>jaxrs-multipart</artifactId>
         </dependency>
         <dependency>
             <groupId>org.wildfly.swarm</groupId>
@@ -168,4 +172,16 @@
             </plugin>
         </plugins>
     </build>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.wildfly.swarm</groupId>
+                <artifactId>bom-all</artifactId>
+                <version>${version.wildfly-swarm}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

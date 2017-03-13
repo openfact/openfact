@@ -88,7 +88,9 @@ public class DocumentManager {
         DocumentModel documentModel = model.addDocument(documentType, documentId, organization);
 
         customizator.config(organization, documentModel, type);
-        Stream.of(customizator.getRequiredActions()).forEach(c -> documentModel.addRequiredAction(c));
+        for (DocumentRequiredAction requiredAction: customizator.getRequiredActions()) {
+            documentModel.addRequiredAction(requiredAction);
+        }
 
         try {
             FileModel fileModel = fileProvider.createFile(organization, documentModel.getDocumentId() + ".xml", DocumentUtils.getBytesFromDocument(documentXml));

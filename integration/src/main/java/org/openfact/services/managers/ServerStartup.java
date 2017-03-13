@@ -1,25 +1,27 @@
 package org.openfact.services.managers;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.Properties;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.jboss.dmr.ModelNode;
+import org.jboss.logging.Logger;
+import org.openfact.Config;
+import org.openfact.ServerStartupTask;
+import org.openfact.common.util.SystemEnvProperties;
+import org.openfact.models.OpenfactConfigResolver;
+import org.openfact.services.util.JsonConfigProvider;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.ws.rs.core.Context;
-
-import org.jboss.dmr.ModelNode;
-import org.jboss.logging.Logger;
-import org.openfact.Config;
-import org.openfact.common.util.SystemEnvProperties;
-import org.openfact.services.util.JsonConfigProvider;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Iterator;
+import java.util.Properties;
 
 @Startup
 @Singleton
@@ -31,18 +33,25 @@ public class ServerStartup {
 
     @Context
     private ServletContext context;
-    
+
     @Inject
     private ApplianceBootstrap applianceBootstrap;
+
+    @Inject
+    private Instance<OpenfactConfigResolver> configResolvers;
+
+    @Inject
+    private ServerStartupTask serverStartupTask;
 
     private long serverStartupTimestamp;
 
     @PostConstruct
     private void init() {
         serverStartupTimestamp = System.currentTimeMillis();
-        
+
         loadConfig();
-        applianceBootstrap.bootstrap();        
+        applianceBootstrap.bootstrap();
+        serverStartupTask.execute();
     }
 
     public long getServerStartupTimestamp() {
@@ -53,8 +62,15 @@ public class ServerStartup {
         try {
             JsonNode node = null;
 
+            Iterator<OpenfactConfigResolver> iterator = configResolvers.iterator();
+            while (iterator.hasNext()) {
+                OpenfactConfigResolver configResolver = iterator.next();
+                node = configResolver.getNode();
+                break;
+            }
+
             String dmrConfig = loadDmrConfig(context);
-            if (dmrConfig != null) {
+            if (node == null && dmrConfig != null) {
                 node = new ObjectMapper().readTree(dmrConfig);
                 logger.info("Loading openfact-server.json config from standalone.xml or domain.xml");
             }
