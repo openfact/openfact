@@ -1,58 +1,75 @@
 package org.openfact.services.managers;
 
+import org.jboss.logging.Logger;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.OrganizationProvider;
+import org.openfact.models.OrganizationScheduledTask;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import javax.ejb.*;
+import javax.enterprise.inject.Any;
+import javax.enterprise.inject.Instance;
+import javax.inject.Inject;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
-@Startup
-@Singleton
+@Stateless
 public class ScheduleOrganizations {
+
+    protected static final Logger logger = Logger.getLogger(ScheduleOrganizations.class);
 
     @Resource
     private TimerService timerService;
 
-    private Map<String, Timer> organizationTimers;
-    private Map<Timer, String> timerOrganizations;
+    @Inject
+    private OrganizationProvider organizationProvider;
 
-    @PostConstruct
-    private void init() {
-        organizationTimers = new HashMap<>();
-        timerOrganizations = new HashMap<>();
-    }
+    @Inject
+    @Any
+    private Instance<OrganizationScheduledTask> tasks;
 
-    @PreDestroy
-    private void close() {
-        Collection<Timer> timers = timerService.getAllTimers();
-        for (Timer t : timers) {
-            t.cancel();
-        }
-    }
-
-    @Lock(LockType.WRITE)
     public void scheduleTask(OrganizationModel organization) {
-        if (organizationTimers.containsKey(organization.getId())) {
-            Timer timer = organizationTimers.get(organization.getId());
-            timer.cancel();
+        cancelTask(organization);
+
+        TimerConfig config = new TimerConfig(organization.getId(), true);
+        timerService.createIntervalTimer(organization.getTaskFirstTime(), organization.getTaskDelay(), config);
+
+        logger.info("Timer organization[" + organization.getId() + "] was scheduled");
+    }
+
+    public void cancelTask(OrganizationModel organization) {
+        for (Timer timer : timerService.getAllTimers()) {
+            if (timer.getInfo() instanceof OrganizationTimer) {
+                OrganizationTimer organizationTimer = (OrganizationTimer) timer.getInfo();
+                if (organizationTimer.equals(organization.getId())) {
+                    timer.cancel();
+                    logger.info("Timer organization[" + organizationTimer.getOrganizationId() + "] was canceled");
+                }
+            }
         }
-
-        ScheduleExpression expression = new ScheduleExpression();
-        Timer timer = timerService.createCalendarTimer(expression);
-
-        organizationTimers.put(organization.getId(), timer);
-        timerOrganizations.put(timer, organization.getId());
     }
 
     @Timeout
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    public void execute(Timer timer) {
-        String organizationId = timerOrganizations.get(timer);
-
-        System.out.println("executing task on organization id:" + organizationId);
+    private void execute(Timer timer) {
+        if (timer.getInfo() instanceof OrganizationTimer) {
+            OrganizationTimer organizationTimer = (OrganizationTimer) timer.getInfo();
+            OrganizationModel organization = organizationProvider.getOrganization(organizationTimer.getOrganizationId());
+            for (OrganizationScheduledTask task : tasks) {
+                executeSingleTask(task, organization);
+            }
+        }
     }
+
+    private void executeSingleTask(OrganizationScheduledTask task, OrganizationModel organization) {
+        logger.info("Executing organization[" + organization.getId() + "] timer");
+        task.executeTask(organization);
+        logger.info("Closing Timer organization[" + organization.getId() + "] timer");
+    }
+
 }

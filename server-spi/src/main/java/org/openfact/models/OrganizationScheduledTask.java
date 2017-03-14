@@ -7,4 +7,6 @@ public interface OrganizationScheduledTask {
     String getName();
 
     String getDescription();
+
+    void executeTask(OrganizationModel organization);
 }
