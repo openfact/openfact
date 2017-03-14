@@ -5,18 +5,11 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
 import org.openfact.models.OrganizationScheduledTask;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import javax.ejb.*;
 import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
-import java.io.Serializable;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 @Stateless
 public class ScheduleOrganizations {
@@ -36,7 +29,7 @@ public class ScheduleOrganizations {
     public void scheduleTask(OrganizationModel organization) {
         cancelTask(organization);
 
-        TimerConfig config = new TimerConfig(organization.getId(), true);
+        TimerConfig config = new TimerConfig(new OrganizationTimer(organization.getId()), true);
         timerService.createIntervalTimer(organization.getTaskFirstTime(), organization.getTaskDelay(), config);
 
         logger.info("Timer organization[" + organization.getId() + "] was scheduled");
@@ -60,8 +53,13 @@ public class ScheduleOrganizations {
         if (timer.getInfo() instanceof OrganizationTimer) {
             OrganizationTimer organizationTimer = (OrganizationTimer) timer.getInfo();
             OrganizationModel organization = organizationProvider.getOrganization(organizationTimer.getOrganizationId());
-            for (OrganizationScheduledTask task : tasks) {
-                executeSingleTask(task, organization);
+            if (organization.isTasksEnabled()) {
+                for (OrganizationScheduledTask task : tasks) {
+                    executeSingleTask(task, organization);
+                }
+            } else {
+                logger.warn("Canceling organization[" + timer + "] timer");
+                timer.cancel();
             }
         }
     }

@@ -3,15 +3,13 @@ package org.openfact.services.managers;
 import org.openfact.Config;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
-import org.openfact.provider.ProviderEvent;
 import org.openfact.models.utils.OpenfactModelUtils;
 import org.openfact.models.utils.RepresentationToModel;
+import org.openfact.provider.ProviderEvent;
 import org.openfact.representations.idm.OrganizationEventsConfigRepresentation;
 import org.openfact.representations.idm.OrganizationRepresentation;
 
-import javax.annotation.Resource;
 import javax.ejb.Stateless;
-import javax.enterprise.concurrent.ManagedScheduledExecutorService;
 import javax.inject.Inject;
 import java.util.Collections;
 import java.util.HashSet;
@@ -19,9 +17,6 @@ import java.util.List;
 
 @Stateless
 public class OrganizationManager {
-
-    @Resource
-    private ManagedScheduledExecutorService managedScheduledExecutorService;
 
     @Inject
     private OrganizationProvider model;
@@ -31,6 +26,9 @@ public class OrganizationManager {
 
     @Inject
     private RepresentationToModel representationToModel;
+
+    @Inject
+    private ScheduleOrganizations taskManager;
 
     public OrganizationModel getOpenfactAdminstrationOrganization() {
         return getOrganization(Config.getAdminOrganization());
@@ -63,7 +61,7 @@ public class OrganizationManager {
         // setup defaults
         setupOrganizationDefaults(organization);
 
-        schedulePeriodicTask(organization);
+        updatePeriodicTask(organization);
 
         //fireOrganizationPostCreate(organization);
         event.fire((OrganizationModel.OrganizationPostCreateEvent) () -> organization);
@@ -85,7 +83,7 @@ public class OrganizationManager {
         representationToModel.importOrganization(rep, organization);
 
         // Create periodic tasks for send documents
-        schedulePeriodicTask(organization);
+        cancelPeriodicTask(organization);
 
         event.fire((OrganizationModel.OrganizationPostCreateEvent) () -> organization);
         return organization;
@@ -119,25 +117,16 @@ public class OrganizationManager {
         }
     }
 
-    public static long numero = 5L;
-
-    public void schedulePeriodicTask(OrganizationModel organization) {
-        /*managedScheduledExecutorService.scheduleAtFixedRate(() -> {
-            System.out.println(organization.getName() + " " + System.currentTimeMillis());
-        }, 0L, numero++, TimeUnit.SECONDS);*/
-    }
-
-    public void reschedulePeriodicTask(OrganizationModel organization) {
-
+    public void updatePeriodicTask(OrganizationModel organization) {
+        if (organization.isTasksEnabled()) {
+            taskManager.scheduleTask(organization);
+        } else {
+            taskManager.cancelTask(organization);
+        }
     }
 
     public void cancelPeriodicTask(OrganizationModel organization) {
-//        TimerDelayProvider timer = session.getProvider(TimerDelayProvider.class);
-//        timer.cancelTask(getTaskName(organization));
-    }
-
-    protected String getTaskName(OrganizationModel organization) {
-        return organization.getId();
+        taskManager.cancelTask(organization);
     }
 
 }

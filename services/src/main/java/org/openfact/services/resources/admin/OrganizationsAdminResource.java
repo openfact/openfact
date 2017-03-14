@@ -271,7 +271,7 @@ public class OrganizationsAdminResource {
             representationToModel.updateOrganization(rep, organization);
 
             // Refresh periodic tasks for send documents
-            organizationManager.reschedulePeriodicTask(organization);
+            organizationManager.updatePeriodicTask(organization);
 
             eventStoreManager.send(organization, getAdminEvent(organization)
                     .operation(OperationType.UPDATE)

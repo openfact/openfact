@@ -11,7 +11,8 @@
 
     <properties>
         <product.name>Openfact</product.name>
-        <product.name-html>\u003Cdiv class="of-logo-text"\u003E\u003Cspan\u003EOpenfact\u003C\u002Fspan\u003E\u003C\u002Fdiv\u003E</product.name-html>
+        <product.name-html>\u003Cdiv class="of-logo-text"\u003E\u003Cspan\u003EOpenfact\u003C\u002Fspan\u003E\u003C\u002Fdiv\u003E
+        </product.name-html>
         <product.version>${project.version}</product.version>
         <product.build-time>${timestamp}</product.build-time>
         <product.default-profile>community</product.default-profile>
@@ -129,20 +130,20 @@
     <dependencyManagement>
         <dependencies>
             <!--wildfly-->
-            <!--<dependency>-->
-                <!--<groupId>org.wildfly.bom</groupId>-->
-                <!--<artifactId>jboss-javaee-7.0-with-tools</artifactId>-->
-                <!--<version>${version.jboss.bom}</version>-->
-                <!--<type>pom</type>-->
-                <!--<scope>import</scope>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.wildfly.bom</groupId>-->
-                <!--<artifactId>jboss-javaee-7.0-with-hibernate</artifactId>-->
-                <!--<version>${version.jboss.bom}</version>-->
-                <!--<type>pom</type>-->
-                <!--<scope>import</scope>-->
-            <!--</dependency>-->
+            <dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>jboss-javaee-7.0-with-tools</artifactId>
+                <version>${version.jboss.bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>jboss-javaee-7.0-with-hibernate</artifactId>
+                <version>${version.jboss.bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
             <!-- Wildfly Swarm -->
             <dependency>
