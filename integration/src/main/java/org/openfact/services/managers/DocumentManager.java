@@ -16,7 +16,6 @@ import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.xml.transform.TransformerException;
-import java.util.stream.Stream;
 
 @Stateless
 public class DocumentManager {
@@ -36,7 +35,7 @@ public class DocumentManager {
     private UBLUtil ublUtil;
 
     @Inject
-    private UBLSignerProvider signerProvider;
+    private UBLSigner signerProvider;
 
     @Inject
     private Event<DocumentModel.DocumentPostCreateEvent> postCreatedEvent;

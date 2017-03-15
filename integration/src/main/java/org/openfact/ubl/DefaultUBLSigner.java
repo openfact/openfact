@@ -26,7 +26,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Stateless
-public class DefaultUBLSignerProvider implements UBLSignerProvider {
+public class DefaultUBLSigner implements UBLSigner {
 
     @Inject
     private KeyManager keystore;
