@@ -4,13 +4,13 @@ import com.helger.ubl21.UBL21Reader;
 import com.helger.ubl21.UBL21Writer;
 import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
 import org.openfact.ubl.ubl21.qualifiers.UBLDocumentType;
-import org.openfact.ubl.ubl21.qualifiers.UBLProviderType;
+import org.openfact.provider.ProviderType;
 import org.w3c.dom.Document;
 
 import javax.ejb.Stateless;
 
 @Stateless
-@UBLProviderType("default")
+@ProviderType("default")
 @UBLDocumentType("DEBIT_NOTE")
 public class DefaultUBLDebitNoteReaderWriter implements UBLDebitNoteReaderWriter {
 

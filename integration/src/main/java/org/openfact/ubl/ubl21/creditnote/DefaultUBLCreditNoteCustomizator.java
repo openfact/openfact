@@ -7,13 +7,13 @@ import org.openfact.models.OrganizationModel;
 import org.openfact.models.types.DocumentType;
 import org.openfact.models.utils.TypeToModel;
 import org.openfact.ubl.ubl21.qualifiers.UBLDocumentType;
-import org.openfact.ubl.ubl21.qualifiers.UBLProviderType;
+import org.openfact.provider.ProviderType;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 @Stateless
-@UBLProviderType("default")
+@ProviderType("default")
 @UBLDocumentType("CREDIT_NOTE")
 public class DefaultUBLCreditNoteCustomizator implements UBLCreditNoteCustomizator {
 

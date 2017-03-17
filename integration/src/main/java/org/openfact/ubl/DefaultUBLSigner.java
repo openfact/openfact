@@ -3,12 +3,14 @@ package org.openfact.ubl;
 import org.openfact.models.KeyManager;
 import org.openfact.models.ModelException;
 import org.openfact.models.OrganizationModel;
+import org.openfact.provider.SingleProviderType;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import javax.ejb.Stateless;
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.xml.crypto.MarshalException;
 import javax.xml.crypto.dsig.*;
@@ -26,6 +28,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Stateless
+@SingleProviderType(provider = "ublSigner", value = "default")
 public class DefaultUBLSigner implements UBLSigner {
 
     @Inject

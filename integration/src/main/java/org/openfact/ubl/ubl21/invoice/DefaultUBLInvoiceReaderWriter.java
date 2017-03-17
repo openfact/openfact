@@ -4,13 +4,13 @@ import com.helger.ubl21.UBL21Reader;
 import com.helger.ubl21.UBL21Writer;
 import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 import org.openfact.ubl.ubl21.qualifiers.UBLDocumentType;
-import org.openfact.ubl.ubl21.qualifiers.UBLProviderType;
+import org.openfact.provider.ProviderType;
 import org.w3c.dom.Document;
 
 import javax.ejb.Stateless;
 
 @Stateless
-@UBLProviderType("default")
+@ProviderType("default")
 @UBLDocumentType("INVOICE")
 public class DefaultUBLInvoiceReaderWriter implements UBLInvoiceReaderWriter {
 

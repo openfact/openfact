@@ -65,7 +65,7 @@
         <version.resteasy>3.1.1.Final</version.resteasy>
 
         <!-- Jackson -->
-        <jackson.version>2.8.3</jackson.version>
+        <jackson.version>2.7.4</jackson.version>
 
         <!-- Apache components -->
         <apache.httpcomponents.version>4.5</apache.httpcomponents.version>
@@ -76,6 +76,9 @@
         <version.barcode4j>2.1</version.barcode4j>
         <version.batik>1.8</version.batik>
         <version.xmlgraphics-commons>2.1</version.xmlgraphics-commons>
+
+        <!--Deltaspike-->
+        <version.deltaspike>1.7.2</version.deltaspike>
 
         <!-- Primefaces -->
         <primefaces.version>6.0</primefaces.version>
@@ -374,6 +377,13 @@
                 <groupId>net.sf.barcode4j</groupId>
                 <artifactId>barcode4j</artifactId>
                 <version>${version.barcode4j}</version>
+            </dependency>
+
+            <!--Deltaspike-->
+            <dependency>
+                <groupId>org.apache.deltaspike.core</groupId>
+                <artifactId>deltaspike-core-api</artifactId>
+                <version>${version.deltaspike}</version>
             </dependency>
 
             <!-- Primefaces -->

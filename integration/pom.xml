@@ -73,16 +73,20 @@
                     <groupId>bouncycastle</groupId>
                     <artifactId>bctsp-jdk14</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-annotations</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <!--<dependency>-->
-            <!--<groupId>net.sf.jasperreports</groupId>-->
-            <!--<artifactId>jasperreports-fonts</artifactId>-->
+        <!--<groupId>net.sf.jasperreports</groupId>-->
+        <!--<artifactId>jasperreports-fonts</artifactId>-->
         <!--</dependency>-->
 
         <!--<dependency>-->
-            <!--<groupId>net.sf.barcode4j</groupId>-->
-            <!--<artifactId>barcode4j</artifactId>-->
+        <!--<groupId>net.sf.barcode4j</groupId>-->
+        <!--<artifactId>barcode4j</artifactId>-->
         <!--</dependency>-->
 
         <!-- Keycloak -->
@@ -115,5 +119,10 @@
             <scope>provided</scope>
         </dependency>
 
+        <!--Deltaspike-->
+        <dependency>
+            <groupId>org.apache.deltaspike.core</groupId>
+            <artifactId>deltaspike-core-api</artifactId>
+        </dependency>
     </dependencies>
 </project>

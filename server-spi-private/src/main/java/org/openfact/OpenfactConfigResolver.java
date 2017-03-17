@@ -1,4 +1,4 @@
-package org.openfact.models;
+package org.openfact;
 
 import com.fasterxml.jackson.databind.JsonNode;
 

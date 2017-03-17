@@ -24,6 +24,9 @@
       "dir": "${openfact.report.dir}"
     }
   },
+  "ublSigner": {
+    "provider": "default"
+  },
   "invoice": {
     "readerWriter": "default",
     "idGenerator": "default",

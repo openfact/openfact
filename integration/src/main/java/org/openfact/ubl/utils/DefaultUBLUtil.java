@@ -8,7 +8,7 @@ import org.openfact.ubl.UBLIDGenerator;
 import org.openfact.ubl.UBLReaderWriter;
 import org.openfact.ubl.UBLThirdPartySender;
 import org.openfact.ubl.ubl21.qualifiers.UBLDocumentType;
-import org.openfact.ubl.ubl21.qualifiers.UBLProviderType;
+import org.openfact.provider.ProviderType;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Any;
@@ -154,7 +154,7 @@ public class DefaultUBLUtil implements UBLUtil {
     /**
      * Literals
      */
-    public class ProviderTypeLiteral extends AnnotationLiteral<UBLProviderType> implements UBLProviderType {
+    public class ProviderTypeLiteral extends AnnotationLiteral<ProviderType> implements ProviderType {
         private final String value;
 
         public ProviderTypeLiteral(String value) {

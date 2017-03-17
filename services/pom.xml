@@ -1,71 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<parent>
-		<artifactId>openfact</artifactId>
-		<groupId>org.openfact</groupId>
-		<version>1.0-beta-7-SNAPSHOT</version>
-		<relativePath>../pom.xml</relativePath>
-	</parent>
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>openfact</artifactId>
+        <groupId>org.openfact</groupId>
+        <version>1.0-beta-7-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
 
-	<artifactId>openfact-services</artifactId>
-	<name>Openfact REST Services</name>
+    <artifactId>openfact-services</artifactId>
+    <name>Openfact REST Services</name>
 
-	<dependencies>
-		<!--Openfact -->
-		<dependency>
-			<groupId>org.openfact</groupId>
-			<artifactId>openfact-server-spi</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.openfact</groupId>
-			<artifactId>openfact-server-spi-private</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.openfact</groupId>
-			<artifactId>openfact-integration</artifactId>
-		</dependency>
+    <dependencies>
+        <!--Openfact -->
+        <dependency>
+            <groupId>org.openfact</groupId>
+            <artifactId>openfact-server-spi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openfact</groupId>
+            <artifactId>openfact-server-spi-private</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openfact</groupId>
+            <artifactId>openfact-integration</artifactId>
+        </dependency>
 
-		<!-- Java EE 7 -->
-		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
+        <!-- Java EE 7 -->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
-		<!-- Resteasy -->
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-jaxrs</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>log4j</groupId>
-					<artifactId>log4j</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>slf4j-api</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>slf4j-simple</artifactId>
-				</exclusion>
-			</exclusions>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-multipart-provider</artifactId>
-			<scope>provided</scope>
-		</dependency>
+        <!-- Resteasy -->
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxrs</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
+                </exclusion>
+            </exclusions>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-multipart-provider</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
-		<!-- Jackson -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-		</dependency>	
+        <!-- Jackson -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
 </project>

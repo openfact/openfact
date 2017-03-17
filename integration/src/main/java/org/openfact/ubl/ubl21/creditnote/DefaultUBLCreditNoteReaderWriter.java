@@ -4,12 +4,12 @@ import com.helger.ubl21.UBL21Reader;
 import com.helger.ubl21.UBL21Writer;
 import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
 import org.openfact.ubl.ubl21.qualifiers.UBLDocumentType;
-import org.openfact.ubl.ubl21.qualifiers.UBLProviderType;
+import org.openfact.provider.ProviderType;
 import org.w3c.dom.Document;
 
 import javax.ejb.Stateless;
 
-@UBLProviderType("default")
+@ProviderType("default")
 @UBLDocumentType("CREDIT_NOTE")
 @Stateless
 public class DefaultUBLCreditNoteReaderWriter implements UBLCreditNoteReaderWriter {
