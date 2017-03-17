@@ -24,6 +24,9 @@
       "dir": "${openfact.report.dir}"
     }
   },
+  "restSecurity": {
+    "provider": "keycloak"
+  },
   "ublSigner": {
     "provider": "default"
   },

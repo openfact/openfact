@@ -3,6 +3,7 @@ package org.openfact.services.security;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
+import org.openfact.provider.SingleProviderType;
 import org.openfact.services.resource.security.ClientUser;
 import org.openfact.services.resource.security.OrganizationAuth;
 import org.openfact.services.resource.security.Resource;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Stateless
-@Alternative
+@SingleProviderType(provider = "restSecurity", value = "unrestricted")
 public class UnrestrictedSecurityContextProvider implements SecurityContextProvider {
 
     @Inject

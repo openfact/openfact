@@ -4,6 +4,7 @@ import org.openfact.models.AdminRoles;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
+import org.openfact.provider.SingleProviderType;
 import org.openfact.services.ForbiddenException;
 import org.openfact.services.resource.security.ClientUser;
 import org.openfact.services.resource.security.OrganizationAuth;
@@ -20,7 +21,7 @@ import java.util.function.BiFunction;
 import java.util.stream.Stream;
 
 @Stateless
-@Alternative
+@SingleProviderType(provider = "restSecurity", value = "basic")
 public class BasicSecurityContextProvider implements SecurityContextProvider {
 
     @Inject
