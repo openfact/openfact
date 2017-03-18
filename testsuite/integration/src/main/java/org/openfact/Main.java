@@ -28,7 +28,7 @@ public class Main {
         );
         swarm.start();
 
-        JAXRSArchive appDeployment = ShrinkWrap.create(JAXRSArchive.class);
+        WARArchive appDeployment = ShrinkWrap.create(WARArchive.class);
         appDeployment
                 .addPackage("org.openfact")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")

@@ -62,7 +62,7 @@ public class TypeToModel {
         if (type.getAccountingCustomerParty() != null) {
             addAccountingCustomerAttributes(type.getAccountingCustomerParty(), model);
         }
-        if (type.getTaxTotal() != null && !type.getTaxTotal().isEmpty()) {
+        if (!type.getTaxTotal().isEmpty()) {
             addTaxTotalAttributes(type.getTaxTotal(), model);
         }
         if (type.getLegalMonetaryTotal() != null) {
@@ -89,7 +89,7 @@ public class TypeToModel {
         if (type.getAccountingCustomerParty() != null) {
             addAccountingCustomerAttributes(type.getAccountingCustomerParty(), model);
         }
-        if (type.getTaxTotal() != null && !type.getTaxTotal().isEmpty()) {
+        if (!type.getTaxTotal().isEmpty()) {
             addTaxTotalAttributes(type.getTaxTotal(), model);
         }
         if (type.getLegalMonetaryTotal() != null) {
@@ -113,7 +113,7 @@ public class TypeToModel {
         if (type.getAccountingCustomerParty() != null) {
             addAccountingCustomerAttributes(type.getAccountingCustomerParty(), model);
         }
-        if (type.getTaxTotal() != null && !type.getTaxTotal().isEmpty()) {
+        if (!type.getTaxTotal().isEmpty()) {
             addTaxTotalAttributes(type.getTaxTotal(), model);
         }
         if (type.getRequestedMonetaryTotal() != null) {
