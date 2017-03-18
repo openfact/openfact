@@ -4,6 +4,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.wildfly.swarm.Swarm;
 import org.wildfly.swarm.datasources.DatasourcesFraction;
+import org.wildfly.swarm.jaxrs.JAXRSArchive;
 import org.wildfly.swarm.undertow.WARArchive;
 
 public class Main {
@@ -27,7 +28,7 @@ public class Main {
         );
         swarm.start();
 
-        WARArchive appDeployment = ShrinkWrap.create(WARArchive.class);
+        JAXRSArchive appDeployment = ShrinkWrap.create(JAXRSArchive.class);
         appDeployment
                 .addPackage("org.openfact")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")

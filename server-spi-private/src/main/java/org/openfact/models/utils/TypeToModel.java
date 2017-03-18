@@ -1,5 +1,6 @@
 package org.openfact.models.utils;
 
+import com.helger.xsds.ccts.cct.schemamodule.IdentifierType;
 import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.*;
 import oasis.names.specification.ubl.schema.xsd.creditnote_21.CreditNoteType;
 import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
@@ -128,14 +129,14 @@ public class TypeToModel {
         if (supplierPartyType.getCustomerAssignedAccountID() != null) {
             documentModel.setSingleAttribute(SUPPLIER_PARTY_ASSIGNED_ACCOUNT_ID, supplierPartyType.getCustomerAssignedAccountIDValue());
         }
-        if (supplierPartyType.getAdditionalAccountID() != null && !supplierPartyType.getAdditionalAccountID().isEmpty()) {
-            List<String> supplierAdditionalAccountID = supplierPartyType.getAdditionalAccountID().stream().map(f -> f.getValue()).collect(Collectors.toList());
+        if (!supplierPartyType.getAdditionalAccountID().isEmpty()) {
+            List<String> supplierAdditionalAccountID = supplierPartyType.getAdditionalAccountID().stream().map(IdentifierType::getValue).collect(Collectors.toList());
             documentModel.setAttribute(SUPPLIER_PARTY_ADDITIONAL_ACCOUNT_ID, supplierAdditionalAccountID);
         }
         if (supplierPartyType.getParty() != null) {
             PartyType partyType = supplierPartyType.getParty();
-            if (partyType.getPartyLegalEntity() != null && !partyType.getPartyLegalEntity().isEmpty()) {
-                List<String> supplierAdditionalAccountID = partyType.getPartyLegalEntity().stream().map(f -> f.getRegistrationNameValue()).collect(Collectors.toList());
+            if (!partyType.getPartyLegalEntity().isEmpty()) {
+                List<String> supplierAdditionalAccountID = partyType.getPartyLegalEntity().stream().map(PartyLegalEntityType::getRegistrationNameValue).collect(Collectors.toList());
                 documentModel.setAttribute(SUPPLIER_PARTY_REGISTRATION_NAME, supplierAdditionalAccountID);
             }
         }
@@ -149,14 +150,14 @@ public class TypeToModel {
             documentModel.setSingleAttribute(CUSTOMER_PARTY_ASSIGNED_ACCOUNT_ID, customerPartyType.getCustomerAssignedAccountIDValue());
             documentModel.setCustomerAssignedAccountId(customerPartyType.getCustomerAssignedAccountIDValue());
         }
-        if (customerPartyType.getAdditionalAccountID() != null && !customerPartyType.getAdditionalAccountID().isEmpty()) {
-            List<String> customerAdditionalAccountID = customerPartyType.getAdditionalAccountID().stream().map(f -> f.getValue()).collect(Collectors.toList());
+        if (!customerPartyType.getAdditionalAccountID().isEmpty()) {
+            List<String> customerAdditionalAccountID = customerPartyType.getAdditionalAccountID().stream().map(IdentifierType::getValue).collect(Collectors.toList());
             documentModel.setAttribute(CUSTOMER_PARTY_ADDITIONAL_ACCOUNT_ID, customerAdditionalAccountID);
         }
         if (customerPartyType.getParty() != null) {
             PartyType partyType = customerPartyType.getParty();
-            if (partyType.getPartyLegalEntity() != null && !partyType.getPartyLegalEntity().isEmpty()) {
-                List<String> supplierAdditionalAccountID = partyType.getPartyLegalEntity().stream().map(f -> f.getRegistrationNameValue()).collect(Collectors.toList());
+            if (!partyType.getPartyLegalEntity().isEmpty()) {
+                List<String> supplierAdditionalAccountID = partyType.getPartyLegalEntity().stream().map(PartyLegalEntityType::getRegistrationNameValue).collect(Collectors.toList());
                 documentModel.setAttribute(CUSTOMER_PARTY_REGISTRATION_NAME, supplierAdditionalAccountID);
                 documentModel.setCustomerRegistrationName(supplierAdditionalAccountID.stream().reduce(",", String::concat));
             }

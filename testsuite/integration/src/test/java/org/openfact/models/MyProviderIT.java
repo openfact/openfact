@@ -3,43 +3,60 @@ package org.openfact.models;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.openfact.TicketDTO;
+import org.wildfly.swarm.Swarm;
+import org.wildfly.swarm.arquillian.CreateSwarm;
+import org.wildfly.swarm.datasources.DatasourcesFraction;
+import org.wildfly.swarm.jaxrs.JAXRSFraction;
+import org.wildfly.swarm.naming.NamingFraction;
+import org.wildfly.swarm.security.SecurityFraction;
 import org.wildfly.swarm.undertow.WARArchive;
 
-import javax.inject.Inject;
 import java.io.File;
 
-//@RunWith(Arquillian.class)
+@RunWith(Arquillian.class)
 public class MyProviderIT {
 
-//    @Inject
-//    private MyProvider provider;
+//    @CreateSwarm(startEagerly = true)
+//    public static Swarm newContainer() throws Exception {
+//        Swarm swarm = new Swarm();
 //
-//    @Deployment
-//    public static WARArchive createDeployment() throws Exception {
-//        WARArchive warArchive = ShrinkWrap.create(WARArchive.class);
+//        // Configure the Datasources subsystem with a driver and a datasource
+//        swarm.fraction(new DatasourcesFraction()
+//                .jdbcDriver("h2", (d) -> {
+//                    d.driverClassName("org.h2.Driver");
+//                    d.xaDatasourceClass("org.h2.jdbcx.JdbcDataSource");
+//                    d.driverModuleName("com.h2database.h2");
+//                })
+//                .dataSource("ExampleDS", (ds) -> {
+//                    ds.driverName("h2");
+//                    ds.connectionUrl("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE");
+//                    ds.userName("sa");
+//                    ds.password("sa");
+//                })
+//        );
 //
-//        File[] files = Maven.resolver()
-//                .loadPomFromFile("pom.xml")
-//                .importRuntimeDependencies()
-//                .resolve()
-//                .withoutTransitivity()
-//                .asFile();
-//
-//        warArchive
-//                .addAsLibraries(files)
-//                .addAllDependencies();
-//        //.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
-//
-//        return warArchive;
+//        return swarm;
 //    }
-//
-//    @Test
-//    public void should_start_service() {
-//        Assert.assertNotNull(provider);
-//        Assert.assertEquals(provider.hello(), "hello");
-//    }
+
+    @Deployment
+    public static WARArchive createDeployment() throws Exception {
+        WARArchive appDeployment = ShrinkWrap.create(WARArchive.class);
+
+        appDeployment.addClass(TicketDTO.class)
+//                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAllDependencies();
+        return appDeployment;
+    }
+
+    @Test
+    public void should_start_service() {
+        Assert.assertNotNull("");
+    }
+
 }

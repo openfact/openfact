@@ -84,7 +84,7 @@
         <primefaces.version>6.0</primefaces.version>
 
         <!-- Keycloak -->
-        <version.keycloak>2.4.0.Final</version.keycloak>
+        <version.keycloak>2.5.4.Final</version.keycloak>
 
         <!-- Wildfly -->
         <wildfly.core.version>2.0.10.Final</wildfly.core.version>
@@ -132,22 +132,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--wildfly-->
-            <dependency>
-                <groupId>org.wildfly.bom</groupId>
-                <artifactId>jboss-javaee-7.0-with-tools</artifactId>
-                <version>${version.jboss.bom}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.wildfly.bom</groupId>
-                <artifactId>jboss-javaee-7.0-with-hibernate</artifactId>
-                <version>${version.jboss.bom}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
             <!-- Wildfly Swarm -->
             <dependency>
                 <groupId>org.wildfly.swarm</groupId>
@@ -241,10 +225,8 @@
             <!-- UBL -->
             <dependency>
                 <groupId>com.helger</groupId>
-                <artifactId>ph-ubl-parent-pom</artifactId>
+                <artifactId>ph-ubl21</artifactId>
                 <version>${version.ph-ubl}</version>
-                <type>pom</type>
-                <scope>import</scope>
             </dependency>
 
             <!-- JSON -->
@@ -397,6 +379,11 @@
             <dependency>
                 <groupId>org.keycloak</groupId>
                 <artifactId>keycloak-core</artifactId>
+                <version>${version.keycloak}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.keycloak</groupId>
+                <artifactId>keycloak-common</artifactId>
                 <version>${version.keycloak}</version>
             </dependency>
 
