@@ -27,6 +27,8 @@
                 <excludes>
                     <exclude>**/*.less</exclude>
                     <exclude>**/*bootstrap.css</exclude>
+                    <exclude>**/*patternfly.css</exclude>
+                    <exclude>**/*patternfly-additions.css</exclude>
                     <exclude>**/*.csslintrc</exclude>
                 </excludes>
             </resource>
@@ -53,7 +55,6 @@
                             <goal>compile</goal>
                         </goals>
                     </execution>
-
                 </executions>
             </plugin>
             <plugin>
