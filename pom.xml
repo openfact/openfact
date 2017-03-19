@@ -118,7 +118,7 @@
         <module>server-spi-private</module>
         <module>integration</module>
         <module>services</module>
-        <module>web-console</module>
+        <module>admin</module>
         <module>reports</module>
         <module>themes</module>
         <module>testsuite</module>
@@ -199,6 +199,16 @@
             <dependency>
                 <groupId>org.openfact</groupId>
                 <artifactId>openfact-themes</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.openfact</groupId>
+                <artifactId>openfact-admin-theme</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.openfact</groupId>
+                <artifactId>openfact-admin-template</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

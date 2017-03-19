@@ -5,12 +5,12 @@
         <artifactId>openfact</artifactId>
         <groupId>org.openfact</groupId>
         <version>1.0-beta-7-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>openfact-web-console</artifactId>
-    <name>Openfact JSF Web Console</name>
+    <name>Openfact Web Console</name>
     <packaging>war</packaging>
 
     <dependencies>
