@@ -16,6 +16,7 @@
     <modules>
         <module>theme</module>
         <module>template</module>
+        <module>showcase</module>
         <module>web-console</module>
     </modules>
 </project>
