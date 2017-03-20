@@ -1,4 +1,4 @@
-package com.github.adminfaces.template.model;
+package org.openfact.adminfaces.template.model;
 
 /**
  * Created by rafael-pestano on 30/11/16.

@@ -5,9 +5,7 @@
               version="2.0">
 
     <factory>
-        <exception-handler-factory>com.github.adminfaces.template.exception.CustomExceptionHandlerFactory</exception-handler-factory>
+        <exception-handler-factory>org.openfact.adminfaces.template.exception.CustomExceptionHandlerFactory</exception-handler-factory>
     </factory>
-
-
 
 </faces-config>

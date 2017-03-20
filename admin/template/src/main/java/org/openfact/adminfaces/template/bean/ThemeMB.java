@@ -1,4 +1,4 @@
-package com.github.adminfaces.template.bean;
+package org.openfact.adminfaces.template.bean;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
