@@ -2,24 +2,85 @@
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          version="3.1"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <display-name>openfact-web-console</display-name>
-    <session-config>
-        <session-timeout>30</session-timeout>
-    </session-config>
+
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.jsf</url-pattern>
+    </servlet-mapping>
+
+    <context-param>
+        <param-name>BootsFaces_THEME</param-name>
+        <param-value>patternfly</param-value>
+    </context-param>
+    <context-param>
+        <param-name>BootsFaces_USETHEME</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>net.bootsfaces.blockUI</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>net.bootsfaces.defaults.renderLabel</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.FACELETS_DECORATORS</param-name>
+        <param-value>net.bootsfaces.decorator.BootsFacesTagDecorator</param-value>
+    </context-param>
+    <context-param>
+        <param-name>net.bootsfaces.defaults.decorator</param-name>
+        <param-value>false</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>org.omnifaces.COMBINED_RESOURCE_ACTIVATE_RESOURCE_CACHING</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.omnifaces.CACHE_SETTING_APPLICATION_MAX_CAPACITY</param-name>
+        <param-value>30</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.omnifaces.CACHE_SETTING_APPLICATION_TTL</param-name>
+        <param-value>86400</param-value>
+    </context-param>
+
     <mime-mapping>
         <extension>ico</extension>
         <mime-type>image/x-icon</mime-type>
     </mime-mapping>
-    <error-page>
-        <error-code>404</error-code>
-        <location>/faces/error.xhtml</location>
-    </error-page>
-    <error-page>
-        <error-code>500</error-code>
-        <location>/faces/error.xhtml</location>
-    </error-page>
-    <context-param>
-        <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
-        <param-value>true</param-value>
-    </context-param>
+    <mime-mapping>
+        <extension>woff</extension>
+        <mime-type>application/font-woff</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>woff2</extension>
+        <mime-type>application/font-woff2</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>ttf</extension>
+        <mime-type>application/font-sfnt</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>eot</extension>
+        <mime-type>application/vnd.ms-fontobject</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>otf</extension>
+        <mime-type>font/opentype</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>svg</extension>
+        <mime-type>image/svg+xml</mime-type>
+    </mime-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index.jsf</welcome-file>
+    </welcome-file-list>
 </web-app>
