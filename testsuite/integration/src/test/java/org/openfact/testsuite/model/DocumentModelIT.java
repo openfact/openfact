@@ -14,7 +14,7 @@ import java.util.*;
 
 import static org.junit.Assert.assertNotNull;
 
-public class DocumentModelTest extends AbstractModelTest {
+public class DocumentModelIT extends AbstractModelTest {
 
 //    @Inject
 //    private DocumentProvider documentProvider;

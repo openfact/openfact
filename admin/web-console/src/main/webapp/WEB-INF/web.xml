@@ -3,6 +3,17 @@
          version="3.1"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
 
+
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Production</param-value>
+    </context-param>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -12,6 +23,10 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.jsf</url-pattern>
     </servlet-mapping>
+    <context-param>
+        <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+        <param-value>true</param-value>
+    </context-param>
 
     <context-param>
         <param-name>BootsFaces_THEME</param-name>
@@ -79,8 +94,4 @@
         <extension>svg</extension>
         <mime-type>image/svg+xml</mime-type>
     </mime-mapping>
-
-    <welcome-file-list>
-        <welcome-file>index.jsf</welcome-file>
-    </welcome-file-list>
 </web-app>
