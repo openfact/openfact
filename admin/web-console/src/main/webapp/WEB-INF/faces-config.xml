@@ -4,7 +4,7 @@
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
               version="2.2">
     <application>
-        <resource-handler>org.omnifaces.resourcehandler.CombinedResourceHandler
-        </resource-handler>
+        <resource-handler>org.omnifaces.resourcehandler.CombinedResourceHandler</resource-handler>
+        <resource-handler>org.omnifaces.resourcehandler.UnmappedResourceHandler</resource-handler>
     </application>
 </faces-config>
