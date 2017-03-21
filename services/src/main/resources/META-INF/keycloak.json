@@ -1,0 +1,11 @@
+{
+  "realm": "openfact",
+  "auth-server-url": "http://localhost:8080/auth",
+  "ssl-required": "external",
+  "resource": "openfact",
+  "credentials": {
+    "secret": "secret"
+  },
+  "use-resource-role-mappings": true,
+  "policy-enforcer": {}
+}
