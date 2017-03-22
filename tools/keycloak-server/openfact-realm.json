@@ -24,10 +24,14 @@
         "organization": "master"
       },
       "realmRoles": [
-        "admin", "uma_authorization"
+        "admin",
+        "uma_authorization"
       ],
       "clientRoles": {
-        "account": ["view-profile", "manage-account"]
+        "account": [
+          "view-profile",
+          "manage-account"
+        ]
       }
     },
     {
@@ -46,10 +50,14 @@
         "organization": "demo"
       },
       "realmRoles": [
-        "admin-organization", "uma_authorization"
+        "admin-organization",
+        "uma_authorization"
       ],
       "clientRoles": {
-        "account": ["view-profile", "manage-account"]
+        "account": [
+          "view-profile",
+          "manage-account"
+        ]
       }
     },
     {
@@ -68,10 +76,14 @@
         "organization": "demo"
       },
       "realmRoles": [
-        "organization-user", "uma_authorization"
+        "organization-user",
+        "uma_authorization"
       ],
       "clientRoles": {
-        "account": ["view-profile", "manage-account"]
+        "account": [
+          "view-profile",
+          "manage-account"
+        ]
       }
     },
     {
@@ -90,7 +102,10 @@
         "uma_authorization"
       ],
       "clientRoles": {
-        "account": ["view-profile", "manage-account"]
+        "account": [
+          "view-profile",
+          "manage-account"
+        ]
       }
     },
     {
@@ -99,7 +114,9 @@
       "email": "service-account-openfact@placeholder.org",
       "serviceAccountClientId": "openfact",
       "clientRoles": {
-        "openfact" : ["uma_protection"]
+        "openfact": [
+          "uma_protection"
+        ]
       }
     }
   ],
@@ -107,30 +124,23 @@
     "realm": [
       {
         "name": "admin",
-        "description": "Admin privileges",
         "composite": true,
         "composites": {
           "client": {
             "openfact": [
+              "create-organization",
               "manage-organization",
               "manage-documents",
               "manage-events",
-              "manage-files",
-              "manage-reports",
-              "manage-extensions",
               "view-organization",
               "view-documents",
-              "view-events",
-              "view-files",
-              "view-reports",
-              "view-extensions"
+              "view-events"
             ]
           }
         }
       },
       {
         "name": "admin-organization",
-        "description": "Admin privileges on one Organization",
         "composite": true,
         "composites": {
           "client": {
@@ -138,35 +148,22 @@
               "manage-organization",
               "manage-documents",
               "manage-events",
-              "manage-files",
-              "manage-reports",
-              "manage-extensions",
               "view-organization",
               "view-documents",
-              "view-events",
-              "view-files",
-              "view-reports",
-              "view-extensions"
+              "view-events"
             ]
           }
         }
       },
       {
         "name": "organization-user",
-        "description": "User privileges on one organization",
         "composite": true,
         "composites": {
           "client": {
             "openfact": [
               "manage-documents",
-              "manage-events",
-              "manage-extensions",
-              "view-organization",
               "view-documents",
-              "view-events",
-              "view-files",
-              "view-reports",
-              "view-extensions"
+              "view-events"
             ]
           }
         }
@@ -175,52 +172,25 @@
     "client": {
       "openfact": [
         {
-          "name": "manage-organization",
-          "description": "Admin Only One Organization"
+          "name": "create-organization"
         },
         {
-          "name": "manage-documents",
-          "description": "Manage Documents"
+          "name": "manage-organization"
         },
         {
-          "name": "manage-events",
-          "description": "Manage Events"
+          "name": "manage-documents"
         },
         {
-          "name": "manage-files",
-          "description": "Manage Files"
+          "name": "manage-events"
         },
         {
-          "name": "manage-reports",
-          "description": "Manage Reṕorts"
+          "name": "view-organization"
         },
         {
-          "name": "manage-extensions",
-          "description": "Manage Extensions"
+          "name": "view-documents"
         },
         {
-          "name": "view-organization",
-          "description": "View Organization"
-        },
-        {
-          "name": "view-documents",
-          "description": "View Documents"
-        },
-        {
-          "name": "view-events",
-          "description": "View Events"
-        },
-        {
-          "name": "view-files",
-          "description": "View Files"
-        },
-        {
-          "name": "view-reports",
-          "description": "View Reṕorts"
-        },
-        {
-          "name": "view-extensions",
-          "description": "View Extensions"
+          "name": "view-events"
         }
       ]
     }

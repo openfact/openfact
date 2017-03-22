@@ -11,23 +11,19 @@ public class AdminRoles {
     public static final String VIEW_ORGANIZATION = "view-organization";
     public static final String VIEW_DOCUMENTS = "view-documents";
     public static final String VIEW_EVENTS = "view-events";
-    public static final String VIEW_FILES = "view-files";
-    public static final String VIEW_REPORTS = "view-reports";
 
     public static final String MANAGE_ORGANIZATION = "manage-organization";
     public static final String MANAGE_DOCUMENTS = "manage-documents";
     public static final String MANAGE_EVENTS = "manage-events";
-    public static final String MANAGE_FILES = "manage-files";
-    public static final String MANAGE_REPORTS = "manage-reports";
 
     public static final String[] ALL_ORGANIZATION_ROLES = {
             /**
              * */
-            VIEW_ORGANIZATION, VIEW_DOCUMENTS, VIEW_EVENTS, VIEW_FILES, VIEW_REPORTS,
+            VIEW_ORGANIZATION, VIEW_DOCUMENTS, VIEW_EVENTS,
 
             /**
              * */
-            MANAGE_ORGANIZATION, MANAGE_DOCUMENTS, MANAGE_EVENTS, MANAGE_FILES, MANAGE_REPORTS
+            MANAGE_ORGANIZATION, MANAGE_DOCUMENTS, MANAGE_EVENTS,
     };
 
     public static String getViewRole(Resource resource) {
@@ -38,10 +34,6 @@ public class AdminRoles {
                 return AdminRoles.VIEW_DOCUMENTS;
             case EVENTS:
                 return AdminRoles.VIEW_EVENTS;
-            case FILES:
-                return AdminRoles.VIEW_FILES;
-            case REPORTS:
-                return AdminRoles.VIEW_REPORTS;
             default:
                 throw new IllegalStateException();
         }
@@ -55,10 +47,6 @@ public class AdminRoles {
                 return AdminRoles.MANAGE_DOCUMENTS;
             case EVENTS:
                 return AdminRoles.MANAGE_EVENTS;
-            case FILES:
-                return AdminRoles.MANAGE_FILES;
-            case REPORTS:
-                return AdminRoles.MANAGE_REPORTS;
             default:
                 throw new IllegalStateException();
         }
