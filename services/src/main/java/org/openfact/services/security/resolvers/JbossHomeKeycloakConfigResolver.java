@@ -23,13 +23,13 @@ public class JbossHomeKeycloakConfigResolver implements KeycloakConfigResolver {
             try {
                 URL url = getKeycloakConfigFile();
                 if (url == null) {
-                    url = getClass().getResource(configFileName);
+                    url = getClass().getClassLoader().getResource("META-INF/" + configFileName);
                 }
                 if (url == null) {
                     throw new IllegalStateException("Not able to find the file keycloak.json");
                 }
 
-                InputStream is = getKeycloakConfigFile().openStream();
+                InputStream is = url.openStream();
                 this.keycloakDeployment = KeycloakDeploymentBuilder.build(is);
             } catch (IOException e) {
                 throw new IllegalStateException("Not able to open the file keycloak.json");

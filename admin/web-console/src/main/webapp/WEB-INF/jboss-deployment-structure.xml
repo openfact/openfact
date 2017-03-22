@@ -3,6 +3,7 @@
     <deployment>
         <dependencies>
             <module name="com.fasterxml.jackson.datatype.jackson-datatype-jsr310"/>
+            <module name="org.keycloak.keycloak-adapter-spi"/>
         </dependencies>
     </deployment>
 </jboss-deployment-structure>

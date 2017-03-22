@@ -105,6 +105,7 @@
         <dependency>
             <groupId>org.keycloak</groupId>
             <artifactId>keycloak-adapter-spi</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <!-- Jboss logging -->
