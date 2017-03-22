@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 public class KeycloakSecurityContextProvider implements SecurityContextProvider {
 
     public static final String KEYCLOAK_ORGANIZATION_USER_ATTRIBUTE = "organization";
-    public static final String KEYCLOAK_CLIENT = "openfact-restful-api";
+    public static final String KEYCLOAK_CLIENT = "openfact";
 
     @Inject
     private OrganizationProvider provider;
