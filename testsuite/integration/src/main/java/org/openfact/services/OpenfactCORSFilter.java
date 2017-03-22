@@ -1,4 +1,4 @@
-package org.openfact.services.filters;
+package org.openfact.services;
 
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
