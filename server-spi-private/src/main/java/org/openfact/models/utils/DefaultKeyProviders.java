@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.keys.KeyProvider;
 import org.openfact.models.ComponentProvider;
+import org.openfact.models.ModelException;
 import org.openfact.models.OrganizationModel;
 import org.openfact.component.ComponentModel;
 
@@ -15,7 +16,7 @@ public class DefaultKeyProviders {
     @Inject
     private ComponentProvider componentProvider;
     
-    public void createProviders(OrganizationModel organization) {
+    public void createProviders(OrganizationModel organization) throws ModelException {
         ComponentModel generated = new ComponentModel();
         generated.setName("rsa-generated");
         generated.setParentId(organization.getId());
@@ -29,7 +30,7 @@ public class DefaultKeyProviders {
         componentProvider.addComponentModel(organization, generated);
     }
 
-    public void createProviders(OrganizationModel organization, String privateKeyPem, String certificatePem) {
+    public void createProviders(OrganizationModel organization, String privateKeyPem, String certificatePem) throws ModelException {
         ComponentModel rsa = new ComponentModel();
         rsa.setName("rsa");
         rsa.setParentId(organization.getId());

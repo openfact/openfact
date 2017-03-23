@@ -2,6 +2,7 @@ package org.openfact.models.jpa;
 
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.models.ComponentProvider;
+import org.openfact.models.ModelException;
 import org.openfact.models.OrganizationModel;
 import org.openfact.component.ComponentFactory;
 import org.openfact.component.ComponentModel;
@@ -33,14 +34,14 @@ public class JpaComponentProvider implements ComponentProvider {
     private ComponentUtil componentUtil;
 
     @Override
-    public ComponentModel addComponentModel(OrganizationModel organization, ComponentModel model) {
+    public ComponentModel addComponentModel(OrganizationModel organization, ComponentModel model) throws ModelException {
         model = importComponentModel(organization, model);
         componentUtil.notifyCreated(organization, model);
         return model;
     }
 
     @Override
-    public ComponentModel importComponentModel(OrganizationModel organization, ComponentModel model) {
+    public ComponentModel importComponentModel(OrganizationModel organization, ComponentModel model) throws ModelException {
         ComponentFactory componentFactory = null;
         try {
             componentFactory = componentUtil.getComponentFactory(model);
@@ -94,7 +95,7 @@ public class JpaComponentProvider implements ComponentProvider {
     }
 
     @Override
-    public void updateComponent(OrganizationModel organization, ComponentModel component) {
+    public void updateComponent(OrganizationModel organization, ComponentModel component) throws ModelException {
         componentUtil.getComponentFactory(component).validateConfiguration(organization, component);
 
         ComponentEntity c = em.find(ComponentEntity.class, component.getId());

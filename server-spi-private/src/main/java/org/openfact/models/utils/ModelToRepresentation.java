@@ -4,10 +4,7 @@ import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.components.utils.ComponentUtil;
 import org.openfact.events.admin.AdminEvent;
 import org.openfact.events.admin.AuthDetails;
-import org.openfact.models.AdminJobReport;
-import org.openfact.models.DocumentModel;
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.SendEventModel;
+import org.openfact.models.*;
 import org.openfact.component.ComponentModel;
 import org.openfact.provider.ProviderConfigProperty;
 import org.openfact.representations.idm.*;
@@ -290,6 +287,19 @@ public class ModelToRepresentation {
     }
 
     public JobReportRepresentation toRepresentation(AdminJobReport model) {
+        JobReportRepresentation rep = new JobReportRepresentation();
+        rep.setId(model.getId());
+        rep.setJobName(model.getJobName());
+        rep.setDuration(model.getDuration());
+        rep.setStartTime(model.getStartTime());
+        rep.setEndTime(model.getEndTime());
+        rep.setErrorCount(model.getErrorCount());
+        rep.setReadCount(model.getReadCount());
+        rep.setWriteCount(model.getWriteCount());
+        return rep;
+    }
+
+    public JobReportRepresentation toRepresentation(JobReportModel model) {
         JobReportRepresentation rep = new JobReportRepresentation();
         rep.setId(model.getId());
         rep.setJobName(model.getJobName());

@@ -1,6 +1,7 @@
 package org.openfact.services.managers;
 
 import org.openfact.Config;
+import org.openfact.models.ModelException;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
 import org.openfact.models.utils.OpenfactModelUtils;
@@ -46,11 +47,11 @@ public class OrganizationManager {
         return model.getOrganizationByName(name);
     }
 
-    public OrganizationModel createOrganization(String name) {
+    public OrganizationModel createOrganization(String name) throws ModelException {
         return createOrganization(name, name);
     }
 
-    public OrganizationModel createOrganization(String id, String name) {
+    public OrganizationModel createOrganization(String id, String name) throws ModelException {
         if (id == null) {
             id = OpenfactModelUtils.generateId();
         }
@@ -68,7 +69,7 @@ public class OrganizationManager {
         return organization;
     }
 
-    public OrganizationModel importOrganization(OrganizationRepresentation rep) {
+    public OrganizationModel importOrganization(OrganizationRepresentation rep) throws ModelException {
         String id = rep.getId();
         if (id == null) {
             id = OpenfactModelUtils.generateId();

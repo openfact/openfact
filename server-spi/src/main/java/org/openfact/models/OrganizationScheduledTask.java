@@ -2,7 +2,7 @@ package org.openfact.models;
 
 public interface OrganizationScheduledTask {
 
-    String isEnabled();
+    boolean isEnabled();
 
     String getName();
 

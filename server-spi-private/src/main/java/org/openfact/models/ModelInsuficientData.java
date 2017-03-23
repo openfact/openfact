@@ -3,7 +3,6 @@ package org.openfact.models;
 public class ModelInsuficientData extends Exception {
 
 	private static final long serialVersionUID = 1L;
-	
 
 	public ModelInsuficientData(Throwable cause) {
         super(cause);
@@ -16,4 +15,5 @@ public class ModelInsuficientData extends Exception {
     public ModelInsuficientData(String message, Throwable cause) {
         super(message, cause);
     }
+
 }

@@ -23,8 +23,10 @@ import org.openfact.models.utils.StripSecretsUtils;
 import org.openfact.representations.idm.*;
 import org.openfact.services.ErrorResponse;
 import org.openfact.services.ForbiddenException;
+import org.openfact.services.ModelErrorResponseException;
 import org.openfact.services.managers.EventStoreManager;
 import org.openfact.services.managers.OrganizationManager;
+import org.openfact.services.managers.ScheduleOrganizations;
 import org.openfact.services.resource.OrganizationAdminResourceProvider;
 import org.openfact.services.resource.security.ClientUser;
 import org.openfact.services.resource.security.OrganizationAuth;
@@ -97,6 +99,9 @@ public class OrganizationsAdminResource {
     private SecurityContextProvider securityContext;
 
     @Inject
+    private ScheduleOrganizations scheduleOrganizations;
+
+    @Inject
     private Instance<OrganizationScheduledTask> organizationScheduledTasks;
 
     @Inject
@@ -143,7 +148,7 @@ public class OrganizationsAdminResource {
      */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response importOrganization(@Valid final OrganizationRepresentation rep) throws ModelRollbackException {
+    public Response importOrganization(@Valid final OrganizationRepresentation rep) throws ModelErrorResponseException {
         if (!securityContext.getPermittedOrganizations(session).contains(organizationManager.getOpenfactAdminstrationOrganization())) {
             throw new ForbiddenException();
         }
@@ -161,7 +166,9 @@ public class OrganizationsAdminResource {
 
             return Response.created(location).build();
         } catch (ModelDuplicateException e) {
-            throw new ModelRollbackException("Organization with same name exists", Response.Status.CONFLICT);
+            throw new ModelErrorResponseException("Organization with same name exists", Response.Status.CONFLICT);
+        } catch (ModelException e) {
+            throw new ModelErrorResponseException("Could not create organization", Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -236,7 +243,7 @@ public class OrganizationsAdminResource {
     @PUT
     @Path("/{organization}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateOrganization(@PathParam("organization") final String organizationName, @Valid final OrganizationRepresentation rep) throws ModelRollbackException {
+    public Response updateOrganization(@PathParam("organization") final String organizationName, @Valid final OrganizationRepresentation rep) throws ModelErrorResponseException {
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
 
@@ -279,10 +286,10 @@ public class OrganizationsAdminResource {
                     .getEvent());
             return Response.noContent().build();
         } catch (ModelDuplicateException e) {
-            throw new ModelRollbackException("Organization with same name exists", Response.Status.CONFLICT);
+            throw new ModelErrorResponseException("Organization with same name exists", Response.Status.CONFLICT);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            throw new ModelRollbackException("Failed to update organization", Response.Status.INTERNAL_SERVER_ERROR);
+            throw new ModelErrorResponseException("Failed to update organization", Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -291,7 +298,7 @@ public class OrganizationsAdminResource {
      */
     @DELETE
     @Path("/{organization}")
-    public void deleteOrganization(@PathParam("organization") final String organizationName) {
+    public void deleteOrganization(@PathParam("organization") final String organizationName) throws ModelErrorResponseException {
         List<OrganizationModel> permittedOrganizations = securityContext.getPermittedOrganizations(session);
         if (!permittedOrganizations.contains(organizationManager.getOpenfactAdminstrationOrganization()) && !securityContext.getClientUser(session).hasAppRole(AdminRoles.ADMIN)) {
             throw new ForbiddenException();
@@ -299,7 +306,7 @@ public class OrganizationsAdminResource {
 
         OrganizationModel organization = getOrganizationModel(organizationName);
         if (Config.getAdminOrganization().equals(organization.getName())) {
-            throw new BadRequestException("Organization " + Config.getAdminOrganization() + " should not be deleted");
+            throw new ModelErrorResponseException("Master organization could not be deleted");
         }
 
         if (!organizationManager.removeOrganization(organization)) {
@@ -372,7 +379,7 @@ public class OrganizationsAdminResource {
     @POST
     @Path("/{organization}/components")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response create(@PathParam("organization") final String organizationName, ComponentRepresentation rep) throws ModelRollbackException {
+    public Response create(@PathParam("organization") final String organizationName, ComponentRepresentation rep) throws ModelErrorResponseException {
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
 
@@ -390,9 +397,11 @@ public class OrganizationsAdminResource {
                     .getEvent());
             return Response.created(uriInfo.getAbsolutePathBuilder().path(model.getId()).build()).build();
         } catch (ComponentValidationException e) {
-            throw new ModelRollbackException("Component validation exception", Response.Status.BAD_REQUEST);
+            throw new ModelErrorResponseException("Component validation exception", Response.Status.BAD_REQUEST);
         } catch (IllegalArgumentException e) {
-            throw new ModelRollbackException(e.getMessage(), Response.Status.BAD_REQUEST);
+            throw new ModelErrorResponseException(e.getMessage(), Response.Status.BAD_REQUEST);
+        } catch (ModelException e) {
+            throw new ModelErrorResponseException(e.getMessage(), Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -417,7 +426,7 @@ public class OrganizationsAdminResource {
     @Path("/{organization}/components/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateComponent(@PathParam("organization") final String organizationName,
-                                    @PathParam("id") String id, ComponentRepresentation rep) throws ModelRollbackException {
+                                    @PathParam("id") String id, ComponentRepresentation rep) throws ModelErrorResponseException {
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
 
@@ -437,9 +446,11 @@ public class OrganizationsAdminResource {
             componentProvider.updateComponent(organization, model);
             return Response.noContent().build();
         } catch (ComponentValidationException e) {
-            throw new ModelRollbackException("Component validation exception", Response.Status.BAD_REQUEST);
+            throw new ModelErrorResponseException("Component validation exception", Response.Status.BAD_REQUEST);
         } catch (IllegalArgumentException e) {
-            throw new ModelRollbackException(e.getMessage(), Response.Status.BAD_REQUEST);
+            throw new ModelErrorResponseException(e.getMessage(), Response.Status.BAD_REQUEST);
+        } catch (ModelException e) {
+            throw new ModelErrorResponseException(e.getMessage(), Response.Status.BAD_REQUEST);
         }
     }
 
@@ -486,7 +497,7 @@ public class OrganizationsAdminResource {
     }
 
     @GET
-    @Path("/{organization}/job-reports/{id}")
+    @Path("/{organization}/job-reports")
     @Produces(MediaType.APPLICATION_JSON)
     public List<JobReportRepresentation> getReports(
             @PathParam("organization") final String organizationName,
@@ -506,13 +517,13 @@ public class OrganizationsAdminResource {
 
         JobReportQuery query = jobReportProvider.createQuery(organization);
 
-        if (jobNames != null && !jobNames.isEmpty()) {
-            jobNames.forEach(query::jobName);
+        if (jobNames != null & !jobNames.isEmpty()) {
+            jobNames.stream().forEach(c -> query.jobName(c));
         }
 
         if (dateFrom != null) {
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-            Date from;
+            Date from = null;
             try {
                 from = df.parse(dateFrom);
             } catch (ParseException e) {
@@ -523,7 +534,7 @@ public class OrganizationsAdminResource {
 
         if (dateTo != null) {
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-            Date to;
+            Date to = null;
             try {
                 to = df.parse(dateTo);
             } catch (ParseException e) {
@@ -532,8 +543,12 @@ public class OrganizationsAdminResource {
             query.toDate(to);
         }
 
-        query.firstResult(firstResult);
-        query.maxResults(maxResults);
+        if (firstResult != null) {
+            query.firstResult(firstResult);
+        }
+        if (maxResults != null) {
+            query.maxResults(maxResults);
+        }
 
         return query.getResultList().stream()
                 .map(f -> modelToRepresentation.toRepresentation(f))
@@ -541,24 +556,48 @@ public class OrganizationsAdminResource {
     }
 
     @GET
-    @Path("/{organization}/job-reports/providers")
+    @Path("/{organization}/job-reports/{jobReportId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<OrganizationScheduledTaskRepresentation> getFile(@PathParam("organization") final String organizationName) {
+    public JobReportRepresentation findReport(
+            @PathParam("organization") final String organizationName,
+            @PathParam("jobReportId") final String jobReportId) {
+
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
 
         auth.requireView();
 
-        List<OrganizationScheduledTaskRepresentation> result = new ArrayList<>();
+        JobReportModel jobReport = jobReportProvider.getJobReportById(organization, jobReportId);
+        if (jobReport == null) {
+            throw new NotFoundException("Job report not found");
+        }
 
+        return modelToRepresentation.toRepresentation(jobReport);
+    }
+
+    @GET
+    @Path("/{organization}/job-reports/providers")
+    @Produces(MediaType.APPLICATION_JSON)
+    public ScheduledTaskRepresentation getFile(@PathParam("organization") final String organizationName) {
+        OrganizationModel organization = getOrganizationModel(organizationName);
+        OrganizationAuth auth = getAuth(organization);
+
+        auth.requireView();
+
+        List<OrganizationScheduledTaskRepresentation> tasks = new ArrayList<>();
         for (OrganizationScheduledTask next : organizationScheduledTasks) {
             OrganizationScheduledTaskRepresentation rep = new OrganizationScheduledTaskRepresentation();
             rep.setName(next.getName());
-            rep.setDescription(next.getName());
+            rep.setDescription(next.getDescription());
             rep.setEnabled(next.isEnabled());
-            result.add(rep);
+            tasks.add(rep);
         }
 
+        long remainingTime = scheduleOrganizations.remainingTime(organization);
+
+        ScheduledTaskRepresentation result = new ScheduledTaskRepresentation();
+        result.setRemainingTime(remainingTime);
+        result.setTasks(tasks);
         return result;
     }
 

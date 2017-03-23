@@ -52,7 +52,7 @@ public class JpaDocumentProvider implements DocumentProvider {
     }
 
     @Override
-    public DocumentModel addDocument(DocumentType documentType, String documentId, OrganizationModel organization) {
+    public DocumentModel addDocument(DocumentType documentType, String documentId, OrganizationModel organization) throws ModelException {
         return addDocument(documentType.toString(), documentId, organization);
     }
 
@@ -62,7 +62,7 @@ public class JpaDocumentProvider implements DocumentProvider {
     }
 
     @Override
-    public DocumentModel addDocument(String documentType, String documentId, OrganizationModel organization) {
+    public DocumentModel addDocument(String documentType, String documentId, OrganizationModel organization) throws ModelException {
         if (getDocumentByTypeAndDocumentId(documentType, documentId, organization) != null) {
             throw new ModelDuplicateException("Document documentId[" + documentId + "] exists");
         }

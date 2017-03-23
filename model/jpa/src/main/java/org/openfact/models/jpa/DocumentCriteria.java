@@ -24,12 +24,8 @@ public class DocumentCriteria<R, Q> {
     private final ArrayList<Predicate> predicates;
     private Map<String, Boolean> orderBy;
 
-    private final OrganizationModel organization;
-
     public DocumentCriteria(OrganizationModel organization, EntityManager em, Class<R> rClass, Class<Q> qClass) {
         this.em = em;
-
-        this.organization = organization;
 
         cb = em.getCriteriaBuilder();
         cq = cb.createQuery(qClass);

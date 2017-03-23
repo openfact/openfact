@@ -4,6 +4,7 @@ import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.components.utils.ComponentUtil;
 import org.openfact.keys.KeyProvider;
 import org.openfact.models.ComponentProvider;
+import org.openfact.models.ModelException;
 import org.openfact.models.OrganizationModel;
 import org.openfact.component.ComponentModel;
 import org.openfact.provider.ProviderConfigProperty;
@@ -87,7 +88,7 @@ public class RepresentationToModel {
         return model;
     }
 
-    public void importOrganization(OrganizationRepresentation rep, OrganizationModel newOrganization) {
+    public void importOrganization(OrganizationRepresentation rep, OrganizationModel newOrganization) throws ModelException {
         newOrganization.setName(rep.getOrganization());
 
         generalUpdateOrganization(newOrganization, rep);
@@ -145,7 +146,7 @@ public class RepresentationToModel {
         }
     }
 
-    public void updateOrganization(OrganizationRepresentation rep, OrganizationModel organization) {
+    public void updateOrganization(OrganizationRepresentation rep, OrganizationModel organization) throws ModelException {
         if (rep.getOrganization() != null) {
             renameOrganization(organization, rep.getOrganization());
         }
@@ -397,7 +398,7 @@ public class RepresentationToModel {
         }
     }
 
-    protected void importComponents(OrganizationModel newOrganization, MultivaluedHashMap<String, ComponentExportRepresentation> components, String parentId, ComponentProvider componentProvider) {
+    protected void importComponents(OrganizationModel newOrganization, MultivaluedHashMap<String, ComponentExportRepresentation> components, String parentId, ComponentProvider componentProvider) throws ModelException {
         for (Map.Entry<String, List<ComponentExportRepresentation>> entry : components.entrySet()) {
             String providerType = entry.getKey();
             for (ComponentExportRepresentation compRep : entry.getValue()) {

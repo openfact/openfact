@@ -1,13 +1,12 @@
 package org.openfact.models;
 
-import org.openfact.keys.RsaKeyMetadata;
-
-import javax.crypto.SecretKey;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
 import java.util.List;
+
+import org.openfact.keys.RsaKeyMetadata;
 
 public interface KeyManager {
 

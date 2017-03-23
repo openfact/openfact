@@ -77,7 +77,7 @@ public class MultipleOrganizationsIT extends AbstractModelTest {
         Assert.assertNotNull(fileProvider.getFileById(organization2, organizationFilesIds.get(organization2).get(1)));
     }
 
-    private void createObjects(OrganizationModel organization) {
+    private void createObjects(OrganizationModel organization) throws ModelException {
         documentProvider.addDocument(DocumentType.INVOICE, "F01-001", organization);
         documentProvider.addDocument(DocumentType.INVOICE, "F01-002", organization);
 

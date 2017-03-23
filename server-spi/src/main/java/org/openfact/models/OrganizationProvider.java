@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface OrganizationProvider {
 
-    OrganizationModel createOrganization(String name);
+    OrganizationModel createOrganization(String name) throws ModelException;
 
-    OrganizationModel createOrganization(String id, String name);
+    OrganizationModel createOrganization(String id, String name) throws ModelException;
 
     OrganizationModel getOrganization(String id);
 

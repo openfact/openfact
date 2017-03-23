@@ -1,21 +1,21 @@
 package org.openfact.events.jpa;
 
-import org.openfact.events.admin.AdminEvent;
-import org.openfact.events.admin.AdminEventQuery;
-import org.openfact.events.admin.OperationType;
-import org.openfact.events.admin.ResourceType;
-import org.openfact.models.OrganizationModel;
-
-import javax.annotation.PostConstruct;
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
+import org.openfact.events.admin.AdminEvent;
+import org.openfact.events.admin.AdminEventQuery;
+import org.openfact.events.admin.OperationType;
 
 public class JpaAdminEventQuery implements AdminEventQuery {
 

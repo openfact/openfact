@@ -1,28 +1,28 @@
 package org.openfact.models;
 
-public class ModelException extends RuntimeException {
+public class ModelRuntimeException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 	
 	private Object[] parameters;
 
-    public ModelException() {
+    public ModelRuntimeException() {
     }
 
-    public ModelException(String message) {
+    public ModelRuntimeException(String message) {
         super(message);
     }
 
-    public ModelException(String message, Object... parameters) {
+    public ModelRuntimeException(String message, Object... parameters) {
         super(message);
         this.parameters = parameters;
     }
 
-    public ModelException(String message, Throwable cause) {
+    public ModelRuntimeException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public ModelException(Throwable cause) {
+    public ModelRuntimeException(Throwable cause) {
         super(cause);
     }
 

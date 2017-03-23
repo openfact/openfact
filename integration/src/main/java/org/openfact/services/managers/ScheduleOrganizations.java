@@ -39,12 +39,24 @@ public class ScheduleOrganizations {
         for (Timer timer : timerService.getAllTimers()) {
             if (timer.getInfo() instanceof OrganizationTimer) {
                 OrganizationTimer organizationTimer = (OrganizationTimer) timer.getInfo();
-                if (organizationTimer.equals(organization.getId())) {
+                if (organizationTimer.getOrganizationId().equals(organization.getId())) {
                     timer.cancel();
                     logger.info("Timer organization[" + organizationTimer.getOrganizationId() + "] was canceled");
                 }
             }
         }
+    }
+
+    public long remainingTime(OrganizationModel organization) {
+        for (Timer timer : timerService.getAllTimers()) {
+            if (timer.getInfo() instanceof OrganizationTimer) {
+                OrganizationTimer organizationTimer = (OrganizationTimer) timer.getInfo();
+                if (organizationTimer.getOrganizationId().equals(organization.getId())) {
+                    return timer.getTimeRemaining();
+                }
+            }
+        }
+        return -1;
     }
 
     @Timeout

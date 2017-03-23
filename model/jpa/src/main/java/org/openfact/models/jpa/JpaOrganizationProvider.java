@@ -42,12 +42,15 @@ public class JpaOrganizationProvider implements OrganizationProvider, HibernateP
     }
 
     @Override
-    public OrganizationModel createOrganization(String name) {
+    public OrganizationModel createOrganization(String name) throws ModelException {
         return createOrganization(OpenfactModelUtils.generateId(), name);
     }
 
     @Override
-    public OrganizationModel createOrganization(String id, String name) {
+    public OrganizationModel createOrganization(String id, String name) throws ModelException {
+        if (getOrganizationByName(name) != null) {
+            throw new ModelDuplicateException("Organization " + name + " already exists");
+        }
         if (id == null) {
             id = OpenfactModelUtils.generateId();
         }

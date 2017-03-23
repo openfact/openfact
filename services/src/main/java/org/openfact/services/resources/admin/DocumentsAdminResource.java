@@ -35,6 +35,7 @@ import org.openfact.representations.idm.ThirdPartyEmailRepresentation;
 import org.openfact.representations.idm.search.SearchCriteriaRepresentation;
 import org.openfact.representations.idm.search.SearchResultsRepresentation;
 import org.openfact.services.ErrorResponse;
+import org.openfact.services.ModelErrorResponseException;
 import org.openfact.services.managers.DocumentManager;
 import org.openfact.services.managers.EventStoreManager;
 import org.openfact.services.managers.OrganizationManager;
@@ -136,7 +137,7 @@ public class DocumentsAdminResource {
         return uploadForm.get(UPLOAD_FILE_NAME);
     }
 
-    private <T> T readFile(InputPart inputPart, DocumentType documentType, Class<T> tClass) throws IOException {
+    private <T> T readFile(InputPart inputPart, DocumentType documentType, Class<T> tClass) throws IOException, ModelException {
         InputStream inputStream = inputPart.getBody(InputStream.class, null);
         byte[] bytes = IOUtils.toByteArray(inputStream);
 
@@ -158,7 +159,7 @@ public class DocumentsAdminResource {
     @Path("/upload/invoices")
     @Consumes("multipart/form-data")
     @Produces(MediaType.APPLICATION_JSON)
-    public void uploadInvoice(@PathParam("organization") final String organizationName, final MultipartFormDataInput input) throws ModelRollbackException {
+    public void uploadInvoice(@PathParam("organization") final String organizationName, final MultipartFormDataInput input) throws ModelErrorResponseException {
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
 
@@ -194,11 +195,11 @@ public class DocumentsAdminResource {
                         .getEvent());
             } catch (IOException e) {
                 logger.error("Error reading input data", e);
-                throw new ModelRollbackException("Error Reading data", Response.Status.BAD_REQUEST);
+                throw new ModelErrorResponseException("Error Reading data", Response.Status.BAD_REQUEST);
             } catch (ModelDuplicateException e) {
-                throw new ModelRollbackException("Invoice exists with same documentId");
+                throw new ModelErrorResponseException("Invoice exists with same documentId");
             } catch (ModelException e) {
-                throw new ModelRollbackException("Could not create document");
+                throw new ModelErrorResponseException("Could not create document");
             }
         }
     }
@@ -207,7 +208,7 @@ public class DocumentsAdminResource {
     @Path("/upload/credit-notes")
     @Consumes("multipart/form-data")
     @Produces(MediaType.APPLICATION_JSON)
-    public void uploadCreditNote(@PathParam("organization") final String organizationName, final MultipartFormDataInput input) throws ModelRollbackException {
+    public void uploadCreditNote(@PathParam("organization") final String organizationName, final MultipartFormDataInput input) throws ModelErrorResponseException {
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
 
@@ -243,11 +244,11 @@ public class DocumentsAdminResource {
                         .getEvent());
             } catch (IOException e) {
                 logger.error("Error reading input data", e);
-                throw new ModelRollbackException("Error Reading data", Response.Status.BAD_REQUEST);
+                throw new ModelErrorResponseException("Error Reading data", Response.Status.BAD_REQUEST);
             } catch (ModelDuplicateException e) {
-                throw new ModelRollbackException("Credit Note exists with same documentId");
+                throw new ModelErrorResponseException("Credit Note exists with same documentId");
             } catch (ModelException e) {
-                throw new ModelRollbackException("Could not create document");
+                throw new ModelErrorResponseException("Could not create document");
             }
         }
     }
@@ -256,7 +257,7 @@ public class DocumentsAdminResource {
     @Path("/upload/debit-notes")
     @Consumes("multipart/form-data")
     @Produces(MediaType.APPLICATION_JSON)
-    public void uploadDebitNote(@PathParam("organization") final String organizationName, final MultipartFormDataInput input) throws ModelRollbackException {
+    public void uploadDebitNote(@PathParam("organization") final String organizationName, final MultipartFormDataInput input) throws ModelErrorResponseException {
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
 
@@ -292,11 +293,11 @@ public class DocumentsAdminResource {
                         .getEvent());
             } catch (IOException e) {
                 logger.error("Error reading input data", e);
-                throw new ModelRollbackException("Error Reading data", Response.Status.BAD_REQUEST);
+                throw new ModelErrorResponseException("Error Reading data", Response.Status.BAD_REQUEST);
             } catch (ModelDuplicateException e) {
-                throw new ModelRollbackException("Debit Note exists with same documentId");
+                throw new ModelErrorResponseException("Debit Note exists with same documentId");
             } catch (ModelException e) {
-                throw new ModelRollbackException("Could not create document");
+                throw new ModelErrorResponseException("Could not create document");
             }
         }
     }
@@ -523,7 +524,7 @@ public class DocumentsAdminResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateDocument(@PathParam("organization") final String organizationName,
                                    @PathParam("document") final String documentIdPk,
-                                   @Valid final DocumentRepresentation rep) throws ModelRollbackException {
+                                   @Valid final DocumentRepresentation rep) throws ModelErrorResponseException {
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
 
@@ -549,14 +550,14 @@ public class DocumentsAdminResource {
 
             return Response.noContent().build();
         } catch (ModelDuplicateException e) {
-            throw new ModelRollbackException("Document exists with same documentId or id", Response.Status.CONFLICT);
+            throw new ModelErrorResponseException("Document exists with same documentId or id", Response.Status.CONFLICT);
         } catch (ModelException me) {
             logger.warn("Could not update document!", me);
-            throw new ModelRollbackException("Could not update document!");
+            throw new ModelErrorResponseException("Could not update document!");
         }
     }
 
-    private static void updateDocumentFromRep(DocumentModel document, DocumentRepresentation rep, Set<String> actionsToRemove) {
+    private static void updateDocumentFromRep(DocumentModel document, DocumentRepresentation rep, Set<String> actionsToRemove) throws ModelException {
         for (String action : actionsToRemove) {
             document.removeRequiredAction(action);
         }
@@ -576,7 +577,7 @@ public class DocumentsAdminResource {
     @DELETE
     @Path("/{document}")
     public Response deleteDocument(@PathParam("organization") final String organizationName,
-                                   @PathParam("document") final String documentIdPk) throws ModelRollbackException {
+                                   @PathParam("document") final String documentIdPk) throws ModelErrorResponseException {
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
 
@@ -592,7 +593,7 @@ public class DocumentsAdminResource {
                     .getEvent());
             return Response.noContent().build();
         } else {
-            throw new ModelRollbackException("Document couldn't be deleted", Response.Status.BAD_REQUEST);
+            throw new ModelErrorResponseException("Document couldn't be deleted", Response.Status.BAD_REQUEST);
         }
     }
 
@@ -600,7 +601,7 @@ public class DocumentsAdminResource {
     @Path("/{document}/send-to-customer")
     @Produces(MediaType.APPLICATION_JSON)
     public Response sendToCustomer(@PathParam("organization") final String organizationName,
-                                   @PathParam("document") final String documentIdPk) throws ModelRollbackException {
+                                   @PathParam("document") final String documentIdPk) throws ModelErrorResponseException {
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
 
@@ -616,7 +617,7 @@ public class DocumentsAdminResource {
     @Path("/{document}/send-to-third-party")
     @Produces(MediaType.APPLICATION_JSON)
     public Response sendToThirdParty(@PathParam("organization") final String organizationName,
-                                     @PathParam("document") final String documentIdPk) throws ModelRollbackException {
+                                     @PathParam("document") final String documentIdPk) throws ModelErrorResponseException {
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
 
@@ -634,7 +635,7 @@ public class DocumentsAdminResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response sendToThirdPartyByEmail(@PathParam("organization") final String organizationName,
                                             @PathParam("document") final String documentIdPk,
-                                            ThirdPartyEmailRepresentation thirdParty) throws ModelRollbackException {
+                                            ThirdPartyEmailRepresentation thirdParty) throws ModelErrorResponseException {
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
 
@@ -649,7 +650,7 @@ public class DocumentsAdminResource {
         return Response.ok(modelToRepresentation.toRepresentation(sendEvent)).build();
     }
 
-    private SendEventModel sendDocument(OrganizationModel organization, DocumentModel document, DestinyType destiny, String customEmail) throws ModelRollbackException {
+    private SendEventModel sendDocument(OrganizationModel organization, DocumentModel document, DestinyType destiny, String customEmail) throws ModelErrorResponseException {
         SendEventModel sendEvent;
         try {
             switch (destiny) {

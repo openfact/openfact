@@ -58,11 +58,11 @@ public class DocumentManager {
         return model.getDocumentByTypeAndDocumentId(type.toString(), documentId, organization);
     }
 
-    public DocumentModel addDocument(OrganizationModel organization, String documentId, DocumentType documentType, Object type) {
+    public DocumentModel addDocument(OrganizationModel organization, String documentId, DocumentType documentType, Object type) throws ModelException {
         return addDocument(organization, documentId, documentType.toString(), type);
     }
 
-    public DocumentModel addDocument(OrganizationModel organization, String documentId, String documentType, Object type) {
+    public DocumentModel addDocument(OrganizationModel organization, String documentId, String documentType, Object type) throws ModelException {
         Config.Scope documentConfig = Config.scope(documentType.toLowerCase());
 
         String readerWriterProviderType = documentConfig.get(DefaultUBLUtil.READER_WRITER, "default");

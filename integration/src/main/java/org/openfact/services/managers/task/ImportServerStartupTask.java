@@ -1,20 +1,23 @@
 package org.openfact.services.managers.task;
 
-import org.jboss.logging.Logger;
-import org.openfact.ServerStartupTask;
-import org.openfact.models.OrganizationModel;
-import org.openfact.representations.idm.OrganizationRepresentation;
-import org.openfact.services.managers.OrganizationManager;
-import org.openfact.util.JsonSerialization;
-
-import javax.ejb.Stateless;
-import javax.enterprise.inject.Alternative;
-import javax.inject.Inject;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+
+import javax.ejb.Stateless;
+import javax.enterprise.inject.Alternative;
+import javax.inject.Inject;
+
+import org.jboss.logging.Logger;
+import org.openfact.ServerStartupTask;
+import org.openfact.models.ModelException;
+import org.openfact.models.ModelRuntimeException;
+import org.openfact.models.OrganizationModel;
+import org.openfact.representations.idm.OrganizationRepresentation;
+import org.openfact.services.managers.OrganizationManager;
+import org.openfact.util.JsonSerialization;
 
 @Stateless
 @Alternative
@@ -64,9 +67,13 @@ public class ImportServerStartupTask implements ServerStartupTask {
                 logger.info("Not importing organization " + rep.getOrganization() + " organization already exists");
                 return;
             }
-            OrganizationModel organization = manager.importOrganization(rep);
-
-            logger.info("Imported organization " + organization.getName());
+            
+            try {
+                OrganizationModel organization = manager.importOrganization(rep);
+                logger.info("Imported organization " + organization.getName());
+            } catch (ModelException e) {
+                throw new ModelRuntimeException("Could not import organization " + rep.getOrganization(), e);
+            }                      
         } finally {
         }
     }

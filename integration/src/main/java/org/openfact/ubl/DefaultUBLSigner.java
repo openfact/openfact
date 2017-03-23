@@ -1,31 +1,39 @@
 package org.openfact.ubl;
 
-import org.openfact.models.KeyManager;
-import org.openfact.models.ModelException;
-import org.openfact.models.OrganizationModel;
-import org.openfact.provider.SingleProviderType;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
-import javax.ejb.Stateless;
-import javax.enterprise.inject.Default;
-import javax.inject.Inject;
-import javax.xml.crypto.MarshalException;
-import javax.xml.crypto.dsig.*;
-import javax.xml.crypto.dsig.dom.DOMSignContext;
-import javax.xml.crypto.dsig.keyinfo.KeyInfo;
-import javax.xml.crypto.dsig.keyinfo.KeyInfoFactory;
-import javax.xml.crypto.dsig.keyinfo.X509Data;
-import javax.xml.crypto.dsig.spec.C14NMethodParameterSpec;
-import javax.xml.crypto.dsig.spec.TransformParameterSpec;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.xml.crypto.MarshalException;
+import javax.xml.crypto.dsig.CanonicalizationMethod;
+import javax.xml.crypto.dsig.DigestMethod;
+import javax.xml.crypto.dsig.Reference;
+import javax.xml.crypto.dsig.SignatureMethod;
+import javax.xml.crypto.dsig.SignedInfo;
+import javax.xml.crypto.dsig.Transform;
+import javax.xml.crypto.dsig.XMLSignature;
+import javax.xml.crypto.dsig.XMLSignatureException;
+import javax.xml.crypto.dsig.XMLSignatureFactory;
+import javax.xml.crypto.dsig.dom.DOMSignContext;
+import javax.xml.crypto.dsig.keyinfo.KeyInfo;
+import javax.xml.crypto.dsig.keyinfo.KeyInfoFactory;
+import javax.xml.crypto.dsig.keyinfo.X509Data;
+import javax.xml.crypto.dsig.spec.C14NMethodParameterSpec;
+import javax.xml.crypto.dsig.spec.TransformParameterSpec;
+
+import org.openfact.models.KeyManager;
+import org.openfact.models.ModelRuntimeException;
+import org.openfact.models.OrganizationModel;
+import org.openfact.provider.SingleProviderType;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 @Stateless
 @SingleProviderType(provider = "ublSigner", value = "default")
@@ -71,13 +79,13 @@ public class DefaultUBLSigner implements UBLSigner {
             }
             return newdocument;
         } catch (NoSuchAlgorithmException e) {
-            throw new ModelException(e);
+            throw new ModelRuntimeException(e);
         } catch (InvalidAlgorithmParameterException e) {
-            throw new ModelException(e);
+            throw new ModelRuntimeException(e);
         } catch (MarshalException e) {
-            throw new ModelException(e);
+            throw new ModelRuntimeException(e);
         } catch (XMLSignatureException e) {
-            throw new ModelException(e);
+            throw new ModelRuntimeException(e);
         }
     }
 

@@ -2,15 +2,15 @@ package org.openfact.representations.idm;
 
 public class OrganizationScheduledTaskRepresentation {
 
-    private String enabled;
+    private boolean enabled;
     private String name;
     private String description;
 
-    public String getEnabled() {
+    public boolean getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(String enabled) {
+    public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
 

@@ -188,7 +188,8 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
                 try {
                     xmlDocument = DocumentUtils.byteToDocument(file.getFile());
                 } catch (Exception e) {
-                    throw new ModelException("Error parsing xml file to Document", e);
+                    logger.error("Error parsing xml file to Document", e);
+                    throw new ModelRuntimeException("Error parsing xml file to Document", e);
                 }
             }
         }
@@ -230,7 +231,8 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
                     return jsonObject;
                 }
             } catch (TransformerException e) {
-                throw new ModelException("Error parsing xml file to JSON", e);
+                logger.error("Error parsing xml file to JSON", e);
+                throw new ModelRuntimeException("Error parsing xml file to JSON", e);
             }
         }
         return jsonObject;

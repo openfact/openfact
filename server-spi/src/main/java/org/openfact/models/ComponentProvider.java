@@ -12,7 +12,7 @@ public interface ComponentProvider {
      * @param model
      * @return
      */
-    ComponentModel addComponentModel(OrganizationModel organization, ComponentModel model);
+    ComponentModel addComponentModel(OrganizationModel organization, ComponentModel model) throws ModelException;
 
     /**
      * Adds component model. Will NOT call onCreate() method of ComponentFactory
@@ -20,9 +20,9 @@ public interface ComponentProvider {
      * @param model
      * @return
      */
-    ComponentModel importComponentModel(OrganizationModel organization, ComponentModel model);
+    ComponentModel importComponentModel(OrganizationModel organization, ComponentModel model) throws ModelException;
 
-    void updateComponent(OrganizationModel organization, ComponentModel component);
+    void updateComponent(OrganizationModel organization, ComponentModel component) throws ModelException;
 
     void removeComponent(OrganizationModel organization, ComponentModel component);
 

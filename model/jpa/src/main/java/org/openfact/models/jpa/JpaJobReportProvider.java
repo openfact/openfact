@@ -40,7 +40,7 @@ public class JpaJobReportProvider implements JobReportProvider {
     }
 
     @Override
-    public JobReportModel createJobReport(OrganizationModel organization, String jobReportName) {
+    public JobReportModel createJobReport(OrganizationModel organization, String jobReportName) throws ModelException {
         JobReportEntity entity = new JobReportEntity();
         entity.setJobName(jobReportName);
         entity.setOrganizationId(organization.getId());
