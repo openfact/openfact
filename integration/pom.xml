@@ -79,15 +79,15 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!--<dependency>-->
-        <!--<groupId>net.sf.jasperreports</groupId>-->
-        <!--<artifactId>jasperreports-fonts</artifactId>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports-fonts</artifactId>
+        </dependency>
 
-        <!--<dependency>-->
-        <!--<groupId>net.sf.barcode4j</groupId>-->
-        <!--<artifactId>barcode4j</artifactId>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>net.sf.barcode4j</groupId>
+            <artifactId>barcode4j</artifactId>
+        </dependency>
 
         <!-- Keycloak -->
         <dependency>

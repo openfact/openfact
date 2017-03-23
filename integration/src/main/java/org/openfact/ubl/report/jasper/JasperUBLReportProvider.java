@@ -67,7 +67,7 @@ public class JasperUBLReportProvider implements ReportTemplateProvider {
             ReportTheme theme = null;
             if (config.getThemeName() == null && config.getOrganization().getReportTheme() != null) {
                 theme = themeProvider.getTheme(config.getOrganization().getReportTheme(), ReportTheme.Type.ADMIN);
-                URL url = theme.getTemplate(templateName);
+                URL url = theme.getTemplate(templateName + ".jrxml");
                 if (url == null) {
                     theme = null;
                 }
@@ -75,7 +75,7 @@ public class JasperUBLReportProvider implements ReportTemplateProvider {
 
             if (theme == null) {
                 theme = themeProvider.getTheme(config.getThemeName(), ReportTheme.Type.ADMIN);
-                URL url = theme.getTemplate(templateName);
+                URL url = theme.getTemplate(templateName + ".jrxml");
                 if (url == null) {
                     theme = null;
                 }
