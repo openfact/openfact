@@ -66,7 +66,7 @@ public class DefaultUBLUtil implements UBLUtil {
             return readerWriterProviders.select(providerTypeLiteral, documentTypeLiteral).get();
         }
 
-        logger.info("Insufficient information to get an instance of " + UBLReaderWriter.class.getSimpleName());
+        logger.warn("Insufficient information to get an instance of " + UBLReaderWriter.class.getSimpleName());
         return null;
     }
 
@@ -93,7 +93,7 @@ public class DefaultUBLUtil implements UBLUtil {
             return idGenerators.select(providerTypeLiteral, documentTypeLiteral).get();
         }
 
-        logger.info("Insufficient information to get an instance of " + UBLIDGenerator.class.getSimpleName());
+        logger.warn("Insufficient information to get an instance of " + UBLIDGenerator.class.getSimpleName());
         return null;
     }
 
@@ -120,7 +120,7 @@ public class DefaultUBLUtil implements UBLUtil {
             return customizationProviders.select(providerTypeLiteral, documentTypeLiteral).get();
         }
 
-        logger.info("Insufficient information to get an instance of " + UBLCustomizator.class.getSimpleName());
+        logger.warn("Insufficient information to get an instance of " + UBLCustomizator.class.getSimpleName());
         return null;
     }
 
@@ -147,7 +147,7 @@ public class DefaultUBLUtil implements UBLUtil {
             return senderProviders.select(providerTypeLiteral, documentTypeLiteral).get();
         }
 
-        logger.info("Insufficient information to get an instance of " + UBLCustomizator.class.getSimpleName());
+        logger.warn("Insufficient information to get an instance of " + UBLCustomizator.class.getSimpleName());
         return null;
     }
 

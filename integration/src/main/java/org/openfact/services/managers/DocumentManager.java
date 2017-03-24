@@ -115,6 +115,7 @@ public class DocumentManager {
                     return document;
                 }
             });
+            return true;
         }
         return false;
     }
