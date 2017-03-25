@@ -8,4 +8,8 @@ public interface UBLInvoiceCustomizator extends UBLInvoiceCustomizatorFactory {
         return new DocumentRequiredAction[]{DocumentRequiredAction.SEND_TO_CUSTOMER, DocumentRequiredAction.SEND_TO_THIRD_PARTY};
     }
 
+    default String[] getExtraRequiredActions() {
+        return new String[0];
+    }
+
 }

@@ -9,4 +9,7 @@ public interface UBLCustomizator<T> {
     void config(OrganizationModel organization, DocumentModel document, T t);
 
     DocumentRequiredAction[] getRequiredActions();
+
+    String[] getExtraRequiredActions();
+
 }

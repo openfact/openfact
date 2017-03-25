@@ -90,6 +90,9 @@ public class DocumentManager {
         for (DocumentRequiredAction requiredAction: customizator.getRequiredActions()) {
             documentModel.addRequiredAction(requiredAction);
         }
+        for (String requiredAction: customizator.getExtraRequiredActions()) {
+            documentModel.addRequiredAction(requiredAction);
+        }
 
         try {
             FileModel fileModel = fileProvider.createFile(organization, documentModel.getDocumentId() + ".xml", DocumentUtils.getBytesFromDocument(documentXml));
