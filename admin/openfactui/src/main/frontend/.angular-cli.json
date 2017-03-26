@@ -19,9 +19,13 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "of",
       "styles": [
-        "styles.scss"
+        "styles.scss",
+        "../node_modules/patternfly/dist/css/patternfly.min.css",
+        "../node_modules/patternfly/dist/css/patternfly-additions.min.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/keycloak-js/dist/keycloak.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
