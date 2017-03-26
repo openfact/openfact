@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 
 declare var Keycloak: any;
@@ -9,7 +9,7 @@ export class KeycloakService {
 
   static init(): Promise<any> {
     const keycloakAuth: any = Keycloak({
-      url: 'http://localhost:8080/auth',
+      url: environment.keykloakBaseUrl,
       realm: 'demo',
       clientId: 'openfactui',
     });
@@ -18,17 +18,17 @@ export class KeycloakService {
 
     return new Promise((resolve, reject) => {
       keycloakAuth.init({ onLoad: 'login-required', iframe: false })
-      .success(() => {
-        KeycloakService.auth.loggedIn = true;
-        KeycloakService.auth.authz = keycloakAuth;
-        KeycloakService.auth.logoutUrl = keycloakAuth.authServerUrl
-          + '/realms/demo/protocol/openid-connect/logout?redirect_uri='
-          + document.baseURI;
-        resolve();
-      })
-      .error(() => {
-        reject();
-      });
+        .success(() => {
+          KeycloakService.auth.loggedIn = true;
+          KeycloakService.auth.authz = keycloakAuth;
+          KeycloakService.auth.logoutUrl = keycloakAuth.authServerUrl
+            + '/realms/demo/protocol/openid-connect/logout?redirect_uri='
+            + document.baseURI;
+          resolve();
+        })
+        .error(() => {
+          reject();
+        });
     });
   }
 
