@@ -14,10 +14,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>theme</module>
-        <module>template</module>
-        <module>showcase</module>
-        <module>web-console</module>
         <module>openfactui</module>
+        <module>web-console</module>
     </modules>
 </project>
