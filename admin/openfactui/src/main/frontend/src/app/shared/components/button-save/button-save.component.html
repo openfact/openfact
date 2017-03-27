@@ -1,0 +1,7 @@
+<button type="submit" *ngIf="!ofForm.valid" class="btn btn-primary" disabled>
+  <span>{{'save' | translate}}</span>
+</button>
+<button type="submit" (click)="onClickChild($event)" [disabled]="working" *ngIf="ofForm.valid" class="btn btn-primary">
+  <span [hidden]="!working">{{'saving' | translate}}</span>
+  <span [hidden]="working">{{'save' | translate}}</span>
+</button>

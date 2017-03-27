@@ -1,0 +1,19 @@
+<span *ngIf="isSpan" (click)="modal.show()">{{label || 'View details'}}</span>
+<button *ngIf="isButton" type="button" class="btn btn-default" (click)="modal.show()">{{label || 'View details'}}</button>
+<a *ngIf="isLink" href="javascript:void(0)" (click)="modal.show()">{{label || 'View details'}}</a>
+
+<div class="modal fade" bsModal #modal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div style="padding: 20px 20px 20px 20px; word-wrap: break-word;">{{key}}</div>
+      </div>
+    </div>
+  </div>
+</div>
