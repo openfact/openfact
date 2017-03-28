@@ -1,18 +1,7 @@
-package org.openfact.testsuite.model;
+package model;
 
-import com.google.common.collect.ImmutableMap;
 import org.junit.Assert;
 import org.junit.Test;
-import org.openfact.models.*;
-import org.openfact.models.types.DestinyType;
-import org.openfact.models.types.DocumentRequiredAction;
-import org.openfact.models.types.DocumentType;
-
-import javax.inject.Inject;
-import java.time.ZoneId;
-import java.util.*;
-
-import static org.junit.Assert.assertNotNull;
 
 public class DocumentModelIT extends AbstractModelTest {
 

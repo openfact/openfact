@@ -11,16 +11,12 @@
 
     <properties>
         <product.name>Openfact</product.name>
-        <product.name-html>\u003Cdiv
-            class="of-logo-text"\u003E\u003Cspan\u003EOpenfact\u003C\u002Fspan\u003E\u003C\u002Fdiv\u003E
-        </product.name-html>
         <product.version>${project.version}</product.version>
         <product.build-time>${timestamp}</product.build-time>
         <product.default-profile>community</product.default-profile>
 
         <!-- WildFly -->
         <eap.version>7.0.0.Beta</eap.version>
-        <jboss.as.version>7.2.0.Final</jboss.as.version>
         <wildfly.version>10.0.0.Final</wildfly.version>
 
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -99,6 +95,10 @@
         <junit.version>4.12</junit.version>
         <h2.version>1.4.187</h2.version>
 
+        <!-- Jdbc -->
+        <version.postgresql>9.4.1207</version.postgresql>
+        <version.mysql>5.1.38</version.mysql>
+
         <!-- Others -->
         <freemarker.version>2.3.23</freemarker.version>
 
@@ -111,6 +111,8 @@
         <version.maven-deploy-plugin>2.8.2</version.maven-deploy-plugin>
         <osgi.bundle.plugin.version>3.2.0</osgi.bundle.plugin.version>
         <version.jasper-compile-plugin>1.0-beta-2</version.jasper-compile-plugin>
+        <version.build-helper-maven-plugin>1.10</version.build-helper-maven-plugin>
+        <wildfly.build-tools.version>1.1.3.Final</wildfly.build-tools.version>
     </properties>
 
     <modules>
@@ -213,6 +215,13 @@
                 <groupId>org.openfact</groupId>
                 <artifactId>openfact-admin-template</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.openfact</groupId>
+                <artifactId>openfact-feature-pack</artifactId>
+                <version>${project.version}</version>
+                <type>zip</type>
             </dependency>
 
             <!-- Java EE 7 -->
@@ -420,6 +429,13 @@
                 <version>${version.keycloak}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.keycloak</groupId>
+                <artifactId>keycloak-adapter-feature-pack</artifactId>
+                <version>${version.keycloak}</version>
+                <type>zip</type>
+            </dependency>
+
             <!-- Wildfly -->
             <dependency>
                 <groupId>org.jboss.logging</groupId>
@@ -442,6 +458,12 @@
                 <artifactId>wildfly-controller</artifactId>
                 <version>${wildfly.core.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.wildfly</groupId>
+                <artifactId>wildfly-feature-pack</artifactId>
+                <version>${wildfly.version}</version>
+                <type>zip</type>
+            </dependency>
 
             <!-- Others -->
             <dependency>
@@ -463,6 +485,18 @@
                 <version>${h2.version}</version>
                 <scope>test</scope>
             </dependency>
+
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${version.postgresql}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${version.mysql}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -565,6 +599,21 @@
                     <artifactId>jasperreports-maven-plugin</artifactId>
                     <version>${version.jasper-compile-plugin}</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>${version.build-helper-maven-plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.wildfly.build</groupId>
+                    <artifactId>wildfly-feature-pack-build-maven-plugin</artifactId>
+                    <version>${wildfly.build-tools.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.wildfly.build</groupId>
+                    <artifactId>wildfly-server-provisioning-maven-plugin</artifactId>
+                    <version>${wildfly.build-tools.version}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -578,6 +627,38 @@
                         <goals>
                             <goal>jar-no-fork</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/it/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>add-resource</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-test-resource</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>src/it/resources</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -605,4 +686,37 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>community</id>
+            <activation>
+                <property>
+                    <name>!product</name>
+                </property>
+            </activation>
+            <properties>
+                <product.name>Openfact</product.name>
+                <product.name.full>Openfact</product.name.full>
+                <product.slot>openfact</product.slot>
+                <product.wildfly.console.slot>main</product.wildfly.console.slot>
+                <product.version>${project.version}</product.version>
+                <product.default-profile>community</product.default-profile>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>distribution</id>
+            <modules>
+                <module>distribution</module>
+            </modules>
+        </profile>
+
+        <profile>
+            <id>jboss-release</id>
+            <modules>
+                <module>distribution</module>
+            </modules>
+        </profile>
+    </profiles>
 </project>

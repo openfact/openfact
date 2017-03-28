@@ -1,0 +1,16 @@
+<assembly>
+    <id>server-dist</id>
+
+    <formats>
+        <format>dir</format>
+    </formats>
+
+    <fileSets>
+        <fileSet>
+            <directory>${localRepository}/org/openfact</directory>
+            <includes>
+                <include>**/*.zip</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+</assembly>
