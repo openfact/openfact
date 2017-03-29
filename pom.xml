@@ -91,6 +91,8 @@
         <jboss.logging.tools.version>2.0.1.Final</jboss.logging.tools.version>
         <jboss.logging.tools.wf8.version>1.2.0.Final</jboss.logging.tools.wf8.version>
 
+        <version.jboss-integration-platform>6.0.10.Final</version.jboss-integration-platform>
+
         <!-- Test -->
         <junit.version>4.12</junit.version>
         <h2.version>1.4.187</h2.version>
@@ -127,6 +129,7 @@
         <module>reports</module>
         <module>themes</module>
         <module>testsuite</module>
+        <module>dependencies</module>
     </modules>
 
     <scm>
@@ -215,6 +218,19 @@
                 <groupId>org.openfact</groupId>
                 <artifactId>openfact-admin-template</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.openfact</groupId>
+                <artifactId>openfact-dependencies-server-min</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.openfact</groupId>
+                <artifactId>openfact-dependencies-server-all</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
             </dependency>
 
             <dependency>
