@@ -191,11 +191,6 @@
             </dependency>
             <dependency>
                 <groupId>org.openfact</groupId>
-                <artifactId>openfact-web-console</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.openfact</groupId>
                 <artifactId>openfact-model-jpa</artifactId>
                 <version>${project.version}</version>
             </dependency>

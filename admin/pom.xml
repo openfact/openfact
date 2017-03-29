@@ -15,6 +15,5 @@
 
     <modules>
         <!--<module>openfactui</module>-->
-        <module>web-console</module>
     </modules>
 </project>
