@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Stateless
-public class JpaOrganizationProvider implements OrganizationProvider, HibernateProvider {
+public class JpaOrganizationProvider implements OrganizationProvider {
 
     private static final Logger logger = Logger.getLogger(JpaOrganizationProvider.class);
 
@@ -152,8 +152,4 @@ public class JpaOrganizationProvider implements OrganizationProvider, HibernateP
         return result.intValue();
     }
 
-    @Override
-    public EntityManager getEntityManager() {
-        return em;
-    }
 }

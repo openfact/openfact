@@ -125,7 +125,6 @@
         <module>server-spi-private</module>
         <module>integration</module>
         <module>services</module>
-        <module>admin</module>
         <module>reports</module>
         <module>themes</module>
         <module>testsuite</module>

@@ -1,9 +1,0 @@
-<div class="input-group">
-  <label class="input-group-btn">
-        <span class="btn btn-default">{{'select-file' | translate}}
-            <i class="pficon pficon-import"></i>
-            <input type="file" (change)="changeListener($event)">
-        </span>
-    </label>
-  <input *ngIf="showFileName" type="text" class="form-control" [(ngModel)]="file.fileName" readonly>
-</div>

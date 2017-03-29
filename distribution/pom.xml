@@ -14,8 +14,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>server-dist</module>
-        <module>feature-pack</module>
         <module>wildfly-swarm</module>
     </modules>
 

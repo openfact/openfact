@@ -1,7 +1,0 @@
-project:
-  stage: production
-  logger:
-    level: DEBUG
-swarm:
-  port:
-    offset: 50

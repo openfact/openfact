@@ -1,9 +1,0 @@
-<div *ngIf="!ofFormControl.valid && ofFormControl.dirty">
-  <span *ngIf="ofFormControl.errors.required" class="help-block">{{'this-field-is-required' | translate}}</span>
-  <span *ngIf="ofFormControl.errors.minlength" class="help-block">{{'this-field-min-length-allowed-is' | translate}}: {{ofFormControl.errors.minlength.requiredLength}}</span>
-  <span *ngIf="ofFormControl.errors.maxlength" class="help-block">{{'this-field-max-length-allowed-is' | translate}}: {{ofFormControl.errors.maxlength.requiredLength}}</span>
-  <span *ngIf="ofFormControl.errors.pattern" class="help-block">{{'this-field-value-is-invalid' | translate}}</span>
-  <ng-content>
-
-  </ng-content>
-</div>

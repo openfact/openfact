@@ -1,6 +1,0 @@
-<span>
-  {{value | slice:0:currentMaxlength}}
-  <a href="javascript:void(0);" 
-    *ngIf="currentMaxlength < value.length"
-    (click)="readMore()">{{'read-more' | translate}}</a>
-</span>

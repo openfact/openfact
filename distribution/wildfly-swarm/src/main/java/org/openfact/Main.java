@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.wildfly.swarm.Swarm;
 import org.wildfly.swarm.datasources.DatasourcesFraction;
 import org.wildfly.swarm.keycloak.Secured;
-import org.wildfly.swarm.undertow.WARArchive;
+import org.wildfly.swarm.jaxrs.JAXRSArchive;
 
 public class Main {
 
@@ -42,14 +42,15 @@ public class Main {
 
         swarm.start();
 
-        WARArchive appDeployment = ShrinkWrap.create(WARArchive.class);
+        JAXRSArchive appDeployment = ShrinkWrap.create(JAXRSArchive.class);
 
         appDeployment.as(Secured.class)
                 .protect("/*")
                 .withMethod("GET", "POST", "PUST", "DELETE")
                 .withRole("admin", "organization-manager", "organization-user");
 
-        appDeployment.addPackage("org.openfact").addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
+        appDeployment.addPackage("org.openfact")
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAllDependencies();
 
         // Deploy your app

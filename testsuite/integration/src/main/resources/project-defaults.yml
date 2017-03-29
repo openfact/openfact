@@ -1,0 +1,9 @@
+swarm:
+  context:
+    path: openfact
+  user:
+    db: h2
+project:
+  stage: development
+  logger:
+    level: DEBUG

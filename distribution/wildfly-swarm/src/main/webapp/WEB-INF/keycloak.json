@@ -1,0 +1,10 @@
+{
+  "realm": "openfact",
+  "auth-server-url": "http://localhost:8081/auth",
+  "ssl-required": "external",
+  "resource": "openfact",
+  "credentials": {
+    "secret": "secret"
+  },
+  "enable-cors": true
+}
