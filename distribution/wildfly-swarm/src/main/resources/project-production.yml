@@ -1,0 +1,7 @@
+project:
+  stage: production
+  logger:
+    level: INFO
+swarm:
+  port:
+    offset: 100

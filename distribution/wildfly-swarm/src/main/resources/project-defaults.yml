@@ -1,0 +1,7 @@
+swarm:
+  context:
+    path: openfact
+project:
+  stage: production
+  logger:
+    level: INFO

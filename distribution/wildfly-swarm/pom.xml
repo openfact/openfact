@@ -214,37 +214,39 @@
     </dependencies>
 
     <build>
+        <finalName>${project.build.finalName}</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>
-        <plugins>
-            <plugin>
-                <groupId>org.wildfly.swarm</groupId>
-                <artifactId>wildfly-swarm-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>package</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <mainClass>org.openfact.Main</mainClass>
-                    <jvmArguments>
-                        <jvmArgument>-Xmx520m</jvmArgument>
-                    </jvmArguments>
-                </configuration>
-            </plugin>
-        </plugins>
     </build>
 
     <profiles>
         <profile>
             <id>jboss-release</id>
             <build>
+                <finalName>openfact</finalName>
+                <plugins>
+                    <plugin>
+                        <groupId>org.wildfly.swarm</groupId>
+                        <artifactId>wildfly-swarm-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>package</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <mainClass>org.openfact.Main</mainClass>
+                            <jvmArguments>
+                                <jvmArgument>-Xmx520m</jvmArgument>
+                            </jvmArguments>
+                        </configuration>
+                    </plugin>
+                </plugins>
                 <pluginManagement>
                     <plugins>
                         <plugin>
