@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
-        <artifactId>openfact</artifactId>
         <groupId>org.openfact</groupId>
+        <artifactId>openfact-parent</artifactId>
         <version>1.0-beta-7-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
@@ -47,7 +47,6 @@
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
-            <!--<scope>provided</scope>-->
         </dependency>
 
         <!--Apache commons-->

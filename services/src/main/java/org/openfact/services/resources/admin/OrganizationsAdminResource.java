@@ -337,8 +337,8 @@ public class OrganizationsAdminResource {
             r.setKid(m.getKid());
             r.setStatus(m.getStatus() != null ? m.getStatus().name() : null);
             r.setType(AlgorithmType.RSA.name());
-            r.setPublicKey(org.keycloak.common.util.PemUtils.encodeKey(m.getPublicKey()));
-            r.setCertificate(org.keycloak.common.util.PemUtils.encodeCertificate(m.getCertificate()));
+            r.setPublicKey(PemUtils.encodeKey(m.getPublicKey()));
+            r.setCertificate(PemUtils.encodeCertificate(m.getCertificate()));
             l.add(r);
         }
 
@@ -782,7 +782,7 @@ public class OrganizationsAdminResource {
 
     /**
      * A JAX-RS sub-resource locator that uses the
-     * {@link org.openfact.services.resource.OrganizationAdminResourceProvider} to resolve
+     * {@link OrganizationAdminResourceProvider} to resolve
      * sub-resources instances given an <code>unknownPath</code>.
      *
      * @param extension a path that could be to a REST extension
