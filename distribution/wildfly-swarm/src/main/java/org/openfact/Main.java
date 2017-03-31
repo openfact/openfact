@@ -3,6 +3,10 @@ package org.openfact;
 import org.wildfly.swarm.Swarm;
 import org.wildfly.swarm.datasources.DatasourcesFraction;
 
+import java.io.File;
+import java.net.URL;
+import java.nio.file.Paths;
+
 /**
  * @author Bob McWhirter
  */
@@ -12,6 +16,29 @@ public class Main {
         System.out.println("Running " + Main.class.getCanonicalName() + ".main");
 
         Swarm swarm = new Swarm();
+
+        String stageFile = System.getProperty("swarm.project.stage.file");
+        String stageName = System.getProperty("swarm.project.stage", "default");
+
+        // Configure stage
+        if (stageFile != null) {
+            swarm.withConfig(new URL(stageFile));
+        } else {
+            ClassLoader classLoader = Main.class.getClassLoader();
+
+            URL stageConfig;
+            switch (stageName.toLowerCase()) {
+                case "default":
+                    stageConfig = classLoader.getResource("project-defaults.yml");
+                    break;
+                case "development":
+                    stageConfig = classLoader.getResource("project-development.yml");
+                    break;
+                default:
+                    stageConfig = classLoader.getResource("project-defaults.yml");
+            }
+            swarm.withConfig(stageConfig);
+        }
 
         String useDB = System.getProperty("swarm.use.db", "h2");
 
