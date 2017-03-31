@@ -1,5 +1,2 @@
 logger:
-  level: DEBUG
-swarm:
-  project:
-    stage: development
+    level: DEBUG
