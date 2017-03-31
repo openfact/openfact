@@ -9,9 +9,9 @@
     }
   },
   "theme": {
-    "staticMaxAge": "${openfact.theme.staticMaxAge:2592000}",
-    "cacheTemplates": "${openfact.theme.cacheTemplates:true}",
-    "cacheThemes": "${openfact.theme.cacheThemes:true}",
+    "staticMaxAge": "2592000",
+    "cacheTemplates": "true",
+    "cacheThemes": "true",
     "folder": {
       "dir": "${openfact.theme.dir}"
     }

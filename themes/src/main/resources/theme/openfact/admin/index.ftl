@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Welcome to Openfact</title>
-    <meta http-equiv="refresh" content="0; url=${adminConsoleUrl}" />
+    <meta http-equiv="refresh" content="0; />
     <meta name="robots" content="noindex, nofollow">
 </head>
 <body>

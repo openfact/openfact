@@ -8,11 +8,5 @@ swarm:
           - url-pattern: /*
             methods: [GET, POST, PUT, DELETE]
             roles: [admin, organization-manager, organization-user]
-  http:
-    keystore:
-      path: keystore.jks
-      password: password
-    certificate:
-      alias: selfsigned
 logger:
   level: INFO

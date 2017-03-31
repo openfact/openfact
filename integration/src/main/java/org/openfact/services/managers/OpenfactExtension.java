@@ -57,7 +57,7 @@ public class OpenfactExtension implements Extension {
             JsonNode node = null;
 
             String dmrConfig = loadDmrConfig();
-            if (node == null && dmrConfig != null) {
+            if (dmrConfig != null) {
                 node = new ObjectMapper().readTree(dmrConfig);
                 logger.info("Loading openfact-server.json config from standalone.xml or domain.xml");
             }

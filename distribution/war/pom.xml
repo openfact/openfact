@@ -35,5 +35,17 @@
             <groupId>org.openfact</groupId>
             <artifactId>openfact-services</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+
+        <!-- Java EE 7 -->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 </project>

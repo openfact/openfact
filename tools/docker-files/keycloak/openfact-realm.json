@@ -50,7 +50,7 @@
         "organization": "demo"
       },
       "realmRoles": [
-        "admin-organization",
+        "organization-manager",
         "uma_authorization"
       ],
       "clientRoles": {
@@ -140,7 +140,7 @@
         }
       },
       {
-        "name": "admin-organization",
+        "name": "organization-manager",
         "composite": true,
         "composites": {
           "client": {
