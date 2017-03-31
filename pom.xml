@@ -524,4 +524,13 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <profiles>
+        <profile>
+            <id>distribution</id>
+        </profile>
+        <profile>
+            <id>jboss-release</id>
+        </profile>
+    </profiles>
 </project>
