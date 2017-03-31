@@ -1,4 +1,11 @@
 swarm:
+  use:
+    db: postgresql
+  ds:
+    username: postgres
+    password: postgres
+    connection:
+      url: jdbc:postgresql://localhost:5432/postgres
   deployment:
     openfact.war:
       web:
