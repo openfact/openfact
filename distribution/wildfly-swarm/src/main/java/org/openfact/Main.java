@@ -3,9 +3,6 @@ package org.openfact;
 import org.wildfly.swarm.Swarm;
 import org.wildfly.swarm.datasources.DatasourcesFraction;
 
-/**
- * @author Bob McWhirter
- */
 public class Main {
 
     public static void main(String[] args) throws Exception {
