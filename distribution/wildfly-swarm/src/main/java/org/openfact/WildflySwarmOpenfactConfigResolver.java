@@ -9,7 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class DefaultOpenfactConfigResolver implements OpenfactConfigResolver {
+public class WildflySwarmOpenfactConfigResolver implements OpenfactConfigResolver {
 
     private static final JsonNode externalConfigNote = load();
 
