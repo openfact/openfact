@@ -4,9 +4,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class WildflySwarmOpenfactConfigResolver implements OpenfactConfigResolver {
@@ -18,14 +17,13 @@ public class WildflySwarmOpenfactConfigResolver implements OpenfactConfigResolve
         try {
             configPath = System.getProperty("openfact.config.path");
             if (configPath != null) {
-                Path path = Paths.get(configPath);
-                if (Files.exists(path)) {
-                    URL resource = path.toUri().toURL();
-                    return new ObjectMapper().readTree(resource);
-                }
+                URL resource = Paths.get(configPath).toUri().toURL();
+                return new ObjectMapper().readTree(resource);
             }
-        } catch (Exception e) {
+        } catch (MalformedURLException e) {
             throw new IllegalStateException("Invalid configuration: " + configPath);
+        } catch (IOException e) {
+            throw new IllegalStateException("Could not read openfact-server.json file:" + configPath, e);
         }
         return null;
     }
