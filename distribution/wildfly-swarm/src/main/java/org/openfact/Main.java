@@ -41,7 +41,7 @@ public class Main {
                     d.xaDatasourceClass("org.h2.jdbcx.JdbcDataSource");
                     d.driverModuleName("com.h2database.h2");
                 })
-                .dataSource("ExampleDS", (ds) -> {
+                .dataSource("OpenfactDS", (ds) -> {
                     ds.driverName("h2");
                     ds.connectionUrl(connectionUrl.withDefault("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE").getValue());
                     ds.userName(username.withDefault("sa").getValue());
@@ -56,7 +56,7 @@ public class Main {
                     d.xaDatasourceClass("org.postgresql.xa.PGXADataSource");
                     d.driverModuleName("org.postgresql");
                 })
-                .dataSource("ExampleDS", (ds) -> {
+                .dataSource("OpenfactDS", (ds) -> {
                     ds.driverName("org.postgresql");
                     ds.connectionUrl(connectionUrl.withDefault("jdbc:postgresql://localhost:5432/postgres").getValue());
                     ds.userName(username.withDefault("postgres").getValue());
@@ -71,7 +71,7 @@ public class Main {
                     d.xaDatasourceClass("com.mysql.jdbc.jdbc2.optional.MysqlXADataSource");
                     d.driverModuleName("com.mysql");
                 })
-                .dataSource("ExampleDS", (ds) -> {
+                .dataSource("OpenfactDS", (ds) -> {
                     ds.driverName("com.mysql");
                     ds.connectionUrl(connectionUrl.withDefault("jdbc:mysql://localhost:3306/mysql").getValue());
                     ds.userName(username.withDefault("root").getValue());
