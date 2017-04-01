@@ -23,7 +23,7 @@
                     <execution>
                         <phase>process-sources</phase>
                         <goals>
-                            <goal>compile-reports</goal>
+                            <goal>jasper</goal>
                         </goals>
                     </execution>
                 </executions>
