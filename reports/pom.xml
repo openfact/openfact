@@ -17,38 +17,27 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>jasperreports-maven-plugin</artifactId>
-                <configuration>
-                    <sourceDirectory>src/main/resources/theme/openfact/admin</sourceDirectory>
-                    <outputDirectory>${project.build.outputDirectory}/theme/openfact/admin</outputDirectory>
-                </configuration>
+                <groupId>com.alexnederlof</groupId>
+                <artifactId>jasperreports-plugin</artifactId>
                 <executions>
                     <execution>
+                        <phase>process-sources</phase>
                         <goals>
                             <goal>compile-reports</goal>
                         </goals>
-                        <phase>compile</phase>
                     </execution>
                 </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>net.sf.jasperreports</groupId>
-                        <artifactId>jasperreports</artifactId>
-                        <version>${version.jasperreports}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>net.sf.jasperreports</groupId>
-                        <artifactId>jasperreports-fonts</artifactId>
-                        <version>${version.jasperreports.fonts}</version>
-                    </dependency>
-
-                    <dependency>
-                        <groupId>net.sf.barcode4j</groupId>
-                        <artifactId>barcode4j</artifactId>
-                        <version>${version.barcode4j}</version>
-                    </dependency>
-                </dependencies>
+                <configuration>
+                    <compiler>net.sf.jasperreports.engine.design.JRJdtCompiler</compiler>
+                    <sourceDirectory>src/main/resources/theme/openfact/admin</sourceDirectory>
+                    <outputDirectory>${project.build.outputDirectory}/theme/openfact/admin</outputDirectory>
+                    <outputFileExt>.jasper</outputFileExt>
+                    <xmlValidation>true</xmlValidation>
+                    <verbose>false</verbose>
+                    <numberOfThreads>4</numberOfThreads>
+                    <failOnMissingSourceDirectory>true</failOnMissingSourceDirectory>
+                    <sourceScanner>org.codehaus.plexus.compiler.util.scan.StaleSourceScanner</sourceScanner>
+                </configuration>
             </plugin>
         </plugins>
     </build>
