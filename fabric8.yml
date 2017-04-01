@@ -1,11 +1,11 @@
 ---
 buildName: "openfact"
 links:
-  Git: "https://github.com/openfact/openfact"
-  Job: "http://192.168.42.159:30712/job/openfact"
-  Production: "http://10.0.0.45:80/kubernetes/pods?namespace=default-production"
-  Staging: "http://10.0.0.45:80/kubernetes/pods?namespace=default-staging"
-  Testing: "http://10.0.0.45:80/kubernetes/pods?namespace=default-testing"
+  Git: "http://gogs/openfact/openfact.git"
+  Job: "http://192.168.42.214:30092/job/openfact"
+  Production: "http://10.0.0.74:80/kubernetes/pods?namespace=default-production"
+  Staging: "http://10.0.0.74:80/kubernetes/pods?namespace=default-staging"
+  Testing: "http://10.0.0.74:80/kubernetes/pods?namespace=default-testing"
 environments:
   Testing: "default-testing"
   Staging: "default-staging"
