@@ -38,6 +38,13 @@
                     <failOnMissingSourceDirectory>true</failOnMissingSourceDirectory>
                     <sourceScanner>org.codehaus.plexus.compiler.util.scan.StaleSourceScanner</sourceScanner>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.lowagie</groupId>
+                        <artifactId>itext</artifactId>
+                        <version>2.1.7</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
