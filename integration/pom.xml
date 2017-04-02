@@ -82,6 +82,12 @@
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports-fonts</artifactId>
         </dependency>
+        
+        <dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+            <version>2.1.7</version>
+        </dependency>
 
         <dependency>
             <groupId>net.sf.barcode4j</groupId>
