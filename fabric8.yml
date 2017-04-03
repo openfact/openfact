@@ -2,8 +2,8 @@
 buildName: "openfact"
 codeReview: false
 links:
-  Git: "http://gogs/openfact/openfact.git"
-  Job: "http://jenkins.f8.34.208.157.131.xip.io/job/openfact"
+  Git: "https://github.com/openfact/openfact.git"
+  Job: "http://jenkins.f8.52.42.176.59.xip.io/job/openfact"
   Production: "http://10.3.0.187:80/kubernetes/pods?namespace=default-production"
   Staging: "http://10.3.0.187:80/kubernetes/pods?namespace=default-staging"
   Testing: "http://10.3.0.187:80/kubernetes/pods?namespace=default-testing"
