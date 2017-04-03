@@ -1,6 +1,5 @@
 ---
 buildName: "openfact"
-codeReview: false
 links:
   Git: "http://gogs/openfact/openfact.git"
   Job: "http://jenkins.f8.52.42.176.59.xip.io/job/openfact"
