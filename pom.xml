@@ -569,7 +569,7 @@
           </execution>
         </executions>
           <configuration>
-              <profile>jboss-release</profile>
+              <projectName>openfact</projectName>
           </configuration>
       </plugin>
     </plugins>
