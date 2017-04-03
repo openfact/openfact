@@ -14,8 +14,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>war</module>
-        <!--<module>wildfly-swarm</module>-->
+        <!--<module>war</module>-->
+        <module>wildfly-swarm</module>
     </modules>
 
 </project>
