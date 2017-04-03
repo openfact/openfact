@@ -568,6 +568,9 @@
             </goals>
           </execution>
         </executions>
+          <configuration>
+              <profile>jboss-release</profile>
+          </configuration>
       </plugin>
     </plugins>
     </build>
