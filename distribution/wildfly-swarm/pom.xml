@@ -129,7 +129,7 @@
     </dependencies>
 
     <build>
-        <finalName>openfact</finalName>
+        <finalName>openfact-distribution-wildfly-swarm</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -179,7 +179,7 @@
                                 <scheme>HTTPS</scheme> 
                                 <path>health/openfact</path> 
                             </wildfly-swarm-health-check> 
-                        </config> 
+                        </config>
                     </enricher>
                 </configuration>
             </plugin>
