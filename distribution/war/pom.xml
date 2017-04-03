@@ -48,4 +48,8 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <finalName>openfact</finalName>
+    </build>
 </project>
