@@ -13,10 +13,6 @@
     <name>Openfact Distribution</name>
     <packaging>pom</packaging>
 
-    <properties>
-        <fabric8.profile>distribution</fabric8.profile>
-    </properties>
-
     <modules>
         <module>war</module>
         <module>wildfly-swarm</module>
