@@ -109,6 +109,10 @@
             <groupId>org.wildfly.swarm</groupId>
             <artifactId>management</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.wildfly.swarm</groupId>
+            <artifactId>monitor</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.h2database</groupId>
@@ -150,6 +154,33 @@
                 </executions>
                 <configuration>
                     <mainClass>org.openfact.Main</mainClass>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>fabric8-maven-plugin</artifactId>
+                <version>3.2.9</version>
+                <executions>
+                    <execution>
+                        <id>fmp</id>
+                        <goals>
+                            <goal>resource</goal>
+                            <goal>helm</goal>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <enricher> 
+                        <config>
+                            <wildfly-swarm-health-check> 
+                                <port>4444</port> 
+                                <scheme>HTTPS</scheme> 
+                                <path>health/openfact</path> 
+                            </wildfly-swarm-health-check> 
+                        </config> 
+                    </enricher>
                 </configuration>
             </plugin>
         </plugins>
