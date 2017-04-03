@@ -50,6 +50,6 @@
     </dependencies>
 
     <build>
-        <finalName>openfact</finalName>
+        <finalName>openfact-distribution-war</finalName>
     </build>
 </project>
