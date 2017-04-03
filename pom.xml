@@ -456,12 +456,6 @@
                 <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
-            <dependency>
-                <groupId>io.fabric8</groupId>
-                <artifactId>fabric8-arquillian</artifactId>
-                <version>2.2.192</version>
-                <scope>test</scope>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -546,48 +540,15 @@
                     <artifactId>wildfly-server-provisioning-maven-plugin</artifactId>
                     <version>${wildfly.build-tools.version}</version>
                 </plugin>
+
+                <plugin>
+                    <groupId>io.fabric8</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>0.20.1</version>
+                </plugin>
             </plugins>
         </pluginManagement>
-        <plugins>
-            <!--<plugin>-->
-                <!--<groupId>io.fabric8</groupId>-->
-                <!--<artifactId>fabric8-maven-plugin</artifactId>-->
-                <!--<version>3.2.9</version>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<id>fmp</id>-->
-                        <!--<goals>-->
-                            <!--<goal>resource</goal>-->
-                            <!--<goal>helm</goal>-->
-                            <!--<goal>build</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
-        </plugins>
     </build>
-
-    <dependencies>
-        <dependency>
-            <groupId>io.fabric8</groupId>
-            <artifactId>fabric8-arquillian</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
-    <reporting>
-        <plugins>
-            <plugin>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.3</version>
-                <configuration>
-                    <detectLinks>true</detectLinks>
-                    <detectJavaApiLink>true</detectJavaApiLink>
-                    <linksource>true</linksource>
-                </configuration>
-            </plugin>
-        </plugins>
-    </reporting>
 
     <profiles>
         <profile>
@@ -596,29 +557,9 @@
         <profile>
             <id>jboss-release</id>
         </profile>
+
         <profile>
-            <id>kit</id>
-            <activation/>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>2.19</version>
-                        <configuration>
-                            <includes>
-                                <include>**/*KT.*</include>
-                            </includes>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
+            <id>docker</id>
         </profile>
     </profiles>
-
-    <distributionManagement>
-        <site>
-            <id>website</id>
-            <url>dav:http://content-repository/sites/${project.groupId}/${project.artifactId}/${project.version}</url>
-        </site>
-    </distributionManagement>
 </project>

@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>openfact-distribution-war</artifactId>
-    <name>Openfact Distribution Wildfly Swarm</name>
+    <name>Openfact Distribution Wildfly</name>
     <packaging>war</packaging>
 
     <dependencies>
