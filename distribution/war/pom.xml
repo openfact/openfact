@@ -13,10 +13,6 @@
     <name>Openfact Distribution Wildfly Swarm</name>
     <packaging>war</packaging>
 
-    <properties>
-        <fabric8.profile>distribution-war</fabric8.profile>
-    </properties>
-
     <dependencies>
         <!--Openfact -->
         <dependency>

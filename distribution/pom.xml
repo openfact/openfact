@@ -15,7 +15,7 @@
 
     <modules>
         <module>war</module>
-        <module>wildfly-swarm</module>
+        <!--<module>wildfly-swarm</module>-->
     </modules>
 
 </project>
