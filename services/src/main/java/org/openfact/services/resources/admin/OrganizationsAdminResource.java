@@ -22,7 +22,6 @@ import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.models.utils.StripSecretsUtils;
 import org.openfact.representations.idm.*;
 import org.openfact.services.ErrorResponse;
-import org.openfact.services.ForbiddenException;
 import org.openfact.services.ModelErrorResponseException;
 import org.openfact.services.managers.EventStoreManager;
 import org.openfact.services.managers.OrganizationManager;
@@ -148,10 +147,8 @@ public class OrganizationsAdminResource {
      */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response importOrganization(@Valid final OrganizationRepresentation rep) throws ModelErrorResponseException {
-        if (!securityContext.getPermittedOrganizations(session).contains(organizationManager.getOpenfactAdminstrationOrganization())) {
-            throw new ForbiddenException();
-        }
         if (!securityContext.getClientUser(session).hasAppRole(AdminRoles.CREATE_ORGANIZATION)) {
             throw new ForbiddenException();
         }

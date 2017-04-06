@@ -123,7 +123,7 @@ public class DocumentsAdminResource {
     private OrganizationAuth getAuth(OrganizationModel organization) {
         List<OrganizationModel> permittedOrganizations = securityContext.getPermittedOrganizations(session);
         if (!permittedOrganizations.contains(organizationManager.getOpenfactAdminstrationOrganization()) && !permittedOrganizations.contains(organization)) {
-            throw new org.openfact.services.ForbiddenException();
+            throw new ForbiddenException();
         }
         return securityContext.getClientUser(session).organizationAuth(Resource.DOCUMENT);
     }

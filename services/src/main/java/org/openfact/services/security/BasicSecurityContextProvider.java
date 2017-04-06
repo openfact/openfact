@@ -5,16 +5,15 @@ import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
 import org.openfact.provider.SingleProviderType;
-import org.openfact.services.ForbiddenException;
 import org.openfact.services.resource.security.ClientUser;
 import org.openfact.services.resource.security.OrganizationAuth;
 import org.openfact.services.resource.security.Resource;
 import org.openfact.services.resource.security.SecurityContextProvider;
 
 import javax.ejb.Stateless;
-import javax.enterprise.inject.Alternative;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.ForbiddenException;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.BiFunction;
