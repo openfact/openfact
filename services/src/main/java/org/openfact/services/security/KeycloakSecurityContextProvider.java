@@ -120,7 +120,8 @@ public class KeycloakSecurityContextProvider implements SecurityContextProvider 
 
     private boolean hasRole(String role) {
         Set<String> organizationRoles = accessToken.getRealmAccess().getRoles();
-        Set<String> applicationRoles = accessToken.getResourceAccess(KEYCLOAK_CLIENT).getRoles();
+        AccessToken.Access resourceAccess = accessToken.getResourceAccess(KEYCLOAK_CLIENT);
+        Set<String> applicationRoles = resourceAccess != null ? resourceAccess.getRoles() : Collections.emptySet();
         return organizationRoles.contains(role) || applicationRoles.contains(role);
     }
 
