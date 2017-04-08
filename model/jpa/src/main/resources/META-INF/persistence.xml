@@ -6,7 +6,6 @@
              version="2.1">
     <persistence-unit name="OpenfactPU" transaction-type="JTA">
         <jta-data-source>java:jboss/datasources/OpenfactDS</jta-data-source>
-        <description>Persistence unit for Hibernate</description>
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>

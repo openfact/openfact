@@ -17,11 +17,15 @@ public class AdminRoles {
     public static final String MANAGE_EVENTS = "manage-events";
 
     public static final String[] ALL_ORGANIZATION_ROLES = {
-            /**
+            /*
+             * */
+            CREATE_ORGANIZATION,
+
+            /*
              * */
             VIEW_ORGANIZATION, VIEW_DOCUMENTS, VIEW_EVENTS,
 
-            /**
+            /*
              * */
             MANAGE_ORGANIZATION, MANAGE_DOCUMENTS, MANAGE_EVENTS,
     };
