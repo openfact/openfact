@@ -80,5 +80,11 @@
             <artifactId>keycloak-adapter-spi</artifactId>
             <scope>provided</scope>
         </dependency>
+
+        <!--IO-->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
     </dependencies>
 </project>

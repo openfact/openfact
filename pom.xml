@@ -28,6 +28,7 @@
         <!-- Apache commons -->
         <version.commons.lang>2.6</version.commons.lang>
         <version.commons.validator>1.5.1</version.commons.validator>
+        <version.commons.io>2.5</version.commons.io>
 
         <!-- Apache components -->
         <apache.httpcomponents.version>4.5</apache.httpcomponents.version>
@@ -244,6 +245,12 @@
                 <artifactId>commons-validator</artifactId>
                 <version>${version.commons.validator}</version>
             </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${version.commons.io}</version>
+            </dependency>
+
 
             <!-- Apache Components -->
             <dependency>

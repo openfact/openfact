@@ -12,6 +12,7 @@ import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 import org.json.JSONObject;
 import org.openfact.Config;
 import org.openfact.common.ClientConnection;
+import org.openfact.common.converts.DocumentUtils;
 import org.openfact.events.admin.OperationType;
 import org.openfact.events.admin.ResourceType;
 import org.openfact.models.*;
@@ -44,8 +45,10 @@ import org.openfact.services.resource.security.Resource;
 import org.openfact.services.resource.security.SecurityContextProvider;
 import org.openfact.ubl.UBLIDGenerator;
 import org.openfact.ubl.UBLReaderWriter;
+import org.openfact.ubl.utils.DefaultUBLUtil;
 import org.openfact.ubl.utils.UBLUtil;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -141,8 +144,10 @@ public class DocumentsAdminResource {
         InputStream inputStream = inputPart.getBody(InputStream.class, null);
         byte[] bytes = IOUtils.toByteArray(inputStream);
 
-        String provider = Config.scope(documentType.toString().toLowerCase()).get("provider");
-        UBLReaderWriter<T> readerWriter = (UBLReaderWriter<T>) ublUtil.getReaderWriter(provider, documentType.toString()).reader();
+        Config.Scope documentConfig = Config.scope(documentType.toString().toLowerCase());
+        String readerWriterProviderType = documentConfig.get(DefaultUBLUtil.READER_WRITER, "default");
+
+        UBLReaderWriter<T> readerWriter = (UBLReaderWriter<T>) ublUtil.getReaderWriter(readerWriterProviderType, documentType.toString()).reader();
         if (readerWriter == null) {
             throw new ModelException("Could not find a valid " + UBLReaderWriter.class.getSimpleName() + " for type[" + documentType.toString() + "]");
         }
@@ -153,6 +158,137 @@ public class DocumentsAdminResource {
         }
 
         return t;
+    }
+
+    @POST
+    @Path("/upload")
+    @Consumes("multipart/form-data")
+    @Produces(MediaType.APPLICATION_JSON)
+    public void uploadDocument(@PathParam("organization") final String organizationName, final MultipartFormDataInput input) throws ModelErrorResponseException {
+        OrganizationModel organization = getOrganizationModel(organizationName);
+        OrganizationAuth auth = getAuth(organization);
+
+        auth.requireManage();
+
+        List<InputPart> inputParts = getInputs(input);
+        for (InputPart inputPart : inputParts) {
+            try {
+                InputStream inputStream = inputPart.getBody(InputStream.class, null);
+                Document xml = DocumentUtils.getInputStreamToDocument(inputStream);
+
+                Element documentElement = xml.getDocumentElement();
+                String documentType = documentElement.getTagName();
+                switch (documentType) {
+                    case "Invoice":
+                        InvoiceType invoiceType = readFile(inputPart, DocumentType.INVOICE, InvoiceType.class);
+                        uploadInvoice(organization, invoiceType);
+                        break;
+                    case "CreditNote":
+                        CreditNoteType creditNoteType = readFile(inputPart, DocumentType.CREDIT_NOTE, CreditNoteType.class);
+                        uploadCreditNote(organization, creditNoteType);
+                        break;
+                    case "DebitNote":
+                        DebitNoteType debitNoteType = readFile(inputPart, DocumentType.DEBIT_NOTE, DebitNoteType.class);
+                        uploadDebitNote(organization, debitNoteType);
+                        break;
+                    default:
+                        throw new ModelErrorResponseException("Error Reading data, Document type not recognized", Response.Status.BAD_REQUEST);
+                }
+            } catch (IOException e) {
+                logger.error("Error reading input data", e);
+                throw new ModelErrorResponseException("Error Reading data", Response.Status.BAD_REQUEST);
+            } catch (ModelDuplicateException e) {
+                throw new ModelErrorResponseException("Invoice exists with same documentId");
+            } catch (ModelException e) {
+                throw new ModelErrorResponseException("Could not create document");
+            } catch (Exception e) {
+                throw new ModelErrorResponseException("Error Reading data", Response.Status.BAD_REQUEST);
+            }
+        }
+    }
+
+    private DocumentModel uploadInvoice(OrganizationModel organization, InvoiceType invoiceType) throws ModelException {
+        // Double-check duplicated documentId
+        if (invoiceType.getIDValue() != null && documentManager.getDocumentByTypeAndDocumentId(DocumentType.INVOICE, invoiceType.getIDValue(), organization) != null) {
+            throw new ModelDuplicateException("Invoice exists with same documentId[" + invoiceType.getIDValue() + "]");
+        }
+
+        IDType documentId = invoiceType.getID();
+        if (documentId == null) {
+            UBLIDGenerator<InvoiceType> ublIDGenerator = ublUtil.getIDGenerator(DocumentType.INVOICE);
+            if (ublIDGenerator == null) {
+                throw new ModelException("Could not find a valid " + UBLIDGenerator.class.getSimpleName() + " for type[" + DocumentType.INVOICE.toString() + "]");
+            }
+
+            String newDocumentId = ublIDGenerator.generateID(organization, invoiceType);
+            documentId = new IDType(newDocumentId);
+            invoiceType.setID(documentId);
+        }
+
+        DocumentModel document = documentManager.addDocument(organization, invoiceType.getIDValue(), DocumentType.INVOICE, invoiceType);
+        eventStoreManager.send(organization, getAdminEvent(organization)
+                .operation(OperationType.CREATE)
+                .resourcePath(uriInfo, document.getId())
+                .representation(invoiceType)
+                .getEvent());
+
+        return document;
+    }
+
+    private DocumentModel uploadCreditNote(OrganizationModel organization, CreditNoteType creditNoteType) throws ModelException {
+        // Double-check duplicated documentId
+        if (creditNoteType.getIDValue() != null && documentManager.getDocumentByTypeAndDocumentId(DocumentType.CREDIT_NOTE, creditNoteType.getIDValue(), organization) != null) {
+            throw new ModelDuplicateException("Credit Note exists with same documentId[" + creditNoteType.getIDValue() + "]");
+        }
+
+        IDType documentId = creditNoteType.getID();
+        if (documentId == null) {
+            UBLIDGenerator<CreditNoteType> ublIDGenerator = ublUtil.getIDGenerator(DocumentType.CREDIT_NOTE);
+            if (ublIDGenerator == null) {
+                throw new ModelException("Could not find a valid " + UBLIDGenerator.class.getSimpleName() + " for type[" + DocumentType.CREDIT_NOTE.toString() + "]");
+            }
+
+            String newDocumentId = ublIDGenerator.generateID(organization, creditNoteType);
+            documentId = new IDType(newDocumentId);
+            creditNoteType.setID(documentId);
+        }
+
+        DocumentModel document = documentManager.addDocument(organization, creditNoteType.getIDValue(), DocumentType.CREDIT_NOTE, creditNoteType);
+        eventStoreManager.send(organization, getAdminEvent(organization)
+                .operation(OperationType.CREATE)
+                .resourcePath(uriInfo, document.getId())
+                .representation(creditNoteType)
+                .getEvent());
+
+        return document;
+    }
+
+    private DocumentModel uploadDebitNote(OrganizationModel organization, DebitNoteType debitNoteType) throws ModelException {
+        // Double-check duplicated documentId
+        if (debitNoteType.getIDValue() != null && documentManager.getDocumentByTypeAndDocumentId(DocumentType.DEBIT_NOTE, debitNoteType.getIDValue(), organization) != null) {
+            throw new ModelDuplicateException("Debit Note exists with same documentId[" + debitNoteType.getIDValue() + "]");
+        }
+
+        IDType documentId = debitNoteType.getID();
+        if (documentId == null) {
+            UBLIDGenerator<DebitNoteType> ublIDGenerator = ublUtil.getIDGenerator(DocumentType.DEBIT_NOTE);
+            if (ublIDGenerator == null) {
+                throw new ModelException("Could not find a valid " + UBLIDGenerator.class.getSimpleName() + " for type[" + DocumentType.DEBIT_NOTE.toString() + "]");
+            }
+
+            String newDocumentId = ublIDGenerator.generateID(organization, debitNoteType);
+            documentId = new IDType(newDocumentId);
+            debitNoteType.setID(documentId);
+        }
+
+        DocumentModel document = documentManager.addDocument(organization, debitNoteType.getIDValue(), DocumentType.DEBIT_NOTE, debitNoteType);
+        eventStoreManager.send(organization, getAdminEvent(organization)
+                .operation(OperationType.CREATE)
+                .resourcePath(uriInfo, document.getId())
+                .representation(debitNoteType)
+                .getEvent());
+
+        return document;
     }
 
     @POST
@@ -169,30 +305,7 @@ public class DocumentsAdminResource {
         for (InputPart inputPart : inputParts) {
             try {
                 InvoiceType invoiceType = readFile(inputPart, DocumentType.INVOICE, InvoiceType.class);
-
-                // Double-check duplicated documentId
-                if (invoiceType.getIDValue() != null && documentManager.getDocumentByTypeAndDocumentId(DocumentType.INVOICE, invoiceType.getIDValue(), organization) != null) {
-                    throw new ModelDuplicateException("Invoice exists with same documentId[" + invoiceType.getIDValue() + "]");
-                }
-
-                IDType documentId = invoiceType.getID();
-                if (documentId == null) {
-                    UBLIDGenerator<InvoiceType> ublIDGenerator = ublUtil.getIDGenerator(DocumentType.INVOICE);
-                    if (ublIDGenerator == null) {
-                        throw new ModelException("Could not find a valid " + UBLIDGenerator.class.getSimpleName() + " for type[" + DocumentType.INVOICE.toString() + "]");
-                    }
-
-                    String newDocumentId = ublIDGenerator.generateID(organization, invoiceType);
-                    documentId = new IDType(newDocumentId);
-                    invoiceType.setID(documentId);
-                }
-
-                DocumentModel document = documentManager.addDocument(organization, invoiceType.getIDValue(), DocumentType.INVOICE, invoiceType);
-                eventStoreManager.send(organization, getAdminEvent(organization)
-                        .operation(OperationType.CREATE)
-                        .resourcePath(uriInfo, document.getId())
-                        .representation(invoiceType)
-                        .getEvent());
+                uploadInvoice(organization, invoiceType);
             } catch (IOException e) {
                 logger.error("Error reading input data", e);
                 throw new ModelErrorResponseException("Error Reading data", Response.Status.BAD_REQUEST);
@@ -219,29 +332,7 @@ public class DocumentsAdminResource {
             try {
                 CreditNoteType creditNoteType = readFile(inputPart, DocumentType.CREDIT_NOTE, CreditNoteType.class);
 
-                // Double-check duplicated documentId
-                if (creditNoteType.getIDValue() != null && documentManager.getDocumentByTypeAndDocumentId(DocumentType.CREDIT_NOTE, creditNoteType.getIDValue(), organization) != null) {
-                    throw new ModelDuplicateException("Credit Note exists with same documentId[" + creditNoteType.getIDValue() + "]");
-                }
-
-                IDType documentId = creditNoteType.getID();
-                if (documentId == null) {
-                    UBLIDGenerator<CreditNoteType> ublIDGenerator = ublUtil.getIDGenerator(DocumentType.CREDIT_NOTE);
-                    if (ublIDGenerator == null) {
-                        throw new ModelException("Could not find a valid " + UBLIDGenerator.class.getSimpleName() + " for type[" + DocumentType.CREDIT_NOTE.toString() + "]");
-                    }
-
-                    String newDocumentId = ublIDGenerator.generateID(organization, creditNoteType);
-                    documentId = new IDType(newDocumentId);
-                    creditNoteType.setID(documentId);
-                }
-
-                DocumentModel document = documentManager.addDocument(organization, creditNoteType.getIDValue(), DocumentType.CREDIT_NOTE, creditNoteType);
-                eventStoreManager.send(organization, getAdminEvent(organization)
-                        .operation(OperationType.CREATE)
-                        .resourcePath(uriInfo, document.getId())
-                        .representation(creditNoteType)
-                        .getEvent());
+                uploadCreditNote(organization, creditNoteType);
             } catch (IOException e) {
                 logger.error("Error reading input data", e);
                 throw new ModelErrorResponseException("Error Reading data", Response.Status.BAD_REQUEST);
@@ -268,29 +359,7 @@ public class DocumentsAdminResource {
             try {
                 DebitNoteType debitNoteType = readFile(inputPart, DocumentType.DEBIT_NOTE, DebitNoteType.class);
 
-                // Double-check duplicated documentId
-                if (debitNoteType.getIDValue() != null && documentManager.getDocumentByTypeAndDocumentId(DocumentType.DEBIT_NOTE, debitNoteType.getIDValue(), organization) != null) {
-                    throw new ModelDuplicateException("Debit Note exists with same documentId[" + debitNoteType.getIDValue() + "]");
-                }
-
-                IDType documentId = debitNoteType.getID();
-                if (documentId == null) {
-                    UBLIDGenerator<DebitNoteType> ublIDGenerator = ublUtil.getIDGenerator(DocumentType.DEBIT_NOTE);
-                    if (ublIDGenerator == null) {
-                        throw new ModelException("Could not find a valid " + UBLIDGenerator.class.getSimpleName() + " for type[" + DocumentType.DEBIT_NOTE.toString() + "]");
-                    }
-
-                    String newDocumentId = ublIDGenerator.generateID(organization, debitNoteType);
-                    documentId = new IDType(newDocumentId);
-                    debitNoteType.setID(documentId);
-                }
-
-                DocumentModel document = documentManager.addDocument(organization, debitNoteType.getIDValue(), DocumentType.DEBIT_NOTE, debitNoteType);
-                eventStoreManager.send(organization, getAdminEvent(organization)
-                        .operation(OperationType.CREATE)
-                        .resourcePath(uriInfo, document.getId())
-                        .representation(debitNoteType)
-                        .getEvent());
+                uploadDebitNote(organization, debitNoteType);
             } catch (IOException e) {
                 logger.error("Error reading input data", e);
                 throw new ModelErrorResponseException("Error Reading data", Response.Status.BAD_REQUEST);
