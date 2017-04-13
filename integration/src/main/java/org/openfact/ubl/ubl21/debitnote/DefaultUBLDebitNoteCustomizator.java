@@ -4,10 +4,11 @@ import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
 import org.openfact.models.DocumentModel;
 import org.openfact.models.DocumentProvider;
 import org.openfact.models.OrganizationModel;
+import org.openfact.models.types.DocumentRequiredAction;
 import org.openfact.models.types.DocumentType;
 import org.openfact.models.utils.TypeToModel;
-import org.openfact.ubl.ubl21.qualifiers.UBLDocumentType;
 import org.openfact.provider.ProviderType;
+import org.openfact.ubl.ubl21.qualifiers.UBLDocumentType;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -47,4 +48,15 @@ public class DefaultUBLDebitNoteCustomizator implements UBLDebitNoteCustomizator
                     });
         }
     }
+
+    @Override
+    public DocumentRequiredAction[] getRequiredActions() {
+        return new DocumentRequiredAction[]{DocumentRequiredAction.SEND_TO_CUSTOMER, DocumentRequiredAction.SEND_TO_THIRD_PARTY};
+    }
+
+    @Override
+    public String[] getExtraRequiredActions() {
+        return new String[0];
+    }
+
 }

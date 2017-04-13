@@ -147,7 +147,7 @@ public class DocumentsAdminResource {
         Config.Scope documentConfig = Config.scope(documentType.toString().toLowerCase());
         String readerWriterProviderType = documentConfig.get(DefaultUBLUtil.READER_WRITER, "default");
 
-        UBLReaderWriter<T> readerWriter = (UBLReaderWriter<T>) ublUtil.getReaderWriter(readerWriterProviderType, documentType.toString()).reader();
+        UBLReaderWriter<T> readerWriter = (UBLReaderWriter<T>) ublUtil.getReaderWriter(readerWriterProviderType, documentType.toString());
         if (readerWriter == null) {
             throw new ModelException("Could not find a valid " + UBLReaderWriter.class.getSimpleName() + " for type[" + documentType.toString() + "]");
         }
@@ -229,7 +229,7 @@ public class DocumentsAdminResource {
         eventStoreManager.send(organization, getAdminEvent(organization)
                 .operation(OperationType.CREATE)
                 .resourcePath(uriInfo, document.getId())
-                .representation(invoiceType)
+                //.representation(invoiceType)
                 .getEvent());
 
         return document;
@@ -257,7 +257,7 @@ public class DocumentsAdminResource {
         eventStoreManager.send(organization, getAdminEvent(organization)
                 .operation(OperationType.CREATE)
                 .resourcePath(uriInfo, document.getId())
-                .representation(creditNoteType)
+                //.representation(creditNoteType)
                 .getEvent());
 
         return document;
@@ -285,7 +285,7 @@ public class DocumentsAdminResource {
         eventStoreManager.send(organization, getAdminEvent(organization)
                 .operation(OperationType.CREATE)
                 .resourcePath(uriInfo, document.getId())
-                .representation(debitNoteType)
+                //.representation(debitNoteType)
                 .getEvent());
 
         return document;
