@@ -76,7 +76,7 @@
 
         <!--Jdbc-->
         <h2.version>1.4.187</h2.version>
-        <version.postgresql>9.4.1207</version.postgresql>
+        <version.postgresql>9.4.1212</version.postgresql>
         <version.mysql>5.1.38</version.mysql>
 
         <!-- Test -->
