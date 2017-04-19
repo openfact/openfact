@@ -29,9 +29,6 @@ public class DocumentManager {
     private FileProvider fileProvider;
 
     @Inject
-    private DocumentProvider documentProvider;
-
-    @Inject
     private UBLUtil ublUtil;
 
     @Inject
@@ -106,7 +103,7 @@ public class DocumentManager {
     }
 
     public boolean removeDocument(OrganizationModel organization, DocumentModel document) {
-        if (documentProvider.removeDocument(document.getId(), organization)) {
+        if (model.removeDocument(document.getId(), organization)) {
             removedEvent.fire(new DocumentModel.DocumentRemovedEvent() {
                 @Override
                 public OrganizationModel getOrganization() {
