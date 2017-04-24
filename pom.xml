@@ -565,6 +565,24 @@
 
     <profiles>
         <profile>
+            <id>community</id>
+            <activation>
+                <property>
+                    <name>!product</name>
+                </property>
+            </activation>
+            <properties>
+                <product.name>Openfact</product.name>
+                <product.name.full>openfact</product.name.full>
+                <product.slot>Openfact</product.slot>
+                <product.wildfly.console.slot>main</product.wildfly.console.slot>
+                <product.name-html>\u003Cdiv class="of-logo-text"\u003E\u003Cspan\u003EOpenfact\u003C\u002Fspan\u003E\u003C\u002Fdiv\u003E</product.name-html>
+                <product.version>${project.version}</product.version>
+                <product.default-profile>community</product.default-profile>
+            </properties>
+        </profile>
+
+        <profile>
             <id>distribution</id>
         </profile>
         <profile>
