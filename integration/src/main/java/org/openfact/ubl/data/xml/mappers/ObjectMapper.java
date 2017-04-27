@@ -42,8 +42,7 @@ public class ObjectMapper {
                     ArrayKey arrayKey = (ArrayKey) arrayAnnotation;
 
                     List value = new ArrayList();
-                    String[] fullKey = (String[]) ArrayUtils.addAll(arrayKey.arrayKey(), arrayKey.fieldKey());
-                    if (JSONObjectUtils.isJSONArray(json, fullKey)) {
+                    if (JSONObjectUtils.isJSONArray(json, arrayKey.arrayKey())) {
                         JSONArray array = JSONObjectUtils.getJSONArray(json, arrayKey.arrayKey());
                         Iterator it = array.iterator();
                         while (it.hasNext()) {
@@ -51,6 +50,7 @@ public class ObjectMapper {
                             value.add(JSONObjectUtils.getObject(current, arrayKey.fieldKey()));
                         }
                     } else {
+                        String[] fullKey = (String[]) ArrayUtils.addAll(arrayKey.arrayKey(), arrayKey.fieldKey());
                         value.add(JSONObjectUtils.getObject(json, fullKey));
                     }
 
