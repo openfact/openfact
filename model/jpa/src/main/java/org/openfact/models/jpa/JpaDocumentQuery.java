@@ -42,8 +42,10 @@ public class JpaDocumentQuery implements DocumentQuery {
 
     @Override
     public DocumentQuery currencyCode(String... currencyCode) {
-        query.currencyCode(currencyCode);
-        queryCount.currencyCode(currencyCode);
+        if (currencyCode.length > 0) {
+            query.currencyCode(currencyCode);
+            queryCount.currencyCode(currencyCode);
+        }
         return this;
     }
 
@@ -54,22 +56,10 @@ public class JpaDocumentQuery implements DocumentQuery {
 
     @Override
     public DocumentQuery documentType(String... documentType) {
-        query.documentType(documentType);
-        queryCount.documentType(documentType);
-        return this;
-    }
-
-    @Override
-    public DocumentQuery filterText(String filterText, String... fieldName) {
-        query.filterText(filterText, fieldName);
-        queryCount.filterText(filterText, fieldName);
-        return this;
-    }
-
-    @Override
-    public DocumentQuery filterTextReplaceAsterisk(String filterText, String... fieldName) {
-        query.filterTextReplaceAsterisk(filterText, fieldName);
-        queryCount.filterTextReplaceAsterisk(filterText, fieldName);
+        if (documentType.length > 0) {
+            query.documentType(documentType);
+            queryCount.documentType(documentType);
+        }
         return this;
     }
 
@@ -131,8 +121,32 @@ public class JpaDocumentQuery implements DocumentQuery {
 
     @Override
     public DocumentQuery requiredAction(DocumentRequiredAction... requiredAction) {
-        query.requiredAction(requiredAction);
-        queryCount.requiredAction(requiredAction);
+        if (requiredAction.length > 0) {
+            query.requiredAction(requiredAction);
+            queryCount.requiredAction(requiredAction);
+        }
+        return this;
+    }
+
+    @Override
+    public DocumentQuery filterText(String filterText) {
+        String[] fieldNames = {
+                DocumentModel.DOCUMENT_ID,
+                DocumentModel.CUSTOMER_REGISTRATION_NAME,
+                DocumentModel.CUSTOMER_ASSIGNED_ACCOUNT_ID,
+                DocumentModel.CUSTOMER_ELECTRONIC_MAIL
+        };
+        query.filterText(filterText, fieldNames);
+        queryCount.filterText(filterText, fieldNames);
+        return this;
+    }
+
+    @Override
+    public DocumentQuery filterTextReplaceAsterisk(String filterText, String... fieldName) {
+        if (fieldName.length > 0) {
+            query.filterTextReplaceAsterisk(filterText, fieldName);
+            queryCount.filterTextReplaceAsterisk(filterText, fieldName);
+        }
         return this;
     }
 

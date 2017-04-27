@@ -1,6 +1,5 @@
 package org.openfact.services.resources;
 
-import org.jboss.resteasy.annotations.cache.NoCache;
 import org.openfact.representations.VersionRepresentation;
 
 import javax.ejb.Stateless;
@@ -14,7 +13,6 @@ import javax.ws.rs.core.MediaType;
 public class ServerVersionResource {
 
     @GET
-    @NoCache
     @Produces(MediaType.APPLICATION_JSON)
     public VersionRepresentation getVersion() {
         return VersionRepresentation.SINGLETON;

@@ -159,7 +159,7 @@ public class TypeToModel {
             if (!partyType.getPartyLegalEntity().isEmpty()) {
                 List<String> supplierAdditionalAccountID = partyType.getPartyLegalEntity().stream().map(PartyLegalEntityType::getRegistrationNameValue).collect(Collectors.toList());
                 documentModel.setAttribute(CUSTOMER_PARTY_REGISTRATION_NAME, supplierAdditionalAccountID);
-                documentModel.setCustomerRegistrationName(supplierAdditionalAccountID.stream().reduce(",", String::concat));
+                documentModel.setCustomerRegistrationName(supplierAdditionalAccountID.stream().collect(Collectors.joining(",")));
             }
             if (partyType.getContact() != null) {
                 ContactType contactType = partyType.getContact();

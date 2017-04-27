@@ -1,6 +1,7 @@
 package org.openfact.common.converts;
 
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -130,4 +131,31 @@ public class DateUtils {
             return null;
         return LocalDateTime.ofInstant(Instant.ofEpochSecond(timestamp), TimeZone.getDefault().toZoneId());
     }
+
+    /*
+     * String convertions*/
+    public static LocalDate asLocalDate(String date) {
+        DateTimeFormatter formatter;
+        if (date.contains("/")) {
+            formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        } else if (date.contains("-")) {
+            formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        } else {
+            return null;
+        }
+        return LocalDate.parse(date, formatter);
+    }
+
+    public static LocalDateTime asLocalDateTime(String date) {
+        DateTimeFormatter formatter;
+        if (date.contains("/")) {
+            formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        } else if (date.contains("-")) {
+            formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        } else {
+            return null;
+        }
+        return LocalDateTime.parse(date, formatter);
+    }
+
 }

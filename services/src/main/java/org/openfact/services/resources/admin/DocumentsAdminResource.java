@@ -6,7 +6,6 @@ import oasis.names.specification.ubl.schema.xsd.debitnote_21.DebitNoteType;
 import oasis.names.specification.ubl.schema.xsd.invoice_21.InvoiceType;
 import org.apache.commons.io.IOUtils;
 import org.jboss.logging.Logger;
-import org.jboss.resteasy.annotations.cache.NoCache;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 import org.json.JSONObject;
@@ -50,6 +49,7 @@ import org.openfact.ubl.utils.UBLUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import javax.ejb.Asynchronous;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -373,11 +373,11 @@ public class DocumentsAdminResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<DocumentRepresentation> getDocuments(
+    public SearchResultsRepresentation<DocumentRepresentation> getDocuments(
             @PathParam("organization") final String organizationName,
-            @QueryParam("filterText") String filterText,
-            @QueryParam("documentType") String documentType,
-            @QueryParam("documentId") String documentId,
+            @QueryParam("query") @DefaultValue("") String query,
+            @QueryParam("requiredActions") final List<String> requiredActions,
+            @QueryParam("includeDisabled") @DefaultValue("false") final Boolean includeDisabled,
             @QueryParam("first") Integer firstResult,
             @QueryParam("max") Integer maxResults) {
         OrganizationModel organization = getOrganizationModel(organizationName);
@@ -385,32 +385,80 @@ public class DocumentsAdminResource {
 
         auth.requireView();
 
+        // Process params
+        DocumentRequiredAction[] documentRequiredActions = requiredActions.stream()
+                .map(requiredAction -> DocumentRequiredAction.valueOf(requiredAction.toUpperCase()))
+                .toArray(DocumentRequiredAction[]::new);
         firstResult = firstResult != null ? firstResult : -1;
         maxResults = maxResults != null ? maxResults : Constants.DEFAULT_MAX_RESULTS;
 
-        List<DocumentModel> documentModels;
-        if (filterText != null) {
-            documentModels = documentProvider.searchForDocument(filterText.trim(), organization, firstResult, maxResults);
-        } else if (documentId != null || documentType != null) {
-            Map<String, String> attributes = new HashMap<>();
-            if (documentType != null) {
-                attributes.put(DocumentModel.DOCUMENT_TYPE, documentType);
-            }
-            if (documentId != null) {
-                attributes.put(DocumentModel.DOCUMENT_ID, documentId);
-            }
-            documentModels = documentProvider.createQuery(organization)
-                    .addFilter(attributes)
-                    .entityQuery()
-                    .resultList().firstResult(firstResult).maxResults(maxResults).getResultList();
-        } else {
-            documentModels = documentProvider.getDocuments(organization, firstResult, maxResults);
+        // Jql
+        DocumentQuery jql = documentProvider
+                .createQuery(organization)
+                .requiredAction(documentRequiredActions)
+                .applyQuery(query);
+
+        if (!includeDisabled) {
+            jql.enabled(true);
         }
 
-        return documentModels.stream()
-                .map(f -> modelToRepresentation.toRepresentation(f))
+        DocumentQuery.ListEntityQuery listEntityQuery = jql.entityQuery().resultList();
+        DocumentQuery.CountQuery countQuery = jql.countQuery();
+
+        List<DocumentRepresentation> documents = listEntityQuery
+                .firstResult(firstResult)
+                .maxResults(maxResults)
+                .getResultList().stream()
+                .map(documentModel -> modelToRepresentation.toRepresentation(documentModel))
                 .collect(Collectors.toList());
+        int totalSize = countQuery.getTotalCount();
+
+        SearchResultsRepresentation<DocumentRepresentation> result = new SearchResultsRepresentation<>();
+        result.setItems(documents);
+        result.setTotalSize(totalSize);
+        return result;
     }
+
+//    @GET
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public SearchResultsRepresentation<DocumentRepresentation> getDocuments(
+//            @PathParam("organization") final String organizationName,
+//            @QueryParam("filterText") String filterText,
+//            @QueryParam("documentType") String documentType,
+//            @QueryParam("documentId") String documentId,
+//            @QueryParam("first") Integer firstResult,
+//            @QueryParam("max") Integer maxResults) {
+//        OrganizationModel organization = getOrganizationModel(organizationName);
+//        OrganizationAuth auth = getAuth(organization);
+//
+//        auth.requireView();
+//
+//        firstResult = firstResult != null ? firstResult : -1;
+//        maxResults = maxResults != null ? maxResults : Constants.DEFAULT_MAX_RESULTS;
+//
+//        List<DocumentModel> documentModels;
+//        if (filterText != null) {
+//            documentModels = documentProvider.searchForDocument(filterText.trim(), organization, firstResult, maxResults);
+//        } else if (documentId != null || documentType != null) {
+//            Map<String, String> attributes = new HashMap<>();
+//            if (documentType != null) {
+//                attributes.put(DocumentModel.DOCUMENT_TYPE, documentType);
+//            }
+//            if (documentId != null) {
+//                attributes.put(DocumentModel.DOCUMENT_ID, documentId);
+//            }
+//            documentModels = documentProvider.createQuery(organization)
+//                    .addFilter(attributes)
+//                    .entityQuery()
+//                    .resultList().firstResult(firstResult).maxResults(maxResults).getResultList();
+//        } else {
+//            documentModels = documentProvider.getDocuments(organization, firstResult, maxResults);
+//        }
+//
+//        return documentModels.stream()
+//                .map(f -> modelToRepresentation.toRepresentation(f))
+//                .collect(Collectors.toList());
+//    }
 
     @POST
     @Path("search")
@@ -428,7 +476,7 @@ public class DocumentsAdminResource {
 
         // Filtertext
         if (filterText != null && !filterText.trim().isEmpty()) {
-            query.filterText(filterText, DocumentModel.DOCUMENT_ID, DocumentModel.CUSTOMER_REGISTRATION_NAME, DocumentModel.CUSTOMER_ASSIGNED_ACCOUNT_ID, DocumentModel.CUSTOMER_ELECTRONIC_MAIL);
+            query.filterText(filterText);
         }
 
         // Filters
@@ -685,8 +733,9 @@ public class DocumentsAdminResource {
     @POST
     @Path("/{document}/send-to-third-party")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response sendToThirdParty(@PathParam("organization") final String organizationName,
-                                     @PathParam("document") final String documentIdPk) throws ModelErrorResponseException {
+    @Asynchronous
+    public void sendToThirdParty(@PathParam("organization") final String organizationName,
+                                 @PathParam("document") final String documentIdPk) throws ModelErrorResponseException {
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
 
@@ -694,17 +743,17 @@ public class DocumentsAdminResource {
 
         DocumentModel document = getDocument(documentIdPk, organization);
 
-        SendEventModel sendEvent = sendDocument(organization, document, DestinyType.THIRD_PARTY, null);
-        return Response.ok(modelToRepresentation.toRepresentation(sendEvent)).build();
+        sendDocument(organization, document, DestinyType.THIRD_PARTY, null);
+//        SendEventModel sendEvent = sendDocument(organization, document, DestinyType.THIRD_PARTY, null);
+//        return Response.ok(modelToRepresentation.toRepresentation(sendEvent)).build();
     }
 
     @POST
     @Path("/{document}/send-to-third-party-by-email")
-    @NoCache
     @Produces(MediaType.APPLICATION_JSON)
-    public Response sendToThirdPartyByEmail(@PathParam("organization") final String organizationName,
-                                            @PathParam("document") final String documentIdPk,
-                                            ThirdPartyEmailRepresentation thirdParty) throws ModelErrorResponseException {
+    public void sendToThirdPartyByEmail(@PathParam("organization") final String organizationName,
+                                        @PathParam("document") final String documentIdPk,
+                                        ThirdPartyEmailRepresentation thirdParty) throws ModelErrorResponseException {
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
 
@@ -715,8 +764,9 @@ public class DocumentsAdminResource {
             throw new BadRequestException("Invalid email sended");
         }
 
-        SendEventModel sendEvent = sendDocument(organization, document, DestinyType.CUSTOM_EMAIL, thirdParty.getEmail());
-        return Response.ok(modelToRepresentation.toRepresentation(sendEvent)).build();
+        sendDocument(organization, document, DestinyType.CUSTOM_EMAIL, thirdParty.getEmail());
+//        SendEventModel sendEvent = sendDocument(organization, document, DestinyType.CUSTOM_EMAIL, thirdParty.getEmail());
+//        return Response.ok(modelToRepresentation.toRepresentation(sendEvent)).build();
     }
 
     private SendEventModel sendDocument(OrganizationModel organization, DocumentModel document, DestinyType destiny, String customEmail) throws ModelErrorResponseException {

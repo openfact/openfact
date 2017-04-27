@@ -1,6 +1,5 @@
 package org.openfact.services.resources;
 
-import org.jboss.resteasy.annotations.cache.NoCache;
 import org.jboss.resteasy.spi.HttpRequest;
 import org.openfact.models.OpenfactSession;
 import org.openfact.models.OrganizationModel;
@@ -49,7 +48,6 @@ public class OrganizationsResource {
 
     @GET
     @Path("/{organization}")
-    @NoCache
     @Produces(MediaType.APPLICATION_JSON)
     public PublishedOrganizationRepresentation getOrganization(final @PathParam("organization") String name) {
         OrganizationModel organization = init(name);
