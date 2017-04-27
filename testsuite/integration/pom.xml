@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <artifactId>openfact-testsuite</artifactId>
-        <groupId>org.openfact</groupId>
+        <groupId>org.sistcoop</groupId>
         <version>1.0-beta-7-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -21,31 +21,31 @@
     <dependencies>
         <!-- Openfact -->
         <!--<dependency>-->
-            <!--<groupId>org.openfact</groupId>-->
+            <!--<groupId>org.sistcoop</groupId>-->
             <!--<artifactId>openfact-common</artifactId>-->
         <!--</dependency>-->
         <!--<dependency>-->
-            <!--<groupId>org.openfact</groupId>-->
+            <!--<groupId>org.sistcoop</groupId>-->
             <!--<artifactId>openfact-core</artifactId>-->
         <!--</dependency>-->
         <!--<dependency>-->
-            <!--<groupId>org.openfact</groupId>-->
+            <!--<groupId>org.sistcoop</groupId>-->
             <!--<artifactId>openfact-server-spi</artifactId>-->
         <!--</dependency>-->
         <!--<dependency>-->
-            <!--<groupId>org.openfact</groupId>-->
+            <!--<groupId>org.sistcoop</groupId>-->
             <!--<artifactId>openfact-server-spi-private</artifactId>-->
         <!--</dependency>-->
         <!--<dependency>-->
-            <!--<groupId>org.openfact</groupId>-->
+            <!--<groupId>org.sistcoop</groupId>-->
             <!--<artifactId>openfact-integration</artifactId>-->
         <!--</dependency>-->
         <!--<dependency>-->
-            <!--<groupId>org.openfact</groupId>-->
+            <!--<groupId>org.sistcoop</groupId>-->
             <!--<artifactId>openfact-services</artifactId>-->
         <!--</dependency>-->
         <!--<dependency>-->
-            <!--<groupId>org.openfact</groupId>-->
+            <!--<groupId>org.sistcoop</groupId>-->
             <!--<artifactId>openfact-model-jpa</artifactId>-->
         <!--</dependency>-->
 

@@ -2,12 +2,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.openfact</groupId>
+
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>9</version>
+    </parent>
+
+    <groupId>org.sistcoop</groupId>
     <artifactId>openfact</artifactId>
-    <version>1.0.RC1-SNAPSHOT</version>
+    <version>1.0.RC1</version>
     <packaging>pom</packaging>
 
     <name>Openfact Parent</name>
+    <description>Openfact is a UBL Server Administrator</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -93,7 +101,37 @@
         <version.jasper-compile-plugin>2.3</version.jasper-compile-plugin>
         <version.build-helper-maven-plugin>1.10</version.build-helper-maven-plugin>
         <wildfly.build-tools.version>1.1.3.Final</wildfly.build-tools.version>
+        <nexus.staging.plugin.version>1.6.5</nexus.staging.plugin.version>
     </properties>
+
+    <url>http://openfact.org</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>carlosthe19916</id>
+            <name>Carlos Esteban Feria Vila</name>
+            <email>carlosthe19916@sistcoop.com</email>
+            <organization>SistCoop</organization>
+            <roles>
+                <role>project-owner</role>
+            </roles>
+            <timezone>-5</timezone>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/openfact/openfact.git</connection>
+        <developerConnection>scm:git:git@github.com:openfact/openfact.git</developerConnection>
+        <url>https://github.com/openfact/openfact/tree/master/</url>
+    </scm>
 
     <modules>
         <module>common</module>
@@ -162,47 +200,47 @@
 
             <!-- Openfact -->
             <dependency>
-                <groupId>org.openfact</groupId>
+                <groupId>org.sistcoop</groupId>
                 <artifactId>openfact-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.openfact</groupId>
+                <groupId>org.sistcoop</groupId>
                 <artifactId>openfact-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.openfact</groupId>
+                <groupId>org.sistcoop</groupId>
                 <artifactId>openfact-server-spi</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.openfact</groupId>
+                <groupId>org.sistcoop</groupId>
                 <artifactId>openfact-server-spi-private</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.openfact</groupId>
+                <groupId>org.sistcoop</groupId>
                 <artifactId>openfact-model-jpa</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.openfact</groupId>
+                <groupId>org.sistcoop</groupId>
                 <artifactId>openfact-integration</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.openfact</groupId>
+                <groupId>org.sistcoop</groupId>
                 <artifactId>openfact-services</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.openfact</groupId>
+                <groupId>org.sistcoop</groupId>
                 <artifactId>openfact-reports</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.openfact</groupId>
+                <groupId>org.sistcoop</groupId>
                 <artifactId>openfact-themes</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -477,6 +515,32 @@
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <groupId>org.sonatype.plugins</groupId>
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
+                    <version>${nexus.staging.plugin.version}</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <nexusUrl>https://repository.jboss.org/nexus</nexusUrl>
+                        <serverId>jboss-releases-repository</serverId>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>attach-javadocs</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <additionalparam>-Xdoclint:none</additionalparam>
+                    </configuration>
+                </plugin>
+
+                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${version.maven-compiler-plugin}</version>
@@ -576,7 +640,9 @@
                 <product.name.full>openfact</product.name.full>
                 <product.slot>Openfact</product.slot>
                 <product.wildfly.console.slot>main</product.wildfly.console.slot>
-                <product.name-html>\u003Cdiv class="of-logo-text"\u003E\u003Cspan\u003EOpenfact\u003C\u002Fspan\u003E\u003C\u002Fdiv\u003E</product.name-html>
+                <product.name-html>\u003Cdiv
+                    class="of-logo-text"\u003E\u003Cspan\u003EOpenfact\u003C\u002Fspan\u003E\u003C\u002Fdiv\u003E
+                </product.name-html>
                 <product.version>${project.version}</product.version>
                 <product.default-profile>community</product.default-profile>
             </properties>
