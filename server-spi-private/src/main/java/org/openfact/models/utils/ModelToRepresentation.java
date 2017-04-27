@@ -115,7 +115,7 @@ public class ModelToRepresentation {
         return rep;
     }
 
-    public DocumentRepresentation toRepresentation(DocumentModel model) {
+    public DocumentRepresentation toRepresentation(DocumentModel model, boolean includeLine) {
         DocumentRepresentation rep = new DocumentRepresentation();
 
         rep.setId(model.getId());
@@ -155,9 +155,11 @@ public class ModelToRepresentation {
             rep.setAttachedDocumentsAsDestiny(model.getAttachedDocumentsAsDestiny().stream().map(attachedDocumentRepFunction).collect(Collectors.toList()));
         }
 
-        if (model.getDocumentLines() != null && !model.getDocumentLines().isEmpty()) {
-            List<Map<String, String>> documentLines = model.getDocumentLines().stream().map(f -> f.getAttributes()).collect(Collectors.toList());
-            rep.setDocumentLines(documentLines);
+        if (includeLine) {
+            if (model.getDocumentLines() != null && !model.getDocumentLines().isEmpty()) {
+                List<Map<String, String>> documentLines = model.getDocumentLines().stream().map(DocumentLineModel::getAttributes).collect(Collectors.toList());
+                rep.setDocumentLines(documentLines);
+            }
         }
 
         return rep;

@@ -409,7 +409,7 @@ public class DocumentsAdminResource {
                 .firstResult(firstResult)
                 .maxResults(maxResults)
                 .getResultList().stream()
-                .map(documentModel -> modelToRepresentation.toRepresentation(documentModel))
+                .map(documentModel -> modelToRepresentation.toRepresentation(documentModel, false))
                 .collect(Collectors.toList());
         int totalSize = countQuery.getTotalCount();
 
@@ -534,7 +534,7 @@ public class DocumentsAdminResource {
 
         SearchResultsRepresentation<DocumentRepresentation> rep = new SearchResultsRepresentation<>();
         List<DocumentRepresentation> items = new ArrayList<>();
-        results.getModels().forEach(f -> items.add(modelToRepresentation.toRepresentation(f)));
+        results.getModels().forEach(f -> items.add(modelToRepresentation.toRepresentation(f, false)));
         rep.setItems(items);
         rep.setTotalSize(results.getTotalSize());
         return rep;
@@ -557,7 +557,7 @@ public class DocumentsAdminResource {
         auth.requireView();
 
         DocumentModel document = getDocument(documentIdPk, organization);
-        return modelToRepresentation.toRepresentation(document);
+        return modelToRepresentation.toRepresentation(document, true);
     }
 
     @GET
@@ -623,7 +623,7 @@ public class DocumentsAdminResource {
             switch (exportFormat) {
                 case PDF:
                     response.type("application/pdf");
-                    response.header("content-disposition", "attachment; filename=\"" + document.getDocumentId() + ".pdf\"");
+                    response.header("Content-Disposition", "attachment; filename=\"" + document.getDocumentId() + ".pdf\"");
                     break;
                 case HTML:
                     response.type("application/html");
