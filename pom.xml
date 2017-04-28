@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.sistcoop</groupId>
     <artifactId>openfact</artifactId>
-    <version>1.0.RC3</version>
+    <version>1.0.RC4-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Openfact Parent</name>
@@ -123,7 +123,7 @@
         <connection>scm:git:git://github.com/openfact/openfact.git</connection>
         <developerConnection>scm:git:git@github.com:openfact/openfact.git</developerConnection>
         <url>https://github.com/openfact/openfact/tree/master/</url>
-      <tag>1.0.RC3</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <distributionManagement>
