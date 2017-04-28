@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 if [ ! -z "$TRAVIS_TAG" ]
 then
     echo "on a tag -> set pom.xml <version> to $TRAVIS_TAG"

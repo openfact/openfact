@@ -1,7 +1,8 @@
 language: java
 jdk:
   - oraclejdk8
-
+  - oraclejdk7
+  - openjdk7
 install:
   - mvn --settings .travis/settings.xml install -DskipTests=true -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
 before_install:
@@ -13,7 +14,7 @@ deploy:
     script: .travis/deploy.sh
     skip_cleanup: true
     on:
-      repo: https://github.com/openfact/openfact.git
+      repo: ExampleOrg/my-library
       branch: master
       jdk: oraclejdk8
   -
@@ -21,6 +22,6 @@ deploy:
     script: .travis/deploy.sh
     skip_cleanup: true
     on:
-      repo: https://github.com/openfact/openfact.git
+      repo: ExampleOrg/my-library
       tags: true
       jdk: oraclejdk8
