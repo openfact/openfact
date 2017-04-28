@@ -1,16 +1,26 @@
 language: java
-sudo: required
-dist: trusty
 jdk:
-- oraclejdk8
-addons:
-  sonarqube:
-    token:
-      secure: "DEeA1sEKtdWzAYpBfEwbsAXmraIhNneHDP1jLecWYOWtJdH04sHsd0zuAXQrl/NXLsepBerkWvxRa9Gp1eVhOtgQVHi0x5S/ZsCNtIX3dPMIEgtRtEYow+9Bape+O3CDB/A9am3OtnHhgcMobocPnGjShxYu9cN0MgDHPCeG+A1iT0ASXFkBnSGAzPSO4dgygUEJ8DODvOjoMIsYEnIyxMlGLNWuuYNhiGy7drSzECSQFqmfRYOCEjn19siGjD4RvM/mhdxqS7OkeReI28JX5mNwf+dpku2oPKuv7OJuK9OfrMvNcmIJfRJirERHHUpQblKONntpoGh+Lho47CFNbGEssBChvdPOHWtTnuBB4OVnF185AfM5Bs9R0w6xQ4VEdsOu2yEnhAaRaeWkZuqOwW/rqGycGnL47yg1pVTW/zNk0wPZ0cXklXdhbLLhSr2WLgKEM3mr2ijg54E9W26aKRwizHkQMVJgXevQRBqw6ORG3Tj7fB/S5retCXVlX5tTqPh+FV587xSYaKIg00ZSy9TmjhKTgzzBPNMCdBBNHKrwS6BLAaYoTW4FhHAMAzghqRDZ/Ixo9rkX0067S4WGMaKlbD3YzTnTLGKy6nLunyw/FdWIEjnEd4wcZCelItDMetJrUFf2CxE3teeVbIoLyE3yciUPP0QO7QrevVk+LJc="
-script:
-  - sonar-scanner
-cache:
-  directories:
-    - '$HOME/.sonar/cache'
-notifications:
-  email: false
+  - oraclejdk8
+
+install:
+  - mvn --settings .travis/settings.xml install -DskipTests=true -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
+before_install:
+  - if [ ! -z "$GPG_SECRET_KEYS" ]; then echo $GPG_SECRET_KEYS | base64 --decode | $GPG_EXECUTABLE --import; fi
+  - if [ ! -z "$GPG_OWNERTRUST" ]; then echo $GPG_OWNERTRUST | base64 --decode | $GPG_EXECUTABLE --import-ownertrust; fi
+deploy:
+  -
+    provider: script
+    script: .travis/deploy.sh
+    skip_cleanup: true
+    on:
+      repo: https://github.com/openfact/openfact.git
+      branch: master
+      jdk: oraclejdk8
+  -
+    provider: script
+    script: .travis/deploy.sh
+    skip_cleanup: true
+    on:
+      repo: https://github.com/openfact/openfact.git
+      tags: true
+      jdk: oraclejdk8
