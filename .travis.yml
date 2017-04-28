@@ -1,7 +1,14 @@
 language: java
+
+cache:
+  directories:
+    - $HOME/.m2
+
+before_cache:
+  - rm -rf $HOME/.m2/repository/org/openfact
+
 jdk:
   - oraclejdk8
-  - openjdk8
 install:
   - mvn --settings .travis/settings.xml install -DskipTests=true -Dmaven.javadoc.skip=true -Dgpg.skip -B -V
 before_install:
@@ -13,7 +20,7 @@ deploy:
     script: .travis/deploy.sh
     skip_cleanup: true
     on:
-      repo: openfact/openfact
+      repo: https://github.com/openfact/openfact.git
       branch: master
       jdk: oraclejdk8
   -
@@ -21,6 +28,6 @@ deploy:
     script: .travis/deploy.sh
     skip_cleanup: true
     on:
-      repo: openfact/openfact
+      repo: https://github.com/openfact/openfact.git
       tags: true
       jdk: oraclejdk8
