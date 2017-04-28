@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>9</version>
-    </parent>
-
     <groupId>org.sistcoop</groupId>
     <artifactId>openfact</artifactId>
-    <version>1.1.RC2-SNAPSHOT</version>
+    <version>1.0.RC3-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Openfact Parent</name>
@@ -100,7 +94,7 @@
         <version.jasper-compile-plugin>2.3</version.jasper-compile-plugin>
         <version.build-helper-maven-plugin>1.10</version.build-helper-maven-plugin>
         <wildfly.build-tools.version>1.1.3.Final</wildfly.build-tools.version>
-        <nexus.staging.plugin.version>1.6.5</nexus.staging.plugin.version>
+        <nexus.staging.plugin.version>1.6.8</nexus.staging.plugin.version>
     </properties>
 
     <url>http://openfact.org</url>
@@ -131,6 +125,17 @@
         <developerConnection>scm:git:git@github.com:openfact/openfact.git</developerConnection>
         <url>https://github.com/openfact/openfact/tree/master/</url>
     </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <modules>
         <module>common</module>
@@ -519,23 +524,19 @@
                     <version>${nexus.staging.plugin.version}</version>
                     <extensions>true</extensions>
                     <configuration>
-                        <nexusUrl>https://repository.jboss.org/nexus</nexusUrl>
-                        <serverId>jboss-releases-repository</serverId>
+                        <serverId>ossrh</serverId>
+                        <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                        <autoReleaseAfterClose>true</autoReleaseAfterClose>
                     </configuration>
                 </plugin>
+
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>attach-javadocs</id>
-                            <goals>
-                                <goal>jar</goal>
-                            </goals>
-                        </execution>
-                    </executions>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.5.3</version>
                     <configuration>
-                        <additionalparam>-Xdoclint:none</additionalparam>
+                        <autoVersionSubmodules>true</autoVersionSubmodules>
+                        <tagNameFormat>@{project.version}</tagNameFormat>
                     </configuration>
                 </plugin>
 
@@ -637,7 +638,7 @@
             <properties>
                 <product.name>Openfact</product.name>
                 <product.name.full>openfact</product.name.full>
-                <product.slot>Openfact</product.slot>
+                <product.slot>openfact</product.slot>
                 <product.wildfly.console.slot>main</product.wildfly.console.slot>
                 <product.name-html>\u003Cdiv
                     class="of-logo-text"\u003E\u003Cspan\u003EOpenfact\u003C\u002Fspan\u003E\u003C\u002Fdiv\u003E
@@ -648,10 +649,24 @@
         </profile>
 
         <profile>
-            <id>distribution</id>
-        </profile>
-        <profile>
-            <id>jboss-release</id>
+            <id>product</id>
+            <activation>
+                <property>
+                    <name>product</name>
+                </property>
+            </activation>
+            <properties>
+                <product.name.full>SistCoop UBL</product.name.full>
+                <product.name>sistcoop-ubl</product.name>
+                <product.slot>sistcoop-ubl</product.slot>
+                <product.wildfly.console.slot>eap</product.wildfly.console.slot>
+                <product.name-html>
+                    \u003Cstrong\u003ESistCoop\u003C\u002Fstrong\u003E\u003Csup\u003E\u00AE\u003C\u002Fsup\u003E UBL
+                </product.name-html>
+                <product.version>${project.version}</product.version>
+                <product.default-profile>product</product.default-profile>
+                <product.filename.version>7.1</product.filename.version>
+            </properties>
         </profile>
 
         <profile>
@@ -660,7 +675,7 @@
 
         <profile>
             <id>kit</id>
-            <activation />
+            <activation/>
             <build>
                 <plugins>
                     <plugin>
@@ -671,6 +686,75 @@
                                 <include>**/*KT.*</include>
                             </includes>
                         </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>distribution</id>
+        </profile>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>2.2.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>doclint-java8-disable</id>
+            <activation>
+                <jdk>[1.8,)</jdk>
+            </activation>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <configuration>
+                            <additionalparam>-Xdoclint:none</additionalparam>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>nexus-staging</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
                     </plugin>
                 </plugins>
             </build>

@@ -3,7 +3,7 @@
     <parent>
         <groupId>org.sistcoop</groupId>
         <artifactId>openfact</artifactId>
-        <version>1.1.RC2-SNAPSHOT</version>
+        <version>1.0.RC3-SNAPSHOT</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -98,7 +98,7 @@
 
     <profiles>
         <profile>
-            <id>jboss-release</id>
+            <id>release</id>
             <properties>
                 <show_sql>false</show_sql>
                 <format_sql>false</format_sql>
