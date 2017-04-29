@@ -18,4 +18,4 @@ deploy:
 
 notifications:
   email:
-    - carlosthe19916@gmail.com
+    - opensource-logback-redis@idealo.de
