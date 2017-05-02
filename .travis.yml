@@ -12,7 +12,7 @@ before_cache:
 jdk:
   - oraclejdk8
 
-before_install:
+before_script:
   - sudo apt-get -qq update
   - sudo apt-get install -y gnupg2
 
