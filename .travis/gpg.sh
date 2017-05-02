@@ -13,7 +13,7 @@ cat >gen-key-script <<EOF
       Subkey-Type: 1
       Subkey-Length: 4096
       Name-Real: Openfact
-      Name-Email: openfact@openfact.com
+      Name-Email: carlosthe19916@sistcoop.com
       Expire-Date: 2y
       Passphrase: ${GPG_PASSPHRASE}
       %commit
@@ -31,16 +31,16 @@ gpg --batch --gen-key gen-key-script
 # uid                  Lars K.W. Gohlke <lars.gohlke@idealo.de>
 # ssb   4096R/CC1613B2 2016-09-08
 # ssb   4096R/55B7CAA2 2016-09-08
-export GPG_KEYNAME=$(gpg -K | grep ^sec | cut -d/  -f2 | cut -d\  -f1 | head -n1)
+export GPG_KEYNAME=$(gpg2 -K | grep ^sec | cut -d/  -f2 | cut -d\  -f1 | head -n1)
 
 # cleanup local configuration
 shred gen-key-script
 
 # publish the gpg key  (sonatype reads from keyserver.ubuntu.com)
-gpg --keyserver keyserver.ubuntu.com --send-keys ${GPG_KEYNAME}
+gpg2 --keyserver keyserver.ubuntu.com --send-keys ${GPG_KEYNAME}
 
 # wait for the key beeing accessible
 while(true); do
     date
-    gpg --keyserver keyserver.ubuntu.com --recv-keys ${GPG_KEYNAME} && break || sleep 30
+    gpg2 --keyserver keyserver.ubuntu.com --recv-keys ${GPG_KEYNAME} && break || sleep 30
 done
