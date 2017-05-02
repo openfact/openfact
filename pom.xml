@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.sistcoop</groupId>
     <artifactId>openfact</artifactId>
-    <version>1.0.RC12</version>
+    <version>1.0.RC13-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Openfact Parent</name>
@@ -123,8 +124,7 @@
         <connection>scm:git:git://github.com/openfact/openfact.git</connection>
         <developerConnection>scm:git:git@github.com:openfact/openfact.git</developerConnection>
         <url>https://github.com/openfact/openfact/tree/master/</url>
-      <tag>HEAD</tag>
-  </scm>
+    </scm>
 
     <distributionManagement>
         <snapshotRepository>
@@ -642,8 +642,7 @@
                 <product.name.full>openfact</product.name.full>
                 <product.slot>openfact</product.slot>
                 <product.wildfly.console.slot>main</product.wildfly.console.slot>
-                <product.name-html>\u003Cdiv
-                    class="of-logo-text"\u003E\u003Cspan\u003EOpenfact\u003C\u002Fspan\u003E\u003C\u002Fdiv\u003E
+                <product.name-html>\u003Cdiv class="of-logo-text"\u003E\u003Cspan\u003EOpenfact\u003C\u002Fspan\u003E\u003C\u002Fdiv\u003E
                 </product.name-html>
                 <product.version>${project.version}</product.version>
                 <product.default-profile>community</product.default-profile>
@@ -662,9 +661,7 @@
                 <product.name>sistcoop-ubl</product.name>
                 <product.slot>sistcoop-ubl</product.slot>
                 <product.wildfly.console.slot>eap</product.wildfly.console.slot>
-                <product.name-html>
-                    \u003Cstrong\u003ESistCoop\u003C\u002Fstrong\u003E\u003Csup\u003E\u00AE\u003C\u002Fsup\u003E UBL
-                </product.name-html>
+                <product.name-html>\u003Cstrong\u003ESistCoop\u003C\u002Fstrong\u003E\u003Csup\u003E\u00AE\u003C\u002Fsup\u003E UBL</product.name-html>
                 <product.version>${project.version}</product.version>
                 <product.default-profile>product</product.default-profile>
                 <product.filename.version>7.1</product.filename.version>
@@ -677,7 +674,7 @@
 
         <profile>
             <id>kit</id>
-            <activation />
+            <activation/>
             <build>
                 <plugins>
                     <plugin>
@@ -766,7 +763,6 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>2.9.1</version>
                         <configuration>
                             <additionalparam>-Xdoclint:none</additionalparam>
                         </configuration>
