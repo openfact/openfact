@@ -797,7 +797,7 @@
                         <version>${version.maven-war-plugin}</version>
                         <configuration>
                             <failOnMissingWebXml>false</failOnMissingWebXml>
-                            <outputDirectory>distribution/war/target</outputDirectory>
+                            <outputDirectory>target</outputDirectory>
                             <warName>ROOT</warName>
                         </configuration>
                     </plugin>
