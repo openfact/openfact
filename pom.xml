@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.sistcoop</groupId>
     <artifactId>openfact</artifactId>
-    <version>1.0.RC14</version>
+    <version>1.0.RC15-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Openfact Parent</name>
@@ -63,7 +63,7 @@
         <version.resteasy>3.1.1.Final</version.resteasy>
 
         <!-- Keycloak -->
-        <version.keycloak>2.5.5.Final</version.keycloak>
+        <version.keycloak>3.1.0.Final</version.keycloak>
 
         <!-- Others -->
         <freemarker.version>2.3.23</freemarker.version>
@@ -790,18 +790,6 @@
             <id>openshift</id>
             <build>
                 <finalName>openfact</finalName>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-war-plugin</artifactId>
-                        <version>${version.maven-war-plugin}</version>
-                        <configuration>
-                            <failOnMissingWebXml>false</failOnMissingWebXml>
-                            <outputDirectory>target</outputDirectory>
-                            <warName>ROOT</warName>
-                        </configuration>
-                    </plugin>
-                </plugins>
             </build>
         </profile>
 
