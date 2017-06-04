@@ -7,7 +7,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 
-@ApplicationPath("/rest")
+@ApplicationPath("/")
 public class OpenfactApplication extends Application {
 
     @Context
