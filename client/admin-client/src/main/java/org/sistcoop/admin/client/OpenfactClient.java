@@ -21,13 +21,17 @@ public class OpenfactClient {
         InputStream kcIs = OpenfactClient.class.getClassLoader().getResourceAsStream("META-INF/keycloak.properties");
 
         try {
-            ofProperties.load(ofIs);
+            if (ofIs != null) {
+                ofProperties.load(ofIs);
+            }
         } catch (IOException e) {
             throw new IllegalStateException("Invalid Openfact configuration");
         }
 
         try {
-            kcProperties.load(kcIs);
+            if (kcIs != null) {
+                kcProperties.load(kcIs);
+            }
         } catch (IOException e) {
             throw new IllegalStateException("Invalid Keycloak configuration");
         }
