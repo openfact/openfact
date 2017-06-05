@@ -11,7 +11,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = "/rest/*")
+@WebFilter(urlPatterns = "/*")
 public class OpenfactSessionServletFilter implements Filter {
 
     @Override
