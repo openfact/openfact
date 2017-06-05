@@ -59,6 +59,9 @@
         <!--Deltaspike -->
         <version.deltaspike>1.7.2</version.deltaspike>
 
+        <!--Jboss-->
+        <jboss-jaxrs-api_2.0_spec>1.0.0.Final</jboss-jaxrs-api_2.0_spec>
+
         <!-- Resteasy -->
         <version.resteasy>3.1.1.Final</version.resteasy>
 
@@ -147,6 +150,7 @@
         <module>reports</module>
         <module>themes</module>
         <module>distribution</module>
+        <module>client</module>
     </modules>
 
     <repositories>
@@ -398,6 +402,13 @@
                 <version>${version.deltaspike}</version>
             </dependency>
 
+            <!--Jboss-->
+            <dependency>
+                <groupId>org.jboss.spec.javax.ws.rs</groupId>
+                <artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
+                <version>${jboss-jaxrs-api_2.0_spec}</version>
+            </dependency>
+
             <!-- Resteasy -->
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
@@ -412,6 +423,16 @@
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-multipart-provider</artifactId>
+                <version>${version.resteasy}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-client</artifactId>
+                <version>${version.resteasy}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-jackson2-provider</artifactId>
                 <version>${version.resteasy}</version>
             </dependency>
 
@@ -434,6 +455,12 @@
             <dependency>
                 <groupId>org.keycloak</groupId>
                 <artifactId>keycloak-adapter-spi</artifactId>
+                <version>${version.keycloak}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.keycloak</groupId>
+                <artifactId>keycloak-admin-client</artifactId>
                 <version>${version.keycloak}</version>
             </dependency>
 
