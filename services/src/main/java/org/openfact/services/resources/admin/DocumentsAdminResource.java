@@ -741,7 +741,6 @@ public class DocumentsAdminResource {
 
         DocumentModel document = getDocument(documentIdPk, organization);
 
-        sendDocument(organization, document, DestinyType.THIRD_PARTY, null);
         SendEventModel sendEvent = sendDocument(organization, document, DestinyType.THIRD_PARTY, null);
         return Response.ok(modelToRepresentation.toRepresentation(sendEvent)).build();
     }
