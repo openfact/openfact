@@ -49,7 +49,6 @@ import org.openfact.ubl.utils.UBLUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import javax.ejb.Asynchronous;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -733,8 +732,7 @@ public class DocumentsAdminResource {
     @POST
     @Path("/{document}/send-to-third-party")
     @Produces(MediaType.APPLICATION_JSON)
-    @Asynchronous
-    public void sendToThirdParty(@PathParam("organization") final String organizationName,
+    public Response sendToThirdParty(@PathParam("organization") final String organizationName,
                                  @PathParam("document") final String documentIdPk) throws ModelErrorResponseException {
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
@@ -744,8 +742,8 @@ public class DocumentsAdminResource {
         DocumentModel document = getDocument(documentIdPk, organization);
 
         sendDocument(organization, document, DestinyType.THIRD_PARTY, null);
-//        SendEventModel sendEvent = sendDocument(organization, document, DestinyType.THIRD_PARTY, null);
-//        return Response.ok(modelToRepresentation.toRepresentation(sendEvent)).build();
+        SendEventModel sendEvent = sendDocument(organization, document, DestinyType.THIRD_PARTY, null);
+        return Response.ok(modelToRepresentation.toRepresentation(sendEvent)).build();
     }
 
     @POST
