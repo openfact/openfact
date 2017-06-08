@@ -3,7 +3,7 @@
     <parent>
         <groupId>org.sistcoop</groupId>
         <artifactId>openfact</artifactId>
-        <version>RC19</version>
+        <version>RC20-SNAPSHOT</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
