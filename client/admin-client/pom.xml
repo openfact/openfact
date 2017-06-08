@@ -3,7 +3,7 @@
     <parent>
         <groupId>org.sistcoop</groupId>
         <artifactId>openfact-client</artifactId>
-        <version>1.0.RC21</version>
+        <version>1.0.RC22-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
