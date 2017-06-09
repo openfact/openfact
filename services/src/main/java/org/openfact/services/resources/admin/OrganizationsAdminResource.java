@@ -125,7 +125,7 @@ public class OrganizationsAdminResource {
 
     private OrganizationAuth getAuth(OrganizationModel organization, Resource resource) {
         List<OrganizationModel> permittedOrganizations = securityContext.getPermittedOrganizations(session);
-        if (!permittedOrganizations.contains(organizationManager.getOpenfactAdminstrationOrganization()) && !permittedOrganizations.contains(organization)) {
+        if (!securityContext.getClientUser(session).hasAppRole(AdminRoles.ADMIN) && !permittedOrganizations.contains(organization)) {
             throw new ForbiddenException();
         }
         return securityContext.getClientUser(session).organizationAuth(resource);
