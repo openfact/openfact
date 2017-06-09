@@ -30,15 +30,12 @@ public class KeycloakSecurityContextProvider implements SecurityContextProvider 
     @Inject
     private OrganizationProvider provider;
 
-    private AccessToken accessToken;
-    private List<OrganizationModel> permittedOrganizations;
-
-    private void init(OpenfactSession session) {
+    private AccessToken init(OpenfactSession session) {
         HttpServletRequest httpServletRequest = session.getContext().getContextObject(HttpServletRequest.class);
         KeycloakPrincipal<KeycloakSecurityContext> kcPrincipal = (KeycloakPrincipal<KeycloakSecurityContext>) httpServletRequest.getUserPrincipal();
 
         if (kcPrincipal != null) {
-            accessToken = kcPrincipal.getKeycloakSecurityContext().getToken();
+            return kcPrincipal.getKeycloakSecurityContext().getToken();
         } else {
             throw new IllegalStateException("Could not instantiate KeycloakSecurityContext, check if you installed Keycloak adapter");
         }
@@ -46,21 +43,16 @@ public class KeycloakSecurityContextProvider implements SecurityContextProvider 
 
     @Override
     public List<OrganizationModel> getPermittedOrganizations(OpenfactSession session) {
-        init(session);
-        if (permittedOrganizations == null) {
-            Collection<String> organizationsName = getPermittedOrganizationNames();
-            if (!organizationsName.isEmpty()) {
-                permittedOrganizations = organizationsName.stream()
-                        .map(name -> provider.getOrganizationByName(name))
-                        .collect(Collectors.toList());
-            }
-        }
-        return permittedOrganizations;
+        AccessToken accessToken = init(session);
+        Collection<String> organizationsName = getPermittedOrganizationNames(accessToken);
+        return organizationsName.stream()
+                .map(name -> provider.getOrganizationByName(name))
+                .collect(Collectors.toList());
     }
 
     @Override
     public ClientUser getClientUser(OpenfactSession session) {
-        init(session);
+        AccessToken accessToken = init(session);
         return new ClientUser() {
 
             @Override
@@ -70,7 +62,7 @@ public class KeycloakSecurityContextProvider implements SecurityContextProvider 
 
             @Override
             public boolean hasOrganizationRole(String role) {
-                return hasRole(role);
+                return hasRole(role, accessToken);
             }
 
             @Override
@@ -85,7 +77,7 @@ public class KeycloakSecurityContextProvider implements SecurityContextProvider 
 
             @Override
             public boolean hasAppRole(String role) {
-                return hasRole(role);
+                return hasRole(role, accessToken);
             }
 
             @Override
@@ -105,7 +97,7 @@ public class KeycloakSecurityContextProvider implements SecurityContextProvider 
         };
     }
 
-    private Collection<String> getPermittedOrganizationNames() {
+    private Collection<String> getPermittedOrganizationNames(AccessToken accessToken) {
         Map<String, Object> otherClaims = accessToken.getOtherClaims();
         if (otherClaims.containsKey(KEYCLOAK_ORGANIZATION_USER_ATTRIBUTE)) {
             Object object = otherClaims.get(KEYCLOAK_ORGANIZATION_USER_ATTRIBUTE);
@@ -118,7 +110,7 @@ public class KeycloakSecurityContextProvider implements SecurityContextProvider 
         return Collections.EMPTY_LIST;
     }
 
-    private boolean hasRole(String role) {
+    private boolean hasRole(String role, AccessToken accessToken) {
         Set<String> organizationRoles = accessToken.getRealmAccess().getRoles();
         AccessToken.Access resourceAccess = accessToken.getResourceAccess(KEYCLOAK_CLIENT);
         Set<String> applicationRoles = resourceAccess != null ? resourceAccess.getRoles() : Collections.emptySet();
