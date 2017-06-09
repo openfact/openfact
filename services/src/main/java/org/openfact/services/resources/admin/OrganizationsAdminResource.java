@@ -180,7 +180,7 @@ public class OrganizationsAdminResource {
         List<OrganizationRepresentation> reps = new ArrayList<>();
 
         List<OrganizationModel> permittedOrganizations = securityContext.getPermittedOrganizations(session);
-        if (permittedOrganizations != null && !permittedOrganizations.isEmpty() && permittedOrganizations.contains(organizationManager.getOpenfactAdminstrationOrganization())) {
+        if (securityContext.getClientUser(session).hasAppRole(AdminRoles.ADMIN)) {
             List<OrganizationModel> organizations = organizationManager.getOrganizations();
             addOrganizationRep(reps, organizations);
         } else if (permittedOrganizations != null && !permittedOrganizations.isEmpty()) {
@@ -296,8 +296,7 @@ public class OrganizationsAdminResource {
     @DELETE
     @Path("/{organization}")
     public void deleteOrganization(@PathParam("organization") final String organizationName) throws ModelErrorResponseException {
-        List<OrganizationModel> permittedOrganizations = securityContext.getPermittedOrganizations(session);
-        if (!permittedOrganizations.contains(organizationManager.getOpenfactAdminstrationOrganization()) && !securityContext.getClientUser(session).hasAppRole(AdminRoles.ADMIN)) {
+        if (!securityContext.getClientUser(session).hasAppRole(AdminRoles.ADMIN)) {
             throw new ForbiddenException();
         }
 
