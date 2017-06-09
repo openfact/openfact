@@ -3,7 +3,7 @@
     <parent>
         <groupId>org.sistcoop</groupId>
         <artifactId>openfact</artifactId>
-        <version>1.0.RC22-SNAPSHOT</version>
+        <version>1.0.RC22</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
