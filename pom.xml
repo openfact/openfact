@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.sistcoop</groupId>
     <artifactId>openfact</artifactId>
@@ -11,13 +12,16 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.wildfly.swarm>2017.5.0</version.wildfly.swarm>
+        <version.wildfly.swarm>2017.6.0</version.wildfly.swarm>
 
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
 
         <!-- Java EE 7 -->
         <javaee.version>7.0</javaee.version>
+
+        <!-- Arquillian -->
+        <version.arquillian-bom>1.1.13.Final</version.arquillian-bom>
 
         <!-- Bouncycastle -->
         <bouncycastle.version>1.52</bouncycastle.version>
@@ -151,6 +155,7 @@
         <module>themes</module>
         <module>distribution</module>
         <module>client</module>
+        <module>testsuite</module>
     </modules>
 
     <repositories>
@@ -183,12 +188,6 @@
             <id>jaspersoft-third-party</id>
             <url>http://jaspersoft.artifactoryonline.com/jaspersoft/third-party-ce-artifacts/</url>
         </repository>
-        <repository>
-            <id>prime-repo</id>
-            <name>PrimeFaces Maven Repository</name>
-            <url>http://repository.primefaces.org</url>
-            <layout>default</layout>
-        </repository>
     </repositories>
     <dependencyManagement>
         <dependencies>
@@ -203,6 +202,15 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>1.7.7</version>
+            </dependency>
+
+            <!--Arquillian-->
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>${version.arquillian-bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
             <!-- Openfact -->
@@ -668,7 +676,8 @@
                 <product.name.full>openfact</product.name.full>
                 <product.slot>openfact</product.slot>
                 <product.wildfly.console.slot>main</product.wildfly.console.slot>
-                <product.name-html>\u003Cdiv class="of-logo-text"\u003E\u003Cspan\u003EOpenfact\u003C\u002Fspan\u003E\u003C\u002Fdiv\u003E
+                <product.name-html>\u003Cdiv
+                    class="of-logo-text"\u003E\u003Cspan\u003EOpenfact\u003C\u002Fspan\u003E\u003C\u002Fdiv\u003E
                 </product.name-html>
                 <product.version>${project.version}</product.version>
                 <product.default-profile>community</product.default-profile>
@@ -687,7 +696,9 @@
                 <product.name>sistcoop-ubl</product.name>
                 <product.slot>sistcoop-ubl</product.slot>
                 <product.wildfly.console.slot>eap</product.wildfly.console.slot>
-                <product.name-html>\u003Cstrong\u003ESistCoop\u003C\u002Fstrong\u003E\u003Csup\u003E\u00AE\u003C\u002Fsup\u003E UBL</product.name-html>
+                <product.name-html>
+                    \u003Cstrong\u003ESistCoop\u003C\u002Fstrong\u003E\u003Csup\u003E\u00AE\u003C\u002Fsup\u003E UBL
+                </product.name-html>
                 <product.version>${project.version}</product.version>
                 <product.default-profile>product</product.default-profile>
                 <product.filename.version>7.1</product.filename.version>
