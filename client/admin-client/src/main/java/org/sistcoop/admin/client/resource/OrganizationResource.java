@@ -26,9 +26,6 @@ public interface OrganizationResource {
     @Path("documents")
     DocumentsResource documents();
 
-    @Path("files/{id}")
-    Response getFile();
-
     @GET
     @Path("events")
     @Produces(MediaType.APPLICATION_JSON)
@@ -39,7 +36,6 @@ public interface OrganizationResource {
     @Produces(MediaType.APPLICATION_JSON)
     List<EventRepresentation> getEvents(@QueryParam("first") Integer firstResult,
                                         @QueryParam("max") Integer maxResults);
-
 
     @DELETE
     @Path("events")
