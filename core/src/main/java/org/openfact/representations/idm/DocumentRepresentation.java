@@ -16,7 +16,7 @@
  *******************************************************************************/
 package org.openfact.representations.idm;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -26,7 +26,7 @@ public class DocumentRepresentation {
     private String id;
     private String documentId;
     private String documentType;
-    private LocalDateTime createdTimestamp;
+    private Date createdTimestamp;
 
     private String documentCurrencyCode;
     private String customerRegistrationName;
@@ -59,11 +59,11 @@ public class DocumentRepresentation {
         this.documentId = documentId;
     }
 
-    public LocalDateTime getCreatedTimestamp() {
+    public Date getCreatedTimestamp() {
         return createdTimestamp;
     }
 
-    public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
+    public void setCreatedTimestamp(Date createdTimestamp) {
         this.createdTimestamp = createdTimestamp;
     }
 

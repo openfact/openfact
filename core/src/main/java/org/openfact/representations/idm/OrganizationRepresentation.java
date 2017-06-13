@@ -18,7 +18,6 @@ package org.openfact.representations.idm;
 
 import org.openfact.common.util.MultivaluedHashMap;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -64,7 +63,7 @@ public class OrganizationRepresentation {
     private String additionalAccountId;
     private String supplierName;
     private String registrationName;
-    private LocalDateTime createdTimestamp;
+    private Date createdTimestamp;
     private PostalAddressRepresentation postalAddress;
 
     private Date taskFirstTime;
@@ -273,11 +272,11 @@ public class OrganizationRepresentation {
         this.openfactVersion = openfactVersion;
     }
 
-    public LocalDateTime getCreatedTimestamp() {
+    public Date getCreatedTimestamp() {
         return createdTimestamp;
     }
 
-    public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
+    public void setCreatedTimestamp(Date createdTimestamp) {
         this.createdTimestamp = createdTimestamp;
     }
 

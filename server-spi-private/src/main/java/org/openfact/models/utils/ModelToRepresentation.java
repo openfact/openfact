@@ -11,6 +11,7 @@ import org.openfact.representations.idm.*;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.time.ZoneId;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -30,7 +31,9 @@ public class ModelToRepresentation {
         rep.setOrganization(organization.getName());
         rep.setDescription(organization.getDescription());
         rep.setEnabled(organization.isEnabled());
-        rep.setCreatedTimestamp(organization.getCreatedTimestamp());
+        if (organization.getCreatedTimestamp() != null) {
+            rep.setCreatedTimestamp(Date.from(organization.getCreatedTimestamp().atZone(ZoneId.systemDefault()).toInstant()));
+        }
 
         rep.setAdditionalAccountId(organization.getAdditionalAccountId());
         rep.setAssignedIdentificationId(organization.getAssignedIdentificationId());
@@ -121,7 +124,9 @@ public class ModelToRepresentation {
         rep.setId(model.getId());
         rep.setDocumentId(model.getDocumentId());
         rep.setDocumentType(model.getDocumentType());
-        rep.setCreatedTimestamp(model.getCreatedTimestamp());
+        if (model.getCreatedTimestamp() != null) {
+            rep.setCreatedTimestamp(Date.from(model.getCreatedTimestamp().atZone(ZoneId.systemDefault()).toInstant()));
+        }
         rep.setEnabled(model.isEnabled());
 
         rep.setDocumentCurrencyCode(model.getDocumentCurrencyCode());
@@ -267,7 +272,9 @@ public class ModelToRepresentation {
         rep.setDestinyType(model.getDestityType().toString());
         rep.setResult(model.getResult().toString());
         rep.setDescription(model.getDescription());
-        rep.setCreatedTimestamp(model.getCreatedTimestamp());
+        if (model.getCreatedTimestamp() != null) {
+            rep.setCreatedTimestamp(Date.from(model.getCreatedTimestamp().atZone(ZoneId.systemDefault()).toInstant()));
+        }
 
         if (model.getAttributes() != null && !model.getAttributes().isEmpty()) {
             Map<String, String> attrs = new HashMap<>();

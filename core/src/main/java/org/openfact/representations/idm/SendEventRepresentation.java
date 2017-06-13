@@ -1,6 +1,6 @@
 package org.openfact.representations.idm;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +17,7 @@ public class SendEventRepresentation {
     private Map<String, String> responseAttributes;
     private List<FileRepresentation> responseFileAttachments;
 
-    private LocalDateTime createdTimestamp;
+    private Date createdTimestamp;
 
     public String getId() {
         return id;
@@ -91,11 +91,11 @@ public class SendEventRepresentation {
         this.responseFileAttachments = responseFileAttachments;
     }
 
-    public LocalDateTime getCreatedTimestamp() {
+    public Date getCreatedTimestamp() {
         return createdTimestamp;
     }
 
-    public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
+    public void setCreatedTimestamp(Date createdTimestamp) {
         this.createdTimestamp = createdTimestamp;
     }
 }
