@@ -31,16 +31,28 @@ public class Openfact {
         return new BearerAuthFilter(keycloakClient.tokenManager());
     }
 
-    public ResteasyWebTarget target(String uri) {
-        return client.target(uri);
-    }
-
     public OrganizationsResource organizations() {
         return target.proxy(OrganizationsResource.class);
     }
 
     public OrganizationResource organization(String organizationName) {
         return organizations().organization(organizationName);
+    }
+
+    public ResteasyWebTarget target(String... path) {
+        ResteasyWebTarget result = target;
+        for (String p : path) {
+            result = result.path(p);
+        }
+        return result;
+    }
+
+    public ResteasyWebTarget target(String uri) {
+        return client.target(uri);
+    }
+
+    public <T> T proxy(Class<T> proxyClass, String path) {
+        return target.path(path).proxy(proxyClass);
     }
 
     /**
