@@ -89,4 +89,8 @@ public class OpenfactClient {
         return openfact.target(uri);
     }
 
+    public Openfact getOpenfact() {
+        return this.openfact;
+    }
+
 }
