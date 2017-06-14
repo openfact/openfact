@@ -144,17 +144,11 @@
     </distributionManagement>
 
     <modules>
+        <module>model</module>
         <module>common</module>
         <module>core</module>
         <module>server-spi</module>
         <module>server-spi-private</module>
-        <module>model</module>
-        <module>integration</module>
-        <module>services</module>
-        <module>reports</module>
-        <module>themes</module>
-        <module>distribution</module>
-        <module>client</module>
         <module>testsuite</module>
     </modules>
 
@@ -189,30 +183,9 @@
             <url>http://jaspersoft.artifactoryonline.com/jaspersoft/third-party-ce-artifacts/</url>
         </repository>
     </repositories>
+
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.wildfly.swarm</groupId>
-                <artifactId>bom</artifactId>
-                <version>${version.wildfly.swarm}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>1.7.7</version>
-            </dependency>
-
-            <!--Arquillian-->
-            <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>${version.arquillian-bom}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
             <!-- Openfact -->
             <dependency>
                 <groupId>org.sistcoop</groupId>
@@ -653,12 +626,6 @@
                     <artifactId>wildfly-server-provisioning-maven-plugin</artifactId>
                     <version>${wildfly.build-tools.version}</version>
                 </plugin>
-
-                <plugin>
-                    <groupId>io.fabric8</groupId>
-                    <artifactId>docker-maven-plugin</artifactId>
-                    <version>0.20.1</version>
-                </plugin>
             </plugins>
         </pluginManagement>
     </build>
@@ -703,28 +670,6 @@
                 <product.default-profile>product</product.default-profile>
                 <product.filename.version>7.1</product.filename.version>
             </properties>
-        </profile>
-
-        <profile>
-            <id>docker</id>
-        </profile>
-
-        <profile>
-            <id>kit</id>
-            <activation/>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>2.19.1</version>
-                        <configuration>
-                            <includes>
-                                <include>**/*KT.*</include>
-                            </includes>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
 
         <profile>
@@ -821,15 +766,10 @@
         </profile>
 
         <profile>
-            <!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
-            <!-- Use this profile for any OpenShift specific customization your app will need. -->
-            <!-- By default that is to put the resulting archive into the 'deployments' folder. -->
-            <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
             <id>openshift</id>
             <build>
                 <finalName>openfact</finalName>
             </build>
         </profile>
-
     </profiles>
 </project>

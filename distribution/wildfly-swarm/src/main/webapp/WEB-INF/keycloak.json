@@ -1,8 +1,0 @@
-{
-  "realm": "openfact",
-  "bearer-only": true,
-  "auth-server-url": "https://kcopenfact-softgreen.rhcloud.com/auth",
-  "ssl-required": "external",
-  "resource": "openfact",
-  "enable-cors": true
-}

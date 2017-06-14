@@ -25,19 +25,7 @@
         <!-- Openfact -->
         <dependency>
             <groupId>org.sistcoop</groupId>
-            <artifactId>openfact-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.sistcoop</groupId>
-            <artifactId>openfact-server-spi</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.sistcoop</groupId>
             <artifactId>openfact-server-spi-private</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.sistcoop</groupId>
-            <artifactId>openfact-integration</artifactId>
         </dependency>
 
         <!-- Java EE 7 -->

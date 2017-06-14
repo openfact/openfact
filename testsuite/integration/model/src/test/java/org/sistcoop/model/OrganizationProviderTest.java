@@ -4,16 +4,22 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.ModelException;
+import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
-import org.wildfly.swarm.Swarm;
-import org.wildfly.swarm.arquillian.CreateSwarm;
-import org.wildfly.swarm.jaxrs.JAXRSArchive;
+import org.openfact.models.jpa.JpaOrganizationProvider;
+import org.openfact.models.jpa.entities.OrganizationEntity;
 
 import javax.inject.Inject;
-import java.net.URL;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.notNullValue;
 
 @RunWith(Arquillian.class)
 public class OrganizationProviderTest {
@@ -21,36 +27,27 @@ public class OrganizationProviderTest {
     private static final String ORGANIZATION = "sistcoop";
 
     @Inject
-    private OrganizationProvider organizationProvider;
+    OrganizationProvider organizationProvider;
 
     @Deployment
-    public static Archive createDeployment() throws Exception {
-        return ShrinkWrap.create(JAXRSArchive.class)
+    public static Archive deploy() {
+        return ShrinkWrap.create(WebArchive.class, "test1.war")
+                .addClass(OrganizationModel.class)
+                .addClass(ModelException.class)
+                .addClass(ModelDuplicateException.class)
+
                 .addClass(OrganizationProvider.class)
-                .addAllDependencies();
-    }
-
-    @CreateSwarm
-    public static Swarm newContainer() throws Exception {
-        ClassLoader classLoader = OrganizationProviderTest.class.getClassLoader();
-        URL stageConfig = classLoader.getResource("project-defaults.yml");
-
-        Swarm swarm = new Swarm(false)
-                .withProperty("swarm.ds.name", "OpenfactDS")
-                .withProperty("swarm.ds.username", "sa")
-                .withProperty("swarm.ds.password", "sa")
-                .withProperty("swarm.ds.connection.url", "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE");
-
-        return swarm;
+                .addClass(JpaOrganizationProvider.class)
+                .addPackage(OrganizationEntity.class.getPackage());
     }
 
     @Test
     public void test_create_success() throws ModelException {
-//        OrganizationModel organization = organizationProvider.createOrganization(ORGANIZATION);
-//
-//        assertThat("Organization has not been created", organization, is(notNullValue()));
-//        assertThat("Primary key has not been assigned", organization.getId(), is(notNullValue()));
-//        assertThat("Organization name has changed", organization.getName(), equalTo(ORGANIZATION));
+        OrganizationModel organization = organizationProvider.createOrganization(ORGANIZATION);
+
+        assertThat("Organization has not been created", organization, is(notNullValue()));
+        assertThat("Primary key has not been assigned", organization.getId(), is(notNullValue()));
+        assertThat("Organization name has changed", organization.getName(), equalTo(ORGANIZATION));
     }
 
 //    @Test(expected = ModelDuplicateException.class)
