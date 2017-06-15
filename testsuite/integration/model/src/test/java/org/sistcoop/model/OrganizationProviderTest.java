@@ -7,11 +7,12 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.ModelException;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
+import org.openfact.models.jpa.JpaModel;
 import org.openfact.models.jpa.JpaOrganizationProvider;
+import org.openfact.models.jpa.OrganizationAdapter;
 import org.openfact.models.jpa.entities.OrganizationEntity;
 
 import javax.inject.Inject;
@@ -33,9 +34,8 @@ public class OrganizationProviderTest {
     public static Archive deploy() {
         return ShrinkWrap.create(WebArchive.class, "test1.war")
                 .addClass(OrganizationModel.class)
-                .addClass(ModelException.class)
-                .addClass(ModelDuplicateException.class)
-
+                .addClass(JpaModel.class)
+                .addClass(OrganizationAdapter.class)
                 .addClass(OrganizationProvider.class)
                 .addClass(JpaOrganizationProvider.class)
                 .addPackage(OrganizationEntity.class.getPackage());
@@ -50,10 +50,4 @@ public class OrganizationProviderTest {
         assertThat("Organization name has changed", organization.getName(), equalTo(ORGANIZATION));
     }
 
-//    @Test(expected = ModelDuplicateException.class)
-//    public void test_create_noDuplicatesAllowed() throws ModelException {
-//        //organizationProvider.createOrganization(ORGANIZATION);
-//        //organizationProvider.createOrganization(ORGANIZATION);
-//        throw new ModelDuplicateException();
-//    }
 }
