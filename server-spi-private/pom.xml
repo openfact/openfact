@@ -52,13 +52,6 @@
             <artifactId>jackson-databind</artifactId>
             <scope>provided</scope>
         </dependency>
-
-        <!-- Jboss logging -->
-        <dependency>
-            <groupId>org.jboss.logging</groupId>
-            <artifactId>jboss-logging</artifactId>
-            <scope>provided</scope>
-        </dependency>
     </dependencies>
 
     <build>

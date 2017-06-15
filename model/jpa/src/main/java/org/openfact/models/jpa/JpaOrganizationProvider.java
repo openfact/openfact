@@ -1,6 +1,5 @@
 package org.openfact.models.jpa;
 
-import org.jboss.logging.Logger;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
 import org.openfact.models.jpa.entities.OrganizationEntity;
@@ -13,8 +12,6 @@ import java.util.UUID;
 
 @Stateless
 public class JpaOrganizationProvider implements OrganizationProvider {
-
-    private static final Logger logger = Logger.getLogger(JpaOrganizationProvider.class);
 
     @PersistenceContext
     private EntityManager em;

@@ -1,6 +1,5 @@
 package org.openfact.models.jpa;
 
-import org.jboss.logging.Logger;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.entities.OrganizationAttributeEntity;
 import org.openfact.models.jpa.entities.OrganizationAttributes;
@@ -11,8 +10,6 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class OrganizationAdapter implements OrganizationModel, JpaModel<OrganizationEntity> {
-
-    private static final Logger logger = Logger.getLogger(OrganizationAdapter.class);
 
     private static final String BROWSER_HEADER_PREFIX = "_browser_header.";
 

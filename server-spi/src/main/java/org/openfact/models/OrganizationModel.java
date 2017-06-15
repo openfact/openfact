@@ -5,8 +5,6 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
-import org.openfact.provider.ProviderEvent;
-
 public interface OrganizationModel {
 
     String NAME = "name";
@@ -205,24 +203,6 @@ public interface OrganizationModel {
 
     enum RequiredAction {
         ACTION1, ACTION2, ACTION3, ACTION4
-    }
-
-    /**
-     * Events interfaces
-     */
-    @FunctionalInterface
-    interface OrganizationCreationEvent extends ProviderEvent {
-        OrganizationModel getCreatedOrganization();
-    }
-
-    @FunctionalInterface
-    interface OrganizationPostCreateEvent extends ProviderEvent {
-        OrganizationModel getCreatedOrganization();
-    }
-
-    @FunctionalInterface
-    interface OrganizationRemovedEvent extends ProviderEvent {
-        OrganizationModel getOrganization();
     }
 
 }
