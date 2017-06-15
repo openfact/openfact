@@ -1,6 +1,8 @@
 package org.openfact.models.jpa.entities;
 
 import org.hibernate.annotations.NaturalId;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -144,6 +146,20 @@ public class OrganizationEntity {
     @Type(type = "org.hibernate.type.LocalDateTimeType")
     @Column(name = "CREATED_TIMESTAMP")
     private LocalDateTime createdTimestamp;
+
+    /*
+    * Recent Changes*/
+    @OneToMany(mappedBy = "organization")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private List<DocumentEntity> documents = new ArrayList<>();
+
+    @OneToMany(mappedBy = "organization")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private List<FileEntity> files = new ArrayList<>();
+
+    @OneToMany(mappedBy = "organization")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private List<JobReportEntity> jobReports = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -472,5 +488,29 @@ public class OrganizationEntity {
 
     public void setLogoFileId(String logoFileId) {
         this.logoFileId = logoFileId;
+    }
+
+    public List<DocumentEntity> getDocuments() {
+        return documents;
+    }
+
+    public void setDocuments(List<DocumentEntity> documents) {
+        this.documents = documents;
+    }
+
+    public List<FileEntity> getFiles() {
+        return files;
+    }
+
+    public void setFiles(List<FileEntity> files) {
+        this.files = files;
+    }
+
+    public List<JobReportEntity> getJobReports() {
+        return jobReports;
+    }
+
+    public void setJobReports(List<JobReportEntity> jobReports) {
+        this.jobReports = jobReports;
     }
 }

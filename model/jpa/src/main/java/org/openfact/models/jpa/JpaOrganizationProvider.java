@@ -5,15 +5,19 @@ import org.openfact.models.OrganizationProvider;
 import org.openfact.models.jpa.entities.OrganizationEntity;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Stateless
 public class JpaOrganizationProvider implements OrganizationProvider {
 
-    @PersistenceContext
+    @Inject
     private EntityManager em;
 
     private OrganizationAdapter toAdapter(OrganizationEntity entity) {
@@ -36,6 +40,72 @@ public class JpaOrganizationProvider implements OrganizationProvider {
         em.flush();
 
         return toAdapter(organization);
+    }
+
+    @Override
+    public OrganizationModel getOrganization(String id) {
+        OrganizationEntity entity = em.find(OrganizationEntity.class, id);
+        if (entity == null) {
+            return null;
+        }
+        return toAdapter(entity);
+    }
+
+    @Override
+    public OrganizationModel getOrganizationByName(String organizationName) {
+        TypedQuery<OrganizationEntity> query = em.createNamedQuery("getOrganizationByName", OrganizationEntity.class);
+        query.setParameter("name", organizationName);
+        List<OrganizationEntity> entities = query.getResultList();
+        if (entities.size() == 0)
+            return null;
+        if (entities.size() > 1)
+            throw new IllegalStateException("Should not be more than one documentLine with same name");
+        OrganizationEntity entity = query.getResultList().get(0);
+
+        return toAdapter(entity);
+    }
+
+    @Override
+    public List<OrganizationModel> getOrganizations() {
+        return getOrganizations(-1, -1);
+    }
+
+    @Override
+    public List<OrganizationModel> getOrganizations(int firstResult, int maxResults) {
+        TypedQuery<OrganizationEntity> query = em.createNamedQuery("getAllOrganizations", OrganizationEntity.class);
+        if (firstResult != -1) {
+            query.setFirstResult(firstResult);
+        }
+        if (maxResults != -1) {
+            query.setMaxResults(maxResults);
+        }
+
+        return query.getResultList().stream().map(entity -> toAdapter(entity)).collect(Collectors.toList());
+    }
+
+    @Override
+    public int getOrganizationsCount() {
+        Query query = em.createNamedQuery("getOrganizationsCount");
+        Long result = (Long) query.getSingleResult();
+        return result.intValue();
+    }
+
+
+    @Override
+    public boolean removeOrganization(String organizationId) {
+        OrganizationEntity organization = em.find(OrganizationEntity.class, organizationId);
+        if (organization == null) {
+            return false;
+        }
+        return removeOrganization(toAdapter(organization));
+    }
+
+    @Override
+    public boolean removeOrganization(OrganizationModel organization) {
+        OrganizationEntity entity = OrganizationAdapter.toEntity(organization, em);
+        em.remove(entity);
+        em.flush();
+        return true;
     }
 
 }

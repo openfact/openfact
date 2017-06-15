@@ -1,5 +1,8 @@
 package org.openfact.models;
 
+import javax.ejb.ApplicationException;
+
+@ApplicationException(rollback = true)
 public class ModelException extends RuntimeException {
 
     private Object[] parameters;
