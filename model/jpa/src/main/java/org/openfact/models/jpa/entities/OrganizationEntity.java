@@ -12,6 +12,8 @@ import java.util.*;
 @Entity
 @Table(name = "ORGANIZATION")
 @NamedQueries({
+        @NamedQuery(name = "getOrganizationById", query = "select organization from OrganizationEntity organization where organization.id = :organizationId"),
+        @NamedQuery(name = "getOrganizationForDeleteById", query = "select organization from OrganizationEntity organization join fetch organization.files where organization.id = :organizationId"),
         @NamedQuery(name = "getAllOrganizations", query = "select organization from OrganizationEntity organization"),
         @NamedQuery(name = "getAllOrganizationIds", query = "select organization.id from OrganizationEntity organization"),
         @NamedQuery(name = "getOrganizationByName", query = "select organization from OrganizationEntity organization where organization.name = :name"),
@@ -149,16 +151,14 @@ public class OrganizationEntity {
 
     /*
     * Recent Changes*/
-    @OneToMany(mappedBy = "organization")
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "organization", fetch = FetchType.LAZY)
     private List<DocumentEntity> documents = new ArrayList<>();
 
-    @OneToMany(mappedBy = "organization")
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "organization", fetch = FetchType.LAZY)
     private List<FileEntity> files = new ArrayList<>();
 
-    @OneToMany(mappedBy = "organization")
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "organization", fetch = FetchType.LAZY)
     private List<JobReportEntity> jobReports = new ArrayList<>();
 
     public String getId() {

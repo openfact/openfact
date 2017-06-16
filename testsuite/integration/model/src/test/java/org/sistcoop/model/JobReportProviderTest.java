@@ -46,10 +46,9 @@ public class JobReportProviderTest {
                 .withTransitivity()
                 .as(JavaArchive.class);
 
-        WebArchive archive = ShrinkWrap.create(WebArchive.class, "test.war")
+        WebArchive archive = ShrinkWrap.create(WebArchive.class)
                 .addAsResource("persistence.xml", "META-INF/persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
-                .addAsWebInfResource("datasource.xml")
 
                 .addClass(PersistenceEntityProducer.class)
                 .addClass(PersistenceExceptionConverter.class)

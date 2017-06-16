@@ -9,10 +9,15 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
-            <property name="hibernate.show_sql" value="${show_sql}"/>
-            <property name="hibernate.format_sql" value="${format_sql}"/>
-            <property name="hibernate.hbm2ddl.auto" value="${hbm2ddl.auto}"/>
-            <property name="hibernate.cache.use_second_level_cache" value="${cache.use_second_level_cache}"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="false"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.cache.use_second_level_cache" value="true"/>
+
+            <!--batch-->
+            <property name="hibernate.jdbc.batch_size" value="5"/>
+            <property name="hibernate.order_inserts" value="true"/>
+            <property name="hibernate.order_updates" value="true"/>
         </properties>
     </persistence-unit>
 </persistence>

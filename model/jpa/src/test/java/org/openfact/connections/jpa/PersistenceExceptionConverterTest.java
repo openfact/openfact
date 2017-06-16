@@ -44,7 +44,6 @@ public class PersistenceExceptionConverterTest {
         WebArchive archive = ShrinkWrap.create(WebArchive.class, "test.war")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsResource("persistence.xml", "META-INF/persistence.xml")
-                .addAsWebInfResource("datasource.xml")
 
                 .addClass(PersistenceEntityProducer.class)
                 .addClass(PersistenceExceptionConverter.class)

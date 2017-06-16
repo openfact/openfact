@@ -6,18 +6,12 @@ import org.jboss.arquillian.persistence.UsingDataSet;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openfact.connections.jpa.PersistenceEntityProducer;
-import org.openfact.connections.jpa.PersistenceExceptionConverter;
 import org.openfact.models.*;
 import org.openfact.models.DocumentModel.DocumentType;
-import org.openfact.models.jpa.*;
-import org.openfact.models.jpa.entities.OrganizationEntity;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -31,7 +25,9 @@ import static org.hamcrest.core.IsNull.notNullValue;
 @UsingDataSet("empty.xml")
 public class DocumentProviderTest {
 
-    public static final String ORGANIZATION_NAME = "sistcoop";
+    public static final String ORGANIZATION_NAME = "SISTCOOP S.A.C.";
+    public static final String DOCUMENT_ID = "F001-0001";
+
     private OrganizationModel ORGANIZATION;
 
     @Inject
@@ -42,39 +38,15 @@ public class DocumentProviderTest {
 
     @Deployment
     public static Archive deploy() {
-        Archive[] libs = Maven.resolver()
-                .loadPomFromFile("pom.xml")
-                .resolve("org.mockito:mockito-core")
-                .withTransitivity()
-                .as(JavaArchive.class);
-
-        WebArchive archive = ShrinkWrap.create(WebArchive.class, "test.war")
+        Archive[] libs = TestUtil.getLibraries();
+        WebArchive archive = ShrinkWrap.create(WebArchive.class)
                 .addAsResource("persistence.xml", "META-INF/persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
-                .addAsWebInfResource("datasource.xml")
-
-                .addClass(PersistenceEntityProducer.class)
-                .addClass(PersistenceExceptionConverter.class)
-                .addClass(ModelException.class)
-                .addClass(ModelDuplicateException.class)
-
-                .addClass(JpaModel.class)
-                .addPackage(OrganizationEntity.class.getPackage())
-
-                // Organization
-                .addClass(OrganizationModel.class)
-                .addClass(OrganizationAdapter.class)
-                .addClass(OrganizationProvider.class)
-                .addClass(JpaOrganizationProvider.class)
-
-                // Document
-                .addClass(DocumentModel.class)
-                .addClass(DocumentAdapter.class)
-                .addClass(DocumentProvider.class)
-                .addClass(JpaDocumentProvider.class);
-
-        archive.addAsLibraries(libs);
-        return archive;
+                .addClasses(TestUtil.getBasicClasses())
+                .addClasses(TestUtil.getOrganizationClasses())
+                .addPackage(TestUtil.getEntitiesPackage())
+                .addClasses(TestUtil.getDocumentClasses());
+        return archive.addAsLibraries(libs);
     }
 
     @Before
@@ -84,34 +56,39 @@ public class DocumentProviderTest {
 
     @Test
     public void test_create_success() {
-        DocumentModel document = documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, "F1");
+        DocumentModel document = documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, DOCUMENT_ID);
 
-        assertThat("Document has not been created", document, is(notNullValue()));
-        assertThat("Primary key has not been assigned", document.getId(), is(notNullValue()));
-        assertThat("Document ID has changed", document.getID(), equalTo("F1"));
-        assertThat("Document should have active state", document.isEnabled(), equalTo(true));
+        // Check
+        test_check_create(document);
     }
 
     @Test
-    public void test_createWithCustomDocumentType_success() {
-        DocumentModel document = documentProvider.addDocument(ORGANIZATION, "MyCustomDocumentType", "F1");
+    public void test_create_custom_type_success() {
+        final String documentType = "CUSTOM_DOCUMENT_TYPE";
+        DocumentModel document = documentProvider.addDocument(ORGANIZATION, documentType, DOCUMENT_ID);
 
+        // Check
+        test_check_create(document);
+        assertThat("Document Type has changed", document.getDocumentType(), equalTo(documentType));
+    }
+
+    private void test_check_create(DocumentModel document) {
         assertThat("Document has not been created", document, is(notNullValue()));
         assertThat("Primary key has not been assigned", document.getId(), is(notNullValue()));
-        assertThat("Document ID has changed", document.getID(), equalTo("F1"));
+        assertThat("Document ID has changed", document.getID(), equalTo(DOCUMENT_ID));
         assertThat("Document should have active state", document.isEnabled(), equalTo(true));
     }
 
     @Test(expected = ModelDuplicateException.class)
-    public void test_duplicate() {
-        DocumentModel document1 = documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, "F1");
-        DocumentModel document2 = documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, "F1");
+    public void test_duplicate_fail() {
+        documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, DOCUMENT_ID);
+        documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, DOCUMENT_ID);
     }
 
     @Test
-    public void test_allowDuplicateOfDifferentTypes() {
-        DocumentModel document1 = documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, "F1");
-        DocumentModel document2 = documentProvider.addDocument(ORGANIZATION, DocumentType.CREDIT_NOTE, "F1");
+    public void test_duplicate_different_document_type_success() {
+        DocumentModel document1 = documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, "F001-001");
+        DocumentModel document2 = documentProvider.addDocument(ORGANIZATION, DocumentType.CREDIT_NOTE, "F001-001");
 
         assertThat("Document1 should have been created", document1, is(notNullValue()));
         assertThat("Document2 should have been created", document2, is(notNullValue()));
@@ -119,10 +96,11 @@ public class DocumentProviderTest {
     }
 
     @Test
-    public void test_allowDuplicateOnDifferentOrganizations() {
+    public void test_duplicate_different_organization_success() {
+        DocumentModel document1 = documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, DOCUMENT_ID);
+
         OrganizationModel ORGANIZATION_AUX = organizationProvider.createOrganization("AUX_ORGANIZATION");
-        DocumentModel document1 = documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, "F1");
-        DocumentModel document2 = documentProvider.addDocument(ORGANIZATION_AUX, DocumentType.INVOICE, "F1");
+        DocumentModel document2 = documentProvider.addDocument(ORGANIZATION_AUX, DocumentType.INVOICE, DOCUMENT_ID);
 
         assertThat("Document1 should have been created", document1, is(notNullValue()));
         assertThat("Document2 should have been created", document2, is(notNullValue()));
@@ -130,50 +108,51 @@ public class DocumentProviderTest {
     }
 
     @Test
-    public void test_getById() {
-        DocumentModel document1 = documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, "F1");
+    public void test_get_by_id_success() {
+        DocumentModel document1 = documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, DOCUMENT_ID);
         DocumentModel document2 = documentProvider.getDocument(ORGANIZATION, document1.getId());
 
         assertThat("Both documents have to be the same", document1, equalTo(document2));
     }
 
     @Test
-    public void test_getById_notFound() {
+    public void test_get_by_id_not_found_success() {
         DocumentModel document = documentProvider.getDocument(ORGANIZATION, UUID.randomUUID().toString());
 
         assertThat("Document should not exists", document, is(nullValue()));
     }
 
     @Test
-    public void test_getByTypeAndID() {
-        DocumentModel document1 = documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, "F1");
+    public void test_get_by_type_and_ID_success() {
+        DocumentModel document1 = documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, DOCUMENT_ID);
         DocumentModel document2 = documentProvider.getDocumentByTypeAndID(ORGANIZATION, DocumentType.INVOICE, document1.getID());
 
         assertThat("Both organizations have to be the same", document1, equalTo(document2));
     }
 
     @Test
-    public void test_count() {
-        DocumentModel document1 = documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, "F1");
-        DocumentModel document2 = documentProvider.addDocument(ORGANIZATION, DocumentType.CREDIT_NOTE, "F1");
-        DocumentModel document3 = documentProvider.addDocument(ORGANIZATION, DocumentType.DEBIT_NOTE, "F1");
+    public void test_count_success() {
+        documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, DOCUMENT_ID);
+        documentProvider.addDocument(ORGANIZATION, DocumentType.CREDIT_NOTE, DOCUMENT_ID);
+        documentProvider.addDocument(ORGANIZATION, DocumentType.DEBIT_NOTE, DOCUMENT_ID);
 
         OrganizationModel ORGANIZATION_AUX = organizationProvider.createOrganization("AUX_ORGANIZATION");
-        DocumentModel document22 = documentProvider.addDocument(ORGANIZATION_AUX, DocumentType.INVOICE, "F1");
+        documentProvider.addDocument(ORGANIZATION_AUX, DocumentType.INVOICE, DOCUMENT_ID);
 
+        // Check
         int organizationsCount = documentProvider.getDocumentsCount(ORGANIZATION);
 
         assertThat("Size is not corresponding to the number of documents", organizationsCount, equalTo(3));
     }
 
     @Test
-    public void test_listOrganizations() {
-        DocumentModel document1 = documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, "F1");
-        DocumentModel document2 = documentProvider.addDocument(ORGANIZATION, DocumentType.CREDIT_NOTE, "F1");
-        DocumentModel document3 = documentProvider.addDocument(ORGANIZATION, DocumentType.DEBIT_NOTE, "F1");
+    public void test_list_success() {
+        documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, DOCUMENT_ID);
+        documentProvider.addDocument(ORGANIZATION, DocumentType.CREDIT_NOTE, DOCUMENT_ID);
+        documentProvider.addDocument(ORGANIZATION, DocumentType.DEBIT_NOTE, DOCUMENT_ID);
 
         OrganizationModel ORGANIZATION_AUX = organizationProvider.createOrganization("AUX_ORGANIZATION");
-        DocumentModel document22 = documentProvider.addDocument(ORGANIZATION_AUX, DocumentType.INVOICE, "F1");
+        documentProvider.addDocument(ORGANIZATION_AUX, DocumentType.INVOICE, DOCUMENT_ID);
 
         List<DocumentModel> documents = documentProvider.getDocuments(ORGANIZATION);
 
@@ -182,14 +161,13 @@ public class DocumentProviderTest {
     }
 
     @Test
-    public void test_listOrganizationsWithLimit() {
-        DocumentModel document1 = documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, "F1");
-        DocumentModel document2 = documentProvider.addDocument(ORGANIZATION, DocumentType.CREDIT_NOTE, "F1");
-        DocumentModel document3 = documentProvider.addDocument(ORGANIZATION, DocumentType.DEBIT_NOTE, "F1");
-        DocumentModel document4 = documentProvider.addDocument(ORGANIZATION, DocumentType.DEBIT_NOTE, "F2");
+    public void test_list_limit_success() {
+        documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, DOCUMENT_ID);
+        documentProvider.addDocument(ORGANIZATION, DocumentType.CREDIT_NOTE, DOCUMENT_ID);
+        documentProvider.addDocument(ORGANIZATION, DocumentType.DEBIT_NOTE, DOCUMENT_ID);
 
         OrganizationModel ORGANIZATION_AUX = organizationProvider.createOrganization("ORGANIZATION_AUX");
-        DocumentModel document22 = documentProvider.addDocument(ORGANIZATION_AUX, DocumentType.INVOICE, "F1");
+        documentProvider.addDocument(ORGANIZATION_AUX, DocumentType.INVOICE, DOCUMENT_ID);
 
         List<DocumentModel> documents = documentProvider.getDocuments(ORGANIZATION, 1, 2);
 
@@ -198,8 +176,8 @@ public class DocumentProviderTest {
     }
 
     @Test
-    public void test_remove() {
-        DocumentModel document = documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, "F1");
+    public void test_remove_success() {
+        DocumentModel document = documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, DOCUMENT_ID);
         boolean result = documentProvider.removeDocument(ORGANIZATION, document);
 
         document = documentProvider.getDocument(ORGANIZATION, document.getId());
@@ -209,9 +187,9 @@ public class DocumentProviderTest {
     }
 
     @Test
-    public void test_removeAllDocumentsOnOrganizationRemove() {
-        DocumentModel document1 = documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, "F1");
-        DocumentModel document2 = documentProvider.addDocument(ORGANIZATION, DocumentType.CREDIT_NOTE, "F1");
+    public void test_remove_organization_cascade_success() {
+        documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, DOCUMENT_ID);
+        documentProvider.addDocument(ORGANIZATION, DocumentType.CREDIT_NOTE, DOCUMENT_ID);
 
         boolean result = organizationProvider.removeOrganization(ORGANIZATION);
         assertThat("Result should be true", result, equalTo(true));
@@ -219,7 +197,7 @@ public class DocumentProviderTest {
         // Check documents no longer exists
         List<DocumentModel> documents = documentProvider.getDocuments(ORGANIZATION);
 
-        assertThat("Documents was not removed", documents.size(), is(0));
+        assertThat("Documents weren't removed", documents.size(), is(0));
     }
 
 }
