@@ -40,38 +40,15 @@ public class JobReportProviderTest {
 
     @Deployment
     public static Archive deploy() {
-        Archive[] libs = Maven.resolver()
-                .loadPomFromFile("pom.xml")
-                .resolve("org.mockito:mockito-core")
-                .withTransitivity()
-                .as(JavaArchive.class);
-
+        Archive[] libs = TestUtil.getLibraries();
         WebArchive archive = ShrinkWrap.create(WebArchive.class)
                 .addAsResource("persistence.xml", "META-INF/persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
-
-                .addClass(PersistenceEntityProducer.class)
-                .addClass(PersistenceExceptionConverter.class)
-                .addClass(ModelException.class)
-                .addClass(ModelDuplicateException.class)
-
-                .addClass(JpaModel.class)
-                .addPackage(OrganizationEntity.class.getPackage())
-
-                // Organization
-                .addClass(OrganizationModel.class)
-                .addClass(OrganizationAdapter.class)
-                .addClass(OrganizationProvider.class)
-                .addClass(JpaOrganizationProvider.class)
-
-                // jobReport
-                .addClass(JobReportModel.class)
-                .addClass(JobReportAdapter.class)
-                .addClass(JobReportProvider.class)
-                .addClass(JpaJobReportProvider.class);
-
-        archive.addAsLibraries(libs);
-        return archive;
+                .addClasses(TestUtil.getBasicClasses())
+                .addClasses(TestUtil.getOrganizationClasses())
+                .addPackage(TestUtil.getEntitiesPackage())
+                .addClasses(TestUtil.getJobReportClasses());
+        return archive.addAsLibraries(libs);
     }
 
     @Before
@@ -91,7 +68,7 @@ public class JobReportProviderTest {
     }
 
     @Test
-    public void test_getById() {
+    public void test_get_by_id_success() {
         JobReportModel jobReport1 = jobReportProvider.addJobReport(ORGANIZATION, "myJobReport.xml");
         JobReportModel jobReport2 = jobReportProvider.getJobReport(ORGANIZATION, jobReport1.getId());
 
@@ -99,14 +76,14 @@ public class JobReportProviderTest {
     }
 
     @Test
-    public void test_getById_notFound() {
+    public void test_get_by_id_not_found_success() {
         JobReportModel jobReport = jobReportProvider.getJobReport(ORGANIZATION, UUID.randomUUID().toString());
 
         assertThat("JobReport should not exists", jobReport, is(nullValue()));
     }
 
     @Test
-    public void test_remove() {
+    public void test_remove_success() {
         JobReportModel jobReport = jobReportProvider.addJobReport(ORGANIZATION, "MyJobReport");
         boolean result = jobReportProvider.removeJobReport(ORGANIZATION, jobReport);
 
@@ -117,7 +94,7 @@ public class JobReportProviderTest {
     }
 
     @Test
-    public void test_removeAlljobReportsOnOrganizationRemove() {
+    public void test_remove_organization_cascade_success() {
         JobReportModel jobReport1 = jobReportProvider.addJobReport(ORGANIZATION, "myJobReport1");
         JobReportModel jobReport2 = jobReportProvider.addJobReport(ORGANIZATION, "myJobReport2");
 

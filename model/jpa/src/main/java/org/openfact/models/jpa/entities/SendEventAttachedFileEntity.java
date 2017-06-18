@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Table(name = "SEND_EVENT_ATTACH_FILE")
 @IdClass(SendEventAttachedFileEntity.Key.class)
 @NamedQueries(value = {
-        @NamedQuery(name = "deleteSendEventAttachedFilesByOrganization", query = "delete from SendEventAttachedFileEntity att where att.sendEvent IN (select send from SendEventEntity send join send.document doc where doc.organizationId=:organizationId)")
+        @NamedQuery(name = "deleteSendEventAttachedFilesByOrganization", query = "delete from SendEventAttachedFileEntity att where att.sendEvent IN (select send from SendEventEntity send join send.document doc where doc.organization.id=:organizationId)")
 })
 public class SendEventAttachedFileEntity {
 

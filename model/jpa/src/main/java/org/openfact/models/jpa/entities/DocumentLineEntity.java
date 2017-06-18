@@ -9,7 +9,7 @@ import java.util.Collection;
 @Entity
 @Table(name = "DOCUMENT_LINE")
 @NamedQueries(value = {
-        @NamedQuery(name = "deleteDocumentLinesByOrganization", query = "delete from DocumentLineEntity l where l.document IN (select doc from DocumentEntity doc where doc.organizationId=:organizationId)")
+        @NamedQuery(name = "deleteDocumentLinesByOrganization", query = "delete from DocumentLineEntity l where l.document IN (select doc from DocumentEntity doc where doc.organization.id=:organizationId)")
 })
 public class DocumentLineEntity {
 

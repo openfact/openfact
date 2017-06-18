@@ -29,7 +29,9 @@ import static org.hamcrest.core.IsNull.notNullValue;
 @UsingDataSet("empty.xml")
 public class FileProviderTest {
 
-    public static final String ORGANIZATION_NAME = "sistcoop";
+    public static final String ORGANIZATION_NAME = "SISTCOOP S.A.C.";
+    public static final String DOCUMENT_ID = "F001-0001";
+
     private OrganizationModel ORGANIZATION;
 
     @Inject
@@ -40,38 +42,15 @@ public class FileProviderTest {
 
     @Deployment
     public static Archive deploy() {
-        Archive[] libs = Maven.resolver()
-                .loadPomFromFile("pom.xml")
-                .resolve("org.mockito:mockito-core")
-                .withTransitivity()
-                .as(JavaArchive.class);
-
+        Archive[] libs = TestUtil.getLibraries();
         WebArchive archive = ShrinkWrap.create(WebArchive.class)
                 .addAsResource("persistence.xml", "META-INF/persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
-
-                .addClass(PersistenceEntityProducer.class)
-                .addClass(PersistenceExceptionConverter.class)
-                .addClass(ModelException.class)
-                .addClass(ModelDuplicateException.class)
-
-                .addClass(JpaModel.class)
-                .addPackage(OrganizationEntity.class.getPackage())
-
-                // Organization
-                .addClass(OrganizationModel.class)
-                .addClass(OrganizationAdapter.class)
-                .addClass(OrganizationProvider.class)
-                .addClass(JpaOrganizationProvider.class)
-
-                // file
-                .addClass(FileModel.class)
-                .addClass(FileAdapter.class)
-                .addClass(FileProvider.class)
-                .addClass(JpaFileProvider.class);
-
-        archive.addAsLibraries(libs);
-        return archive;
+                .addClasses(TestUtil.getBasicClasses())
+                .addClasses(TestUtil.getOrganizationClasses())
+                .addPackage(TestUtil.getEntitiesPackage())
+                .addClasses(TestUtil.getFileClasses());
+        return archive.addAsLibraries(libs);
     }
 
     @Before
@@ -92,7 +71,7 @@ public class FileProviderTest {
     }
 
     @Test(expected = ModelDuplicateException.class)
-    public void test_duplicate() {
+    public void test_duplicate_fail() {
         final String fileName = "myFile.xml";
 
         FileModel file1 = fileProvider.addFile(ORGANIZATION, fileName, new byte[]{0, 1});
@@ -100,7 +79,7 @@ public class FileProviderTest {
     }
 
     @Test
-    public void test_allowDuplicateOnDifferentOrganizations() {
+    public void test_duplicate_different_organization_success() {
         final String fileName = "myFile.xml";
         byte[] fileValue = {0, 1, 2};
 
@@ -115,7 +94,7 @@ public class FileProviderTest {
     }
 
     @Test
-    public void test_getById() {
+    public void test_get_by_id_success() {
         FileModel file1 = fileProvider.addFile(ORGANIZATION, "myFile.xml", new byte[]{0, 1, 2});
         FileModel file2 = fileProvider.getFile(ORGANIZATION, file1.getId());
 
@@ -123,14 +102,14 @@ public class FileProviderTest {
     }
 
     @Test
-    public void test_getById_notFound() {
+    public void test_get_by_id_not_found_success() {
         FileModel file = fileProvider.getFile(ORGANIZATION, UUID.randomUUID().toString());
 
         assertThat("File should not exists", file, is(nullValue()));
     }
 
     @Test
-    public void test_remove() {
+    public void test_remove_success() {
         FileModel file = fileProvider.addFile(ORGANIZATION, "myFile.xml", new byte[]{0, 1, 2});
         boolean result = fileProvider.removeFile(ORGANIZATION, file);
 
@@ -141,7 +120,7 @@ public class FileProviderTest {
     }
 
     @Test
-    public void test_removeAllfilesOnOrganizationRemove() {
+    public void test_remove_organization_cascade_success() {
         FileModel file1 = fileProvider.addFile(ORGANIZATION, "myFile1.xml", new byte[]{0, 1});
         FileModel file2 = fileProvider.addFile(ORGANIZATION, "myFile2.xml", new byte[]{0, 1, 2});
 

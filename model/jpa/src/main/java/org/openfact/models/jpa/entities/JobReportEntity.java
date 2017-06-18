@@ -31,8 +31,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "JOB_REPORT")
 @NamedQueries({
-        @NamedQuery(name = "getAllJobReportsByOrganization", query = "select j from JobReportEntity j where j.organizationId=:organizationId"),
-        @NamedQuery(name = "deleteJobReportsByOrganization", query = "delete from JobReportEntity j where j.organizationId=:organizationId")
+        @NamedQuery(name = "getAllJobReportsByOrganization", query = "select j from JobReportEntity j where j.organization.id=:organizationId"),
+        @NamedQuery(name = "deleteJobReportsByOrganization", query = "delete from JobReportEntity j where j.organization.id=:organizationId")
 })
 public class JobReportEntity {
 
@@ -65,11 +65,8 @@ public class JobReportEntity {
     private long writeCount;
 
     @NotNull
-    @Column(name = "ORGANIZATION_ID")
-    private String organizationId;
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID", insertable = false, updatable = false)
+    @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
     private OrganizationEntity organization;
 
     public String getId() {
@@ -136,12 +133,12 @@ public class JobReportEntity {
         this.writeCount = writeCount;
     }
 
-    public String getOrganizationId() {
-        return organizationId;
+    public OrganizationEntity getOrganization() {
+        return organization;
     }
 
-    public void setOrganizationId(String organizationId) {
-        this.organizationId = organizationId;
+    public void setOrganization(OrganizationEntity organization) {
+        this.organization = organization;
     }
 
     @Override
@@ -162,11 +159,4 @@ public class JobReportEntity {
         return getId().hashCode();
     }
 
-    public OrganizationEntity getOrganization() {
-        return organization;
-    }
-
-    public void setOrganization(OrganizationEntity organization) {
-        this.organization = organization;
-    }
 }

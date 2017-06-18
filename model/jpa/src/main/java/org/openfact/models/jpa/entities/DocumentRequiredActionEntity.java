@@ -20,7 +20,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @NamedQueries({
-        @NamedQuery(name = "deleteDocumentRequiredActionsByOrganization", query = "delete from DocumentRequiredActionEntity action where action.document IN (select u from DocumentEntity u where u.organizationId=:organizationId)")
+        @NamedQuery(name = "deleteDocumentRequiredActionsByOrganization", query = "delete from DocumentRequiredActionEntity action where action.document IN (select u from DocumentEntity u where u.organization.id=:organizationId)")
 })
 @Entity
 @Table(name = "DOCUMENT_REQUIRED_ACTION")

@@ -33,7 +33,7 @@ import java.io.Serializable;
 @NamedQueries(value = {
         @NamedQuery(name = "getAttachedDocumentsDestinyByOrigin", query = "select a.documentDestiny from AttachedDocumentEntity a where a.documentOrigin.id=:documentOriginId"),
         @NamedQuery(name = "getAttachedDocumentsOriginByDestiny", query = "select a.documentOrigin from AttachedDocumentEntity a where a.documentDestiny.id=:documentDestinyId"),
-        @NamedQuery(name = "deleteAttachedDocumentsByOrganization", query = "delete from AttachedDocumentEntity at where at.documentOrigin IN (select doc from DocumentEntity doc where doc.organizationId=:organizationId)")
+        @NamedQuery(name = "deleteAttachedDocumentsByOrganization", query = "delete from AttachedDocumentEntity at where at.documentOrigin IN (select doc from DocumentEntity doc where doc.organization.id=:organizationId)")
 })
 public class AttachedDocumentEntity {
 

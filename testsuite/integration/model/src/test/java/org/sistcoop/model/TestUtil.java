@@ -50,4 +50,21 @@ public class TestUtil {
         };
     }
 
+    public static Class<?>[] getFileClasses() {
+        return new Class<?>[]{
+                FileModel.class,
+                FileAdapter.class,
+                FileProvider.class,
+                JpaFileProvider.class
+        };
+    }
+
+    public static Class<?>[] getJobReportClasses() {
+        return new Class<?>[]{
+                JobReportModel.class,
+                JobReportAdapter.class,
+                JobReportProvider.class,
+                JpaJobReportProvider.class
+        };
+    }
 }

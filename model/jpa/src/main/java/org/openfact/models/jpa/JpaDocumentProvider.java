@@ -32,7 +32,7 @@ public class JpaDocumentProvider implements DocumentProvider {
         entity.setDocumentType(type.toUpperCase());
         entity.setDocumentId(ID.toUpperCase());
         entity.setCreatedTimestamp(LocalDateTime.now());
-        entity.setOrganizationId(organization.getId());
+        entity.setOrganization(OrganizationAdapter.toEntity(organization, em));
         entity.setEnabled(true);
         em.persist(entity);
         em.flush();

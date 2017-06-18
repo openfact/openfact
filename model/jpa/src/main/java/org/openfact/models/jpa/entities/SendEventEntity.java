@@ -30,7 +30,7 @@ import java.util.Collection;
 @NamedQueries(value = {
         @NamedQuery(name = "getAllSendEventsByDocumentPkId", query = "select s from SendEventEntity s where s.document.id=:documentPkId"),
         @NamedQuery(name = "getDocumentSendEventCountByDocument", query = "select count(s) from SendEventEntity s where s.document.id=:documentId"),
-        @NamedQuery(name = "deleteSendEventsByOrganization", query = "delete from SendEventEntity event where event.document IN (select i from DocumentEntity i where i.organizationId=:organizationId)")
+        @NamedQuery(name = "deleteSendEventsByOrganization", query = "delete from SendEventEntity event where event.document IN (select i from DocumentEntity i where i.organization.id=:organizationId)")
 })
 public class SendEventEntity {
 

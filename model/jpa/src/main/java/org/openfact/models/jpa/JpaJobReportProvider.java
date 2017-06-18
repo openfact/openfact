@@ -23,7 +23,7 @@ public class JpaJobReportProvider implements JobReportProvider {
     public JobReportModel addJobReport(OrganizationModel organization, String name) throws ModelException {
         JobReportEntity entity = new JobReportEntity();
         entity.setJobName(name);
-        entity.setOrganizationId(organization.getId());
+        entity.setOrganization(OrganizationAdapter.toEntity(organization, em));
         em.persist(entity);
         em.flush();
         return new JobReportAdapter(organization, em, entity);

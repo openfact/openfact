@@ -33,7 +33,7 @@ import java.io.Serializable;
         @NamedQuery(name = "getSendEventResponseAttributesByNameAndValue", query = "select attr from SendEventAttributeEntity attr where attr.name = :name and attr.value = :value"),
         @NamedQuery(name = "deleteSendEventResponseAttributesByNameAndSendEvent", query = "delete from  SendEventAttributeEntity attr where attr.sendEvent.id = :sendEventId and attr.name = :name"),
         @NamedQuery(name = "deleteSendEventResponseAttributesByNameAndSendEventOtherThan", query = "delete from  SendEventAttributeEntity attr where attr.sendEvent.id = :sendEventId and attr.name = :name and attr.id <> :attrId"),
-        @NamedQuery(name = "deleteSendEventAttributesByOrganization", query = "delete from SendEventAttributeEntity attr where attr.sendEvent IN (select s from SendEventEntity s join s.document i where i.organizationId=:organizationId)")
+        @NamedQuery(name = "deleteSendEventAttributesByOrganization", query = "delete from SendEventAttributeEntity attr where attr.sendEvent IN (select s from SendEventEntity s join s.document i where i.organization.id=:organizationId)")
 })
 public class SendEventAttributeEntity {
 

@@ -33,7 +33,7 @@ import java.io.Serializable;
         @NamedQuery(name = "getDocumentLineAttributesByNameAndValue", query = "select attr from DocumentLineAttributeEntity attr where attr.name = :name and attr.value = :value"),
         @NamedQuery(name = "deleteDocumentLineAttributesByNameAndSendEvent", query = "delete from  DocumentLineAttributeEntity attr where attr.documentLine.id = :sendEventId and attr.name = :name"),
         @NamedQuery(name = "deleteDocumentLineAttributesByNameAndSendEventOtherThan", query = "delete from  DocumentLineAttributeEntity attr where attr.documentLine.id = :sendEventId and attr.name = :name and attr.id <> :attrId"),
-        @NamedQuery(name = "deleteDocumentLineAttributesByOrganization", query = "delete from DocumentLineAttributeEntity attr where attr.documentLine IN (select line from DocumentLineEntity line join line.document doc where doc.organizationId=:organizationId)")
+        @NamedQuery(name = "deleteDocumentLineAttributesByOrganization", query = "delete from DocumentLineAttributeEntity attr where attr.documentLine IN (select line from DocumentLineEntity line join line.document doc where doc.organization.id=:organizationId)")
 })
 public class DocumentLineAttributeEntity {
 

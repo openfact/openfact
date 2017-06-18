@@ -37,13 +37,13 @@ import java.util.Collection;
         @UniqueConstraint(columnNames = {"ORGANIZATION_ID", "DOCUMENT_TYPE", "DOCUMENT_ID"})
 })
 @NamedQueries({
-        @NamedQuery(name = "getAllDocumentsByOrganization", query = "select c from DocumentEntity c where c.organizationId = :organizationId order by c.createdTimestamp"),
-        @NamedQuery(name = "getAllDocumentIdsByOrganization", query = "select c.id from DocumentEntity c where c.organizationId = :organizationId order by c.createdTimestamp"),
-        @NamedQuery(name = "getOrganizationDocumentByDocumentPkId", query = "select i from DocumentEntity i where i.id = :documentPkId and i.organizationId = :organizationId"),
-        @NamedQuery(name = "getOrganizationDocumentByDocumentTypeAndDocumentId", query = "select i from DocumentEntity i where i.documentType=:documentType and i.documentId=:documentId and i.organizationId = :organizationId"),
-        @NamedQuery(name = "searchForDocument", query = "select i from DocumentEntity i where i.organizationId = :organizationId and lower(i.documentId) like :search order by i.createdTimestamp"),
-        @NamedQuery(name = "getOrganizationDocumentCount", query = "select count(i) from DocumentEntity i where i.organizationId = :organizationId"),
-        @NamedQuery(name = "deleteDocumentsByOrganization", query = "delete from DocumentEntity u where u.organizationId = :organizationId")
+        @NamedQuery(name = "getAllDocumentsByOrganization", query = "select c from DocumentEntity c where c.organization.id = :organizationId order by c.createdTimestamp"),
+        @NamedQuery(name = "getAllDocumentIdsByOrganization", query = "select c.id from DocumentEntity c where c.organization.id = :organizationId order by c.createdTimestamp"),
+        @NamedQuery(name = "getOrganizationDocumentByDocumentPkId", query = "select i from DocumentEntity i where i.id = :documentPkId and i.organization.id = :organizationId"),
+        @NamedQuery(name = "getOrganizationDocumentByDocumentTypeAndDocumentId", query = "select i from DocumentEntity i where i.documentType=:documentType and i.documentId=:documentId and i.organization.id = :organizationId"),
+        @NamedQuery(name = "searchForDocument", query = "select i from DocumentEntity i where i.organization.id = :organizationId and lower(i.documentId) like :search order by i.createdTimestamp"),
+        @NamedQuery(name = "getOrganizationDocumentCount", query = "select count(i) from DocumentEntity i where i.organization.id = :organizationId"),
+        @NamedQuery(name = "deleteDocumentsByOrganization", query = "delete from DocumentEntity u where u.organization.id = :organizationId")
 })
 public class DocumentEntity {
 
@@ -65,12 +65,8 @@ public class DocumentEntity {
     @Column(name = "XML_FILE_ID")
     private String xmlFileId;
 
-    @NotNull
-    @Column(name = "ORGANIZATION_ID")
-    private String organizationId;
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID", insertable = false, updatable = false)
+    @JoinColumn(foreignKey = @ForeignKey, name = "ORGANIZATION_ID")
     private OrganizationEntity organization;
 
     @Type(type = "org.hibernate.type.LocalDateTimeType")
@@ -126,14 +122,14 @@ public class DocumentEntity {
 
         if (!getDocumentId().equals(that.getDocumentId())) return false;
         if (!getDocumentType().equals(that.getDocumentType())) return false;
-        return getOrganizationId().equals(that.getOrganizationId());
+        return getOrganization().equals(that.getOrganization());
     }
 
     @Override
     public int hashCode() {
         int result = getDocumentId().hashCode();
         result = 31 * result + getDocumentType().hashCode();
-        result = 31 * result + getOrganizationId().hashCode();
+        result = 31 * result + getOrganization().hashCode();
         return result;
     }
 
@@ -167,14 +163,6 @@ public class DocumentEntity {
 
     public void setXmlFileId(String xmlFileId) {
         this.xmlFileId = xmlFileId;
-    }
-
-    public String getOrganizationId() {
-        return organizationId;
-    }
-
-    public void setOrganizationId(String organizationId) {
-        this.organizationId = organizationId;
     }
 
     public LocalDateTime getCreatedTimestamp() {

@@ -1,11 +1,14 @@
 package org.openfact.models.jpa.entities;
 
-import org.hibernate.annotations.NaturalId;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-import org.hibernate.annotations.Type;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -13,7 +16,6 @@ import java.util.*;
 @Table(name = "ORGANIZATION")
 @NamedQueries({
         @NamedQuery(name = "getOrganizationById", query = "select organization from OrganizationEntity organization where organization.id = :organizationId"),
-        @NamedQuery(name = "getOrganizationForDeleteById", query = "select organization from OrganizationEntity organization join fetch organization.files where organization.id = :organizationId"),
         @NamedQuery(name = "getAllOrganizations", query = "select organization from OrganizationEntity organization"),
         @NamedQuery(name = "getAllOrganizationIds", query = "select organization.id from OrganizationEntity organization"),
         @NamedQuery(name = "getOrganizationByName", query = "select organization from OrganizationEntity organization where organization.name = :name"),
@@ -151,14 +153,13 @@ public class OrganizationEntity {
 
     /*
     * Recent Changes*/
-    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "organization", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "organization", fetch = FetchType.LAZY)
     private List<DocumentEntity> documents = new ArrayList<>();
 
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "organization", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "organization", fetch = FetchType.LAZY)
     private List<FileEntity> files = new ArrayList<>();
 
-    @OneToMany(cascade = {CascadeType.REMOVE}, orphanRemoval = true, mappedBy = "organization", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "organization", fetch = FetchType.LAZY)
     private List<JobReportEntity> jobReports = new ArrayList<>();
 
     public String getId() {
@@ -457,31 +458,6 @@ public class OrganizationEntity {
         this.defaultCurrency = defaultCurrency;
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        OrganizationEntity other = (OrganizationEntity) obj;
-        if (getId() == null) {
-            if (other.getId() != null)
-                return false;
-        } else if (!getId().equals(other.getId()))
-            return false;
-        return true;
-    }
-
     public String getLogoFileId() {
         return logoFileId;
     }
@@ -513,4 +489,30 @@ public class OrganizationEntity {
     public void setJobReports(List<JobReportEntity> jobReports) {
         this.jobReports = jobReports;
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        OrganizationEntity other = (OrganizationEntity) obj;
+        if (getId() == null) {
+            if (other.getId() != null)
+                return false;
+        } else if (!getId().equals(other.getId()))
+            return false;
+        return true;
+    }
+
 }

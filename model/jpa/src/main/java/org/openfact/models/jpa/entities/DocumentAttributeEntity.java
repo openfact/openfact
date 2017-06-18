@@ -29,7 +29,7 @@ import javax.persistence.*;
 @Table(name = "DOCUMENT_ATTRIBUTE")
 @NamedQueries({
         @NamedQuery(name = "getDocumentAttributesByNameAndValue", query = "select attr from DocumentAttributeEntity attr where attr.name = :name and attr.value = :value"),
-        @NamedQuery(name = "deleteDocumentAttributesByOrganization", query = "delete from  DocumentAttributeEntity attr where attr.document IN (select u from DocumentEntity u where u.organizationId=:organizationId)"),
+        @NamedQuery(name = "deleteDocumentAttributesByOrganization", query = "delete from  DocumentAttributeEntity attr where attr.document IN (select u from DocumentEntity u where u.organization.id=:organizationId)"),
         @NamedQuery(name = "deleteDocumentAttributesByNameAndDocumentPkId", query = "delete from  DocumentAttributeEntity attr where attr.document.id = :documentPkId and attr.name = :name"),
         @NamedQuery(name = "deleteDocumentAttributesByNameAndDocumentPkIdOtherThan", query = "delete from  DocumentAttributeEntity attr where attr.document.id = :documentPkId and attr.name = :name and attr.id <> :attrId")
 })
