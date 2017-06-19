@@ -19,11 +19,15 @@ import java.util.stream.Collectors;
 @Stateless
 public class JpaOrganizationProvider implements OrganizationProvider {
 
-    @Inject
-    private EntityManager em;
+    private final EntityManager em;
 
     private OrganizationAdapter toAdapter(OrganizationEntity entity) {
         return new OrganizationAdapter(em, entity);
+    }
+
+    @Inject
+    public JpaOrganizationProvider(EntityManager em) {
+        this.em = em;
     }
 
     @Override

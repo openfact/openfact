@@ -18,6 +18,12 @@
     </properties>
 
     <dependencies>
+        <!--Openfact-->
+        <dependency>
+            <groupId>org.sistcoop</groupId>
+            <artifactId>openfact-core</artifactId>
+        </dependency>
+
         <!-- Apache Http -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -30,7 +36,6 @@
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
         </dependency>
-
     </dependencies>
 
     <build>

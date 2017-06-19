@@ -5,7 +5,7 @@ cache:
     - $HOME/.m2
 
 before_cache:
-  - rm -rf $HOME/.m2/repository/org/sistcoop
+  - rm -rf $HOME/.m2/repository/org/openfact
 
 jdk:
   - oraclejdk8
