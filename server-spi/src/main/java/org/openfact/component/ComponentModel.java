@@ -29,7 +29,6 @@ public class ComponentModel implements Serializable {
         this.config.addAll(copy.config);
     }
 
-
     public String getId() {
         return id;
     }
@@ -136,4 +135,19 @@ public class ComponentModel implements Serializable {
     public void setSubType(String subType) {
         this.subType = subType;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !(o instanceof ComponentModel)) return false;
+
+        ComponentModel that = (ComponentModel) o;
+        return that.getId().equals(getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
+    }
+
 }

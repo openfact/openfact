@@ -3,9 +3,8 @@ package org.openfact.models.jpa;
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.component.ComponentFactory;
 import org.openfact.component.ComponentModel;
-import org.openfact.components.utils.ComponentUtil;
 import org.openfact.component.ComponentProvider;
-import org.openfact.models.ModelException;
+import org.openfact.components.utils.ComponentUtil;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.entities.ComponentConfigEntity;
 import org.openfact.models.jpa.entities.ComponentEntity;
@@ -26,21 +25,24 @@ public class JpaComponentProvider implements ComponentProvider {
      */
     public static final String COMPONENT_PROVIDER_EXISTS_DISABLED = "component.provider.exists.disabled";
 
-    @Inject
     private EntityManager em;
-
-    @Inject
     private ComponentUtil componentUtil;
 
+    @Inject
+    public JpaComponentProvider(EntityManager em, ComponentUtil componentUtil) {
+        this.em = em;
+        this.componentUtil = componentUtil;
+    }
+
     @Override
-    public ComponentModel addComponentModel(OrganizationModel organization, ComponentModel model) throws ModelException {
+    public ComponentModel addComponentModel(OrganizationModel organization, ComponentModel model) {
         model = importComponentModel(organization, model);
         componentUtil.notifyCreated(organization, model);
         return model;
     }
 
     @Override
-    public ComponentModel importComponentModel(OrganizationModel organization, ComponentModel model) throws ModelException {
+    public ComponentModel importComponentModel(OrganizationModel organization, ComponentModel model) {
         ComponentFactory componentFactory = null;
         try {
             componentFactory = componentUtil.getComponentFactory(model);
@@ -94,7 +96,7 @@ public class JpaComponentProvider implements ComponentProvider {
     }
 
     @Override
-    public void updateComponent(OrganizationModel organization, ComponentModel component) throws ModelException {
+    public void updateComponent(OrganizationModel organization, ComponentModel component) {
         componentUtil.getComponentFactory(component).validateConfiguration(organization, component);
 
         ComponentEntity c = em.find(ComponentEntity.class, component.getId());

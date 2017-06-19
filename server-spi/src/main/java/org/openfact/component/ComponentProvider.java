@@ -1,6 +1,5 @@
 package org.openfact.component;
 
-import org.openfact.models.ModelException;
 import org.openfact.models.OrganizationModel;
 
 import java.util.List;
@@ -13,7 +12,7 @@ public interface ComponentProvider {
      * @param model
      * @return
      */
-    ComponentModel addComponentModel(OrganizationModel organization, ComponentModel model) throws ModelException;
+    ComponentModel addComponentModel(OrganizationModel organization, ComponentModel model);
 
     /**
      * Adds component model. Will NOT call onCreate() method of ComponentFactory
@@ -21,9 +20,9 @@ public interface ComponentProvider {
      * @param model
      * @return
      */
-    ComponentModel importComponentModel(OrganizationModel organization, ComponentModel model) throws ModelException;
+    ComponentModel importComponentModel(OrganizationModel organization, ComponentModel model);
 
-    void updateComponent(OrganizationModel organization, ComponentModel component) throws ModelException;
+    void updateComponent(OrganizationModel organization, ComponentModel component);
 
     void removeComponent(OrganizationModel organization, ComponentModel component);
 
