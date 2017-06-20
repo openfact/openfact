@@ -43,6 +43,7 @@ public class FileAdapter implements FileModel, JpaModel<FileEntity> {
     @Override
     public void setFileName(String fileName) {
         file.setFileName(fileName);
+        em.flush();
     }
 
     @Override

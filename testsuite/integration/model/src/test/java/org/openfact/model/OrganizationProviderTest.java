@@ -7,6 +7,7 @@ import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openfact.models.ModelDuplicateException;
@@ -151,6 +152,11 @@ public class OrganizationProviderTest {
 
         assertThat("Result should be true", result, equalTo(true));
         assertThat("Organization was not removed", organization, is(nullValue()));
+    }
+
+    @Ignore
+    @Test
+    public void disable_document_success() {
     }
 
 }

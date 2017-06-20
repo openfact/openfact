@@ -24,7 +24,6 @@ import static org.hamcrest.core.IsNull.notNullValue;
 public class FileProviderTest {
 
     public static final String ORGANIZATION_NAME = "SISTCOOP S.A.C.";
-    public static final String DOCUMENT_ID = "F001-0001";
 
     private OrganizationModel ORGANIZATION;
 
