@@ -197,7 +197,7 @@ public class DocumentProviderTest {
         // Check documents no longer exists
         List<DocumentModel> documents = documentProvider.getDocuments(ORGANIZATION);
 
-//        assertThat("Documents weren't removed", documents.size(), is(0));
+        assertThat("Documents weren't removed", documents.size(), is(0));
     }
 
 }

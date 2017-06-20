@@ -2,7 +2,6 @@ package org.openfact.models.jpa;
 
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
-import org.openfact.models.jpa.entities.DocumentEntity;
 import org.openfact.models.jpa.entities.OrganizationEntity;
 
 import javax.ejb.Stateless;
@@ -11,7 +10,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.time.LocalDateTime;
-import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -108,19 +106,26 @@ public class JpaOrganizationProvider implements OrganizationProvider {
 
     @Override
     public boolean removeOrganization(OrganizationModel organization) {
+        OrganizationEntity organizationEntity = OrganizationAdapter.toEntity(organization, em);
+
         em.createNamedQuery("deleteDocumentsByOrganization")
                 .setParameter("organizationId", organization.getId())
                 .executeUpdate();
+
         em.createNamedQuery("deleteFilesByOrganization")
                 .setParameter("organizationId", organization.getId())
                 .executeUpdate();
+
         em.createNamedQuery("deleteJobReportsByOrganization")
                 .setParameter("organizationId", organization.getId())
                 .executeUpdate();
 
-        OrganizationEntity entity = OrganizationAdapter.toEntity(organization, em);
+        em.createNamedQuery("deleteComponentConfigByOrganization").setParameter("organization", organizationEntity)
+                .executeUpdate();
+        em.createNamedQuery("deleteComponentByOrganization").setParameter("organization", organizationEntity)
+                .executeUpdate();
 
-        em.remove(entity);
+        em.remove(organizationEntity);
         em.flush();
         em.clear();
 

@@ -318,6 +318,35 @@ public class ComponentProviderTest {
         assertThat("Incorrect size", components2.size(), is(equalTo(1)));
     }
 
+    @Test
+    public void test_remove_organization_cascade_success() {
+        ComponentFactory componentFactory = buildComponentFactory();
+        Mockito.when(componentUtil.getComponentFactory(any(ComponentModel.class))).thenReturn(componentFactory);
+
+        // Create another organization
+        OrganizationModel AUX_ORGANIZATION = organizationProvider.createOrganization("AUX_ORGANIZATION");
+
+        // Create components
+        ComponentModel component1 = buildComponentModel();
+        ComponentModel component2 = buildComponentModel();
+        ComponentModel component3 = buildComponentModel();
+
+        componentProvider.addComponentModel(ORGANIZATION, component1);
+        componentProvider.addComponentModel(ORGANIZATION, component2);
+        componentProvider.addComponentModel(AUX_ORGANIZATION, component3);
+
+        // Remove organization
+        boolean result = organizationProvider.removeOrganization(ORGANIZATION);
+        assertThat("Result should be true", result, equalTo(true));
+
+        // Check documents no longer exists
+        List<ComponentModel> components1 = componentProvider.getComponents(ORGANIZATION);
+        List<ComponentModel> components2 = componentProvider.getComponents(AUX_ORGANIZATION);
+
+        assertThat("Components weren't removed", components1.size(), is(0));
+        assertThat("Components of another organization should not be removed", components2.size(), is(1));
+    }
+
     private ComponentModel buildComponentModel() {
         ComponentModel component = new ComponentModel();
         component.setId(UUID.randomUUID().toString());
