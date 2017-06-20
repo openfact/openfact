@@ -6,12 +6,7 @@ public class PrioritizedComponentModel extends ComponentModel {
 
     public static final String PRIORITY = "priority";
 
-    public static Comparator<ComponentModel> comparator = new Comparator<ComponentModel>() {
-        @Override
-        public int compare(ComponentModel o1, ComponentModel o2) {
-            return parsePriority(o1) - parsePriority(o2);
-        }
-    };
+    public static Comparator<ComponentModel> comparator = (o1, o2) -> parsePriority(o1) - parsePriority(o2);
 
     public PrioritizedComponentModel(ComponentModel copy) {
         super(copy);

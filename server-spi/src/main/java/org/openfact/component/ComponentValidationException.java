@@ -1,5 +1,8 @@
 package org.openfact.component;
 
+import javax.ejb.ApplicationException;
+
+@ApplicationException(rollback = true)
 public class ComponentValidationException extends RuntimeException {
 
     private Object[] parameters;
