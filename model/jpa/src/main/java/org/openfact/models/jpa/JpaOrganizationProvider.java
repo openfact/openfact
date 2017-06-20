@@ -108,18 +108,49 @@ public class JpaOrganizationProvider implements OrganizationProvider {
     public boolean removeOrganization(OrganizationModel organization) {
         OrganizationEntity organizationEntity = OrganizationAdapter.toEntity(organization, em);
 
+        // Documents
+        em.createNamedQuery("deleteDocumentRequiredActionsByOrganization")
+                .setParameter("organizationId", organization.getId())
+                .executeUpdate();
+
+        em.createNamedQuery("deleteAttachedDocumentsByOrganization")
+                .setParameter("organizationId", organization.getId())
+                .executeUpdate();
+
+        em.createNamedQuery("deleteSendEventAttachedFilesByOrganization")
+                .setParameter("organizationId", organization.getId())
+                .executeUpdate();
+        em.createNamedQuery("deleteSendEventAttributesByOrganization")
+                .setParameter("organizationId", organization.getId())
+                .executeUpdate();
+        em.createNamedQuery("deleteSendEventsByOrganization")
+                .setParameter("organizationId", organization.getId())
+                .executeUpdate();
+
+        em.createNamedQuery("deleteDocumentAttributesByOrganization")
+                .setParameter("organizationId", organization.getId())
+                .executeUpdate();
+
+        em.createNamedQuery("deleteDocumentLineAttributesByOrganization")
+                .setParameter("organizationId", organization.getId()).executeUpdate();
+        em.createNamedQuery("deleteDocumentLinesByOrganization")
+                .setParameter("organizationId", organization.getId()).executeUpdate();
+
         em.createNamedQuery("deleteDocumentsByOrganization")
                 .setParameter("organizationId", organization.getId())
                 .executeUpdate();
 
+        // Files
         em.createNamedQuery("deleteFilesByOrganization")
                 .setParameter("organizationId", organization.getId())
                 .executeUpdate();
 
+        // Job reports
         em.createNamedQuery("deleteJobReportsByOrganization")
                 .setParameter("organizationId", organization.getId())
                 .executeUpdate();
 
+        // Components
         em.createNamedQuery("deleteComponentConfigByOrganization").setParameter("organization", organizationEntity)
                 .executeUpdate();
         em.createNamedQuery("deleteComponentByOrganization").setParameter("organization", organizationEntity)

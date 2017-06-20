@@ -1,6 +1,7 @@
 package org.openfact.models;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public interface DocumentModel {
 
@@ -30,8 +31,8 @@ public interface DocumentModel {
     /**
      * Document information
      */
-    String getDocumentCurrencyCode();
-    void setDocumentCurrencyCode(String currencyCode);
+    String getCurrencyCode();
+    void setCurrencyCode(String currencyCode);
 
     String getCustomerRegistrationName();
     void setCustomerRegistrationName(String customerRegistrationName);
@@ -41,6 +42,13 @@ public interface DocumentModel {
 
     String getCustomerElectronicMail();
     void setCustomerElectronicMail(String customerElectronicMail);
+
+    /**
+     * Document Line
+     */
+    DocumentLineModel addLine();
+    List<DocumentLineModel> getLines();
+    boolean removeLine(DocumentLineModel line);
 
     enum DocumentType {
 

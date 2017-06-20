@@ -1,11 +1,16 @@
 package org.openfact.models.jpa;
 
+import org.openfact.models.DocumentLineModel;
 import org.openfact.models.DocumentModel;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.entities.DocumentEntity;
+import org.openfact.models.jpa.entities.DocumentLineEntity;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> {
 
@@ -24,6 +29,10 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
             return ((DocumentAdapter) model).getEntity();
         }
         return em.getReference(DocumentEntity.class, model.getId());
+    }
+
+    public DocumentLineModel toDocumentLineModel(DocumentLineEntity documentLine) {
+        return new DocumentLineAdapter(this, em, documentLine);
     }
 
     @Override
@@ -67,12 +76,12 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
     }
 
     @Override
-    public String getDocumentCurrencyCode() {
+    public String getCurrencyCode() {
         return document.getDocumentCurrencyCode();
     }
 
     @Override
-    public void setDocumentCurrencyCode(String currencyCode) {
+    public void setCurrencyCode(String currencyCode) {
         document.setDocumentCurrencyCode(currencyCode);
     }
 
@@ -104,6 +113,38 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
     @Override
     public void setCustomerElectronicMail(String value) {
         document.setCustomerElectronicMail(value);
+    }
+
+    @Override
+    public DocumentLineModel addLine() {
+        DocumentLineEntity entity = new DocumentLineEntity();
+        entity.setDocument(document);
+        em.persist(entity);
+
+        document.getLines().add(entity);
+        return toDocumentLineModel(entity);
+    }
+
+    @Override
+    public List<DocumentLineModel> getLines() {
+        return document.getLines().stream()
+                .map(this::toDocumentLineModel)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean removeLine(DocumentLineModel line) {
+        boolean result = false;
+        Iterator<DocumentLineEntity> it = document.getLines().iterator();
+        while (it.hasNext()) {
+            DocumentLineEntity l = it.next();
+            if (l.getId().equals(line.getId())) {
+                it.remove();
+                em.remove(l);
+                result = true;
+            }
+        }
+        return result;
     }
 
     @Override
