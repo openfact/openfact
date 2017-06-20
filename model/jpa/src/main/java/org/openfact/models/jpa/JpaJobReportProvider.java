@@ -16,8 +16,12 @@ import java.util.stream.Collectors;
 @Stateless
 public class JpaJobReportProvider implements JobReportProvider {
 
-    @Inject
     protected EntityManager em;
+
+    @Inject
+    public JpaJobReportProvider (EntityManager em) {
+        this.em = em;
+    }
 
     @Override
     public JobReportModel addJobReport(OrganizationModel organization, String name) throws ModelException {

@@ -15,8 +15,12 @@ import java.util.List;
 @Stateless
 public class JpaFileProvider implements FileProvider {
 
-    @Inject
     protected EntityManager em;
+
+    @Inject
+    public JpaFileProvider(EntityManager em) {
+        this.em = em;
+    }
 
     @Override
     public FileModel addFile(OrganizationModel organization, String fileName, byte[] file) throws ModelException {

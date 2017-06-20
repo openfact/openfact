@@ -19,8 +19,12 @@ import java.util.stream.Collectors;
 @Stateless
 public class JpaDocumentProvider implements DocumentProvider {
 
-    @Inject
     private EntityManager em;
+
+    @Inject
+    public JpaDocumentProvider(EntityManager em) {
+        this.em = em;
+    }
 
     private DocumentAdapter toAdapter(OrganizationModel organization, DocumentEntity entity) {
         return new DocumentAdapter(organization, em, entity);
