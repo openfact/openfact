@@ -60,7 +60,10 @@ public class TestUtil {
                 JpaDocumentProvider.class,
 
                 DocumentLineModel.class,
-                DocumentLineAdapter.class
+                DocumentLineAdapter.class,
+
+                DocumentQuery.class,
+                JpaDocumentQuery.class
         };
     }
 

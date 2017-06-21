@@ -75,4 +75,9 @@ public interface DocumentModel {
         }
 
     }
+
+    enum RequiredAction {
+        SEND_TO_CUSTOMER, SEND_TO_THIRD_PARTY;
+    }
+
 }

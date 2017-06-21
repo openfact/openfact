@@ -1,10 +1,7 @@
 package org.openfact.models.jpa;
 
-import org.openfact.models.DocumentModel;
+import org.openfact.models.*;
 import org.openfact.models.DocumentModel.DocumentType;
-import org.openfact.models.DocumentProvider;
-import org.openfact.models.ModelException;
-import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.entities.DocumentEntity;
 
 import javax.ejb.Stateless;
@@ -18,6 +15,22 @@ import java.util.stream.Collectors;
 
 @Stateless
 public class JpaDocumentProvider implements DocumentProvider {
+
+    public static final String ORGANIZATION_ID = "organizationId";
+    public static final String DOCUMENT_ID = "documentId";
+    public static final String DOCUMENT_TYPE = "documentType";
+    public static final String CREATED_TIMESTAMP = "createdTimestamp";
+    public static final String DOCUMENT_CURRENCY_CODE = "documentCurrencyCode";
+    public static final String CUSTOMER_REGISTRATION_NAME = "customerRegistrationName";
+    public static final String CUSTOMER_ASSIGNED_ACCOUNT_ID = "customerAssignedAccountId";
+    public static final String CUSTOMER_ELECTRONIC_MAIL = "customerElectronicMail";
+    public static final String REQUIRED_ACTIONS = "requiredActions";
+    public static final String ENABLED = "enabled";
+
+    public static final String SEND_EVENT_DESTINY = "destiny";
+    public static final String SEND_EVENT_STATUS = "status";
+    public static final String CUSTOMER_SEND_EVENT_FAILURES = "customerSendEventFailures";
+    public static final String THIRD_PARTY_SEND_EVENT_FAILURES = "thirdPartySendEventFailures";
 
     private EntityManager em;
 
@@ -111,5 +124,10 @@ public class JpaDocumentProvider implements DocumentProvider {
         em.remove(entity);
         em.flush();
         return true;
+    }
+
+    @Override
+    public org.openfact.models.DocumentQuery createQuery(OrganizationModel organization) {
+        return new JpaDocumentQuery(em, organization);
     }
 }

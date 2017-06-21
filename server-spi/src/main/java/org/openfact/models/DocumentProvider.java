@@ -24,4 +24,6 @@ public interface DocumentProvider {
 
     boolean removeDocument(OrganizationModel organization, DocumentModel document);
 
+    DocumentQuery createQuery(OrganizationModel organization);
+
 }
