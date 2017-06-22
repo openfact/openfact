@@ -14,6 +14,9 @@ import org.openfact.connections.jpa.PersistenceExceptionConverter;
 import org.openfact.models.*;
 import org.openfact.models.jpa.*;
 import org.openfact.models.jpa.entities.OrganizationEntity;
+import org.openfact.models.query.QueryResult;
+import org.openfact.models.query.Sortable;
+import org.openfact.models.query.SortableQueryResult;
 import org.openfact.provider.ConfiguredProvider;
 import org.openfact.provider.ProviderConfigProperty;
 import org.openfact.provider.ProviderFactory;
@@ -63,7 +66,28 @@ public class TestUtil {
                 DocumentLineAdapter.class,
 
                 DocumentQuery.class,
-                JpaDocumentQuery.class
+                DocumentQueryProvider.class,
+
+                QueryResult.class,
+                Sortable.class,
+                SortableQueryResult.class,
+
+                Constants.class
+        };
+    }
+
+    public static Class<?>[] getDocumentQueryClasses() {
+        return new Class<?>[]{
+                JpaDocumentCountQueryResult.class,
+                JpaDocumentListModelQueryResult.class,
+                JpaDocumentSearchResultModelQueryResult.class,
+
+                JpaDocumentCriteria.class,
+                JpaBasicDocumentCriteria.class,
+                JpaSortableDocumentCriteria.class,
+                JpaBasicSortableDocumentCriteria.class,
+
+                JpaDocumentQueryProvider.class
         };
     }
 

@@ -1,137 +1,108 @@
 package org.openfact.models;
 
-import org.openfact.common.converts.DateUtils;
-import org.openfact.models.DocumentModel.DocumentType;
-import org.openfact.models.DocumentModel.RequiredAction;
-import org.openfact.models.search.PagingModel;
-import org.openfact.models.search.SearchResultsModel;
-import org.openfact.models.scroll.ScrollModel;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.*;
 
-public interface DocumentQuery {
+public class DocumentQuery {
 
-    DocumentQuery currencyCode(String... currencyCode);
+    private final String filterText;
+    private final Boolean enabled;
+    private final LocalDateTime fromDate;
+    private final LocalDateTime toDate;
+    private final String[] currencyCode;
+    private final String[] type;
+    private final String[] requiredAction;
 
-    DocumentQuery documentType(String... documentType);
-    DocumentQuery documentType(DocumentType... documentType);
-
-    DocumentQuery requiredAction(String... requiredAction);
-    DocumentQuery requiredAction(RequiredAction... requiredAction);
-
-    DocumentQuery filterText(String filterText);
-    DocumentQuery filterTextPattern(String filterText);
-
-    DocumentQuery enabled(boolean enabled);
-
-    /**
-     * Just equals filters
-     */
-    DocumentQuery fromDate(LocalDateTime fromDate, boolean include);
-    DocumentQuery toDate(LocalDateTime toDate, boolean include);
-
-    EntityQuery entityQuery();
-    CountQuery countQuery();
-
-    interface EntityQuery {
-        EntityQuery orderByAsc(String... attribute);
-        EntityQuery orderByDesc(String... attribute);
-
-        ListEntityQuery resultList();
-        SearchResultEntityQuery searchResult();
-        ScrollEntityQuery resultScroll();
+    private DocumentQuery(Builder builder) {
+        this.filterText = builder.filterText;
+        this.enabled = builder.enabled;
+        this.fromDate = builder.fromDate;
+        this.toDate = builder.toDate;
+        this.currencyCode = builder.currencyCode;
+        this.type = builder.type;
+        this.requiredAction = builder.requiredAction;
     }
 
-    interface ListEntityQuery {
-        List<DocumentModel> getResultList();
-        ListEntityQuery firstResult(int result);
-        ListEntityQuery maxResults(int results);
+    public static Builder builder() {
+        return new Builder();
     }
 
-    interface ScrollEntityQuery {
-        ScrollModel<DocumentModel> getScrollResult(int scrollSize);
-        ScrollModel<List<DocumentModel>> getScrollResultList(int listSize);
+    public String getFilterText() {
+        return filterText;
     }
 
-    interface SearchResultEntityQuery {
-        SearchResultsModel<DocumentModel> getSearchResult();
-        SearchResultsModel<DocumentModel> getSearchResult(PagingModel pagingModel);
+    public Boolean getEnabled() {
+        return enabled;
     }
 
-    interface CountQuery {
-        int getTotalCount();
+    public LocalDateTime getFromDate() {
+        return fromDate;
     }
 
-    /**
-     * @query filterText*/
-    default DocumentQuery applyQuery(String query) {
-        if (!query.trim().isEmpty()) {
-            Map<QueryOperator, String> params = QueryOperator.mapQuery(query);
-            for (Map.Entry<DocumentQuery.QueryOperator, String> map : params.entrySet()) {
-                switch (map.getKey()) {
-                    case FILTER_TEXT:
-                        this.filterText(map.getValue());
-                        break;
-                    case CURRENCY_CODE:
-                        this.currencyCode(map.getValue().split(","));
-                        break;
-                    case DOCUMENT_TYPE:
-                        this.documentType(map.getValue().split(","));
-                        break;
-                    case AFTER:
-                        LocalDate after = DateUtils.asLocalDate(map.getValue());
-                        if (after != null) {
-                            this.fromDate(after.atStartOfDay(), true);
-                        }
-                        break;
-                    case BEFORE:
-                        LocalDate before = DateUtils.asLocalDate(map.getValue());
-                        if (before != null) {
-                            this.toDate(before.plusDays(1).atStartOfDay(), true);
-                        }
-                        break;
-                }
-            }
-        }
-        return this;
+    public LocalDateTime getToDate() {
+        return toDate;
     }
 
-    enum QueryOperator {
-        FILTER_TEXT("filtertext"),
-        CURRENCY_CODE("currency_code"),
-        DOCUMENT_TYPE("document_type"),
-        AFTER("after"),
-        BEFORE("before");
+    public String[] getCurrencyCode() {
+        return currencyCode;
+    }
 
-        private String name;
+    public String[] getType() {
+        return type;
+    }
 
-        QueryOperator(String name) {
-            this.name = name;
+    public String[] getRequiredAction() {
+        return requiredAction;
+    }
+
+    public static class Builder {
+
+        private String filterText;
+        private Boolean enabled;
+        private LocalDateTime fromDate;
+        private LocalDateTime toDate;
+        private String[] currencyCode;
+        private String[] type;
+        private String[] requiredAction;
+
+        public Builder filterText(String filterText) {
+            this.filterText = filterText;
+            return this;
         }
 
-        public String getName() {
-            return name;
+        public Builder enabled(boolean enabled) {
+            this.enabled = enabled;
+            return this;
         }
 
-        public static Optional<QueryOperator> getByName(String name) {
-            return Arrays.stream(QueryOperator.values())
-                    .filter(f -> f.getName().equals(name))
-                    .findFirst();
+        public Builder fromDate(LocalDateTime fromDate) {
+            this.fromDate = fromDate;
+            return this;
         }
 
-        public static Map<QueryOperator, String> mapQuery(String query) {
-            Map<QueryOperator, String> result = new HashMap<>();
-
-            String[] userQueries = query.trim().split(" ");
-            for (String userQuery : userQueries) {
-                String[] operator = userQuery.split(":");
-                QueryOperator.getByName(operator[0])
-                        .ifPresent(queryOperator -> result.put(queryOperator, operator[1]));
-            }
-            return result;
+        public Builder toDate(LocalDateTime toDate) {
+            this.toDate = toDate;
+            return this;
         }
+
+        public Builder currencyCode(String... currencyCode) {
+            this.currencyCode = currencyCode;
+            return this;
+        }
+
+        public Builder type(String... type) {
+            this.type = type;
+            return this;
+        }
+
+        public Builder requiredAction(String... requiredAction) {
+            this.requiredAction = requiredAction;
+            return this;
+        }
+
+        public DocumentQuery build() {
+            return new DocumentQuery(this);
+        }
+
     }
 
 }

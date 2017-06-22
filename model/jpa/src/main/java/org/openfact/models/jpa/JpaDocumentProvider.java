@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Stateless
 public class JpaDocumentProvider implements DocumentProvider {
 
-    public static final String ORGANIZATION_ID = "organizationId";
+    public static final String ORGANIZATION = "organization";
     public static final String DOCUMENT_ID = "documentId";
     public static final String DOCUMENT_TYPE = "documentType";
     public static final String CREATED_TIMESTAMP = "createdTimestamp";
@@ -127,7 +127,8 @@ public class JpaDocumentProvider implements DocumentProvider {
     }
 
     @Override
-    public org.openfact.models.DocumentQuery createQuery(OrganizationModel organization) {
-        return new JpaDocumentQuery(em, organization);
+    public DocumentQueryProvider queryProvider(OrganizationModel organization) {
+        return new JpaDocumentQueryProvider(em, organization);
     }
+
 }

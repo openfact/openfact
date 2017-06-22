@@ -11,23 +11,19 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openfact.models.DocumentModel.DocumentType;
-import org.openfact.models.DocumentProvider;
-import org.openfact.models.DocumentQuery;
-import org.openfact.models.OrganizationModel;
-import org.openfact.models.OrganizationProvider;
+import org.openfact.models.*;
 
 import javax.inject.Inject;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.openfact.models.DocumentQuery.CountQuery;
 
 @RunWith(Arquillian.class)
 @UsingDataSet("empty.xml")
 public class DocumentQueryTest {
 
     public static final String ORGANIZATION_NAME1 = "SISTCOOP S.A.C.";
-    public static final String ORGANIZATION_NAME2= "SOFTGREEN S.A.C.";
+    public static final String ORGANIZATION_NAME2 = "SOFTGREEN S.A.C.";
 
     private OrganizationModel ORGANIZATION1;
     private OrganizationModel ORGANIZATION2;
@@ -47,7 +43,8 @@ public class DocumentQueryTest {
                 .addClasses(TestUtil.getBasicClasses())
                 .addClasses(TestUtil.getOrganizationClasses())
                 .addPackage(TestUtil.getEntitiesPackage())
-                .addClasses(TestUtil.getDocumentClasses());
+                .addClasses(TestUtil.getDocumentClasses())
+                .addClasses(TestUtil.getDocumentQueryClasses());
         return archive.addAsLibraries(libs);
     }
 
@@ -84,22 +81,28 @@ public class DocumentQueryTest {
     }
 
     @Test
-    public void test_currency_success() {
-        DocumentQuery query = documentProvider
-                .createQuery(ORGANIZATION1)
-                .currencyCode("USD");
+    public void test_count_success() {
+        // Provider
+        DocumentQueryProvider queryProvider = documentProvider.queryProvider(ORGANIZATION1);
 
-//        EntityQuery entityQuery = query.entityQuery();
-        CountQuery countQuery = query.countQuery();
+        // All
+        DocumentQuery query = DocumentQuery.builder().build();
+        Integer result = queryProvider.countQuery(query).getResult();
+        assertThat("Incorrect result", result, equalTo(9));
 
-        // Query results
-//        ListEntityQuery listEntityQuery = entityQuery.resultList();
-//        ScrollEntityQuery scrollEntityQuery = entityQuery.resultScroll();
-//        SearchResultEntityQuery searchResultEntityQuery = entityQuery.searchResult();
+        // Currency code
+        query = DocumentQuery.builder().currencyCode("USD").build();
+        result = queryProvider.countQuery(query).getResult();
+        assertThat("Incorrect result", result, equalTo(2));
 
-        // Check total
-        int totalCount = countQuery.getTotalCount();
-        assertThat("Incorrect number of results", totalCount, equalTo(2));
+        query = DocumentQuery.builder().currencyCode("USD", "PEN").build();
+        result = queryProvider.countQuery(query).getResult();
+        assertThat("Incorrect result", result, equalTo(3));
+
+        // enabled
+//        query = DocumentQuery.builder().enabled(true).build();
+//        result = queryProvider.countQuery(query).getResult();
+//        assertThat("Incorrect result", result, equalTo(3));
     }
 
 }
