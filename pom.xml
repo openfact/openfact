@@ -84,6 +84,8 @@
         <version.wildfly-dist>10.1.0.Final</version.wildfly-dist>
         <wildfly.core.version>2.0.10.Final</wildfly.core.version>
 
+        <jboss.logging.version>3.3.0.Final</jboss.logging.version>
+        <jboss.logging.tools.version>2.0.1.Final</jboss.logging.tools.version>
         <version.jboss-logmanager>2.0.6.Final</version.jboss-logmanager>
 
         <!--Jdbc-->
@@ -156,6 +158,7 @@
         <module>model</module>
         <module>server-spi</module>
         <module>server-spi-private</module>
+        <module>integration</module>
         <module>themes</module>
         <module>reports</module>
         <module>testsuite</module>
@@ -397,6 +400,22 @@
                 <groupId>org.jboss.spec.javax.ws.rs</groupId>
                 <artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
                 <version>${jboss-jaxrs-api_2.0_spec}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.logging</groupId>
+                <artifactId>jboss-logging</artifactId>
+                <version>${jboss.logging.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.logging</groupId>
+                <artifactId>jboss-logging-annotations</artifactId>
+                <version>${jboss.logging.tools.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.logging</groupId>
+                <artifactId>jboss-logging-processor</artifactId>
+                <version>${jboss.logging.tools.version}</version>
             </dependency>
 
             <!-- Resteasy -->
