@@ -1,4 +1,4 @@
-package org.openfact.model;
+package org.openfact.testsuite.model;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;

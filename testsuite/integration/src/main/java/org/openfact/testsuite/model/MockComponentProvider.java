@@ -1,4 +1,4 @@
-package org.openfact;
+package org.openfact.testsuite.model;
 
 import org.openfact.component.ComponentFactory;
 import org.openfact.components.utils.ComponentUtil;

@@ -1,4 +1,4 @@
-package org.openfact.model;
+package org.openfact.testsuite.model;
 
 import org.hamcrest.core.Is;
 import org.jboss.arquillian.container.test.api.Deployment;

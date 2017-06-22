@@ -1,4 +1,4 @@
-package org.openfact.model;
+package org.openfact.testsuite.model;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -11,7 +11,10 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openfact.models.*;
+import org.openfact.models.JobReportModel;
+import org.openfact.models.JobReportProvider;
+import org.openfact.models.OrganizationModel;
+import org.openfact.models.OrganizationProvider;
 
 import javax.inject.Inject;
 

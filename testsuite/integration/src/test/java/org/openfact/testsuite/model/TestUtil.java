@@ -1,8 +1,7 @@
-package org.openfact.model;
+package org.openfact.testsuite.model;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
-import org.openfact.MockComponentProvider;
 import org.openfact.common.util.MultivaluedHashMap;
 import org.openfact.component.ComponentFactory;
 import org.openfact.component.ComponentModel;

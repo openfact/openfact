@@ -1,15 +1,12 @@
-package org.openfact.model;
+package org.openfact.testsuite.model;
 
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.arquillian.persistence.UsingDataSet;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.OrganizationProvider;
@@ -24,9 +21,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.hamcrest.core.IsNull.nullValue;
 
-@RunWith(Arquillian.class)
-@UsingDataSet("empty.xml")
-public class OrganizationProviderTest {
+public class OrganizationProviderTest extends AbstractModelTest {
 
     public static final String ORGANIZATION_NAME = "SISTCOOP S.A.C.";
 
@@ -37,6 +32,7 @@ public class OrganizationProviderTest {
     public static Archive deploy() {
         Archive[] libs = TestUtil.getLibraries();
         WebArchive archive = ShrinkWrap.create(WebArchive.class)
+                .addClass(AbstractModelTest.class)
                 .addAsResource("persistence.xml", "META-INF/persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addClasses(TestUtil.getBasicClasses())
@@ -44,6 +40,8 @@ public class OrganizationProviderTest {
                 .addPackage(TestUtil.getEntitiesPackage());
         return archive.addAsLibraries(libs);
     }
+
+
 
     @Test
     public void test_create_success() {
