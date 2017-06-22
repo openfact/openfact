@@ -1,12 +1,8 @@
 package org.openfact.models.jpa;
 
-import org.openfact.models.Constants;
-import org.openfact.models.DocumentModel;
-import org.openfact.models.DocumentQuery;
-import org.openfact.models.OrganizationModel;
+import org.openfact.models.*;
 import org.openfact.models.jpa.entities.DocumentEntity;
-import org.openfact.models.query.Sortable;
-import org.openfact.models.query.SortableQueryResult;
+import org.openfact.models.query.QueryResult;
 import org.openfact.models.search.PagingModel;
 import org.openfact.models.search.SearchResultsModel;
 
@@ -15,27 +11,34 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class JpaDocumentSearchResultModelQueryResult implements SortableQueryResult<SearchResultsModel<DocumentModel>> {
+public class JpaDocumentSearchResultModelQueryResult implements QueryResult<SearchResultsModel<DocumentModel>> {
 
-    private PagingModel paging;
-
+    private final JpaSortableDocumentCriteria<DocumentEntity> criteria;
     private final JpaDocumentCountQueryResult countCriteria;
-    private final JpaBasicSortableDocumentCriteria<DocumentEntity> criteria;
     private final OrganizationModel organization;
+    private SearchQueryParamsModel params;
     private final EntityManager em;
 
-    public JpaDocumentSearchResultModelQueryResult(OrganizationModel organization, DocumentQuery documentQuery, EntityManager em) {
+    public JpaDocumentSearchResultModelQueryResult(EntityManager em, OrganizationModel organization, DocumentQueryModel query, SearchQueryParamsModel params) {
         this.organization = organization;
+        this.params = params;
         this.em = em;
 
-        this.countCriteria = new JpaDocumentCountQueryResult(em, organization, documentQuery);
-
-        JpaBasicDocumentCriteria<DocumentEntity> basicCriteria = new JpaBasicDocumentCriteria<>(em, DocumentEntity.class, organization, documentQuery);
-        this.criteria = new JpaBasicSortableDocumentCriteria<>(em, DocumentEntity.class, organization, documentQuery, basicCriteria);
+        this.criteria = new JpaSortableDocumentCriteria<>(em, DocumentEntity.class, organization, query);
+        this.countCriteria = new JpaDocumentCountQueryResult(em, organization, query);
     }
 
     @Override
     public SearchResultsModel<DocumentModel> getResult() {
+        PagingModel paging = null;
+
+        if (params != null) {
+            criteria.orderByAsc(params.getOrderByAsc());
+            criteria.orderByDesc(params.getOrderByDesc());
+
+            paging = params.getPaging();
+        }
+
         if (paging == null) {
             paging = new PagingModel();
             paging.setPage(1);
@@ -74,20 +77,4 @@ public class JpaDocumentSearchResultModelQueryResult implements SortableQueryRes
         return results;
     }
 
-    public JpaDocumentSearchResultModelQueryResult paging(PagingModel paging) {
-        this.paging = paging;
-        return this;
-    }
-
-    @Override
-    public Sortable orderByAsc(String... asc) {
-        criteria.orderByAsc(asc);
-        return this;
-    }
-
-    @Override
-    public Sortable orderByDesc(String... desc) {
-        criteria.orderByDesc(desc);
-        return this;
-    }
 }

@@ -2,6 +2,7 @@ package org.openfact.models;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 public interface DocumentModel {
 
@@ -14,6 +15,9 @@ public interface DocumentModel {
 
     String CREATED_TIMESTAMP = "createdTimestamp";
     String ENABLED = "enabled";
+
+    String[] FILTER_TEXT_FIELDS = { DOCUMENT_ID, CUSTOMER_REGISTRATION_NAME, CUSTOMER_ASSIGNED_ACCOUNT_ID, CUSTOMER_ELECTRONIC_MAIL };
+    String[] ORDER_BY_FIELDS = { DOCUMENT_ID, CREATED_TIMESTAMP };
 
     String getId();
     String getID();
@@ -49,6 +53,17 @@ public interface DocumentModel {
     DocumentLineModel addLine();
     List<DocumentLineModel> getLines();
     boolean removeLine(DocumentLineModel line);
+
+    /**
+     * Required Actions
+     */
+    String REQUIRED_ACTIONS = "requiredActions";
+
+    Set<String> getRequiredActions();
+    void addRequiredAction(String action);
+    void addRequiredAction(RequiredAction action);
+    void removeRequiredAction(String action);
+    void removeRequiredAction(RequiredAction action);
 
     enum DocumentType {
 

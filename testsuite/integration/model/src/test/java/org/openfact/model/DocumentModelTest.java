@@ -14,14 +14,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openfact.models.*;
 import org.openfact.models.DocumentModel.DocumentType;
+import org.openfact.models.DocumentModel.RequiredAction;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.Set;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
+import static org.hamcrest.Matchers.*;
 import static org.hamcrest.core.IsNull.notNullValue;
 
 @RunWith(Arquillian.class)
@@ -137,6 +137,29 @@ public class DocumentModelTest {
 
         boolean result = organizationProvider.removeOrganization(ORGANIZATION);
         assertThat("Result should be true", result, equalTo(true));
+    }
+
+    /*
+     * Required actions
+     */
+    @Test
+    public void test_required_action_success() {
+        Set<String> requiredActions = DOCUMENT.getRequiredActions();
+        assertThat("Value should never been null",requiredActions, is(notNullValue()));
+        assertThat("Initial value should be empty",requiredActions.size(), equalTo(0));
+
+        // Add required actions
+        DOCUMENT.addRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
+        DOCUMENT.addRequiredAction(RequiredAction.SEND_TO_THIRD_PARTY);
+
+        requiredActions = DOCUMENT.getRequiredActions();
+        assertThat("Invalid number of required actions",requiredActions.size(), equalTo(2));
+
+        // Remove required actions
+        DOCUMENT.removeRequiredAction(RequiredAction.SEND_TO_CUSTOMER);
+
+        requiredActions = DOCUMENT.getRequiredActions();
+        assertThat("Invalid number of required actions",requiredActions.size(), equalTo(1));
     }
 
 }

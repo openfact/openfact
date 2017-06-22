@@ -5,11 +5,14 @@ import org.openfact.models.DocumentModel;
 import org.openfact.models.OrganizationModel;
 import org.openfact.models.jpa.entities.DocumentEntity;
 import org.openfact.models.jpa.entities.DocumentLineEntity;
+import org.openfact.models.jpa.entities.DocumentRequiredActionEntity;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> {
@@ -145,6 +148,56 @@ public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> 
             }
         }
         return result;
+    }
+
+    /**
+     * Required actions
+     */
+    @Override
+    public Set<String> getRequiredActions() {
+        Set<String> result = new HashSet<>();
+        for (DocumentRequiredActionEntity attr : document.getRequiredActions()) {
+            result.add(attr.getAction());
+        }
+        return result;
+    }
+
+    @Override
+    public void addRequiredAction(RequiredAction action) {
+        String actionName = action.name();
+        addRequiredAction(actionName);
+    }
+
+    @Override
+    public void addRequiredAction(String actionName) {
+        for (DocumentRequiredActionEntity attr : document.getRequiredActions()) {
+            if (attr.getAction().equals(actionName)) {
+                return;
+            }
+        }
+        DocumentRequiredActionEntity attr = new DocumentRequiredActionEntity();
+        attr.setAction(actionName);
+        attr.setDocument(document);
+        em.persist(attr);
+        document.getRequiredActions().add(attr);
+    }
+
+    @Override
+    public void removeRequiredAction(RequiredAction action) {
+        String actionName = action.name();
+        removeRequiredAction(actionName);
+    }
+
+    @Override
+    public void removeRequiredAction(String action) {
+        Iterator<DocumentRequiredActionEntity> it = document.getRequiredActions().iterator();
+        while (it.hasNext()) {
+            DocumentRequiredActionEntity attr = it.next();
+            if (attr.getAction().equals(action)) {
+                it.remove();
+                em.remove(attr);
+            }
+        }
     }
 
     @Override

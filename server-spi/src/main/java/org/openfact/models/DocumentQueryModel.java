@@ -1,22 +1,30 @@
 package org.openfact.models;
 
-import java.time.LocalDateTime;
+import org.openfact.models.DocumentModel.DocumentType;
+import org.openfact.models.DocumentModel.RequiredAction;
 
-public class DocumentQuery {
+import java.time.LocalDateTime;
+import java.util.Arrays;
+
+public class DocumentQueryModel {
 
     private final String filterText;
     private final Boolean enabled;
     private final LocalDateTime fromDate;
     private final LocalDateTime toDate;
+    private boolean fromDateInclude;
+    private boolean toDateInclude;
     private final String[] currencyCode;
     private final String[] type;
     private final String[] requiredAction;
 
-    private DocumentQuery(Builder builder) {
+    private DocumentQueryModel(Builder builder) {
         this.filterText = builder.filterText;
         this.enabled = builder.enabled;
         this.fromDate = builder.fromDate;
         this.toDate = builder.toDate;
+        this.fromDateInclude = builder.fromDateInclude;
+        this.toDateInclude = builder.toDateInclude;
         this.currencyCode = builder.currencyCode;
         this.type = builder.type;
         this.requiredAction = builder.requiredAction;
@@ -54,12 +62,22 @@ public class DocumentQuery {
         return requiredAction;
     }
 
+    public boolean isFromDateInclude() {
+        return fromDateInclude;
+    }
+
+    public boolean isToDateInclude() {
+        return toDateInclude;
+    }
+
     public static class Builder {
 
         private String filterText;
         private Boolean enabled;
         private LocalDateTime fromDate;
         private LocalDateTime toDate;
+        private boolean fromDateInclude;
+        private boolean toDateInclude;
         private String[] currencyCode;
         private String[] type;
         private String[] requiredAction;
@@ -79,8 +97,20 @@ public class DocumentQuery {
             return this;
         }
 
+        public Builder fromDate(LocalDateTime fromDate, boolean include) {
+            this.fromDate = fromDate;
+            this.fromDateInclude = include;
+            return this;
+        }
+
         public Builder toDate(LocalDateTime toDate) {
             this.toDate = toDate;
+            return this;
+        }
+
+        public Builder toDate(LocalDateTime toDate, boolean include) {
+            this.toDate = toDate;
+            this.toDateInclude = include;
             return this;
         }
 
@@ -94,13 +124,23 @@ public class DocumentQuery {
             return this;
         }
 
+        public Builder type(DocumentType... type) {
+            this.type = Arrays.stream(type).map(Enum::toString).toArray(String[]::new);
+            return this;
+        }
+
         public Builder requiredAction(String... requiredAction) {
             this.requiredAction = requiredAction;
             return this;
         }
 
-        public DocumentQuery build() {
-            return new DocumentQuery(this);
+        public Builder requiredAction(RequiredAction... requiredAction) {
+            this.requiredAction = Arrays.stream(requiredAction).map(Enum::toString).toArray(String[]::new);
+            return this;
+        }
+
+        public DocumentQueryModel build() {
+            return new DocumentQueryModel(this);
         }
 
     }

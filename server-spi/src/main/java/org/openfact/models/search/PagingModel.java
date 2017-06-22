@@ -16,6 +16,11 @@ public class PagingModel {
     public PagingModel() {
     }
 
+    public PagingModel(int page, int pageSize) {
+        this.page = page;
+        this.pageSize = pageSize;
+    }
+
     /**
      * @return the page
      */

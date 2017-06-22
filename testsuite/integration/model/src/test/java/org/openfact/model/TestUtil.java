@@ -15,8 +15,8 @@ import org.openfact.models.*;
 import org.openfact.models.jpa.*;
 import org.openfact.models.jpa.entities.OrganizationEntity;
 import org.openfact.models.query.QueryResult;
-import org.openfact.models.query.Sortable;
-import org.openfact.models.query.SortableQueryResult;
+import org.openfact.models.search.PagingModel;
+import org.openfact.models.search.SearchResultsModel;
 import org.openfact.provider.ConfiguredProvider;
 import org.openfact.provider.ProviderConfigProperty;
 import org.openfact.provider.ProviderFactory;
@@ -65,12 +65,12 @@ public class TestUtil {
                 DocumentLineModel.class,
                 DocumentLineAdapter.class,
 
-                DocumentQuery.class,
+                DocumentQueryModel.class,
                 DocumentQueryProvider.class,
 
                 QueryResult.class,
-                Sortable.class,
-                SortableQueryResult.class,
+                ListQueryParamsModel.class,
+                SearchQueryParamsModel.class,
 
                 Constants.class
         };
@@ -78,14 +78,16 @@ public class TestUtil {
 
     public static Class<?>[] getDocumentQueryClasses() {
         return new Class<?>[]{
+                PagingModel.class,
+                SearchResultsModel.class,
+
                 JpaDocumentCountQueryResult.class,
                 JpaDocumentListModelQueryResult.class,
                 JpaDocumentSearchResultModelQueryResult.class,
 
                 JpaDocumentCriteria.class,
-                JpaBasicDocumentCriteria.class,
                 JpaSortableDocumentCriteria.class,
-                JpaBasicSortableDocumentCriteria.class,
+                JpaSortableDocumentCriteria.class,
 
                 JpaDocumentQueryProvider.class
         };

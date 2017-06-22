@@ -1,11 +1,7 @@
 package org.openfact.models.jpa;
 
-import org.openfact.models.DocumentModel;
-import org.openfact.models.DocumentQuery;
-import org.openfact.models.DocumentQueryProvider;
-import org.openfact.models.OrganizationModel;
+import org.openfact.models.*;
 import org.openfact.models.query.QueryResult;
-import org.openfact.models.query.SortableQueryResult;
 import org.openfact.models.search.SearchResultsModel;
 
 import javax.persistence.EntityManager;
@@ -22,18 +18,28 @@ public class JpaDocumentQueryProvider implements DocumentQueryProvider {
     }
 
     @Override
-    public QueryResult<Integer> countQuery(DocumentQuery query) {
+    public QueryResult<Integer> countQuery(DocumentQueryModel query) {
         return new JpaDocumentCountQueryResult(em, organization, query);
     }
 
     @Override
-    public SortableQueryResult<List<DocumentModel>> listQuery(DocumentQuery query) {
-        return new JpaDocumentListModelQueryResult(organization, query, em);
+    public QueryResult<List<DocumentModel>> listQuery(DocumentQueryModel query) {
+        return new JpaDocumentListModelQueryResult(em, organization, query, null);
     }
 
     @Override
-    public SortableQueryResult<SearchResultsModel<DocumentModel>> searchQuery(DocumentQuery query) {
-        return new JpaDocumentSearchResultModelQueryResult(organization, query, em);
+    public QueryResult<List<DocumentModel>> listQuery(DocumentQueryModel query, ListQueryParamsModel params) {
+        return new JpaDocumentListModelQueryResult(em, organization, query, params);
+    }
+
+    @Override
+    public QueryResult<SearchResultsModel<DocumentModel>> searchQuery(DocumentQueryModel query) {
+        return new JpaDocumentSearchResultModelQueryResult(em, organization, query, null);
+    }
+
+    @Override
+    public QueryResult<SearchResultsModel<DocumentModel>> searchQuery(DocumentQueryModel query, SearchQueryParamsModel params) {
+        return new JpaDocumentSearchResultModelQueryResult(em, organization, query, params);
     }
 
 }

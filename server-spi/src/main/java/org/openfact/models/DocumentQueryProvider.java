@@ -1,17 +1,18 @@
 package org.openfact.models;
 
 import org.openfact.models.query.QueryResult;
-import org.openfact.models.query.SortableQueryResult;
 import org.openfact.models.search.SearchResultsModel;
 
 import java.util.List;
 
 public interface DocumentQueryProvider {
 
-    QueryResult<Integer> countQuery(DocumentQuery query);
+    QueryResult<Integer> countQuery(DocumentQueryModel query);
 
-    SortableQueryResult<List<DocumentModel>> listQuery(DocumentQuery query);
+    QueryResult<List<DocumentModel>> listQuery(DocumentQueryModel query);
+    QueryResult<List<DocumentModel>> listQuery(DocumentQueryModel query, ListQueryParamsModel params);
 
-    SortableQueryResult<SearchResultsModel<DocumentModel>> searchQuery(DocumentQuery query);
+    QueryResult<SearchResultsModel<DocumentModel>> searchQuery(DocumentQueryModel query);
+    QueryResult<SearchResultsModel<DocumentModel>> searchQuery(DocumentQueryModel query, SearchQueryParamsModel params);
 
 }
