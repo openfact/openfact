@@ -1,15 +1,10 @@
 package org.openfact.testsuite.model;
 
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.arquillian.persistence.UsingDataSet;
 import org.jboss.shrinkwrap.api.Archive;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.openfact.models.*;
 
 import javax.inject.Inject;
@@ -17,15 +12,9 @@ import javax.inject.Inject;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-@RunWith(Arquillian.class)
-@UsingDataSet("empty.xml")
-public class FileModelTest {
+public class FileModelTest extends AbstractModelTest {
 
-    public static final String ORGANIZATION_NAME = "SISTCOOP S.A.C.";
     public static final String FILE_NAME = "fileName.xml";
-
-    public OrganizationModel ORGANIZATION;
-    public FileModel FILE;
 
     @Inject
     public OrganizationProvider organizationProvider;
@@ -33,28 +22,27 @@ public class FileModelTest {
     @Inject
     public FileProvider fileProvider;
 
+    public OrganizationModel ORGANIZATION;
+    public FileModel FILE;
+
     @Deployment
     public static Archive deploy() {
         Archive[] libs = TestUtil.getLibraries();
-        WebArchive archive = ShrinkWrap.create(WebArchive.class)
-                .addAsResource("persistence.xml", "META-INF/persistence.xml")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
-                .addClasses(TestUtil.getBasicClasses())
+        WebArchive archive = buildArchive()
                 .addClasses(TestUtil.getOrganizationClasses())
-                .addPackage(TestUtil.getEntitiesPackage())
                 .addClasses(TestUtil.getFileClasses());
         return archive.addAsLibraries(libs);
     }
 
     @Before
     public void before() {
-        ORGANIZATION = organizationProvider.createOrganization(ORGANIZATION_NAME);
+        ORGANIZATION = organizationProvider.createOrganization("SISTCOOP S.A.C.");
         FILE = fileProvider.addFile(ORGANIZATION, FILE_NAME, new byte[]{0, 1, 2, 3, 5});
     }
 
     @Test
     public void test_update_success() {
-        assertThat("Incorrect filename", FILE.getFileName(), equalTo(FILE_NAME));
+        assertThat(FILE.getFileName(), equalTo(FILE_NAME));
 
         final String newFileName = "newFileName";
         FILE.setFileName(newFileName);

@@ -18,11 +18,6 @@ public class JpaDocumentQueryProvider implements DocumentQueryProvider {
     }
 
     @Override
-    public QueryResult<Integer> countQuery(DocumentQueryModel query) {
-        return new JpaDocumentCountQueryResult(em, organization, query);
-    }
-
-    @Override
     public QueryResult<List<DocumentModel>> listQuery(DocumentQueryModel query) {
         return new JpaDocumentListModelQueryResult(em, organization, query, null);
     }

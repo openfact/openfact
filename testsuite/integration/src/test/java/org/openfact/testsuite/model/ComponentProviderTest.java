@@ -1,15 +1,10 @@
 package org.openfact.testsuite.model;
 
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.arquillian.persistence.UsingDataSet;
 import org.jboss.shrinkwrap.api.Archive;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -38,37 +33,28 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(Arquillian.class)
-@UsingDataSet("empty.xml")
-public class ComponentProviderTest {
-
-    static final String ORGANIZATION_NAME = "SISTCOOP S.A.C.";
-
-    OrganizationModel ORGANIZATION;
-
-    ComponentModel COMPONENT;
+public class ComponentProviderTest extends AbstractModelTest {
 
     @Inject
-    EntityManager em;
+    public EntityManager em;
 
     @Inject
-    OrganizationProvider organizationProvider;
+    public OrganizationProvider organizationProvider;
 
     @Mock
-    ComponentUtil componentUtil;
+    public ComponentUtil componentUtil;
 
     @InjectMocks
-    ComponentProvider componentProvider;
+    public ComponentProvider componentProvider;
+
+    public OrganizationModel ORGANIZATION;
+    public ComponentModel COMPONENT;
 
     @Deployment
     public static Archive deploy() {
         Archive[] libs = TestUtil.getLibraries();
-        WebArchive archive = ShrinkWrap.create(WebArchive.class)
-                .addAsResource("persistence.xml", "META-INF/persistence.xml")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
-                .addClasses(TestUtil.getBasicClasses())
+        WebArchive archive = buildArchive()
                 .addClasses(TestUtil.getOrganizationClasses())
-                .addPackage(TestUtil.getEntitiesPackage())
                 .addClasses(TestUtil.getComponentClasses());
         return archive.addAsLibraries(libs);
     }
@@ -78,12 +64,12 @@ public class ComponentProviderTest {
         componentProvider = new JpaComponentProvider(em, componentUtil);
         MockitoAnnotations.initMocks(this);
 
-        ORGANIZATION = organizationProvider.createOrganization(ORGANIZATION_NAME);
+        ORGANIZATION = organizationProvider.createOrganization("SISTCOOP S.A.C.");
         COMPONENT = buildComponentModel();
     }
 
     @Test
-    public void import_success() {
+    public void importComponentModel() {
         ComponentFactory componentFactory = buildComponentFactory();
         when(componentUtil.getComponentFactory(COMPONENT)).thenReturn(componentFactory);
 
@@ -92,12 +78,12 @@ public class ComponentProviderTest {
 
         verify(componentUtil).getComponentFactory(COMPONENT);
 
-        assertThat("Component has not been created", component, is(notNullValue()));
-        assertThat("Returned Component have to be the same", component, equalTo(COMPONENT));
+        assertThat(component, is(notNullValue()));
+        assertThat(component, equalTo(COMPONENT));
     }
 
     @Test
-    public void create_success() {
+    public void addComponentModel() {
         ComponentFactory componentFactory = buildComponentFactory();
         when(componentUtil.getComponentFactory(COMPONENT)).thenReturn(componentFactory);
 
@@ -107,12 +93,12 @@ public class ComponentProviderTest {
         verify(componentUtil).getComponentFactory(COMPONENT);
         verify(componentUtil).notifyCreated(ORGANIZATION, COMPONENT);
 
-        assertThat("Component has not been created", component, is(notNullValue()));
-        assertThat("Returned Component have to be the same", component, equalTo(COMPONENT));
+        assertThat(component, is(notNullValue()));
+        assertThat(component, equalTo(COMPONENT));
     }
 
     @Test
-    public void update_success() {
+    public void updateComponent() {
         ComponentFactory componentFactory = buildComponentFactory();
         when(componentUtil.getComponentFactory(any(ComponentModel.class))).thenReturn(componentFactory);
 
@@ -133,17 +119,17 @@ public class ComponentProviderTest {
         updatedComponent = componentProvider.getComponent(ORGANIZATION, COMPONENT.getId());
 
         // Check
-        assertThat("Both objects have to be the same", COMPONENT, equalTo(updatedComponent));
+        assertThat(COMPONENT, equalTo(updatedComponent));
 
-        assertThat("Property id has not updated", "ChangedComponentName", equalTo(updatedComponent.getName()));
-        assertThat("Property providerId has not updated", "ChangedProviderId", equalTo(updatedComponent.getProviderId()));
-        assertThat("Property providerType has not updated", "ChangedProviderType", equalTo(updatedComponent.getProviderType()));
-        assertThat("Property parentId has not updated", "ChangedParentId", equalTo(updatedComponent.getParentId()));
-        assertThat("Property subType has not updated", "ChangedComponentSubType", equalTo(updatedComponent.getSubType()));
+        assertThat("ChangedComponentName", equalTo(updatedComponent.getName()));
+        assertThat("ChangedProviderId", equalTo(updatedComponent.getProviderId()));
+        assertThat("ChangedProviderType", equalTo(updatedComponent.getProviderType()));
+        assertThat("ChangedParentId", equalTo(updatedComponent.getParentId()));
+        assertThat("ChangedComponentSubType", equalTo(updatedComponent.getSubType()));
     }
 
     @Test
-    public void find_by_id_success() {
+    public void getComponent() {
         ComponentFactory componentFactory = buildComponentFactory();
         when(componentUtil.getComponentFactory(COMPONENT)).thenReturn(componentFactory);
 
@@ -153,17 +139,18 @@ public class ComponentProviderTest {
         // Search component
         ComponentModel searched = componentProvider.getComponent(ORGANIZATION, COMPONENT.getId());
 
-        assertThat("Both components have to be the same", COMPONENT, equalTo(searched));
+        assertThat(COMPONENT, equalTo(searched));
     }
 
     @Test
-    public void find_by_id_fail() {
+    public void getUnknownComponent() {
         ComponentModel searched = componentProvider.getComponent(ORGANIZATION, UUID.randomUUID().toString());
-        assertThat("Both components have to be the same", searched, is(nullValue()));
+
+        assertThat(searched, is(nullValue()));
     }
 
     @Test
-    public void get_components_by_organization_success() {
+    public void getComponents() {
         ComponentFactory componentFactory = buildComponentFactory();
         Mockito.when(componentUtil.getComponentFactory(any(ComponentModel.class))).thenReturn(componentFactory);
 
@@ -183,15 +170,16 @@ public class ComponentProviderTest {
         List<ComponentModel> components1 = componentProvider.getComponents(ORGANIZATION);
         List<ComponentModel> components2 = componentProvider.getComponents(AUX_ORGANIZATION);
 
-        assertThat("Result have never be null", components1, is(notNullValue()));
-        assertThat("Result have never be null", components2, is(notNullValue()));
-        assertThat("Incorrect size", components1.size(), is(equalTo(2)));
-        assertThat("Incorrect size", components2.size(), is(equalTo(1)));
-        assertThat("Incorrect size", components2.get(0), is(equalTo(component3)));
+        assertThat(components1, is(notNullValue()));
+        assertThat(components1.size(), is(equalTo(2)));
+
+        assertThat(components2, is(notNullValue()));
+        assertThat(components2.size(), is(equalTo(1)));
+        assertThat(components2.get(0), is(equalTo(component3)));
     }
 
     @Test
-    public void get_components_by_organization_and_parent_id_success() {
+    public void getComponentsByParent() {
         ComponentFactory componentFactory = buildComponentFactory();
         Mockito.when(componentUtil.getComponentFactory(any(ComponentModel.class))).thenReturn(componentFactory);
 
@@ -218,18 +206,18 @@ public class ComponentProviderTest {
         List<ComponentModel> components21 = componentProvider.getComponents(AUX_ORGANIZATION, "ParentId");
         List<ComponentModel> components22 = componentProvider.getComponents(AUX_ORGANIZATION, "AnotherParentId");
 
-        assertThat("Result have never be null", components11, is(notNullValue()));
-        assertThat("Result have never be null", components12, is(notNullValue()));
-        assertThat("Result have never be null", components21, is(notNullValue()));
-        assertThat("Result have never be null", components22, is(notNullValue()));
-        assertThat("Incorrect size", components11.size(), is(equalTo(2)));
-        assertThat("Incorrect size", components12.size(), is(equalTo(1)));
-        assertThat("Incorrect size", components21.size(), is(equalTo(1)));
-        assertThat("Incorrect size", components22.size(), is(equalTo(0)));
+        assertThat(components11, is(notNullValue()));
+        assertThat(components12, is(notNullValue()));
+        assertThat(components21, is(notNullValue()));
+        assertThat(components22, is(notNullValue()));
+        assertThat(components11.size(), is(equalTo(2)));
+        assertThat(components12.size(), is(equalTo(1)));
+        assertThat(components21.size(), is(equalTo(1)));
+        assertThat(components22.size(), is(equalTo(0)));
     }
 
     @Test
-    public void get_components_by_organization_and_parent_id_and_provider_type_success() {
+    public void getComponentsByParentAndProviderType() {
         ComponentFactory componentFactory = buildComponentFactory();
         Mockito.when(componentUtil.getComponentFactory(any(ComponentModel.class))).thenReturn(componentFactory);
 
@@ -262,12 +250,12 @@ public class ComponentProviderTest {
         // Search
         List<ComponentModel> components = componentProvider.getComponents(ORGANIZATION, "AnotherParentId", "AnotherProviderType");
 
-        assertThat("Result have never be null", components, is(notNullValue()));
-        assertThat("Incorrect size", components.size(), is(equalTo(2)));
+        assertThat(components, is(notNullValue()));
+        assertThat(components.size(), is(equalTo(2)));
     }
 
     @Test
-    public void remove_success() {
+    public void removeComponent() {
         ComponentFactory componentFactory = buildComponentFactory();
         when(componentUtil.getComponentFactory(COMPONENT)).thenReturn(componentFactory);
 
@@ -284,7 +272,7 @@ public class ComponentProviderTest {
     }
 
     @Test
-    public void remove_by_parent_id_success() {
+    public void removeComponentsByParentId() {
         ComponentFactory componentFactory = buildComponentFactory();
         Mockito.when(componentUtil.getComponentFactory(any(ComponentModel.class))).thenReturn(componentFactory);
 
@@ -312,14 +300,14 @@ public class ComponentProviderTest {
         List<ComponentModel> components1 = componentProvider.getComponents(ORGANIZATION);
         List<ComponentModel> components2 = componentProvider.getComponents(AUX_ORGANIZATION);
 
-        assertThat("Result should never be null", components1, is(notNullValue()));
-        assertThat("Result should never be null", components2, is(notNullValue()));
-        assertThat("Incorrect size", components1.size(), is(equalTo(1)));
-        assertThat("Incorrect size", components2.size(), is(equalTo(1)));
+        assertThat(components1, is(notNullValue()));
+        assertThat(components2, is(notNullValue()));
+        assertThat(components1.size(), is(equalTo(1)));
+        assertThat(components2.size(), is(equalTo(1)));
     }
 
     @Test
-    public void test_remove_organization_cascade_success() {
+    public void removeOrganization() {
         ComponentFactory componentFactory = buildComponentFactory();
         Mockito.when(componentUtil.getComponentFactory(any(ComponentModel.class))).thenReturn(componentFactory);
 
@@ -343,8 +331,8 @@ public class ComponentProviderTest {
         List<ComponentModel> components1 = componentProvider.getComponents(ORGANIZATION);
         List<ComponentModel> components2 = componentProvider.getComponents(AUX_ORGANIZATION);
 
-        assertThat("Components weren't removed", components1.size(), is(0));
-        assertThat("Components of another organization should not be removed", components2.size(), is(1));
+        assertThat(components1.size(), is(0));
+        assertThat(components2.size(), is(1));
     }
 
     private ComponentModel buildComponentModel() {

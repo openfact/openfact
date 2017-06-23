@@ -7,8 +7,6 @@ import java.util.List;
 
 public interface DocumentQueryProvider {
 
-    QueryResult<Integer> countQuery(DocumentQueryModel query);
-
     QueryResult<List<DocumentModel>> listQuery(DocumentQueryModel query);
     QueryResult<List<DocumentModel>> listQuery(DocumentQueryModel query, ListQueryParamsModel params);
 
