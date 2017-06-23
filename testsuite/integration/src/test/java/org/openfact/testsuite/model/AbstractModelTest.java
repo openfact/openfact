@@ -16,6 +16,7 @@ public abstract class AbstractModelTest {
                 .addClass(AbstractModelTest.class)
                 .addAsResource("persistence.xml", "META-INF/persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addClasses(TestUtil.getBasicClasses())
                 .addPackage(TestUtil.getEntitiesPackage());
     }
 }

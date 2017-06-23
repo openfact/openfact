@@ -1,15 +1,10 @@
 package org.openfact.testsuite.model;
 
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.arquillian.persistence.UsingDataSet;
 import org.jboss.shrinkwrap.api.Archive;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.openfact.models.*;
 import org.openfact.models.DocumentModel.DocumentType;
 
@@ -21,183 +16,190 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.core.IsNull.notNullValue;
 
-@RunWith(Arquillian.class)
-@UsingDataSet("empty.xml")
-public class DocumentProviderTest {
+public class DocumentProviderTest extends AbstractModelTest {
 
-    public static final String ORGANIZATION_NAME = "SISTCOOP S.A.C.";
     public static final String DOCUMENT_ID = "F001-0001";
 
-    private OrganizationModel ORGANIZATION;
+    @Inject
+    public OrganizationProvider organizationProvider;
 
     @Inject
-    private OrganizationProvider organizationProvider;
+    public DocumentProvider documentProvider;
 
-    @Inject
-    private DocumentProvider documentProvider;
+    public OrganizationModel ORGANIZATION;
 
     @Deployment
     public static Archive deploy() {
         Archive[] libs = TestUtil.getLibraries();
-        WebArchive archive = ShrinkWrap.create(WebArchive.class)
-                .addAsResource("persistence.xml", "META-INF/persistence.xml")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
-                .addClasses(TestUtil.getBasicClasses())
+        WebArchive archive = buildArchive()
                 .addClasses(TestUtil.getOrganizationClasses())
-                .addPackage(TestUtil.getEntitiesPackage())
                 .addClasses(TestUtil.getDocumentClasses());
         return archive.addAsLibraries(libs);
     }
 
     @Before
     public void before() {
-        ORGANIZATION = organizationProvider.createOrganization(ORGANIZATION_NAME);
+        ORGANIZATION = organizationProvider.createOrganization("SISTCOOP S.A.C.");
     }
 
     @Test
-    public void test_create_success() {
+    public void addDocument() {
         DocumentModel document = documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, DOCUMENT_ID);
 
         // Check
-        test_check_create(document);
+        testDocument(document);
     }
 
     @Test
-    public void test_create_custom_type_success() {
-        final String documentType = "CUSTOM_DOCUMENT_TYPE";
-        DocumentModel document = documentProvider.addDocument(ORGANIZATION, documentType, DOCUMENT_ID);
+    public void addDocumentWithCustomType() {
+        final String CUSTOM_TYPE = "CUSTOM_DOCUMENT_TYPE";
+        DocumentModel document = documentProvider.addDocument(ORGANIZATION, CUSTOM_TYPE, DOCUMENT_ID);
 
         // Check
-        test_check_create(document);
-        assertThat("Document Type has changed", document.getDocumentType(), equalTo(documentType));
+        testDocument(document);
+        assertThat(document.getDocumentType(), equalTo(CUSTOM_TYPE));
     }
 
-    private void test_check_create(DocumentModel document) {
-        assertThat("Document has not been created", document, is(notNullValue()));
-        assertThat("Primary key has not been assigned", document.getId(), is(notNullValue()));
-        assertThat("Document ID has changed", document.getID(), equalTo(DOCUMENT_ID));
-        assertThat("Document should have active state", document.isEnabled(), equalTo(true));
+    private void testDocument(DocumentModel document) {
+        assertThat(document, is(notNullValue()));
+        assertThat(document.getId(), is(notNullValue()));
+        assertThat(document.getID(), equalTo(DOCUMENT_ID));
+        assertThat(document.isEnabled(), equalTo(true));
     }
 
     @Test(expected = ModelDuplicateException.class)
-    public void test_duplicate_fail() {
+    public void addDocumentDuplicate() {
         documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, DOCUMENT_ID);
         documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, DOCUMENT_ID);
     }
 
     @Test
-    public void test_duplicate_different_document_type_success() {
+    public void addDocumentDuplicateWithDifferentType() {
         DocumentModel document1 = documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, "F001-001");
         DocumentModel document2 = documentProvider.addDocument(ORGANIZATION, DocumentType.CREDIT_NOTE, "F001-001");
 
-        assertThat("Document1 should have been created", document1, is(notNullValue()));
-        assertThat("Document2 should have been created", document2, is(notNullValue()));
-        assertThat("Both documents have to be different", document1, not(equalTo(document2)));
+        assertThat(document1, is(notNullValue()));
+        assertThat(document2, is(notNullValue()));
+        assertThat(document1, not(equalTo(document2)));
     }
 
     @Test
-    public void test_duplicate_different_organization_success() {
-        DocumentModel document1 = documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, DOCUMENT_ID);
+    public void addDocumentDuplicateOnDifferentOrganizations() {
+        final OrganizationModel ORGANIZATION_AUX = organizationProvider.createOrganization("AUX_ORGANIZATION");
 
-        OrganizationModel ORGANIZATION_AUX = organizationProvider.createOrganization("AUX_ORGANIZATION");
+        DocumentModel document1 = documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, DOCUMENT_ID);
         DocumentModel document2 = documentProvider.addDocument(ORGANIZATION_AUX, DocumentType.INVOICE, DOCUMENT_ID);
 
-        assertThat("Document1 should have been created", document1, is(notNullValue()));
-        assertThat("Document2 should have been created", document2, is(notNullValue()));
-        assertThat("Both documents have to be different", document1, not(equalTo(document2)));
+        assertThat(document1, is(notNullValue()));
+        assertThat(document2, is(notNullValue()));
+        assertThat(document1, not(equalTo(document2)));
     }
 
     @Test
-    public void test_get_by_id_success() {
+    public void getDocument() {
         DocumentModel document1 = documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, DOCUMENT_ID);
         DocumentModel document2 = documentProvider.getDocument(ORGANIZATION, document1.getId());
 
-        assertThat("Both documents have to be the same", document1, equalTo(document2));
+        assertThat(document1, equalTo(document2));
     }
 
     @Test
-    public void test_get_by_id_not_found_success() {
+    public void getUnknownDocument() {
         DocumentModel document = documentProvider.getDocument(ORGANIZATION, UUID.randomUUID().toString());
 
-        assertThat("Document should not exists", document, is(nullValue()));
+        assertThat(document, is(nullValue()));
     }
 
     @Test
-    public void test_get_by_type_and_ID_success() {
+    public void getDocumentByTypeAndID() {
         DocumentModel document1 = documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, DOCUMENT_ID);
         DocumentModel document2 = documentProvider.getDocumentByTypeAndID(ORGANIZATION, DocumentType.INVOICE, document1.getID());
 
-        assertThat("Both organizations have to be the same", document1, equalTo(document2));
+        assertThat(document1, equalTo(document2));
     }
 
     @Test
-    public void test_count_success() {
+    public void getDocumentsCount() {
+        final OrganizationModel ORGANIZATION_AUX = organizationProvider.createOrganization("AUX_ORGANIZATION");
+
+        // Documents on organization1
         documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, DOCUMENT_ID);
         documentProvider.addDocument(ORGANIZATION, DocumentType.CREDIT_NOTE, DOCUMENT_ID);
         documentProvider.addDocument(ORGANIZATION, DocumentType.DEBIT_NOTE, DOCUMENT_ID);
 
-        OrganizationModel ORGANIZATION_AUX = organizationProvider.createOrganization("AUX_ORGANIZATION");
+        // Documents on organization2
         documentProvider.addDocument(ORGANIZATION_AUX, DocumentType.INVOICE, DOCUMENT_ID);
 
         // Check
         int organizationsCount = documentProvider.getDocumentsCount(ORGANIZATION);
 
-        assertThat("Size is not corresponding to the number of documents", organizationsCount, equalTo(3));
+        assertThat(organizationsCount, equalTo(3));
     }
 
     @Test
-    public void test_list_success() {
+    public void getDocuments() {
+        final OrganizationModel ORGANIZATION_AUX = organizationProvider.createOrganization("AUX_ORGANIZATION");
+
+        // Documents on organization1
         documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, DOCUMENT_ID);
         documentProvider.addDocument(ORGANIZATION, DocumentType.CREDIT_NOTE, DOCUMENT_ID);
         documentProvider.addDocument(ORGANIZATION, DocumentType.DEBIT_NOTE, DOCUMENT_ID);
 
-        OrganizationModel ORGANIZATION_AUX = organizationProvider.createOrganization("AUX_ORGANIZATION");
+        // Documents on organization2
         documentProvider.addDocument(ORGANIZATION_AUX, DocumentType.INVOICE, DOCUMENT_ID);
 
+        // Check
         List<DocumentModel> documents = documentProvider.getDocuments(ORGANIZATION);
 
-        assertThat("Result should never be null", documents, is(notNullValue()));
-        assertThat("Size is not corresponding to the number of documents", documents.size(), equalTo(3));
+        assertThat(documents, is(notNullValue()));
+        assertThat(documents.size(), equalTo(3));
     }
 
     @Test
-    public void test_list_limit_success() {
+    public void getDocumentsWithLimits() {
+        final OrganizationModel ORGANIZATION_AUX = organizationProvider.createOrganization("ORGANIZATION_AUX");
+
+        // Documents on organization1
         documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, DOCUMENT_ID);
         documentProvider.addDocument(ORGANIZATION, DocumentType.CREDIT_NOTE, DOCUMENT_ID);
         documentProvider.addDocument(ORGANIZATION, DocumentType.DEBIT_NOTE, DOCUMENT_ID);
 
-        OrganizationModel ORGANIZATION_AUX = organizationProvider.createOrganization("ORGANIZATION_AUX");
+        // Documents on organization2
         documentProvider.addDocument(ORGANIZATION_AUX, DocumentType.INVOICE, DOCUMENT_ID);
 
+        // Check
         List<DocumentModel> documents = documentProvider.getDocuments(ORGANIZATION, 1, 2);
 
-        assertThat("Result should never be null", documents, is(notNullValue()));
-        assertThat("Size is not corresponding to the number of selected documents", documents.size(), equalTo(2));
+        assertThat(documents, is(notNullValue()));
+        assertThat(documents.size(), equalTo(2));
     }
 
     @Test
-    public void test_remove_success() {
+    public void removeDocument() {
         DocumentModel document = documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, DOCUMENT_ID);
         boolean result = documentProvider.removeDocument(ORGANIZATION, document);
 
-        document = documentProvider.getDocument(ORGANIZATION, document.getId());
+        // Check remove operation
+        assertThat(result, equalTo(true));
 
-        assertThat("Result should be true", result, equalTo(true));
-        assertThat("Document was not removed", document, is(nullValue()));
+        // Getting document for verify
+        document = documentProvider.getDocument(ORGANIZATION, document.getId());
+        assertThat(document, is(nullValue()));
     }
 
     @Test
-    public void test_remove_organization_cascade_success() {
+    public void removeOrganization() {
         documentProvider.addDocument(ORGANIZATION, DocumentType.INVOICE, DOCUMENT_ID);
         documentProvider.addDocument(ORGANIZATION, DocumentType.CREDIT_NOTE, DOCUMENT_ID);
 
         boolean result = organizationProvider.removeOrganization(ORGANIZATION);
-        assertThat("Result should be true", result, equalTo(true));
+
+        // Check remove operation
+        assertThat(result, equalTo(true));
 
         // Check documents no longer exists
         List<DocumentModel> documents = documentProvider.getDocuments(ORGANIZATION);
-
-        assertThat("Documents weren't removed", documents.size(), is(0));
+        assertThat(documents.size(), is(0));
     }
 
 }

@@ -2,10 +2,7 @@ package org.openfact.testsuite.model;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.Archive;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openfact.models.ModelDuplicateException;
 import org.openfact.models.OrganizationModel;
@@ -26,90 +23,82 @@ public class OrganizationProviderTest extends AbstractModelTest {
     public static final String ORGANIZATION_NAME = "SISTCOOP S.A.C.";
 
     @Inject
-    OrganizationProvider organizationProvider;
+    public OrganizationProvider organizationProvider;
 
     @Deployment
     public static Archive deploy() {
         Archive[] libs = TestUtil.getLibraries();
-        WebArchive archive = ShrinkWrap.create(WebArchive.class)
-                .addClass(AbstractModelTest.class)
-                .addAsResource("persistence.xml", "META-INF/persistence.xml")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
-                .addClasses(TestUtil.getBasicClasses())
-                .addClasses(TestUtil.getOrganizationClasses())
-                .addPackage(TestUtil.getEntitiesPackage());
+        WebArchive archive = buildArchive().addClasses(TestUtil.getOrganizationClasses());
         return archive.addAsLibraries(libs);
     }
 
-
-
     @Test
-    public void test_create_success() {
+    public void create() {
         OrganizationModel organization = organizationProvider.createOrganization(ORGANIZATION_NAME);
 
         // Check
-        checkOrganizationConsistence(organization);
+        testOrganization(organization);
     }
 
     @Test
-    public void test_create_custom_id_success() {
-        final String id = UUID.randomUUID().toString();
-        OrganizationModel organization = organizationProvider.createOrganization(id, ORGANIZATION_NAME);
+    public void createWithCustomId() {
+        final String ORGANIZATION_ID = UUID.randomUUID().toString();
+        OrganizationModel organization = organizationProvider.createOrganization(ORGANIZATION_ID, ORGANIZATION_NAME);
 
         // Check
-        checkOrganizationConsistence(organization);
-        assertThat("Primary key has not been assigned", organization.getId(), equalTo(id));
+        testOrganization(organization);
+        assertThat(organization.getId(), equalTo(ORGANIZATION_ID));
     }
 
-    private void checkOrganizationConsistence(OrganizationModel organization) {
-        assertThat("Organization has not been created", organization, is(notNullValue()));
-        assertThat("Primary key has not been assigned", organization.getId(), is(notNullValue()));
-        assertThat("Incorrect Organization Name", organization.getName(), equalTo(ORGANIZATION_NAME));
-        assertThat("Organization should have active state", organization.isEnabled(), equalTo(true));
+    private void testOrganization(OrganizationModel organization) {
+        assertThat(organization, is(notNullValue()));
+        assertThat(organization.getId(), is(notNullValue()));
+        assertThat(organization.getName(), equalTo(ORGANIZATION_NAME));
+        assertThat(organization.isEnabled(), equalTo(true));
     }
 
     @Test(expected = ModelDuplicateException.class)
-    public void test_create_duplicate_fail() {
+    public void createDuplicate() {
         organizationProvider.createOrganization(ORGANIZATION_NAME);
         organizationProvider.createOrganization(ORGANIZATION_NAME);
     }
 
     @Test
-    public void test_get_by_id_success() {
+    public void getOrganization() {
         OrganizationModel organization1 = organizationProvider.createOrganization(ORGANIZATION_NAME);
         OrganizationModel organization2 = organizationProvider.getOrganization(organization1.getId());
 
-        assertThat("Both Organizations are not equals", organization1, equalTo(organization2));
+        assertThat(organization1, equalTo(organization2));
     }
 
     @Test
-    public void test_get_by_id_fail() {
-        OrganizationModel organization = organizationProvider.getOrganization(UUID.randomUUID().toString());
-
-        assertThat("Organization should not exists", organization, is(nullValue()));
-    }
-
-    @Test
-    public void test_get_organization_by_name_success() {
+    public void getOrganizationByName() {
         OrganizationModel organization1 = organizationProvider.createOrganization(ORGANIZATION_NAME);
         OrganizationModel organization2 = organizationProvider.getOrganizationByName(organization1.getName());
 
-        assertThat("Both organizations have to be the same", organization1, equalTo(organization2));
+        assertThat(organization1, equalTo(organization2));
     }
 
     @Test
-    public void test_list_organizations_success() {
+    public void getUnknownOrganization() {
+        OrganizationModel organization = organizationProvider.getOrganization(UUID.randomUUID().toString());
+
+        assertThat(organization, is(nullValue()));
+    }
+
+    @Test
+    public void getOrganizations() {
         organizationProvider.createOrganization("organization1");
         organizationProvider.createOrganization("organization2");
 
         List<OrganizationModel> organizations = organizationProvider.getOrganizations();
 
-        assertThat("Result should never be null", organizations, is(notNullValue()));
-        assertThat("Size is not corresponding to the number of organizations", organizations.size(), equalTo(2));
+        assertThat(organizations, is(notNullValue()));
+        assertThat(organizations.size(), equalTo(2));
     }
 
     @Test
-    public void test_list_organizations_limit_success() {
+    public void getOrganizationsWithLimits() {
         organizationProvider.createOrganization("organization1");
         organizationProvider.createOrganization("organization2");
         organizationProvider.createOrganization("organization3");
@@ -117,44 +106,39 @@ public class OrganizationProviderTest extends AbstractModelTest {
 
         List<OrganizationModel> organizations = organizationProvider.getOrganizations(1, 2);
 
-        assertThat("Result should never be null", organizations, is(notNullValue()));
-        assertThat("Size is not corresponding to the number of selected organizations", organizations.size(), equalTo(2));
+        assertThat(organizations, is(notNullValue()));
+        assertThat(organizations.size(), equalTo(2));
     }
 
     @Test
-    public void test_count_success() {
+    public void getOrganizationsCount() {
         organizationProvider.createOrganization("organization1");
         organizationProvider.createOrganization("organization2");
         organizationProvider.createOrganization("organization3");
 
         int organizationsCount = organizationProvider.getOrganizationsCount();
 
-        assertThat("Size is not corresponding to the number of organizations", organizationsCount, equalTo(3));
+        assertThat(organizationsCount, equalTo(3));
     }
 
     @Test
-    public void test_remove_success() {
+    public void removeOrganization() {
         OrganizationModel organization = organizationProvider.createOrganization(ORGANIZATION_NAME);
         boolean result = organizationProvider.removeOrganization(organization);
         organization = organizationProvider.getOrganization(organization.getId());
 
-        assertThat("Result should be true", result, equalTo(true));
-        assertThat("Organization was not removed", organization, is(nullValue()));
+        assertThat(result, equalTo(true));
+        assertThat(organization, is(nullValue()));
     }
 
     @Test
-    public void test_remove_by_id_success() {
+    public void removeOrganizationById() {
         OrganizationModel organization = organizationProvider.createOrganization(ORGANIZATION_NAME);
         boolean result = organizationProvider.removeOrganization(organization.getId());
         organization = organizationProvider.getOrganization(organization.getId());
 
-        assertThat("Result should be true", result, equalTo(true));
-        assertThat("Organization was not removed", organization, is(nullValue()));
-    }
-
-    @Ignore
-    @Test
-    public void disable_document_success() {
+        assertThat(result, equalTo(true));
+        assertThat(organization, is(nullValue()));
     }
 
 }
