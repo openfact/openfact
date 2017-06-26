@@ -374,6 +374,8 @@ public class DocumentsAdminResource {
     @Produces(MediaType.APPLICATION_JSON)
     public SearchResultsRepresentation<DocumentRepresentation> getDocuments(
             @PathParam("organization") final String organizationName,
+            @QueryParam("documentType") String documentType,
+            @QueryParam("documentId") String documentId,
             @QueryParam("query") @DefaultValue("") String query,
             @QueryParam("requiredActions") final List<String> requiredActions,
             @QueryParam("includeDisabled") @DefaultValue("false") final Boolean includeDisabled,
@@ -384,38 +386,50 @@ public class DocumentsAdminResource {
 
         auth.requireView();
 
-        // Process params
-        DocumentRequiredAction[] documentRequiredActions = requiredActions.stream()
-                .map(requiredAction -> DocumentRequiredAction.valueOf(requiredAction.toUpperCase()))
-                .toArray(DocumentRequiredAction[]::new);
-        firstResult = firstResult != null ? firstResult : -1;
-        maxResults = maxResults != null ? maxResults : Constants.DEFAULT_MAX_RESULTS;
+        List<DocumentRepresentation> documents;
 
-        // Jql
-        DocumentQuery jql = documentProvider
-                .createQuery(organization)
-                .requiredAction(documentRequiredActions)
-                .applyQuery(query);
+        if (documentType != null && documentId != null) {
+            DocumentModel document = documentProvider.getDocumentByTypeAndDocumentId(documentType, documentId, organization);
+            documents = Arrays.asList(modelToRepresentation.toRepresentation(document, true));
 
-        if (!includeDisabled) {
-            jql.enabled(true);
+            SearchResultsRepresentation<DocumentRepresentation> result = new SearchResultsRepresentation<>();
+            result.setItems(documents);
+            result.setTotalSize(1);
+            return result;
+        } else {
+            // Process params
+            DocumentRequiredAction[] documentRequiredActions = requiredActions.stream()
+                    .map(requiredAction -> DocumentRequiredAction.valueOf(requiredAction.toUpperCase()))
+                    .toArray(DocumentRequiredAction[]::new);
+            firstResult = firstResult != null ? firstResult : -1;
+            maxResults = maxResults != null ? maxResults : Constants.DEFAULT_MAX_RESULTS;
+
+            // Jql
+            DocumentQuery jql = documentProvider
+                    .createQuery(organization)
+                    .requiredAction(documentRequiredActions)
+                    .applyQuery(query);
+
+            if (!includeDisabled) {
+                jql.enabled(true);
+            }
+
+            DocumentQuery.ListEntityQuery listEntityQuery = jql.entityQuery().resultList();
+            DocumentQuery.CountQuery countQuery = jql.countQuery();
+
+            documents = listEntityQuery
+                    .firstResult(firstResult)
+                    .maxResults(maxResults)
+                    .getResultList().stream()
+                    .map(documentModel -> modelToRepresentation.toRepresentation(documentModel, false))
+                    .collect(Collectors.toList());
+            int totalSize = countQuery.getTotalCount();
+
+            SearchResultsRepresentation<DocumentRepresentation> result = new SearchResultsRepresentation<>();
+            result.setItems(documents);
+            result.setTotalSize(totalSize);
+            return result;
         }
-
-        DocumentQuery.ListEntityQuery listEntityQuery = jql.entityQuery().resultList();
-        DocumentQuery.CountQuery countQuery = jql.countQuery();
-
-        List<DocumentRepresentation> documents = listEntityQuery
-                .firstResult(firstResult)
-                .maxResults(maxResults)
-                .getResultList().stream()
-                .map(documentModel -> modelToRepresentation.toRepresentation(documentModel, false))
-                .collect(Collectors.toList());
-        int totalSize = countQuery.getTotalCount();
-
-        SearchResultsRepresentation<DocumentRepresentation> result = new SearchResultsRepresentation<>();
-        result.setItems(documents);
-        result.setTotalSize(totalSize);
-        return result;
     }
 
 //    @GET
@@ -733,7 +747,7 @@ public class DocumentsAdminResource {
     @Path("/{document}/send-to-third-party")
     @Produces(MediaType.APPLICATION_JSON)
     public Response sendToThirdParty(@PathParam("organization") final String organizationName,
-                                 @PathParam("document") final String documentIdPk) throws ModelErrorResponseException {
+                                     @PathParam("document") final String documentIdPk) throws ModelErrorResponseException {
         OrganizationModel organization = getOrganizationModel(organizationName);
         OrganizationAuth auth = getAuth(organization);
 
