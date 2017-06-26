@@ -4,7 +4,7 @@
     <parent>
         <artifactId>openfact</artifactId>
         <groupId>org.sistcoop</groupId>
-        <version>1.0.RC26</version>
+        <version>1.0.RC27-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
