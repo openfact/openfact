@@ -1,7 +1,7 @@
 package org.openfact.components.utils;
 
-import org.openfact.keys.qualifiers.RsaKeyType;
 import org.openfact.component.ComponentFactory;
+import org.openfact.keys.qualifiers.RsaKeyType;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Any;
@@ -22,19 +22,18 @@ public class DefaultComponentUtil implements ComponentUtil {
         try {
             Class<?> aClass = Class.forName(providerType);
 
-            Optional<RsaKeyType> op = RsaKeyType.findByProviderId(providerId);
-            if (!op.isPresent()) {
+            Optional<RsaKeyType> optional = RsaKeyType.findByProviderId(providerId);
+            if (!optional.isPresent()) {
                 return null;
             }
 
             Annotation componentProviderLiteral = new ComponentProviderLiteral(aClass);
-            Annotation rsaKeyProviderLiteral = new RsaKeyProviderLiteral(op.get());
+            Annotation rsaKeyProviderLiteral = new RsaKeyProviderLiteral(optional.get());
 
             return componentFactories.select(ComponentFactory.class, componentProviderLiteral, rsaKeyProviderLiteral).get();
         } catch (ClassNotFoundException e) {
             throw new IllegalStateException("Invalid factory", e);
         }
     }
-
 
 }
