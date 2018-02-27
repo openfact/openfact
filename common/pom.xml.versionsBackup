@@ -3,20 +3,20 @@
     <parent>
         <groupId>org.sistcoop</groupId>
         <artifactId>openfact</artifactId>
-        <version>1.0.1.Final</version>
+        <version>1.0.0.Final</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>openfact-core</artifactId>
-    <name>Openfact Core</name>
-    <packaging>jar</packaging>
+    <artifactId>openfact-common</artifactId>
+    <name>Openfact Common</name>
+    <description>Common library and dependencies shared with server and all adapters</description>
 
     <properties>
         <timestamp>${maven.build.timestamp}</timestamp>
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
         <openfact.osgi.export>
-            org.openfact.*
+            org.openfact.common.*
         </openfact.osgi.export>
         <openfact.osgi.import>
             *;resolution:=optional
@@ -24,12 +24,6 @@
     </properties>
 
     <dependencies>
-        <!--Openfact -->
-        <dependency>
-            <groupId>org.sistcoop</groupId>
-            <artifactId>openfact-common</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-jdk15on</artifactId>
@@ -39,27 +33,13 @@
             <artifactId>bcpkix-jdk15on</artifactId>
         </dependency>
 
-        <!-- Jackson -->
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <scope>provided</scope>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jsr310</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- Json -->
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
         </dependency>
 
         <!-- Test -->

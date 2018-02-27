@@ -4,7 +4,7 @@
     <parent>
         <artifactId>openfact-testsuite-integration</artifactId>
         <groupId>org.sistcoop</groupId>
-        <version>1.0.1.Final</version>
+        <version>1.0.0.Final</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 

@@ -3,16 +3,18 @@
     <parent>
         <groupId>org.sistcoop</groupId>
         <artifactId>openfact</artifactId>
-        <version>1.0.1.Final</version>
+        <version>1.0.0.Final</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>openfact-client</artifactId>
-    <name>Openfact Client</name>
+    <artifactId>openfact-distribution</artifactId>
+    <name>Openfact Distribution</name>
     <packaging>pom</packaging>
 
     <modules>
-        <module>admin-client</module>
+        <module>war</module>
+        <!--<module>wildfly-swarm</module>-->
     </modules>
+
 </project>
