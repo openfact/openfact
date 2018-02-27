@@ -46,7 +46,7 @@ public class DocumentLineAttributeEntity {
     @Column(name = "NAME")
     protected String name;
 
-    @Column(name = "VALUE")
+    @Column(name = "VALUE", length = 700)
     protected String value;
 
     public String getName() {
