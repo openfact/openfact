@@ -6,10 +6,11 @@ import org.openfact.models.jpa.entities.CompanyEntity;
 import org.openfact.models.utils.ModelUtils;
 
 import javax.ejb.Stateless;
+import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-@Stateless
+@ApplicationScoped
 public class JpaCompanyProvider implements CompanyProvider {
 
     @PersistenceContext

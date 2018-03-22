@@ -6,13 +6,14 @@ import org.openfact.models.jpa.entities.UserEntity;
 import org.openfact.models.utils.ModelUtils;
 
 import javax.ejb.Stateless;
+import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
 
-@Stateless
+@ApplicationScoped
 public class JpaUserProvider implements UserProvider {
 
     @PersistenceContext
