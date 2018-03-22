@@ -1,1 +1,0 @@
-${msg("emailCreditNoteBody", user, organizationName)}
