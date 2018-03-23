@@ -2,6 +2,6 @@ package org.openfact.models;
 
 public interface CompanyProvider {
 
-    CompanyModel addCompany(String name);
+    CompanyModel addCompany(String name, UserModel owner);
 
 }

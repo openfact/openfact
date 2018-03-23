@@ -2,11 +2,12 @@ package org.openfact.models.jpa;
 
 import org.openfact.models.CompanyModel;
 import org.openfact.models.ModelType;
+import org.openfact.models.UserModel;
 import org.openfact.models.jpa.entities.CompanyEntity;
 
 import javax.persistence.EntityManager;
 
-public class CompanyAdapter implements CompanyModel {
+public class CompanyAdapter implements CompanyModel, JpaModel<CompanyEntity> {
 
     private final EntityManager em;
     private final CompanyEntity company;
@@ -14,6 +15,18 @@ public class CompanyAdapter implements CompanyModel {
     public CompanyAdapter(EntityManager em, CompanyEntity company) {
         this.em = em;
         this.company = company;
+    }
+
+    public static CompanyEntity toEntity(CompanyModel model, EntityManager em) {
+        if (model instanceof CompanyAdapter) {
+            return ((CompanyAdapter) model).getEntity();
+        }
+        return em.getReference(CompanyEntity.class, model.getId());
+    }
+
+    @Override
+    public CompanyEntity getEntity() {
+        return company;
     }
 
     @Override
@@ -34,5 +47,20 @@ public class CompanyAdapter implements CompanyModel {
     @Override
     public void setName(String name) {
         company.setName(name);
+    }
+
+    @Override
+    public String getDescription() {
+        return company.getDescription();
+    }
+
+    @Override
+    public void setDescription(String description) {
+        company.setDescription(description);
+    }
+
+    @Override
+    public UserModel getOwner() {
+        return new UserAdapter(em, company.getOwner());
     }
 }

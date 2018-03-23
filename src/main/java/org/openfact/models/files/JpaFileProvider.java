@@ -18,12 +18,17 @@ public class JpaFileProvider implements FileProvider {
     //private static final String CAMEL_FTP_PATTERN = "{0}://{1}@{2}/{3}?password={4}&passiveMode={5}";
 
     //ProducerTemplate producerTemplate;
+//    @Override
+//    public String addFile(String filename, byte[] bytes) {
+//        DefaultCamelContext context = new DefaultCamelContext();
+//        ProducerTemplate producerTemplate = context.createProducerTemplate();
+//        producerTemplate.sendBodyAndHeader("file://home/admin", bytes, Exchange.FILE_NAME, filename);
+//        return "Hello";
+//    }
+
     @Override
-    public String addFile(String filename, byte[] bytes) {
-        DefaultCamelContext context = new DefaultCamelContext();
-        ProducerTemplate producerTemplate = context.createProducerTemplate();
-        producerTemplate.sendBodyAndHeader("file://home/admin", bytes, Exchange.FILE_NAME, filename);
-        return "Hello";
+    public String addFile(String filename, byte[] bytes, String companyId) {
+        return null;
     }
 
     /**

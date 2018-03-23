@@ -19,6 +19,15 @@ public class CompanyEntity implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @NotNull
+    @Column(name = "description")
+    private String description;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner_id", foreignKey = @ForeignKey)
+    private UserEntity owner;
+
     @Version
     @Column(name = "version")
     private int version;
@@ -37,6 +46,22 @@ public class CompanyEntity implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public UserEntity getOwner() {
+        return owner;
+    }
+
+    public void setOwner(UserEntity owner) {
+        this.owner = owner;
     }
 
     public int getVersion() {

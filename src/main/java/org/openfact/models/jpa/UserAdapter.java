@@ -6,7 +6,7 @@ import org.openfact.models.jpa.entities.UserEntity;
 
 import javax.persistence.EntityManager;
 
-public class UserAdapter implements UserModel {
+public class UserAdapter implements UserModel, JpaModel<UserEntity> {
 
     private final EntityManager em;
     private final UserEntity user;
@@ -14,6 +14,18 @@ public class UserAdapter implements UserModel {
     public UserAdapter(EntityManager em, UserEntity user) {
         this.em = em;
         this.user = user;
+    }
+
+    public static UserEntity toEntity(UserModel model, EntityManager em) {
+        if (model instanceof UserAdapter) {
+            return ((UserAdapter) model).getEntity();
+        }
+        return em.getReference(UserEntity.class, model.getId());
+    }
+
+    @Override
+    public UserEntity getEntity() {
+        return user;
     }
 
     @Override

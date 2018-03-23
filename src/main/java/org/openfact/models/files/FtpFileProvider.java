@@ -19,12 +19,17 @@ public class FtpFileProvider implements FileProvider {
 
     //ProducerTemplate producerTemplate;
 
+//    @Override
+//    public String addFile(String filename, byte[] bytes) {
+//        DefaultCamelContext context = new DefaultCamelContext();
+//        ProducerTemplate producerTemplate = context.createProducerTemplate();
+//        producerTemplate.sendBodyAndHeader("file:openfact-files", bytes, Exchange.FILE_NAME, filename);
+//        return "Hello";
+//    }
+
     @Override
-    public String addFile(String filename, byte[] bytes) {
-        DefaultCamelContext context = new DefaultCamelContext();
-        ProducerTemplate producerTemplate = context.createProducerTemplate();
-        producerTemplate.sendBodyAndHeader("file:openfact-files", bytes, Exchange.FILE_NAME, filename);
-        return "Hello";
+    public String addFile(String filename, byte[] bytes, String companyId) {
+        return null;
     }
 
     /**

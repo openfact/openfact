@@ -1,7 +1,10 @@
 package org.openfact;
 
-import org.openfact.models.FileProvider;
-import org.openfact.models.FileProviderVendor;
+import org.openfact.models.UserModel;
+import org.openfact.models.UserProvider;
+import org.openfact.models.utils.ModelToRepresentation;
+import org.openfact.representations.idm.UserRepresentation;
+import org.openfact.security.ISecurityContext;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -10,6 +13,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.Optional;
 
 @Path("profile")
 @ApplicationScoped
@@ -18,13 +22,19 @@ import javax.ws.rs.core.MediaType;
 public class ProfileResource {
 
     @Inject
-    @FileProviderVendor(type = FileProviderVendor.Type.FILESYSTEM)
-    private FileProvider fileProvider;
+    private UserProvider userProvider;
+
+    @Inject
+    private ISecurityContext securityContext;
 
     @GET
-    public String test() {
-        String result = fileProvider.addFile("carlos.txt", new byte[]{0, 1, 2, 3, 4, 5});
-        System.out.println(result);
-        return result;
+    public UserRepresentation getProfile() {
+        Optional<UserModel> userModel = userProvider.getUserByIdentityId(securityContext.getIdentityId());
+        return ModelToRepresentation.toRepresentation(userModel.orElseGet(this::firstLogin), true);
     }
+
+    private UserModel firstLogin() {
+        return userProvider.addUser(securityContext.getUsername(), securityContext.getIdentityId(), securityContext.getIdentityProviderAlias());
+    }
+
 }
