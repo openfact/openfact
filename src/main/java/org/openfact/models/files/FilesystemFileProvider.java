@@ -1,29 +1,28 @@
 package org.openfact.models.files;
 
+import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
 import org.apache.camel.ProducerTemplate;
+import org.apache.camel.cdi.ContextName;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.openfact.models.FileProvider;
 import org.openfact.models.FileProviderVendor;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
 @ApplicationScoped
 @FileProviderVendor(type = FileProviderVendor.Type.FILESYSTEM)
 public class FilesystemFileProvider implements FileProvider {
 
-    /**
-     * Camel URI, format is ftp://user@host/fileName?password=secret&passiveMode=true
-     */
-    //private static final String CAMEL_FTP_PATTERN = "{0}://{1}@{2}/{3}?password={4}&passiveMode={5}";
-
-    //ProducerTemplate producerTemplate;
+    @Inject
+    @ContextName("cdi-context")
+    private CamelContext camelctx;
 
     @Override
     public String addFile(String filename, byte[] bytes) {
-        DefaultCamelContext context = new DefaultCamelContext();
-        ProducerTemplate producerTemplate = context.createProducerTemplate();
-        producerTemplate.sendBodyAndHeader("file://home/admin", bytes, Exchange.FILE_NAME, filename);
+        ProducerTemplate producerTemplate = camelctx.createProducerTemplate();
+        producerTemplate.sendBodyAndHeader("direct:start", "Hello", Exchange.FILE_NAME, filename);
         return "Hello";
     }
 
