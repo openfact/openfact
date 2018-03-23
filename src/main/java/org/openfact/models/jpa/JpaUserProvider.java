@@ -5,7 +5,6 @@ import org.openfact.models.UserProvider;
 import org.openfact.models.jpa.entities.UserEntity;
 import org.openfact.models.utils.ModelUtils;
 
-import javax.ejb.Stateless;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

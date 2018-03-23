@@ -1,13 +1,15 @@
-package org.openfact.models;
+package org.openfact.models.files;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.impl.DefaultCamelContext;
+import org.openfact.models.FileProvider;
+import org.openfact.models.FileProviderVendor;
 
 import javax.enterprise.context.ApplicationScoped;
-import java.text.MessageFormat;
 
 @ApplicationScoped
+@FileProviderVendor(type = FileProviderVendor.Type.DROPBOX)
 public class DropboxFileProvider implements FileProvider {
 
     /**
