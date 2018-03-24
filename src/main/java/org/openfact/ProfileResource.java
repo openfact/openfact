@@ -36,7 +36,10 @@ public class ProfileResource {
     }
 
     private UserModel firstLogin() {
-        return userProvider.addUser(securityContext.getUsername(), securityContext.getIdentityId(), securityContext.getIdentityProviderAlias());
+        UserModel user = userProvider.addUser(securityContext.getUsername(), securityContext.getIdentityId(), securityContext.getIdentityProviderAlias());
+        user.setEmail(securityContext.getEmail());
+        user.setFullName(securityContext.getFullName());
+        return user;
     }
 
 }

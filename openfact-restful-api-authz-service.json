@@ -3,46 +3,20 @@
   "policyEnforcementMode": "ENFORCING",
   "resources": [
     {
-      "name": "User Self Profile Resource",
-      "uri": "/api/profile",
-      "type": "http://openfact.com/self-profile",
+      "name": "User Profile Resource",
+      "uri": "/profile",
+      "type": "http://openfact.com/profile",
       "scopes": [
         {
-          "name": "self-profile:view"
-        }
-      ]
-    },
-    {
-      "name": "User Resource",
-      "uri": "/api/users/*",
-      "type": "http://openfact.com/users",
-      "scopes": [
-        {
-          "name": "user:view"
-        },
-        {
-          "name": "user:manage"
-        }
-      ]
-    },
-    {
-      "name": "Company Resource",
-      "uri": "/api/companies/*",
-      "type": "http://openfact.com/companies",
-      "scopes": [
-        {
-          "name": "company:view"
-        },
-        {
-          "name": "company:manage"
+          "name": "urn:openfact.com:scopes:profile:view"
         }
       ]
     }
   ],
   "policies": [
     {
-      "name": "Any User Policy",
-      "description": "Defines that only users from well known clients are allowed to access",
+      "name": "Only User Policy",
+      "description": "Defines that only users with role[user] are allowed to access",
       "type": "role",
       "logic": "POSITIVE",
       "decisionStrategy": "UNANIMOUS",
@@ -51,97 +25,20 @@
       }
     },
     {
-      "name": "Only Owner Policy",
-      "description": "Defines that only the resource owner is allowed to do something",
-      "type": "js",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "code": "var context = $evaluation.getContext();\nvar identity = context.getIdentity();\nvar permission = $evaluation.getPermission();\n\nif (permission.getResource() && permission.getResource().getOwner() == identity.getId()) {\n    $evaluation.grant();\n}"
-      }
-    },
-    {
-      "name": "View Self Profile Permission",
-      "description": "Defines who is allowed to view an user self profile",
-      "type": "scope",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "scopes": "[\"self-profile:view\"]",
-        "applyPolicies": "[\"Any User Policy\"]"
-      }
-    },
-    {
       "name": "View User Permission",
-      "description": "Defines who is allowed to view an user",
+      "description": "Defines who is allowed to view an user profile",
       "type": "scope",
       "logic": "POSITIVE",
       "decisionStrategy": "UNANIMOUS",
       "config": {
-        "scopes": "[\"user:view\"]",
-        "applyPolicies": "[\"Any User Policy\"]"
-      }
-    },
-    {
-      "name": "Manage User Permission",
-      "description": "Defines who is allowed to manage an user",
-      "type": "scope",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "scopes": "[\"user:manage\"]",
-        "applyPolicies": "[\"Only Owner Policy\"]"
-      }
-    },
-    {
-      "name": "View Company Permission",
-      "description": "Defines who is allowed to view a company",
-      "type": "scope",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "scopes": "[\"company:view\"]",
-        "applyPolicies": "[\"Any User Policy\"]"
-      }
-    },
-    {
-      "name": "Manage Company Permission",
-      "description": "Defines who is allowed to manage an company",
-      "type": "scope",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "scopes": "[\"company:manage\"]",
-        "applyPolicies": "[\"Only Owner Policy\"]"
-      }
-    },
-    {
-      "name": "View Document Permission",
-      "description": "Defines who is allowed to view a document",
-      "type": "scope",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "scopes": "[\"company:view\"]",
-        "applyPolicies": "[\"Any User Policy\"]"
+        "applyPolicies": "[\"Only User Policy\"]",
+        "scopes": "[\"urn:openfact.com:scopes:profile:view\"]"
       }
     }
   ],
   "scopes": [
     {
-      "name": "self-profile:view"
-    },
-    {
-      "name": "user:view"
-    },
-    {
-      "name": "user:manage"
-    },
-    {
-      "name": "company:view"
-    },
-    {
-      "name": "company:manage"
+      "name": "urn:openfact.com:scopes:profile:view"
     }
   ]
 }

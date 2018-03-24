@@ -14,7 +14,7 @@
       "credentials": [
         {
           "type": "password",
-          "value": "password"
+          "value": "carlos"
         }
       ],
       "realmRoles": [
@@ -41,7 +41,12 @@
   "roles": {
     "realm": [
       {
-        "name": "user"
+        "name": "user",
+        "description": "User privileges"
+      },
+      {
+        "name": "admin",
+        "description": "Administrator privileges"
       }
     ]
   },
@@ -52,10 +57,24 @@
   ],
   "clients": [
     {
+      "clientId": "openfact-html5-client",
+      "enabled": true,
+      "adminUrl": "/openfact-html5-client",
+      "baseUrl": "/openfact-html5-client",
+      "publicClient": true,
+      "consentRequired" : true,
+      "fullScopeAllowed" : true,
+      "redirectUris": [
+        "http://localhost:4200/*"
+      ],
+      "webOrigins": [
+        "http://localhost:4200"
+      ]
+    },
+    {
       "clientId": "openfact-restful-api",
       "secret": "secret",
       "enabled": true,
-      "adminUrl": "/openfact-restful-api",
       "baseUrl": "/openfact-restful-api",
       "authorizationServicesEnabled": true,
       "redirectUris": [
@@ -64,18 +83,6 @@
       "webOrigins": [
         "http://localhost:8080"
       ]
-    },
-    {
-      "clientId": "openfact-html5-client",
-      "enabled": true,
-      "baseUrl": "/openfact-html5-client/index.html",
-      "redirectUris": [
-        "http://localhost:4200/*"
-      ],
-      "webOrigins": [
-        "http://localhost:4200"
-      ],
-      "publicClient": true
     }
   ],
   "keycloakVersion": "3.4.3.Final"

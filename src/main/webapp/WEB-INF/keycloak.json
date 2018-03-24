@@ -7,56 +7,13 @@
   "credentials": {
     "secret": "${sso.clientSecret:secret}"
   },
-  "use-resource-role-mappings": true,
   "enable-cors": true,
   "cors-exposed-headers": "WWW-Authenticate",
   "policy-enforcer": {
-    "enforcement-mode": "PERMISSIVE",
     "user-managed-access": {},
     "paths": [
       {
-        "path": "/api/profile"
-      },
-      {
-        "path": "/api/users/*",
-        "methods": [
-          {
-            "method": "GET",
-            "scopes": [
-              "urn:openfact.com:scopes:user:view"
-            ]
-          }
-        ]
-      },
-      {
-        "name": "User Resource",
-        "path": "/api/users/{id}",
-        "methods": [
-          {
-            "method": "PUT",
-            "scopes": [
-              "user:manage"
-            ]
-          }
-        ]
-      },
-      {
-        "name": "Company Resource",
-        "path": "/api/companies/{id}",
-        "methods": [
-          {
-            "method": "PUT",
-            "scopes": [
-              "company:manage"
-            ]
-          },
-          {
-            "method": "DELETE",
-            "scopes": [
-              "company:manage"
-            ]
-          }
-        ]
+        "path": "/profile"
       }
     ]
   }

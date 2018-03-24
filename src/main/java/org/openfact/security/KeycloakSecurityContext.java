@@ -1,9 +1,11 @@
 package org.openfact.security;
 
 import org.keycloak.KeycloakPrincipal;
+import org.keycloak.representations.AccessToken;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.core.Context;
 
 @ApplicationScoped
 @SecurityContextType(name = SecurityContextType.IdentityProvider.KEYCLOAK)
@@ -16,7 +18,10 @@ public class KeycloakSecurityContext extends AbstractSecurityContext implements 
 
     @Override
     public String getUsername() {
-        return servletRequest.get().getRemoteUser();
+        HttpServletRequest request = servletRequest.get();
+        KeycloakPrincipal<org.keycloak.KeycloakSecurityContext> principal = (KeycloakPrincipal<org.keycloak.KeycloakSecurityContext>) request.getUserPrincipal();
+        AccessToken accessToken = principal.getKeycloakSecurityContext().getToken();
+        return accessToken.getPreferredUsername();
     }
 
     @Override
