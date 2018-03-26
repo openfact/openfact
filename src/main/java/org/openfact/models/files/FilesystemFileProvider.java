@@ -32,7 +32,7 @@ public class FilesystemFileProvider implements FileProvider {
     private CamelContext camelctx;
 
     @Inject
-    @ConfigurationValue("clarksnut.files.filesystem.folder")
+    @ConfigurationValue("openfact.files.filesystem.folder")
     private Optional<String> folder;
 
     @Override

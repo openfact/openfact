@@ -10,6 +10,7 @@ import java.io.Serializable;
         @UniqueConstraint(columnNames = "identity_id")
 })
 @NamedQueries(value = {
+        @NamedQuery(name = "GetUserByUsername", query = "select u from UserEntity u where u.username=:username"),
         @NamedQuery(name = "GetUserByIdentityId", query = "select u from UserEntity u where u.identityId=:identityId")
 })
 public class UserEntity implements Serializable {

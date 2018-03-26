@@ -10,20 +10,20 @@ import org.openfact.representations.idm.UserRepresentation;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.Optional;
 
-@UserContext
+@Transactional
+@Path("companies")
 @ApplicationScoped
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class CompaniesResource {
-
-    private static final ThreadLocal<UserModel> userModel = new ThreadLocal<>();
 
     @Inject
     private UserProvider userProvider;
@@ -31,17 +31,10 @@ public class CompaniesResource {
     @Inject
     private CompanyProvider companyProvider;
 
-    public static void setUser(UserModel user) {
-        userModel.set(user);
-    }
-
-    public static void clearUser() {
-        userModel.remove();
-    }
-
     @POST
-    public Response createCompany(CompanyRepresentation companyRepresentation) {
-        UserRepresentation ownerRepresentation = companyRepresentation.getOwner();
+    @Path("/")
+    public Response createCompany(@Valid CompanyRepresentation companyRepresentation) {
+        CompanyRepresentation.CompanyOwnerRepresentation ownerRepresentation = companyRepresentation.getOwner();
 
         Optional<UserModel> ownerModel = userProvider.getUser(ownerRepresentation.getId());
         if (!ownerModel.isPresent()) {
@@ -56,7 +49,7 @@ public class CompaniesResource {
 
     @GET
     public List<CompanyRepresentation> getCompanies() {
-        return null;
+        throw new ForbiddenException();
     }
 
 }

@@ -29,7 +29,7 @@ public class DropboxFileProvider implements FileProvider {
     private CamelContext camelctx;
 
     @Inject
-    @ConfigurationValue("clarksnut.files.dropbox.folder")
+    @ConfigurationValue("openfact.files.dropbox.folder")
     private Optional<String> folder;
 
     @Override

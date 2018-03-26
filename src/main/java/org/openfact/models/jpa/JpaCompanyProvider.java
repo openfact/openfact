@@ -9,7 +9,9 @@ import org.openfact.models.utils.ModelUtils;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
+@Transactional
 @ApplicationScoped
 public class JpaCompanyProvider implements CompanyProvider {
 

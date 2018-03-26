@@ -13,17 +13,20 @@ public class ModelToRepresentation {
         // Util Class
     }
 
-    public static CompanyRepresentation toRepresentation(CompanyModel companyModel, boolean fullInfo) {
+    public static CompanyRepresentation toRepresentation(CompanyModel model, boolean fullInfo) {
         CompanyRepresentation rep = new CompanyRepresentation();
-        rep.setId(companyModel.getId());
-        rep.setName(companyModel.getName());
-        rep.setOwner(toRepresentation(companyModel.getOwner(), fullInfo));
+        rep.setId(model.getId());
+        rep.setName(model.getName());
+
+        CompanyRepresentation.CompanyOwnerRepresentation ownerRepresentation = new CompanyRepresentation.CompanyOwnerRepresentation();
+        rep.setOwner(ownerRepresentation);
+        ownerRepresentation.setId(model.getOwner().getId());
 
         if (fullInfo) {
-            rep.setDescription(companyModel.getDescription());
+            rep.setDescription(model.getDescription());
         }
 
-        return null;
+        return rep;
     }
 
     public static UserRepresentation toRepresentation(UserModel model, boolean fullInfo) {

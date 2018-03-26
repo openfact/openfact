@@ -11,7 +11,7 @@ public class SecurityContextFactory {
     @Produces
     @ApplicationScoped
     public ISecurityContext provideSecurityContext(
-            @ConfigurationValue("w4tracking.security-context.type") Optional<String> securityContext,
+            @ConfigurationValue("openfact.security-context.type") Optional<String> securityContext,
             @SecurityContextType(name = SecurityContextType.IdentityProvider.KEYCLOAK) ISecurityContext keycloakSecurityContext
     ) {
         String selectedSecurityContext = securityContext.orElse("keycloak");

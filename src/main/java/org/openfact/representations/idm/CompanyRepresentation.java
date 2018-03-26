@@ -1,11 +1,15 @@
 package org.openfact.representations.idm;
 
+import javax.validation.constraints.NotNull;
+
 public class CompanyRepresentation {
 
     private String id;
     private String name;
     private String description;
-    private UserRepresentation owner;
+
+    @NotNull
+    private CompanyOwnerRepresentation owner;
 
     public String getId() {
         return id;
@@ -31,11 +35,25 @@ public class CompanyRepresentation {
         this.description = description;
     }
 
-    public UserRepresentation getOwner() {
+    public CompanyOwnerRepresentation getOwner() {
         return owner;
     }
 
-    public void setOwner(UserRepresentation owner) {
+    public void setOwner(CompanyOwnerRepresentation owner) {
         this.owner = owner;
+    }
+
+    public static class CompanyOwnerRepresentation {
+
+        @NotNull
+        private String id;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
     }
 }

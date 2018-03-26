@@ -1,21 +1,21 @@
 package org.openfact;
 
-import org.openfact.models.CompanyModel;
-import org.openfact.models.CompanyProvider;
 import org.openfact.models.UserModel;
 import org.openfact.models.UserProvider;
 import org.openfact.models.utils.ModelToRepresentation;
-import org.openfact.representations.idm.CompanyRepresentation;
 import org.openfact.representations.idm.UserRepresentation;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 @Path("users")
 @ApplicationScoped
 @Produces(MediaType.APPLICATION_JSON)
@@ -25,8 +25,31 @@ public class UsersResource {
     @Inject
     private UserProvider userProvider;
 
-    @Inject
-    private CompaniesResource companiesResource;
+    @POST
+    @Path("/")
+    public void createUser() {
+        throw new ForbiddenException();
+    }
+
+    @GET
+    @Path("/")
+    public List<UserRepresentation> getUsers(
+            @QueryParam("userId") String userId,
+            @QueryParam("username") String username
+    ) {
+        if (userId != null) {
+            return userProvider.getUser(userId)
+                    .map(model -> Collections.singletonList(ModelToRepresentation.toRepresentation(model, false)))
+                    .orElseGet(Collections::emptyList);
+        }
+        if (username != null) {
+            return userProvider.getUserByUsername(username)
+                    .map(model -> Collections.singletonList(ModelToRepresentation.toRepresentation(model, false)))
+                    .orElseGet(Collections::emptyList);
+        } else {
+            throw new IllegalStateException("Unimplemented");
+        }
+    }
 
     @GET
     @Path("/{userId}")
@@ -42,11 +65,10 @@ public class UsersResource {
         return ModelToRepresentation.toRepresentation(userModel, true);
     }
 
-    @Path("/{userId}/companies")
-    public CompaniesResource userCompanies(@PathParam("userId") String userId) {
-        UserModel userModel = userProvider.getUser(userId).orElseThrow(NotFoundException::new);
-        CompaniesResource.setUser(userModel);
-        return companiesResource;
+    @DELETE
+    @Path("/{userId}")
+    public void deleteUser(@PathParam("userId") String userId) {
+        throw new ForbiddenException();
     }
 
 }

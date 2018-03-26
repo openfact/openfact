@@ -8,5 +8,7 @@ public interface UserProvider {
 
     Optional<UserModel> getUser(String id);
 
+    Optional<UserModel> getUserByUsername(String username);
+
     Optional<UserModel> getUserByIdentityId(String identityId);
 }

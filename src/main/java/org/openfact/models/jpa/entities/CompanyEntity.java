@@ -19,7 +19,6 @@ public class CompanyEntity implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @NotNull
     @Column(name = "description")
     private String description;
 

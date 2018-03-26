@@ -14,6 +14,88 @@
     "paths": [
       {
         "path": "/profile"
+      },
+      {
+        "path": "/users/*",
+        "methods": [
+          {
+            "method": "POST",
+            "scopes": [
+              "urn:openfact.com:scopes:user:create"
+            ]
+          },
+          {
+            "method": "GET",
+            "scopes": [
+              "urn:openfact.com:scopes:user:view"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "User Resource",
+        "path": "/users/{id}",
+        "methods": [
+          {
+            "method": "GET",
+            "scopes": [
+              "urn:openfact.com:scopes:user:view"
+            ]
+          },
+          {
+            "method": "PUT",
+            "scopes": [
+              "urn:openfact.com:scopes:user:edit"
+            ]
+          },
+          {
+            "method": "DELETE",
+            "scopes": [
+              "urn:openfact.com:scopes:user:delete"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "/companies/*",
+        "methods": [
+          {
+            "method": "GET",
+            "scopes": [
+              "urn:openfact.com:scopes:company:view"
+            ]
+          },
+          {
+            "method": "POST",
+            "scopes": [
+              "urn:openfact.com:scopes:company:create"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Company Resource",
+        "path": "/companies/{id}",
+        "methods": [
+          {
+            "method": "GET",
+            "scopes": [
+              "urn:openfact.com:scopes:company:view"
+            ]
+          },
+          {
+            "method": "DELETE",
+            "scopes": [
+              "urn:openfact.com:scopes:company:delete"
+            ]
+          },
+          {
+            "method": "PUT",
+            "scopes": [
+              "urn:openfact.com:scopes:company:edit"
+            ]
+          }
+        ]
       }
     ]
   }
