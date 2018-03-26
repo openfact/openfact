@@ -10,6 +10,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 @ApplicationScoped
@@ -27,4 +28,5 @@ public class JpaCompanyProvider implements CompanyProvider {
         em.persist(entity);
         return new CompanyAdapter(em, entity);
     }
+
 }

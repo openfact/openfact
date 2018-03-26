@@ -9,6 +9,19 @@ import java.io.Serializable;
 @Indexed
 @Entity
 @Table(name = "of_company")
+@NamedQueries(value = {
+        @NamedQuery(name = "getAllOwnedCompaniesByUserId", query = "select distinct c from  CompanyEntity c inner join c.owner u where u.id=:userId")
+})
+@NamedEntityGraphs(value = {
+        @NamedEntityGraph(name = "graph.CompanyOwner", attributeNodes = {
+                @NamedAttributeNode(value = "id"),
+                @NamedAttributeNode(value = "owner", subgraph = "owner"),
+        }, subgraphs = {
+                @NamedSubgraph(name = "owner", attributeNodes = {
+                        @NamedAttributeNode(value = "id")
+                })
+        })
+})
 public class CompanyEntity implements Serializable {
 
     @Id

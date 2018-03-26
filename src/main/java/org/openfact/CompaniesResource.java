@@ -20,6 +20,7 @@ public interface CompaniesResource {
     CompanyRepresentation createCompany(@Valid CompanyRepresentation companyRepresentation);
 
     @GET
-    List<CompanyRepresentation> getCompanies();
+    List<CompanyRepresentation> getCompanies(@QueryParam("userId") String userId,
+                                             @QueryParam("mode") @DefaultValue("owned") String mode);
 
 }

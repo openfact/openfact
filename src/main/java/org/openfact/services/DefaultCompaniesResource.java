@@ -18,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Transactional
 @ApplicationScoped
@@ -45,8 +46,26 @@ public class DefaultCompaniesResource implements CompaniesResource {
     }
 
     @Override
-    public List<CompanyRepresentation> getCompanies() {
-        throw new ForbiddenException();
+    public List<CompanyRepresentation> getCompanies(String userId, String mode) {
+        if (userId == null) {
+            throw new BadRequestException("userId param is required");
+        }
+
+        UserModel user = userProvider.getUser(userId).orElseThrow(() -> new BadRequestException("useId does not exists"));
+
+        if (mode.toLowerCase().equals("owned")) {
+            return user.getOwnedCompanies()
+                    .stream()
+                    .map(companyModel -> ModelToRepresentation.toRepresentation(companyModel, false))
+                    .collect(Collectors.toList());
+        } else if (mode.toLowerCase().equals("collaborated")) {
+            return user.getCollaboratedCompanies()
+                    .stream()
+                    .map(companyModel -> ModelToRepresentation.toRepresentation(companyModel, false))
+                    .collect(Collectors.toList());
+        } else {
+            throw new BadRequestException("Invalid mode value. Accepted values are [owned, collaborated]");
+        }
     }
 
 }
