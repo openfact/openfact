@@ -21,6 +21,7 @@ public class ModelToRepresentation {
         CompanyRepresentation.CompanyOwnerRepresentation ownerRepresentation = new CompanyRepresentation.CompanyOwnerRepresentation();
         rep.setOwner(ownerRepresentation);
         ownerRepresentation.setId(model.getOwner().getId());
+        ownerRepresentation.setIdentityId(model.getOwner().getIdentityId());
 
         if (fullInfo) {
             rep.setDescription(model.getDescription());

@@ -13,4 +13,6 @@ public interface ISecurityContext {
     String getIdentityProviderAlias();
 
     String getRequestHeader(String headerName);
+
+    Object getAttribute(String attributeName);
 }

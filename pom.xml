@@ -25,6 +25,9 @@
         <version.h2>1.4.187</version.h2>
         <version.postgresql>42.1.4</version.postgresql>
         <version.mysql>5.1.38</version.mysql>
+
+        <!--Keycloak-->
+        <version.keycloak>3.4.3.Final</version.keycloak>
     </properties>
 
     <dependencyManagement>
@@ -98,6 +101,12 @@
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-dropbox</artifactId>
             <version>2.21.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-authz-client</artifactId>
+            <version>${version.keycloak}</version>
         </dependency>
 
         <dependency>

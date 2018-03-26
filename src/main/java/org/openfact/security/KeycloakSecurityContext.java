@@ -17,6 +17,11 @@ public class KeycloakSecurityContext extends AbstractSecurityContext implements 
     }
 
     @Override
+    public Object getAttribute(String attributeName) {
+        return servletRequest.get().getAttribute(attributeName);
+    }
+
+    @Override
     public String getUsername() {
         HttpServletRequest request = servletRequest.get();
         KeycloakPrincipal<org.keycloak.KeycloakSecurityContext> principal = (KeycloakPrincipal<org.keycloak.KeycloakSecurityContext>) request.getUserPrincipal();

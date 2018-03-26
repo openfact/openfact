@@ -47,6 +47,7 @@ public class CompanyRepresentation {
 
         @NotNull
         private String id;
+        private String identityId;
 
         public String getId() {
             return id;
@@ -54,6 +55,14 @@ public class CompanyRepresentation {
 
         public void setId(String id) {
             this.id = id;
+        }
+
+        public String getIdentityId() {
+            return identityId;
+        }
+
+        public void setIdentityId(String identityId) {
+            this.identityId = identityId;
         }
     }
 }

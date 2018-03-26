@@ -191,6 +191,9 @@
       "name": "urn:openfact.com:scopes:company:create"
     },
     {
+      "name": "urn:openfact.com:scopes:company:edit"
+    },
+    {
       "name": "urn:openfact.com:scopes:company:delete"
     },
     {
@@ -198,6 +201,9 @@
     },
     {
       "name": "urn:openfact.com:scopes:user:create"
+    },
+    {
+      "name": "urn:openfact.com:scopes:user:edit"
     },
     {
       "name": "urn:openfact.com:scopes:user:delete"
