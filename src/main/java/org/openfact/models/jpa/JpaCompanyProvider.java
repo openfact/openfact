@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 @ApplicationScoped
@@ -27,6 +28,13 @@ public class JpaCompanyProvider implements CompanyProvider {
         entity.setOwner(UserAdapter.toEntity(owner, em));
         em.persist(entity);
         return new CompanyAdapter(em, entity);
+    }
+
+    @Override
+    public Optional<CompanyModel> getCompany(String id) {
+        CompanyEntity companyEntity = em.find(CompanyEntity.class, id);
+        if (companyEntity == null) return Optional.empty();
+        return Optional.of(new CompanyAdapter(em, companyEntity));
     }
 
 }

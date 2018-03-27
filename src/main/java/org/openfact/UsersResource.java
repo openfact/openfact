@@ -15,60 +15,32 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-@Transactional
 @Path("users")
-@ApplicationScoped
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class UsersResource {
-
-    @Inject
-    private UserProvider userProvider;
+public interface UsersResource {
 
     @POST
     @Path("/")
-    public void createUser() {
-        throw new ForbiddenException();
-    }
+    void createUser();
 
     @GET
     @Path("/")
-    public List<UserRepresentation> getUsers(
+    List<UserRepresentation> getUsers(
             @QueryParam("userId") String userId,
             @QueryParam("username") String username
-    ) {
-        if (userId != null) {
-            return userProvider.getUser(userId)
-                    .map(model -> Collections.singletonList(ModelToRepresentation.toRepresentation(model, false)))
-                    .orElseGet(Collections::emptyList);
-        }
-        if (username != null) {
-            return userProvider.getUserByUsername(username)
-                    .map(model -> Collections.singletonList(ModelToRepresentation.toRepresentation(model, false)))
-                    .orElseGet(Collections::emptyList);
-        } else {
-            throw new IllegalStateException("Unimplemented");
-        }
-    }
+    );
 
     @GET
     @Path("/{userId}")
-    public UserRepresentation getUser(@PathParam("userId") String userId) {
-        UserModel userModel = userProvider.getUser(userId).orElseThrow(NotFoundException::new);
-        return ModelToRepresentation.toRepresentation(userModel, true);
-    }
+    UserRepresentation getUser(@PathParam("userId") String userId);
 
     @PUT
     @Path("/{userId}")
-    public UserRepresentation updateUser(@PathParam("userId") String userId, UserRepresentation rep) {
-        UserModel userModel = userProvider.getUser(userId).orElseThrow(NotFoundException::new);
-        return ModelToRepresentation.toRepresentation(userModel, true);
-    }
+    UserRepresentation updateUser(@PathParam("userId") String userId, UserRepresentation rep);
 
     @DELETE
     @Path("/{userId}")
-    public void deleteUser(@PathParam("userId") String userId) {
-        throw new ForbiddenException();
-    }
+    void deleteUser(@PathParam("userId") String userId);
 
 }

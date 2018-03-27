@@ -16,6 +16,7 @@ import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -46,26 +47,45 @@ public class DefaultCompaniesResource implements CompaniesResource {
     }
 
     @Override
-    public List<CompanyRepresentation> getCompanies(String userId, String mode) {
-        if (userId == null) {
-            throw new BadRequestException("userId param is required");
+    public List<CompanyRepresentation> getCompanies(String companyId, String userId, String role) {
+        if (companyId != null) {
+            return companyProvider.getCompany(companyId)
+                    .map(companyModel -> Collections.singletonList(ModelToRepresentation.toRepresentation(companyModel, false)))
+                    .orElseGet(Collections::emptyList);
         }
 
-        UserModel user = userProvider.getUser(userId).orElseThrow(() -> new BadRequestException("useId does not exists"));
+        if (userId != null && role != null) {
+            UserModel user = userProvider.getUser(userId).orElseThrow(() -> new BadRequestException("User not found"));
 
-        if (mode.toLowerCase().equals("owned")) {
-            return user.getOwnedCompanies()
-                    .stream()
-                    .map(companyModel -> ModelToRepresentation.toRepresentation(companyModel, false))
-                    .collect(Collectors.toList());
-        } else if (mode.toLowerCase().equals("collaborated")) {
-            return user.getCollaboratedCompanies()
-                    .stream()
-                    .map(companyModel -> ModelToRepresentation.toRepresentation(companyModel, false))
-                    .collect(Collectors.toList());
-        } else {
-            throw new BadRequestException("Invalid mode value. Accepted values are [owned, collaborated]");
+            if (role.toLowerCase().equals("owner")) {
+                return user.getOwnedCompanies()
+                        .stream()
+                        .map(companyModel -> ModelToRepresentation.toRepresentation(companyModel, false))
+                        .collect(Collectors.toList());
+            } else if (role.toLowerCase().equals("collaborator")) {
+                return user.getCollaboratedCompanies()
+                        .stream()
+                        .map(companyModel -> ModelToRepresentation.toRepresentation(companyModel, false))
+                        .collect(Collectors.toList());
+            } else {
+                throw new BadRequestException("Invalid mode value. Accepted values are [owner, collaborator]");
+            }
         }
+
+        throw new BadRequestException("Invalid parameters");
+    }
+
+    @Override
+    public CompanyRepresentation updateCompany(String companyId, CompanyRepresentation rep) {
+        CompanyModel company = companyProvider.getCompany(companyId).orElseThrow(() -> new BadRequestException("Company not found"));
+        company.setName(rep.getName());
+        company.setDescription(rep.getDescription());
+        return ModelToRepresentation.toRepresentation(company, true);
+    }
+
+    @Override
+    public void deleteCompany(String companyId) {
+        throw new ForbiddenException();
     }
 
 }

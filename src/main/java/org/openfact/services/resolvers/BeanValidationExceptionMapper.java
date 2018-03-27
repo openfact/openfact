@@ -1,4 +1,4 @@
-package org.openfact;
+package org.openfact.services.resolvers;
 
 import org.openfact.representations.idm.ConstraintErrorRepresentation;
 
