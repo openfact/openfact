@@ -5,11 +5,11 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @NamedQueries({
-        @NamedQuery(name = "getComponents", query = "select attr from ComponentEntity attr where attr.company = :organization"),
-        @NamedQuery(name = "getComponentsByParentAndType", query = "select attr from ComponentEntity attr where attr.company = :organization and attr.providerType = :providerType and attr.parentId = :parentId"),
-        @NamedQuery(name = "getComponentByParent", query = "select attr from ComponentEntity attr where attr.company = :organization and attr.parentId = :parentId"),
-        @NamedQuery(name = "getComponentIdsByParent", query = "select attr.id from ComponentEntity attr where attr.company = :organization and attr.parentId = :parentId"),
-        @NamedQuery(name = "deleteComponentByOrganization", query = "delete from  ComponentEntity c where c.company = :organization"),
+        @NamedQuery(name = "getComponents", query = "select attr from ComponentEntity attr where attr.company = :company"),
+        @NamedQuery(name = "getComponentsByParentAndType", query = "select attr from ComponentEntity attr where attr.company = :company and attr.providerType = :providerType and attr.parentId = :parentId"),
+        @NamedQuery(name = "getComponentByParent", query = "select attr from ComponentEntity attr where attr.company = :company and attr.parentId = :parentId"),
+        @NamedQuery(name = "getComponentIdsByParent", query = "select attr.id from ComponentEntity attr where attr.company = :company and attr.parentId = :parentId"),
+        @NamedQuery(name = "deleteComponentByCompany", query = "delete from  ComponentEntity c where c.company = :company"),
         @NamedQuery(name = "deleteComponentByParent", query = "delete from  ComponentEntity c where c.parentId = :parentId")
 })
 @Entity
@@ -93,8 +93,8 @@ public class ComponentEntity {
         return company;
     }
 
-    public void setCompany(CompanyEntity organization) {
-        this.company = organization;
+    public void setCompany(CompanyEntity company) {
+        this.company = company;
     }
 
     @Override
