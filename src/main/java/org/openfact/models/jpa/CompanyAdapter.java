@@ -6,6 +6,9 @@ import org.openfact.models.UserModel;
 import org.openfact.models.jpa.entities.CompanyEntity;
 
 import javax.persistence.EntityManager;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CompanyAdapter implements CompanyModel, JpaModel<CompanyEntity> {
 
@@ -57,6 +60,18 @@ public class CompanyAdapter implements CompanyModel, JpaModel<CompanyEntity> {
     @Override
     public void setDescription(String description) {
         company.setDescription(description);
+    }
+
+    @Override
+    public Map<String, String> getSmtpConfig() {
+        Map<String, String> config = new HashMap<>();
+        config.putAll(company.getSmtpConfig());
+        return Collections.unmodifiableMap(config);
+    }
+
+    @Override
+    public void setSmtpConfig(Map<String, String> smtpConfig) {
+        company.setSmtpConfig(smtpConfig);
     }
 
     @Override

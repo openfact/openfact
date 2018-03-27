@@ -6,6 +6,7 @@ import org.openfact.representations.idm.CompanyRepresentation;
 import org.openfact.representations.idm.UserRepresentation;
 
 import javax.ws.rs.core.Response;
+import java.util.HashMap;
 
 public class ModelToRepresentation {
 
@@ -25,6 +26,7 @@ public class ModelToRepresentation {
 
         if (fullInfo) {
             rep.setDescription(model.getDescription());
+            rep.setSmtpServer(new HashMap<>(model.getSmtpConfig()));
         }
 
         return rep;

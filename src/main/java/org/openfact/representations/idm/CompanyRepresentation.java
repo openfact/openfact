@@ -1,12 +1,15 @@
 package org.openfact.representations.idm;
 
 import javax.validation.constraints.NotNull;
+import java.util.Map;
 
 public class CompanyRepresentation {
 
     private String id;
     private String name;
     private String description;
+
+    private Map<String, String> smtpServer;
 
     @NotNull
     private CompanyOwnerRepresentation owner;
@@ -41,6 +44,14 @@ public class CompanyRepresentation {
 
     public void setOwner(CompanyOwnerRepresentation owner) {
         this.owner = owner;
+    }
+
+    public Map<String, String> getSmtpServer() {
+        return smtpServer;
+    }
+
+    public void setSmtpServer(Map<String, String> smtpServer) {
+        this.smtpServer = smtpServer;
     }
 
     public static class CompanyOwnerRepresentation {

@@ -5,6 +5,8 @@ import org.hibernate.search.annotations.Indexed;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 @Indexed
 @Entity
@@ -34,6 +36,12 @@ public class CompanyEntity implements Serializable {
 
     @Column(name = "description")
     private String description;
+
+    @ElementCollection
+    @MapKeyColumn(name = "NAME")
+    @Column(name = "VALUE")
+    @CollectionTable(name = "company_smtp_config", joinColumns = {@JoinColumn(name = "company_id")})
+    private Map<String, String> smtpConfig = new HashMap<>();
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
@@ -117,4 +125,11 @@ public class CompanyEntity implements Serializable {
         return result;
     }
 
+    public Map<String, String> getSmtpConfig() {
+        return smtpConfig;
+    }
+
+    public void setSmtpConfig(Map<String, String> smtpConfig) {
+        this.smtpConfig = smtpConfig;
+    }
 }

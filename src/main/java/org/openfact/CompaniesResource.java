@@ -23,6 +23,10 @@ public interface CompaniesResource {
             @QueryParam("userId") String userId,
             @QueryParam("role") @DefaultValue("owner") String role);
 
+    @GET
+    @Path("/{companyId}")
+    CompanyRepresentation getCompany(@PathParam("companyId") String companyId);
+
     @PUT
     @Path("/{companyId}")
     CompanyRepresentation updateCompany(@PathParam("companyId") String companyId, @Valid CompanyRepresentation rep);

@@ -6,6 +6,9 @@ import org.openfact.models.UserModel;
 import org.openfact.models.jpa.entities.PE_CompanyAdditionalInfoEntity;
 
 import javax.persistence.EntityManager;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PECompanyAdapter implements PECompanyModel {
 
@@ -135,6 +138,18 @@ public class PECompanyAdapter implements PECompanyModel {
     @Override
     public void setDescription(String description) {
         additionalInfoEntity.getCompany().setDescription(description);
+    }
+
+    @Override
+    public Map<String, String> getSmtpConfig() {
+        Map<String, String> config = new HashMap<>();
+        config.putAll(additionalInfoEntity.getCompany().getSmtpConfig());
+        return Collections.unmodifiableMap(config);
+    }
+
+    @Override
+    public void setSmtpConfig(Map<String, String> smtpConfig) {
+        additionalInfoEntity.getCompany().setSmtpConfig(smtpConfig);
     }
 
     @Override

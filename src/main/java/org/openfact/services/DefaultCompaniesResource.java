@@ -17,6 +17,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -76,10 +77,28 @@ public class DefaultCompaniesResource implements CompaniesResource {
     }
 
     @Override
+    public CompanyRepresentation getCompany(String companyId) {
+        return companyProvider.getCompany(companyId)
+                .map(companyModel -> ModelToRepresentation.toRepresentation(companyModel, true))
+                .orElseThrow(() -> new NotFoundException("Company not found"));
+    }
+
+    @Override
     public CompanyRepresentation updateCompany(String companyId, CompanyRepresentation rep) {
-        CompanyModel company = companyProvider.getCompany(companyId).orElseThrow(() -> new BadRequestException("Company not found"));
-        company.setName(rep.getName());
-        company.setDescription(rep.getDescription());
+        CompanyModel company = companyProvider.getCompany(companyId).orElseThrow(() -> new NotFoundException("Company not found"));
+
+        if (rep.getName() != null) {
+            company.setName(rep.getName());
+        }
+        
+        if (rep.getDescription() != null) {
+            company.setDescription(rep.getDescription());
+        }
+
+        if (rep.getSmtpServer() != null) {
+            company.setSmtpConfig(new HashMap<>(rep.getSmtpServer()));
+        }
+
         return ModelToRepresentation.toRepresentation(company, true);
     }
 
