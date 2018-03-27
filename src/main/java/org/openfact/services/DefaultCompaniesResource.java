@@ -5,11 +5,13 @@ import org.keycloak.jose.jws.AlgorithmType;
 import org.keycloak.representations.idm.KeysMetadataRepresentation;
 import org.openfact.CompaniesResource;
 import org.openfact.ErrorResponse;
+import org.openfact.keys.KeyProvider;
 import org.openfact.keys.RsaKeyMetadata;
 import org.openfact.keys.component.ComponentModel;
 import org.openfact.keys.component.ComponentValidationException;
 import org.openfact.keys.component.utils.ComponentUtil;
 import org.openfact.models.*;
+import org.openfact.models.utils.DefaultKeyProviders;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.models.utils.RepresentationToModel;
 import org.openfact.representations.idm.CompanyRepresentation;
@@ -49,6 +51,9 @@ public class DefaultCompaniesResource implements CompaniesResource {
     @Inject
     private ComponentUtil componentUtil;
 
+    @Inject
+    private DefaultKeyProviders defaultKeyProviders;
+
     @Override
     public CompanyRepresentation createCompany(@Valid CompanyRepresentation companyRepresentation) {
         CompanyRepresentation.CompanyOwnerRepresentation ownerRepresentation = companyRepresentation.getOwner();
@@ -60,6 +65,15 @@ public class DefaultCompaniesResource implements CompaniesResource {
 
         CompanyModel companyModel = companyProvider.addCompany(companyRepresentation.getName(), ownerModel.get());
         companyModel.setDescription(companyRepresentation.getDescription());
+
+        // Certificate
+        if (componentProvider.getComponents(companyModel, companyModel.getId(), KeyProvider.class.getName()).isEmpty()) {
+            try {
+                defaultKeyProviders.createProviders(companyModel);
+            } catch (ModelException e) {
+                throw new RuntimeException("Could not create certificates", e);
+            }
+        }
 
         return ModelToRepresentation.toRepresentation(companyModel, true);
     }
