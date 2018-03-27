@@ -26,6 +26,9 @@
         <version.postgresql>42.1.4</version.postgresql>
         <version.mysql>5.1.38</version.mysql>
 
+        <!--Hibernate-->
+        <version.hibernate>5.2.12.Final</version.hibernate>
+
         <!--Keycloak-->
         <version.keycloak>3.4.3.Final</version.keycloak>
     </properties>
@@ -101,6 +104,13 @@
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-dropbox</artifactId>
             <version>2.21.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${version.hibernate}</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>

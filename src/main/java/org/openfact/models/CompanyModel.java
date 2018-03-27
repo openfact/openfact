@@ -12,10 +12,13 @@ public interface CompanyModel extends Model {
 
     void setDescription(String description);
 
+    boolean getUseCustomSmtpConfig();
+
+    void setUseCustomSmtpConfig(boolean useCustomSmtpConfig);
+
     Map<String, String> getSmtpConfig();
 
     void setSmtpConfig(Map<String, String> smtpConfig);
-
 
     UserModel getOwner();
 }

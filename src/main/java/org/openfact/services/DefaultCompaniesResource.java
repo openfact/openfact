@@ -90,9 +90,13 @@ public class DefaultCompaniesResource implements CompaniesResource {
         if (rep.getName() != null) {
             company.setName(rep.getName());
         }
-        
+
         if (rep.getDescription() != null) {
             company.setDescription(rep.getDescription());
+        }
+
+        if (rep.getUseCustomSmtpConfig() != null) {
+            company.setUseCustomSmtpConfig(rep.getUseCustomSmtpConfig());
         }
 
         if (rep.getSmtpServer() != null) {

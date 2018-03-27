@@ -1,5 +1,6 @@
 package org.openfact.models.jpa.entities;
 
+import org.hibernate.annotations.Type;
 import org.hibernate.search.annotations.Indexed;
 
 import javax.persistence.*;
@@ -36,6 +37,11 @@ public class CompanyEntity implements Serializable {
 
     @Column(name = "description")
     private String description;
+
+    @NotNull
+    @Type(type = "org.hibernate.type.TrueFalseType")
+    @Column(name = "use_custom_smtp_config")
+    private boolean useCustomSmtpConfig;
 
     @ElementCollection
     @MapKeyColumn(name = "NAME")
@@ -131,5 +137,13 @@ public class CompanyEntity implements Serializable {
 
     public void setSmtpConfig(Map<String, String> smtpConfig) {
         this.smtpConfig = smtpConfig;
+    }
+
+    public boolean isUseCustomSmtpConfig() {
+        return useCustomSmtpConfig;
+    }
+
+    public void setUseCustomSmtpConfig(boolean useAdminSmtpConfig) {
+        this.useCustomSmtpConfig = useAdminSmtpConfig;
     }
 }

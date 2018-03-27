@@ -141,6 +141,16 @@ public class PECompanyAdapter implements PECompanyModel {
     }
 
     @Override
+    public boolean getUseCustomSmtpConfig() {
+        return additionalInfoEntity.getCompany().isUseCustomSmtpConfig();
+    }
+
+    @Override
+    public void setUseCustomSmtpConfig(boolean useCustomSmtpConfig) {
+        additionalInfoEntity.getCompany().setUseCustomSmtpConfig(useCustomSmtpConfig);
+    }
+
+    @Override
     public Map<String, String> getSmtpConfig() {
         Map<String, String> config = new HashMap<>();
         config.putAll(additionalInfoEntity.getCompany().getSmtpConfig());

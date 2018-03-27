@@ -26,6 +26,7 @@ public class ModelToRepresentation {
 
         if (fullInfo) {
             rep.setDescription(model.getDescription());
+            rep.setUseCustomSmtpConfig(model.getUseCustomSmtpConfig());
             rep.setSmtpServer(new HashMap<>(model.getSmtpConfig()));
         }
 

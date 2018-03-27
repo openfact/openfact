@@ -63,6 +63,16 @@ public class CompanyAdapter implements CompanyModel, JpaModel<CompanyEntity> {
     }
 
     @Override
+    public boolean getUseCustomSmtpConfig() {
+        return company.isUseCustomSmtpConfig();
+    }
+
+    @Override
+    public void setUseCustomSmtpConfig(boolean useCustomSmtpConfig) {
+        company.setUseCustomSmtpConfig(useCustomSmtpConfig);
+    }
+
+    @Override
     public Map<String, String> getSmtpConfig() {
         Map<String, String> config = new HashMap<>();
         config.putAll(company.getSmtpConfig());
