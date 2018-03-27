@@ -6,49 +6,52 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "pe_company_additional_info")
+@NamedQueries(value = {
+
+})
+@NamedEntityGraphs(value = {
+        @NamedEntityGraph(name = "graph.PEAdditionalInfoCompany", attributeNodes = {
+                @NamedAttributeNode("id"),
+                @NamedAttributeNode(value = "company", subgraph = "company")
+        }, subgraphs = {
+                @NamedSubgraph(name = "company", attributeNodes = {
+                        @NamedAttributeNode("id")
+                })
+        })
+})
 public class PE_CompanyAdditionalInfoEntity implements Serializable {
 
     @Id
     @Column(name = "id")
     private String id;
 
-    @NotNull
     @Column(name = "assigned_id")
     private String assignedId;
 
-    @NotNull
     @Column(name = "additional_assigned_id")
     private String additionalAssignedId;
 
-    @NotNull
     @Column(name = "razon_social")
     private String razonSocial;
 
-    @NotNull
     @Column(name = "nombre_comercial")
     private String nombreComercial;
 
-    @NotNull
     @Column(name = "region")
     private String region;
 
-    @NotNull
     @Column(name = "provincia")
     private String provincia;
 
-    @NotNull
     @Column(name = "distrito")
     private String distrito;
 
-    @NotNull
     @Column(name = "codigo_postal")
     private String codigoPostal;
 
-    @NotNull
     @Column(name = "codigo_pais")
     private String codigoPais;
 
-    @NotNull
     @Column(name = "direccion")
     private String direccion;
 

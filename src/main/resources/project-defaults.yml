@@ -1,4 +1,6 @@
 swarm:
+  ee:
+    spec-descriptor-property-replacement: true
   datasources:
     data-sources:
       OpenfactDS:

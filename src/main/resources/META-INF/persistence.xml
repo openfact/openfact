@@ -10,8 +10,8 @@
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
             <property name="hibernate.show_sql" value="${env.OF_HIBERNATE_SHOW_SQL:true}"/>
-            <property name="hibernate.format_sql" value="${env.OF_HIBERNATE_FORMAT_SQL:true}"/>
-            <property name="hibernate.use_sql_comments" value="${env.OF_HIBERNATE_SHOW_SQL:true}"/>
+            <property name="hibernate.format_sql" value="${env.OF_HIBERNATE_FORMAT_SQL:false}"/>
+            <property name="hibernate.use_sql_comments" value="${env.OF_HIBERNATE_SHOW_SQL:false}"/>
 
             <property name="hibernate.cache.use_query_cache" value="false"/>
             <property name="hibernate.cache.use_second_level_cache" value="false"/>
