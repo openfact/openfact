@@ -141,6 +141,16 @@ public class PECompanyAdapter implements PECompanyModel {
     }
 
     @Override
+    public boolean getUseCustomCertificates() {
+        return additionalInfoEntity.getCompany().isUseCustomCertificates();
+    }
+
+    @Override
+    public void setUseCustomCertificates(boolean useCustomCertificates) {
+        additionalInfoEntity.getCompany().setUseCustomCertificates(useCustomCertificates);
+    }
+
+    @Override
     public boolean getUseCustomSmtpConfig() {
         return additionalInfoEntity.getCompany().isUseCustomSmtpConfig();
     }

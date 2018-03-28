@@ -9,6 +9,7 @@ public class CompanyRepresentation {
     private String name;
     private String description;
 
+    private Boolean useCustomCertificates;
     private Boolean useCustomSmtpConfig;
     private Map<String, String> smtpServer;
 
@@ -61,6 +62,14 @@ public class CompanyRepresentation {
 
     public void setUseCustomSmtpConfig(Boolean useCustomSmtpConfig) {
         this.useCustomSmtpConfig = useCustomSmtpConfig;
+    }
+
+    public Boolean getUseCustomCertificates() {
+        return useCustomCertificates;
+    }
+
+    public void setUseCustomCertificates(Boolean useCustomCertificates) {
+        this.useCustomCertificates = useCustomCertificates;
     }
 
     public static class CompanyOwnerRepresentation {

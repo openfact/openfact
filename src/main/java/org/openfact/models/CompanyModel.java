@@ -12,6 +12,10 @@ public interface CompanyModel extends Model {
 
     void setDescription(String description);
 
+    boolean getUseCustomCertificates();
+
+    void setUseCustomCertificates(boolean useCustomCertificates);
+
     boolean getUseCustomSmtpConfig();
 
     void setUseCustomSmtpConfig(boolean useCustomSmtpConfig);

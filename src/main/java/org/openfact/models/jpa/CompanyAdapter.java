@@ -63,6 +63,16 @@ public class CompanyAdapter implements CompanyModel, JpaModel<CompanyEntity> {
     }
 
     @Override
+    public boolean getUseCustomCertificates() {
+        return company.isUseCustomCertificates();
+    }
+
+    @Override
+    public void setUseCustomCertificates(boolean useCustomCertificates) {
+        company.setUseCustomCertificates(useCustomCertificates);
+    }
+
+    @Override
     public boolean getUseCustomSmtpConfig() {
         return company.isUseCustomSmtpConfig();
     }

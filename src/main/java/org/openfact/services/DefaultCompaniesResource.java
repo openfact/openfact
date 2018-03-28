@@ -130,6 +130,10 @@ public class DefaultCompaniesResource implements CompaniesResource {
             company.setUseCustomSmtpConfig(rep.getUseCustomSmtpConfig());
         }
 
+        if (rep.getUseCustomCertificates() != null) {
+            company.setUseCustomCertificates(rep.getUseCustomCertificates());
+        }
+
         if (rep.getSmtpServer() != null) {
             company.setSmtpConfig(new HashMap<>(rep.getSmtpServer()));
         }

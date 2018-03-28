@@ -40,10 +40,15 @@ public class CompanyEntity implements Serializable {
 
     @NotNull
     @Type(type = "org.hibernate.type.TrueFalseType")
+    @Column(name = "use_custom_certificates")
+    private boolean useCustomCertificates;
+
+    @NotNull
+    @Type(type = "org.hibernate.type.TrueFalseType")
     @Column(name = "use_custom_smtp_config")
     private boolean useCustomSmtpConfig;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.LAZY)
     @MapKeyColumn(name = "NAME")
     @Column(name = "VALUE")
     @CollectionTable(name = "company_smtp_config", joinColumns = {@JoinColumn(name = "company_id")})
@@ -145,5 +150,13 @@ public class CompanyEntity implements Serializable {
 
     public void setUseCustomSmtpConfig(boolean useAdminSmtpConfig) {
         this.useCustomSmtpConfig = useAdminSmtpConfig;
+    }
+
+    public boolean isUseCustomCertificates() {
+        return useCustomCertificates;
+    }
+
+    public void setUseCustomCertificates(boolean useCustomCertificates) {
+        this.useCustomCertificates = useCustomCertificates;
     }
 }

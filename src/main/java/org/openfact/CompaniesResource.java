@@ -36,7 +36,7 @@ public interface CompaniesResource {
     @Path("/{companyId}")
     CompanyRepresentation updateCompany(
             @PathParam("companyId") String companyId,
-            @Valid CompanyRepresentation rep
+            CompanyRepresentation rep
     );
 
     @DELETE

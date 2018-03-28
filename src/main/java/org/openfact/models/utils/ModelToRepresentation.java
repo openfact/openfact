@@ -35,6 +35,7 @@ public class ModelToRepresentation {
 
         if (fullInfo) {
             rep.setDescription(model.getDescription());
+            rep.setUseCustomCertificates(model.getUseCustomCertificates());
             rep.setUseCustomSmtpConfig(model.getUseCustomSmtpConfig());
             rep.setSmtpServer(new HashMap<>(model.getSmtpConfig()));
         }
