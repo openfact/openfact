@@ -8,10 +8,12 @@ import org.openfact.models.CompanyModel;
 import org.openfact.models.UserModel;
 import org.openfact.representations.idm.CompanyRepresentation;
 import org.openfact.representations.idm.ComponentRepresentation;
+import org.openfact.representations.idm.ConfigPropertyRepresentation;
 import org.openfact.representations.idm.UserRepresentation;
 
 import javax.ws.rs.core.Response;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -82,6 +84,27 @@ public class ModelToRepresentation {
             rep.setConfig(config);
         }
         return rep;
+    }
+
+    public static List<ConfigPropertyRepresentation> toRepresentation(List<ProviderConfigProperty> configProperties) {
+        List<ConfigPropertyRepresentation> propertiesRep = new LinkedList<>();
+        for (ProviderConfigProperty prop : configProperties) {
+            ConfigPropertyRepresentation propRep = toRepresentation(prop);
+            propertiesRep.add(propRep);
+        }
+        return propertiesRep;
+    }
+
+    public static ConfigPropertyRepresentation toRepresentation(ProviderConfigProperty prop) {
+        ConfigPropertyRepresentation propRep = new ConfigPropertyRepresentation();
+        propRep.setName(prop.getName());
+        propRep.setLabel(prop.getLabel());
+        propRep.setType(prop.getType());
+        propRep.setDefaultValue(prop.getDefaultValue());
+        propRep.setOptions(prop.getOptions());
+        propRep.setHelpText(prop.getHelpText());
+        propRep.setSecret(prop.isSecret());
+        return propRep;
     }
 
 }

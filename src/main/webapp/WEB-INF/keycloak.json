@@ -16,6 +16,9 @@
         "path": "/profile"
       },
       {
+        "path": "/serverinfo"
+      },
+      {
         "path": "/users/*",
         "methods": [
           {

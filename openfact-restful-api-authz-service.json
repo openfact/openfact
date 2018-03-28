@@ -49,6 +49,16 @@
           "name": "urn:openfact.com:scopes:company:delete"
         }
       ]
+    },
+    {
+      "name": "Server Info Resource",
+      "uri": "/serverinfo",
+      "type": "http://openfact.com/serverinfo",
+      "scopes": [
+        {
+          "name": "urn:openfact.com:scopes:serverinfo:view"
+        }
+      ]
     }
   ],
   "policies": [
@@ -178,6 +188,17 @@
         "applyPolicies": "[\"Only User Policy\"]",
         "scopes": "[\"urn:openfact.com:scopes:profile:view\"]"
       }
+    },
+    {
+      "name": "View Server Info Permission",
+      "description": "Defines who is allowed to view the server info",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[\"Only User Policy\"]",
+        "scopes": "[\"urn:openfact.com:scopes:serverinfo:view\"]"
+      }
     }
   ],
   "scopes": [
@@ -207,6 +228,9 @@
     },
     {
       "name": "urn:openfact.com:scopes:user:delete"
+    },
+    {
+      "name": "urn:openfact.com:scopes:serverinfo:view"
     }
   ]
 }
