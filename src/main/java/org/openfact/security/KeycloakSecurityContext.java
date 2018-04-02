@@ -5,7 +5,6 @@ import org.keycloak.representations.AccessToken;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.core.Context;
 
 @ApplicationScoped
 @SecurityContextType(name = SecurityContextType.IdentityProvider.KEYCLOAK)

@@ -1,8 +1,5 @@
 package org.openfact.models.files;
 
-import org.apache.camel.Exchange;
-import org.apache.camel.ProducerTemplate;
-import org.apache.camel.impl.DefaultCamelContext;
 import org.openfact.models.FileProvider;
 import org.openfact.models.FileProviderVendor;
 

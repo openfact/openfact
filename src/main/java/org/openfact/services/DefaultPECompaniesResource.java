@@ -1,23 +1,15 @@
 package org.openfact.services;
 
-import org.openfact.CompaniesResource;
 import org.openfact.PECompaniesResource;
-import org.openfact.models.*;
-import org.openfact.models.utils.ModelToRepresentation;
+import org.openfact.models.PECompanyModel;
+import org.openfact.models.PECompanyProvider;
 import org.openfact.models.utils.PEModelToRepresentation;
-import org.openfact.representations.idm.CompanyRepresentation;
 import org.openfact.representations.idm.PECompanyRepresentation;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import javax.validation.Valid;
 import javax.ws.rs.BadRequestException;
-import javax.ws.rs.ForbiddenException;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Transactional
 @ApplicationScoped

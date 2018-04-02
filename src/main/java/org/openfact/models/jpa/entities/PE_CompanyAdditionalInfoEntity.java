@@ -1,7 +1,6 @@
 package org.openfact.models.jpa.entities;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity

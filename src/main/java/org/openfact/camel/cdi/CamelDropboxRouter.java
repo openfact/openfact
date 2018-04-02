@@ -7,8 +7,6 @@ import org.apache.camel.cdi.ContextName;
 import org.apache.camel.component.dropbox.util.DropboxConstants;
 
 import javax.enterprise.context.ApplicationScoped;
-import java.text.MessageFormat;
-import java.util.Map;
 
 @ApplicationScoped
 @ContextName("cdi-context")

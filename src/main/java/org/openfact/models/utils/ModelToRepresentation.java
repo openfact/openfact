@@ -11,7 +11,6 @@ import org.openfact.representations.idm.ComponentRepresentation;
 import org.openfact.representations.idm.ConfigPropertyRepresentation;
 import org.openfact.representations.idm.UserRepresentation;
 
-import javax.ws.rs.core.Response;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;

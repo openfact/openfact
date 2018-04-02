@@ -1,15 +1,14 @@
 package org.openfact.models.jpa;
 
-import org.openfact.models.*;
+import org.openfact.models.PECompanyModel;
+import org.openfact.models.PECompanyProvider;
 import org.openfact.models.jpa.entities.CompanyEntity;
 import org.openfact.models.jpa.entities.PE_CompanyAdditionalInfoEntity;
-import org.openfact.models.utils.ModelUtils;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.HashMap;
 import java.util.Map;

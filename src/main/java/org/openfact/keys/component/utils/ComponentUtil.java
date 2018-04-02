@@ -1,5 +1,6 @@
 package org.openfact.keys.component.utils;
 
+import org.openfact.keys.component.ComponentFactory;
 import org.openfact.keys.component.ComponentModel;
 import org.openfact.keys.provider.ProviderConfigProperty;
 import org.openfact.models.CompanyModel;
@@ -8,8 +9,6 @@ import org.openfact.representations.idm.ComponentRepresentation;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.openfact.keys.component.ComponentFactory;
 
 public interface ComponentUtil {
 

@@ -6,7 +6,6 @@ import org.openfact.keys.component.ComponentModel;
 import org.openfact.keys.component.utils.ComponentProviderLiteral;
 import org.openfact.keys.component.utils.ComponentUtil;
 import org.openfact.keys.component.utils.RsaKeyProviderLiteral;
-import org.openfact.keys.qualifiers.ComponentProviderType;
 import org.openfact.keys.qualifiers.RsaKeyType;
 import org.openfact.models.CompanyModel;
 import org.openfact.models.ComponentProvider;

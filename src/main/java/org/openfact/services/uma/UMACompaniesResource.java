@@ -1,37 +1,20 @@
 package org.openfact.services.uma;
 
 import org.keycloak.KeycloakSecurityContext;
+import org.keycloak.authorization.client.AuthzClient;
+import org.keycloak.authorization.client.ClientAuthorizationContext;
+import org.keycloak.authorization.client.representation.ResourceRepresentation;
+import org.keycloak.authorization.client.representation.ScopeRepresentation;
 import org.openfact.CompaniesResource;
-import org.openfact.ErrorResponse;
-import org.openfact.models.CompanyModel;
-import org.openfact.models.CompanyProvider;
-import org.openfact.models.UserModel;
-import org.openfact.models.UserProvider;
-import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.representations.idm.CompanyRepresentation;
 import org.openfact.security.ISecurityContext;
 
 import javax.decorator.Decorator;
 import javax.decorator.Delegate;
-import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 import javax.validation.Valid;
-import javax.ws.rs.ForbiddenException;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.core.Response;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-
-import org.keycloak.KeycloakSecurityContext;
-import org.keycloak.authorization.client.AuthzClient;
-import org.keycloak.authorization.client.ClientAuthorizationContext;
-import org.keycloak.authorization.client.representation.ResourceRepresentation;
-import org.keycloak.authorization.client.representation.ScopeRepresentation;
 
 @Decorator
 @Dependent

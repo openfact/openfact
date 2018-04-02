@@ -2,20 +2,16 @@ package org.openfact.models.files;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.CamelExecutionException;
-import org.apache.camel.Exchange;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.cdi.ContextName;
 import org.apache.camel.component.dropbox.util.DropboxConstants;
 import org.openfact.camel.cdi.CamelDropboxRouter;
-import org.openfact.camel.cdi.CamelFileSystemRouter;
 import org.openfact.models.FileProvider;
 import org.openfact.models.FileProviderVendor;
 import org.wildfly.swarm.spi.runtime.annotations.ConfigurationValue;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;

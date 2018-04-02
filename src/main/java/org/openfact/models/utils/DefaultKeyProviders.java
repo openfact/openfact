@@ -7,7 +7,6 @@ import org.openfact.models.CompanyModel;
 import org.openfact.models.ComponentProvider;
 import org.openfact.models.ModelException;
 
-import javax.ejb.Stateless;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;

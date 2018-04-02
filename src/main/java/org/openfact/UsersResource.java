@@ -1,19 +1,10 @@
 package org.openfact;
 
-import org.openfact.models.UserModel;
-import org.openfact.models.UserProvider;
-import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.representations.idm.UserRepresentation;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @Path("users")
 @Produces(MediaType.APPLICATION_JSON)

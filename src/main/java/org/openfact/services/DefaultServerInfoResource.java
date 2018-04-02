@@ -1,13 +1,10 @@
 package org.openfact.services;
 
 import org.openfact.ServerInfoResource;
-import org.openfact.UsersResource;
 import org.openfact.keys.KeyProvider;
 import org.openfact.keys.component.ComponentFactory;
 import org.openfact.keys.provider.ConfiguredProvider;
 import org.openfact.keys.provider.ProviderConfigProperty;
-import org.openfact.models.UserModel;
-import org.openfact.models.UserProvider;
 import org.openfact.models.utils.ModelToRepresentation;
 import org.openfact.representations.idm.*;
 
@@ -16,10 +13,6 @@ import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import javax.ws.rs.ForbiddenException;
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.WebApplicationException;
-import java.io.IOException;
 import java.util.*;
 
 @Transactional

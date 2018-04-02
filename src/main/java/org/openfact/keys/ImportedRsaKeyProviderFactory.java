@@ -12,7 +12,6 @@ import org.openfact.keys.qualifiers.RsaKeyProviderType;
 import org.openfact.keys.qualifiers.RsaKeyType;
 import org.openfact.models.CompanyModel;
 
-import javax.ejb.Stateless;
 import javax.enterprise.context.ApplicationScoped;
 import java.security.KeyPair;
 import java.security.PrivateKey;
