@@ -41,7 +41,7 @@ public class DefaultUBLEmailSender implements UBLEmailSender {
         try {
             // Attatchments
             FileModel xmlFileModel = document.getXmlAsFile();
-            EmailFileModel xmlFile = new EmailFileModel(xmlFileModel.getFile(), document.getDocumentId(), "application/xml");
+            EmailFileModel xmlFile = new EmailFileModel(xmlFileModel.getFile(), document.getDocumentId() + ".xml", "application/xml");
 
             ReportTemplateConfiguration reportConfig = new ReportTemplateConfiguration(organization);
             byte[] bytes = reportTemplateProvider.getReport(reportConfig, document, ExportFormat.PDF);
