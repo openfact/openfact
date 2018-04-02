@@ -45,7 +45,7 @@ public class DefaultUBLEmailSender implements UBLEmailSender {
 
             ReportTemplateConfiguration reportConfig = new ReportTemplateConfiguration(organization);
             byte[] bytes = reportTemplateProvider.getReport(reportConfig, document, ExportFormat.PDF);
-            EmailFileModel pdfFile = new EmailFileModel(bytes, document.getDocumentId(), "application/pdf");
+            EmailFileModel pdfFile = new EmailFileModel(bytes, document.getDocumentId() + ".pdf", "application/pdf");
 
             // Send Email
             EmailTemplateConfiguration emailConfig = new EmailTemplateConfiguration(organization, emailUserDestiny).setAttachments(Arrays.asList(xmlFile, pdfFile));
