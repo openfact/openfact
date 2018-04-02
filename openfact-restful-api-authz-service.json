@@ -59,6 +59,16 @@
           "name": "urn:openfact.com:scopes:serverinfo:view"
         }
       ]
+    },
+    {
+      "name": "Peru SUNAT Services",
+      "uri": "/pe/sunat/*",
+      "type": "http://openfact.com/pe/sunat",
+      "scopes": [
+        {
+          "name": "urn:openfact.com:scopes:pesunat:view"
+        }
+      ]
     }
   ],
   "policies": [
@@ -199,6 +209,17 @@
         "applyPolicies": "[\"Only User Policy\"]",
         "scopes": "[\"urn:openfact.com:scopes:serverinfo:view\"]"
       }
+    },
+    {
+      "name": "View Peru SUNAT info Permission",
+      "description": "Defines who is allowed to view Perú SUNAT info",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "applyPolicies": "[\"Only User Policy\"]",
+        "scopes": "[\"urn:openfact.com:scopes:pesunat:view\"]"
+      }
     }
   ],
   "scopes": [
@@ -231,6 +252,9 @@
     },
     {
       "name": "urn:openfact.com:scopes:serverinfo:view"
+    },
+    {
+      "name": "urn:openfact.com:scopes:pesunat:view"
     }
   ]
 }

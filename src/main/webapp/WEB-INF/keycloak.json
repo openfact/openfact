@@ -19,6 +19,9 @@
         "path": "/serverinfo"
       },
       {
+        "path": "/pe/sunat/*"
+      },
+      {
         "path": "/users/*",
         "methods": [
           {
