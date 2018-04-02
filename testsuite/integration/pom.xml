@@ -4,7 +4,7 @@
     <parent>
         <artifactId>openfact-testsuite</artifactId>
         <groupId>org.sistcoop</groupId>
-        <version>1.0.3.Final</version>
+        <version>1.0.4-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
