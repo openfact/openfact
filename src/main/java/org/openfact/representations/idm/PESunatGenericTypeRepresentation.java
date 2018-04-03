@@ -8,7 +8,7 @@ public class PESunatGenericTypeRepresentation {
     private String denominacion;
     private String grupo;
     private Integer length;
-    private Boolean afectaIgv;
+    private Boolean afectaIGV;
     private Double valor;
 
     public String getId() {
@@ -59,12 +59,12 @@ public class PESunatGenericTypeRepresentation {
         this.length = length;
     }
 
-    public Boolean getAfectaIgv() {
-        return afectaIgv;
+    public Boolean getAfectaIGV() {
+        return afectaIGV;
     }
 
-    public void setAfectaIgv(Boolean afectaIgv) {
-        this.afectaIgv = afectaIgv;
+    public void setAfectaIGV(Boolean afectaIGV) {
+        this.afectaIGV = afectaIGV;
     }
 
     public Double getValor() {

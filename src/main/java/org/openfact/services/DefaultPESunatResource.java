@@ -49,7 +49,7 @@ public class DefaultPESunatResource implements PESunatResource {
             PESunatGenericTypeRepresentation rep = new PESunatGenericTypeRepresentation();
             rep.setCodigo(type.getCodigo());
             rep.setDenominacion(type.getDenominacion());
-            rep.setAfectaIgv(type.getAfectaIgv());
+            rep.setAfectaIGV(type.getAfectaIgv());
             rep.setGrupo(type.getGrupo().getDenominacion());
 
             result.add(rep);
