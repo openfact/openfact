@@ -21,6 +21,9 @@ public class BoletaFacturaPEEntity implements Serializable {
     @Column(name = "id_asignado")
     private String idAsignado;
 
+    @Embedded
+    private ClientePEEntity cliente;
+
     @OneToOne
     @MapsId
     private OrganizacionEntity organizacion;
@@ -92,5 +95,13 @@ public class BoletaFacturaPEEntity implements Serializable {
 
     public void setOrganizacion(OrganizacionEntity organizacion) {
         this.organizacion = organizacion;
+    }
+
+    public ClientePEEntity getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClientePEEntity cliente) {
+        this.cliente = cliente;
     }
 }
