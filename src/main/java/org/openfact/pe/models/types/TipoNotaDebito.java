@@ -1,14 +1,13 @@
-package org.openfact.pe.types;
+package org.openfact.pe.models.types;
 
 /**
  * Created by lxpary on 11/01/17.
  */
-public enum TipoValorVenta {
-    GRAVADO("01", "GRAVADO"),
-    EXONERADO("02", "EXONERADO"),
-    INAFECTO("03", "INAFECTO"),
-    EXPORTACION("04", "EXPORTACION"),
-    GRATUITA("05", "GRATUITAS");
+public enum TipoNotaDebito {
+
+    INTERES("01", "INTERES POR MORA"),
+    AUMENTO("02", "AUMENTO EN EL VALOR"),
+    PENALIDAD("03", "PENALIDADES / OTROS CONCEPTOS");
 
     private final String codigo;
     private final String denominacion;
@@ -23,7 +22,7 @@ public enum TipoValorVenta {
     }
 
 
-    private TipoValorVenta(String codigo, String denominacion) {
+    private TipoNotaDebito(String codigo, String denominacion) {
         this.codigo = codigo;
         this.denominacion = denominacion;
     }

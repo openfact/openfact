@@ -1,4 +1,4 @@
-package org.openfact.pe.types;
+package org.openfact.pe.models.types;
 
 /**
  * Created by lxpary on 09/01/17.

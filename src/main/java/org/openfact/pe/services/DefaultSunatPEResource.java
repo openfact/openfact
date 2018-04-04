@@ -1,9 +1,9 @@
 package org.openfact.pe.services;
 
 import org.openfact.pe.idm.SunatGenericTypePERepresentation;
-import org.openfact.pe.types.TipoAfectacionIgv;
-import org.openfact.pe.types.TipoDocumentoEntidad;
-import org.openfact.pe.types.TipoInvoice;
+import org.openfact.pe.models.types.TipoAfectacionIgv;
+import org.openfact.pe.models.types.TipoDocumentoEntidad;
+import org.openfact.pe.models.types.TipoInvoice;
 import org.openfact.pe.SunatPEResource;
 
 import javax.enterprise.context.ApplicationScoped;

@@ -6,7 +6,6 @@ public class FechaPERepresentation {
 
     private Date fechaDeEmision;
     private Date fechaDeVencimiento;
-    private Date fechaDeReferencia;
 
     public Date getFechaDeEmision() {
         return fechaDeEmision;
@@ -22,14 +21,6 @@ public class FechaPERepresentation {
 
     public void setFechaDeVencimiento(Date fechaDeVencimiento) {
         this.fechaDeVencimiento = fechaDeVencimiento;
-    }
-
-    public Date getFechaDeReferencia() {
-        return fechaDeReferencia;
-    }
-
-    public void setFechaDeReferencia(Date fechaDeReferencia) {
-        this.fechaDeReferencia = fechaDeReferencia;
     }
 
 }

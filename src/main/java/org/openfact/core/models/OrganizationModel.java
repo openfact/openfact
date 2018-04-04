@@ -1,6 +1,7 @@
 package org.openfact.core.models;
 
 import java.util.Map;
+import java.util.TimeZone;
 
 public interface OrganizationModel extends Model {
 
@@ -25,4 +26,6 @@ public interface OrganizationModel extends Model {
     void setSmtpConfig(Map<String, String> smtpConfig);
 
     UserModel getOwner();
+
+    TimeZone getTimeZone();
 }
