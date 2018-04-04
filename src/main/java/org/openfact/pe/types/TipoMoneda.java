@@ -1,4 +1,4 @@
-package org.openfact.core.types;
+package org.openfact.pe.types;
 
 /**
  * Created by lxpary on 10/01/17.

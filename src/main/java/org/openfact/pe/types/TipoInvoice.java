@@ -1,4 +1,4 @@
-package org.openfact.core.types;
+package org.openfact.pe.types;
 
 import java.util.Optional;
 import java.util.stream.Stream;

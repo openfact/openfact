@@ -1,4 +1,4 @@
-package org.openfact.core.types;
+package org.openfact.pe.types;
 
 public enum TipoPrecioVentaUnitario {
     PRECIO_UNITARIO("01", "PRECIO UNITARIO (INCLUYE IGV)"),

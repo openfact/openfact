@@ -1,4 +1,4 @@
-package org.openfact.core.types;
+package org.openfact.pe.types;
 
 public enum TipoConceptosTributarios {
     TOTAL_VALOR_VENTA_OPERACIONES_GRAVADAS("1001", "TOTAL VALOR DE VENTA - OPERACIONES GRAVADAS"),

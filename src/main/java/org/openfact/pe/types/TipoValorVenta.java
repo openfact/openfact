@@ -1,13 +1,14 @@
-package org.openfact.core.types;
+package org.openfact.pe.types;
 
 /**
  * Created by lxpary on 11/01/17.
  */
-public enum TipoEstadoItem {
-    ADICIONAR("1", "ADICIONAR"),
-    MODIFICAR("2", "MODIFICAR"),
-    ANULADO("3", "ANULADO"),
-    ANULADO_EN_EL_DIA("4", "ANULADO EN EL DIA (ANULADO ANTES DE INFORMAR COMPROBANTE)");
+public enum TipoValorVenta {
+    GRAVADO("01", "GRAVADO"),
+    EXONERADO("02", "EXONERADO"),
+    INAFECTO("03", "INAFECTO"),
+    EXPORTACION("04", "EXPORTACION"),
+    GRATUITA("05", "GRATUITAS");
 
     private final String codigo;
     private final String denominacion;
@@ -16,12 +17,13 @@ public enum TipoEstadoItem {
         return codigo;
     }
 
+
     public String getDenominacion() {
         return denominacion;
     }
 
 
-    private TipoEstadoItem(String codigo, String denominacion) {
+    private TipoValorVenta(String codigo, String denominacion) {
         this.codigo = codigo;
         this.denominacion = denominacion;
     }

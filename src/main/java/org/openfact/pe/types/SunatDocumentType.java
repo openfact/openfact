@@ -1,4 +1,4 @@
-package org.openfact.core.types;
+package org.openfact.pe.types;
 
 public enum SunatDocumentType {
 
