@@ -12,13 +12,8 @@ public class ContadorSerieNumeroPEAdapter implements ContadorSerieNumeroPEModel 
     }
 
     @Override
-    public String getTipoDocumento() {
+    public String getSerie() {
         return null;
-    }
-
-    @Override
-    public int getSerie() {
-        return 0;
     }
 
     @Override
@@ -27,8 +22,7 @@ public class ContadorSerieNumeroPEAdapter implements ContadorSerieNumeroPEModel 
     }
 
     @Override
-    public String getPrefijo() {
+    public String getTipoDocumento() {
         return null;
     }
-
 }

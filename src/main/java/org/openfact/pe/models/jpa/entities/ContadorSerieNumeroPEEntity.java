@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "contador_serie_numero_pe")
 @NamedQueries(value = {
-        @NamedQuery(name = "getContadorSerieNumeroByOrganizacionIdAndTipoDocumento", query = "select sn from ContadorSerieNumeroPEEntity sn inner join sn.organizacion org where org.id=:organizacionId and sn.tipoDocumento=:tipoDocumento")
+        @NamedQuery(name = "getContadorByOrganizacionIdTipoDocumentoAndSerie", query = "select c from ContadorSerieNumeroPEEntity c inner join c.organizacion o where o.id=:organizacionId and c.tipoDocumento=:tipoDocumento and c.serie=:serie")
 })
 public class ContadorSerieNumeroPEEntity implements Serializable {
 
@@ -25,7 +25,10 @@ public class ContadorSerieNumeroPEEntity implements Serializable {
     private String prefijo;
 
     @Column(name = "serie")
-    private int serie;
+    private String serie;
+
+    @Column(name = "numero_serie")
+    private int numeroSerie;
 
     @Column(name = "numero")
     private int numero;
@@ -92,14 +95,6 @@ public class ContadorSerieNumeroPEEntity implements Serializable {
         this.tipoDocumento = tipoDocumento;
     }
 
-    public int getSerie() {
-        return serie;
-    }
-
-    public void setSerie(int serie) {
-        this.serie = serie;
-    }
-
     public int getNumero() {
         return numero;
     }
@@ -130,5 +125,21 @@ public class ContadorSerieNumeroPEEntity implements Serializable {
 
     public void setPrefijo(String prefijo) {
         this.prefijo = prefijo;
+    }
+
+    public String getSerie() {
+        return serie;
+    }
+
+    public void setSerie(String serie) {
+        this.serie = serie;
+    }
+
+    public int getNumeroSerie() {
+        return numeroSerie;
+    }
+
+    public void setNumeroSerie(int numeroSerie) {
+        this.numeroSerie = numeroSerie;
     }
 }

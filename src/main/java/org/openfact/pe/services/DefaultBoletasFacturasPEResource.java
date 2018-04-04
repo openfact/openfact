@@ -33,27 +33,28 @@ public class DefaultBoletasFacturasPEResource implements BoletasFacturasPEResour
 
     @Override
     public BoletaFacturaPERepresentation crearBoletaFactura(String organizacionId, BoletaFacturaPERepresentation rep) {
-        OrganizationModel organizacion = organizationProvider.getCompany(organizacionId).orElseThrow(() -> new NotFoundException("Organizacion no encontrada"));
-
-        String serie = rep.getSerie();
-        Integer numero = rep.getNumero();
-        TipoInvoice tipoInvoice = TipoInvoice.valueOf(rep.getTipoInvoice().toUpperCase());
-
-        String idAsignado;
-        if (serie != null && numero != null) {
-            idAsignado = serie + "-" + numero;
-        } else if (serie != null) {
-            ContadorSerieNumeroPEModel contadorSerieNumero = contadorSerieNumeroProvider.getNextAndBlock(organizacion, tipoInvoice.toString(), serie);
-            idAsignado = ModelPEUtils.getIdAsignadoBoletaFactura(tipoInvoice, Optional.ofNullable(contadorSerieNumero.getPrefijo()), contadorSerieNumero.getSerie(), contadorSerieNumero.getNumero());
-        } else if (numero != null) {
-            throw new BadRequestException("peticion invalida: [serie=null, numero=not null]");
-        } else {
-            ContadorSerieNumeroPEModel contadorSerieNumero = contadorSerieNumeroProvider.getNextAndBlock(organizacion, tipoInvoice.toString());
-            idAsignado = ModelPEUtils.getIdAsignadoBoletaFactura(tipoInvoice, Optional.ofNullable(contadorSerieNumero.getPrefijo()), contadorSerieNumero.getSerie(), contadorSerieNumero.getNumero());
-        }
-
-        BoletaFacturaPEModel boletaFacturaModel = boletaFacturaProvider.addBoletaFactura(organizacion, idAsignado);
-        return ModelToRepresentationPE.toRepresentation(boletaFacturaModel, true);
+//        OrganizationModel organizacion = organizationProvider.getCompany(organizacionId).orElseThrow(() -> new NotFoundException("Organizacion no encontrada"));
+//
+//        String serie = rep.getSerie();
+//        Integer numero = rep.getNumero();
+//        TipoInvoice tipoInvoice = TipoInvoice.valueOf(rep.getTipoInvoice().toUpperCase());
+//
+//        String idAsignado;
+//        if (serie != null && numero != null) {
+//            idAsignado = serie + "-" + numero;
+//        } else if (serie != null) {
+//            ContadorSerieNumeroPEModel contadorSerieNumero = contadorSerieNumeroProvider.getNextAndBlock(organizacion, tipoInvoice.toString(), serie);
+//            idAsignado = ModelPEUtils.getIdAsignadoBoletaFactura(tipoInvoice, Optional.ofNullable(contadorSerieNumero.getPrefijo()), contadorSerieNumero.getSerie(), contadorSerieNumero.getNumero());
+//        } else if (numero != null) {
+//            throw new BadRequestException("peticion invalida: [serie=null, numero=not null]");
+//        } else {
+//            ContadorSerieNumeroPEModel contadorSerieNumero = contadorSerieNumeroProvider.getNextAndBlock(organizacion, tipoInvoice.toString());
+//            idAsignado = ModelPEUtils.getIdAsignadoBoletaFactura(tipoInvoice, Optional.ofNullable(contadorSerieNumero.getPrefijo()), contadorSerieNumero.getSerie(), contadorSerieNumero.getNumero());
+//        }
+//
+//        BoletaFacturaPEModel boletaFacturaModel = boletaFacturaProvider.addBoletaFactura(organizacion, idAsignado);
+//        return ModelToRepresentationPE.toRepresentation(boletaFacturaModel, true);
+        return null;
     }
 
     @Override
