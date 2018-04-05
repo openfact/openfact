@@ -12,7 +12,8 @@ public interface FacturaProvider {
 
     FacturaModel createFactura(OrganizationModel organizacion, String serie, int numero);
 
-    Optional<FacturaModel> getBoletaFactura(OrganizationModel organizacion, String idDocumento);
+    Optional<FacturaModel> getBoletaFactura(OrganizationModel organizacion, String id);
 
     boolean remove(OrganizationModel organizacion, FacturaModel factura);
+
 }

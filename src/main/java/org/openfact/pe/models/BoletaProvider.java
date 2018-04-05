@@ -12,7 +12,8 @@ public interface BoletaProvider {
 
     BoletaModel createBoleta(OrganizationModel organizacion, String serie, int numero);
 
-    Optional<BoletaModel> getBoletaFactura(OrganizationModel organizacion, String idDocumento);
+    Optional<BoletaModel> getBoletaFactura(OrganizationModel organizacion, String id);
 
-    boolean remove(OrganizationModel organizacion, BoletaModel factura);
+    boolean remove(OrganizationModel organizacion, BoletaModel boleta);
+
 }

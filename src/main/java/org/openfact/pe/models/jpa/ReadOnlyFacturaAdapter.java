@@ -1,20 +1,46 @@
 package org.openfact.pe.models.jpa;
 
 import org.openfact.pe.models.ClienteModel;
-import org.openfact.pe.models.jpa.entities.BoletaEntity;
+import org.openfact.pe.models.EstadoComprobantePago;
+import org.openfact.pe.models.FacturaModel;
+import org.openfact.pe.models.jpa.entities.FacturaEntity;
 
 import javax.persistence.EntityManager;
 import java.util.Date;
 
-public class ReadOnlyBoletaAdapter extends AbstractBoletaAdapter {
+public class ReadOnlyFacturaAdapter implements FacturaModel {
 
-    public ReadOnlyBoletaAdapter(EntityManager em, BoletaEntity boletaEntity) {
+    public ReadOnlyFacturaAdapter(EntityManager em, FacturaEntity facturaEntity) {
+    }
 
+    @Override
+    public String getId() {
+        return null;
+    }
+
+    @Override
+    public String getSerie() {
+        return null;
+    }
+
+    @Override
+    public Integer getNumero() {
+        return null;
+    }
+
+    @Override
+    public EstadoComprobantePago getEstado() {
+        return null;
+    }
+
+    @Override
+    public Date getFechaEmision() {
+        return null;
     }
 
     @Override
     public void setFechaEmision(Date fechaEmision) {
-        throw new IllegalStateException("");
+
     }
 
     @Override
@@ -166,5 +192,4 @@ public class ReadOnlyBoletaAdapter extends AbstractBoletaAdapter {
     public void setEnviarCliente(Boolean enviarSUNAT) {
 
     }
-
 }
