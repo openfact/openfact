@@ -24,7 +24,7 @@ public class DefaultBoletasFacturasPEResource implements BoletasFacturasResource
 
     @Override
     public BoletaFacturaRepresentation crearBoletaFactura(String organizacionId, BoletaFacturaRepresentation rep) {
-//        OrganizationModel organizacion = organizationProvider.getCompany(organizacionId).orElseThrow(() -> new NotFoundException("Organizacion no encontrada"));
+//        OrganizationModel organizacion = organizationProvider.getOrganization(organizacionId).orElseThrow(() -> new NotFoundException("Organizacion no encontrada"));
 //
 //        String serie = rep.getSerie();
 //        Integer numero = rep.getNumero();

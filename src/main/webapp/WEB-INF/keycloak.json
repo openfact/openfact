@@ -63,42 +63,42 @@
         ]
       },
       {
-        "path": "/companies/*",
+        "path": "/organizations/*",
         "methods": [
           {
             "method": "GET",
             "scopes": [
-              "urn:openfact.com:scopes:company:view"
+              "urn:openfact.com:scopes:organization:view"
             ]
           },
           {
             "method": "POST",
             "scopes": [
-              "urn:openfact.com:scopes:company:create"
+              "urn:openfact.com:scopes:organization:create"
             ]
           }
         ]
       },
       {
-        "name": "Company Resource",
-        "path": "/companies/{id}",
+        "name": "Organization Resource",
+        "path": "/organizations/{id}",
         "methods": [
           {
             "method": "GET",
             "scopes": [
-              "urn:openfact.com:scopes:company:view"
+              "urn:openfact.com:scopes:organization:view"
             ]
           },
           {
             "method": "DELETE",
             "scopes": [
-              "urn:openfact.com:scopes:company:delete"
+              "urn:openfact.com:scopes:organization:delete"
             ]
           },
           {
             "method": "PUT",
             "scopes": [
-              "urn:openfact.com:scopes:company:edit"
+              "urn:openfact.com:scopes:organization:edit"
             ]
           }
         ]

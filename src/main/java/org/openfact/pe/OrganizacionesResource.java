@@ -13,13 +13,13 @@ public interface OrganizacionesResource {
 
     @GET
     @Path("/")
-    OrganizacionRepresentation getCompany(
+    OrganizacionRepresentation getOrganization(
             @PathParam("organizationId") String organizationId
     );
 
     @PUT
     @Path("/")
-    OrganizacionRepresentation updateCompany(
+    OrganizacionRepresentation updateOrganization(
             @PathParam("organizationId") String organizationId,
             @Valid OrganizacionRepresentation rep
     );

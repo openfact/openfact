@@ -1,21 +1,14 @@
 package org.openfact.pe.managers;
 
-import org.openfact.core.models.FileProvider;
 import org.openfact.core.models.OrganizationModel;
-import org.openfact.core.models.files.FileException;
 import org.openfact.pe.models.BoletaFacturaModel;
 import org.openfact.pe.models.InformacionAdicionalModel;
 import org.openfact.pe.models.utils.ModelToJaxb;
 import org.openfact.pe.ubl20.xsd.invoice_2.InvoiceType;
 
-import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
-import javax.inject.Inject;
-import javax.jms.JMSContext;
-import javax.jms.JMSProducer;
-import javax.jms.Topic;
 
 @Stateless
 public class UBLJaxbBuilderManager {
