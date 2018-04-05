@@ -1,7 +1,6 @@
 package org.openfact.pe.models;
 
 import org.openfact.core.models.OrganizationModel;
-import org.openfact.pe.models.types.TipoInvoice;
 
 import java.util.Optional;
 

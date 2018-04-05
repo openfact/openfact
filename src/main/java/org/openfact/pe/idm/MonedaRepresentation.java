@@ -10,7 +10,7 @@ public class MonedaRepresentation {
     @Pattern(regexp = "[a-zA-Z]{3}")
     private String codigo;
 
-    @Digits(integer = 10,fraction = 4)
+    @Digits(integer = 10, fraction = 4)
     private Long tipoCambio;
 
     public String getCodigo() {

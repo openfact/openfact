@@ -1,11 +1,7 @@
 package org.openfact.pe.managers;
 
-import org.openfact.core.models.OrganizationModel;
 import org.openfact.pe.models.BoletaModel;
 import org.openfact.pe.models.FacturaModel;
-import org.openfact.pe.models.InformacionAdicionalModel;
-import org.openfact.pe.models.utils.ModelToJaxb;
-import org.openfact.pe.ubl20.xsd.invoice_2.InvoiceType;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;

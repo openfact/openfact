@@ -6,15 +6,15 @@ import javax.validation.constraints.NotNull;
 public class TotalRepresentation {
 
     @NotNull
-    @Digits(integer = 10,fraction = 2)
+    @Digits(integer = 10, fraction = 2)
     private Long pagar;
 
     @NotNull
-    @Digits(integer = 10,fraction = 2)
+    @Digits(integer = 10, fraction = 2)
     private Long otrosCargos;
 
     @NotNull
-    @Digits(integer = 10,fraction = 2)
+    @Digits(integer = 10, fraction = 2)
     private Long descuentoGlobal;
 
     public Long getPagar() {

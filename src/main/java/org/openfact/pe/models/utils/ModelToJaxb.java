@@ -1,15 +1,14 @@
 package org.openfact.pe.models.utils;
 
+import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_2.*;
+import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_2.*;
+import oasis.names.specification.ubl.schema.xsd.creditnote_2.CreditNoteType;
+import oasis.names.specification.ubl.schema.xsd.invoice_2.InvoiceType;
 import org.openfact.core.models.OrganizationModel;
 import org.openfact.pe.models.ClienteModel;
 import org.openfact.pe.models.FacturaModel;
 import org.openfact.pe.models.InformacionAdicionalModel;
 import org.openfact.pe.models.types.TipoDocumentoEntidad;
-import org.openfact.pe.models.types.TipoInvoice;
-import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.*;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
-import org.openfact.pe.ubl20.xsd.creditnote_2.CreditNoteType;
-import org.openfact.pe.ubl20.xsd.invoice_2.InvoiceType;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;

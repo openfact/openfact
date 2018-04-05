@@ -6,19 +6,19 @@ import javax.validation.constraints.NotNull;
 public class TotalInformacionAdicionalRepresentation {
 
     @NotNull
-    @Digits(integer = 10,fraction = 2)
+    @Digits(integer = 10, fraction = 2)
     private Long totalGravada;
 
     @NotNull
-    @Digits(integer = 10,fraction = 2)
+    @Digits(integer = 10, fraction = 2)
     private Long totalGratuita;
 
     @NotNull
-    @Digits(integer = 10,fraction = 2)
+    @Digits(integer = 10, fraction = 2)
     private Long totalInafecta;
 
     @NotNull
-    @Digits(integer = 10,fraction = 2)
+    @Digits(integer = 10, fraction = 2)
     private Long totalExonerada;
 
     public Long getTotalGravada() {

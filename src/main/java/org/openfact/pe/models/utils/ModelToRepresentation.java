@@ -1,6 +1,5 @@
 package org.openfact.pe.models.utils;
 
-import org.openfact.pe.idm.AbstractInvoiceRepresentation;
 import org.openfact.pe.idm.BoletaRepresentation;
 import org.openfact.pe.idm.FacturaRepresentation;
 import org.openfact.pe.idm.OrganizacionRepresentation;

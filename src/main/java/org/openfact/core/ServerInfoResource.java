@@ -15,6 +15,6 @@ public interface ServerInfoResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    ServerInfoRepresentation getInfo() ;
+    ServerInfoRepresentation getInfo();
 
 }

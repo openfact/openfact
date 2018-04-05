@@ -22,7 +22,6 @@ public class JpaFileProvider implements FileProvider {
 //        producerTemplate.sendBodyAndHeader("file://home/admin", bytes, Exchange.FILE_NAME, filename);
 //        return "Hello";
 //    }
-
     @Override
     public String addFile(String filename, byte[] bytes, String organizationId) {
         return null;

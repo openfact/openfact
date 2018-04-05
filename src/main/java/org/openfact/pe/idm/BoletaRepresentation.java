@@ -14,5 +14,5 @@ public class BoletaRepresentation extends AbstractInvoiceRepresentation {
     public void setSerie(String serie) {
         this.serie = serie;
     }
-    
+
 }

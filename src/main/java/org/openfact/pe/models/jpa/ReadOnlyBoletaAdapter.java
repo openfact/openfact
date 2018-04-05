@@ -1,8 +1,6 @@
 package org.openfact.pe.models.jpa;
 
-import org.openfact.pe.models.BoletaModel;
 import org.openfact.pe.models.ClienteModel;
-import org.openfact.pe.models.EstadoComprobantePago;
 
 import java.util.Date;
 

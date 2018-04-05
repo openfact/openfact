@@ -1,6 +1,6 @@
 package org.openfact.pe.models;
 
-public enum  EstadoComprobantePago {
+public enum EstadoComprobantePago {
     BLOQUEADO,
     DESBLOQUEADO;
 }

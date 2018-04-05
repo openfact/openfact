@@ -3,7 +3,6 @@ package org.openfact.pe.models.jpa;
 import org.openfact.core.models.OrganizationModel;
 import org.openfact.pe.models.BoletaModel;
 import org.openfact.pe.models.BoletaProvider;
-import org.openfact.pe.models.types.TipoInvoice;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
