@@ -8,13 +8,14 @@
 
 package org.openfact.pe.ubl20.sunataggregatecomponents_1;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.AddressType;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.AddressType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**

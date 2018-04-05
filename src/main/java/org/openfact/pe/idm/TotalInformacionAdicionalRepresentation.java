@@ -15,7 +15,7 @@ public class TotalInformacionAdicionalRepresentation {
 
     @NotNull
     @Digits(integer = 10,fraction = 2)
-    private Long totalInfafecta;
+    private Long totalInafecta;
 
     @NotNull
     @Digits(integer = 10,fraction = 2)
@@ -37,12 +37,12 @@ public class TotalInformacionAdicionalRepresentation {
         this.totalGratuita = totalGratuita;
     }
 
-    public Long getTotalInfafecta() {
-        return totalInfafecta;
+    public Long getTotalInafecta() {
+        return totalInafecta;
     }
 
-    public void setTotalInfafecta(Long totalInfafecta) {
-        this.totalInfafecta = totalInfafecta;
+    public void setTotalInafecta(Long totalInafecta) {
+        this.totalInafecta = totalInafecta;
     }
 
     public Long getTotalExonerada() {

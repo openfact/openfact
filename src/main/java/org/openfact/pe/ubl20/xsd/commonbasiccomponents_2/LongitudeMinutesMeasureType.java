@@ -8,10 +8,11 @@
 
 package org.openfact.pe.ubl20.xsd.commonbasiccomponents_2;
 
+import org.openfact.pe.ubl20.uncefact.data.specification.unqualifieddatatypesschemamodule._2.MeasureType;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.uncefact.data.specification.unqualifieddatatypesschemamodule._2.MeasureType;
 
 
 /**

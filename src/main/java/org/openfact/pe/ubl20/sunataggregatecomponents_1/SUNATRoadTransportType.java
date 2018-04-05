@@ -8,16 +8,17 @@
 
 package org.openfact.pe.ubl20.sunataggregatecomponents_1;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.RoadTransportType;
 import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.BrandNameType;
 import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TransportAuthorizationCodeType;
 import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TransportMeansTypeCodeType;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**

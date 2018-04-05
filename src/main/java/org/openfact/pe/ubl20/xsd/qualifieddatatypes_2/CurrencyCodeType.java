@@ -8,19 +8,13 @@
 
 package org.openfact.pe.ubl20.xsd.qualifieddatatypes_2;
 
+import org.openfact.pe.ubl20.uncefact.data.specification.unqualifieddatatypesschemamodule._2.CodeType;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DocumentCurrencyCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PaymentAlternativeCurrencyCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PaymentCurrencyCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PricingCurrencyCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.RequestedInvoiceCurrencyCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.SourceCurrencyCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TargetCurrencyCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TaxCurrencyCodeType;
-import org.openfact.pe.ubl20.uncefact.data.specification.unqualifieddatatypesschemamodule._2.CodeType;
 
 
 /**

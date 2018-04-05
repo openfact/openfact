@@ -8,34 +8,14 @@
 
 package org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ChargeableWeightMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CustomsImportClassifiedIndicatorType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CustomsStatusCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CustomsTariffQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DeclaredCustomsValueAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DeclaredForCarriageValueAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DeclaredStatisticsValueAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DescriptionType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.FreeOnBoardValueAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.GrossVolumeMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.GrossWeightMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.HazardousRiskIndicatorType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.InsuranceValueAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.NetNetWeightMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.NetVolumeMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.NetWeightMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PreferenceCriterionCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.QuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.RequiredCustomsIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.SequenceNumberIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ValueAmountType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**

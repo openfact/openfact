@@ -13,7 +13,6 @@ public class TotalRepresentation {
     @Digits(integer = 10,fraction = 2)
     private Long otrosCargos;
 
-
     @NotNull
     @Digits(integer = 10,fraction = 2)
     private Long descuentoGlobal;

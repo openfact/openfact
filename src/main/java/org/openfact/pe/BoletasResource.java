@@ -1,34 +1,34 @@
 package org.openfact.pe;
 
-import org.openfact.pe.idm.BoletaFacturaRepresentation;
+import org.openfact.pe.idm.BoletaRepresentation;
 
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-@Path("/organizations/{organizationId}/pe/documentos")
+@Path("/organizations/{organizationId}/pe/documentos/boletas")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public interface BoletasFacturasResource {
+public interface BoletasResource {
 
     @POST
-    @Path("/boletas-facturas")
-    BoletaFacturaRepresentation crearBoletaFactura(
+    @Path("/")
+    BoletaRepresentation crearBoleta(
             @PathParam("organizationId") String organizacionId,
-            @Valid BoletaFacturaRepresentation rep
+            @Valid BoletaRepresentation rep
     );
 
     @PUT
-    @Path("/boletas-facturas/{documentId}")
-    void actualizarBoletaFactura(
+    @Path("/{documentId}")
+    void actualizarBoleta(
             @PathParam("organizationId") String organizacionId,
             @PathParam("documentId") String idDocumento,
-            @Valid BoletaFacturaRepresentation rep
+            @Valid BoletaRepresentation rep
     );
 
     @DELETE
-    @Path("/boletas-facturas/{documentId}")
-    void eliminarBoletaFactura(
+    @Path("/{documentId}")
+    void eliminarBoleta(
             @PathParam("organizationId") String organizacionId,
             @PathParam("documentId") String idDocumento
     );

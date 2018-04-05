@@ -8,26 +8,14 @@
 
 package org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.NoteType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.OversupplyQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ReceivedDateType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ReceivedQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.RejectActionCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.RejectReasonCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.RejectReasonType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.RejectedQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ShortQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ShortageActionCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TimingComplaintCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TimingComplaintType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.UUIDType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**

@@ -8,25 +8,14 @@
 
 package org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ActionCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ContentUnitQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ContractSubdivisionType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LifeCycleStatusCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.MaximumOrderQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.MinimumOrderQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.NoteType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.OrderQuantityIncrementNumericType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.OrderableIndicatorType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.OrderableUnitType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PackLevelCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.WarrantyInformationType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**

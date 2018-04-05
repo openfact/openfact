@@ -1,8 +1,8 @@
 package org.openfact.pe.models.utils;
 
 import org.openfact.core.models.OrganizationModel;
-import org.openfact.pe.models.BoletaFacturaModel;
 import org.openfact.pe.models.ClienteModel;
+import org.openfact.pe.models.FacturaModel;
 import org.openfact.pe.models.InformacionAdicionalModel;
 import org.openfact.pe.models.types.TipoDocumentoEntidad;
 import org.openfact.pe.models.types.TipoInvoice;
@@ -229,7 +229,7 @@ public class ModelToJaxb {
         return noteType;
     }
 
-    public static InvoiceType toInvoiceType(OrganizationModel organizacion, InformacionAdicionalModel informacionAdicional, BoletaFacturaModel boletaFactura) {
+    public static InvoiceType toInvoiceType(OrganizationModel organizacion, InformacionAdicionalModel informacionAdicional, FacturaModel boletaFactura) {
         InvoiceType invoice = new InvoiceType();
 
         // General config
@@ -237,7 +237,7 @@ public class ModelToJaxb {
         invoice.setCustomizationID(buildCustomizationIDType("1.0"));
 
         // documentId
-        invoice.setID(buildIDType(boletaFactura.getIdAsignado()));
+//        invoice.setID(buildIDType(boletaFactura.getIdAsignado()));
 
         // Fechas
         invoice.setIssueDate(buildIssueDateType(boletaFactura.getFechaEmision(), organizacion.getTimeZone()));
@@ -261,16 +261,16 @@ public class ModelToJaxb {
 //        invoice.setLegalMonetaryTotal(toLegalMonetaryTotalType(rep));
 
         // Codigo Invoice BOLETA/FACTURA
-        switch (boletaFactura.getTipoInvoice()) {
-            case BOLETA:
-                invoice.setInvoiceTypeCode(buildInvoiceTypeCodeType(TipoInvoice.BOLETA.getCodigo()));
-                break;
-            case FACTURA:
-                invoice.setInvoiceTypeCode(buildInvoiceTypeCodeType(TipoInvoice.FACTURA.getCodigo()));
-                break;
-            default:
-                throw new IllegalStateException("Tipo Invoice invalido:" + boletaFactura.getTipoInvoice());
-        }
+//        switch (boletaFactura.getTipoInvoice()) {
+//            case BOLETA:
+//                invoice.setInvoiceTypeCode(buildInvoiceTypeCodeType(TipoInvoice.BOLETA.getCodigo()));
+//                break;
+//            case FACTURA:
+//                invoice.setInvoiceTypeCode(buildInvoiceTypeCodeType(TipoInvoice.FACTURA.getCodigo()));
+//                break;
+//            default:
+//                throw new IllegalStateException("Tipo Invoice invalido:" + boletaFactura.getTipoInvoice());
+//        }
 
         // Observaciones
         invoice.getNote().add(buildNoteType(boletaFactura.getObservacion()));

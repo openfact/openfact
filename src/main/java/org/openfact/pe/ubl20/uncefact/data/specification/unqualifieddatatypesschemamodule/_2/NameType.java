@@ -8,31 +8,11 @@
 
 package org.openfact.pe.ubl20.uncefact.data.specification.unqualifieddatatypesschemamodule._2;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlSeeAlso;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.AdditionalStreetNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.BlockNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.BrandNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.BuildingNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CategoryNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CityNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CitySubdivisionNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.FamilyNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.FirstNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.HolderNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.MiddleNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ModelNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.RegistrationNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.StreetNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TechnicalNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.VesselNameType;
 
 
 /**

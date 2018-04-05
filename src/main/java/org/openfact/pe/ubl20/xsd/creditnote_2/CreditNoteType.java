@@ -8,45 +8,16 @@
 
 package org.openfact.pe.ubl20.xsd.creditnote_2;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.*;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+import org.openfact.pe.ubl20.xsd.commonextensioncomponents_2.UBLExtensionsType;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.AllowanceChargeType;
-import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.BillingReferenceType;
-import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.CreditNoteLineType;
-import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.CustomerPartyType;
-import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.DocumentReferenceType;
-import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.ExchangeRateType;
-import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.MonetaryTotalType;
-import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.OrderReferenceType;
-import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.PartyType;
-import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.PeriodType;
-import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.ResponseType;
-import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.SignatureType;
-import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.SupplierPartyType;
-import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.TaxTotalType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.AccountingCostCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.AccountingCostType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CopyIndicatorType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CustomizationIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DocumentCurrencyCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IssueDateType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IssueTimeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LineCountNumericType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.NoteType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PaymentAlternativeCurrencyCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PaymentCurrencyCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PricingCurrencyCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ProfileIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TaxCurrencyCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TaxPointDateType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.UBLVersionIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.UUIDType;
-import org.openfact.pe.ubl20.xsd.commonextensioncomponents_2.UBLExtensionsType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**

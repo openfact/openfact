@@ -8,22 +8,14 @@
 
 package org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DescriptionType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IssueDateType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IssueTimeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.NoteType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PreviousVersionIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.RevisionDateType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.RevisionTimeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.UUIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.VersionIDType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**

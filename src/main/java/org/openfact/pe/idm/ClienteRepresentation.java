@@ -10,62 +10,62 @@ import javax.validation.constraints.Size;
 public class ClienteRepresentation {
 
     @NotNull
-    private TipoDocumentoEntidad tipoDocumentoIdentidadCliente;
+    private TipoDocumentoEntidad tipoDocumento;
 
     @NotNull
     @NotBlank
     @Size(min = 1, max = 20)
-    private String numeroDocumentoIdentidadCliente;
+    private String numeroDocumento;
 
     @NotNull
     @NotBlank
     @Size(min = 1, max = 250)
-    private String nombreCliente;
+    private String nombre;
 
     @Email
     @Size(max = 250)
-    private String emailCliente;
+    private String email;
 
     @Size(max = 250)
-    private String direccionCliente;
+    private String direccion;
 
-    public TipoDocumentoEntidad getTipoDocumentoIdentidadCliente() {
-        return tipoDocumentoIdentidadCliente;
+    public TipoDocumentoEntidad getTipoDocumento() {
+        return tipoDocumento;
     }
 
-    public void setTipoDocumentoIdentidadCliente(TipoDocumentoEntidad tipoDocumentoIdentidadCliente) {
-        this.tipoDocumentoIdentidadCliente = tipoDocumentoIdentidadCliente;
+    public void setTipoDocumento(TipoDocumentoEntidad tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
     }
 
-    public String getNumeroDocumentoIdentidadCliente() {
-        return numeroDocumentoIdentidadCliente;
+    public String getNumeroDocumento() {
+        return numeroDocumento;
     }
 
-    public void setNumeroDocumentoIdentidadCliente(String numeroDocumentoIdentidadCliente) {
-        this.numeroDocumentoIdentidadCliente = numeroDocumentoIdentidadCliente;
+    public void setNumeroDocumento(String numeroDocumento) {
+        this.numeroDocumento = numeroDocumento;
     }
 
-    public String getNombreCliente() {
-        return nombreCliente;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreCliente(String nombreCliente) {
-        this.nombreCliente = nombreCliente;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getEmailCliente() {
-        return emailCliente;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmailCliente(String emailCliente) {
-        this.emailCliente = emailCliente;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getDireccionCliente() {
-        return direccionCliente;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setDireccionCliente(String direccionCliente) {
-        this.direccionCliente = direccionCliente;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 }

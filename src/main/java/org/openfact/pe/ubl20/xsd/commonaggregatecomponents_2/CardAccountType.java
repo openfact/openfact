@@ -8,21 +8,12 @@
 
 package org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2;
 
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CV2IDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CardChipCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CardTypeCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ChipApplicationIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ExpiryDateType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.HolderNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IssueNumberIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IssuerIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.NetworkIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PrimaryAccountNumberIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ValidityStartDateType;
 
 
 /**

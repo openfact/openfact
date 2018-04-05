@@ -8,10 +8,9 @@
 
 package org.openfact.pe.ubl20.sunataggregatecomponents_1;
 
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.annotation.XmlElementDecl;
-import javax.xml.bind.annotation.XmlRegistry;
-import javax.xml.namespace.QName;
+import org.openfact.pe.ubl20.uncefact.data.specification.unqualifieddatatypesschemamodule._2.CodeType;
+import org.openfact.pe.ubl20.uncefact.data.specification.unqualifieddatatypesschemamodule._2.IdentifierType;
+import org.openfact.pe.ubl20.uncefact.data.specification.unqualifieddatatypesschemamodule._2.TextType;
 import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.AddressType;
 import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.DocumentReferenceType;
 import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.PaymentType;
@@ -20,9 +19,11 @@ import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.AmountType;
 import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DeliveryTimeType;
 import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IDType;
 import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IndicatorType;
-import org.openfact.pe.ubl20.uncefact.data.specification.unqualifieddatatypesschemamodule._2.CodeType;
-import org.openfact.pe.ubl20.uncefact.data.specification.unqualifieddatatypesschemamodule._2.IdentifierType;
-import org.openfact.pe.ubl20.uncefact.data.specification.unqualifieddatatypesschemamodule._2.TextType;
+
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.annotation.XmlElementDecl;
+import javax.xml.bind.annotation.XmlRegistry;
+import javax.xml.namespace.QName;
 
 
 /**

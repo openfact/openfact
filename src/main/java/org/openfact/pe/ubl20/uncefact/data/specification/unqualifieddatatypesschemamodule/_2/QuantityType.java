@@ -8,47 +8,12 @@
 
 package org.openfact.pe.ubl20.uncefact.data.specification.unqualifieddatatypesschemamodule._2;
 
-import java.math.BigDecimal;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlSeeAlso;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.BackorderQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.BaseQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.BatchQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ConsumerUnitQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ContentUnitQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CreditedQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CustomsTariffQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DebitedQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DeliveredQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.GoodsItemQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.InvoicedQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.MaximumBackorderQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.MaximumOrderQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.MaximumQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.MinimumBackorderQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.MinimumOrderQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.MinimumQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.OrderQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.OutstandingQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.OversupplyQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PackQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PackageQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PackagesQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ReceivedQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.RejectedQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ShortQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TotalGoodsItemQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TotalPackageQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TotalPackagesQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TotalTransportHandlingUnitQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TransportHandlingUnitQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.UnitQuantityType;
+import java.math.BigDecimal;
 
 
 /**

@@ -8,29 +8,14 @@
 
 package org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.AccountingCostCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.AccountingCostType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.BackOrderAllowedIndicatorType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.InspectionMethodCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LineExtensionAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LineStatusCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.MaximumBackorderQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.MaximumQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.MinimumBackorderQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.MinimumQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.NoteType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PartialDeliveryIndicatorType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.QuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.SalesOrderIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TotalTaxAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.UUIDType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**

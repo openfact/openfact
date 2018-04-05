@@ -8,18 +8,12 @@
 
 package org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2;
 
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CalculationRateType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DateType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ExchangeMarketIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.MathematicOperatorCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.SourceCurrencyBaseRateType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.SourceCurrencyCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TargetCurrencyBaseRateType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TargetCurrencyCodeType;
 
 
 /**

@@ -8,17 +8,14 @@
 
 package org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.EndpointIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LogoReferenceIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.MarkAttentionIndicatorType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.MarkCareIndicatorType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.WebsiteURIType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**

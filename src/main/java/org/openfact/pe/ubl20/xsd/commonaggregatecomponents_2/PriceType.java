@@ -8,18 +8,14 @@
 
 package org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.BaseQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.OrderableUnitFactorRateType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PriceAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PriceChangeReasonType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PriceTypeCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PriceTypeType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**

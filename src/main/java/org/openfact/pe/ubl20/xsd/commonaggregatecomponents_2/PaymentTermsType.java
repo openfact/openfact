@@ -8,20 +8,14 @@
 
 package org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.AmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.NoteType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PaymentMeansIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PenaltySurchargePercentType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PrepaidPaymentReferenceIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ReferenceEventCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.SettlementDiscountPercentType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**

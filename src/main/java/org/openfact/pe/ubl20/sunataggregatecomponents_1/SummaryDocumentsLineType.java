@@ -8,19 +8,20 @@
 
 package org.openfact.pe.ubl20.sunataggregatecomponents_1;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import org.openfact.pe.ubl20.uncefact.data.specification.unqualifieddatatypesschemamodule._2.IdentifierType;
 import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.AllowanceChargeType;
 import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.PaymentType;
 import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.TaxTotalType;
 import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.AmountType;
 import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DocumentTypeCodeType;
 import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LineIDType;
-import org.openfact.pe.ubl20.uncefact.data.specification.unqualifieddatatypesschemamodule._2.IdentifierType;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**

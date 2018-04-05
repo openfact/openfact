@@ -8,18 +8,12 @@
 
 package org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2;
 
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.AllowanceTotalAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ChargeTotalAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LineExtensionAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PayableAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PayableRoundingAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PrepaidAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TaxExclusiveAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TaxInclusiveAmountType;
 
 
 /**

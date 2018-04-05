@@ -8,52 +8,11 @@
 
 package org.openfact.pe.ubl20.uncefact.data.specification.unqualifieddatatypesschemamodule._2;
 
-import java.math.BigDecimal;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlSeeAlso;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.AllowanceTotalAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.BalanceAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.BaseAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ChargeTotalAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CreditAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CreditLineAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DebitAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DebitLineAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DeclaredCarriageValueAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DeclaredCustomsValueAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DeclaredForCarriageValueAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DeclaredStatisticsValueAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.FreeOnBoardValueAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.InsurancePremiumAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.InsuranceValueAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.InvoiceAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LineAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LineExtensionAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PaidAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PayableAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PayableRoundingAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PaymentAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PerUnitAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PrepaidAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PriceAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.RoundingAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TaxAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TaxExclusiveAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TaxInclusiveAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TaxableAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TotalBalanceAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TotalCreditAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TotalDebitAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TotalInvoiceAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TotalPaymentAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TotalTaxAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TransactionCurrencyTaxAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ValueAmountType;
 import org.openfact.pe.ubl20.uncefact.codelist.specification._54217._2001.CurrencyCodeContentType;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
+import javax.xml.bind.annotation.*;
+import java.math.BigDecimal;
 
 
 /**

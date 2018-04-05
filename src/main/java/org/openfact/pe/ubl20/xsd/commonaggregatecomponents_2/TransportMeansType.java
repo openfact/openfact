@@ -8,18 +8,15 @@
 
 package org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSeeAlso;
-import javax.xml.bind.annotation.XmlType;
+import org.openfact.pe.ubl20.sunataggregatecomponents_1.SUNATTransportMeansType;
 import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DirectionCodeType;
 import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.JourneyIDType;
 import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.RegistrationNationalityIDType;
 import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.RegistrationNationalityType;
-import org.openfact.pe.ubl20.sunataggregatecomponents_1.SUNATTransportMeansType;
+
+import javax.xml.bind.annotation.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**

@@ -1,8 +1,8 @@
 package org.openfact.core;
 
 import org.keycloak.representations.idm.KeysMetadataRepresentation;
-import org.openfact.core.idm.OrganizationRepresentation;
 import org.openfact.core.idm.ComponentRepresentation;
+import org.openfact.core.idm.OrganizationRepresentation;
 
 import javax.validation.Valid;
 import javax.ws.rs.*;

@@ -8,22 +8,14 @@
 
 package org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.AdditionalInformationType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.BrandNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CatalogueIndicatorType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DescriptionType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.HazardousRiskIndicatorType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.KeywordType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ModelNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.NameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PackQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PackSizeNumericType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**

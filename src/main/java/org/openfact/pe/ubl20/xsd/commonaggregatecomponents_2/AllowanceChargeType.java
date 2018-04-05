@@ -8,23 +8,14 @@
 
 package org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.AccountingCostCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.AccountingCostType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.AllowanceChargeReasonCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.AllowanceChargeReasonType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.AmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.BaseAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ChargeIndicatorType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.MultiplierFactorNumericType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PrepaidIndicatorType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.SequenceNumericType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**

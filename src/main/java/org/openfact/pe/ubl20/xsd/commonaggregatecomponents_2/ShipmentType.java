@@ -8,32 +8,14 @@
 
 package org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DeclaredCustomsValueAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DeclaredForCarriageValueAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DeclaredStatisticsValueAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DeliveryInstructionsType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.FreeOnBoardValueAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.GrossVolumeMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.GrossWeightMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.HandlingCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.HandlingInstructionsType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.InformationType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.InsuranceValueAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.NetNetWeightMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.NetVolumeMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.NetWeightMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ShippingPriorityLevelCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.SpecialInstructionsType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.SplitConsignmentIndicatorType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TotalGoodsItemQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TotalTransportHandlingUnitQuantityType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**

@@ -8,27 +8,18 @@
 
 package org.openfact.pe.ubl20.sunataggregatecomponents_1;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.DocumentReferenceType;
 import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.ItemType;
 import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.OrderLineReferenceType;
 import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.ShipmentType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.BackorderQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.BackorderReasonType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DeliveredQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.GrossWeightMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LineStatusCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.NoteType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.OutstandingQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.OutstandingReasonType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.OversupplyQuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.UUIDType;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**

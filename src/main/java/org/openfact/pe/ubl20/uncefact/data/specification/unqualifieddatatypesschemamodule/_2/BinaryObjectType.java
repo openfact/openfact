@@ -8,17 +8,12 @@
 
 package org.openfact.pe.ubl20.uncefact.data.specification.unqualifieddatatypesschemamodule._2;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlSeeAlso;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
-import javax.xml.bind.annotation.adapters.NormalizedStringAdapter;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DocumentBinaryObjectType;
 import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.EmbeddedDocumentBinaryObjectType;
+
+import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.NormalizedStringAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**

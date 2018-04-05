@@ -8,19 +8,12 @@
 
 package org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2;
 
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.BaseUnitMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.NameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PerUnitAmountType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PercentType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TaxExemptionReasonCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TaxExemptionReasonType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TierRangeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TierRatePercentType;
 
 
 /**

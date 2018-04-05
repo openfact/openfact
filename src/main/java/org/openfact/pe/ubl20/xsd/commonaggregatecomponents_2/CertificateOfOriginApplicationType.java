@@ -8,18 +8,14 @@
 
 package org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ApplicationStatusCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CertificateTypeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.OriginalJobIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PreviousJobIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ReferenceIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.RemarksType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**

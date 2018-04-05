@@ -8,14 +8,15 @@
 
 package org.openfact.pe.ubl20.sunataggregatecomponents_1;
 
+import org.openfact.pe.ubl20.uncefact.data.specification.unqualifieddatatypesschemamodule._2.IdentifierType;
+import org.openfact.pe.ubl20.uncefact.data.specification.unqualifieddatatypesschemamodule._2.TextType;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DocumentTypeCodeType;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LineIDType;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DocumentTypeCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LineIDType;
-import org.openfact.pe.ubl20.uncefact.data.specification.unqualifieddatatypesschemamodule._2.IdentifierType;
-import org.openfact.pe.ubl20.uncefact.data.specification.unqualifieddatatypesschemamodule._2.TextType;
 
 
 /**

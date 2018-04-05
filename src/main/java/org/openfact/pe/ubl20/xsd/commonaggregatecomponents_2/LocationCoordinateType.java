@@ -8,17 +8,12 @@
 
 package org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2;
 
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CoordinateSystemCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LatitudeDegreesMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LatitudeDirectionCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LatitudeMinutesMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LongitudeDegreesMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LongitudeDirectionCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LongitudeMinutesMeasureType;
 
 
 /**

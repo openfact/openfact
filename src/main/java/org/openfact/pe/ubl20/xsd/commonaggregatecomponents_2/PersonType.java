@@ -8,17 +8,12 @@
 
 package org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2;
 
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.FamilyNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.FirstNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.JobTitleType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.MiddleNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.NameSuffixType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.OrganizationDepartmentType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TitleType;
 
 
 /**

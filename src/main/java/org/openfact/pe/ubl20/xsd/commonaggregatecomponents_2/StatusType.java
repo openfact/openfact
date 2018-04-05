@@ -8,20 +8,12 @@
 
 package org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2;
 
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ConditionCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DescriptionType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IndicationIndicatorType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PercentType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ReferenceDateType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ReferenceTimeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.SequenceIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.StatusReasonCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.StatusReasonType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TextType;
 
 
 /**

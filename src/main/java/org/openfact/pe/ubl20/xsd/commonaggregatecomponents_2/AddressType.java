@@ -8,36 +8,14 @@
 
 package org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.AdditionalStreetNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.AddressFormatCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.AddressTypeCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.BlockNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.BuildingNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.BuildingNumberType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CityNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CitySubdivisionNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CountrySubentityCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CountrySubentityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DepartmentType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DistrictType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.FloorType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.InhouseMailType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.MarkAttentionType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.MarkCareType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PlotIdentificationType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PostalZoneType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PostboxType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.RegionType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.RoomType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.StreetNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TimezoneOffsetType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**

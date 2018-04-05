@@ -8,32 +8,16 @@
 
 package org.openfact.pe.ubl20.xsd.despatchadvice_2;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.*;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+import org.openfact.pe.ubl20.xsd.commonextensioncomponents_2.UBLExtensionsType;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.CustomerPartyType;
-import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.DespatchLineType;
-import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.DocumentReferenceType;
-import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.OrderReferenceType;
-import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.ShipmentType;
-import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.SignatureType;
-import org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2.SupplierPartyType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CopyIndicatorType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CustomizationIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DespatchAdviceTypeCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DocumentStatusCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IssueDateType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IssueTimeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LineCountNumericType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.NoteType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ProfileIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.UBLVersionIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.UUIDType;
-import org.openfact.pe.ubl20.xsd.commonextensioncomponents_2.UBLExtensionsType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**

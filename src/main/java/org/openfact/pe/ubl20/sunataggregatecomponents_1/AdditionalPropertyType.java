@@ -8,13 +8,14 @@
 
 package org.openfact.pe.ubl20.sunataggregatecomponents_1;
 
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IDType;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.NameType;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ValueType;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.NameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ValueType;
 
 
 /**

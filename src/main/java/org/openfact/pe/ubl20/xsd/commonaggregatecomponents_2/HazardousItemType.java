@@ -8,29 +8,14 @@
 
 package org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.AdditionalInformationType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.CategoryNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.EmergencyProceduresCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.HazardClassIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.HazardousCategoryCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LowerOrangeHazardPlacardIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.MarkingIDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.MedicalFirstAidGuideCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.NetVolumeMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.NetWeightMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PlacardEndorsementType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.PlacardNotationType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.QuantityType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.TechnicalNameType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.UNDGCodeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.UpperOrangeHazardPlacardIDType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**

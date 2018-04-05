@@ -1,8 +1,11 @@
 package org.openfact.pe.models.utils;
 
-import org.openfact.pe.idm.BoletaFacturaRepresentation;
+import org.openfact.pe.idm.AbstractInvoiceRepresentation;
+import org.openfact.pe.idm.BoletaRepresentation;
+import org.openfact.pe.idm.FacturaRepresentation;
 import org.openfact.pe.idm.OrganizacionRepresentation;
-import org.openfact.pe.models.BoletaFacturaModel;
+import org.openfact.pe.models.BoletaModel;
+import org.openfact.pe.models.FacturaModel;
 import org.openfact.pe.models.InformacionAdicionalModel;
 
 public class ModelToRepresentation {
@@ -28,8 +31,20 @@ public class ModelToRepresentation {
         return rep;
     }
 
-    public static BoletaFacturaRepresentation toRepresentation(BoletaFacturaModel model, boolean fullInfo) {
-        BoletaFacturaRepresentation rep = new BoletaFacturaRepresentation();
+    public static BoletaRepresentation toRepresentation(BoletaModel model, boolean fullInfo) {
+        BoletaRepresentation rep = new BoletaRepresentation();
+
+        rep.setId(model.getId());
+
+        if (fullInfo) {
+
+        }
+
+        return rep;
+    }
+
+    public static FacturaRepresentation toRepresentation(FacturaModel model, boolean fullInfo) {
+        FacturaRepresentation rep = new FacturaRepresentation();
 
         rep.setId(model.getId());
 

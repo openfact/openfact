@@ -7,11 +7,11 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "boleta_factura_pe")
+@Table(name = "factura_pe")
 @NamedQueries(value = {
 
 })
-public class BoletaFacturaEntity implements Serializable {
+public class FacturaEntity implements Serializable {
 
     @Id
     @Column(name = "id")
@@ -45,10 +45,10 @@ public class BoletaFacturaEntity implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof BoletaFacturaEntity)) {
+        if (!(obj instanceof FacturaEntity)) {
             return false;
         }
-        BoletaFacturaEntity other = (BoletaFacturaEntity) obj;
+        FacturaEntity other = (FacturaEntity) obj;
         if (id != null) {
             if (!id.equals(other.id)) {
                 return false;

@@ -8,36 +8,12 @@
 
 package org.openfact.pe.ubl20.uncefact.data.specification.unqualifieddatatypesschemamodule._2;
 
-import java.math.BigDecimal;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlSeeAlso;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.BaseUnitMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ChargeableWeightMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DegreesMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.DurationMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.GrossVolumeMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.GrossWeightMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LatitudeDegreesMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LatitudeMinutesMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LeadTimeMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LengthMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LoadingLengthMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LongitudeDegreesMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.LongitudeMinutesMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.MaximumMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.MinimumMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.MinutesMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.NetNetWeightMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.NetVolumeMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.NetWeightMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.VolumeMeasureType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.WeightMeasureType;
+import java.math.BigDecimal;
 
 
 /**

@@ -8,17 +8,12 @@
 
 package org.openfact.pe.ubl20.xsd.commonaggregatecomponents_2;
 
+import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.*;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ActualDespatchDateType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.ActualDespatchTimeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.EstimatedDespatchDateType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.EstimatedDespatchTimeType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.IDType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.RequestedDespatchDateType;
-import org.openfact.pe.ubl20.xsd.commonbasiccomponents_2.RequestedDespatchTimeType;
 
 
 /**

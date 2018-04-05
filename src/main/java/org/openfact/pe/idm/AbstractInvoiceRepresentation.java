@@ -1,24 +1,14 @@
 package org.openfact.pe.idm;
 
-import org.openfact.pe.models.TipoInvoice;
-
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
-public class BoletaFacturaRepresentation {
+public abstract class AbstractInvoiceRepresentation {
 
     private String id;
 
-    @Pattern(regexp = "[a-zA-Z]{1,}[0-9]{1,}")
-    private String serie;
-
     @Min(value = 1)
-    private Long numero;
-
-    @NotNull
-    private TipoInvoice tipo;
+    private Integer numero;
 
     @Valid
     private FechaRepresentation fecha;
@@ -38,8 +28,8 @@ public class BoletaFacturaRepresentation {
     @Valid
     private TotalInformacionAdicionalRepresentation totalInformacionAdicional;
 
-    private boolean enviarSUNAT;
-    private boolean enviarCliente;
+    private Boolean enviarSUNAT;
+    private Boolean enviarCliente;
 
     public String getId() {
         return id;
@@ -49,28 +39,12 @@ public class BoletaFacturaRepresentation {
         this.id = id;
     }
 
-    public String getSerie() {
-        return serie;
-    }
-
-    public void setSerie(String serie) {
-        this.serie = serie;
-    }
-
-    public Long getNumero() {
+    public Integer getNumero() {
         return numero;
     }
 
-    public void setNumero(Long numero) {
+    public void setNumero(Integer numero) {
         this.numero = numero;
-    }
-
-    public TipoInvoice getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(TipoInvoice tipo) {
-        this.tipo = tipo;
     }
 
     public FechaRepresentation getFecha() {
@@ -121,19 +95,19 @@ public class BoletaFacturaRepresentation {
         this.totalInformacionAdicional = totalInformacionAdicional;
     }
 
-    public boolean isEnviarSUNAT() {
+    public Boolean getEnviarSUNAT() {
         return enviarSUNAT;
     }
 
-    public void setEnviarSUNAT(boolean enviarSUNAT) {
+    public void setEnviarSUNAT(Boolean enviarSUNAT) {
         this.enviarSUNAT = enviarSUNAT;
     }
 
-    public boolean isEnviarCliente() {
+    public Boolean getEnviarCliente() {
         return enviarCliente;
     }
 
-    public void setEnviarCliente(boolean enviarCliente) {
+    public void setEnviarCliente(Boolean enviarCliente) {
         this.enviarCliente = enviarCliente;
     }
 }
