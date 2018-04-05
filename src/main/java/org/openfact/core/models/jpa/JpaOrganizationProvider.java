@@ -22,26 +22,26 @@ public class JpaOrganizationProvider implements OrganizationProvider {
     private EntityManager em;
 
     @Inject
-    private Event<OrganizacionEntity> companyEntityEvent;
+    private Event<OrganizacionEntity> organizationEntityEvent;
 
     @Override
-    public OrganizationModel addCompany(String name, UserModel owner) {
+    public OrganizationModel addOrganization(String name, UserModel owner) {
         OrganizacionEntity entity = new OrganizacionEntity();
         entity.setId(ModelUtils.generateId());
         entity.setName(name);
         entity.setOwner(UserAdapter.toEntity(owner, em));
         em.persist(entity);
 
-        companyEntityEvent.fire(entity);
+        organizationEntityEvent.fire(entity);
 
         return new OrganizationAdapter(em, entity);
     }
 
     @Override
-    public Optional<OrganizationModel> getCompany(String id) {
-        OrganizacionEntity companyEntity = em.find(OrganizacionEntity.class, id);
-        if (companyEntity == null) return Optional.empty();
-        return Optional.of(new OrganizationAdapter(em, companyEntity));
+    public Optional<OrganizationModel> getOrganization(String id) {
+        OrganizacionEntity organizationEntity = em.find(OrganizacionEntity.class, id);
+        if (organizationEntity == null) return Optional.empty();
+        return Optional.of(new OrganizationAdapter(em, organizationEntity));
     }
 
 }

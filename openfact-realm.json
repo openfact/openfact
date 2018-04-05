@@ -24,7 +24,7 @@
       ],
       "clientRoles": {
         "openfact-restful-api": [
-          "manage-companies"
+          "manage-organizations"
         ]
       }
     },
@@ -47,7 +47,7 @@
           "realm-admin"
         ],
         "openfact-restful-api": [
-          "manage-companies"
+          "manage-organizations"
         ]
       }
     },

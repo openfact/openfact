@@ -24,7 +24,7 @@ public class JpaFileProvider implements FileProvider {
 //    }
 
     @Override
-    public String addFile(String filename, byte[] bytes, String companyId) {
+    public String addFile(String filename, byte[] bytes, String organizationId) {
         return null;
     }
 

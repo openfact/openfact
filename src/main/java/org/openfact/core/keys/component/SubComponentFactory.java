@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public interface SubComponentFactory<CreatedType, ProviderType> extends ComponentFactory<CreatedType, ProviderType> {
 
-    default List<ProviderConfigProperty> getConfigProperties(OrganizationModel company, ComponentModel parent) {
+    default List<ProviderConfigProperty> getConfigProperties(OrganizationModel organization, ComponentModel parent) {
         return getConfigProperties();
     }
 
@@ -21,7 +21,7 @@ public interface SubComponentFactory<CreatedType, ProviderType> extends Componen
      *
      * @return
      */
-    default Map<String, Object> getTypeMetadata(OrganizationModel company, ComponentModel parent) {
+    default Map<String, Object> getTypeMetadata(OrganizationModel organization, ComponentModel parent) {
         return getTypeMetadata();
     }
 

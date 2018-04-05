@@ -36,21 +36,21 @@ public class JpaComponentProvider implements ComponentProvider {
     private ComponentUtil componentUtil;
 
     @Override
-    public ComponentModel addComponentModel(OrganizationModel company, ComponentModel model) throws ModelException {
-        model = importComponentModel(company, model);
-        componentUtil.notifyCreated(company, model);
+    public ComponentModel addComponentModel(OrganizationModel organization, ComponentModel model) throws ModelException {
+        model = importComponentModel(organization, model);
+        componentUtil.notifyCreated(organization, model);
         return model;
     }
 
     @Override
-    public ComponentModel importComponentModel(OrganizationModel company, ComponentModel model) throws ModelException {
+    public ComponentModel importComponentModel(OrganizationModel organization, ComponentModel model) throws ModelException {
         ComponentFactory componentFactory = null;
         try {
             componentFactory = componentUtil.getComponentFactory(model);
             if (componentFactory == null && System.getProperty(COMPONENT_PROVIDER_EXISTS_DISABLED) == null) {
                 throw new IllegalArgumentException("Invalid component type");
             }
-            componentFactory.validateConfiguration(company, model);
+            componentFactory.validateConfiguration(organization, model);
         } catch (Exception e) {
             if (System.getProperty(COMPONENT_PROVIDER_EXISTS_DISABLED) == null) {
                 throw e;
@@ -66,13 +66,13 @@ public class JpaComponentProvider implements ComponentProvider {
         c.setName(model.getName());
         c.setParentId(model.getParentId());
         if (model.getParentId() == null) {
-            c.setParentId(company.getId());
-            model.setParentId(company.getId());
+            c.setParentId(organization.getId());
+            model.setParentId(organization.getId());
         }
         c.setProviderType(model.getProviderType());
         c.setProviderId(model.getProviderId());
         c.setSubType(model.getSubType());
-        c.setOrganization(OrganizationAdapter.toEntity(company, em));
+        c.setOrganization(OrganizationAdapter.toEntity(organization, em));
         em.persist(c);
         setConfig(model, c);
         model.setId(c.getId());
@@ -97,8 +97,8 @@ public class JpaComponentProvider implements ComponentProvider {
     }
 
     @Override
-    public void updateComponent(OrganizationModel company, ComponentModel component) throws ModelException {
-        componentUtil.getComponentFactory(component).validateConfiguration(company, component);
+    public void updateComponent(OrganizationModel organization, ComponentModel component) throws ModelException {
+        componentUtil.getComponentFactory(component).validateConfiguration(organization, component);
 
         ComponentEntity c = em.find(ComponentEntity.class, component.getId());
         if (c == null) return;
@@ -110,22 +110,22 @@ public class JpaComponentProvider implements ComponentProvider {
         em.createNamedQuery("deleteComponentConfigByComponent").setParameter("component", c).executeUpdate();
         em.flush();
         setConfig(component, c);
-        componentUtil.notifyUpdated(company, component);
+        componentUtil.notifyUpdated(organization, component);
     }
 
     @Override
-    public void removeComponent(OrganizationModel company, ComponentModel component) {
+    public void removeComponent(OrganizationModel organization, ComponentModel component) {
         ComponentEntity c = em.find(ComponentEntity.class, component.getId());
         if (c == null) return;
-        removeComponents(company, component.getId());
+        removeComponents(organization, component.getId());
         em.createNamedQuery("deleteComponentConfigByComponent").setParameter("component", c).executeUpdate();
         em.remove(c);
     }
 
     @Override
-    public void removeComponents(OrganizationModel company, String parentId) {
+    public void removeComponents(OrganizationModel organization, String parentId) {
         TypedQuery<String> query = em.createNamedQuery("getComponentIdsByParent", String.class)
-                .setParameter("company", OrganizationAdapter.toEntity(company, em))
+                .setParameter("organization", OrganizationAdapter.toEntity(organization, em))
                 .setParameter("parentId", parentId);
 
         List<String> results = query.getResultList();
@@ -135,11 +135,11 @@ public class JpaComponentProvider implements ComponentProvider {
     }
 
     @Override
-    public List<ComponentModel> getComponents(OrganizationModel company, String parentId, String providerType) {
-        if (parentId == null) parentId = company.getId();
+    public List<ComponentModel> getComponents(OrganizationModel organization, String parentId, String providerType) {
+        if (parentId == null) parentId = organization.getId();
 
         TypedQuery<ComponentEntity> query = em.createNamedQuery("getComponentsByParentAndType", ComponentEntity.class)
-                .setParameter("company", OrganizationAdapter.toEntity(company, em))
+                .setParameter("organization", OrganizationAdapter.toEntity(organization, em))
                 .setParameter("parentId", parentId)
                 .setParameter("providerType", providerType);
 
@@ -154,9 +154,9 @@ public class JpaComponentProvider implements ComponentProvider {
     }
 
     @Override
-    public List<ComponentModel> getComponents(OrganizationModel company, String parentId) {
+    public List<ComponentModel> getComponents(OrganizationModel organization, String parentId) {
         TypedQuery<ComponentEntity> query = em.createNamedQuery("getComponentByParent", ComponentEntity.class)
-                .setParameter("company", OrganizationAdapter.toEntity(company, em))
+                .setParameter("organization", OrganizationAdapter.toEntity(organization, em))
                 .setParameter("parentId", parentId);
 
         List<ComponentEntity> results = query.getResultList();
@@ -191,9 +191,9 @@ public class JpaComponentProvider implements ComponentProvider {
     }
 
     @Override
-    public List<ComponentModel> getComponents(OrganizationModel company) {
+    public List<ComponentModel> getComponents(OrganizationModel organization) {
         TypedQuery<ComponentEntity> query = em.createNamedQuery("getComponents", ComponentEntity.class)
-                .setParameter("company", OrganizationAdapter.toEntity(company, em));
+                .setParameter("organization", OrganizationAdapter.toEntity(organization, em));
 
         List<ComponentEntity> results = query.getResultList();
         List<ComponentModel> rtn = new LinkedList<>();
@@ -205,7 +205,7 @@ public class JpaComponentProvider implements ComponentProvider {
     }
 
     @Override
-    public ComponentModel getComponent(OrganizationModel company, String id) {
+    public ComponentModel getComponent(OrganizationModel organization, String id) {
         ComponentEntity c = em.find(ComponentEntity.class, id);
         if (c == null) return null;
         return entityToModel(c);

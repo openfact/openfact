@@ -1,38 +1,29 @@
 package org.openfact.pe.services;
 
-import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.OrganizationProvider;
-import org.openfact.core.models.utils.ModelToRepresentation;
-import org.openfact.core.models.utils.ModelUtils;
-import org.openfact.pe.BoletasFacturasPEResource;
-import org.openfact.pe.idm.BoletaFacturaPERepresentation;
-import org.openfact.pe.idm.NotaCreditoPERepresentation;
+import org.openfact.pe.BoletasFacturasResource;
+import org.openfact.pe.idm.BoletaFacturaRepresentation;
 import org.openfact.pe.models.*;
-import org.openfact.pe.models.utils.ModelPEUtils;
-import org.openfact.pe.models.utils.ModelToRepresentationPE;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import javax.ws.rs.BadRequestException;
-import javax.ws.rs.NotFoundException;
-import java.util.Optional;
 
 @Transactional
 @ApplicationScoped
-public class DefaultBoletasFacturasPEResource implements BoletasFacturasPEResource {
+public class DefaultBoletasFacturasPEResource implements BoletasFacturasResource {
 
     @Inject
     private OrganizationProvider organizationProvider;
 
     @Inject
-    private BoletaFacturaPEProvider boletaFacturaProvider;
+    private BoletaFacturaProvider boletaFacturaProvider;
 
     @Inject
     private ContadorSerieNumeroPEProvider contadorSerieNumeroProvider;
 
     @Override
-    public BoletaFacturaPERepresentation crearBoletaFactura(String organizacionId, BoletaFacturaPERepresentation rep) {
+    public BoletaFacturaRepresentation crearBoletaFactura(String organizacionId, BoletaFacturaRepresentation rep) {
 //        OrganizationModel organizacion = organizationProvider.getCompany(organizacionId).orElseThrow(() -> new NotFoundException("Organizacion no encontrada"));
 //
 //        String serie = rep.getSerie();
@@ -52,13 +43,13 @@ public class DefaultBoletasFacturasPEResource implements BoletasFacturasPEResour
 //            idAsignado = ModelPEUtils.getIdAsignadoBoletaFactura(tipoInvoice, Optional.ofNullable(contadorSerieNumero.getPrefijo()), contadorSerieNumero.getSerie(), contadorSerieNumero.getNumero());
 //        }
 //
-//        BoletaFacturaPEModel boletaFacturaModel = boletaFacturaProvider.addBoletaFactura(organizacion, idAsignado);
-//        return ModelToRepresentationPE.toRepresentation(boletaFacturaModel, true);
+//        BoletaFacturaModel boletaFacturaModel = boletaFacturaProvider.addBoletaFactura(organizacion, idAsignado);
+//        return ModelToRepresentation.toRepresentation(boletaFacturaModel, true);
         return null;
     }
 
     @Override
-    public void actualizarBoletaFactura(String organizacionId, String idDocumento, BoletaFacturaPERepresentation rep) {
+    public void actualizarBoletaFactura(String organizacionId, String idDocumento, BoletaFacturaRepresentation rep) {
 
     }
 

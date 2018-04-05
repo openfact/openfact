@@ -1,6 +1,6 @@
 package org.openfact.pe;
 
-import org.openfact.pe.idm.SunatGenericTypePERepresentation;
+import org.openfact.pe.idm.SUNATGenericTypeRepresentation;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -16,18 +16,18 @@ public interface SunatPEResource {
 
     @GET
     @Path("/tipos-invoice")
-    List<SunatGenericTypePERepresentation> getTiposInvoice();
+    List<SUNATGenericTypeRepresentation> getTiposInvoice();
 
     @GET
     @Path("/tipos-documento-identidad")
-    List<SunatGenericTypePERepresentation> getTiposDocumentoIdentidad();
+    List<SUNATGenericTypeRepresentation> getTiposDocumentoIdentidad();
 
     @GET
     @Path("/tipos-afectacion-igv")
-    List<SunatGenericTypePERepresentation> getTipoAfectacionIgv();
+    List<SUNATGenericTypeRepresentation> getTipoAfectacionIgv();
 
     @GET
     @Path("/igv")
-    SunatGenericTypePERepresentation getIgv();
+    SUNATGenericTypeRepresentation getIgv();
 
 }

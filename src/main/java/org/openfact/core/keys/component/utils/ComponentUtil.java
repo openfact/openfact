@@ -49,14 +49,14 @@ public interface ComponentUtil {
 
     ComponentFactory getComponentFactory(String providerType, String providerId);
 
-    default void notifyCreated(OrganizationModel company, ComponentModel model) {
+    default void notifyCreated(OrganizationModel organization, ComponentModel model) {
         ComponentFactory factory = getComponentFactory(model);
-        factory.onCreate(company, model);
+        factory.onCreate(organization, model);
     }
 
-    default void notifyUpdated(OrganizationModel company, ComponentModel model) {
+    default void notifyUpdated(OrganizationModel organization, ComponentModel model) {
         ComponentFactory factory = getComponentFactory(model);
-        factory.onUpdate(company, model);
+        factory.onUpdate(organization, model);
     }
 
 }

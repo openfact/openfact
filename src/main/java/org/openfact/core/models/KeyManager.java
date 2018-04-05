@@ -10,13 +10,13 @@ import java.util.List;
 
 public interface KeyManager {
 
-    ActiveRsaKey getActiveRsaKey(OrganizationModel company);
+    ActiveRsaKey getActiveRsaKey(OrganizationModel organization);
 
-    PublicKey getRsaPublicKey(OrganizationModel company, String kid);
+    PublicKey getRsaPublicKey(OrganizationModel organization, String kid);
 
-    Certificate getRsaCertificate(OrganizationModel company, String kid);
+    Certificate getRsaCertificate(OrganizationModel organization, String kid);
 
-    List<RsaKeyMetadata> getRsaKeys(OrganizationModel company, boolean includeDisabled);
+    List<RsaKeyMetadata> getRsaKeys(OrganizationModel organization, boolean includeDisabled);
 
     class ActiveRsaKey {
         private final String kid;

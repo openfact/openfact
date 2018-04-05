@@ -1,6 +1,6 @@
 package org.openfact.pe.services;
 
-import org.openfact.pe.idm.SunatGenericTypePERepresentation;
+import org.openfact.pe.idm.SUNATGenericTypeRepresentation;
 import org.openfact.pe.models.types.TipoAfectacionIgv;
 import org.openfact.pe.models.types.TipoDocumentoEntidad;
 import org.openfact.pe.models.types.TipoInvoice;
@@ -14,10 +14,10 @@ import java.util.List;
 public class DefaultSunatPEResource implements SunatPEResource {
 
     @Override
-    public List<SunatGenericTypePERepresentation> getTiposInvoice() {
-        List<SunatGenericTypePERepresentation> result = new ArrayList<>();
+    public List<SUNATGenericTypeRepresentation> getTiposInvoice() {
+        List<SUNATGenericTypeRepresentation> result = new ArrayList<>();
         for (TipoInvoice type : TipoInvoice.values()) {
-            SunatGenericTypePERepresentation rep = new SunatGenericTypePERepresentation();
+            SUNATGenericTypeRepresentation rep = new SUNATGenericTypeRepresentation();
             rep.setCodigo(type.getCodigo());
             rep.setDenominacion(type.getDenominacion());
             rep.setAbreviatura(type.getAbreviatura());
@@ -28,10 +28,10 @@ public class DefaultSunatPEResource implements SunatPEResource {
     }
 
     @Override
-    public List<SunatGenericTypePERepresentation> getTiposDocumentoIdentidad() {
-        List<SunatGenericTypePERepresentation> result = new ArrayList<>();
+    public List<SUNATGenericTypeRepresentation> getTiposDocumentoIdentidad() {
+        List<SUNATGenericTypeRepresentation> result = new ArrayList<>();
         for (TipoDocumentoEntidad type : TipoDocumentoEntidad.values()) {
-            SunatGenericTypePERepresentation rep = new SunatGenericTypePERepresentation();
+            SUNATGenericTypeRepresentation rep = new SUNATGenericTypeRepresentation();
             rep.setCodigo(type.getCodigo());
             rep.setAbreviatura(type.getAbreviatura());
             rep.setDenominacion(type.getDenominacion());
@@ -43,10 +43,10 @@ public class DefaultSunatPEResource implements SunatPEResource {
     }
 
     @Override
-    public List<SunatGenericTypePERepresentation> getTipoAfectacionIgv() {
-        List<SunatGenericTypePERepresentation> result = new ArrayList<>();
+    public List<SUNATGenericTypeRepresentation> getTipoAfectacionIgv() {
+        List<SUNATGenericTypeRepresentation> result = new ArrayList<>();
         for (TipoAfectacionIgv type : TipoAfectacionIgv.values()) {
-            SunatGenericTypePERepresentation rep = new SunatGenericTypePERepresentation();
+            SUNATGenericTypeRepresentation rep = new SUNATGenericTypeRepresentation();
             rep.setCodigo(type.getCodigo());
             rep.setDenominacion(type.getDenominacion());
             rep.setAfectaIGV(type.getAfectaIgv());
@@ -58,8 +58,8 @@ public class DefaultSunatPEResource implements SunatPEResource {
     }
 
     @Override
-    public SunatGenericTypePERepresentation getIgv() {
-        SunatGenericTypePERepresentation rep = new SunatGenericTypePERepresentation();
+    public SUNATGenericTypeRepresentation getIgv() {
+        SUNATGenericTypeRepresentation rep = new SUNATGenericTypeRepresentation();
         rep.setDenominacion("Impuesto General a las Ventas");
         rep.setAbreviatura("igv");
         rep.setValor(new Double("0.18"));

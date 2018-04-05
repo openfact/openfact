@@ -11,12 +11,12 @@ import java.util.Map;
 
 @Indexed
 @Entity
-@Table(name = "of_company")
+@Table(name = "of_organization")
 @NamedQueries(value = {
-        @NamedQuery(name = "getAllOwnedCompaniesByUserId", query = "select distinct c from  OrganizacionEntity c inner join c.owner u where u.id=:userId")
+        @NamedQuery(name = "getAllOwnedOrganizationsByUserId", query = "select distinct c from  OrganizacionEntity c inner join c.owner u where u.id=:userId")
 })
 @NamedEntityGraphs(value = {
-        @NamedEntityGraph(name = "graph.CompanyOwner", attributeNodes = {
+        @NamedEntityGraph(name = "graph.OrganizationOwner", attributeNodes = {
                 @NamedAttributeNode(value = "id"),
                 @NamedAttributeNode(value = "owner", subgraph = "owner"),
         }, subgraphs = {
@@ -51,7 +51,7 @@ public class OrganizacionEntity implements Serializable {
     @ElementCollection(fetch = FetchType.LAZY)
     @MapKeyColumn(name = "NAME")
     @Column(name = "VALUE")
-    @CollectionTable(name = "company_smtp_config", joinColumns = {@JoinColumn(name = "company_id")})
+    @CollectionTable(name = "organization_smtp_config", joinColumns = {@JoinColumn(name = "organization_id")})
     private Map<String, String> smtpConfig = new HashMap<>();
 
     @NotNull

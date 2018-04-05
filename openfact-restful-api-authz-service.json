@@ -32,21 +32,21 @@
       ]
     },
     {
-      "name": "Company Resource",
-      "uri": "/companies/*",
-      "type": "http://openfact.com/companies",
+      "name": "Organization Resource",
+      "uri": "/organizations/*",
+      "type": "http://openfact.com/organizations",
       "scopes": [
         {
-          "name": "urn:openfact.com:scopes:company:create"
+          "name": "urn:openfact.com:scopes:organization:create"
         },
         {
-          "name": "urn:openfact.com:scopes:company:view"
+          "name": "urn:openfact.com:scopes:organization:view"
         },
         {
-          "name": "urn:openfact.com:scopes:company:edit"
+          "name": "urn:openfact.com:scopes:organization:edit"
         },
         {
-          "name": "urn:openfact.com:scopes:company:delete"
+          "name": "urn:openfact.com:scopes:organization:delete"
         }
       ]
     },
@@ -99,7 +99,7 @@
       "logic": "POSITIVE",
       "decisionStrategy": "UNANIMOUS",
       "config": {
-        "roles": "[{\"id\":\"user\"},{\"id\":\"manage-companies\",\"required\":true}]"
+        "roles": "[{\"id\":\"user\"},{\"id\":\"manage-organizations\",\"required\":true}]"
       }
     },
     {
@@ -156,7 +156,7 @@
     },
     {
       "name": "Delete User Permission",
-      "description": "A policy that only allows the owner to delete his companies.",
+      "description": "A policy that only allows the owner to delete his organizations.",
       "type": "scope",
       "logic": "POSITIVE",
       "decisionStrategy": "UNANIMOUS",
@@ -166,26 +166,26 @@
       }
     },
     {
-      "name": "Company Resource Permission",
-      "description": "General policies that apply to all company resources.",
+      "name": "Organization Resource Permission",
+      "description": "General policies that apply to all organization resources.",
       "type": "resource",
       "logic": "POSITIVE",
       "decisionStrategy": "AFFIRMATIVE",
       "config": {
-        "defaultResourceType": "http://openfact.com/companies",
+        "defaultResourceType": "http://openfact.com/organizations",
         "default": "true",
         "applyPolicies": "[\"Any User Policy\",\"Administration Policy\"]"
       }
     },
     {
-      "name": "Delete Company Permission",
-      "description": "A policy that only allows the owner to delete his companies.",
+      "name": "Delete Organization Permission",
+      "description": "A policy that only allows the owner to delete his organizations.",
       "type": "scope",
       "logic": "POSITIVE",
       "decisionStrategy": "UNANIMOUS",
       "config": {
         "applyPolicies": "[\"Only Owner and Administrators Policy\"]",
-        "scopes": "[\"urn:openfact.com:scopes:company:delete\"]"
+        "scopes": "[\"urn:openfact.com:scopes:organization:delete\"]"
       }
     },
     {
@@ -227,16 +227,16 @@
       "name": "urn:openfact.com:scopes:profile:view"
     },
     {
-      "name": "urn:openfact.com:scopes:company:view"
+      "name": "urn:openfact.com:scopes:organization:view"
     },
     {
-      "name": "urn:openfact.com:scopes:company:create"
+      "name": "urn:openfact.com:scopes:organization:create"
     },
     {
-      "name": "urn:openfact.com:scopes:company:edit"
+      "name": "urn:openfact.com:scopes:organization:edit"
     },
     {
-      "name": "urn:openfact.com:scopes:company:delete"
+      "name": "urn:openfact.com:scopes:organization:delete"
     },
     {
       "name": "urn:openfact.com:scopes:user:view"

@@ -9,15 +9,16 @@ import javax.persistence.EntityManager;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 
 public class OrganizationAdapter implements OrganizationModel, JpaModel<OrganizacionEntity> {
 
     private final EntityManager em;
-    private final OrganizacionEntity company;
+    private final OrganizacionEntity organization;
 
-    public OrganizationAdapter(EntityManager em, OrganizacionEntity company) {
+    public OrganizationAdapter(EntityManager em, OrganizacionEntity organization) {
         this.em = em;
-        this.company = company;
+        this.organization = organization;
     }
 
     public static OrganizacionEntity toEntity(OrganizationModel model, EntityManager em) {
@@ -29,73 +30,78 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
 
     @Override
     public OrganizacionEntity getEntity() {
-        return company;
+        return organization;
     }
 
     @Override
     public String getId() {
-        return company.getId();
+        return organization.getId();
     }
 
     @Override
     public ModelType getType() {
-        return ModelType.COMPANY;
+        return ModelType.ORGANIZATION;
     }
 
     @Override
     public String getName() {
-        return company.getName();
+        return organization.getName();
     }
 
     @Override
     public void setName(String name) {
-        company.setName(name);
+        organization.setName(name);
     }
 
     @Override
     public String getDescription() {
-        return company.getDescription();
+        return organization.getDescription();
     }
 
     @Override
     public void setDescription(String description) {
-        company.setDescription(description);
+        organization.setDescription(description);
     }
 
     @Override
     public boolean getUseCustomCertificates() {
-        return company.isUseCustomCertificates();
+        return organization.isUseCustomCertificates();
     }
 
     @Override
     public void setUseCustomCertificates(boolean useCustomCertificates) {
-        company.setUseCustomCertificates(useCustomCertificates);
+        organization.setUseCustomCertificates(useCustomCertificates);
     }
 
     @Override
     public boolean getUseCustomSmtpConfig() {
-        return company.isUseCustomSmtpConfig();
+        return organization.isUseCustomSmtpConfig();
     }
 
     @Override
     public void setUseCustomSmtpConfig(boolean useCustomSmtpConfig) {
-        company.setUseCustomSmtpConfig(useCustomSmtpConfig);
+        organization.setUseCustomSmtpConfig(useCustomSmtpConfig);
     }
 
     @Override
     public Map<String, String> getSmtpConfig() {
         Map<String, String> config = new HashMap<>();
-        config.putAll(company.getSmtpConfig());
+        config.putAll(organization.getSmtpConfig());
         return Collections.unmodifiableMap(config);
     }
 
     @Override
     public void setSmtpConfig(Map<String, String> smtpConfig) {
-        company.setSmtpConfig(smtpConfig);
+        organization.setSmtpConfig(smtpConfig);
     }
 
     @Override
     public UserModel getOwner() {
-        return new UserAdapter(em, company.getOwner());
+        return new UserAdapter(em, organization.getOwner());
+    }
+
+    @Override
+    public TimeZone getTimeZone() {
+        return null;
     }
 }

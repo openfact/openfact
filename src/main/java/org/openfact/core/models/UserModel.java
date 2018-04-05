@@ -18,8 +18,8 @@ public interface UserModel extends Model {
 
     void setFullName(String fullName);
 
-    List<OrganizationModel> getOwnedCompanies();
+    List<OrganizationModel> getOwnedOrganizations();
 
-    List<OrganizationModel> getCollaboratedCompanies();
+    List<OrganizationModel> getCollaboratedOrganizations();
 
 }

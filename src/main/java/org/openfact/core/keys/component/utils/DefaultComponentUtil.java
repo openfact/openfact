@@ -3,14 +3,14 @@ package org.openfact.core.keys.component.utils;
 import org.openfact.core.keys.component.ComponentFactory;
 import org.openfact.core.keys.qualifiers.RsaKeyType;
 
-import javax.ejb.Stateless;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import java.lang.annotation.Annotation;
 import java.util.Optional;
 
-@Stateless
+@ApplicationScoped
 public class DefaultComponentUtil implements ComponentUtil {
 
     @Inject

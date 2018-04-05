@@ -42,7 +42,7 @@ public class UserAdapter implements UserModel, JpaModel<UserEntity> {
 
     @Override
     public ModelType getType() {
-        return ModelType.COMPANY;
+        return ModelType.ORGANIZATION;
     }
 
     @Override
@@ -81,20 +81,20 @@ public class UserAdapter implements UserModel, JpaModel<UserEntity> {
     }
 
     @Override
-    public List<OrganizationModel> getOwnedCompanies() {
-        EntityGraph<?> graph = em.getEntityGraph("graph.CompanyOwner");
+    public List<OrganizationModel> getOwnedOrganizations() {
+        EntityGraph<?> graph = em.getEntityGraph("graph.OrganizationOwner");
 
-        TypedQuery<OrganizacionEntity> query = em.createNamedQuery("getAllOwnedCompaniesByUserId", OrganizacionEntity.class);
+        TypedQuery<OrganizacionEntity> query = em.createNamedQuery("getAllOwnedOrganizationsByUserId", OrganizacionEntity.class);
         query.setParameter("userId", user.getId());
         query.setHint("javax.persistence.fetchgraph", graph);
         return query.getResultList()
                 .stream()
-                .map(companyEntity -> new OrganizationAdapter(em, companyEntity))
+                .map(organizationEntity -> new OrganizationAdapter(em, organizationEntity))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<OrganizationModel> getCollaboratedCompanies() {
+    public List<OrganizationModel> getCollaboratedOrganizations() {
         return Collections.emptyList();
     }
 

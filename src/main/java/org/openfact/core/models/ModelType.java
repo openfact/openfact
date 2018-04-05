@@ -2,7 +2,7 @@ package org.openfact.core.models;
 
 public enum ModelType {
 
-    COMPANY("company");
+    ORGANIZATION("organization");
 
     private String alias;
 

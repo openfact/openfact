@@ -4,8 +4,8 @@ import java.util.Optional;
 
 public interface OrganizationProvider {
 
-    OrganizationModel addCompany(String name, UserModel owner);
+    OrganizationModel addOrganization(String name, UserModel owner);
 
-    Optional<OrganizationModel> getCompany(String id);
+    Optional<OrganizationModel> getOrganization(String id);
 
 }
