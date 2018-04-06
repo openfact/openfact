@@ -5,9 +5,7 @@ import org.openfact.core.models.OrganizationProvider;
 import org.openfact.pe.BoletasResource;
 import org.openfact.pe.idm.BoletaRepresentation;
 import org.openfact.pe.managers.JAXBManager;
-import org.openfact.pe.models.BoletaModel;
-import org.openfact.pe.models.BoletaProvider;
-import org.openfact.pe.models.EstadoComprobantePago;
+import org.openfact.pe.models.*;
 import org.openfact.pe.models.types.TipoInvoice;
 import org.openfact.pe.models.utils.ModelToRepresentation;
 import org.openfact.pe.models.utils.RepresentationToModel;
@@ -19,6 +17,7 @@ import javax.ws.rs.BadRequestException;
 import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.NotFoundException;
 import java.util.Calendar;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 @Transactional
@@ -27,6 +26,9 @@ public class DefaultBoletasResource implements BoletasResource {
 
     @Inject
     private OrganizationProvider organizationProvider;
+
+    @Inject
+    private InformacionAdicionalProvider informacionAdicionalProvider;
 
     @Inject
     private BoletaProvider boletaProvider;
@@ -75,7 +77,8 @@ public class DefaultBoletasResource implements BoletasResource {
         RepresentationToModel.modelToRepresentation(boleta, representation);
 
         // Recalcular XML
-        jaxbManager.buildBoleta(boleta);
+        Optional<InformacionAdicionalModel> informacionAdicional = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organization);
+        jaxbManager.buildBoleta(organization, informacionAdicional.get(), boleta);
 
         return ModelToRepresentation.toRepresentation(boleta, true);
     }
@@ -87,7 +90,8 @@ public class DefaultBoletasResource implements BoletasResource {
         RepresentationToModel.modelToRepresentation(boleta, representation);
 
         // Recalcular XML
-        jaxbManager.buildBoleta(boleta);
+        Optional<InformacionAdicionalModel> informacionAdicional = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organization);
+        jaxbManager.buildBoleta(organization, informacionAdicional.get(), boleta);
     }
 
     @Override

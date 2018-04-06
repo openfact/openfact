@@ -5,9 +5,7 @@ import org.openfact.core.models.OrganizationProvider;
 import org.openfact.pe.FacturasResource;
 import org.openfact.pe.idm.FacturaRepresentation;
 import org.openfact.pe.managers.JAXBManager;
-import org.openfact.pe.models.EstadoComprobantePago;
-import org.openfact.pe.models.FacturaModel;
-import org.openfact.pe.models.FacturaProvider;
+import org.openfact.pe.models.*;
 import org.openfact.pe.models.types.TipoInvoice;
 import org.openfact.pe.models.utils.ModelToRepresentation;
 import org.openfact.pe.models.utils.RepresentationToModel;
@@ -19,6 +17,7 @@ import javax.ws.rs.BadRequestException;
 import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.NotFoundException;
 import java.util.Calendar;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 @Transactional
@@ -27,6 +26,9 @@ public class DefaultFacturasResource implements FacturasResource {
 
     @Inject
     private OrganizationProvider organizationProvider;
+
+    @Inject
+    private InformacionAdicionalProvider informacionAdicionalProvider;
 
     @Inject
     private FacturaProvider facturaProvider;
@@ -75,7 +77,8 @@ public class DefaultFacturasResource implements FacturasResource {
         RepresentationToModel.modelToRepresentation(factura, representation);
 
         // Recalcular XML
-        jaxbManager.buildBoleta(factura);
+        Optional<InformacionAdicionalModel> informacionAdicional = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organization);
+        jaxbManager.buildFactura(organization, informacionAdicional.get(), factura);
 
         return ModelToRepresentation.toRepresentation(factura, true);
     }
@@ -87,7 +90,8 @@ public class DefaultFacturasResource implements FacturasResource {
         RepresentationToModel.modelToRepresentation(factura, representation);
 
         // Recalcular XML
-        jaxbManager.buildBoleta(factura);
+        Optional<InformacionAdicionalModel> informacionAdicional = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organization);
+        jaxbManager.buildFactura(organization, informacionAdicional.get(), factura);
     }
 
     @Override

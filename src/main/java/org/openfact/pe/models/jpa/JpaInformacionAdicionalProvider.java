@@ -1,5 +1,6 @@
 package org.openfact.pe.models.jpa;
 
+import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.jpa.entities.OrganizationEntity;
 import org.openfact.pe.models.InformacionAdicionalModel;
 import org.openfact.pe.models.InformacionAdicionalProvider;
@@ -40,6 +41,11 @@ public class JpaInformacionAdicionalProvider implements InformacionAdicionalProv
         }
 
         return Optional.of(new InformacionAdicionalAdapter(em, additionalInfoEntity));
+    }
+
+    @Override
+    public Optional<InformacionAdicionalModel> getOrganizacionInformacionAdicional(OrganizationModel organization) {
+        return getOrganizacionInformacionAdicional(organization.getId());
     }
 
 }

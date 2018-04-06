@@ -5,6 +5,7 @@ import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_2.*;
 import oasis.names.specification.ubl.schema.xsd.creditnote_2.CreditNoteType;
 import oasis.names.specification.ubl.schema.xsd.invoice_2.InvoiceType;
 import org.openfact.core.models.OrganizationModel;
+import org.openfact.pe.models.BoletaModel;
 import org.openfact.pe.models.ClienteModel;
 import org.openfact.pe.models.FacturaModel;
 import org.openfact.pe.models.InformacionAdicionalModel;
@@ -228,7 +229,11 @@ public class ModelToJaxb {
         return noteType;
     }
 
-    public static InvoiceType toInvoiceType(OrganizationModel organizacion, InformacionAdicionalModel informacionAdicional, FacturaModel boletaFactura) {
+    public static InvoiceType toInvoiceType(OrganizationModel organizacion, InformacionAdicionalModel informacionAdicional, BoletaModel boleta) {
+        return null;
+    }
+
+    public static InvoiceType toInvoiceType(OrganizationModel organizacion, InformacionAdicionalModel informacionAdicional, FacturaModel factura) {
         InvoiceType invoice = new InvoiceType();
 
         // General config
@@ -239,19 +244,19 @@ public class ModelToJaxb {
 //        invoice.setID(buildIDType(boletaFactura.getIdAsignado()));
 
         // Fechas
-        invoice.setIssueDate(buildIssueDateType(boletaFactura.getFechaEmision(), organizacion.getTimeZone()));
-        if (boletaFactura.getFechaVencimiento() != null) {
-            invoice.getPaymentMeans().add(buildPaymentMeansType(boletaFactura.getFechaVencimiento(), organizacion.getTimeZone()));
+        invoice.setIssueDate(buildIssueDateType(factura.getFechaEmision(), organizacion.getTimeZone()));
+        if (factura.getFechaVencimiento() != null) {
+            invoice.getPaymentMeans().add(buildPaymentMeansType(factura.getFechaVencimiento(), organizacion.getTimeZone()));
         }
 
         // Moneda
-        invoice.setDocumentCurrencyCode(buildDocumentCurrencyCodeType(boletaFactura.getMoneda()));
+        invoice.setDocumentCurrencyCode(buildDocumentCurrencyCodeType(factura.getMoneda()));
 
         // Proveedor
         invoice.setAccountingSupplierParty(buildSupplierPartyType(informacionAdicional));
 
         // Cliente
-        invoice.setAccountingCustomerParty(buildCustomerPartyType(boletaFactura.getCliente()));
+        invoice.setAccountingCustomerParty(buildCustomerPartyType(factura.getCliente()));
 
         // Total impuestos IGV/ISC
 //        invoice.getTaxTotal().add();
@@ -272,7 +277,7 @@ public class ModelToJaxb {
 //        }
 
         // Observaciones
-        invoice.getNote().add(buildNoteType(boletaFactura.getObservaciones()));
+        invoice.getNote().add(buildNoteType(factura.getObservaciones()));
 //
 //        // Firma Digital
 //        invoice.setSignature(Arrays.asList(toSignatureType(organization)));
