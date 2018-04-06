@@ -47,7 +47,14 @@ public class JpaBoletaProvider implements BoletaProvider {
         }
     }
 
-    private AbstractMap.SimpleEntry<String, Integer> siguienteSerieNumero(OrganizationModel organizacion, String serie) {
+    private AbstractMap.SimpleEntry<String, Integer> siguienteSerieNumero(OrganizationModel organizacion, Optional<String> serie) {
+        String namedQuery;
+        if (!serie.isPresent()) {
+            namedQuery = "GetUltimaBoletaDeOrganizacion";
+        } else {
+            namedQuery = "GetUltimaBoletaDeOrganizacionConSerie";
+        }
+
         TypedQuery<BoletaEntity> query1 = em.createNamedQuery("GetUltimaBoletaDeOrganizacionConSerie", BoletaEntity.class);
         query1.setParameter("organizacionId", organizacion);
         query1.setParameter("serie", serie);

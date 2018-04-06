@@ -13,6 +13,7 @@ import java.util.Date;
 @NamedQueries(value = {
         @NamedQuery(name = "GetBoletaByOrganizationIdAndBoletaId", query = "select b from BoletaEntity b inner join b.organizacion o where o.id=:organizacionId and b.id=:boletaId"),
         @NamedQuery(name = "GetBoletaEnOrganizationConSerieYNumero", query = "select b from BoletaEntity b inner join b.organizacion o where o.id=:organizacionId and b.serie=:serie and b.numero=:numero"),
+        @NamedQuery(name = "GetUltimaBoletaDeOrganizacion", query = "select b from BoletaEntity b inner join b.organizacion o where o.id=:organizacionId and b.serie=:serie order by b.createdAt"),
         @NamedQuery(name = "GetUltimaBoletaDeOrganizacionConSerie", query = "select b from BoletaEntity b inner join b.organizacion o where o.id=:organizacionId and b.serie=:serie order by b.createdAt")
 })
 public class BoletaEntity implements Serializable {
