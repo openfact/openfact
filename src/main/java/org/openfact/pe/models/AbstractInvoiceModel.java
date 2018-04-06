@@ -24,6 +24,13 @@ public interface AbstractInvoiceModel {
 
     ClienteModel getCliente();
 
+    // XML
+    String getFileId();
+    void setFileId(String fileId);
+
+    String getFileProvider();
+    void setFileProvider(String fileProvider);
+
     // Totales
 
     Long getTotalPagar();

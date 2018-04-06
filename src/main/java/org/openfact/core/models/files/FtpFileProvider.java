@@ -7,8 +7,8 @@ import org.openfact.core.models.FileProviderVendor;
 import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-@FileProviderVendor(type = FileProviderVendor.Type.JPA)
-public class JpaFileProvider implements FileProvider {
+@FileProviderVendor(type = FileProviderVendor.Type.FTP)
+public class FtpFileProvider implements FileProvider {
 
     @Override
     public FileInfoModel addFile(String filename, byte[] bytes) throws FileException {

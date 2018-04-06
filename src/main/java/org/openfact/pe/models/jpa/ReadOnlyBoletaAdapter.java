@@ -22,6 +22,16 @@ public class ReadOnlyBoletaAdapter extends AbstractBoletaAdapter {
     }
 
     @Override
+    public void setFileId(String fileId) {
+        throw new IllegalStateException("Objeto de solo lectura, no puede ser modificado");
+    }
+
+    @Override
+    public void setFileProvider(String fileProvider) {
+        throw new IllegalStateException("Objeto de solo lectura, no puede ser modificado");
+    }
+
+    @Override
     public void setTotalPagar(Long pagar) {
         throw new IllegalStateException("Objeto de solo lectura, no puede ser modificado");
     }

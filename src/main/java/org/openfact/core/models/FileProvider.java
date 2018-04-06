@@ -4,6 +4,6 @@ import org.openfact.core.models.files.FileException;
 
 public interface FileProvider {
 
-    String addFile(String filename, byte[] bytes, String organizationId) throws FileException;
+    FileInfoModel addFile(String filename, byte[] bytes) throws FileException;
 
 }

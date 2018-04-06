@@ -21,6 +21,16 @@ public abstract class AbstractBoletaAdapter implements BoletaModel {
     }
 
     @Override
+    public String getFileId() {
+        return boletaEntity.getFileId();
+    }
+
+    @Override
+    public String getFileProvider() {
+        return boletaEntity.getFileProvider();
+    }
+
+    @Override
     public String getSerie() {
         return boletaEntity.getSerie();
     }

@@ -25,6 +25,16 @@ public class BoletaAdapter extends AbstractBoletaAdapter {
     }
 
     @Override
+    public void setFileId(String fileId) {
+        boletaEntity.setFileId(fileId);
+    }
+
+    @Override
+    public void setFileProvider(String fileProvider) {
+        boletaEntity.setFileProvider(fileProvider);
+    }
+
+    @Override
     public void setTotalPagar(Long totalPagar) {
         boletaEntity.setTotalPagar(totalPagar);
     }

@@ -21,6 +21,16 @@ public abstract class AbstractFacturaAdapter implements FacturaModel {
     }
 
     @Override
+    public String getFileId() {
+        return facturaEntity.getFileId();
+    }
+
+    @Override
+    public String getFileProvider() {
+        return facturaEntity.getFileProvider();
+    }
+
+    @Override
     public String getSerie() {
         return facturaEntity.getSerie();
     }

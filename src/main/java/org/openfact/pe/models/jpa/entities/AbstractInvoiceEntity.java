@@ -10,6 +10,12 @@ import java.util.Date;
 @MappedSuperclass
 public abstract class AbstractInvoiceEntity {
 
+    @Column(name = "file_id")
+    private String fileId;
+
+    @Column(name = "file_provider")
+    private String fileProvider;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "fecha_emision")
     private Date fechaEmision;
@@ -212,5 +218,21 @@ public abstract class AbstractInvoiceEntity {
 
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
+    }
+
+    public String getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(String fileId) {
+        this.fileId = fileId;
+    }
+
+    public String getFileProvider() {
+        return fileProvider;
+    }
+
+    public void setFileProvider(String fileProvider) {
+        this.fileProvider = fileProvider;
     }
 }

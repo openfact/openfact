@@ -25,6 +25,16 @@ public class FacturaAdapter extends AbstractFacturaAdapter {
     }
 
     @Override
+    public void setFileId(String fileId) {
+        facturaEntity.setFileId(fileId);
+    }
+
+    @Override
+    public void setFileProvider(String fileProvider) {
+        facturaEntity.setFileProvider(fileProvider);
+    }
+
+    @Override
     public void setTotalPagar(Long totalPagar) {
         facturaEntity.setTotalPagar(totalPagar);
     }
