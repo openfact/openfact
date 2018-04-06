@@ -20,7 +20,7 @@ public interface AbstractInvoiceModel {
 
     void setFechaVencimiento(Date fechaVencimiento);
 
-    String getObservacion();
+    String getObservaciones();
 
     ClienteModel getCliente();
 
@@ -42,7 +42,7 @@ public interface AbstractInvoiceModel {
 
     String getMoneda();
 
-    void setMoneda(String codigo);
+    void setMoneda(String moneda);
 
     Long getTipoCambio();
 
@@ -58,31 +58,31 @@ public interface AbstractInvoiceModel {
 
     void setTotalISC(Long ISC);
 
-    // Informacion adicional de totales
+    // Información adicional de totales
 
     Long getTotalGravada();
 
     void setTotalGravada(Long totalGravada);
 
-    Long getTotalGratuita();
+    Long getTotalGratuito();
 
-    void setTotalGratuita(Long totalGratuita);
+    void setTotalGratuito(Long totalGratuito);
 
-    Long getTotalInafecta();
+    Long getTotalInafecto();
 
-    void setTotalInafecta(Long totalInafecta);
+    void setTotalInafecto(Long totalInafecto);
 
-    Long getTotalExonerada();
+    Long getTotalExonerado();
 
-    void setTotalExonerada(Long totalExonerada);
+    void setTotalExonerado(Long totalExonerado);
 
     // Enviar
 
     boolean getEnviarSUNAT();
 
-    void setEnviarSUNAT(Boolean enviarSUNAT);
+    void setEnviarSUNAT(boolean enviarSUNAT);
 
     boolean getEnviarCliente();
 
-    void setEnviarCliente(Boolean enviarSUNAT);
+    void setEnviarCliente(boolean enviarSUNAT);
 }

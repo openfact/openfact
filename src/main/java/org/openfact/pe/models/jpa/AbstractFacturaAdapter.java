@@ -1,123 +1,123 @@
 package org.openfact.pe.models.jpa;
 
-import org.openfact.pe.models.BoletaModel;
 import org.openfact.pe.models.ClienteModel;
 import org.openfact.pe.models.EstadoComprobantePago;
-import org.openfact.pe.models.jpa.entities.BoletaEntity;
+import org.openfact.pe.models.FacturaModel;
+import org.openfact.pe.models.jpa.entities.FacturaEntity;
 
 import java.util.Date;
 
-public abstract class AbstractBoletaAdapter implements BoletaModel {
+public abstract class AbstractFacturaAdapter implements FacturaModel {
 
-    protected final BoletaEntity boletaEntity;
+    protected final FacturaEntity facturaEntity;
 
-    public AbstractBoletaAdapter(BoletaEntity boletaEntity) {
-        this.boletaEntity = boletaEntity;
+    public AbstractFacturaAdapter(FacturaEntity facturaEntity) {
+        this.facturaEntity = facturaEntity;
     }
 
     @Override
     public String getId() {
-        return boletaEntity.getId();
+        return facturaEntity.getId();
     }
 
     @Override
     public String getSerie() {
-        return boletaEntity.getSerie();
+        return facturaEntity.getSerie();
     }
 
     @Override
     public Integer getNumero() {
-        return boletaEntity.getNumero();
+        return facturaEntity.getNumero();
     }
 
     @Override
     public EstadoComprobantePago getEstado() {
-        return boletaEntity.getEstado();
+        return facturaEntity.getEstado();
     }
 
     @Override
     public Date getFechaEmision() {
-        return boletaEntity.getFechaEmision();
+        return facturaEntity.getFechaEmision();
     }
 
     @Override
     public Date getFechaVencimiento() {
-        return boletaEntity.getFechaVencimiento();
+        return facturaEntity.getFechaVencimiento();
     }
 
     @Override
     public String getObservaciones() {
-        return boletaEntity.getObservaciones();
+        return facturaEntity.getObservaciones();
     }
 
     @Override
     public ClienteModel getCliente() {
-        return new ClienteAdapter(boletaEntity.getCliente());
+        return new ClienteAdapter(facturaEntity.getCliente());
     }
 
     @Override
     public Long getTotalPagar() {
-        return boletaEntity.getTotalPagar();
+        return facturaEntity.getTotalPagar();
     }
 
     @Override
     public Long getDescuentoGlobal() {
-        return boletaEntity.getDescuentoGlobal();
+        return facturaEntity.getDescuentoGlobal();
     }
 
     @Override
     public Long getOtrosCargos() {
-        return boletaEntity.getOtrosCargos();
+        return facturaEntity.getOtrosCargos();
     }
 
     @Override
     public String getMoneda() {
-        return boletaEntity.getMoneda();
+        return facturaEntity.getMoneda();
     }
 
     @Override
     public Long getTipoCambio() {
-        return boletaEntity.getTipoCambio();
+        return facturaEntity.getTipoCambio();
     }
 
     @Override
     public Long getTotalIGV() {
-        return boletaEntity.getTotalIGV();
+        return facturaEntity.getTotalIGV();
     }
 
     @Override
     public Long getTotalISC() {
-        return boletaEntity.getTotalIGV();
+        return facturaEntity.getTotalIGV();
     }
 
     @Override
     public Long getTotalGravada() {
-        return boletaEntity.getTotalGravada();
+        return facturaEntity.getTotalGravada();
     }
 
     @Override
     public Long getTotalGratuito() {
-        return boletaEntity.getTotalGratuita();
+        return facturaEntity.getTotalGratuita();
     }
 
     @Override
     public Long getTotalInafecto() {
-        return boletaEntity.getTotalInafecto();
+        return facturaEntity.getTotalInafecto();
     }
 
     @Override
     public Long getTotalExonerado() {
-        return boletaEntity.getTotalExonerado();
+        return facturaEntity.getTotalExonerado();
     }
 
     @Override
     public boolean getEnviarSUNAT() {
-        return boletaEntity.isEnviarSUNAT();
+        return facturaEntity.isEnviarSUNAT();
     }
 
     @Override
     public boolean getEnviarCliente() {
-        return boletaEntity.isEnviarCliente();
+        return facturaEntity.isEnviarCliente();
     }
 
 }

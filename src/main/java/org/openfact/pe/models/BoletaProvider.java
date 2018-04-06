@@ -6,14 +6,14 @@ import java.util.Optional;
 
 public interface BoletaProvider {
 
-    BoletaModel createBoleta(OrganizationModel organizacion);
+    BoletaModel createBoleta(OrganizationModel organization);
 
-    BoletaModel createBoleta(OrganizationModel organizacion, String serie);
+    BoletaModel createBoleta(OrganizationModel organization, String serie);
 
-    BoletaModel createBoleta(OrganizationModel organizacion, String serie, int numero);
+    BoletaModel createBoleta(OrganizationModel organization, String serie, int numero);
 
-    Optional<BoletaModel> getBoletaFactura(OrganizationModel organizacion, String id);
+    Optional<BoletaModel> getBoleta(OrganizationModel organization, String id);
 
-    boolean remove(OrganizationModel organizacion, BoletaModel boleta);
+    boolean remove(BoletaModel boleta);
 
 }

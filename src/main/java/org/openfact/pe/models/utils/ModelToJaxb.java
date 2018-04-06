@@ -272,7 +272,7 @@ public class ModelToJaxb {
 //        }
 
         // Observaciones
-        invoice.getNote().add(buildNoteType(boletaFactura.getObservacion()));
+        invoice.getNote().add(buildNoteType(boletaFactura.getObservaciones()));
 //
 //        // Firma Digital
 //        invoice.setSignature(Arrays.asList(toSignatureType(organization)));

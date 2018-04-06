@@ -6,14 +6,14 @@ import java.util.Optional;
 
 public interface FacturaProvider {
 
-    FacturaModel createFactura(OrganizationModel organizacion);
+    FacturaModel createFactura(OrganizationModel organization);
 
-    FacturaModel createFactura(OrganizationModel organizacion, String serie);
+    FacturaModel createFactura(OrganizationModel organization, String serie);
 
-    FacturaModel createFactura(OrganizationModel organizacion, String serie, int numero);
+    FacturaModel createFactura(OrganizationModel organization, String serie, int numero);
 
-    Optional<FacturaModel> getBoletaFactura(OrganizationModel organizacion, String id);
+    Optional<FacturaModel> getFactura(OrganizationModel organization, String id);
 
-    boolean remove(OrganizationModel organizacion, FacturaModel factura);
+    boolean remove(FacturaModel factura);
 
 }

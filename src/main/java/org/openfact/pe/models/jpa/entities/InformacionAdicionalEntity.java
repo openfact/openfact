@@ -1,6 +1,6 @@
 package org.openfact.pe.models.jpa.entities;
 
-import org.openfact.core.models.jpa.entities.OrganizacionEntity;
+import org.openfact.core.models.jpa.entities.OrganizationEntity;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -58,7 +58,7 @@ public class InformacionAdicionalEntity implements Serializable {
 
     @OneToOne
     @MapsId
-    private OrganizacionEntity organizacion;
+    private OrganizationEntity organizacion;
 
     @Version
     @Column(name = "version")
@@ -152,11 +152,11 @@ public class InformacionAdicionalEntity implements Serializable {
         this.direccion = direccion;
     }
 
-    public OrganizacionEntity getOrganizacion() {
+    public OrganizationEntity getOrganizacion() {
         return organizacion;
     }
 
-    public void setOrganizacion(OrganizacionEntity organizacion) {
+    public void setOrganizacion(OrganizationEntity organizacion) {
         this.organizacion = organizacion;
     }
 

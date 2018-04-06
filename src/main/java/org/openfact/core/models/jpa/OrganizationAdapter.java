@@ -3,7 +3,7 @@ package org.openfact.core.models.jpa;
 import org.openfact.core.models.ModelType;
 import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.UserModel;
-import org.openfact.core.models.jpa.entities.OrganizacionEntity;
+import org.openfact.core.models.jpa.entities.OrganizationEntity;
 
 import javax.persistence.EntityManager;
 import java.util.Collections;
@@ -11,25 +11,25 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
 
-public class OrganizationAdapter implements OrganizationModel, JpaModel<OrganizacionEntity> {
+public class OrganizationAdapter implements OrganizationModel, JpaModel<OrganizationEntity> {
 
     private final EntityManager em;
-    private final OrganizacionEntity organization;
+    private final OrganizationEntity organization;
 
-    public OrganizationAdapter(EntityManager em, OrganizacionEntity organization) {
+    public OrganizationAdapter(EntityManager em, OrganizationEntity organization) {
         this.em = em;
         this.organization = organization;
     }
 
-    public static OrganizacionEntity toEntity(OrganizationModel model, EntityManager em) {
+    public static OrganizationEntity toEntity(OrganizationModel model, EntityManager em) {
         if (model instanceof OrganizationAdapter) {
             return ((OrganizationAdapter) model).getEntity();
         }
-        return em.getReference(OrganizacionEntity.class, model.getId());
+        return em.getReference(OrganizationEntity.class, model.getId());
     }
 
     @Override
-    public OrganizacionEntity getEntity() {
+    public OrganizationEntity getEntity() {
         return organization;
     }
 

@@ -1,7 +1,6 @@
 package org.openfact.pe.models.jpa.entities;
 
-import org.openfact.core.models.jpa.entities.OrganizacionEntity;
-import org.openfact.pe.models.EstadoComprobantePago;
+import org.openfact.core.models.jpa.entities.OrganizationEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -9,12 +8,17 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "factura_pe")
-@NamedQueries(value = {
-        @NamedQuery(name = "GetFacturaByOrganizationIdAndFacturaId", query = "select f from FacturaEntity f inner join f.organizacion o where o.id=:organizacionId and f.id=:facturaId"),
-        @NamedQuery(name = "GetLastFacturaOfOrganizationWithSerie", query = "select f from FacturaEntity f inner join b.organizacion o where o.id=:organizacionId and f.serie=:serie order by f.createdAt")
+@Table(name = "factura_pe", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"serie", "numero", "organization_id"})
 })
-public class FacturaEntity implements Serializable {
+@NamedQueries(value = {
+        @NamedQuery(name = "DeleteFactura", query = "delete from FacturaEntity b where b.id=:facturaId"),
+        @NamedQuery(name = "GetFacturaPorId", query = "select b from FacturaEntity b inner join b.organization o where o.id=:organizationId and b.id=:facturaId"),
+        @NamedQuery(name = "GetFacturaPorSerieYNumero", query = "select b from FacturaEntity b inner join b.organization o where o.id=:organizationId and b.serie=:serie and b.numero=:numero"),
+        @NamedQuery(name = "getFacturasEmpezandoPorLasMasRecientes", query = "select b from FacturaEntity b inner join b.organization o where o.id=:organizationId and b.serie=:serie order by b.createdAt"),
+        @NamedQuery(name = "getFacturasConSerieEmpezandoPorLasMasRecientes", query = "select b from FacturaEntity b inner join b.organization o where o.id=:organizationId and b.serie=:serie order by b.createdAt")
+})
+public class FacturaEntity extends AbstractInvoiceEntity implements Serializable {
 
     @Id
     @Column(name = "id")
@@ -28,18 +32,10 @@ public class FacturaEntity implements Serializable {
     @Column(name = "numero")
     private int numero;
 
-    @Embedded
-    private ClienteEntity cliente;
-
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    @Column(name = "estado")
-    private EstadoComprobantePago estado;
-
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "organizacion_id")
-    private OrganizacionEntity organizacion;
+    @JoinColumn(foreignKey = @ForeignKey, name = "organization_id")
+    private OrganizationEntity organization;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
@@ -107,28 +103,12 @@ public class FacturaEntity implements Serializable {
         this.numero = numero;
     }
 
-    public ClienteEntity getCliente() {
-        return cliente;
+    public OrganizationEntity getOrganization() {
+        return organization;
     }
 
-    public void setCliente(ClienteEntity cliente) {
-        this.cliente = cliente;
-    }
-
-    public EstadoComprobantePago getEstado() {
-        return estado;
-    }
-
-    public void setEstado(EstadoComprobantePago estado) {
-        this.estado = estado;
-    }
-
-    public OrganizacionEntity getOrganizacion() {
-        return organizacion;
-    }
-
-    public void setOrganizacion(OrganizacionEntity organizacion) {
-        this.organizacion = organizacion;
+    public void setOrganization(OrganizationEntity organizacion) {
+        this.organization = organizacion;
     }
 
     public Date getCreatedAt() {

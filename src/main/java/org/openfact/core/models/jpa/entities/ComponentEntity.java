@@ -24,7 +24,7 @@ public class ComponentEntity {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey, name = "organization_id")
-    protected OrganizacionEntity organization;
+    protected OrganizationEntity organization;
 
     @Column(name = "NAME")
     protected String name;
@@ -89,11 +89,11 @@ public class ComponentEntity {
         this.subType = subType;
     }
 
-    public OrganizacionEntity getOrganization() {
+    public OrganizationEntity getOrganization() {
         return organization;
     }
 
-    public void setOrganization(OrganizacionEntity organization) {
+    public void setOrganization(OrganizationEntity organization) {
         this.organization = organization;
     }
 

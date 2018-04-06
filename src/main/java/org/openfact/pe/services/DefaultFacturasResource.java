@@ -35,8 +35,8 @@ public class DefaultFacturasResource implements FacturasResource {
     private JAXBManager jaxbManager;
 
     @Override
-    public FacturaRepresentation crearFactura(String organizacionId, FacturaRepresentation representation) {
-        OrganizationModel organizacion = organizationProvider.getOrganization(organizacionId).orElseThrow(() -> new NotFoundException("Organizacion no encontrada"));
+    public FacturaRepresentation crearFactura(String organizationId, FacturaRepresentation representation) {
+        OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
 
         String serie = representation.getSerie();
         Integer numero = representation.getNumero();
@@ -44,23 +44,23 @@ public class DefaultFacturasResource implements FacturasResource {
         FacturaModel factura;
         if (serie == null) {
             if (numero == null) {
-                factura = facturaProvider.createFactura(organizacion);
+                factura = facturaProvider.createFactura(organization);
             } else {
-                throw new BadRequestException("peticion invalida: [serie=null, numero=not null]");
+                throw new BadRequestException("Petición invalida: [serie=null, numero=not null]");
             }
         } else {
             Pattern pattern = Pattern.compile(TipoInvoice.FACTURA.getSeriePattern());
             if (!pattern.matcher(serie).matches()) {
-                throw new BadRequestException("Serie Invalida, no cumple con el patron [FXXX...]");
+                throw new BadRequestException("Serie Invalida, no cumple con el patron [F...]");
             }
             if (numero == null) {
-                factura = facturaProvider.createFactura(organizacion, serie);
+                factura = facturaProvider.createFactura(organization, serie);
             } else {
-                factura = facturaProvider.createFactura(organizacion, serie, numero);
+                factura = facturaProvider.createFactura(organization, serie, numero);
             }
         }
 
-        // Datos por defecto si no son espeficificadas
+        // Datos por defecto si no son especificadas
         if (representation.getFecha() == null) {
             factura.setFechaEmision(Calendar.getInstance().getTime());
         }
@@ -74,34 +74,30 @@ public class DefaultFacturasResource implements FacturasResource {
         // Merge
         RepresentationToModel.modelToRepresentation(factura, representation);
 
-        // JAXB
-        if (factura.getEnviarSUNAT()) {
-            jaxbManager.buildBoleta(factura);
-        }
+        // Recalcular XML
+        jaxbManager.buildBoleta(factura);
 
         return ModelToRepresentation.toRepresentation(factura, true);
     }
 
     @Override
-    public void actualizarFactura(String organizacionId, String idDocumento, FacturaRepresentation representation) {
-        OrganizationModel organizacion = organizationProvider.getOrganization(organizacionId).orElseThrow(() -> new NotFoundException("Organizacion no encontrada"));
-        FacturaModel factura = facturaProvider.getBoletaFactura(organizacion, idDocumento).orElseThrow(() -> new NotFoundException("Boleta o Factura no encontrada"));
+    public void actualizarFactura(String organizationId, String idDocumento, FacturaRepresentation representation) {
+        OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
+        FacturaModel factura = facturaProvider.getFactura(organization, idDocumento).orElseThrow(() -> new NotFoundException("Factura no encontrada"));
         RepresentationToModel.modelToRepresentation(factura, representation);
 
-        // JAXB
-        if (factura.getEnviarSUNAT()) {
-            jaxbManager.buildBoleta(factura);
-        }
+        // Recalcular XML
+        jaxbManager.buildBoleta(factura);
     }
 
     @Override
-    public void eliminarFactura(String organizacionId, String idDocumento) {
-        OrganizationModel organizacion = organizationProvider.getOrganization(organizacionId).orElseThrow(() -> new NotFoundException("Organizacion no encontrada"));
-        FacturaModel factura = facturaProvider.getBoletaFactura(organizacion, idDocumento).orElseThrow(() -> new NotFoundException("Boleta o Factura no encontrada"));
+    public void eliminarFactura(String organizationId, String idDocumento) {
+        OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
+        FacturaModel factura = facturaProvider.getFactura(organization, idDocumento).orElseThrow(() -> new NotFoundException("Boleta o Factura no encontrada"));
         if (factura.getEstado().equals(EstadoComprobantePago.BLOQUEADO)) {
             throw new BadRequestException("Comprobante BLOQUEADO o ya fue declarado a la SUNAT, no se puede eliminar");
         }
-        boolean result = facturaProvider.remove(organizacion, factura);
+        boolean result = facturaProvider.remove(factura);
         if (!result) {
             throw new InternalServerErrorException("Error interno, no se pudo eliminar la Factura");
         }

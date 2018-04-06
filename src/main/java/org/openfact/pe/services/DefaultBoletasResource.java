@@ -36,7 +36,7 @@ public class DefaultBoletasResource implements BoletasResource {
 
     @Override
     public BoletaRepresentation crearBoleta(String organizacionId, BoletaRepresentation representation) {
-        OrganizationModel organizacion = organizationProvider.getOrganization(organizacionId).orElseThrow(() -> new NotFoundException("Organizacion no encontrada"));
+        OrganizationModel organization = organizationProvider.getOrganization(organizacionId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
 
         String serie = representation.getSerie();
         Integer numero = representation.getNumero();
@@ -44,23 +44,23 @@ public class DefaultBoletasResource implements BoletasResource {
         BoletaModel boleta;
         if (serie == null) {
             if (numero == null) {
-                boleta = boletaProvider.createBoleta(organizacion);
+                boleta = boletaProvider.createBoleta(organization);
             } else {
-                throw new BadRequestException("peticion invalida: [serie=null, numero=not null]");
+                throw new BadRequestException("Petición invalida: [serie=null, numero=not null]");
             }
         } else {
             Pattern pattern = Pattern.compile(TipoInvoice.BOLETA.getSeriePattern());
             if (!pattern.matcher(serie).matches()) {
-                throw new BadRequestException("Serie Invalida, no cumple con el patron [BXXX...]");
+                throw new BadRequestException("Serie Invalida, no cumple con el patron [B...]");
             }
             if (numero == null) {
-                boleta = boletaProvider.createBoleta(organizacion, serie);
+                boleta = boletaProvider.createBoleta(organization, serie);
             } else {
-                boleta = boletaProvider.createBoleta(organizacion, serie, numero);
+                boleta = boletaProvider.createBoleta(organization, serie, numero);
             }
         }
 
-        // Datos por defecto si no son espeficificadas
+        // Datos por defecto si no son especificadas
         if (representation.getFecha() == null) {
             boleta.setFechaEmision(Calendar.getInstance().getTime());
         }
@@ -74,34 +74,30 @@ public class DefaultBoletasResource implements BoletasResource {
         // Merge
         RepresentationToModel.modelToRepresentation(boleta, representation);
 
-        // JAXB
-        if (boleta.getEnviarSUNAT()) {
-            jaxbManager.buildBoleta(boleta);
-        }
+        // Recalcular XML
+        jaxbManager.buildBoleta(boleta);
 
         return ModelToRepresentation.toRepresentation(boleta, true);
     }
 
     @Override
-    public void actualizarBoleta(String organizacionId, String idDocumento, BoletaRepresentation representation) {
-        OrganizationModel organizacion = organizationProvider.getOrganization(organizacionId).orElseThrow(() -> new NotFoundException("Organizacion no encontrada"));
-        BoletaModel boleta = boletaProvider.getBoletaFactura(organizacion, idDocumento).orElseThrow(() -> new NotFoundException("Boleta o Factura no encontrada"));
+    public void actualizarBoleta(String organizationId, String idDocumento, BoletaRepresentation representation) {
+        OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
+        BoletaModel boleta = boletaProvider.getBoleta(organization, idDocumento).orElseThrow(() -> new NotFoundException("Boleta o Factura no encontrada"));
         RepresentationToModel.modelToRepresentation(boleta, representation);
 
-        // JAXB
-        if (boleta.getEnviarSUNAT()) {
-            jaxbManager.buildBoleta(boleta);
-        }
+        // Recalcular XML
+        jaxbManager.buildBoleta(boleta);
     }
 
     @Override
-    public void eliminarBoleta(String organizacionId, String idDocumento) {
-        OrganizationModel organizacion = organizationProvider.getOrganization(organizacionId).orElseThrow(() -> new NotFoundException("Organizacion no encontrada"));
-        BoletaModel boleta = boletaProvider.getBoletaFactura(organizacion, idDocumento).orElseThrow(() -> new NotFoundException("Boleta o Factura no encontrada"));
+    public void eliminarBoleta(String organizationId, String idDocumento) {
+        OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
+        BoletaModel boleta = boletaProvider.getBoleta(organization, idDocumento).orElseThrow(() -> new NotFoundException("Boleta no encontrada"));
         if (boleta.getEstado().equals(EstadoComprobantePago.BLOQUEADO)) {
             throw new BadRequestException("Comprobante BLOQUEADO o ya fue declarado a la SUNAT, no se puede eliminar");
         }
-        boolean result = boletaProvider.remove(organizacion, boleta);
+        boolean result = boletaProvider.remove(boleta);
         if (!result) {
             throw new InternalServerErrorException("Error interno, no se pudo eliminar la Boleta");
         }

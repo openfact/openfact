@@ -3,7 +3,7 @@ package org.openfact.core.models.jpa;
 import org.openfact.core.models.ModelType;
 import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.UserModel;
-import org.openfact.core.models.jpa.entities.OrganizacionEntity;
+import org.openfact.core.models.jpa.entities.OrganizationEntity;
 import org.openfact.core.models.jpa.entities.UserEntity;
 
 import javax.persistence.EntityGraph;
@@ -84,7 +84,7 @@ public class UserAdapter implements UserModel, JpaModel<UserEntity> {
     public List<OrganizationModel> getOwnedOrganizations() {
         EntityGraph<?> graph = em.getEntityGraph("graph.OrganizationOwner");
 
-        TypedQuery<OrganizacionEntity> query = em.createNamedQuery("getAllOwnedOrganizationsByUserId", OrganizacionEntity.class);
+        TypedQuery<OrganizationEntity> query = em.createNamedQuery("getAllOwnedOrganizationsByUserId", OrganizationEntity.class);
         query.setParameter("userId", user.getId());
         query.setHint("javax.persistence.fetchgraph", graph);
         return query.getResultList()

@@ -1,6 +1,6 @@
 package org.openfact.pe.models.jpa;
 
-import org.openfact.core.models.jpa.entities.OrganizacionEntity;
+import org.openfact.core.models.jpa.entities.OrganizationEntity;
 import org.openfact.pe.models.InformacionAdicionalModel;
 import org.openfact.pe.models.InformacionAdicionalProvider;
 import org.openfact.pe.models.jpa.entities.InformacionAdicionalEntity;
@@ -23,7 +23,7 @@ public class JpaInformacionAdicionalProvider implements InformacionAdicionalProv
 
     @Override
     public Optional<InformacionAdicionalModel> getOrganizacionInformacionAdicional(String id) {
-        OrganizacionEntity companyEntity = em.find(OrganizacionEntity.class, id);
+        OrganizationEntity companyEntity = em.find(OrganizationEntity.class, id);
         if (companyEntity == null) return Optional.empty();
 
         EntityGraph<?> graph = em.getEntityGraph("graph.InformacionAdicionalOrganizacion");

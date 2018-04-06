@@ -77,16 +77,16 @@ public class RepresentationToModel {
         TotalInformacionAdicionalRepresentation totalInformacionAdicionalRepresentation = rep.getTotalInformacionAdicional();
         if (totalInformacionAdicionalRepresentation != null) {
             if (totalInformacionAdicionalRepresentation.getTotalExonerada() != null) {
-                model.setTotalExonerada(totalInformacionAdicionalRepresentation.getTotalExonerada());
+                model.setTotalExonerado(totalInformacionAdicionalRepresentation.getTotalExonerada());
             }
             if (totalInformacionAdicionalRepresentation.getTotalGratuita() != null) {
-                model.setTotalGratuita(totalInformacionAdicionalRepresentation.getTotalGratuita());
+                model.setTotalGratuito(totalInformacionAdicionalRepresentation.getTotalGratuita());
             }
             if (totalInformacionAdicionalRepresentation.getTotalGravada() != null) {
                 model.setTotalGravada(totalInformacionAdicionalRepresentation.getTotalGravada());
             }
             if (totalInformacionAdicionalRepresentation.getTotalInafecta() != null) {
-                model.setTotalInafecta(totalInformacionAdicionalRepresentation.getTotalInafecta());
+                model.setTotalInafecto(totalInformacionAdicionalRepresentation.getTotalInafecta());
             }
         }
     }

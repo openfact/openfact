@@ -1,195 +1,90 @@
 package org.openfact.pe.models.jpa;
 
-import org.openfact.pe.models.ClienteModel;
-import org.openfact.pe.models.EstadoComprobantePago;
-import org.openfact.pe.models.FacturaModel;
 import org.openfact.pe.models.jpa.entities.FacturaEntity;
 
 import javax.persistence.EntityManager;
 import java.util.Date;
 
-public class ReadOnlyFacturaAdapter implements FacturaModel {
+public class ReadOnlyFacturaAdapter extends AbstractFacturaAdapter {
 
-    public ReadOnlyFacturaAdapter(EntityManager em, FacturaEntity facturaEntity) {
-    }
-
-    @Override
-    public String getId() {
-        return null;
-    }
-
-    @Override
-    public String getSerie() {
-        return null;
-    }
-
-    @Override
-    public Integer getNumero() {
-        return null;
-    }
-
-    @Override
-    public EstadoComprobantePago getEstado() {
-        return null;
-    }
-
-    @Override
-    public Date getFechaEmision() {
-        return null;
+    public ReadOnlyFacturaAdapter(EntityManager em, FacturaEntity entity) {
+        super(entity);
     }
 
     @Override
     public void setFechaEmision(Date fechaEmision) {
-
-    }
-
-    @Override
-    public Date getFechaVencimiento() {
-        return null;
+        throw new IllegalStateException("Objeto de solo lectura, no puede ser modificado");
     }
 
     @Override
     public void setFechaVencimiento(Date fechaVencimiento) {
-
-    }
-
-    @Override
-    public String getObservacion() {
-        return null;
-    }
-
-    @Override
-    public ClienteModel getCliente() {
-        return null;
-    }
-
-    @Override
-    public Long getTotalPagar() {
-        return null;
+        throw new IllegalStateException("Objeto de solo lectura, no puede ser modificado");
     }
 
     @Override
     public void setTotalPagar(Long pagar) {
-
-    }
-
-    @Override
-    public Long getDescuentoGlobal() {
-        return null;
+        throw new IllegalStateException("Objeto de solo lectura, no puede ser modificado");
     }
 
     @Override
     public void setDescuentoGlobal(Long descuentoGlobal) {
-
-    }
-
-    @Override
-    public Long getOtrosCargos() {
-        return null;
+        throw new IllegalStateException("Objeto de solo lectura, no puede ser modificado");
     }
 
     @Override
     public void setOtrosCargos(Long otrosCargos) {
-
+        throw new IllegalStateException("Objeto de solo lectura, no puede ser modificado");
     }
 
     @Override
-    public String getMoneda() {
-        return null;
-    }
-
-    @Override
-    public void setMoneda(String codigo) {
-
-    }
-
-    @Override
-    public Long getTipoCambio() {
-        return null;
+    public void setMoneda(String moneda) {
+        throw new IllegalStateException("Objeto de solo lectura, no puede ser modificado");
     }
 
     @Override
     public void setTipoCambio(Long tipoCambio) {
-
-    }
-
-    @Override
-    public Long getTotalIGV() {
-        return null;
+        throw new IllegalStateException("Objeto de solo lectura, no puede ser modificado");
     }
 
     @Override
     public void setTotalIGV(Long IGV) {
-
-    }
-
-    @Override
-    public Long getTotalISC() {
-        return null;
+        throw new IllegalStateException("Objeto de solo lectura, no puede ser modificado");
     }
 
     @Override
     public void setTotalISC(Long ISC) {
-
-    }
-
-    @Override
-    public Long getTotalGravada() {
-        return null;
+        throw new IllegalStateException("Objeto de solo lectura, no puede ser modificado");
     }
 
     @Override
     public void setTotalGravada(Long totalGravada) {
-
+        throw new IllegalStateException("Objeto de solo lectura, no puede ser modificado");
     }
 
     @Override
-    public Long getTotalGratuita() {
-        return null;
+    public void setTotalGratuito(Long totalGratuita) {
+        throw new IllegalStateException("Objeto de solo lectura, no puede ser modificado");
     }
 
     @Override
-    public void setTotalGratuita(Long totalGratuita) {
-
+    public void setTotalInafecto(Long totalInafecta) {
+        throw new IllegalStateException("Objeto de solo lectura, no puede ser modificado");
     }
 
     @Override
-    public Long getTotalInafecta() {
-        return null;
+    public void setTotalExonerado(Long totalExonerada) {
+        throw new IllegalStateException("Objeto de solo lectura, no puede ser modificado");
     }
 
     @Override
-    public void setTotalInafecta(Long totalInafecta) {
-
+    public void setEnviarSUNAT(boolean enviarSUNAT) {
+        throw new IllegalStateException("Objeto de solo lectura, no puede ser modificado");
     }
 
     @Override
-    public Long getTotalExonerada() {
-        return null;
+    public void setEnviarCliente(boolean enviarCliente) {
+        throw new IllegalStateException("Objeto de solo lectura, no puede ser modificado");
     }
 
-    @Override
-    public void setTotalExonerada(Long totalExonerada) {
 
-    }
-
-    @Override
-    public boolean getEnviarSUNAT() {
-        return false;
-    }
-
-    @Override
-    public void setEnviarSUNAT(Boolean enviarSUNAT) {
-
-    }
-
-    @Override
-    public boolean getEnviarCliente() {
-        return false;
-    }
-
-    @Override
-    public void setEnviarCliente(Boolean enviarSUNAT) {
-
-    }
 }

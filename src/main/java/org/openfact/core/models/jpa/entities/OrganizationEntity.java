@@ -13,7 +13,7 @@ import java.util.Map;
 @Entity
 @Table(name = "of_organization")
 @NamedQueries(value = {
-        @NamedQuery(name = "getAllOwnedOrganizationsByUserId", query = "select distinct c from  OrganizacionEntity c inner join c.owner u where u.id=:userId")
+        @NamedQuery(name = "getAllOwnedOrganizationsByUserId", query = "select distinct c from  OrganizationEntity c inner join c.owner u where u.id=:userId")
 })
 @NamedEntityGraphs(value = {
         @NamedEntityGraph(name = "graph.OrganizationOwner", attributeNodes = {
@@ -25,7 +25,7 @@ import java.util.Map;
                 })
         })
 })
-public class OrganizacionEntity implements Serializable {
+public class OrganizationEntity implements Serializable {
 
     @Id
     @Column(name = "id")
@@ -116,10 +116,10 @@ public class OrganizacionEntity implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof OrganizacionEntity)) {
+        if (!(obj instanceof OrganizationEntity)) {
             return false;
         }
-        OrganizacionEntity other = (OrganizacionEntity) obj;
+        OrganizationEntity other = (OrganizationEntity) obj;
         if (id != null) {
             if (!id.equals(other.id)) {
                 return false;
