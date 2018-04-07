@@ -3460,7 +3460,7 @@
             <ccts:Component>
               <ccts:ComponentType>BBIE</ccts:ComponentType>
               <ccts:DictionaryEntryName>Consignment. Loading_ Length. Measure</ccts:DictionaryEntryName>
-              <ccts:Definition>Total length in a means of transport or a piece of transport equipment whereby the complete width and height over that length is needed for loading all the consignments referred to as one consolidation.</ccts:Definition>
+              <ccts:Definition>Total longitud in a means of transport or a piece of transport equipment whereby the complete width and height over that longitud is needed for loading all the consignments referred to as one consolidation.</ccts:Definition>
               <ccts:Cardinality>0..1</ccts:Cardinality>
               <ccts:ObjectClass>Consignment</ccts:ObjectClass>
               <ccts:PropertyTermQualifier>Loading</ccts:PropertyTermQualifier>
@@ -7055,7 +7055,7 @@
             <ccts:Component>
               <ccts:ComponentType>BBIE</ccts:ComponentType>
               <ccts:DictionaryEntryName>Goods Item. Gross_ Volume. Measure</ccts:DictionaryEntryName>
-              <ccts:Definition>Measurement normally arrived at by multiplying the maximum length, width, and height of the goods item.</ccts:Definition>
+              <ccts:Definition>Measurement normally arrived at by multiplying the maximum longitud, width, and height of the goods item.</ccts:Definition>
               <ccts:Cardinality>0..1</ccts:Cardinality>
               <ccts:ObjectClass>Goods Item</ccts:ObjectClass>
               <ccts:PropertyTermQualifier>Gross</ccts:PropertyTermQualifier>
@@ -11923,7 +11923,7 @@ Thus, the column "Preference Criterion" will indicate either A, B, C,...</ccts:E
             <ccts:Component>
               <ccts:ComponentType>BBIE</ccts:ComponentType>
               <ccts:DictionaryEntryName>Payment Terms. Reference_ Event Code. Code</ccts:DictionaryEntryName>
-              <ccts:Definition>The event from which terms are offered for a length of time, identified by a standard code.</ccts:Definition>
+              <ccts:Definition>The event from which terms are offered for a longitud of time, identified by a standard code.</ccts:Definition>
               <ccts:Cardinality>0..1</ccts:Cardinality>
               <ccts:ObjectClass>Payment Terms</ccts:ObjectClass>
               <ccts:PropertyTermQualifier>Reference</ccts:PropertyTermQualifier>

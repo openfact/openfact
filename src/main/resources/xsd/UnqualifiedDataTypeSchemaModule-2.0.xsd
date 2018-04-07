@@ -96,7 +96,7 @@ attributeFormDefault="unqualified">
             <ccts:CategoryCode>UDT</ccts:CategoryCode>
             <ccts:DictionaryEntryName>Binary Object. Type</ccts:DictionaryEntryName>
             <ccts:VersionID>1.0</ccts:VersionID>
-            <ccts:Definition>A set of finite-length sequences of binary octets.</ccts:Definition>
+            <ccts:Definition>A set of finite-longitud sequences of binary octets.</ccts:Definition>
             <ccts:RepresentationTermName>Binary Object</ccts:RepresentationTermName>
             <ccts:PrimitiveType>binary</ccts:PrimitiveType>
             <xsd:BuiltinType>base64Binary</xsd:BuiltinType>

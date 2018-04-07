@@ -7,7 +7,7 @@ public class SUNATGenericTypeRepresentation {
     private String abreviatura;
     private String denominacion;
     private String grupo;
-    private Integer length;
+    private Integer longitud;
     private Boolean afectaIGV;
     private Double valor;
 
@@ -51,12 +51,12 @@ public class SUNATGenericTypeRepresentation {
         this.grupo = grupo;
     }
 
-    public Integer getLength() {
-        return length;
+    public Integer getLongitud() {
+        return longitud;
     }
 
-    public void setLength(Integer length) {
-        this.length = length;
+    public void setLongitud(Integer longitud) {
+        this.longitud = longitud;
     }
 
     public Boolean getAfectaIGV() {

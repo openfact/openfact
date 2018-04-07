@@ -35,7 +35,7 @@ public class DefaultSunatPEResource implements SunatPEResource {
             rep.setCodigo(type.getCodigo());
             rep.setAbreviatura(type.getAbreviatura());
             rep.setDenominacion(type.getDenominacion());
-            rep.setLength(type.getLength());
+            rep.setLongitud(type.getLength());
 
             result.add(rep);
         }

@@ -6555,7 +6555,7 @@ Synonym LBR = pound decimal</ccts:CodeDescription>
       <xsd:enumeration value="LN">
         <xsd:annotation>
           <xsd:documentation>
-            <ccts:CodeName>length</ccts:CodeName>
+            <ccts:CodeName>longitud</ccts:CodeName>
             <ccts:CodeDescription></ccts:CodeDescription>
           </xsd:documentation>
         </xsd:annotation>
@@ -7535,7 +7535,7 @@ Synonym  PK = pack</ccts:CodeDescription>
       <xsd:enumeration value="PO">
         <xsd:annotation>
           <xsd:documentation>
-            <ccts:CodeName>pound per inch of length</ccts:CodeName>
+            <ccts:CodeName>pound per inch of longitud</ccts:CodeName>
             <ccts:CodeDescription></ccts:CodeDescription>
           </xsd:documentation>
         </xsd:annotation>

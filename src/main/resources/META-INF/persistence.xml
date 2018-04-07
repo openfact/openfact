@@ -13,8 +13,8 @@
             <property name="hibernate.format_sql" value="${env.OF_HIBERNATE_FORMAT_SQL:false}"/>
             <property name="hibernate.use_sql_comments" value="${env.OF_HIBERNATE_SHOW_SQL:false}"/>
 
-            <property name="hibernate.cache.use_query_cache" value="false"/>
-            <property name="hibernate.cache.use_second_level_cache" value="false"/>
+            <property name="hibernate.cache.use_query_cache" value="true"/>
+            <property name="hibernate.cache.use_second_level_cache" value="true"/>
 
             <property name="hibernate.jdbc.batch_size" value="10"/>
             <property name="hibernate.order_inserts" value="true"/>
