@@ -13,11 +13,11 @@ public class RepresentationToModel {
     public static void modelToRepresentation(AbstractInvoiceModel model, AbstractInvoiceRepresentation rep) {
         FechaRepresentation fechaRepresentation = rep.getFecha();
         if (fechaRepresentation != null) {
-            if (fechaRepresentation.getFechaDeEmision() != null) {
-                model.setFechaEmision(fechaRepresentation.getFechaDeEmision());
+            if (fechaRepresentation.getEmision() != null) {
+                model.setFechaEmision(fechaRepresentation.getEmision());
             }
-            if (fechaRepresentation.getFechaDeVencimiento() != null) {
-                model.setFechaVencimiento(fechaRepresentation.getFechaDeVencimiento());
+            if (fechaRepresentation.getVencimiento() != null) {
+                model.setFechaVencimiento(fechaRepresentation.getVencimiento());
             }
         }
 
@@ -76,17 +76,17 @@ public class RepresentationToModel {
 
         TotalInformacionAdicionalRepresentation totalInformacionAdicionalRepresentation = rep.getTotalInformacionAdicional();
         if (totalInformacionAdicionalRepresentation != null) {
-            if (totalInformacionAdicionalRepresentation.getTotalExonerada() != null) {
-                model.setTotalExonerado(totalInformacionAdicionalRepresentation.getTotalExonerada());
+            if (totalInformacionAdicionalRepresentation.getTotalExonerado() != null) {
+                model.setTotalExonerado(totalInformacionAdicionalRepresentation.getTotalExonerado());
             }
-            if (totalInformacionAdicionalRepresentation.getTotalGratuita() != null) {
-                model.setTotalGratuito(totalInformacionAdicionalRepresentation.getTotalGratuita());
+            if (totalInformacionAdicionalRepresentation.getTotalGratuito() != null) {
+                model.setTotalGratuito(totalInformacionAdicionalRepresentation.getTotalGratuito());
             }
-            if (totalInformacionAdicionalRepresentation.getTotalGravada() != null) {
-                model.setTotalGravada(totalInformacionAdicionalRepresentation.getTotalGravada());
+            if (totalInformacionAdicionalRepresentation.getTotalGravado() != null) {
+                model.setTotalGravada(totalInformacionAdicionalRepresentation.getTotalGravado());
             }
-            if (totalInformacionAdicionalRepresentation.getTotalInafecta() != null) {
-                model.setTotalInafecto(totalInformacionAdicionalRepresentation.getTotalInafecta());
+            if (totalInformacionAdicionalRepresentation.getTotalInafecto() != null) {
+                model.setTotalInafecto(totalInformacionAdicionalRepresentation.getTotalInafecto());
             }
         }
     }

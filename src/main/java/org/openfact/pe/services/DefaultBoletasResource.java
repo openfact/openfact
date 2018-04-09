@@ -17,8 +17,10 @@ import javax.ws.rs.BadRequestException;
 import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.NotFoundException;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 @Transactional
 @ApplicationScoped
@@ -37,8 +39,17 @@ public class DefaultBoletasResource implements BoletasResource {
     private JAXBManager jaxbManager;
 
     @Override
-    public BoletaRepresentation crearBoleta(String organizacionId, BoletaRepresentation representation) {
-        OrganizationModel organization = organizationProvider.getOrganization(organizacionId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
+    public List<BoletaRepresentation> getBoletas(String organizationId, EstadoComprobantePago estado, int offset, int limit) {
+        OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
+
+        return boletaProvider.getBoletas(organization, estado, offset, limit).stream()
+                .map(f -> ModelToRepresentation.toRepresentation(f, true))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public BoletaRepresentation crearBoleta(String organizationId, BoletaRepresentation representation) {
+        OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
 
         String serie = representation.getSerie();
         Integer numero = representation.getNumero();
@@ -98,8 +109,8 @@ public class DefaultBoletasResource implements BoletasResource {
     public void eliminarBoleta(String organizationId, String idDocumento) {
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
         BoletaModel boleta = boletaProvider.getBoleta(organization, idDocumento).orElseThrow(() -> new NotFoundException("Boleta no encontrada"));
-        if (boleta.getEstado().equals(EstadoComprobantePago.BLOQUEADO)) {
-            throw new BadRequestException("Comprobante BLOQUEADO o ya fue declarado a la SUNAT, no se puede eliminar");
+        if (boleta.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
+            throw new BadRequestException("Comprobante REGISTRADO o ya fue declarado a la SUNAT, no se puede eliminar");
         }
         boolean result = boletaProvider.remove(boleta);
         if (!result) {

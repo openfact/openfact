@@ -130,4 +130,9 @@ public abstract class AbstractFacturaAdapter implements FacturaModel {
         return facturaEntity.isEnviarCliente();
     }
 
+    @Override
+    public String getError() {
+        return facturaEntity.getErrorDescription();
+    }
+
 }

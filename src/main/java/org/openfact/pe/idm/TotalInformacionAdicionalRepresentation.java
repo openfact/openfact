@@ -7,49 +7,49 @@ public class TotalInformacionAdicionalRepresentation {
 
     @NotNull
     @Digits(integer = 10, fraction = 2)
-    private Long totalGravada;
+    private Long totalGravado;
 
     @NotNull
     @Digits(integer = 10, fraction = 2)
-    private Long totalGratuita;
+    private Long totalGratuito;
 
     @NotNull
     @Digits(integer = 10, fraction = 2)
-    private Long totalInafecta;
+    private Long totalInafecto;
 
     @NotNull
     @Digits(integer = 10, fraction = 2)
-    private Long totalExonerada;
+    private Long totalExonerado;
 
-    public Long getTotalGravada() {
-        return totalGravada;
+    public Long getTotalGravado() {
+        return totalGravado;
     }
 
-    public void setTotalGravada(Long totalGravada) {
-        this.totalGravada = totalGravada;
+    public void setTotalGravado(Long totalGravado) {
+        this.totalGravado = totalGravado;
     }
 
-    public Long getTotalGratuita() {
-        return totalGratuita;
+    public Long getTotalGratuito() {
+        return totalGratuito;
     }
 
-    public void setTotalGratuita(Long totalGratuita) {
-        this.totalGratuita = totalGratuita;
+    public void setTotalGratuito(Long totalGratuito) {
+        this.totalGratuito = totalGratuito;
     }
 
-    public Long getTotalInafecta() {
-        return totalInafecta;
+    public Long getTotalInafecto() {
+        return totalInafecto;
     }
 
-    public void setTotalInafecta(Long totalInafecta) {
-        this.totalInafecta = totalInafecta;
+    public void setTotalInafecto(Long totalInafecto) {
+        this.totalInafecto = totalInafecto;
     }
 
-    public Long getTotalExonerada() {
-        return totalExonerada;
+    public Long getTotalExonerado() {
+        return totalExonerado;
     }
 
-    public void setTotalExonerada(Long totalExonerada) {
-        this.totalExonerada = totalExonerada;
+    public void setTotalExonerado(Long totalExonerado) {
+        this.totalExonerado = totalExonerado;
     }
 }

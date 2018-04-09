@@ -46,6 +46,11 @@ public abstract class AbstractBoletaAdapter implements BoletaModel {
     }
 
     @Override
+    public String getError() {
+        return boletaEntity.getErrorDescription();
+    }
+
+    @Override
     public Date getFechaEmision() {
         return boletaEntity.getFechaEmision();
     }

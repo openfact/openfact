@@ -1,5 +1,6 @@
 package org.openfact.pe.models.jpa;
 
+import org.openfact.pe.models.EstadoComprobantePago;
 import org.openfact.pe.models.jpa.entities.BoletaEntity;
 
 import javax.persistence.EntityManager;
@@ -12,12 +13,27 @@ public class ReadOnlyBoletaAdapter extends AbstractBoletaAdapter {
     }
 
     @Override
+    public void setEstado(EstadoComprobantePago estado) {
+        throw new IllegalStateException("Objeto de solo lectura, no puede ser modificado");
+    }
+
+    @Override
+    public void setError(String error) {
+        throw new IllegalStateException("Objeto de solo lectura, no puede ser modificado");
+    }
+
+    @Override
     public void setFechaEmision(Date fechaEmision) {
         throw new IllegalStateException("Objeto de solo lectura, no puede ser modificado");
     }
 
     @Override
     public void setFechaVencimiento(Date fechaVencimiento) {
+        throw new IllegalStateException("Objeto de solo lectura, no puede ser modificado");
+    }
+
+    @Override
+    public void setObservaciones(String observaciones) {
         throw new IllegalStateException("Objeto de solo lectura, no puede ser modificado");
     }
 

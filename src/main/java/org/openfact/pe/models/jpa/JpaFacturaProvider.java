@@ -21,6 +21,7 @@ import java.util.AbstractMap;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Transactional
 @ApplicationScoped
@@ -40,7 +41,7 @@ public class JpaFacturaProvider implements FacturaProvider {
     private FacturaModel toModel(FacturaEntity facturaEntity) {
         EstadoComprobantePago estado = facturaEntity.getEstado();
         switch (estado) {
-            case BLOQUEADO:
+            case REGISTRADO:
                 return new ReadOnlyFacturaAdapter(em, facturaEntity);
             default:
                 return new FacturaAdapter(em, facturaEntity);
@@ -50,17 +51,17 @@ public class JpaFacturaProvider implements FacturaProvider {
     private AbstractMap.SimpleEntry<String, Integer> siguienteSerieNumero(OrganizationModel organization, Optional<String> optionalSerie) {
         Optional<FacturaEntity> ultimoComprobante;
         if (!optionalSerie.isPresent()) {
-            TypedQuery<FacturaEntity> query1 = em.createNamedQuery("getFacturasEmpezandoPorLasMasRecientes", FacturaEntity.class);
-            query1.setParameter("organizationId", organization.getId());
-            query1.setMaxResults(1);
-            List<FacturaEntity> resultList = query1.getResultList();
+            TypedQuery<FacturaEntity> query = em.createNamedQuery("getFacturasEmpezandoPorLasMasRecientes", FacturaEntity.class);
+            query.setParameter("organizationId", organization.getId());
+            query.setMaxResults(1);
+            List<FacturaEntity> resultList = query.getResultList();
             ultimoComprobante = JpaUtils.getFirstResult(resultList);
         } else {
-            TypedQuery<FacturaEntity> query1 = em.createNamedQuery("getFacturasConSerieEmpezandoPorLasMasRecientes", FacturaEntity.class);
-            query1.setParameter("organizationId", organization.getId());
-            query1.setParameter("serie", optionalSerie.get());
-            query1.setMaxResults(1);
-            List<FacturaEntity> resultList = query1.getResultList();
+            TypedQuery<FacturaEntity> query = em.createNamedQuery("getFacturasConSerieEmpezandoPorLasMasRecientes", FacturaEntity.class);
+            query.setParameter("organizationId", organization.getId());
+            query.setParameter("serie", optionalSerie.get());
+            query.setMaxResults(1);
+            List<FacturaEntity> resultList = query.getResultList();
             ultimoComprobante = JpaUtils.getFirstResult(resultList);
         }
 
@@ -73,12 +74,12 @@ public class JpaFacturaProvider implements FacturaProvider {
             if (NUMERO_MAXIMO_POR_SERIE.orElse(99_999_999) > siguienteNumero) {
                 boolean siguienteNumeroEsValido = false;
                 while (!siguienteNumeroEsValido) {
-                    TypedQuery<FacturaEntity> query2 = em.createNamedQuery("GetFacturaPorSerieYNumero", FacturaEntity.class);
-                    query2.setParameter("organizationId", organization);
-                    query2.setParameter("serie", ultimaSerie);
-                    query2.setParameter("numero", siguienteNumero);
-                    query2.setMaxResults(1);
-                    List<FacturaEntity> resultList = query2.getResultList();
+                    TypedQuery<FacturaEntity> query = em.createNamedQuery("GetFacturaPorSerieYNumero", FacturaEntity.class);
+                    query.setParameter("organizationId", organization.getId());
+                    query.setParameter("serie", ultimaSerie);
+                    query.setParameter("numero", siguienteNumero);
+                    query.setMaxResults(1);
+                    List<FacturaEntity> resultList = query.getResultList();
                     if (!resultList.isEmpty()) {
                         siguienteNumero++;
                     } else {
@@ -119,7 +120,7 @@ public class JpaFacturaProvider implements FacturaProvider {
         entity.setId(ModelUtils.generateId());
         entity.setSerie(serie);
         entity.setNumero(numero);
-        entity.setEstado(EstadoComprobantePago.DESBLOQUEADO);
+        entity.setEstado(EstadoComprobantePago.NO_REGISTRADO);
         entity.setCreatedAt(Calendar.getInstance().getTime());
         entity.setOrganization(OrganizationAdapter.toEntity(organizacion, em));
 
@@ -138,8 +139,30 @@ public class JpaFacturaProvider implements FacturaProvider {
     }
 
     @Override
+    public List<FacturaModel> getFacturas(OrganizationModel organization, EstadoComprobantePago estado) {
+        return getFacturas(organization, estado, -1 ,-1 );
+    }
+
+    @Override
+    public List<FacturaModel> getFacturas(OrganizationModel organization, EstadoComprobantePago estado, int offset, int limit) {
+        TypedQuery<FacturaEntity> query = em.createNamedQuery("GetFacturaPorEstado", FacturaEntity.class);
+        query.setParameter("organizationId", organization.getId());
+        query.setParameter("estado", estado);
+        if (offset != -1) {
+            query.setFirstResult(offset);
+        }
+        if (limit != -1) {
+            query.setMaxResults(limit);
+        }
+
+        return query.getResultList().stream()
+                .map(this::toModel)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public boolean remove(FacturaModel factura) {
-        if (factura.getEstado().equals(EstadoComprobantePago.BLOQUEADO)) return false;
+        if (factura.getEstado().equals(EstadoComprobantePago.REGISTRADO)) return false;
         em.createNamedQuery("DeleteFactura").setParameter("facturaId", factura.getId()).executeUpdate();
         em.flush();
         return true;

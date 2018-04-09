@@ -2,7 +2,6 @@ package org.openfact.pe.managers;
 
 import oasis.names.specification.ubl.schema.xsd.invoice_2.InvoiceType;
 import org.jboss.logging.Logger;
-import org.openfact.core.keys.JavaKeystoreKeyProviderFactory;
 import org.openfact.core.models.FileInfoModel;
 import org.openfact.core.models.FileProvider;
 import org.openfact.core.models.OrganizationModel;
@@ -13,23 +12,17 @@ import org.openfact.pe.models.FacturaModel;
 import org.openfact.pe.models.InformacionAdicionalModel;
 import org.openfact.pe.models.utils.ModelToJaxb;
 
-import javax.annotation.Resource;
 import javax.ejb.Asynchronous;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
-import javax.jms.CompletionListener;
 import javax.jms.JMSContext;
-import javax.jms.JMSProducer;
-import javax.jms.Topic;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.OutputStream;
 
 @Stateless
 public class JAXBManager {

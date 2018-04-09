@@ -4,23 +4,23 @@ import java.util.Date;
 
 public class FechaRepresentation {
 
-    private Date fechaDeEmision;
-    private Date fechaDeVencimiento;
+    private Date emision;
+    private Date vencimiento;
 
-    public Date getFechaDeEmision() {
-        return fechaDeEmision;
+    public Date getEmision() {
+        return emision;
     }
 
-    public void setFechaDeEmision(Date fechaDeEmision) {
-        this.fechaDeEmision = fechaDeEmision;
+    public void setEmision(Date emision) {
+        this.emision = emision;
     }
 
-    public Date getFechaDeVencimiento() {
-        return fechaDeVencimiento;
+    public Date getVencimiento() {
+        return vencimiento;
     }
 
-    public void setFechaDeVencimiento(Date fechaDeVencimiento) {
-        this.fechaDeVencimiento = fechaDeVencimiento;
+    public void setVencimiento(Date vencimiento) {
+        this.vencimiento = vencimiento;
     }
 
 }

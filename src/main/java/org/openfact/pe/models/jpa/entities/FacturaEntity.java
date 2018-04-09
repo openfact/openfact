@@ -14,8 +14,9 @@ import java.util.Date;
 @NamedQueries(value = {
         @NamedQuery(name = "DeleteFactura", query = "delete from FacturaEntity b where b.id=:facturaId"),
         @NamedQuery(name = "GetFacturaPorId", query = "select b from FacturaEntity b inner join b.organization o where o.id=:organizationId and b.id=:facturaId"),
+        @NamedQuery(name = "GetFacturaPorEstado", query = "select b from FacturaEntity b inner join b.organization o where o.id=:organizationId and b.estado=:estado"),
         @NamedQuery(name = "GetFacturaPorSerieYNumero", query = "select b from FacturaEntity b inner join b.organization o where o.id=:organizationId and b.serie=:serie and b.numero=:numero"),
-        @NamedQuery(name = "getFacturasEmpezandoPorLasMasRecientes", query = "select b from FacturaEntity b inner join b.organization o where o.id=:organizationId and b.serie=:serie order by b.createdAt"),
+        @NamedQuery(name = "getFacturasEmpezandoPorLasMasRecientes", query = "select b from FacturaEntity b inner join b.organization o where o.id=:organizationId order by b.createdAt"),
         @NamedQuery(name = "getFacturasConSerieEmpezandoPorLasMasRecientes", query = "select b from FacturaEntity b inner join b.organization o where o.id=:organizationId and b.serie=:serie order by b.createdAt")
 })
 public class FacturaEntity extends AbstractInvoiceEntity implements Serializable {

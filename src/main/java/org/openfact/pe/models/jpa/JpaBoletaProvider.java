@@ -21,6 +21,7 @@ import java.util.AbstractMap;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Transactional
 @ApplicationScoped
@@ -40,7 +41,7 @@ public class JpaBoletaProvider implements BoletaProvider {
     private BoletaModel toModel(BoletaEntity boletaEntity) {
         EstadoComprobantePago estado = boletaEntity.getEstado();
         switch (estado) {
-            case BLOQUEADO:
+            case REGISTRADO:
                 return new ReadOnlyBoletaAdapter(em, boletaEntity);
             default:
                 return new BoletaAdapter(em, boletaEntity);
@@ -50,17 +51,17 @@ public class JpaBoletaProvider implements BoletaProvider {
     private AbstractMap.SimpleEntry<String, Integer> siguienteSerieNumero(OrganizationModel organization, Optional<String> optionalSerie) {
         Optional<BoletaEntity> ultimoComprobante;
         if (!optionalSerie.isPresent()) {
-            TypedQuery<BoletaEntity> query1 = em.createNamedQuery("getBoletasEmpezandoPorLasMasRecientes", BoletaEntity.class);
-            query1.setParameter("organizationId", organization.getId());
-            query1.setMaxResults(1);
-            List<BoletaEntity> resultList = query1.getResultList();
+            TypedQuery<BoletaEntity> query = em.createNamedQuery("getBoletasEmpezandoPorLasMasRecientes", BoletaEntity.class);
+            query.setParameter("organizationId", organization.getId());
+            query.setMaxResults(1);
+            List<BoletaEntity> resultList = query.getResultList();
             ultimoComprobante = JpaUtils.getFirstResult(resultList);
         } else {
-            TypedQuery<BoletaEntity> query1 = em.createNamedQuery("getBoletasConSerieEmpezandoPorLasMasRecientes", BoletaEntity.class);
-            query1.setParameter("organizationId", organization.getId());
-            query1.setParameter("serie", optionalSerie.get());
-            query1.setMaxResults(1);
-            List<BoletaEntity> resultList = query1.getResultList();
+            TypedQuery<BoletaEntity> query = em.createNamedQuery("getBoletasConSerieEmpezandoPorLasMasRecientes", BoletaEntity.class);
+            query.setParameter("organizationId", organization.getId());
+            query.setParameter("serie", optionalSerie.get());
+            query.setMaxResults(1);
+            List<BoletaEntity> resultList = query.getResultList();
             ultimoComprobante = JpaUtils.getFirstResult(resultList);
         }
 
@@ -73,12 +74,12 @@ public class JpaBoletaProvider implements BoletaProvider {
             if (NUMERO_MAXIMO_POR_SERIE.orElse(99_999_999) > siguienteNumero) {
                 boolean siguienteNumeroEsValido = false;
                 while (!siguienteNumeroEsValido) {
-                    TypedQuery<BoletaEntity> query2 = em.createNamedQuery("GetBoletaPorSerieYNumero", BoletaEntity.class);
-                    query2.setParameter("organizationId", organization);
-                    query2.setParameter("serie", ultimaSerie);
-                    query2.setParameter("numero", siguienteNumero);
-                    query2.setMaxResults(1);
-                    List<BoletaEntity> resultList = query2.getResultList();
+                    TypedQuery<BoletaEntity> query = em.createNamedQuery("GetBoletaPorSerieYNumero", BoletaEntity.class);
+                    query.setParameter("organizationId", organization.getId());
+                    query.setParameter("serie", ultimaSerie);
+                    query.setParameter("numero", siguienteNumero);
+                    query.setMaxResults(1);
+                    List<BoletaEntity> resultList = query.getResultList();
                     if (!resultList.isEmpty()) {
                         siguienteNumero++;
                     } else {
@@ -119,7 +120,7 @@ public class JpaBoletaProvider implements BoletaProvider {
         entity.setId(ModelUtils.generateId());
         entity.setSerie(serie);
         entity.setNumero(numero);
-        entity.setEstado(EstadoComprobantePago.DESBLOQUEADO);
+        entity.setEstado(EstadoComprobantePago.NO_REGISTRADO);
         entity.setCreatedAt(Calendar.getInstance().getTime());
         entity.setOrganization(OrganizationAdapter.toEntity(organization, em));
 
@@ -138,8 +139,30 @@ public class JpaBoletaProvider implements BoletaProvider {
     }
 
     @Override
+    public List<BoletaModel> getBoletas(OrganizationModel organization, EstadoComprobantePago estado) {
+        return getBoletas(organization, estado, -1, -1);
+    }
+
+    @Override
+    public List<BoletaModel> getBoletas(OrganizationModel organization, EstadoComprobantePago estado, int offset, int limit) {
+        TypedQuery<BoletaEntity> query = em.createNamedQuery("GetBoletaPorEstado", BoletaEntity.class);
+        query.setParameter("organizationId", organization.getId());
+        query.setParameter("estado", estado);
+        if (offset != -1) {
+            query.setFirstResult(offset);
+        }
+        if (limit != -1) {
+            query.setMaxResults(limit);
+        }
+
+        return query.getResultList().stream()
+                .map(this::toModel)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public boolean remove(BoletaModel boleta) {
-        if (boleta.getEstado().equals(EstadoComprobantePago.BLOQUEADO)) return false;
+        if (boleta.getEstado().equals(EstadoComprobantePago.REGISTRADO)) return false;
         em.createNamedQuery("DeleteBoleta").setParameter("boletaId", boleta.getId()).executeUpdate();
         em.flush();
         return true;

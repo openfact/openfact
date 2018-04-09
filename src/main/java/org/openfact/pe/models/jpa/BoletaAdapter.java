@@ -1,5 +1,6 @@
 package org.openfact.pe.models.jpa;
 
+import org.openfact.pe.models.EstadoComprobantePago;
 import org.openfact.pe.models.jpa.entities.BoletaEntity;
 
 import javax.persistence.EntityManager;
@@ -15,6 +16,16 @@ public class BoletaAdapter extends AbstractBoletaAdapter {
     }
 
     @Override
+    public void setEstado(EstadoComprobantePago estado) {
+        boletaEntity.setEstado(estado);
+    }
+
+    @Override
+    public void setError(String error) {
+        boletaEntity.setErrorDescription(error);
+    }
+
+    @Override
     public void setFechaEmision(Date fechaEmision) {
         boletaEntity.setFechaEmision(fechaEmision);
     }
@@ -22,6 +33,11 @@ public class BoletaAdapter extends AbstractBoletaAdapter {
     @Override
     public void setFechaVencimiento(Date fechaVencimiento) {
         boletaEntity.setFechaVencimiento(fechaVencimiento);
+    }
+
+    @Override
+    public void setObservaciones(String observaciones) {
+        boletaEntity.setObservaciones(observaciones);
     }
 
     @Override

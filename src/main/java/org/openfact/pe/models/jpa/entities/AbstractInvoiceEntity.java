@@ -76,6 +76,9 @@ public abstract class AbstractInvoiceEntity {
     @Column(name = "estado")
     private EstadoComprobantePago estado;
 
+    @Column(name = "error_description")
+    private String errorDescription;
+
     public Date getFechaEmision() {
         return fechaEmision;
     }
@@ -189,6 +192,9 @@ public abstract class AbstractInvoiceEntity {
     }
 
     public ClienteEntity getCliente() {
+        if (cliente == null) {
+            cliente = new ClienteEntity();
+        }
         return cliente;
     }
 
@@ -234,5 +240,13 @@ public abstract class AbstractInvoiceEntity {
 
     public void setFileProvider(String fileProvider) {
         this.fileProvider = fileProvider;
+    }
+
+    public String getErrorDescription() {
+        return errorDescription;
+    }
+
+    public void setErrorDescription(String errorDescription) {
+        this.errorDescription = errorDescription;
     }
 }

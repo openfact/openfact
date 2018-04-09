@@ -1,5 +1,6 @@
 package org.openfact.pe.models.jpa;
 
+import org.openfact.pe.models.EstadoComprobantePago;
 import org.openfact.pe.models.jpa.entities.FacturaEntity;
 
 import javax.persistence.EntityManager;
@@ -15,6 +16,16 @@ public class FacturaAdapter extends AbstractFacturaAdapter {
     }
 
     @Override
+    public void setEstado(EstadoComprobantePago estado) {
+        facturaEntity.setEstado(estado);
+    }
+
+    @Override
+    public void setError(String error) {
+        facturaEntity.setErrorDescription(error);
+    }
+
+    @Override
     public void setFechaEmision(Date fechaEmision) {
         facturaEntity.setFechaEmision(fechaEmision);
     }
@@ -22,6 +33,11 @@ public class FacturaAdapter extends AbstractFacturaAdapter {
     @Override
     public void setFechaVencimiento(Date fechaVencimiento) {
         facturaEntity.setFechaVencimiento(fechaVencimiento);
+    }
+
+    @Override
+    public void setObservaciones(String observaciones) {
+        facturaEntity.setObservaciones(observaciones);
     }
 
     @Override
@@ -98,5 +114,5 @@ public class FacturaAdapter extends AbstractFacturaAdapter {
     public void setEnviarCliente(boolean enviarCliente) {
         facturaEntity.setEnviarCliente(enviarCliente);
     }
-    
+
 }
