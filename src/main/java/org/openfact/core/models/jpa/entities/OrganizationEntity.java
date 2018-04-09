@@ -39,6 +39,10 @@ public class OrganizationEntity implements Serializable {
     private String description;
 
     @NotNull
+    @Column(name = "time_zone")
+    private String timeZone;
+
+    @NotNull
     @Type(type = "org.hibernate.type.TrueFalseType")
     @Column(name = "use_custom_certificates")
     private boolean useCustomCertificates;
@@ -158,5 +162,13 @@ public class OrganizationEntity implements Serializable {
 
     public void setUseCustomCertificates(boolean useCustomCertificates) {
         this.useCustomCertificates = useCustomCertificates;
+    }
+
+    public String getTimeZone() {
+        return timeZone;
+    }
+
+    public void setTimeZone(String timeZone) {
+        this.timeZone = timeZone;
     }
 }

@@ -39,10 +39,12 @@ public class DefaultBoletasResource implements BoletasResource {
     private JAXBManager jaxbManager;
 
     @Override
-    public List<BoletaRepresentation> getBoletas(String organizationId, EstadoComprobantePago estado, int offset, int limit) {
+    public List<BoletaRepresentation> getBoletas(String organizationId, String estado, int offset, int limit) {
+        EstadoComprobantePago estadoComprobantePago = EstadoComprobantePago.valueOf(estado.toUpperCase());
+
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
 
-        return boletaProvider.getBoletas(organization, estado, offset, limit).stream()
+        return boletaProvider.getBoletas(organization, estadoComprobantePago, offset, limit).stream()
                 .map(f -> ModelToRepresentation.toRepresentation(f, true))
                 .collect(Collectors.toList());
     }
@@ -75,21 +77,22 @@ public class DefaultBoletasResource implements BoletasResource {
 
         // Datos por defecto si no son especificadas
         if (representation.getFecha() == null) {
-            boleta.setFechaEmision(Calendar.getInstance().getTime());
+            boleta.getFecha().setEmision(Calendar.getInstance().getTime());
+            boleta.getFecha().setVencimiento(Calendar.getInstance().getTime());
         }
         if (representation.getEnviarSUNAT() == null) {
-            boleta.setEnviarSUNAT(representation.getEnviarSUNAT());
+            boleta.setEnviarSUNAT(true);
         }
         if (representation.getEnviarCliente() == null) {
-            boleta.setEnviarCliente(representation.getEnviarCliente());
+            boleta.setEnviarCliente(true);
         }
 
         // Merge
         RepresentationToModel.modelToRepresentation(boleta, representation);
 
         // Recalcular XML
-        Optional<InformacionAdicionalModel> informacionAdicional = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organization);
-        jaxbManager.buildBoleta(organization, informacionAdicional.get(), boleta);
+        Optional<OrganizacionInformacionAdicionalModel> informacionAdicional = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organization);
+        jaxbManager.buildBoleta(organization, informacionAdicional.orElseThrow(() -> new NotFoundException("Informacion adicional no encontrada")), boleta);
 
         return ModelToRepresentation.toRepresentation(boleta, true);
     }
@@ -101,7 +104,7 @@ public class DefaultBoletasResource implements BoletasResource {
         RepresentationToModel.modelToRepresentation(boleta, representation);
 
         // Recalcular XML
-        Optional<InformacionAdicionalModel> informacionAdicional = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organization);
+        Optional<OrganizacionInformacionAdicionalModel> informacionAdicional = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organization);
         jaxbManager.buildBoleta(organization, informacionAdicional.get(), boleta);
     }
 

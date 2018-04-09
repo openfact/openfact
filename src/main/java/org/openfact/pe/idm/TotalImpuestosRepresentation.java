@@ -2,30 +2,31 @@ package org.openfact.pe.idm;
 
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 public class TotalImpuestosRepresentation {
 
     @NotNull
     @Digits(integer = 10, fraction = 2)
-    private Long IGV;
+    private BigDecimal IGV;
 
     @NotNull
     @Digits(integer = 10, fraction = 2)
-    private Long ISC;
+    private BigDecimal ISC;
 
-    public Long getIGV() {
+    public BigDecimal getIGV() {
         return IGV;
     }
 
-    public void setIGV(Long IGV) {
+    public void setIGV(BigDecimal IGV) {
         this.IGV = IGV;
     }
 
-    public Long getISC() {
+    public BigDecimal getISC() {
         return ISC;
     }
 
-    public void setISC(Long ISC) {
+    public void setISC(BigDecimal ISC) {
         this.ISC = ISC;
     }
 

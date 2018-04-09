@@ -1,6 +1,6 @@
 package org.openfact.pe.models;
 
-public interface InformacionAdicionalModel {
+public interface OrganizacionInformacionAdicionalModel {
 
     String getId();
 

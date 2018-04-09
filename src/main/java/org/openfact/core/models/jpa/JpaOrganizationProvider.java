@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.Optional;
+import java.util.TimeZone;
 
 @Transactional
 @ApplicationScoped
@@ -29,6 +30,7 @@ public class JpaOrganizationProvider implements OrganizationProvider {
         OrganizationEntity entity = new OrganizationEntity();
         entity.setId(ModelUtils.generateId());
         entity.setName(name);
+        entity.setTimeZone(TimeZone.getDefault().toString());
         entity.setOwner(UserAdapter.toEntity(owner, em));
         em.persist(entity);
 

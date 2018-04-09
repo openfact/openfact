@@ -102,6 +102,6 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
 
     @Override
     public TimeZone getTimeZone() {
-        return null;
+        return TimeZone.getTimeZone(organization.getTimeZone());
     }
 }

@@ -2,7 +2,7 @@ package org.openfact.pe.services;
 
 import org.openfact.pe.OrganizacionesResource;
 import org.openfact.pe.idm.OrganizacionRepresentation;
-import org.openfact.pe.models.InformacionAdicionalModel;
+import org.openfact.pe.models.OrganizacionInformacionAdicionalModel;
 import org.openfact.pe.models.InformacionAdicionalProvider;
 import org.openfact.pe.models.utils.ModelToRepresentation;
 
@@ -20,13 +20,13 @@ public class DefaultOrganizacionesResource implements OrganizacionesResource {
 
     @Override
     public OrganizacionRepresentation getOrganization(String organizationId) {
-        InformacionAdicionalModel informacionAdicional = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organizationId).orElseThrow(() -> new BadRequestException("Company not found"));
+        OrganizacionInformacionAdicionalModel informacionAdicional = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organizationId).orElseThrow(() -> new BadRequestException("Company not found"));
         return ModelToRepresentation.toRepresentation(informacionAdicional, true);
     }
 
     @Override
     public OrganizacionRepresentation updateOrganization(String organizationId, OrganizacionRepresentation rep) {
-        InformacionAdicionalModel informacionAdicional = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organizationId).orElseThrow(() -> new BadRequestException("Company not found"));
+        OrganizacionInformacionAdicionalModel informacionAdicional = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organizationId).orElseThrow(() -> new BadRequestException("Company not found"));
 
         informacionAdicional.setAssignedId(rep.getAssignedId());
         informacionAdicional.setAdditionalAssignedId(rep.getAdditionalAssignedId());

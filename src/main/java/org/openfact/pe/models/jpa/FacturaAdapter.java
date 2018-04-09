@@ -1,118 +1,157 @@
 package org.openfact.pe.models.jpa;
 
-import org.openfact.pe.models.EstadoComprobantePago;
+import org.openfact.pe.models.*;
 import org.openfact.pe.models.jpa.entities.FacturaEntity;
 
 import javax.persistence.EntityManager;
-import java.util.Date;
 
-public class FacturaAdapter extends AbstractFacturaAdapter {
+public class FacturaAdapter implements FacturaModel{
 
     private final EntityManager em;
+    private final FacturaEntity factura;
 
-    public FacturaAdapter(EntityManager em, FacturaEntity facturaEntity) {
-        super(facturaEntity);
+    public FacturaAdapter(EntityManager em, FacturaEntity factura) {
         this.em = em;
+        this.factura = factura;
     }
 
     @Override
-    public void setEstado(EstadoComprobantePago estado) {
-        facturaEntity.setEstado(estado);
+    public String getId() {
+        return factura.getId();
     }
 
     @Override
-    public void setError(String error) {
-        facturaEntity.setErrorDescription(error);
+    public String getSerie() {
+        return factura.getSerie();
     }
 
     @Override
-    public void setFechaEmision(Date fechaEmision) {
-        facturaEntity.setFechaEmision(fechaEmision);
+    public Integer getNumero() {
+        return factura.getNumero();
     }
 
     @Override
-    public void setFechaVencimiento(Date fechaVencimiento) {
-        facturaEntity.setFechaVencimiento(fechaVencimiento);
-    }
-
-    @Override
-    public void setObservaciones(String observaciones) {
-        facturaEntity.setObservaciones(observaciones);
-    }
-
-    @Override
-    public void setFileId(String fileId) {
-        facturaEntity.setFileId(fileId);
-    }
-
-    @Override
-    public void setFileProvider(String fileProvider) {
-        facturaEntity.setFileProvider(fileProvider);
-    }
-
-    @Override
-    public void setTotalPagar(Long totalPagar) {
-        facturaEntity.setTotalPagar(totalPagar);
-    }
-
-    @Override
-    public void setDescuentoGlobal(Long descuentoGlobal) {
-        facturaEntity.setDescuentoGlobal(descuentoGlobal);
-    }
-
-    @Override
-    public void setOtrosCargos(Long otrosCargos) {
-        facturaEntity.setOtrosCargos(otrosCargos);
-    }
-
-    @Override
-    public void setMoneda(String moneda) {
-        facturaEntity.setMoneda(moneda);
-    }
-
-    @Override
-    public void setTipoCambio(Long tipoCambio) {
-        facturaEntity.setTipoCambio(tipoCambio);
-    }
-
-    @Override
-    public void setTotalIGV(Long IGV) {
-        facturaEntity.setTotalIGV(IGV);
-    }
-
-    @Override
-    public void setTotalISC(Long ISC) {
-        facturaEntity.setTotalISC(ISC);
-    }
-
-    @Override
-    public void setTotalGravada(Long totalGravada) {
-        facturaEntity.setTotalGravada(totalGravada);
-    }
-
-    @Override
-    public void setTotalGratuito(Long totalGratuita) {
-        facturaEntity.setTotalGratuita(totalGratuita);
-    }
-
-    @Override
-    public void setTotalInafecto(Long totalInafecto) {
-        facturaEntity.setTotalInafecto(totalInafecto);
-    }
-
-    @Override
-    public void setTotalExonerado(Long totalExonerado) {
-        facturaEntity.setTotalExonerado(totalExonerado);
+    public boolean getEnviarSUNAT() {
+        return factura.isEnviarSUNAT();
     }
 
     @Override
     public void setEnviarSUNAT(boolean enviarSUNAT) {
-        facturaEntity.setEnviarSUNAT(enviarSUNAT);
+        factura.setEnviarSUNAT(enviarSUNAT);
+    }
+
+    @Override
+    public boolean getEnviarCliente() {
+        return factura.isEnviarCliente();
     }
 
     @Override
     public void setEnviarCliente(boolean enviarCliente) {
-        facturaEntity.setEnviarCliente(enviarCliente);
+        factura.setEnviarCliente(enviarCliente);
+    }
+
+    @Override
+    public String getObservaciones() {
+        return factura.getObservaciones();
+    }
+
+    @Override
+    public void setObservaciones(String observaciones) {
+        factura.setObservaciones(observaciones);
+    }
+
+    @Override
+    public EstadoComprobantePago getEstado() {
+        return factura.getEstado();
+    }
+
+    @Override
+    public void setEstado(EstadoComprobantePago estado) {
+        factura.setEstado(estado);
+    }
+
+    @Override
+    public String getError() {
+        return factura.getErrorDescription();
+    }
+
+    @Override
+    public void setError(String error) {
+        factura.setErrorDescription(error);
+    }
+
+    @Override
+    public String getFileId() {
+        return factura.getFileId();
+    }
+
+    @Override
+    public void setFileId(String fileId) {
+        factura.setFileId(fileId);
+    }
+
+    @Override
+    public String getFileProvider() {
+        return factura.getFileProvider();
+    }
+
+    @Override
+    public void setFileProvider(String fileProvider) {
+        factura.setFileProvider(fileProvider);
+    }
+
+    @Override
+    public FechaModel getFecha() {
+        if (factura.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
+            return new ReadOnlyFechaAdapter(factura.getFecha());
+        } else {
+            return new FechaAdapter(factura.getFecha());
+        }
+    }
+
+    @Override
+    public ClienteModel getCliente() {
+        if (factura.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
+            return new ReadOnlyClienteAdapter(factura.getCliente());
+        } else {
+            return new ClienteAdapter(factura.getCliente());
+        }
+    }
+
+    @Override
+    public ImpuestosModel getImpuestos() {
+        if (factura.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
+            return new ReadOnlyImpuestosAdapter(factura.getImpuestos());
+        } else {
+            return new ImpuestosAdapter(factura.getImpuestos());
+        }
+    }
+
+    @Override
+    public MonedaModel getMoneda() {
+        if (factura.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
+            return new ReadOnlyMonedaAdapter(factura.getMoneda());
+        } else {
+            return new MonedaAdapter(factura.getMoneda());
+        }
+    }
+
+    @Override
+    public TotalModel getTotal() {
+        if (factura.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
+            return new ReadOnlyTotalAdapter(factura.getTotal());
+        } else {
+            return new TotalAdapter(factura.getTotal());
+        }
+    }
+
+    @Override
+    public TotalInformacionAdicionalModel getTotalInformacionAdicional() {
+        if (factura.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
+            return new ReadOnlyTotalInformacionAdicionalAdapter(factura.getTotalInformacionAdicional());
+        } else {
+            return new TotalInformacionAdicionalAdapter(factura.getTotalInformacionAdicional());
+        }
     }
 
 }

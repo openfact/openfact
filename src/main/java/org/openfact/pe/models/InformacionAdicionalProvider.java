@@ -6,8 +6,8 @@ import java.util.Optional;
 
 public interface InformacionAdicionalProvider {
 
-    Optional<InformacionAdicionalModel> getOrganizacionInformacionAdicional(String id);
+    Optional<OrganizacionInformacionAdicionalModel> getOrganizacionInformacionAdicional(String id);
 
-    Optional<InformacionAdicionalModel> getOrganizacionInformacionAdicional(OrganizationModel organization);
+    Optional<OrganizacionInformacionAdicionalModel> getOrganizacionInformacionAdicional(OrganizationModel organization);
 
 }

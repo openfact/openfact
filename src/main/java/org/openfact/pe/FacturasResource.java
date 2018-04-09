@@ -17,7 +17,7 @@ public interface FacturasResource {
     @Path("/")
     List<FacturaRepresentation> getFacturas(
             @PathParam("organizationId") String organizationId,
-            @QueryParam("estado") @DefaultValue("REGISTRADO") EstadoComprobantePago estado,
+            @QueryParam("estado") @DefaultValue("REGISTRADO") String estado,
             @QueryParam("offset") @DefaultValue("0") int offset,
             @QueryParam("limit") @DefaultValue("10") int limit
     );

@@ -6,59 +6,60 @@ import org.openfact.pe.models.types.TipoDocumentoEntidad;
 
 public class ClienteAdapter implements ClienteModel {
 
-    private final ClienteEntity entity;
+    private final ClienteEntity cliente;
 
-    public ClienteAdapter(ClienteEntity entity) {
-        this.entity = entity;
+    public ClienteAdapter(ClienteEntity cliente) {
+        this.cliente = cliente;
     }
 
     @Override
     public TipoDocumentoEntidad getTipoDocumento() {
-        return entity.getTipoDocumento();
+        return cliente.getTipoDocumento();
     }
 
     @Override
     public void setTipoDocumento(TipoDocumentoEntidad tipoDocumento) {
-        entity.setTipoDocumento(tipoDocumento);
+        cliente.setTipoDocumento(tipoDocumento);
     }
 
     @Override
     public String getNumeroDocumento() {
-        return entity.getNumeroDocumento();
+        return cliente.getNumeroDocumento();
     }
 
     @Override
     public void setNumeroDocumento(String numeroDocumento) {
-        entity.setNumeroDocumento(numeroDocumento);
+        cliente.setNumeroDocumento(numeroDocumento);
     }
 
     @Override
     public String getNombre() {
-        return entity.getNombre();
+        return cliente.getNombre();
     }
 
     @Override
     public void setNombre(String nombre) {
-        entity.setNombre(nombre);
+        cliente.setNombre(nombre);
     }
 
     @Override
     public String getEmail() {
-        return entity.getEmail();
+        return cliente.getEmail();
     }
 
     @Override
     public void setEmail(String email) {
-        entity.setEmail(email);
+        cliente.setEmail(email);
     }
 
     @Override
     public String getDireccion() {
-        return entity.getDireccion();
+        return cliente.getDireccion();
     }
 
     @Override
     public void setDireccion(String direccion) {
-        entity.setDireccion(direccion);
+        cliente.setDireccion(direccion);
     }
+
 }

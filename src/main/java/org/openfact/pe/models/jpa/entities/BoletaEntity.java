@@ -16,7 +16,7 @@ import java.util.Date;
         @NamedQuery(name = "GetBoletaPorId", query = "select b from BoletaEntity b inner join b.organization o where o.id=:organizationId and b.id=:boletaId"),
         @NamedQuery(name = "GetBoletaPorEstado", query = "select b from BoletaEntity b inner join b.organization o where o.id=:organizationId and b.estado=:estado"),
         @NamedQuery(name = "GetBoletaPorSerieYNumero", query = "select b from BoletaEntity b inner join b.organization o where o.id=:organizationId and b.serie=:serie and b.numero=:numero"),
-        @NamedQuery(name = "getBoletasEmpezandoPorLasMasRecientes", query = "select b from BoletaEntity b inner join b.organization o where o.id=:organizationId and b.serie=:serie order by b.createdAt"),
+        @NamedQuery(name = "getBoletasEmpezandoPorLasMasRecientes", query = "select b from BoletaEntity b inner join b.organization o where o.id=:organizationId order by b.createdAt"),
         @NamedQuery(name = "getBoletasConSerieEmpezandoPorLasMasRecientes", query = "select b from BoletaEntity b inner join b.organization o where o.id=:organizationId and b.serie=:serie order by b.createdAt")
 })
 public class BoletaEntity extends AbstractInvoiceEntity implements Serializable {

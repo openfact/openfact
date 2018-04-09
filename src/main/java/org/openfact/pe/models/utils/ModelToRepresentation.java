@@ -1,11 +1,9 @@
 package org.openfact.pe.models.utils;
 
-import org.openfact.pe.idm.BoletaRepresentation;
-import org.openfact.pe.idm.FacturaRepresentation;
-import org.openfact.pe.idm.OrganizacionRepresentation;
-import org.openfact.pe.models.BoletaModel;
-import org.openfact.pe.models.FacturaModel;
-import org.openfact.pe.models.InformacionAdicionalModel;
+import org.openfact.pe.idm.*;
+import org.openfact.pe.models.*;
+
+import java.util.Date;
 
 public class ModelToRepresentation {
 
@@ -13,7 +11,7 @@ public class ModelToRepresentation {
         // Util Class
     }
 
-    public static OrganizacionRepresentation toRepresentation(InformacionAdicionalModel model, boolean fullInfo) {
+    public static OrganizacionRepresentation toRepresentation(OrganizacionInformacionAdicionalModel model, boolean fullInfo) {
         OrganizacionRepresentation rep = new OrganizacionRepresentation();
 
         rep.setId(model.getId());
@@ -30,13 +28,72 @@ public class ModelToRepresentation {
         return rep;
     }
 
+    private static ClienteRepresentation toClienteRepresentation(ClienteModel model) {
+        ClienteRepresentation rep = new ClienteRepresentation();
+
+        rep.setNombre(model.getNombre());
+        rep.setTipoDocumento(model.getTipoDocumento());
+        rep.setNombre(model.getNombre());
+        rep.setDireccion(model.getDireccion());
+        rep.setEmail(model.getEmail());
+
+        return rep;
+    }
+
+    private static FechaRepresentation toFechaRepresentation(FechaModel model) {
+        FechaRepresentation rep = new FechaRepresentation();
+        rep.setEmision(model.getEmision());
+        rep.setVencimiento(model.getVencimiento());
+        return rep;
+    }
+
+    private static TotalRepresentation toTotalRepresentation(TotalModel total) {
+        TotalRepresentation rep = new TotalRepresentation();
+        rep.setPagar(total.getTotalPagar());
+        rep.setOtrosCargos(total.getOtrosCargos());
+        rep.setDescuentoGlobal(total.getDescuentoGlobal());
+        return rep;
+    }
+
+    private static MonedaRepresentation toMonedaRepresentation(MonedaModel moneda) {
+        MonedaRepresentation rep = new MonedaRepresentation();
+        rep.setCodigo(moneda.getMoneda());
+        rep.setTipoCambio(moneda.getTipoCambio());
+        return rep;
+    }
+
+    private static TotalImpuestosRepresentation toTotalImpuestosRepresentation(ImpuestosModel impuestos) {
+        TotalImpuestosRepresentation rep = new TotalImpuestosRepresentation();
+        rep.setIGV(impuestos.getIGV());
+        rep.setISC(impuestos.getISC());
+        return rep;
+    }
+
+    private static TotalInformacionAdicionalRepresentation toTotalInformacionAdicional(TotalInformacionAdicionalModel totalInformacionAdicional) {
+        TotalInformacionAdicionalRepresentation rep = new TotalInformacionAdicionalRepresentation();
+        rep.setTotalGratuito(totalInformacionAdicional.getTotalGratuito());
+        rep.setTotalGravado(totalInformacionAdicional.getTotalGravado());
+        rep.setTotalInafecto(totalInformacionAdicional.getTotalInafecto());
+        rep.setTotalExonerado(totalInformacionAdicional.getTotalExonerado());
+        return rep;
+    }
+
     public static BoletaRepresentation toRepresentation(BoletaModel model, boolean fullInfo) {
         BoletaRepresentation rep = new BoletaRepresentation();
 
         rep.setId(model.getId());
+        rep.setSerie(model.getSerie());
+        rep.setNumero(model.getNumero());
+        rep.setFecha(toFechaRepresentation(model.getFecha()));
+        rep.setCliente(toClienteRepresentation(model.getCliente()));
+        rep.setTotal(toTotalRepresentation(model.getTotal()));
+        rep.setMoneda(toMonedaRepresentation(model.getMoneda()));
+        rep.setTotalImpuestos(toTotalImpuestosRepresentation(model.getImpuestos()));
+        rep.setTotalInformacionAdicional(toTotalInformacionAdicional(model.getTotalInformacionAdicional()));
 
         if (fullInfo) {
-
+            rep.setEnviarCliente(model.getEnviarCliente());
+            rep.setEnviarSUNAT(model.getEnviarSUNAT());
         }
 
         return rep;
@@ -46,9 +103,18 @@ public class ModelToRepresentation {
         FacturaRepresentation rep = new FacturaRepresentation();
 
         rep.setId(model.getId());
+        rep.setSerie(model.getSerie());
+        rep.setNumero(model.getNumero());
+        rep.setFecha(toFechaRepresentation(model.getFecha()));
+        rep.setCliente(toClienteRepresentation(model.getCliente()));
+        rep.setTotal(toTotalRepresentation(model.getTotal()));
+        rep.setMoneda(toMonedaRepresentation(model.getMoneda()));
+        rep.setTotalImpuestos(toTotalImpuestosRepresentation(model.getImpuestos()));
+        rep.setTotalInformacionAdicional(toTotalInformacionAdicional(model.getTotalInformacionAdicional()));
 
         if (fullInfo) {
-
+            rep.setEnviarCliente(model.getEnviarCliente());
+            rep.setEnviarSUNAT(model.getEnviarSUNAT());
         }
 
         return rep;

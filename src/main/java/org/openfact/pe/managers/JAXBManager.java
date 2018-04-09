@@ -7,9 +7,10 @@ import org.openfact.core.models.FileProvider;
 import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.files.FileException;
 import org.openfact.core.models.utils.ModelUtils;
+import org.openfact.pe.models.AbstractInvoiceModel;
 import org.openfact.pe.models.BoletaModel;
 import org.openfact.pe.models.FacturaModel;
-import org.openfact.pe.models.InformacionAdicionalModel;
+import org.openfact.pe.models.OrganizacionInformacionAdicionalModel;
 import org.openfact.pe.models.utils.ModelToJaxb;
 
 import javax.ejb.Asynchronous;
@@ -48,46 +49,64 @@ public class JAXBManager {
         return os.toByteArray();
     }
 
-    private FileInfoModel processBoletaFactura(InvoiceType invoiceType) throws JAXBException, FileException {
+    private void processBoletaFactura(InvoiceType invoiceType, AbstractInvoiceModel model) {
         oasis.names.specification.ubl.schema.xsd.invoice_2.ObjectFactory factory = new oasis.names.specification.ubl.schema.xsd.invoice_2.ObjectFactory();
         JAXBElement<InvoiceType> jaxbElement = factory.createInvoice(invoiceType);
 
-        byte[] bytes = marshal(InvoiceType.class, jaxbElement);
-
-        String fileId = ModelUtils.generateId() + ".xml";
-        return fileProvider.addFile(fileId, bytes);
-    }
-
-    @Asynchronous
-    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    public void buildBoleta(OrganizationModel organization, InformacionAdicionalModel informacionAdicional, BoletaModel boleta) {
-        InvoiceType invoiceType = ModelToJaxb.toInvoiceType(organization, informacionAdicional, boleta);
-
+        byte[] bytes;
         try {
-            FileInfoModel fileInfo = processBoletaFactura(invoiceType);
-
-            boleta.setFileId(fileInfo.getFileName());
-            boleta.setFileProvider(fileInfo.getProvider());
-        } catch (JAXBException | FileException e) {
-            // Nada que hacer
-            return;
+            bytes = marshal(InvoiceType.class, jaxbElement);
+        } catch (JAXBException e) {
+            throw new IllegalStateException("No se pudo parsear el documento");
         }
 
+
+        FileInfoModel fileInfo;
+        try {
+            String fileId = ModelUtils.generateId() + ".xml";
+            fileInfo = fileProvider.addFile(fileId, bytes);
+        } catch (FileException e) {
+            throw new IllegalStateException("No se pudo guardar el archivo al sistema de almacenamiento");
+        }
+
+        model.setFileId(fileInfo.getFileName());
+        model.setFileProvider(fileInfo.getProvider());
+
         // Enviar a la SUNAT
-        if (boleta.getEnviarSUNAT()) {
+        if (model.getEnviarSUNAT()) {
 //            JMSProducer send = jmsContext.createProducer().send(topic, "");
         }
     }
 
     @Asynchronous
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    public void buildFactura(OrganizationModel organization, InformacionAdicionalModel informacionAdicional, FacturaModel factura) {
-        InvoiceType invoiceType = ModelToJaxb.toInvoiceType(organization, informacionAdicional, factura);
+    public void buildBoleta(OrganizationModel organization, OrganizacionInformacionAdicionalModel informacionAdicional, BoletaModel boleta) {
+        InvoiceType invoiceType;
+        try {
+            invoiceType = ModelToJaxb.toBoletaType(organization, informacionAdicional, boleta);
+        } catch (Throwable e) {
+            boleta.setError("No se pudo crear el XML");
+            return;
+        }
+        processBoletaFactura(invoiceType, boleta);
     }
 
     @Asynchronous
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    public void buildNotaCredito(OrganizationModel organization, InformacionAdicionalModel informacionAdicional, FacturaModel factura) {
+    public void buildFactura(OrganizationModel organization, OrganizacionInformacionAdicionalModel informacionAdicional, FacturaModel factura) {
+        InvoiceType invoiceType;
+        try {
+            invoiceType = ModelToJaxb.toFacturaType(organization, informacionAdicional, factura);
+        } catch (Throwable e) {
+            factura.setError("No se pudo crear el XML");
+            return;
+        }
+        processBoletaFactura(invoiceType, factura);
+    }
+
+    @Asynchronous
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public void buildNotaCredito(OrganizationModel organization, OrganizacionInformacionAdicionalModel informacionAdicional, FacturaModel factura) {
         oasis.names.specification.ubl.schema.xsd.creditnote_2.ObjectFactory objectFactory = new oasis.names.specification.ubl.schema.xsd.creditnote_2.ObjectFactory();
     }
 }

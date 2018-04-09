@@ -14,10 +14,10 @@ public class RepresentationToModel {
         FechaRepresentation fechaRepresentation = rep.getFecha();
         if (fechaRepresentation != null) {
             if (fechaRepresentation.getEmision() != null) {
-                model.setFechaEmision(fechaRepresentation.getEmision());
+                model.getFecha().setEmision(fechaRepresentation.getEmision());
             }
             if (fechaRepresentation.getVencimiento() != null) {
-                model.setFechaVencimiento(fechaRepresentation.getVencimiento());
+                model.getFecha().setVencimiento(fechaRepresentation.getVencimiento());
             }
         }
 
@@ -44,49 +44,49 @@ public class RepresentationToModel {
         TotalRepresentation totalRepresentation = rep.getTotal();
         if (totalRepresentation != null) {
             if (totalRepresentation.getPagar() != null) {
-                model.setTotalPagar(totalRepresentation.getPagar());
+                model.getTotal().setTotalPagar(totalRepresentation.getPagar());
             }
             if (totalRepresentation.getDescuentoGlobal() != null) {
-                model.setDescuentoGlobal(totalRepresentation.getDescuentoGlobal());
+                model.getTotal().setDescuentoGlobal(totalRepresentation.getDescuentoGlobal());
             }
             if (totalRepresentation.getOtrosCargos() != null) {
-                model.setOtrosCargos(totalRepresentation.getOtrosCargos());
+                model.getTotal().setOtrosCargos(totalRepresentation.getOtrosCargos());
             }
         }
 
         MonedaRepresentation monedaRepresentation = rep.getMoneda();
         if (monedaRepresentation != null) {
             if (monedaRepresentation.getCodigo() != null) {
-                model.setMoneda(monedaRepresentation.getCodigo());
+                model.getMoneda().setMoneda(monedaRepresentation.getCodigo());
             }
             if (monedaRepresentation.getTipoCambio() != null) {
-                model.setTipoCambio(monedaRepresentation.getTipoCambio());
+                model.getMoneda().setTipoCambio(monedaRepresentation.getTipoCambio());
             }
         }
 
         TotalImpuestosRepresentation totalImpuestosRepresentation = rep.getTotalImpuestos();
         if (totalImpuestosRepresentation != null) {
             if (totalImpuestosRepresentation.getIGV() != null) {
-                model.setTotalIGV(totalImpuestosRepresentation.getIGV());
+                model.getImpuestos().setIGV(totalImpuestosRepresentation.getIGV());
             }
             if (totalImpuestosRepresentation.getISC() != null) {
-                model.setTotalISC(totalImpuestosRepresentation.getISC());
+                model.getImpuestos().setISC(totalImpuestosRepresentation.getISC());
             }
         }
 
         TotalInformacionAdicionalRepresentation totalInformacionAdicionalRepresentation = rep.getTotalInformacionAdicional();
         if (totalInformacionAdicionalRepresentation != null) {
             if (totalInformacionAdicionalRepresentation.getTotalExonerado() != null) {
-                model.setTotalExonerado(totalInformacionAdicionalRepresentation.getTotalExonerado());
+                model.getTotalInformacionAdicional().setTotalExonerado(totalInformacionAdicionalRepresentation.getTotalExonerado());
             }
             if (totalInformacionAdicionalRepresentation.getTotalGratuito() != null) {
-                model.setTotalGratuito(totalInformacionAdicionalRepresentation.getTotalGratuito());
+                model.getTotalInformacionAdicional().setTotalGratuito(totalInformacionAdicionalRepresentation.getTotalGratuito());
             }
             if (totalInformacionAdicionalRepresentation.getTotalGravado() != null) {
-                model.setTotalGravada(totalInformacionAdicionalRepresentation.getTotalGravado());
+                model.getTotalInformacionAdicional().setTotalGravado(totalInformacionAdicionalRepresentation.getTotalGravado());
             }
             if (totalInformacionAdicionalRepresentation.getTotalInafecto() != null) {
-                model.setTotalInafecto(totalInformacionAdicionalRepresentation.getTotalInafecto());
+                model.getTotalInformacionAdicional().setTotalInafecto(totalInformacionAdicionalRepresentation.getTotalInafecto());
             }
         }
     }

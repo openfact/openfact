@@ -20,7 +20,7 @@ import java.io.Serializable;
                 })
         })
 })
-public class InformacionAdicionalEntity implements Serializable {
+public class OrganizacionInformacionAdicionalEntity implements Serializable {
 
     @Id
     @Column(name = "id")
@@ -181,10 +181,10 @@ public class InformacionAdicionalEntity implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof InformacionAdicionalEntity)) {
+        if (!(obj instanceof OrganizacionInformacionAdicionalEntity)) {
             return false;
         }
-        InformacionAdicionalEntity other = (InformacionAdicionalEntity) obj;
+        OrganizacionInformacionAdicionalEntity other = (OrganizacionInformacionAdicionalEntity) obj;
         if (id != null) {
             if (!id.equals(other.id)) {
                 return false;

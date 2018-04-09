@@ -2,54 +2,55 @@ package org.openfact.pe.idm;
 
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 public class TotalInformacionAdicionalRepresentation {
 
     @NotNull
     @Digits(integer = 10, fraction = 2)
-    private Long totalGravado;
+    private BigDecimal totalGravado;
 
     @NotNull
     @Digits(integer = 10, fraction = 2)
-    private Long totalGratuito;
+    private BigDecimal totalGratuito;
 
     @NotNull
     @Digits(integer = 10, fraction = 2)
-    private Long totalInafecto;
+    private BigDecimal totalInafecto;
 
     @NotNull
     @Digits(integer = 10, fraction = 2)
-    private Long totalExonerado;
+    private BigDecimal totalExonerado;
 
-    public Long getTotalGravado() {
+    public BigDecimal getTotalGravado() {
         return totalGravado;
     }
 
-    public void setTotalGravado(Long totalGravado) {
+    public void setTotalGravado(BigDecimal totalGravado) {
         this.totalGravado = totalGravado;
     }
 
-    public Long getTotalGratuito() {
+    public BigDecimal getTotalGratuito() {
         return totalGratuito;
     }
 
-    public void setTotalGratuito(Long totalGratuito) {
+    public void setTotalGratuito(BigDecimal totalGratuito) {
         this.totalGratuito = totalGratuito;
     }
 
-    public Long getTotalInafecto() {
+    public BigDecimal getTotalInafecto() {
         return totalInafecto;
     }
 
-    public void setTotalInafecto(Long totalInafecto) {
+    public void setTotalInafecto(BigDecimal totalInafecto) {
         this.totalInafecto = totalInafecto;
     }
 
-    public Long getTotalExonerado() {
+    public BigDecimal getTotalExonerado() {
         return totalExonerado;
     }
 
-    public void setTotalExonerado(Long totalExonerado) {
+    public void setTotalExonerado(BigDecimal totalExonerado) {
         this.totalExonerado = totalExonerado;
     }
 }

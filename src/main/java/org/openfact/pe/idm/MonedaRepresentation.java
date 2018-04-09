@@ -3,6 +3,7 @@ package org.openfact.pe.idm;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.math.BigDecimal;
 
 public class MonedaRepresentation {
 
@@ -11,7 +12,7 @@ public class MonedaRepresentation {
     private String codigo;
 
     @Digits(integer = 10, fraction = 4)
-    private Long tipoCambio;
+    private BigDecimal tipoCambio;
 
     public String getCodigo() {
         return codigo;
@@ -21,11 +22,11 @@ public class MonedaRepresentation {
         this.codigo = codigo;
     }
 
-    public Long getTipoCambio() {
+    public BigDecimal getTipoCambio() {
         return tipoCambio;
     }
 
-    public void setTipoCambio(Long tipoCambio) {
+    public void setTipoCambio(BigDecimal tipoCambio) {
         this.tipoCambio = tipoCambio;
     }
 }

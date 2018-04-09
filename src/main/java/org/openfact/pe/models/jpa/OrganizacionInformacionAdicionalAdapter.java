@@ -1,16 +1,16 @@
 package org.openfact.pe.models.jpa;
 
-import org.openfact.pe.models.InformacionAdicionalModel;
-import org.openfact.pe.models.jpa.entities.InformacionAdicionalEntity;
+import org.openfact.pe.models.OrganizacionInformacionAdicionalModel;
+import org.openfact.pe.models.jpa.entities.OrganizacionInformacionAdicionalEntity;
 
 import javax.persistence.EntityManager;
 
-public class InformacionAdicionalAdapter implements InformacionAdicionalModel {
+public class OrganizacionInformacionAdicionalAdapter implements OrganizacionInformacionAdicionalModel {
 
     private final EntityManager em;
-    private final InformacionAdicionalEntity additionalInfoEntity;
+    private final OrganizacionInformacionAdicionalEntity additionalInfoEntity;
 
-    public InformacionAdicionalAdapter(EntityManager em, InformacionAdicionalEntity additionalInfoEntity) {
+    public OrganizacionInformacionAdicionalAdapter(EntityManager em, OrganizacionInformacionAdicionalEntity additionalInfoEntity) {
         this.em = em;
         this.additionalInfoEntity = additionalInfoEntity;
     }

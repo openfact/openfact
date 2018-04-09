@@ -58,6 +58,16 @@ public class FileSystemFileProvider implements FileProvider {
             throw new FileException(e);
         }
 
-        return null;
+        return new FileInfoModel() {
+            @Override
+            public String getFileName() {
+                return filename;
+            }
+
+            @Override
+            public String getProvider() {
+                return "fileSystem";
+            }
+        };
     }
 }

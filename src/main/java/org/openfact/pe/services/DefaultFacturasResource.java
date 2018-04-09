@@ -39,10 +39,12 @@ public class DefaultFacturasResource implements FacturasResource {
     private JAXBManager jaxbManager;
 
     @Override
-    public List<FacturaRepresentation> getFacturas(String organizationId, EstadoComprobantePago estado, int offset, int limit) {
+    public List<FacturaRepresentation> getFacturas(String organizationId, String estado, int offset, int limit) {
+        EstadoComprobantePago estadoComprobantePago = EstadoComprobantePago.valueOf(estado.toUpperCase());
+
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
 
-        return facturaProvider.getFacturas(organization, estado, offset, limit).stream()
+        return facturaProvider.getFacturas(organization, estadoComprobantePago, offset, limit).stream()
                 .map(f -> ModelToRepresentation.toRepresentation(f, true))
                 .collect(Collectors.toList());
     }
@@ -75,8 +77,8 @@ public class DefaultFacturasResource implements FacturasResource {
 
         // Datos por defecto si no son especificadas
         if (representation.getFecha() == null) {
-            factura.setFechaEmision(Calendar.getInstance().getTime());
-            factura.setFechaVencimiento(Calendar.getInstance().getTime());
+            factura.getFecha().setEmision(Calendar.getInstance().getTime());
+            factura.getFecha().setVencimiento(Calendar.getInstance().getTime());
         }
         if (representation.getEnviarSUNAT() == null) {
             factura.setEnviarSUNAT(true);
@@ -89,8 +91,8 @@ public class DefaultFacturasResource implements FacturasResource {
         RepresentationToModel.modelToRepresentation(factura, representation);
 
         // Recalcular XML
-        Optional<InformacionAdicionalModel> informacionAdicional = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organization);
-        jaxbManager.buildFactura(organization, informacionAdicional.get(), factura);
+        Optional<OrganizacionInformacionAdicionalModel> informacionAdicional = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organization);
+        jaxbManager.buildFactura(organization, informacionAdicional.orElseThrow(() -> new NotFoundException("Informacion adicional no encontrada")), factura);
 
         return ModelToRepresentation.toRepresentation(factura, true);
     }
@@ -102,7 +104,7 @@ public class DefaultFacturasResource implements FacturasResource {
         RepresentationToModel.modelToRepresentation(factura, representation);
 
         // Recalcular XML
-        Optional<InformacionAdicionalModel> informacionAdicional = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organization);
+        Optional<OrganizacionInformacionAdicionalModel> informacionAdicional = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organization);
         jaxbManager.buildFactura(organization, informacionAdicional.get(), factura);
     }
 

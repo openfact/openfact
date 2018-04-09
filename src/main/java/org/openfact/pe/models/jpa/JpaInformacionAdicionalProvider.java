@@ -2,9 +2,9 @@ package org.openfact.pe.models.jpa;
 
 import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.jpa.entities.OrganizationEntity;
-import org.openfact.pe.models.InformacionAdicionalModel;
+import org.openfact.pe.models.OrganizacionInformacionAdicionalModel;
 import org.openfact.pe.models.InformacionAdicionalProvider;
-import org.openfact.pe.models.jpa.entities.InformacionAdicionalEntity;
+import org.openfact.pe.models.jpa.entities.OrganizacionInformacionAdicionalEntity;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityGraph;
@@ -23,7 +23,7 @@ public class JpaInformacionAdicionalProvider implements InformacionAdicionalProv
     private EntityManager em;
 
     @Override
-    public Optional<InformacionAdicionalModel> getOrganizacionInformacionAdicional(String id) {
+    public Optional<OrganizacionInformacionAdicionalModel> getOrganizacionInformacionAdicional(String id) {
         OrganizationEntity companyEntity = em.find(OrganizationEntity.class, id);
         if (companyEntity == null) return Optional.empty();
 
@@ -31,20 +31,20 @@ public class JpaInformacionAdicionalProvider implements InformacionAdicionalProv
         Map<String, Object> hints = new HashMap<>();
         hints.put("javax.persistence.fetchgraph", graph);
 
-        InformacionAdicionalEntity additionalInfoEntity = em.find(InformacionAdicionalEntity.class, id, hints);
+        OrganizacionInformacionAdicionalEntity additionalInfoEntity = em.find(OrganizacionInformacionAdicionalEntity.class, id, hints);
         if (additionalInfoEntity == null) {
-            InformacionAdicionalEntity newAdditionalInfo = new InformacionAdicionalEntity();
+            OrganizacionInformacionAdicionalEntity newAdditionalInfo = new OrganizacionInformacionAdicionalEntity();
             newAdditionalInfo.setOrganizacion(companyEntity);
             em.persist(newAdditionalInfo);
 
             additionalInfoEntity = newAdditionalInfo;
         }
 
-        return Optional.of(new InformacionAdicionalAdapter(em, additionalInfoEntity));
+        return Optional.of(new OrganizacionInformacionAdicionalAdapter(em, additionalInfoEntity));
     }
 
     @Override
-    public Optional<InformacionAdicionalModel> getOrganizacionInformacionAdicional(OrganizationModel organization) {
+    public Optional<OrganizacionInformacionAdicionalModel> getOrganizacionInformacionAdicional(OrganizationModel organization) {
         return getOrganizacionInformacionAdicional(organization.getId());
     }
 
