@@ -18,8 +18,8 @@ public abstract class AbstractInvoiceEntity {
     @Column(name = "file_id")
     private String fileId;
 
-    @Column(name = "file_provider")
-    private String fileProvider;
+    @Column(name = "cdr_file_id")
+    private String cdrFileId;
 
     @Type(type = "org.hibernate.type.YesNoType")
     @Column(name = "enviar_sunat")
@@ -69,14 +69,6 @@ public abstract class AbstractInvoiceEntity {
 
     public void setFileId(String fileId) {
         this.fileId = fileId;
-    }
-
-    public String getFileProvider() {
-        return fileProvider;
-    }
-
-    public void setFileProvider(String fileProvider) {
-        this.fileProvider = fileProvider;
     }
 
     public boolean isEnviarSUNAT() {
@@ -175,5 +167,13 @@ public abstract class AbstractInvoiceEntity {
 
     public void setImpuestos(ImpuestosEntity impuestos) {
         this.impuestos = impuestos;
+    }
+
+    public String getCdrFileId() {
+        return cdrFileId;
+    }
+
+    public void setCdrFileId(String cdrFileId) {
+        this.cdrFileId = cdrFileId;
     }
 }

@@ -91,13 +91,13 @@ public class BoletaAdapter implements BoletaModel {
     }
 
     @Override
-    public String getFileProvider() {
-        return boleta.getFileProvider();
+    public String getCdrFileId() {
+        return boleta.getCdrFileId();
     }
 
     @Override
-    public void setFileProvider(String fileProvider) {
-        boleta.setFileProvider(fileProvider);
+    public void setCdrFileId(String fileId) {
+        boleta.setCdrFileId(fileId);
     }
 
     @Override

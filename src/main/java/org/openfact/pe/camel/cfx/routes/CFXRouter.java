@@ -12,13 +12,12 @@ public class CFXRouter extends RouteBuilder {
 
     private static final Logger logger = Logger.getLogger(CFXRouter.class);
 
-    public static final String WRITE_URI = "direct:ftpUpload";
+    public static final String SEND_URI = "direct:cfxSend";
 
     @Override
     public void configure() {
-//        errorHandler();
-//        from("")
-//                .to("cfx://192.168.1.6?serviceClass=");
+//        from(SEND_URI)
+//                .to("cfx:bean serviceClass=pe.gob.sunat.service.BillService");
     }
 
 }

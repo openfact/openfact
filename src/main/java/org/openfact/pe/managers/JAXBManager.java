@@ -2,7 +2,7 @@ package org.openfact.pe.managers;
 
 import oasis.names.specification.ubl.schema.xsd.invoice_2.InvoiceType;
 import org.jboss.logging.Logger;
-import org.openfact.core.models.FileInfoModel;
+import org.openfact.core.models.FileModel;
 import org.openfact.core.models.FileProvider;
 import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.files.FileException;
@@ -30,10 +30,10 @@ public class JAXBManager {
     private static final Logger logger = Logger.getLogger(JAXBManager.class);
 
     @Inject
-    private FileProvider fileProvider;
+    private SUNATManager sunatManager;
 
     @Inject
-    private CFXManager cfxManager;
+    private FileProvider fileProvider;
 
     private <T> byte[] marshal(Class classToBeBound, JAXBElement<T> jaxbElement) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(classToBeBound);
@@ -45,7 +45,7 @@ public class JAXBManager {
         return os.toByteArray();
     }
 
-    private void processBoletaFactura(InvoiceType invoiceType, AbstractInvoiceModel model) {
+    private FileModel processBoletaFactura(InvoiceType invoiceType) {
         oasis.names.specification.ubl.schema.xsd.invoice_2.ObjectFactory factory = new oasis.names.specification.ubl.schema.xsd.invoice_2.ObjectFactory();
         JAXBElement<InvoiceType> jaxbElement = factory.createInvoice(invoiceType);
 
@@ -57,22 +57,15 @@ public class JAXBManager {
         }
 
 
-        FileInfoModel fileInfo;
+        FileModel file;
         try {
-            String fileId = ModelUtils.generateId() + ".xml";
-            fileInfo = fileProvider.addFile(fileId, bytes);
+            String fileId = "Invoice_" + ModelUtils.generateId() + ".xml";
+            file = fileProvider.addFile(fileId, bytes);
         } catch (FileException e) {
             throw new IllegalStateException("No se pudo guardar el archivo al sistema de almacenamiento");
         }
 
-        model.setFileId(fileInfo.getFileName());
-        model.setFileProvider(fileInfo.getProvider());
-
-        // Enviar a la SUNAT
-        if (model.getEnviarSUNAT()) {
-            cfxManager.test();
-        }
-        cfxManager.test();
+        return file;
     }
 
     @Asynchronous
@@ -85,7 +78,14 @@ public class JAXBManager {
             boleta.setError("No se pudo crear el XML");
             return;
         }
-        processBoletaFactura(invoiceType, boleta);
+
+        FileModel file = processBoletaFactura(invoiceType);
+        boleta.setFileId(file.getFileName());
+
+        // Enviar a la SUNAT
+        if (boleta.getEnviarSUNAT()) {
+            sunatManager.enviarBoleta(boleta, file);
+        }
     }
 
     @Asynchronous
@@ -98,7 +98,14 @@ public class JAXBManager {
             factura.setError("No se pudo crear el XML");
             return;
         }
-        processBoletaFactura(invoiceType, factura);
+
+        FileModel file = processBoletaFactura(invoiceType);
+        factura.setFileId(file.getFileName());
+
+        // Enviar a la SUNAT
+        if (factura.getEnviarSUNAT()) {
+            sunatManager.enviarFactura(factura, file);
+        }
     }
 
     @Asynchronous

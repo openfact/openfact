@@ -7,7 +7,7 @@ import org.apache.camel.ProducerTemplate;
 import org.apache.camel.cdi.ContextName;
 import org.jboss.logging.Logger;
 import org.openfact.core.camel.files.routes.FileSystemRouter;
-import org.openfact.core.models.FileInfoModel;
+import org.openfact.core.models.FileModel;
 import org.openfact.core.models.FileProvider;
 import org.openfact.core.models.FileProviderVendor;
 import org.wildfly.swarm.spi.runtime.annotations.ConfigurationValue;
@@ -41,7 +41,7 @@ public class FileSystemFileProvider implements FileProvider {
     }
 
     @Override
-    public FileInfoModel addFile(String filename, byte[] bytes) throws FileException {
+    public FileModel addFile(String filename, byte[] bytes) throws FileException {
         Path folderPath = Paths.get(folder.orElseGet(this::defaultFolder)).normalize();
 
         Map<String, Object> headers = new HashMap<>();
@@ -58,15 +58,15 @@ public class FileSystemFileProvider implements FileProvider {
             throw new FileException(e);
         }
 
-        return new FileInfoModel() {
+        return new FileModel() {
             @Override
             public String getFileName() {
                 return filename;
             }
 
             @Override
-            public String getProvider() {
-                return "fileSystem";
+            public byte[] getBytes() {
+                return bytes;
             }
         };
     }

@@ -38,7 +38,7 @@ public class ReadOnlyBoletaAdapter extends BoletaAdapter {
     }
 
     @Override
-    public void setFileProvider(String fileProvider) {
+    public void setCdrFileId(String fileId) {
         ReadOnlyUtils.throwException();
     }
 

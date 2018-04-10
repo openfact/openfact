@@ -18,12 +18,12 @@ public class ReadOnlyFacturaAdapter extends FacturaAdapter {
     }
 
     @Override
-    public void setFileProvider(String fileProvider) {
+    public void setFileId(String fileId) {
         ReadOnlyUtils.throwException();
     }
 
     @Override
-    public void setFileId(String fileId) {
+    public void setCdrFileId(String fileId) {
         ReadOnlyUtils.throwException();
     }
 

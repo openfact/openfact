@@ -91,13 +91,13 @@ public class FacturaAdapter implements FacturaModel{
     }
 
     @Override
-    public String getFileProvider() {
-        return factura.getFileProvider();
+    public String getCdrFileId() {
+        return factura.getCdrFileId();
     }
 
     @Override
-    public void setFileProvider(String fileProvider) {
-        factura.setFileProvider(fileProvider);
+    public void setCdrFileId(String fileId) {
+        factura.setCdrFileId(fileId);
     }
 
     @Override

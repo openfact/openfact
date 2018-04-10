@@ -1,9 +1,9 @@
 package org.openfact.core.models;
 
-public interface FileInfoModel {
+public interface FileModel {
 
     String getFileName();
 
-    String getProvider();
+    byte[] getBytes();
 
 }

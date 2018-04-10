@@ -24,8 +24,9 @@ public interface AbstractInvoiceModel {
     String getFileId();
     void setFileId(String fileId);
 
-    String getFileProvider();
-    void setFileProvider(String fileProvider);
+    // CDR
+    String getCdrFileId();
+    void setCdrFileId(String fileId);
 
     FechaModel getFecha();
     ClienteModel getCliente();
