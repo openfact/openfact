@@ -18,7 +18,6 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
-import javax.jms.JMSContext;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
@@ -34,10 +33,7 @@ public class JAXBManager {
     private FileProvider fileProvider;
 
     @Inject
-    private JMSContext jmsContext;
-
-//    @Resource(lookup = "/jms/topic/sunat-topic")
-//    private Topic topic;
+    private CFXManager cfxManager;
 
     private <T> byte[] marshal(Class classToBeBound, JAXBElement<T> jaxbElement) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(classToBeBound);
@@ -74,8 +70,9 @@ public class JAXBManager {
 
         // Enviar a la SUNAT
         if (model.getEnviarSUNAT()) {
-//            JMSProducer send = jmsContext.createProducer().send(topic, "");
+            cfxManager.test();
         }
+        cfxManager.test();
     }
 
     @Asynchronous

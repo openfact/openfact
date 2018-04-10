@@ -17,7 +17,7 @@
     <name>Openfact REST API</name>
 
     <properties>
-        <version.wildfly.swarm>2018.3.3</version.wildfly.swarm>
+        <version.wildfly.swarm>2018.4.1</version.wildfly.swarm>
         <version.resteasy>3.0.19.Final</version.resteasy>
         <version.arquillian.cube>1.9.2</version.arquillian.cube>
 

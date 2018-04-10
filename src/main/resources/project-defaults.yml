@@ -12,6 +12,6 @@ swarm:
     servers:
       default:
         jms-queues:
-          sunat-queue: {}
+          my-queue: {}
         jms-topics:
-          sunat-topic: {}
+          my-topic: {}

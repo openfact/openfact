@@ -1,4 +1,4 @@
-package org.openfact.pe.messaging;
+package org.openfact.pe.messages;
 
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
@@ -7,11 +7,11 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
-@MessageDriven(name = "SUNATTopicMDB", activationConfig = {
-        @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "/jms/topic/sunat-topic"),
+@MessageDriven(name = "SunatTopicMDB", activationConfig = {
+        @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "/jms/topic/my-topic"),
         @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Topic"),
 })
-public class SUNATTopicMDB implements MessageListener {
+public class SunatTopicMDB implements MessageListener {
 
     @Override
     public void onMessage(Message message) {
