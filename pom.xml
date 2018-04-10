@@ -497,18 +497,18 @@
                                         <wsdlOption>
                                             <wsdl>src/main/resources/wsdl/billService.wsdl</wsdl>
                                         </wsdlOption>
-                                        <wsdlOption>
-                                            <wsdl>src/main/resources/wsdl/guia_remision.wsdl</wsdl>
-                                        </wsdlOption>
-                                        <wsdlOption>
-                                            <wsdl>src/main/resources/wsdl/retencion_percepcion.wsdl</wsdl>
-                                        </wsdlOption>
-                                        <wsdlOption>
-                                            <wsdl>src/main/resources/wsdl/consulta_factura.wsdl</wsdl>
-                                        </wsdlOption>
-                                        <wsdlOption>
-                                            <wsdl>src/main/resources/wsdl/consulta_cdr.wsdl</wsdl>
-                                        </wsdlOption>
+                                        <!--<wsdlOption>-->
+                                            <!--<wsdl>src/main/resources/wsdl/guia_remision.wsdl</wsdl>-->
+                                        <!--</wsdlOption>-->
+                                        <!--<wsdlOption>-->
+                                            <!--<wsdl>src/main/resources/wsdl/retencion_percepcion.wsdl</wsdl>-->
+                                        <!--</wsdlOption>-->
+                                        <!--<wsdlOption>-->
+                                            <!--<wsdl>src/main/resources/wsdl/consulta_factura.wsdl</wsdl>-->
+                                        <!--</wsdlOption>-->
+                                        <!--<wsdlOption>-->
+                                            <!--<wsdl>src/main/resources/wsdl/consulta_cdr.wsdl</wsdl>-->
+                                        <!--</wsdlOption>-->
                                     </wsdlOptions>
                                 </configuration>
                             </execution>
