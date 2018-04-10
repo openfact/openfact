@@ -1,5 +1,5 @@
 
-package org.openfact.pe.cfx.service;
+package pe.gob.sunat.service;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -7,10 +7,10 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para sendBillResponse complex type.
- *
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- *
+ * <p>Java class for sendBillResponse complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
+ * 
  * <pre>
  * &lt;complexType name="sendBillResponse"&gt;
  *   &lt;complexContent&gt;
@@ -22,30 +22,34 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "sendBillResponse", propOrder = {
-        "applicationResponse"
+    "applicationResponse"
 })
 public class SendBillResponse {
 
     protected byte[] applicationResponse;
 
     /**
-     * Obtiene el valor de la propiedad applicationResponse.
-     *
-     * @return possible object is
-     * byte[]
+     * Gets the value of the applicationResponse property.
+     * 
+     * @return
+     *     possible object is
+     *     byte[]
      */
     public byte[] getApplicationResponse() {
         return applicationResponse;
     }
 
     /**
-     * Define el valor de la propiedad applicationResponse.
-     *
-     * @param value allowed object is
-     *              byte[]
+     * Sets the value of the applicationResponse property.
+     * 
+     * @param value
+     *     allowed object is
+     *     byte[]
      */
     public void setApplicationResponse(byte[] value) {
         this.applicationResponse = value;
