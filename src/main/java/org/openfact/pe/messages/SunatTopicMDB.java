@@ -1,7 +1,12 @@
 package org.openfact.pe.messages;
 
+import org.apache.camel.CamelContext;
+import org.apache.camel.ProducerTemplate;
+import org.apache.camel.cdi.ContextName;
+
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
+import javax.inject.Inject;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
@@ -13,6 +18,10 @@ import javax.jms.TextMessage;
 })
 public class SunatTopicMDB implements MessageListener {
 
+    @Inject
+    @ContextName("cdi-context")
+    private CamelContext camelContext;
+
     @Override
     public void onMessage(Message message) {
         try {
@@ -20,6 +29,19 @@ public class SunatTopicMDB implements MessageListener {
         } catch (JMSException e) {
             e.printStackTrace();
         }
+    }
+
+    private void printProductDetails(String id) {
+//        ProducerTemplate template = camelContext.createProducerTemplate();
+//        try {
+//
+//            ProductRequest request = new ProductRequest();
+//            request.setId(id);
+//
+//            ProductResponse response = template.requestBody("direct:start", request, ProductResponse.class);
+//        } catch (CamelExecutionException p) {
+//            System.out.println(p.getCause());
+//        }
     }
 
 }
