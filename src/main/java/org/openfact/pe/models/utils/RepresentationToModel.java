@@ -11,6 +11,13 @@ public class RepresentationToModel {
     }
 
     public static void modelToRepresentation(AbstractInvoiceModel model, AbstractInvoiceRepresentation rep) {
+        if (rep.getEnviarSUNAT() != null) {
+            model.setEnviarSUNAT(rep.getEnviarSUNAT());
+        }
+        if (rep.getEnviarCliente() != null) {
+            model.setEnviarCliente(rep.getEnviarCliente());
+        }
+
         FechaRepresentation fechaRepresentation = rep.getFecha();
         if (fechaRepresentation != null) {
             if (fechaRepresentation.getEmision() != null) {

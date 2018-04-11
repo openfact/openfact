@@ -69,6 +69,25 @@
           "name": "urn:openfact.com:scopes:pesunat:view"
         }
       ]
+    },
+    {
+      "name": "Master Organization Resource",
+      "uri": "/organizations/master",
+      "type": "http://openfact.com/organizations",
+      "scopes": [
+        {
+          "name": "urn:openfact.com:scopes:organization:edit"
+        },
+        {
+          "name": "urn:openfact.com:scopes:organization:create"
+        },
+        {
+          "name": "urn:openfact.com:scopes:organization:delete"
+        },
+        {
+          "name": "urn:openfact.com:scopes:organization:view"
+        }
+      ]
     }
   ],
   "policies": [
@@ -219,6 +238,17 @@
       "config": {
         "applyPolicies": "[\"Only User Policy\"]",
         "scopes": "[\"urn:openfact.com:scopes:pesunat:view\"]"
+      }
+    },
+    {
+      "name": "Master Organization Resource Permission",
+      "description": "General policies that apply to master organization resource",
+      "type": "resource",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"Master Organization Resource\"]",
+        "applyPolicies": "[\"Any Admin Policy\"]"
       }
     }
   ],

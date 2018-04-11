@@ -30,7 +30,7 @@ public class DefaultBoletasResource implements BoletasResource {
     private OrganizationProvider organizationProvider;
 
     @Inject
-    private InformacionAdicionalProvider informacionAdicionalProvider;
+    private OrganizationInformacionAdicionalProvider informacionAdicionalProvider;
 
     @Inject
     private BoletaProvider boletaProvider;

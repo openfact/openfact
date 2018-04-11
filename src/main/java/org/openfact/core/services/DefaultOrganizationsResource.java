@@ -4,8 +4,11 @@ import org.keycloak.common.util.PemUtils;
 import org.keycloak.jose.jws.AlgorithmType;
 import org.keycloak.representations.idm.KeysMetadataRepresentation;
 import org.openfact.core.OrganizationsResource;
+import org.openfact.core.bootstrap.ApplianceBootstrap;
 import org.openfact.core.idm.ComponentRepresentation;
 import org.openfact.core.idm.OrganizationRepresentation;
+import org.openfact.core.idm.OrganizationSearchQueryRepresentation;
+import org.openfact.core.idm.OrganizationSearchResultRepresentation;
 import org.openfact.core.keys.KeyProvider;
 import org.openfact.core.keys.RsaKeyMetadata;
 import org.openfact.core.keys.component.ComponentModel;
@@ -14,6 +17,7 @@ import org.openfact.core.models.*;
 import org.openfact.core.models.utils.DefaultKeyProviders;
 import org.openfact.core.models.utils.ModelToRepresentation;
 import org.openfact.core.models.utils.RepresentationToModel;
+import org.openfact.core.security.ISecurityContext;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -52,6 +56,9 @@ public class DefaultOrganizationsResource implements OrganizationsResource {
 
     @Inject
     private DefaultKeyProviders defaultKeyProviders;
+
+    @Inject
+    private ISecurityContext securityContext;
 
     @Override
     public OrganizationRepresentation createOrganization(@Valid OrganizationRepresentation organizationRepresentation) {
@@ -101,6 +108,36 @@ public class DefaultOrganizationsResource implements OrganizationsResource {
             } else {
                 throw new BadRequestException("Invalid mode value. Accepted values are [owner, collaborator]");
             }
+        }
+
+        throw new BadRequestException("Invalid parameters");
+    }
+
+    @Override
+    public OrganizationSearchResultRepresentation searchOrganizations(OrganizationSearchQueryRepresentation organizationQuery) {
+        if (organizationQuery.getUserId() != null) {
+            UserModel user = userProvider.getUser(organizationQuery.getUserId()).orElseThrow(() -> new BadRequestException("User not found"));
+
+            OrganizationSearchResultRepresentation result = new OrganizationSearchResultRepresentation();
+
+            List<OrganizationRepresentation> owned = user.getOwnedOrganizations()
+                    .stream()
+                    .map(organizationModel -> ModelToRepresentation.toRepresentation(organizationModel, false))
+                    .collect(Collectors.toList());
+            List<OrganizationRepresentation> collaborated = user.getCollaboratedOrganizations()
+                    .stream()
+                    .map(organizationModel -> ModelToRepresentation.toRepresentation(organizationModel, false))
+                    .collect(Collectors.toList());
+
+            result.setOwned(owned);
+            result.setCollaborated(collaborated);
+
+            if (securityContext.isAdmin()) {
+                organizationProvider.getOrganization(ApplianceBootstrap.MASTER_ORGANIZACION_NAME).ifPresent(masterOrganization ->  {
+                    result.setMaster(ModelToRepresentation.toRepresentation(masterOrganization, false));
+                });
+            }
+
         }
 
         throw new BadRequestException("Invalid parameters");

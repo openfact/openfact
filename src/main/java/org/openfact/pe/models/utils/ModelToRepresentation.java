@@ -3,16 +3,14 @@ package org.openfact.pe.models.utils;
 import org.openfact.pe.idm.*;
 import org.openfact.pe.models.*;
 
-import java.util.Date;
-
 public class ModelToRepresentation {
 
     private ModelToRepresentation() {
         // Util Class
     }
 
-    public static OrganizacionRepresentation toRepresentation(OrganizacionInformacionAdicionalModel model, boolean fullInfo) {
-        OrganizacionRepresentation rep = new OrganizacionRepresentation();
+    public static OrganizacionInformacionAdicionalRepresentation toRepresentation(OrganizacionInformacionAdicionalModel model, boolean fullInfo) {
+        OrganizacionInformacionAdicionalRepresentation rep = new OrganizacionInformacionAdicionalRepresentation();
 
         rep.setId(model.getId());
         rep.setAssignedId(model.getAssignedId());
@@ -24,6 +22,28 @@ public class ModelToRepresentation {
         rep.setDistrito(model.getDistrito());
         rep.setCodigoPostal(model.getCodigoPostal());
         rep.setDireccion(model.getDireccion());
+
+        return rep;
+    }
+
+
+    public static OrganizacionInformacionSUNATRepresentation toRepresentation(OrganizacionInformacionSUNATModel model, boolean fullInfo) {
+        OrganizacionInformacionSUNATRepresentation rep = new OrganizacionInformacionSUNATRepresentation();
+
+        rep.setUsuario(model.getUsuario());
+        if (model.getPassword() != null) {
+            rep.setPassword("***");
+        }
+
+        rep.setBoletaFacturaEndpoint(model.getBoletaFacturaEndpoint());
+        rep.setGuiaRemisionEndpoint(model.getGuiaRemisionEndpoint());
+        rep.setRetencionPercepcionEndpoint(model.getRetencionPercepcionEndpoint());
+        rep.setConsultaCdrEndpoint(model.getConsultaCdrEndpoint());
+        rep.setConsultaFacturaEndpoint(model.getConsultaFacturaEndpoint());
+
+        if (fullInfo) {
+
+        }
 
         return rep;
     }

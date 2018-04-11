@@ -11,7 +11,9 @@ import java.util.Map;
 
 @Indexed
 @Entity
-@Table(name = "of_organization")
+@Table(name = "of_organization", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "name")
+})
 @NamedQueries(value = {
         @NamedQuery(name = "getAllOwnedOrganizationsByUserId", query = "select distinct c from  OrganizationEntity c inner join c.owner u where u.id=:userId")
 })
@@ -58,7 +60,6 @@ public class OrganizationEntity implements Serializable {
     @CollectionTable(name = "organization_smtp_config", joinColumns = {@JoinColumn(name = "organization_id")})
     private Map<String, String> smtpConfig = new HashMap<>();
 
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id", foreignKey = @ForeignKey)
     private UserEntity owner;

@@ -2,7 +2,7 @@ package org.openfact.pe.idm;
 
 import javax.validation.constraints.NotNull;
 
-public class OrganizacionRepresentation {
+public class OrganizacionInformacionAdicionalRepresentation {
 
     private String id;
 

@@ -22,8 +22,16 @@ public class JpaOrganizationProvider implements OrganizationProvider {
     @PersistenceContext
     private EntityManager em;
 
-    @Inject
-    private Event<OrganizationEntity> organizationEntityEvent;
+    @Override
+    public OrganizationModel addOrganization(String id, String name) {
+        OrganizationEntity entity = new OrganizationEntity();
+        entity.setId(id);
+        entity.setName(name);
+        entity.setTimeZone(TimeZone.getDefault().toString());
+        em.persist(entity);
+
+        return new OrganizationAdapter(em, entity);
+    }
 
     @Override
     public OrganizationModel addOrganization(String name, UserModel owner) {
@@ -33,8 +41,6 @@ public class JpaOrganizationProvider implements OrganizationProvider {
         entity.setTimeZone(TimeZone.getDefault().toString());
         entity.setOwner(UserAdapter.toEntity(owner, em));
         em.persist(entity);
-
-        organizationEntityEvent.fire(entity);
 
         return new OrganizationAdapter(em, entity);
     }

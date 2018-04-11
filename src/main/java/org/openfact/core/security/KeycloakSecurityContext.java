@@ -21,6 +21,12 @@ public class KeycloakSecurityContext extends AbstractSecurityContext implements 
     }
 
     @Override
+    public boolean isAdmin() {
+        HttpServletRequest request = servletRequest.get();
+        return request.isUserInRole("admin");
+    }
+
+    @Override
     public String getUsername() {
         HttpServletRequest request = servletRequest.get();
         KeycloakPrincipal<org.keycloak.KeycloakSecurityContext> principal = (KeycloakPrincipal<org.keycloak.KeycloakSecurityContext>) request.getUserPrincipal();

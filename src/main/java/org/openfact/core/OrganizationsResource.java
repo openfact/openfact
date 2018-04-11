@@ -3,6 +3,8 @@ package org.openfact.core;
 import org.keycloak.representations.idm.KeysMetadataRepresentation;
 import org.openfact.core.idm.ComponentRepresentation;
 import org.openfact.core.idm.OrganizationRepresentation;
+import org.openfact.core.idm.OrganizationSearchQueryRepresentation;
+import org.openfact.core.idm.OrganizationSearchResultRepresentation;
 
 import javax.validation.Valid;
 import javax.ws.rs.*;
@@ -25,6 +27,11 @@ public interface OrganizationsResource {
             @QueryParam("organizationId") String organizationId,
             @QueryParam("userId") String userId,
             @QueryParam("role") @DefaultValue("owner") String role);
+
+    @POST
+    @Path("/search")
+    OrganizationSearchResultRepresentation searchOrganizations(@Valid OrganizationSearchQueryRepresentation organizationQuery);
+
 
     @GET
     @Path("/{organizationId}")

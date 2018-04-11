@@ -28,9 +28,10 @@ public class SUNATManager {
     @Inject
     private FinishDocumentManager finishDocumentManager;
 
-    private DocumentoResponse to(byte[] bytes) {
+    private DocumentoResponse leerCDR(byte[] bytes) {
         return null;
     }
+
 
     @Asynchronous
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
@@ -55,7 +56,7 @@ public class SUNATManager {
 
 
         byte[] responseBytes = sunatProvider.sendBill(zipFilename, zipFile);
-        DocumentoResponse documentoResponse = to(responseBytes);
+        DocumentoResponse documentoResponse = leerCDR(responseBytes);
 
         if (documentoResponse.getResponseCode().equals("0")) {
             try {
@@ -74,6 +75,39 @@ public class SUNATManager {
     @Asynchronous
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void enviarFactura(FacturaModel factura, FileModel file) {
+        if (!factura.getEstado().equals(EstadoComprobantePago.NO_REGISTRADO)) {
+            logger.warnf("Documento Serie %s y Numero %s ya fue registrado previamente en la SUNAT", factura.getSerie(), factura.getNumero());
+            return;
+        }
+
+        byte[] zipFile;
+        String zipFilename = factura.getSerie() + "-" + factura.getNumero() + ".zip";
+        try {
+            String xmlFileName = factura.getSerie() + "-" + factura.getNumero() + ".xml";
+            zipFile = ZipBuilder.createZipInMemory()
+                    .add(file.getBytes())
+                    .path(xmlFileName)
+                    .save()
+                    .toBytes();
+        } catch (IOException e) {
+            throw new RuntimeException("No se pudo crear el zip");
+        }
+
+        byte[] responseBytes = sunatProvider.sendBill(zipFilename, zipFile);
+        DocumentoResponse documentoResponse = leerCDR(responseBytes);
+
+        if (documentoResponse.getResponseCode().equals("0")) {
+            try {
+                FileModel cdrFile = fileProvider.addFile("cdr.xml", responseBytes);
+                factura.setCdrFileId(cdrFile.getFileName());
+            } catch (FileException e) {
+                e.printStackTrace();
+            }
+        } else {
+
+        }
+
+        finishDocumentManager.processFactura(factura);
 
     }
 

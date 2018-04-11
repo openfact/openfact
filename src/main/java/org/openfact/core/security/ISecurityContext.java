@@ -2,6 +2,8 @@ package org.openfact.core.security;
 
 public interface ISecurityContext {
 
+    boolean isAdmin();
+
     String getUsername();
 
     String getEmail();

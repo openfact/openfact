@@ -3,7 +3,7 @@ package org.openfact.pe.models.jpa;
 import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.jpa.entities.OrganizationEntity;
 import org.openfact.pe.models.OrganizacionInformacionAdicionalModel;
-import org.openfact.pe.models.InformacionAdicionalProvider;
+import org.openfact.pe.models.OrganizationInformacionAdicionalProvider;
 import org.openfact.pe.models.jpa.entities.OrganizacionInformacionAdicionalEntity;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @Transactional
 @ApplicationScoped
-public class JpaInformacionAdicionalProvider implements InformacionAdicionalProvider {
+public class JpaOrganizacionInformacionAdicionalProvider implements OrganizationInformacionAdicionalProvider {
 
     @PersistenceContext
     private EntityManager em;
