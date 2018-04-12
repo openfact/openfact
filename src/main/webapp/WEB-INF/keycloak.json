@@ -63,6 +63,7 @@
         ]
       },
       {
+        "name": "Organization Resource",
         "path": "/organizations/*",
         "methods": [
           {
@@ -74,7 +75,7 @@
           {
             "method": "POST",
             "scopes": [
-              "urn:openfact.com:scopes:organization:create"
+              "urn:openfact.com:scopes:organization:view"
             ]
           }
         ]
@@ -86,7 +87,13 @@
           {
             "method": "GET",
             "scopes": [
-              "urn:openfact.com:scopes:organization:view"
+              "urn:openfact.com:scopes:organization:manage"
+            ]
+          },
+          {
+            "method": "PUT",
+            "scopes": [
+              "urn:openfact.com:scopes:organization:manage"
             ]
           },
           {
@@ -94,11 +101,35 @@
             "scopes": [
               "urn:openfact.com:scopes:organization:delete"
             ]
+          }
+        ]
+      },
+      {
+        "name": "Organization Resource",
+        "path": "/organizations/{id}/*",
+        "methods": [
+          {
+            "method": "GET",
+            "scopes": [
+              "urn:openfact.com:scopes:organization:manage"
+            ]
+          },
+          {
+            "method": "POST",
+            "scopes": [
+              "urn:openfact.com:scopes:organization:manage"
+            ]
           },
           {
             "method": "PUT",
             "scopes": [
-              "urn:openfact.com:scopes:organization:edit"
+              "urn:openfact.com:scopes:organization:manage"
+            ]
+          },
+          {
+            "method": "DELETE",
+            "scopes": [
+              "urn:openfact.com:scopes:organization:delete"
             ]
           }
         ]

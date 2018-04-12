@@ -138,6 +138,7 @@ public class DefaultOrganizationsResource implements OrganizationsResource {
                 });
             }
 
+            return result;
         }
 
         throw new BadRequestException("Invalid parameters");

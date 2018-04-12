@@ -4,12 +4,10 @@ import org.openfact.core.models.ModelType;
 import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.UserModel;
 import org.openfact.core.models.jpa.entities.OrganizationEntity;
+import org.openfact.core.models.jpa.entities.UserEntity;
 
 import javax.persistence.EntityManager;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TimeZone;
+import java.util.*;
 
 public class OrganizationAdapter implements OrganizationModel, JpaModel<OrganizationEntity> {
 
@@ -96,8 +94,10 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     }
 
     @Override
-    public UserModel getOwner() {
-        return new UserAdapter(em, organization.getOwner());
+    public Optional<UserModel> getOwner() {
+        UserEntity owner = organization.getOwner();
+        if (owner == null) return Optional.empty();
+        return Optional.of(new UserAdapter(em, organization.getOwner()));
     }
 
     @Override

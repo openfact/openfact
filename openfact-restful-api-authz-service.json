@@ -3,7 +3,7 @@
   "policyEnforcementMode": "ENFORCING",
   "resources": [
     {
-      "name": "User Profile Resource",
+      "name": "Profile Resource",
       "uri": "/profile",
       "type": "http://openfact.com/profile",
       "scopes": [
@@ -18,13 +18,13 @@
       "type": "http://openfact.com/users",
       "scopes": [
         {
-          "name": "urn:openfact.com:scopes:user:create"
-        },
-        {
           "name": "urn:openfact.com:scopes:user:view"
         },
         {
           "name": "urn:openfact.com:scopes:user:edit"
+        },
+        {
+          "name": "urn:openfact.com:scopes:user:create"
         },
         {
           "name": "urn:openfact.com:scopes:user:delete"
@@ -37,13 +37,26 @@
       "type": "http://openfact.com/organizations",
       "scopes": [
         {
-          "name": "urn:openfact.com:scopes:organization:create"
+          "name": "urn:openfact.com:scopes:organization:view"
         },
+        {
+          "name": "urn:openfact.com:scopes:organization:manage"
+        },
+        {
+          "name": "urn:openfact.com:scopes:organization:delete"
+        }
+      ]
+    },
+    {
+      "name": "Organization Master",
+      "uri": "/organizations/master",
+      "type": "http://openfact.com/organizations",
+      "scopes": [
         {
           "name": "urn:openfact.com:scopes:organization:view"
         },
         {
-          "name": "urn:openfact.com:scopes:organization:edit"
+          "name": "urn:openfact.com:scopes:organization:manage"
         },
         {
           "name": "urn:openfact.com:scopes:organization:delete"
@@ -61,31 +74,12 @@
       ]
     },
     {
-      "name": "Peru SUNAT Services",
+      "name": "Peru Sunat Services",
       "uri": "/pe/sunat/*",
       "type": "http://openfact.com/pe/sunat",
       "scopes": [
         {
           "name": "urn:openfact.com:scopes:pesunat:view"
-        }
-      ]
-    },
-    {
-      "name": "Master Organization Resource",
-      "uri": "/organizations/master",
-      "type": "http://openfact.com/organizations",
-      "scopes": [
-        {
-          "name": "urn:openfact.com:scopes:organization:edit"
-        },
-        {
-          "name": "urn:openfact.com:scopes:organization:create"
-        },
-        {
-          "name": "urn:openfact.com:scopes:organization:delete"
-        },
-        {
-          "name": "urn:openfact.com:scopes:organization:view"
         }
       ]
     }
@@ -132,33 +126,13 @@
       }
     },
     {
-      "name": "Only From a Specific Client Address",
-      "description": "Defines that only clients from a specific address can do something",
-      "type": "js",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "code": "var contextAttributes = $evaluation.getContext().getAttributes();\n\nif (contextAttributes.containsValue('kc.client.network.ip_address', '127.0.0.1')) {\n    $evaluation.grant();\n}"
-      }
-    },
-    {
-      "name": "Administration Policy",
-      "description": "Defines that only administrators from a specific network address can do something.",
-      "type": "aggregate",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "applyPolicies": "[\"Only From a Specific Client Address\",\"Any Admin Policy\"]"
-      }
-    },
-    {
       "name": "Only Owner and Administrators Policy",
       "description": "Defines that only the resource owner and administrators can do something",
       "type": "aggregate",
       "logic": "POSITIVE",
       "decisionStrategy": "AFFIRMATIVE",
       "config": {
-        "applyPolicies": "[\"Administration Policy\",\"Only Owner Policy\"]"
+        "applyPolicies": "[\"Any Admin Policy\",\"Only Owner Policy\"]"
       }
     },
     {
@@ -170,12 +144,12 @@
       "config": {
         "defaultResourceType": "http://openfact.com/users",
         "default": "true",
-        "applyPolicies": "[\"Any User Policy\",\"Administration Policy\"]"
+        "applyPolicies": "[\"Any User Policy\",\"Any Admin Policy\"]"
       }
     },
     {
       "name": "Delete User Permission",
-      "description": "A policy that only allows the owner to delete his organizations.",
+      "description": "A policy that only allows the owner to delete himself.",
       "type": "scope",
       "logic": "POSITIVE",
       "decisionStrategy": "UNANIMOUS",
@@ -193,18 +167,18 @@
       "config": {
         "defaultResourceType": "http://openfact.com/organizations",
         "default": "true",
-        "applyPolicies": "[\"Any User Policy\",\"Administration Policy\"]"
+        "applyPolicies": "[\"Any User Policy\",\"Any Admin Policy\"]"
       }
     },
     {
-      "name": "Delete Organization Permission",
-      "description": "A policy that only allows the owner to delete his organizations.",
+      "name": "Manage and Delete Organization Permission",
+      "description": "A policy that only allows the owner to manage or delete his organizations.",
       "type": "scope",
       "logic": "POSITIVE",
       "decisionStrategy": "UNANIMOUS",
       "config": {
         "applyPolicies": "[\"Only Owner and Administrators Policy\"]",
-        "scopes": "[\"urn:openfact.com:scopes:organization:delete\"]"
+        "scopes": "[\"urn:openfact.com:scopes:organization:manage\", \"urn:openfact.com:scopes:organization:delete\"]"
       }
     },
     {
@@ -212,9 +186,9 @@
       "description": "Defines who is allowed to view an user profile",
       "type": "scope",
       "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
+      "decisionStrategy": "AFFIRMATIVE",
       "config": {
-        "applyPolicies": "[\"Only User Policy\"]",
+        "applyPolicies": "[\"Only User Policy\", \"Any Admin Policy\"]",
         "scopes": "[\"urn:openfact.com:scopes:profile:view\"]"
       }
     },
@@ -239,17 +213,6 @@
         "applyPolicies": "[\"Only User Policy\"]",
         "scopes": "[\"urn:openfact.com:scopes:pesunat:view\"]"
       }
-    },
-    {
-      "name": "Master Organization Resource Permission",
-      "description": "General policies that apply to master organization resource",
-      "type": "resource",
-      "logic": "POSITIVE",
-      "decisionStrategy": "UNANIMOUS",
-      "config": {
-        "resources": "[\"Master Organization Resource\"]",
-        "applyPolicies": "[\"Any Admin Policy\"]"
-      }
     }
   ],
   "scopes": [
@@ -260,10 +223,7 @@
       "name": "urn:openfact.com:scopes:organization:view"
     },
     {
-      "name": "urn:openfact.com:scopes:organization:create"
-    },
-    {
-      "name": "urn:openfact.com:scopes:organization:edit"
+      "name": "urn:openfact.com:scopes:organization:manage"
     },
     {
       "name": "urn:openfact.com:scopes:organization:delete"

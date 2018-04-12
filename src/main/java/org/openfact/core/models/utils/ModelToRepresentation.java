@@ -27,10 +27,12 @@ public class ModelToRepresentation {
         rep.setId(model.getId());
         rep.setName(model.getName());
 
-        OrganizationRepresentation.OrganizationOwnerRepresentation ownerRepresentation = new OrganizationRepresentation.OrganizationOwnerRepresentation();
-        rep.setOwner(ownerRepresentation);
-        ownerRepresentation.setId(model.getOwner().getId());
-        ownerRepresentation.setIdentityId(model.getOwner().getIdentityId());
+        model.getOwner().ifPresent(owner -> {
+            OrganizationRepresentation.OrganizationOwnerRepresentation ownerRepresentation = new OrganizationRepresentation.OrganizationOwnerRepresentation();
+            rep.setOwner(ownerRepresentation);
+            ownerRepresentation.setId(owner.getId());
+            ownerRepresentation.setIdentityId(owner.getIdentityId());
+        });
 
         if (fullInfo) {
             rep.setDescription(model.getDescription());

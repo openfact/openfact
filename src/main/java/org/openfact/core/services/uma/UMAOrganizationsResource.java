@@ -21,7 +21,7 @@ import java.util.HashSet;
 public abstract class UMAOrganizationsResource implements OrganizationsResource {
 
     public static final String SCOPE_ORGANIZATION_VIEW = "urn:openfact.com:scopes:organization:view";
-    public static final String SCOPE_ORGANIZATION_EDIT = "urn:openfact.com:scopes:organization:edit";
+    public static final String SCOPE_ORGANIZATION_MANAGE = "urn:openfact.com:scopes:organization:manage";
     public static final String SCOPE_ORGANIZATION_DELETE = "urn:openfact.com:scopes:organization:delete";
 
     @Inject
@@ -51,7 +51,7 @@ public abstract class UMAOrganizationsResource implements OrganizationsResource 
             HashSet<ScopeRepresentation> scopes = new HashSet<>();
 
             scopes.add(new ScopeRepresentation(SCOPE_ORGANIZATION_VIEW));
-            scopes.add(new ScopeRepresentation(SCOPE_ORGANIZATION_EDIT));
+            scopes.add(new ScopeRepresentation(SCOPE_ORGANIZATION_MANAGE));
             scopes.add(new ScopeRepresentation(SCOPE_ORGANIZATION_DELETE));
 
             ResourceRepresentation albumResource = new ResourceRepresentation("Organization " + organization.getId(), scopes, "/organizations/" + organization.getId(), "http://openfact.com/organizations");

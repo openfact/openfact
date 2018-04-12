@@ -23,6 +23,34 @@
         "uma_authorization"
       ],
       "clientRoles": {
+        "account": [
+          "view-profile",
+          "manage-account"
+        ],
+        "openfact-restful-api": [
+          "manage-organizations"
+        ]
+      }
+    },
+    {
+      "username": "esteban",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "esteban"
+        }
+      ],
+      "realmRoles": [
+        "user",
+        "offline_access",
+        "uma_authorization"
+      ],
+      "clientRoles": {
+        "account": [
+          "view-profile",
+          "manage-account"
+        ],
         "openfact-restful-api": [
           "manage-organizations"
         ]
@@ -45,6 +73,10 @@
       "clientRoles": {
         "realm-management": [
           "realm-admin"
+        ],
+        "account": [
+          "view-profile",
+          "manage-account"
         ],
         "openfact-restful-api": [
           "manage-organizations"

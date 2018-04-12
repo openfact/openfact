@@ -7,13 +7,13 @@ import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-@Path("/organizations/{organizationId}/pe")
+@Path("/organizations/{organizationId}/peru")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public interface OrganizacionesResource {
 
     @GET
-    @Path("/")
+    @Path("/informacion-adicional")
     OrganizacionInformacionAdicionalRepresentation getOrganization(
             @PathParam("organizationId") String organizationId
     );
