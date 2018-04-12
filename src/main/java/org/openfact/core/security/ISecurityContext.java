@@ -1,8 +1,8 @@
 package org.openfact.core.security;
 
-public interface ISecurityContext {
+import java.util.Set;
 
-    boolean isAdmin();
+public interface ISecurityContext {
 
     String getUsername();
 
@@ -13,6 +13,34 @@ public interface ISecurityContext {
     String getIdentityId();
 
     String getIdentityProviderAlias();
+
+    /**
+     * Returns true if the current user is an administrator.
+     * @return true if admin, else false
+     */
+    public boolean isAdmin();
+
+    /**
+     * Returns true if the current user has permission to perform a particular
+     * action for the provided organization.
+     * @param permission the permission type
+     * @param organizationId the org id
+     * @return true if has permission, else false
+     */
+    public boolean hasPermission(PermissionType permission, String organizationId);
+
+    /**
+     * @param organizationId
+     */
+    public boolean isMemberOf(String organizationId);
+
+    /**
+     * Returns the set of organizations for which the current user is allowed
+     * to perform a given action.
+     * @param permission the permission type
+     * @return set of permitted organizations
+     */
+    public Set<String> getPermittedOrganizations(PermissionType permission);
 
     String getRequestHeader(String headerName);
 

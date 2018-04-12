@@ -13,11 +13,11 @@ import javax.validation.constraints.NotNull;
         @NamedQuery(name = "deleteComponentByParent", query = "delete from  ComponentEntity c where c.parentId = :parentId")
 })
 @Entity
-@Table(name = "COMPONENT")
+@Table(name = "component")
 public class ComponentEntity {
 
     @Id
-    @Column(name = "ID", length = 36)
+    @Column(name = "id", length = 36)
     @Access(AccessType.PROPERTY)
     protected String id;
 
@@ -26,19 +26,19 @@ public class ComponentEntity {
     @JoinColumn(foreignKey = @ForeignKey, name = "organization_id")
     protected OrganizationEntity organization;
 
-    @Column(name = "NAME")
+    @Column(name = "name")
     protected String name;
 
-    @Column(name = "PROVIDER_TYPE")
+    @Column(name = "provider_type")
     protected String providerType;
 
-    @Column(name = "PROVIDER_ID")
+    @Column(name = "provider_id")
     protected String providerId;
 
-    @Column(name = "PARENT_ID")
+    @Column(name = "parent_id")
     protected String parentId;
 
-    @Column(name = "SUB_TYPE")
+    @Column(name = "sub_type")
     protected String subType;
 
     public String getId() {

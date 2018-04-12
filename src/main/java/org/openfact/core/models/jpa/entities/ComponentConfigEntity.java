@@ -8,23 +8,23 @@ import javax.persistence.*;
         @NamedQuery(name = "deleteComponentConfigByOrganization", query = "delete from  ComponentConfigEntity attr where attr.component IN (select u from ComponentEntity u where u.organization=:organization)"),
         @NamedQuery(name = "deleteComponentConfigByParent", query = "delete from  ComponentConfigEntity attr where attr.component IN (select u from ComponentEntity u where u.parentId=:parentId)"),
 })
-@Table(name = "COMPONENT_CONFIG")
+@Table(name = "component_config")
 @Entity
 public class ComponentConfigEntity {
 
     @Id
-    @Column(name = "ID", length = 36)
+    @Column(name = "id", length = 36)
     @Access(AccessType.PROPERTY)
     protected String id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "COMPONENT_ID")
+    @JoinColumn(name = "component_id")
     protected ComponentEntity component;
 
-    @Column(name = "NAME")
+    @Column(name = "name")
     protected String name;
 
-    @Column(name = "VALUE", length = 4000)
+    @Column(name = "value", length = 4000)
     protected String value;
 
     public String getId() {

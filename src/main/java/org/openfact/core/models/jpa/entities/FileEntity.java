@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "of_file")
+@Table(name = "file")
 @NamedQueries({
 
 })

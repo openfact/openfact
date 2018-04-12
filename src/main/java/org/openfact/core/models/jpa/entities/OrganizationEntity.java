@@ -11,7 +11,7 @@ import java.util.Map;
 
 @Indexed
 @Entity
-@Table(name = "of_organization", uniqueConstraints = {
+@Table(name = "organization", uniqueConstraints = {
         @UniqueConstraint(columnNames = "name")
 })
 @NamedQueries(value = {

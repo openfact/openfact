@@ -3,9 +3,10 @@ package org.openfact.core.models.jpa.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
-@Table(name = "of_user", uniqueConstraints = {
+@Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(columnNames = "username"),
         @UniqueConstraint(columnNames = "identity_id")
 })
@@ -36,6 +37,9 @@ public class UserEntity implements Serializable {
 
     @Column(name = "full_name")
     private String fullName;
+
+    @Column(name = "joined_on")
+    private Date joinedOn;
 
     @Version
     @Column(name = "version")
@@ -130,4 +134,11 @@ public class UserEntity implements Serializable {
         return result;
     }
 
+    public Date getJoinedOn() {
+        return joinedOn;
+    }
+
+    public void setJoinedOn(Date joinedOn) {
+        this.joinedOn = joinedOn;
+    }
 }
