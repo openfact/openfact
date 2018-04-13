@@ -8,7 +8,9 @@ import org.openfact.core.security.PermissionType;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 @Transactional
 @ApplicationScoped

@@ -161,10 +161,10 @@
         description varchar(255),
         name varchar(255) not null,
         time_zone varchar(255) not null,
+        type varchar(255) not null,
         use_custom_certificates char(255) not null,
         use_custom_smtp_config char(255) not null,
         version integer,
-        owner_id varchar(255),
         primary key (id)
     );
 
@@ -212,6 +212,9 @@
 
     alter table organization
        add constraint UK8j5y8ipk73yx2joy9yr653c9t unique (name);
+
+    alter table roles
+       add constraint UKofx66keruapi6vyqpv6f2or37 unique (name);
 
     alter table users
        add constraint UKr43af9ap4edm43mmtq01oddj6 unique (username);
@@ -273,11 +276,6 @@
        add constraint FK4w3j0mxg0vnuqlrvmt4tc0kc
        foreign key (organizacion_id)
        references organization;
-
-    alter table organization
-       add constraint FKjyvwxdfg1v3teuk6e9q1aaq4m
-       foreign key (owner_id)
-       references users;
 
     alter table organization_smtp_config
        add constraint FK3mxpb3h5ubslswet02l5uf04m

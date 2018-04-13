@@ -1,6 +1,5 @@
 package org.openfact.pe.models.jpa;
 
-import org.openfact.pe.models.ModelReadOnlyException;
 import org.openfact.pe.models.jpa.entities.ClienteEntity;
 import org.openfact.pe.models.types.TipoDocumentoEntidad;
 

@@ -1,7 +1,6 @@
 package org.openfact.core.models;
 
 import java.util.Map;
-import java.util.Optional;
 import java.util.TimeZone;
 
 public interface OrganizationModel extends Model {

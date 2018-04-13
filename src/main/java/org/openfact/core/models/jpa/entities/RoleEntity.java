@@ -34,7 +34,7 @@ public class RoleEntity implements Serializable {
     @Column(name = "auto_grant")
     private boolean autoGrant;
 
-    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "permissions", joinColumns = @JoinColumn(name = "role_id"))
     private Set<PermissionType> permissions = new HashSet<>();

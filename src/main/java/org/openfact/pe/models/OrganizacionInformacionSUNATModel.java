@@ -1,8 +1,5 @@
 package org.openfact.pe.models;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-
 public interface OrganizacionInformacionSUNATModel {
     String getUsuario();
     void setUsuario(String usuario);

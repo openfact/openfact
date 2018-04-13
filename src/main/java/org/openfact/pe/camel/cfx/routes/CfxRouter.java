@@ -1,7 +1,5 @@
 package org.openfact.pe.camel.cfx.routes;
 
-import org.apache.camel.Exchange;
-import org.apache.camel.Message;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.cdi.ContextName;
 import org.jboss.logging.Logger;

@@ -4,9 +4,7 @@ import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.RoleMembershipModel;
 import org.openfact.core.models.RoleModel;
 import org.openfact.core.models.UserModel;
-import org.openfact.core.models.jpa.entities.RoleEntity;
 import org.openfact.core.models.jpa.entities.RoleMembershipEntity;
-import org.openfact.core.security.PermissionType;
 
 import javax.persistence.EntityManager;
 

@@ -7,7 +7,6 @@ import org.openfact.core.models.FileProvider;
 import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.files.FileException;
 import org.openfact.core.models.utils.ModelUtils;
-import org.openfact.pe.models.AbstractInvoiceModel;
 import org.openfact.pe.models.BoletaModel;
 import org.openfact.pe.models.FacturaModel;
 import org.openfact.pe.models.OrganizacionInformacionAdicionalModel;

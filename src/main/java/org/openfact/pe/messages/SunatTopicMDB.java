@@ -1,7 +1,6 @@
 package org.openfact.pe.messages;
 
 import org.apache.camel.CamelContext;
-import org.apache.camel.ProducerTemplate;
 import org.apache.camel.cdi.ContextName;
 
 import javax.ejb.ActivationConfigProperty;

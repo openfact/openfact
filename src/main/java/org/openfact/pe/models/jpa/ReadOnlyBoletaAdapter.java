@@ -4,7 +4,6 @@ import org.openfact.pe.models.EstadoComprobantePago;
 import org.openfact.pe.models.jpa.entities.BoletaEntity;
 
 import javax.persistence.EntityManager;
-import java.util.Date;
 
 public class ReadOnlyBoletaAdapter extends BoletaAdapter {
 

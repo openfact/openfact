@@ -2,11 +2,8 @@ package org.openfact.pe.models.jpa;
 
 import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.jpa.entities.OrganizationEntity;
-import org.openfact.pe.models.OrganizacionInformacionAdicionalModel;
 import org.openfact.pe.models.OrganizacionInformacionSUNATModel;
-import org.openfact.pe.models.OrganizationInformacionAdicionalProvider;
 import org.openfact.pe.models.OrganizationInformacionSUNATProvider;
-import org.openfact.pe.models.jpa.entities.OrganizacionInformacionSUNATEntity;
 import org.openfact.pe.models.jpa.entities.OrganizacionInformacionSUNATEntity;
 
 import javax.enterprise.context.ApplicationScoped;

@@ -4,7 +4,6 @@ import org.openfact.pe.models.EstadoComprobantePago;
 import org.openfact.pe.models.jpa.entities.FacturaEntity;
 
 import javax.persistence.EntityManager;
-import java.util.Date;
 
 public class ReadOnlyFacturaAdapter extends FacturaAdapter {
 

@@ -1,7 +1,5 @@
 package org.openfact.core.idm;
 
-import org.openfact.core.models.OrganizationType;
-
 import java.util.Map;
 
 public class OrganizationRepresentation {

@@ -1,8 +1,6 @@
 package org.openfact.pe.models.jpa;
 
-import org.openfact.pe.models.OrganizacionInformacionAdicionalModel;
 import org.openfact.pe.models.OrganizacionInformacionSUNATModel;
-import org.openfact.pe.models.jpa.entities.OrganizacionInformacionAdicionalEntity;
 import org.openfact.pe.models.jpa.entities.OrganizacionInformacionSUNATEntity;
 
 import javax.persistence.EntityManager;

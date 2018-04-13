@@ -1,6 +1,5 @@
 package org.openfact.pe.models.jpa;
 
-import org.openfact.pe.models.ModelReadOnlyException;
 import org.openfact.pe.models.jpa.entities.FechaEntity;
 
 import java.util.Date;

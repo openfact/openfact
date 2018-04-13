@@ -1,13 +1,10 @@
 package org.openfact.pe.models.jpa.entities;
 
 import org.hibernate.annotations.Type;
-import org.openfact.pe.idm.FechaRepresentation;
 import org.openfact.pe.models.EstadoComprobantePago;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
-import java.util.Date;
 
 @MappedSuperclass
 public abstract class AbstractInvoiceEntity {

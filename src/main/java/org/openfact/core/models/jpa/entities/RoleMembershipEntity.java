@@ -1,7 +1,5 @@
 package org.openfact.core.models.jpa.entities;
 
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.*;
 import java.util.Date;
 

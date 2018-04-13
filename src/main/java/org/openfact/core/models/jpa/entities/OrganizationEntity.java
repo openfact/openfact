@@ -1,6 +1,5 @@
 package org.openfact.core.models.jpa.entities;
 
-import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.Type;
@@ -57,7 +56,7 @@ public class OrganizationEntity implements Serializable {
     @Column(name = "use_custom_smtp_config")
     private boolean useCustomSmtpConfig;
 
-    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
     @ElementCollection(fetch = FetchType.LAZY)
     @MapKeyColumn(name = "NAME")
     @Column(name = "VALUE")

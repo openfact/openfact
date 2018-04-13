@@ -4,13 +4,10 @@ import org.hibernate.Session;
 import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.OrganizationProvider;
 import org.openfact.core.models.OrganizationType;
-import org.openfact.core.models.UserModel;
 import org.openfact.core.models.jpa.entities.OrganizationEntity;
 import org.openfact.core.models.utils.ModelUtils;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.event.Event;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;

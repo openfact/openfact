@@ -1,7 +1,6 @@
 package org.openfact.pe;
 
 import org.openfact.pe.idm.FacturaRepresentation;
-import org.openfact.pe.models.EstadoComprobantePago;
 
 import javax.validation.Valid;
 import javax.ws.rs.*;
