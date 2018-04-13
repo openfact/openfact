@@ -15,11 +15,9 @@ import java.util.stream.Collectors;
 
 public class UserAdapter implements UserModel, JpaModel<UserEntity> {
 
-    private final EntityManager em;
     private final UserEntity user;
 
-    public UserAdapter(EntityManager em, UserEntity user) {
-        this.em = em;
+    public UserAdapter(UserEntity user) {
         this.user = user;
     }
 
@@ -82,14 +80,9 @@ public class UserAdapter implements UserModel, JpaModel<UserEntity> {
 
     @Override
     public List<OrganizationModel> getOwnedOrganizations() {
-        EntityGraph<?> graph = em.getEntityGraph("graph.OrganizationOwner");
-
-        TypedQuery<OrganizationEntity> query = em.createNamedQuery("getAllOwnedOrganizationsByUserId", OrganizationEntity.class);
-        query.setParameter("userId", user.getId());
-        query.setHint("javax.persistence.fetchgraph", graph);
-        return query.getResultList()
+        return user.getOwnedOrganizations()
                 .stream()
-                .map(organizationEntity -> new OrganizationAdapter(em, organizationEntity))
+                .map(OrganizationAdapter::new)
                 .collect(Collectors.toList());
     }
 

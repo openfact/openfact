@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,15 +28,16 @@ public class JpaUserProvider implements UserProvider {
         entity.setUsername(username);
         entity.setIdentityId(identityId);
         entity.setIdentityProvider(identityProvider);
+        entity.setJoinedOn(new Date());
         em.persist(entity);
-        return new UserAdapter(em, entity);
+        return new UserAdapter(entity);
     }
 
     @Override
     public Optional<UserModel> getUser(String id) {
         UserEntity userEntity = em.find(UserEntity.class, id);
         if (userEntity == null) return Optional.empty();
-        return Optional.of(new UserAdapter(em, userEntity));
+        return Optional.of(new UserAdapter(userEntity));
     }
 
     @Override
@@ -46,7 +48,7 @@ public class JpaUserProvider implements UserProvider {
         if (resultList.isEmpty()) {
             return Optional.empty();
         } else if (resultList.size() == 1) {
-            return Optional.of(new UserAdapter(em, resultList.get(0)));
+            return Optional.of(new UserAdapter(resultList.get(0)));
         } else {
             throw new IllegalStateException("Found more than one user with equal username:" + username);
         }
@@ -60,7 +62,7 @@ public class JpaUserProvider implements UserProvider {
         if (resultList.isEmpty()) {
             return Optional.empty();
         } else if (resultList.size() == 1) {
-            return Optional.of(new UserAdapter(em, resultList.get(0)));
+            return Optional.of(new UserAdapter(resultList.get(0)));
         } else {
             throw new IllegalStateException("Found more than one user with equal identityId:" + identityId);
         }

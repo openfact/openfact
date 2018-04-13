@@ -31,6 +31,7 @@ public class OrganizationEntity implements Serializable {
 
     @Id
     @Column(name = "id")
+    @Access(AccessType.PROPERTY)
     private String id;
 
     @NotNull

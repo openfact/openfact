@@ -30,7 +30,7 @@ public class JpaOrganizationProvider implements OrganizationProvider {
         entity.setTimeZone(TimeZone.getDefault().toString());
         em.persist(entity);
 
-        return new OrganizationAdapter(em, entity);
+        return new OrganizationAdapter(entity);
     }
 
     @Override
@@ -42,14 +42,14 @@ public class JpaOrganizationProvider implements OrganizationProvider {
         entity.setOwner(UserAdapter.toEntity(owner, em));
         em.persist(entity);
 
-        return new OrganizationAdapter(em, entity);
+        return new OrganizationAdapter(entity);
     }
 
     @Override
     public Optional<OrganizationModel> getOrganization(String id) {
         OrganizationEntity organizationEntity = em.find(OrganizationEntity.class, id);
         if (organizationEntity == null) return Optional.empty();
-        return Optional.of(new OrganizationAdapter(em, organizationEntity));
+        return Optional.of(new OrganizationAdapter(organizationEntity));
     }
 
 }

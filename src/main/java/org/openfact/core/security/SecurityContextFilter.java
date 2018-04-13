@@ -20,6 +20,7 @@ public class SecurityContextFilter implements Filter {
             chain.doFilter(request, response);
         } finally {
             AbstractSecurityContext.clearServletRequest();
+            AbstractSecurityContext.clearPermissions();
         }
     }
 

@@ -5,13 +5,11 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "file")
-@NamedQueries({
-
-})
 public class FileEntity implements Serializable {
 
     @Id
     @Column(name = "filename")
+    @Access(AccessType.PROPERTY)
     private String filename;
 
     @Lob

@@ -1,15 +1,16 @@
 package org.openfact.core.bootstrap;
 
 import org.jboss.logging.Logger;
-import org.openfact.core.models.ModelException;
-import org.openfact.core.models.ModelRuntimeException;
-import org.openfact.core.models.OrganizationModel;
-import org.openfact.core.models.OrganizationProvider;
+import org.openfact.core.models.*;
 import org.openfact.core.models.utils.DefaultKeyProviders;
+import org.openfact.core.security.PermissionType;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Optional;
 
 @Transactional
@@ -24,13 +25,23 @@ public class ApplianceBootstrap {
     private OrganizationProvider organizationProvider;
 
     @Inject
+    private RoleProvider roleProvider;
+
+    @Inject
     private DefaultKeyProviders defaultKeyProviders;
 
     public void bootstrap() {
         Optional<OrganizationModel> organization = organizationProvider.getOrganization(MASTER_ORGANIZACION_NAME);
         if (!organization.isPresent()) {
+            createDefaultRoles();
             createMasterOrganization();
         }
+    }
+
+    private void createDefaultRoles() {
+        logger.info("Initializing Default Roles");
+        roleProvider.addRole("Organization Owner", new HashSet<>(Collections.singletonList(PermissionType.organization_admin)), true);
+        roleProvider.addRole("Organization Collaborator", new HashSet<>(Collections.singletonList(PermissionType.organization_edit)), true);
     }
 
     private void createMasterOrganization() {

@@ -11,11 +11,9 @@ import java.util.*;
 
 public class OrganizationAdapter implements OrganizationModel, JpaModel<OrganizationEntity> {
 
-    private final EntityManager em;
     private final OrganizationEntity organization;
 
-    public OrganizationAdapter(EntityManager em, OrganizationEntity organization) {
-        this.em = em;
+    public OrganizationAdapter(OrganizationEntity organization) {
         this.organization = organization;
     }
 
@@ -97,7 +95,7 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     public Optional<UserModel> getOwner() {
         UserEntity owner = organization.getOwner();
         if (owner == null) return Optional.empty();
-        return Optional.of(new UserAdapter(em, organization.getOwner()));
+        return Optional.of(new UserAdapter(organization.getOwner()));
     }
 
     @Override
