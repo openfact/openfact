@@ -13,10 +13,12 @@ import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Transactional
 @ApplicationScoped
@@ -61,7 +63,11 @@ public class JpaRoleProvider implements RoleProvider {
 
     @Override
     public Set<RoleModel> getAutoGrantedRoles() {
-        return null;
+        TypedQuery<RoleEntity> query = em.createNamedQuery("ListAutoGrantRoles", RoleEntity.class);
+        return query.getResultList()
+                .stream()
+                .map(RoleAdapter::new)
+                .collect(Collectors.toSet());
     }
 
     @Override

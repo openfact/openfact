@@ -14,6 +14,9 @@ public interface RoleModel {
     String getName();
     void setName(String name);
 
+    boolean isAutoGrant();
+    void setAutoGrant(boolean autoGrant);
+
     Set<PermissionType> getPermissions();
     void setPermissions(Set<PermissionType> permissions);
 }

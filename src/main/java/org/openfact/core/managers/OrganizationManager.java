@@ -9,6 +9,7 @@ import org.openfact.core.models.utils.RepresentationToModel;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.util.Optional;
 import java.util.Set;
 
 @Transactional
@@ -31,7 +32,8 @@ public class OrganizationManager {
     private RoleMembershipProvider roleMembershipProvider;
 
     public OrganizationModel createOrganization(OrganizationRepresentation representation, UserModel owner) {
-        OrganizationModel organization = organizationProvider.addOrganization(representation.getName(), OrganizationType.valueOf(representation.getType().toLowerCase()));
+        OrganizationType organizationType = Optional.ofNullable(representation.getType()).map(f -> OrganizationType.valueOf(f.toLowerCase())).orElse(OrganizationType.common);
+        OrganizationModel organization = organizationProvider.addOrganization(representation.getName(), organizationType);
         RepresentationToModel.updateOrganization(representation, organization);
 
         // Memberships

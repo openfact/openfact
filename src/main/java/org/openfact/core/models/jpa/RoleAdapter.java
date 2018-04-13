@@ -44,6 +44,16 @@ public class RoleAdapter implements RoleModel, JpaModel<RoleEntity> {
     }
 
     @Override
+    public boolean isAutoGrant() {
+        return role.isAutoGrant();
+    }
+
+    @Override
+    public void setAutoGrant(boolean autoGrant) {
+        role.setAutoGrant(autoGrant);
+    }
+
+    @Override
     public Set<PermissionType> getPermissions() {
         return new HashSet<>(role.getPermissions());
     }

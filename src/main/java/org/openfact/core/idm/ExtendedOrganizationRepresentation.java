@@ -11,7 +11,7 @@ public class ExtendedOrganizationRepresentation extends OrganizationRepresentati
     }
 
     public enum UserRoleType {
-        admin, owner, collaborator
+        none, owner, collaborator
     }
 
     private UserRoleType userRole;

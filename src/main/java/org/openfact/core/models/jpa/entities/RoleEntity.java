@@ -15,6 +15,9 @@ import java.util.Set;
 @Table(name = "roles", uniqueConstraints = {
         @UniqueConstraint(columnNames = "name")
 })
+@NamedQueries(value = {
+        @NamedQuery(name = "ListAutoGrantRoles", query = "select r from RoleEntity r where r.autoGrant=true")
+})
 public class RoleEntity implements Serializable {
 
     @Id

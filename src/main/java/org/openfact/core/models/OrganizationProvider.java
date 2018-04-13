@@ -6,7 +6,7 @@ import java.util.Optional;
 public interface OrganizationProvider {
 
     /**
-     * Used for create admin organization
+     * Used for create master organization
      */
     OrganizationModel addOrganization(String id, String name, OrganizationType type);
 

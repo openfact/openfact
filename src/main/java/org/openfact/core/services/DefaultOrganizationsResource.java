@@ -105,7 +105,7 @@ public class DefaultOrganizationsResource implements OrganizationsResource {
                 int limit = query.getLimit() != null ? query.getLimit() : 100;
                 return organizationProvider.getOrganizations(offset, limit)
                         .stream()
-                        .map(model -> ModelToRepresentation.toExtendedRepresentation(model, ExtendedOrganizationRepresentation.UserRoleType.admin, false))
+                        .map(model -> ModelToRepresentation.toExtendedRepresentation(model, ExtendedOrganizationRepresentation.UserRoleType.none, false))
                         .collect(Collectors.toList());
             } else {
                 return roleMembershipProvider.getMemberships(user)

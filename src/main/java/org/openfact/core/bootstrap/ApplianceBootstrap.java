@@ -19,13 +19,16 @@ public class ApplianceBootstrap {
     private static final Logger logger = Logger.getLogger(ServerBootstrap.class);
 
     @Inject
-    private OrganizationProvider organizationProvider;
-
-    @Inject
     private RoleProvider roleProvider;
 
     @Inject
     private DefaultKeyProviders defaultKeyProviders;
+
+    @Inject
+    private OrganizationProvider organizationProvider;
+
+    @Inject
+    private RoleMembershipProvider roleMembershipProvider;
 
     public void bootstrap() {
         Optional<OrganizationModel> organization = organizationProvider.getOrganization(OrganizationModel.MASTER_ID);
@@ -55,11 +58,12 @@ public class ApplianceBootstrap {
     private void createMasterOrganization() {
         logger.info("Initializing Admin Organization " + OrganizationModel.MASTER_ID);
 
+
         try {
-            OrganizationModel organization = organizationProvider.addOrganization(OrganizationModel.MASTER_ID, OrganizationModel.MASTER_ID, OrganizationType.admin);
+            OrganizationModel organization = organizationProvider.addOrganization(OrganizationModel.MASTER_ID, OrganizationModel.MASTER_ID, OrganizationType.master);
             defaultKeyProviders.createProviders(organization);
         } catch (ModelException e) {
-            throw new ModelRuntimeException("Could not configure admin organization", e);
+            throw new ModelRuntimeException("Could not configure master organization", e);
         }
     }
 

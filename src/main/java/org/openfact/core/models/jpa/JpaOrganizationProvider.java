@@ -51,7 +51,7 @@ public class JpaOrganizationProvider implements OrganizationProvider {
     @Override
     public Optional<OrganizationModel> getOrganizationByName(String name) {
         Session session = em.unwrap(Session.class);
-        OrganizationEntity organizationEntity = session.byNaturalId(OrganizationEntity.class).load();
+        OrganizationEntity organizationEntity = session.byNaturalId(OrganizationEntity.class).using("name", name).load();
         if (organizationEntity == null) return Optional.empty();
         return Optional.of(new OrganizationAdapter(organizationEntity));
     }
