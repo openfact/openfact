@@ -175,13 +175,27 @@
         primary key (organization_id, NAME)
     );
 
+    create table permissions (
+       role_id varchar(255) not null,
+        permissions integer
+    );
+
+    create table roles (
+       id varchar(255) not null,
+        auto_grant boolean,
+        created_on timestamp,
+        description varchar(512),
+        name varchar(255),
+        primary key (id)
+    );
+
     create table users (
        id varchar(255) not null,
         email varchar(255),
         full_name varchar(255),
         identity_id varchar(255) not null,
         identity_provider varchar(255) not null,
-        joined_on timestamp,
+        joined_on timestamp not null,
         username varchar(255) not null,
         version integer,
         primary key (id)
@@ -192,6 +206,9 @@
 
     alter table factura_pe
        add constraint UK5xmtr335y1m12safapoiws3g7 unique (serie, numero, organization_id);
+
+    alter table memberships
+       add constraint UKidamvecwj5pj5timgjyy8pq79 unique (user_id, role_id, organization_id);
 
     alter table organization
        add constraint UK8j5y8ipk73yx2joy9yr653c9t unique (name);
@@ -232,6 +249,21 @@
        foreign key (organizacion_id)
        references organization;
 
+    alter table memberships
+       add constraint FKp778ik4pdu8wu3hra61aw2ufg
+       foreign key (organization_id)
+       references organization;
+
+    alter table memberships
+       add constraint FKokckx6lcp3k4fwe6qqc621jsp
+       foreign key (role_id)
+       references roles;
+
+    alter table memberships
+       add constraint FKdjormybfoo7f4i4d4r803qohb
+       foreign key (user_id)
+       references users;
+
     alter table nota_credito_pe
        add constraint FK38y1ruc1lo5fiq1ldafos367c
        foreign key (organizacion_id)
@@ -251,3 +283,8 @@
        add constraint FK3mxpb3h5ubslswet02l5uf04m
        foreign key (organization_id)
        references organization;
+
+    alter table permissions
+       add constraint FKmvliun0ngpho0bltt7j6ycqgc
+       foreign key (role_id)
+       references roles;

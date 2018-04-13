@@ -82,17 +82,6 @@
           "manage-organizations"
         ]
       }
-    },
-    {
-      "username": "service-account-openfact-restful-api",
-      "enabled": true,
-      "email": "service-account-openfact-restful-api@placeholder.org",
-      "serviceAccountClientId": "openfact-restful-api",
-      "clientRoles": {
-        "openfact-restful-api": [
-          "uma_protection"
-        ]
-      }
     }
   ],
   "roles": {
@@ -119,7 +108,7 @@
       "adminUrl": "/openfact-html5-client",
       "baseUrl": "/openfact-html5-client",
       "publicClient": true,
-      "consentRequired": true,
+      "consentRequired": false,
       "fullScopeAllowed": true,
       "redirectUris": [
         "http://localhost:4200/*"
@@ -130,10 +119,9 @@
     },
     {
       "clientId": "openfact-restful-api",
-      "secret": "secret",
       "enabled": true,
+      "bearerOnly": true,
       "baseUrl": "/openfact-restful-api",
-      "authorizationServicesEnabled": true,
       "redirectUris": [
         "/openfact-restful-api/*"
       ],

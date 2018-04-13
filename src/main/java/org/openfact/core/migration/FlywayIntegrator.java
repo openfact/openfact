@@ -40,9 +40,19 @@ public class FlywayIntegrator implements Integrator {
             e.printStackTrace();
         }
 
+
         Flyway flyway = new Flyway();
         flyway.setDataSource(dataSource);
         flyway.setCallbacks(new FlywayCallback());
+
+        Dialect dialect = jdbcServices.getDialect();
+        if (dialect instanceof H2Dialect) {
+            flyway.setLocations("classpath:db/migration/h2");
+        } else if (dialect instanceof PostgreSQL9Dialect) {
+            flyway.setLocations("classpath:db/migration/postgresql");
+        } else {
+            throw new IllegalStateException("Not supported Dialect");
+        }
 
         MigrationInfo migrationInfo = flyway.info().current();
         if (migrationInfo == null) {
