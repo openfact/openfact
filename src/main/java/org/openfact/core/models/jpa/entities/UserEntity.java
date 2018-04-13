@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Cacheable
 @Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(columnNames = "username"),
         @UniqueConstraint(columnNames = "identity_id")

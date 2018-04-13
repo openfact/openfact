@@ -4,6 +4,9 @@ package org.openfact.core.models.jpa.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+@Entity
+@Cacheable
+@Table(name = "component")
 @NamedQueries({
         @NamedQuery(name = "getComponents", query = "select attr from ComponentEntity attr where attr.organization = :organization"),
         @NamedQuery(name = "getComponentsByParentAndType", query = "select attr from ComponentEntity attr where attr.organization = :organization and attr.providerType = :providerType and attr.parentId = :parentId"),
@@ -12,8 +15,6 @@ import javax.validation.constraints.NotNull;
         @NamedQuery(name = "deleteComponentByOrganization", query = "delete from  ComponentEntity c where c.organization = :organization"),
         @NamedQuery(name = "deleteComponentByParent", query = "delete from  ComponentEntity c where c.parentId = :parentId")
 })
-@Entity
-@Table(name = "component")
 public class ComponentEntity {
 
     @Id

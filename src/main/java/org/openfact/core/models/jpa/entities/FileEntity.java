@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Cacheable
 @Table(name = "file")
 public class FileEntity implements Serializable {
 

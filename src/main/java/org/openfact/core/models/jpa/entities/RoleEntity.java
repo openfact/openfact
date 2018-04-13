@@ -1,6 +1,7 @@
 package org.openfact.core.models.jpa.entities;
 
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.openfact.core.security.PermissionType;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Cacheable
 @Table(name = "roles", uniqueConstraints = {
         @UniqueConstraint(columnNames = "name")
 })
@@ -32,6 +34,7 @@ public class RoleEntity implements Serializable {
     @Column(name = "auto_grant")
     private boolean autoGrant;
 
+    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "permissions", joinColumns = @JoinColumn(name = "role_id"))
     private Set<PermissionType> permissions = new HashSet<>();

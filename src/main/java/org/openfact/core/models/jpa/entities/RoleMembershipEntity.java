@@ -1,12 +1,12 @@
 package org.openfact.core.models.jpa.entities;
 
-import org.hibernate.search.annotations.Indexed;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.util.Date;
 
-@Indexed
 @Entity
+@Cacheable
 @Table(name = "memberships", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"user_id", "role_id", "organization_id"})}
 )

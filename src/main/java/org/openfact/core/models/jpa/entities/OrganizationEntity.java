@@ -57,7 +57,7 @@ public class OrganizationEntity implements Serializable {
     @Column(name = "use_custom_smtp_config")
     private boolean useCustomSmtpConfig;
 
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @ElementCollection(fetch = FetchType.LAZY)
     @MapKeyColumn(name = "NAME")
     @Column(name = "VALUE")

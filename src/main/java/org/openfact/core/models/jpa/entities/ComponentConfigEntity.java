@@ -2,14 +2,15 @@ package org.openfact.core.models.jpa.entities;
 
 import javax.persistence.*;
 
+@Entity
+@Cacheable
+@Table(name = "component_config")
 @NamedQueries({
         @NamedQuery(name = "getComponentConfig", query = "select attr from ComponentConfigEntity attr where attr.component = :component"),
         @NamedQuery(name = "deleteComponentConfigByComponent", query = "delete from  ComponentConfigEntity attr where attr.component = :component"),
         @NamedQuery(name = "deleteComponentConfigByOrganization", query = "delete from  ComponentConfigEntity attr where attr.component IN (select u from ComponentEntity u where u.organization=:organization)"),
         @NamedQuery(name = "deleteComponentConfigByParent", query = "delete from  ComponentConfigEntity attr where attr.component IN (select u from ComponentEntity u where u.parentId=:parentId)"),
 })
-@Table(name = "component_config")
-@Entity
 public class ComponentConfigEntity {
 
     @Id
