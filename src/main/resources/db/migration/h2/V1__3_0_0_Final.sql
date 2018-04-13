@@ -120,6 +120,7 @@
         usuario varchar(255),
         version integer,
         organizacion_id varchar(255) not null,
+        use_custom_config char(255) not null,
         primary key (organizacion_id)
     );
 

@@ -16,6 +16,21 @@ public class OrganizacionInformacionSUNATAdapter implements OrganizacionInformac
     }
 
     @Override
+    public String getId() {
+        return entity.getId();
+    }
+
+    @Override
+    public boolean isUseCustomConfig() {
+        return entity.isUseCustomConfig();
+    }
+
+    @Override
+    public void setUseCustomConfig(boolean useCustomConfig) {
+        entity.setUseCustomConfig(useCustomConfig);
+    }
+
+    @Override
     public String getUsuario() {
         return entity.getUsuario();
     }

@@ -1,8 +1,10 @@
 package org.openfact.pe.models.jpa.entities;
 
+import org.hibernate.annotations.Type;
 import org.openfact.core.models.jpa.entities.OrganizationEntity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
@@ -25,6 +27,11 @@ public class OrganizacionInformacionSUNATEntity implements Serializable {
     @Id
     @Column(name = "id")
     private String id;
+
+    @NotNull
+    @Type(type = "org.hibernate.type.TrueFalseType")
+    @Column(name = "use_custom_config")
+    private boolean useCustomConfig;
 
     @Column(name = "usuario")
     private String usuario;
@@ -133,5 +140,13 @@ public class OrganizacionInformacionSUNATEntity implements Serializable {
 
     public void setVersion(int version) {
         this.version = version;
+    }
+
+    public boolean isUseCustomConfig() {
+        return useCustomConfig;
+    }
+
+    public void setUseCustomConfig(boolean useCustomConfig) {
+        this.useCustomConfig = useCustomConfig;
     }
 }

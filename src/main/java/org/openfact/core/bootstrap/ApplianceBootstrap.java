@@ -61,6 +61,9 @@ public class ApplianceBootstrap {
 
         try {
             OrganizationModel organization = organizationProvider.addOrganization(OrganizationModel.MASTER_ID, OrganizationModel.MASTER_ID, OrganizationType.master);
+            organization.setUseCustomCertificates(true);
+            organization.setUseCustomSmtpConfig(true);
+
             defaultKeyProviders.createProviders(organization);
         } catch (ModelException e) {
             throw new ModelRuntimeException("Could not configure master organization", e);

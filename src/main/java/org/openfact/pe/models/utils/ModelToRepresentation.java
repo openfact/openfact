@@ -30,10 +30,13 @@ public class ModelToRepresentation {
     public static OrganizacionInformacionSUNATRepresentation toRepresentation(OrganizacionInformacionSUNATModel model, boolean fullInfo) {
         OrganizacionInformacionSUNATRepresentation rep = new OrganizacionInformacionSUNATRepresentation();
 
+        rep.setId(model.getId());
         rep.setUsuario(model.getUsuario());
         if (model.getPassword() != null) {
-            rep.setPassword("***");
+            rep.setPassword("**********");
         }
+
+        rep.setUseCustomConfig(model.isUseCustomConfig());
 
         rep.setBoletaFacturaEndpoint(model.getBoletaFacturaEndpoint());
         rep.setGuiaRemisionEndpoint(model.getGuiaRemisionEndpoint());

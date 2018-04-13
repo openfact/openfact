@@ -4,6 +4,10 @@ import javax.validation.constraints.NotNull;
 
 public class OrganizacionInformacionSUNATRepresentation {
 
+    private String id;
+
+    private Boolean useCustomConfig;
+
     @NotNull
     private String usuario;
 
@@ -70,5 +74,21 @@ public class OrganizacionInformacionSUNATRepresentation {
 
     public void setConsultaCdrEndpoint(String consultaCdrEndpoint) {
         this.consultaCdrEndpoint = consultaCdrEndpoint;
+    }
+
+    public Boolean getUseCustomConfig() {
+        return useCustomConfig;
+    }
+
+    public void setUseCustomConfig(Boolean useCustomConfig) {
+        this.useCustomConfig = useCustomConfig;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

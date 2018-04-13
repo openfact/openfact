@@ -25,6 +25,12 @@ public interface OrganizacionesResource {
             @Valid OrganizacionInformacionAdicionalRepresentation rep
     );
 
+    @GET
+    @Path("/informacion-sunat")
+    OrganizacionInformacionSUNATRepresentation getOrganizationInformacionSUNAT(
+            @PathParam("organizationId") String organizationId
+    );
+
     @PUT
     @Path("/informacion-sunat")
     OrganizacionInformacionSUNATRepresentation updateOrganizationInformacionSUNAT(
