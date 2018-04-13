@@ -129,6 +129,7 @@
         organization_id varchar(255),
         role_id varchar(255),
         user_id varchar(255),
+        version integer,
         primary key (id)
     );
 
