@@ -6,27 +6,24 @@ import java.util.TimeZone;
 
 public interface OrganizationModel extends Model {
 
-    String getName();
+    String MASTER_ID = "master";
 
+    OrganizationType getType();
+
+    String getName();
     void setName(String name);
 
     String getDescription();
-
     void setDescription(String description);
 
     boolean getUseCustomCertificates();
-
     void setUseCustomCertificates(boolean useCustomCertificates);
 
     boolean getUseCustomSmtpConfig();
-
     void setUseCustomSmtpConfig(boolean useCustomSmtpConfig);
 
     Map<String, String> getSmtpConfig();
-
     void setSmtpConfig(Map<String, String> smtpConfig);
-
-    Optional<UserModel> getOwner();
 
     TimeZone getTimeZone();
 }

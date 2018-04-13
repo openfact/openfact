@@ -4,20 +4,19 @@ import org.keycloak.common.util.PemUtils;
 import org.keycloak.jose.jws.AlgorithmType;
 import org.keycloak.representations.idm.KeysMetadataRepresentation;
 import org.openfact.core.OrganizationsResource;
-import org.openfact.core.bootstrap.ApplianceBootstrap;
 import org.openfact.core.idm.ComponentRepresentation;
+import org.openfact.core.idm.ExtendedOrganizationRepresentation;
 import org.openfact.core.idm.OrganizationRepresentation;
 import org.openfact.core.idm.OrganizationSearchQueryRepresentation;
-import org.openfact.core.idm.OrganizationSearchResultRepresentation;
-import org.openfact.core.keys.KeyProvider;
 import org.openfact.core.keys.RsaKeyMetadata;
 import org.openfact.core.keys.component.ComponentModel;
 import org.openfact.core.keys.component.utils.ComponentUtil;
+import org.openfact.core.managers.OrganizationManager;
 import org.openfact.core.models.*;
-import org.openfact.core.models.utils.DefaultKeyProviders;
 import org.openfact.core.models.utils.ModelToRepresentation;
 import org.openfact.core.models.utils.RepresentationToModel;
 import org.openfact.core.security.ISecurityContext;
+import org.openfact.core.security.PermissionType;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -40,112 +39,100 @@ public class DefaultOrganizationsResource implements OrganizationsResource {
     private UriInfo uriInfo;
 
     @Inject
-    private UserProvider userProvider;
-
-    @Inject
-    private OrganizationProvider organizationProvider;
-
-    @Inject
     private KeyManager keystore;
 
     @Inject
-    private ComponentProvider componentProvider;
+    private UserProvider userProvider;
 
     @Inject
     private ComponentUtil componentUtil;
 
     @Inject
-    private DefaultKeyProviders defaultKeyProviders;
-
-    @Inject
     private ISecurityContext securityContext;
 
+    @Inject
+    private ComponentProvider componentProvider;
+
+    @Inject
+    private OrganizationManager organizationManager;
+
+    @Inject
+    private OrganizationProvider organizationProvider;
+
+    @Inject
+    private RoleMembershipProvider roleMembershipProvider;
+
     @Override
-    public OrganizationRepresentation createOrganization(@Valid OrganizationRepresentation organizationRepresentation) {
-        OrganizationRepresentation.OrganizationOwnerRepresentation ownerRepresentation = organizationRepresentation.getOwner();
+    public OrganizationRepresentation createOrganization(@Valid OrganizationRepresentation representation) {
+        organizationProvider.getOrganizationByName(representation.getName()).ifPresent(organization -> {
+            throw new BadRequestException("Organization Name already registered");
+        });
 
-        Optional<UserModel> ownerModel = userProvider.getUser(ownerRepresentation.getId());
-        if (!ownerModel.isPresent()) {
-            throw new BadRequestException("Owner does not exist");
-        }
+        UserModel currentUser = userProvider.getUserByIdentityId(securityContext.getIdentityId()).orElseThrow(() -> new ForbiddenException("Could not find user session"));
 
-        OrganizationModel organizationModel = organizationProvider.addOrganization(organizationRepresentation.getName(), ownerModel.get());
-        organizationModel.setDescription(organizationRepresentation.getDescription());
-
-        // Certificate
-        if (componentProvider.getComponents(organizationModel, organizationModel.getId(), KeyProvider.class.getName()).isEmpty()) {
-            try {
-                defaultKeyProviders.createProviders(organizationModel);
-            } catch (ModelException e) {
-                throw new RuntimeException("Could not create certificates", e);
-            }
-        }
-
-        return ModelToRepresentation.toRepresentation(organizationModel, true);
+        OrganizationModel organization = organizationManager.createOrganization(representation, currentUser);
+        return ModelToRepresentation.toRepresentation(organization, true);
     }
 
     @Override
-    public List<OrganizationRepresentation> getOrganizations(String organizationId, String userId, String role) {
+    public List<OrganizationRepresentation> getOrganizations(String organizationId, String filterText, int offset, int limit) {
         if (organizationId != null) {
             return organizationProvider.getOrganization(organizationId)
                     .map(organizationModel -> Collections.singletonList(ModelToRepresentation.toRepresentation(organizationModel, false)))
                     .orElseGet(Collections::emptyList);
         }
 
-        if (userId != null && role != null) {
-            UserModel user = userProvider.getUser(userId).orElseThrow(() -> new BadRequestException("User not found"));
-
-            if (role.toLowerCase().equals("owner")) {
-                return user.getOwnedOrganizations()
-                        .stream()
-                        .map(organizationModel -> ModelToRepresentation.toRepresentation(organizationModel, false))
-                        .collect(Collectors.toList());
-            } else if (role.toLowerCase().equals("collaborator")) {
-                return user.getCollaboratedOrganizations()
-                        .stream()
-                        .map(organizationModel -> ModelToRepresentation.toRepresentation(organizationModel, false))
-                        .collect(Collectors.toList());
-            } else {
-                throw new BadRequestException("Invalid mode value. Accepted values are [owner, collaborator]");
-            }
+        if (filterText != null) {
+            return organizationProvider.getOrganizations(filterText, offset, limit)
+                    .stream()
+                    .map(model -> ModelToRepresentation.toRepresentation(model, false))
+                    .collect(Collectors.toList());
+        } else {
+            return organizationProvider.getOrganizations(offset, limit)
+                    .stream()
+                    .map(model -> ModelToRepresentation.toRepresentation(model, false))
+                    .collect(Collectors.toList());
         }
-
-        throw new BadRequestException("Invalid parameters");
     }
 
     @Override
-    public OrganizationSearchResultRepresentation searchOrganizations(OrganizationSearchQueryRepresentation organizationQuery) {
-        if (organizationQuery.getUserId() != null) {
-            UserModel user = userProvider.getUser(organizationQuery.getUserId()).orElseThrow(() -> new BadRequestException("User not found"));
-
-            OrganizationSearchResultRepresentation result = new OrganizationSearchResultRepresentation();
-
-            List<OrganizationRepresentation> owned = user.getOwnedOrganizations()
-                    .stream()
-                    .map(organizationModel -> ModelToRepresentation.toRepresentation(organizationModel, false))
-                    .collect(Collectors.toList());
-            List<OrganizationRepresentation> collaborated = user.getCollaboratedOrganizations()
-                    .stream()
-                    .map(organizationModel -> ModelToRepresentation.toRepresentation(organizationModel, false))
-                    .collect(Collectors.toList());
-
-            result.setOwned(owned);
-            result.setCollaborated(collaborated);
+    public List<ExtendedOrganizationRepresentation> searchOrganizations(@Valid OrganizationSearchQueryRepresentation query) {
+        if (query.getUserId() != null) {
+            UserModel user = userProvider.getUser(query.getUserId()).orElseThrow(() -> new BadRequestException("User not found"));
 
             if (securityContext.isAdmin()) {
-                organizationProvider.getOrganization(ApplianceBootstrap.MASTER_ORGANIZACION_NAME).ifPresent(masterOrganization ->  {
-                    result.setMaster(ModelToRepresentation.toRepresentation(masterOrganization, false));
-                });
+                int offset = query.getOffset() != null ? query.getOffset() : 0;
+                int limit = query.getLimit() != null ? query.getLimit() : 100;
+                return organizationProvider.getOrganizations(offset, limit)
+                        .stream()
+                        .map(model -> ModelToRepresentation.toExtendedRepresentation(model, ExtendedOrganizationRepresentation.UserRoleType.admin, false))
+                        .collect(Collectors.toList());
+            } else {
+                return roleMembershipProvider.getMemberships(user)
+                        .stream()
+                        .map(model -> {
+                            RoleModel role = model.getRole();
+                            ExtendedOrganizationRepresentation.UserRoleType userRole;
+                            if (role.getId().equals(RoleModel.OWNER_ID)) {
+                                userRole = ExtendedOrganizationRepresentation.UserRoleType.owner;
+                            } else {
+                                userRole = ExtendedOrganizationRepresentation.UserRoleType.collaborator;
+                            }
+                            return ModelToRepresentation.toExtendedRepresentation(model.getOrganization(), userRole, false);
+                        })
+                        .collect(Collectors.toList());
             }
-
-            return result;
         }
 
-        throw new BadRequestException("Invalid parameters");
+        throw new BadRequestException("Invalid query");
     }
 
     @Override
     public OrganizationRepresentation getOrganization(String organizationId) {
+        if (!securityContext.isAdmin() && !securityContext.hasPermission(PermissionType.organization_view, organizationId)) {
+            throw new ForbiddenException();
+        }
+
         return organizationProvider.getOrganization(organizationId)
                 .map(organizationModel -> ModelToRepresentation.toRepresentation(organizationModel, true))
                 .orElseThrow(() -> new NotFoundException("Organization not found"));
@@ -153,28 +140,12 @@ public class DefaultOrganizationsResource implements OrganizationsResource {
 
     @Override
     public OrganizationRepresentation updateOrganization(String organizationId, OrganizationRepresentation rep) {
+        if (!securityContext.isAdmin() && !securityContext.hasPermission(PermissionType.organization_edit, organizationId)) {
+            throw new ForbiddenException();
+        }
+
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organization not found"));
-
-        if (rep.getName() != null) {
-            organization.setName(rep.getName());
-        }
-
-        if (rep.getDescription() != null) {
-            organization.setDescription(rep.getDescription());
-        }
-
-        if (rep.getUseCustomSmtpConfig() != null) {
-            organization.setUseCustomSmtpConfig(rep.getUseCustomSmtpConfig());
-        }
-
-        if (rep.getUseCustomCertificates() != null) {
-            organization.setUseCustomCertificates(rep.getUseCustomCertificates());
-        }
-
-        if (rep.getSmtpServer() != null) {
-            organization.setSmtpConfig(new HashMap<>(rep.getSmtpServer()));
-        }
-
+        RepresentationToModel.updateOrganization(rep, organization);
         return ModelToRepresentation.toRepresentation(organization, true);
     }
 
@@ -185,6 +156,10 @@ public class DefaultOrganizationsResource implements OrganizationsResource {
 
     @Override
     public KeysMetadataRepresentation getKeyMetadata(String organizationId) {
+        if (!securityContext.isAdmin() && !securityContext.hasPermission(PermissionType.component_view, organizationId)) {
+            throw new ForbiddenException();
+        }
+
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organization not found"));
 
         KeysMetadataRepresentation keys = new KeysMetadataRepresentation();
@@ -213,6 +188,10 @@ public class DefaultOrganizationsResource implements OrganizationsResource {
 
     @Override
     public List<ComponentRepresentation> getComponents(String organizationId, String parent, String type) {
+        if (!securityContext.isAdmin() && !securityContext.hasPermission(PermissionType.component_view, organizationId)) {
+            throw new ForbiddenException();
+        }
+
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organization not found"));
 
         List<ComponentModel> components;
@@ -235,6 +214,10 @@ public class DefaultOrganizationsResource implements OrganizationsResource {
 
     @Override
     public Response createComponent(String organizationId, ComponentRepresentation rep) {
+        if (!securityContext.isAdmin() && !securityContext.hasPermission(PermissionType.component_manage, organizationId)) {
+            throw new ForbiddenException();
+        }
+
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organization not found"));
 
         try {
@@ -251,6 +234,10 @@ public class DefaultOrganizationsResource implements OrganizationsResource {
 
     @Override
     public ComponentRepresentation getComponent(String organizationId, String componentId) {
+        if (!securityContext.isAdmin() && !securityContext.hasPermission(PermissionType.component_view, organizationId)) {
+            throw new ForbiddenException();
+        }
+
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organization not found"));
 
         ComponentModel model = componentProvider.getComponent(organization, componentId);
@@ -263,6 +250,10 @@ public class DefaultOrganizationsResource implements OrganizationsResource {
 
     @Override
     public Response updateComponent(String organizationId, String componentId, ComponentRepresentation rep) {
+        if (!securityContext.isAdmin() && !securityContext.hasPermission(PermissionType.component_manage, organizationId)) {
+            throw new ForbiddenException();
+        }
+
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organization not found"));
 
         try {
@@ -281,6 +272,10 @@ public class DefaultOrganizationsResource implements OrganizationsResource {
 
     @Override
     public void removeComponent(String organizationId, String componentId) {
+        if (!securityContext.isAdmin() && !securityContext.hasPermission(PermissionType.component_manage, organizationId)) {
+            throw new ForbiddenException();
+        }
+
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organization not found"));
 
         ComponentModel model = componentProvider.getComponent(organization, componentId);

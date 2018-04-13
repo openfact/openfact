@@ -33,8 +33,13 @@ public class JpaRoleProvider implements RoleProvider {
 
     @Override
     public RoleModel addRole(String name, Set<PermissionType> permissions, boolean autoGrant) {
+        return addRole(ModelUtils.generateId(), name, permissions, autoGrant);
+    }
+
+    @Override
+    public RoleModel addRole(String id, String name, Set<PermissionType> permissions, boolean autoGrant) {
         RoleEntity entity = new RoleEntity();
-        entity.setId(ModelUtils.generateId());
+        entity.setId(id);
         entity.setName(name);
         entity.setPermissions(permissions);
         entity.setAutoGrant(autoGrant);
@@ -52,6 +57,11 @@ public class JpaRoleProvider implements RoleProvider {
         RoleEntity entity = em.find(RoleEntity.class, id);
         if (entity == null) return Optional.empty();
         return Optional.of(new RoleAdapter(entity));
+    }
+
+    @Override
+    public Set<RoleModel> getAutoGrantedRoles() {
+        return null;
     }
 
     @Override

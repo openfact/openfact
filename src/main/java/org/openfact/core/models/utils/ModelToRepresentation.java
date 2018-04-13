@@ -1,10 +1,7 @@
 package org.openfact.core.models.utils;
 
 import org.keycloak.common.util.MultivaluedHashMap;
-import org.openfact.core.idm.ComponentRepresentation;
-import org.openfact.core.idm.ConfigPropertyRepresentation;
-import org.openfact.core.idm.OrganizationRepresentation;
-import org.openfact.core.idm.UserRepresentation;
+import org.openfact.core.idm.*;
 import org.openfact.core.keys.component.ComponentModel;
 import org.openfact.core.keys.component.utils.ComponentUtil;
 import org.openfact.core.keys.provider.ProviderConfigProperty;
@@ -26,13 +23,7 @@ public class ModelToRepresentation {
         OrganizationRepresentation rep = new OrganizationRepresentation();
         rep.setId(model.getId());
         rep.setName(model.getName());
-
-        model.getOwner().ifPresent(owner -> {
-            OrganizationRepresentation.OrganizationOwnerRepresentation ownerRepresentation = new OrganizationRepresentation.OrganizationOwnerRepresentation();
-            rep.setOwner(ownerRepresentation);
-            ownerRepresentation.setId(owner.getId());
-            ownerRepresentation.setIdentityId(owner.getIdentityId());
-        });
+        rep.setType(model.getType().toString().toLowerCase());
 
         if (fullInfo) {
             rep.setDescription(model.getDescription());
@@ -42,6 +33,13 @@ public class ModelToRepresentation {
         }
 
         return rep;
+    }
+
+    public static ExtendedOrganizationRepresentation toExtendedRepresentation(OrganizationModel model, ExtendedOrganizationRepresentation.UserRoleType userRoleType, boolean fullInfo) {
+        OrganizationRepresentation rep = toRepresentation(model, fullInfo);
+        ExtendedOrganizationRepresentation extendedRepresentation = new ExtendedOrganizationRepresentation(rep);
+        extendedRepresentation.setUserRole(userRoleType);
+        return extendedRepresentation;
     }
 
     public static UserRepresentation toRepresentation(UserModel model, boolean fullInfo) {

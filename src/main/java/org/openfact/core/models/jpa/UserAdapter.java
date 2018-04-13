@@ -1,17 +1,10 @@
 package org.openfact.core.models.jpa;
 
 import org.openfact.core.models.ModelType;
-import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.UserModel;
-import org.openfact.core.models.jpa.entities.OrganizationEntity;
 import org.openfact.core.models.jpa.entities.UserEntity;
 
-import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class UserAdapter implements UserModel, JpaModel<UserEntity> {
 
@@ -39,7 +32,7 @@ public class UserAdapter implements UserModel, JpaModel<UserEntity> {
     }
 
     @Override
-    public ModelType getType() {
+    public ModelType getModelType() {
         return ModelType.ORGANIZATION;
     }
 
@@ -77,19 +70,5 @@ public class UserAdapter implements UserModel, JpaModel<UserEntity> {
     public void setFullName(String fullName) {
         user.setFullName(fullName);
     }
-
-    @Override
-    public List<OrganizationModel> getOwnedOrganizations() {
-        return user.getOwnedOrganizations()
-                .stream()
-                .map(OrganizationAdapter::new)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<OrganizationModel> getCollaboratedOrganizations() {
-        return Collections.emptyList();
-    }
-
 
 }

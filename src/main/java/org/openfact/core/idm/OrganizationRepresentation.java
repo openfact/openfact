@@ -1,6 +1,7 @@
 package org.openfact.core.idm;
 
-import javax.validation.constraints.NotNull;
+import org.openfact.core.models.OrganizationType;
+
 import java.util.Map;
 
 public class OrganizationRepresentation {
@@ -9,12 +10,25 @@ public class OrganizationRepresentation {
     private String name;
     private String description;
 
+    private String type;
+
     private Boolean useCustomCertificates;
     private Boolean useCustomSmtpConfig;
     private Map<String, String> smtpServer;
 
-    @NotNull
-    private OrganizationOwnerRepresentation owner;
+    public OrganizationRepresentation() {
+
+    }
+
+    public OrganizationRepresentation(OrganizationRepresentation rep) {
+        this.id = rep.getId();
+        this.name = rep.getName();
+        this.description = rep.getDescription();
+        this.type = rep.getType();
+        this.useCustomCertificates = rep.getUseCustomCertificates();
+        this.useCustomSmtpConfig = rep.getUseCustomSmtpConfig();
+        this.smtpServer = rep.getSmtpServer();
+    }
 
     public String getId() {
         return id;
@@ -38,14 +52,6 @@ public class OrganizationRepresentation {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public OrganizationOwnerRepresentation getOwner() {
-        return owner;
-    }
-
-    public void setOwner(OrganizationOwnerRepresentation owner) {
-        this.owner = owner;
     }
 
     public Map<String, String> getSmtpServer() {
@@ -72,26 +78,11 @@ public class OrganizationRepresentation {
         this.useCustomCertificates = useCustomCertificates;
     }
 
-    public static class OrganizationOwnerRepresentation {
+    public String getType() {
+        return type;
+    }
 
-        @NotNull
-        private String id;
-        private String identityId;
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getIdentityId() {
-            return identityId;
-        }
-
-        public void setIdentityId(String identityId) {
-            this.identityId = identityId;
-        }
+    public void setType(String type) {
+        this.type = type;
     }
 }

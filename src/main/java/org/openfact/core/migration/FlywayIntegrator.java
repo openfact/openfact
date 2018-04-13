@@ -26,44 +26,44 @@ public class FlywayIntegrator implements Integrator {
 
     @Override
     public void integrate(Metadata metadata, SessionFactoryImplementor sessionFactory, SessionFactoryServiceRegistry serviceRegistry) {
-        logger.info("Starting Flyway Migration");
-
-        final JdbcServices jdbcServices = serviceRegistry.getService(JdbcServices.class);
-        Connection connection;
-        DataSource dataSource = null;
-
-        try {
-            connection = jdbcServices.getBootstrapJdbcConnectionAccess().obtainConnection();
-            final Method method = connection != null ? connection.getClass().getMethod("getDataSource", null) : null;
-            dataSource = (DataSource) (method != null ? method.invoke(connection, null) : null);
-        } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException | SQLException e) {
-            e.printStackTrace();
-        }
-
-
-        Flyway flyway = new Flyway();
-        flyway.setDataSource(dataSource);
-        flyway.setCallbacks(new FlywayCallback());
-
-        Dialect dialect = jdbcServices.getDialect();
-        if (dialect instanceof H2Dialect) {
-            flyway.setLocations("classpath:db/migration/h2");
-        } else if (dialect instanceof PostgreSQL9Dialect) {
-            flyway.setLocations("classpath:db/migration/postgresql");
-        } else {
-            throw new IllegalStateException("Not supported Dialect");
-        }
-
-        MigrationInfo migrationInfo = flyway.info().current();
-        if (migrationInfo == null) {
-            logger.info("No existing database at the actual datasource");
-        }
-        else {
-            logger.infof("Found a database with the version: %s", migrationInfo.getVersion());
-        }
-
-        flyway.migrate();
-        logger.info("Finished Flyway Migration");
+//        logger.info("Starting Flyway Migration");
+//
+//        final JdbcServices jdbcServices = serviceRegistry.getService(JdbcServices.class);
+//        Connection connection;
+//        DataSource dataSource = null;
+//
+//        try {
+//            connection = jdbcServices.getBootstrapJdbcConnectionAccess().obtainConnection();
+//            final Method method = connection != null ? connection.getClass().getMethod("getDataSource", null) : null;
+//            dataSource = (DataSource) (method != null ? method.invoke(connection, null) : null);
+//        } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException | SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//
+//        Flyway flyway = new Flyway();
+//        flyway.setDataSource(dataSource);
+//        flyway.setCallbacks(new FlywayCallback());
+//
+//        Dialect dialect = jdbcServices.getDialect();
+//        if (dialect instanceof H2Dialect) {
+//            flyway.setLocations("classpath:db/migration/h2");
+//        } else if (dialect instanceof PostgreSQL9Dialect) {
+//            flyway.setLocations("classpath:db/migration/postgresql");
+//        } else {
+//            throw new IllegalStateException("Not supported Dialect");
+//        }
+//
+//        MigrationInfo migrationInfo = flyway.info().current();
+//        if (migrationInfo == null) {
+//            logger.info("No existing database at the actual datasource");
+//        }
+//        else {
+//            logger.infof("Found a database with the version: %s", migrationInfo.getVersion());
+//        }
+//
+//        flyway.migrate();
+//        logger.info("Finished Flyway Migration");
     }
 
     @Override

@@ -45,9 +45,6 @@ public class UserEntity implements Serializable {
     @Column(name = "joined_on")
     private Date joinedOn;
 
-    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
-    private List<OrganizationEntity> ownedOrganizations = new ArrayList<>();
-
     @Version
     @Column(name = "version")
     private int version;
@@ -141,11 +138,4 @@ public class UserEntity implements Serializable {
         this.joinedOn = joinedOn;
     }
 
-    public List<OrganizationEntity> getOwnedOrganizations() {
-        return ownedOrganizations;
-    }
-
-    public void setOwnedOrganizations(List<OrganizationEntity> ownedOrganizations) {
-        this.ownedOrganizations = ownedOrganizations;
-    }
 }

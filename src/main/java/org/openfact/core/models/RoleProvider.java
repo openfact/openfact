@@ -9,7 +9,11 @@ public interface RoleProvider {
 
     RoleModel addRole(String name, Set<PermissionType> permissions, boolean autoGrant);
 
+    RoleModel addRole(String id, String name, Set<PermissionType> permissions, boolean autoGrant);
+
     Optional<RoleModel> getRole(String id);
+
+    Set<RoleModel> getAutoGrantedRoles();
 
     boolean deleteRole(RoleModel role);
 

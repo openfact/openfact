@@ -7,7 +7,6 @@ import org.openfact.core.models.utils.ModelUtils;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
-import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -47,32 +46,45 @@ public class JpaRoleMembershipProvider implements RoleMembershipProvider {
 
     @Override
     public Set<RoleMembershipModel> getMemberships(UserModel user) {
-        return null;
+        TypedQuery<RoleMembershipEntity> typedQuery = em.createNamedQuery("getRoleMembershipsByUserId", RoleMembershipEntity.class);
+        typedQuery.setParameter("userId", user.getId());
+        return typedQuery.getResultList().stream()
+                .map(RoleMembershipAdapter::new)
+                .collect(Collectors.toSet());
     }
 
     @Override
     public Set<RoleMembershipModel> getMemberships(UserModel user, OrganizationModel organization) {
-        return null;
+        TypedQuery<RoleMembershipEntity> typedQuery = em.createNamedQuery("getRoleMembershipsByUserIdAndOrganizationId", RoleMembershipEntity.class);
+        typedQuery.setParameter("userId", user.getId());
+        typedQuery.setParameter("organizationId", organization.getId());
+        return typedQuery.getResultList().stream()
+                .map(RoleMembershipAdapter::new)
+                .collect(Collectors.toSet());
     }
 
     @Override
     public Set<RoleMembershipModel> getMemberships(OrganizationModel organization) {
-        return null;
+        TypedQuery<RoleMembershipEntity> typedQuery = em.createNamedQuery("getRoleMembershipsByOrganizationId", RoleMembershipEntity.class);
+        typedQuery.setParameter("organizationId", organization.getId());
+        return typedQuery.getResultList().stream()
+                .map(RoleMembershipAdapter::new)
+                .collect(Collectors.toSet());
     }
 
     @Override
     public Set<RoleMembershipModel> getMembershipsByUsername(String username) {
-        return null;
+        TypedQuery<RoleMembershipEntity> typedQuery = em.createNamedQuery("getRoleMembershipsByUserUsername", RoleMembershipEntity.class);
+        typedQuery.setParameter("username", username);
+        return typedQuery.getResultList().stream()
+                .map(RoleMembershipAdapter::new)
+                .collect(Collectors.toSet());
     }
 
     @Override
     public Set<RoleMembershipModel> getMembershipsByIdentityId(String identityId) {
-        EntityGraph<?> graph = em.getEntityGraph("graph.EagerRoleMembership");
-
         TypedQuery<RoleMembershipEntity> typedQuery = em.createNamedQuery("getRoleMembershipsByUserIdentityId", RoleMembershipEntity.class);
         typedQuery.setParameter("identityId", identityId);
-        typedQuery.setHint("javax.persistence.fetchgraph", graph);
-
         return typedQuery.getResultList().stream()
                 .map(RoleMembershipAdapter::new)
                 .collect(Collectors.toSet());

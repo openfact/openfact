@@ -4,6 +4,6 @@ public interface Model {
 
     String getId();
 
-    ModelType getType();
+    ModelType getModelType();
 
 }

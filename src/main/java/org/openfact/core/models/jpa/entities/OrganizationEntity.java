@@ -1,7 +1,11 @@
 package org.openfact.core.models.jpa.entities;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.Type;
 import org.hibernate.search.annotations.Indexed;
+import org.openfact.core.models.OrganizationType;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,21 +15,13 @@ import java.util.Map;
 
 @Indexed
 @Entity
+@Cacheable
 @Table(name = "organization", uniqueConstraints = {
         @UniqueConstraint(columnNames = "name")
 })
 @NamedQueries(value = {
-        @NamedQuery(name = "getAllOwnedOrganizationsByUserId", query = "select distinct c from  OrganizationEntity c inner join c.owner u where u.id=:userId")
-})
-@NamedEntityGraphs(value = {
-        @NamedEntityGraph(name = "graph.OrganizationOwner", attributeNodes = {
-                @NamedAttributeNode(value = "id"),
-                @NamedAttributeNode(value = "owner", subgraph = "owner"),
-        }, subgraphs = {
-                @NamedSubgraph(name = "owner", attributeNodes = {
-                        @NamedAttributeNode(value = "id")
-                })
-        })
+        @NamedQuery(name = "ListOrganizations", query = "select o from OrganizationEntity o"),
+        @NamedQuery(name = "FilterOrganizations", query = "select o from OrganizationEntity o where lower(o.name) like :filterText"),
 })
 public class OrganizationEntity implements Serializable {
 
@@ -35,6 +31,12 @@ public class OrganizationEntity implements Serializable {
     private String id;
 
     @NotNull
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "type")
+    private OrganizationType type;
+
+    @NotNull
+    @NaturalId(mutable = true)
     @Column(name = "name")
     private String name;
 
@@ -55,19 +57,41 @@ public class OrganizationEntity implements Serializable {
     @Column(name = "use_custom_smtp_config")
     private boolean useCustomSmtpConfig;
 
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @ElementCollection(fetch = FetchType.LAZY)
     @MapKeyColumn(name = "NAME")
     @Column(name = "VALUE")
     @CollectionTable(name = "organization_smtp_config", joinColumns = {@JoinColumn(name = "organization_id")})
     private Map<String, String> smtpConfig = new HashMap<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "owner_id", foreignKey = @ForeignKey)
-    private UserEntity owner;
-
     @Version
     @Column(name = "version")
     private int version;
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof OrganizationEntity)) {
+            return false;
+        }
+        OrganizationEntity other = (OrganizationEntity) obj;
+        if (id != null) {
+            if (!id.equals(other.id)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
 
     public String getId() {
         return this.id;
@@ -93,53 +117,12 @@ public class OrganizationEntity implements Serializable {
         this.description = description;
     }
 
-    public UserEntity getOwner() {
-        return owner;
-    }
-
-    public void setOwner(UserEntity owner) {
-        this.owner = owner;
-    }
-
     public int getVersion() {
         return this.version;
     }
 
     public void setVersion(final int version) {
         this.version = version;
-    }
-
-    @Override
-    public String toString() {
-        String result = getClass().getSimpleName() + " ";
-        if (id != null)
-            result += "id: " + id;
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof OrganizationEntity)) {
-            return false;
-        }
-        OrganizationEntity other = (OrganizationEntity) obj;
-        if (id != null) {
-            if (!id.equals(other.id)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        return result;
     }
 
     public Map<String, String> getSmtpConfig() {
@@ -172,5 +155,13 @@ public class OrganizationEntity implements Serializable {
 
     public void setTimeZone(String timeZone) {
         this.timeZone = timeZone;
+    }
+
+    public OrganizationType getType() {
+        return type;
+    }
+
+    public void setType(OrganizationType type) {
+        this.type = type;
     }
 }

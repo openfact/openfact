@@ -2,12 +2,14 @@ package org.openfact.core.models.jpa;
 
 import org.openfact.core.models.ModelType;
 import org.openfact.core.models.OrganizationModel;
-import org.openfact.core.models.UserModel;
+import org.openfact.core.models.OrganizationType;
 import org.openfact.core.models.jpa.entities.OrganizationEntity;
-import org.openfact.core.models.jpa.entities.UserEntity;
 
 import javax.persistence.EntityManager;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TimeZone;
 
 public class OrganizationAdapter implements OrganizationModel, JpaModel<OrganizationEntity> {
 
@@ -35,8 +37,13 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     }
 
     @Override
-    public ModelType getType() {
+    public ModelType getModelType() {
         return ModelType.ORGANIZATION;
+    }
+
+    @Override
+    public OrganizationType getType() {
+        return organization.getType();
     }
 
     @Override
@@ -89,13 +96,6 @@ public class OrganizationAdapter implements OrganizationModel, JpaModel<Organiza
     @Override
     public void setSmtpConfig(Map<String, String> smtpConfig) {
         organization.setSmtpConfig(smtpConfig);
-    }
-
-    @Override
-    public Optional<UserModel> getOwner() {
-        UserEntity owner = organization.getOwner();
-        if (owner == null) return Optional.empty();
-        return Optional.of(new UserAdapter(organization.getOwner()));
     }
 
     @Override

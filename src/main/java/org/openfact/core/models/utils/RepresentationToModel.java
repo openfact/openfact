@@ -2,9 +2,11 @@ package org.openfact.core.models.utils;
 
 import org.keycloak.common.util.MultivaluedHashMap;
 import org.openfact.core.idm.ComponentRepresentation;
+import org.openfact.core.idm.OrganizationRepresentation;
 import org.openfact.core.keys.component.ComponentModel;
 import org.openfact.core.keys.component.utils.ComponentUtil;
 import org.openfact.core.keys.provider.ProviderConfigProperty;
+import org.openfact.core.models.OrganizationModel;
 
 import java.util.*;
 
@@ -12,6 +14,28 @@ public class RepresentationToModel {
 
     private RepresentationToModel() {
         // Just a util class
+    }
+
+    public static void updateOrganization(OrganizationRepresentation rep, OrganizationModel model) {
+        if (rep.getName() != null) {
+            model.setName(rep.getName());
+        }
+
+        if (rep.getDescription() != null) {
+            model.setDescription(rep.getDescription());
+        }
+
+        if (rep.getUseCustomSmtpConfig() != null) {
+            model.setUseCustomSmtpConfig(rep.getUseCustomSmtpConfig());
+        }
+
+        if (rep.getUseCustomCertificates() != null) {
+            model.setUseCustomCertificates(rep.getUseCustomCertificates());
+        }
+
+        if (rep.getSmtpServer() != null) {
+            model.setSmtpConfig(new HashMap<>(rep.getSmtpServer()));
+        }
     }
 
     public static ComponentModel toModel(ComponentRepresentation rep) {

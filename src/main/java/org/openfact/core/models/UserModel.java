@@ -1,7 +1,5 @@
 package org.openfact.core.models;
 
-import java.util.List;
-
 public interface UserModel extends Model {
 
     String getUsername();
@@ -17,9 +15,5 @@ public interface UserModel extends Model {
     String getFullName();
 
     void setFullName(String fullName);
-
-    List<OrganizationModel> getOwnedOrganizations();
-
-    List<OrganizationModel> getCollaboratedOrganizations();
 
 }

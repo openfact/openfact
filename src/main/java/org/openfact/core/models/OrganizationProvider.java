@@ -8,10 +8,15 @@ public interface OrganizationProvider {
     /**
      * Used for create admin organization
      */
-    OrganizationModel addOrganization(String id, String name);
+    OrganizationModel addOrganization(String id, String name, OrganizationType type);
 
-    OrganizationModel addOrganization(String name, UserModel owner);
+    OrganizationModel addOrganization(String name, OrganizationType type);
 
     Optional<OrganizationModel> getOrganization(String id);
 
+    Optional<OrganizationModel> getOrganizationByName(String name);
+
+    List<OrganizationModel> getOrganizations(int offset, int limit);
+
+    List<OrganizationModel> getOrganizations(String filterText, int offset, int limit);
 }
