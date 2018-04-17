@@ -5,7 +5,9 @@ import org.openfact.core.models.jpa.entities.OrganizationEntity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "boleta_pe", uniqueConstraints = {
@@ -41,6 +43,9 @@ public class BoletaEntity extends AbstractInvoiceEntity implements Serializable 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
     private Date createdAt;
+
+    @OneToMany(mappedBy = "boleta", fetch = FetchType.LAZY)
+    private List<BoletaDetalleEntity> detalle = new ArrayList<>();
 
     @Version
     @Column(name = "version")
@@ -125,5 +130,13 @@ public class BoletaEntity extends AbstractInvoiceEntity implements Serializable 
 
     public void setVersion(int version) {
         this.version = version;
+    }
+
+    public List<BoletaDetalleEntity> getDetalle() {
+        return detalle;
+    }
+
+    public void setDetalle(List<BoletaDetalleEntity> detalle) {
+        this.detalle = detalle;
     }
 }

@@ -3,6 +3,10 @@ package org.openfact.pe.models.utils;
 import org.openfact.pe.idm.*;
 import org.openfact.pe.models.AbstractInvoiceModel;
 import org.openfact.pe.models.ClienteModel;
+import org.openfact.pe.models.DetalleComprobantePagoBean;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class RepresentationToModel {
 
@@ -96,6 +100,23 @@ public class RepresentationToModel {
                 model.getTotalInformacionAdicional().setTotalInafecto(totalInformacionAdicionalRepresentation.getTotalInafecto());
             }
         }
+
+        List<DetalleComprobantePagoBean> detalleBeans = rep.getDetalle()
+                .stream()
+                .map(r -> new DetalleComprobantePagoBean.Builder()
+                        .unidadMedida(r.getUnidadMedida())
+                        .descripcion(r.getDescripcion())
+                        .tipoIGV(r.getTipoIGV())
+                        .cantidad(r.getCantidad())
+                        .valorUnitario(r.getValorUnitario())
+                        .precioUnitario(r.getPrecioUnitario())
+                        .subtotal(r.getSubtotal())
+                        .total(r.getTotal())
+                        .totalIGV(r.getTotalIGV())
+                        .totalISC(r.getTotalISC())
+                        .build())
+                .collect(Collectors.toList());
+        model.setDetalle(detalleBeans);
     }
 
 

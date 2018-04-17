@@ -1,9 +1,14 @@
 package org.openfact.pe.models.jpa;
 
+import org.openfact.core.models.utils.ModelUtils;
 import org.openfact.pe.models.*;
+import org.openfact.pe.models.jpa.entities.FacturaDetalleEntity;
 import org.openfact.pe.models.jpa.entities.FacturaEntity;
 
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class FacturaAdapter implements FacturaModel{
 
@@ -152,6 +157,56 @@ public class FacturaAdapter implements FacturaModel{
         } else {
             return new TotalInformacionAdicionalAdapter(factura.getTotalInformacionAdicional());
         }
+    }
+
+    @Override
+    public List<DetalleComprobantePagoModel> getDetalle() {
+        if (factura.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
+            return factura.getDetalle()
+                    .stream()
+                    .map(ReadOnlyDetalleComprobantePagoAdapter::new)
+                    .collect(Collectors.toList());
+        } else {
+            return factura.getDetalle()
+                    .stream()
+                    .map(DetalleComprobantePagoAdapter::new)
+                    .collect(Collectors.toList());
+        }
+    }
+
+    @Override
+    public List<DetalleComprobantePagoModel> setDetalle(List<DetalleComprobantePagoBean> beans) {
+        if (factura.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
+            ReadOnlyUtils.throwException();
+        }
+
+        List<DetalleComprobantePagoModel> result = new ArrayList<>();
+
+        em.createNamedQuery("deleteFacturaDetalle").setParameter("idFactura", factura.getId()).executeUpdate();
+
+        for (DetalleComprobantePagoBean bean: beans) {
+            FacturaDetalleEntity detalleEntity = new FacturaDetalleEntity();
+
+            detalleEntity.setId(ModelUtils.generateId());
+            detalleEntity.setFactura(factura);
+
+            detalleEntity.setUnidadMedida(bean.getUnidadMedida());
+            detalleEntity.setDescripcion(bean.getDescripcion());
+            detalleEntity.setTipoIGV(bean.getTipoIGV());
+            detalleEntity.setCantidad(bean.getCantidad());
+            detalleEntity.setValorUnitario(bean.getValorUnitario());
+            detalleEntity.setPrecioUnitario(bean.getPrecioUnitario());
+            detalleEntity.setSubtotal(bean.getSubtotal());
+            detalleEntity.setTotal(bean.getTotal());
+            detalleEntity.setTotalIGV(bean.getTotalIGV());
+            detalleEntity.setTotalISC(bean.getTotalISC());
+
+            em.persist(detalleEntity);
+
+            result.add(new DetalleComprobantePagoAdapter(detalleEntity));
+        }
+
+        return result;
     }
 
 }

@@ -1,5 +1,7 @@
 package org.openfact.pe.models;
 
+import java.util.List;
+
 public interface AbstractInvoiceModel {
     String getId();
     String getSerie();
@@ -34,4 +36,8 @@ public interface AbstractInvoiceModel {
     MonedaModel getMoneda();
     TotalModel getTotal();
     TotalInformacionAdicionalModel getTotalInformacionAdicional();
+
+    List<DetalleComprobantePagoModel> getDetalle();
+    List<DetalleComprobantePagoModel> setDetalle(List<DetalleComprobantePagoBean> bean);
+
 }

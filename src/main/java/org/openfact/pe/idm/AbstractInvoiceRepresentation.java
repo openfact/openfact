@@ -1,7 +1,12 @@
 package org.openfact.pe.idm;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.List;
 
 public abstract class AbstractInvoiceRepresentation {
 
@@ -30,6 +35,11 @@ public abstract class AbstractInvoiceRepresentation {
 
     private Boolean enviarSUNAT;
     private Boolean enviarCliente;
+
+    @NotNull
+    @Size(min = 1)
+    @Valid
+    private List<ComprobanteDetalleRepresentation> detalle;
 
     public String getId() {
         return id;
@@ -109,5 +119,13 @@ public abstract class AbstractInvoiceRepresentation {
 
     public void setEnviarCliente(Boolean enviarCliente) {
         this.enviarCliente = enviarCliente;
+    }
+
+    public List<ComprobanteDetalleRepresentation> getDetalle() {
+        return detalle;
+    }
+
+    public void setDetalle(List<ComprobanteDetalleRepresentation> detalle) {
+        this.detalle = detalle;
     }
 }
