@@ -83,6 +83,10 @@ public class SUNATManager {
         }
 
         String ruc = informacionAdicional.getAssignedId();
+        if (ruc == null || ruc.trim().isEmpty()) {
+            return;
+        }
+
         String tipoComprobante = TipoInvoice.FACTURA.getCodigo();
         String serie = SUNATUtils.getSerieConCerosCompletados(factura.getSerie());
         Integer numero = factura.getNumero();

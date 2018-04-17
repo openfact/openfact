@@ -1,8 +1,10 @@
 package org.openfact.pe.models.cxf;
 
 import org.apache.camel.CamelContext;
+import org.apache.camel.CamelExecutionException;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.cdi.ContextName;
+import org.openfact.pe.models.SendSunatException;
 import org.openfact.pe.models.SunatProvider;
 import pe.gob.sunat.service.StatusResponse;
 
@@ -11,6 +13,9 @@ import javax.activation.DataSource;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.mail.util.ByteArrayDataSource;
+import javax.xml.soap.SOAPFactory;
+import javax.xml.soap.SOAPFault;
+import javax.xml.ws.soap.SOAPFaultException;
 
 @ApplicationScoped
 public class CamelSUNATProvider implements SunatProvider {
@@ -20,21 +25,20 @@ public class CamelSUNATProvider implements SunatProvider {
     private CamelContext camelContext;
 
     @Override
-    public byte[] sendBill(String fileName, byte[] file) {
+    public byte[] sendBill(String fileName, byte[] file) throws SendSunatException {
         DataSource dataSource = new ByteArrayDataSource(file, "application/xml");
         DataHandler dataHandler = new DataHandler(dataSource);
 
         ProducerTemplate producer = camelContext.createProducerTemplate();
 
-        Object[] serviceParams = new Object[0];
+        Object[] serviceParams = serviceParams = new Object[]{fileName, dataHandler, "Carlos"};
+        Object result;
         try {
-            serviceParams = new Object[] {fileName, dataHandler, "Carlos"};
+            result = producer.requestBody("direct:start", serviceParams);
         } catch (Throwable e) {
-            int a = 0;
-            System.out.println(e);
+            throw new SendSunatException("", e.getMessage());
         }
 
-        Object result = producer.requestBody("direct:start", serviceParams);
         return new byte[0];
     }
 

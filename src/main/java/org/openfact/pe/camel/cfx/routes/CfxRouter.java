@@ -15,6 +15,7 @@ public class CfxRouter extends RouteBuilder {
     @Override
     public void configure() {
         from("direct:start")
+                .end()
                 .toD("cxf:https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService?serviceClass=pe.gob.sunat.service.BillService&serviceName=urn:sendBill");
     }
 
