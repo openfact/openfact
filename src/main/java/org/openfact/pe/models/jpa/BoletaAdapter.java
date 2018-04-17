@@ -209,4 +209,5 @@ public class BoletaAdapter implements BoletaModel {
 
         return result;
     }
+
 }

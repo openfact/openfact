@@ -3,7 +3,7 @@ package org.openfact.pe.models.cxf;
 import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.cdi.ContextName;
-import org.openfact.pe.models.SUNATProvider;
+import org.openfact.pe.models.SunatProvider;
 import pe.gob.sunat.service.StatusResponse;
 
 import javax.activation.DataHandler;
@@ -13,7 +13,7 @@ import javax.inject.Inject;
 import javax.mail.util.ByteArrayDataSource;
 
 @ApplicationScoped
-public class CamelSUNATProvider implements SUNATProvider {
+public class CamelSUNATProvider implements SunatProvider {
 
     @Inject
     @ContextName("cdi-context")
@@ -25,9 +25,16 @@ public class CamelSUNATProvider implements SUNATProvider {
         DataHandler dataHandler = new DataHandler(dataSource);
 
         ProducerTemplate producer = camelContext.createProducerTemplate();
-        Object[] serviceParams = new Object[] {fileName, dataHandler, "Carlos"};
+
+        Object[] serviceParams = new Object[0];
+        try {
+            serviceParams = new Object[] {fileName, dataHandler, "Carlos"};
+        } catch (Throwable e) {
+            int a = 0;
+            System.out.println(e);
+        }
+
         Object result = producer.requestBody("direct:start", serviceParams);
-        System.out.println(result);
         return new byte[0];
     }
 

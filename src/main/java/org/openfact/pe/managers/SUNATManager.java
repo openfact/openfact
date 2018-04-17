@@ -25,7 +25,7 @@ public class SUNATManager {
     private FileProvider fileProvider;
 
     @Inject
-    private SUNATProvider sunatProvider;
+    private SunatProvider sunatProvider;
 
     @Inject
     private FinishDocumentManager finishDocumentManager;
@@ -38,40 +38,40 @@ public class SUNATManager {
     @Asynchronous
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void enviarBoleta(BoletaModel boleta, FileModel file) {
-        if (!boleta.getEstado().equals(EstadoComprobantePago.NO_REGISTRADO)) {
-            logger.warnf("Documento Serie %s y Numero %s ya fue registrado previamente en la SUNAT", boleta.getSerie(), boleta.getNumero());
-            return;
-        }
-
-        byte[] zipFile;
-        String zipFilename = boleta.getSerie() + "-" + boleta.getNumero() + ".zip";
-        try {
-            String xmlFileName = boleta.getSerie() + "-" + boleta.getNumero() + ".xml";
-            zipFile = ZipBuilder.createZipInMemory()
-                    .add(file.getBytes())
-                    .path(xmlFileName)
-                    .save()
-                    .toBytes();
-        } catch (IOException e) {
-            throw new RuntimeException("No se pudo crear el zip");
-        }
-
-
-        byte[] responseBytes = sunatProvider.sendBill(zipFilename, zipFile);
-        DocumentoResponse documentoResponse = leerCDR(responseBytes);
-
-        if (documentoResponse.getResponseCode().equals("0")) {
-            try {
-                FileModel cdrFile = fileProvider.addFile("cdr.xml", responseBytes);
-                boleta.setCdrFileId(cdrFile.getFileName());
-            } catch (FileException e) {
-                e.printStackTrace();
-            }
-        } else {
-
-        }
-
-        finishDocumentManager.processBoleta(boleta);
+//        if (!boleta.getEstado().equals(EstadoComprobantePago.NO_REGISTRADO)) {
+//            logger.warnf("Documento Serie %s y Numero %s ya fue registrado previamente en la SUNAT", boleta.getSerie(), boleta.getNumero());
+//            return;
+//        }
+//
+//        byte[] zipFile;
+//        String zipFilename = boleta.getSerie() + "-" + boleta.getNumero() + ".zip";
+//        try {
+//            String xmlFileName = boleta.getSerie() + "-" + boleta.getNumero() + ".xml";
+//            zipFile = ZipBuilder.createZipInMemory()
+//                    .add(file.getBytes())
+//                    .path(xmlFileName)
+//                    .save()
+//                    .toBytes();
+//        } catch (IOException e) {
+//            throw new RuntimeException("No se pudo crear el zip");
+//        }
+//
+//
+//        byte[] responseBytes = sunatProvider.sendBill(zipFilename, zipFile);
+//        DocumentoResponse documentoResponse = leerCDR(responseBytes);
+//
+//        if (documentoResponse.getResponseCode().equals("0")) {
+//            try {
+//                FileModel cdrFile = fileProvider.addFile("cdr.xml", responseBytes);
+//                boleta.setCdrFileId(cdrFile.getFileName());
+//            } catch (FileException e) {
+//                e.printStackTrace();
+//            }
+//        } else {
+//
+//        }
+//
+//        finishDocumentManager.processBoleta(boleta);
     }
 
     @Asynchronous
@@ -99,7 +99,15 @@ public class SUNATManager {
             throw new RuntimeException("No se pudo crear el zip");
         }
 
-        byte[] responseBytes = sunatProvider.sendBill(documentName + ".zip", zipFile);
+        byte[] responseBytes;
+        try {
+            responseBytes = sunatProvider.sendBill(documentName + ".zip", zipFile);
+        } catch (SendSunatException e) {
+//            factura.addToHistorialEnviosSunat(EstadoEnvio.ERROR, e.codigo, e.descripcion);
+            System.out.println(e);
+            return;
+        }
+
         DocumentoResponse documentoResponse = leerCDR(responseBytes);
 
         if (documentoResponse.getResponseCode().equals("0")) {

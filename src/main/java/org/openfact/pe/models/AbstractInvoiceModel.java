@@ -39,5 +39,4 @@ public interface AbstractInvoiceModel {
 
     List<DetalleComprobantePagoModel> getDetalle();
     List<DetalleComprobantePagoModel> setDetalle(List<DetalleComprobantePagoBean> bean);
-
 }
