@@ -92,12 +92,7 @@ public class JpaFacturaProvider implements FacturaProvider {
                 return siguienteSerieNumero(organization, Optional.of(nuevaSerie));
             }
         } else {
-            String serie;
-            if (optionalSerie.isPresent()) {
-                serie = optionalSerie.get();
-            } else {
-                serie = TipoInvoice.FACTURA.getPrefijo() + PREFIJO_FACTURAS.orElse("") + 1;
-            }
+            String serie = optionalSerie.orElseGet(() -> TipoInvoice.FACTURA.getPrefijo() + PREFIJO_FACTURAS.orElse("") + 1);
             return new AbstractMap.SimpleEntry<>(serie, 1);
         }
     }

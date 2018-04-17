@@ -103,7 +103,7 @@ public class JAXBManager {
 
         // Enviar a la SUNAT
         if (factura.getEnviarSUNAT()) {
-            sunatManager.enviarFactura(factura, file);
+            sunatManager.enviarFactura(informacionAdicional, factura, file);
         }
     }
 

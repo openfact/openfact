@@ -92,12 +92,7 @@ public class JpaBoletaProvider implements BoletaProvider {
                 return siguienteSerieNumero(organization, Optional.of(nuevaSerie));
             }
         } else {
-            String serie;
-            if (optionalSerie.isPresent()) {
-                serie = optionalSerie.get();
-            } else {
-                serie = TipoInvoice.BOLETA.getPrefijo() + PREFIJO_BOLETAS.orElse("") + 1;
-            }
+            String serie = optionalSerie.orElseGet(() -> TipoInvoice.BOLETA.getPrefijo() + PREFIJO_BOLETAS.orElse("") + 1);
             return new AbstractMap.SimpleEntry<>(serie, 1);
         }
     }

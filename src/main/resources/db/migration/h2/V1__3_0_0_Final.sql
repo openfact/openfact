@@ -53,6 +53,24 @@
         primary key (id)
     );
 
+    create table comprobante_pago_detalle (
+       tipo_documento varchar(31) not null,
+        id varchar(255) not null,
+        cantidad decimal(13,3) not null,
+        descripcion varchar(255) not null,
+        precioUnitario decimal(12,2) not null,
+        subtotal decimal(12,2) not null,
+        tipoIGV varchar(255) not null,
+        total decimal(12,2) not null,
+        totalIGV decimal(12,2) not null,
+        totalISC decimal(12,2) not null,
+        unidadMedida varchar(255) not null,
+        valorUnitario decimal(12,2) not null,
+        factura_id varchar(255),
+        boleta_id varchar(255),
+        primary key (id)
+    );
+
     create table factura_pe (
        id varchar(255) not null,
         cdr_file_id varchar(255),
@@ -117,20 +135,20 @@
         guia_remision_enpoint varchar(255),
         password varchar(255),
         retencion_percepcion_endpoint varchar(255),
+        use_custom_config char(255) not null,
         usuario varchar(255),
         version integer,
         organizacion_id varchar(255) not null,
-        use_custom_config char(255) not null,
         primary key (organizacion_id)
     );
 
     create table memberships (
        id varchar(255) not null,
         created_on timestamp,
+        version integer,
         organization_id varchar(255),
         role_id varchar(255),
         user_id varchar(255),
-        version integer,
         primary key (id)
     );
 
@@ -238,6 +256,16 @@
        add constraint FK30o84r8uoxnh7wlbkw1a5mqje
        foreign key (component_id)
        references component;
+
+    alter table comprobante_pago_detalle
+       add constraint FKhludft0w1qrh126ra84k1ff0n
+       foreign key (factura_id)
+       references factura_pe;
+
+    alter table comprobante_pago_detalle
+       add constraint FKn33sdvallftn2wknt18ylntv1
+       foreign key (boleta_id)
+       references boleta_pe;
 
     alter table factura_pe
        add constraint FK9oschd9swwx4u57m0di53x459

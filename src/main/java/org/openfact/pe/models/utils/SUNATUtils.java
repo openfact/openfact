@@ -9,7 +9,7 @@ public class SUNATUtils {
         // Just utils class
     }
 
-    public static String incrementarSerie(String serie) {
+    public static String getNumeroSerie(String serie) {
         Pattern pattern = Pattern.compile("[0-9]+");
         Matcher matcher = pattern.matcher(serie);
         String numeroSerie = null;
@@ -20,7 +20,25 @@ public class SUNATUtils {
             throw new IllegalStateException("Serie Invalida, no se pudo extraer el Numero de Serie");
         }
 
+        return numeroSerie;
+    }
+
+    public static String incrementarSerie(String serie) {
+        String numeroSerie = getNumeroSerie(serie);
         String prefijoSerie = serie.replaceFirst(numeroSerie, "");
         return prefijoSerie + (Integer.parseInt(numeroSerie) + 1);
+    }
+
+    public static String getSerieConCerosCompletados(String serie) {
+        String numeroSerie = getNumeroSerie(serie);
+        String prefijoSerie = serie.replaceFirst(numeroSerie, "");
+
+        int longitud = numeroSerie.length() + prefijoSerie.length();
+        if (4 > longitud) {
+            int cerosFaltantes = 4 - longitud + 1;
+            numeroSerie = String.format("%0" + cerosFaltantes + "d", Integer.parseInt(numeroSerie));
+        }
+
+        return prefijoSerie + numeroSerie;
     }
 }

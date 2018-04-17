@@ -37,8 +37,8 @@ public abstract class AbstractInvoiceRepresentation {
     private Boolean enviarCliente;
 
     @NotNull
-    @Size(min = 1)
     @Valid
+    @NotEmpty
     private List<ComprobanteDetalleRepresentation> detalle;
 
     public String getId() {
