@@ -1,0 +1,25 @@
+{
+  "id": "master",
+  "name": "master",
+  "type": "master",
+  "useCustomCertificates": true,
+  "useCustomSmtpConfig": true,
+  "informacionAdicional": {
+    "assignedId": "10467793549",
+    "additionalAssignedId": "6",
+    "razonSocial": "Carlos Esteban Feria Vila",
+    "nombreComercial": "Carlosthe19916",
+    "region": "Ayacucho",
+    "provincia": "Huamanga",
+    "distrito": "Jesús Nazareno",
+    "codigoPostal": "050102",
+    "codigoPais": "PE",
+    "direccion": "Jr. los desarrolladores 478"
+  },
+  "informacionSunat": {
+    "useCustomConfig": true,
+    "usuario": "MOD_DATOS",
+    "password": "MOD_DATOS",
+    "boletaFacturaEndpoint": "https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService"
+  }
+}

@@ -87,8 +87,8 @@ public class ModelToRepresentation {
 
     private static TotalImpuestosRepresentation toTotalImpuestosRepresentation(ImpuestosModel impuestos) {
         TotalImpuestosRepresentation rep = new TotalImpuestosRepresentation();
-        rep.setIGV(impuestos.getIGV());
-        rep.setISC(impuestos.getISC());
+        rep.setIgv(impuestos.getIGV());
+        rep.setIsc(impuestos.getISC());
         return rep;
     }
 

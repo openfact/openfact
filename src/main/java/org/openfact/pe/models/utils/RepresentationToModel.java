@@ -1,9 +1,7 @@
 package org.openfact.pe.models.utils;
 
 import org.openfact.pe.idm.*;
-import org.openfact.pe.models.AbstractInvoiceModel;
-import org.openfact.pe.models.ClienteModel;
-import org.openfact.pe.models.DetalleComprobantePagoBean;
+import org.openfact.pe.models.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,6 +12,63 @@ public class RepresentationToModel {
         // just
     }
 
+    public static void modelToRepresentation(OrganizacionInformacionAdicionalModel model, OrganizacionInformacionAdicionalRepresentation rep) {
+        if (rep.getAssignedId() != null) {
+            model.setAssignedId(rep.getAssignedId());
+        }
+        if (rep.getAdditionalAssignedId() != null) {
+            model.setAdditionalAssignedId(rep.getAdditionalAssignedId());
+        }
+        if (rep.getRazonSocial() != null) {
+            model.setRazonSocial(rep.getRazonSocial());
+        }
+        if (rep.getNombreComercial() != null) {
+            model.setNombreComercial(rep.getNombreComercial());
+        }
+        if (rep.getRegion() != null) {
+            model.setRegion(rep.getRegion());
+        }
+        if (rep.getProvincia() != null) {
+            model.setProvincia(rep.getProvincia());
+        }
+        if (rep.getDistrito() != null) {
+            model.setDistrito(rep.getDistrito());
+        }
+        if (rep.getCodigoPostal() != null) {
+            model.setCodigoPostal(rep.getCodigoPostal());
+        }
+        if (rep.getDireccion() != null) {
+            model.setDireccion(rep.getDireccion());
+        }
+    }
+
+    public static void modelToRepresentation(OrganizacionInformacionSUNATModel model, OrganizacionInformacionSUNATRepresentation rep) {
+        if (rep.getUseCustomConfig() != null) {
+            model.setUseCustomConfig(rep.getUseCustomConfig());
+        }
+        if (rep.getUsuario() != null) {
+            model.setUsuario(rep.getUsuario());
+        }
+        if (rep.getPassword() != null) {
+            model.setPassword(rep.getPassword());
+        }
+        if (rep.getBoletaFacturaEndpoint() != null) {
+            model.setBoletaFacturaEndpoint(rep.getBoletaFacturaEndpoint());
+        }
+        if (rep.getGuiaRemisionEndpoint() != null) {
+            model.setGuiaRemisionEndpoint(rep.getGuiaRemisionEndpoint());
+        }
+        if (rep.getRetencionPercepcionEndpoint() != null) {
+            model.setRetencionPercepcionEndpoint(rep.getRetencionPercepcionEndpoint());
+        }
+        if (rep.getConsultaFacturaEndpoint() != null) {
+            model.setConsultaFacturaEndpoint(rep.getConsultaFacturaEndpoint());
+        }
+        if (rep.getConsultaCdrEndpoint() != null) {
+            model.setConsultaCdrEndpoint(rep.getConsultaCdrEndpoint());
+        }
+    }
+    
     public static void modelToRepresentation(AbstractInvoiceModel model, AbstractInvoiceRepresentation rep) {
         if (rep.getEnviarSUNAT() != null) {
             model.setEnviarSUNAT(rep.getEnviarSUNAT());
@@ -77,11 +132,11 @@ public class RepresentationToModel {
 
         TotalImpuestosRepresentation totalImpuestosRepresentation = rep.getTotalImpuestos();
         if (totalImpuestosRepresentation != null) {
-            if (totalImpuestosRepresentation.getIGV() != null) {
-                model.getImpuestos().setIGV(totalImpuestosRepresentation.getIGV());
+            if (totalImpuestosRepresentation.getIgv() != null) {
+                model.getImpuestos().setIGV(totalImpuestosRepresentation.getIgv());
             }
-            if (totalImpuestosRepresentation.getISC() != null) {
-                model.getImpuestos().setISC(totalImpuestosRepresentation.getISC());
+            if (totalImpuestosRepresentation.getIsc() != null) {
+                model.getImpuestos().setISC(totalImpuestosRepresentation.getIsc());
             }
         }
 

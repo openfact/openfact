@@ -8,26 +8,26 @@ public class TotalImpuestosRepresentation {
 
     @NotNull
     @Digits(integer = 10, fraction = 2)
-    private BigDecimal IGV;
+    private BigDecimal igv;
 
     @NotNull
     @Digits(integer = 10, fraction = 2)
-    private BigDecimal ISC;
+    private BigDecimal isc;
 
-    public BigDecimal getIGV() {
-        return IGV;
+    public BigDecimal getIgv() {
+        return igv;
     }
 
-    public void setIGV(BigDecimal IGV) {
-        this.IGV = IGV;
+    public void setIgv(BigDecimal igv) {
+        this.igv = igv;
     }
 
-    public BigDecimal getISC() {
-        return ISC;
+    public BigDecimal getIsc() {
+        return isc;
     }
 
-    public void setISC(BigDecimal ISC) {
-        this.ISC = ISC;
+    public void setIsc(BigDecimal isc) {
+        this.isc = isc;
     }
 
 }

@@ -10,6 +10,7 @@ import org.openfact.pe.models.OrganizacionInformacionSUNATModel;
 import org.openfact.pe.models.OrganizationInformacionAdicionalProvider;
 import org.openfact.pe.models.OrganizationInformacionSUNATProvider;
 import org.openfact.pe.models.utils.ModelToRepresentation;
+import org.openfact.pe.models.utils.RepresentationToModel;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -29,6 +30,7 @@ public class DefaultOrganizacionesResource implements OrganizacionesResource {
 
     @Inject
     private OrganizationInformacionSUNATProvider organizationInformacionSUNATProvider;
+
     @Override
     public OrganizacionInformacionAdicionalRepresentation getOrganization(String organizationId) {
         if (!securityContext.isAdmin() && !securityContext.hasPermission(PermissionType.organization_view, organizationId)) {
@@ -46,16 +48,7 @@ public class DefaultOrganizacionesResource implements OrganizacionesResource {
         }
 
         OrganizacionInformacionAdicionalModel informacionAdicional = organizationInformacionAdicionalProvider.getOrganizacionInformacionAdicional(organizationId).orElseThrow(() -> new BadRequestException("Company not found"));
-
-        informacionAdicional.setAssignedId(rep.getAssignedId());
-        informacionAdicional.setAdditionalAssignedId(rep.getAdditionalAssignedId());
-        informacionAdicional.setRazonSocial(rep.getRazonSocial());
-        informacionAdicional.setNombreComercial(rep.getNombreComercial());
-        informacionAdicional.setRegion(rep.getRegion());
-        informacionAdicional.setProvincia(rep.getProvincia());
-        informacionAdicional.setDistrito(rep.getDistrito());
-        informacionAdicional.setCodigoPostal(rep.getCodigoPostal());
-        informacionAdicional.setDireccion(rep.getDireccion());
+        RepresentationToModel.modelToRepresentation(informacionAdicional, rep);
 
         return ModelToRepresentation.toRepresentation(informacionAdicional, true);
     }
@@ -77,38 +70,7 @@ public class DefaultOrganizacionesResource implements OrganizacionesResource {
         }
 
         OrganizacionInformacionSUNATModel sunatInformacion = organizationInformacionSUNATProvider.getOrganizacionInformacionSUNAT(organizationId).orElseThrow(() -> new BadRequestException("Organization not found"));
-
-        if (rep.getUseCustomConfig() != null) {
-            sunatInformacion.setUseCustomConfig(rep.getUseCustomConfig());
-        }
-
-        if (rep.getUsuario() != null) {
-            sunatInformacion.setUsuario(rep.getUsuario());
-        }
-
-        if (rep.getPassword() != null) {
-            sunatInformacion.setPassword(rep.getPassword());
-        }
-
-        if (rep.getBoletaFacturaEndpoint() != null) {
-            sunatInformacion.setBoletaFacturaEndpoint(rep.getBoletaFacturaEndpoint());
-        }
-
-        if (rep.getGuiaRemisionEndpoint() != null) {
-            sunatInformacion.setGuiaRemisionEndpoint(rep.getGuiaRemisionEndpoint());
-        }
-
-        if (rep.getRetencionPercepcionEndpoint() != null) {
-            sunatInformacion.setRetencionPercepcionEndpoint(rep.getRetencionPercepcionEndpoint());
-        }
-
-        if (rep.getConsultaFacturaEndpoint() != null) {
-            sunatInformacion.setConsultaFacturaEndpoint(rep.getConsultaFacturaEndpoint());
-        }
-
-        if (rep.getConsultaCdrEndpoint() != null) {
-            sunatInformacion.setConsultaCdrEndpoint(rep.getConsultaCdrEndpoint());
-        }
+        RepresentationToModel.modelToRepresentation(sunatInformacion, rep);
 
         return ModelToRepresentation.toRepresentation(sunatInformacion, true);
     }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class FacturaAdapter implements FacturaModel{
+public class FacturaAdapter implements FacturaModel {
 
     private final EntityManager em;
     private final FacturaEntity factura;
@@ -183,8 +183,9 @@ public class FacturaAdapter implements FacturaModel{
         List<DetalleComprobantePagoModel> result = new ArrayList<>();
 
         em.createNamedQuery("deleteFacturaDetalle").setParameter("idFactura", factura.getId()).executeUpdate();
+        factura.setDetalle(new ArrayList<>());
 
-        for (DetalleComprobantePagoBean bean: beans) {
+        for (DetalleComprobantePagoBean bean : beans) {
             FacturaDetalleEntity detalleEntity = new FacturaDetalleEntity();
 
             detalleEntity.setId(ModelUtils.generateId());
@@ -202,6 +203,7 @@ public class FacturaAdapter implements FacturaModel{
             detalleEntity.setTotalISC(bean.getTotalISC());
 
             em.persist(detalleEntity);
+            factura.getDetalle().add(detalleEntity);
 
             result.add(new DetalleComprobantePagoAdapter(detalleEntity));
         }
