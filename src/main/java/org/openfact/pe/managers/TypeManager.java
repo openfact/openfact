@@ -100,7 +100,7 @@ public class TypeManager {
         try {
             byte[] bytes = toBytes(invoiceType);
 
-            String fileName = "Invoice_Factura" + ModelUtils.generateId() + ".xml";
+            String fileName = "Invoice_Factura_" + ModelUtils.generateId() + ".xml";
             FileModel file = fileProvider.addFile(fileName, bytes);
 
             factura.setFileId(file.getFileName());
