@@ -27,7 +27,7 @@ public class ModelToRepresentation {
     }
 
 
-    public static OrganizacionInformacionSUNATRepresentation toRepresentation(OrganizacionInformacionSUNATModel model, boolean fullInfo) {
+    public static OrganizacionInformacionSUNATRepresentation toRepresentation(OrganizacionInformacionSunatModel model, boolean fullInfo) {
         OrganizacionInformacionSUNATRepresentation rep = new OrganizacionInformacionSUNATRepresentation();
 
         rep.setId(model.getId());

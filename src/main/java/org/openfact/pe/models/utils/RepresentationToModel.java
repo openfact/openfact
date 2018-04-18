@@ -42,7 +42,7 @@ public class RepresentationToModel {
         }
     }
 
-    public static void modelToRepresentation(OrganizacionInformacionSUNATModel model, OrganizacionInformacionSUNATRepresentation rep) {
+    public static void modelToRepresentation(OrganizacionInformacionSunatModel model, OrganizacionInformacionSUNATRepresentation rep) {
         if (rep.getUseCustomConfig() != null) {
             model.setUseCustomConfig(rep.getUseCustomConfig());
         }

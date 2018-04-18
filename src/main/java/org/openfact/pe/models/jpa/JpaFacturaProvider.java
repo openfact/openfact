@@ -8,7 +8,7 @@ import org.openfact.pe.models.FacturaModel;
 import org.openfact.pe.models.FacturaProvider;
 import org.openfact.pe.models.jpa.entities.FacturaEntity;
 import org.openfact.pe.models.types.TipoInvoice;
-import org.openfact.pe.models.utils.SUNATUtils;
+import org.openfact.pe.models.utils.SunatUtils;
 import org.wildfly.swarm.spi.runtime.annotations.ConfigurationValue;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -88,7 +88,7 @@ public class JpaFacturaProvider implements FacturaProvider {
                 }
                 return new AbstractMap.SimpleEntry<>(ultimaSerie, siguienteNumero);
             } else {
-                String nuevaSerie = SUNATUtils.incrementarSerie(ultimaSerie);
+                String nuevaSerie = SunatUtils.incrementarSerie(ultimaSerie);
                 return siguienteSerieNumero(organization, Optional.of(nuevaSerie));
             }
         } else {

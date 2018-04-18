@@ -30,14 +30,14 @@ public class ModelToType {
         // Just util class
     }
 
-    public static InvoiceType toInvoiceType(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, BoletaModel boleta, Document firmaDigital) {
+    public static InvoiceType toBoleta(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, BoletaModel boleta, Document firmaDigital) {
         InvoiceType invoiceType = buildInvoiceType(organization, additionalInfo, boleta, firmaDigital);
         invoiceType.setInvoiceTypeCode(TypeUtils.buildInvoiceTypeCodeType(TipoInvoice.BOLETA.getCodigo()));
 
         return invoiceType;
     }
 
-    public static InvoiceType toInvoiceType(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, FacturaModel factura, Document firmaDigital) {
+    public static InvoiceType toFactura(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, FacturaModel factura, Document firmaDigital) {
         InvoiceType invoiceType = buildInvoiceType(organization, additionalInfo, factura, firmaDigital);
         invoiceType.setInvoiceTypeCode(TypeUtils.buildInvoiceTypeCodeType(TipoInvoice.FACTURA.getCodigo()));
 

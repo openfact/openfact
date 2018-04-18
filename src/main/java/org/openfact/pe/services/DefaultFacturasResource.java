@@ -35,9 +35,6 @@ public class DefaultFacturasResource implements FacturasResource {
     @Inject
     private OrganizationProvider organizationProvider;
 
-    @Inject
-    private OrganizationInformacionAdicionalProvider informacionAdicionalProvider;
-
     @Override
     public List<FacturaRepresentation> getFacturas(String organizationId, String estado, int offset, int limit) {
         EstadoComprobantePago estadoComprobantePago = EstadoComprobantePago.valueOf(estado.toUpperCase());
@@ -91,8 +88,7 @@ public class DefaultFacturasResource implements FacturasResource {
         RepresentationToModel.modelToRepresentation(factura, rep);
 
         // Recalcular XML
-        OrganizacionInformacionAdicionalModel additionalInfo = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organization).orElseThrow(() -> new NotFoundException("Información adicional no encontrada"));
-        typeManager.buildFactura(organization, additionalInfo, factura);
+        typeManager.buildFactura(organization, factura);
 
         return ModelToRepresentation.toRepresentation(factura, true);
     }
@@ -104,8 +100,7 @@ public class DefaultFacturasResource implements FacturasResource {
         RepresentationToModel.modelToRepresentation(factura, representation);
 
         // Recalcular XML
-        Optional<OrganizacionInformacionAdicionalModel> informacionAdicional = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organization);
-        typeManager.buildFactura(organization, informacionAdicional.get(), factura);
+        typeManager.buildFactura(organization, factura);
     }
 
     @Override

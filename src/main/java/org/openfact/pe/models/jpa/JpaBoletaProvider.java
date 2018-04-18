@@ -8,7 +8,7 @@ import org.openfact.pe.models.BoletaProvider;
 import org.openfact.pe.models.EstadoComprobantePago;
 import org.openfact.pe.models.jpa.entities.BoletaEntity;
 import org.openfact.pe.models.types.TipoInvoice;
-import org.openfact.pe.models.utils.SUNATUtils;
+import org.openfact.pe.models.utils.SunatUtils;
 import org.wildfly.swarm.spi.runtime.annotations.ConfigurationValue;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -88,7 +88,7 @@ public class JpaBoletaProvider implements BoletaProvider {
                 }
                 return new AbstractMap.SimpleEntry<>(ultimaSerie, siguienteNumero);
             } else {
-                String nuevaSerie = SUNATUtils.incrementarSerie(ultimaSerie);
+                String nuevaSerie = SunatUtils.incrementarSerie(ultimaSerie);
                 return siguienteSerieNumero(organization, Optional.of(nuevaSerie));
             }
         } else {

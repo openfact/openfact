@@ -2,12 +2,14 @@ package org.openfact.pe.models;
 
 public class SendSunatException extends Exception {
 
-    public final String codigo;
-    public final String descripcion;
+    private final String message;
 
-    public SendSunatException(String codigo, String descripcion) {
-        this.codigo = codigo;
-        this.descripcion = descripcion;
+    public SendSunatException(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
     }
 
 }

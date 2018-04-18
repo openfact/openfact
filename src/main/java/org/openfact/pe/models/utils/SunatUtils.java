@@ -1,11 +1,13 @@
 package org.openfact.pe.models.utils;
 
+import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_2.ResponseType;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SUNATUtils {
+public class SunatUtils {
 
-    private SUNATUtils() {
+    private SunatUtils() {
         // Just utils class
     }
 
@@ -29,16 +31,20 @@ public class SUNATUtils {
         return prefijoSerie + (Integer.parseInt(numeroSerie) + 1);
     }
 
-    public static String getSerieConCerosCompletados(String serie) {
+    public static String getSerieConCerosCompletados(String serie, int n) {
         String numeroSerie = getNumeroSerie(serie);
         String prefijoSerie = serie.replaceFirst(numeroSerie, "");
 
         int longitud = numeroSerie.length() + prefijoSerie.length();
         if (4 > longitud) {
-            int cerosFaltantes = 4 - longitud + 1;
+            int cerosFaltantes = n - longitud + 1;
             numeroSerie = String.format("%0" + cerosFaltantes + "d", Integer.parseInt(numeroSerie));
         }
 
         return prefijoSerie + numeroSerie;
+    }
+
+    public static ResponseType readCdr(byte[] sunatResponse) {
+        return null;
     }
 }

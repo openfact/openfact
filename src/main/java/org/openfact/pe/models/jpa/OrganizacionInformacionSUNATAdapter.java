@@ -1,11 +1,11 @@
 package org.openfact.pe.models.jpa;
 
-import org.openfact.pe.models.OrganizacionInformacionSUNATModel;
+import org.openfact.pe.models.OrganizacionInformacionSunatModel;
 import org.openfact.pe.models.jpa.entities.OrganizacionInformacionSUNATEntity;
 
 import javax.persistence.EntityManager;
 
-public class OrganizacionInformacionSUNATAdapter implements OrganizacionInformacionSUNATModel {
+public class OrganizacionInformacionSUNATAdapter implements OrganizacionInformacionSunatModel {
 
     private final EntityManager em;
     private final OrganizacionInformacionSUNATEntity entity;

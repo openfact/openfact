@@ -36,9 +36,6 @@ public class DefaultBoletasResource implements BoletasResource {
     @Inject
     private OrganizationProvider organizationProvider;
 
-    @Inject
-    private OrganizationInformacionAdicionalProvider informacionAdicionalProvider;
-
     @Override
     public List<BoletaRepresentation> getBoletas(String organizationId, String estado, int offset, int limit) {
         EstadoComprobantePago estadoComprobantePago = EstadoComprobantePago.valueOf(estado.toUpperCase());
@@ -92,8 +89,7 @@ public class DefaultBoletasResource implements BoletasResource {
         RepresentationToModel.modelToRepresentation(boleta, rep);
 
         // Recalcular XML
-        OrganizacionInformacionAdicionalModel additionalInfo = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organization).orElseThrow(() -> new NotFoundException("Información adicional no encontrada"));
-        typeManager.buildBoleta(organization, additionalInfo, boleta);
+        typeManager.buildBoleta(organization, boleta);
 
         return ModelToRepresentation.toRepresentation(boleta, true);
     }
@@ -108,8 +104,7 @@ public class DefaultBoletasResource implements BoletasResource {
         RepresentationToModel.modelToRepresentation(boleta, representation);
 
         // Recalcular XML
-        Optional<OrganizacionInformacionAdicionalModel> informacionAdicional = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organization);
-        typeManager.buildBoleta(organization, informacionAdicional.get(), boleta);
+        typeManager.buildBoleta(organization, boleta);
     }
 
     @Override

@@ -2,8 +2,8 @@ package org.openfact.pe.models.jpa;
 
 import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.jpa.entities.OrganizationEntity;
-import org.openfact.pe.models.OrganizacionInformacionSUNATModel;
-import org.openfact.pe.models.OrganizationInformacionSUNATProvider;
+import org.openfact.pe.models.OrganizacionInformacionSunatModel;
+import org.openfact.pe.models.OrganizationInformacionSunatProvider;
 import org.openfact.pe.models.jpa.entities.OrganizacionInformacionSUNATEntity;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -17,13 +17,13 @@ import java.util.Optional;
 
 @Transactional
 @ApplicationScoped
-public class JpaOrganizacionInformacionSUNATProvider implements OrganizationInformacionSUNATProvider {
+public class JpaOrganizacionInformacionSUNATProvider implements OrganizationInformacionSunatProvider {
 
     @PersistenceContext
     private EntityManager em;
 
     @Override
-    public Optional<OrganizacionInformacionSUNATModel> getOrganizacionInformacionSUNAT(String id) {
+    public Optional<OrganizacionInformacionSunatModel> getOrganizacionInformacionSUNAT(String id) {
         OrganizationEntity companyEntity = em.find(OrganizationEntity.class, id);
         if (companyEntity == null) return Optional.empty();
 
@@ -44,7 +44,7 @@ public class JpaOrganizacionInformacionSUNATProvider implements OrganizationInfo
     }
 
     @Override
-    public Optional<OrganizacionInformacionSUNATModel> getOrganizacionInformacionSUNAT(OrganizationModel organization) {
+    public Optional<OrganizacionInformacionSunatModel> getOrganizacionInformacionSUNAT(OrganizationModel organization) {
         return getOrganizacionInformacionSUNAT(organization.getId());
     }
 }

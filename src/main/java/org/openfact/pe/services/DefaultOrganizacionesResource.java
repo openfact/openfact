@@ -6,9 +6,9 @@ import org.openfact.pe.OrganizacionesResource;
 import org.openfact.pe.idm.OrganizacionInformacionAdicionalRepresentation;
 import org.openfact.pe.idm.OrganizacionInformacionSUNATRepresentation;
 import org.openfact.pe.models.OrganizacionInformacionAdicionalModel;
-import org.openfact.pe.models.OrganizacionInformacionSUNATModel;
+import org.openfact.pe.models.OrganizacionInformacionSunatModel;
 import org.openfact.pe.models.OrganizationInformacionAdicionalProvider;
-import org.openfact.pe.models.OrganizationInformacionSUNATProvider;
+import org.openfact.pe.models.OrganizationInformacionSunatProvider;
 import org.openfact.pe.models.utils.ModelToRepresentation;
 import org.openfact.pe.models.utils.RepresentationToModel;
 
@@ -29,7 +29,7 @@ public class DefaultOrganizacionesResource implements OrganizacionesResource {
     private OrganizationInformacionAdicionalProvider organizationInformacionAdicionalProvider;
 
     @Inject
-    private OrganizationInformacionSUNATProvider organizationInformacionSUNATProvider;
+    private OrganizationInformacionSunatProvider organizationInformacionSUNATProvider;
 
     @Override
     public OrganizacionInformacionAdicionalRepresentation getOrganization(String organizationId) {
@@ -59,7 +59,7 @@ public class DefaultOrganizacionesResource implements OrganizacionesResource {
             throw new ForbiddenException();
         }
 
-        OrganizacionInformacionSUNATModel informacionSUNAT = organizationInformacionSUNATProvider.getOrganizacionInformacionSUNAT(organizationId).orElseThrow(() -> new BadRequestException("Organization not found"));
+        OrganizacionInformacionSunatModel informacionSUNAT = organizationInformacionSUNATProvider.getOrganizacionInformacionSUNAT(organizationId).orElseThrow(() -> new BadRequestException("Organization not found"));
         return ModelToRepresentation.toRepresentation(informacionSUNAT, true);
     }
 
@@ -69,7 +69,7 @@ public class DefaultOrganizacionesResource implements OrganizacionesResource {
             throw new ForbiddenException();
         }
 
-        OrganizacionInformacionSUNATModel sunatInformacion = organizationInformacionSUNATProvider.getOrganizacionInformacionSUNAT(organizationId).orElseThrow(() -> new BadRequestException("Organization not found"));
+        OrganizacionInformacionSunatModel sunatInformacion = organizationInformacionSUNATProvider.getOrganizacionInformacionSUNAT(organizationId).orElseThrow(() -> new BadRequestException("Organization not found"));
         RepresentationToModel.modelToRepresentation(sunatInformacion, rep);
 
         return ModelToRepresentation.toRepresentation(sunatInformacion, true);

@@ -8,9 +8,9 @@ import org.openfact.core.models.OrganizationProvider;
 import org.openfact.core.models.utils.RepresentationToModel;
 import org.openfact.pe.idm.OrganizacionImportadaRepresentation;
 import org.openfact.pe.models.OrganizacionInformacionAdicionalModel;
-import org.openfact.pe.models.OrganizacionInformacionSUNATModel;
+import org.openfact.pe.models.OrganizacionInformacionSunatModel;
 import org.openfact.pe.models.OrganizationInformacionAdicionalProvider;
-import org.openfact.pe.models.OrganizationInformacionSUNATProvider;
+import org.openfact.pe.models.OrganizationInformacionSunatProvider;
 import org.wildfly.swarm.spi.runtime.annotations.ConfigurationValue;
 
 import javax.annotation.PostConstruct;
@@ -42,7 +42,7 @@ public class ImportarOrganizacionBootstrap {
     private OrganizationInformacionAdicionalProvider organizationInformacionAdicionalProvider;
 
     @Inject
-    private OrganizationInformacionSUNATProvider organizationInformacionSUNATProvider;
+    private OrganizationInformacionSunatProvider organizationInformacionSUNATProvider;
 
     @PostConstruct
     private void bootstrap() {
@@ -77,7 +77,7 @@ public class ImportarOrganizacionBootstrap {
         OrganizacionInformacionAdicionalModel informacionAdicional = organizationInformacionAdicionalProvider.getOrganizacionInformacionAdicional(organization.getId()).orElseThrow(() -> new ModelRuntimeException("Organization not found"));
         org.openfact.pe.models.utils.RepresentationToModel.modelToRepresentation(informacionAdicional, rep.getInformacionAdicional());
 
-        OrganizacionInformacionSUNATModel sunatInformacion = organizationInformacionSUNATProvider.getOrganizacionInformacionSUNAT(organization.getId()).orElseThrow(() -> new ModelRuntimeException("Organization not found"));
+        OrganizacionInformacionSunatModel sunatInformacion = organizationInformacionSUNATProvider.getOrganizacionInformacionSUNAT(organization.getId()).orElseThrow(() -> new ModelRuntimeException("Organization not found"));
         org.openfact.pe.models.utils.RepresentationToModel.modelToRepresentation(sunatInformacion, rep.getInformacionSunat());
     }
 

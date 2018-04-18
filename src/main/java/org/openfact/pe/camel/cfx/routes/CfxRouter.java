@@ -12,9 +12,11 @@ public class CfxRouter extends RouteBuilder {
 
     private static final Logger logger = Logger.getLogger(CfxRouter.class);
 
+    public static final String SEND_BILL_URI = "direct:sunatSendBill";
+
     @Override
     public void configure() {
-        from("direct:start")
+        from(SEND_BILL_URI)
                 .end()
                 .toD("cxf:https://e-beta.sunat.gob.pe/ol-ti-itcpfegem-beta/billService?serviceClass=pe.gob.sunat.service.BillService&serviceName=urn:sendBill");
     }

@@ -1,6 +1,6 @@
 package org.openfact.pe.models;
 
-public interface OrganizacionInformacionSUNATModel {
+public interface OrganizacionInformacionSunatModel {
     String getId();
 
     boolean isUseCustomConfig();
