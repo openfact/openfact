@@ -2,13 +2,10 @@ package org.openfact.pe.models.utils;
 
 import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_2.*;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_2.*;
-import org.openfact.pe.models.TotalModel;
 import un.unece.uncefact.codelist.specification._54217._2001.CurrencyCodeContentType;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.TimeZone;
 
 public class TypeUtils {
 

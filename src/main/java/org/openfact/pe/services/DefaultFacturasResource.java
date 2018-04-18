@@ -4,7 +4,7 @@ import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.OrganizationProvider;
 import org.openfact.pe.FacturasResource;
 import org.openfact.pe.idm.FacturaRepresentation;
-import org.openfact.pe.managers.JAXBManager;
+import org.openfact.pe.managers.TypeManager;
 import org.openfact.pe.models.*;
 import org.openfact.pe.models.types.TipoInvoice;
 import org.openfact.pe.models.utils.ModelToRepresentation;
@@ -27,16 +27,16 @@ import java.util.stream.Collectors;
 public class DefaultFacturasResource implements FacturasResource {
 
     @Inject
-    private OrganizationProvider organizationProvider;
-
-    @Inject
-    private OrganizationInformacionAdicionalProvider informacionAdicionalProvider;
+    private TypeManager typeManager;
 
     @Inject
     private FacturaProvider facturaProvider;
 
     @Inject
-    private JAXBManager jaxbManager;
+    private OrganizationProvider organizationProvider;
+
+    @Inject
+    private OrganizationInformacionAdicionalProvider informacionAdicionalProvider;
 
     @Override
     public List<FacturaRepresentation> getFacturas(String organizationId, String estado, int offset, int limit) {
@@ -50,11 +50,11 @@ public class DefaultFacturasResource implements FacturasResource {
     }
 
     @Override
-    public FacturaRepresentation crearFactura(String organizationId, FacturaRepresentation representation) {
+    public FacturaRepresentation crearFactura(String organizationId, FacturaRepresentation rep) {
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
 
-        String serie = representation.getSerie();
-        Integer numero = representation.getNumero();
+        String serie = rep.getSerie();
+        Integer numero = rep.getNumero();
 
         FacturaModel factura;
         if (serie == null) {
@@ -76,23 +76,23 @@ public class DefaultFacturasResource implements FacturasResource {
         }
 
         // Datos por defecto si no son especificadas
-        if (representation.getFecha() == null) {
+        if (rep.getFecha() == null) {
             factura.getFecha().setEmision(Calendar.getInstance().getTime());
             factura.getFecha().setVencimiento(Calendar.getInstance().getTime());
         }
-        if (representation.getEnviarSUNAT() == null) {
+        if (rep.getEnviarSUNAT() == null) {
             factura.setEnviarSUNAT(true);
         }
-        if (representation.getEnviarCliente() == null) {
+        if (rep.getEnviarCliente() == null) {
             factura.setEnviarCliente(true);
         }
 
         // Merge
-        RepresentationToModel.modelToRepresentation(factura, representation);
+        RepresentationToModel.modelToRepresentation(factura, rep);
 
         // Recalcular XML
-        Optional<OrganizacionInformacionAdicionalModel> informacionAdicional = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organization);
-        jaxbManager.buildFactura(organization, informacionAdicional.orElseThrow(() -> new NotFoundException("Informacion adicional no encontrada")), factura);
+        OrganizacionInformacionAdicionalModel additionalInfo = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organization).orElseThrow(() -> new NotFoundException("Información adicional no encontrada"));
+        typeManager.buildFactura(organization, additionalInfo, factura);
 
         return ModelToRepresentation.toRepresentation(factura, true);
     }
@@ -105,7 +105,7 @@ public class DefaultFacturasResource implements FacturasResource {
 
         // Recalcular XML
         Optional<OrganizacionInformacionAdicionalModel> informacionAdicional = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organization);
-        jaxbManager.buildFactura(organization, informacionAdicional.get(), factura);
+        typeManager.buildFactura(organization, informacionAdicional.get(), factura);
     }
 
     @Override

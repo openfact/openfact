@@ -10,7 +10,6 @@ public class TotalImpuestosRepresentation {
     @Digits(integer = 10, fraction = 2)
     private BigDecimal igv;
 
-    @NotNull
     @Digits(integer = 10, fraction = 2)
     private BigDecimal isc;
 

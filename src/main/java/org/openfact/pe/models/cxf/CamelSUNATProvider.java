@@ -1,7 +1,6 @@
 package org.openfact.pe.models.cxf;
 
 import org.apache.camel.CamelContext;
-import org.apache.camel.CamelExecutionException;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.cdi.ContextName;
 import org.openfact.pe.models.SendSunatException;
@@ -13,9 +12,6 @@ import javax.activation.DataSource;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.mail.util.ByteArrayDataSource;
-import javax.xml.soap.SOAPFactory;
-import javax.xml.soap.SOAPFault;
-import javax.xml.ws.soap.SOAPFaultException;
 
 @ApplicationScoped
 public class CamelSUNATProvider implements SunatProvider {

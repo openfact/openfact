@@ -1,7 +1,5 @@
 package org.openfact.pe.models.jpa.entities;
 
-import org.openfact.core.models.jpa.entities.OrganizationEntity;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 

@@ -1,6 +1,7 @@
 package org.openfact.pe.idm;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 public class ComprobanteDetalleRepresentation {

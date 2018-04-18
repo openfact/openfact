@@ -4,7 +4,6 @@ import org.openfact.core.models.utils.ModelUtils;
 import org.openfact.pe.models.*;
 import org.openfact.pe.models.jpa.entities.BoletaDetalleEntity;
 import org.openfact.pe.models.jpa.entities.BoletaEntity;
-import org.openfact.pe.models.jpa.entities.FacturaDetalleEntity;
 
 import javax.persistence.EntityManager;
 import java.util.ArrayList;

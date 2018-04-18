@@ -4,13 +4,14 @@ import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.OrganizationProvider;
 import org.openfact.pe.BoletasResource;
 import org.openfact.pe.idm.BoletaRepresentation;
-import org.openfact.pe.managers.JAXBManager;
+import org.openfact.pe.managers.TypeManager;
 import org.openfact.pe.models.*;
 import org.openfact.pe.models.types.TipoInvoice;
 import org.openfact.pe.models.utils.ModelToRepresentation;
 import org.openfact.pe.models.utils.RepresentationToModel;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.BadRequestException;
@@ -27,16 +28,16 @@ import java.util.stream.Collectors;
 public class DefaultBoletasResource implements BoletasResource {
 
     @Inject
-    private OrganizationProvider organizationProvider;
-
-    @Inject
-    private OrganizationInformacionAdicionalProvider informacionAdicionalProvider;
+    private TypeManager typeManager;
 
     @Inject
     private BoletaProvider boletaProvider;
 
     @Inject
-    private JAXBManager jaxbManager;
+    private OrganizationProvider organizationProvider;
+
+    @Inject
+    private OrganizationInformacionAdicionalProvider informacionAdicionalProvider;
 
     @Override
     public List<BoletaRepresentation> getBoletas(String organizationId, String estado, int offset, int limit) {
@@ -50,11 +51,11 @@ public class DefaultBoletasResource implements BoletasResource {
     }
 
     @Override
-    public BoletaRepresentation crearBoleta(String organizationId, BoletaRepresentation representation) {
+    public BoletaRepresentation crearBoleta(String organizationId, BoletaRepresentation rep) {
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
 
-        String serie = representation.getSerie();
-        Integer numero = representation.getNumero();
+        String serie = rep.getSerie();
+        Integer numero = rep.getNumero();
 
         BoletaModel boleta;
         if (serie == null) {
@@ -76,26 +77,29 @@ public class DefaultBoletasResource implements BoletasResource {
         }
 
         // Datos por defecto si no son especificadas
-        if (representation.getFecha() == null) {
+        if (rep.getFecha() == null) {
             boleta.getFecha().setEmision(Calendar.getInstance().getTime());
             boleta.getFecha().setVencimiento(Calendar.getInstance().getTime());
         }
-        if (representation.getEnviarSUNAT() == null) {
+        if (rep.getEnviarSUNAT() == null) {
             boleta.setEnviarSUNAT(true);
         }
-        if (representation.getEnviarCliente() == null) {
+        if (rep.getEnviarCliente() == null) {
             boleta.setEnviarCliente(true);
         }
 
         // Merge
-        RepresentationToModel.modelToRepresentation(boleta, representation);
+        RepresentationToModel.modelToRepresentation(boleta, rep);
 
         // Recalcular XML
-        Optional<OrganizacionInformacionAdicionalModel> informacionAdicional = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organization);
-        jaxbManager.buildBoleta(organization, informacionAdicional.orElseThrow(() -> new NotFoundException("Informacion adicional no encontrada")), boleta);
+        OrganizacionInformacionAdicionalModel additionalInfo = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organization).orElseThrow(() -> new NotFoundException("Información adicional no encontrada"));
+        typeManager.buildBoleta(organization, additionalInfo, boleta);
 
         return ModelToRepresentation.toRepresentation(boleta, true);
     }
+
+    @Inject
+    private Event<String> e;
 
     @Override
     public void actualizarBoleta(String organizationId, String idDocumento, BoletaRepresentation representation) {
@@ -105,7 +109,7 @@ public class DefaultBoletasResource implements BoletasResource {
 
         // Recalcular XML
         Optional<OrganizacionInformacionAdicionalModel> informacionAdicional = informacionAdicionalProvider.getOrganizacionInformacionAdicional(organization);
-        jaxbManager.buildBoleta(organization, informacionAdicional.get(), boleta);
+        typeManager.buildBoleta(organization, informacionAdicional.get(), boleta);
     }
 
     @Override

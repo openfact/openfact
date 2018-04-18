@@ -10,7 +10,6 @@ public class TotalRepresentation {
     @Digits(integer = 10, fraction = 2)
     private BigDecimal pagar;
 
-    @NotNull
     @Digits(integer = 10, fraction = 2)
     private BigDecimal otrosCargos;
 
