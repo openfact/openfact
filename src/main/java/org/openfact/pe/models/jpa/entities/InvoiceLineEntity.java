@@ -16,39 +16,48 @@ public abstract class InvoiceLineEntity {
     private String id;
 
     @NotNull
+    @Column(name = "unidad_medida")
     private String unidadMedida;
 
     @NotNull
+    @Column(name = "descripcion")
     private String descripcion;
 
     @NotNull
+    @Column(name = "tipo_igv")
     private String tipoIGV;
 
     @NotNull
+    @Column(name = "cantidad")
     @Digits(integer = 10, fraction = 3)
     private BigDecimal cantidad;
 
     @NotNull
+    @Column(name = "valor_unitario")
     @Digits(integer = 10, fraction = 2)
     private BigDecimal valorUnitario;
 
     @NotNull
+    @Column(name = "precio_unitario")
     @Digits(integer = 10, fraction = 2)
     private BigDecimal precioUnitario;
 
     @NotNull
+    @Column(name = "subtotal")
     @Digits(integer = 10, fraction = 2)
     private BigDecimal subtotal;
 
     @NotNull
+    @Column(name = "total")
     @Digits(integer = 10, fraction = 2)
     private BigDecimal total;
 
     @NotNull
+    @Column(name = "total_igv")
     @Digits(integer = 10, fraction = 2)
     private BigDecimal totalIGV;
 
-    @NotNull
+    @Column(name = "total_isc")
     @Digits(integer = 10, fraction = 2)
     private BigDecimal totalISC;
 

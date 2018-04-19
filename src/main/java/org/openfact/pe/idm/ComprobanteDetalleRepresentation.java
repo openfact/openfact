@@ -39,7 +39,6 @@ public class ComprobanteDetalleRepresentation {
     @Digits(integer = 10, fraction = 2)
     private BigDecimal totalIGV;
 
-    @NotNull
     @Digits(integer = 10, fraction = 2)
     private BigDecimal totalISC;
 

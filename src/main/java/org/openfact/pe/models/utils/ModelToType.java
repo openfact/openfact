@@ -19,9 +19,11 @@ import sunat.names.specification.ubl.peru.schema.xsd.sunataggregatecomponents_1.
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class ModelToType {
@@ -30,15 +32,15 @@ public class ModelToType {
         // Just util class
     }
 
-    public static InvoiceType toBoleta(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, BoletaModel boleta, Document firmaDigital) {
-        InvoiceType invoiceType = buildInvoiceType(organization, additionalInfo, boleta, firmaDigital);
+    public static InvoiceType toBoleta(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, BoletaModel boleta) {
+        InvoiceType invoiceType = buildInvoiceType(organization, additionalInfo, boleta);
         invoiceType.setInvoiceTypeCode(TypeUtils.buildInvoiceTypeCodeType(TipoInvoice.BOLETA.getCodigo()));
 
         return invoiceType;
     }
 
-    public static InvoiceType toFactura(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, FacturaModel factura, Document firmaDigital) {
-        InvoiceType invoiceType = buildInvoiceType(organization, additionalInfo, factura, firmaDigital);
+    public static InvoiceType toFactura(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, FacturaModel factura) {
+        InvoiceType invoiceType = buildInvoiceType(organization, additionalInfo, factura);
         invoiceType.setInvoiceTypeCode(TypeUtils.buildInvoiceTypeCodeType(TipoInvoice.FACTURA.getCodigo()));
 
         return invoiceType;
@@ -46,16 +48,17 @@ public class ModelToType {
 
     private static XMLGregorianCalendar toGregorianCalendar(Date date, TimeZone zone) {
         try {
-            GregorianCalendar calendar = new GregorianCalendar();
-            calendar.setTime(date);
-            calendar.setTimeZone(zone);
-            return DatatypeFactory.newInstance().newXMLGregorianCalendar(calendar);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            sdf.setTimeZone(zone);
+            String locale = sdf.format(date);
+
+            return DatatypeFactory.newInstance().newXMLGregorianCalendar(locale);
         } catch (DatatypeConfigurationException e) {
             throw new IllegalStateException(e);
         }
     }
 
-    private static InvoiceType buildInvoiceType(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, AbstractInvoiceModel invoice, Document firmaDigital) {
+    private static InvoiceType buildInvoiceType(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, AbstractInvoiceModel invoice) {
         InvoiceType invoiceType = new InvoiceType();
 
         // General config
@@ -63,7 +66,7 @@ public class ModelToType {
         invoiceType.setCustomizationID(TypeUtils.buildCustomizationIDType("1.0"));
 
         // documentId
-        invoiceType.setID(TypeUtils.buildIDType(invoice.getSerie() + invoice.getNumero()));
+        invoiceType.setID(TypeUtils.buildIDType(SunatUtils.getSerieConCerosCompletados(invoice.getSerie(), 4)  + "-" + invoice.getNumero()));
 
         // Fechas
         XMLGregorianCalendar issueDate = toGregorianCalendar(invoice.getFecha().getEmision(), organization.getTimeZone());
@@ -90,7 +93,7 @@ public class ModelToType {
 
         // Firma
         invoiceType.getSignature().add(buildSignatureType(additionalInfo));
-        invoiceType.setUBLExtensions(buildUBLExtensionsType(invoice, firmaDigital));
+        invoiceType.setUBLExtensions(buildUBLExtensionsType(invoice));
 
         // Observaciones
         invoiceType.getNote().add(TypeUtils.buildNoteType(invoice.getObservaciones()));
@@ -233,7 +236,7 @@ public class ModelToType {
         return ublExtensionType;
     }
 
-    private static UBLExtensionsType buildUBLExtensionsType(AbstractInvoiceModel invoiceModel, Document firmaDigital) {
+    private static UBLExtensionsType buildUBLExtensionsType(AbstractInvoiceModel invoiceModel) {
         UBLExtensionsType ublExtensionsType = new UBLExtensionsType();
 
         // Totales
@@ -260,9 +263,6 @@ public class ModelToType {
         ublExtensionType2.setExtensionContent(extensionContentType2);
         ublExtensionsType.getUBLExtension().add(ublExtensionType2);
 
-        extensionContentType2.setAny(firmaDigital.getDocumentElement());
-
-
         return ublExtensionsType;
     }
 
@@ -272,20 +272,6 @@ public class ModelToType {
         String moneda = invoiceModel.getMoneda().getMoneda();
         TotalInformacionAdicionalModel totalInformacionAdicional = invoiceModel.getTotalInformacionAdicional();
 
-        if (totalInformacionAdicional.getTotalExonerado() != null) {
-            AdditionalMonetaryTotalType additionalMonetaryTotalType = new AdditionalMonetaryTotalType();
-            additionalMonetaryTotalType.setID(TypeUtils.buildIDType(TipoConceptosTributarios.TOTAL_VALOR_VENTA_OPERACIONES_EXONERADAS.getCodigo()));
-            additionalMonetaryTotalType.setPayableAmount(TypeUtils.buildPayableAmountType(moneda, totalInformacionAdicional.getTotalGravado()));
-
-            additionalInformationType.getAdditionalMonetaryTotal().add(additionalMonetaryTotalType);
-        }
-        if (totalInformacionAdicional.getTotalGratuito() != null) {
-            AdditionalMonetaryTotalType additionalMonetaryTotalType = new AdditionalMonetaryTotalType();
-            additionalMonetaryTotalType.setID(TypeUtils.buildIDType(TipoConceptosTributarios.TOTAL_VALOR_VENTA_OPERACIONES_GRATUITAS.getCodigo()));
-            additionalMonetaryTotalType.setPayableAmount(TypeUtils.buildPayableAmountType(moneda, totalInformacionAdicional.getTotalGratuito()));
-
-            additionalInformationType.getAdditionalMonetaryTotal().add(additionalMonetaryTotalType);
-        }
         if (totalInformacionAdicional.getTotalGravado() != null) {
             AdditionalMonetaryTotalType additionalMonetaryTotalType = new AdditionalMonetaryTotalType();
             additionalMonetaryTotalType.setID(TypeUtils.buildIDType(TipoConceptosTributarios.TOTAL_VALOR_VENTA_OPERACIONES_GRAVADAS.getCodigo()));
@@ -300,7 +286,20 @@ public class ModelToType {
 
             additionalInformationType.getAdditionalMonetaryTotal().add(additionalMonetaryTotalType);
         }
+        if (totalInformacionAdicional.getTotalExonerado() != null) {
+            AdditionalMonetaryTotalType additionalMonetaryTotalType = new AdditionalMonetaryTotalType();
+            additionalMonetaryTotalType.setID(TypeUtils.buildIDType(TipoConceptosTributarios.TOTAL_VALOR_VENTA_OPERACIONES_EXONERADAS.getCodigo()));
+            additionalMonetaryTotalType.setPayableAmount(TypeUtils.buildPayableAmountType(moneda, totalInformacionAdicional.getTotalExonerado()));
 
+            additionalInformationType.getAdditionalMonetaryTotal().add(additionalMonetaryTotalType);
+        }
+        if (totalInformacionAdicional.getTotalGratuito() != null) {
+            AdditionalMonetaryTotalType additionalMonetaryTotalType = new AdditionalMonetaryTotalType();
+            additionalMonetaryTotalType.setID(TypeUtils.buildIDType(TipoConceptosTributarios.TOTAL_VALOR_VENTA_OPERACIONES_GRATUITAS.getCodigo()));
+            additionalMonetaryTotalType.setPayableAmount(TypeUtils.buildPayableAmountType(moneda, totalInformacionAdicional.getTotalGratuito()));
+
+            additionalInformationType.getAdditionalMonetaryTotal().add(additionalMonetaryTotalType);
+        }
 
         // Monto en letras
         AdditionalPropertyType leyendaMontoTexto = new AdditionalPropertyType();
