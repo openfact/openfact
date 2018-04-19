@@ -1,9 +1,13 @@
 package org.openfact.pe.models.jpa;
 
+import org.openfact.pe.models.DetalleComprobantePagoBean;
+import org.openfact.pe.models.DetalleComprobantePagoModel;
 import org.openfact.pe.models.EstadoComprobantePago;
+import org.openfact.pe.models.ModelReadOnlyException;
 import org.openfact.pe.models.jpa.entities.BoletaEntity;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class ReadOnlyBoletaAdapter extends BoletaAdapter {
 
@@ -17,12 +21,12 @@ public class ReadOnlyBoletaAdapter extends BoletaAdapter {
     }
 
     @Override
-    public void setEnviarSUNAT(boolean enviarSUNAT) {
+    public void setEnviarSunat(boolean enviarSUNAT) {
         ReadOnlyUtils.throwException();
     }
 
     @Override
-    public void setError(String error) {
+    public void setEstadoDescripcion(String estadoDescripcion) {
         ReadOnlyUtils.throwException();
     }
 
@@ -46,4 +50,8 @@ public class ReadOnlyBoletaAdapter extends BoletaAdapter {
         ReadOnlyUtils.throwException();
     }
 
+    @Override
+    public List<DetalleComprobantePagoModel> setDetalle(List<DetalleComprobantePagoBean> beans) {
+        throw new ModelReadOnlyException();
+    }
 }

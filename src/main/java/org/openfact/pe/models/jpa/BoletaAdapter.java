@@ -41,7 +41,7 @@ public class BoletaAdapter implements BoletaModel {
     }
 
     @Override
-    public void setEnviarSUNAT(boolean enviarSUNAT) {
+    public void setEnviarSunat(boolean enviarSUNAT) {
         boleta.setEnviarSUNAT(enviarSUNAT);
     }
 
@@ -76,13 +76,13 @@ public class BoletaAdapter implements BoletaModel {
     }
 
     @Override
-    public String getError() {
-        return boleta.getErrorDescription();
+    public String getEstadoDescripcion() {
+        return boleta.getEstadoDescripcion();
     }
 
     @Override
-    public void setError(String error) {
-        boleta.setErrorDescription(error);
+    public void setEstadoDescripcion(String estadoDescripcion) {
+        boleta.setEstadoDescripcion(estadoDescripcion);
     }
 
     @Override

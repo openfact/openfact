@@ -14,6 +14,8 @@ import org.wildfly.swarm.spi.runtime.annotations.ConfigurationValue;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -50,9 +52,7 @@ public class FileSystemFileProvider implements FileProvider {
 
         ProducerTemplate producerTemplate = camelContext.createProducerTemplate();
         try {
-            Object result = producerTemplate.requestBodyAndHeaders(FileSystemRouter.WRITE_URI, bytes, headers);
-
-            System.out.println(result);
+            producerTemplate.requestBodyAndHeaders(FileSystemRouter.WRITE_URI, bytes, headers);
         } catch (CamelExecutionException e) {
             logger.error("Error saving file", e);
             throw new FileException(e);
@@ -70,4 +70,16 @@ public class FileSystemFileProvider implements FileProvider {
             }
         };
     }
+
+    @Override
+    public boolean removeFile(String id) {
+        Path filePath = Paths.get(folder.orElseGet(this::defaultFolder), id).normalize();
+        try {
+            Files.delete(filePath);
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
 }

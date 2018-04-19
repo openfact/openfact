@@ -44,7 +44,7 @@ public class JpaOrganizacionInformacionSUNATProvider implements OrganizationInfo
     }
 
     @Override
-    public Optional<OrganizacionInformacionSunatModel> getOrganizacionInformacionSUNAT(OrganizationModel organization) {
+    public Optional<OrganizacionInformacionSunatModel> getOrganizacionInformacionSunat(OrganizationModel organization) {
         return getOrganizacionInformacionSUNAT(organization.getId());
     }
 }

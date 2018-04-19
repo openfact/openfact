@@ -1,6 +1,7 @@
 package org.openfact.pe.managers;
 
-import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_2.ResponseType;
+import oasis.names.specification.ubl.schema.xsd.creditnote_2.CreditNoteType;
+import oasis.names.specification.ubl.schema.xsd.debitnote_2.DebitNoteType;
 import oasis.names.specification.ubl.schema.xsd.invoice_2.InvoiceType;
 import org.jboss.logging.Logger;
 import org.openfact.core.models.*;
@@ -92,19 +93,18 @@ public class TypeManager {
             throw new ModelRuntimeException("No se pudo firmar un documento");
         }
 
-        FileModel file;
+        byte[] documentBytes;
         try {
-            byte[] bytes = JaxbUtils.toBytes(document);
-            file = guardarInvoiceFile(boleta, bytes);
+            documentBytes = JaxbUtils.toBytes(document);
         } catch (TransformerException e) {
             throw new ModelRuntimeException("No se pudo transformar Document a bytes");
-        } catch (FileException e) {
-            throw new ModelRuntimeException("No se pudo guardar xml al storage");
         }
 
+        FileModel file = guardarDocumentFile(boleta, documentBytes);
+
         if (boleta.getEnviarSUNAT()) {
-            ResponseType responseType = sunatManager.enviarBoleta(organization, additionalInfo, boleta, file);
-            if (responseType.getResponseCode().getValue().equals("0")) {
+            boolean resultado = sunatManager.enviarBoleta(organization, additionalInfo, boleta, file);
+            if (resultado) {
 
             }
         }
@@ -135,29 +135,130 @@ public class TypeManager {
             throw new ModelRuntimeException("No se pudo firmar un documento");
         }
 
-        FileModel file;
+        byte[] documentBytes;
         try {
-            byte[] bytes = JaxbUtils.toBytes(document);
-            file = guardarInvoiceFile(factura, bytes);
+            documentBytes = JaxbUtils.toBytes(document);
         } catch (TransformerException e) {
             throw new ModelRuntimeException("No se pudo transformar Document a bytes");
-        } catch (FileException e) {
-            throw new ModelRuntimeException("No se pudo guardar xml al storage");
         }
 
+        FileModel file = guardarDocumentFile(factura, documentBytes);
+
         if (factura.getEnviarSUNAT()) {
-            ResponseType responseType = sunatManager.enviarFactura(organization, additionalInfo, factura, file);
-            if (responseType.getResponseCode().getValue().equals("0")) {
+            boolean resultado = sunatManager.enviarFactura(organization, additionalInfo, factura, file);
+            if (resultado) {
 
             }
         }
     }
 
-    private FileModel guardarInvoiceFile(AbstractInvoiceModel invoice, byte[] bytes) throws FileException {
-        String fileName = ModelUtils.generateId() + ".xml";
-        FileModel file = fileProvider.addFile(fileName, bytes);
-        invoice.setFileId(file.getFileName());
+    @Asynchronous
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public void buildCreditNote(OrganizationModel organization, CreditNoteModel creditNote) {
+        if (creditNote.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
+            throw new ModelReadOnlyException("Documento es de solo lectura");
+        }
+
+        OrganizacionInformacionAdicionalModel additionalInfo = additionalInfoProvider.getOrganizacionInformacionAdicional(organization)
+                .orElseThrow(() -> new ModelRuntimeException("No se encontró información adicional de la organización:" + organization.getId()));
+
+        Document document;
+        try {
+            CreditNoteType creditNoteType = ModelToType.toCreditNote(organization, additionalInfo, creditNote);
+
+            oasis.names.specification.ubl.schema.xsd.creditnote_2.ObjectFactory factory = new oasis.names.specification.ubl.schema.xsd.creditnote_2.ObjectFactory();
+            JAXBElement<CreditNoteType> jaxbElement = factory.createCreditNote(creditNoteType);
+
+            document = JaxbUtils.marshalToDocument(CreditNoteType.class, jaxbElement);
+            firmar(organization, additionalInfo, document);
+        } catch (JAXBException e) {
+            throw new ModelRuntimeException("No se pudo crear un Document");
+        } catch (ParserConfigurationException | NoSuchAlgorithmException | InvalidAlgorithmParameterException | XMLSignatureException | MarshalException e) {
+            throw new ModelRuntimeException("No se pudo firmar un documento");
+        }
+
+        byte[] documentBytes;
+        try {
+            documentBytes = JaxbUtils.toBytes(document);
+        } catch (TransformerException e) {
+            throw new ModelRuntimeException("No se pudo transformar Document a bytes");
+        }
+
+        FileModel file = guardarDocumentFile(creditNote, documentBytes);
+
+        if (creditNote.getEnviarSUNAT()) {
+            boolean resultado = sunatManager.enviarCreditNote(organization, additionalInfo, creditNote, file);
+            if (resultado) {
+
+            }
+        }
+    }
+
+    @Asynchronous
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public void buildDebitNote(OrganizationModel organization, DebitNoteModel debitNote) {
+        if (debitNote.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
+            throw new ModelReadOnlyException("Documento es de solo lectura");
+        }
+
+        OrganizacionInformacionAdicionalModel additionalInfo = additionalInfoProvider.getOrganizacionInformacionAdicional(organization)
+                .orElseThrow(() -> new ModelRuntimeException("No se encontró información adicional de la organización:" + organization.getId()));
+
+        Document document;
+        try {
+            DebitNoteType debitNoteType = ModelToType.toDebitNote(organization, additionalInfo, debitNote);
+
+            oasis.names.specification.ubl.schema.xsd.debitnote_2.ObjectFactory factory = new oasis.names.specification.ubl.schema.xsd.debitnote_2.ObjectFactory();
+            JAXBElement<DebitNoteType> jaxbElement = factory.createDebitNote(debitNoteType);
+
+            document = JaxbUtils.marshalToDocument(DebitNoteType.class, jaxbElement);
+            firmar(organization, additionalInfo, document);
+        } catch (JAXBException e) {
+            throw new ModelRuntimeException("No se pudo crear un Document");
+        } catch (ParserConfigurationException | NoSuchAlgorithmException | InvalidAlgorithmParameterException | XMLSignatureException | MarshalException e) {
+            throw new ModelRuntimeException("No se pudo firmar un documento");
+        }
+
+        byte[] documentBytes;
+        try {
+            documentBytes = JaxbUtils.toBytes(document);
+        } catch (TransformerException e) {
+            throw new ModelRuntimeException("No se pudo transformar Document a bytes");
+        }
+
+        FileModel file = guardarDocumentFile(debitNote, documentBytes);
+
+        if (debitNote.getEnviarSUNAT()) {
+            boolean resultado = sunatManager.enviarDebitNote(organization, additionalInfo, debitNote, file);
+            if (resultado) {
+
+            }
+        }
+    }
+
+    private FileModel guardarDocumentFile(DocumentoModel documentModel, byte[] documentBytes) {
+        FileModel file;
+        String currentFileId = documentModel.getFileId();
+        try {
+            String fileName = ModelUtils.generateId() + ".xml";
+            file = fileProvider.addFile(fileName, documentBytes);
+            documentModel.setFileId(file.getFileName());
+        } catch (FileException e) {
+            throw new ModelRuntimeException("No se pudo guardar xml de documento");
+        }
+        if (currentFileId != null) {
+            boolean result = fileProvider.removeFile(currentFileId);
+            if (!result) {
+                logger.warnf("No se pudo eliminar el archivo %s", currentFileId);
+            }
+        }
         return file;
+    }
+
+    private void firmar(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, Document document) throws ParserConfigurationException, NoSuchAlgorithmException, XMLSignatureException, InvalidAlgorithmParameterException, MarshalException {
+        KeyManager.ActiveRsaKey activeRsaKey = getActiveRsaKey(organization);
+        String signID = "Sign" + additionalInfo.getRazonSocial().toUpperCase().replaceAll("\\s", "");
+        firmar(signID, activeRsaKey, document);
     }
 
     private KeyManager.ActiveRsaKey getActiveRsaKey(OrganizationModel organization) {
@@ -167,12 +268,6 @@ public class TypeManager {
             OrganizationModel masterOrganization = organizationProvider.getOrganization(OrganizationModel.MASTER_ID).orElseThrow(() -> new ModelRuntimeException("No se encontró la organización master"));
             return keystore.getActiveRsaKey(masterOrganization);
         }
-    }
-
-    private void firmar(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, Document document) throws ParserConfigurationException, NoSuchAlgorithmException, XMLSignatureException, InvalidAlgorithmParameterException, MarshalException {
-        KeyManager.ActiveRsaKey activeRsaKey = getActiveRsaKey(organization);
-        String signID = "Sign" + additionalInfo.getRazonSocial().toUpperCase().replaceAll("\\s", "");
-        firmar(signID, activeRsaKey, document);
     }
 
     private void firmar(String referenceID, KeyManager.ActiveRsaKey rsaKey, Document document) throws InvalidAlgorithmParameterException, NoSuchAlgorithmException, MarshalException, XMLSignatureException {

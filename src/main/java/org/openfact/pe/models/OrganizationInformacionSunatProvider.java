@@ -8,6 +8,6 @@ public interface OrganizationInformacionSunatProvider {
 
     Optional<OrganizacionInformacionSunatModel> getOrganizacionInformacionSUNAT(String id);
 
-    Optional<OrganizacionInformacionSunatModel> getOrganizacionInformacionSUNAT(OrganizationModel organization);
+    Optional<OrganizacionInformacionSunatModel> getOrganizacionInformacionSunat(OrganizationModel organization);
 
 }

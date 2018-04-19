@@ -70,8 +70,8 @@ public class RepresentationToModel {
     }
     
     public static void modelToRepresentation(AbstractInvoiceModel model, AbstractInvoiceRepresentation rep) {
-        if (rep.getEnviarSUNAT() != null) {
-            model.setEnviarSUNAT(rep.getEnviarSUNAT());
+        if (rep.getEnviarSunat() != null) {
+            model.setEnviarSunat(rep.getEnviarSunat());
         }
         if (rep.getEnviarCliente() != null) {
             model.setEnviarCliente(rep.getEnviarCliente());

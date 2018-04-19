@@ -6,7 +6,6 @@ import org.openfact.pe.BoletasResource;
 import org.openfact.pe.idm.BoletaRepresentation;
 import org.openfact.pe.managers.TypeManager;
 import org.openfact.pe.models.*;
-import org.openfact.pe.models.types.TipoInvoice;
 import org.openfact.pe.models.utils.ModelToRepresentation;
 import org.openfact.pe.models.utils.RepresentationToModel;
 
@@ -19,8 +18,6 @@ import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.NotFoundException;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Optional;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Transactional
@@ -62,10 +59,6 @@ public class DefaultBoletasResource implements BoletasResource {
                 throw new BadRequestException("Petición invalida: [serie=null, numero=not null]");
             }
         } else {
-            Pattern pattern = Pattern.compile(TipoInvoice.BOLETA.getSeriePattern());
-            if (!pattern.matcher(serie).matches()) {
-                throw new BadRequestException("Serie Invalida, no cumple con el patron [B...]");
-            }
             if (numero == null) {
                 boleta = boletaProvider.createBoleta(organization, serie);
             } else {
@@ -78,8 +71,8 @@ public class DefaultBoletasResource implements BoletasResource {
             boleta.getFecha().setEmision(Calendar.getInstance().getTime());
             boleta.getFecha().setVencimiento(Calendar.getInstance().getTime());
         }
-        if (rep.getEnviarSUNAT() == null) {
-            boleta.setEnviarSUNAT(true);
+        if (rep.getEnviarSunat() == null) {
+            boleta.setEnviarSunat(true);
         }
         if (rep.getEnviarCliente() == null) {
             boleta.setEnviarCliente(true);
@@ -94,14 +87,16 @@ public class DefaultBoletasResource implements BoletasResource {
         return ModelToRepresentation.toRepresentation(boleta, true);
     }
 
-    @Inject
-    private Event<String> e;
-
     @Override
-    public void actualizarBoleta(String organizationId, String idDocumento, BoletaRepresentation representation) {
+    public void actualizarBoleta(String organizationId, String idDocumento, BoletaRepresentation rep) {
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
         BoletaModel boleta = boletaProvider.getBoleta(organization, idDocumento).orElseThrow(() -> new NotFoundException("Boleta o Factura no encontrada"));
-        RepresentationToModel.modelToRepresentation(boleta, representation);
+
+        if (boleta.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
+            throw new BadRequestException("Comprobante REGISTRADO o ya fue declarado a la SUNAT, no se puede eliminar");
+        }
+
+        RepresentationToModel.modelToRepresentation(boleta, rep);
 
         // Recalcular XML
         typeManager.buildBoleta(organization, boleta);
@@ -111,9 +106,11 @@ public class DefaultBoletasResource implements BoletasResource {
     public void eliminarBoleta(String organizationId, String idDocumento) {
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
         BoletaModel boleta = boletaProvider.getBoleta(organization, idDocumento).orElseThrow(() -> new NotFoundException("Boleta no encontrada"));
+
         if (boleta.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
             throw new BadRequestException("Comprobante REGISTRADO o ya fue declarado a la SUNAT, no se puede eliminar");
         }
+
         boolean result = boletaProvider.remove(boleta);
         if (!result) {
             throw new InternalServerErrorException("Error interno, no se pudo eliminar la Boleta");

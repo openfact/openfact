@@ -31,8 +31,8 @@ public abstract class AbstractInvoiceEntity {
     @Column(name = "estado")
     private EstadoComprobantePago estado;
 
-    @Column(name = "error_description")
-    private String errorDescription;
+    @Column(name = "estado_description")
+    private String estadoDescripcion;
 
     @Embedded
     private FechaEntity fecha;
@@ -92,12 +92,12 @@ public abstract class AbstractInvoiceEntity {
         this.estado = estado;
     }
 
-    public String getErrorDescription() {
-        return errorDescription;
+    public String getEstadoDescripcion() {
+        return estadoDescripcion;
     }
 
-    public void setErrorDescription(String errorDescription) {
-        this.errorDescription = errorDescription;
+    public void setEstadoDescripcion(String errorDescription) {
+        this.estadoDescripcion = errorDescription;
     }
 
     public FechaEntity getFecha() {

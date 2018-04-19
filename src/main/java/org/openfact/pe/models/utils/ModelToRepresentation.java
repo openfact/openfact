@@ -116,7 +116,7 @@ public class ModelToRepresentation {
 
         if (fullInfo) {
             rep.setEnviarCliente(model.getEnviarCliente());
-            rep.setEnviarSUNAT(model.getEnviarSUNAT());
+            rep.setEnviarSunat(model.getEnviarSUNAT());
         }
 
         return rep;
@@ -137,7 +137,7 @@ public class ModelToRepresentation {
 
         if (fullInfo) {
             rep.setEnviarCliente(model.getEnviarCliente());
-            rep.setEnviarSUNAT(model.getEnviarSUNAT());
+            rep.setEnviarSunat(model.getEnviarSUNAT());
         }
 
         return rep;

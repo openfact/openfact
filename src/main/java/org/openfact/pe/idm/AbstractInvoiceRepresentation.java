@@ -32,7 +32,7 @@ public abstract class AbstractInvoiceRepresentation {
     @Valid
     private TotalInformacionAdicionalRepresentation totalInformacionAdicional;
 
-    private Boolean enviarSUNAT;
+    private Boolean enviarSunat;
     private Boolean enviarCliente;
 
     @NotNull
@@ -104,12 +104,12 @@ public abstract class AbstractInvoiceRepresentation {
         this.totalInformacionAdicional = totalInformacionAdicional;
     }
 
-    public Boolean getEnviarSUNAT() {
-        return enviarSUNAT;
+    public Boolean getEnviarSunat() {
+        return enviarSunat;
     }
 
-    public void setEnviarSUNAT(Boolean enviarSUNAT) {
-        this.enviarSUNAT = enviarSUNAT;
+    public void setEnviarSunat(Boolean enviarSunat) {
+        this.enviarSunat = enviarSunat;
     }
 
     public Boolean getEnviarCliente() {

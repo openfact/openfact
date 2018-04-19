@@ -37,4 +37,12 @@ public class JpaFileProvider implements FileProvider {
         };
     }
 
+    @Override
+    public boolean removeFile(String id) {
+        FileEntity fileEntity = em.find(FileEntity.class, id);
+        if (fileEntity == null) return false;
+        em.remove(fileEntity);
+        return true;
+    }
+
 }

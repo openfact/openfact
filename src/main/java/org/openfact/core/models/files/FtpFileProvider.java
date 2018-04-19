@@ -15,4 +15,9 @@ public class FtpFileProvider implements FileProvider {
         return null;
     }
 
+    @Override
+    public boolean removeFile(String id) {
+        return false;
+    }
+
 }

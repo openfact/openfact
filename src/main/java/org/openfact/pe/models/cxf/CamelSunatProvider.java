@@ -3,6 +3,7 @@ package org.openfact.pe.models.cxf;
 import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.cdi.ContextName;
+import org.apache.cxf.message.MessageContentsList;
 import org.openfact.pe.camel.cfx.routes.CfxRouter;
 import org.openfact.pe.models.OrganizacionInformacionAdicionalModel;
 import org.openfact.pe.models.OrganizacionInformacionSunatModel;
@@ -38,10 +39,10 @@ public class CamelSunatProvider implements SunatSenderProvider {
             throw new SendSunatException(e.getCause().getMessage());
         }
 
-        int a  = 0;
-        System.out.println(result);
+        MessageContentsList messageContentsList = (MessageContentsList) result;
+        Object message = messageContentsList.get(0);
 
-        return new byte[0];
+        return (byte[]) message;
     }
 
     @Override

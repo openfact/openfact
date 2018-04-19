@@ -4,6 +4,8 @@ import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_2.*;
 import oasis.names.specification.ubl.schema.xsd.commonextensioncomponents_2.ExtensionContentType;
 import oasis.names.specification.ubl.schema.xsd.commonextensioncomponents_2.UBLExtensionType;
 import oasis.names.specification.ubl.schema.xsd.commonextensioncomponents_2.UBLExtensionsType;
+import oasis.names.specification.ubl.schema.xsd.creditnote_2.CreditNoteType;
+import oasis.names.specification.ubl.schema.xsd.debitnote_2.DebitNoteType;
 import oasis.names.specification.ubl.schema.xsd.invoice_2.InvoiceType;
 import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.utils.finance.MoneyConverters;
@@ -44,6 +46,14 @@ public class ModelToType {
         invoiceType.setInvoiceTypeCode(TypeUtils.buildInvoiceTypeCodeType(TipoInvoice.FACTURA.getCodigo()));
 
         return invoiceType;
+    }
+
+    public static CreditNoteType toCreditNote(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, CreditNoteModel creditNote) {
+        return null;
+    }
+
+    public static DebitNoteType toDebitNote(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, DebitNoteModel debitNote) {
+        return null;
     }
 
     private static XMLGregorianCalendar toGregorianCalendar(Date date, TimeZone zone) {
@@ -392,5 +402,6 @@ public class ModelToType {
         taxCategoryType.setTaxExemptionReasonCode(TypeUtils.buildTaxExemptionReasonCodeType(tipoIGV));
         return taxCategoryType;
     }
+
 
 }

@@ -6,7 +6,6 @@ import org.openfact.pe.FacturasResource;
 import org.openfact.pe.idm.FacturaRepresentation;
 import org.openfact.pe.managers.TypeManager;
 import org.openfact.pe.models.*;
-import org.openfact.pe.models.types.TipoInvoice;
 import org.openfact.pe.models.utils.ModelToRepresentation;
 import org.openfact.pe.models.utils.RepresentationToModel;
 
@@ -18,8 +17,6 @@ import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.NotFoundException;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Optional;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Transactional
@@ -61,10 +58,6 @@ public class DefaultFacturasResource implements FacturasResource {
                 throw new BadRequestException("Petición invalida: [serie=null, numero=not null]");
             }
         } else {
-            Pattern pattern = Pattern.compile(TipoInvoice.FACTURA.getSeriePattern());
-            if (!pattern.matcher(serie).matches()) {
-                throw new BadRequestException("Serie Invalida, no cumple con el patron [F...]");
-            }
             if (numero == null) {
                 factura = facturaProvider.createFactura(organization, serie);
             } else {
@@ -77,8 +70,8 @@ public class DefaultFacturasResource implements FacturasResource {
             factura.getFecha().setEmision(Calendar.getInstance().getTime());
             factura.getFecha().setVencimiento(Calendar.getInstance().getTime());
         }
-        if (rep.getEnviarSUNAT() == null) {
-            factura.setEnviarSUNAT(true);
+        if (rep.getEnviarSunat() == null) {
+            factura.setEnviarSunat(true);
         }
         if (rep.getEnviarCliente() == null) {
             factura.setEnviarCliente(true);
@@ -94,10 +87,14 @@ public class DefaultFacturasResource implements FacturasResource {
     }
 
     @Override
-    public void actualizarFactura(String organizationId, String idDocumento, FacturaRepresentation representation) {
+    public void actualizarFactura(String organizationId, String idDocumento, FacturaRepresentation rep) {
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
         FacturaModel factura = facturaProvider.getFactura(organization, idDocumento).orElseThrow(() -> new NotFoundException("Factura no encontrada"));
-        RepresentationToModel.modelToRepresentation(factura, representation);
+        RepresentationToModel.modelToRepresentation(factura, rep);
+
+        if (factura.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
+            throw new BadRequestException("Comprobante REGISTRADO o ya fue declarado a la SUNAT, no se puede eliminar");
+        }
 
         // Recalcular XML
         typeManager.buildFactura(organization, factura);
@@ -107,9 +104,11 @@ public class DefaultFacturasResource implements FacturasResource {
     public void eliminarFactura(String organizationId, String idDocumento) {
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
         FacturaModel factura = facturaProvider.getFactura(organization, idDocumento).orElseThrow(() -> new NotFoundException("Boleta o Factura no encontrada"));
+
         if (factura.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
             throw new BadRequestException("Comprobante REGISTRADO o ya fue declarado a la SUNAT, no se puede eliminar");
         }
+
         boolean result = facturaProvider.remove(factura);
         if (!result) {
             throw new InternalServerErrorException("Error interno, no se pudo eliminar la Factura");

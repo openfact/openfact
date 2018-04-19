@@ -41,7 +41,7 @@ public class FacturaAdapter implements FacturaModel {
     }
 
     @Override
-    public void setEnviarSUNAT(boolean enviarSUNAT) {
+    public void setEnviarSunat(boolean enviarSUNAT) {
         factura.setEnviarSUNAT(enviarSUNAT);
     }
 
@@ -76,13 +76,13 @@ public class FacturaAdapter implements FacturaModel {
     }
 
     @Override
-    public String getError() {
-        return factura.getErrorDescription();
+    public String getEstadoDescripcion() {
+        return factura.getEstadoDescripcion();
     }
 
     @Override
-    public void setError(String error) {
-        factura.setErrorDescription(error);
+    public void setEstadoDescripcion(String estadoDescripcion) {
+        factura.setEstadoDescripcion(estadoDescripcion);
     }
 
     @Override
