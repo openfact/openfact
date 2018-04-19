@@ -76,7 +76,7 @@ public class SunatManager {
 
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public boolean enviarFactura(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, FacturaModel factura, FileModel file) {
-        if (!isAdditionalInfoInvalid(additionalInfo)) {
+        if (isAdditionalInfoInvalid(additionalInfo)) {
             logger.warnf("La organización no tienen los datos mínimos para enviar a la SUNAT");
             return false;
         }
@@ -113,7 +113,7 @@ public class SunatManager {
     }
 
     public boolean enviarCreditNote(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, CreditNoteModel creditNote, FileModel file) {
-        if (!isAdditionalInfoInvalid(additionalInfo)) {
+        if (isAdditionalInfoInvalid(additionalInfo)) {
             logger.warnf("La organización no tienen los datos mínimos para enviar a la SUNAT");
             return false;
         }
@@ -150,7 +150,7 @@ public class SunatManager {
     }
 
     public boolean enviarDebitNote(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, DebitNoteModel debitNote, FileModel file) {
-        if (!isAdditionalInfoInvalid(additionalInfo)) {
+        if (isAdditionalInfoInvalid(additionalInfo)) {
             logger.warnf("La organización no tienen los datos mínimos para enviar a la SUNAT");
             return false;
         }
@@ -234,6 +234,5 @@ public class SunatManager {
         }
         return Optional.empty();
     }
-
 
 }
