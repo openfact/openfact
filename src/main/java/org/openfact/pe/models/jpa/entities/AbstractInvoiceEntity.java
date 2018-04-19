@@ -20,7 +20,7 @@ public abstract class AbstractInvoiceEntity {
 
     @Type(type = "org.hibernate.type.YesNoType")
     @Column(name = "enviar_sunat")
-    private boolean enviarSUNAT;
+    private boolean enviarSunat;
 
     @Type(type = "org.hibernate.type.YesNoType")
     @Column(name = "enviar_cliente")
@@ -31,7 +31,7 @@ public abstract class AbstractInvoiceEntity {
     @Column(name = "estado")
     private EstadoComprobantePago estado;
 
-    @Column(name = "estado_description")
+    @Column(name = "estado_descripcion")
     private String estadoDescripcion;
 
     @Embedded
@@ -68,12 +68,12 @@ public abstract class AbstractInvoiceEntity {
         this.fileId = fileId;
     }
 
-    public boolean isEnviarSUNAT() {
-        return enviarSUNAT;
+    public boolean isEnviarSunat() {
+        return enviarSunat;
     }
 
-    public void setEnviarSUNAT(boolean enviarSUNAT) {
-        this.enviarSUNAT = enviarSUNAT;
+    public void setEnviarSunat(boolean enviarSUNAT) {
+        this.enviarSunat = enviarSUNAT;
     }
 
     public boolean isEnviarCliente() {

@@ -37,12 +37,12 @@ public class FacturaAdapter implements FacturaModel {
 
     @Override
     public boolean getEnviarSUNAT() {
-        return factura.isEnviarSUNAT();
+        return factura.isEnviarSunat();
     }
 
     @Override
     public void setEnviarSunat(boolean enviarSUNAT) {
-        factura.setEnviarSUNAT(enviarSUNAT);
+        factura.setEnviarSunat(enviarSUNAT);
     }
 
     @Override

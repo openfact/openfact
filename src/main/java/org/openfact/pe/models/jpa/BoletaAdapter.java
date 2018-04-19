@@ -37,12 +37,12 @@ public class BoletaAdapter implements BoletaModel {
 
     @Override
     public boolean getEnviarSUNAT() {
-        return boleta.isEnviarSUNAT();
+        return boleta.isEnviarSunat();
     }
 
     @Override
     public void setEnviarSunat(boolean enviarSUNAT) {
-        boleta.setEnviarSUNAT(enviarSUNAT);
+        boleta.setEnviarSunat(enviarSUNAT);
     }
 
     @Override
