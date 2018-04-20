@@ -1,7 +1,7 @@
 package org.openfact.core.services;
 
 import org.openfact.core.ProfileResource;
-import org.openfact.core.idm.UserRepresentation;
+import org.openfact.core.representations.idm.UserRepresentation;
 import org.openfact.core.models.UserModel;
 import org.openfact.core.models.UserProvider;
 import org.openfact.core.models.utils.ModelToRepresentation;

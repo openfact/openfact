@@ -1,6 +1,6 @@
 package org.openfact.core;
 
-import org.openfact.core.idm.ServerInfoRepresentation;
+import org.openfact.core.representations.idm.ServerInfoRepresentation;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;

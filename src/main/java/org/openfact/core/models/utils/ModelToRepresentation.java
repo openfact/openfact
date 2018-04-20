@@ -1,12 +1,14 @@
 package org.openfact.core.models.utils;
 
 import org.keycloak.common.util.MultivaluedHashMap;
-import org.openfact.core.idm.*;
 import org.openfact.core.keys.component.ComponentModel;
 import org.openfact.core.keys.component.utils.ComponentUtil;
 import org.openfact.core.keys.provider.ProviderConfigProperty;
+import org.openfact.core.models.DocumentModel;
+import org.openfact.core.models.FacetModel;
 import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.UserModel;
+import org.openfact.core.representations.idm.*;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -107,4 +109,31 @@ public class ModelToRepresentation {
         return propRep;
     }
 
+    public static DocumentRepresentation toRepresentation(DocumentModel model) {
+        DocumentRepresentation rep = new DocumentRepresentation();
+
+        rep.setId(model.getId());
+        rep.setType(model.getType());
+        rep.setAssignedId(model.getAssignedId());
+        rep.setSupplierAssignedId(model.getSupplierAssignedId());
+        rep.setCustomerAssignedId(model.getCustomerAssignedId());
+
+        rep.setIssueDate(model.getIssueDate());
+        rep.setCurrency(model.getCurrency());
+        rep.setAmount(model.getAmount());
+        rep.setTax(model.getTax());
+
+        rep.setSupplierName(model.getSupplierName());
+        rep.setCustomerName(model.getCustomerName());
+        
+        return rep;
+    }
+
+    public static FacetRepresentation toRepresentation(FacetModel model) {
+        FacetRepresentation rep = new FacetRepresentation();
+
+        rep.setValue(model.getValue());
+        rep.setCount(model.getCount());
+        return rep;
+    }
 }

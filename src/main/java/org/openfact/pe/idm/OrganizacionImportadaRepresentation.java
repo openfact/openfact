@@ -1,6 +1,6 @@
 package org.openfact.pe.idm;
 
-import org.openfact.core.idm.OrganizationRepresentation;
+import org.openfact.core.representations.idm.OrganizationRepresentation;
 
 public class OrganizacionImportadaRepresentation extends OrganizationRepresentation {
 

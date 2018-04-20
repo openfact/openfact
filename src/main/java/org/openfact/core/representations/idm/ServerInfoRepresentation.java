@@ -1,4 +1,4 @@
-package org.openfact.core.idm;
+package org.openfact.core.representations.idm;
 
 import java.util.List;
 import java.util.Map;

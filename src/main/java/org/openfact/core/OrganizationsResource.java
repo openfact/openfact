@@ -1,10 +1,10 @@
 package org.openfact.core;
 
 import org.keycloak.representations.idm.KeysMetadataRepresentation;
-import org.openfact.core.idm.ComponentRepresentation;
-import org.openfact.core.idm.ExtendedOrganizationRepresentation;
-import org.openfact.core.idm.OrganizationRepresentation;
-import org.openfact.core.idm.OrganizationSearchQueryRepresentation;
+import org.openfact.core.representations.idm.ComponentRepresentation;
+import org.openfact.core.representations.idm.ExtendedOrganizationRepresentation;
+import org.openfact.core.representations.idm.OrganizationRepresentation;
+import org.openfact.core.representations.idm.OrganizationSearchQueryRepresentation;
 
 import javax.validation.Valid;
 import javax.ws.rs.*;

@@ -1,4 +1,4 @@
-package org.openfact.core.idm;
+package org.openfact.core.representations.idm;
 
 import org.keycloak.common.util.MultivaluedHashMap;
 

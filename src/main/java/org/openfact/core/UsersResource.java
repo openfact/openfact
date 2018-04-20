@@ -1,6 +1,6 @@
 package org.openfact.core;
 
-import org.openfact.core.idm.UserRepresentation;
+import org.openfact.core.representations.idm.UserRepresentation;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

@@ -1,6 +1,6 @@
 package org.openfact.core.keys.component.utils;
 
-import org.openfact.core.idm.ComponentRepresentation;
+import org.openfact.core.representations.idm.ComponentRepresentation;
 import org.openfact.core.keys.component.ComponentFactory;
 import org.openfact.core.keys.component.ComponentModel;
 import org.openfact.core.keys.provider.ProviderConfigProperty;

@@ -1,6 +1,6 @@
 package org.openfact.core.services.resolvers;
 
-import org.openfact.core.idm.ConstraintErrorRepresentation;
+import org.openfact.core.representations.idm.ConstraintErrorRepresentation;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;

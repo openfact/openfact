@@ -1,12 +1,12 @@
 package org.openfact.core.services;
 
 import org.openfact.core.ServerInfoResource;
-import org.openfact.core.idm.*;
 import org.openfact.core.keys.KeyProvider;
 import org.openfact.core.keys.component.ComponentFactory;
 import org.openfact.core.keys.provider.ConfiguredProvider;
 import org.openfact.core.keys.provider.ProviderConfigProperty;
 import org.openfact.core.models.utils.ModelToRepresentation;
+import org.openfact.core.representations.idm.*;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Any;

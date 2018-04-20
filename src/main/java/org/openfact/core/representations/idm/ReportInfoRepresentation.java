@@ -1,6 +1,6 @@
-package org.openfact.core.idm;
+package org.openfact.core.representations.idm;
 
-public class ThemeInfoRepresentation {
+public class ReportInfoRepresentation {
 
     private String name;
     private String[] locales;
