@@ -1,9 +1,12 @@
 package org.openfact.pe.models.cxf;
 
 import org.apache.camel.CamelContext;
+import org.apache.camel.Exchange;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.cdi.ContextName;
+//import org.apache.cxf.message.MessageContentsList;
 import org.apache.cxf.message.MessageContentsList;
+import org.openfact.core.camel.files.routes.FileSystemRouter;
 import org.openfact.pe.camel.cfx.routes.CfxRouter;
 import org.openfact.pe.models.OrganizacionInformacionAdicionalModel;
 import org.openfact.pe.models.OrganizacionInformacionSunatModel;
@@ -16,6 +19,8 @@ import javax.activation.DataSource;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.mail.util.ByteArrayDataSource;
+import java.util.HashMap;
+import java.util.Map;
 
 @ApplicationScoped
 public class CamelSunatProvider implements SunatSenderProvider {
@@ -26,22 +31,26 @@ public class CamelSunatProvider implements SunatSenderProvider {
 
     @Override
     public byte[] sendBill(OrganizacionInformacionAdicionalModel additionalInfo, OrganizacionInformacionSunatModel orgSunatInfo, String fileName, byte[] file) throws SendSunatException {
+        Map<String, Object> headers = new HashMap<>();
+        headers.put(CfxRouter.END_POINT_HEADER, orgSunatInfo.getBoletaFacturaEndpoint());
+        headers.put(CfxRouter.USERNAME, orgSunatInfo.getUsuario());
+        headers.put(CfxRouter.PASSWORD, orgSunatInfo.getPassword());
+
         DataSource dataSource = new ByteArrayDataSource(file, "application/xml");
         DataHandler dataHandler = new DataHandler(dataSource);
 
         ProducerTemplate producer = camelContext.createProducerTemplate();
-        Object[] serviceParams = serviceParams = new Object[]{fileName, dataHandler, additionalInfo.getAssignedId()};
+        Object[] serviceParams = new Object[]{fileName, dataHandler, additionalInfo.getAssignedId()};
 
         Object result;
         try {
-            result = producer.requestBody(CfxRouter.SEND_BILL_URI, serviceParams);
+            result = producer.requestBodyAndHeaders(CfxRouter.SEND_BILL_URI, serviceParams, headers);
         } catch (Throwable e) {
             throw new SendSunatException(e.getCause().getMessage());
         }
 
         MessageContentsList messageContentsList = (MessageContentsList) result;
         Object message = messageContentsList.get(0);
-
         return (byte[]) message;
     }
 
