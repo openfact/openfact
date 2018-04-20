@@ -79,8 +79,8 @@ import java.util.Date;
 })
 public class DocumentEntity implements Serializable {
 
-    @Field
     @Id
+    @DocumentId
     @Access(AccessType.PROPERTY)// Relationships often fetch id, but not entity.  This avoids an extra SQL
     @Column(name = "id", length = 36)
     private String id;

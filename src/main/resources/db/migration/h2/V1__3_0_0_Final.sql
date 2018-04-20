@@ -9,8 +9,8 @@
         cliente_tipo_documento varchar(255),
         enviar_cliente char(255),
         enviar_sunat char(255),
-        estado_descripcion varchar(255),
         estado varchar(255) not null,
+        estado_descripcion varchar(255),
         fecha_emision timestamp,
         fecha_vencimiento timestamp,
         file_id varchar(255),
@@ -31,6 +31,21 @@
         serie varchar(255) not null,
         version integer,
         organization_id varchar(255) not null,
+        primary key (id)
+    );
+
+    create table cn_document (
+       id varchar(36) not null,
+        amount double,
+        assigned_id varchar(255) not null,
+        currency varchar(255),
+        customer_assigned_id varchar(255),
+        customer_name varchar(255),
+        issue_date timestamp,
+        supplier_assigned_id varchar(255) not null,
+        supplier_name varchar(255) not null,
+        tax double,
+        type varchar(255) not null,
         primary key (id)
     );
 
@@ -92,8 +107,8 @@
         cliente_tipo_documento varchar(255),
         enviar_cliente char(255),
         enviar_sunat char(255),
-        estado_descripcion varchar(255),
         estado varchar(255) not null,
+        estado_descripcion varchar(255),
         fecha_emision timestamp,
         fecha_vencimiento timestamp,
         file_id varchar(255),
@@ -234,6 +249,9 @@
 
     alter table boleta_pe
        add constraint UK6v5v75beibgmv8kuff2j6m2rv unique (serie, numero, organization_id);
+
+    alter table cn_document
+       add constraint UKawubnbop2ucyh7b4ty92y1u76 unique (type, assigned_id, supplier_assigned_id);
 
     alter table factura_pe
        add constraint UK5xmtr335y1m12safapoiws3g7 unique (serie, numero, organization_id);
