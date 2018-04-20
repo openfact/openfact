@@ -12,7 +12,6 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-@Indexed
 @Entity
 @Cacheable
 @Table(name = "organization", uniqueConstraints = {
