@@ -59,6 +59,9 @@ public class ServerBootstrap {
         ownerPermissions.add(PermissionType.component_manage);
         ownerPermissions.add(PermissionType.component_view);
 
+        ownerPermissions.add(PermissionType.document_edit);
+        ownerPermissions.add(PermissionType.document_view);
+
         Set<PermissionType> collaboratorPermissions = new HashSet<>();
         collaboratorPermissions.add(PermissionType.organization_view);
 
