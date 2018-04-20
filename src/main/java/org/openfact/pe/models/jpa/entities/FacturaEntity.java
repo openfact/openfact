@@ -48,6 +48,9 @@ public class FacturaEntity extends AbstractInvoiceEntity implements Serializable
     @OneToMany(mappedBy = "factura", fetch = FetchType.LAZY)
     private List<FacturaDetalleEntity> detalle = new ArrayList<>();
 
+    @OneToOne(mappedBy = "boleta", fetch = FetchType.LAZY)
+    private FacturaValidacionEntity validacion;
+
     @Version
     @Column(name = "version")
     private int version;
@@ -140,5 +143,13 @@ public class FacturaEntity extends AbstractInvoiceEntity implements Serializable
 
     public void setDetalle(List<FacturaDetalleEntity> detalle) {
         this.detalle = detalle;
+    }
+
+    public FacturaValidacionEntity getValidacion() {
+        return validacion;
+    }
+
+    public void setValidacion(FacturaValidacionEntity validacion) {
+        this.validacion = validacion;
     }
 }

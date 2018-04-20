@@ -5,13 +5,10 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @DiscriminatorValue("factura")
-@NamedQueries(value = {
-
-})
-public class EnvioFacturaSunatEventEntity extends EnvioSunatEventEntity {
+public class FacturaValidacionEntity extends ValidacionEntity {
 
     @NotNull
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey, name = "factura_id")
     private FacturaEntity factura;
 
@@ -19,8 +16,8 @@ public class EnvioFacturaSunatEventEntity extends EnvioSunatEventEntity {
         return factura;
     }
 
-    public void setFactura(FacturaEntity factura) {
-        this.factura = factura;
+    public void setFactura(FacturaEntity boleta) {
+        this.factura = boleta;
     }
 
 }

@@ -106,6 +106,11 @@ public class BoletaAdapter implements BoletaModel {
     }
 
     @Override
+    public ValidacionModel getValidacion() {
+        return new ValidacionAdapter(em, boleta.getValidacion());
+    }
+
+    @Override
     public FechaModel getFecha() {
         if (boleta.getEstado().equals(EstadoComprobantePago.CERRADO)) {
             return new ReadOnlyFechaAdapter(boleta.getFecha());

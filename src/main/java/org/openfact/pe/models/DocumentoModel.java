@@ -21,4 +21,6 @@ public interface DocumentoModel {
 
     String getCdrFileId();
     void setCdrFileId(String fileId);
+
+    ValidacionModel getValidacion();
 }

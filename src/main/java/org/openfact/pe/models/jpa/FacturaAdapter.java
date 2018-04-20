@@ -106,6 +106,11 @@ public class FacturaAdapter implements FacturaModel {
     }
 
     @Override
+    public ValidacionModel getValidacion() {
+        return new ValidacionAdapter(em, factura.getValidacion());
+    }
+
+    @Override
     public FechaModel getFecha() {
         if (factura.getEstado().equals(EstadoComprobantePago.CERRADO)) {
             return new ReadOnlyFechaAdapter(factura.getFecha());

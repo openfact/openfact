@@ -48,6 +48,9 @@ public class BoletaEntity extends AbstractInvoiceEntity implements Serializable 
     @OneToMany(mappedBy = "boleta", fetch = FetchType.LAZY)
     private List<BoletaDetalleEntity> detalle = new ArrayList<>();
 
+    @OneToOne(mappedBy = "boleta", fetch = FetchType.LAZY)
+    private BoletaValidacionEntity validacion;
+
     @Version
     @Column(name = "version")
     private int version;
@@ -139,5 +142,13 @@ public class BoletaEntity extends AbstractInvoiceEntity implements Serializable 
 
     public void setDetalle(List<BoletaDetalleEntity> detalle) {
         this.detalle = detalle;
+    }
+
+    public BoletaValidacionEntity getValidacion() {
+        return validacion;
+    }
+
+    public void setValidacion(BoletaValidacionEntity validacion) {
+        this.validacion = validacion;
     }
 }
