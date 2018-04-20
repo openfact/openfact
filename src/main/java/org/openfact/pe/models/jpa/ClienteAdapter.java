@@ -13,12 +13,12 @@ public class ClienteAdapter implements ClienteModel {
     }
 
     @Override
-    public TipoDocumentoEntidad getTipoDocumento() {
+    public String getTipoDocumento() {
         return cliente.getTipoDocumento();
     }
 
     @Override
-    public void setTipoDocumento(TipoDocumentoEntidad tipoDocumento) {
+    public void setTipoDocumento(String tipoDocumento) {
         cliente.setTipoDocumento(tipoDocumento);
     }
 

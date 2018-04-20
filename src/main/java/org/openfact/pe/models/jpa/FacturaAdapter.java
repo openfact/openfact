@@ -107,7 +107,7 @@ public class FacturaAdapter implements FacturaModel {
 
     @Override
     public FechaModel getFecha() {
-        if (factura.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
+        if (factura.getEstado().equals(EstadoComprobantePago.CERRADO)) {
             return new ReadOnlyFechaAdapter(factura.getFecha());
         } else {
             return new FechaAdapter(factura.getFecha());
@@ -116,7 +116,7 @@ public class FacturaAdapter implements FacturaModel {
 
     @Override
     public ClienteModel getCliente() {
-        if (factura.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
+        if (factura.getEstado().equals(EstadoComprobantePago.CERRADO)) {
             return new ReadOnlyClienteAdapter(factura.getCliente());
         } else {
             return new ClienteAdapter(factura.getCliente());
@@ -125,7 +125,7 @@ public class FacturaAdapter implements FacturaModel {
 
     @Override
     public ImpuestosModel getImpuestos() {
-        if (factura.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
+        if (factura.getEstado().equals(EstadoComprobantePago.CERRADO)) {
             return new ReadOnlyImpuestosAdapter(factura.getImpuestos());
         } else {
             return new ImpuestosAdapter(factura.getImpuestos());
@@ -134,7 +134,7 @@ public class FacturaAdapter implements FacturaModel {
 
     @Override
     public MonedaModel getMoneda() {
-        if (factura.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
+        if (factura.getEstado().equals(EstadoComprobantePago.CERRADO)) {
             return new ReadOnlyMonedaAdapter(factura.getMoneda());
         } else {
             return new MonedaAdapter(factura.getMoneda());
@@ -143,7 +143,7 @@ public class FacturaAdapter implements FacturaModel {
 
     @Override
     public TotalModel getTotal() {
-        if (factura.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
+        if (factura.getEstado().equals(EstadoComprobantePago.CERRADO)) {
             return new ReadOnlyTotalAdapter(factura.getTotal());
         } else {
             return new TotalAdapter(factura.getTotal());
@@ -152,7 +152,7 @@ public class FacturaAdapter implements FacturaModel {
 
     @Override
     public TotalInformacionAdicionalModel getTotalInformacionAdicional() {
-        if (factura.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
+        if (factura.getEstado().equals(EstadoComprobantePago.CERRADO)) {
             return new ReadOnlyTotalInformacionAdicionalAdapter(factura.getTotalInformacionAdicional());
         } else {
             return new TotalInformacionAdicionalAdapter(factura.getTotalInformacionAdicional());
@@ -161,7 +161,7 @@ public class FacturaAdapter implements FacturaModel {
 
     @Override
     public List<DetalleComprobantePagoModel> getDetalle() {
-        if (factura.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
+        if (factura.getEstado().equals(EstadoComprobantePago.CERRADO)) {
             return factura.getDetalle()
                     .stream()
                     .map(ReadOnlyDetalleComprobantePagoAdapter::new)
@@ -176,7 +176,7 @@ public class FacturaAdapter implements FacturaModel {
 
     @Override
     public List<DetalleComprobantePagoModel> setDetalle(List<DetalleComprobantePagoBean> beans) {
-        if (factura.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
+        if (factura.getEstado().equals(EstadoComprobantePago.CERRADO)) {
             ReadOnlyUtils.throwException();
         }
 

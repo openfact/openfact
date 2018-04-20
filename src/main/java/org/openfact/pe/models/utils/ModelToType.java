@@ -157,31 +157,7 @@ public class ModelToType {
         customerPartyType.setCustomerAssignedAccountID(TypeUtils.buildCustomerAssignedAccountIDType(cliente.getNumeroDocumento()));
 
         // Código de DNI/RUC
-        switch (cliente.getTipoDocumento()) {
-            case DOC_TRIB_NO_DOM_SIN_RUC:
-                customerPartyType.getAdditionalAccountID().add(TypeUtils.buildAdditionalAccountIDType(TipoDocumentoEntidad.DOC_TRIB_NO_DOM_SIN_RUC.getCodigo()));
-                break;
-            case DNI:
-                customerPartyType.getAdditionalAccountID().add(TypeUtils.buildAdditionalAccountIDType(TipoDocumentoEntidad.DNI.getCodigo()));
-                break;
-            case EXTRANJERIA:
-                customerPartyType.getAdditionalAccountID().add(TypeUtils.buildAdditionalAccountIDType(TipoDocumentoEntidad.EXTRANJERIA.getCodigo()));
-                break;
-            case RUC:
-                customerPartyType.getAdditionalAccountID().add(TypeUtils.buildAdditionalAccountIDType(TipoDocumentoEntidad.RUC.getCodigo()));
-                break;
-            case PASAPORTE:
-                customerPartyType.getAdditionalAccountID().add(TypeUtils.buildAdditionalAccountIDType(TipoDocumentoEntidad.PASAPORTE.getCodigo()));
-                break;
-            case DEC_DIPLOMATICA:
-                customerPartyType.getAdditionalAccountID().add(TypeUtils.buildAdditionalAccountIDType(TipoDocumentoEntidad.DEC_DIPLOMATICA.getCodigo()));
-                break;
-            case NO_IDENTIFICADO_EXPORTACION:
-                customerPartyType.getAdditionalAccountID().add(TypeUtils.buildAdditionalAccountIDType(TipoDocumentoEntidad.NO_IDENTIFICADO_EXPORTACION.getCodigo()));
-                break;
-            default:
-                throw new IllegalStateException("Tipo de documento invalido en customer");
-        }
+        customerPartyType.getAdditionalAccountID().add(TypeUtils.buildAdditionalAccountIDType(cliente.getTipoDocumento()));
 
         // Party
         PartyType partyType = new PartyType();

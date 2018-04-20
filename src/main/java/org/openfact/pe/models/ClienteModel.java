@@ -1,12 +1,10 @@
 package org.openfact.pe.models;
 
-import org.openfact.pe.models.types.TipoDocumentoEntidad;
-
 public interface ClienteModel {
 
-    TipoDocumentoEntidad getTipoDocumento();
+    String getTipoDocumento();
 
-    void setTipoDocumento(TipoDocumentoEntidad tipoDocumento);
+    void setTipoDocumento(String tipoDocumento);
 
     String getNumeroDocumento();
 

@@ -91,8 +91,8 @@ public class DefaultBoletasResource implements BoletasResource {
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
         BoletaModel boleta = boletaProvider.getBoleta(organization, idDocumento).orElseThrow(() -> new NotFoundException("Boleta o Factura no encontrada"));
 
-        if (boleta.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
-            throw new BadRequestException("Comprobante ABIERTO o ya fue declarado a la SUNAT, no se puede eliminar");
+        if (boleta.getEstado().equals(EstadoComprobantePago.CERRADO)) {
+            throw new BadRequestException("Comprobante CERRADO o ya fue declarado a la SUNAT, no se puede eliminar");
         }
 
         RepresentationToModel.modelToRepresentation(boleta, rep);
@@ -106,7 +106,7 @@ public class DefaultBoletasResource implements BoletasResource {
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
         BoletaModel boleta = boletaProvider.getBoleta(organization, idDocumento).orElseThrow(() -> new NotFoundException("Boleta no encontrada"));
 
-        if (boleta.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
+        if (boleta.getEstado().equals(EstadoComprobantePago.CERRADO)) {
             throw new BadRequestException("Comprobante ABIERTO o ya fue declarado a la SUNAT, no se puede eliminar");
         }
 

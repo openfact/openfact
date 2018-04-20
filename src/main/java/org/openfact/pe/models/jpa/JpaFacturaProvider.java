@@ -42,7 +42,7 @@ public class JpaFacturaProvider implements FacturaProvider {
     private FacturaModel toModel(FacturaEntity facturaEntity) {
         EstadoComprobantePago estado = facturaEntity.getEstado();
         switch (estado) {
-            case ABIERTO:
+            case CERRADO:
                 return new ReadOnlyFacturaAdapter(em, facturaEntity);
             default:
                 return new FacturaAdapter(em, facturaEntity);
@@ -116,7 +116,7 @@ public class JpaFacturaProvider implements FacturaProvider {
         entity.setId(ModelUtils.generateId());
         entity.setSerie(serie);
         entity.setNumero(numero);
-        entity.setEstado(EstadoComprobantePago.CERRADO);
+        entity.setEstado(EstadoComprobantePago.ABIERTO);
         entity.setCreatedAt(Calendar.getInstance().getTime());
         entity.setOrganization(OrganizationAdapter.toEntity(organizacion, em));
 
@@ -158,7 +158,7 @@ public class JpaFacturaProvider implements FacturaProvider {
 
     @Override
     public boolean remove(FacturaModel factura) {
-        if (factura.getEstado().equals(EstadoComprobantePago.ABIERTO)) return false;
+        if (factura.getEstado().equals(EstadoComprobantePago.CERRADO)) return false;
         em.createNamedQuery("DeleteFactura").setParameter("facturaId", factura.getId()).executeUpdate();
         em.flush();
         return true;

@@ -92,7 +92,7 @@ public class DefaultFacturasResource implements FacturasResource {
         FacturaModel factura = facturaProvider.getFactura(organization, idDocumento).orElseThrow(() -> new NotFoundException("Factura no encontrada"));
         RepresentationToModel.modelToRepresentation(factura, rep);
 
-        if (factura.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
+        if (factura.getEstado().equals(EstadoComprobantePago.CERRADO)) {
             throw new BadRequestException("Comprobante ABIERTO o ya fue declarado a la SUNAT, no se puede eliminar");
         }
 
@@ -105,7 +105,7 @@ public class DefaultFacturasResource implements FacturasResource {
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
         FacturaModel factura = facturaProvider.getFactura(organization, idDocumento).orElseThrow(() -> new NotFoundException("Boleta o Factura no encontrada"));
 
-        if (factura.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
+        if (factura.getEstado().equals(EstadoComprobantePago.CERRADO)) {
             throw new BadRequestException("Comprobante ABIERTO o ya fue declarado a la SUNAT, no se puede eliminar");
         }
 

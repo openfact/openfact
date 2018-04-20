@@ -1,5 +1,6 @@
 package org.openfact.pe.models.utils;
 
+import org.openfact.pe.models.types.TipoDocumentoEntidad;
 import org.openfact.pe.representations.idm.*;
 import org.openfact.pe.models.*;
 import org.openfact.pe.representations.idm.*;

@@ -1,5 +1,9 @@
 package org.openfact.pe.models.types;
 
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.stream.Stream;
+
 public enum TipoDocumentoEntidad {
 
     DOC_TRIB_NO_DOM_SIN_RUC("0", "NO DOMICILIADO", "DOC. TRIBUTARIO NO DOMICILIADO SIN RUC", 8),
@@ -31,11 +35,14 @@ public enum TipoDocumentoEntidad {
         return length;
     }
 
-
-    private TipoDocumentoEntidad(String codigo, String abreviatura, String denominacion, int length) {
+    TipoDocumentoEntidad(String codigo, String abreviatura, String denominacion, int length) {
         this.codigo = codigo;
         this.abreviatura = abreviatura;
         this.denominacion = denominacion;
         this.length = length;
+    }
+
+    public static Optional<TipoDocumentoEntidad> getByCode(String codigo) {
+        return Stream.of(TipoDocumentoEntidad.values()).filter(p -> p.getCodigo().equals(codigo)).findFirst();
     }
 }

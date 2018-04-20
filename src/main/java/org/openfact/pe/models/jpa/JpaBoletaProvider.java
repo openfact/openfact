@@ -42,7 +42,7 @@ public class JpaBoletaProvider implements BoletaProvider {
     private BoletaModel toModel(BoletaEntity boletaEntity) {
         EstadoComprobantePago estado = boletaEntity.getEstado();
         switch (estado) {
-            case ABIERTO:
+            case CERRADO:
                 return new ReadOnlyBoletaAdapter(em, boletaEntity);
             default:
                 return new BoletaAdapter(em, boletaEntity);
@@ -116,7 +116,7 @@ public class JpaBoletaProvider implements BoletaProvider {
         entity.setId(ModelUtils.generateId());
         entity.setSerie(serie);
         entity.setNumero(numero);
-        entity.setEstado(EstadoComprobantePago.CERRADO);
+        entity.setEstado(EstadoComprobantePago.ABIERTO);
         entity.setCreatedAt(Calendar.getInstance().getTime());
         entity.setOrganization(OrganizationAdapter.toEntity(organization, em));
 
@@ -158,7 +158,7 @@ public class JpaBoletaProvider implements BoletaProvider {
 
     @Override
     public boolean remove(BoletaModel boleta) {
-        if (boleta.getEstado().equals(EstadoComprobantePago.ABIERTO)) return false;
+        if (boleta.getEstado().equals(EstadoComprobantePago.CERRADO)) return false;
         em.createNamedQuery("DeleteBoleta").setParameter("boletaId", boleta.getId()).executeUpdate();
         em.flush();
         return true;

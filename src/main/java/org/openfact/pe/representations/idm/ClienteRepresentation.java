@@ -10,7 +10,9 @@ import javax.validation.constraints.Size;
 public class ClienteRepresentation {
 
     @NotNull
-    private TipoDocumentoEntidad tipoDocumento;
+    private String tipoDocumento;
+
+    private String tipoDocumentoAlias;
 
     @NotNull
     @NotBlank
@@ -29,11 +31,11 @@ public class ClienteRepresentation {
     @Size(max = 250)
     private String direccion;
 
-    public TipoDocumentoEntidad getTipoDocumento() {
+    public String getTipoDocumento() {
         return tipoDocumento;
     }
 
-    public void setTipoDocumento(TipoDocumentoEntidad tipoDocumento) {
+    public void setTipoDocumento(String tipoDocumento) {
         this.tipoDocumento = tipoDocumento;
     }
 
@@ -67,5 +69,13 @@ public class ClienteRepresentation {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public String getTipoDocumentoAlias() {
+        return tipoDocumentoAlias;
+    }
+
+    public void setTipoDocumentoAlias(String tipoDocumentoAlias) {
+        this.tipoDocumentoAlias = tipoDocumentoAlias;
     }
 }

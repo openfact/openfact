@@ -13,9 +13,8 @@ import javax.validation.constraints.NotNull;
 public class ClienteEntity {
 
     @NotNull
-    @Enumerated(EnumType.STRING)
     @Column(name = "cliente_tipo_documento")
-    private TipoDocumentoEntidad tipoDocumento;
+    private String tipoDocumento;
 
     @NotNull
     @Column(name = "cliente_numero_documento")
@@ -32,11 +31,11 @@ public class ClienteEntity {
     @Column(name = "cliente_direccion")
     private String direccion;
 
-    public TipoDocumentoEntidad getTipoDocumento() {
+    public String getTipoDocumento() {
         return tipoDocumento;
     }
 
-    public void setTipoDocumento(TipoDocumentoEntidad tipoDocumento) {
+    public void setTipoDocumento(String tipoDocumento) {
         this.tipoDocumento = tipoDocumento;
     }
 

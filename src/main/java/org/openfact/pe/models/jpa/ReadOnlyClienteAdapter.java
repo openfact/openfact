@@ -20,7 +20,7 @@ public class ReadOnlyClienteAdapter extends ClienteAdapter {
     }
 
     @Override
-    public void setTipoDocumento(TipoDocumentoEntidad tipoDocumento) {
+    public void setTipoDocumento(String tipoDocumento) {
         ReadOnlyUtils.throwException();
     }
 

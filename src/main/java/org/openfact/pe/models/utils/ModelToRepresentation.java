@@ -1,5 +1,6 @@
 package org.openfact.pe.models.utils;
 
+import org.openfact.pe.models.types.TipoDocumentoEntidad;
 import org.openfact.pe.representations.idm.*;
 import org.openfact.pe.models.*;
 import org.openfact.pe.representations.idm.*;
@@ -56,8 +57,11 @@ public class ModelToRepresentation {
         ClienteRepresentation rep = new ClienteRepresentation();
 
         rep.setNombre(model.getNombre());
+
         rep.setTipoDocumento(model.getTipoDocumento());
-        rep.setNombre(model.getNombre());
+        TipoDocumentoEntidad.getByCode(model.getTipoDocumento()).ifPresent((v) -> rep.setTipoDocumentoAlias(v.getAbreviatura()));
+
+        rep.setNumeroDocumento(model.getNumeroDocumento());
         rep.setDireccion(model.getDireccion());
         rep.setEmail(model.getEmail());
 

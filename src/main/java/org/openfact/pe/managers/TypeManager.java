@@ -71,7 +71,7 @@ public class TypeManager {
     @Asynchronous
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void buildBoleta(OrganizationModel organization, BoletaModel boleta) {
-        if (boleta.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
+        if (boleta.getEstado().equals(EstadoComprobantePago.CERRADO)) {
             throw new ModelReadOnlyException("Documento es de solo lectura");
         }
 
@@ -113,7 +113,7 @@ public class TypeManager {
     @Asynchronous
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void buildFactura(OrganizationModel organization, FacturaModel factura) {
-        if (factura.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
+        if (factura.getEstado().equals(EstadoComprobantePago.CERRADO)) {
             throw new ModelReadOnlyException("Documento es de solo lectura");
         }
 
@@ -155,7 +155,7 @@ public class TypeManager {
     @Asynchronous
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void buildCreditNote(OrganizationModel organization, CreditNoteModel creditNote) {
-        if (creditNote.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
+        if (creditNote.getEstado().equals(EstadoComprobantePago.CERRADO)) {
             throw new ModelReadOnlyException("Documento es de solo lectura");
         }
 
@@ -197,7 +197,7 @@ public class TypeManager {
     @Asynchronous
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void buildDebitNote(OrganizationModel organization, DebitNoteModel debitNote) {
-        if (debitNote.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
+        if (debitNote.getEstado().equals(EstadoComprobantePago.CERRADO)) {
             throw new ModelReadOnlyException("Documento es de solo lectura");
         }
 
