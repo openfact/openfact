@@ -18,4 +18,6 @@ public interface FacturaProvider {
 
     boolean remove(FacturaModel factura);
 
+    long getTotalFacturasPorEstado(EstadoComprobantePago estado);
+
 }

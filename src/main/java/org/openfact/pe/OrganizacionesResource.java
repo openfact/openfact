@@ -1,7 +1,7 @@
 package org.openfact.pe;
 
-import org.openfact.pe.idm.OrganizacionInformacionAdicionalRepresentation;
-import org.openfact.pe.idm.OrganizacionInformacionSUNATRepresentation;
+import org.openfact.pe.representations.idm.OrganizacionInformacionAdicionalRepresentation;
+import org.openfact.pe.representations.idm.OrganizacionInformacionSUNATRepresentation;
 
 import javax.validation.Valid;
 import javax.ws.rs.*;

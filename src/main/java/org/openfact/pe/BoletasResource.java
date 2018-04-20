@@ -1,6 +1,6 @@
 package org.openfact.pe;
 
-import org.openfact.pe.idm.BoletaRepresentation;
+import org.openfact.pe.representations.idm.BoletaRepresentation;
 
 import javax.validation.Valid;
 import javax.ws.rs.*;
@@ -16,7 +16,7 @@ public interface BoletasResource {
     @Path("/")
     List<BoletaRepresentation> getBoletas(
             @PathParam("organizationId") String organizationId,
-            @QueryParam("estado") @DefaultValue("REGISTRADO") String estado,
+            @QueryParam("estado") @DefaultValue("ABIERTO") String estado,
             @QueryParam("offset") @DefaultValue("0") int offset,
             @QueryParam("limit") @DefaultValue("10") int limit
     );

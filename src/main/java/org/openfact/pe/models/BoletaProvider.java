@@ -18,4 +18,6 @@ public interface BoletaProvider {
 
     boolean remove(BoletaModel boleta);
 
+    long getTotalBoletasPorEstado(EstadoComprobantePago estado);
+
 }

@@ -107,7 +107,7 @@ public class BoletaAdapter implements BoletaModel {
 
     @Override
     public FechaModel getFecha() {
-        if (boleta.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
+        if (boleta.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
             return new ReadOnlyFechaAdapter(boleta.getFecha());
         } else {
             return new FechaAdapter(boleta.getFecha());
@@ -116,7 +116,7 @@ public class BoletaAdapter implements BoletaModel {
 
     @Override
     public ClienteModel getCliente() {
-        if (boleta.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
+        if (boleta.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
             return new ReadOnlyClienteAdapter(boleta.getCliente());
         } else {
             return new ClienteAdapter(boleta.getCliente());
@@ -125,7 +125,7 @@ public class BoletaAdapter implements BoletaModel {
 
     @Override
     public ImpuestosModel getImpuestos() {
-        if (boleta.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
+        if (boleta.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
             return new ReadOnlyImpuestosAdapter(boleta.getImpuestos());
         } else {
             return new ImpuestosAdapter(boleta.getImpuestos());
@@ -134,7 +134,7 @@ public class BoletaAdapter implements BoletaModel {
 
     @Override
     public MonedaModel getMoneda() {
-        if (boleta.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
+        if (boleta.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
             return new ReadOnlyMonedaAdapter(boleta.getMoneda());
         } else {
             return new MonedaAdapter(boleta.getMoneda());
@@ -143,7 +143,7 @@ public class BoletaAdapter implements BoletaModel {
 
     @Override
     public TotalModel getTotal() {
-        if (boleta.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
+        if (boleta.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
             return new ReadOnlyTotalAdapter(boleta.getTotal());
         } else {
             return new TotalAdapter(boleta.getTotal());
@@ -152,7 +152,7 @@ public class BoletaAdapter implements BoletaModel {
 
     @Override
     public TotalInformacionAdicionalModel getTotalInformacionAdicional() {
-        if (boleta.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
+        if (boleta.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
             return new ReadOnlyTotalInformacionAdicionalAdapter(boleta.getTotalInformacionAdicional());
         } else {
             return new TotalInformacionAdicionalAdapter(boleta.getTotalInformacionAdicional());
@@ -161,7 +161,7 @@ public class BoletaAdapter implements BoletaModel {
 
     @Override
     public List<DetalleComprobantePagoModel> getDetalle() {
-        if (boleta.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
+        if (boleta.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
             return boleta.getDetalle()
                     .stream()
                     .map(ReadOnlyDetalleComprobantePagoAdapter::new)
@@ -176,7 +176,7 @@ public class BoletaAdapter implements BoletaModel {
 
     @Override
     public List<DetalleComprobantePagoModel> setDetalle(List<DetalleComprobantePagoBean> beans) {
-        if (boleta.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
+        if (boleta.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
             ReadOnlyUtils.throwException();
         }
 

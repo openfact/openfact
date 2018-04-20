@@ -1,7 +1,8 @@
 package org.openfact.pe.models.utils;
 
-import org.openfact.pe.idm.*;
+import org.openfact.pe.representations.idm.*;
 import org.openfact.pe.models.*;
+import org.openfact.pe.representations.idm.*;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -19,7 +19,8 @@ import java.util.List;
         @NamedQuery(name = "GetFacturaPorEstado", query = "select b from FacturaEntity b inner join b.organization o where o.id=:organizationId and b.estado=:estado"),
         @NamedQuery(name = "GetFacturaPorSerieYNumero", query = "select b from FacturaEntity b inner join b.organization o where o.id=:organizationId and b.serie=:serie and b.numero=:numero"),
         @NamedQuery(name = "getFacturasEmpezandoPorLasMasRecientes", query = "select b from FacturaEntity b inner join b.organization o where o.id=:organizationId order by b.createdAt"),
-        @NamedQuery(name = "getFacturasConSerieEmpezandoPorLasMasRecientes", query = "select b from FacturaEntity b inner join b.organization o where o.id=:organizationId and b.serie=:serie order by b.createdAt")
+        @NamedQuery(name = "getFacturasConSerieEmpezandoPorLasMasRecientes", query = "select b from FacturaEntity b inner join b.organization o where o.id=:organizationId and b.serie=:serie order by b.createdAt"),
+        @NamedQuery(name = "getFacturasPorEstado", query = "select count(d) from FacturaEntity d where d.estado =:estado")
 })
 public class FacturaEntity extends AbstractInvoiceEntity implements Serializable {
 

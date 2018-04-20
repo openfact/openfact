@@ -1,6 +1,6 @@
 package org.openfact.pe;
 
-import org.openfact.pe.idm.SUNATGenericTypeRepresentation;
+import org.openfact.pe.representations.idm.SUNATGenericTypeRepresentation;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;

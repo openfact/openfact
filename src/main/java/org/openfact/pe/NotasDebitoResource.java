@@ -1,6 +1,6 @@
 package org.openfact.pe;
 
-import org.openfact.pe.idm.NotaDebitoRepresentation;
+import org.openfact.pe.representations.idm.NotaDebitoRepresentation;
 
 import javax.validation.Valid;
 import javax.ws.rs.*;

@@ -15,6 +15,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.AbstractMap;
@@ -41,7 +42,7 @@ public class JpaBoletaProvider implements BoletaProvider {
     private BoletaModel toModel(BoletaEntity boletaEntity) {
         EstadoComprobantePago estado = boletaEntity.getEstado();
         switch (estado) {
-            case REGISTRADO:
+            case ABIERTO:
                 return new ReadOnlyBoletaAdapter(em, boletaEntity);
             default:
                 return new BoletaAdapter(em, boletaEntity);
@@ -115,7 +116,7 @@ public class JpaBoletaProvider implements BoletaProvider {
         entity.setId(ModelUtils.generateId());
         entity.setSerie(serie);
         entity.setNumero(numero);
-        entity.setEstado(EstadoComprobantePago.NO_REGISTRADO);
+        entity.setEstado(EstadoComprobantePago.CERRADO);
         entity.setCreatedAt(Calendar.getInstance().getTime());
         entity.setOrganization(OrganizationAdapter.toEntity(organization, em));
 
@@ -157,9 +158,16 @@ public class JpaBoletaProvider implements BoletaProvider {
 
     @Override
     public boolean remove(BoletaModel boleta) {
-        if (boleta.getEstado().equals(EstadoComprobantePago.REGISTRADO)) return false;
+        if (boleta.getEstado().equals(EstadoComprobantePago.ABIERTO)) return false;
         em.createNamedQuery("DeleteBoleta").setParameter("boletaId", boleta.getId()).executeUpdate();
         em.flush();
         return true;
+    }
+
+    @Override
+    public long getTotalBoletasPorEstado(EstadoComprobantePago estado) {
+        Query query = em.createNamedQuery("getBoletasPorEstado");
+        query.setParameter("estado", estado);
+        return ((Long) query.getSingleResult());
     }
 }

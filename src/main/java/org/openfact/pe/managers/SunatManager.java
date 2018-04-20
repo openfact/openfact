@@ -206,7 +206,7 @@ public class SunatManager {
             String code = document.getElementsByTagName("cbc:ResponseCode").item(0).getTextContent();
             String description = document.getElementsByTagName("cbc:Description").item(0).getTextContent();
             if (code.equals("0")) {
-                documentoModel.setEstado(EstadoComprobantePago.REGISTRADO);
+                documentoModel.setEstado(EstadoComprobantePago.ABIERTO);
                 documentoModel.setEstadoDescripcion(description);
             }
         } catch (Exception e) {

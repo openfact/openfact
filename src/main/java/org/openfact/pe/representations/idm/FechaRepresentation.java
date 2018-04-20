@@ -1,4 +1,4 @@
-package org.openfact.pe.idm;
+package org.openfact.pe.representations.idm;
 
 import java.util.Date;
 

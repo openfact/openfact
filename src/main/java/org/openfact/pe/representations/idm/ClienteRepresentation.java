@@ -1,4 +1,4 @@
-package org.openfact.pe.idm;
+package org.openfact.pe.representations.idm;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;

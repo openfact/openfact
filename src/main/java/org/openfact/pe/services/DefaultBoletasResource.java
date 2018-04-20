@@ -3,14 +3,13 @@ package org.openfact.pe.services;
 import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.OrganizationProvider;
 import org.openfact.pe.BoletasResource;
-import org.openfact.pe.idm.BoletaRepresentation;
+import org.openfact.pe.representations.idm.BoletaRepresentation;
 import org.openfact.pe.managers.TypeManager;
 import org.openfact.pe.models.*;
 import org.openfact.pe.models.utils.ModelToRepresentation;
 import org.openfact.pe.models.utils.RepresentationToModel;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.BadRequestException;
@@ -92,8 +91,8 @@ public class DefaultBoletasResource implements BoletasResource {
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
         BoletaModel boleta = boletaProvider.getBoleta(organization, idDocumento).orElseThrow(() -> new NotFoundException("Boleta o Factura no encontrada"));
 
-        if (boleta.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
-            throw new BadRequestException("Comprobante REGISTRADO o ya fue declarado a la SUNAT, no se puede eliminar");
+        if (boleta.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
+            throw new BadRequestException("Comprobante ABIERTO o ya fue declarado a la SUNAT, no se puede eliminar");
         }
 
         RepresentationToModel.modelToRepresentation(boleta, rep);
@@ -107,8 +106,8 @@ public class DefaultBoletasResource implements BoletasResource {
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
         BoletaModel boleta = boletaProvider.getBoleta(organization, idDocumento).orElseThrow(() -> new NotFoundException("Boleta no encontrada"));
 
-        if (boleta.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
-            throw new BadRequestException("Comprobante REGISTRADO o ya fue declarado a la SUNAT, no se puede eliminar");
+        if (boleta.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
+            throw new BadRequestException("Comprobante ABIERTO o ya fue declarado a la SUNAT, no se puede eliminar");
         }
 
         boolean result = boletaProvider.remove(boleta);

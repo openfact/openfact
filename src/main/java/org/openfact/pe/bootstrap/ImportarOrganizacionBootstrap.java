@@ -6,7 +6,7 @@ import org.openfact.core.models.ModelRuntimeException;
 import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.OrganizationProvider;
 import org.openfact.core.models.utils.RepresentationToModel;
-import org.openfact.pe.idm.OrganizacionImportadaRepresentation;
+import org.openfact.pe.representations.idm.OrganizacionImportadaRepresentation;
 import org.openfact.pe.models.OrganizacionInformacionAdicionalModel;
 import org.openfact.pe.models.OrganizacionInformacionSunatModel;
 import org.openfact.pe.models.OrganizationInformacionAdicionalProvider;

@@ -3,7 +3,7 @@ package org.openfact.pe.services;
 import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.OrganizationProvider;
 import org.openfact.pe.FacturasResource;
-import org.openfact.pe.idm.FacturaRepresentation;
+import org.openfact.pe.representations.idm.FacturaRepresentation;
 import org.openfact.pe.managers.TypeManager;
 import org.openfact.pe.models.*;
 import org.openfact.pe.models.utils.ModelToRepresentation;
@@ -92,8 +92,8 @@ public class DefaultFacturasResource implements FacturasResource {
         FacturaModel factura = facturaProvider.getFactura(organization, idDocumento).orElseThrow(() -> new NotFoundException("Factura no encontrada"));
         RepresentationToModel.modelToRepresentation(factura, rep);
 
-        if (factura.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
-            throw new BadRequestException("Comprobante REGISTRADO o ya fue declarado a la SUNAT, no se puede eliminar");
+        if (factura.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
+            throw new BadRequestException("Comprobante ABIERTO o ya fue declarado a la SUNAT, no se puede eliminar");
         }
 
         // Recalcular XML
@@ -105,8 +105,8 @@ public class DefaultFacturasResource implements FacturasResource {
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
         FacturaModel factura = facturaProvider.getFactura(organization, idDocumento).orElseThrow(() -> new NotFoundException("Boleta o Factura no encontrada"));
 
-        if (factura.getEstado().equals(EstadoComprobantePago.REGISTRADO)) {
-            throw new BadRequestException("Comprobante REGISTRADO o ya fue declarado a la SUNAT, no se puede eliminar");
+        if (factura.getEstado().equals(EstadoComprobantePago.ABIERTO)) {
+            throw new BadRequestException("Comprobante ABIERTO o ya fue declarado a la SUNAT, no se puede eliminar");
         }
 
         boolean result = facturaProvider.remove(factura);

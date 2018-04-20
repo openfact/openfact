@@ -1,6 +1,6 @@
 package org.openfact.pe;
 
-import org.openfact.pe.idm.FacturaRepresentation;
+import org.openfact.pe.representations.idm.FacturaRepresentation;
 
 import javax.validation.Valid;
 import javax.ws.rs.*;
@@ -16,7 +16,7 @@ public interface FacturasResource {
     @Path("/")
     List<FacturaRepresentation> getFacturas(
             @PathParam("organizationId") String organizationId,
-            @QueryParam("estado") @DefaultValue("REGISTRADO") String estado,
+            @QueryParam("estado") @DefaultValue("ABIERTO") String estado,
             @QueryParam("offset") @DefaultValue("0") int offset,
             @QueryParam("limit") @DefaultValue("10") int limit
     );

@@ -1,7 +1,7 @@
 package org.openfact.pe.services;
 
 import org.openfact.pe.SunatPEResource;
-import org.openfact.pe.idm.SUNATGenericTypeRepresentation;
+import org.openfact.pe.representations.idm.SUNATGenericTypeRepresentation;
 import org.openfact.pe.models.types.TipoAfectacionIgv;
 import org.openfact.pe.models.types.TipoDocumentoEntidad;
 import org.openfact.pe.models.types.TipoInvoice;

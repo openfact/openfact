@@ -1,6 +1,6 @@
 package org.openfact.pe;
 
-import org.openfact.pe.idm.NotaCreditoRepresentation;
+import org.openfact.pe.representations.idm.NotaCreditoRepresentation;
 
 import javax.validation.Valid;
 import javax.ws.rs.*;
