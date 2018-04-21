@@ -34,6 +34,7 @@ public class ValidacionAdapter implements ValidacionModel {
     @Override
     public void setEstado(boolean estado) {
         validacion.setEstado(estado);
+        em.merge(validacion); // Si no se hace merge, el estado nunca se actualiza
     }
 
     @Override

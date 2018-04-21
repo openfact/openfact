@@ -3,7 +3,6 @@ package org.openfact.pe.models.utils;
 import org.openfact.pe.models.types.TipoDocumentoEntidad;
 import org.openfact.pe.representations.idm.*;
 import org.openfact.pe.models.*;
-import org.openfact.pe.representations.idm.*;
 
 import java.util.stream.Collectors;
 
@@ -126,7 +125,7 @@ public class ModelToRepresentation {
         ValidacionModel validacionModel = model.getValidacion();
         ValidacionRepresentation validacionRep = new ValidacionRepresentation();
         validacionRep.setEstado(validacionModel.getEstado());
-        validacionRep.setError(validacionModel.getErrores().stream().map(ModelToRepresentation::toRepresentation).collect(Collectors.toList()));
+        validacionRep.setErrores(validacionModel.getErrores().stream().map(ModelToRepresentation::toRepresentation).collect(Collectors.toList()));
         rep.setValidacion(validacionRep);
 
         if (fullInfo) {
@@ -155,7 +154,7 @@ public class ModelToRepresentation {
         ValidacionModel validacionModel = model.getValidacion();
         ValidacionRepresentation validacionRep = new ValidacionRepresentation();
         validacionRep.setEstado(validacionModel.getEstado());
-        validacionRep.setError(validacionModel.getErrores().stream().map(ModelToRepresentation::toRepresentation).collect(Collectors.toList()));
+        validacionRep.setErrores(validacionModel.getErrores().stream().map(ModelToRepresentation::toRepresentation).collect(Collectors.toList()));
         rep.setValidacion(validacionRep);
 
         if (fullInfo) {
