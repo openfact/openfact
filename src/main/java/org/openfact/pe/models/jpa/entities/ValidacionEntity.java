@@ -1,13 +1,10 @@
 package org.openfact.pe.models.jpa.entities;
 
 import org.hibernate.annotations.Type;
+import org.openfact.pe.models.ErrorType;
 
 import javax.persistence.*;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "validacion")
@@ -23,8 +20,12 @@ public abstract class ValidacionEntity {
     @Column(name = "estado")
     private boolean estado;
 
-    @OneToMany(mappedBy = "validacion", fetch = FetchType.LAZY)
-    private List<ErrorEntity> errores = new ArrayList<>();
+    @Enumerated(EnumType.STRING)
+    @Column(name = "error")
+    private ErrorType error;
+
+    @Column(name = "descripcion", length = 450)
+    private String errorDescripcion;
 
     public String getId() {
         return id;
@@ -42,11 +43,19 @@ public abstract class ValidacionEntity {
         this.estado = estado;
     }
 
-    public List<ErrorEntity> getErrores() {
-        return errores;
+    public ErrorType getError() {
+        return error;
     }
 
-    public void setErrores(List<ErrorEntity> errores) {
-        this.errores = errores;
+    public void setError(ErrorType tipoError) {
+        this.error = tipoError;
+    }
+
+    public String getErrorDescripcion() {
+        return errorDescripcion;
+    }
+
+    public void setErrorDescripcion(String descripcion) {
+        this.errorDescripcion = descripcion;
     }
 }

@@ -36,16 +36,37 @@ public class SunatManager {
     @Inject
     private OrganizationInformacionSunatProvider orgSunatInfoProvider;
 
+    private void guardarDatosInvalidosOrganizacion(ValidacionModel validacion) {
+        validacion.setEstado(false);
+        validacion.setError(ErrorType.datos_organizacion_imcompletos);
+        validacion.setErrorDescripcion("Envío Sunat - Datos de organización incompletos");
+    }
+
+    private void guardarDatosInvalidosEndpoint(ValidacionModel validacion) {
+        validacion.setEstado(false);
+        validacion.setError(ErrorType.endpoint_organizacion_imcompletos);
+        validacion.setErrorDescripcion("Envío Sunat - La organización no tiene endpoins configurados válidos");
+    }
+
+    private void procesarErrorEnEnvioSunat(ValidacionModel validacion, SendSunatException e) {
+        String errorMessage = e.getMessage().trim();
+        errorMessage = errorMessage.substring(0, Math.min(errorMessage.length(), 400));
+
+        validacion.setEstado(false);
+        validacion.setError(ErrorType.error_envio_sunat);
+        validacion.setErrorDescripcion("Envío Sunat - " + errorMessage);
+    }
+
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public boolean enviarBoleta(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, BoletaModel boleta, FileModel file) {
         if (isAdditionalInfoInvalid(additionalInfo)) {
-            logger.warnf("La organización no tienen los datos mínimos para enviar a la SUNAT");
+            guardarDatosInvalidosOrganizacion(boleta.getValidacion());
             return false;
         }
 
         OrganizacionInformacionSunatModel orgSunatInfo = getInformacionSunat(organization);
         if (orgSunatInfo.getBoletaFacturaEndpoint() == null) {
-            logger.warn("Endpoint de boletas y facturas no existe");
+            guardarDatosInvalidosEndpoint(boleta.getValidacion());
             return false;
         }
 
@@ -69,6 +90,7 @@ public class SunatManager {
             procesarErrorEnEnvioSunat(boleta.getValidacion(), e);
             return false;
         }
+
         guardarCdr(boleta, sunatResponse);
         procesarCdr(boleta, sunatResponse);
 
@@ -78,13 +100,13 @@ public class SunatManager {
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public boolean enviarFactura(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, FacturaModel factura, FileModel file) {
         if (isAdditionalInfoInvalid(additionalInfo)) {
-            logger.warnf("La organización no tienen los datos mínimos para enviar a la SUNAT");
+            guardarDatosInvalidosOrganizacion(factura.getValidacion());
             return false;
         }
 
         OrganizacionInformacionSunatModel orgSunatInfo = getInformacionSunat(organization);
         if (orgSunatInfo.getBoletaFacturaEndpoint() == null) {
-            logger.warn("Endpoint de boletas y facturas no existe");
+            guardarDatosInvalidosEndpoint(factura.getValidacion());
             return false;
         }
 
@@ -108,6 +130,7 @@ public class SunatManager {
             procesarErrorEnEnvioSunat(factura.getValidacion(), e);
             return false;
         }
+
         guardarCdr(factura, sunatResponse);
         procesarCdr(factura, sunatResponse);
 
@@ -116,13 +139,13 @@ public class SunatManager {
 
     public boolean enviarCreditNote(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, CreditNoteModel creditNote, FileModel file) {
         if (isAdditionalInfoInvalid(additionalInfo)) {
-            logger.warnf("La organización no tienen los datos mínimos para enviar a la SUNAT");
+            guardarDatosInvalidosOrganizacion(creditNote.getValidacion());
             return false;
         }
 
         OrganizacionInformacionSunatModel orgSunatInfo = getInformacionSunat(organization);
         if (orgSunatInfo.getBoletaFacturaEndpoint() == null) {
-            logger.warn("Endpoint de boletas y facturas no existe");
+            guardarDatosInvalidosEndpoint(creditNote.getValidacion());
             return false;
         }
 
@@ -146,6 +169,7 @@ public class SunatManager {
             procesarErrorEnEnvioSunat(creditNote.getValidacion(), e);
             return false;
         }
+
         guardarCdr(creditNote, sunatResponse);
         procesarCdr(creditNote, sunatResponse);
 
@@ -154,13 +178,13 @@ public class SunatManager {
 
     public boolean enviarDebitNote(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, DebitNoteModel debitNote, FileModel file) {
         if (isAdditionalInfoInvalid(additionalInfo)) {
-            logger.warnf("La organización no tienen los datos mínimos para enviar a la SUNAT");
+            guardarDatosInvalidosOrganizacion(debitNote.getValidacion());
             return false;
         }
 
         OrganizacionInformacionSunatModel orgSunatInfo = getInformacionSunat(organization);
         if (orgSunatInfo.getBoletaFacturaEndpoint() == null) {
-            logger.warn("Endpoint de boletas y facturas no existe");
+            guardarDatosInvalidosEndpoint(debitNote.getValidacion());
             return false;
         }
 
@@ -202,14 +226,6 @@ public class SunatManager {
         } else {
             return orgSunatInfoProvider.getOrganizacionInformacionSunat(organization).orElseThrow(() -> new ModelRuntimeException("No se encontró información de sunat de la organización master"));
         }
-    }
-
-    private void procesarErrorEnEnvioSunat(ValidacionModel validacion, SendSunatException e) {
-        String errorMessage = e.getMessage().trim();
-        errorMessage = errorMessage.substring(0, Math.min(errorMessage.length(), 255));
-
-        validacion.setEstado(false);
-        validacion.addError(ErrorType.error_envio_sunat, errorMessage);
     }
 
     private void procesarCdr(DocumentoModel documentoModel, byte[] sunatResponse) {

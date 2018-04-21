@@ -5,6 +5,7 @@ import org.openfact.core.models.jpa.OrganizationAdapter;
 import org.openfact.core.models.utils.ModelUtils;
 import org.openfact.pe.models.BoletaModel;
 import org.openfact.pe.models.BoletaProvider;
+import org.openfact.pe.models.ErrorType;
 import org.openfact.pe.models.EstadoComprobantePago;
 import org.openfact.pe.models.jpa.entities.BoletaEntity;
 import org.openfact.pe.models.jpa.entities.BoletaValidacionEntity;
@@ -117,11 +118,12 @@ public class JpaBoletaProvider implements BoletaProvider {
 
         BoletaValidacionEntity validacionEntity = new BoletaValidacionEntity();
         validacionEntity.setId(ModelUtils.generateId());
-        validacionEntity.setEstado(true);
+        validacionEntity.setEstado(false);
+        validacionEntity.setError(ErrorType.esperando_procesar);
+        validacionEntity.setErrorDescripcion("Esperando procesar");
         validacionEntity.setBoleta(entity);
 
         entity.setValidacion(validacionEntity);
-
         em.persist(entity);
         em.persist(validacionEntity);
         em.flush();

@@ -68,6 +68,18 @@ public class TypeManager {
     @Resource(lookup = "java:/jms/topic/my-topic")
     private Topic topic;
 
+    private void guardarDocumentoNoEnviado(ValidacionModel validacion) {
+        validacion.setEstado(false);
+        validacion.setError(ErrorType.no_enviado_sunat);
+        validacion.setErrorDescripcion("El documento todavía no fue enviado a la Sunat");
+    }
+
+    private void validacionOk(ValidacionModel validacion) {
+        validacion.setEstado(true);
+        validacion.setError(null);
+        validacion.setErrorDescripcion(null);
+    }
+
     @Asynchronous
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void buildBoleta(OrganizationModel organization, BoletaModel boleta) {
@@ -105,8 +117,10 @@ public class TypeManager {
         if (boleta.getEnviarSUNAT()) {
             boolean resultado = sunatManager.enviarBoleta(organization, additionalInfo, boleta, file);
             if (resultado) {
-
+                validacionOk(boleta.getValidacion());
             }
+        } else {
+            guardarDocumentoNoEnviado(boleta.getValidacion());
         }
     }
 
@@ -147,8 +161,10 @@ public class TypeManager {
         if (factura.getEnviarSUNAT()) {
             boolean resultado = sunatManager.enviarFactura(organization, additionalInfo, factura, file);
             if (resultado) {
-
+                validacionOk(factura.getValidacion());
             }
+        } else {
+            guardarDocumentoNoEnviado(factura.getValidacion());
         }
     }
 
@@ -189,8 +205,10 @@ public class TypeManager {
         if (creditNote.getEnviarSUNAT()) {
             boolean resultado = sunatManager.enviarCreditNote(organization, additionalInfo, creditNote, file);
             if (resultado) {
-
+                validacionOk(creditNote.getValidacion());
             }
+        } else {
+            guardarDocumentoNoEnviado(creditNote.getValidacion());
         }
     }
 
@@ -231,8 +249,10 @@ public class TypeManager {
         if (debitNote.getEnviarSUNAT()) {
             boolean resultado = sunatManager.enviarDebitNote(organization, additionalInfo, debitNote, file);
             if (resultado) {
-
+                validacionOk(debitNote.getValidacion());
             }
+        } else {
+            guardarDocumentoNoEnviado(debitNote.getValidacion());
         }
     }
 

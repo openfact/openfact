@@ -125,7 +125,8 @@ public class ModelToRepresentation {
         ValidacionModel validacionModel = model.getValidacion();
         ValidacionRepresentation validacionRep = new ValidacionRepresentation();
         validacionRep.setEstado(validacionModel.getEstado());
-        validacionRep.setErrores(validacionModel.getErrores().stream().map(ModelToRepresentation::toRepresentation).collect(Collectors.toList()));
+        validacionRep.setError(validacionModel.getError().toString());
+        validacionRep.setErrorDescripcion(validacionModel.getErrorDescripcion());
         rep.setValidacion(validacionRep);
 
         if (fullInfo) {
@@ -154,7 +155,8 @@ public class ModelToRepresentation {
         ValidacionModel validacionModel = model.getValidacion();
         ValidacionRepresentation validacionRep = new ValidacionRepresentation();
         validacionRep.setEstado(validacionModel.getEstado());
-        validacionRep.setErrores(validacionModel.getErrores().stream().map(ModelToRepresentation::toRepresentation).collect(Collectors.toList()));
+        validacionRep.setError(validacionModel.getError().toString());
+        validacionRep.setErrorDescripcion(validacionModel.getErrorDescripcion());
         rep.setValidacion(validacionRep);
 
         if (fullInfo) {
@@ -179,15 +181,6 @@ public class ModelToRepresentation {
         rep.setTotalISC(model.getTotalISC());
         rep.setUnidadMedida(model.getUnidadMedida());
         rep.setValorUnitario(model.getValorUnitario());
-
-        return rep;
-    }
-
-    public static ErrorRepresentation toRepresentation(ErrorModel model) {
-        ErrorRepresentation rep = new ErrorRepresentation();
-
-        rep.setTipo(model.getTipo().toString());
-        rep.setDescripcion(model.getDescripcion());
 
         return rep;
     }

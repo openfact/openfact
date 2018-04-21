@@ -86,25 +86,6 @@
         primary key (id)
     );
 
-    create table envio_sunat_event (
-       tipo_documento varchar(31) not null,
-        id varchar(255) not null,
-        codigo_respuesta varchar(255) not null,
-        descripcion_respuesta varchar(255) not null,
-        fecha_envio timestamp not null,
-        boleta_id varchar(255),
-        factura_id varchar(255),
-        primary key (id)
-    );
-
-    create table error (
-       id varchar(255) not null,
-        descripcion varchar(255) not null,
-        tipo varchar(255) not null,
-        validacion_id varchar(255) not null,
-        primary key (id)
-    );
-
     create table factura_pe (
        id varchar(255) not null,
         cdr_file_id varchar(255),
@@ -258,6 +239,8 @@
     create table validacion (
        tipo_documento varchar(31) not null,
         id varchar(255) not null,
+        error varchar(255),
+        descripcion varchar(450),
         estado char(255),
         factura_id varchar(255),
         boleta_id varchar(255),
@@ -312,21 +295,6 @@
        add constraint FKn33sdvallftn2wknt18ylntv1
        foreign key (boleta_id)
        references boleta_pe;
-
-    alter table envio_sunat_event
-       add constraint FK8l9c21lftigmyi4bre9pfvldy
-       foreign key (boleta_id)
-       references boleta_pe;
-
-    alter table envio_sunat_event
-       add constraint FKbhc0v5n4f76c6k6tbtw308hwp
-       foreign key (factura_id)
-       references factura_pe;
-
-    alter table error
-       add constraint FKm0ydrxh95mpqqco2jgbalkptd
-       foreign key (validacion_id)
-       references validacion;
 
     alter table factura_pe
        add constraint FK9oschd9swwx4u57m0di53x459

@@ -5,7 +5,8 @@ import java.util.List;
 public class ValidacionRepresentation {
 
     private Boolean estado;
-    private List<ErrorRepresentation> errores;
+    private String error;
+    private String errorDescripcion;
 
     public Boolean getEstado() {
         return estado;
@@ -15,11 +16,19 @@ public class ValidacionRepresentation {
         this.estado = estado;
     }
 
-    public List<ErrorRepresentation> getErrores() {
-        return errores;
+    public String getError() {
+        return error;
     }
 
-    public void setErrores(List<ErrorRepresentation> errores) {
-        this.errores = errores;
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public String getErrorDescripcion() {
+        return errorDescripcion;
+    }
+
+    public void setErrorDescripcion(String errorDescripcion) {
+        this.errorDescripcion = errorDescripcion;
     }
 }

@@ -1,7 +1,5 @@
 package org.openfact.pe.models;
 
-import java.util.List;
-
 public interface ValidacionModel {
 
     String getId();
@@ -9,6 +7,10 @@ public interface ValidacionModel {
     boolean getEstado();
     void setEstado(boolean estado);
 
-    ErrorModel addError(ErrorType tipo, String descripcion);
-    List<ErrorModel> getErrores();
+    ErrorType getError();
+    void setError(ErrorType error);
+
+    String getErrorDescripcion();
+    void setErrorDescripcion(String descripcion);
+
 }

@@ -3,10 +3,10 @@ package org.openfact.pe.models.jpa;
 import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.jpa.OrganizationAdapter;
 import org.openfact.core.models.utils.ModelUtils;
+import org.openfact.pe.models.ErrorType;
 import org.openfact.pe.models.EstadoComprobantePago;
 import org.openfact.pe.models.FacturaModel;
 import org.openfact.pe.models.FacturaProvider;
-import org.openfact.pe.models.jpa.entities.BoletaValidacionEntity;
 import org.openfact.pe.models.jpa.entities.FacturaEntity;
 import org.openfact.pe.models.jpa.entities.FacturaValidacionEntity;
 import org.openfact.pe.models.types.TipoInvoice;
@@ -17,10 +17,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.*;
 import javax.transaction.Transactional;
-import java.util.AbstractMap;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Transactional
@@ -121,11 +118,12 @@ public class JpaFacturaProvider implements FacturaProvider {
 
         FacturaValidacionEntity validacionEntity = new FacturaValidacionEntity();
         validacionEntity.setId(ModelUtils.generateId());
-        validacionEntity.setEstado(true);
+        validacionEntity.setEstado(false);
+        validacionEntity.setError(ErrorType.esperando_procesar);
+        validacionEntity.setErrorDescripcion("Esperando procesar");
         validacionEntity.setFactura(entity);
 
         entity.setValidacion(validacionEntity);
-
         em.persist(entity);
         em.persist(validacionEntity);
         em.flush();
