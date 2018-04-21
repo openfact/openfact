@@ -155,7 +155,7 @@ public class ModelToRepresentation {
         ValidacionModel validacionModel = model.getValidacion();
         ValidacionRepresentation validacionRep = new ValidacionRepresentation();
         validacionRep.setEstado(validacionModel.getEstado());
-        validacionRep.setError(validacionModel.getError().toString());
+        validacionRep.setError(validacionModel.getError() != null ? validacionModel.getError().toString() : null);
         validacionRep.setErrorDescripcion(validacionModel.getErrorDescripcion());
         rep.setValidacion(validacionRep);
 

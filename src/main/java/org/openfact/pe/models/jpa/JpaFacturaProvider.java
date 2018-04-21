@@ -131,7 +131,14 @@ public class JpaFacturaProvider implements FacturaProvider {
     }
 
     @Override
-    public Optional<FacturaModel> getFactura(OrganizationModel organization, String id) {
+    public Optional<FacturaModel> getFactura(String id) {
+        FacturaEntity entity = em.find(FacturaEntity.class, id);
+        if (entity == null) return Optional.empty();
+        return Optional.of(new FacturaAdapter(em, entity));
+    }
+
+    @Override
+    public Optional<FacturaModel> getFactura(String id, OrganizationModel organization) {
         TypedQuery<FacturaEntity> q = em.createNamedQuery("GetFacturaPorId", FacturaEntity.class);
         q.setParameter("organizationId", organization);
         q.setParameter("facturaId", id);
@@ -141,7 +148,7 @@ public class JpaFacturaProvider implements FacturaProvider {
 
     @Override
     public List<FacturaModel> getFacturas(OrganizationModel organization, EstadoComprobantePago estado) {
-        return getFacturas(organization, estado, -1 ,-1 );
+        return getFacturas(organization, estado, -1, -1);
     }
 
     @Override

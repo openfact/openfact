@@ -11,7 +11,8 @@ public interface BoletaProvider {
     BoletaModel createBoleta(OrganizationModel organization, String serie);
     BoletaModel createBoleta(OrganizationModel organization, String serie, int numero);
 
-    Optional<BoletaModel> getBoleta(OrganizationModel organization, String id);
+    Optional<BoletaModel> getBoleta(String id);
+    Optional<BoletaModel> getBoleta(String id, OrganizationModel organization);
 
     List<BoletaModel> getBoletas(OrganizationModel organization, EstadoComprobantePago estado);
     List<BoletaModel> getBoletas(OrganizationModel organization, EstadoComprobantePago estado, int offset, int limit);

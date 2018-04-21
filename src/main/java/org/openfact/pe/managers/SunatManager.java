@@ -2,7 +2,10 @@ package org.openfact.pe.managers;
 
 import jodd.io.ZipBuilder;
 import org.jboss.logging.Logger;
-import org.openfact.core.models.*;
+import org.openfact.core.models.FileModel;
+import org.openfact.core.models.FileProvider;
+import org.openfact.core.models.ModelRuntimeException;
+import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.files.FileException;
 import org.openfact.core.models.utils.ModelUtils;
 import org.openfact.core.utils.files.UncompressFileProvider;
@@ -14,15 +17,15 @@ import org.openfact.pe.models.utils.JaxbUtils;
 import org.openfact.pe.models.utils.SunatUtils;
 import org.w3c.dom.Document;
 
-import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
 
-@Stateless
+@ApplicationScoped
+@Transactional(Transactional.TxType.NEVER)
 public class SunatManager {
 
     private static final Logger logger = Logger.getLogger(SunatManager.class);
@@ -57,7 +60,7 @@ public class SunatManager {
         validacion.setErrorDescripcion("Envío Sunat - " + errorMessage);
     }
 
-    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
     public boolean enviarBoleta(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, BoletaModel boleta, FileModel file) {
         if (isAdditionalInfoInvalid(additionalInfo)) {
             guardarDatosInvalidosOrganizacion(boleta.getValidacion());
@@ -97,7 +100,7 @@ public class SunatManager {
         return true;
     }
 
-    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
     public boolean enviarFactura(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, FacturaModel factura, FileModel file) {
         if (isAdditionalInfoInvalid(additionalInfo)) {
             guardarDatosInvalidosOrganizacion(factura.getValidacion());
@@ -137,6 +140,7 @@ public class SunatManager {
         return true;
     }
 
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
     public boolean enviarCreditNote(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, CreditNoteModel creditNote, FileModel file) {
         if (isAdditionalInfoInvalid(additionalInfo)) {
             guardarDatosInvalidosOrganizacion(creditNote.getValidacion());
@@ -176,6 +180,7 @@ public class SunatManager {
         return true;
     }
 
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
     public boolean enviarDebitNote(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, DebitNoteModel debitNote, FileModel file) {
         if (isAdditionalInfoInvalid(additionalInfo)) {
             guardarDatosInvalidosOrganizacion(debitNote.getValidacion());

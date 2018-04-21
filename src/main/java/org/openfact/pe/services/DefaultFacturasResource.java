@@ -2,6 +2,8 @@ package org.openfact.pe.services;
 
 import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.OrganizationProvider;
+import org.openfact.core.security.ISecurityContext;
+import org.openfact.core.security.PermissionType;
 import org.openfact.pe.FacturasResource;
 import org.openfact.pe.representations.idm.FacturaRepresentation;
 import org.openfact.pe.managers.TypeManager;
@@ -13,6 +15,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.BadRequestException;
+import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.NotFoundException;
 import java.util.Calendar;
@@ -22,6 +25,9 @@ import java.util.stream.Collectors;
 @Transactional
 @ApplicationScoped
 public class DefaultFacturasResource implements FacturasResource {
+
+    @Inject
+    private ISecurityContext securityContext;
 
     @Inject
     private TypeManager typeManager;
@@ -34,10 +40,12 @@ public class DefaultFacturasResource implements FacturasResource {
 
     @Override
     public List<FacturaRepresentation> getFacturas(String organizationId, String estado, int offset, int limit) {
+        if (!securityContext.isAdmin() && !securityContext.hasPermission(PermissionType.document_view, organizationId)) {
+            throw new ForbiddenException();
+        }
+
         EstadoComprobantePago estadoComprobantePago = EstadoComprobantePago.valueOf(estado.toUpperCase());
-
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
-
         return facturaProvider.getFacturas(organization, estadoComprobantePago, offset, limit).stream()
                 .map(f -> ModelToRepresentation.toRepresentation(f, true))
                 .collect(Collectors.toList());
@@ -45,6 +53,10 @@ public class DefaultFacturasResource implements FacturasResource {
 
     @Override
     public FacturaRepresentation crearFactura(String organizationId, FacturaRepresentation rep) {
+        if (!securityContext.isAdmin() && !securityContext.hasPermission(PermissionType.document_manage, organizationId)) {
+            throw new ForbiddenException();
+        }
+
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
 
         String serie = rep.getSerie();
@@ -81,15 +93,19 @@ public class DefaultFacturasResource implements FacturasResource {
         RepresentationToModel.modelToRepresentation(factura, rep);
 
         // Recalcular XML
-        typeManager.buildFactura(organization, factura);
+        typeManager.buildFactura(factura.getId());
 
         return ModelToRepresentation.toRepresentation(factura, true);
     }
 
     @Override
     public void actualizarFactura(String organizationId, String idDocumento, FacturaRepresentation rep) {
+        if (!securityContext.isAdmin() && !securityContext.hasPermission(PermissionType.document_manage, organizationId)) {
+            throw new ForbiddenException();
+        }
+
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
-        FacturaModel factura = facturaProvider.getFactura(organization, idDocumento).orElseThrow(() -> new NotFoundException("Factura no encontrada"));
+        FacturaModel factura = facturaProvider.getFactura(idDocumento, organization).orElseThrow(() -> new NotFoundException("Factura no encontrada"));
         RepresentationToModel.modelToRepresentation(factura, rep);
 
         if (factura.getEstado().equals(EstadoComprobantePago.CERRADO)) {
@@ -97,13 +113,17 @@ public class DefaultFacturasResource implements FacturasResource {
         }
 
         // Recalcular XML
-        typeManager.buildFactura(organization, factura);
+        typeManager.buildFactura(factura.getId());
     }
 
     @Override
     public void eliminarFactura(String organizationId, String idDocumento) {
+        if (!securityContext.isAdmin() && !securityContext.hasPermission(PermissionType.document_manage, organizationId)) {
+            throw new ForbiddenException();
+        }
+
         OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
-        FacturaModel factura = facturaProvider.getFactura(organization, idDocumento).orElseThrow(() -> new NotFoundException("Boleta o Factura no encontrada"));
+        FacturaModel factura = facturaProvider.getFactura(idDocumento, organization).orElseThrow(() -> new NotFoundException("Boleta o Factura no encontrada"));
 
         if (factura.getEstado().equals(EstadoComprobantePago.CERRADO)) {
             throw new BadRequestException("Comprobante ABIERTO o ya fue declarado a la SUNAT, no se puede eliminar");

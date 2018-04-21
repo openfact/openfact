@@ -1,5 +1,7 @@
 package org.openfact.pe.models.jpa;
 
+import org.openfact.core.models.OrganizationModel;
+import org.openfact.core.models.jpa.OrganizationAdapter;
 import org.openfact.core.models.utils.ModelUtils;
 import org.openfact.pe.models.*;
 import org.openfact.pe.models.jpa.entities.FacturaDetalleEntity;
@@ -108,6 +110,11 @@ public class FacturaAdapter implements FacturaModel {
     @Override
     public ValidacionModel getValidacion() {
         return new ValidacionAdapter(em, factura.getValidacion());
+    }
+
+    @Override
+    public OrganizationModel getOrganization() {
+        return new OrganizationAdapter(factura.getOrganization());
     }
 
     @Override

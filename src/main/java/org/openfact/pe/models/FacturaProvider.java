@@ -11,7 +11,8 @@ public interface FacturaProvider {
     FacturaModel createFactura(OrganizationModel organization, String serie);
     FacturaModel createFactura(OrganizationModel organization, String serie, int numero);
 
-    Optional<FacturaModel> getFactura(OrganizationModel organization, String id);
+    Optional<FacturaModel> getFactura(String id);
+    Optional<FacturaModel> getFactura(String id, OrganizationModel organization);
 
     List<FacturaModel> getFacturas(OrganizationModel organization, EstadoComprobantePago estado);
     List<FacturaModel> getFacturas(OrganizationModel organization, EstadoComprobantePago estado, int offset, int limit);

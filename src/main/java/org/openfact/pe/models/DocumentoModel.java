@@ -1,5 +1,7 @@
 package org.openfact.pe.models;
 
+import org.openfact.core.models.OrganizationModel;
+
 public interface DocumentoModel {
 
     String getId();
@@ -23,4 +25,6 @@ public interface DocumentoModel {
     void setCdrFileId(String fileId);
 
     ValidacionModel getValidacion();
+
+    OrganizationModel getOrganization();
 }

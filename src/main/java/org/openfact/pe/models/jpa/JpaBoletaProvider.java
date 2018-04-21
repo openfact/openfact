@@ -9,6 +9,7 @@ import org.openfact.pe.models.ErrorType;
 import org.openfact.pe.models.EstadoComprobantePago;
 import org.openfact.pe.models.jpa.entities.BoletaEntity;
 import org.openfact.pe.models.jpa.entities.BoletaValidacionEntity;
+import org.openfact.pe.models.jpa.entities.FacturaEntity;
 import org.openfact.pe.models.types.TipoInvoice;
 import org.openfact.pe.models.utils.SunatUtils;
 import org.wildfly.swarm.spi.runtime.annotations.ConfigurationValue;
@@ -131,7 +132,14 @@ public class JpaBoletaProvider implements BoletaProvider {
     }
 
     @Override
-    public Optional<BoletaModel> getBoleta(OrganizationModel organization, String id) {
+    public Optional<BoletaModel> getBoleta(String id) {
+        BoletaEntity entity = em.find(BoletaEntity.class, id);
+        if (entity == null) return Optional.empty();
+        return Optional.of(toModel(entity));
+    }
+
+    @Override
+    public Optional<BoletaModel> getBoleta(String id, OrganizationModel organization) {
         TypedQuery<BoletaEntity> q = em.createNamedQuery("GetBoletaPorId", BoletaEntity.class);
         q.setParameter("organizationId", organization);
         q.setParameter("boletaId", id);
