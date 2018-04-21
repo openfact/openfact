@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 public class FacturaValidacionEntity extends ValidacionEntity {
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey, name = "factura_id")
     private FacturaEntity factura;
 

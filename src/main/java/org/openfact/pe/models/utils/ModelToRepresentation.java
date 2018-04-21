@@ -5,6 +5,8 @@ import org.openfact.pe.representations.idm.*;
 import org.openfact.pe.models.*;
 import org.openfact.pe.representations.idm.*;
 
+import java.util.stream.Collectors;
+
 public class ModelToRepresentation {
 
     private ModelToRepresentation() {
@@ -119,6 +121,14 @@ public class ModelToRepresentation {
         rep.setTotalImpuestos(toTotalImpuestosRepresentation(model.getImpuestos()));
         rep.setTotalInformacionAdicional(toTotalInformacionAdicional(model.getTotalInformacionAdicional()));
 
+        rep.setDetalle(model.getDetalle().stream().map(ModelToRepresentation::toRepresentation).collect(Collectors.toList()));
+
+        ValidacionModel validacionModel = model.getValidacion();
+        ValidacionRepresentation validacionRep = new ValidacionRepresentation();
+        validacionRep.setEstado(validacionModel.getEstado());
+        validacionRep.setError(validacionModel.getErrores().stream().map(ModelToRepresentation::toRepresentation).collect(Collectors.toList()));
+        rep.setValidacion(validacionRep);
+
         if (fullInfo) {
             rep.setEnviarCliente(model.getEnviarCliente());
             rep.setEnviarSunat(model.getEnviarSUNAT());
@@ -140,10 +150,45 @@ public class ModelToRepresentation {
         rep.setTotalImpuestos(toTotalImpuestosRepresentation(model.getImpuestos()));
         rep.setTotalInformacionAdicional(toTotalInformacionAdicional(model.getTotalInformacionAdicional()));
 
+        rep.setDetalle(model.getDetalle().stream().map(ModelToRepresentation::toRepresentation).collect(Collectors.toList()));
+
+        ValidacionModel validacionModel = model.getValidacion();
+        ValidacionRepresentation validacionRep = new ValidacionRepresentation();
+        validacionRep.setEstado(validacionModel.getEstado());
+        validacionRep.setError(validacionModel.getErrores().stream().map(ModelToRepresentation::toRepresentation).collect(Collectors.toList()));
+        rep.setValidacion(validacionRep);
+
         if (fullInfo) {
             rep.setEnviarCliente(model.getEnviarCliente());
             rep.setEnviarSunat(model.getEnviarSUNAT());
         }
+
+        return rep;
+    }
+
+
+    public static ComprobanteDetalleRepresentation toRepresentation(DetalleComprobantePagoModel model) {
+        ComprobanteDetalleRepresentation rep = new ComprobanteDetalleRepresentation();
+
+        rep.setCantidad(model.getCantidad());
+        rep.setDescripcion(model.getDescripcion());
+        rep.setPrecioUnitario(model.getPrecioUnitario());
+        rep.setSubtotal(model.getSubtotal());
+        rep.setTipoIGV(model.getTipoIGV());
+        rep.setTotal(model.getTotal());
+        rep.setTotalIGV(model.getTotalIGV());
+        rep.setTotalISC(model.getTotalISC());
+        rep.setUnidadMedida(model.getUnidadMedida());
+        rep.setValorUnitario(model.getValorUnitario());
+
+        return rep;
+    }
+
+    public static ErrorRepresentation toRepresentation(ErrorModel model) {
+        ErrorRepresentation rep = new ErrorRepresentation();
+
+        rep.setTipo(model.getTipo().toString());
+        rep.setDescripcion(model.getDescripcion());
 
         return rep;
     }

@@ -40,6 +40,8 @@ public abstract class AbstractInvoiceRepresentation {
     @NotEmpty
     private List<ComprobanteDetalleRepresentation> detalle;
 
+    private ValidacionRepresentation validacion;
+
     public String getId() {
         return id;
     }
@@ -126,5 +128,13 @@ public abstract class AbstractInvoiceRepresentation {
 
     public void setDetalle(List<ComprobanteDetalleRepresentation> detalle) {
         this.detalle = detalle;
+    }
+
+    public ValidacionRepresentation getValidacion() {
+        return validacion;
+    }
+
+    public void setValidacion(ValidacionRepresentation validacion) {
+        this.validacion = validacion;
     }
 }

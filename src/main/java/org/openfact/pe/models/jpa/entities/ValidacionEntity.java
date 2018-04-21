@@ -23,7 +23,7 @@ public abstract class ValidacionEntity {
     @Column(name = "estado")
     private boolean estado;
 
-    @OneToMany(mappedBy = "factura", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "validacion", fetch = FetchType.LAZY)
     private List<ErrorEntity> errores = new ArrayList<>();
 
     public String getId() {

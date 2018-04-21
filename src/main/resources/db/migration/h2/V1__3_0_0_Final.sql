@@ -97,6 +97,14 @@
         primary key (id)
     );
 
+    create table error (
+       id varchar(255) not null,
+        descripcion varchar(255) not null,
+        tipo varchar(255) not null,
+        validacion_id varchar(255) not null,
+        primary key (id)
+    );
+
     create table factura_pe (
        id varchar(255) not null,
         cdr_file_id varchar(255),
@@ -247,6 +255,15 @@
         primary key (id)
     );
 
+    create table validacion (
+       tipo_documento varchar(31) not null,
+        id varchar(255) not null,
+        estado char(255),
+        factura_id varchar(255),
+        boleta_id varchar(255),
+        primary key (id)
+    );
+
     alter table boleta_pe
        add constraint UK6v5v75beibgmv8kuff2j6m2rv unique (serie, numero, organization_id);
 
@@ -306,6 +323,11 @@
        foreign key (factura_id)
        references factura_pe;
 
+    alter table error
+       add constraint FKm0ydrxh95mpqqco2jgbalkptd
+       foreign key (validacion_id)
+       references validacion;
+
     alter table factura_pe
        add constraint FK9oschd9swwx4u57m0di53x459
        foreign key (organization_id)
@@ -355,3 +377,13 @@
        add constraint FKmvliun0ngpho0bltt7j6ycqgc
        foreign key (role_id)
        references roles;
+
+    alter table validacion
+       add constraint FKcenvhnf4fmbgi6ckmfcn8oyr4
+       foreign key (factura_id)
+       references factura_pe;
+
+    alter table validacion
+       add constraint FKdhv2cbi2ob83bgj3urotdrhhf
+       foreign key (boleta_id)
+       references boleta_pe;

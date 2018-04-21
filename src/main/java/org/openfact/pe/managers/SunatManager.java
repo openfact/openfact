@@ -66,6 +66,7 @@ public class SunatManager {
         try {
             sunatResponse = sunatSenderProvider.sendBill(additionalInfo, orgSunatInfo, nombreDocumento + ".zip", zipFile);
         } catch (SendSunatException e) {
+            procesarErrorEnEnvioSunat(boleta.getValidacion(), e);
             return false;
         }
         guardarCdr(boleta, sunatResponse);
@@ -104,6 +105,7 @@ public class SunatManager {
         try {
             sunatResponse = sunatSenderProvider.sendBill(additionalInfo, orgSunatInfo, nombreDocumento + ".zip", zipFile);
         } catch (SendSunatException e) {
+            procesarErrorEnEnvioSunat(factura.getValidacion(), e);
             return false;
         }
         guardarCdr(factura, sunatResponse);
@@ -141,6 +143,7 @@ public class SunatManager {
         try {
             sunatResponse = sunatSenderProvider.sendBill(additionalInfo, orgSunatInfo, nombreDocumento + ".zip", zipFile);
         } catch (SendSunatException e) {
+            procesarErrorEnEnvioSunat(creditNote.getValidacion(), e);
             return false;
         }
         guardarCdr(creditNote, sunatResponse);
@@ -178,6 +181,7 @@ public class SunatManager {
         try {
             sunatResponse = sunatSenderProvider.sendBill(additionalInfo, orgSunatInfo, nombreDocumento + ".zip", zipFile);
         } catch (SendSunatException e) {
+            procesarErrorEnEnvioSunat(debitNote.getValidacion(), e);
             return false;
         }
         guardarCdr(debitNote, sunatResponse);
@@ -198,6 +202,14 @@ public class SunatManager {
         } else {
             return orgSunatInfoProvider.getOrganizacionInformacionSunat(organization).orElseThrow(() -> new ModelRuntimeException("No se encontró información de sunat de la organización master"));
         }
+    }
+
+    private void procesarErrorEnEnvioSunat(ValidacionModel validacion, SendSunatException e) {
+        String errorMessage = e.getMessage().trim();
+        errorMessage = errorMessage.substring(0, Math.min(errorMessage.length(), 255));
+
+        validacion.setEstado(false);
+        validacion.addError(ErrorType.error_envio_sunat, errorMessage);
     }
 
     private void procesarCdr(DocumentoModel documentoModel, byte[] sunatResponse) {

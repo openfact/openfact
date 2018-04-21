@@ -22,6 +22,24 @@ import java.util.List;
         @NamedQuery(name = "getFacturasConSerieEmpezandoPorLasMasRecientes", query = "select b from FacturaEntity b inner join b.organization o where o.id=:organizationId and b.serie=:serie order by b.createdAt"),
         @NamedQuery(name = "getFacturasPorEstado", query = "select count(d) from FacturaEntity d where d.estado =:estado")
 })
+@NamedEntityGraphs(value = {
+        @NamedEntityGraph(name = "graph.FacturaEager", attributeNodes = {
+                @NamedAttributeNode("id"),
+                @NamedAttributeNode(value = "detalle", subgraph = "detalle"),
+                @NamedAttributeNode(value = "organization", subgraph = "organizationn"),
+                @NamedAttributeNode(value = "validacion", subgraph = "validacion")
+        }, subgraphs = {
+                @NamedSubgraph(name = "detalle", attributeNodes = {
+                        @NamedAttributeNode("id")
+                }),
+                @NamedSubgraph(name = "organization", attributeNodes = {
+                        @NamedAttributeNode("id")
+                }),
+                @NamedSubgraph(name = "validacion", attributeNodes = {
+                        @NamedAttributeNode("id")
+                })
+        })
+})
 public class FacturaEntity extends AbstractInvoiceEntity implements Serializable {
 
     @Id
@@ -48,7 +66,7 @@ public class FacturaEntity extends AbstractInvoiceEntity implements Serializable
     @OneToMany(mappedBy = "factura", fetch = FetchType.LAZY)
     private List<FacturaDetalleEntity> detalle = new ArrayList<>();
 
-    @OneToOne(mappedBy = "boleta", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "factura", fetch = FetchType.LAZY)
     private FacturaValidacionEntity validacion;
 
     @Version

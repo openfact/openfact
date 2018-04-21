@@ -6,17 +6,16 @@ import org.openfact.core.models.utils.ModelUtils;
 import org.openfact.pe.models.EstadoComprobantePago;
 import org.openfact.pe.models.FacturaModel;
 import org.openfact.pe.models.FacturaProvider;
+import org.openfact.pe.models.jpa.entities.BoletaValidacionEntity;
 import org.openfact.pe.models.jpa.entities.FacturaEntity;
+import org.openfact.pe.models.jpa.entities.FacturaValidacionEntity;
 import org.openfact.pe.models.types.TipoInvoice;
 import org.openfact.pe.models.utils.SunatUtils;
 import org.wildfly.swarm.spi.runtime.annotations.ConfigurationValue;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.util.AbstractMap;
 import java.util.Calendar;
@@ -120,7 +119,15 @@ public class JpaFacturaProvider implements FacturaProvider {
         entity.setCreatedAt(Calendar.getInstance().getTime());
         entity.setOrganization(OrganizationAdapter.toEntity(organizacion, em));
 
+        FacturaValidacionEntity validacionEntity = new FacturaValidacionEntity();
+        validacionEntity.setId(ModelUtils.generateId());
+        validacionEntity.setEstado(true);
+        validacionEntity.setFactura(entity);
+
+        entity.setValidacion(validacionEntity);
+
         em.persist(entity);
+        em.persist(validacionEntity);
         em.flush();
         return toModel(entity);
     }
@@ -141,9 +148,11 @@ public class JpaFacturaProvider implements FacturaProvider {
 
     @Override
     public List<FacturaModel> getFacturas(OrganizationModel organization, EstadoComprobantePago estado, int offset, int limit) {
+        EntityGraph<?> graph = em.getEntityGraph("graph.FacturaEager");
         TypedQuery<FacturaEntity> query = em.createNamedQuery("GetFacturaPorEstado", FacturaEntity.class);
         query.setParameter("organizationId", organization.getId());
         query.setParameter("estado", estado);
+        query.setHint("javax.persistence.fetchgraph", graph);
         if (offset != -1) {
             query.setFirstResult(offset);
         }

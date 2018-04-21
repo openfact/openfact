@@ -22,6 +22,24 @@ import java.util.List;
         @NamedQuery(name = "getBoletasConSerieEmpezandoPorLasMasRecientes", query = "select b from BoletaEntity b inner join b.organization o where o.id=:organizationId and b.serie=:serie order by b.createdAt"),
         @NamedQuery(name = "getBoletasPorEstado", query = "select count(d.id) from BoletaEntity d where d.estado =:estado")
 })
+@NamedEntityGraphs(value = {
+        @NamedEntityGraph(name = "graph.BoletaEager", attributeNodes = {
+                @NamedAttributeNode("id"),
+                @NamedAttributeNode(value = "detalle", subgraph = "detalle"),
+                @NamedAttributeNode(value = "organization", subgraph = "organizationn"),
+                @NamedAttributeNode(value = "validacion", subgraph = "validacion")
+        }, subgraphs = {
+                @NamedSubgraph(name = "detalle", attributeNodes = {
+                        @NamedAttributeNode("id")
+                }),
+                @NamedSubgraph(name = "organization", attributeNodes = {
+                        @NamedAttributeNode("id")
+                }),
+                @NamedSubgraph(name = "validacion", attributeNodes = {
+                        @NamedAttributeNode("id")
+                })
+        })
+})
 public class BoletaEntity extends AbstractInvoiceEntity implements Serializable {
 
     @Id

@@ -7,21 +7,16 @@ import org.openfact.pe.models.BoletaModel;
 import org.openfact.pe.models.BoletaProvider;
 import org.openfact.pe.models.EstadoComprobantePago;
 import org.openfact.pe.models.jpa.entities.BoletaEntity;
+import org.openfact.pe.models.jpa.entities.BoletaValidacionEntity;
 import org.openfact.pe.models.types.TipoInvoice;
 import org.openfact.pe.models.utils.SunatUtils;
 import org.wildfly.swarm.spi.runtime.annotations.ConfigurationValue;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import javax.transaction.Transactional;
-import java.util.AbstractMap;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Transactional
@@ -120,7 +115,15 @@ public class JpaBoletaProvider implements BoletaProvider {
         entity.setCreatedAt(Calendar.getInstance().getTime());
         entity.setOrganization(OrganizationAdapter.toEntity(organization, em));
 
+        BoletaValidacionEntity validacionEntity = new BoletaValidacionEntity();
+        validacionEntity.setId(ModelUtils.generateId());
+        validacionEntity.setEstado(true);
+        validacionEntity.setBoleta(entity);
+
+        entity.setValidacion(validacionEntity);
+
         em.persist(entity);
+        em.persist(validacionEntity);
         em.flush();
         return toModel(entity);
     }
@@ -141,9 +144,11 @@ public class JpaBoletaProvider implements BoletaProvider {
 
     @Override
     public List<BoletaModel> getBoletas(OrganizationModel organization, EstadoComprobantePago estado, int offset, int limit) {
+        EntityGraph<?> graph = em.getEntityGraph("graph.BoletaEager");
         TypedQuery<BoletaEntity> query = em.createNamedQuery("GetBoletaPorEstado", BoletaEntity.class);
         query.setParameter("organizationId", organization.getId());
         query.setParameter("estado", estado);
+        query.setHint("javax.persistence.fetchgraph", graph);
         if (offset != -1) {
             query.setFirstResult(offset);
         }
