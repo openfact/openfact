@@ -66,6 +66,17 @@ public class DefaultFacturasResource implements FacturasResource {
     }
 
     @Override
+    public FacturaRepresentation getFactura(String organizationId, String idDocumento) {
+        if (!securityContext.isAdmin() && !securityContext.hasPermission(PermissionType.document_view, organizationId)) {
+            throw new ForbiddenException();
+        }
+
+        OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
+        FacturaModel factura = facturaProvider.getFactura(idDocumento, organization).orElseThrow(() -> new NotFoundException("Boleta o Factura no encontrada"));
+        return ModelToRepresentation.toRepresentation(factura, true);
+    }
+
+    @Override
     public void actualizarFactura(String organizationId, String idDocumento, FacturaRepresentation rep) {
         if (!securityContext.isAdmin() && !securityContext.hasPermission(PermissionType.document_manage, organizationId)) {
             throw new ForbiddenException();

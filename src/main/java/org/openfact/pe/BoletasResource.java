@@ -28,6 +28,14 @@ public interface BoletasResource {
             @Valid BoletaRepresentation rep
     );
 
+
+    @GET
+    @Path("/{documentId}")
+    BoletaRepresentation getBoleta(
+            @PathParam("organizationId") String organizationId,
+            @PathParam("documentId") String idDocumento
+    );
+
     @PUT
     @Path("/{documentId}")
     void actualizarBoleta(

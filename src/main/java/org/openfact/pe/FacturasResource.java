@@ -24,14 +24,21 @@ public interface FacturasResource {
     @POST
     @Path("/")
     FacturaRepresentation crearFactura(
-            @PathParam("organizationId") String organizacionId,
+            @PathParam("organizationId") String organizationId,
             @Valid FacturaRepresentation rep
     );
 
     @PUT
     @Path("/{documentId}")
+    FacturaRepresentation getFactura(
+            @PathParam("organizationId") String organizationId,
+            @PathParam("documentId") String idDocumento
+    );
+
+    @PUT
+    @Path("/{documentId}")
     void actualizarFactura(
-            @PathParam("organizationId") String organizacionId,
+            @PathParam("organizationId") String organizationId,
             @PathParam("documentId") String idDocumento,
             @Valid FacturaRepresentation rep
     );
@@ -39,7 +46,7 @@ public interface FacturasResource {
     @DELETE
     @Path("/{documentId}")
     void eliminarFactura(
-            @PathParam("organizationId") String organizacionId,
+            @PathParam("organizationId") String organizationId,
             @PathParam("documentId") String idDocumento
     );
 

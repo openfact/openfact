@@ -68,6 +68,17 @@ public class DefaultBoletasResource implements BoletasResource {
     }
 
     @Override
+    public BoletaRepresentation getBoleta(String organizationId, String idDocumento) {
+        if (!securityContext.isAdmin() && !securityContext.hasPermission(PermissionType.document_view, organizationId)) {
+            throw new ForbiddenException();
+        }
+
+        OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
+        BoletaModel boleta = boletaProvider.getBoleta(idDocumento, organization).orElseThrow(() -> new NotFoundException("Boleta o Factura no encontrada"));
+        return ModelToRepresentation.toRepresentation(boleta, true);
+    }
+
+    @Override
     public void actualizarBoleta(String organizationId, String idDocumento, BoletaRepresentation rep) {
         if (!securityContext.isAdmin() && !securityContext.hasPermission(PermissionType.document_manage, organizationId)) {
             throw new ForbiddenException();
