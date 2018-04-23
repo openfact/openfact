@@ -38,6 +38,9 @@ public class DefaultBoletasResource implements BoletasResource {
     @Inject
     private OrganizationProvider organizationProvider;
 
+    @Inject
+    private ResourceManager resourceManager;
+
     @Override
     public List<BoletaRepresentation> getBoletas(String organizationId, String estado, int offset, int limit) {
         if (!securityContext.isAdmin() && !securityContext.hasPermission(PermissionType.document_view, organizationId)) {
@@ -59,45 +62,9 @@ public class DefaultBoletasResource implements BoletasResource {
             throw new ForbiddenException();
         }
 
-        OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
-
-        String serie = rep.getSerie();
-        Integer numero = rep.getNumero();
-
-        BoletaModel boleta;
-        if (serie == null) {
-            if (numero == null) {
-                boleta = boletaProvider.createBoleta(organization);
-            } else {
-                throw new BadRequestException("Petición invalida: [serie=null, numero=not null]");
-            }
-        } else {
-            if (numero == null) {
-                boleta = boletaProvider.createBoleta(organization, serie);
-            } else {
-                boleta = boletaProvider.createBoleta(organization, serie, numero);
-            }
-        }
-
-        // Datos por defecto si no son especificadas
-        if (rep.getFecha() == null) {
-            boleta.getFecha().setEmision(Calendar.getInstance().getTime());
-            boleta.getFecha().setVencimiento(Calendar.getInstance().getTime());
-        }
-        if (rep.getEnviarSunat() == null) {
-            boleta.setEnviarSunat(true);
-        }
-        if (rep.getEnviarCliente() == null) {
-            boleta.setEnviarCliente(true);
-        }
-
-        // Merge
-        RepresentationToModel.modelToRepresentation(boleta, rep);
-
-        // Recalcular XML
-        typeManager.buildBoleta(boleta.getId());
-
-        return ModelToRepresentation.toRepresentation(boleta, true);
+        BoletaRepresentation result = resourceManager.crearBoleta(organizationId, rep);
+        typeManager.buildBoleta(result.getId());
+        return result;
     }
 
     @Override

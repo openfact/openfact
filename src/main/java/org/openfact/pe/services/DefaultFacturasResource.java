@@ -38,6 +38,9 @@ public class DefaultFacturasResource implements FacturasResource {
     @Inject
     private OrganizationProvider organizationProvider;
 
+    @Inject
+    private ResourceManager resourceManager;
+
     @Override
     public List<FacturaRepresentation> getFacturas(String organizationId, String estado, int offset, int limit) {
         if (!securityContext.isAdmin() && !securityContext.hasPermission(PermissionType.document_view, organizationId)) {
@@ -57,45 +60,9 @@ public class DefaultFacturasResource implements FacturasResource {
             throw new ForbiddenException();
         }
 
-        OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
-
-        String serie = rep.getSerie();
-        Integer numero = rep.getNumero();
-
-        FacturaModel factura;
-        if (serie == null) {
-            if (numero == null) {
-                factura = facturaProvider.createFactura(organization);
-            } else {
-                throw new BadRequestException("Petición invalida: [serie=null, numero=not null]");
-            }
-        } else {
-            if (numero == null) {
-                factura = facturaProvider.createFactura(organization, serie);
-            } else {
-                factura = facturaProvider.createFactura(organization, serie, numero);
-            }
-        }
-
-        // Datos por defecto si no son especificadas
-        if (rep.getFecha() == null) {
-            factura.getFecha().setEmision(Calendar.getInstance().getTime());
-            factura.getFecha().setVencimiento(Calendar.getInstance().getTime());
-        }
-        if (rep.getEnviarSunat() == null) {
-            factura.setEnviarSunat(true);
-        }
-        if (rep.getEnviarCliente() == null) {
-            factura.setEnviarCliente(true);
-        }
-
-        // Merge
-        RepresentationToModel.modelToRepresentation(factura, rep);
-
-        // Recalcular XML
-        typeManager.buildFactura(factura.getId());
-
-        return ModelToRepresentation.toRepresentation(factura, true);
+        FacturaRepresentation result = resourceManager.crearFactura(organizationId, rep);
+        typeManager.buildFactura(result.getId());
+        return result;
     }
 
     @Override

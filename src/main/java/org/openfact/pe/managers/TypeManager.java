@@ -1,7 +1,5 @@
 package org.openfact.pe.managers;
 
-import oasis.names.specification.ubl.schema.xsd.creditnote_2.CreditNoteType;
-import oasis.names.specification.ubl.schema.xsd.debitnote_2.DebitNoteType;
 import oasis.names.specification.ubl.schema.xsd.invoice_2.InvoiceType;
 import org.jboss.logging.Logger;
 import org.openfact.core.models.*;
@@ -42,10 +40,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-//@ApplicationScoped
-//@Transactional(Transactional.TxType.NEVER)
 @Stateless
-@TransactionAttribute(TransactionAttributeType.NEVER)
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class TypeManager {
 
     private static final Logger logger = Logger.getLogger(TypeManager.class);
@@ -96,7 +92,6 @@ public class TypeManager {
     }
 
     @Asynchronous
-    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void buildBoleta(String boletaId) {
         BoletaModel boleta = boletaProvider.getBoleta(boletaId).orElseThrow(() -> new ModelRuntimeException("Boleta no encontrada"));
         OrganizationModel organization = boleta.getOrganization();
@@ -143,7 +138,6 @@ public class TypeManager {
     }
 
     @Asynchronous
-    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void buildFactura(String facturaId) {
         FacturaModel factura = facturaProvider.getFactura(facturaId).orElseThrow(() -> new ModelRuntimeException("Factura no encontrada"));
         OrganizationModel organization = factura.getOrganization();
@@ -190,7 +184,6 @@ public class TypeManager {
     }
 
     @Asynchronous
-    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void buildCreditNote(String notaCreditoId) {
 //        if (creditNote.getEstado().equals(EstadoComprobantePago.CERRADO)) {
 //            throw new ModelReadOnlyException("Documento es de solo lectura");
@@ -234,7 +227,6 @@ public class TypeManager {
     }
 
     @Asynchronous
-    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void buildDebitNote(String notaDebitoId) {
 //        if (debitNote.getEstado().equals(EstadoComprobantePago.CERRADO)) {
 //            throw new ModelReadOnlyException("Documento es de solo lectura");

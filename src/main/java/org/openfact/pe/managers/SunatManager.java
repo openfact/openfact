@@ -25,7 +25,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @ApplicationScoped
-@Transactional(Transactional.TxType.NEVER)
+@Transactional(Transactional.TxType.REQUIRES_NEW)
 public class SunatManager {
 
     private static final Logger logger = Logger.getLogger(SunatManager.class);
@@ -39,28 +39,6 @@ public class SunatManager {
     @Inject
     private OrganizationInformacionSunatProvider orgSunatInfoProvider;
 
-    private void guardarDatosInvalidosOrganizacion(ValidacionModel validacion) {
-        validacion.setEstado(false);
-        validacion.setError(ErrorType.datos_organizacion_imcompletos);
-        validacion.setErrorDescripcion("Envío Sunat - Datos de organización incompletos");
-    }
-
-    private void guardarDatosInvalidosEndpoint(ValidacionModel validacion) {
-        validacion.setEstado(false);
-        validacion.setError(ErrorType.endpoint_organizacion_imcompletos);
-        validacion.setErrorDescripcion("Envío Sunat - La organización no tiene endpoins configurados válidos");
-    }
-
-    private void procesarErrorEnEnvioSunat(ValidacionModel validacion, SendSunatException e) {
-        String errorMessage = e.getMessage().trim();
-        errorMessage = errorMessage.substring(0, Math.min(errorMessage.length(), 400));
-
-        validacion.setEstado(false);
-        validacion.setError(ErrorType.error_envio_sunat);
-        validacion.setErrorDescripcion("Envío Sunat - " + errorMessage);
-    }
-
-    @Transactional(Transactional.TxType.REQUIRES_NEW)
     public boolean enviarBoleta(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, BoletaModel boleta, FileModel file) {
         if (isAdditionalInfoInvalid(additionalInfo)) {
             guardarDatosInvalidosOrganizacion(boleta.getValidacion());
@@ -100,7 +78,6 @@ public class SunatManager {
         return true;
     }
 
-    @Transactional(Transactional.TxType.REQUIRES_NEW)
     public boolean enviarFactura(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, FacturaModel factura, FileModel file) {
         if (isAdditionalInfoInvalid(additionalInfo)) {
             guardarDatosInvalidosOrganizacion(factura.getValidacion());
@@ -140,7 +117,6 @@ public class SunatManager {
         return true;
     }
 
-    @Transactional(Transactional.TxType.REQUIRES_NEW)
     public boolean enviarCreditNote(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, CreditNoteModel creditNote, FileModel file) {
         if (isAdditionalInfoInvalid(additionalInfo)) {
             guardarDatosInvalidosOrganizacion(creditNote.getValidacion());
@@ -180,7 +156,6 @@ public class SunatManager {
         return true;
     }
 
-    @Transactional(Transactional.TxType.REQUIRES_NEW)
     public boolean enviarDebitNote(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, DebitNoteModel debitNote, FileModel file) {
         if (isAdditionalInfoInvalid(additionalInfo)) {
             guardarDatosInvalidosOrganizacion(debitNote.getValidacion());
@@ -217,6 +192,29 @@ public class SunatManager {
         procesarCdr(debitNote, sunatResponse);
 
         return true;
+    }
+
+    //
+
+    private void guardarDatosInvalidosOrganizacion(ValidacionModel validacion) {
+        validacion.setEstado(false);
+        validacion.setError(ErrorType.datos_organizacion_imcompletos);
+        validacion.setErrorDescripcion("Envío Sunat - Datos de organización incompletos");
+    }
+
+    private void guardarDatosInvalidosEndpoint(ValidacionModel validacion) {
+        validacion.setEstado(false);
+        validacion.setError(ErrorType.endpoint_organizacion_imcompletos);
+        validacion.setErrorDescripcion("Envío Sunat - La organización no tiene endpoins configurados válidos");
+    }
+
+    private void procesarErrorEnEnvioSunat(ValidacionModel validacion, SendSunatException e) {
+        String errorMessage = e.getMessage().trim();
+        errorMessage = errorMessage.substring(0, Math.min(errorMessage.length(), 400));
+
+        validacion.setEstado(false);
+        validacion.setError(ErrorType.error_envio_sunat);
+        validacion.setErrorDescripcion("Envío Sunat - " + errorMessage);
     }
 
     private boolean isAdditionalInfoInvalid(OrganizacionInformacionAdicionalModel additionalInfo) {
