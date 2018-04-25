@@ -19,7 +19,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Indexed
-@Cacheable
+//@Cacheable
 @Entity
 @Table(name = "cn_document", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"type", "assigned_id", "supplier_assigned_id"})

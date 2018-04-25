@@ -14,22 +14,23 @@ public class ImpuestosAdapter implements ImpuestosModel {
     }
 
     @Override
-    public BigDecimal getIGV() {
+    public BigDecimal getIgv() {
         return impuestos.getIgv();
     }
 
     @Override
-    public void setIGV(BigDecimal IGV) {
-        impuestos.setIgv(IGV);
+    public void setIgv(BigDecimal igv) {
+        impuestos.setIgv(igv);
     }
 
     @Override
-    public BigDecimal getISC() {
+    public BigDecimal getIsc() {
         return impuestos.getIsc();
     }
 
     @Override
-    public void setISC(BigDecimal ISC) {
-        impuestos.setIsc(ISC);
+    public void setIsc(BigDecimal isc) {
+        impuestos.setIsc(isc);
     }
+
 }

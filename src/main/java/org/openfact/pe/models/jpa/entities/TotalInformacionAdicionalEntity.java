@@ -50,5 +50,4 @@ public class TotalInformacionAdicionalEntity {
     public void setExonerado(BigDecimal exonerado) {
         this.exonerado = exonerado;
     }
-
 }

@@ -5,7 +5,7 @@ import org.openfact.core.representations.idm.OrganizationRepresentation;
 public class OrganizacionImportadaRepresentation extends OrganizationRepresentation {
 
     private OrganizacionInformacionAdicionalRepresentation informacionAdicional;
-    private OrganizacionInformacionSUNATRepresentation informacionSunat;
+    private OrganizacionInformacionSunatRepresentation informacionSunat;
 
     public OrganizacionInformacionAdicionalRepresentation getInformacionAdicional() {
         return informacionAdicional;
@@ -15,11 +15,11 @@ public class OrganizacionImportadaRepresentation extends OrganizationRepresentat
         this.informacionAdicional = informacionAdicional;
     }
 
-    public OrganizacionInformacionSUNATRepresentation getInformacionSunat() {
+    public OrganizacionInformacionSunatRepresentation getInformacionSunat() {
         return informacionSunat;
     }
 
-    public void setInformacionSunat(OrganizacionInformacionSUNATRepresentation informacionSunat) {
+    public void setInformacionSunat(OrganizacionInformacionSunatRepresentation informacionSunat) {
         this.informacionSunat = informacionSunat;
     }
 

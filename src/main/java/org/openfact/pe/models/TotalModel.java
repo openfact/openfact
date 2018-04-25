@@ -3,6 +3,7 @@ package org.openfact.pe.models;
 import java.math.BigDecimal;
 
 public interface TotalModel {
+
     BigDecimal getTotalPagar();
     void setTotalPagar(BigDecimal pagar);
 
@@ -11,4 +12,5 @@ public interface TotalModel {
 
     BigDecimal getOtrosCargos();
     void setOtrosCargos(BigDecimal otrosCargos);
+
 }

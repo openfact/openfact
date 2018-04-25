@@ -3,6 +3,7 @@ package org.openfact.pe.models;
 import java.math.BigDecimal;
 
 public interface TotalInformacionAdicionalModel {
+
     BigDecimal getTotalGravado();
     void setTotalGravado(BigDecimal totalGravado);
 
@@ -14,4 +15,5 @@ public interface TotalInformacionAdicionalModel {
 
     BigDecimal getTotalExonerado();
     void setTotalExonerado(BigDecimal totalExonerado);
+
 }

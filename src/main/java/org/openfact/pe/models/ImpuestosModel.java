@@ -4,9 +4,10 @@ import java.math.BigDecimal;
 
 public interface ImpuestosModel {
 
-    BigDecimal getIGV();
-    void setIGV(BigDecimal IGV);
+    BigDecimal getIgv();
+    void setIgv(BigDecimal igv);
 
-    BigDecimal getISC();
-    void setISC(BigDecimal ISC);
+    BigDecimal getIsc();
+    void setIsc(BigDecimal isc);
+
 }

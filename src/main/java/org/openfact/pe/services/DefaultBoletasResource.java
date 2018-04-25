@@ -1,30 +1,31 @@
 package org.openfact.pe.services;
 
-import org.openfact.core.models.OrganizationModel;
-import org.openfact.core.models.OrganizationProvider;
+import org.jboss.logging.Logger;
 import org.openfact.core.security.ISecurityContext;
 import org.openfact.core.security.PermissionType;
 import org.openfact.pe.BoletasResource;
-import org.openfact.pe.representations.idm.BoletaRepresentation;
 import org.openfact.pe.managers.TypeManager;
-import org.openfact.pe.models.*;
+import org.openfact.pe.models.BoletaModel;
+import org.openfact.pe.models.BoletaProvider;
+import org.openfact.pe.models.EstadoComprobantePago;
 import org.openfact.pe.models.utils.ModelToRepresentation;
-import org.openfact.pe.models.utils.RepresentationToModel;
+import org.openfact.pe.representations.idm.BoletaRepresentation;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import javax.ws.rs.BadRequestException;
 import javax.ws.rs.ForbiddenException;
-import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.NotFoundException;
-import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 
 @Transactional
 @ApplicationScoped
 public class DefaultBoletasResource implements BoletasResource {
+
+    private static final Logger logger = Logger.getLogger(DefaultBoletasResource.class);
 
     @Inject
     private ISecurityContext securityContext;
@@ -36,9 +37,6 @@ public class DefaultBoletasResource implements BoletasResource {
     private BoletaProvider boletaProvider;
 
     @Inject
-    private OrganizationProvider organizationProvider;
-
-    @Inject
     private ResourceManager resourceManager;
 
     @Override
@@ -48,23 +46,29 @@ public class DefaultBoletasResource implements BoletasResource {
         }
 
         EstadoComprobantePago estadoComprobantePago = EstadoComprobantePago.valueOf(estado.toUpperCase());
-
-        OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
-
-        return boletaProvider.getBoletas(organization, estadoComprobantePago, offset, limit).stream()
+        return boletaProvider.getBoletas(organizationId, estadoComprobantePago, offset, limit)
+                .stream()
                 .map(f -> ModelToRepresentation.toRepresentation(f, true))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public BoletaRepresentation crearBoleta(String organizationId, BoletaRepresentation rep) {
+    public BoletaRepresentation crearBoleta(String organizationId, Boolean async, BoletaRepresentation rep) {
         if (!securityContext.isAdmin() && !securityContext.hasPermission(PermissionType.document_manage, organizationId)) {
             throw new ForbiddenException();
         }
 
-        BoletaRepresentation result = resourceManager.crearBoleta(organizationId, rep);
-        typeManager.buildBoleta(result.getId());
-        return result;
+        BoletaModel boleta = resourceManager.crearBoleta(organizationId, rep);
+        Future<BoletaModel> futureBoleta = typeManager.buildBoleta(boleta.getId());
+        if (!async) {
+            try {
+                boleta = futureBoleta.get();
+            } catch (InterruptedException | ExecutionException e) {
+                logger.error(e);
+            }
+        }
+
+        return ModelToRepresentation.toRepresentation(boleta, true);
     }
 
     @Override
@@ -73,47 +77,32 @@ public class DefaultBoletasResource implements BoletasResource {
             throw new ForbiddenException();
         }
 
-        OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
-        BoletaModel boleta = boletaProvider.getBoleta(idDocumento, organization).orElseThrow(() -> new NotFoundException("Boleta o Factura no encontrada"));
+        BoletaModel boleta = boletaProvider.getBoleta(idDocumento, organizationId).orElseThrow(() -> new NotFoundException("Boleta o Factura no encontrada"));
         return ModelToRepresentation.toRepresentation(boleta, true);
     }
 
     @Override
-    public void actualizarBoleta(String organizationId, String idDocumento, BoletaRepresentation rep) {
+    public BoletaRepresentation actualizarBoleta(String organizationId, String idDocumento, Boolean async, BoletaRepresentation rep) {
         if (!securityContext.isAdmin() && !securityContext.hasPermission(PermissionType.document_manage, organizationId)) {
             throw new ForbiddenException();
         }
 
-        OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
-        BoletaModel boleta = boletaProvider.getBoleta(idDocumento, organization).orElseThrow(() -> new NotFoundException("Boleta o Factura no encontrada"));
-
-        if (boleta.getEstado().equals(EstadoComprobantePago.CERRADO)) {
-            throw new BadRequestException("Comprobante CERRADO o ya fue declarado a la SUNAT, no se puede eliminar");
+        BoletaModel boleta = resourceManager.actualizarBoleta(organizationId, idDocumento, rep);
+        Future<BoletaModel> futureBoleta = typeManager.buildBoleta(boleta.getId());
+        if (!async) {
+            try {
+                boleta = futureBoleta.get();
+            } catch (InterruptedException | ExecutionException e) {
+                logger.error(e);
+            }
         }
 
-        RepresentationToModel.modelToRepresentation(boleta, rep);
-
-        // Recalcular XML
-        typeManager.buildBoleta(boleta.getId());
+        return ModelToRepresentation.toRepresentation(boleta, true);
     }
 
     @Override
     public void eliminarBoleta(String organizationId, String idDocumento) {
-        if (!securityContext.isAdmin() && !securityContext.hasPermission(PermissionType.document_manage, organizationId)) {
-            throw new ForbiddenException();
-        }
-
-        OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
-        BoletaModel boleta = boletaProvider.getBoleta(idDocumento, organization).orElseThrow(() -> new NotFoundException("Boleta no encontrada"));
-
-        if (boleta.getEstado().equals(EstadoComprobantePago.CERRADO)) {
-            throw new BadRequestException("Comprobante ABIERTO o ya fue declarado a la SUNAT, no se puede eliminar");
-        }
-
-        boolean result = boletaProvider.remove(boleta);
-        if (!result) {
-            throw new InternalServerErrorException("Error interno, no se pudo eliminar la Boleta");
-        }
+        throw new ForbiddenException();
     }
 
 }

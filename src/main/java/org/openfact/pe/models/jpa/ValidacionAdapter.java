@@ -8,11 +8,9 @@ import javax.persistence.EntityManager;
 
 public class ValidacionAdapter implements ValidacionModel {
 
-    private final EntityManager em;
     private final ValidacionEntity validacion;
 
-    public ValidacionAdapter(EntityManager em, ValidacionEntity validacion) {
-        this.em = em;
+    public ValidacionAdapter(ValidacionEntity validacion) {
         this.validacion = validacion;
     }
 

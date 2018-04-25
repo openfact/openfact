@@ -1,5 +1,9 @@
 package org.openfact.pe.models;
 
-public interface BoletaModel extends AbstractInvoiceModel {
+import java.util.Optional;
+
+public interface BoletaModel extends InvoiceModel {
+
+    Optional<ResumenDiarioModel> getResumenDiario();
 
 }

@@ -30,8 +30,8 @@ public class ModelToRepresentation {
     }
 
 
-    public static OrganizacionInformacionSUNATRepresentation toRepresentation(OrganizacionInformacionSunatModel model, boolean fullInfo) {
-        OrganizacionInformacionSUNATRepresentation rep = new OrganizacionInformacionSUNATRepresentation();
+    public static OrganizacionInformacionSunatRepresentation toRepresentation(OrganizacionInformacionSunatModel model, boolean fullInfo) {
+        OrganizacionInformacionSunatRepresentation rep = new OrganizacionInformacionSunatRepresentation();
 
         rep.setId(model.getId());
         rep.setUsuario(model.getUsuario());
@@ -93,8 +93,8 @@ public class ModelToRepresentation {
 
     private static TotalImpuestosRepresentation toTotalImpuestosRepresentation(ImpuestosModel impuestos) {
         TotalImpuestosRepresentation rep = new TotalImpuestosRepresentation();
-        rep.setIgv(impuestos.getIGV());
-        rep.setIsc(impuestos.getISC());
+        rep.setIgv(impuestos.getIgv());
+        rep.setIsc(impuestos.getIsc());
         return rep;
     }
 
@@ -110,17 +110,19 @@ public class ModelToRepresentation {
     public static BoletaRepresentation toRepresentation(BoletaModel model, boolean fullInfo) {
         BoletaRepresentation rep = new BoletaRepresentation();
 
+        DatosVentaModel datosVentaModel = model.getDatosVenta();
+
         rep.setId(model.getId());
         rep.setSerie(model.getSerie());
         rep.setNumero(model.getNumero());
-        rep.setFecha(toFechaRepresentation(model.getFecha()));
-        rep.setCliente(toClienteRepresentation(model.getCliente()));
-        rep.setTotal(toTotalRepresentation(model.getTotal()));
-        rep.setMoneda(toMonedaRepresentation(model.getMoneda()));
-        rep.setTotalImpuestos(toTotalImpuestosRepresentation(model.getImpuestos()));
-        rep.setTotalInformacionAdicional(toTotalInformacionAdicional(model.getTotalInformacionAdicional()));
+        rep.setFecha(toFechaRepresentation(datosVentaModel.getFecha()));
+        rep.setCliente(toClienteRepresentation(datosVentaModel.getCliente()));
+        rep.setTotal(toTotalRepresentation(datosVentaModel.getTotal()));
+        rep.setMoneda(toMonedaRepresentation(datosVentaModel.getMoneda()));
+        rep.setTotalImpuestos(toTotalImpuestosRepresentation(datosVentaModel.getImpuestos()));
+        rep.setTotalInformacionAdicional(toTotalInformacionAdicional(datosVentaModel.getTotalInformacionAdicional()));
 
-        rep.setDetalle(model.getDetalle().stream().map(ModelToRepresentation::toRepresentation).collect(Collectors.toList()));
+        rep.setDetalle(datosVentaModel.getDetalle().stream().map(ModelToRepresentation::toRepresentation).collect(Collectors.toList()));
 
         ValidacionModel validacionModel = model.getValidacion();
         ValidacionRepresentation validacionRep = new ValidacionRepresentation();
@@ -131,7 +133,7 @@ public class ModelToRepresentation {
 
         if (fullInfo) {
             rep.setEnviarCliente(model.getEnviarCliente());
-            rep.setEnviarSunat(model.getEnviarSUNAT());
+            rep.setEnviarSunat(model.getEnviarSunat());
         }
 
         return rep;
@@ -140,17 +142,19 @@ public class ModelToRepresentation {
     public static FacturaRepresentation toRepresentation(FacturaModel model, boolean fullInfo) {
         FacturaRepresentation rep = new FacturaRepresentation();
 
+        DatosVentaModel datosVentaModel = model.getDatosVenta();
+
         rep.setId(model.getId());
         rep.setSerie(model.getSerie());
         rep.setNumero(model.getNumero());
-        rep.setFecha(toFechaRepresentation(model.getFecha()));
-        rep.setCliente(toClienteRepresentation(model.getCliente()));
-        rep.setTotal(toTotalRepresentation(model.getTotal()));
-        rep.setMoneda(toMonedaRepresentation(model.getMoneda()));
-        rep.setTotalImpuestos(toTotalImpuestosRepresentation(model.getImpuestos()));
-        rep.setTotalInformacionAdicional(toTotalInformacionAdicional(model.getTotalInformacionAdicional()));
+        rep.setFecha(toFechaRepresentation(datosVentaModel.getFecha()));
+        rep.setCliente(toClienteRepresentation(datosVentaModel.getCliente()));
+        rep.setTotal(toTotalRepresentation(datosVentaModel.getTotal()));
+        rep.setMoneda(toMonedaRepresentation(datosVentaModel.getMoneda()));
+        rep.setTotalImpuestos(toTotalImpuestosRepresentation(datosVentaModel.getImpuestos()));
+        rep.setTotalInformacionAdicional(toTotalInformacionAdicional(datosVentaModel.getTotalInformacionAdicional()));
 
-        rep.setDetalle(model.getDetalle().stream().map(ModelToRepresentation::toRepresentation).collect(Collectors.toList()));
+        rep.setDetalle(datosVentaModel.getDetalle().stream().map(ModelToRepresentation::toRepresentation).collect(Collectors.toList()));
 
         ValidacionModel validacionModel = model.getValidacion();
         ValidacionRepresentation validacionRep = new ValidacionRepresentation();
@@ -161,24 +165,31 @@ public class ModelToRepresentation {
 
         if (fullInfo) {
             rep.setEnviarCliente(model.getEnviarCliente());
-            rep.setEnviarSunat(model.getEnviarSUNAT());
+            rep.setEnviarSunat(model.getEnviarSunat());
         }
 
         return rep;
     }
 
+    public static NotaCreditoRepresentation toRepresentation(NotaCreditoModel model, boolean fullInfo) {
+        return null;
+    }
 
-    public static ComprobanteDetalleRepresentation toRepresentation(DetalleComprobantePagoModel model) {
+    public static NotaDebitoRepresentation toRepresentation(NotaDebitoModel model, boolean fullInfo) {
+        return null;
+    }
+
+    public static ComprobanteDetalleRepresentation toRepresentation(DatosVentaDetalleModel model) {
         ComprobanteDetalleRepresentation rep = new ComprobanteDetalleRepresentation();
 
         rep.setCantidad(model.getCantidad());
         rep.setDescripcion(model.getDescripcion());
         rep.setPrecioUnitario(model.getPrecioUnitario());
         rep.setSubtotal(model.getSubtotal());
-        rep.setTipoIGV(model.getTipoIGV());
+        rep.setTipoIgv(model.getTipoIgv());
         rep.setTotal(model.getTotal());
-        rep.setTotalIGV(model.getTotalIGV());
-        rep.setTotalISC(model.getTotalISC());
+        rep.setTotalIgv(model.getTotalIgv());
+        rep.setTotalIsc(model.getTotalIsc());
         rep.setUnidadMedida(model.getUnidadMedida());
         rep.setValorUnitario(model.getValorUnitario());
 

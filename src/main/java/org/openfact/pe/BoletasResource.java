@@ -25,6 +25,7 @@ public interface BoletasResource {
     @Path("/")
     BoletaRepresentation crearBoleta(
             @PathParam("organizationId") String organizationId,
+            @QueryParam("async") @DefaultValue("true") Boolean async,
             @Valid BoletaRepresentation rep
     );
 
@@ -38,9 +39,10 @@ public interface BoletasResource {
 
     @PUT
     @Path("/{documentId}")
-    void actualizarBoleta(
+    BoletaRepresentation actualizarBoleta(
             @PathParam("organizationId") String organizationId,
             @PathParam("documentId") String idDocumento,
+            @QueryParam("async") @DefaultValue("true") Boolean async,
             @Valid BoletaRepresentation rep
     );
 

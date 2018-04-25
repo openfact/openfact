@@ -2,7 +2,7 @@ package org.openfact.pe.representations.idm;
 
 import javax.validation.constraints.Pattern;
 
-public class BoletaRepresentation extends AbstractInvoiceRepresentation {
+public class BoletaRepresentation extends AbstractDocumentoRepresentation {
 
     @Pattern(regexp = "[B][A-Z]+[0-9]+")
     private String serie;

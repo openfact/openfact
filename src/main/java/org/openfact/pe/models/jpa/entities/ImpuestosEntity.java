@@ -28,5 +28,4 @@ public class ImpuestosEntity {
     public void setIsc(BigDecimal isc) {
         this.isc = isc;
     }
-
 }

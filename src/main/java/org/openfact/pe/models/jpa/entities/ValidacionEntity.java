@@ -8,14 +8,14 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "validacion")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo_documento")
-public abstract class ValidacionEntity {
+public class ValidacionEntity {
 
     @Id
+    @Access(AccessType.PROPERTY)
     @Column(name = "id")
     private String id;
 
+    @NotNull
     @Type(type = "org.hibernate.type.YesNoType")
     @Column(name = "estado")
     private boolean estado;
@@ -47,15 +47,15 @@ public abstract class ValidacionEntity {
         return error;
     }
 
-    public void setError(ErrorType tipoError) {
-        this.error = tipoError;
+    public void setError(ErrorType error) {
+        this.error = error;
     }
 
     public String getErrorDescripcion() {
         return errorDescripcion;
     }
 
-    public void setErrorDescripcion(String descripcion) {
-        this.errorDescripcion = descripcion;
+    public void setErrorDescripcion(String errorDescripcion) {
+        this.errorDescripcion = errorDescripcion;
     }
 }

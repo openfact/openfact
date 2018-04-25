@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Entity
-@Cacheable
+//@Cacheable
 @Table(name = "organization", uniqueConstraints = {
         @UniqueConstraint(columnNames = "name")
 })
@@ -55,7 +55,7 @@ public class OrganizationEntity implements Serializable {
     @Column(name = "use_custom_smtp_config")
     private boolean useCustomSmtpConfig;
 
-    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
+    //@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
     @ElementCollection(fetch = FetchType.LAZY)
     @MapKeyColumn(name = "NAME")
     @Column(name = "VALUE")

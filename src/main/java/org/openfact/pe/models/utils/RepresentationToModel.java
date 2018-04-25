@@ -1,9 +1,7 @@
 package org.openfact.pe.models.utils;
 
-import org.openfact.pe.models.types.TipoDocumentoEntidad;
 import org.openfact.pe.representations.idm.*;
 import org.openfact.pe.models.*;
-import org.openfact.pe.representations.idm.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -44,7 +42,7 @@ public class RepresentationToModel {
         }
     }
 
-    public static void modelToRepresentation(OrganizacionInformacionSunatModel model, OrganizacionInformacionSUNATRepresentation rep) {
+    public static void modelToRepresentation(OrganizacionInformacionSunatModel model, OrganizacionInformacionSunatRepresentation rep) {
         if (rep.getUseCustomConfig() != null) {
             model.setUseCustomConfig(rep.getUseCustomConfig());
         }
@@ -70,8 +68,18 @@ public class RepresentationToModel {
             model.setConsultaCdrEndpoint(rep.getConsultaCdrEndpoint());
         }
     }
-    
-    public static void modelToRepresentation(AbstractInvoiceModel model, AbstractInvoiceRepresentation rep) {
+
+    public static void modelToRepresentation(BoletaModel model, BoletaRepresentation rep) {
+        toInvoiceModel(model, rep);
+    }
+
+    public static void modelToRepresentation(FacturaModel model, FacturaRepresentation rep) {
+        toInvoiceModel(model, rep);
+    }
+
+    private static void toInvoiceModel(InvoiceModel model, AbstractDocumentoRepresentation rep) {
+        DatosVentaModel datosVentaModel = model.getDatosVenta();
+
         if (rep.getEnviarSunat() != null) {
             model.setEnviarSunat(rep.getEnviarSunat());
         }
@@ -82,16 +90,16 @@ public class RepresentationToModel {
         FechaRepresentation fechaRepresentation = rep.getFecha();
         if (fechaRepresentation != null) {
             if (fechaRepresentation.getEmision() != null) {
-                model.getFecha().setEmision(fechaRepresentation.getEmision());
+                datosVentaModel.getFecha().setEmision(fechaRepresentation.getEmision());
             }
             if (fechaRepresentation.getVencimiento() != null) {
-                model.getFecha().setVencimiento(fechaRepresentation.getVencimiento());
+                datosVentaModel.getFecha().setVencimiento(fechaRepresentation.getVencimiento());
             }
         }
 
         ClienteRepresentation clienteRepresentation = rep.getCliente();
         if (clienteRepresentation != null) {
-            ClienteModel clienteModel = model.getCliente();
+            ClienteModel clienteModel = datosVentaModel.getCliente();
             if (clienteRepresentation.getNumeroDocumento() != null) {
                 clienteModel.setNumeroDocumento(clienteRepresentation.getNumeroDocumento());
             }
@@ -112,69 +120,80 @@ public class RepresentationToModel {
         TotalRepresentation totalRepresentation = rep.getTotal();
         if (totalRepresentation != null) {
             if (totalRepresentation.getPagar() != null) {
-                model.getTotal().setTotalPagar(totalRepresentation.getPagar());
+                datosVentaModel.getTotal().setTotalPagar(totalRepresentation.getPagar());
             }
             if (totalRepresentation.getDescuentoGlobal() != null) {
-                model.getTotal().setDescuentoGlobal(totalRepresentation.getDescuentoGlobal());
+                datosVentaModel.getTotal().setDescuentoGlobal(totalRepresentation.getDescuentoGlobal());
             }
             if (totalRepresentation.getOtrosCargos() != null) {
-                model.getTotal().setOtrosCargos(totalRepresentation.getOtrosCargos());
+                datosVentaModel.getTotal().setOtrosCargos(totalRepresentation.getOtrosCargos());
             }
         }
 
         MonedaRepresentation monedaRepresentation = rep.getMoneda();
         if (monedaRepresentation != null) {
             if (monedaRepresentation.getCodigo() != null) {
-                model.getMoneda().setMoneda(monedaRepresentation.getCodigo());
+                datosVentaModel.getMoneda().setMoneda(monedaRepresentation.getCodigo());
             }
             if (monedaRepresentation.getTipoCambio() != null) {
-                model.getMoneda().setTipoCambio(monedaRepresentation.getTipoCambio());
+                datosVentaModel.getMoneda().setTipoCambio(monedaRepresentation.getTipoCambio());
             }
         }
 
         TotalImpuestosRepresentation totalImpuestosRepresentation = rep.getTotalImpuestos();
         if (totalImpuestosRepresentation != null) {
             if (totalImpuestosRepresentation.getIgv() != null) {
-                model.getImpuestos().setIGV(totalImpuestosRepresentation.getIgv());
+                datosVentaModel.getImpuestos().setIgv(totalImpuestosRepresentation.getIgv());
             }
             if (totalImpuestosRepresentation.getIsc() != null) {
-                model.getImpuestos().setISC(totalImpuestosRepresentation.getIsc());
+                datosVentaModel.getImpuestos().setIsc(totalImpuestosRepresentation.getIsc());
             }
         }
 
         TotalInformacionAdicionalRepresentation totalInformacionAdicionalRepresentation = rep.getTotalInformacionAdicional();
         if (totalInformacionAdicionalRepresentation != null) {
             if (totalInformacionAdicionalRepresentation.getTotalExonerado() != null) {
-                model.getTotalInformacionAdicional().setTotalExonerado(totalInformacionAdicionalRepresentation.getTotalExonerado());
+                datosVentaModel.getTotalInformacionAdicional().setTotalExonerado(totalInformacionAdicionalRepresentation.getTotalExonerado());
             }
             if (totalInformacionAdicionalRepresentation.getTotalGratuito() != null) {
-                model.getTotalInformacionAdicional().setTotalGratuito(totalInformacionAdicionalRepresentation.getTotalGratuito());
+                datosVentaModel.getTotalInformacionAdicional().setTotalGratuito(totalInformacionAdicionalRepresentation.getTotalGratuito());
             }
             if (totalInformacionAdicionalRepresentation.getTotalGravado() != null) {
-                model.getTotalInformacionAdicional().setTotalGravado(totalInformacionAdicionalRepresentation.getTotalGravado());
+                datosVentaModel.getTotalInformacionAdicional().setTotalGravado(totalInformacionAdicionalRepresentation.getTotalGravado());
             }
             if (totalInformacionAdicionalRepresentation.getTotalInafecto() != null) {
-                model.getTotalInformacionAdicional().setTotalInafecto(totalInformacionAdicionalRepresentation.getTotalInafecto());
+                datosVentaModel.getTotalInformacionAdicional().setTotalInafecto(totalInformacionAdicionalRepresentation.getTotalInafecto());
             }
         }
 
-        List<DetalleComprobantePagoBean> detalleBeans = rep.getDetalle()
+        List<DatosVentaDetalleBean> detalleBeans = rep.getDetalle()
                 .stream()
-                .map(r -> new DetalleComprobantePagoBean.Builder()
+                .map(r -> new DatosVentaDetalleBean.Builder()
                         .unidadMedida(r.getUnidadMedida())
                         .descripcion(r.getDescripcion())
-                        .tipoIGV(r.getTipoIGV())
+                        .tipoIgv(r.getTipoIgv())
                         .cantidad(r.getCantidad())
                         .valorUnitario(r.getValorUnitario())
                         .precioUnitario(r.getPrecioUnitario())
                         .subtotal(r.getSubtotal())
                         .total(r.getTotal())
-                        .totalIGV(r.getTotalIGV())
-                        .totalISC(r.getTotalISC())
+                        .totalIgv(r.getTotalIgv())
+                        .totalIsc(r.getTotalIsc())
                         .build())
                 .collect(Collectors.toList());
-        model.setDetalle(detalleBeans);
+        datosVentaModel.setDetalle(detalleBeans);
     }
 
+    public static void modelToRepresentation(NotaCreditoModel model, NotaCreditoRepresentation rep) {
 
+    }
+
+    public static void modelToRepresentation(NotaDebitoModel model, NotaDebitoRepresentation rep) {
+
+    }
+
+//
+//    public static void modelToRepresentation(NotaCreditoModel notaCredito, NotaCreditoRepresentation rep) {
+//
+//    }
 }

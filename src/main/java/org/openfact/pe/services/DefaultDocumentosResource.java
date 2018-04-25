@@ -22,8 +22,8 @@ public class DefaultDocumentosResource implements DocumentosResource {
 
     @Override
     public ResumenDocumentosObservadosRepresentation getResumenDocumentosObservados(String organizationId) {
-        long totalBoletasAbiertas = boletaProvider.getTotalBoletasPorEstado(EstadoComprobantePago.ABIERTO);
-        long totalFacturasAbiertas = facturaProvider.getTotalFacturasPorEstado(EstadoComprobantePago.ABIERTO);
+        long totalBoletasAbiertas = boletaProvider.getTotalBoletasPorEstado(organizationId, EstadoComprobantePago.ABIERTO);
+        long totalFacturasAbiertas = facturaProvider.getTotalFacturasPorEstado(organizationId, EstadoComprobantePago.ABIERTO);
 
         ResumenDocumentosObservadosRepresentation resumen = new ResumenDocumentosObservadosRepresentation();
         resumen.setBoletas(totalBoletasAbiertas);

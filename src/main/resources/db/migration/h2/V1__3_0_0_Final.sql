@@ -1,36 +1,7 @@
 
-    create table boleta_pe (
+    create table baja (
        id varchar(255) not null,
-        cdr_file_id varchar(255),
-        cliente_direccion varchar(255),
-        cliente_email varchar(255),
-        cliente_nombre varchar(255),
-        cliente_numero_documento varchar(255),
-        cliente_tipo_documento varchar(255),
-        enviar_cliente char(255),
-        enviar_sunat char(255),
-        estado varchar(255) not null,
-        estado_descripcion varchar(255),
-        fecha_emision timestamp,
-        fecha_vencimiento timestamp,
-        file_id varchar(255),
-        igv decimal(19,2),
-        isc decimal(19,2),
-        moneda varchar(255),
-        tipo_cambio decimal(19,2),
-        observaciones varchar(255),
-        total_descuento_global decimal(19,2),
-        total_otros_cargos decimal(19,2),
-        total_pagar decimal(19,2),
-        total_exonerado decimal(19,2),
-        total_gratuito decimal(19,2),
-        total_gravado decimal(19,2),
-        total_inafecto decimal(19,2),
-        created_at timestamp,
-        numero integer not null,
-        serie varchar(255) not null,
-        version integer,
-        organization_id varchar(255) not null,
+        invoice_id varchar(255) not null,
         primary key (id)
     );
 
@@ -68,39 +39,15 @@
         primary key (id)
     );
 
-    create table comprobante_pago_detalle (
-       tipo_documento varchar(31) not null,
-        id varchar(255) not null,
-        cantidad decimal(13,3) not null,
-        descripcion varchar(255) not null,
-        precio_unitario decimal(12,2) not null,
-        subtotal decimal(12,2) not null,
-        tipo_igv varchar(255) not null,
-        total decimal(12,2) not null,
-        total_igv decimal(12,2) not null,
-        total_isc decimal(12,2),
-        unidad_medida varchar(255) not null,
-        valor_unitario decimal(12,2) not null,
-        factura_id varchar(255),
-        boleta_id varchar(255),
-        primary key (id)
-    );
-
-    create table factura_pe (
+    create table datos_venta (
        id varchar(255) not null,
-        cdr_file_id varchar(255),
         cliente_direccion varchar(255),
         cliente_email varchar(255),
         cliente_nombre varchar(255),
         cliente_numero_documento varchar(255),
         cliente_tipo_documento varchar(255),
-        enviar_cliente char(255),
-        enviar_sunat char(255),
-        estado varchar(255) not null,
-        estado_descripcion varchar(255),
         fecha_emision timestamp,
         fecha_vencimiento timestamp,
-        file_id varchar(255),
         igv decimal(19,2),
         isc decimal(19,2),
         moneda varchar(255),
@@ -113,11 +60,22 @@
         total_gratuito decimal(19,2),
         total_gravado decimal(19,2),
         total_inafecto decimal(19,2),
-        created_at timestamp,
-        numero integer not null,
-        serie varchar(255) not null,
-        version integer,
-        organization_id varchar(255) not null,
+        primary key (id)
+    );
+
+    create table datos_venta_detalle (
+       id varchar(255) not null,
+        cantidad decimal(13,3) not null,
+        descripcion varchar(255) not null,
+        precio_unitario decimal(12,2) not null,
+        subtotal decimal(12,2) not null,
+        tipo_igv varchar(255) not null,
+        total decimal(12,2) not null,
+        total_igv decimal(12,2) not null,
+        total_isc decimal(12,2),
+        unidad_medida varchar(255) not null,
+        valor_unitario decimal(12,2) not null,
+        datos_venta_id varchar(255) not null,
         primary key (id)
     );
 
@@ -127,7 +85,58 @@
         primary key (filename)
     );
 
-    create table informacion_adicional_pe (
+    create table invoice (
+       tipo_invoice varchar(31) not null,
+        id varchar(255) not null,
+        cdr_file_id varchar(255),
+        created_at timestamp,
+        enviar_cliente char(255) not null,
+        enviar_sunat char(255) not null,
+        estado varchar(255) not null,
+        estado_descripcion varchar(255),
+        file_id varchar(255),
+        numero integer not null,
+        serie varchar(4) not null,
+        version integer,
+        datos_venta_id varchar(255) not null,
+        organization_id varchar(255) not null,
+        nota_id varchar(255) not null,
+        resumen_diario_id varchar(255),
+        primary key (id)
+    );
+
+    create table memberships (
+       id varchar(255) not null,
+        created_on timestamp,
+        version integer,
+        organization_id varchar(255),
+        role_id varchar(255),
+        user_id varchar(255),
+        primary key (id)
+    );
+
+    create table nota (
+       tipo varchar(31) not null,
+        id varchar(255) not null,
+        cdr_file_id varchar(255),
+        created_at timestamp,
+        enviar_cliente char(255) not null,
+        enviar_sunat char(255) not null,
+        estado varchar(255) not null,
+        estado_descripcion varchar(255),
+        file_id varchar(255),
+        numero integer not null,
+        serie varchar(4) not null,
+        tipo_nota varchar(255) not null,
+        version integer,
+        datos_venta_id varchar(255) not null,
+        documento_asociado_id varchar(255) not null,
+        organization_id varchar(255) not null,
+        nota_id varchar(255) not null,
+        primary key (id)
+    );
+
+    create table organizacion_informacion_adicional (
        additional_assigned_id varchar(255),
         assigned_id varchar(255),
         codigo_pais varchar(255),
@@ -143,7 +152,7 @@
         primary key (organizacion_id)
     );
 
-    create table informacion_sunat_pe (
+    create table organizacion_informacion_sunat (
        boleta_factura_endpoint varchar(255),
         consulta_cdr_endpoint varchar(255),
         consulta_factura_endpoint varchar(255),
@@ -152,40 +161,6 @@
         retencion_percepcion_endpoint varchar(255),
         use_custom_config char(255) not null,
         usuario varchar(255),
-        version integer,
-        organizacion_id varchar(255) not null,
-        primary key (organizacion_id)
-    );
-
-    create table memberships (
-       id varchar(255) not null,
-        created_on timestamp,
-        version integer,
-        organization_id varchar(255),
-        role_id varchar(255),
-        user_id varchar(255),
-        primary key (id)
-    );
-
-    create table nota_credito_pe (
-       cliente_direccion varchar(255),
-        cliente_email varchar(255),
-        cliente_nombre varchar(255),
-        cliente_numero_documento varchar(255),
-        cliente_tipo_documento varchar(255),
-        id_asignado varchar(255) not null,
-        version integer,
-        organizacion_id varchar(255) not null,
-        primary key (organizacion_id)
-    );
-
-    create table nota_debito_pe (
-       cliente_direccion varchar(255),
-        cliente_email varchar(255),
-        cliente_nombre varchar(255),
-        cliente_numero_documento varchar(255),
-        cliente_tipo_documento varchar(255),
-        id_asignado varchar(255) not null,
         version integer,
         organizacion_id varchar(255) not null,
         primary key (organizacion_id)
@@ -210,9 +185,27 @@
         primary key (organization_id, NAME)
     );
 
+    create table percepcion (
+       id varchar(255) not null,
+        primary key (id)
+    );
+
     create table permissions (
        role_id varchar(255) not null,
         permissions integer
+    );
+
+    create table resumen_diario (
+       id varchar(255) not null,
+        enviar_sunat char(255) not null,
+        organization_id varchar(255) not null,
+        nota_id varchar(255) not null,
+        primary key (id)
+    );
+
+    create table retencion (
+       id varchar(255) not null,
+        primary key (id)
     );
 
     create table roles (
@@ -237,27 +230,24 @@
     );
 
     create table validacion (
-       tipo_documento varchar(31) not null,
-        id varchar(255) not null,
+       id varchar(255) not null,
         error varchar(255),
         descripcion varchar(450),
-        estado char(255),
-        factura_id varchar(255),
-        boleta_id varchar(255),
+        estado char(255) not null,
         primary key (id)
     );
-
-    alter table boleta_pe
-       add constraint UK6v5v75beibgmv8kuff2j6m2rv unique (serie, numero, organization_id);
 
     alter table cn_document
        add constraint UKawubnbop2ucyh7b4ty92y1u76 unique (type, assigned_id, supplier_assigned_id);
 
-    alter table factura_pe
-       add constraint UK5xmtr335y1m12safapoiws3g7 unique (serie, numero, organization_id);
+    alter table invoice
+       add constraint UKp46ib7nymb41yq7we4w77tp0v unique (serie, numero, organization_id);
 
     alter table memberships
        add constraint UKidamvecwj5pj5timgjyy8pq79 unique (user_id, role_id, organization_id);
+
+    alter table nota
+       add constraint UKkmnt4sl01hg1ohnsqaj0wbu8k unique (serie, numero, organization_id);
 
     alter table organization
        add constraint UK8j5y8ipk73yx2joy9yr653c9t unique (name);
@@ -271,10 +261,10 @@
     alter table users
        add constraint UK19vywygog85fl7f6t9dstiga8 unique (identity_id);
 
-    alter table boleta_pe
-       add constraint FKrk56tnwaxn7jdxvsgxvy30k2e
-       foreign key (organization_id)
-       references organization;
+    alter table baja
+       add constraint FK3kktiexlten3yhfbu15tobmjo
+       foreign key (invoice_id)
+       references invoice;
 
     alter table component
        add constraint FKmpfdha5eg9fm6ht2ue01ec9l6
@@ -286,30 +276,30 @@
        foreign key (component_id)
        references component;
 
-    alter table comprobante_pago_detalle
-       add constraint FKhludft0w1qrh126ra84k1ff0n
-       foreign key (factura_id)
-       references factura_pe;
+    alter table datos_venta_detalle
+       add constraint FK313noidta4kamscovgqyiagnu
+       foreign key (datos_venta_id)
+       references datos_venta;
 
-    alter table comprobante_pago_detalle
-       add constraint FKn33sdvallftn2wknt18ylntv1
-       foreign key (boleta_id)
-       references boleta_pe;
+    alter table invoice
+       add constraint FK33s4xquf6gnruofxj03x8l6g8
+       foreign key (datos_venta_id)
+       references datos_venta;
 
-    alter table factura_pe
-       add constraint FK9oschd9swwx4u57m0di53x459
+    alter table invoice
+       add constraint FK13c3hatm6ciotvxqc5mjlagdo
        foreign key (organization_id)
        references organization;
 
-    alter table informacion_adicional_pe
-       add constraint FKjw1qpna40ge2gmq7512fjknqn
-       foreign key (organizacion_id)
-       references organization;
+    alter table invoice
+       add constraint FK9driov3gcc1wcxrsrv8roae9u
+       foreign key (nota_id)
+       references validacion;
 
-    alter table informacion_sunat_pe
-       add constraint FK1igxc21l6ydyi4phtp794ts1x
-       foreign key (organizacion_id)
-       references organization;
+    alter table invoice
+       add constraint FK3864q3ne48ba6ujr3kjchigsp
+       foreign key (resumen_diario_id)
+       references resumen_diario;
 
     alter table memberships
        add constraint FKp778ik4pdu8wu3hra61aw2ufg
@@ -326,13 +316,33 @@
        foreign key (user_id)
        references users;
 
-    alter table nota_credito_pe
-       add constraint FK38y1ruc1lo5fiq1ldafos367c
+    alter table nota
+       add constraint FK7mwj8xxwljvh55dqukydyb05b
+       foreign key (datos_venta_id)
+       references datos_venta;
+
+    alter table nota
+       add constraint FK835nmoje17v9h1g5dodrgehrc
+       foreign key (documento_asociado_id)
+       references invoice;
+
+    alter table nota
+       add constraint FKf1ekqe99hns4j7og79dq92d4
+       foreign key (organization_id)
+       references organization;
+
+    alter table nota
+       add constraint FKpex5uh3lth6pahdok9hvco46l
+       foreign key (nota_id)
+       references validacion;
+
+    alter table organizacion_informacion_adicional
+       add constraint FKbweggho1n7o8l6wjfsc1j2y3i
        foreign key (organizacion_id)
        references organization;
 
-    alter table nota_debito_pe
-       add constraint FK4w3j0mxg0vnuqlrvmt4tc0kc
+    alter table organizacion_informacion_sunat
+       add constraint FKrsoiphgv2e9ow9d0idp6wpt1c
        foreign key (organizacion_id)
        references organization;
 
@@ -346,12 +356,12 @@
        foreign key (role_id)
        references roles;
 
-    alter table validacion
-       add constraint FKcenvhnf4fmbgi6ckmfcn8oyr4
-       foreign key (factura_id)
-       references factura_pe;
+    alter table resumen_diario
+       add constraint FKm5kc9vq46gh2yo473nnyjxi9j
+       foreign key (organization_id)
+       references organization;
 
-    alter table validacion
-       add constraint FKdhv2cbi2ob83bgj3urotdrhhf
-       foreign key (boleta_id)
-       references boleta_pe;
+    alter table resumen_diario
+       add constraint FKrpcdr9ekhxmifmpetks8a1c4q
+       foreign key (nota_id)
+       references validacion;

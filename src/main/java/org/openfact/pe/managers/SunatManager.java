@@ -24,8 +24,8 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
 
+@Transactional
 @ApplicationScoped
-@Transactional(Transactional.TxType.REQUIRES_NEW)
 public class SunatManager {
 
     private static final Logger logger = Logger.getLogger(SunatManager.class);
@@ -39,6 +39,7 @@ public class SunatManager {
     @Inject
     private OrganizationInformacionSunatProvider orgSunatInfoProvider;
 
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
     public boolean enviarBoleta(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, BoletaModel boleta, FileModel file) {
         if (isAdditionalInfoInvalid(additionalInfo)) {
             guardarDatosInvalidosOrganizacion(boleta.getValidacion());
@@ -78,6 +79,7 @@ public class SunatManager {
         return true;
     }
 
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
     public boolean enviarFactura(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, FacturaModel factura, FileModel file) {
         if (isAdditionalInfoInvalid(additionalInfo)) {
             guardarDatosInvalidosOrganizacion(factura.getValidacion());
@@ -117,7 +119,8 @@ public class SunatManager {
         return true;
     }
 
-    public boolean enviarCreditNote(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, CreditNoteModel creditNote, FileModel file) {
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
+    public boolean enviarNotaCredito(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, NotaCreditoModel creditNote, FileModel file) {
         if (isAdditionalInfoInvalid(additionalInfo)) {
             guardarDatosInvalidosOrganizacion(creditNote.getValidacion());
             return false;
@@ -156,7 +159,8 @@ public class SunatManager {
         return true;
     }
 
-    public boolean enviarDebitNote(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, DebitNoteModel debitNote, FileModel file) {
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
+    public boolean enviarNotaDebito(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, NotaDebitoModel debitNote, FileModel file) {
         if (isAdditionalInfoInvalid(additionalInfo)) {
             guardarDatosInvalidosOrganizacion(debitNote.getValidacion());
             return false;
@@ -231,25 +235,49 @@ public class SunatManager {
         }
     }
 
-    private void procesarCdr(DocumentoModel documentoModel, byte[] sunatResponse) {
+    private void procesarCdr(InvoiceModel invoice, byte[] cdrBytes) {
         try {
-            Document document = readCdr(sunatResponse).orElseThrow(() -> new ModelRuntimeException("No se encontró cdr que leer"));
+            Document document = readCdr(cdrBytes).orElseThrow(() -> new ModelRuntimeException("No se encontró cdr que leer"));
             String code = document.getElementsByTagName("cbc:ResponseCode").item(0).getTextContent();
             String description = document.getElementsByTagName("cbc:Description").item(0).getTextContent();
             if (code.equals("0")) {
-                documentoModel.setEstado(EstadoComprobantePago.CERRADO);
-                documentoModel.setEstadoDescripcion(description);
+                invoice.setEstado(EstadoComprobantePago.CERRADO);
+                invoice.setEstadoDescripcion(description);
             }
         } catch (Exception e) {
             throw new ModelRuntimeException();
         }
     }
 
-    private void guardarCdr(DocumentoModel documentModel, byte[] bytes) {
+    private void procesarCdr(NotaModel nota, byte[] cdrBytes) {
+        try {
+            Document document = readCdr(cdrBytes).orElseThrow(() -> new ModelRuntimeException("No se encontró cdr que leer"));
+            String code = document.getElementsByTagName("cbc:ResponseCode").item(0).getTextContent();
+            String description = document.getElementsByTagName("cbc:Description").item(0).getTextContent();
+            if (code.equals("0")) {
+                nota.setEstado(EstadoComprobantePago.CERRADO);
+                nota.setEstadoDescripcion(description);
+            }
+        } catch (Exception e) {
+            throw new ModelRuntimeException();
+        }
+    }
+
+    private void guardarCdr(InvoiceModel invoice, byte[] cdrBytes) {
         try {
             String fileName = ModelUtils.generateId() + ".zip";
-            FileModel file = fileProvider.addFile(fileName, bytes);
-            documentModel.setCdrFileId(file.getFileName());
+            FileModel file = fileProvider.addFile(fileName, cdrBytes);
+            invoice.setCdrFileId(file.getFileName());
+        } catch (FileException e) {
+            throw new ModelRuntimeException("No se pudo guardar un archivo en el storage");
+        }
+    }
+
+    private void guardarCdr(NotaModel nota, byte[] cdrBytes) {
+        try {
+            String fileName = ModelUtils.generateId() + ".zip";
+            FileModel file = fileProvider.addFile(fileName, cdrBytes);
+            nota.setCdrFileId(file.getFileName());
         } catch (FileException e) {
             throw new ModelRuntimeException("No se pudo guardar un archivo en el storage");
         }

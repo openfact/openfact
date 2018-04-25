@@ -1,7 +1,7 @@
 package org.openfact.pe;
 
 import org.openfact.pe.representations.idm.OrganizacionInformacionAdicionalRepresentation;
-import org.openfact.pe.representations.idm.OrganizacionInformacionSUNATRepresentation;
+import org.openfact.pe.representations.idm.OrganizacionInformacionSunatRepresentation;
 
 import javax.validation.Valid;
 import javax.ws.rs.*;
@@ -27,15 +27,15 @@ public interface OrganizacionesResource {
 
     @GET
     @Path("/informacion-sunat")
-    OrganizacionInformacionSUNATRepresentation getOrganizationInformacionSUNAT(
+    OrganizacionInformacionSunatRepresentation getOrganizationInformacionSUNAT(
             @PathParam("organizationId") String organizationId
     );
 
     @PUT
     @Path("/informacion-sunat")
-    OrganizacionInformacionSUNATRepresentation updateOrganizationInformacionSUNAT(
+    OrganizacionInformacionSunatRepresentation updateOrganizationInformacionSUNAT(
             @PathParam("organizationId") String organizationId,
-            @Valid OrganizacionInformacionSUNATRepresentation rep
+            @Valid OrganizacionInformacionSunatRepresentation rep
     );
 
 }

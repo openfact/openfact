@@ -17,8 +17,8 @@ public class MonedaEntity {
         return moneda;
     }
 
-    public void setMoneda(String codigo) {
-        this.moneda = codigo;
+    public void setMoneda(String moneda) {
+        this.moneda = moneda;
     }
 
     public BigDecimal getTipoCambio() {

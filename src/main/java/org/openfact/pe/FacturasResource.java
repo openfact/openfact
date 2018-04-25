@@ -25,6 +25,7 @@ public interface FacturasResource {
     @Path("/")
     FacturaRepresentation crearFactura(
             @PathParam("organizationId") String organizationId,
+            @QueryParam("async") @DefaultValue("true") Boolean async,
             @Valid FacturaRepresentation rep
     );
 
@@ -37,9 +38,10 @@ public interface FacturasResource {
 
     @PUT
     @Path("/{documentId}")
-    void actualizarFactura(
+    FacturaRepresentation actualizarFactura(
             @PathParam("organizationId") String organizationId,
             @PathParam("documentId") String idDocumento,
+            @QueryParam("async") @DefaultValue("true") Boolean async,
             @Valid FacturaRepresentation rep
     );
 

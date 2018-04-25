@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Cacheable
+//@Cacheable
 @Table(name = "roles", uniqueConstraints = {
         @UniqueConstraint(columnNames = "name")
 })
@@ -37,7 +37,7 @@ public class RoleEntity implements Serializable {
     @Column(name = "auto_grant")
     private boolean autoGrant;
 
-    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
+    //@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "permissions", joinColumns = @JoinColumn(name = "role_id"))
     private Set<PermissionType> permissions = new HashSet<>();

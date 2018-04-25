@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Cacheable
+//@Cacheable
 @Table(name = "memberships", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"user_id", "role_id", "organization_id"})}
 )
@@ -42,17 +42,17 @@ public class RoleMembershipEntity {
     @Access(AccessType.PROPERTY)
     private String id;
 
-    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
+    //@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id", foreignKey = @ForeignKey)
     private RoleEntity role;
 
-    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
+    //@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey)
     private UserEntity user;
 
-    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
+    //@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "organization_id", foreignKey = @ForeignKey)
     private OrganizationEntity organization;

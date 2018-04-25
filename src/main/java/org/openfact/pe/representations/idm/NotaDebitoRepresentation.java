@@ -1,4 +1,7 @@
 package org.openfact.pe.representations.idm;
 
-public class NotaDebitoRepresentation {
+import javax.validation.constraints.Pattern;
+
+public class NotaDebitoRepresentation extends NotaRepresentation {
+
 }

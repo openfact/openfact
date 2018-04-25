@@ -4,7 +4,7 @@ import org.openfact.core.security.ISecurityContext;
 import org.openfact.core.security.PermissionType;
 import org.openfact.pe.OrganizacionesResource;
 import org.openfact.pe.representations.idm.OrganizacionInformacionAdicionalRepresentation;
-import org.openfact.pe.representations.idm.OrganizacionInformacionSUNATRepresentation;
+import org.openfact.pe.representations.idm.OrganizacionInformacionSunatRepresentation;
 import org.openfact.pe.models.OrganizacionInformacionAdicionalModel;
 import org.openfact.pe.models.OrganizacionInformacionSunatModel;
 import org.openfact.pe.models.OrganizationInformacionAdicionalProvider;
@@ -54,7 +54,7 @@ public class DefaultOrganizacionesResource implements OrganizacionesResource {
     }
 
     @Override
-    public OrganizacionInformacionSUNATRepresentation getOrganizationInformacionSUNAT(String organizationId) {
+    public OrganizacionInformacionSunatRepresentation getOrganizationInformacionSUNAT(String organizationId) {
         if (!securityContext.isAdmin() && !securityContext.hasPermission(PermissionType.organization_view, organizationId)) {
             throw new ForbiddenException();
         }
@@ -64,7 +64,7 @@ public class DefaultOrganizacionesResource implements OrganizacionesResource {
     }
 
     @Override
-    public OrganizacionInformacionSUNATRepresentation updateOrganizationInformacionSUNAT(String organizationId, OrganizacionInformacionSUNATRepresentation rep) {
+    public OrganizacionInformacionSunatRepresentation updateOrganizationInformacionSUNAT(String organizationId, OrganizacionInformacionSunatRepresentation rep) {
         if (!securityContext.isAdmin() && !securityContext.hasPermission(PermissionType.organization_edit, organizationId)) {
             throw new ForbiddenException();
         }

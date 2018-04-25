@@ -13,7 +13,7 @@ public class ComprobanteDetalleRepresentation {
     private String descripcion;
 
     @NotNull
-    private String tipoIGV;
+    private String tipoIgv;
 
     @NotNull
     @Digits(integer = 10, fraction = 3)
@@ -37,10 +37,10 @@ public class ComprobanteDetalleRepresentation {
 
     @NotNull
     @Digits(integer = 10, fraction = 2)
-    private BigDecimal totalIGV;
+    private BigDecimal totalIgv;
 
     @Digits(integer = 10, fraction = 2)
-    private BigDecimal totalISC;
+    private BigDecimal totalIsc;
 
     public String getUnidadMedida() {
         return unidadMedida;
@@ -58,12 +58,12 @@ public class ComprobanteDetalleRepresentation {
         this.descripcion = descripcion;
     }
 
-    public String getTipoIGV() {
-        return tipoIGV;
+    public String getTipoIgv() {
+        return tipoIgv;
     }
 
-    public void setTipoIGV(String tipoIGV) {
-        this.tipoIGV = tipoIGV;
+    public void setTipoIgv(String tipoIgv) {
+        this.tipoIgv = tipoIgv;
     }
 
     public BigDecimal getCantidad() {
@@ -106,19 +106,19 @@ public class ComprobanteDetalleRepresentation {
         this.total = total;
     }
 
-    public BigDecimal getTotalIGV() {
-        return totalIGV;
+    public BigDecimal getTotalIgv() {
+        return totalIgv;
     }
 
-    public void setTotalIGV(BigDecimal totalIGV) {
-        this.totalIGV = totalIGV;
+    public void setTotalIgv(BigDecimal totalIgv) {
+        this.totalIgv = totalIgv;
     }
 
-    public BigDecimal getTotalISC() {
-        return totalISC;
+    public BigDecimal getTotalIsc() {
+        return totalIsc;
     }
 
-    public void setTotalISC(BigDecimal totalISC) {
-        this.totalISC = totalISC;
+    public void setTotalIsc(BigDecimal totalIsc) {
+        this.totalIsc = totalIsc;
     }
 }

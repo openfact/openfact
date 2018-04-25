@@ -11,7 +11,6 @@ import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.utils.finance.MoneyConverters;
 import org.openfact.pe.models.*;
 import org.openfact.pe.models.types.*;
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import sunat.names.specification.ubl.peru.schema.xsd.sunataggregatecomponents_1.AdditionalInformationType;
 import sunat.names.specification.ubl.peru.schema.xsd.sunataggregatecomponents_1.AdditionalMonetaryTotalType;
@@ -21,7 +20,6 @@ import sunat.names.specification.ubl.peru.schema.xsd.sunataggregatecomponents_1.
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigDecimal;
@@ -48,11 +46,11 @@ public class ModelToType {
         return invoiceType;
     }
 
-    public static CreditNoteType toCreditNote(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, CreditNoteModel creditNote) {
+    public static CreditNoteType toNotaCredito(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, NotaCreditoModel creditNote) {
         return null;
     }
 
-    public static DebitNoteType toDebitNote(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, DebitNoteModel debitNote) {
+    public static DebitNoteType toNotaDebito(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, NotaDebitoModel debitNote) {
         return null;
     }
 
@@ -68,8 +66,11 @@ public class ModelToType {
         }
     }
 
-    private static InvoiceType buildInvoiceType(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, AbstractInvoiceModel invoice) {
-        InvoiceType invoiceType = new InvoiceType();
+    private static InvoiceType buildInvoiceType(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, InvoiceModel invoice) {
+        DatosVentaModel datosVentaModel = invoice.getDatosVenta();
+
+        oasis.names.specification.ubl.schema.xsd.invoice_2.ObjectFactory factory = new oasis.names.specification.ubl.schema.xsd.invoice_2.ObjectFactory();
+        InvoiceType invoiceType = factory.createInvoiceType();
 
         // General config
         invoiceType.setUBLVersionID(TypeUtils.buildUBLVersionID("2.0"));
@@ -79,10 +80,10 @@ public class ModelToType {
         invoiceType.setID(TypeUtils.buildIDType(SunatUtils.getSerieConCerosCompletados(invoice.getSerie(), 4)  + "-" + invoice.getNumero()));
 
         // Fechas
-        XMLGregorianCalendar issueDate = toGregorianCalendar(invoice.getFecha().getEmision(), organization.getTimeZone());
+        XMLGregorianCalendar issueDate = toGregorianCalendar(datosVentaModel.getFecha().getEmision(), organization.getTimeZone());
         invoiceType.setIssueDate(TypeUtils.buildIssueDateType(issueDate));
-        if (invoice.getFecha().getVencimiento() != null) {
-            XMLGregorianCalendar paymentDate = toGregorianCalendar(invoice.getFecha().getVencimiento(), organization.getTimeZone());
+        if (datosVentaModel.getFecha().getVencimiento() != null) {
+            XMLGregorianCalendar paymentDate = toGregorianCalendar(datosVentaModel.getFecha().getVencimiento(), organization.getTimeZone());
             invoiceType.getPaymentMeans().add(TypeUtils.buildPaymentMeansType(paymentDate));
         }
 
@@ -90,28 +91,28 @@ public class ModelToType {
         invoiceType.setAccountingSupplierParty(buildSupplierPartyType(additionalInfo));
 
         // Cliente
-        invoiceType.setAccountingCustomerParty(buildCustomerPartyType(invoice.getCliente()));
+        invoiceType.setAccountingCustomerParty(buildCustomerPartyType(datosVentaModel.getCliente()));
 
         // Moneda
-        invoiceType.setDocumentCurrencyCode(TypeUtils.buildDocumentCurrencyCodeType(invoice.getMoneda().getMoneda()));
+        invoiceType.setDocumentCurrencyCode(TypeUtils.buildDocumentCurrencyCodeType(datosVentaModel.getMoneda().getMoneda()));
 
         // Totales pagar/descuentos/otros cargos
-        invoiceType.setLegalMonetaryTotal(buildMonetaryTotalType(invoice.getMoneda().getMoneda(), invoice.getTotal()));
+        invoiceType.setLegalMonetaryTotal(buildMonetaryTotalType(datosVentaModel.getMoneda().getMoneda(), datosVentaModel.getTotal()));
 
         // Total impuestos IGV/ISC
-        invoiceType.getTaxTotal().addAll(buildTaxTotalType(invoice.getMoneda().getMoneda(), invoice.getImpuestos()));
+        invoiceType.getTaxTotal().addAll(buildTaxTotalType(datosVentaModel.getMoneda().getMoneda(), datosVentaModel.getImpuestos()));
 
         // Firma
         invoiceType.getSignature().add(buildSignatureType(additionalInfo));
         invoiceType.setUBLExtensions(buildUBLExtensionsType(invoice));
 
         // Observaciones
-        invoiceType.getNote().add(TypeUtils.buildNoteType(invoice.getObservaciones()));
+        invoiceType.getNote().add(TypeUtils.buildNoteType(datosVentaModel.getObservaciones()));
 
         // Detalle
         int i = 1;
-        for (DetalleComprobantePagoModel detalleModel : invoice.getDetalle()) {
-            invoiceType.getInvoiceLine().add(buildInvoiceLineType(i, invoice.getMoneda().getMoneda(), detalleModel));
+        for (DatosVentaDetalleModel detalleModel : datosVentaModel.getDetalle()) {
+            invoiceType.getInvoiceLine().add(buildInvoiceLineType(i, datosVentaModel.getMoneda().getMoneda(), detalleModel));
             i++;
         }
 
@@ -187,17 +188,17 @@ public class ModelToType {
     private static List<TaxTotalType> buildTaxTotalType(String currency, ImpuestosModel impuestos) {
         List<TaxTotalType> result = new ArrayList<>();
 
-        if (impuestos.getIGV() != null) {
+        if (impuestos.getIgv() != null) {
             TaxTotalType taxTotalType = new TaxTotalType();
-            taxTotalType.setTaxAmount(TypeUtils.buildTaxAmountType(currency, impuestos.getIGV()));
-            taxTotalType.getTaxSubtotal().add(buildTaxSubtotalType(currency, impuestos.getIGV(), TipoTributo.IGV));
+            taxTotalType.setTaxAmount(TypeUtils.buildTaxAmountType(currency, impuestos.getIgv()));
+            taxTotalType.getTaxSubtotal().add(buildTaxSubtotalType(currency, impuestos.getIgv(), TipoTributo.IGV));
 
             result.add(taxTotalType);
         }
-        if (impuestos.getISC() != null) {
+        if (impuestos.getIsc() != null) {
             TaxTotalType taxTotalType = new TaxTotalType();
-            taxTotalType.setTaxAmount(TypeUtils.buildTaxAmountType(currency, impuestos.getISC()));
-            taxTotalType.getTaxSubtotal().add(buildTaxSubtotalType(currency, impuestos.getISC(), TipoTributo.ISC));
+            taxTotalType.setTaxAmount(TypeUtils.buildTaxAmountType(currency, impuestos.getIsc()));
+            taxTotalType.getTaxSubtotal().add(buildTaxSubtotalType(currency, impuestos.getIsc(), TipoTributo.ISC));
 
             result.add(taxTotalType);
         }
@@ -222,7 +223,7 @@ public class ModelToType {
         return ublExtensionType;
     }
 
-    private static UBLExtensionsType buildUBLExtensionsType(AbstractInvoiceModel invoiceModel) {
+    private static UBLExtensionsType buildUBLExtensionsType(InvoiceModel invoiceModel) {
         UBLExtensionsType ublExtensionsType = new UBLExtensionsType();
 
         // Totales
@@ -252,11 +253,13 @@ public class ModelToType {
         return ublExtensionsType;
     }
 
-    private static sunat.names.specification.ubl.peru.schema.xsd.sunataggregatecomponents_1.AdditionalInformationType buildAdditionalInformationType(AbstractInvoiceModel invoiceModel) {
+    private static sunat.names.specification.ubl.peru.schema.xsd.sunataggregatecomponents_1.AdditionalInformationType buildAdditionalInformationType(InvoiceModel invoiceModel) {
+        DatosVentaModel datosVentaModel = invoiceModel.getDatosVenta();
+
         sunat.names.specification.ubl.peru.schema.xsd.sunataggregatecomponents_1.AdditionalInformationType additionalInformationType = new sunat.names.specification.ubl.peru.schema.xsd.sunataggregatecomponents_1.AdditionalInformationType();
 
-        String moneda = invoiceModel.getMoneda().getMoneda();
-        TotalInformacionAdicionalModel totalInformacionAdicional = invoiceModel.getTotalInformacionAdicional();
+        String moneda = datosVentaModel.getMoneda().getMoneda();
+        TotalInformacionAdicionalModel totalInformacionAdicional = datosVentaModel.getTotalInformacionAdicional();
 
         if (totalInformacionAdicional.getTotalGravado() != null) {
             AdditionalMonetaryTotalType additionalMonetaryTotalType = new AdditionalMonetaryTotalType();
@@ -290,7 +293,7 @@ public class ModelToType {
         // Monto en letras
         AdditionalPropertyType leyendaMontoTexto = new AdditionalPropertyType();
         leyendaMontoTexto.setID(TypeUtils.buildIDType(TipoElementosAdicionalesComprobante.MONTO_EN_LETRAS.getCodigo()));
-        leyendaMontoTexto.setValue(TypeUtils.buildValueType(MoneyConverters.SPANISH_BANKING_MONEY_VALUE.asWords(invoiceModel.getTotal().getTotalPagar())));
+        leyendaMontoTexto.setValue(TypeUtils.buildValueType(MoneyConverters.SPANISH_BANKING_MONEY_VALUE.asWords(datosVentaModel.getTotal().getTotalPagar())));
 
         additionalInformationType.getAdditionalProperty().add(leyendaMontoTexto);
 
@@ -318,7 +321,7 @@ public class ModelToType {
         return signatureType;
     }
 
-    private static InvoiceLineType buildInvoiceLineType(int index, String moneda, DetalleComprobantePagoModel detalleComprobantePagoModel) {
+    private static InvoiceLineType buildInvoiceLineType(int index, String moneda, DatosVentaDetalleModel detalleComprobantePagoModel) {
         InvoiceLineType invoiceLineType = new InvoiceLineType();
 
         invoiceLineType.setID(TypeUtils.buildIDType(String.valueOf(index)));
@@ -328,20 +331,20 @@ public class ModelToType {
         invoiceLineType.setPricingReference(buildPricingReferenceType(moneda, detalleComprobantePagoModel));
         invoiceLineType.setPrice(TypeUtils.buildPriceType(moneda, detalleComprobantePagoModel.getValorUnitario()));
 
-        if (detalleComprobantePagoModel.getTotalIGV() != null) {
-            invoiceLineType.getTaxTotal().add(buildTaxTotalType(moneda, detalleComprobantePagoModel.getTotalIGV(), detalleComprobantePagoModel.getTipoIGV(), TipoTributo.IGV));
+        if (detalleComprobantePagoModel.getTotalIgv() != null) {
+            invoiceLineType.getTaxTotal().add(buildTaxTotalType(moneda, detalleComprobantePagoModel.getTotalIgv(), detalleComprobantePagoModel.getTipoIgv(), TipoTributo.IGV));
         }
-        if (detalleComprobantePagoModel.getTotalISC() != null) {
-            invoiceLineType.getTaxTotal().add(buildTaxTotalType(moneda, detalleComprobantePagoModel.getTotalISC(), detalleComprobantePagoModel.getTipoIGV(), TipoTributo.ISC));
+        if (detalleComprobantePagoModel.getTotalIsc() != null) {
+            invoiceLineType.getTaxTotal().add(buildTaxTotalType(moneda, detalleComprobantePagoModel.getTotalIsc(), detalleComprobantePagoModel.getTipoIgv(), TipoTributo.ISC));
         }
 
         return invoiceLineType;
     }
 
-    private static PricingReferenceType buildPricingReferenceType(String moneda, DetalleComprobantePagoModel detalleComprobantePagoModel) {
+    private static PricingReferenceType buildPricingReferenceType(String moneda, DatosVentaDetalleModel detalleComprobantePagoModel) {
         PricingReferenceType pricingReferenceType = new PricingReferenceType();
 
-        TipoAfectacionIgv tipoAfectacionIgv = TipoAfectacionIgv.searchFromCodigo(detalleComprobantePagoModel.getTipoIGV());
+        TipoAfectacionIgv tipoAfectacionIgv = TipoAfectacionIgv.searchFromCodigo(detalleComprobantePagoModel.getTipoIgv());
         if (tipoAfectacionIgv.isOperacionNoOnerosa()) {
             pricingReferenceType.getAlternativeConditionPrice().add(
                     TypeUtils.buildPriceType(moneda, BigDecimal.ZERO, TipoPrecioVentaUnitario.PRECIO_UNITARIO.getCodigo())

@@ -3,7 +3,7 @@ package org.openfact.core.models.jpa.entities;
 import javax.persistence.*;
 
 @Entity
-@Cacheable
+//@Cacheable
 @Table(name = "component_config")
 @NamedQueries({
         @NamedQuery(name = "getComponentConfig", query = "select attr from ComponentConfigEntity attr where attr.component = :component"),
