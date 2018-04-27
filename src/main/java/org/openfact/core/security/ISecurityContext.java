@@ -1,5 +1,7 @@
 package org.openfact.core.security;
 
+import org.openfact.core.models.PermissionType;
+
 import java.util.Set;
 
 public interface ISecurityContext {

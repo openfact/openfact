@@ -1,5 +1,6 @@
 package org.openfact.core.security;
 
+import org.openfact.core.models.PermissionType;
 import org.openfact.core.models.RoleMembershipModel;
 import org.openfact.core.models.RoleMembershipProvider;
 

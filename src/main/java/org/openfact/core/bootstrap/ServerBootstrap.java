@@ -3,7 +3,7 @@ package org.openfact.core.bootstrap;
 import org.jboss.logging.Logger;
 import org.openfact.core.models.*;
 import org.openfact.core.models.utils.DefaultKeyProviders;
-import org.openfact.core.security.PermissionType;
+import org.openfact.core.models.PermissionType;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;

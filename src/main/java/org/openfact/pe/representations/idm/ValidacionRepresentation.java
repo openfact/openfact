@@ -1,7 +1,5 @@
 package org.openfact.pe.representations.idm;
 
-import java.util.List;
-
 public class ValidacionRepresentation {
 
     private Boolean estado;

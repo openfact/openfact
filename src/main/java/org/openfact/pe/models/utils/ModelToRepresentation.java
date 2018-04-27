@@ -1,8 +1,8 @@
 package org.openfact.pe.models.utils;
 
+import org.openfact.pe.models.*;
 import org.openfact.pe.models.types.TipoDocumentoEntidad;
 import org.openfact.pe.representations.idm.*;
-import org.openfact.pe.models.*;
 
 import java.util.stream.Collectors;
 
@@ -107,8 +107,8 @@ public class ModelToRepresentation {
         return rep;
     }
 
-    public static BoletaRepresentation toRepresentation(BoletaModel model, boolean fullInfo) {
-        BoletaRepresentation rep = new BoletaRepresentation();
+    public static InvoiceRepresentation toRepresentation(InvoiceModel model, boolean fullInfo) {
+        InvoiceRepresentation rep = new InvoiceRepresentation();
 
         DatosVentaModel datosVentaModel = model.getDatosVenta();
 
@@ -139,10 +139,10 @@ public class ModelToRepresentation {
         return rep;
     }
 
-    public static FacturaRepresentation toRepresentation(FacturaModel model, boolean fullInfo) {
-        FacturaRepresentation rep = new FacturaRepresentation();
+    public static NotaRepresentation toRepresentation(NotaModel model, boolean fullInfo) {
+        NotaRepresentation rep = new NotaRepresentation();
 
-        DatosVentaModel datosVentaModel = model.getDatosVenta();
+        DatosVentaModel datosVentaModel =  model.getDatosVenta();
 
         rep.setId(model.getId());
         rep.setSerie(model.getSerie());
@@ -159,7 +159,7 @@ public class ModelToRepresentation {
         ValidacionModel validacionModel = model.getValidacion();
         ValidacionRepresentation validacionRep = new ValidacionRepresentation();
         validacionRep.setEstado(validacionModel.getEstado());
-        validacionRep.setError(validacionModel.getError() != null ? validacionModel.getError().toString() : null);
+        validacionRep.setError(validacionModel.getError().toString());
         validacionRep.setErrorDescripcion(validacionModel.getErrorDescripcion());
         rep.setValidacion(validacionRep);
 
@@ -169,14 +169,6 @@ public class ModelToRepresentation {
         }
 
         return rep;
-    }
-
-    public static NotaCreditoRepresentation toRepresentation(NotaCreditoModel model, boolean fullInfo) {
-        return null;
-    }
-
-    public static NotaDebitoRepresentation toRepresentation(NotaDebitoModel model, boolean fullInfo) {
-        return null;
     }
 
     public static ComprobanteDetalleRepresentation toRepresentation(DatosVentaDetalleModel model) {

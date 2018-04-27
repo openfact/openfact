@@ -2,37 +2,112 @@ package org.openfact.core.models;
 
 import java.util.Date;
 
-public interface DocumentBean {
+public class DocumentBean {
 
-    String getType();
+    private final String type;
+    private final String assignedId;
+    private final Double amount;
+    private final Double tax;
+    private final String currency;
+    private final Date issueDate;
+    private final String customerName;
+    private final String customerAssignedId;
 
-    String getAssignedId();
+    private DocumentBean(Builder builder) {
+        this.type = builder.type;
+        this.assignedId = builder.assignedId;
+        this.amount = builder.amount;
+        this.tax = builder.tax;
+        this.currency = builder.currency;
+        this.issueDate = builder.issueDate;
+        this.customerName = builder.customerName;
+        this.customerAssignedId = builder.customerAssignedId;
+    }
 
-    Double getAmount();
+    public String getType() {
+        return type;
+    }
 
-    Double getTax();
+    public String getAssignedId() {
+        return assignedId;
+    }
 
-    String getCurrency();
+    public Double getAmount() {
+        return amount;
+    }
 
-    Date getIssueDate();
+    public Double getTax() {
+        return tax;
+    }
 
-    String getSupplierName();
+    public String getCurrency() {
+        return currency;
+    }
 
-    String getSupplierAssignedId();
+    public Date getIssueDate() {
+        return issueDate;
+    }
 
-    String getSupplierStreetAddress();
+    public String getCustomerName() {
+        return customerName;
+    }
 
-    String getSupplierCity();
+    public String getCustomerAssignedId() {
+        return customerAssignedId;
+    }
 
-    String getSupplierCountry();
+    public static class Builder {
+        private String type;
+        private String assignedId;
+        private Double amount;
+        private Double tax;
+        private String currency;
+        private Date issueDate;
+        private String customerName;
+        private String customerAssignedId;
 
-    String getCustomerName();
+        public Builder type(String type) {
+            this.type = type;
+            return this;
+        }
 
-    String getCustomerAssignedId();
+        public Builder assignedId(String assignedId) {
+            this.assignedId = assignedId;
+            return this;
+        }
 
-    String getCustomerStreetAddress();
+        public Builder amount(Double amount) {
+            this.amount = amount;
+            return this;
+        }
 
-    String getCustomerCity();
+        public Builder tax(Double tax) {
+            this.tax = tax;
+            return this;
+        }
 
-    String getCustomerCountry();
+        public Builder currency(String currency) {
+            this.currency = currency;
+            return this;
+        }
+
+        public Builder issueDate(Date issueDate) {
+            this.issueDate = issueDate;
+            return this;
+        }
+
+        public Builder customerName(String customerName) {
+            this.customerName = customerName;
+            return this;
+        }
+
+        public Builder customerAssignedId(String customerAssignedId) {
+            this.customerAssignedId = customerAssignedId;
+            return this;
+        }
+
+        public DocumentBean build() {
+            return new DocumentBean(this);
+        }
+    }
 }

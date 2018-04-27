@@ -2,7 +2,6 @@ package org.openfact.pe.models.jpa;
 
 import org.openfact.pe.models.ClienteModel;
 import org.openfact.pe.models.jpa.entities.ClienteEntity;
-import org.openfact.pe.models.types.TipoDocumentoEntidad;
 
 public class ClienteAdapter implements ClienteModel {
 

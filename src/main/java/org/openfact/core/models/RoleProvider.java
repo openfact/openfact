@@ -1,7 +1,5 @@
 package org.openfact.core.models;
 
-import org.openfact.core.security.PermissionType;
-
 import java.util.Optional;
 import java.util.Set;
 

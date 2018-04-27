@@ -1,12 +1,12 @@
 package org.openfact.core.models.utils;
 
 import org.keycloak.common.util.MultivaluedHashMap;
-import org.openfact.core.representations.idm.ComponentRepresentation;
-import org.openfact.core.representations.idm.OrganizationRepresentation;
 import org.openfact.core.keys.component.ComponentModel;
 import org.openfact.core.keys.component.utils.ComponentUtil;
 import org.openfact.core.keys.provider.ProviderConfigProperty;
 import org.openfact.core.models.OrganizationModel;
+import org.openfact.core.representations.idm.ComponentRepresentation;
+import org.openfact.core.representations.idm.OrganizationRepresentation;
 
 import java.util.*;
 

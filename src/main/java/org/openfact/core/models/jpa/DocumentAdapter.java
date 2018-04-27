@@ -4,12 +4,7 @@ import org.openfact.core.models.DocumentModel;
 import org.openfact.core.models.jpa.entities.DocumentEntity;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class DocumentAdapter implements DocumentModel, JpaModel<DocumentEntity> {
 

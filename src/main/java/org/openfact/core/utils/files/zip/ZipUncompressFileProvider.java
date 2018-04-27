@@ -1,14 +1,11 @@
 package org.openfact.core.utils.files.zip;
 
-import org.openfact.core.models.FileModel;
 import org.openfact.core.utils.files.UncompressFileProvider;
 import org.openfact.core.utils.files.exceptions.NotReadableCompressFileException;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;

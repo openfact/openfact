@@ -6,7 +6,7 @@ import org.openfact.core.models.RoleModel;
 import org.openfact.core.models.RoleProvider;
 import org.openfact.core.models.jpa.entities.RoleEntity;
 import org.openfact.core.models.utils.ModelUtils;
-import org.openfact.core.security.PermissionType;
+import org.openfact.core.models.PermissionType;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Event;

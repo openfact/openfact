@@ -1,9 +1,7 @@
 package org.openfact.core.models.jpa.entities;
 
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.Type;
-import org.hibernate.search.annotations.Indexed;
 import org.openfact.core.models.OrganizationType;
 
 import javax.persistence.*;

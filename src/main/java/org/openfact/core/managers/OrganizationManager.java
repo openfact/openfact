@@ -1,10 +1,10 @@
 package org.openfact.core.managers;
 
-import org.openfact.core.representations.idm.OrganizationRepresentation;
 import org.openfact.core.keys.KeyProvider;
 import org.openfact.core.models.*;
 import org.openfact.core.models.utils.DefaultKeyProviders;
 import org.openfact.core.models.utils.RepresentationToModel;
+import org.openfact.core.representations.idm.OrganizationRepresentation;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

@@ -1,16 +1,16 @@
 package org.openfact.pe.services;
 
 import org.openfact.core.security.ISecurityContext;
-import org.openfact.core.security.PermissionType;
+import org.openfact.core.models.PermissionType;
 import org.openfact.pe.OrganizacionesResource;
-import org.openfact.pe.representations.idm.OrganizacionInformacionAdicionalRepresentation;
-import org.openfact.pe.representations.idm.OrganizacionInformacionSunatRepresentation;
 import org.openfact.pe.models.OrganizacionInformacionAdicionalModel;
 import org.openfact.pe.models.OrganizacionInformacionSunatModel;
 import org.openfact.pe.models.OrganizationInformacionAdicionalProvider;
 import org.openfact.pe.models.OrganizationInformacionSunatProvider;
 import org.openfact.pe.models.utils.ModelToRepresentation;
 import org.openfact.pe.models.utils.RepresentationToModel;
+import org.openfact.pe.representations.idm.OrganizacionInformacionAdicionalRepresentation;
+import org.openfact.pe.representations.idm.OrganizacionInformacionSunatRepresentation;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

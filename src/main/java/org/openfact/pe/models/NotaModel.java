@@ -7,11 +7,11 @@ public interface NotaModel {
     String getId();
     String getSerie();
     int getNumero();
-
-    String getTipoNota();
-    void setTipoNota(String tipoNota);
-
+    String getCodigoTipoComprobante();
     InvoiceModel getInvoiceAfectado();
+
+    String getCodigoMotivo();
+    void setCodigoMotivo(String codigoMotivo);
 
     EstadoComprobantePago getEstado();
     void setEstado(EstadoComprobantePago estado);

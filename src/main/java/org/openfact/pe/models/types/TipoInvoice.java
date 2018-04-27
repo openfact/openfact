@@ -40,13 +40,8 @@ public enum TipoInvoice {
         this.prefijo = prefijo;
     }
 
-    public static TipoInvoice getFromCode(String codigo) {
-        Optional<TipoInvoice> op = Stream.of(TipoInvoice.values()).filter(p -> p.getCodigo().equals(codigo)).findFirst();
-        if (op.isPresent()) {
-            return op.get();
-        } else {
-            return null;
-        }
+    public static Optional<TipoInvoice> getByCodigo(String codigo) {
+        return Stream.of(TipoInvoice.values()).filter(p -> p.getCodigo().equals(codigo)).findFirst();
     }
 
     public String getSeriePattern() {

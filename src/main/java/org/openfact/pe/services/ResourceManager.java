@@ -4,8 +4,13 @@ import org.openfact.core.models.ModelRuntimeException;
 import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.OrganizationProvider;
 import org.openfact.pe.models.*;
+import org.openfact.pe.models.types.TipoInvoice;
+import org.openfact.pe.models.types.TipoNota;
+import org.openfact.pe.models.types.MotivoNotaCredito;
+import org.openfact.pe.models.types.MotivoNotaDebito;
 import org.openfact.pe.models.utils.RepresentationToModel;
-import org.openfact.pe.representations.idm.*;
+import org.openfact.pe.representations.idm.InvoiceRepresentation;
+import org.openfact.pe.representations.idm.NotaRepresentation;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -13,50 +18,49 @@ import javax.transaction.Transactional;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
 import java.util.Calendar;
-import java.util.Optional;
 
 @Transactional
 @ApplicationScoped
 public class ResourceManager {
 
     @Inject
-    private BoletaProvider boletaProvider;
+    private InvoiceProvider invoiceProvider;
 
     @Inject
-    private FacturaProvider facturaProvider;
-
-    @Inject
-    private NotaDebitoProvider notaDebitoProvider;
-
-    @Inject
-    private NotaCreditoProvider notaCreditoProvider;
+    private NotaProvider notaProvider;
 
     @Inject
     private OrganizationProvider organizationProvider;
 
     @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public BoletaModel crearBoleta(String organizationId, BoletaRepresentation rep) {
-        OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
+    public InvoiceModel crearInvoice(String organizationId, InvoiceRepresentation rep) {
+        OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(NotFoundException::new);
 
         String serie = rep.getSerie();
         Integer numero = rep.getNumero();
 
-        BoletaModel boleta;
+        TipoInvoice tipoInvoice = TipoInvoice.getByCodigo(rep.getCodigoTipoComprobante()).orElseThrow(() -> new BadRequestException("Código de comprobante no válido"));
+
+        InvoiceModel invoice;
         if (serie == null) {
             if (numero == null) {
-                boleta = boletaProvider.createBoleta(organization);
+                invoice = invoiceProvider.createInvoice(organization, tipoInvoice);
             } else {
                 throw new BadRequestException("Petición invalida: [serie=null, numero=not null]");
             }
         } else {
+            if (!serie.startsWith(tipoInvoice.getPrefijo())) {
+                throw new ModelRuntimeException("Serie y código de comprobante no coinciden");
+            }
+
             if (numero == null) {
-                boleta = boletaProvider.createBoleta(organization, serie);
+                invoice = invoiceProvider.createInvoice(organization, tipoInvoice, serie);
             } else {
-                boleta = boletaProvider.createBoleta(organization, serie, numero);
+                invoice = invoiceProvider.createInvoice(organization, tipoInvoice, serie, numero);
             }
         }
 
-        DatosVentaModel datosVentaModel = boleta.getDatosVenta();
+        DatosVentaModel datosVentaModel = invoice.getDatosVenta();
 
         // Datos por defecto si no son especificadas
         if (rep.getFecha() == null) {
@@ -65,105 +69,59 @@ public class ResourceManager {
             fecha.setVencimiento(Calendar.getInstance().getTime());
         }
         if (rep.getEnviarSunat() == null) {
-            boleta.setEnviarSunat(true);
+            invoice.setEnviarSunat(true);
         }
         if (rep.getEnviarCliente() == null) {
-            boleta.setEnviarCliente(true);
+            invoice.setEnviarCliente(true);
         }
 
-        RepresentationToModel.modelToRepresentation(boleta, rep);
-        return boleta;
+        RepresentationToModel.modelToRepresentation(invoice, rep);
+        return invoice;
     }
 
     @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public BoletaModel actualizarBoleta(String organizationId, String idDocumento, BoletaRepresentation rep) {
-        BoletaModel boleta = boletaProvider.getBoleta(idDocumento, organizationId).orElseThrow(() -> new NotFoundException("Boleta o Factura no encontrada"));
+    public InvoiceModel actualizarInvoice(String organizationId, String invoiceId, InvoiceRepresentation rep) {
+        OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(NotFoundException::new);
+        InvoiceModel invoice = invoiceProvider.getInvoice(organization, invoiceId).orElseThrow(NotFoundException::new);
 
-        if (boleta.getEstado().equals(EstadoComprobantePago.CERRADO)) {
-            throw new BadRequestException("Comprobante CERRADO o ya fue declarado a la SUNAT, no se puede actualizar");
+        if (invoice.getEstado().equals(EstadoComprobantePago.CERRADO)) {
+            throw new BadRequestException("Comprobante no se puede modificar");
         }
 
-        RepresentationToModel.modelToRepresentation(boleta, rep);
-        return boleta;
+        RepresentationToModel.modelToRepresentation(invoice, rep);
+        return invoice;
     }
 
     @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public FacturaModel crearFactura(String organizationId, FacturaRepresentation rep) {
-        OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
+    public NotaModel crearNota(String organizationId, NotaRepresentation rep) {
+        OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(NotFoundException::new);
+        InvoiceModel invoiceAfectado = invoiceProvider.getInvoice(organization, rep.getInvoiceAfectado()).orElseThrow(() -> new BadRequestException("Nota de crédito no tiene un invoice asociado"));
 
         String serie = rep.getSerie();
         Integer numero = rep.getNumero();
 
-        FacturaModel factura;
+        TipoNota tipoNota = TipoNota.getByCodigo(rep.getCodigoTipoComprobante()).orElseThrow(() -> new BadRequestException("Código de comprobante no válido"));
+
+        NotaModel nota;
         if (serie == null) {
             if (numero == null) {
-                factura = facturaProvider.createFactura(organization);
+                nota = notaProvider.createNota(organization, tipoNota, invoiceAfectado);
             } else {
                 throw new BadRequestException("Petición invalida: [serie=null, numero=not null]");
             }
         } else {
+            if (!serie.startsWith(invoiceAfectado.getSerie().substring(0, 1))) {
+                throw new ModelRuntimeException("Serie y código de comprobante no coinciden");
+            }
+
             if (numero == null) {
-                factura = facturaProvider.createFactura(organization, serie);
+                nota = notaProvider.createNota(organization, tipoNota, invoiceAfectado, serie);
             } else {
-                factura = facturaProvider.createFactura(organization, serie, numero);
+                nota = notaProvider.createNota(organization, tipoNota, invoiceAfectado, serie, numero);
             }
         }
 
-        DatosVentaModel datosVentaModel = factura.getDatosVenta();
-
-        // Datos por defecto si no son especificadas
-        if (rep.getFecha() == null) {
-            FechaModel fecha = datosVentaModel.getFecha();
-            fecha.setEmision(Calendar.getInstance().getTime());
-            fecha.setVencimiento(Calendar.getInstance().getTime());
-        }
-        if (rep.getEnviarSunat() == null) {
-            factura.setEnviarSunat(true);
-        }
-        if (rep.getEnviarCliente() == null) {
-            factura.setEnviarCliente(true);
-        }
-
-        RepresentationToModel.modelToRepresentation(factura, rep);
-        return factura;
-    }
-
-    @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public FacturaModel actualizarFactura(String organizationId, String idDocumento, FacturaRepresentation rep) {
-        FacturaModel factura = facturaProvider.getFactura(idDocumento, organizationId).orElseThrow(() -> new NotFoundException("Boleta o Factura no encontrada"));
-
-        if (factura.getEstado().equals(EstadoComprobantePago.CERRADO)) {
-            throw new BadRequestException("Comprobante CERRADO o ya fue declarado a la SUNAT, no se puede actualizar");
-        }
-
-        RepresentationToModel.modelToRepresentation(factura, rep);
-        return factura;
-    }
-
-    @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public NotaCreditoModel crearNotaCredito(String organizationId, NotaCreditoRepresentation rep) {
-        OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
-        InvoiceModel invoiceAfectado = getInvoiceAsociado(organization, rep).orElseThrow(() -> new ModelRuntimeException("Nota de crédito no tiene un invoice asociado"));
-
-        String serie = rep.getSerie();
-        Integer numero = rep.getNumero();
-
-        NotaCreditoModel notaCredito;
-        if (serie == null) {
-            if (numero == null) {
-                notaCredito = notaCreditoProvider.createNotaCredito(organization, invoiceAfectado, rep.getTipo());
-            } else {
-                throw new BadRequestException("Petición invalida: [serie=null, numero=not null]");
-            }
-        } else {
-            if (numero == null) {
-                notaCredito = notaCreditoProvider.createNotaCredito(organization, invoiceAfectado, rep.getTipo(), serie);
-            } else {
-                notaCredito = notaCreditoProvider.createNotaCredito(organization, invoiceAfectado, rep.getTipo(), serie, numero);
-            }
-        }
-
-        DatosVentaModel datosVenta = notaCredito.getDatosVenta();
+        DatosVentaModel datosVenta = nota.getDatosVenta();
 
         // Datos por defecto si no son especificadas
         if (rep.getFecha() == null) {
@@ -172,106 +130,41 @@ public class ResourceManager {
             fecha.setVencimiento(Calendar.getInstance().getTime());
         }
         if (rep.getEnviarSunat() == null) {
-            notaCredito.setEnviarSunat(true);
+            nota.setEnviarSunat(true);
         }
         if (rep.getEnviarCliente() == null) {
-            notaCredito.setEnviarCliente(true);
+            nota.setEnviarCliente(true);
         }
 
-        RepresentationToModel.modelToRepresentation(notaCredito, rep);
-        return notaCredito;
+        RepresentationToModel.modelToRepresentation(nota, rep);
+        return nota;
     }
 
     @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public NotaCreditoModel actualizarNotaCredito(String organizationId, String idDocumento, NotaCreditoRepresentation rep) {
-        NotaCreditoModel notaCredito = notaCreditoProvider.getNotaCredito(idDocumento, organizationId).orElseThrow(() -> new NotFoundException("Nota de crédito no encontrada"));
+    public NotaModel actualizarNota(String organizationId, String idDocumento, NotaRepresentation rep) {
+        OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(NotFoundException::new);
+        NotaModel nota = notaProvider.getNota(organization, idDocumento).orElseThrow(() -> new NotFoundException("Nota de crédito no encontrada"));
 
-        if (notaCredito.getEstado().equals(EstadoComprobantePago.CERRADO)) {
-            throw new BadRequestException("Comprobante CERRADO o ya fue declarado a la SUNAT, no se puede actualizar");
+        TipoNota tipoNota = TipoNota.getByCodigo(nota.getCodigoTipoComprobante()).orElseThrow(() -> new BadRequestException("Código de comprobante no válido"));
+
+        if (nota.getEstado().equals(EstadoComprobantePago.CERRADO)) {
+            throw new BadRequestException("Comprobante no se puede modificar");
         }
 
-        RepresentationToModel.modelToRepresentation(notaCredito, rep);
-        return notaCredito;
-    }
-
-    @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public NotaDebitoModel crearNotaDebito(String organizationId, NotaDebitoRepresentation rep) {
-        OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(() -> new NotFoundException("Organización no encontrada"));
-        InvoiceModel invoiceAfectado = getInvoiceAsociado(organization, rep).orElseThrow(() -> new ModelRuntimeException("Nota de débito no tiene un invoice asociado"));
-
-        String serie = rep.getSerie();
-        Integer numero = rep.getNumero();
-
-        NotaDebitoModel notaDebito;
-        if (serie == null) {
-            if (numero == null) {
-                notaDebito = notaDebitoProvider.createNotaDebito(organization, invoiceAfectado, rep.getTipo());
-            } else {
-                throw new BadRequestException("Petición invalida: [serie=null, numero=not null]");
+        if (rep.getCodigoMotivo() != null) {
+            switch (tipoNota) {
+                case NOTA_CREDITO:
+                    MotivoNotaCredito.buscarPorCodigo(rep.getCodigoMotivo()).orElseThrow(() -> new BadRequestException("Código motivo no válido"));
+                    break;
+                case NOTA_DEBITO:
+                    MotivoNotaDebito.buscarPorCodigo(rep.getCodigoMotivo()).orElseThrow(() -> new BadRequestException("Código motivo no válido"));
+                    break;
             }
-        } else {
-            if (numero == null) {
-                notaDebito = notaDebitoProvider.createNotaDebito(organization, invoiceAfectado, rep.getTipo(), serie);
-            } else {
-                notaDebito = notaDebitoProvider.createNotaDebito(organization, invoiceAfectado, rep.getTipo(), serie, numero);
-            }
+            nota.setCodigoMotivo(rep.getCodigoMotivo());
         }
 
-        DatosVentaModel datosVenta = notaDebito.getDatosVenta();
-
-        // Datos por defecto si no son especificadas
-        if (rep.getFecha() == null) {
-            FechaModel fecha = datosVenta.getFecha();
-            fecha.setEmision(Calendar.getInstance().getTime());
-            fecha.setVencimiento(Calendar.getInstance().getTime());
-        }
-        if (rep.getEnviarSunat() == null) {
-            notaDebito.setEnviarSunat(true);
-        }
-        if (rep.getEnviarCliente() == null) {
-            notaDebito.setEnviarCliente(true);
-        }
-
-        RepresentationToModel.modelToRepresentation(notaDebito, rep);
-        return notaDebito;
-    }
-
-    @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public NotaDebitoModel actualizarNotaDebito(String organizationId, String idDocumento, NotaDebitoRepresentation rep) {
-        NotaDebitoModel notaDebito = notaDebitoProvider.getNotaDebito(idDocumento, organizationId).orElseThrow(() -> new NotFoundException("Nota de débito no encontrada"));
-
-        if (notaDebito.getEstado().equals(EstadoComprobantePago.CERRADO)) {
-            throw new BadRequestException("Comprobante CERRADO o ya fue declarado a la SUNAT, no se puede actualizar");
-        }
-
-        RepresentationToModel.modelToRepresentation(notaDebito, rep);
-        return notaDebito;
-    }
-
-    private Optional<? extends InvoiceModel> getInvoiceAsociado(OrganizationModel organization, NotaRepresentation rep) {
-        Optional<? extends InvoiceModel> invoiceAfectadoModel = Optional.empty();
-        AbstractDocumentoRepresentation.TipoDocumentoAsociado tipoDocumentoAsociado = rep.getTipoDocumentoAsociado();
-        switch (tipoDocumentoAsociado) {
-            case boleta:
-                if (rep.getDocumentoAsociadoId() != null) {
-                    invoiceAfectadoModel = boletaProvider.getBoleta(rep.getDocumentoAsociadoId());
-                } else if (rep.getDocumentoAsociado() != null) {
-                    String[] split = rep.getDocumentoAsociado().split("-");
-                    invoiceAfectadoModel = boletaProvider.getBoletaBySerieYNumero(split[0], Integer.parseInt(split[1]), organization);
-                }
-                break;
-            case factura:
-                if (rep.getDocumentoAsociadoId() != null) {
-                    invoiceAfectadoModel = facturaProvider.getFactura(rep.getDocumentoAsociadoId());
-                } else if (rep.getDocumentoAsociado() != null) {
-                    String[] split = rep.getDocumentoAsociado().split("-");
-                    invoiceAfectadoModel = facturaProvider.getFacturaBySerieYNumero(split[0], Integer.parseInt(split[1]), organization);
-                }
-                break;
-            default:
-                throw new IllegalStateException("Tipo de documento asociado no válido");
-        }
-        return invoiceAfectadoModel;
+        RepresentationToModel.modelToRepresentation(nota, rep);
+        return nota;
     }
 
 }

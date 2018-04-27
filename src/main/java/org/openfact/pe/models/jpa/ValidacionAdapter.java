@@ -4,8 +4,6 @@ import org.openfact.pe.models.ErrorType;
 import org.openfact.pe.models.ValidacionModel;
 import org.openfact.pe.models.jpa.entities.ValidacionEntity;
 
-import javax.persistence.EntityManager;
-
 public class ValidacionAdapter implements ValidacionModel {
 
     private final ValidacionEntity validacion;

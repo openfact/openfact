@@ -1,14 +1,5 @@
 package org.openfact.pe.models.utils;
 
-import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_2.ResponseType;
-import org.openfact.core.models.ModelRuntimeException;
-import org.openfact.core.utils.files.UncompressFileProvider;
-import org.openfact.core.utils.files.UncompressFileProviderFactory;
-import org.openfact.core.utils.files.exceptions.NotReadableCompressFileException;
-
-import javax.xml.bind.JAXBException;
-import java.util.Map;
-import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

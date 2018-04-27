@@ -1,10 +1,10 @@
 package org.openfact.core.keys.component.utils;
 
-import org.openfact.core.representations.idm.ComponentRepresentation;
 import org.openfact.core.keys.component.ComponentFactory;
 import org.openfact.core.keys.component.ComponentModel;
 import org.openfact.core.keys.provider.ProviderConfigProperty;
 import org.openfact.core.models.OrganizationModel;
+import org.openfact.core.representations.idm.ComponentRepresentation;
 
 import java.util.HashMap;
 import java.util.List;

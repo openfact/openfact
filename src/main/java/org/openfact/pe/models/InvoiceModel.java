@@ -2,11 +2,17 @@ package org.openfact.pe.models;
 
 import org.openfact.core.models.OrganizationModel;
 
+import java.util.Optional;
+
 public interface InvoiceModel {
+
+    String CODIGO_TIPO_COMPROBANTE = "codigoComprobante";
+    String ESTADO_COMPROBANTE = "estadoComprobante";
 
     String getId();
     String getSerie();
     int getNumero();
+    String getCodigoTipoComprobante();
 
     EstadoComprobantePago getEstado();
     void setEstado(EstadoComprobantePago estado);
@@ -29,5 +35,6 @@ public interface InvoiceModel {
     ValidacionModel getValidacion();
     DatosVentaModel getDatosVenta();
     OrganizationModel getOrganization();
+    Optional<ResumenDiarioModel> getResumenDiario();
 
 }

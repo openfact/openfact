@@ -156,6 +156,20 @@ public class TypeUtils {
         return invoicedQuantityType;
     }
 
+    public static CreditedQuantityType buildCreditedQuantityType(String unitCode, BigDecimal value) {
+        CreditedQuantityType creditedQuantityType = new CreditedQuantityType();
+        creditedQuantityType.setValue(value);
+        creditedQuantityType.setUnitCode(unitCode);
+        return creditedQuantityType;
+    }
+
+    public static DebitedQuantityType buildDebitedQuantityType(String unitCode, BigDecimal value) {
+        DebitedQuantityType debitedQuantityType = new DebitedQuantityType();
+        debitedQuantityType.setValue(value);
+        debitedQuantityType.setUnitCode(unitCode);
+        return debitedQuantityType;
+    }
+
     public static LineExtensionAmountType buildLineExtensionAmountType(String currency, BigDecimal value) {
         LineExtensionAmountType lineExtensionAmountType = new LineExtensionAmountType();
         lineExtensionAmountType.setCurrencyID(CurrencyCodeContentType.valueOf(currency));
@@ -268,6 +282,39 @@ public class TypeUtils {
         ValueType valueType = new ValueType();
         valueType.setValue(value);
         return valueType;
+    }
+
+    public static ReferenceIDType buildReferenceIDType(String value) {
+        ReferenceIDType referenceIDType = new ReferenceIDType();
+        referenceIDType.setValue(value);
+        return referenceIDType;
+    }
+
+    public static ResponseCodeType buildResponseCodeType(String value) {
+        ResponseCodeType responseCodeType = new ResponseCodeType();
+        responseCodeType.setValue(value);
+        return responseCodeType;
+    }
+
+    public static ResponseType buildResponseType(String referenecID, String responseCode, String descripcion) {
+        ResponseType responseType = new ResponseType();
+        responseType.setReferenceID(TypeUtils.buildReferenceIDType(referenecID));
+        responseType.setResponseCode(TypeUtils.buildResponseCodeType(responseCode));
+        responseType.getDescription().add(TypeUtils.buildDescriptionType(descripcion));
+        return responseType;
+    }
+
+    public static DocumentTypeCodeType buildDocumentTypeCodeType(String value) {
+        DocumentTypeCodeType documentTypeCodeType = new DocumentTypeCodeType();
+        documentTypeCodeType.setValue(value);
+        return documentTypeCodeType;
+    }
+
+    public static DocumentReferenceType buildDocumentReferenceType(String ID, String documentTypeCode) {
+        DocumentReferenceType documentReferenceType = new DocumentReferenceType();
+        documentReferenceType.setID(buildIDType(ID));
+        documentReferenceType.setDocumentTypeCode(buildDocumentTypeCodeType(documentTypeCode));
+        return documentReferenceType;
     }
 
 }

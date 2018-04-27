@@ -24,7 +24,10 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.TimeZone;
 
 public class ModelToType {
 
@@ -32,26 +35,133 @@ public class ModelToType {
         // Just util class
     }
 
-    public static InvoiceType toBoleta(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, BoletaModel boleta) {
-        InvoiceType invoiceType = buildInvoiceType(organization, additionalInfo, boleta);
+    public static InvoiceType toInvoiceType(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, InvoiceModel invoice) {
+        InvoiceType invoiceType = buildInvoiceType(organization, additionalInfo, invoice);
         invoiceType.setInvoiceTypeCode(TypeUtils.buildInvoiceTypeCodeType(TipoInvoice.BOLETA.getCodigo()));
 
         return invoiceType;
     }
 
-    public static InvoiceType toFactura(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, FacturaModel factura) {
-        InvoiceType invoiceType = buildInvoiceType(organization, additionalInfo, factura);
-        invoiceType.setInvoiceTypeCode(TypeUtils.buildInvoiceTypeCodeType(TipoInvoice.FACTURA.getCodigo()));
+    public static CreditNoteType toCreditNoteType(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, NotaModel nota, InvoiceModel invoiceAfectado) {
+        oasis.names.specification.ubl.schema.xsd.creditnote_2.ObjectFactory factory = new oasis.names.specification.ubl.schema.xsd.creditnote_2.ObjectFactory();
+        CreditNoteType creditNoteType = factory.createCreditNoteType();
 
-        return invoiceType;
+        DatosVentaModel datosVentaModel = nota.getDatosVenta();
+
+        // General config
+        creditNoteType.setUBLVersionID(TypeUtils.buildUBLVersionID("2.0"));
+        creditNoteType.setCustomizationID(TypeUtils.buildCustomizationIDType("1.0"));
+
+        // documentId
+        creditNoteType.setID(TypeUtils.buildIDType(nota.getSerie() + "-" + nota.getNumero()));
+
+        // Fechas
+        XMLGregorianCalendar issueDate = toGregorianCalendar(datosVentaModel.getFecha().getEmision(), organization.getTimeZone());
+        creditNoteType.setIssueDate(TypeUtils.buildIssueDateType(issueDate));
+
+        // Proveedor
+        creditNoteType.setAccountingSupplierParty(buildSupplierPartyType(additionalInfo));
+
+        // Cliente
+        creditNoteType.setAccountingCustomerParty(buildCustomerPartyType(datosVentaModel.getCliente()));
+
+        // Moneda
+        creditNoteType.setDocumentCurrencyCode(TypeUtils.buildDocumentCurrencyCodeType(datosVentaModel.getMoneda().getMoneda()));
+
+        // Totales pagar/descuentos/otros cargos
+        creditNoteType.setLegalMonetaryTotal(buildMonetaryTotalType(datosVentaModel.getMoneda().getMoneda(), datosVentaModel.getTotal()));
+
+        // Total impuestos IGV/ISC
+        creditNoteType.getTaxTotal().addAll(buildTaxTotalType(datosVentaModel.getMoneda().getMoneda(), datosVentaModel.getImpuestos()));
+
+        // Firma
+        creditNoteType.getSignature().add(buildSignatureType(additionalInfo));
+        creditNoteType.setUBLExtensions(buildUBLExtensionsType(datosVentaModel.getMoneda().getMoneda(), datosVentaModel.getTotal().getTotalPagar(), datosVentaModel.getTotalInformacionAdicional()));
+
+        // Observaciones
+        creditNoteType.getNote().add(TypeUtils.buildNoteType(datosVentaModel.getObservaciones()));
+
+        // Invoice asociado
+        String referenceID = invoiceAfectado.getSerie() + "-" + invoiceAfectado.getNumero();
+        String responseCode = nota.getCodigoMotivo();
+        String descripcion = datosVentaModel.getObservaciones() != null ? datosVentaModel.getObservaciones() : "Sin observación";
+
+        creditNoteType.getDiscrepancyResponse().add(TypeUtils.buildResponseType(referenceID, responseCode, descripcion));
+
+
+        BillingReferenceType billingReferenceType = new BillingReferenceType();
+        billingReferenceType.setInvoiceDocumentReference(TypeUtils.buildDocumentReferenceType(referenceID, invoiceAfectado.getCodigoTipoComprobante()));
+        creditNoteType.getBillingReference().add(billingReferenceType);
+
+        // Detalle
+        int i = 1;
+        for (DatosVentaDetalleModel detalleModel : datosVentaModel.getDetalle()) {
+            creditNoteType.getCreditNoteLine().add(buildCreditNoteLineType(i, datosVentaModel.getMoneda().getMoneda(), detalleModel));
+            i++;
+        }
+
+        return creditNoteType;
     }
 
-    public static CreditNoteType toNotaCredito(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, NotaCreditoModel creditNote) {
-        return null;
-    }
+    public static DebitNoteType toDebitNoteType(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, NotaModel nota, InvoiceModel invoiceAfectado) {
+        oasis.names.specification.ubl.schema.xsd.debitnote_2.ObjectFactory factory = new oasis.names.specification.ubl.schema.xsd.debitnote_2.ObjectFactory();
+        DebitNoteType debitNoteType = factory.createDebitNoteType();
 
-    public static DebitNoteType toNotaDebito(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, NotaDebitoModel debitNote) {
-        return null;
+        DatosVentaModel datosVentaModel = nota.getDatosVenta();
+
+        // General config
+        debitNoteType.setUBLVersionID(TypeUtils.buildUBLVersionID("2.0"));
+        debitNoteType.setCustomizationID(TypeUtils.buildCustomizationIDType("1.0"));
+
+        // documentId
+        debitNoteType.setID(TypeUtils.buildIDType(nota.getSerie() + "-" + nota.getNumero()));
+
+        // Fechas
+        XMLGregorianCalendar issueDate = toGregorianCalendar(datosVentaModel.getFecha().getEmision(), organization.getTimeZone());
+        debitNoteType.setIssueDate(TypeUtils.buildIssueDateType(issueDate));
+
+        // Proveedor
+        debitNoteType.setAccountingSupplierParty(buildSupplierPartyType(additionalInfo));
+
+        // Cliente
+        debitNoteType.setAccountingCustomerParty(buildCustomerPartyType(datosVentaModel.getCliente()));
+
+        // Moneda
+        debitNoteType.setDocumentCurrencyCode(TypeUtils.buildDocumentCurrencyCodeType(datosVentaModel.getMoneda().getMoneda()));
+
+        // Totales pagar/descuentos/otros cargos
+        debitNoteType.setRequestedMonetaryTotal(buildMonetaryTotalType(datosVentaModel.getMoneda().getMoneda(), datosVentaModel.getTotal()));
+
+        // Total impuestos IGV/ISC
+        debitNoteType.getTaxTotal().addAll(buildTaxTotalType(datosVentaModel.getMoneda().getMoneda(), datosVentaModel.getImpuestos()));
+
+        // Firma
+        debitNoteType.getSignature().add(buildSignatureType(additionalInfo));
+        debitNoteType.setUBLExtensions(buildUBLExtensionsType(datosVentaModel.getMoneda().getMoneda(), datosVentaModel.getTotal().getTotalPagar(), datosVentaModel.getTotalInformacionAdicional()));
+
+        // Observaciones
+        debitNoteType.getNote().add(TypeUtils.buildNoteType(datosVentaModel.getObservaciones()));
+
+        // Invoice asociado
+        String referenceID = invoiceAfectado.getSerie() + "-" + invoiceAfectado.getNumero();
+        String responseCode = nota.getCodigoMotivo();
+        String descripcion = datosVentaModel.getObservaciones() != null ? datosVentaModel.getObservaciones() : "Sin observación";
+
+        debitNoteType.getDiscrepancyResponse().add(TypeUtils.buildResponseType(referenceID, responseCode, descripcion));
+
+
+        BillingReferenceType billingReferenceType = new BillingReferenceType();
+        billingReferenceType.setInvoiceDocumentReference(TypeUtils.buildDocumentReferenceType(referenceID, invoiceAfectado.getCodigoTipoComprobante()));
+        debitNoteType.getBillingReference().add(billingReferenceType);
+
+        // Detalle
+        int i = 1;
+        for (DatosVentaDetalleModel detalleModel : datosVentaModel.getDetalle()) {
+            debitNoteType.getDebitNoteLine().add(buildDebitNoteLineType(i, datosVentaModel.getMoneda().getMoneda(), detalleModel));
+            i++;
+        }
+
+        return debitNoteType;
     }
 
     private static XMLGregorianCalendar toGregorianCalendar(Date date, TimeZone zone) {
@@ -77,7 +187,7 @@ public class ModelToType {
         invoiceType.setCustomizationID(TypeUtils.buildCustomizationIDType("1.0"));
 
         // documentId
-        invoiceType.setID(TypeUtils.buildIDType(SunatUtils.getSerieConCerosCompletados(invoice.getSerie(), 4)  + "-" + invoice.getNumero()));
+        invoiceType.setID(TypeUtils.buildIDType(invoice.getSerie() + "-" + invoice.getNumero()));
 
         // Fechas
         XMLGregorianCalendar issueDate = toGregorianCalendar(datosVentaModel.getFecha().getEmision(), organization.getTimeZone());
@@ -104,7 +214,7 @@ public class ModelToType {
 
         // Firma
         invoiceType.getSignature().add(buildSignatureType(additionalInfo));
-        invoiceType.setUBLExtensions(buildUBLExtensionsType(invoice));
+        invoiceType.setUBLExtensions(buildUBLExtensionsType(datosVentaModel.getMoneda().getMoneda(), datosVentaModel.getTotal().getTotalPagar(), datosVentaModel.getTotalInformacionAdicional()));
 
         // Observaciones
         invoiceType.getNote().add(TypeUtils.buildNoteType(datosVentaModel.getObservaciones()));
@@ -223,7 +333,7 @@ public class ModelToType {
         return ublExtensionType;
     }
 
-    private static UBLExtensionsType buildUBLExtensionsType(InvoiceModel invoiceModel) {
+    private static UBLExtensionsType buildUBLExtensionsType(String moneda, BigDecimal totalPagar, TotalInformacionAdicionalModel totalInformacionAdicional) {
         UBLExtensionsType ublExtensionsType = new UBLExtensionsType();
 
         // Totales
@@ -232,7 +342,7 @@ public class ModelToType {
         ublExtensionType1.setExtensionContent(extensionContentType1);
         ublExtensionsType.getUBLExtension().add(ublExtensionType1);
 
-        AdditionalInformationType additionalInformationType = buildAdditionalInformationType(invoiceModel);
+        AdditionalInformationType additionalInformationType = buildAdditionalInformationType(moneda, totalPagar, totalInformacionAdicional);
 
         sunat.names.specification.ubl.peru.schema.xsd.sunataggregatecomponents_1.ObjectFactory factory = new sunat.names.specification.ubl.peru.schema.xsd.sunataggregatecomponents_1.ObjectFactory();
         JAXBElement<AdditionalInformationType> jaxbElement = factory.createAdditionalInformation(additionalInformationType);
@@ -253,13 +363,8 @@ public class ModelToType {
         return ublExtensionsType;
     }
 
-    private static sunat.names.specification.ubl.peru.schema.xsd.sunataggregatecomponents_1.AdditionalInformationType buildAdditionalInformationType(InvoiceModel invoiceModel) {
-        DatosVentaModel datosVentaModel = invoiceModel.getDatosVenta();
-
+    private static sunat.names.specification.ubl.peru.schema.xsd.sunataggregatecomponents_1.AdditionalInformationType buildAdditionalInformationType(String moneda, BigDecimal totalPagar, TotalInformacionAdicionalModel totalInformacionAdicional) {
         sunat.names.specification.ubl.peru.schema.xsd.sunataggregatecomponents_1.AdditionalInformationType additionalInformationType = new sunat.names.specification.ubl.peru.schema.xsd.sunataggregatecomponents_1.AdditionalInformationType();
-
-        String moneda = datosVentaModel.getMoneda().getMoneda();
-        TotalInformacionAdicionalModel totalInformacionAdicional = datosVentaModel.getTotalInformacionAdicional();
 
         if (totalInformacionAdicional.getTotalGravado() != null) {
             AdditionalMonetaryTotalType additionalMonetaryTotalType = new AdditionalMonetaryTotalType();
@@ -293,7 +398,7 @@ public class ModelToType {
         // Monto en letras
         AdditionalPropertyType leyendaMontoTexto = new AdditionalPropertyType();
         leyendaMontoTexto.setID(TypeUtils.buildIDType(TipoElementosAdicionalesComprobante.MONTO_EN_LETRAS.getCodigo()));
-        leyendaMontoTexto.setValue(TypeUtils.buildValueType(MoneyConverters.SPANISH_BANKING_MONEY_VALUE.asWords(datosVentaModel.getTotal().getTotalPagar())));
+        leyendaMontoTexto.setValue(TypeUtils.buildValueType(MoneyConverters.SPANISH_BANKING_MONEY_VALUE.asWords(totalPagar)));
 
         additionalInformationType.getAdditionalProperty().add(leyendaMontoTexto);
 
@@ -321,24 +426,64 @@ public class ModelToType {
         return signatureType;
     }
 
-    private static InvoiceLineType buildInvoiceLineType(int index, String moneda, DatosVentaDetalleModel detalleComprobantePagoModel) {
+    private static InvoiceLineType buildInvoiceLineType(int index, String moneda, DatosVentaDetalleModel datosVentaModel) {
         InvoiceLineType invoiceLineType = new InvoiceLineType();
 
         invoiceLineType.setID(TypeUtils.buildIDType(String.valueOf(index)));
-        invoiceLineType.setInvoicedQuantity(TypeUtils.buildInvoicedQuantityType(detalleComprobantePagoModel.getUnidadMedida(), detalleComprobantePagoModel.getCantidad()));
-        invoiceLineType.setLineExtensionAmount(TypeUtils.buildLineExtensionAmountType(moneda, detalleComprobantePagoModel.getSubtotal()));
-        invoiceLineType.setItem(TypeUtils.buildItemType(detalleComprobantePagoModel.getDescripcion()));
-        invoiceLineType.setPricingReference(buildPricingReferenceType(moneda, detalleComprobantePagoModel));
-        invoiceLineType.setPrice(TypeUtils.buildPriceType(moneda, detalleComprobantePagoModel.getValorUnitario()));
+        invoiceLineType.setInvoicedQuantity(TypeUtils.buildInvoicedQuantityType(datosVentaModel.getUnidadMedida(), datosVentaModel.getCantidad()));
+        invoiceLineType.setLineExtensionAmount(TypeUtils.buildLineExtensionAmountType(moneda, datosVentaModel.getSubtotal()));
+        invoiceLineType.setItem(TypeUtils.buildItemType(datosVentaModel.getDescripcion()));
+        invoiceLineType.setPricingReference(buildPricingReferenceType(moneda, datosVentaModel));
+        invoiceLineType.setPrice(TypeUtils.buildPriceType(moneda, datosVentaModel.getValorUnitario()));
 
-        if (detalleComprobantePagoModel.getTotalIgv() != null) {
-            invoiceLineType.getTaxTotal().add(buildTaxTotalType(moneda, detalleComprobantePagoModel.getTotalIgv(), detalleComprobantePagoModel.getTipoIgv(), TipoTributo.IGV));
+        if (datosVentaModel.getTotalIgv() != null) {
+            invoiceLineType.getTaxTotal().add(buildTaxTotalType(moneda, datosVentaModel.getTotalIgv(), datosVentaModel.getTipoIgv(), TipoTributo.IGV));
         }
-        if (detalleComprobantePagoModel.getTotalIsc() != null) {
-            invoiceLineType.getTaxTotal().add(buildTaxTotalType(moneda, detalleComprobantePagoModel.getTotalIsc(), detalleComprobantePagoModel.getTipoIgv(), TipoTributo.ISC));
+        if (datosVentaModel.getTotalIsc() != null) {
+            invoiceLineType.getTaxTotal().add(buildTaxTotalType(moneda, datosVentaModel.getTotalIsc(), datosVentaModel.getTipoIgv(), TipoTributo.ISC));
         }
 
         return invoiceLineType;
+    }
+
+    private static CreditNoteLineType buildCreditNoteLineType(int index, String moneda, DatosVentaDetalleModel datosVentaModel) {
+        CreditNoteLineType creditNoteLineType = new CreditNoteLineType();
+
+        creditNoteLineType.setID(TypeUtils.buildIDType(String.valueOf(index)));
+        creditNoteLineType.setCreditedQuantity(TypeUtils.buildCreditedQuantityType((datosVentaModel.getUnidadMedida()), datosVentaModel.getCantidad()));
+        creditNoteLineType.setLineExtensionAmount(TypeUtils.buildLineExtensionAmountType(moneda, datosVentaModel.getSubtotal()));
+        creditNoteLineType.setItem(TypeUtils.buildItemType(datosVentaModel.getDescripcion()));
+        creditNoteLineType.setPricingReference(buildPricingReferenceType(moneda, datosVentaModel));
+        creditNoteLineType.setPrice(TypeUtils.buildPriceType(moneda, datosVentaModel.getValorUnitario()));
+
+        if (datosVentaModel.getTotalIgv() != null) {
+            creditNoteLineType.getTaxTotal().add(buildTaxTotalType(moneda, datosVentaModel.getTotalIgv(), datosVentaModel.getTipoIgv(), TipoTributo.IGV));
+        }
+        if (datosVentaModel.getTotalIsc() != null) {
+            creditNoteLineType.getTaxTotal().add(buildTaxTotalType(moneda, datosVentaModel.getTotalIsc(), datosVentaModel.getTipoIgv(), TipoTributo.ISC));
+        }
+
+        return creditNoteLineType;
+    }
+
+    private static DebitNoteLineType buildDebitNoteLineType(int index, String moneda, DatosVentaDetalleModel datosVentaModel) {
+        DebitNoteLineType debitNoteLineType = new DebitNoteLineType();
+
+        debitNoteLineType.setID(TypeUtils.buildIDType(String.valueOf(index)));
+        debitNoteLineType.setDebitedQuantity(TypeUtils.buildDebitedQuantityType((datosVentaModel.getUnidadMedida()), datosVentaModel.getCantidad()));
+        debitNoteLineType.setLineExtensionAmount(TypeUtils.buildLineExtensionAmountType(moneda, datosVentaModel.getSubtotal()));
+        debitNoteLineType.setItem(TypeUtils.buildItemType(datosVentaModel.getDescripcion()));
+        debitNoteLineType.setPricingReference(buildPricingReferenceType(moneda, datosVentaModel));
+        debitNoteLineType.setPrice(TypeUtils.buildPriceType(moneda, datosVentaModel.getValorUnitario()));
+
+        if (datosVentaModel.getTotalIgv() != null) {
+            debitNoteLineType.getTaxTotal().add(buildTaxTotalType(moneda, datosVentaModel.getTotalIgv(), datosVentaModel.getTipoIgv(), TipoTributo.IGV));
+        }
+        if (datosVentaModel.getTotalIsc() != null) {
+            debitNoteLineType.getTaxTotal().add(buildTaxTotalType(moneda, datosVentaModel.getTotalIsc(), datosVentaModel.getTipoIgv(), TipoTributo.ISC));
+        }
+
+        return debitNoteLineType;
     }
 
     private static PricingReferenceType buildPricingReferenceType(String moneda, DatosVentaDetalleModel detalleComprobantePagoModel) {

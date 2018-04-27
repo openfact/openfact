@@ -2,7 +2,7 @@ package org.openfact.core.models.jpa;
 
 import org.openfact.core.models.RoleModel;
 import org.openfact.core.models.jpa.entities.RoleEntity;
-import org.openfact.core.security.PermissionType;
+import org.openfact.core.models.PermissionType;
 
 import javax.persistence.EntityManager;
 import java.util.HashSet;

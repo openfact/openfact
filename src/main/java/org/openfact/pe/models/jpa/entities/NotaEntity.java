@@ -7,21 +7,37 @@ import org.openfact.pe.models.EstadoComprobantePago;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo")
 @Table(name = "nota", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"serie", "numero", "organization_id"})
 })
 @NamedQueries(value = {
-        @NamedQuery(name = "getNotasEmpezandoPorLasMasRecientes", query = "select i from NotaEntity i  inner join i.organization o where o.id=:organizationId and type(i)=:subclass order by i.createdAt"),
-        @NamedQuery(name = "getNotasConSerieEmpezandoPorLasMasRecientes", query = "select i from NotaEntity i inner join i.organization o where o.id=:organizationId and type(i)=:subclass and i.serie=:serie order by i.createdAt"),
-        @NamedQuery(name = "getNotasPorSerieYNumero", query = "select i from NotaEntity i inner join i.organization o where o.id=:organizationId and i.serie=:serie and i.numero=:numero"),
-        @NamedQuery(name = "countNotasPorEstado", query = "select count(i) from NotaEntity i inner join i.organization o where o.id=:organizationId and type(i)=:subclass and i.estado=:estado"),
+        @NamedQuery(name = "getNotasEmpezandoPorLasMasRecientes", query = "select n from NotaEntity n  inner join n.organization o where o.id=:organizationId and n.codigoTipoComprobante=:codigo order by n.createdAt"),
+        @NamedQuery(name = "getNotasConSerieEmpezandoPorLasMasRecientes", query = "select n from NotaEntity n inner join n.organization o where o.id=:organizationId and i.codigoTipoComprobante=:codigo and n.serie=:serie order by n.createdAt"),
+        @NamedQuery(name = "getNotasPorSerieYNumero", query = "select n from NotaEntity n inner join n.organization o where o.id=:organizationId and n.serie=:serie and n.numero=:numero"),
+        @NamedQuery(name = "countNotas", query = "select count(n) from NotaEntity n inner join n.organization o where o.id=:organizationId"),
+        @NamedQuery(name = "getNotasPorId", query = "select n from NotaEntity n inner join n.organization o where o.id=:organizationId and n.id=:notaId"),
+        @NamedQuery(name = "filterDistinctNotas", query = "select distinct n from NotaEntity n inner join n.organization o where o.id=:organizationId and lower(n.serie) like :filterText"),
+})
+@NamedEntityGraphs(value = {
+        @NamedEntityGraph(name = "graph.ListNotas", attributeNodes = {
+                @NamedAttributeNode(value = "id"),
+                @NamedAttributeNode(value = "datosVenta", subgraph = "datosVenta"),
+                @NamedAttributeNode(value = "validacion", subgraph = "validacion"),
+                @NamedAttributeNode(value = "organization", subgraph = "organization"),
+        }, subgraphs = {
+                @NamedSubgraph(name = "datosVenta", attributeNodes = {
+                        @NamedAttributeNode(value = "id")
+                }),
+                @NamedSubgraph(name = "validacion", attributeNodes = {
+                        @NamedAttributeNode(value = "id")
+                }),
+                @NamedSubgraph(name = "organization", attributeNodes = {
+                        @NamedAttributeNode(value = "id")
+                })
+        })
 })
 public class NotaEntity {
 
@@ -40,13 +56,17 @@ public class NotaEntity {
     private int numero;
 
     @NotNull
+    @Column(name = "codigo_tipo_comprobante")
+    private String codigoTipoComprobante;
+
+    @NotNull
     @Column(name = "tipo_nota")
     private String tipoNota;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "documento_asociado_id")
-    private InvoiceEntity documentoAsociado;
+    @JoinColumn(foreignKey = @ForeignKey, name = "invoice_afectado_id")
+    private InvoiceEntity invoiceAfectado;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -127,12 +147,12 @@ public class NotaEntity {
         this.tipoNota = tipoNota;
     }
 
-    public InvoiceEntity getDocumentoAsociado() {
-        return documentoAsociado;
+    public InvoiceEntity getInvoiceAfectado() {
+        return invoiceAfectado;
     }
 
-    public void setDocumentoAsociado(InvoiceEntity documentoAsociado) {
-        this.documentoAsociado = documentoAsociado;
+    public void setInvoiceAfectado(InvoiceEntity documentoAsociado) {
+        this.invoiceAfectado = documentoAsociado;
     }
 
     public EstadoComprobantePago getEstado() {
@@ -221,5 +241,13 @@ public class NotaEntity {
 
     public void setVersion(int version) {
         this.version = version;
+    }
+
+    public String getCodigoTipoComprobante() {
+        return codigoTipoComprobante;
+    }
+
+    public void setCodigoTipoComprobante(String codigoComprobante) {
+        this.codigoTipoComprobante = codigoComprobante;
     }
 }

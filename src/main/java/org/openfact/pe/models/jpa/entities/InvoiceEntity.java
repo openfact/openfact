@@ -8,19 +8,39 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
-import java.util.List;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo_invoice")
 @Table(name = "invoice", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"serie", "numero", "organization_id"})
 })
 @NamedQueries(value = {
-        @NamedQuery(name = "getInvoicesEmpezandoPorLasMasRecientes", query = "select i from InvoiceEntity i  inner join i.organization o where o.id=:organizationId and type(i)=:subclass order by i.createdAt"),
-        @NamedQuery(name = "getInvoicesConSerieEmpezandoPorLasMasRecientes", query = "select i from InvoiceEntity i inner join i.organization o where o.id=:organizationId and type(i)=:subclass and i.serie=:serie order by i.createdAt"),
+        @NamedQuery(name = "getInvoicesEmpezandoPorLasMasRecientes", query = "select i from InvoiceEntity i  inner join i.organization o where o.id=:organizationId and i.codigoTipoComprobante=:codigo order by i.createdAt"),
+        @NamedQuery(name = "getInvoicesConSerieEmpezandoPorLasMasRecientes", query = "select i from InvoiceEntity i inner join i.organization o where o.id=:organizationId and i.codigoTipoComprobante=:codigo and i.serie=:serie order by i.createdAt"),
         @NamedQuery(name = "getInvoicesPorSerieYNumero", query = "select i from InvoiceEntity i inner join i.organization o where o.id=:organizationId and i.serie=:serie and i.numero=:numero"),
-        @NamedQuery(name = "countInvoicesPorEstado", query = "select count(i) from InvoiceEntity i inner join i.organization o where o.id=:organizationId and type(i)=:subclass and i.estado=:estado"),
+        @NamedQuery(name = "countInvoices", query = "select count(i) from InvoiceEntity i inner join i.organization o where o.id=:organizationId"),
+        @NamedQuery(name = "getInvoicesPorId", query = "select i from InvoiceEntity i inner join i.organization o where o.id=:organizationId and i.id=:invoiceId"),
+        @NamedQuery(name = "filterDistinctInvoices", query = "select distinct i from InvoiceEntity i inner join i.organization o where o.id=:organizationId and lower(i.serie) like :filterText"),
+})
+@NamedEntityGraphs(value = {
+        @NamedEntityGraph(name = "graph.ListInvoices", attributeNodes = {
+                @NamedAttributeNode(value = "id"),
+                @NamedAttributeNode(value = "datosVenta", subgraph = "datosVenta"),
+                @NamedAttributeNode(value = "validacion", subgraph = "validacion"),
+                @NamedAttributeNode(value = "organization", subgraph = "organization"),
+        }, subgraphs = {
+                @NamedSubgraph(name = "datosVenta", attributeNodes = {
+                        @NamedAttributeNode(value = "id")
+                }),
+                @NamedSubgraph(name = "validacion", attributeNodes = {
+                        @NamedAttributeNode(value = "id")
+                }),
+                @NamedSubgraph(name = "organization", attributeNodes = {
+                        @NamedAttributeNode(value = "id")
+                }),
+                @NamedSubgraph(name = "resumenDiario", attributeNodes = {
+                        @NamedAttributeNode(value = "id")
+                })
+        })
 })
 public class InvoiceEntity {
 
@@ -37,6 +57,10 @@ public class InvoiceEntity {
     @NotNull
     @Column(name = "numero")
     private int numero;
+
+    @NotNull
+    @Column(name = "codigo_tipo_comprobante")
+    private String codigoTipoComprobante;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -76,6 +100,10 @@ public class InvoiceEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey, name = "organization_id")
     private OrganizationEntity organization;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(foreignKey = @ForeignKey, name = "resumen_diario_id")
+    private ResumenDiarioEntity resumenDiario;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
@@ -195,5 +223,21 @@ public class InvoiceEntity {
 
     public void setVersion(int version) {
         this.version = version;
+    }
+
+    public ResumenDiarioEntity getResumenDiario() {
+        return resumenDiario;
+    }
+
+    public void setResumenDiario(ResumenDiarioEntity resumenDiario) {
+        this.resumenDiario = resumenDiario;
+    }
+
+    public String getCodigoTipoComprobante() {
+        return codigoTipoComprobante;
+    }
+
+    public void setCodigoTipoComprobante(String codigo) {
+        this.codigoTipoComprobante = codigo;
     }
 }

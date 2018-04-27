@@ -1,55 +1,43 @@
 package org.openfact.pe.representations.idm;
 
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-public class NotaRepresentation extends AbstractDocumentoRepresentation {
+public class NotaRepresentation extends DocumentoBaseRepresentation {
 
-    @Pattern(regexp = "[B|F][A-Z]+[0-9]+")
-    private String serie;
+    @NotNull
+    @Size(max = 2)
+    private String codigoTipoComprobante;
 
-    private String tipo;
+    @NotNull
+    @Size(max = 2)
+    private String codigoMotivo;
 
-    private String documentoAsociado;
-    private String documentoAsociadoId;
-    private AbstractDocumentoRepresentation.TipoDocumentoAsociado tipoDocumentoAsociado;
+    @NotNull
+    private String invoiceAfectado;
 
-    public String getSerie() {
-        return serie;
+
+    public String getCodigoTipoComprobante() {
+        return codigoTipoComprobante;
     }
 
-    public void setSerie(String serie) {
-        this.serie = serie;
+    public void setCodigoTipoComprobante(String codigoTipoComprobante) {
+        this.codigoTipoComprobante = codigoTipoComprobante;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getCodigoMotivo() {
+        return codigoMotivo;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setCodigoMotivo(String codigoMotivo) {
+        this.codigoMotivo = codigoMotivo;
     }
 
-    public String getDocumentoAsociado() {
-        return documentoAsociado;
+    public String getInvoiceAfectado() {
+        return invoiceAfectado;
     }
 
-    public void setDocumentoAsociado(String documentoAsociado) {
-        this.documentoAsociado = documentoAsociado;
-    }
-
-    public String getDocumentoAsociadoId() {
-        return documentoAsociadoId;
-    }
-
-    public void setDocumentoAsociadoId(String documentoAsociadoId) {
-        this.documentoAsociadoId = documentoAsociadoId;
-    }
-
-    public TipoDocumentoAsociado getTipoDocumentoAsociado() {
-        return tipoDocumentoAsociado;
-    }
-
-    public void setTipoDocumentoAsociado(TipoDocumentoAsociado tipoDocumentoAsociado) {
-        this.tipoDocumentoAsociado = tipoDocumentoAsociado;
+    public void setInvoiceAfectado(String invoiceAfectado) {
+        this.invoiceAfectado = invoiceAfectado;
     }
 }

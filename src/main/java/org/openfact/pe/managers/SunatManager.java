@@ -2,27 +2,26 @@ package org.openfact.pe.managers;
 
 import jodd.io.ZipBuilder;
 import org.jboss.logging.Logger;
-import org.openfact.core.models.FileModel;
-import org.openfact.core.models.FileProvider;
+import org.openfact.core.files.FileException;
+import org.openfact.core.files.FileModel;
+import org.openfact.core.files.FileProvider;
 import org.openfact.core.models.ModelRuntimeException;
 import org.openfact.core.models.OrganizationModel;
-import org.openfact.core.models.files.FileException;
 import org.openfact.core.models.utils.ModelUtils;
 import org.openfact.core.utils.files.UncompressFileProvider;
 import org.openfact.core.utils.files.UncompressFileProviderFactory;
 import org.openfact.pe.models.*;
-import org.openfact.pe.models.types.TipoComprobante;
-import org.openfact.pe.models.types.TipoInvoice;
 import org.openfact.pe.models.utils.JaxbUtils;
-import org.openfact.pe.models.utils.SunatUtils;
+import org.openfact.pe.sunat.SendSunatException;
+import org.openfact.pe.sunat.SunatSenderProvider;
 import org.w3c.dom.Document;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.util.AbstractMap;
 import java.util.Map;
-import java.util.Optional;
 
 @Transactional
 @ApplicationScoped
@@ -40,162 +39,126 @@ public class SunatManager {
     private OrganizationInformacionSunatProvider orgSunatInfoProvider;
 
     @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public boolean enviarBoleta(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, BoletaModel boleta, FileModel file) {
-        if (isAdditionalInfoInvalid(additionalInfo)) {
-            guardarDatosInvalidosOrganizacion(boleta.getValidacion());
-            return false;
-        }
-
+    public boolean enviarInvoice(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, InvoiceModel invoice, FileModel invoiceFile) {
         OrganizacionInformacionSunatModel orgSunatInfo = getInformacionSunat(organization);
         if (orgSunatInfo.getBoletaFacturaEndpoint() == null) {
-            guardarDatosInvalidosEndpoint(boleta.getValidacion());
+            guardarDatosInvalidosEndpoint(invoice.getValidacion());
             return false;
         }
 
-        String nombreDocumento = additionalInfo.getAssignedId() + "-" + TipoInvoice.BOLETA.getCodigo() + "-" + SunatUtils.getSerieConCerosCompletados(boleta.getSerie(), 4) + "-" + boleta.getNumero();
-
-        byte[] zipFile;
-        try {
-            zipFile = ZipBuilder.createZipInMemory()
-                    .add(file.getBytes())
-                    .path(nombreDocumento + ".xml")
-                    .save()
-                    .toBytes();
-        } catch (IOException e) {
-            throw new ModelRuntimeException("No se pudo crear el zip");
+        if (isAdditionalInfoInvalid(additionalInfo)) {
+            guardarDatosInvalidosOrganizacion(invoice.getValidacion());
+            return false;
         }
+
+        String nombreDocumento = additionalInfo.getAssignedId() + "-" + invoice.getCodigoTipoComprobante() + "-" + invoice.getSerie() + "-" + invoice.getNumero();
 
         byte[] sunatResponse;
         try {
-            sunatResponse = sunatSenderProvider.sendBill(additionalInfo, orgSunatInfo, nombreDocumento + ".zip", zipFile);
+            sunatResponse = sendBill(additionalInfo, orgSunatInfo, nombreDocumento, invoiceFile.getBytes());
+        } catch (IOException e) {
+            throw new ModelRuntimeException(e);
         } catch (SendSunatException e) {
-            procesarErrorEnEnvioSunat(boleta.getValidacion(), e);
+            guardarEnvioInvalido(invoice.getValidacion(), e);
             return false;
         }
 
-        guardarCdr(boleta, sunatResponse);
-        procesarCdr(boleta, sunatResponse);
+        // Leer cdr
+        try {
+            AbstractMap.SimpleEntry<String, String> codigoDescripcion = leerCodigoYDescripcionDesdeCdrZipeado(sunatResponse);
+            if (codigoDescripcion.getKey().equals("0")) {
+                invoice.setEstado(EstadoComprobantePago.CERRADO);
+                invoice.setEstadoDescripcion(codigoDescripcion.getValue());
+            }
+        } catch (Exception e) {
+            logger.error(e);
+            ValidacionModel validacion = invoice.getValidacion();
+            validacion.setError(ErrorType.error_al_leer_cdr);
+            validacion.setErrorDescripcion("No se pudo leer el codigo de respuesta del cdr de respuesta");
+        }
+
+        // Guardar cdr
+        try {
+            String fileName = ModelUtils.generateId() + ".zip";
+            FileModel cdrFile = fileProvider.addFile(fileName, sunatResponse);
+            invoice.setCdrFileId(cdrFile.getFileName());
+        } catch (FileException e) {
+            logger.error(e);
+        }
+
+        // Validacion
+        ValidacionModel validacion = invoice.getValidacion();
+        validacion.setEstado(true);
+        validacion.setError(null);
+        validacion.setErrorDescripcion(null);
 
         return true;
     }
 
     @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public boolean enviarFactura(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, FacturaModel factura, FileModel file) {
-        if (isAdditionalInfoInvalid(additionalInfo)) {
-            guardarDatosInvalidosOrganizacion(factura.getValidacion());
-            return false;
-        }
-
+    public boolean enviarNota(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, NotaModel nota, FileModel notaFile) {
         OrganizacionInformacionSunatModel orgSunatInfo = getInformacionSunat(organization);
         if (orgSunatInfo.getBoletaFacturaEndpoint() == null) {
-            guardarDatosInvalidosEndpoint(factura.getValidacion());
+            guardarDatosInvalidosEndpoint(nota.getValidacion());
             return false;
         }
 
-        String nombreDocumento = additionalInfo.getAssignedId() + "-" + TipoInvoice.FACTURA.getCodigo() + "-" + SunatUtils.getSerieConCerosCompletados(factura.getSerie(), 4) + "-" + factura.getNumero();
-
-        byte[] zipFile;
-        try {
-            zipFile = ZipBuilder.createZipInMemory()
-                    .add(file.getBytes())
-                    .path(nombreDocumento + ".xml")
-                    .save()
-                    .toBytes();
-        } catch (IOException e) {
-            throw new ModelRuntimeException("No se pudo crear el zip");
+        if (isAdditionalInfoInvalid(additionalInfo)) {
+            guardarDatosInvalidosOrganizacion(nota.getValidacion());
+            return false;
         }
+
+        String nombreDocumento = additionalInfo.getAssignedId() + "-" + nota.getCodigoTipoComprobante() + "-" + nota.getSerie() + "-" + nota.getNumero();
 
         byte[] sunatResponse;
         try {
-            sunatResponse = sunatSenderProvider.sendBill(additionalInfo, orgSunatInfo, nombreDocumento + ".zip", zipFile);
+            sunatResponse = sendBill(additionalInfo, orgSunatInfo, nombreDocumento, notaFile.getBytes());
+        } catch (IOException e) {
+            throw new ModelRuntimeException(e);
         } catch (SendSunatException e) {
-            procesarErrorEnEnvioSunat(factura.getValidacion(), e);
+            guardarEnvioInvalido(nota.getValidacion(), e);
             return false;
         }
 
-        guardarCdr(factura, sunatResponse);
-        procesarCdr(factura, sunatResponse);
+        // Leer cdr
+        try {
+            AbstractMap.SimpleEntry<String, String> codigoDescripcion = leerCodigoYDescripcionDesdeCdrZipeado(sunatResponse);
+            if (codigoDescripcion.getKey().equals("0")) {
+                nota.setEstado(EstadoComprobantePago.CERRADO);
+                nota.setEstadoDescripcion(codigoDescripcion.getValue());
+            }
+        } catch (Exception e) {
+            logger.error(e);
+            ValidacionModel validacion = nota.getValidacion();
+            validacion.setError(ErrorType.error_al_leer_cdr);
+            validacion.setErrorDescripcion("No se pudo leer el codigo de respuesta del cdr de respuesta");
+        }
+
+        // Guardar cdr
+        try {
+            String fileName = ModelUtils.generateId() + ".zip";
+            FileModel cdrFile = fileProvider.addFile(fileName, sunatResponse);
+            nota.setCdrFileId(cdrFile.getFileName());
+        } catch (FileException e) {
+            logger.error(e);
+        }
 
         return true;
     }
 
-    @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public boolean enviarNotaCredito(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, NotaCreditoModel creditNote, FileModel file) {
-        if (isAdditionalInfoInvalid(additionalInfo)) {
-            guardarDatosInvalidosOrganizacion(creditNote.getValidacion());
-            return false;
-        }
+    private byte[] sendBill(
+            OrganizacionInformacionAdicionalModel additionalInfo,
+            OrganizacionInformacionSunatModel orgSunatInfo,
+            String fileName,
+            byte[] xmlDocumentBytes) throws IOException, SendSunatException {
 
-        OrganizacionInformacionSunatModel orgSunatInfo = getInformacionSunat(organization);
-        if (orgSunatInfo.getBoletaFacturaEndpoint() == null) {
-            guardarDatosInvalidosEndpoint(creditNote.getValidacion());
-            return false;
-        }
+        byte[] zipFile = ZipBuilder.createZipInMemory()
+                .add(xmlDocumentBytes)
+                .path(fileName + ".xml")
+                .save()
+                .toBytes();
 
-        String nombreDocumento = additionalInfo.getAssignedId() + "-" + TipoComprobante.NOTA_CREDITO.getCodigo() + "-" + SunatUtils.getSerieConCerosCompletados(creditNote.getSerie(), 4) + "-" + creditNote.getNumero();
-
-        byte[] zipFile;
-        try {
-            zipFile = ZipBuilder.createZipInMemory()
-                    .add(file.getBytes())
-                    .path(nombreDocumento + ".xml")
-                    .save()
-                    .toBytes();
-        } catch (IOException e) {
-            throw new ModelRuntimeException("No se pudo crear el zip");
-        }
-
-        byte[] sunatResponse;
-        try {
-            sunatResponse = sunatSenderProvider.sendBill(additionalInfo, orgSunatInfo, nombreDocumento + ".zip", zipFile);
-        } catch (SendSunatException e) {
-            procesarErrorEnEnvioSunat(creditNote.getValidacion(), e);
-            return false;
-        }
-
-        guardarCdr(creditNote, sunatResponse);
-        procesarCdr(creditNote, sunatResponse);
-
-        return true;
-    }
-
-    @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public boolean enviarNotaDebito(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, NotaDebitoModel debitNote, FileModel file) {
-        if (isAdditionalInfoInvalid(additionalInfo)) {
-            guardarDatosInvalidosOrganizacion(debitNote.getValidacion());
-            return false;
-        }
-
-        OrganizacionInformacionSunatModel orgSunatInfo = getInformacionSunat(organization);
-        if (orgSunatInfo.getBoletaFacturaEndpoint() == null) {
-            guardarDatosInvalidosEndpoint(debitNote.getValidacion());
-            return false;
-        }
-
-        String nombreDocumento = additionalInfo.getAssignedId() + "-" + TipoComprobante.NOTA_DEBITO.getCodigo() + "-" + SunatUtils.getSerieConCerosCompletados(debitNote.getSerie(), 4) + "-" + debitNote.getNumero();
-
-        byte[] zipFile;
-        try {
-            zipFile = ZipBuilder.createZipInMemory()
-                    .add(file.getBytes())
-                    .path(nombreDocumento + ".xml")
-                    .save()
-                    .toBytes();
-        } catch (IOException e) {
-            throw new ModelRuntimeException("No se pudo crear el zip");
-        }
-
-        byte[] sunatResponse;
-        try {
-            sunatResponse = sunatSenderProvider.sendBill(additionalInfo, orgSunatInfo, nombreDocumento + ".zip", zipFile);
-        } catch (SendSunatException e) {
-            procesarErrorEnEnvioSunat(debitNote.getValidacion(), e);
-            return false;
-        }
-        guardarCdr(debitNote, sunatResponse);
-        procesarCdr(debitNote, sunatResponse);
-
-        return true;
+        return sunatSenderProvider.sendBill(additionalInfo, orgSunatInfo, fileName + ".zip", zipFile);
     }
 
     //
@@ -212,7 +175,7 @@ public class SunatManager {
         validacion.setErrorDescripcion("Envío Sunat - La organización no tiene endpoins configurados válidos");
     }
 
-    private void procesarErrorEnEnvioSunat(ValidacionModel validacion, SendSunatException e) {
+    private void guardarEnvioInvalido(ValidacionModel validacion, SendSunatException e) {
         String errorMessage = e.getMessage().trim();
         errorMessage = errorMessage.substring(0, Math.min(errorMessage.length(), 400));
 
@@ -235,63 +198,27 @@ public class SunatManager {
         }
     }
 
-    private void procesarCdr(InvoiceModel invoice, byte[] cdrBytes) {
-        try {
-            Document document = readCdr(cdrBytes).orElseThrow(() -> new ModelRuntimeException("No se encontró cdr que leer"));
-            String code = document.getElementsByTagName("cbc:ResponseCode").item(0).getTextContent();
-            String description = document.getElementsByTagName("cbc:Description").item(0).getTextContent();
-            if (code.equals("0")) {
-                invoice.setEstado(EstadoComprobantePago.CERRADO);
-                invoice.setEstadoDescripcion(description);
-            }
-        } catch (Exception e) {
-            throw new ModelRuntimeException();
+    // Cdr
+
+    private AbstractMap.SimpleEntry<String, String> leerCodigoYDescripcionDesdeCdrZipeado(byte[] cdrZipBytes) throws Exception {
+        Document document = extraerCdrDesdeZip(cdrZipBytes);
+        String code = document.getElementsByTagName("cbc:ResponseCode").item(0).getTextContent();
+        String description = document.getElementsByTagName("cbc:Description").item(0).getTextContent();
+        if (code == null || description == null) {
+            throw new Exception("No se pudo leer ResponseCode y/o Description");
         }
+        return new AbstractMap.SimpleEntry<>(code, description);
     }
 
-    private void procesarCdr(NotaModel nota, byte[] cdrBytes) {
-        try {
-            Document document = readCdr(cdrBytes).orElseThrow(() -> new ModelRuntimeException("No se encontró cdr que leer"));
-            String code = document.getElementsByTagName("cbc:ResponseCode").item(0).getTextContent();
-            String description = document.getElementsByTagName("cbc:Description").item(0).getTextContent();
-            if (code.equals("0")) {
-                nota.setEstado(EstadoComprobantePago.CERRADO);
-                nota.setEstadoDescripcion(description);
-            }
-        } catch (Exception e) {
-            throw new ModelRuntimeException();
-        }
-    }
-
-    private void guardarCdr(InvoiceModel invoice, byte[] cdrBytes) {
-        try {
-            String fileName = ModelUtils.generateId() + ".zip";
-            FileModel file = fileProvider.addFile(fileName, cdrBytes);
-            invoice.setCdrFileId(file.getFileName());
-        } catch (FileException e) {
-            throw new ModelRuntimeException("No se pudo guardar un archivo en el storage");
-        }
-    }
-
-    private void guardarCdr(NotaModel nota, byte[] cdrBytes) {
-        try {
-            String fileName = ModelUtils.generateId() + ".zip";
-            FileModel file = fileProvider.addFile(fileName, cdrBytes);
-            nota.setCdrFileId(file.getFileName());
-        } catch (FileException e) {
-            throw new ModelRuntimeException("No se pudo guardar un archivo en el storage");
-        }
-    }
-
-    private static Optional<Document> readCdr(byte[] sunatResponse) throws Exception {
+    private static Document extraerCdrDesdeZip(byte[] sunatResponse) throws Exception {
         UncompressFileProviderFactory factory = UncompressFileProviderFactory.getInstance();
-        UncompressFileProvider provider = factory.getProvider("zip").orElseThrow(() -> new ModelRuntimeException("No provider for zip file"));
+        UncompressFileProvider provider = factory.getProvider("zip").orElseThrow(() -> new Exception("No provider for zip file"));
         Map<String, byte[]> entries = provider.uncompress(sunatResponse);
         for (Map.Entry<String, byte[]> entry : entries.entrySet()) {
             byte[] bytes = entry.getValue();
-            return Optional.of(JaxbUtils.toDocument(bytes));
+            return JaxbUtils.toDocument(bytes);
         }
-        return Optional.empty();
+        throw new Exception("No se encontró un cdr que leer");
     }
 
 }

@@ -1,12 +1,9 @@
 package org.openfact.pe.models.jpa.entities;
 
 import org.hibernate.validator.constraints.Email;
-import org.openfact.pe.models.types.TipoDocumentoEntidad;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 
 @Embeddable

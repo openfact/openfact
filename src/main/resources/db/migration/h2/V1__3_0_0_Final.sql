@@ -81,14 +81,14 @@
 
     create table file (
        filename varchar(255) not null,
-        bytes blob,
+        file_bytes blob,
         primary key (filename)
     );
 
     create table invoice (
-       tipo_invoice varchar(31) not null,
-        id varchar(255) not null,
+       id varchar(255) not null,
         cdr_file_id varchar(255),
+        codigo_tipo_comprobante varchar(255) not null,
         created_at timestamp,
         enviar_cliente char(255) not null,
         enviar_sunat char(255) not null,
@@ -100,8 +100,8 @@
         version integer,
         datos_venta_id varchar(255) not null,
         organization_id varchar(255) not null,
-        nota_id varchar(255) not null,
         resumen_diario_id varchar(255),
+        nota_id varchar(255) not null,
         primary key (id)
     );
 
@@ -116,9 +116,9 @@
     );
 
     create table nota (
-       tipo varchar(31) not null,
-        id varchar(255) not null,
+       id varchar(255) not null,
         cdr_file_id varchar(255),
+        codigo_tipo_comprobante varchar(255) not null,
         created_at timestamp,
         enviar_cliente char(255) not null,
         enviar_sunat char(255) not null,
@@ -292,14 +292,14 @@
        references organization;
 
     alter table invoice
-       add constraint FK9driov3gcc1wcxrsrv8roae9u
-       foreign key (nota_id)
-       references validacion;
-
-    alter table invoice
        add constraint FK3864q3ne48ba6ujr3kjchigsp
        foreign key (resumen_diario_id)
        references resumen_diario;
+
+    alter table invoice
+       add constraint FK9driov3gcc1wcxrsrv8roae9u
+       foreign key (nota_id)
+       references validacion;
 
     alter table memberships
        add constraint FKp778ik4pdu8wu3hra61aw2ufg

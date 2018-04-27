@@ -1,6 +1,5 @@
 package org.openfact.pe.models.types;
 
-import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
 

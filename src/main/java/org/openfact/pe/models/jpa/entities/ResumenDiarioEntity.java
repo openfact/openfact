@@ -5,7 +5,6 @@ import org.openfact.core.models.jpa.entities.OrganizationEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class ResumenDiarioEntity {
     private boolean enviarSunat;
 
     @OneToMany(mappedBy = "resumenDiario", fetch = FetchType.LAZY)
-    private List<BoletaEntity> boletas = new ArrayList<>();
+    private List<InvoiceEntity> invoices = new ArrayList<>();
 
     @NotNull
     @OneToOne(fetch = FetchType.LAZY)
@@ -52,12 +51,12 @@ public class ResumenDiarioEntity {
         this.enviarSunat = enviarSunat;
     }
 
-    public List<BoletaEntity> getBoletas() {
-        return boletas;
+    public List<InvoiceEntity> getInvoices() {
+        return invoices;
     }
 
-    public void setBoletas(List<BoletaEntity> boletas) {
-        this.boletas = boletas;
+    public void setInvoices(List<InvoiceEntity> invoices) {
+        this.invoices = invoices;
     }
 
     public ValidacionEntity getValidacion() {
