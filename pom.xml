@@ -345,6 +345,28 @@
                 </executions>
             </plugin>
 
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <version>2.3.1</version>
+                <executions>
+                    <execution>
+                        <id>xjc</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <xjbSources>
+                        <xjbSource>src/main/resources/sunat-jaxb/xjb</xjbSource>
+                    </xjbSources>
+                    <sources>
+                        <source>src/main/resources/sunat-jaxb/maindoc</source>
+                    </sources>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
@@ -494,35 +516,6 @@
             </build>
         </profile>
 
-        <profile>
-            <id>jaxb</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>jaxb2-maven-plugin</artifactId>
-                        <version>2.3.1</version>
-                        <executions>
-                            <execution>
-                                <id>xjc</id>
-                                <goals>
-                                    <goal>xjc</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <packageName>ubl.20</packageName>
-                            <xjbSources>
-                                <xjbSource>src/main/resources/xjb/binding.xjb</xjbSource>
-                            </xjbSources>
-                            <sources>
-                                <source>src/main/resources/xsd</source>
-                            </sources>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
         <profile>
             <id>wsdl</id>
             <build>

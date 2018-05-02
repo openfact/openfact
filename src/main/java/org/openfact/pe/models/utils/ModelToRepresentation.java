@@ -171,6 +171,12 @@ public class ModelToRepresentation {
         return rep;
     }
 
+    public static BajaRepresentation toRepresentation(BajaModel model, boolean fullInfo) {
+        BajaRepresentation rep = new BajaRepresentation();
+
+        return rep;
+    }
+
     public static ComprobanteDetalleRepresentation toRepresentation(DatosVentaDetalleModel model) {
         ComprobanteDetalleRepresentation rep = new ComprobanteDetalleRepresentation();
 

@@ -9,6 +9,7 @@ import org.openfact.pe.models.types.TipoNota;
 import org.openfact.pe.models.types.MotivoNotaCredito;
 import org.openfact.pe.models.types.MotivoNotaDebito;
 import org.openfact.pe.models.utils.RepresentationToModel;
+import org.openfact.pe.representations.idm.BajaRepresentation;
 import org.openfact.pe.representations.idm.InvoiceRepresentation;
 import org.openfact.pe.representations.idm.NotaRepresentation;
 
@@ -18,6 +19,7 @@ import javax.transaction.Transactional;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
 import java.util.Calendar;
+import java.util.Date;
 
 @Transactional
 @ApplicationScoped
@@ -28,6 +30,9 @@ public class ResourceManager {
 
     @Inject
     private NotaProvider notaProvider;
+
+    @Inject
+    private BajaProvider bajaProvider;
 
     @Inject
     private OrganizationProvider organizationProvider;
@@ -167,4 +172,31 @@ public class ResourceManager {
         return nota;
     }
 
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
+    public BajaModel crearBaja(String organizationId, BajaRepresentation rep) {
+        OrganizationModel organization = organizationProvider.getOrganization(organizationId).orElseThrow(NotFoundException::new);
+        InvoiceModel invoiceAfectado = invoiceProvider.getInvoice(organization, rep.getInvoiceAfectado()).orElseThrow(() -> new BadRequestException("Baja no tiene un invoice asociado"));
+
+        Date fechaEmisionBaja = rep.getFechaEmisionBaja();
+        Integer numero = rep.getNumero();
+
+        BajaModel baja;
+        if (fechaEmisionBaja == null) {
+            if (numero == null) {
+                baja = bajaProvider.createBaja(organization, invoiceAfectado);
+            } else {
+                throw new BadRequestException("Petición invalida: [serie=null, numero=not null]");
+            }
+        } else {
+            if (numero == null) {
+                baja = bajaProvider.createBaja(organization, invoiceAfectado, fechaEmisionBaja);
+            } else {
+                baja = bajaProvider.createBaja(organization, invoiceAfectado, fechaEmisionBaja, numero);
+            }
+        }
+
+        RepresentationToModel.modelToRepresentation(baja, rep);
+        return baja;
+
+    }
 }

@@ -62,6 +62,9 @@ public class TypeManager {
     private NotaProvider notaProvider;
 
     @Inject
+    private BajaProvider bajaProvider;
+
+    @Inject
     private OrganizationProvider organizationProvider;
 
     @Inject
@@ -219,6 +222,74 @@ public class TypeManager {
         }
 
         return new AsyncResult<>(nota);
+    }
+
+    @Asynchronous
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public Future<BajaModel> buildBaja(String bajaId) {
+//        BajaModel baja = bajaProvider.getBaja(bajaId).orElseThrow(() -> new ModelRuntimeException("Baja no encontrada"));
+//        OrganizationModel organization = baja.getOrganization();
+//
+//        if (baja.getEstado().equals(EstadoComprobantePago.CERRADO)) {
+//            throw new ModelReadOnlyException("Documento es de solo lectura");
+//        }
+//
+//        OrganizacionInformacionAdicionalModel additionalInfo = additionalInfoProvider.getOrganizacionInformacionAdicional(organization).orElseThrow(() -> new ModelRuntimeException("No se encontró información adicional de la organización:" + organization.getId()));
+//
+//        // Procesar el xml
+//        Document xmlDocument;
+//        try {
+//            sunat.names.specification.ubl.peru.schema.xsd.voideddocuments_1.
+//            CreditNoteType creditNoteType = ModelToType.toCreditNoteType(organization, additionalInfo, baja, baja.getInvoiceAfectado());
+//
+//            oasis.names.specification.ubl.schema.xsd.creditnote_2.ObjectFactory creditNoteFactory = new oasis.names.specification.ubl.schema.xsd.creditnote_2.ObjectFactory();
+//            JAXBElement<CreditNoteType> creditNoteJaxbElement = creditNoteFactory.createCreditNote(creditNoteType);
+//            xmlDocument = JaxbUtils.marshalToDocument(CreditNoteType.class, creditNoteJaxbElement);
+//
+//            firmarXml(organization, additionalInfo, xmlDocument);
+//        } catch (JAXBException e) {
+//            throw new ModelRuntimeException("Error al hacer marshal de documento xml");
+//        } catch (ParserConfigurationException | NoSuchAlgorithmException | InvalidAlgorithmParameterException | XMLSignatureException | MarshalException e) {
+//            throw new ModelRuntimeException("Error al firmar el documento");
+//        }
+//
+//        byte[] xmlDocumentBytes;
+//        try {
+//            xmlDocumentBytes = JaxbUtils.toBytes(xmlDocument);
+//        } catch (TransformerException e) {
+//            throw new ModelRuntimeException("Error al convertir documento xml a byte[]");
+//        }
+//
+//        // Guardar el archivo xml
+//        FileModel xmlFile;
+//        String currentFileId = baja.getFileId();
+//        try {
+//            String fileName = ModelUtils.generateId() + ".xml";
+//            xmlFile = fileProvider.addFile(fileName, xmlDocumentBytes);
+//            baja.setFileId(xmlFile.getFileName());
+//        } catch (FileException e) {
+//            throw new ModelRuntimeException("Error al guardar el documento xml de la nota:" + notaId);
+//        }
+//        if (currentFileId != null) {
+//            boolean result = fileProvider.removeFile(currentFileId);
+//            if (!result) {
+//                logger.warnf("No se pudo eliminar el archivo %s", currentFileId);
+//            }
+//        }
+//
+//        // Enviar a la sunat
+//        if (baja.getEnviarSunat()) {
+//            boolean resultado = sunatManager.enviarNota(organization, additionalInfo, baja, xmlFile);
+//            if (resultado) {
+//                messageManager.enviarNota(baja);
+//            }
+//        } else {
+//            guardarDocumentoNoEnviado(baja.getValidacion());
+//        }
+//
+//        return new AsyncResult<>(baja);
+        return null;
+
     }
 
     private void firmarXml(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, Document document) throws ParserConfigurationException, NoSuchAlgorithmException, XMLSignatureException, InvalidAlgorithmParameterException, MarshalException {

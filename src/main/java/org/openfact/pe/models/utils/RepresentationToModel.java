@@ -93,6 +93,11 @@ public class RepresentationToModel {
         toModel(model.getDatosVenta(), rep);
     }
 
+    public static void modelToRepresentation(BajaModel model, BajaRepresentation rep) {
+        model.setMotivoBaja(rep.getMotivoBaja());
+
+    }
+
     private static void toModel(DatosVentaModel model, DocumentoBaseRepresentation rep) {
         toModel(model.getFecha(), rep.getFecha());
         toModel(model.getCliente(), rep.getCliente());
