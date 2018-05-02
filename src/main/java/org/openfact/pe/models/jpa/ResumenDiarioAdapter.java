@@ -23,4 +23,9 @@ public class ResumenDiarioAdapter implements ResumenDiarioModel {
         return null;
     }
 
+    @Override
+    public Date getFechaEmisionDocumentosAsociados() {
+        return null;
+    }
+
 }
