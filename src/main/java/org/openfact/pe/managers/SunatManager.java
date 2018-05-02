@@ -146,6 +146,11 @@ public class SunatManager {
         return true;
     }
 
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
+    public boolean enviarBaja(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, BajaModel baja, FileModel bajaFile) {
+        return false;
+    }
+
     private byte[] sendBill(
             OrganizacionInformacionAdicionalModel additionalInfo,
             OrganizacionInformacionSunatModel orgSunatInfo,

@@ -16,4 +16,17 @@ public interface BajaModel {
     EstadoComprobantePago getEstado();
     InvoiceModel getInvoiceAfectado();
 
+    String getFileId();
+    void setFileId(String fileId);
+
+    String getCdrFileId();
+    void setCdrFileId(String fileId);
+
+    boolean getEnviarSunat();
+    void setEnviarSunat(boolean enviarSunat);
+
+    boolean getEnviarCliente();
+    void setEnviarCliente(boolean enviarCliente);
+
+    ValidacionModel getValidacion();
 }

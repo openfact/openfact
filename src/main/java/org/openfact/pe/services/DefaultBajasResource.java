@@ -63,7 +63,7 @@ public class DefaultBajasResource implements BajasResource {
         }
 
         BajaModel baja = resourceManager.crearBaja(organizationId, rep);
-        Future<BajaModel> future = typeManager.buildBaja(baja.getId());
+        Future<BajaModel> future = typeManager.buildBaja(organizationId, baja.getId());
         if (!async) {
             try {
                 baja = future.get();

@@ -1,5 +1,6 @@
 package org.openfact.pe.managers;
 
+import org.openfact.pe.models.BajaModel;
 import org.openfact.pe.models.InvoiceModel;
 import org.openfact.pe.models.NotaModel;
 
@@ -29,4 +30,8 @@ public class MessageManager {
 
     }
 
+    public void enviarBaja(BajaModel baja) {
+
+
+    }
 }

@@ -1,5 +1,6 @@
 package org.openfact.pe.models.jpa.entities;
 
+import org.hibernate.annotations.Type;
 import org.openfact.pe.models.EstadoComprobantePago;
 
 import javax.persistence.*;
@@ -54,6 +55,22 @@ public class BajaEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "estado")
     private EstadoComprobantePago estado;
+
+    @Column(name = "file_id")
+    private String fileId;
+
+    @Column(name = "cdr_file_id")
+    private String cdrFileId;
+
+    @NotNull
+    @Type(type = "org.hibernate.type.YesNoType")
+    @Column(name = "enviar_sunat")
+    private boolean enviarSunat;
+
+    @NotNull
+    @Type(type = "org.hibernate.type.YesNoType")
+    @Column(name = "enviar_cliente")
+    private boolean enviarCliente;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
@@ -127,5 +144,37 @@ public class BajaEntity {
 
     public void setValidacion(ValidacionEntity validacion) {
         this.validacion = validacion;
+    }
+
+    public String getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(String fileId) {
+        this.fileId = fileId;
+    }
+
+    public String getCdrFileId() {
+        return cdrFileId;
+    }
+
+    public void setCdrFileId(String cdrFileId) {
+        this.cdrFileId = cdrFileId;
+    }
+
+    public boolean isEnviarSunat() {
+        return enviarSunat;
+    }
+
+    public void setEnviarSunat(boolean enviarSunat) {
+        this.enviarSunat = enviarSunat;
+    }
+
+    public boolean isEnviarCliente() {
+        return enviarCliente;
+    }
+
+    public void setEnviarCliente(boolean enviarCliente) {
+        this.enviarCliente = enviarCliente;
     }
 }

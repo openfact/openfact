@@ -1,7 +1,17 @@
 
-    create table baja (
+    create table bajas (
        id varchar(255) not null,
+        cdr_file_id varchar(255),
+        enviar_cliente char(255) not null,
+        enviar_sunat char(255) not null,
+        estado varchar(255) not null,
+        fechaBaja date not null,
+        file_id varchar(255),
+        motivo_baja varchar(255),
+        numero integer not null,
+        serie varchar(11) not null,
         invoice_id varchar(255) not null,
+        nota_id varchar(255) not null,
         primary key (id)
     );
 
@@ -130,7 +140,7 @@
         tipo_nota varchar(255) not null,
         version integer,
         datos_venta_id varchar(255) not null,
-        documento_asociado_id varchar(255) not null,
+        invoice_afectado_id varchar(255) not null,
         organization_id varchar(255) not null,
         nota_id varchar(255) not null,
         primary key (id)
@@ -261,10 +271,15 @@
     alter table users
        add constraint UK19vywygog85fl7f6t9dstiga8 unique (identity_id);
 
-    alter table baja
-       add constraint FK3kktiexlten3yhfbu15tobmjo
+    alter table bajas
+       add constraint FK725fkaqvybfxwphu6l8a8mprv
        foreign key (invoice_id)
        references invoice;
+
+    alter table bajas
+       add constraint FKo35qdiq5hnnn329oxkgxylvsa
+       foreign key (nota_id)
+       references validacion;
 
     alter table component
        add constraint FKmpfdha5eg9fm6ht2ue01ec9l6
@@ -322,8 +337,8 @@
        references datos_venta;
 
     alter table nota
-       add constraint FK835nmoje17v9h1g5dodrgehrc
-       foreign key (documento_asociado_id)
+       add constraint FKqlqgj5sq8d4m7obug3fo9m575
+       foreign key (invoice_afectado_id)
        references invoice;
 
     alter table nota

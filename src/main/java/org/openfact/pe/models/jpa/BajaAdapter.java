@@ -4,6 +4,7 @@ import org.openfact.core.models.jpa.JpaModel;
 import org.openfact.pe.models.BajaModel;
 import org.openfact.pe.models.EstadoComprobantePago;
 import org.openfact.pe.models.InvoiceModel;
+import org.openfact.pe.models.ValidacionModel;
 import org.openfact.pe.models.jpa.entities.BajaEntity;
 
 import javax.persistence.EntityManager;
@@ -69,5 +70,50 @@ public class BajaAdapter implements BajaModel, JpaModel<BajaEntity> {
     @Override
     public InvoiceModel getInvoiceAfectado() {
         return new InvoiceAdapter(em, baja.getInvoice());
+    }
+
+    @Override
+    public String getFileId() {
+        return baja.getFileId();
+    }
+
+    @Override
+    public void setFileId(String fileId) {
+        baja.setFileId(fileId);
+    }
+
+    @Override
+    public String getCdrFileId() {
+        return baja.getCdrFileId();
+    }
+
+    @Override
+    public void setCdrFileId(String fileId) {
+        baja.setCdrFileId(fileId);
+    }
+
+    @Override
+    public boolean getEnviarSunat() {
+        return baja.isEnviarSunat();
+    }
+
+    @Override
+    public void setEnviarSunat(boolean enviarSunat) {
+        baja.setEnviarSunat(enviarSunat);
+    }
+
+    @Override
+    public boolean getEnviarCliente() {
+        return baja.isEnviarCliente();
+    }
+
+    @Override
+    public void setEnviarCliente(boolean enviarCliente) {
+        baja.setEnviarCliente(enviarCliente);
+    }
+
+    @Override
+    public ValidacionModel getValidacion() {
+        return new ValidacionAdapter(baja.getValidacion());
     }
 }

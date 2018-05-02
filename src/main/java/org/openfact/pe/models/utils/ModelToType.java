@@ -16,6 +16,7 @@ import sunat.names.specification.ubl.peru.schema.xsd.sunataggregatecomponents_1.
 import sunat.names.specification.ubl.peru.schema.xsd.sunataggregatecomponents_1.AdditionalMonetaryTotalType;
 import sunat.names.specification.ubl.peru.schema.xsd.sunataggregatecomponents_1.AdditionalPropertyType;
 import sunat.names.specification.ubl.peru.schema.xsd.sunataggregatecomponents_1.ObjectFactory;
+import sunat.names.specification.ubl.peru.schema.xsd.voideddocuments_1.VoidedDocumentsType;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
@@ -162,6 +163,10 @@ public class ModelToType {
         }
 
         return debitNoteType;
+    }
+
+    public static VoidedDocumentsType toVoidedDocumentsType(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, BajaModel baja, InvoiceModel invoiceAfectado) {
+        return null;
     }
 
     private static XMLGregorianCalendar toGregorianCalendar(Date date, TimeZone zone) {

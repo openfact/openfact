@@ -15,7 +15,7 @@ import java.util.Date;
 })
 @NamedQueries(value = {
         @NamedQuery(name = "getNotasEmpezandoPorLasMasRecientes", query = "select n from NotaEntity n  inner join n.organization o where o.id=:organizationId and n.codigoTipoComprobante=:codigo order by n.createdAt"),
-        @NamedQuery(name = "getNotasConSerieEmpezandoPorLasMasRecientes", query = "select n from NotaEntity n inner join n.organization o where o.id=:organizationId and i.codigoTipoComprobante=:codigo and n.serie=:serie order by n.createdAt"),
+        @NamedQuery(name = "getNotasConSerieEmpezandoPorLasMasRecientes", query = "select n from NotaEntity n inner join n.organization o where o.id=:organizationId and n.codigoTipoComprobante=:codigo and n.serie=:serie order by n.createdAt"),
         @NamedQuery(name = "getNotasPorSerieYNumero", query = "select n from NotaEntity n inner join n.organization o where o.id=:organizationId and n.serie=:serie and n.numero=:numero"),
         @NamedQuery(name = "countNotas", query = "select count(n) from NotaEntity n inner join n.organization o where o.id=:organizationId"),
         @NamedQuery(name = "getNotasPorId", query = "select n from NotaEntity n inner join n.organization o where o.id=:organizationId and n.id=:notaId"),
