@@ -1,21 +1,13 @@
 package org.openfact.pe.models.jpa;
 
 import org.openfact.core.models.OrganizationModel;
-import org.openfact.core.models.jpa.OrganizationAdapter;
 import org.openfact.core.models.utils.ModelUtils;
 import org.openfact.pe.models.*;
 import org.openfact.pe.models.jpa.entities.BajaEntity;
-import org.openfact.pe.models.jpa.entities.DatosVentaEntity;
-import org.openfact.pe.models.jpa.entities.InvoiceEntity;
 import org.openfact.pe.models.jpa.entities.ValidacionEntity;
 import org.openfact.pe.models.types.TipoBaja;
-import org.openfact.pe.models.types.TipoComprobante;
-import org.openfact.pe.models.types.TipoInvoice;
-import org.openfact.pe.models.utils.SunatUtils;
-import org.wildfly.swarm.spi.runtime.annotations.ConfigurationValue;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.text.SimpleDateFormat;
@@ -75,7 +67,7 @@ public class JpaBajaProvider implements BajaProvider {
         BajaEntity bajaEntity = new BajaEntity();
         bajaEntity.setId(ModelUtils.generateId());
         bajaEntity.setNumero(numero);
-        bajaEntity.setFechaGeneracionBaja(fechaGeneracionBaja);
+        bajaEntity.setFechaEmision(fechaGeneracionBaja);
         bajaEntity.setSerie(TipoBaja.BAJA.getPrefijo() + formatDate(organization, fechaGeneracionBaja) + "-" + numero);
         bajaEntity.setEstado(EstadoComprobantePago.ABIERTO);
         bajaEntity.setInvoice(InvoiceAdapter.toEntity(invoiceAfectado, em));
@@ -145,7 +137,7 @@ public class JpaBajaProvider implements BajaProvider {
 
         if (ultimoComprobante.isPresent()) {
             BajaEntity entity = ultimoComprobante.get();
-            Date ultimaGeneracionBaja = entity.getFechaGeneracionBaja();
+            Date ultimaGeneracionBaja = entity.getFechaEmision();
             int ultimoNumero = entity.getNumero();
 
             int siguienteNumero = ultimoNumero + 1;

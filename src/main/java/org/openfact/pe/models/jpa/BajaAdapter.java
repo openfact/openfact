@@ -48,8 +48,8 @@ public class BajaAdapter implements BajaModel, JpaModel<BajaEntity> {
     }
 
     @Override
-    public Date getFechaGeneracionBaja() {
-        return baja.getFechaGeneracionBaja();
+    public Date getFechaEmision() {
+        return baja.getFechaEmision();
     }
 
     @Override

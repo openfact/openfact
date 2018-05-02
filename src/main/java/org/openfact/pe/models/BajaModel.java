@@ -8,7 +8,7 @@ public interface BajaModel {
     String getSerie();
     int getNumero();
 
-    Date getFechaGeneracionBaja();
+    Date getFechaEmision();
 
     String getMotivoBaja();
     void setMotivoBaja(String motivoBaja);

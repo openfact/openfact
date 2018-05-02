@@ -30,9 +30,9 @@ public class CamelSunatProvider implements SunatSenderProvider {
     @Override
     public byte[] sendBill(OrganizacionInformacionAdicionalModel additionalInfo, OrganizacionInformacionSunatModel orgSunatInfo, String fileName, byte[] file) throws SendSunatException {
         Map<String, Object> headers = new HashMap<>();
-        headers.put(CfxRouter.END_POINT_HEADER, orgSunatInfo.getBoletaFacturaEndpoint());
-        headers.put(CfxRouter.USERNAME, orgSunatInfo.getUsuario());
-        headers.put(CfxRouter.PASSWORD, orgSunatInfo.getPassword());
+        headers.put(CfxConstants.END_POINT_HEADER, orgSunatInfo.getBoletaFacturaEndpoint());
+        headers.put(CfxConstants.USERNAME, orgSunatInfo.getUsuario());
+        headers.put(CfxConstants.PASSWORD, orgSunatInfo.getPassword());
 
         DataSource dataSource = new ByteArrayDataSource(file, "application/xml");
         DataHandler dataHandler = new DataHandler(dataSource);
@@ -42,7 +42,7 @@ public class CamelSunatProvider implements SunatSenderProvider {
 
         Object result;
         try {
-            result = producer.requestBodyAndHeaders(CfxRouter.SEND_BILL_URI, serviceParams, headers);
+            result = producer.requestBodyAndHeaders(CfxSendBillRouter.SEND_BILL_URI, serviceParams, headers);
         } catch (Throwable e) {
             throw new SendSunatException(e.getCause().getMessage());
         }
@@ -53,13 +53,45 @@ public class CamelSunatProvider implements SunatSenderProvider {
     }
 
     @Override
-    public StatusResponse getStatus(String ticket) {
-        return null;
+    public StatusResponse getStatus(OrganizacionInformacionAdicionalModel additionalInfo, OrganizacionInformacionSunatModel orgSunatInfo, String ticket) throws SendSunatException {
+        Map<String, Object> headers = new HashMap<>();
+        headers.put(CfxConstants.END_POINT_HEADER, orgSunatInfo.getBoletaFacturaEndpoint());
+        headers.put(CfxConstants.USERNAME, orgSunatInfo.getUsuario());
+        headers.put(CfxConstants.PASSWORD, orgSunatInfo.getPassword());
+
+        ProducerTemplate producer = camelContext.createProducerTemplate();
+
+        pe.gob.sunat.service.StatusResponse statusResponse = null;
+        try {
+            statusResponse = producer.requestBodyAndHeaders(CfxGetStatusRouter.GET_STATUS_URI, ticket, headers, pe.gob.sunat.service.StatusResponse.class);
+        } catch (Throwable e) {
+            throw new SendSunatException(e.getCause().getMessage());
+        }
+
+        return statusResponse;
     }
 
     @Override
-    public String sendSummary(String fileName, byte[] file) {
-        return null;
+    public String sendSummary(OrganizacionInformacionAdicionalModel additionalInfo, OrganizacionInformacionSunatModel orgSunatInfo, String fileName, byte[] file) throws SendSunatException {
+        Map<String, Object> headers = new HashMap<>();
+        headers.put(CfxConstants.END_POINT_HEADER, orgSunatInfo.getBoletaFacturaEndpoint());
+        headers.put(CfxConstants.USERNAME, orgSunatInfo.getUsuario());
+        headers.put(CfxConstants.PASSWORD, orgSunatInfo.getPassword());
+
+        DataSource dataSource = new ByteArrayDataSource(file, "application/xml");
+        DataHandler dataHandler = new DataHandler(dataSource);
+
+        ProducerTemplate producer = camelContext.createProducerTemplate();
+        Object[] serviceParams = new Object[]{fileName, dataHandler, additionalInfo.getAssignedId()};
+
+        String ticket;
+        try {
+            ticket = producer.requestBodyAndHeaders(CfxSendSummaryRouter.SEND_SUMMARY_URI, serviceParams, headers, String.class);
+        } catch (Throwable e) {
+            throw new SendSunatException(e.getCause().getMessage());
+        }
+
+        return ticket;
     }
 
     @Override

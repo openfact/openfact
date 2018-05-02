@@ -3,6 +3,8 @@ package org.openfact.pe.models.utils;
 import oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_2.*;
 import oasis.names.specification.ubl.schema.xsd.commonbasiccomponents_2.*;
 import un.unece.uncefact.codelist.specification._54217._2001.CurrencyCodeContentType;
+import un.unece.uncefact.data.specification.unqualifieddatatypesschemamodule._2.IdentifierType;
+import un.unece.uncefact.data.specification.unqualifieddatatypesschemamodule._2.TextType;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigDecimal;
@@ -23,6 +25,12 @@ public class TypeUtils {
         IssueDateType issueDateType = new IssueDateType();
         issueDateType.setValue(value);
         return issueDateType;
+    }
+
+    public static ReferenceDateType buildReferenceDateType(XMLGregorianCalendar value) {
+        ReferenceDateType referenceDateType = new ReferenceDateType();
+        referenceDateType.setValue(value);
+        return referenceDateType;
     }
 
     public static PaymentDueDateType buildPaymentDueDateType(XMLGregorianCalendar value) {
@@ -317,4 +325,21 @@ public class TypeUtils {
         return documentReferenceType;
     }
 
+    public static LineIDType buildLineIDType(String value) {
+        LineIDType lineIDType = new LineIDType();
+        lineIDType.setValue(value);
+        return lineIDType;
+    }
+
+    public static IdentifierType buildIdentifierType(String value) {
+        IdentifierType identifierType = new IdentifierType();
+        identifierType.setValue(value);
+        return identifierType;
+    }
+
+    public static TextType buildTextType(String value) {
+        TextType textType = new TextType();
+        textType.setValue(value);
+        return textType;
+    }
 }

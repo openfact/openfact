@@ -5,7 +5,7 @@
         enviar_cliente char(255) not null,
         enviar_sunat char(255) not null,
         estado varchar(255) not null,
-        fechaBaja date not null,
+        fecha_emision date not null,
         file_id varchar(255),
         motivo_baja varchar(255),
         numero integer not null,

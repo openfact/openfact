@@ -11,7 +11,7 @@ import java.util.Date;
 @Entity
 @Table(name = "bajas")
 @NamedQueries(value = {
-        @NamedQuery(name = "getBajasEmpezandoPorLasMasRecientes", query = "select b from BajaEntity b inner join b.invoice i inner join i.organization o where o.id=:organizationId and b.fechaGeneracionBaja=:fechaGeneracionBaja order by b.numero"),
+        @NamedQuery(name = "getBajasEmpezandoPorLasMasRecientes", query = "select b from BajaEntity b inner join b.invoice i inner join i.organization o where o.id=:organizationId and b.fechaEmision=:fechaGeneracionBaja order by b.numero"),
         @NamedQuery(name = "getBajasPorSerieYNumero", query = "select b from BajaEntity b inner join b.invoice i inner join i.organization o where o.id=:organizationId and b.serie=:serie and b.numero=:numero"),
         @NamedQuery(name = "countBajas", query = "select count(b) from BajaEntity b inner join b.invoice i inner join i.organization o where o.id=:organizationId"),
         @NamedQuery(name = "getBajasPorId", query = "select b from BajaEntity b inner join b.invoice i inner join i.organization o where o.id=:organizationId and b.id=:bajaId"),
@@ -45,8 +45,8 @@ public class BajaEntity {
 
     @NotNull
     @Temporal(TemporalType.DATE)
-    @Column(name = "fechaBaja")
-    private Date fechaGeneracionBaja;
+    @Column(name = "fecha_emision")
+    private Date fechaEmision;
 
     @Column(name = "motivo_baja")
     private String motivoBaja;
@@ -122,12 +122,12 @@ public class BajaEntity {
         this.numero = numero;
     }
 
-    public Date getFechaGeneracionBaja() {
-        return fechaGeneracionBaja;
+    public Date getFechaEmision() {
+        return fechaEmision;
     }
 
-    public void setFechaGeneracionBaja(Date fechaGeneracionBaja) {
-        this.fechaGeneracionBaja = fechaGeneracionBaja;
+    public void setFechaEmision(Date fechaGeneracionBaja) {
+        this.fechaEmision = fechaGeneracionBaja;
     }
 
     public EstadoComprobantePago getEstado() {

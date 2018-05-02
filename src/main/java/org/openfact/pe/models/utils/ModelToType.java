@@ -12,9 +12,7 @@ import org.openfact.core.utils.finance.MoneyConverters;
 import org.openfact.pe.models.*;
 import org.openfact.pe.models.types.*;
 import org.w3c.dom.Element;
-import sunat.names.specification.ubl.peru.schema.xsd.sunataggregatecomponents_1.AdditionalInformationType;
-import sunat.names.specification.ubl.peru.schema.xsd.sunataggregatecomponents_1.AdditionalMonetaryTotalType;
-import sunat.names.specification.ubl.peru.schema.xsd.sunataggregatecomponents_1.AdditionalPropertyType;
+import sunat.names.specification.ubl.peru.schema.xsd.sunataggregatecomponents_1.*;
 import sunat.names.specification.ubl.peru.schema.xsd.sunataggregatecomponents_1.ObjectFactory;
 import sunat.names.specification.ubl.peru.schema.xsd.voideddocuments_1.VoidedDocumentsType;
 
@@ -25,10 +23,7 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.TimeZone;
+import java.util.*;
 
 public class ModelToType {
 
@@ -166,7 +161,45 @@ public class ModelToType {
     }
 
     public static VoidedDocumentsType toVoidedDocumentsType(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, BajaModel baja, InvoiceModel invoiceAfectado) {
-        return null;
+        sunat.names.specification.ubl.peru.schema.xsd.voideddocuments_1.ObjectFactory factory = new sunat.names.specification.ubl.peru.schema.xsd.voideddocuments_1.ObjectFactory();
+        VoidedDocumentsType voidedDocumentsType = factory.createVoidedDocumentsType();
+
+        // General config
+        voidedDocumentsType.setUBLVersionID(TypeUtils.buildUBLVersionID("2.0"));
+        voidedDocumentsType.setCustomizationID(TypeUtils.buildCustomizationIDType("1.0"));
+
+        // documentId
+        voidedDocumentsType.setID(TypeUtils.buildIDType(baja.getSerie() + "-" + baja.getNumero()));
+
+        // Fechas
+        XMLGregorianCalendar issueDate = toGregorianCalendar(baja.getFechaEmision(), organization.getTimeZone());
+        voidedDocumentsType.setIssueDate(TypeUtils.buildIssueDateType(issueDate));
+
+        // Fecha de emisión del documento relacionado
+        Date fechaEmisionDocumentoRelacionado = null;
+        Optional<ResumenDiarioModel> resumenDiarioAsociado = invoiceAfectado.getResumenDiario();
+        if (resumenDiarioAsociado.isPresent()) {
+            fechaEmisionDocumentoRelacionado = resumenDiarioAsociado.get().getIssueDate();
+        } else {
+            fechaEmisionDocumentoRelacionado = invoiceAfectado.getDatosVenta().getFecha().getEmision();
+        }
+
+        XMLGregorianCalendar referenceDate = toGregorianCalendar(fechaEmisionDocumentoRelacionado, organization.getTimeZone());
+        voidedDocumentsType.setReferenceDate(TypeUtils.buildReferenceDateType(referenceDate));
+
+        // Proveedor
+        voidedDocumentsType.setAccountingSupplierParty(buildSupplierPartyType(additionalInfo));
+
+        // Detalle
+        VoidedDocumentsLineType voidedDocumentsLineType = new VoidedDocumentsLineType();
+
+        voidedDocumentsLineType.setLineID(TypeUtils.buildLineIDType("1"));
+        voidedDocumentsLineType.setDocumentTypeCode(TypeUtils.buildDocumentTypeCodeType(invoiceAfectado.getCodigoTipoComprobante()));
+        voidedDocumentsLineType.setDocumentSerialID(TypeUtils.buildIdentifierType(invoiceAfectado.getSerie()));
+        voidedDocumentsLineType.setDocumentNumberID(TypeUtils.buildIdentifierType(String.valueOf(invoiceAfectado.getNumero())));
+        voidedDocumentsLineType.setVoidReasonDescription(TypeUtils.buildTextType(baja.getMotivoBaja()));
+
+        return voidedDocumentsType;
     }
 
     private static XMLGregorianCalendar toGregorianCalendar(Date date, TimeZone zone) {
