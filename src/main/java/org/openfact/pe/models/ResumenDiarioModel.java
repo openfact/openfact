@@ -6,5 +6,7 @@ public interface ResumenDiarioModel {
 
     String getId();
 
-    Date getIssueDate();
+    Date getFechaEmision();
+
+    Date getFechaEmisionDocumentosAsociados();
 }

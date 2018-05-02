@@ -179,7 +179,7 @@ public class ModelToType {
         Date fechaEmisionDocumentoRelacionado = null;
         Optional<ResumenDiarioModel> resumenDiarioAsociado = invoiceAfectado.getResumenDiario();
         if (resumenDiarioAsociado.isPresent()) {
-            fechaEmisionDocumentoRelacionado = resumenDiarioAsociado.get().getIssueDate();
+            fechaEmisionDocumentoRelacionado = resumenDiarioAsociado.get().getFechaEmision();
         } else {
             fechaEmisionDocumentoRelacionado = invoiceAfectado.getDatosVenta().getFecha().getEmision();
         }

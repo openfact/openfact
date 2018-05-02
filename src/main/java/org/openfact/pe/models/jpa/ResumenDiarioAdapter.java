@@ -19,7 +19,7 @@ public class ResumenDiarioAdapter implements ResumenDiarioModel {
     }
 
     @Override
-    public Date getIssueDate() {
+    public Date getFechaEmision() {
         return null;
     }
 
