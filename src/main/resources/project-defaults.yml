@@ -1,0 +1,17 @@
+swarm:
+  ee:
+    spec-descriptor-property-replacement: true
+  datasources:
+    data-sources:
+      OpenfactDS:
+        driver-name: h2
+        connection-url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+        user-name: sa
+        password: sa
+  messaging-activemq:
+    servers:
+      default:
+        jms-queues:
+          my-queue: {}
+        jms-topics:
+          my-topic: {}

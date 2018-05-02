@@ -1,0 +1,134 @@
+{
+  "realm": "openfact",
+  "enabled": true,
+  "sslRequired": "external",
+  "registrationAllowed": true,
+  "rememberMe": true,
+  "requiredCredentials": [
+    "password"
+  ],
+  "users": [
+    {
+      "username": "carlos",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "carlos"
+        }
+      ],
+      "realmRoles": [
+        "user",
+        "offline_access",
+        "uma_authorization"
+      ],
+      "clientRoles": {
+        "account": [
+          "view-profile",
+          "manage-account"
+        ],
+        "openfact-restful-api": [
+          "manage-organizations"
+        ]
+      }
+    },
+    {
+      "username": "esteban",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "esteban"
+        }
+      ],
+      "realmRoles": [
+        "user",
+        "offline_access",
+        "uma_authorization"
+      ],
+      "clientRoles": {
+        "account": [
+          "view-profile",
+          "manage-account"
+        ],
+        "openfact-restful-api": [
+          "manage-organizations"
+        ]
+      }
+    },
+    {
+      "username": "admin",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "admin"
+        }
+      ],
+      "realmRoles": [
+        "admin",
+        "offline_access",
+        "uma_authorization"
+      ],
+      "clientRoles": {
+        "realm-management": [
+          "realm-admin"
+        ],
+        "account": [
+          "view-profile",
+          "manage-account"
+        ],
+        "openfact-restful-api": [
+          "manage-organizations"
+        ]
+      }
+    }
+  ],
+  "roles": {
+    "realm": [
+      {
+        "name": "user",
+        "description": "User privileges"
+      },
+      {
+        "name": "admin",
+        "description": "Administrator privileges"
+      }
+    ]
+  },
+  "defaultRoles": [
+    "offline_access",
+    "uma_authorization",
+    "user"
+  ],
+  "clients": [
+    {
+      "clientId": "openfact-html5-client",
+      "enabled": true,
+      "adminUrl": "/openfact-html5-client",
+      "baseUrl": "/openfact-html5-client",
+      "publicClient": true,
+      "consentRequired": false,
+      "fullScopeAllowed": true,
+      "redirectUris": [
+        "http://localhost:4200/*"
+      ],
+      "webOrigins": [
+        "http://localhost:4200"
+      ]
+    },
+    {
+      "clientId": "openfact-restful-api",
+      "enabled": true,
+      "bearerOnly": true,
+      "baseUrl": "/openfact-restful-api",
+      "redirectUris": [
+        "/openfact-restful-api/*"
+      ],
+      "webOrigins": [
+        "http://localhost:8080"
+      ]
+    }
+  ],
+  "keycloakVersion": "3.4.3.Final"
+}

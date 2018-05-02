@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2">
+    <deployment>
+        <exclusions>
+            <module name="org.javassist"/>
+        </exclusions>
+        <dependencies>
+            <module name="org.keycloak.keycloak-authz-client" services="import"/>
+        </dependencies>
+    </deployment>
+</jboss-deployment-structure>
