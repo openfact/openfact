@@ -9,7 +9,7 @@
 
     <groupId>org.openfact</groupId>
     <artifactId>openfact</artifactId>
-    <version>3.0.0-SNAPSHOT</version>
+    <version>3.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>Openfact REST API</name>
