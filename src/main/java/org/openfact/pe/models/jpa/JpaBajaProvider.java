@@ -4,7 +4,7 @@ import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.utils.ModelUtils;
 import org.openfact.pe.models.*;
 import org.openfact.pe.models.jpa.entities.BajaEntity;
-import org.openfact.pe.models.jpa.entities.ValidacionEntity;
+import org.openfact.pe.models.jpa.entities.EstadoSunatEntity;
 import org.openfact.pe.models.types.TipoBaja;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -58,11 +58,9 @@ public class JpaBajaProvider implements BajaProvider {
 
     @Override
     public BajaModel createBaja(OrganizationModel organization, InvoiceModel invoiceAfectado, Date fechaGeneracionBaja, int numero) {
-        ValidacionEntity validacionEntity = new ValidacionEntity();
-        validacionEntity.setId(ModelUtils.generateId());
-        validacionEntity.setEstado(false);
-        validacionEntity.setError(ErrorType.esperando_procesar);
-        validacionEntity.setErrorDescripcion("Esperando procesar");
+        EstadoSunatEntity estadoSunatEntity = new EstadoSunatEntity();
+        estadoSunatEntity.setId(ModelUtils.generateId());
+        estadoSunatEntity.setEstado(false);
 
         BajaEntity bajaEntity = new BajaEntity();
         bajaEntity.setId(ModelUtils.generateId());
@@ -72,9 +70,9 @@ public class JpaBajaProvider implements BajaProvider {
         bajaEntity.setEstado(EstadoComprobantePago.ABIERTO);
         bajaEntity.setInvoice(InvoiceAdapter.toEntity(invoiceAfectado, em));
 
-        bajaEntity.setValidacion(validacionEntity);
+        bajaEntity.setEstadoSunat(estadoSunatEntity);
 
-        em.persist(validacionEntity);
+        em.persist(estadoSunatEntity);
         em.persist(bajaEntity);
         em.flush();
         return toModel(bajaEntity);

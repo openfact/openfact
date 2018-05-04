@@ -8,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "invoice", uniqueConstraints = {
@@ -67,14 +69,8 @@ public class InvoiceEntity {
     @Column(name = "estado")
     private EstadoComprobantePago estado;
 
-    @Column(name = "estado_descripcion")
-    private String estadoDescripcion;
-
     @Column(name = "file_id")
     private String fileId;
-
-    @Column(name = "cdr_file_id")
-    private String cdrFileId;
 
     @NotNull
     @Type(type = "org.hibernate.type.YesNoType")
@@ -91,10 +87,14 @@ public class InvoiceEntity {
     @JoinColumn(foreignKey = @ForeignKey, name = "datos_venta_id")
     private DatosVentaEntity datosVenta;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(foreignKey = @ForeignKey, name = "cdr_id")
+    private CdrEntity cdr;
+
     @NotNull
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "nota_id")
-    private ValidacionEntity validacion;
+    @JoinColumn(foreignKey = @ForeignKey, name = "estado_sunat_id")
+    private EstadoSunatEntity estadoSunat;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
@@ -112,6 +112,11 @@ public class InvoiceEntity {
     @Version
     @Column(name = "version")
     private int version;
+
+    @ElementCollection
+    @Column(name = "value")
+    @CollectionTable(name = "invoice_labels", joinColumns = {@JoinColumn(name = "invoice_id")})
+    private Set<String> labels = new HashSet<>();
 
     public String getId() {
         return id;
@@ -137,6 +142,14 @@ public class InvoiceEntity {
         this.numero = numero;
     }
 
+    public String getCodigoTipoComprobante() {
+        return codigoTipoComprobante;
+    }
+
+    public void setCodigoTipoComprobante(String codigoTipoComprobante) {
+        this.codigoTipoComprobante = codigoTipoComprobante;
+    }
+
     public EstadoComprobantePago getEstado() {
         return estado;
     }
@@ -145,28 +158,12 @@ public class InvoiceEntity {
         this.estado = estado;
     }
 
-    public String getEstadoDescripcion() {
-        return estadoDescripcion;
-    }
-
-    public void setEstadoDescripcion(String estadoDescripcion) {
-        this.estadoDescripcion = estadoDescripcion;
-    }
-
     public String getFileId() {
         return fileId;
     }
 
     public void setFileId(String fileId) {
         this.fileId = fileId;
-    }
-
-    public String getCdrFileId() {
-        return cdrFileId;
-    }
-
-    public void setCdrFileId(String cdrFileId) {
-        this.cdrFileId = cdrFileId;
     }
 
     public boolean isEnviarSunat() {
@@ -193,12 +190,20 @@ public class InvoiceEntity {
         this.datosVenta = datosVenta;
     }
 
-    public ValidacionEntity getValidacion() {
-        return validacion;
+    public CdrEntity getCdr() {
+        return cdr;
     }
 
-    public void setValidacion(ValidacionEntity validacion) {
-        this.validacion = validacion;
+    public void setCdr(CdrEntity cdr) {
+        this.cdr = cdr;
+    }
+
+    public EstadoSunatEntity getEstadoSunat() {
+        return estadoSunat;
+    }
+
+    public void setEstadoSunat(EstadoSunatEntity estadoSunat) {
+        this.estadoSunat = estadoSunat;
     }
 
     public OrganizationEntity getOrganization() {
@@ -207,6 +212,14 @@ public class InvoiceEntity {
 
     public void setOrganization(OrganizationEntity organization) {
         this.organization = organization;
+    }
+
+    public ResumenDiarioEntity getResumenDiario() {
+        return resumenDiario;
+    }
+
+    public void setResumenDiario(ResumenDiarioEntity resumenDiario) {
+        this.resumenDiario = resumenDiario;
     }
 
     public Date getCreatedAt() {
@@ -225,19 +238,11 @@ public class InvoiceEntity {
         this.version = version;
     }
 
-    public ResumenDiarioEntity getResumenDiario() {
-        return resumenDiario;
+    public Set<String> getLabels() {
+        return labels;
     }
 
-    public void setResumenDiario(ResumenDiarioEntity resumenDiario) {
-        this.resumenDiario = resumenDiario;
-    }
-
-    public String getCodigoTipoComprobante() {
-        return codigoTipoComprobante;
-    }
-
-    public void setCodigoTipoComprobante(String codigo) {
-        this.codigoTipoComprobante = codigo;
+    public void setLabels(Set<String> labels) {
+        this.labels = labels;
     }
 }

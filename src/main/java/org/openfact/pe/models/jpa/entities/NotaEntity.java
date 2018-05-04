@@ -8,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "nota", uniqueConstraints = {
@@ -25,13 +27,13 @@ import java.util.Date;
         @NamedEntityGraph(name = "graph.ListNotas", attributeNodes = {
                 @NamedAttributeNode(value = "id"),
                 @NamedAttributeNode(value = "datosVenta", subgraph = "datosVenta"),
-                @NamedAttributeNode(value = "validacion", subgraph = "validacion"),
+                @NamedAttributeNode(value = "estadoSunat", subgraph = "estadoSunat"),
                 @NamedAttributeNode(value = "organization", subgraph = "organization"),
         }, subgraphs = {
                 @NamedSubgraph(name = "datosVenta", attributeNodes = {
                         @NamedAttributeNode(value = "id")
                 }),
-                @NamedSubgraph(name = "validacion", attributeNodes = {
+                @NamedSubgraph(name = "estadoSunat", attributeNodes = {
                         @NamedAttributeNode(value = "id")
                 }),
                 @NamedSubgraph(name = "organization", attributeNodes = {
@@ -73,14 +75,12 @@ public class NotaEntity {
     @Column(name = "estado")
     private EstadoComprobantePago estado;
 
-    @Column(name = "estado_descripcion")
-    private String estadoDescripcion;
-
     @Column(name = "file_id")
     private String fileId;
 
-    @Column(name = "cdr_file_id")
-    private String cdrFileId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(foreignKey = @ForeignKey, name = "cdr_id")
+    private CdrEntity cdr;
 
     @NotNull
     @Type(type = "org.hibernate.type.YesNoType")
@@ -99,8 +99,8 @@ public class NotaEntity {
 
     @NotNull
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "nota_id")
-    private ValidacionEntity validacion;
+    @JoinColumn(foreignKey = @ForeignKey, name = "estado_sunat_id")
+    private EstadoSunatEntity estadoSunat;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
@@ -114,6 +114,11 @@ public class NotaEntity {
     @Version
     @Column(name = "version")
     private int version;
+
+    @ElementCollection
+    @Column(name = "value")
+    @CollectionTable(name = "nota_labels", joinColumns = {@JoinColumn(name = "invoice_id")})
+    private Set<String> labels = new HashSet<>();
 
     public String getId() {
         return id;
@@ -139,6 +144,14 @@ public class NotaEntity {
         this.numero = numero;
     }
 
+    public String getCodigoTipoComprobante() {
+        return codigoTipoComprobante;
+    }
+
+    public void setCodigoTipoComprobante(String codigoTipoComprobante) {
+        this.codigoTipoComprobante = codigoTipoComprobante;
+    }
+
     public String getTipoNota() {
         return tipoNota;
     }
@@ -151,8 +164,8 @@ public class NotaEntity {
         return invoiceAfectado;
     }
 
-    public void setInvoiceAfectado(InvoiceEntity documentoAsociado) {
-        this.invoiceAfectado = documentoAsociado;
+    public void setInvoiceAfectado(InvoiceEntity invoiceAfectado) {
+        this.invoiceAfectado = invoiceAfectado;
     }
 
     public EstadoComprobantePago getEstado() {
@@ -163,14 +176,6 @@ public class NotaEntity {
         this.estado = estado;
     }
 
-    public String getEstadoDescripcion() {
-        return estadoDescripcion;
-    }
-
-    public void setEstadoDescripcion(String estadoDescripcion) {
-        this.estadoDescripcion = estadoDescripcion;
-    }
-
     public String getFileId() {
         return fileId;
     }
@@ -179,12 +184,12 @@ public class NotaEntity {
         this.fileId = fileId;
     }
 
-    public String getCdrFileId() {
-        return cdrFileId;
+    public CdrEntity getCdr() {
+        return cdr;
     }
 
-    public void setCdrFileId(String cdrFileId) {
-        this.cdrFileId = cdrFileId;
+    public void setCdr(CdrEntity cdr) {
+        this.cdr = cdr;
     }
 
     public boolean isEnviarSunat() {
@@ -211,12 +216,12 @@ public class NotaEntity {
         this.datosVenta = datosVenta;
     }
 
-    public ValidacionEntity getValidacion() {
-        return validacion;
+    public EstadoSunatEntity getEstadoSunat() {
+        return estadoSunat;
     }
 
-    public void setValidacion(ValidacionEntity validacion) {
-        this.validacion = validacion;
+    public void setEstadoSunat(EstadoSunatEntity estadoSunat) {
+        this.estadoSunat = estadoSunat;
     }
 
     public OrganizationEntity getOrganization() {
@@ -243,11 +248,11 @@ public class NotaEntity {
         this.version = version;
     }
 
-    public String getCodigoTipoComprobante() {
-        return codigoTipoComprobante;
+    public Set<String> getLabels() {
+        return labels;
     }
 
-    public void setCodigoTipoComprobante(String codigoComprobante) {
-        this.codigoTipoComprobante = codigoComprobante;
+    public void setLabels(Set<String> labels) {
+        this.labels = labels;
     }
 }

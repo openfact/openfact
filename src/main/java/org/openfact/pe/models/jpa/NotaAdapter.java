@@ -76,16 +76,6 @@ public class NotaAdapter implements NotaModel, JpaModel<NotaEntity> {
     }
 
     @Override
-    public String getEstadoDescripcion() {
-        return nota.getEstadoDescripcion();
-    }
-
-    @Override
-    public void setEstadoDescripcion(String estadoDescripcion) {
-        nota.setEstadoDescripcion(estadoDescripcion);
-    }
-
-    @Override
     public boolean getEnviarSunat() {
         return nota.isEnviarSunat();
     }
@@ -116,13 +106,8 @@ public class NotaAdapter implements NotaModel, JpaModel<NotaEntity> {
     }
 
     @Override
-    public String getCdrFileId() {
-        return nota.getCdrFileId();
-    }
-
-    @Override
-    public void setCdrFileId(String fileId) {
-        nota.setCdrFileId(fileId);
+    public CdrModel getCdr() {
+        return new CdrAdapter(nota.getCdr());
     }
 
     @Override
@@ -131,8 +116,8 @@ public class NotaAdapter implements NotaModel, JpaModel<NotaEntity> {
     }
 
     @Override
-    public ValidacionModel getValidacion() {
-        return new ValidacionAdapter(nota.getValidacion());
+    public EstadoSunatModel getEstadoSunat() {
+        return new EstadoSunatAdapter(nota.getEstadoSunat());
     }
 
     @Override

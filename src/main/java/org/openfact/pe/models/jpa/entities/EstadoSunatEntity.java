@@ -1,14 +1,13 @@
 package org.openfact.pe.models.jpa.entities;
 
 import org.hibernate.annotations.Type;
-import org.openfact.pe.models.ErrorType;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "validacion")
-public class ValidacionEntity {
+@Table(name = "estado_sunat")
+public class EstadoSunatEntity {
 
     @Id
     @Access(AccessType.PROPERTY)
@@ -20,12 +19,11 @@ public class ValidacionEntity {
     @Column(name = "estado")
     private boolean estado;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "error")
-    private ErrorType error;
+    @Column(name = "codigo")
+    private String codigo;
 
     @Column(name = "descripcion", length = 450)
-    private String errorDescripcion;
+    private String descripcion;
 
     public String getId() {
         return id;
@@ -43,19 +41,19 @@ public class ValidacionEntity {
         this.estado = estado;
     }
 
-    public ErrorType getError() {
-        return error;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setError(ErrorType error) {
-        this.error = error;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
-    public String getErrorDescripcion() {
-        return errorDescripcion;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setErrorDescripcion(String errorDescripcion) {
-        this.errorDescripcion = errorDescripcion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }

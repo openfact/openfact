@@ -75,10 +75,10 @@ public class TypeManager {
     @Inject
     private MessageManager messageManager;
 
-    private void guardarDocumentoNoEnviado(ValidacionModel validacion) {
+    private void guardarDocumentoNoEnviado(EstadoSunatModel validacion) {
         validacion.setEstado(false);
-        validacion.setError(ErrorType.no_enviado_sunat);
-        validacion.setErrorDescripcion("El documento todavía no fue enviado a la Sunat");
+        validacion.setCodigo("-1");
+        validacion.setDescripcion("El documento todavía no fue enviado a la Sunat");
     }
 
     @Asynchronous
@@ -140,7 +140,7 @@ public class TypeManager {
                 messageManager.enviarInvoice(invoice);
             }
         } else {
-            guardarDocumentoNoEnviado(invoice.getValidacion());
+            guardarDocumentoNoEnviado(invoice.getEstadoSunat());
         }
 
         return new AsyncResult<>(invoice);
@@ -220,7 +220,7 @@ public class TypeManager {
                 messageManager.enviarNota(nota);
             }
         } else {
-            guardarDocumentoNoEnviado(nota.getValidacion());
+            guardarDocumentoNoEnviado(nota.getEstadoSunat());
         }
 
         return new AsyncResult<>(nota);
@@ -285,7 +285,7 @@ public class TypeManager {
                 messageManager.enviarBaja(baja);
             }
         } else {
-            guardarDocumentoNoEnviado(baja.getValidacion());
+            guardarDocumentoNoEnviado(baja.getEstadoSunat());
         }
 
         return new AsyncResult<>(baja);

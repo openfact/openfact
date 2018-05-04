@@ -124,12 +124,12 @@ public class ModelToRepresentation {
 
         rep.setDetalle(datosVentaModel.getDetalle().stream().map(ModelToRepresentation::toRepresentation).collect(Collectors.toList()));
 
-        ValidacionModel validacionModel = model.getValidacion();
-        ValidacionRepresentation validacionRep = new ValidacionRepresentation();
-        validacionRep.setEstado(validacionModel.getEstado());
-        validacionRep.setError(validacionModel.getError().toString());
-        validacionRep.setErrorDescripcion(validacionModel.getErrorDescripcion());
-        rep.setValidacion(validacionRep);
+        EstadoSunatModel estadoSunatModel = model.getEstadoSunat();
+        EstadoSunatRepresentation estadoSunatRep = new EstadoSunatRepresentation();
+        estadoSunatRep.setEstado(estadoSunatModel.getEstado());
+        estadoSunatRep.setCodigo(estadoSunatModel.getCodigo());
+        estadoSunatRep.setDescripcion(estadoSunatModel.getDescripcion());
+        rep.setValidacion(estadoSunatRep);
 
         if (fullInfo) {
             rep.setEnviarCliente(model.getEnviarCliente());
@@ -156,12 +156,12 @@ public class ModelToRepresentation {
 
         rep.setDetalle(datosVentaModel.getDetalle().stream().map(ModelToRepresentation::toRepresentation).collect(Collectors.toList()));
 
-        ValidacionModel validacionModel = model.getValidacion();
-        ValidacionRepresentation validacionRep = new ValidacionRepresentation();
-        validacionRep.setEstado(validacionModel.getEstado());
-        validacionRep.setError(validacionModel.getError().toString());
-        validacionRep.setErrorDescripcion(validacionModel.getErrorDescripcion());
-        rep.setValidacion(validacionRep);
+        EstadoSunatModel estadoSunatModel = model.getEstadoSunat();
+        EstadoSunatRepresentation estadoSunatRep = new EstadoSunatRepresentation();
+        estadoSunatRep.setEstado(estadoSunatModel.getEstado());
+        estadoSunatRep.setCodigo(estadoSunatModel.getCodigo());
+        estadoSunatRep.setDescripcion(estadoSunatModel.getDescripcion());
+        rep.setValidacion(estadoSunatRep);
 
         if (fullInfo) {
             rep.setEnviarCliente(model.getEnviarCliente());

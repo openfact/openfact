@@ -17,9 +17,6 @@ public interface InvoiceModel {
     EstadoComprobantePago getEstado();
     void setEstado(EstadoComprobantePago estado);
 
-    String getEstadoDescripcion();
-    void setEstadoDescripcion(String estadoDescripcion);
-
     boolean getEnviarSunat();
     void setEnviarSunat(boolean enviarSunat);
 
@@ -29,10 +26,9 @@ public interface InvoiceModel {
     String getFileId();
     void setFileId(String fileId);
 
-    String getCdrFileId();
-    void setCdrFileId(String fileId);
+    CdrModel getCdr();
+    EstadoSunatModel getEstadoSunat();
 
-    ValidacionModel getValidacion();
     DatosVentaModel getDatosVenta();
     OrganizationModel getOrganization();
     Optional<ResumenDiarioModel> getResumenDiario();

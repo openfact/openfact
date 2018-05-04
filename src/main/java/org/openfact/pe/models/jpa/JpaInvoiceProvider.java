@@ -3,13 +3,14 @@ package org.openfact.pe.models.jpa;
 import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.jpa.OrganizationAdapter;
 import org.openfact.core.models.utils.ModelUtils;
-import org.openfact.pe.models.ErrorType;
+import org.openfact.pe.models.Labels;
 import org.openfact.pe.models.EstadoComprobantePago;
 import org.openfact.pe.models.InvoiceModel;
 import org.openfact.pe.models.InvoiceProvider;
+import org.openfact.pe.models.jpa.entities.CdrEntity;
 import org.openfact.pe.models.jpa.entities.DatosVentaEntity;
 import org.openfact.pe.models.jpa.entities.InvoiceEntity;
-import org.openfact.pe.models.jpa.entities.ValidacionEntity;
+import org.openfact.pe.models.jpa.entities.EstadoSunatEntity;
 import org.openfact.pe.models.types.TipoInvoice;
 import org.openfact.pe.models.utils.SunatUtils;
 import org.wildfly.swarm.spi.runtime.annotations.ConfigurationValue;
@@ -60,11 +61,12 @@ public class JpaInvoiceProvider implements InvoiceProvider {
         DatosVentaEntity datosVentaEntity = new DatosVentaEntity();
         datosVentaEntity.setId(ModelUtils.generateId());
 
-        ValidacionEntity validacionEntity = new ValidacionEntity();
-        validacionEntity.setId(ModelUtils.generateId());
-        validacionEntity.setEstado(false);
-        validacionEntity.setError(ErrorType.esperando_procesar);
-        validacionEntity.setErrorDescripcion("Esperando procesar");
+        CdrEntity cdrEntity = new CdrEntity();
+        cdrEntity.setId(ModelUtils.generateId());
+
+        EstadoSunatEntity estadoSunatEntity = new EstadoSunatEntity();
+        estadoSunatEntity.setId(ModelUtils.generateId());
+        estadoSunatEntity.setEstado(false);
 
         InvoiceEntity invoiceEntity = new InvoiceEntity();
         invoiceEntity.setId(ModelUtils.generateId());
@@ -76,10 +78,12 @@ public class JpaInvoiceProvider implements InvoiceProvider {
         invoiceEntity.setOrganization(OrganizationAdapter.toEntity(organization, em));
 
         invoiceEntity.setDatosVenta(datosVentaEntity);
-        invoiceEntity.setValidacion(validacionEntity);
+        invoiceEntity.setCdr(cdrEntity);
+        invoiceEntity.setEstadoSunat(estadoSunatEntity);
 
         em.persist(datosVentaEntity);
-        em.persist(validacionEntity);
+        em.persist(cdrEntity);
+        em.persist(estadoSunatEntity);
         em.persist(invoiceEntity);
         em.flush();
         return toModel(invoiceEntity);

@@ -1,5 +1,7 @@
 package org.openfact.pe.models.jpa;
 
+import org.openfact.pe.models.CdrModel;
+import org.openfact.pe.models.EstadoSunatModel;
 import org.openfact.pe.models.ResumenDiarioModel;
 import org.openfact.pe.models.jpa.entities.ResumenDiarioEntity;
 
@@ -26,6 +28,16 @@ public class ResumenDiarioAdapter implements ResumenDiarioModel {
     @Override
     public Date getFechaEmisionDocumentosAsociados() {
         return null;
+    }
+
+    @Override
+    public CdrModel getCdr() {
+        return new CdrAdapter(resumenDiario.getCdr());
+    }
+
+    @Override
+    public EstadoSunatModel getEstadoSunat() {
+        return new EstadoSunatAdapter(resumenDiario.getEstadoSunat());
     }
 
 }

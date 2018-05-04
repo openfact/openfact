@@ -63,16 +63,6 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
-    public String getEstadoDescripcion() {
-        return invoice.getEstadoDescripcion();
-    }
-
-    @Override
-    public void setEstadoDescripcion(String estadoDescripcion) {
-        invoice.setEstadoDescripcion(estadoDescripcion);
-    }
-
-    @Override
     public boolean getEnviarSunat() {
         return invoice.isEnviarSunat();
     }
@@ -103,13 +93,8 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
-    public String getCdrFileId() {
-        return invoice.getCdrFileId();
-    }
-
-    @Override
-    public void setCdrFileId(String fileId) {
-        invoice.setCdrFileId(fileId);
+    public CdrModel getCdr() {
+        return new CdrAdapter(invoice.getCdr());
     }
 
     @Override
@@ -118,8 +103,8 @@ public class InvoiceAdapter implements InvoiceModel, JpaModel<InvoiceEntity> {
     }
 
     @Override
-    public ValidacionModel getValidacion() {
-        return new ValidacionAdapter(invoice.getValidacion());
+    public EstadoSunatModel getEstadoSunat() {
+        return new EstadoSunatAdapter(invoice.getEstadoSunat());
     }
 
     @Override

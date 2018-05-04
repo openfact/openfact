@@ -5,9 +5,10 @@ import org.openfact.core.models.OrganizationModel;
 import org.openfact.core.models.jpa.OrganizationAdapter;
 import org.openfact.core.models.utils.ModelUtils;
 import org.openfact.pe.models.*;
+import org.openfact.pe.models.jpa.entities.CdrEntity;
 import org.openfact.pe.models.jpa.entities.DatosVentaEntity;
 import org.openfact.pe.models.jpa.entities.NotaEntity;
-import org.openfact.pe.models.jpa.entities.ValidacionEntity;
+import org.openfact.pe.models.jpa.entities.EstadoSunatEntity;
 import org.openfact.pe.models.types.TipoNota;
 import org.openfact.pe.models.utils.SunatUtils;
 import org.wildfly.swarm.spi.runtime.annotations.ConfigurationValue;
@@ -62,11 +63,12 @@ public class JpaNotaProvider implements NotaProvider {
         DatosVentaEntity datosVentaEntity = new DatosVentaEntity();
         datosVentaEntity.setId(ModelUtils.generateId());
 
-        ValidacionEntity validacionEntity = new ValidacionEntity();
-        validacionEntity.setId(ModelUtils.generateId());
-        validacionEntity.setEstado(false);
-        validacionEntity.setError(ErrorType.esperando_procesar);
-        validacionEntity.setErrorDescripcion("Esperando procesar");
+        CdrEntity cdrEntity = new CdrEntity();
+        cdrEntity.setId(ModelUtils.generateId());
+
+        EstadoSunatEntity estadoSunatEntity = new EstadoSunatEntity();
+        estadoSunatEntity.setId(ModelUtils.generateId());
+        estadoSunatEntity.setEstado(false);
 
         NotaEntity notaEntity = new NotaEntity();
         notaEntity.setId(ModelUtils.generateId());
@@ -80,10 +82,12 @@ public class JpaNotaProvider implements NotaProvider {
         notaEntity.setInvoiceAfectado(InvoiceAdapter.toEntity(invoiceAfectado, em));
 
         notaEntity.setDatosVenta(datosVentaEntity);
-        notaEntity.setValidacion(validacionEntity);
+        notaEntity.setCdr(cdrEntity);
+        notaEntity.setEstadoSunat(estadoSunatEntity);
 
         em.persist(datosVentaEntity);
-        em.persist(validacionEntity);
+        em.persist(cdrEntity);
+        em.persist(estadoSunatEntity);
         em.persist(notaEntity);
         em.flush();
         return toModel(notaEntity);

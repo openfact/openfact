@@ -7,6 +7,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "bajas")
@@ -59,8 +61,9 @@ public class BajaEntity {
     @Column(name = "file_id")
     private String fileId;
 
-    @Column(name = "cdr_file_id")
-    private String cdrFileId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(foreignKey = @ForeignKey, name = "cdr_id")
+    private CdrEntity cdr;
 
     @NotNull
     @Type(type = "org.hibernate.type.YesNoType")
@@ -79,8 +82,13 @@ public class BajaEntity {
 
     @NotNull
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(foreignKey = @ForeignKey, name = "nota_id")
-    private ValidacionEntity validacion;
+    @JoinColumn(foreignKey = @ForeignKey, name = "estado_sunat_id")
+    private EstadoSunatEntity estadoSunat;
+
+    @ElementCollection
+    @Column(name = "value")
+    @CollectionTable(name = "baja_labels", joinColumns = {@JoinColumn(name = "baja_id")})
+    private Set<String> labels = new HashSet<>();
 
     public String getId() {
         return id;
@@ -88,22 +96,6 @@ public class BajaEntity {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public InvoiceEntity getInvoice() {
-        return invoice;
-    }
-
-    public void setInvoice(InvoiceEntity invoice) {
-        this.invoice = invoice;
-    }
-
-    public String getMotivoBaja() {
-        return motivoBaja;
-    }
-
-    public void setMotivoBaja(String motivo_baja) {
-        this.motivoBaja = motivo_baja;
     }
 
     public String getSerie() {
@@ -126,8 +118,16 @@ public class BajaEntity {
         return fechaEmision;
     }
 
-    public void setFechaEmision(Date fechaGeneracionBaja) {
-        this.fechaEmision = fechaGeneracionBaja;
+    public void setFechaEmision(Date fechaEmision) {
+        this.fechaEmision = fechaEmision;
+    }
+
+    public String getMotivoBaja() {
+        return motivoBaja;
+    }
+
+    public void setMotivoBaja(String motivoBaja) {
+        this.motivoBaja = motivoBaja;
     }
 
     public EstadoComprobantePago getEstado() {
@@ -138,14 +138,6 @@ public class BajaEntity {
         this.estado = estado;
     }
 
-    public ValidacionEntity getValidacion() {
-        return validacion;
-    }
-
-    public void setValidacion(ValidacionEntity validacion) {
-        this.validacion = validacion;
-    }
-
     public String getFileId() {
         return fileId;
     }
@@ -154,12 +146,12 @@ public class BajaEntity {
         this.fileId = fileId;
     }
 
-    public String getCdrFileId() {
-        return cdrFileId;
+    public CdrEntity getCdr() {
+        return cdr;
     }
 
-    public void setCdrFileId(String cdrFileId) {
-        this.cdrFileId = cdrFileId;
+    public void setCdr(CdrEntity cdr) {
+        this.cdr = cdr;
     }
 
     public boolean isEnviarSunat() {
@@ -176,5 +168,29 @@ public class BajaEntity {
 
     public void setEnviarCliente(boolean enviarCliente) {
         this.enviarCliente = enviarCliente;
+    }
+
+    public InvoiceEntity getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(InvoiceEntity invoice) {
+        this.invoice = invoice;
+    }
+
+    public EstadoSunatEntity getEstadoSunat() {
+        return estadoSunat;
+    }
+
+    public void setEstadoSunat(EstadoSunatEntity estadoSunat) {
+        this.estadoSunat = estadoSunat;
+    }
+
+    public Set<String> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(Set<String> labels) {
+        this.labels = labels;
     }
 }

@@ -239,9 +239,9 @@
         primary key (id)
     );
 
-    create table validacion (
+    create table estadoSunat (
        id varchar(255) not null,
-        error varchar(255),
+        codigo varchar(255),
         descripcion varchar(450),
         estado char(255) not null,
         primary key (id)
@@ -279,7 +279,7 @@
     alter table bajas
        add constraint FKo35qdiq5hnnn329oxkgxylvsa
        foreign key (nota_id)
-       references validacion;
+       references estadoSunat;
 
     alter table component
        add constraint FKmpfdha5eg9fm6ht2ue01ec9l6
@@ -314,7 +314,7 @@
     alter table invoice
        add constraint FK9driov3gcc1wcxrsrv8roae9u
        foreign key (nota_id)
-       references validacion;
+       references estadoSunat;
 
     alter table memberships
        add constraint FKp778ik4pdu8wu3hra61aw2ufg
@@ -349,7 +349,7 @@
     alter table nota
        add constraint FKpex5uh3lth6pahdok9hvco46l
        foreign key (nota_id)
-       references validacion;
+       references estadoSunat;
 
     alter table organizacion_informacion_adicional
        add constraint FKbweggho1n7o8l6wjfsc1j2y3i
@@ -379,4 +379,4 @@
     alter table resumen_diario
        add constraint FKrpcdr9ekhxmifmpetks8a1c4q
        foreign key (nota_id)
-       references validacion;
+       references estadoSunat;

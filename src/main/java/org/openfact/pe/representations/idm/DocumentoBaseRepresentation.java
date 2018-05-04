@@ -41,7 +41,7 @@ public class DocumentoBaseRepresentation {
     private TotalInformacionAdicionalRepresentation totalInformacionAdicional;
 
     @Valid
-    private ValidacionRepresentation validacion;
+    private EstadoSunatRepresentation validacion;
 
     @NotNull
     @Valid
@@ -136,11 +136,11 @@ public class DocumentoBaseRepresentation {
         this.totalInformacionAdicional = totalInformacionAdicional;
     }
 
-    public ValidacionRepresentation getValidacion() {
+    public EstadoSunatRepresentation getValidacion() {
         return validacion;
     }
 
-    public void setValidacion(ValidacionRepresentation validacion) {
+    public void setValidacion(EstadoSunatRepresentation validacion) {
         this.validacion = validacion;
     }
 

@@ -1,10 +1,7 @@
 package org.openfact.pe.models.jpa;
 
 import org.openfact.core.models.jpa.JpaModel;
-import org.openfact.pe.models.BajaModel;
-import org.openfact.pe.models.EstadoComprobantePago;
-import org.openfact.pe.models.InvoiceModel;
-import org.openfact.pe.models.ValidacionModel;
+import org.openfact.pe.models.*;
 import org.openfact.pe.models.jpa.entities.BajaEntity;
 
 import javax.persistence.EntityManager;
@@ -83,16 +80,6 @@ public class BajaAdapter implements BajaModel, JpaModel<BajaEntity> {
     }
 
     @Override
-    public String getCdrFileId() {
-        return baja.getCdrFileId();
-    }
-
-    @Override
-    public void setCdrFileId(String fileId) {
-        baja.setCdrFileId(fileId);
-    }
-
-    @Override
     public boolean getEnviarSunat() {
         return baja.isEnviarSunat();
     }
@@ -113,7 +100,13 @@ public class BajaAdapter implements BajaModel, JpaModel<BajaEntity> {
     }
 
     @Override
-    public ValidacionModel getValidacion() {
-        return new ValidacionAdapter(baja.getValidacion());
+    public CdrModel getCdr() {
+        return new CdrAdapter(baja.getCdr());
     }
+
+    @Override
+    public EstadoSunatModel getEstadoSunat() {
+        return new EstadoSunatAdapter(baja.getEstadoSunat());
+    }
+
 }
