@@ -12,10 +12,13 @@ import org.openfact.core.utils.finance.MoneyConverters;
 import org.openfact.pe.models.*;
 import org.openfact.pe.models.types.*;
 import org.w3c.dom.Element;
+import sunat.names.specification.ubl.peru.schema.xsd.retention_1.RetentionFactory;
+import sunat.names.specification.ubl.peru.schema.xsd.retention_1.RetentionType;
 import sunat.names.specification.ubl.peru.schema.xsd.sunataggregatecomponents_1.*;
 import sunat.names.specification.ubl.peru.schema.xsd.sunataggregatecomponents_1.ObjectFactory;
 import sunat.names.specification.ubl.peru.schema.xsd.voideddocuments_1.VoidedDocumentsType;
 
+import javax.persistence.Entity;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.datatype.DatatypeConfigurationException;
@@ -190,7 +193,7 @@ public class ModelToType {
         // Proveedor
         voidedDocumentsType.setAccountingSupplierParty(buildSupplierPartyType(additionalInfo));
 
-        // Detalle
+        // Detaoslle
         VoidedDocumentsLineType voidedDocumentsLineType = new VoidedDocumentsLineType();
 
         voidedDocumentsLineType.setLineID(TypeUtils.buildLineIDType("1"));
@@ -200,6 +203,13 @@ public class ModelToType {
         voidedDocumentsLineType.setVoidReasonDescription(TypeUtils.buildTextType(baja.getMotivoBaja()));
 
         return voidedDocumentsType;
+    }
+
+    public static RetentionType toRetentionType(OrganizationModel organization, OrganizacionInformacionAdicionalModel additionalInfo, RetencionModel retencion) {
+        RetentionType retentionType = new RetentionType();
+        retentionType.setId(retencion.getSerie() + "-"  + retencion.getNumero());
+        retentionType.setIssueDate(toGregorianCalendar(retencion.getFechaEmision(), organization.getTimeZone()));
+        retentionType.setAgentParty();
     }
 
     private static XMLGregorianCalendar toGregorianCalendar(Date date, TimeZone zone) {
@@ -323,6 +333,38 @@ public class ModelToType {
 
         customerPartyType.setParty(partyType);
         return customerPartyType;
+    }
+
+    private static oasis.names.specification.ubl.schema.xsd.commonaggregatecomponents_21.PartyType buildSupplierPartyType(OrganizacionInformacionAdicionalModel model) {
+        SupplierPartyType supplierPartyType = new SupplierPartyType();
+
+        // Numero DNI/RUC
+        supplierPartyType.setCustomerAssignedAccountID(TypeUtils.buildCustomerAssignedAccountIDType(model.getAssignedId()));
+
+        // Codigo de DNI/RUC
+        supplierPartyType.getAdditionalAccountID().add(TypeUtils.buildAdditionalAccountIDType(model.getAdditionalAssignedId()));
+
+        // Party
+        PartyType partyType = new PartyType();
+
+        // Party Name
+        partyType.getPartyName().add(TypeUtils.buildPartyNameType(model.getNombreComercial()));
+
+        // Party Legal Entity
+        partyType.getPartyLegalEntity().add(TypeUtils.buildPartyLegalEntityType(model.getRazonSocial()));
+
+        // Party Address
+        AddressType addressType = new AddressType();
+        addressType.setID(TypeUtils.buildIDType(model.getCodigoPostal()));
+        addressType.setStreetName(TypeUtils.buildStreetNameType(model.getDireccion()));
+        addressType.setCitySubdivisionName(TypeUtils.buildCitySubdivisionNameType(model.getProvincia()));
+        addressType.setCityName(TypeUtils.buildCityNameType(model.getDistrito()));
+        addressType.setCountrySubentity(TypeUtils.buildCountrySubEntityType(model.getRegion()));
+        addressType.setCountry(TypeUtils.buildCountryType(model.getCodigoPais()));
+        partyType.setPostalAddress(addressType);
+
+        supplierPartyType.setParty(partyType);
+        return supplierPartyType;
     }
 
     private static MonetaryTotalType buildMonetaryTotalType(String currency, TotalModel total) {

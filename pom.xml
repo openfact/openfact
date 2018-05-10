@@ -242,7 +242,7 @@
         <dependency>
             <groupId>io.github.carlosthe19916</groupId>
             <artifactId>sunat-jaxb</artifactId>
-            <version>1.0.0.Final</version>
+            <version>1.1.1.Final</version>
         </dependency>
         <dependency>
             <groupId>io.github.carlosthe19916</groupId>
@@ -352,28 +352,6 @@
                         <phase>none</phase>
                     </execution>
                 </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>jaxb2-maven-plugin</artifactId>
-                <version>2.3.1</version>
-                <executions>
-                    <execution>
-                        <id>xjc</id>
-                        <goals>
-                            <goal>xjc</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <xjbSources>
-                        <xjbSource>src/main/resources/sunat-jaxb/xjb</xjbSource>
-                    </xjbSources>
-                    <sources>
-                        <source>src/main/resources/sunat-jaxb/maindoc</source>
-                    </sources>
-                </configuration>
             </plugin>
         </plugins>
     </build>
