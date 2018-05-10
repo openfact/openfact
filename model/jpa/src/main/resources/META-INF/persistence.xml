@@ -13,8 +13,6 @@
             <property name="hibernate.format_sql" value="${format_sql}"/>
             <property name="hibernate.hbm2ddl.auto" value="${hbm2ddl.auto}"/>
             <property name="hibernate.cache.use_second_level_cache" value="${cache.use_second_level_cache}"/>
-
-            <property name="hibernate.archive.autodetection" value="true"/>
         </properties>
     </persistence-unit>
 </persistence>

@@ -43,7 +43,9 @@ import java.util.Collection;
         @NamedQuery(name = "getOrganizationDocumentByDocumentTypeAndDocumentId", query = "select i from DocumentEntity i where i.documentType=:documentType and i.documentId=:documentId and i.organizationId = :organizationId"),
         @NamedQuery(name = "searchForDocument", query = "select i from DocumentEntity i where i.organizationId = :organizationId and lower(i.documentId) like :search order by i.createdTimestamp"),
         @NamedQuery(name = "getOrganizationDocumentCount", query = "select count(i) from DocumentEntity i where i.organizationId = :organizationId"),
-        @NamedQuery(name = "deleteDocumentsByOrganization", query = "delete from DocumentEntity u where u.organizationId = :organizationId")
+        @NamedQuery(name = "deleteDocumentsByOrganization", query = "delete from DocumentEntity u where u.organizationId = :organizationId"),
+
+        @NamedQuery(name = "selectLastDocumentChanged", query = "select d from DocumentEntity d where d.organizationId=:organizationId and d.documentType=:documentType and upper(d.documentId) like :firstLetter order by d.createdTimestamp")
 })
 public class DocumentEntity {
 
