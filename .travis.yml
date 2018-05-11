@@ -1,36 +1,16 @@
 language: java
-
-cache:
-  directories:
-    - $HOME/.m2
-
-before_cache:
-  - rm -rf $HOME/.m2/repository/org/sistcoop
-
 jdk:
   - oraclejdk8
-
-script: mvn --settings .travis/settings.xml clean  verify
-
-deploy:
-  -
-      provider: script
-      script: .travis/deploy.sh
-      skip_cleanup: true
-      on:
-        repo: openfact/openfact
-        branch: master
-        jdk: oraclejdk8
-  -
-    provider: script
-    script: .travis/deploy.sh
-    skip_cleanup: true
-    on:
-      repo: openfact/openfact
-      tags: true
-      jdk: oraclejdk8
-
-
+install: mvn install -P !build-extras -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+script: mvn test -P !build-extras -B
+before_cache:
+  - rm -rf $HOME/.m2/repository/org/sistcoop
+cache:
+  directories:
+  - "~/.m2/repository"
+after_success:
+- "./cd/before-deploy.sh"
+- "./cd/deploy.sh"
 notifications:
   email:
     - carlosthe19916@gmail.com
