@@ -527,7 +527,7 @@ public class DocumentsAdminResource {
                         throw new BadRequestException("Bad operator on criteria");
                     }
                 } else {
-                    query.addFilter(filter.getName(), filter.getValue(), filter.getOperator());
+                    query.addFilter(filter.getName(), filter.getValue(), filter.getOperator() != null ?  filter.getOperator() : SearchCriteriaFilterOperator.eq);
                 }
             }
         }
